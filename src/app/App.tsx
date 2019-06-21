@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaTag, FaFile, FaClipboard, FaSearch, FaEdit, FaLayerGroup } from 'react-icons/fa'
+import { FaTag, FaFile, FaClipboard, FaSearch, FaEdit, FaLayerGroup, FaProjectDiagram, FaBars } from 'react-icons/fa'
 import './App.css'
 
 const App: React.FC = () => {
@@ -7,8 +7,10 @@ const App: React.FC = () => {
     <div className="app">
       <div className="sidebar panel-border-right">
         <div className="sidebar-header panel-border-bottom">
-          <div className="icon-button active microbar-toggle">
-            <FaTag />
+          <div className="sidebar-microbar-controls">
+            <div className="icon-button active">
+              <FaTag />
+            </div>
           </div>
           <div className="sidebar-main-controls">
             <div className="sidebar-header-search">
@@ -42,7 +44,16 @@ const App: React.FC = () => {
       </div>
       <div className="main">
         <div className="main-header panel-border-bottom">
+          <div className="sidebar-toggle">
+            <div className="icon-button active">
+              <FaBars />
+            </div>
+          </div>
+          <h2 className="project-title">Project: Antalya</h2>
           <div className="main-mode-selector">
+            <div className="icon-button">
+              <FaProjectDiagram />
+            </div>
             <div className="icon-button active">
               <FaEdit />
             </div>
