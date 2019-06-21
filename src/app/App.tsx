@@ -7,26 +7,12 @@ const App: React.FC = () => {
     <div className="app">
       <div className="sidebar panel-border-right">
         <div className="sidebar-header panel-border-bottom">
-          <div className="sidebar-microbar-controls">
-            <div className="icon-button active">
-              <FaTag />
-            </div>
-          </div>
           <div className="sidebar-main-controls">
             <div className="sidebar-header-search">
-              <FaSearch />
               <input
                 type="text"
                 spellCheck={false}
               />
-            </div>
-            <div className="sidebar-mode-selector">
-              <div className="icon-button active">
-                <FaFile />
-              </div>
-              <div className="icon-button">
-                <FaClipboard />
-              </div>
             </div>
           </div>
         </div>
@@ -37,7 +23,15 @@ const App: React.FC = () => {
         </div>
         <div className="sidebar-main">
           <div className="sidebar-panel files">
-
+            <div className="file">83-exploring-phasellus.wav</div>
+            <div className="file">84-phasellus-waves.wav</div>
+            <div className="file">85-phasellus-crickets.wav</div>
+            <div className="file">86-phasellus-beach-party.wav</div>
+            <div className="file">87-phasellus-soundchecking.wav</div>
+            <div className="file">88-jason-singing-in-the-shower.wav</div>
+            <div className="file">89-jason-singing-on-the-night-road-walk.wav</div>
+            <div className="file">90-last-dinner-in-mt-olympus-1.wav</div>
+            <div className="file">91-last-dinner-in-mt-olympus-2.wav</div>
           </div>
           <div className="sidebar-panel clips"></div>
         </div>
@@ -62,7 +56,13 @@ const App: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="editor"></div>
+        <div className="editor">
+          <div className="waveform">
+            <div className="markers"></div>
+          </div>
+          <div className="edit-form"></div>
+          <div className="clips-list"></div>
+        </div>
         <div className="arranger"></div>
       </div>
     </div>
