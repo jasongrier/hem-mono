@@ -1,8 +1,8 @@
 import React from 'react'
 import { FaTag, FaFile, FaClipboard, FaSearch, FaEdit, FaLayerGroup, FaProjectDiagram, FaBars } from 'react-icons/fa'
-import './App.css'
+import './Prototype.css'
 
-function App(): React.ReactElement {
+function Prototype(): React.ReactElement {
   return (
     <div className="app">
       <div className="sidebar panel-border-right">
@@ -69,7 +69,7 @@ function App(): React.ReactElement {
               <input type="submit" />
             </form>
           </div>
-          <div className="clips-list">
+          <div className="clip-list">
             <div className="clip">Lorem ipsum dolor sit amet</div>
             <div className="clip">Lorem ipsum dolor sit amet</div>
             <div className="clip">Lorem ipsum dolor sit amet</div>
@@ -86,4 +86,4 @@ function App(): React.ReactElement {
   )
 }
 
-export default App
+export default Prototype
