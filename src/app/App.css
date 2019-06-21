@@ -1,12 +1,14 @@
 :root {
   --panel-bg-color: #000;
   --panel-border-color: #333;
-  --active-element-color: #999;
+  --interactive-element-color: #999;
+  --interactive-element-color-active: #eee;
   --header-height: 70px;
   --body-height: calc(100vh - var(--header-height) - 1px);
   --microbar-width: 100px;
   --sidebar-main-width: 300px;
   --sidebar-total-width: calc(var(--microbar-width) + var(--sidebar-main-width));
+  --main-width: calc(100vw - var(--sidebar-total-width) - 1px);
 }
 
 .panel-border-top { border-top: 1px solid var(--panel-border-color) }
@@ -21,8 +23,21 @@
   line-height: 20px;
   text-align: center;
   margin: 0 5px;
-  color: var(--active-element-color);
+  color: var(--interactive-element-color);
   vertical-align: middle;
+}
+
+.tag {
+  display: inline-block;
+  background: #333;
+  padding: 3px 7px;
+  border-radius: 3px;
+  text-align: center;
+  cursor: default;
+}
+
+.icon-button.active {
+  color: var(--interactive-element-color-active);
 }
 
 .icon-button svg {
@@ -39,6 +54,7 @@
 }
 
 .sidebar {
+  float: left;
   width: var(--sidebar-total-width);
   height: 100vh;
 }
@@ -66,7 +82,8 @@
   vertical-align: middle;
   width: 200px;
   height: 20px;
-  border: 1px solid var(--active-element-color);
+  border: 1px solid var(--interactive-element-color);
+  border-radius: 3px;
 }
 
 .sidebar-header-search svg {
@@ -75,7 +92,7 @@
   right: 4px;
   width: 12px;
   height: 12px;
-  color: var(--active-element-color);
+  color: var(--interactive-element-color);
 }
 
 .sidebar-header-search input {
@@ -88,7 +105,7 @@
   line-height: 19px;
   border: 0;
   background: transparent;
-  color: var(--active-element-color);
+  color: var(--interactive-element-color);
 }
 
 .sidebar-header-search input:focus,
@@ -107,6 +124,19 @@
   float: left;
   width: var(--microbar-width);
   height: var(--body-height);
+  color: var(--interactive-element-color);
+  font-size: 12px;
+}
+
+.sidebar-microbar .tag {
+  float: left;
+  clear: both;
+  margin: 5px 0 0 5px;
+}
+
+.sidebar-microbar .tag.selected {
+  color: #fff;
+  background: #666;
 }
 
 .sidebar-main {
@@ -115,38 +145,22 @@
   height: var(--body-height);
 }
 
-.sidebar-select-tags-mode {
-
+.main {
+  float: left;
+  width: var(--main-width);
+  height: 100vh;
 }
 
-.sidebar-select-files-mode {
-
+.main-header {
+  float: left;
+  width: var(--main-width);
+  height: var(--header-height);
 }
 
-.sidebar-select-clips-mode {
-
-}
-
-.sidebar-tags {
-
-}
-
-.sidebar-files {
-
-}
-
-.sidebar-clips {
-
-}
-
-.main-window {
-
-}
-
-.editor {
-
-}
-
-.arranger {
-
+.main-mode-selector {
+  float: right;
+  width: auto;
+  height: var(--header-height);
+  line-height: var(--header-height);
+  margin-right: 5px;
 }

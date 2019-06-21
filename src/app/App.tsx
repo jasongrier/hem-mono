@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaTag, FaFile, FaClipboard, FaSearch } from 'react-icons/fa'
+import { FaTag, FaFile, FaClipboard, FaSearch, FaEdit, FaLayerGroup } from 'react-icons/fa'
 import './App.css'
 
 const App: React.FC = () => {
@@ -7,7 +7,7 @@ const App: React.FC = () => {
     <div className="app">
       <div className="sidebar panel-border-right">
         <div className="sidebar-header panel-border-bottom">
-          <div className="icon-button microbar-toggle">
+          <div className="icon-button active microbar-toggle">
             <FaTag />
           </div>
           <div className="sidebar-main-controls">
@@ -19,24 +19,40 @@ const App: React.FC = () => {
               />
             </div>
             <div className="sidebar-mode-selector">
-              <div className="icon-button sidebar-select-files-mode">
+              <div className="icon-button active">
                 <FaFile />
               </div>
-              <div className="icon-button sidebar-select-clips-mode">
+              <div className="icon-button">
                 <FaClipboard />
               </div>
             </div>
           </div>
         </div>
-        <div className="sidebar-microbar panel-border-right"></div>
+        <div className="sidebar-microbar panel-border-right">
+          <div className="tag">Foo</div>
+          <div className="tag">Bar</div>
+          <div className="tag selected">Bar Baz Qux</div>
+        </div>
         <div className="sidebar-main">
-          <div className="sidebar-panel files"></div>
+          <div className="sidebar-panel files">
+
+          </div>
           <div className="sidebar-panel clips"></div>
         </div>
       </div>
-      <div className="MainWindow">
-        <div className="Editor"></div>
-        <div className="Arranger"></div>
+      <div className="main">
+        <div className="main-header panel-border-bottom">
+          <div className="main-mode-selector">
+            <div className="icon-button active">
+              <FaEdit />
+            </div>
+            <div className="icon-button">
+              <FaLayerGroup />
+            </div>
+          </div>
+        </div>
+        <div className="editor"></div>
+        <div className="arranger"></div>
       </div>
     </div>
   )
