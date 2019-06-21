@@ -2,7 +2,7 @@ import React from 'react'
 import { FaTag, FaFile, FaClipboard, FaSearch, FaEdit, FaLayerGroup, FaProjectDiagram, FaBars } from 'react-icons/fa'
 import './App.css'
 
-const App: React.FC = () => {
+function App(): React.ReactElement {
   return (
     <div className="app">
       <div className="sidebar panel-border-right">
@@ -17,12 +17,14 @@ const App: React.FC = () => {
           </div>
         </div>
         <div className="sidebar-microbar panel-border-right">
-          <div className="tag">Foo</div>
-          <div className="tag">Bar</div>
-          <div className="tag selected">Bar Baz Qux</div>
+          <div className="tag-picker">
+            <div className="tag">Foo</div>
+            <div className="tag">Bar</div>
+            <div className="tag selected">Bar Baz Qux</div>
+          </div>
         </div>
         <div className="sidebar-main">
-          <div className="sidebar-panel files">
+          <div className="sidebar-panel file-list">
             <div className="file">83-exploring-phasellus.wav</div>
             <div className="file">84-phasellus-waves.wav</div>
             <div className="file">85-phasellus-crickets.wav</div>
@@ -33,7 +35,6 @@ const App: React.FC = () => {
             <div className="file">90-last-dinner-in-mt-olympus-1.wav</div>
             <div className="file">91-last-dinner-in-mt-olympus-2.wav</div>
           </div>
-          <div className="sidebar-panel clips"></div>
         </div>
       </div>
       <div className="main">
