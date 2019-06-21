@@ -60,8 +60,24 @@ const App: React.FC = () => {
           <div className="waveform">
             <div className="markers"></div>
           </div>
-          <div className="edit-form"></div>
-          <div className="clips-list"></div>
+          <div className="edit-form">
+            <form>
+              <input type="text" />
+              <textarea></textarea>
+              <textarea></textarea>
+              <input type="submit" />
+            </form>
+          </div>
+          <div className="clips-list">
+            <div className="clip">Lorem ipsum dolor sit amet</div>
+            <div className="clip">Lorem ipsum dolor sit amet</div>
+            <div className="clip">Lorem ipsum dolor sit amet</div>
+            <div className="clip">Lorem ipsum dolor sit amet</div>
+            <div className="clip">Lorem ipsum dolor sit amet</div>
+            <div className="clip">Lorem ipsum dolor sit amet</div>
+            <div className="clip">Lorem ipsum dolor sit amet</div>
+            <div className="clip">Lorem ipsum dolor sit amet</div>
+          </div>
         </div>
         <div className="arranger"></div>
       </div>

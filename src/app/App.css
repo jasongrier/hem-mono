@@ -10,6 +10,7 @@
   --sidebar-total-width: calc(var(--microbar-width) + var(--sidebar-main-width));
   --main-width: calc(100vw - var(--sidebar-total-width) - 1px);
   --rounded-corner-radius: 0;
+  --edit-form-width: 380px;
 }
 
 .panel-border-top { border-top: 1px solid var(--panel-border-color) }
@@ -237,13 +238,13 @@
 .edit-form {
   float: left;
   background: orange;
-  width: 380px; /* TODO: make var */
+  width: var(--edit-form-width); /* TODO: make var */
   height: calc(var(--body-height) - 215px);
 }
 
 .clips-list {
   float: left;
   background: blue;
-  width: calc(100vw - var(--sidebar-total-width) - 381px);
+  width: calc(100vw - var(--sidebar-total-width) - var(--edit-form-width) - 1px);
   height: calc(var(--body-height) - 215px);
 }
