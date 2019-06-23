@@ -1,4 +1,4 @@
-import { fill } from 'lodash'
+import { debounce } from 'lodash'
 import React, { createContext, useReducer, useEffect } from 'react'
 import drawWaveform from '../audio/draw-waveform'
 import AppView from './AppView'
@@ -6,9 +6,10 @@ import AppView from './AppView'
 type mainModes = 'project' | 'editor' | 'arranger'
 
 interface IState {
-  bars: number[]
+  channelData: { leftChannelData: number[], rightChannelData: number[] }
   mainMode: mainModes
   sidebarOpen: boolean
+  waveformData: number[],
   waveformLoading: boolean
 }
 
@@ -18,24 +19,27 @@ interface IContextVal {
 }
 
 const initialState: IState = {
-  bars: [],
+  channelData: { leftChannelData: [], rightChannelData: [] },
   mainMode: 'project',
   sidebarOpen: false,
+  waveformData: [],
   waveformLoading: false,
 }
 
 const AppContext = createContext({ app: initialState, dispatchApp: undefined } as IContextVal)
 
-const appReducer = (state: IState, action: { type: string, payload: any }) => {
-  switch (action.type) {
+const appReducer = (state: IState, {type, payload}: { type: string, payload: any }) => {
+  switch (type) {
     case 'TOGGLE_SIDEBAR':
       return { ...state, sidebarOpen: !state.sidebarOpen }
     case 'SET_MAIN_MODE':
-      return { ...state, mainMode: action.payload }
-    case 'SET_BARS':
-      return { ...state, bars: action.payload }
+      return { ...state, mainMode: payload }
+    case 'SET_CHANNEL_DATA':
+      return { ...state, channelData: payload }
+    case 'SET_WAVEFORM_DATA':
+      return { ...state, waveformData: payload }
     case 'SET_WAVEFORM_LOADING':
-      return { ...state, waveformLoading: action.payload }
+      return { ...state, waveformLoading: payload }
     default:
       throw new Error()
   }
@@ -44,7 +48,11 @@ const appReducer = (state: IState, action: { type: string, payload: any }) => {
 function AppContainer(): React.ReactElement {
   const [app, dispatchApp] = useReducer(appReducer, initialState)
 
-  useEffect(() => { getBars() }, [])
+  window.addEventListener('resize', debounce(redrawWaveform, 100))
+
+  useEffect(() => { getChannelData() }, [])
+
+  useEffect(() => { redrawWaveform() }, [app.channelData, app.sidebarOpen])
 
   function updateWaveformStatus({ msg }: { msg: string }) {
     if (msg === 'loading') {
@@ -56,12 +64,28 @@ function AppContainer(): React.ReactElement {
     }
   }
 
-  async function getBars() {
-    const width = document.body.getBoundingClientRect().width
+  function redrawWaveform() {
+    const { leftChannelData, rightChannelData } = app.channelData
+    const width = document.body.getBoundingClientRect().width - (app.sidebarOpen ? 400 : 0)
     const numBars = Math.round(width / 4)
-    const bars = await drawWaveform(numBars, updateWaveformStatus)
+    const stepSize = leftChannelData.length / numBars
+    let waveformData: number[] = []
 
-    dispatchApp({ type: 'SET_BARS', payload: bars })
+    for (let i = 0; i < leftChannelData.length; i += stepSize) {
+      const index = Math.round(i)
+      waveformData.push(
+        (leftChannelData[index] + rightChannelData[index]) / 2
+      )
+    }
+
+    dispatchApp({ type: 'SET_WAVEFORM_DATA', payload: waveformData })
+  }
+
+  async function getChannelData() {
+    dispatchApp({
+      type: 'SET_CHANNEL_DATA',
+      payload: await drawWaveform(updateWaveformStatus)
+    })
   }
 
   return (

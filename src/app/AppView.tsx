@@ -111,7 +111,7 @@ function AppView(): React.ReactElement {
           <div className="waveform">{/* Component */}
             <div className="bars">
               <div className="top-bars">{/* Component */}
-                { app.bars.map((amplitude: number, i: number) =>
+                { app.waveformData.map((amplitude: number, i: number) =>
                   <div
                     key={i}
                     className="bar"
@@ -120,7 +120,7 @@ function AppView(): React.ReactElement {
                 )}
               </div>
               <div className="bottom-bars">
-                { app.bars.map((amplitude: number, i: number) =>
+                { app.waveformData.map((amplitude: number, i: number) =>
                   <div
                     key={i}
                     className="bar"
