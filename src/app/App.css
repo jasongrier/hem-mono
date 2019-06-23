@@ -37,6 +37,7 @@
   border-radius: var(--rounded-corner-radius);
   text-align: center;
   cursor: default;
+  user-select: none;
 }
 
 .file {
@@ -46,6 +47,7 @@
   border-radius: var(--rounded-corner-radius);
   text-align: center;
   cursor: default;
+  user-select: none;
 }
 
 .icon-button.active {
@@ -69,6 +71,7 @@
   width: 100vw;
   height: var(--header-height);
   background: #111;
+  -webkit-app-region: drag;
 }
 
 .sidebar {
@@ -152,6 +155,7 @@
   border: 0;
   background: transparent;
   color: var(--interactive-element-color);
+  cursor: default;
 }
 
 .sidebar-header-search input:focus,
@@ -188,7 +192,8 @@
 .sidebar-main {
   float: left;
   width: calc(var(--sidebar-main-width) - 1px);
-  height: var(--body-height);
+  height: calc(var(--body-height) - var(--header-height) - 25px);
+  overflow: scroll;
 }
 
 .sidebar-main .file {
@@ -199,6 +204,11 @@
   text-align: left;
   color: #999;
   font-size: 12px;
+}
+
+.sidebar-main .file.active {
+  color: #eee;
+  background: #666;
 }
 
 .main {
@@ -316,6 +326,7 @@
   background: transparent;
   font-size: 14px;
   font-weight: bold;
+  cursor: default;
 }
 
 .edit-form textarea {
@@ -329,12 +340,14 @@
   background: transparent;
   font-size: 12px;
   line-height: 20px;
+  cursor: default;
 }
 
 .edit-form textarea.tags {
   padding: 10px 10px;
   border-top: 1px solid #666;
   height: 30px;
+  cursor: default;
 }
 
 .edit-form input:active,
@@ -344,9 +357,33 @@
   outline: none;
 }
 
-.clips-list {
+.clip-list {
   float: left;
-  background: blue;
-  width: calc(100vw - var(--sidebar-total-width) - var(--edit-form-width) - 1px);
-  height: calc(var(--body-height) - 215px);
+  width: calc(100vw - var(--edit-form-width) - 5px);
+  height: calc(var(--body-height) - 225px);
+  margin-top: 5px;
+  transition: all var(--transition-speed);
+  overflow: scroll;
+}
+
+.clip-list .clip-line {
+  float: left;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  font-size: 12px;
+  margin-bottom: 5px;
+  background: #666;
+  text-indent: 5px;
+  border-radius: var(--rounded-corner-radius);
+  cursor: default;
+  user-select: none;
+}
+
+.clip-list .clip-line.active {
+  background: #999;
+}
+
+.has-sidebar .clip-list {
+  width: calc(100vw - var(--edit-form-width) - var(--sidebar-total-width) - 5px);
 }
