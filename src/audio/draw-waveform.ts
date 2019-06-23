@@ -1,6 +1,6 @@
 import { noop } from 'lodash'
 
-async function drawWaveform(numBars: number, logger: (payload: {msg: string, data?: any}) => void = noop) {
+async function drawWaveform(logger: (payload: {msg: string, data?: any}) => void = noop) {
   logger({msg: 'loading'})
 
   const audioContext = new AudioContext()
@@ -25,18 +25,11 @@ async function drawWaveform(numBars: number, logger: (payload: {msg: string, dat
   logger({msg: 'play'})
 
   const leftChannelData = buffer.getChannelData(0)
-  // const rightChannelData = buffer.getChannelData(1)
-
-  const stepSize = leftChannelData.length / numBars
-  let amplitudes: number[] = []
-
-  for (let i = 0; i < leftChannelData.length; i += stepSize) {
-    amplitudes.push(leftChannelData[Math.round(i)])
-  }
+  const rightChannelData = buffer.getChannelData(1)
 
   return new Promise((resolve) => {
     logger({msg: 'loaded'})
-    resolve(amplitudes)
+    resolve({leftChannelData, rightChannelData})
   })
 }
 

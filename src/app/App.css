@@ -299,7 +299,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 200%;
   height: 107px;
   transform: scale(1, -1);
 }
@@ -308,7 +308,7 @@
   position: absolute;
   top: 107px;
   left: 0;
-  width: 100%;
+  width: 200%;
   height: 107px;
   opacity: 0.5;
 }
