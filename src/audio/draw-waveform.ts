@@ -1,6 +1,8 @@
 import { noop } from 'lodash'
 
 async function drawWaveform(numBars: number, logger: (payload: {msg: string, data?: any}) => void = noop) {
+  logger({msg: 'loading'})
+
   const audioContext = new AudioContext()
   const audioBufferSouceNode = audioContext.createBufferSource()
   const analyser = audioContext.createAnalyser()
@@ -33,6 +35,7 @@ async function drawWaveform(numBars: number, logger: (payload: {msg: string, dat
   }
 
   return new Promise((resolve) => {
+    logger({msg: 'loaded'})
     resolve(amplitudes)
   })
 }

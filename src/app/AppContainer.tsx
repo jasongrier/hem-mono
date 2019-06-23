@@ -6,9 +6,10 @@ import AppView from './AppView'
 type mainModes = 'project' | 'editor' | 'arranger'
 
 interface IState {
-  sidebarOpen: boolean
-  mainMode: mainModes
   bars: number[]
+  mainMode: mainModes
+  sidebarOpen: boolean
+  waveformLoading: boolean
 }
 
 interface IContextVal {
@@ -17,9 +18,10 @@ interface IContextVal {
 }
 
 const initialState: IState = {
-  sidebarOpen: false,
-  mainMode: 'project',
   bars: [],
+  mainMode: 'project',
+  sidebarOpen: false,
+  waveformLoading: false,
 }
 
 const AppContext = createContext({ app: initialState, dispatchApp: undefined } as IContextVal)
@@ -32,6 +34,8 @@ const appReducer = (state: IState, action: { type: string, payload: any }) => {
       return { ...state, mainMode: action.payload }
     case 'SET_BARS':
       return { ...state, bars: action.payload }
+    case 'SET_WAVEFORM_LOADING':
+      return { ...state, waveformLoading: action.payload }
     default:
       throw new Error()
   }
@@ -42,10 +46,21 @@ function AppContainer(): React.ReactElement {
 
   useEffect(() => { getBars() }, [])
 
+  function updateWaveformStatus({ msg }: { msg: string }) {
+    if (msg === 'loading') {
+      dispatchApp({ type: 'SET_WAVEFORM_LOADING', payload: true })
+    }
+
+    else if (msg === 'loaded') {
+      dispatchApp({ type: 'SET_WAVEFORM_LOADING', payload: false })
+    }
+  }
+
   async function getBars() {
     const width = document.body.getBoundingClientRect().width
     const numBars = Math.round(width / 4)
-    const bars = await drawWaveform(numBars, console.log)
+    const bars = await drawWaveform(numBars, updateWaveformStatus)
+
     dispatchApp({ type: 'SET_BARS', payload: bars })
   }
 
