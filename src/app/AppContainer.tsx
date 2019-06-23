@@ -14,7 +14,7 @@ interface IContextVal {
 }
 
 const initialState: IState = {
-  sidebarOpen: true,
+  sidebarOpen: false,
   mainMode: 'project',
 }
 
