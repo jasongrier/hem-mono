@@ -15,7 +15,7 @@ function AppView(): React.ReactElement {
     dispatchApp({ type: 'TOGGLE_SIDEBAR' })
 	}
 
-	const appClassName = `app ${app.sidebarOpen ? ' has-sidebar' : ''}`
+  const appClassName = `app ${app.sidebarOpen ? ' has-sidebar' : ''}`
 
   return (
 		<div className={appClassName}>
@@ -107,8 +107,28 @@ function AppView(): React.ReactElement {
         </div>
       </div>
       <div className="main">
-        <div className="editor">
-          <div className="waveform">
+        <div className="editor">{/* Component */}
+          <div className="waveform">{/* Component */}
+            <div className="bars">
+              <div className="top-bars">{/* Component */}
+                { app.bars.map((amplitude: number, i: number) =>
+                  <div
+                    key={i}
+                    className="bar"
+                    style={{height: ((amplitude + 1) * 50) + '%'}}
+                  />
+                )}
+              </div>
+              <div className="bottom-bars">
+                { app.bars.map((amplitude: number, i: number) =>
+                  <div
+                    key={i}
+                    className="bar"
+                    style={{height: ((amplitude + 1) * 50) + '%'}}
+                  />
+                )}
+              </div>
+            </div>
             <div className="markers"></div>
             <div className="waveform-status-bar"></div>
           </div>
