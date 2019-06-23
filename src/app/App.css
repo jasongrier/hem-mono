@@ -1,17 +1,17 @@
 :root {
+  --body-height: calc(100vh - var(--header-height) - 1px);
+  --edit-form-width: 380px;
+  --header-height: 40px;
+  --interactive-element-color-active: #eee;
+  --interactive-element-color: #999;
+  --main-width: calc(100vw - var(--sidebar-total-width) - 1px);
+  --microbar-width: 100px;
   --panel-bg-color: #000;
   --panel-border-color: #333;
-  --interactive-element-color: #999;
-  --interactive-element-color-active: #eee;
-  --header-height: 70px;
-  --body-height: calc(100vh - var(--header-height) - 1px);
-  --microbar-width: 100px;
+  --rounded-corner-radius: 0;
   --sidebar-main-width: 300px;
   --sidebar-total-width: calc(var(--microbar-width) + var(--sidebar-main-width));
-  --main-width: calc(100vw - var(--sidebar-total-width) - 1px);
-  --rounded-corner-radius: 0;
-  --edit-form-width: 380px;
-  --transition-speed: 250ms;
+  --transition-speed: 150ms;
 }
 
 .panel-border-top { border-top: 1px solid var(--panel-border-color) }
@@ -65,6 +65,12 @@
   background: var(--panel-bg-color);
 }
 
+.app-header {
+  width: 100vw;
+  height: var(--header-height);
+  background: #111;
+}
+
 .sidebar {
   position: relative;
   float: left;
@@ -90,6 +96,7 @@
 .sidebar-header {
   float: left;
   width: var(--sidebar-total-width);
+  margin-top: 20px;
   height: var(--header-height);
   line-height: var(--header-height);
 }
@@ -111,19 +118,18 @@
 
 .sidebar-main-controls {
   float: left;
-  width: var(--sidebar-main-width);
+  width: var(--sidebar-total-width);
   height: 100%;
-  margin-left: 10px;
 }
 
 .sidebar-header-search {
   position: relative;
   display: inline-block;
   vertical-align: middle;
-  width: 375px;
-  height: 24px;
-  border: 1px solid var(--panel-border-color);
-  border-radius: var(--rounded-corner-radius);
+  width: var(--sidebar-total-width);
+  height: 25px;
+  background: #111;
+  margin-top: 10px;
 }
 
 .sidebar-header-search svg {
@@ -210,6 +216,7 @@
   float: left;
   width: 100%;
   height: var(--header-height);
+  margin-top: 20px;
 }
 
 .project-title {
@@ -224,22 +231,24 @@
 }
 
 .sidebar-toggle {
-  position: relative;
-  float: left;
-  width: 50px;
-  height: var(--header-height);
-  line-height: var(--header-height);
-  margin-left: 10px;
+  position: absolute;
+  top: calc(var(--header-height) + 5px);
+  left: 5px;
+  z-index: 9999;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
 }
 
 .sidebar-toggle .icon-button {
   width: 20px;
   height: 20px;
-  transition: all var(--transition-speed);
+  margin: 0;
+  transform: rotate(90deg);
 }
 
 .has-sidebar .sidebar-toggle .icon-button {
-  transform: rotate(180deg);
+  transform: rotate(0deg);
 }
 
 .main-mode-selector {
@@ -262,7 +271,7 @@
   width: 100%;
   height: 200px;
   margin-bottom: 15px;
-  background: red;
+  background: #222;
 }
 
 .markers {
@@ -272,7 +281,6 @@
   z-index: 2;
   width: 100%;
   height: 215px;
-  background: green;
   opacity: 0.5;
 }
 
