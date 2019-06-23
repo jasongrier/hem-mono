@@ -79,13 +79,13 @@ function AppView(): React.ReactElement {
         <div className="editor">
           <div className="waveform">
             <div className="markers"></div>
+            <div className="waveform-status-bar"></div>
           </div>
           <div className="edit-form">
             <form>
               <input type="text" />
               <textarea></textarea>
-              <textarea></textarea>
-              <input type="submit" />
+              <textarea className="tags"></textarea>
             </form>
           </div>
           <div className="clip-list">
