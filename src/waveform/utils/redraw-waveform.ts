@@ -5,10 +5,10 @@ import { setWaveformData } from '../redux'
 function redrawWaveform(
   channelData: IChannelData,
   sidebarOpen: boolean,
-  waveformLoading: boolean,
+  waveformBusy: boolean,
 ) { // TODO: Tight coupling to sidebar and window
 
-  if (waveformLoading) return
+  if (waveformBusy) return
 
   const { leftChannelData, rightChannelData } = channelData
   const width = document.body.getBoundingClientRect().width - (sidebarOpen ? 400 : 0)

@@ -3,9 +3,8 @@ import React, { ReactElement, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Spinner } from '../spinner'
 import { RootState } from '../store'
-import getChannelData from '../audio/get-channel-data'
-import { redrawWaveform, updateLoading } from './utils'
-import { setChannelData } from './redux'
+import { redrawWaveform } from './utils'
+import { thunkGetChannelData } from './redux'
 import WaveformView from './view'
 
 function WaveformContainer(): ReactElement {
@@ -18,17 +17,13 @@ function WaveformContainer(): ReactElement {
 
   const dispatch = useDispatch()
 
-  const drawHelper = debounce(() => redrawWaveform(channelData, sidebarOpen, waveformLoading), 100)
+  const drawHelper = () => redrawWaveform(channelData, sidebarOpen, waveformLoading)
 
-  useEffect(() => {
-    (async () => { // TODO: Should be a thunk action
-      dispatch(setChannelData(await getChannelData(updateLoading)))
-    })()
-  }, [])
+  useEffect(() => { dispatch(thunkGetChannelData()) }, [])
 
-  useEffect(drawHelper, [channelData, sidebarOpen])
+  useEffect(drawHelper, [waveformLoading, sidebarOpen])
 
-  window.addEventListener('resize', drawHelper)
+  window.addEventListener('resize', debounce(drawHelper, 500))
 
   return (
     <Spinner ready={!waveformLoading}>
