@@ -1,6 +1,8 @@
 import { noop } from 'lodash'
 
-async function drawWaveform(logger: (payload: {msg: string, data?: any}) => void = noop) {
+async function getChannelData(
+  logger: (payload: {msg: string, data?: any}) => void = noop
+): Promise<{ leftChannelData: Float32Array, rightChannelData: Float32Array }> {
   logger({msg: 'loading'})
 
   const audioContext = new AudioContext()
@@ -29,8 +31,8 @@ async function drawWaveform(logger: (payload: {msg: string, data?: any}) => void
 
   return new Promise((resolve) => {
     logger({msg: 'loaded'})
-    resolve({leftChannelData, rightChannelData})
+    resolve({ leftChannelData, rightChannelData })
   })
 }
 
-export default drawWaveform
+export default getChannelData

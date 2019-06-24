@@ -1,7 +1,13 @@
 import { debounce } from 'lodash'
-import React, { useReducer, useEffect } from 'react'
-import { initialState, appReducer, AppContext } from './app.redux'
-import drawWaveform from '../audio/draw-waveform'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import getChannelData from '../audio/get-channel-data'
+import { RootState } from '../store'
+import {
+  setChannelData,
+  setWaveformData,
+  setWaveformLoading,
+} from './app.redux'
 import AppView from './app-view'
 
 const { remote } = window.require('electron')
@@ -11,27 +17,33 @@ const { readFileSync } = window.require('fs')
 console.log(readFileSync)
 
 function AppContainer(): React.ReactElement {
-  const [app, dispatchApp] = useReducer(appReducer, initialState)
+  const { channelData, sidebarOpen, waveformData } = useSelector((state: RootState) => ({
+    channelData: state.app.channelData,
+    sidebarOpen: state.app.sidebarOpen,
+    waveformData: state.app.waveformData,
+  }))
+
+  const dispatch = useDispatch()
 
   window.addEventListener('resize', debounce(redrawWaveform, 100))
 
-  useEffect(() => { getChannelData() }, [])
+  useEffect(() => { requestChannelData() }, [])
 
-  useEffect(() => { redrawWaveform() }, [app.channelData, app.sidebarOpen])
+  useEffect(() => { redrawWaveform() }, [channelData, sidebarOpen])
 
   function updateWaveformStatus({ msg }: { msg: string }) {
     if (msg === 'loading') {
-      dispatchApp({ type: 'SET_WAVEFORM_LOADING', payload: true })
+      dispatch(setWaveformLoading(true))
     }
 
     else if (msg === 'loaded') {
-      dispatchApp({ type: 'SET_WAVEFORM_LOADING', payload: false })
+      dispatch(setWaveformLoading(false))
     }
   }
 
   function redrawWaveform() {
-    const { leftChannelData, rightChannelData } = app.channelData
-    const width = document.body.getBoundingClientRect().width - (app.sidebarOpen ? 400 : 0)
+    const { leftChannelData, rightChannelData } = channelData
+    const width = document.body.getBoundingClientRect().width - (sidebarOpen ? 400 : 0)
     const numBars = Math.round(width / 4)
     const stepSize = leftChannelData.length / numBars
     let waveformData: number[] = []
@@ -43,22 +55,19 @@ function AppContainer(): React.ReactElement {
       )
     }
 
-    dispatchApp({ type: 'SET_WAVEFORM_DATA', payload: waveformData })
+    dispatch(setWaveformData(waveformData))
   }
 
-  async function getChannelData() {
-    dispatchApp({
-      type: 'SET_CHANNEL_DATA',
-      payload: await drawWaveform(updateWaveformStatus)
-    })
+  async function requestChannelData() {
+    dispatch(setChannelData(await getChannelData(updateWaveformStatus)))
   }
 
   return (
-    <AppContext.Provider value={{ app, dispatchApp }}>
-      <AppView />
-    </AppContext.Provider>
+    <AppView
+      sidebarOpen={sidebarOpen}
+      waveformData={waveformData}
+    />
   )
 }
 
-export { AppContext }
 export default AppContainer

@@ -1,53 +1,145 @@
-import { createContext } from 'react'
+// ================================================================================
+// Types
+// ================================================================================
+type MainMode =
+    'arranger'
+  | 'editor'
+  | 'project'
 
-type mainModes =
-  'arranger'
-| 'editor'
-| 'project'
+type WaveformData = number[]
+
+interface IChannelData {
+  leftChannelData: Float32Array
+  rightChannelData: Float32Array
+}
+
+const SET_CHANNEL_DATA = 'SET_CHANNEL_DATA' // TODO: Doesn't belong here
+const SET_MAIN_MODE = 'SET_MAIN_MODE'
+const SET_WAVEFORM_DATA = 'SET_WAVEFORM_DATA' // TODO: Doesn't belong here
+const SET_WAVEFORM_LOADING = 'SET_WAVEFORM_LOADING' // TODO: Doesn't belong here
+const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR'
 
 interface IState {
-  channelData: { leftChannelData: number[], rightChannelData: number[] }
-  mainMode: mainModes
+  channelData: IChannelData
+  mainMode: MainMode
   sidebarOpen: boolean
-  waveformData: number[],
+  waveformData: WaveformData,
   waveformLoading: boolean
 }
 
+// ================================================================================
+// Action types
+// ================================================================================
+interface ISetChannelData extends IAction {
+  type: typeof SET_CHANNEL_DATA
+  payload: IChannelData
+}
+
+interface ISetMainMode extends IAction {
+  type: typeof SET_MAIN_MODE
+  payload: MainMode
+}
+
+interface ISetWaveformData extends IAction {
+  type: typeof SET_WAVEFORM_DATA
+  payload: WaveformData
+}
+
+interface ISetWaveformLoading extends IAction {
+  type: typeof SET_WAVEFORM_LOADING
+  payload: boolean
+}
+
+interface IToggleSidebar extends IAction {
+  type: typeof TOGGLE_SIDEBAR
+  payload: null
+}
+
+type AppActionTypes =
+    ISetChannelData
+  | ISetMainMode
+  | ISetWaveformData
+  | ISetWaveformLoading
+  | IToggleSidebar
+
+// ================================================================================
+// Actions
+// ================================================================================
+const toggleSidebar = (): AppActionTypes => ({
+  type: TOGGLE_SIDEBAR,
+  payload: null,
+})
+
+const setMainMode = (mainMode: MainMode): AppActionTypes => ({
+  type: SET_MAIN_MODE,
+  payload: mainMode,
+})
+
+const setChannelData = (channelData: IChannelData): AppActionTypes => ({
+  type: SET_CHANNEL_DATA,
+  payload: channelData,
+})
+
+const setWaveformData = (waveformData: WaveformData): AppActionTypes => ({
+  type: SET_WAVEFORM_DATA,
+  payload: waveformData,
+})
+
+const setWaveformLoading = (waveformLoading: boolean): AppActionTypes => ({
+  type: SET_WAVEFORM_LOADING,
+  payload: waveformLoading,
+})
+
+// ================================================================================
+// Reducer
+// ================================================================================
 const initialState: IState = {
-  channelData: { leftChannelData: [], rightChannelData: [] },
+  channelData: { leftChannelData: new Float32Array(), rightChannelData: new Float32Array() },
   mainMode: 'project',
   sidebarOpen: false,
   waveformData: [],
   waveformLoading: false,
 }
 
-interface IContextVal {
-  app: IState
-  dispatchApp: any
-}
-
-const appReducer = (state: IState, {type, payload}: { type: string, payload: any }) => {
+const appReducer = (
+  state: IState = initialState,
+  {type, payload}: IAction,
+): IState => {
   switch (type) {
-    case 'TOGGLE_SIDEBAR':
-      return { ...state, sidebarOpen: !state.sidebarOpen }
-
-    case 'SET_MAIN_MODE':
-      return { ...state, mainMode: payload }
-
-    case 'SET_CHANNEL_DATA':
+    case SET_CHANNEL_DATA:
       return { ...state, channelData: payload }
 
-    case 'SET_WAVEFORM_DATA':
+    case SET_MAIN_MODE:
+      return { ...state, mainMode: payload }
+
+    case SET_WAVEFORM_DATA:
       return { ...state, waveformData: payload }
 
-    case 'SET_WAVEFORM_LOADING':
+    case SET_WAVEFORM_LOADING:
       return { ...state, waveformLoading: payload }
+
+    case TOGGLE_SIDEBAR:
+      return { ...state, sidebarOpen: !state.sidebarOpen }
 
     default:
       return state
   }
 }
 
-const AppContext = createContext({ app: initialState, dispatchApp: undefined } as IContextVal)
+export {
+  SET_CHANNEL_DATA,
+  SET_MAIN_MODE,
+  SET_WAVEFORM_DATA,
+  SET_WAVEFORM_LOADING,
+  TOGGLE_SIDEBAR,
 
-export { initialState, appReducer, AppContext }
+  toggleSidebar,
+  setMainMode,
+  setChannelData,
+  setWaveformData,
+  setWaveformLoading,
+
+  initialState,
+
+  appReducer,
+}
