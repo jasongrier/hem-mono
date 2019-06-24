@@ -1,15 +1,14 @@
 import { debounce } from 'lodash'
-import React, { createContext, useReducer, useEffect } from 'react'
-import { IState, initialState, appReducer } from './app.redux'
+import React, { useReducer, useEffect } from 'react'
+import { initialState, appReducer, AppContext } from './app.redux'
 import drawWaveform from '../audio/draw-waveform'
 import AppView from './app-view'
 
-interface IContextVal {
-  app: IState
-  dispatchApp: any
-}
+const { remote } = window.require('electron')
+console.log(remote.Menu)
 
-const AppContext = createContext({ app: initialState, dispatchApp: undefined } as IContextVal)
+const { readFileSync } = window.require('fs')
+console.log(readFileSync)
 
 function AppContainer(): React.ReactElement {
   const [app, dispatchApp] = useReducer(appReducer, initialState)

@@ -13,6 +13,9 @@ function createWindow() {
     height: 780,
     transparent: true,
     titleBarStyle: 'hidden',
+    webPreferences: {
+      nodeIntegration: true,
+    }
   })
 
   mainWindow.loadURL(

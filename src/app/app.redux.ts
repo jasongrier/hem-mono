@@ -1,3 +1,5 @@
+import { createContext } from 'react'
+
 type mainModes =
   'arranger'
 | 'editor'
@@ -17,6 +19,11 @@ const initialState: IState = {
   sidebarOpen: false,
   waveformData: [],
   waveformLoading: false,
+}
+
+interface IContextVal {
+  app: IState
+  dispatchApp: any
 }
 
 const appReducer = (state: IState, {type, payload}: { type: string, payload: any }) => {
@@ -41,4 +48,6 @@ const appReducer = (state: IState, {type, payload}: { type: string, payload: any
   }
 }
 
-export { IState, initialState, appReducer }
+const AppContext = createContext({ app: initialState, dispatchApp: undefined } as IContextVal)
+
+export { initialState, appReducer, AppContext }
