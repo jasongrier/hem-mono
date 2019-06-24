@@ -1,36 +1,24 @@
-import { IState, MainMode } from './types'
+import {
+  SET_MAIN_MODE,
+  TOGGLE_SIDEBAR,
 
-// ================================================================================
-// Action types
-// ================================================================================
-const SET_MAIN_MODE = 'SET_MAIN_MODE'
-const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR'
+  Action,
+  MainMode,
 
-interface ISetMainMode extends IAction {
-  type: typeof SET_MAIN_MODE
-  payload: MainMode
-}
-
-interface IToggleSidebar extends IAction {
-  type: typeof TOGGLE_SIDEBAR
-  payload: null
-}
-
-type ActionType =
-  | ISetMainMode
-  | IToggleSidebar
+  IState,
+} from './types'
 
 // ================================================================================
 // Actions
 // ================================================================================
-const toggleSidebar = (): ActionType => ({
-  type: TOGGLE_SIDEBAR,
-  payload: null,
-})
-
-const setMainMode = (mainMode: MainMode): ActionType => ({
+const setMainMode = (mainMode: MainMode): Action => ({
   type: SET_MAIN_MODE,
   payload: mainMode,
+})
+
+const toggleSidebar = (): Action => ({
+  type: TOGGLE_SIDEBAR,
+  payload: null,
 })
 
 // ================================================================================
@@ -58,8 +46,8 @@ const reducer = (
 }
 
 export {
-  toggleSidebar,
   setMainMode,
+  toggleSidebar,
 
   initialState,
 

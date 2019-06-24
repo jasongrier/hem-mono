@@ -1,55 +1,46 @@
-import { IChannelData, IState, WaveformData } from './types'
+import {
+  SET_CHANNEL_DATA,
+  SET_WAVEFORM_DATA,
+  SET_WAVEFORM_BUSY,
 
-// ================================================================================
-// Action types
-// ================================================================================
-const SET_CHANNEL_DATA = 'SET_CHANNEL_DATA' // TODO: Doesn't belong here
-const SET_WAVEFORM_DATA = 'SET_WAVEFORM_DATA' // TODO: Doesn't belong here
-const SET_WAVEFORM_LOADING = 'SET_WAVEFORM_LOADING' // TODO: Doesn't belong here
+  IChannelData,
+  IState,
 
-interface ISetChannelData extends IAction {
-  type: typeof SET_CHANNEL_DATA
-  payload: IChannelData
-}
-
-interface ISetWaveformData extends IAction {
-  type: typeof SET_WAVEFORM_DATA
-  payload: WaveformData
-}
-
-interface ISetWaveformLoading extends IAction {
-  type: typeof SET_WAVEFORM_LOADING
-  payload: boolean
-}
-
-type ActionType =
-    ISetChannelData
-  | ISetWaveformData
-  | ISetWaveformLoading
+  Action,
+  WaveformData,
+} from './types'
+import { ThunkAction } from 'redux-thunk'
+import getChannelData from '../audio/get-channel-data'
 
 // ================================================================================
 // Actions
 // ================================================================================
-const setChannelData = (channelData: IChannelData): ActionType => ({
+const setChannelData = (channelData: IChannelData): Action => ({
   type: SET_CHANNEL_DATA,
   payload: channelData,
 })
 
-const setWaveformData = (waveformData: WaveformData): ActionType => ({
+const setWaveformData = (waveformData: WaveformData): Action => ({
   type: SET_WAVEFORM_DATA,
   payload: waveformData,
 })
 
-const setWaveformLoading = (waveformLoading: boolean): ActionType => ({
-  type: SET_WAVEFORM_LOADING,
+const setWaveformBusy = (waveformLoading: boolean): Action => ({
+  type: SET_WAVEFORM_BUSY,
   payload: waveformLoading,
 })
+
+const thunkGetChannelData = (): ThunkAction<void, IState, null, Action> => async dispatch => {
+  dispatch(setWaveformBusy(true))
+  dispatch(setChannelData(await getChannelData()))
+  dispatch(setWaveformBusy(false))
+}
 
 // ================================================================================
 // Reducer
 // ================================================================================
 const initialState: IState = {
-  channelData: { leftChannelData: new Float32Array(), rightChannelData: new Float32Array() },
+  channelData: { leftChannelData: new Float32Array(), rightChannelData: new Float32Array() }, // TODO: Move to audio module
   waveformData: [],
   waveformLoading: false,
 }
@@ -58,7 +49,6 @@ const reducer = (
   state: IState = initialState,
   {type, payload}: IAction,
 ): IState => {
-  console.log(type, payload)
   switch (type) {
     case SET_CHANNEL_DATA:
       return { ...state, channelData: payload }
@@ -66,7 +56,7 @@ const reducer = (
     case SET_WAVEFORM_DATA:
       return { ...state, waveformData: payload }
 
-    case SET_WAVEFORM_LOADING:
+    case SET_WAVEFORM_BUSY:
       return { ...state, waveformLoading: payload }
 
     default:
@@ -77,7 +67,8 @@ const reducer = (
 export {
   setChannelData,
   setWaveformData,
-  setWaveformLoading,
+  setWaveformBusy,
+  thunkGetChannelData,
 
   initialState,
 
