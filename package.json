@@ -31,7 +31,8 @@
     "react-scripts": "3.0.1",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
-    "typescript": "3.5.2"
+    "typescript": "3.5.2",
+    "use-debounce": "^2.1.0"
   },
   "scripts": {
     "start": "nf start -p 3000",

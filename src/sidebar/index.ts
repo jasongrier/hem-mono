@@ -1,1 +1,2 @@
-export { default as Sidebar } from './view'
+export { default as Sidebar } from './container'
+export { reducer } from './redux'
