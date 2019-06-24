@@ -2,6 +2,7 @@ import { IProjectFile } from '../project/types'
 
 import {
     APPLY_FILTER,
+    UPDATE_CONTENT,
 
     Action,
 
@@ -16,10 +17,19 @@ import {
     payload: searchText,
   })
 
+  const updateContent = (
+    payload: { allFiles: IProjectFile[], allTags: IProjectFile[]}
+  ): Action => ({
+    type: UPDATE_CONTENT,
+    payload,
+  })
+
   // ================================================================================
   // Reducer
   // ================================================================================
   const initialState: IState = {
+    allFiles: [],
+    allTags: [],
     filteredFiles: [],
     filteredTags: [],
   }
@@ -34,6 +44,9 @@ import {
         const filteredTags: string[] = []
         return { ...state, filteredFiles, filteredTags }
 
+      case UPDATE_CONTENT:
+        return { ...state, allFiles: payload.allFiles, allTags: payload.allTags }
+
       default:
         return state
     }
@@ -41,6 +54,7 @@ import {
 
   export {
     applyFilter,
+    updateContent,
 
     initialState,
 
