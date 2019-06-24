@@ -3,18 +3,8 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import getChannelData from '../audio/get-channel-data'
 import { RootState } from '../store'
-import {
-  setChannelData,
-  setWaveformData,
-  setWaveformLoading,
-} from './app.redux'
-import AppView from './app-view'
-
-const { remote } = window.require('electron')
-console.log(remote.Menu)
-
-const { readFileSync } = window.require('fs')
-console.log(readFileSync)
+import { setChannelData, setWaveformData, setWaveformLoading } from './redux'
+import View from './view'
 
 function AppContainer(): React.ReactElement {
   const { channelData, sidebarOpen, waveformData } = useSelector((state: RootState) => ({
@@ -63,7 +53,7 @@ function AppContainer(): React.ReactElement {
   }
 
   return (
-    <AppView
+    <View
       sidebarOpen={sidebarOpen}
       waveformData={waveformData}
     />

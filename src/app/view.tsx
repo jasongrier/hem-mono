@@ -6,8 +6,8 @@ import {
   FaProjectDiagram,
   FaCaretSquareRight,
 } from 'react-icons/fa'
-import { toggleSidebar } from './app.redux'
-import './app.css'
+import { toggleSidebar } from './redux'
+import './style.css'
 
 interface IProps {
   sidebarOpen: boolean
