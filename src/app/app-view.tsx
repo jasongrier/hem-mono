@@ -6,7 +6,7 @@ import {
   FaCaretSquareRight,
 } from 'react-icons/fa'
 import { AppContext } from './app-container'
-import './App.css'
+import './app.css'
 
 function AppView(): React.ReactElement {
 	const { app, dispatchApp } = useContext(AppContext)
