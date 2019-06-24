@@ -8,7 +8,7 @@ export interface IChannelData {
 export interface IState {
   channelData: IChannelData // TODO: Move to audio module
   waveformData: WaveformData
-  waveformLoading: boolean
+  waveformBusy: boolean
 }
 
 export const SET_CHANNEL_DATA = 'SET_CHANNEL_DATA' // TODO: Move all types to ./types.ts

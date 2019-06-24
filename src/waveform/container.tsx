@@ -7,26 +7,26 @@ import { redrawWaveform } from './utils'
 import { thunkGetChannelData } from './redux'
 import WaveformView from './view'
 
-function WaveformContainer(): ReactElement {
-  const { channelData, sidebarOpen, waveformData, waveformLoading } = useSelector((state: RootState) => ({
+interface IProps {
+  width: number
+}
+
+function WaveformContainer({ width }: IProps): ReactElement {
+  const { channelData, waveformData, waveformBusy } = useSelector((state: RootState) => ({
     channelData: state.waveform.channelData,
-    sidebarOpen: state.app.sidebarOpen,
     waveformData: state.waveform.waveformData,
-    waveformLoading: state.waveform.waveformLoading,
+    waveformBusy: state.waveform.waveformBusy,
   }))
 
   const dispatch = useDispatch()
+  const getChannelDataCb = () => { dispatch(thunkGetChannelData()) }
+  const redrawCb = debounce(() => redrawWaveform(channelData, width, waveformBusy), 500)
 
-  const drawHelper = () => redrawWaveform(channelData, sidebarOpen, waveformLoading)
-
-  useEffect(() => { dispatch(thunkGetChannelData()) }, [])
-
-  useEffect(drawHelper, [waveformLoading, sidebarOpen])
-
-  window.addEventListener('resize', debounce(drawHelper, 500))
+  useEffect(getChannelDataCb, [])
+  useEffect(redrawCb, [waveformBusy, width])
 
   return (
-    <Spinner ready={!waveformLoading}>
+    <Spinner ready={!waveformBusy}>
       <WaveformView waveformData={waveformData} />
     </Spinner>
   )

@@ -1,5 +1,6 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
+import clsx from 'clsx'
 import {
   FaEdit,
   FaLayerGroup,
@@ -7,41 +8,47 @@ import {
   FaCaretSquareRight,
 } from 'react-icons/fa'
 import { Waveform } from '../waveform'
-import { toggleSidebar } from './redux'
+import { setMainMode, toggleSidebar } from './redux'
+import { MainMode } from './types'
 import './style.css'
 
 interface IProps {
+  mainMode: MainMode
+  mainWidth: number
   sidebarOpen: boolean
 }
 
-function AppView({ sidebarOpen }: IProps): ReactElement {
+function AppView({ mainMode, mainWidth, sidebarOpen }: IProps): ReactElement {
   const dispatch = useDispatch()
 
-	function handleSidebarClick() { // TODO: `useHandler`??
-    dispatch(toggleSidebar())
-	}
-
-  const appClassName = `app ${sidebarOpen ? ' has-sidebar' : ''}`
-
   return (
-		<div className={appClassName}>
+		<div className={clsx('app', sidebarOpen && 'has-sidebar')}>
 		  <div className="app-header">
         <div className="sidebar-toggle">
           <div
             className="icon-button active"
-            onClick={handleSidebarClick}
+            onClick={() => dispatch(toggleSidebar())}
           >
             <FaCaretSquareRight />
           </div>
         </div>
-        <div className="main-mode-selector">
-          <div className="icon-button">
+        <div className="main-mode-selector">{/* TODO: Wrong className. Is this needed?? */}
+          <div
+            className={clsx('icon-button', mainMode === 'project' && 'active')}
+            onClick={() => dispatch(setMainMode('project'))}
+          >
             <FaProjectDiagram />
           </div>
-          <div className="icon-button active">
+          <div
+            className={clsx('icon-button', mainMode === 'edit' && 'active')}
+            onClick={() => dispatch(setMainMode('edit'))}
+          >
             <FaEdit />
           </div>
-          <div className="icon-button">
+          <div
+            className={clsx('icon-button', mainMode === 'arrange' && 'active')}
+            onClick={() => dispatch(setMainMode('arrange'))}
+          >
             <FaLayerGroup />
           </div>
         </div>
@@ -114,7 +121,7 @@ function AppView({ sidebarOpen }: IProps): ReactElement {
       </div>
       <div className="main">
         <div className="editor">{/* Component */}
-          <Waveform />
+          <Waveform width={mainWidth} />
           <div className="edit-form">
             <form>
               <input type="text" />
