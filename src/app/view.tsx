@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import { useDispatch } from 'react-redux'
 import {
   FaEdit,
@@ -6,15 +6,15 @@ import {
   FaProjectDiagram,
   FaCaretSquareRight,
 } from 'react-icons/fa'
+import { Waveform } from '../waveform'
 import { toggleSidebar } from './redux'
 import './style.css'
 
 interface IProps {
   sidebarOpen: boolean
-  waveformData: number[]
 }
 
-function AppView({sidebarOpen, waveformData}: IProps): React.ReactElement {
+function AppView({ sidebarOpen }: IProps): ReactElement {
   const dispatch = useDispatch()
 
 	function handleSidebarClick() { // TODO: `useHandler`??
@@ -114,30 +114,7 @@ function AppView({sidebarOpen, waveformData}: IProps): React.ReactElement {
       </div>
       <div className="main">
         <div className="editor">{/* Component */}
-          <div className="waveform">{/* Component */}
-            <div className="bars">
-              <div className="top-bars">{/* Component */}
-                { waveformData.map((amplitude: number, i: number) =>
-                  <div
-                    key={i}
-                    className="bar"
-                    style={{height: ((amplitude + 1) * 50) + '%'}}
-                  />
-                )}
-              </div>
-              <div className="bottom-bars">
-                { waveformData.map((amplitude: number, i: number) =>
-                  <div
-                    key={i}
-                    className="bar"
-                    style={{height: ((amplitude + 1) * 50) + '%'}}
-                  />
-                )}
-              </div>
-            </div>
-            <div className="markers"></div>
-            <div className="waveform-status-bar"></div>
-          </div>
+          <Waveform />
           <div className="edit-form">
             <form>
               <input type="text" />
