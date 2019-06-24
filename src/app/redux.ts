@@ -55,7 +55,7 @@ interface IToggleSidebar extends IAction {
   payload: null
 }
 
-type AppActionTypes =
+type ActionType =
     ISetChannelData
   | ISetMainMode
   | ISetWaveformData
@@ -65,27 +65,27 @@ type AppActionTypes =
 // ================================================================================
 // Actions
 // ================================================================================
-const toggleSidebar = (): AppActionTypes => ({
+const toggleSidebar = (): ActionType => ({
   type: TOGGLE_SIDEBAR,
   payload: null,
 })
 
-const setMainMode = (mainMode: MainMode): AppActionTypes => ({
+const setMainMode = (mainMode: MainMode): ActionType => ({
   type: SET_MAIN_MODE,
   payload: mainMode,
 })
 
-const setChannelData = (channelData: IChannelData): AppActionTypes => ({
+const setChannelData = (channelData: IChannelData): ActionType => ({
   type: SET_CHANNEL_DATA,
   payload: channelData,
 })
 
-const setWaveformData = (waveformData: WaveformData): AppActionTypes => ({
+const setWaveformData = (waveformData: WaveformData): ActionType => ({
   type: SET_WAVEFORM_DATA,
   payload: waveformData,
 })
 
-const setWaveformLoading = (waveformLoading: boolean): AppActionTypes => ({
+const setWaveformLoading = (waveformLoading: boolean): ActionType => ({
   type: SET_WAVEFORM_LOADING,
   payload: waveformLoading,
 })
@@ -101,7 +101,7 @@ const initialState: IState = {
   waveformLoading: false,
 }
 
-const appReducer = (
+const reducer = (
   state: IState = initialState,
   {type, payload}: IAction,
 ): IState => {
@@ -141,5 +141,5 @@ export {
 
   initialState,
 
-  appReducer,
+  reducer,
 }

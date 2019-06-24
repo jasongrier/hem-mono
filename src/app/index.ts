@@ -1,2 +1,2 @@
-export { default as App } from './app-container'
-export { appReducer } from './app.redux'
+export { default as App } from './container'
+export { reducer } from './redux'
