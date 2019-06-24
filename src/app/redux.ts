@@ -25,7 +25,7 @@ const toggleSidebar = (): Action => ({
 // Reducer
 // ================================================================================
 const initialState: IState = {
-  mainMode: 'project',
+  mainMode: 'edit',
   sidebarOpen: false,
 }
 

@@ -8,12 +8,12 @@ import { thunkGetChannelData } from './redux'
 import WaveformView from './view'
 
 interface IProps {
-  width: number
+  width: number // Keep this decoupled
 }
 
 function WaveformContainer({ width }: IProps): ReactElement {
   const { channelData, waveformData, waveformBusy } = useSelector((state: RootState) => ({
-    channelData: state.waveform.channelData,
+    channelData: state.waveform.channelData, // Decouple this and pass through props
     waveformData: state.waveform.waveformData,
     waveformBusy: state.waveform.waveformBusy,
   }))
