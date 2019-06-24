@@ -22,5 +22,5 @@ export interface IToggleSidebar extends IAction {
 }
 
 export type Action =
-  | ISetMainMode
+    ISetMainMode
   | IToggleSidebar
