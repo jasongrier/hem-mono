@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from 'react'
+import React, { ReactElement } from 'react'
 import { useSelector } from 'react-redux'
 import useWindowSize from '@rehooks/window-size'
 import { RootState } from '../store'

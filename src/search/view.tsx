@@ -1,26 +1,33 @@
 import { debounce } from 'lodash'
-import React, { ReactElement, ChangeEvent } from 'react'
+import React, { ReactElement, useState } from 'react'
+import { useDebouncedCallback } from 'use-debounce'
 import './style.css'
 
 interface IProps {
-  onChange: (search: string) => void
+  debounceTime?: number
+  onSearch: (search: string) => void
 }
 
-function SearchView({ onChange }: IProps): ReactElement {
-  function handleOnChange(evt: ChangeEvent<HTMLInputElement>) {
-    evt.persist()
-    console.log(evt.currentTarget.value)
-    return debounce(() => onChange(evt.currentTarget.value), 500)
-  }
+function Search({ debounceTime = 200, onSearch }: IProps): ReactElement {
+  const [searchText, setSearchText] = useState('')
+
+  const [debouncedCallback] = useDebouncedCallback(
+    value => onSearch(value),
+    debounceTime,
+  )
 
   return (
     <input
       placeholder="Search..."
       type="text"
       spellCheck={false}
-      onChange={handleOnChange}
+      value={searchText}
+      onChange={e => {
+        setSearchText(e.target.value)
+        debouncedCallback(e.target.value)
+      }}
     />
   )
 }
 
-export default SearchView
+export default Search

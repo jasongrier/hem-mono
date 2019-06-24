@@ -1,24 +1,42 @@
 import React, { ReactElement } from 'react'
+import { useDispatch } from 'react-redux'
 import { Search } from '../search'
+import { IProjectFile } from '../project/types'
+import { TagList } from '../tag-list'
+import { applyFilter } from './redux'
 import './style.css'
 
-function Sidebar(): ReactElement {
+interface IProps {
+  filteredFiles: IProjectFile[]
+  filteredTags: string[]
+}
+
+function Sidebar({ filteredFiles, filteredTags }: IProps): ReactElement {
+  const dispatch = useDispatch()
+
+  function onSearch(searchText: string) {
+    dispatch(applyFilter(searchText))
+  }
+
+  function onTagClicked(tag: string) {
+    console.log(tag)
+  }
+
   return (
     <div className="sidebar">
       <div className="sidebar-content">
         <div className="sidebar-header">
           <div className="sidebar-main-controls">
             <div className="sidebar-header-search">
-              <Search />
+              <Search onSearch={onSearch} />
             </div>
           </div>
         </div>
         <div className="sidebar-microbar panel-border-right">
-          <div className="tag-picker">
-            <div className="tag">Foobar</div>
-            <div className="tag">Bar</div>
-            <div className="tag selected">Bar Baz Qux</div>
-          </div>
+          <TagList
+            tags={filteredTags}
+            onTagClicked={onTagClicked}
+          />
         </div>
         <div className="sidebar-main">
           <div className="sidebar-panel file-list">
