@@ -1,21 +1,27 @@
-import React, { useContext } from 'react'
+import React from 'react'
+import { useDispatch } from 'react-redux'
 import {
   FaEdit,
   FaLayerGroup,
   FaProjectDiagram,
   FaCaretSquareRight,
 } from 'react-icons/fa'
-import { AppContext } from './app-container'
+import { toggleSidebar } from './app.redux'
 import './app.css'
 
-function AppView(): React.ReactElement {
-	const { app, dispatchApp } = useContext(AppContext)
+interface IProps {
+  sidebarOpen: boolean
+  waveformData: number[]
+}
 
-	function handleSidebarClick() {
-    dispatchApp({ type: 'TOGGLE_SIDEBAR' })
+function AppView({sidebarOpen, waveformData}: IProps): React.ReactElement {
+  const dispatch = useDispatch()
+
+	function handleSidebarClick() { // TODO: `useHandler`??
+    dispatch(toggleSidebar())
 	}
 
-  const appClassName = `app ${app.sidebarOpen ? ' has-sidebar' : ''}`
+  const appClassName = `app ${sidebarOpen ? ' has-sidebar' : ''}`
 
   return (
 		<div className={appClassName}>
@@ -111,7 +117,7 @@ function AppView(): React.ReactElement {
           <div className="waveform">{/* Component */}
             <div className="bars">
               <div className="top-bars">{/* Component */}
-                { app.waveformData.map((amplitude: number, i: number) =>
+                { waveformData.map((amplitude: number, i: number) =>
                   <div
                     key={i}
                     className="bar"
@@ -120,7 +126,7 @@ function AppView(): React.ReactElement {
                 )}
               </div>
               <div className="bottom-bars">
-                { app.waveformData.map((amplitude: number, i: number) =>
+                { waveformData.map((amplitude: number, i: number) =>
                   <div
                     key={i}
                     className="bar"
