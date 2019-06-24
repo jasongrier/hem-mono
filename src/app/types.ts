@@ -1,6 +1,6 @@
 export type MainMode =
-    'arranger'
-  | 'editor'
+    'arrange'
+  | 'edit'
   | 'project'
 
 export interface IState {

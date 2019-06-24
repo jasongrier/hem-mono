@@ -1,15 +1,23 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import useWindowSize from '@rehooks/window-size'
 import { RootState } from '../store'
 import View from './view'
 
-const AppContainer = (): ReactElement => {
-  const { sidebarOpen } = useSelector((state: RootState) => ({
+function AppContainer(): ReactElement {
+  const { mainMode, sidebarOpen } = useSelector((state: RootState) => ({
+    mainMode: state.app.mainMode,
     sidebarOpen: state.app.sidebarOpen,
   }))
 
+  const windowSize = useWindowSize()
+
   return (
-    <View sidebarOpen={sidebarOpen} />
+    <View
+      mainMode={mainMode}
+      sidebarOpen={sidebarOpen}
+      mainWidth={windowSize.innerWidth - (sidebarOpen ? 400 : 0)}
+    />
   )
 }
 

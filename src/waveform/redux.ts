@@ -42,7 +42,7 @@ const thunkGetChannelData = (): ThunkAction<void, IState, null, Action> => async
 const initialState: IState = {
   channelData: { leftChannelData: new Float32Array(), rightChannelData: new Float32Array() }, // TODO: Move to audio module
   waveformData: [],
-  waveformLoading: false,
+  waveformBusy: true,
 }
 
 const reducer = (
@@ -57,7 +57,7 @@ const reducer = (
       return { ...state, waveformData: payload }
 
     case SET_WAVEFORM_BUSY:
-      return { ...state, waveformLoading: payload }
+      return { ...state, waveformBusy: payload }
 
     default:
       return state
