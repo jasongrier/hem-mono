@@ -5,7 +5,7 @@ import {
   FaProjectDiagram,
   FaCaretSquareRight,
 } from 'react-icons/fa'
-import { AppContext } from './AppContainer'
+import { AppContext } from './app-container'
 import './App.css'
 
 function AppView(): React.ReactElement {
