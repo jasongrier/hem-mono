@@ -1,6 +1,6 @@
-import { store } from '../../store'
-import { IChannelData } from '../types'
-import { setWaveformData } from '../redux'
+import { store } from '../store'
+import { IChannelData } from './types'
+import { setWaveformData } from './redux'
 
 function redrawWaveform(
   channelData: IChannelData,
@@ -25,4 +25,4 @@ function redrawWaveform(
   store.dispatch(setWaveformData(newWaveformData))
 }
 
-export default redrawWaveform
+export { redrawWaveform }
