@@ -1,9 +1,9 @@
-import { IProjectFile } from '../project/types'
+// import { IProjectFile } from '../project/types'
 
 export interface IState {
   allFiles: string[]
-  allTags: IProjectFile[]
-  filteredFiles: IProjectFile[]
+  // allTags: IProjectFile[]
+  // filteredFiles: IProjectFile[]
   filteredTags: string[]
 }
 
@@ -17,7 +17,7 @@ export interface IApplyFilter extends IAction {
 
 export interface IUpdateContent extends IAction {
   type: typeof UPDATE_CONTENT
-  payload: { allFiles: IProjectFile[], allTags: IProjectFile[]}
+  // payload: { allFiles: IProjectFile[], allTags: IProjectFile[]}
 }
 
 export type Action = IApplyFilter | IUpdateContent

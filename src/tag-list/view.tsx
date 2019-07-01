@@ -1,9 +1,10 @@
 import React, { ReactElement } from 'react'
+import { ITag } from '../project/types'
 import './style.css'
 
 interface IProps {
-  tags: string[]
-  onTagClicked: (tag: string) => void
+  tags: ITag[]
+  onTagClicked: (tag: ITag) => void
 }
 
 function TagList({ tags, onTagClicked }: IProps): ReactElement {
@@ -11,11 +12,11 @@ function TagList({ tags, onTagClicked }: IProps): ReactElement {
     <div className="tag-picker">
       {tags.map(tag =>
         <div
-          key={tag} // TODO: Use uid
+          key={tag.name}
           className="tag"
           onClick={() => onTagClicked(tag)}
         >
-          {tag}
+          {tag.name}
         </div>
       )}
     </div>

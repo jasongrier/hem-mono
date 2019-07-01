@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux'
 import { reducer as appReducer } from '../app'
+import { reducer as projectReducer } from '../project'
 import { reducer as waveformReducer } from '../waveform'
-import { reducer as sidebarReducer } from '../sidebar'
 
 const rootReducer = combineReducers({
   app: appReducer,
+  project: projectReducer,
   waveform: waveformReducer,
-  sidebar: sidebarReducer,
 })
 
 export default rootReducer
