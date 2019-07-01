@@ -1,25 +1,23 @@
 import React, { ReactElement, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store'
-import { updateContent } from './redux'
+// import { updateContent } from './redux'
 import View from './view'
 
 function SidebarContainer(): ReactElement {
-  const { filteredTags, filteredFiles } = useSelector((state: RootState) => ({
-    // allFiles: state.project.files,
-    // allTags: state.project.tags,
-    filteredFiles: state.sidebar.filteredFiles,
-    filteredTags: state.sidebar.filteredTags,
+  const { filteredTags, filteredFiles, filterText } = useSelector((state: RootState) => ({
+    filteredFiles: state.project.filteredFiles,
+    filteredTags: state.project.filteredTags,
+    filterText: state.project.filterText,
   }))
 
   const dispatch = useDispatch()
-
-  // useEffect(() => { dispatch(updateContent(allFiles, allTags)) }, [allFiles, allTags])
 
   return (
     <View
       filteredTags={filteredTags}
       filteredFiles={filteredFiles}
+      filterText={filterText}
     />
   )
 }

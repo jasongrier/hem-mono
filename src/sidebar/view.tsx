@@ -1,25 +1,27 @@
 import React, { ReactElement } from 'react'
 import { useDispatch } from 'react-redux'
 import { Search } from '../search'
-import { IProjectFile } from '../project/types'
+import { IFile, ITag } from '../project/types'
 import { TagList } from '../tag-list'
-import { applyFilter } from './redux'
+import { filterFiles, filterTags } from '../project/redux'
 import './style.css'
 
 interface IProps {
-  filteredFiles: IProjectFile[]
-  filteredTags: string[]
+  filteredFiles: IFile[]
+  filteredTags: ITag[]
+  filterText: string
 }
 
-function Sidebar({ filteredFiles, filteredTags }: IProps): ReactElement {
+function Sidebar({ filteredTags, filterText }: IProps): ReactElement {
   const dispatch = useDispatch()
 
   function onSearch(searchText: string) {
-    dispatch(applyFilter(searchText))
+    dispatch(filterFiles(searchText))
+    dispatch(filterTags(searchText))
   }
 
-  function onTagClicked(tag: string) {
-    console.log(tag)
+  function onTagClicked(tag: ITag) {
+    dispatch(filterFiles(tag.name))
   }
 
   return (
@@ -28,7 +30,10 @@ function Sidebar({ filteredFiles, filteredTags }: IProps): ReactElement {
         <div className="sidebar-header">
           <div className="sidebar-main-controls">
             <div className="sidebar-header-search">
-              <Search onSearch={onSearch} />
+              <Search
+                searchText={filterText}
+                onSearch={onSearch}
+              />
             </div>
           </div>
         </div>
