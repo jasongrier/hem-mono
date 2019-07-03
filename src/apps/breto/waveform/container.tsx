@@ -1,7 +1,7 @@
 import { debounce } from 'lodash'
 import React, { ReactElement, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Spinner } from '../spinner'
+import { Spinner } from '../../../common/spinner'
 import { RootState } from '../store'
 import { redrawWaveform } from './utils'
 import { thunkGetChannelData } from './redux'
