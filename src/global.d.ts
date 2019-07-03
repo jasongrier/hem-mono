@@ -1,6 +1,9 @@
-interface Window { require: any }
+interface Window {
+  env: any
+  require: any
+}
 
-interface IAction {
+interface IAction { // TODO: Use Redux.AnyAction
   type: string
   payload: any
 }

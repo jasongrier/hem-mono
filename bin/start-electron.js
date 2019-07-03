@@ -17,7 +17,7 @@ const tryConnection = () => {
         console.log('starting electron')
         startedElectron = true
         const exec = childProcess.exec
-        exec('npm run electron')
+        exec('npm run electron -- ./bin/electron-main')
       }
     }
   )

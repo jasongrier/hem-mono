@@ -1,13 +1,13 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { store } from './store'
 import { App } from './app'
 import './index.css'
 
-ReactDOM.render(
+const Root = (
   <Provider store={store}>
     <App />
-  </Provider>,
-  document.getElementById('root')
+  </Provider>
 )
+
+export default Root
