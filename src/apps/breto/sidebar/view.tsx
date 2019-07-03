@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import { useDispatch } from 'react-redux'
-import { Search } from '../search'
+import { Search } from '../../../common/search'
 import { IFile, ITag } from '../project/types'
 import { TagList } from '../tag-list'
 import { filterFiles, filterTags } from '../project/redux'

@@ -14,7 +14,7 @@ interface IProps {
   onFormSubmitted: () => void
 }
 
-function WaveformView({
+function <%= Name %>View({
   foo,
   bar,
   someBit,
@@ -43,4 +43,4 @@ function WaveformView({
   )
 }
 
-export default WaveformView
+export default <%= Name %>View
