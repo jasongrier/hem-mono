@@ -45,6 +45,9 @@ function Sidebar({ filteredTags, filterText }: IProps): ReactElement {
         </div>
         <div className="sidebar-main">
           <div className="sidebar-panel file-list">
+            {/* {filterFiles.map((file, i) => (
+              <div className="file">{}</div>
+            ))} */}
             <div className="file">83-exploring-phasellus.wav</div>
             <div className="file">84-phasellus-waves.wav</div>
             <div className="file">85-phasellus-crickets.wav</div>

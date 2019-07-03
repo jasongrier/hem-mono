@@ -6,6 +6,8 @@ import {
   FILTER_TAGS,
 
   IState,
+  IFile,
+  ITag,
 
   Action,
   IProject,
@@ -13,7 +15,14 @@ import {
 
 const { readFileSync } = window.require('fs')
 
-const tags = [
+const files: IFile[] = [
+  { name: 'Foo' },
+  { name: 'Bar' },
+  { name: 'Baz' },
+  { name: 'Qux' },
+]
+
+const tags: ITag[] = [
   { name: 'Foo' },
   { name: 'Bar' },
   { name: 'Baz' },
@@ -46,8 +55,8 @@ const someThunkActionCreator = (): ThunkAction<void, IState, null, Action> => as
 // Reducer
 // ================================================================================
 const initialState: IState = {
-  files: [],
-  filteredFiles: [],
+  files,
+  filteredFiles: files,
   filteredTags: tags,
   filterText: '',
   tags,
