@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
 import { Waveform } from '../waveform'
+import { EditForm } from '../edit-form'
 import './style.css'
 
 interface IProps {
@@ -10,13 +11,7 @@ function Edit({ mainWidth }: IProps): ReactElement {
   return (
     <div className="edit">
       <Waveform width={mainWidth} />
-      <div className="edit-form">
-        <form>
-          <input type="text" />
-          <textarea></textarea>
-          <textarea className="tags"></textarea>
-        </form>
-      </div>
+      <EditForm />
       <div className="clip-list">
         <div className="clip-line">Lorem ipsum dolor sit amet</div>
         <div className="clip-line active">Lorem ipsum dolor sit amet</div>
