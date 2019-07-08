@@ -1,8 +1,9 @@
 import React from 'react'
+import { App } from './app'
 import './index.css'
 
 const Root = (
-  <div>ROOT</div>
+  <App />
 )
 
 export default Root
