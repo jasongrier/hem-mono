@@ -1,8 +1,6 @@
 import React, { ReactElement } from 'react'
 import clsx from 'clsx'
-import { Header } from './header'
-import { Edit } from '../edit'
-import { Sidebar } from '../sidebar'
+import { Header, Edit, Sidebar } from './components'
 import { MainMode } from './types'
 import './style.css'
 

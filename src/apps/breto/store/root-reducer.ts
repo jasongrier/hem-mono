@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import { reducer as appReducer } from '../app'
-import { reducer as projectReducer } from '../project'
-import { reducer as waveformReducer } from '../waveform'
+import { reducer as projectReducer } from '../app/components/project'
+import { reducer as waveformReducer } from '../app/components/waveform'
 
 const rootReducer = combineReducers({
   app: appReducer,
