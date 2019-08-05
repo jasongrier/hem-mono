@@ -1,0 +1,25 @@
+.site-header {
+  height: 110px;
+  border-bottom: 1px solid #222;
+}
+
+.site-header h1 {
+  margin: 0;
+  padding: 0;
+  line-height: 110px;
+  font-size: 110px;
+  color: #222;
+}
+
+.site-header h1 span {
+  color: #be3c00;
+}
+
+.sl-two {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 150px;
+  height: 100vh;
+  background: #222;
+}

@@ -1,0 +1,12 @@
+.two header {
+  height: 110px;
+  border-bottom: 1px solid #eee;
+}
+
+.two header h1 {
+  margin: 0;
+  padding: 0;
+  line-height: 110px;
+  font-size: 110px;
+  color: #eee;
+}
