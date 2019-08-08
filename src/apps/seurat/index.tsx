@@ -1,8 +1,13 @@
 import React from 'react'
+import { Provider } from 'react-redux'
+import { store } from './store'
+import { App } from './app'
 import './index.css'
 
 const Root = (
-  <div>ROOT</div>
+  <Provider store={store}>
+    <App />
+  </Provider>
 )
 
 export default Root

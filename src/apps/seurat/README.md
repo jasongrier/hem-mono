@@ -1,5 +1,5 @@
-# Seurat
+# Breto
 
-MIDI Pointilism
+Structured audio: Edit, annotate, sample, score.
 
-http://seur.at
+http://breto.io
