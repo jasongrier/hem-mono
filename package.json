@@ -1,7 +1,14 @@
 {
   "name": "hem",
   "version": "0.1.0",
+  "main": "public/electron.js",
   "private": true,
+  "homepage": "./",
+  "author": {
+    "name": "HEM IVS",
+    "email": "info@hem.rocks",
+    "url": "https://hem.rocks"
+  },
   "dependencies": {
     "@rehooks/window-size": "^1.0.2",
     "@types/got": "^9.6.0",
@@ -24,28 +31,30 @@
     "use-debounce": "^2.1.0"
   },
   "devDependencies": {
+    "@rescripts/cli": "^0.0.11",
+    "@rescripts/rescript-env": "^0.0.10",
     "@types/jest": "24.0.15",
-    "electron-builder": "^20.44.4",
     "electron": "^5.0.5",
+    "electron-builder": "^20.44.4",
     "react-scripts": "3.0.1",
     "spectron": "^8.0.0",
     "typescript": "3.5.2"
   },
   "scripts": {
-    "postinstall": "install-app-deps",
+    "postinstall": "electron-builder install-app-deps",
 
-    "start:site": "react-scripts start",
-    "build:site": "react-scripts build",
-    "test:site": "react-scripts test --env=jsdom",
+    "start:site": "rescripts start",
+    "build:site": "rescripts build",
+    "test:site": "rescripts test --env=jsdom",
 
-    "start:app": "nf start -p 3000",
-    "build:app": "electron-builder",
-    "test:app": "coming-soon",
-    "pack:app": "electron-builder --dir",
+    "start:app": "PROJECT_TYPE=app nf start -p 3000",
+    "build:app": "PROJECT_TYPE=app rescripts build && electron-builder",
+    "test:app": "yarn build:app && mocha",
+    "pack:app": "rescripts build && electron-builder --dir",
 
     "helper:electron": "electron",
     "helper:start-electron": "node bin/start-electron",
-    "helper:start-react": "BROWSER=none react-scripts start"
+    "helper:start-react": "BROWSER=none rescripts start"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -63,9 +72,18 @@
     ]
   },
   "build": {
-    "appId": "com.electron.hem",
+    "appId": "rocks.hem.just-another-hem-app",
+    "productName": "Just Another HEM App",
+    "copyright": "Copyright © 2019 ${author}",
     "mac": {
-      "category": "change.me"
+      "category": "public.app-category.utilities"
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
     }
   }
 }

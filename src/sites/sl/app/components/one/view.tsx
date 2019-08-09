@@ -28,6 +28,7 @@ function OneView(): ReactElement {
         <div className="list-filter">Sonic detritus</div>
         <div className="list-filter">Instrument</div>
         <div className="list-filter">One-shots</div>
+        <div className="list-filter">Acoustic synthesis</div>
       </div>
       <div className="sample-packs-list">
         {samplePacks.map(({ name, shortDescription }) =>
