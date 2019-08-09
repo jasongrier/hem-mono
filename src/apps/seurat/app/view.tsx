@@ -4,7 +4,7 @@ import './style.css'
 
 function AppView(): ReactElement {
   return (
-    <div></div>
+    <div>s e u r a t</div>
   )
 }
 
