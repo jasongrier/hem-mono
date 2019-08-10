@@ -36,22 +36,19 @@
     "@types/jest": "24.0.15",
     "electron": "^5.0.5",
     "electron-builder": "^20.44.4",
-    "react-scripts": "3.0.1",
+    "react-scripts": "3.1.0",
     "spectron": "^8.0.0",
     "typescript": "3.5.2"
   },
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
-
     "start:site": "rescripts start",
     "build:site": "rescripts build",
     "test:site": "rescripts test --env=jsdom",
-
     "start:app": "PROJECT_TYPE=app nf start -p 3000",
     "build:app": "PROJECT_TYPE=app rescripts build && electron-builder",
     "test:app": "yarn build:app && mocha",
     "pack:app": "rescripts build && electron-builder --dir",
-
     "helper:electron": "electron",
     "helper:start-electron": "node bin/start-electron",
     "helper:start-react": "BROWSER=none rescripts start"
