@@ -1,8 +1,8 @@
 const webpack = require('webpack')
-const projectConfig = require('./public/project-config')
+const { PROJECT_TYPE, PROJECT_NAME } = require('./.project.config')
 
 module.exports = config => {
-  if (projectConfig.PROJECT_TYPE === 'apps') {
+  if (PROJECT_TYPE === 'apps') {
     config.target = 'electron-renderer'
   }
 
@@ -12,7 +12,9 @@ module.exports = config => {
 
   config.plugins.push(
     new webpack.DefinePlugin({
-      DONT_HIDE_TESTS_FROM_CRA_TSC: JSON.stringify(false)
+      DONT_HIDE_TESTS_FROM_CRA_TSC: JSON.stringify(false),
+      PROJECT_TYPE: JSON.stringify(PROJECT_TYPE),
+      PROJECT_NAME: JSON.stringify(PROJECT_NAME),
     })
   )
 

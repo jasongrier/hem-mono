@@ -49,6 +49,9 @@
   },
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
+    "start": "node bin/index start",
+    "build": "node bin/index build",
+    "test": "node bin/index test",
     "start:site": "rescripts start",
     "build:site": "rescripts build",
     "test:site": "node bin/test-site.js",
