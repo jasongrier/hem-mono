@@ -3,9 +3,11 @@ const { PROJECT_TYPE } = require('../.project.config')
 const testApp = require('./test-app')
 const testSite = require('./test-site')
 
+execSync('rm -rf dist')
+execSync('rm -rf build')
+
 let startCmd
 let buildCmd
-let testCmd
 
 if (PROJECT_TYPE === 'sites') {
   startCmd = 'rescripts start'
