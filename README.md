@@ -4,7 +4,7 @@ Any sites and apps somehow connected to HEM all in one place.
 
 Based on `create-react-app`.
 
-## Getting started
+## Running
 
 Set the project and type in `public/project-config.js`, e.g.:
 
@@ -21,9 +21,39 @@ or
 
         yarn start:app
 
+## Tests
+
+All tests are end-to-end tests.
+
+App tests are written in mocha.
+
+Due to some silly opinionatedness in CRA, app tests need to be wrapped in `if (process.env.TEST_APP) {...}`.
+
+Set your project config as described in "Running".
+
+Then...
+
+        yarn test:site
+
+or
+
+        yarn test:app
+
 ## Deployments
 
-TBA
+Set your project config as described in "Running".
+
+Then...
+
+        yarn build:site
+
+or
+
+        yarn build:app
+
+Sites will get built into the `build` directory.
+
+Apps will get built into the `dist` directory (with the web stuff still going into `build`).
 
 ## Generator
 
