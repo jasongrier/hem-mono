@@ -27,7 +27,7 @@ All tests are end-to-end tests.
 
 App tests are written in mocha.
 
-Due to some silly opinionatedness in CRA, app tests need to be wrapped in `if (process.env.TEST_APP) {...}`.
+Due to some silly opinionatedness in CRA, app tests need to be wrapped in `if (DONT_HIDE_TESTS_FROM_CRA_TSC) {...}`.
 
 Set your project config as described in "Running".
 
