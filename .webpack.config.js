@@ -1,6 +1,8 @@
+const projectConfig = require('./public/project-config')
+
 module.exports = config => {
-  if (process.env.PROJECT_TYPE === 'app') {
-    config.target = 'electron-renderer'
+  if (projectConfig.PROJECT_TYPE === 'apps') {
+    // config.target = 'electron-renderer'
   }
 
   return config
