@@ -1,0 +1,6 @@
+{
+  "preset": "jest-puppeteer",
+  "setupFiles": [
+    "<rootDir>/bin/jest.init.js"
+  ]
+}

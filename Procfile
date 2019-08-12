@@ -1,2 +1,2 @@
-react: yarn helper:start-react
-electron: yarn helper:start-electron
+react: yarn procfile-helper:start-react
+electron: yarn procfile-helper:start-electron

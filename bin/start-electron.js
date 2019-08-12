@@ -17,7 +17,7 @@ const tryConnection = () => {
         console.log('starting electron')
         startedElectron = true
         const exec = childProcess.exec
-        exec('yarn helper:electron -- ./public/electron')
+        exec('yarn node-exec-helper:electron -- ./public/electron')
       }
     }
   )
