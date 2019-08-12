@@ -1,4 +1,4 @@
 module.exports = {
-  PROJECT_TYPE: 'sites',
+  PROJECT_TYPE: 'apps',
   PROJECT_NAME: 'simple'
 }

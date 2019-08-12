@@ -1,15 +1,42 @@
-const { PROJECT_TYPE, PROJECT_NAME } = require('../.project.config')
+const { execSync } = require('child_process')
+const { PROJECT_TYPE } = require('../.project.config')
+const testApp = require('./test-app')
+const testSite = require('./test-site')
+
+let startCmd
+let buildCmd
+let testCmd
+
+if (PROJECT_TYPE === 'sites') {
+  startCmd = 'rescripts start'
+  buildCmd = 'rescripts build'
+}
+
+else if (PROJECT_TYPE === 'apps') {
+  startCmd = 'nf start -p 3000'
+  buildCmd = 'rescripts build && electron-builder'
+}
+
+else {
+  throw new Error('Bad PROJECT_TYPE in .project.config')
+}
 
 switch (process.argv[2]) {
   case 'start':
-    start()
+    execSync(startCmd, { stdio: 'inherit' })
     break
 
   case 'build':
-    test()
+    execSync(buildCmd, { stdio: 'inherit' })
     break
 
   case 'test':
-    compile()
+      if (PROJECT_TYPE === 'sites') {
+        testSite()
+      }
+
+      else if (PROJECT_TYPE === 'apps') {
+        testApp()
+      }
     break
 }

@@ -48,17 +48,10 @@
     "typescript": "3.5.2"
   },
   "scripts": {
-    "postinstall": "electron-builder install-app-deps",
     "start": "node bin/index start",
     "build": "node bin/index build",
     "test": "node bin/index test",
-    "start:site": "rescripts start",
-    "build:site": "rescripts build",
-    "test:site": "node bin/test-site.js",
-    "start:app": "nf start -p 3000",
-    "build:app": "rescripts build && electron-builder",
-    "test:app": "node bin/test-app.js",
-    "pack:app": "rescripts build && electron-builder --dir",
+    "postinstall": "electron-builder install-app-deps",
     "node-exec-helper:electron": "electron",
     "procfile-helper:start-electron": "node bin/start-electron",
     "procfile-helper:start-react": "BROWSER=none rescripts start",

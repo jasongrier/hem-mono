@@ -4,6 +4,7 @@ const { execSync } = require('child_process')
 const puppeteer = require('puppeteer')
 
 function catchDevServer(page, cb, count = 0) {
+  console.log('Waiting for dev server...')
   page.goto('http://localhost:3000')
     .then(cb)
     .catch(function() {
@@ -38,10 +39,10 @@ function catchDevApp(page, cb, count = 0) {
     })
 }
 
-async function test() {
+async function testSite() {
   const browser = await puppeteer.launch()
   const page = await browser.newPage()
-  const devProcess = spawn('BROWSER=none yarn start:site', [], { shell: true, detached: true })
+  const devProcess = spawn('BROWSER=none yarn start', [], { shell: true, detached: true })
 
   catchDevServer(page, function() {
     catchDevApp(page, function() {
@@ -51,11 +52,8 @@ async function test() {
       }
 
       catch(err) {
-        // We usually get here cause a test timed out.
-        // This causes an annoying stack trace even though Jest has already reported the timeout.
-        // TODO: Offer a --verbose option to log the error anyway.
-        // console.log(err)
-        // process.exit(1)
+        console.log(err)
+        process.exit(1)
       }
 
       process.kill(-devProcess.pid)
@@ -64,4 +62,4 @@ async function test() {
   })
 }
 
-test()
+module.exports = testSite
