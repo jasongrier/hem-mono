@@ -20,6 +20,7 @@ function catchDevServer(page, cb, count = 0) {
 }
 
 function catchDevApp(page, cb, count = 0) {
+  console.log('Waiting for app boot...')
   page.$('#root .hem-application')
     .then(function(res) {
       if (res !== null) {
