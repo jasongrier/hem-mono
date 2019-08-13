@@ -1,7 +1,7 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import { store } from './store'
-import { App } from './app'
+import store from './store'
+import App from './components/App'
 import './index.css'
 
 const Root = (
