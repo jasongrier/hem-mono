@@ -1,90 +1,40 @@
 {
-  "name": "hem",
-  "version": "0.1.0",
-  "main": "public/electron.js",
-  "private": true,
-  "homepage": "./",
-  "author": {
-    "name": "HEM IVS",
-    "email": "info@hem.rocks",
-    "url": "https://hem.rocks"
+  "name": "hem-mono",
+  "version": "0.0.1",
+  "description": "Any sites and apps somehow connected to HEM all in one place.",
+  "main": "hem/index.html",
+  "scripts": {
+    "postinstall": "electron-builder install-app-deps",
+    "start": "node bin/index start",
+    "build": "node bin/index build",
+    "test": "node bin/index test"
   },
+  "license": "WTFPL",
   "dependencies": {
-    "@rehooks/window-size": "^1.0.2",
-    "@types/got": "^9.6.0",
+    "@babel/core": "^7.5.5",
     "@types/lodash": "^4.14.134",
-    "@types/node": "12.0.8",
     "@types/react": "16.8.22",
     "@types/react-dom": "16.8.4",
     "@types/react-redux": "^7.1.0",
     "@types/react-router-dom": "^4.3.4",
-    "clsx": "^1.0.4",
-    "got": "^9.6.0",
-    "jest-puppeteer": "^4.3.0",
+    "@types/redux-thunk": "^2.1.0",
     "lodash": "^4.17.11",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-icons": "^3.7.0",
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
     "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0",
-    "use-debounce": "^2.1.0"
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
-    "@rescripts/cli": "^0.0.11",
-    "@rescripts/rescript-env": "^0.0.10",
-    "@types/expect": "^1.20.4",
-    "@types/jest": "24.0.15",
     "@types/mocha": "^5.2.7",
     "assert": "^2.0.0",
-    "babel-polyfill": "^6.26.0",
     "electron": "^6.0.0",
     "electron-builder": "^21.2.0",
     "mocha": "^6.2.0",
+    "parcel": "^1.12.3",
     "puppeteer": "^1.19.0",
-    "react-scripts": "3.1.0",
     "spectron": "^8.0.0",
-    "typescript": "3.5.2"
-  },
-  "scripts": {
-    "start": "node bin/index start",
-    "build": "node bin/index build",
-    "test": "node bin/index test",
-    "postinstall": "electron-builder install-app-deps",
-    "node-exec-helper:electron": "electron",
-    "procfile-helper:start-electron": "node bin/start-electron",
-    "procfile-helper:start-react": "BROWSER=none rescripts start",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "build": {
-    "appId": "rocks.hem.just-another-hem-app",
-    "productName": "Just Another HEM App",
-    "copyright": "Copyright © 2019 ${author}",
-    "mac": {
-      "category": "public.app-category.utilities"
-    },
-    "files": [
-      "build/**/*",
-      "node_modules/**/*"
-    ],
-    "directories": {
-      "buildResources": "assets"
-    }
+    "typescript": "^3.5.3"
   }
 }

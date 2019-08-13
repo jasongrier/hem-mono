@@ -1,4 +1,4 @@
 import ReactDOM from 'react-dom'
-import Root from './projects/sites/midst-journal'
+import Root from '<% PROJECT_PATH %>'
 
 ReactDOM.render(Root, document.getElementById('root'))
