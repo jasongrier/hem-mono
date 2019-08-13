@@ -2,6 +2,7 @@ const { join } = require('path')
 const { readFileSync, writeFileSync } = require('fs')
 const { execSync } = require('child_process')
 const { PROJECT_TYPE, PROJECT_NAME } = require('../project.config')
+const testSite = require('./test-site')
 
 execSync('rm -rf .cache && rm -rf dist')
 
@@ -37,11 +38,11 @@ switch (process.argv[2]) {
     break
 
   case 'test':
-      if (PROJECT_TYPE === 'sites') {
+      if (PROJECT_TYPE === 'site') {
         testSite()
       }
 
-      else if (PROJECT_TYPE === 'apps') {
+      else if (PROJECT_TYPE === 'app') {
         testApp()
       }
     break
