@@ -1,5 +1,4 @@
 import React, { ReactElement } from 'react'
-import clsx from 'clsx'
 import './style.css'
 
 function AboutView(): ReactElement {
