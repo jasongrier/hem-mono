@@ -1,4 +1,4 @@
 module.exports = {
-  PROJECT_TYPE: 'site',
-  PROJECT_NAME: 'midst-journal'
+  PROJECT_TYPE: 'app',
+  PROJECT_NAME: 'seurat'
 }
