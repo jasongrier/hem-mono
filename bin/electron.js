@@ -1,6 +1,6 @@
 const electron = require('electron')
 const app = electron.app
-const dialog = electron.dialog
+const catchWebapp = require('./catch-webapp')
 const BrowserWindow = electron.BrowserWindow
 
 const path = require('path')
@@ -19,14 +19,21 @@ function createWindow() {
     }
   })
 
-  mainWindow.loadURL(
-    process.env.ELECTRON_START_URL ||
+  if (process.env.ELECTRON_START_URL) {
+    catchWebapp(function() {
+      mainWindow.loadURL(process.env.ELECTRON_START_URL)
+    })
+  }
+
+  else {
+    mainWindow.loadURL(
       url.format({
         pathname: path.join(__dirname, '/../build/index.html'),
         protocol: 'file:',
         slashes: true
       })
-  )
+    )
+  }
 
   mainWindow.on('closed', () => {
     mainWindow = null
