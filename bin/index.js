@@ -1,10 +1,18 @@
 const { join } = require('path')
-const { readFileSync, writeFileSync } = require('fs')
+const { readFileSync, writeFileSync, existsSync } = require('fs')
 const { execSync } = require('child_process')
 const { PROJECT_TYPE, PROJECT_NAME } = require('../project.config')
 const testSite = require('./test-site')
+const testApp = require('./test-app')
 
-execSync('rm -rf .cache && rm -rf dist')
+execSync('rm -rf .cache && rm -rf dist && rm -rf build')
+
+if (
+  !existsSync(`${__dirname}/../src/projects/apps/electron.js`)
+  && existsSync(`${__dirname}/../src/projects/apps/index.js`)
+) {
+  execSync(`mv ${__dirname}/../src/projects/apps/index.js ${__dirname}/../src/projects/apps/electron.js`)
+}
 
 writeFileSync(join(__dirname, '..', 'src', 'index.ts'),
   readFileSync(join(__dirname, 'entry-template'), { encoding: 'utf8' })
@@ -16,12 +24,16 @@ let buildCmd
 
 if (PROJECT_TYPE === 'site') {
   startCmd = 'parcel src/index.html'
-  buildCmd = ''
+  buildCmd = 'parcel build src/index.html'
 }
 
 else if (PROJECT_TYPE === 'app') {
   startCmd = 'nf start -p 1234'
-  buildCmd = ''
+  buildCmd =
+    'parcel build src/index.html --public-url ./'
+    + ' && mv dist build'
+    + ' && cp src/electron.js build/electron.js'
+    + ' && electron-builder'
 }
 
 else {
