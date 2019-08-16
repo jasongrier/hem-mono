@@ -2,7 +2,12 @@
   "name": "hem-mono",
   "version": "0.0.1",
   "description": "Any sites and apps somehow connected to HEM all in one place.",
-  "main": "hem/index.html",
+  "main": "build/electron.js",
+  "author": {
+    "name": "HEM IVS",
+    "email": "info@hem.rocks",
+    "url": "https://hem.rocks"
+  },
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
     "start": "node bin/index start",
@@ -33,8 +38,24 @@
     "electron-builder": "^21.2.0",
     "mocha": "^6.2.0",
     "parcel": "^1.12.3",
+    "parcel-plugin-inliner": "^1.0.10",
     "puppeteer": "^1.19.0",
     "spectron": "^8.0.0",
     "typescript": "^3.5.3"
+  },
+  "build": {
+    "appId": "rocks.hem.just-another-hem-app",
+    "productName": "Just Another HEM App",
+    "copyright": "Copyright © 2019 ${author}",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
   }
 }

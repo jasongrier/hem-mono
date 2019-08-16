@@ -9,13 +9,6 @@ function catchWebappLoop(browser, page, cb, count = 0) {
         .then(function(res) {
           if (res !== null) {
             browser.close()
-            console.log('****')
-            console.log('****')
-            console.log('****')
-            console.log('****')
-            console.log('****')
-            console.log('****')
-            console.log('****')
             cb()
           }
 

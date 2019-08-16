@@ -4,7 +4,7 @@ import Palette from './Palette'
 
 function App(): ReactElement {
   return (
-    <div className="hem-application">
+    <div className="hem-application">asdfasdfasdf
       <div className="drawer">
         <Palette />
       </div>
