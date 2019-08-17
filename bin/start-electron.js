@@ -16,7 +16,7 @@ const tryConnection = () => {
       client.end()
       if (!startedElectron) {
         startedElectron = true
-        exec('electron ./src/electron')
+        exec('electron ./src/projects/apps/electron')
       }
     }
   )

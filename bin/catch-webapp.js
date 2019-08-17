@@ -9,6 +9,7 @@ function catchWebappLoop(browser, page, cb, count = 0) {
         .then(function(res) {
           if (res !== null) {
             browser.close()
+            console.log('Found the webapp. Starting your task now')
             cb()
           }
 
@@ -23,6 +24,18 @@ function catchWebappLoop(browser, page, cb, count = 0) {
             }, 500)
           }
         })
+    })
+    .catch(function () {
+      if (count++ > 120) {
+        console.log('Webapp took too long to start up.')
+        process.exit(1)
+      }
+
+      else {
+        setTimeout(function() {
+          catchWebappLoop(browser, page, cb, count)
+        }, 500)
+      }
     })
 }
 
