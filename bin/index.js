@@ -5,14 +5,20 @@ const { PROJECT_TYPE, PROJECT_NAME } = require('../project.config')
 const testSite = require('./test-site')
 const testApp = require('./test-app')
 
-execSync('rm -rf .cache && rm -rf dist && rm -rf build')
+function cleanUp() {
+  console.log('Cleaning up...')
 
-if (
-  !existsSync(`${__dirname}/../src/projects/apps/electron.js`)
-  && existsSync(`${__dirname}/../src/projects/apps/index.js`)
-) {
-  execSync(`mv ${__dirname}/../src/projects/apps/index.js ${__dirname}/../src/projects/apps/electron.js`)
+  execSync('rm -rf .cache && rm -rf dist && rm -rf build')
+
+  if (
+    !existsSync(`${__dirname}/../src/projects/apps/electron.js`)
+    && existsSync(`${__dirname}/../src/projects/apps/index.js`)
+  ) {
+    execSync(`mv ${__dirname}/../src/projects/apps/index.js ${__dirname}/../src/projects/apps/electron.js`)
+  }
 }
+
+cleanUp()
 
 writeFileSync(join(__dirname, '..', 'src', 'index.ts'),
   readFileSync(join(__dirname, 'entry-template'), { encoding: 'utf8' })
@@ -32,7 +38,7 @@ else if (PROJECT_TYPE === 'app') {
   buildCmd =
     'parcel build src/index.html --public-url ./'
     + ' && mv dist build'
-    + ' && cp src/electron.js build/electron.js'
+    + ' && cp src/projects/apps/electron.js build/electron.js'
     + ' && electron-builder'
 }
 

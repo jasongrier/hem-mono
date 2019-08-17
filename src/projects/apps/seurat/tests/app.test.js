@@ -28,8 +28,7 @@ describe('Startup', function () {
   })
 
   it('runs', async function () {
-    const res = await this.app.client.$('.hem-application')
-    console.log(res)
-    assert.equal(1, 1)
+    await this.app.client.$('.hem-application')
+    assert.ok(true)
   })
 })
