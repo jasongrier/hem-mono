@@ -1,28 +1,26 @@
 import { AnyAction } from 'redux'
 import {
-  SET_CURSOR_GROUP,
-  SET_CURSOR_MODE,
-
   IState,
 } from './types'
 
 const initialState: IState = {
-  boardSize: 16,
-  cursorGroup: 1,
-  cursorMode: 'draw'
+  articles: {
+    'foo': {
+      title: 'Foo',
+      text: 'Lorem ipsum dolor\n\nsit amet.',
+      links: [
+        { type: 'external', text: 'Google', title: 'Search engine', destination: 'http://google.com' },
+        { type: 'internal', text: 'Foo', title: 'I link to myself', destination: 'foo' },
+      ]
+    }
+  }
 }
 
 const reducer = (
   state: IState = initialState,
-  { type, payload }: AnyAction,
+  { type }: AnyAction,
 ): IState => {
   switch (type) {
-    case SET_CURSOR_GROUP:
-      return { ...state, cursorGroup: payload }
-
-    case SET_CURSOR_MODE:
-      return { ...state, cursorMode: payload }
-
     default:
       return state
   }
