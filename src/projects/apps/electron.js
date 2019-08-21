@@ -1,15 +1,15 @@
 const electron = require('electron')
-const path = require('path')
-const url = require('url')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 
 let mainWindow
+const projectConfig = (process.env.ELECTRON_START_URL || process.env.ELECTRON_TEST) ?
+  require('../../../project.config')
+  : require('./project.config')
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 1200,
-    height: 780,
+    ...projectConfig.APP_WINDOW_DIMS,
     transparent: true,
     titleBarStyle: 'hidden',
     webPreferences: {

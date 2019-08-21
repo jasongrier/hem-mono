@@ -8,11 +8,19 @@ function Board(): ReactElement {
     boardSize: state.app.boardSize,
   }))
 
+  function renderDots() {
+    const dots = []
+
+    for (let i = 0; i < boardSize; i ++) {
+      dots.push(<Dot id={i} key={i} />)
+    }
+
+    return dots
+  }
+
   return (
     <div className="board">
-      {[...Array(boardSize)].map(i => (
-        <Dot id={i} key={i} />
-      ))}
+      {renderDots()}
     </div>
   )
 }
