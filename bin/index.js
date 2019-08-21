@@ -39,6 +39,7 @@ else if (PROJECT_TYPE === 'app') {
     'parcel build src/index.html --public-url ./'
     + ' && mv dist build'
     + ' && cp src/projects/apps/electron.js build/electron.js'
+    + ' && cp project.config.js build/project.config.js'
     + ' && electron-builder'
 }
 
