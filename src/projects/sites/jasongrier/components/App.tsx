@@ -6,10 +6,15 @@ function App(): ReactElement {
   return (
     <div className="hem-application">
       <header>
-
+        <h1>Jason Aaron Grier</h1>
       </header>
       <main>
+        <div>
 
+        </div>
+        <ul>
+          <li></li>
+        </ul>
       </main>
       <section className="info-sheet-container">
         <Switch>
