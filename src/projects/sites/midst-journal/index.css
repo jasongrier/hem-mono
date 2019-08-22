@@ -1,7 +1,490 @@
+@font-face {
+  font-family: 'futuraregular';
+  src: url('./assets/futuraregular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html,
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  font-family: 'futuraregular';
+  background-color: #FFF5EE;
+}
+
+.midst {
+  top: 97px !important;
+  background-color: transparent !important;
+  height: calc(100vh - 136px) !important;
+}
+
+.timeline {
+  bottom: 45px !important;
+}
+
+.site-header {
+  position: relative;
+  z-index: 9999;
+  background-color: #FFF5EE;
+}
+
+.site-header h1 {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 250px;
+  height: 77px;
+  background: #FFF5EE url(./assets/logo_heavy.svg) no-repeat;
+  font-size: 0;
+}
+
+.site-header h1 a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.site-header .poem-credit {
+  position: absolute;
+  top: 25px;
+  right: 160px;
+  font-size: 30px;
+}
+
+.site-header .poem-credit {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-header .poem-credit .author-name {
+  color: #FF91AF;
+}
+
+.site-header #poem-nav {
+  position: fixed;
+  top: 0;
+  left: 100vw;
+  transform: rotate(90deg);
+  transform-origin: top left;
+  width: 100vh;
+  height: 50px;
+  text-align: center;
+  font-size: 30px;
+}
+
+.site-header #poem-nav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-header #back-to-toc {
+  position: fixed;
+  top: 100vh;
+  left: 5px;
+  transform: rotate(-90deg);
+  transform-origin: top left;
+  width: 100vh;
+  height: 50px;
+  text-align: center;
+  font-size: 30px;
+}
+
+.site-header #back-to-toc a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-header nav {
+  position: absolute;
+  top: 22px;
+  right: 65px;
+  font-size: 30px;
+}
+
+.site-header nav a {
+  color: #000000;
+  text-align: center;
+  padding: 15px;
+  margin: 0 0 0 9px;
+  text-decoration: none;
+}
+
+.site-header nav a:hover {
+  font-style: italic;
+}
+
+.site-header nav a.active {
+  color: #C70000;
+}
+
+.site-header nav #mobile-nav-toggle {
+  display: none;
+}
+
+.site-header .about-link--desk {
+  position: fixed;
+  top: 25px;
+  right: 80px;
+  font-size: 30px;
+  text-decoration: none;
+  color: #000;
+}
+
+.site-header .about-link--mobile {
+  display: none;
+}
+
+.site-header .about-link.active {
+  color: #C70000;
+}
+
+.site-header .about-link--desk.active {
+  color: #C70000;
+}
+
+.heroine {
+  text-align: center;
+  font-size: 30px;
+  padding: 100px 0 0 0;
+}
+
+.heroine h2 {
+  color: darkred;
+  font-style: italic;
+  font-size: 25px;
+  margin-bottom: 50px;
+}
+
+.heroine p {
+  margin-bottom: 30px;
+}
+
+.heroine.heroine--normal {
+  text-align: left;
+  font-size: 20px;
+  padding: 20vh 20vw 0 20vw;
+}
+
+.heroine.heroine--normal.center {
+  text-align: center;
+}
+
+.heroine.heroine--normal p {
+  margin-bottom: 50px;
+  line-height: 1.5;
+}
+
+.site-footer {
+  position: fixed;
+  bottom: 0;
+  left: 30px;
+  z-index: 9999;
+  font-size: 18px;
+}
+
+.site-footer a {
+  color: #000;
+  text-decoration: none;
+}
+
+.email-signup {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 31px;
+  border-top: 1px solid #333;
+  padding-top: 5px;
+  background: #FFF5EE;
+}
+
+.email-signup label {
+  float: left;
+  width: auto;
+  height: 26px;
+  line-height: 26px;
+  margin: 0 5px;
+}
+
+.email-signup input {
+  float: left;
+  background: transparent;
+  border: 1px solid #000;
+  width: 20vw;
+  height: 26px;
+  line-height: 40px;
+  padding: 0 0 0 5px;
+  text-align: left;
+  font-size: 14px;
+  background: #fff;
+  margin: 0 5px;
+}
+
+.email-signup button {
+  height: 28px;
   background: pink;
+  border: 1px solid #000;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.home-page .campaign-monitor-form label,
+.home-page .campaign-monitor-form input {
+  display: block;
+  margin: 0 auto 40px auto;
+}
+
+.home-page .campaign-monitor-form label {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.home-page .campaign-monitor-form input {
+  width: 300px;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 10px;
+}
+
+.home-page .campaign-monitor-form button {
+  width: 323px;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 10px;
+  cursor: pointer;
+  background: pink;
+}
+
+.nominate-form {
+  position: fixed;
+  top: 100px;
+  width: 100vw;
+  height: calc(100vh - 100px);
+  overflow: auto;
+}
+
+.nominate-form form {
+  display: block;
+  width: 80vw;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.nominate-form form .form-block {
+  margin-bottom: 10px;
+}
+
+.nominate-form form .form-block p {
+  font-size: 18px;
+  line-height: 25px;
+}
+
+.nominate-form label {
+  font-size: 14px;
+}
+
+.nominate-form label,
+.nominate-form input,
+.nominate-form textarea,
+.nominate-form button {
+  display: block;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  margin: 0 auto;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  font-size: 14px;
+}
+
+.nominate-form input,
+.nominate-form textarea {
+  border-bottom: 1px solid #000;
+  color: #999;
+}
+
+.nominate-form textarea {
+  height: 80px;
+  resize: none;
+}
+
+.nominate-form button {
+  border: 1px solid #000;
+  cursor: pointer;
+}
+
+.nominate-form button:hover {
+  background: #eee;
+}
+
+.midst.player .main {
+  height: calc(100vh - 40px) !important;
+}
+
+.shape-container {
+  float: left;
+  width: 50px;
+  height: 50px;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.shape-container img {
+  width: 100%;
+  height: auto;
+}
+
+.site-header.post-type-poem nav {
+  display: none;
+}
+
+.body-post-type-poem #editable {
+  padding-left: 130px !important;
+  padding-right: 130px !important;
+}
+
+.site-header.post-type-poem .about-link--desk {
+  display: block;
+}
+
+.table-of-contents h6 {
+  font-size: 16px;
+  margin-bottom: 80px;
+}
+
+.table-of-contents a.poem-link {
+  display: block;
+  margin-bottom: 50px;
+}
+
+.table-of-contents a.poem-link:hover {
+  font-style: italic;
+}
+
+.table-of-contents small {
+  font-size: 14px;
+}
+
+.table-of-contents a {
+  color: #000;
+  text-decoration: none;
+}
+
+.issue-one-alert {
+  position: fixed;
+  bottom: 0;
+  right: 10px;
+  padding: 0;
+  margin: 0;
+  height: 37px;
+  line-height: 37px;
+  font-size: 14px;
+}
+
+@media screen and (max-width: 1024px) {
+  .site-header h1 {
+      top: 0px;
+      left: 20px;
+      padding-top: 20px;
+  }
+
+  .site-header #mobile-nav-toggle {
+      display: block;
+      position: fixed;
+      top: 30px;
+      right: 20px;
+      z-index: 9999;
+      width: 30px;
+      height: 25px;
+      cursor: pointer;
+  }
+
+  .site-header #mobile-nav-toggle span {
+      display: block;
+      width: 100%;
+      height: 3px;
+      margin-bottom: 7px;
+      background-color: #000;
+  }
+
+  .site-header #mobile-nav-toggle.open {
+      width: 20px;
+  }
+
+  .site-header #mobile-nav-toggle.open span:nth-child(1) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 30px;
+      transform: rotate(45deg);
+      transform-origin: top left;
+  }
+
+  .site-header #mobile-nav-toggle.open span:nth-child(2) {
+      display: none;
+  }
+
+  .site-header #mobile-nav-toggle.open span:nth-child(3) {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 30px;
+      transform: rotate(-45deg);
+      transform-origin: top right;
+  }
+
+  .site-header nav {
+      display: none;
+  }
+
+  .site-header nav.open {
+      display: block;
+      top: 0;
+      right: 0;
+      z-index: 9998;
+      width: 50vw;
+      height: 100vh;
+      padding-top: 50px;
+      background-color: #FFFAFA;
+      border-left: 1px solid #000;
+  }
+
+  .site-header nav.open a {
+      display: block;
+      text-align: right;
+  }
+
+  .site-header .about-link--desk {
+      display: none;
+  }
+
+  .site-header .about-link--mobile {
+      display: block;
+      font-size: 30px;
+      text-decoration: none;
+      color: #000;
+  }
+
+  .email-signup {
+      display: none;
+  }
+
+  .midst.player .main {
+      height: 100vh !important;
+  }
+
+  video {
+      width: 70vw;
+      height: auto;
+      margin-left: -5vw;
+  }
+
+  .issue-one-alert {
+      display: none;
+  }
 }

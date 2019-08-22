@@ -65,4 +65,7 @@ switch (process.argv[2]) {
         testApp()
       }
     break
+
+  case 'lint':
+    break
 }

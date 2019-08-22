@@ -1,7 +1,5 @@
 import { AnyAction } from 'redux'
-import {
-  IState,
-} from './types'
+import { IState } from './types'
 
 const initialState: IState = {
   articles: {
