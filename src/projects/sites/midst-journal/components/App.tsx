@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react'
 import { Switch, Route, Link } from 'react-router-dom'
 import { useDocumentTitle } from '../../../../common/hooks'
 import CampaignMonitorForm from '../components/CampaignMonitorForm'
+import Shapes from '../components/Shapes'
 import About from '../routes/About'
 import Contact from '../routes/Contact'
 import Faq from '../routes/Faq'
@@ -17,6 +18,7 @@ function App(): ReactElement {
 
   return (
     <div className="hem-application">
+      <Shapes />
       <header className="site-header">
         <h1>
           <Link to="/">Midst</Link>
@@ -44,7 +46,10 @@ function App(): ReactElement {
       </main>
       <footer>
         {document.location.pathname !== '/' && (
-          <CampaignMonitorForm />
+          <CampaignMonitorForm
+            labelForName="Join us?"
+            submitButtonText="Sign up!"
+          />
         )}
       </footer>
     </div>
