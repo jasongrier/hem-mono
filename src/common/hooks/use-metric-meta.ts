@@ -29,7 +29,7 @@ function useMetricMeta({
         // Insert the element...
       }
     }
-  })
+  }, [])
 }
 
 export function useDocumentTitle(title: string) {

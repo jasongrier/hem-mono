@@ -1,9 +1,9 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useEffect } from 'react'
 import { CampaignMonitorForm as BaseCampaignMonitorForm } from '../../../../common/components'
 
 interface IProps {
-  labelForName: string
-  labelForEmail: string
+  labelForName?: string
+  labelForEmail?: string
   submitButtonText: string
 }
 
