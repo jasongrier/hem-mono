@@ -88,4 +88,4 @@ export default {
   midstShapeKGreen,
   midstShapeKPink,
   midstShapeKYellow,
-}
+} as any

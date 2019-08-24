@@ -4,7 +4,7 @@ function Home(): ReactElement {
   return (
     <div className="home-page">
       <header>
-        <h1>Jason Aaron Gillis-Grier</h1>
+        <h1>Jason Grier</h1>
         <nav>
           <ul>
             <li>Label</li>
