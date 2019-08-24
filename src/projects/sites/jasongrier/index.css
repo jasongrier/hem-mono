@@ -3,5 +3,15 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background: pink;
+}
+
+.info-sheet {
+  position: fixed;
+  top: 30px;
+  right: 0;
+  width: 60vw;
+  height: calc(100vh - 30px);
+  border-top: 1px solid #333;
+  border-left: 1px solid #333;
+  background: #fff;
 }

@@ -4,14 +4,12 @@ interface IOpts {
   title: string
   description?: string
   keywords?: string
-  snippets?: string[]
 }
 
-function useMetricMeta({
+function useSeoMeta({
   title,
   description,
   keywords,
-  snippets,
 }: IOpts) {
   useEffect(function() {
     document.title = title
@@ -23,17 +21,11 @@ function useMetricMeta({
     if (keywords) {
       // Insert the element...
     }
-
-    if (snippets) {
-      for (const snippet in snippets) {
-        // Insert the element...
-      }
-    }
   }, [])
 }
 
 export function useDocumentTitle(title: string) {
-  useMetricMeta({ title })
+  useSeoMeta({ title })
 }
 
-export default useMetricMeta
+export default useSeoMeta

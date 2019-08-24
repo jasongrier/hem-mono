@@ -1,2 +1,2 @@
-export { default as useMetricMeta } from './use-metric-meta'
-export { useDocumentTitle } from './use-metric-meta'
+export { default as useSeoMeta } from './use-seo-meta'
+export { useDocumentTitle } from './use-seo-meta'

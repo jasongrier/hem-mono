@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
 import { Switch, Route } from 'react-router-dom'
+import DefaultSeoMeta from './DefaultSeoMeta'
 import InfoSheet from './InfoSheet'
 
 function App(): ReactElement {
@@ -18,6 +19,7 @@ function App(): ReactElement {
       </main>
       <section className="info-sheet-container">
         <Switch>
+          <Route exact path="/" component={DefaultSeoMeta} />
           <Route exact path="/:articleId" component={InfoSheet} />
         </Switch>
       </section>
