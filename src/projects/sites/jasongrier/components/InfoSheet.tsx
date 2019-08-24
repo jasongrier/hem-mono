@@ -1,9 +1,9 @@
-import React, { ReactElement, useEffect } from 'react'
+import React, { ReactElement } from 'react'
 import { useSelector } from 'react-redux'
 import { RootState, IArticle } from '../store'
 import { Link } from '../../../../common/components'
 import { autoParagraph } from '../../../../common/helpers'
-import { useSeoMeta } from '../../../../common/hooks'
+import { useSeoMeta } from '../hooks'
 
 interface IProps {
   match: any
@@ -14,7 +14,14 @@ function InfoSheet({ match }: IProps): ReactElement {
     articleData: state.app.articles[match.params.articleId] as IArticle
   }))
 
-  if (!articleData) {
+  const isHome = match.path === '/'
+
+  useSeoMeta({
+    path: match.path,
+    articleData,
+  })
+
+  if (!isHome && !articleData) {
     return (
       // TODO: How should not found work with "real" 404's in the static render??
       <div>
@@ -23,26 +30,23 @@ function InfoSheet({ match }: IProps): ReactElement {
     )
   }
 
-  const { title, text, links, seoMeta } = articleData
-
-  useSeoMeta({
-    title: 'Jason Grier | ' + title,
-    ...seoMeta,
-  })
-
   return (
-    <div className="info-sheet">
-      <h1>{title}</h1>
-      <div className="info-sheet__text"
-        dangerouslySetInnerHTML={{__html: autoParagraph(text)}}
-      />
-      <ul className="info-sheet__links">
-        {links.map((link, i) => (
-          <li key={i}>
-            <Link {...link} />
-          </li>
-        ))}
-      </ul>
+    <div className={`info-sheet${!isHome ? ' info-sheet--open' : ''}`}>
+      {!isHome && (
+        <>
+          <h1>{articleData.title}</h1>
+          <div className="info-sheet__text"
+            dangerouslySetInnerHTML={{__html: autoParagraph(articleData.text)}}
+          />
+          <ul className="info-sheet__links">
+            {articleData.links.map((link, i) => (
+              <li key={i}>
+                <Link {...link} />
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </div>
   )
 }
