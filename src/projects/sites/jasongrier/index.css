@@ -8,10 +8,15 @@ body {
 .info-sheet {
   position: fixed;
   top: 30px;
-  right: 0;
+  left: 100vw;
   width: 60vw;
   height: calc(100vh - 30px);
   border-top: 1px solid #333;
   border-left: 1px solid #333;
   background: #fff;
+  transition: left 100ms;
+}
+
+.info-sheet--open {
+  left: 40vw;
 }
