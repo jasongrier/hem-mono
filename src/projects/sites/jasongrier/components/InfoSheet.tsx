@@ -1,37 +1,48 @@
 import React, { ReactElement } from 'react'
 import { useSelector } from 'react-redux'
-import { RootState, IArticle } from '../store'
+import { RootState } from '../store'
 import { Link } from '../../../../common/components'
 import { autoParagraph } from '../../../../common/helpers'
-import { useSeoMeta } from '../hooks'
+import { Helmet } from 'react-helmet'
 
 interface IProps {
   match: any
 }
 
 function InfoSheet({ match }: IProps): ReactElement {
-  const { articleData } = useSelector((state: RootState) => ({
-    articleData: state.app.articles[match.params.articleId] as IArticle
+  let { articleData } = useSelector((state: RootState) => ({
+    articleData: state.app.articles.find(article => article.slug === match.params.articleId)
   }))
 
-  const isHome = match.path === '/'
+  if (!articleData) {
+    articleData = {
+      slug: 'not-found',
+      title: 'Sorry',
+      text: 'Can\*t find what you\'re looking for\n\nTry closing this box and then explore the links below',
+      links: [],
+      description: '',
+    }
+  }
 
-  useSeoMeta({
-    path: match.path,
-    articleData,
-  })
+  const isHome = match.url === '/'
 
-  if (!isHome && !articleData) {
-    return (
-      // TODO: How should not found work with "real" 404's in the static render??
-      <div>
-        Not found!
-      </div>
-    )
+  let pageTitle, pageDescription
+  if (isHome) {
+    pageTitle = 'Jason Grier | Home'
+    pageDescription = ''
+  }
+
+  else {
+    pageTitle = 'Jason Grier | ' + articleData.title
+    pageDescription = articleData.description
   }
 
   return (
     <div className={`info-sheet${!isHome ? ' info-sheet--open' : ''}`}>
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+      </Helmet>
       {!isHome && (
         <>
           <h1>{articleData.title}</h1>

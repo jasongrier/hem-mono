@@ -5,7 +5,7 @@ export interface ILink {
   destination: string
   text: string
   title: string
-  type: 'internal' | 'external'
+  type: string
 }
 
 interface IProps extends ILink {}
