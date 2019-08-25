@@ -11,8 +11,8 @@ body {
   left: 100vw;
   width: 60vw;
   height: calc(100vh - 30px);
-  border-top: 1px solid #333;
-  border-left: 1px solid #333;
+  border-top: 1px solid #666;
+  border-left: 1px solid #666;
   background: #fff;
   transition: left 100ms;
 }

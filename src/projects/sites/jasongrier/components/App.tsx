@@ -12,7 +12,8 @@ function App(): ReactElement {
         <div>
           <Link to="/">home</Link><br/>
           <Link to="/foo">foo</Link><br/>
-          <Link to="/bar">bar</Link>
+          <Link to="/bar">bar</Link><br/>
+          <Link to="/asdfasd">404</Link>
         </div>
         <ul>
           <li></li>
@@ -20,9 +21,7 @@ function App(): ReactElement {
       </main>
       <section className="info-sheet-container">
         <Switch>
-          {/* TODO: This should be one route?? */}
-          <Route exact path="/" component={InfoSheet} />
-          <Route exact path="/:articleId" component={InfoSheet} />
+          <Route path="/:articleId?" component={InfoSheet} />
         </Switch>
       </section>
       <footer>

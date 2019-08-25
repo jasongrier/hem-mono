@@ -1,33 +1,9 @@
 import { AnyAction } from 'redux'
 import { IState } from './types'
+import articles from '../data'
 
 const initialState: IState = {
-  articles: {
-    'foo': {
-      title: 'Foo',
-      text: 'Lorem ipsum dolor\n\nsit amet.',
-      links: [
-        { type: 'external', text: 'Google', title: 'Search engine', destination: 'http://google.com' },
-        { type: 'internal', text: 'Foo', title: 'I link to myself', destination: 'foo' },
-      ],
-      seoMeta: {
-        description: '',
-        keywords: '',
-      }
-    },
-    'bar': {
-      title: 'Bar',
-      text: 'Lorem ipsum dolor\n\nsit amet.',
-      links: [
-        { type: 'external', text: 'Google', title: 'Search engine', destination: 'http://google.com' },
-        { type: 'internal', text: 'Foo', title: 'I link to myself', destination: 'foo' },
-      ],
-      seoMeta: {
-        description: '',
-        keywords: '',
-      }
-    },
-  }
+  articles,
 }
 
 const reducer = (

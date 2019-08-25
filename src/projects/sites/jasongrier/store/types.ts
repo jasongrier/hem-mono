@@ -1,15 +1,13 @@
 import { ILink } from '../../../../common/components'
 
 export interface IArticle {
+  slug: string
   title: string
   text: string
   links: ILink[]
-  seoMeta: {
-    description: string
-    keywords: string
-  }
+  description: string
 }
 
 export interface IState {
-  articles: { [articleId: string]: IArticle }
+  articles: IArticle[]
 }
