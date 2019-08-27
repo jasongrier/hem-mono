@@ -19,6 +19,7 @@ function InfoSheet({ match }: IProps): ReactElement {
       slug: 'not-found',
       title: 'Sorry',
       text: 'Can\*t find what you\'re looking for\n\nTry closing this box and then explore the links below',
+      tags: [],
       links: [],
       description: '',
     }

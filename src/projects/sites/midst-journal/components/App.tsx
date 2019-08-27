@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
-import { Switch, Route, Link } from 'react-router-dom'
-import { useDocumentTitle } from '../../../../common/hooks'
+import { Switch, Route, Link, NavLink } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 import CampaignMonitorForm from '../components/CampaignMonitorForm'
 import Shapes from '../components/Shapes'
 import About from '../routes/About'
@@ -9,26 +9,28 @@ import Faq from '../routes/Faq'
 import FaqForPoets from '../routes/FaqForPoets'
 import Home from '../routes/Home'
 import Nominate from '../routes/Nominate'
+import Poem from '../routes/Poem'
 import Read from '../routes/Read'
-import TableOfContents from '../routes/TableOfContents'
 import AboutTheApp from '../routes/AboutTheApp'
 
 function App(): ReactElement {
-  useDocumentTitle('Midst Journal')
-
   return (
     <div className="hem-application">
+      <Helmet>
+        <title>Midst Journal</title>
+        <meta name="description" content="" />
+      </Helmet>
       <Shapes />
       <header className="site-header">
         <h1>
           <Link to="/">Midst</Link>
         </h1>
         <nav>
-          <Link to="/read">Read</Link>
-          <Link to="/nominate">Nominate</Link>
-          <Link to="/app">App</Link>
-          <Link to="/contact">Contact</Link>
-          <Link to="/about">?</Link>
+          <NavLink activeClassName="active" to="/read">Read</NavLink>
+          <NavLink activeClassName="active" to="/nominate">Nominate</NavLink>
+          <NavLink activeClassName="active" to="/app">App</NavLink>
+          <NavLink activeClassName="active" to="/contact">Contact</NavLink>
+          <NavLink activeClassName="active" to="/about">?</NavLink>
         </nav>
       </header>
       <main>
@@ -40,11 +42,11 @@ function App(): ReactElement {
           <Route exact path="/" component={Home} />
           <Route exact path="/nominate" component={Nominate} />
           <Route exact path="/read" component={Read} />
-          <Route exact path="/table-of-contents" component={TableOfContents} />
           <Route exact path="/app" component={AboutTheApp} />
+          <Route exact path="/poem/:slug" component={Poem} />
         </Switch>
       </main>
-      <footer>
+      <footer className="site-footer">
         {document.location.pathname !== '/' && (
           <CampaignMonitorForm
             labelForName="Join us?"

@@ -16,6 +16,11 @@ body {
   background-color: #FFF5EE;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .midst {
   top: 97px !important;
   background-color: transparent !important;
@@ -191,7 +196,7 @@ body {
   text-decoration: none;
 }
 
-.email-signup {
+.site-footer .campaign-monitor-form {
   position: fixed;
   left: 0;
   bottom: 0;
@@ -202,7 +207,7 @@ body {
   background: #FFF5EE;
 }
 
-.email-signup label {
+.site-footer .campaign-monitor-form label {
   float: left;
   width: auto;
   height: 26px;
@@ -210,7 +215,7 @@ body {
   margin: 0 5px;
 }
 
-.email-signup input {
+.site-footer .campaign-monitor-form input {
   float: left;
   background: transparent;
   border: 1px solid #000;
@@ -224,7 +229,7 @@ body {
   margin: 0 5px;
 }
 
-.email-signup button {
+.site-footer .campaign-monitor-form button {
   height: 28px;
   background: pink;
   border: 1px solid #000;
