@@ -15,6 +15,7 @@ import iconSettings from './icon-settings'
 import iconSquare from './icon-square'
 import iconTimeline from './icon-timeline'
 import iconTrash from './icon-trash'
+import './style.css'
 
 interface IProps {
   isPlayer: boolean
