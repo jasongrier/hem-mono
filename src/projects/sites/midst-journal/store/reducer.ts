@@ -1,15 +1,12 @@
 import { AnyAction } from 'redux'
 import {
-  SET_CURSOR_GROUP,
-  SET_CURSOR_MODE,
+  SET_MOBILE_NAV_OPEN,
 
   IState,
 } from './types'
 
 const initialState: IState = {
-  boardSize: 16,
-  cursorGroup: 1,
-  cursorMode: 'draw'
+  mobileNavOpen: false
 }
 
 const reducer = (
@@ -17,11 +14,8 @@ const reducer = (
   { type, payload }: AnyAction,
 ): IState => {
   switch (type) {
-    case SET_CURSOR_GROUP:
-      return { ...state, cursorGroup: payload }
-
-    case SET_CURSOR_MODE:
-      return { ...state, cursorMode: payload }
+    case SET_MOBILE_NAV_OPEN:
+      return { ...state, mobileNavOpen: payload }
 
     default:
       return state

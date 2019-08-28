@@ -1,24 +1,14 @@
 import {
-  CursorGroup,
-  CursorMode,
-
-  SET_CURSOR_GROUP,
-  SET_CURSOR_MODE,
+  SET_MOBILE_NAV_OPEN,
 
   Action,
 } from './types'
 
-const setCursorGroup = (cursorGroup: CursorGroup): Action => ({
-  type: SET_CURSOR_GROUP,
-  payload: cursorGroup,
-})
-
-const setCursorMode = (cursorMode: CursorMode): Action => ({
-  type: SET_CURSOR_MODE,
-  payload: cursorMode,
+const setMobileNavOpen = (mobileNavOpen: boolean): Action => ({
+  type: SET_MOBILE_NAV_OPEN,
+  payload: mobileNavOpen,
 })
 
 export {
-  setCursorGroup,
-  setCursorMode,
+  setMobileNavOpen,
 }

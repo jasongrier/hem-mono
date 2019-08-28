@@ -1,8 +1,11 @@
 import React, { ReactElement } from 'react'
 import { Switch, Route, Link, NavLink } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import CampaignMonitorForm from '../components/CampaignMonitorForm'
 import Shapes from '../components/Shapes'
+import PoemNavLink from '../components/PoemNavLink'
+import SiteNavLinks from '../components/SiteNavLinks'
 import About from '../routes/About'
 import Contact from '../routes/Contact'
 import Faq from '../routes/Faq'
@@ -12,8 +15,16 @@ import Nominate from '../routes/Nominate'
 import Poem from '../routes/Poem'
 import Read from '../routes/Read'
 import AboutTheApp from '../routes/AboutTheApp'
+import { RootState } from '../store'
+import { setMobileNavOpen } from '../store/actions'
 
 function App(): ReactElement {
+  const { mobileNavOpen } = useSelector((state: RootState) => ({
+    mobileNavOpen: state.app.mobileNavOpen,
+  }))
+
+  const dispatch = useDispatch()
+
   return (
     <div className="hem-application">
       <Helmet>
@@ -25,11 +36,28 @@ function App(): ReactElement {
         <h1>
           <Link to="/">Midst</Link>
         </h1>
-        <nav>
-          <NavLink activeClassName="active" to="/read">Read</NavLink>
-          <NavLink activeClassName="active" to="/nominate">Nominate</NavLink>
-          <NavLink activeClassName="active" to="/app">App</NavLink>
-          <NavLink activeClassName="active" to="/contact">Contact</NavLink>
+
+        <div
+          id="mobile-nav-toggle"
+          onClick={() => dispatch(setMobileNavOpen(!mobileNavOpen))}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <Switch>
+          <Route exact path="/poem/:slug" component={PoemNavLink} />
+        </Switch>
+
+        <nav
+          className={mobileNavOpen ? 'open' : ''}
+          onClick={() => dispatch(setMobileNavOpen(false))}
+        >
+          <Switch>
+            <Route exact path="/poem/:slug" component={() => <></>} />
+            <Route component={SiteNavLinks} />
+          </Switch>
           <NavLink activeClassName="active" to="/about">?</NavLink>
         </nav>
       </header>

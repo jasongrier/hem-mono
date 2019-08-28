@@ -55,14 +55,14 @@ a {
 
 .site-header .poem-credit {
   position: absolute;
-  top: 25px;
-  right: 160px;
+  top: 20px;
+  right: 140px;
+  width: 100vw;
+  text-align: right;
   font-size: 30px;
-}
-
-.site-header .poem-credit {
   color: inherit;
   text-decoration: none;
+  font-style: normal !important;
 }
 
 .site-header .poem-credit .author-name {
