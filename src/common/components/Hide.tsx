@@ -18,10 +18,10 @@ function Hide({ on, children }: IProps): ReactElement {
           exact
           key={path}
           path={path}
-          component={() => <></>}
+          component={() => children[1] || <></>}
         />
       ))}
-      <Route component={() => <>{children}</>} />
+      <Route component={() => <>{children[0]}</>} />
     </Switch>
   )
 }
