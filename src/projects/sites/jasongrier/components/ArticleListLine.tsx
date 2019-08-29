@@ -22,4 +22,13 @@ function ArticleListLine({ article }: IProps): ReactElement {
   )
 }
 
+export function renderArticleListLine(article: IArticle) {
+  return (
+    <ArticleListLine
+      key={article.slug}
+      article={article}
+    />
+  )
+}
+
 export default ArticleListLine
