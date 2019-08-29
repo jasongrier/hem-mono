@@ -1,10 +1,10 @@
 import { ILink } from '../../../../common/components'
+import { ITaggedSubject } from '../../../../common/packages/tag'
 
-export interface IArticle {
+export interface IArticle extends ITaggedSubject {
   slug: string
   title: string
   text: string
-  tags: string[]
   links: ILink[]
   description: string
 }
