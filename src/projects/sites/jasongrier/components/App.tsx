@@ -1,10 +1,11 @@
 import React, { ReactElement } from 'react'
 import { useSelector } from 'react-redux'
-import { RootState, IArticle } from '../store'
-import { Switch, Route } from 'react-router-dom'
+import { RootState } from '../store'
+import { Route, Link } from 'react-router-dom'
 import { TagFilter, TaggedSubjectsList } from '../../../../common/packages/tag'
+import { Exclude } from '../../../../common/components'
 import InfoSheet from './InfoSheet'
-import ArticleListLine from './ArticleListLine'
+import { renderArticleListLine } from './ArticleListLine'
 
 function App(): ReactElement {
   const { articles } = useSelector((state: RootState) => ({
@@ -14,7 +15,11 @@ function App(): ReactElement {
   return (
     <div className="hem-application">
       <header>
-        <h1>Jason Aaron Grier</h1>
+        <h1>
+          <Link to="/">
+            Jason Aaron Grier
+          </Link>
+        </h1>
       </header>
       <main>
         <section className="tags-filter">
@@ -24,21 +29,15 @@ function App(): ReactElement {
           <ul>
             <TaggedSubjectsList
               subjects={articles}
-              renderSubject={(article: IArticle) => (
-                <ArticleListLine
-                  key={article.slug}
-                  article={article}
-                />
-              )}
+              renderSubject={renderArticleListLine}
             />
           </ul>
         </section>
       </main>
       <section className="info-sheet-container">
-        <Switch>
-          <Route exact path="/category/:name" component={() => <></>} />
+        <Exclude from="/category/:name">
           <Route path="/:articleId?" component={InfoSheet} />
-        </Switch>
+        </Exclude>
       </section>
       <footer>
       </footer>
