@@ -1,11 +1,13 @@
 const electron = require('electron')
+const { join } = require('path')
+const { fork } = require('child_process')
 const projectConfig = require(process.env.PROJECT_CONFIG_PATH)
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 
 let mainWindow
 
-function createWindow() {
+app.on('ready', () => {
   mainWindow = new BrowserWindow(projectConfig.BROWSER_WINDOW)
 
   if (process.env.ELECTRON_START_URL) {
@@ -25,9 +27,16 @@ function createWindow() {
   mainWindow.on('closed', () => {
     mainWindow = null
   })
-}
 
-app.on('ready', createWindow)
+  projectConfig.WORKERS.forEach(workerName => {
+    const workerPath = join(process.env.PROJECT_CONFIG_PATH, 'workers', workerName + '.worker.js')
+    const workerProcess = fork(workerPath)
+
+    workerProcess.on('message', ({message, data}) => {
+      console.log(message, data)
+    })
+  })
+})
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
