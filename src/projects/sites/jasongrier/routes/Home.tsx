@@ -15,7 +15,6 @@ function Home(): ReactElement {
           </ul>
         </nav>
       </header>
-
       <main>
         <section>
           <h1>News</h1>
