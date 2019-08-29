@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../store'
+import { getTagsCounts } from '../helpers'
 import { Switch, Route, Link } from 'react-router-dom'
 import InfoSheet from './InfoSheet'
 
@@ -9,11 +10,7 @@ function App(): ReactElement {
     articles: state.app.articles
   }))
 
-  const tags = articles.reduce((acc, article) => {
-    return acc.concat(article.tags)
-  }, [] as any[])
-
-
+  const tags = getTagsCounts(articles)
 
   return (
     <div className="hem-application">
@@ -22,6 +19,9 @@ function App(): ReactElement {
       </header>
       <main>
         <section className="tags-filter">
+          {tags.map(tag => (
+            <span key={tag.name}>{tag.name}</span>
+          ))}
         </section>
         <section className="articles-list">
           <ul>
