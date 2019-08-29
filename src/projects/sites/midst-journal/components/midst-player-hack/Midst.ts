@@ -19,7 +19,9 @@ import './style.css'
 
 interface IProps {
   isPlayer: boolean
-  MIDST_DATA_URL: string
+  MIDST_DATA_URL?: string
+  MIDST_DATA_JS?: string
+  MIDST_DATA_JS_KEY?: string
 }
 
 // ================================================================================
@@ -120,7 +122,7 @@ class Midst extends React.Component<IProps, any> {
 // Lifecycle
 // ================================================================================#
   componentDidMount() {
-    const { isPlayer, MIDST_DATA_URL } = this.props
+    const { isPlayer, MIDST_DATA_URL, MIDST_DATA_JS } = this.props
 
     this.$editable = $('#editable')
 
@@ -135,6 +137,12 @@ class Midst extends React.Component<IProps, any> {
             data: JSON.parse(res),
           })
         }
+      })
+    }
+
+    else if (isPlayer && !isEmpty(MIDST_DATA_JS)) {
+      this.load({
+        data: MIDST_DATA_JS,
       })
     }
 
@@ -171,8 +179,17 @@ class Midst extends React.Component<IProps, any> {
     // }
   }
 
-  componentDidUpdate() {
-
+  componentDidUpdate(prevProps: IProps) {
+    const { isPlayer, MIDST_DATA_JS, MIDST_DATA_JS_KEY } = this.props
+    if (
+      isPlayer
+      && !isEmpty(MIDST_DATA_JS)
+      && MIDST_DATA_JS_KEY !== prevProps.MIDST_DATA_JS_KEY
+    ) {
+      this.load({
+        data: MIDST_DATA_JS,
+      })
+    }
   }
 
   componentWillUnmount() {
