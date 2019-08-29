@@ -4,6 +4,7 @@ import { RootState } from '../store'
 import { getTagsCounts } from '../helpers'
 import { Switch, Route, Link } from 'react-router-dom'
 import InfoSheet from './InfoSheet'
+import { Hide } from '../../../../common/components';
 
 function App(): ReactElement {
   const { articles } = useSelector((state: RootState) => ({
@@ -20,7 +21,22 @@ function App(): ReactElement {
       <main>
         <section className="tags-filter">
           {tags.map(tag => (
-            <span key={tag.name}>{tag.name}</span>
+            <>
+              <Hide on={`/category/${tag.name}`}>
+                <Link
+                  key={tag.name}
+                  to={`/category/${tag.name}`}
+                >
+                  {tag.name}
+                </Link>
+                <Link
+                  key={tag.name}
+                  to="/"
+                >
+                  {tag.name}
+                </Link>
+              </Hide>
+            </>
           ))}
         </section>
         <section className="articles-list">
@@ -41,6 +57,7 @@ function App(): ReactElement {
       </main>
       <section className="info-sheet-container">
         <Switch>
+          <Route exact path="/category/:name" component={() => <></>} />
           <Route path="/:articleId?" component={InfoSheet} />
         </Switch>
       </section>
