@@ -9,6 +9,8 @@ const TASK = process.argv[2]
 const PROJECT_TYPE = process.argv[3]
 const PROJECT_NAME = process.argv[4]
 
+process.env.PROJECT_CONFIG_PATH = join(__dirname, '..', 'src', 'projects', PROJECT_TYPE + 's', PROJECT_NAME, 'config.js')
+
 function cleanUp() {
   console.log('Cleaning up...')
 
