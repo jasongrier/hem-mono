@@ -1,15 +1,18 @@
 const { join } = require('path')
-const { readFileSync, writeFileSync, existsSync } = require('fs')
+const { readFileSync, writeFileSync, existsSync, readdirSync, statSync } = require('fs')
 const { execSync } = require('child_process')
 const testSite = require('./test-site')
 const testApp = require('./test-app')
-const lintFiles = require('./lint-files')
+const { lintFiles, lintMultipleProjects } = require('./lint-files')
 
 const TASK = process.argv[2]
 const PROJECT_TYPE = process.argv[3]
 const PROJECT_NAME = process.argv[4]
+const projects = join(__dirname, '..', 'src', 'projects')
 
-process.env.PROJECT_CONFIG_PATH = join(__dirname, '..', 'src', 'projects', PROJECT_TYPE + 's', PROJECT_NAME, 'config.js')
+if (TASK !== 'lint') {
+  process.env.PROJECT_CONFIG_PATH = join(projects, PROJECT_TYPE + 's', PROJECT_NAME, 'config.js')
+}
 
 function cleanUp() {
   console.log('Cleaning up...')
@@ -49,8 +52,8 @@ else if (PROJECT_TYPE === 'app') {
     + ' && electron-builder'
 }
 
-else {
-  throw new Error(`Bad PROJECT_TYPE in .project.config: ${PROJECT_TYPE}`)
+else if (PROJECT_TYPE !== 'all') {
+  throw new Error(`Bad PROJECT_TYPE given: ${PROJECT_TYPE}`)
 }
 
 switch (TASK) {
@@ -73,6 +76,14 @@ switch (TASK) {
     break
 
   case 'lint':
-    lintFiles(PROJECT_TYPE, PROJECT_NAME)
+    if (PROJECT_TYPE === 'all') {
+      lintMultipleProjects('app', join(projects, 'apps'))
+      lintMultipleProjects('site', join(projects, 'sites'))
+    }
+
+    else {
+      lintFiles(PROJECT_TYPE, PROJECT_NAME)
+    }
+
     break
 }
