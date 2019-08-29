@@ -45,6 +45,7 @@ a {
   height: 77px;
   background: #FFF5EE url(./assets/logo_heavy.svg) no-repeat;
   font-size: 0;
+  z-index: 9999;
 }
 
 .site-header h1 a {

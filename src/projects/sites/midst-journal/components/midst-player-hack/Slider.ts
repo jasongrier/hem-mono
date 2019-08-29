@@ -1,5 +1,6 @@
 import React, { createElement as e } from 'react'
 import appendStyle from './append-style'
+import { coords } from './mouse-position'
 
 // ================================================================================
 // Constructor
@@ -85,7 +86,7 @@ class Slider extends React.Component {
     onMouseDown(evt: any) {
       const { id, hideCursor, onDragStart, onMouseDown, onChange, readOnly } = this.props as any
       if (readOnly) return
-      evt.stopPropagation()
+      // evt.stopPropagation()
       (window as any).dragging = id
       if (hideCursor) {
         document.body.style.cursor = 'none'

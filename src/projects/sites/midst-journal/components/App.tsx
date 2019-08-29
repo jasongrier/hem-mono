@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react'
 import { Switch, Route, Link, NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { Helmet } from 'react-helmet'
+import { Hide } from '../../../../common/components'
 import CampaignMonitorForm from '../components/CampaignMonitorForm'
 import Shapes from '../components/Shapes'
 import PoemNavLink from '../components/PoemNavLink'
@@ -31,7 +32,9 @@ function App(): ReactElement {
         <title>Midst Journal</title>
         <meta name="description" content="" />
       </Helmet>
+
       <Shapes />
+
       <header className="site-header">
         <h1>
           <Link to="/">Midst</Link>
@@ -54,10 +57,9 @@ function App(): ReactElement {
           className={mobileNavOpen ? 'open' : ''}
           onClick={() => dispatch(setMobileNavOpen(false))}
         >
-          <Switch>
-            <Route exact path="/poem/:slug" component={() => <></>} />
-            <Route component={SiteNavLinks} />
-          </Switch>
+          <Hide on="/poem/:slug">
+            <SiteNavLinks />
+          </Hide>
           <NavLink activeClassName="active" to="/about">?</NavLink>
         </nav>
       </header>
@@ -75,12 +77,12 @@ function App(): ReactElement {
         </Switch>
       </main>
       <footer className="site-footer">
-        {document.location.pathname !== '/' && (
+        <Hide on="/">
           <CampaignMonitorForm
             labelForName="Join us?"
             submitButtonText="Sign up!"
           />
-        )}
+        </Hide>
       </footer>
     </div>
   )
