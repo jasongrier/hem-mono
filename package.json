@@ -13,8 +13,7 @@
     "start": "node bin/index start",
     "build": "node bin/index build",
     "test": "node bin/index test",
-    "fix": "prettier 'src/**/*.ts'",
-    "lint": "prettier --check 'src/**/*.ts'"
+    "lint": "node bin/index lint"
   },
   "license": "WTFPL",
   "dependencies": {

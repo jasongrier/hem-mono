@@ -20,3 +20,7 @@ body {
 .info-sheet--open {
   left: 40vw;
 }
+
+.cv-page__home-link {
+  font-size: 10px;
+}
