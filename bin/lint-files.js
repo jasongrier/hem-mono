@@ -15,6 +15,7 @@ const expectedFiles = [
   'routes',
   'store',
   'tests',
+  'workers',
 ]
 
 const ignoredFiles = [
@@ -53,14 +54,14 @@ const lintFiles = function(PROJECT_TYPE, PROJECT_NAME) {
   if (expectedFiles.length !== expectedFilesFound.length) {
     expectedFiles.forEach(filepath => {
       if (expectedFilesFound.indexOf(filepath) === -1) {
-        console.log(`Sorry ${PROJECT_NAME}, seems like you are missing ${filepath}.`)
+        console.log(`!!!! Sorry ${PROJECT_NAME}, seems like you are missing ${filepath}.`)
       }
     })
   }
 
   if (unexpectedFilesFound.length) {
     unexpectedFilesFound.forEach(filepath => {
-      console.log(`Sorry ${PROJECT_NAME}, seems like you have ${filepath} where it does not belong.`)
+      console.log(`!!!! Sorry ${PROJECT_NAME}, seems like you have ${filepath} where it does not belong.`)
     })
   }
 }

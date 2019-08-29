@@ -7,5 +7,8 @@ module.exports = {
     webPreferences: {
       nodeIntegration: true,
     }
-  }
+  },
+  WORKERS: [
+    'clock',
+  ]
 }
