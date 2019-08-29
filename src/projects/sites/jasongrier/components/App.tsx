@@ -1,17 +1,15 @@
 import React, { ReactElement } from 'react'
 import { useSelector } from 'react-redux'
-import { RootState } from '../store'
-import { getTagsCounts } from '../helpers'
-import { Switch, Route, Link } from 'react-router-dom'
+import { RootState, IArticle } from '../store'
+import { Switch, Route } from 'react-router-dom'
+import { TagFilter, TaggedSubjectsList } from '../../../../common/packages/tag'
 import InfoSheet from './InfoSheet'
-import { Hide } from '../../../../common/components';
+import ArticleListLine from './ArticleListLine'
 
 function App(): ReactElement {
   const { articles } = useSelector((state: RootState) => ({
     articles: state.app.articles
   }))
-
-  const tags = getTagsCounts(articles)
 
   return (
     <div className="hem-application">
@@ -20,38 +18,19 @@ function App(): ReactElement {
       </header>
       <main>
         <section className="tags-filter">
-          {tags.map(tag => (
-            <>
-              <Hide on={`/category/${tag.name}`}>
-                <Link
-                  key={tag.name}
-                  to={`/category/${tag.name}`}
-                >
-                  {tag.name}
-                </Link>
-                <Link
-                  key={tag.name}
-                  to="/"
-                >
-                  {tag.name}
-                </Link>
-              </Hide>
-            </>
-          ))}
+          <TagFilter subjects={articles} />
         </section>
         <section className="articles-list">
           <ul>
-            {articles.map(article => (
-              <li className="articles-list__line">
-                <Link to={`/${article.slug}`}>{article.title}</Link>
-                <div className="articles-list__tags">
-                  {article.tags.map(tag => (
-                    <span>{tag}</span>
-                  ))}
-                </div>
-              </li>
-            ))}
-            <li><Link to="/asdfasd">404</Link></li>
+            <TaggedSubjectsList
+              subjects={articles}
+              renderSubject={(article: IArticle) => (
+                <ArticleListLine
+                  key={article.slug}
+                  article={article}
+                />
+              )}
+            />
           </ul>
         </section>
       </main>

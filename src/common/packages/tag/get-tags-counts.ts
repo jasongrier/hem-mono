@@ -1,11 +1,13 @@
-export default function(taggedSubjects: any[]): Array<{ name: string, count: number }> {
-  const tags = taggedSubjects.reduce((acc, article) => {
-    return acc.concat(article.tags)
+import { ITaggedSubject, ITagMeta } from './types'
+
+export default function(taggedSubjects: ITaggedSubject[]): ITagMeta[] {
+  const tags = taggedSubjects.reduce((acc, s) => {
+    return acc.concat(s.tags)
   }, [] as any[])
 
   const tagCounts = tags.reduce((acc: any[], tagName: string) => {
     const existingTag = acc.find((tag) => tag.name === tagName)
-    const tagCount = taggedSubjects.filter(article => article.tags.indexOf(tagName) > -1).length
+    const tagCount = taggedSubjects.filter(s => s.tags.indexOf(tagName) > -1).length
 
     if (existingTag) {
       existingTag.count += tagCount
