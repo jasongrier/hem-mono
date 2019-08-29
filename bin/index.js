@@ -1,9 +1,13 @@
 const { join } = require('path')
 const { readFileSync, writeFileSync, existsSync } = require('fs')
 const { execSync } = require('child_process')
-const { PROJECT_TYPE, PROJECT_NAME } = require('../project.config')
 const testSite = require('./test-site')
 const testApp = require('./test-app')
+const lintFiles = require('./lint-files')
+
+const TASK = process.argv[2]
+const PROJECT_TYPE = process.argv[3]
+const PROJECT_NAME = process.argv[4]
 
 function cleanUp() {
   console.log('Cleaning up...')
@@ -47,7 +51,7 @@ else {
   throw new Error(`Bad PROJECT_TYPE in .project.config: ${PROJECT_TYPE}`)
 }
 
-switch (process.argv[2]) {
+switch (TASK) {
   case 'start':
     execSync(startCmd, { stdio: 'inherit' })
     break
@@ -67,5 +71,6 @@ switch (process.argv[2]) {
     break
 
   case 'lint':
+    lintFiles(PROJECT_TYPE, PROJECT_NAME)
     break
 }

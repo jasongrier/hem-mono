@@ -1,7 +1,6 @@
 const { execSync } = require('child_process')
-const { PROJECT_NAME } = require('../project.config')
 
-function testApp() {
+function testApp(PROJECT_NAME) {
   console.log('Starting app tests...')
 
   process.env.ELECTRON_TEST = true

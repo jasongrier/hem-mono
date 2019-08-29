@@ -2,9 +2,8 @@
 const { spawn } = require('child_process')
 const { execSync } = require('child_process')
 const catchWebapp = require('./catch-webapp')
-const { PROJECT_NAME } = require('../project.config')
 
-async function testSite() {
+async function testSite(PROJECT_NAME) {
   const devProcess = spawn('npm start', [], { shell: true, detached: true })
 
   catchWebapp(function() {
