@@ -12,7 +12,7 @@ function Board(): ReactElement {
     const dots = []
 
     for (let i = 0; i < boardSize; i ++) {
-      dots.push(<Dot id={i} key={i} />)
+      dots.push(<Dot dotNumber={i} key={i} />)
     }
 
     return dots

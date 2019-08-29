@@ -1,21 +1,12 @@
 const electron = require('electron')
-const path = require('path')
-const url = require('url')
+const projectConfig = require(process.env.PROJECT_CONFIG_PATH)
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 
 let mainWindow
 
 function createWindow() {
-  mainWindow = new BrowserWindow({
-    width: 1200,
-    height: 780,
-    transparent: true,
-    titleBarStyle: 'hidden',
-    webPreferences: {
-      nodeIntegration: true,
-    }
-  })
+  mainWindow = new BrowserWindow(projectConfig.BROWSER_WINDOW)
 
   if (process.env.ELECTRON_START_URL) {
     require(__dirname + '/../../../bin/catch-webapp')(function() {
