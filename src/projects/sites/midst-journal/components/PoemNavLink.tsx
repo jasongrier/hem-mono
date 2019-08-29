@@ -1,38 +1,43 @@
 import React, { ReactElement } from 'react'
+import { useSelector } from 'react-redux'
+import { findIndex } from 'lodash'
+import { RootState } from '../store'
 import { Link } from 'react-router-dom'
 
-function PoemNavLink(): ReactElement {
-  const previousPoem = {
-    slug: 'foo'
-  }
+interface IProps {
+  match: any
+}
 
-  const nextPoem = {
-    slug: 'foo'
-  }
+function PoemNavLink({ match }: IProps): ReactElement {
+  const { poems } = useSelector((state: RootState) => ({
+    poems: state.app.poems,
+  }))
 
-  const hasPreviousPoem = true
-  const hasNextPoem = true
+  const currentPoemIndex = findIndex(poems, { slug: match.params.slug })
+  const currentPoem = poems[currentPoemIndex]
+  const previousPoem = poems[currentPoemIndex - 1]
+  const nextPoem = poems[currentPoemIndex + 1]
 
   return (
     <>
       <Link className="poem-credit" to="http://google.com">
-        <i className="author-name">Angelo Colavita</i>&nbsp;|&nbsp;A Shade Whiter
+        <i className="author-name">{ currentPoem.author }</i>&nbsp;|&nbsp;{ currentPoem.title }
       </Link>
 
       <div id="poem-nav">
-        { hasPreviousPoem &&
+        { previousPoem &&
           <Link to={`/poem/${previousPoem.slug}/`}>Previous poem</Link>
         }
 
-        { hasPreviousPoem && hasNextPoem && <>&nbsp;|&nbsp;</> }
+        { previousPoem && nextPoem && <>&nbsp;|&nbsp;</> }
 
-        { hasNextPoem &&
+        { nextPoem &&
           <Link to={`/poem/${nextPoem.slug}/`}>Next poem</Link>
         }
       </div>
 
       <div id="back-to-toc">
-        <a href="/table-of-contents">Table of Contents</a>
+        <Link to="/read">Table of Contents</Link>
       </div>
     </>
   )

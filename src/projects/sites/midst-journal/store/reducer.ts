@@ -6,7 +6,24 @@ import {
 } from './types'
 
 const initialState: IState = {
-  mobileNavOpen: false
+  mobileNavOpen: false,
+  poems: [
+    {
+      slug: 'a-shade-whiter',
+      title: 'A Shade Whiter',
+      author: 'Angelo Colavita',
+    },
+    {
+      slug: 'poem-b',
+      title: 'Poem B',
+      author: 'Author B',
+    },
+    {
+      slug: 'poem-c',
+      title: 'Poem C',
+      author: 'Author C',
+    },
+  ]
 }
 
 const reducer = (
