@@ -1,7 +1,7 @@
 const electron = require('electron')
 const { join } = require('path')
 const { fork } = require('child_process')
-const projectConfig = require(process.env.PROJECT_CONFIG_PATH)
+const projectConfig = require(join(process.env.PROJECT_PATH, 'config.js'))
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 
@@ -29,11 +29,11 @@ app.on('ready', () => {
   })
 
   projectConfig.WORKERS.forEach(workerName => {
-    const workerPath = join(process.env.PROJECT_CONFIG_PATH, 'workers', workerName + '.worker.js')
+    const workerPath = join(process.env.PROJECT_PATH, 'workers', workerName + '.worker.js')
     const workerProcess = fork(workerPath)
 
-    workerProcess.on('message', ({message, data}) => {
-      console.log(message, data)
+    workerProcess.on('message', (message) => {
+      console.log(message)
     })
   })
 })

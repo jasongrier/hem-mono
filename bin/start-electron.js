@@ -1,6 +1,6 @@
 const { join } = require('path')
 const net = require('net')
-const { exec } = require('child_process')
+const { spawn } = require('child_process')
 
 const port = 1234
 
@@ -16,8 +16,17 @@ const tryConnection = () => {
     () => {
       client.end()
       if (!startedElectron) {
+        const electronProcess = spawn('electron', ['./src/projects/apps/electron'])
+
+        electronProcess.stdout.on('data', data => {
+          console.log(data.toString())
+        })
+
+        electronProcess.stderr.on('data', data => {
+          console.log(data.toString())
+        })
+
         startedElectron = true
-        exec('electron ./src/projects/apps/electron')
       }
     }
   )

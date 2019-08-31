@@ -1,7 +1,7 @@
-const { Clock } = require('../../../../common/workers')
+const Clock = require('../../../../common/workers/Clock')
 
-(function init() {
-  new Clock(() => {
-    console.log('tick')
-  })
-}())
+const clock = new Clock(() => {
+  process.send('tick')
+})
+
+clock.start()

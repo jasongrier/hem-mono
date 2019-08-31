@@ -11,7 +11,7 @@ const PROJECT_NAME = process.argv[4]
 const projects = join(__dirname, '..', 'src', 'projects')
 
 if (TASK !== 'lint') {
-  process.env.PROJECT_CONFIG_PATH = join(projects, PROJECT_TYPE + 's', PROJECT_NAME, 'config.js')
+  process.env.PROJECT_PATH = join(projects, PROJECT_TYPE + 's', PROJECT_NAME)
 }
 
 function cleanUp() {
@@ -43,7 +43,7 @@ if (PROJECT_TYPE === 'site') {
 }
 
 else if (PROJECT_TYPE === 'app') {
-  startCmd = 'nf start -p 1234'
+  startCmd = 'nf start -w -p 1234'
   buildCmd =
     'parcel build src/index.html --public-url ./'
     + ' && mv dist build'

@@ -1,8 +1,7 @@
-import NanoTimer from 'nanotimer'
+const NanoTimer = require('nanotimer')
 
-export class Clock {
+class Clock {
   constructor(onBeat, ticksPerBeat = 48) {
-    // TODO: Throw if instantiated from main process or renderer process
     const timer = new NanoTimer()
 
     timer.setInterval(() => {
@@ -32,7 +31,13 @@ export class Clock {
     }
   }
 
-  setRunning(running) {
-    this.running = running
+  start() {
+    this.running = true
+  }
+
+  stop() {
+    this.running = false
   }
 }
+
+module.exports = Clock
