@@ -1,5 +1,6 @@
 import React, { ReactElement, useEffect } from 'react'
 import Board from './Board'
+import ClockReceiver from './ClockReceiver'
 import Palette from './Palette'
 
 function App(): ReactElement {
@@ -9,6 +10,7 @@ function App(): ReactElement {
         <Palette />
       </div>
       <Board />
+      <ClockReceiver />
     </div>
   )
 }

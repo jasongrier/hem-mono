@@ -8,12 +8,18 @@ const BrowserWindow = electron.BrowserWindow
 let mainWindow
 
 app.on('ready', () => {
-  mainWindow = new BrowserWindow(projectConfig.BROWSER_WINDOW)
+  mainWindow = new BrowserWindow({
+    ...projectConfig.BROWSER_WINDOW,
+    webPreferences: {
+      nodeIntegration: true,
+      preload: join(__dirname, 'electron-preload.js'),
+    }
+  })
 
   if (process.env.ELECTRON_START_URL) {
     require(__dirname + '/../../../bin/catch-webapp')(function() {
       mainWindow.loadURL(process.env.ELECTRON_START_URL)
-    })
+    }, false)
   }
 
   else if (process.env.ELECTRON_TEST) {
@@ -33,7 +39,7 @@ app.on('ready', () => {
     const workerProcess = fork(workerPath)
 
     workerProcess.on('message', (message) => {
-      console.log(message)
+      mainWindow.webContents.send(message.type, message.data)
     })
   })
 })
