@@ -4,11 +4,8 @@ module.exports = {
     height: 620,
     resizable: false,
     titleBarStyle: 'hidden',
-    webPreferences: {
-      nodeIntegration: true,
-    }
   },
   WORKERS: [
-    'clock',
+    'sequencer',
   ]
 }

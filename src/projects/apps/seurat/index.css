@@ -34,3 +34,7 @@ body {
 .dot.dot--group-1 {
   background: #999;
 }
+
+.dot.dot--flashing {
+  background: pink;
+}
