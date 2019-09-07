@@ -5,7 +5,7 @@ import Dot from './Dot'
 
 function Board(): ReactElement {
   const { boardSize } = useSelector((state: RootState) => ({
-    boardSize: state.app.boardSize,
+    boardSize: state.app.boards[state.app.currentBoard].size,
   }))
 
   function renderDots() {

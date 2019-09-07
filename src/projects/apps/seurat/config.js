@@ -1,9 +1,9 @@
 module.exports = {
   BROWSER_WINDOW: {
-    width: 620,
+    width: 820,
     height: 620,
     resizable: false,
-    titleBarStyle: 'hidden',
+    frame: false,
   },
   WORKERS: [
     'sequencer',

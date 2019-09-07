@@ -5,6 +5,7 @@ import {
   UPDATE_DOT,
   SET_DRAGGING,
   SET_CURSOR_MODE,
+  TOGGLE_DRAWER,
 
   Action,
   CursorMode,
@@ -30,9 +31,15 @@ const setCursorMode = (cursorMode: CursorMode): Action => ({
   payload: cursorMode,
 })
 
+const toggleDrawer = (): Action => ({
+  type: TOGGLE_DRAWER,
+  payload: null,
+})
+
 export {
   setCursorGroup,
   setCursorMode,
   setDragging,
+  toggleDrawer,
   updateDot,
 }
