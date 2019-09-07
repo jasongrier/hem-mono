@@ -8,14 +8,21 @@ import {
   SET_CURSOR_MODE,
 
   IState,
+  TOGGLE_DRAWER,
 } from './types'
 
 const initialState: IState = {
-  boardDots: new Array(100).fill(0),
-  boardSize: 100,
+  boards: [
+    {
+      dots: new Array(100).fill(0),
+      size: 100,
+    }
+  ],
+  currentBoard: 0,
   cursorGroup: 1,
   cursorIsDragging: false,
   cursorMode: 'draw',
+  drawerOpen: false,
   settingsAdvancedDrawing: true,
 }
 
@@ -33,12 +40,19 @@ const reducer = (
     case SET_DRAGGING:
       return { ...state, cursorIsDragging: payload }
 
-    case UPDATE_DOT:
-      const { boardDots } = state
-      const newDots: CursorGroup[] = [...boardDots]
+      case UPDATE_DOT:
+        const currentBoard = state.boards[state.currentBoard]
+        const newBoards = [...state.boards]
+        const newDots: CursorGroup[] = [...currentBoard.dots]
 
-      newDots[payload.dotNumber] = payload.value
-      return { ...state, boardDots: newDots }
+        newDots[payload.dotNumber] = payload.value
+        newBoards[state.currentBoard].dots = newDots
+
+        return { ...state, boards: newBoards }
+
+    case TOGGLE_DRAWER:
+      console.log('?')
+      return { ...state, drawerOpen: !state.drawerOpen }
 
     default:
       return state

@@ -4,17 +4,26 @@ body {
   height: 100vh;
   margin: 0;
   padding: 0;
+  overflow: hidden;
   font-family: Arial, Helvetica, sans-serif;
   background: black;
   -webkit-app-region: drag;
 }
 
 .board {
-  width: 100vw;
-  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 580px;
+  height: 580px;
   margin: 20px;
   -webkit-app-region: no-drag;
   user-select: none;
+  transition: left 250ms;
+}
+
+.drawer-open .board {
+  left: 200px;
 }
 
 .dot {
@@ -28,7 +37,7 @@ body {
 }
 
 .dot.dot--group-0 {
-  background: #333;
+  background: #111;
 }
 
 .dot.dot--group-1 {
@@ -37,4 +46,51 @@ body {
 
 .dot.dot--flashing {
   background: pink;
+}
+
+.palette-toggles {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  margin-top: -50px;
+  width: 100px;
+  height: 10px;
+  text-align: center;
+  line-height: 10px;
+  transform: rotate(90deg);
+  transform-origin: top left;
+}
+
+.palette-toggles button {
+  width: 6px;
+  height: 6px;
+  margin: 0 3px;
+  padding: 0;
+  border-radius: 3px;
+  border: none;
+  background: #222;
+}
+
+.palette-toggles button:active,
+.palette-toggles button:focus {
+  outline: none;
+}
+
+.palette-toggles button.active {
+  background: #333;
+}
+
+.palette-toggle {
+  position: absolute;
+  left: 8.5px;
+  top: 50%;
+  margin-top: -10px;
+  width: 20px;
+  height: 3px;
+  text-align: center;
+  line-height: 10px;
+  transform: rotate(90deg);
+  transform-origin: top left;
+  background: #444;
+  border-radius: 1.5px;
 }
