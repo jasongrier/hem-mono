@@ -571,6 +571,7 @@ class Midst extends React.Component<IProps, any> {
 
   setPos(index: any) {
     this.setState({ editorTimelineIndex: index }, () => {
+      index = Math.ceil(index)
       if (this.state.editorTimelineFrames[index]) {
         this.$editable.html(this.state.editorTimelineFrames[index].content)
       }
@@ -1032,16 +1033,13 @@ class Midst extends React.Component<IProps, any> {
             label: playerPlaybackSpeed + 'x',
             controlled: true,
             open: playerPlaybackSpeedDropOpen,
+            setSpeed: (speed: number) => {
+              this.setState({ playerPlaybackSpeed: speed * 4 + .25 })
+            }, // .25 > 4.25
             onDropToggled: () => {
               this.setState({ playerPlaybackSpeedDropOpen: !playerPlaybackSpeedDropOpen })
             },
-          },
-            e('div', { onClick: () => this.setState({ playerPlaybackSpeedDropOpen: false, playerPlaybackSpeed: 0.25 }) }, '.25x'),
-            e('div', { onClick: () => this.setState({ playerPlaybackSpeedDropOpen: false, playerPlaybackSpeed: 0.5 }) }, '.5x'),
-            e('div', { onClick: () => this.setState({ playerPlaybackSpeedDropOpen: false, playerPlaybackSpeed: 1 }) }, '1x'),
-            e('div', { onClick: () => this.setState({ playerPlaybackSpeedDropOpen: false, playerPlaybackSpeed: 2 }) }, '2x'),
-            e('div', { onClick: () => this.setState({ playerPlaybackSpeedDropOpen: false, playerPlaybackSpeed: 4 }) }, '4x'),
-          ),
+          }),
         ),
         // e('div', {
         //   className: 'round-icon timeline-button-1',

@@ -15,7 +15,7 @@ class Drop extends React.Component {
         styleChildren: true,
         onDropToggled: null,
         direction: 'down',
-        speed: 0,
+        setSpeed: () => {},
       }
     }
 
@@ -29,6 +29,7 @@ class Drop extends React.Component {
   // ================================================================================
     this.state = {
       open: true,
+      speed: 0,
     }
 
   // ================================================================================
@@ -127,6 +128,7 @@ class Drop extends React.Component {
     }
 
     sliderOnChange(speed: number) {
+      (this.props as any).setSpeed(speed)
       this.setState({speed})
     }
 

@@ -93,7 +93,7 @@ class Slider extends React.Component {
   // Handlers
   // ================================================================================
     onMouseDown(evt: any) {
-      const { id, hideCursor, onDragStart, onMouseDown, onChange, readOnly, stopPropagation } = this.props as any
+      const { id, direction, hideCursor, onDragStart, onMouseDown, onChange, readOnly, stopPropagation } = this.props as any
       if (readOnly) return
 
       if (stopPropagation) {
@@ -103,7 +103,14 @@ class Slider extends React.Component {
       if (hideCursor) {
         document.body.style.cursor = 'none'
       }
-      const value = coords(evt, this.el).x
+      let value
+      if (direction === 'vertical') {
+        value = coords(evt, this.el).y
+      }
+
+      else {
+        value = coords(evt, this.el).x
+      }
       this.setState({value}, () => {
         if (onChange) {
           onChange((this.state as any).value)
