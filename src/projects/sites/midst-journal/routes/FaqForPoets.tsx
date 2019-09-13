@@ -12,11 +12,11 @@ function FaqForPoets(): ReactElement {
         <h4>How do I participate?</h4>
         <p>Contributors will write brand-new poems—at their own pace—in a custom-built desktop app (also called Midst!), which we’ll provide to you. You can use the Midst app just like any word processor (like Textedit, Microsoft Word, or Google Docs). It looks like this:</p>
         <p style={{textAlign: 'center'}}>
-          <img className="alignnone size-medium wp-image-70" style={{border: '5px solid red'}} src="http://midst-journal:8888/wp-content/uploads/2019/04/redwheelbarrow-300x188.png" alt="" width="600" />
+          <img className="alignnone size-medium wp-image-70" style={{border: '5px solid red'}} src="http://midst-journal:8888/wp-content/uploads/2019/04/redwheelbarrow-768x480.png" alt="" width="600" />
         </p>
         <p>Behind the scenes, the app securely, privately saves the document’s editing history; this allows us to build the <a href="http://www.midst.press/read">interactive timelines</a> that will appear in the journal, and which allow the reader (or you!) to “rewind” the poem’s process:</p>
         <p style={{textAlign: 'center'}}>
-          <img className="alignnone size-medium wp-image-71" style={{border: '5px solid purple'}} src="http://midst-journal:8888/wp-content/uploads/2019/04/bluewheelbarrow-300x188.png" alt="" width="600" />
+          <img className="alignnone size-medium wp-image-71" style={{border: '5px solid purple'}} src="http://midst-journal:8888/wp-content/uploads/2019/04/bluewheelbarrow-768x480.png" alt="" width="600" />
         </p>
         <p>While you are participating in the project, you’ll be asked to write as often as possible in the Midst app. This will allow you to get used to the app, and ensures that the entire writing process is captured, start to finish. You writing will never be shared without your permission!</p>
         <p>Poems are saved in a special file format called Midst documents, with a .midst extension (instead of .doc or .rtf or .txt, etc.). You can save a .midst and then open it up again to keep writing/editing, as many times as you want.</p>

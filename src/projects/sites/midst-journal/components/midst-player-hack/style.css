@@ -388,9 +388,8 @@
   color: rgb(236, 124, 154);
 }
 
-
 .timeline .hem-slider {
-  width: calc(100% - 180px);
+  width: calc(100% - 110px);
   margin: 20px 0 0 20px;
   height: 2px;
   border-radius: 3px;
@@ -593,6 +592,9 @@
 
 .speed-selector {
   transform: translate(-3px, 0);
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 
 .speed-selector,
@@ -601,10 +603,11 @@
 }
 
 .speed-selector .drop {
-  width: 30px;
+  width: 23px;
   height: 30px;
   border: 0;
-  margin-top: -2px;
+  margin-top: -3px;
+  transform: translate(-4px, 2.5px);
 }
 
 .speed-selector .drop .drop__toggle {
@@ -617,24 +620,65 @@
   font-size: 16px;
   text-align: center;
   color: rgb(253, 237, 242);
+  transform: translate(1px, 0);
 }
 
 .speed-selector .drop .drop__content {
+  position: relative;
   border: 0;
   background: #FF91AF;
   margin-left: 1px;
   padding: 10px;
   border-radius: 3px;
   left: -12px;
+  height: 100px;
+  transform: translate(4px, 0);
 }
 
-.speed-selector .drop .drop__content div {
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
+.speed-selector .hem-slider {
+  position: absolute;
+  top: -7px;
+  left: -3px;
+  height: 100px;
+  margin: 20px 0 0 20px;
+  width: 10px;
+  border-radius: 3px;
+  background: #000;
   border: 0;
-  font-family: 'HelveticaNeueLTStd-BdCn';
-  font-size: 16px;
-  text-align: center;
-  color: rgb(253, 237, 242);
+}
+
+.speed-selector .hem-slider .hem-slider__progress {
+  border-radius: 3px;
+  background: rgb(105, 0, 0);
+}
+
+.speed-selector .hem-slider .hem-slider__progress::after {
+  display: block;
+  position: absolute;
+  right: -1.5px;
+  top: -6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  border: 2px solid rgb(105, 0, 0);
+  background: white;
+  content: ' ';
+  transition: all 150ms;
+  transform-origin: center;
+}
+
+.speed-selector .hem-slider:active .hem-slider__progress::after {
+  transform: scaleX(1.2) scaleY(1.2);
+}
+
+.timeline .speed-selector .hem-slider .hem-slider__progress {
+  position: absolute;
+  background: rgb(105, 0, 0);
+  width: 100%;
+}
+
+.timeline-button-3 {
+  position: absolute;
+  top: 0;
+  right: 35px;
 }

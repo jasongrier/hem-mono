@@ -2,13 +2,13 @@ import React, { ReactElement } from 'react'
 import { Switch, Route } from 'react-router-dom'
 
 interface IProps {
-  from: string[] | string
+  on: string[] | string
   children: any
 }
 
-function Hide({ from, children }: IProps): ReactElement {
-  if (typeof from === 'string') {
-    from = [from]
+function Only({ on, children }: IProps): ReactElement {
+  if (typeof on === 'string') {
+    on = [on]
   }
 
   const renderMain = children.length ? children[0] : children
@@ -16,17 +16,17 @@ function Hide({ from, children }: IProps): ReactElement {
 
   return (
     <Switch>
-      {from.map(path => (
+      {on.map(path => (
         <Route
           exact
           key={path}
           path={path}
-          component={() => renderAlternate}
+          component={(path: string) => renderMain}
         />
       ))}
-      <Route component={() => <>{renderMain}</>} />
+      {renderAlternate}
     </Switch>
   )
 }
 
-export default Hide
+export default Only

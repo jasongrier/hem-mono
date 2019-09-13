@@ -1,6 +1,13 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useEffect } from 'react'
+import $ from 'jquery'
 
 function TheApp(): ReactElement {
+  useEffect(() => {
+    // setTimeout(() => {
+      $('video').prop('volume', 0)
+    // }, 100)
+  }, [])
+
   return (
     <div className="app-page">
       <section className="heroine heroine--normal center">
