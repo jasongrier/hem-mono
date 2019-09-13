@@ -42,11 +42,6 @@ function CampaignMonitorForm({
 
         <button type="submit">{submitButtonText}</button>
       </form>
-
-      <script
-        type="text/javascript"
-        src="https://js.createsend1.com/javascript/copypastesubscribeformlogic.js"
-      />
     </div>
   )
 }

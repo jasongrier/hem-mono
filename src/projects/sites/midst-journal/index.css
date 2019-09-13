@@ -16,9 +16,8 @@ body {
   background-color: #FFF5EE;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
+.shapes {
+  display: none; /* Shapes will be revealed via JS. */
 }
 
 .midst {
@@ -56,9 +55,8 @@ a {
 
 .site-header .poem-credit {
   position: absolute;
-  top: 20px;
-  right: 140px;
-  width: 100vw;
+  top: 22px;
+  right: 80px;
   text-align: right;
   font-size: 30px;
   color: inherit;
@@ -72,11 +70,11 @@ a {
 
 .site-header #poem-nav {
   position: fixed;
-  top: 0;
+  top: 25vh;
   left: 100vw;
   transform: rotate(90deg);
   transform-origin: top left;
-  width: 100vh;
+  width: 50vh;
   height: 50px;
   text-align: center;
   font-size: 30px;
@@ -89,11 +87,11 @@ a {
 
 .site-header #back-to-toc {
   position: fixed;
-  top: 100vh;
+  top: 75vh;
   left: 5px;
   transform: rotate(-90deg);
   transform-origin: top left;
-  width: 100vh;
+  width: 50vh;
   height: 50px;
   text-align: center;
   font-size: 30px;
@@ -106,8 +104,8 @@ a {
 
 .site-header nav {
   position: absolute;
-  top: 22px;
-  right: 65px;
+  top: 25px;
+  right: 80px;
   font-size: 30px;
 }
 
@@ -134,7 +132,9 @@ a {
 .site-header .about-link--desk {
   position: fixed;
   top: 25px;
-  right: 80px;
+  right: 40px;
+  margin: 0;
+  padding: 0;
   font-size: 30px;
   text-decoration: none;
   color: #000;
@@ -162,7 +162,7 @@ a {
   color: darkred;
   font-style: italic;
   font-size: 25px;
-  margin-bottom: 50px;
+  margin: 0 0 50px;
 }
 
 .heroine p {
@@ -392,105 +392,109 @@ a {
   font-size: 14px;
 }
 
+.app-page .heroine {
+  padding-bottom: 160px;
+}
+
 @media screen and (max-width: 1024px) {
   .site-header h1 {
-      top: 0px;
-      left: 20px;
-      padding-top: 20px;
+    top: 0px;
+    left: 20px;
+    padding-top: 20px;
   }
 
   .site-header #mobile-nav-toggle {
-      display: block;
-      position: fixed;
-      top: 30px;
-      right: 20px;
-      z-index: 9999;
-      width: 30px;
-      height: 25px;
-      cursor: pointer;
+    display: block;
+    position: fixed;
+    top: 30px;
+    right: 20px;
+    z-index: 9999;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
   }
 
   .site-header #mobile-nav-toggle span {
-      display: block;
-      width: 100%;
-      height: 3px;
-      margin-bottom: 7px;
-      background-color: #000;
+    display: block;
+    width: 100%;
+    height: 3px;
+    margin-bottom: 7px;
+    background-color: #000;
   }
 
   .site-header #mobile-nav-toggle.open {
-      width: 20px;
+    width: 20px;
   }
 
   .site-header #mobile-nav-toggle.open span:nth-child(1) {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 30px;
-      transform: rotate(45deg);
-      transform-origin: top left;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    transform: rotate(45deg);
+    transform-origin: top left;
   }
 
   .site-header #mobile-nav-toggle.open span:nth-child(2) {
-      display: none;
+    display: none;
   }
 
   .site-header #mobile-nav-toggle.open span:nth-child(3) {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 30px;
-      transform: rotate(-45deg);
-      transform-origin: top right;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    transform: rotate(-45deg);
+    transform-origin: top right;
   }
 
   .site-header nav {
-      display: none;
+    display: none;
   }
 
   .site-header nav.open {
-      display: block;
-      top: 0;
-      right: 0;
-      z-index: 9998;
-      width: 50vw;
-      height: 100vh;
-      padding-top: 50px;
-      background-color: #FFFAFA;
-      border-left: 1px solid #000;
+    display: block;
+    top: 0;
+    right: 0;
+    z-index: 9998;
+    width: 50vw;
+    height: 100vh;
+    padding-top: 50px;
+    background-color: #FFFAFA;
+    border-left: 1px solid #000;
   }
 
   .site-header nav.open a {
-      display: block;
-      text-align: right;
+    display: block;
+    text-align: right;
   }
 
   .site-header .about-link--desk {
-      display: none;
+    display: none !important;
   }
 
   .site-header .about-link--mobile {
-      display: block;
-      font-size: 30px;
-      text-decoration: none;
-      color: #000;
+    display: block;
+    font-size: 30px;
+    text-decoration: none;
+    color: #000;
   }
 
   .email-signup {
-      display: none;
+    display: none;
   }
 
   .midst.player .main {
-      height: 100vh !important;
+    height: 100vh !important;
   }
 
   video {
-      width: 70vw;
-      height: auto;
-      margin-left: -5vw;
+    width: 70vw;
+    height: auto;
+    margin-left: -5vw;
   }
 
   .issue-one-alert {
-      display: none;
+    display: none;
   }
 }

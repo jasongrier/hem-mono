@@ -51,7 +51,6 @@ const reducer = (
         return { ...state, boards: newBoards }
 
     case TOGGLE_DRAWER:
-      console.log('?')
       return { ...state, drawerOpen: !state.drawerOpen }
 
     default:

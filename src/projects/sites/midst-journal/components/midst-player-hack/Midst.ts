@@ -3,7 +3,6 @@ import $ from 'jquery'
 import { isEmpty, get, last } from 'lodash'
 import Slider from './Slider'
 import Drop from './Drop'
-import iconVolume2 from './icon-volume-2'
 import iconCheckSquare from './icon-check-square'
 import iconCloseX from './icon-close-x'
 import iconDrawer from './icon-drawer'
@@ -11,7 +10,6 @@ import iconEdit from './icon-edit'
 import iconMarker from './icon-marker'
 import iconMessageCircle from './icon-message-circle'
 import iconPlay from './icon-play'
-import iconSettings from './icon-settings'
 import iconSquare from './icon-square'
 import iconTimeline from './icon-timeline'
 import iconTrash from './icon-trash'
@@ -471,6 +469,7 @@ class Midst extends React.Component<IProps, any> {
   }
 
   sliderOnChange(val: any) {
+    console.log(val)
     const index = Math.ceil(this.state.editorTimelineFrames.length * val)
     this.setPos(index)
   }
@@ -1025,7 +1024,7 @@ class Midst extends React.Component<IProps, any> {
           onClick: editorPlaying ? this.pause : this.play,
         }, iconPlay()),
         e('div', {
-          className: 'round-icon timeline-button-2 speed-selector' + (appDrawerOpen ? ' active' : ''),
+          className: 'round-icon timeline-button-2 speed-selector',
           onClick: this.toggleDrawer,
         },
           e(Drop, {
@@ -1044,14 +1043,14 @@ class Midst extends React.Component<IProps, any> {
             e('div', { onClick: () => this.setState({ playerPlaybackSpeedDropOpen: false, playerPlaybackSpeed: 4 }) }, '4x'),
           ),
         ),
-        e('div', {
-          className: 'round-icon timeline-button-1',
-          onClick: () => {},
-        }, iconVolume2()),
-        e('div', {
-          className: 'round-icon timeline-button-1',
-          onClick: () => {},
-        }, iconSettings()),
+        // e('div', {
+        //   className: 'round-icon timeline-button-1',
+        //   onClick: () => {},
+        // }, iconVolume2()),
+        // e('div', {
+        //   className: 'round-icon timeline-button-1',
+        //   onClick: () => {},
+        // }, iconSettings()),
       )
     )
   }

@@ -1,2 +1,3 @@
 declare module '*.png'
-declare var ipcRenderer
+declare const ipcRenderer: any
+declare const getFocussedWindow: any

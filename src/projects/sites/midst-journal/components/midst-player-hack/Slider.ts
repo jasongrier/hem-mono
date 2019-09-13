@@ -11,6 +11,7 @@ class Slider extends React.Component {
         controlled: false,
         readOnly: false,
         hideCursor: true,
+        stopPropagation: false,
         direction: 'horizontal',
       }
     }
@@ -53,10 +54,18 @@ class Slider extends React.Component {
 
         .hem-slider__progress {
           position: absolute;
-          top: 0;
           left: 0;
           height: 100%;
           background: black;
+        }
+
+        .horizontal .hem-slider__progress {
+          top: 0;
+        }
+
+        .vertical .hem-slider__progress {
+          top: auto;
+          bottom: 0;
         }
       `
   // ================================================================================
@@ -84,9 +93,12 @@ class Slider extends React.Component {
   // Handlers
   // ================================================================================
     onMouseDown(evt: any) {
-      const { id, hideCursor, onDragStart, onMouseDown, onChange, readOnly } = this.props as any
+      const { id, hideCursor, onDragStart, onMouseDown, onChange, readOnly, stopPropagation } = this.props as any
       if (readOnly) return
-      // evt.stopPropagation()
+
+      if (stopPropagation) {
+        evt.stopPropagation()
+      }
       (window as any).dragging = id
       if (hideCursor) {
         document.body.style.cursor = 'none'
@@ -106,11 +118,18 @@ class Slider extends React.Component {
     }
 
     onMouseMove(evt: any) {
-      const { onChange, readOnly } = this.props as any
+      const { onChange, readOnly, direction } = this.props as any
       if (readOnly) return
       evt.stopPropagation()
       if ((window as any).dragging !== (this.props as any).id) return
-      const value = coords(evt, this.el).x
+      let value
+      if (direction === 'vertical') {
+        value = coords(evt, this.el).y
+      }
+
+      else {
+        value = coords(evt, this.el).x
+      }
       this.setState({value}, () => {
         if (onChange) {
           onChange((this.state as any).value)
@@ -143,20 +162,30 @@ class Slider extends React.Component {
       const { value: stateValue } = this.state as any
       const value = controlled ? propsValue : stateValue
 
-      // console.log(propsValue)
+      let style
+
+      if (direction === 'vertical') {
+        style = {
+          height: `${value * 100}%`
+        }
+      }
+
+      else {
+        style = {
+          width: `${value * 100}%`
+        }
+      }
 
       return (
         e('div', {
-          className: 'hem-slider',
+          className: 'hem-slider ' + direction,
           onMouseDown: this.onMouseDown,
           onMouseUp: this.onMouseUp,
           ref: el => this.el = el
         },
           e('div', {
             className: 'hem-slider__progress',
-            style: {
-              [direction === 'vertical' ? 'height' : 'width']: `${value * 100}%`,
-            },
+            style,
           })
         )
       )

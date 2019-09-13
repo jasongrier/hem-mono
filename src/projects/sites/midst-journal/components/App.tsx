@@ -33,7 +33,7 @@ function App(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
 
-      <Shapes />
+      <Route render={(props) => <Shapes {...props} />} />
 
       <header className="site-header">
         <h1>
@@ -41,6 +41,7 @@ function App(): ReactElement {
         </h1>
 
         <div
+          className={mobileNavOpen ? 'open' : ''}
           id="mobile-nav-toggle"
           onClick={() => dispatch(setMobileNavOpen(!mobileNavOpen))}
         >
@@ -57,10 +58,14 @@ function App(): ReactElement {
           className={mobileNavOpen ? 'open' : ''}
           onClick={() => dispatch(setMobileNavOpen(false))}
         >
-          <Hide on="/poem/:slug">
+          <Hide from="/poem/:slug">
             <SiteNavLinks />
           </Hide>
-          <NavLink activeClassName="active" to="/about">?</NavLink>
+          <NavLink
+            className="about-link--desk"
+            activeClassName="active"
+            to="/about"
+          >?</NavLink>
         </nav>
       </header>
       <main>
@@ -77,7 +82,7 @@ function App(): ReactElement {
         </Switch>
       </main>
       <footer className="site-footer">
-        <Hide on="/">
+        <Hide from="/">
           <CampaignMonitorForm
             labelForName="Join us?"
             submitButtonText="Sign up!"

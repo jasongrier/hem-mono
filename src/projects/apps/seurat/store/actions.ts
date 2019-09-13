@@ -1,3 +1,6 @@
+import { AnyAction } from 'redux'
+import { ThunkAction } from 'redux-thunk'
+import { RootState } from './'
 import {
   CursorGroup,
 
@@ -31,10 +34,9 @@ const setCursorMode = (cursorMode: CursorMode): Action => ({
   payload: cursorMode,
 })
 
-const toggleDrawer = (): Action => ({
-  type: TOGGLE_DRAWER,
-  payload: null,
-})
+const toggleDrawer = (): ThunkAction<void, RootState, null, AnyAction> => async dispatch => {
+  dispatch({ type: TOGGLE_DRAWER })
+}
 
 export {
   setCursorGroup,
