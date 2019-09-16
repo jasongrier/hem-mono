@@ -11,3 +11,5 @@ function flashDots(data: number[]) {
     }
   })
 }
+
+export default flashDots

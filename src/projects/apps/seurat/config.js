@@ -6,6 +6,6 @@ module.exports = {
     frame: false,
   },
   WORKERS: [
-    'sequencer',
-  ]
+    'node-clock',
+  ],
 }
