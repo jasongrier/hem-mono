@@ -1,8 +1,6 @@
-import React, { ReactElement, useEffect } from 'react'
-
 let domDots: any
 
-function flashDots(evt: any, data: number[]) {
+function flashDots(data: number[]) {
   domDots = domDots || document.querySelectorAll('.dot')
   data.forEach((on, i) => {
     if (on) {
@@ -13,15 +11,3 @@ function flashDots(evt: any, data: number[]) {
     }
   })
 }
-
-function ClockReceiver(): ReactElement {
-  useEffect(() => {
-    ipcRenderer.on('beat', flashDots)
-  })
-
-  return (
-    <div />
-  )
-}
-
-export default ClockReceiver

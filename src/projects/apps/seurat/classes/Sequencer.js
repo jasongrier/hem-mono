@@ -22,12 +22,12 @@ class Sequencer {
 
   testMode() {
     const notes = new Array(100).fill(0)
-    notes[randomIndex(100)] = 1
+    notes[this.randomIndex(100)] = 1
     return notes
   }
 
   randomMode() {
-    return this.activatedNotes[randomIndex(this.activatedNotes.length)]
+    return this.activatedNotes[this.randomIndex(this.activatedNotes.length)]
   }
 }
 

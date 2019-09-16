@@ -1,8 +1,7 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store'
 import Board from './Board'
-import ClockReceiver from './ClockReceiver'
 import Palette from './Palette'
 import { toggleDrawer } from '../store/actions' // TODO: Barrelise actions
 
@@ -19,7 +18,6 @@ function App(): ReactElement {
         <Palette />
       </div>
       <Board />
-      <ClockReceiver />
       <div
         className="palette-toggle"
         onClick={() =>  dispatch(toggleDrawer())}
