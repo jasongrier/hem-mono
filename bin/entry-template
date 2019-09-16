@@ -1,5 +1,4 @@
 import ReactDOM from 'react-dom'
-// This path gets rewritten automatically!
-import Root from '<% PROJECT_PATH %>'
+import Root from '<% PROJECT_PATH %>' // This path gets rewritten automatically!
 
 ReactDOM.render(Root, document.getElementById('root'))

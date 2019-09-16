@@ -14,7 +14,7 @@ class Clock {
     this.ticksPerBeat = ticksPerBeat
   }
 
-  clockDivider = () => {
+  clockDivider() {
     if (this.tickCount === 1) {
       if (this.running) {
         this.tickCount ++
