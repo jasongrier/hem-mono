@@ -1,29 +1,31 @@
 import { useEffect } from 'react'
-import Tone from 'tone'
 import { clockDivider } from '../../../../common/helpers'
 
-function updateTime() {
-  requestAnimationFrame(updateTime)
-  // rafCb(Tone.context.currentTime.toFixed(3))
-  clockDivider((tickCount: number) => {
-    console.log('web beat', tickCount)
-  })
+// let initialized: boolean = false
+let webOnTick: () => void
+
+function requestAnimationFrameCb() {
+  requestAnimationFrame(requestAnimationFrameCb)
+  clockDivider(webOnTick)
 }
 
-function useClock(source: 'node' | 'web') {
+function useClock(source: 'node' | 'web', onTick: () => void) {
   useEffect(() => {
-    if (source === 'node') {
-      ipcRenderer.on('tick', (evt: any, timestamp: number) => {
-        clockDivider((tickCount: number) => {
-          console.log('node beat', tickCount)
+    // if (!initialized) {
+      if (source === 'node') {
+        ipcRenderer.on('tick', () => {
+          clockDivider(onTick)
         })
-      })
-    }
+      }
 
-    else if (source === 'web') {
-      updateTime()
-    }
-  })
+      else {
+        webOnTick = onTick
+        requestAnimationFrameCb()
+      }
+
+      // initialized = true
+    // }
+  }, [])
 }
 
 export default useClock

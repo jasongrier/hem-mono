@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux'
 
 export type BoardSize = 1|2|4|9|16|25|36|48|64|81|100|121
-export type CursorGroup = 0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16
+export type CursorGroup = 'white' | 'red' | 'yellow' | 'blue'
 export type CursorMode = 'erase' | 'draw'
 
 export interface IBoard {
@@ -15,7 +15,6 @@ export interface IState {
   cursorGroup: CursorGroup
   cursorIsDragging: boolean
   cursorMode: CursorMode
-  drawerOpen: boolean
   settingsAdvancedDrawing: Boolean
 }
 

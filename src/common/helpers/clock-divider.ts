@@ -1,10 +1,10 @@
-const ticksPerBeat = 48
+let ticksPerBeat = 12 // 6
 let tickCount = 0
 
-function clockDivider(onBeat: (tickCount: number) => void) {
+function clockDivider(onBeat: () => void) {
   if (tickCount === 1) {
     tickCount ++
-    onBeat(tickCount)
+    onBeat()
   }
 
   else if (tickCount === ticksPerBeat) {
@@ -16,4 +16,8 @@ function clockDivider(onBeat: (tickCount: number) => void) {
   }
 }
 
-export default clockDivider
+function setTempo(tempo: number) {
+  ticksPerBeat = tempo
+}
+
+export { clockDivider, setTempo }

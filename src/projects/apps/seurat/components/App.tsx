@@ -4,29 +4,40 @@ import { RootState } from '../store'
 import Board from './Board'
 import Palette from './Palette'
 import { toggleDrawer } from '../store/actions' // TODO: Barrelise actions
+import { useClock } from '../hooks'
+import { flashDot } from '../helpers'
+import { CursorGroup } from '../store/types'
+
+let activeNotes: number[] = []
 
 function App(): ReactElement {
-  const { drawerOpen } = useSelector((state: RootState) => ({
-    drawerOpen: state.app.drawerOpen,
+  const { dots } = useSelector((state: RootState) => ({
+    dots: state.app.boards[state.app.currentBoard].dots,
   }))
 
-  const dispatch = useDispatch()
+  useEffect(() => {
+    activeNotes = dots.reduce((acc: number[], on: CursorGroup, index: number) => {
+      if (on) {
+        acc.push(index)
+      }
+      return acc
+    }, [])
+  }, [activeNotes])
+
+  useClock('web', () => {
+    const noteToSend = activeNotes.length ?
+      activeNotes[Math.round(Math.random() * (activeNotes.length - 1))]
+      : null
+
+    if (noteToSend) {
+      flashDot(noteToSend)
+    }
+  })
 
   return (
-    <div className={`hem-application ${drawerOpen ? ' drawer-open' : ''}`}>
-      <div className="drawer">
-        <Palette />
-      </div>
+    <div className='hem-application'>
+      <Palette />
       <Board />
-      <div
-        className="palette-toggle"
-        onClick={() =>  dispatch(toggleDrawer())}
-      />
-      {/* <div className="palette-toggles">
-        <button className="active"></button>
-        <button></button>
-        <button></button>
-      </div> */}
     </div>
   )
 }

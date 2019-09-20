@@ -4,8 +4,6 @@ let interval
 function startClock(onTick) {
   const timer = new NanoTimer()
 
-  console.log('???')
-
   interval = timer.setInterval(() => {
     onTick()
   }, '', 20.833333333 + 'm')

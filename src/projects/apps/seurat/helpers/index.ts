@@ -1,1 +1,2 @@
-export { default as flashDots } from './flash-dots'
+export { flashDot } from './flash-dots'
+export { flashDots } from './flash-dots'

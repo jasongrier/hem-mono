@@ -6,6 +6,6 @@ module.exports = {
     frame: false,
   },
   WORKERS: [
-    'node-clock',
+    // 'node-clock',
   ],
 }
