@@ -4,11 +4,10 @@ import {
 
   SET_CURSOR_GROUP,
   SET_DRAGGING,
-  UPDATE_DOT,
   SET_CURSOR_MODE,
+  UPDATE_DOT,
 
   IState,
-  TOGGLE_DRAWER,
 } from './types'
 
 const initialState: IState = {
@@ -19,10 +18,9 @@ const initialState: IState = {
     }
   ],
   currentBoard: 0,
-  cursorGroup: 1,
+  cursorGroup: 'white',
   cursorIsDragging: false,
   cursorMode: 'draw',
-  drawerOpen: false,
   settingsAdvancedDrawing: true,
 }
 
@@ -49,9 +47,6 @@ const reducer = (
         newBoards[state.currentBoard].dots = newDots
 
         return { ...state, boards: newBoards }
-
-    case TOGGLE_DRAWER:
-      return { ...state, drawerOpen: !state.drawerOpen }
 
     default:
       return state

@@ -1,15 +1,17 @@
 let domDots: any
 
-function flashDots(data: number[]) {
+function flashDots(indices: number[]) {
   domDots = domDots || document.querySelectorAll('.dot')
-  data.forEach((on, i) => {
-    if (on) {
-      domDots[i].classList.add('dot--flashing')
-      setTimeout(() => {
-        domDots[i].classList.remove('dot--flashing')
-      }, 250)
-    }
+  indices.forEach((i: number) => {
+    domDots[i].classList.add('dot--flashing')
+    setTimeout(() => {
+      domDots[i].classList.remove('dot--flashing')
+    }, 250)
   })
 }
 
-export default flashDots
+function flashDot(index: number) {
+  flashDots([index])
+}
+
+export { flashDot, flashDots }
