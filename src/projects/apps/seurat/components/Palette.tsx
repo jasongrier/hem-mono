@@ -1,5 +1,6 @@
 import React, { ReactElement, useEffect } from 'react'
 // import { setTempo } from '../../../../common/helpers'
+import XYControl from './XYControl'
 import ColorPicker from './ColorPicker'
 
 function Palette(): ReactElement {
@@ -12,6 +13,10 @@ function Palette(): ReactElement {
 
   return (
     <div className="palette">
+      <XYControl color='white' />
+      <XYControl color='red' />
+      <XYControl color='yellow' />
+      <XYControl color='blue' />
       <ColorPicker />
     </div>
   )
