@@ -25,7 +25,7 @@ function Dot({ dotNumber }: IProps): ReactElement {
 
     if (cursorMode === 'draw') {
       if (cursorGroup === myCursorGroup) {
-        dispatch(updateDot({ dotNumber, value: 0 }))
+        dispatch(updateDot({ dotNumber, value: 'empty' }))
         dispatch(setCursorMode('erase'))
       }
 
@@ -36,7 +36,7 @@ function Dot({ dotNumber }: IProps): ReactElement {
 
     else {
       if (cursorGroup === myCursorGroup) {
-        dispatch(updateDot({ dotNumber, value: 0 }))
+        dispatch(updateDot({ dotNumber, value: 'empty' }))
       }
     }
   }
@@ -49,7 +49,7 @@ function Dot({ dotNumber }: IProps): ReactElement {
     }
 
     else if (cursorMode === 'erase' && cursorGroup === myCursorGroup) {
-      dispatch(updateDot({ dotNumber, value: 0 }))
+      dispatch(updateDot({ dotNumber, value: 'empty' }))
     }
   }
 

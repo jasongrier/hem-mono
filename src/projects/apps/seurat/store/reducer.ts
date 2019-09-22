@@ -13,7 +13,7 @@ import {
 const initialState: IState = {
   boards: [
     {
-      dots: new Array(100).fill(0),
+      dots: new Array(100).fill('empty'),
       size: 100,
     }
   ],

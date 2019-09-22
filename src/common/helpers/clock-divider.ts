@@ -1,4 +1,4 @@
-let ticksPerBeat = 12 // 6
+let ticksPerBeat = 48 // 6
 let tickCount = 0
 
 function clockDivider(onBeat: () => void) {

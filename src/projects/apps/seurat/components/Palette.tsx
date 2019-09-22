@@ -13,11 +13,33 @@ function Palette(): ReactElement {
 
   return (
     <div className="palette">
-      <XYControl color='white' />
-      <XYControl color='red' />
-      <XYControl color='yellow' />
-      <XYControl color='blue' />
-      <ColorPicker />
+      <XYControl
+        color='white'
+        sendVal={() => {}}
+      />
+      <XYControl
+        color='red'
+        sendVal={() => {}}
+      />
+      <XYControl
+        color='yellow'
+        sendVal={() => {}}
+      />
+      <XYControl
+        color='blue'
+        sendVal={() => {}}
+      />
+      <div className="palette-boxes">
+        <div className="palette-box">
+          <ColorPicker />
+        </div>
+        <div className="palette-box">
+        </div>
+        <div className="palette-box">
+        </div>
+        <div className="palette-box">
+        </div>
+      </div>
     </div>
   )
 }
