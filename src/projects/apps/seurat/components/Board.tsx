@@ -1,7 +1,6 @@
-import React, { ReactElement, useEffect } from 'react'
+import React, { ReactElement } from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../store'
-import { useClock } from '../hooks'
 import Dot from './Dot'
 
 function renderDots(boardSize: number) {

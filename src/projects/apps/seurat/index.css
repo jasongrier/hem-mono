@@ -36,13 +36,11 @@ body {
   user-select: none;
 }
 
-.dot.dot--group-0 {
-  background: #111;
-}
-
-.dot.dot--group-1 {
-  background: #999;
-}
+.dot.dot--group-empty { background: #111 }
+.dot.dot--group-white { background: #fff }
+.dot.dot--group-red { background: red }
+.dot.dot--group-yellow { background: yellow }
+.dot.dot--group-blue { background: blue }
 
 .dot.dot--flashing {
   background: pink;
@@ -55,7 +53,7 @@ body {
   width: 185px;
   height: 580px;
   margin: 20px;
-  background: #111;
+  -webkit-app-region: no-drag;
 }
 
 .x-y-control {
@@ -69,9 +67,11 @@ body {
 
 .x-y-control__handle {
   position: absolute;
-  width: 20px;
-  height: 20px;
+  width: 14px;
+  height: 14px;
   border-radius: 20px;
+  transform: translate(-7px, 7px);
+  pointer-events: none;
 }
 
 .x-y-control--white .x-y-control__handle {
@@ -90,18 +90,28 @@ body {
   background: blue;
 }
 
-.color-picker {
-  width: 185px;
-  height: 36px;
-  margin: 10px 0;
+.palette-boxes {
+  width: 165px;
+  height: 30px;
+  margin-top: 10px;
+  margin-left: 10px;
+  text-align: center;
+}
+
+.palette-box {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 2px;
+  overflow: hidden;
+  background: #222;
 }
 
 .color-picker__color {
-  display: inline-block;
-  width: 36px;
-  height: 36px;
-  margin-left: 8px;
-  border-radius: 36px;
+  float: left;
+  width: 15px;
+  height: 15px;
   cursor: pointer;
   opacity: 0.5;
 }

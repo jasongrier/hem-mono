@@ -1,14 +1,29 @@
 import React, { ReactElement, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { compact } from 'lodash'
+import { useSelector } from 'react-redux'
 import { RootState } from '../store'
 import Board from './Board'
 import Palette from './Palette'
-import { toggleDrawer } from '../store/actions' // TODO: Barrelise actions
 import { useClock } from '../hooks'
-import { flashDot } from '../helpers'
+import { flashDots } from '../helpers'
 import { CursorGroup } from '../store/types'
 
-let activeNotes: number[] = []
+interface IActiveNotes {
+  white: number[]
+  red: number[]
+  yellow: number[]
+  blue: number[]
+}
+
+// const initialActiveNotes: IActiveNotes =
+
+let activeNotes: IActiveNotes
+
+function pickNote(activeNotesInColor: number[]) {
+  return activeNotesInColor.length ?
+    activeNotesInColor[Math.round(Math.random() * (activeNotesInColor.length - 1))]
+      : null
+}
 
 function App(): ReactElement {
   const { dots } = useSelector((state: RootState) => ({
@@ -16,21 +31,34 @@ function App(): ReactElement {
   }))
 
   useEffect(() => {
-    activeNotes = dots.reduce((acc: number[], on: CursorGroup, index: number) => {
-      if (on) {
-        acc.push(index)
+    activeNotes = dots.reduce((acc: any, color: CursorGroup, index: number) => {
+      if (color !== 'empty') {
+        acc[color].push(index)
       }
       return acc
-    }, [])
-  }, [activeNotes])
+    }, {
+      white: [],
+      red: [],
+      yellow: [],
+      blue: [],
+    })
+  }, [dots])
 
   useClock('web', () => {
-    const noteToSend = activeNotes.length ?
-      activeNotes[Math.round(Math.random() * (activeNotes.length - 1))]
-      : null
+    const whiteNote = pickNote(activeNotes.white)
+    const redNote = pickNote(activeNotes.red)
+    const yellowNote = pickNote(activeNotes.yellow)
+    const blueNote = pickNote(activeNotes.blue)
 
-    if (noteToSend) {
-      flashDot(noteToSend)
+    const notesToSend: number[] = []
+
+    if (null !== whiteNote) notesToSend.push(whiteNote)
+    if (null !== redNote) notesToSend.push(redNote)
+    if (null !== yellowNote) notesToSend.push(yellowNote)
+    if (null !== blueNote) notesToSend.push(blueNote)
+
+    if (notesToSend.length) {
+      flashDots(notesToSend)
     }
   })
 
