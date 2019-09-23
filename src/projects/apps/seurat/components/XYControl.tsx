@@ -30,6 +30,7 @@ function XYControl({ color, sendVal }: IProps): ReactElement {
   const el = useRef(null)
   const [val, setVal] = useState({ x: 0, y: 0 })
   const [dragging, setDragging] = useState(false)
+  const [pressed, setPressed] = useState(false)
 
   function setValAndSend(val: IVal) {
     setVal(val)
@@ -38,6 +39,7 @@ function XYControl({ color, sendVal }: IProps): ReactElement {
 
   function onMouseDown(evt: SyntheticEvent<HTMLDivElement>) {
     setDragging(true)
+    setPressed(true)
     setValAndSend(getValFromMousePos(el, evt))
   }
 
@@ -48,6 +50,7 @@ function XYControl({ color, sendVal }: IProps): ReactElement {
 
   function onMouseUp() {
     setDragging(false)
+    setPressed(false)
   }
 
   function onMouseOut() {
@@ -63,7 +66,7 @@ function XYControl({ color, sendVal }: IProps): ReactElement {
   }
 
   return (
-    <div className={`x-y-control x-y-control--${color}`}
+    <div className={`x-y-control x-y-control--${color} ${pressed ? 'x-y-control--pressed' : ''}`}
       onMouseDown={onMouseDown}
       onMouseMove={onMouseMove}
       onMouseUp={onMouseUp}

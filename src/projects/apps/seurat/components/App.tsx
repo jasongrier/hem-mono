@@ -1,5 +1,4 @@
 import React, { ReactElement, useEffect } from 'react'
-import { compact } from 'lodash'
 import { useSelector } from 'react-redux'
 import { RootState } from '../store'
 import Board from './Board'
@@ -14,8 +13,6 @@ interface IActiveNotes {
   yellow: number[]
   blue: number[]
 }
-
-// const initialActiveNotes: IActiveNotes =
 
 let activeNotes: IActiveNotes
 

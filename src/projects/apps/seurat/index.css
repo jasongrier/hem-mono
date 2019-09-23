@@ -74,6 +74,12 @@ body {
   pointer-events: none;
 }
 
+.x-y-control--pressed .x-y-control__handle {
+  width: 22px;
+  height: 22px;
+  transform: translate(-11px, 11px);
+}
+
 .x-y-control--white .x-y-control__handle {
   background: white;
 }
@@ -134,4 +140,14 @@ body {
 
 .color-picker__color--blue {
   background: blue;
+}
+
+.palette--two {
+  top: -5px;
+  left: -5px;
+}
+
+.palette--two .x-y-control {
+  width: 175px;
+  height: 135px;
 }

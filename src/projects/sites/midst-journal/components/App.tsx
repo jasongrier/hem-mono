@@ -29,7 +29,7 @@ function App(): ReactElement {
   return (
     <div className="hem-application">
       <Helmet>
-        <title>Midst Journal</title>
+        <title>Midst</title>
         <meta name="description" content="" />
       </Helmet>
 
