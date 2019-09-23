@@ -15,6 +15,18 @@ import iconTimeline from './icon-timeline'
 import iconTrash from './icon-trash'
 import './style.css'
 
+function getUrlVars() {
+  var vars: any = {}
+  window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+    vars[key] = value
+    return ''
+  })
+  return vars
+}
+
+const lowSpeed: number = parseFloat(getUrlVars().lowSpeed) || .5
+const speedRange: number = parseFloat(getUrlVars().speedRange) || 1.49999999999999988888888
+
 interface IProps {
   isPlayer: boolean
   MIDST_DATA_URL?: string
@@ -1033,8 +1045,8 @@ class Midst extends React.Component<IProps, any> {
             controlled: true,
             open: playerPlaybackSpeedDropOpen,
             setSpeed: (speed: number) => {
-              this.setState({ playerPlaybackSpeed: speed * 4 + .25 })
-            }, // .25 > 4.25
+              this.setState({ playerPlaybackSpeed: speed * speedRange + lowSpeed })
+            },
             onDropToggled: () => {
               this.setState({ playerPlaybackSpeedDropOpen: !playerPlaybackSpeedDropOpen })
             },
