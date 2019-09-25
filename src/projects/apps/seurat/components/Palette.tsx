@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
 // import { setTempo } from '../../../../common/helpers'
+import ColorSettingXYControl from './ColorSettingXYControl'
 import XYControl from './XYControl'
 import ColorPicker from './ColorPicker'
 
@@ -50,19 +51,19 @@ function Palette(): ReactElement {
     case 2:
       return (
         <div className="palette palette--two">
-          <XYControl
+          <ColorSettingXYControl
             color='white'
             sendVal={() => {}}
           />
-          <XYControl
+          <ColorSettingXYControl
             color='red'
             sendVal={() => {}}
           />
-          <XYControl
+          <ColorSettingXYControl
             color='yellow'
             sendVal={() => {}}
           />
-          <XYControl
+          <ColorSettingXYControl
             color='blue'
             sendVal={() => {}}
           />

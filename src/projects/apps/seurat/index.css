@@ -96,6 +96,10 @@ body {
   background: blue;
 }
 
+.color-setting-xy-control--disabled {
+  opacity: 0.4;
+}
+
 .palette-boxes {
   width: 165px;
   height: 30px;
