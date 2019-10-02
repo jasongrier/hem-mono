@@ -15,12 +15,14 @@ export interface IState {
   cursorGroup: CursorGroup
   cursorIsDragging: boolean
   cursorMode: CursorMode
+  params: number[]
   settingsAdvancedDrawing: Boolean
 }
 
 export const SET_CURSOR_GROUP = 'SET_CURSOR_GROUP'
-export const SET_DRAGGING = 'SET_DRAGGING'
 export const SET_CURSOR_MODE = 'SET_CURSOR_MODE'
+export const SET_DRAGGING = 'SET_DRAGGING'
+export const SET_PARAM = 'SET_PARAM'
 export const TOGGLE_DRAWER = 'TOGGLE_DRAWER'
 export const UPDATE_DOT = 'UPDATE_DOT'
 
@@ -39,9 +41,9 @@ export interface ISetDragging extends AnyAction {
   payload: boolean
 }
 
-export interface IUpdateDot extends AnyAction {
-  type: typeof UPDATE_DOT
-  payload: {dotNumber: number, value: CursorGroup}
+export interface ISetParam extends AnyAction {
+  type: typeof SET_PARAM
+  payload: { index: number, value: number }
 }
 
 export interface IToggleDrawer extends AnyAction {
@@ -49,9 +51,15 @@ export interface IToggleDrawer extends AnyAction {
   payload: null
 }
 
+export interface IUpdateDot extends AnyAction {
+  type: typeof UPDATE_DOT
+  payload: {dotNumber: number, value: CursorGroup}
+}
+
 export type Action =
     ISetCursorGroup
   | ISetCursorMode
   | ISetDragging
+  | ISetParam
   | IToggleDrawer
   | IUpdateDot

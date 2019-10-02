@@ -14,15 +14,15 @@ const initialState: IState = {
       author: 'Angelo Colavita',
     },
     {
-      slug: 'poem-b',
-      title: 'Poem B',
-      author: 'Author B',
+      slug: 'pool',
+      title: 'Pool',
+      author: 'Annelyse Gelman',
     },
     {
-      slug: 'poem-c',
-      title: 'Poem C',
-      author: 'Author C',
-    },
+      slug: 'prosperity',
+      title: 'Prosperity',
+      author: 'Annelyse Gelman',
+    }
   ]
 }
 

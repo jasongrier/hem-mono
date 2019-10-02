@@ -25,6 +25,7 @@ function pickNote(activeNotesInColor: number[]) {
 function App(): ReactElement {
   const { dots } = useSelector((state: RootState) => ({
     dots: state.app.boards[state.app.currentBoard].dots,
+    params: state.app.params,
   }))
 
   useEffect(() => {

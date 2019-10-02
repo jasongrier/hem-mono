@@ -2,16 +2,18 @@ import React, { ReactElement, MutableRefObject, SyntheticEvent, useRef, useState
 import { noop } from 'lodash'
 import { CursorGroup } from '../store/types'
 
-interface IVal {
+export interface IVal {
   x: number
   y: number
 }
 
 interface IProps {
   color: CursorGroup
+  x?: number
+  y?: number
   disabled?: boolean
   onDisabledClick?: () => void
-  sendVal: (val: IVal) => void
+  sendVal: (value: IVal) => void
 }
 
 function getValFromMousePos(el: MutableRefObject<null>, evt: any): IVal {
@@ -29,16 +31,10 @@ function toPercent(value: number) {
   return (value * 100) + '%'
 }
 
-function XYControl({ color, disabled = false, onDisabledClick = noop, sendVal }: IProps): ReactElement {
+function XYControl({ color, x = 0, y = 0, disabled = false, onDisabledClick = noop, sendVal }: IProps): ReactElement {
   const el = useRef(null)
-  const [val, setVal] = useState({ x: 0, y: 0 })
   const [dragging, setDragging] = useState(false)
   const [pressed, setPressed] = useState(false)
-
-  function setValAndSend(val: IVal) {
-    setVal(val)
-    sendVal(val)
-  }
 
   function onMouseDown(evt: SyntheticEvent<HTMLDivElement>) {
     if (disabled) {
@@ -48,14 +44,14 @@ function XYControl({ color, disabled = false, onDisabledClick = noop, sendVal }:
     else {
       setDragging(true)
       setPressed(true)
-      setValAndSend(getValFromMousePos(el, evt))
+      sendVal(getValFromMousePos(el, evt))
     }
   }
 
   function onMouseMove(evt: SyntheticEvent<HTMLDivElement>) {
     if (disabled) return
     if (!dragging) return
-    setValAndSend(getValFromMousePos(el, evt))
+    sendVal(getValFromMousePos(el, evt))
   }
 
   function onMouseUp() {
@@ -79,8 +75,8 @@ function XYControl({ color, disabled = false, onDisabledClick = noop, sendVal }:
     >
       <div className='x-y-control__handle'
         style={{
-          bottom: toPercent(val.y),
-          left: toPercent(val.x),
+          bottom: toPercent(y),
+          left: toPercent(x),
         }}
       />
     </div>

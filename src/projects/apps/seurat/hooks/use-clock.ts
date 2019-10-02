@@ -1,30 +1,28 @@
 import { useEffect } from 'react'
-import { clockDivider } from '../../../../common/helpers'
+import { ClockDivider } from '../../../../common/classes'
 
-// let initialized: boolean = false
-let webOnTick: () => void
+const webClockDivider = new ClockDivider()
+const nodeClockDivider = new ClockDivider()
+
+let webOnTickCallback: () => void
 
 function requestAnimationFrameCb() {
   requestAnimationFrame(requestAnimationFrameCb)
-  clockDivider(webOnTick)
+  webClockDivider.onTick(webOnTickCallback)
 }
 
-function useClock(source: 'node' | 'web', onTick: () => void) {
+function useClock(source: 'node' | 'web', onTickCallback: () => void) {
   useEffect(() => {
-    // if (!initialized) {
-      if (source === 'node') {
-        ipcRenderer.on('tick', () => {
-          clockDivider(onTick)
-        })
-      }
+    if (source === 'node') {
+      ipcRenderer.on('tick', () => {
+        nodeClockDivider.onTick(onTickCallback)
+      })
+    }
 
-      else {
-        webOnTick = onTick
-        requestAnimationFrameCb()
-      }
-
-      // initialized = true
-    // }
+    else {
+      webOnTickCallback = onTickCallback
+      requestAnimationFrameCb()
+    }
   }, [])
 }
 

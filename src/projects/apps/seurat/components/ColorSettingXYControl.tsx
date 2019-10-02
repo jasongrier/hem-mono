@@ -2,17 +2,18 @@ import React, { ReactElement } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store' // TODO: Why is this not barrelized??
 import { CursorGroup } from '../store/types' // TODO: Why is this not barrelized??
-import { setCursorGroup } from '../store/actions' // TODO: Why is this not barrelized??
-import XYControl from './XYControl'
+import { setCursorGroup, setParam } from '../store/actions' // TODO: Why is this not barrelized??
+import XYControl, { IVal } from './XYControl'
 
 interface IProps {
   color: CursorGroup
-  sendVal: () => void
+  xIndex: number
 }
 
-function ColorSettingXYControl({ color, sendVal }: IProps): ReactElement {
-  const { cursorGroup } = useSelector((state: RootState) => ({
+function ColorSettingXYControl({ color, xIndex }: IProps): ReactElement {
+  const { cursorGroup, params } = useSelector((state: RootState) => ({
     cursorGroup: state.app.cursorGroup,
+    params: state.app.params,
   }))
 
   const dispatch = useDispatch()
@@ -25,7 +26,12 @@ function ColorSettingXYControl({ color, sendVal }: IProps): ReactElement {
         color={color}
         disabled={disabled}
         onDisabledClick={() => dispatch(setCursorGroup(color))}
-        sendVal={sendVal}
+        sendVal={({x, y}: IVal) => {
+          dispatch(setParam({ index: xIndex, value: x }))
+          dispatch(setParam({ index: xIndex + 1, value: y }))
+        }}
+        x={params[xIndex]}
+        y={params[xIndex + 1]}
       />
     </div>
   )
