@@ -1,13 +1,13 @@
 import React, { ReactElement } from 'react'
 import Midst from '../components/midst-player-hack/Midst'
 import aShadeWhiter from '../assets/poems/a-shade-whiter'
-import poemB from '../assets/poems/poem-b'
-import poemC from '../assets/poems/poem-c'
+import pool from '../assets/poems/pool'
+import prosperity from '../assets/poems/prosperity'
 
 const poemsJsData = {
   'a-shade-whiter': aShadeWhiter,
-  'poem-b': poemB,
-  'poem-c': poemC,
+  'pool': pool,
+  'prosperity': prosperity,
 } as any
 
 interface IProps {

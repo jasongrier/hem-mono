@@ -1,5 +1,6 @@
 import { AnyAction } from 'redux'
 import { ThunkAction } from 'redux-thunk'
+import { setTempo } from '../../../../common/helpers'
 import { RootState } from './'
 import {
   CursorGroup,
@@ -12,6 +13,7 @@ import {
 
   Action,
   CursorMode,
+  SET_PARAM,
 } from './types'
 
 const setCursorGroup = (cursorGroup: CursorGroup): Action => ({
@@ -19,9 +21,9 @@ const setCursorGroup = (cursorGroup: CursorGroup): Action => ({
   payload: cursorGroup,
 })
 
-const updateDot = ({dotNumber, value}: {dotNumber: number, value: CursorGroup}): Action => ({
-  type: UPDATE_DOT,
-  payload: {dotNumber, value},
+const setCursorMode = (cursorMode: CursorMode): Action => ({
+  type: SET_CURSOR_MODE,
+  payload: cursorMode,
 })
 
 const setDragging = (isDragging: boolean): Action => ({
@@ -29,19 +31,22 @@ const setDragging = (isDragging: boolean): Action => ({
   payload: isDragging,
 })
 
-const setCursorMode = (cursorMode: CursorMode): Action => ({
-  type: SET_CURSOR_MODE,
-  payload: cursorMode,
-})
-
-const toggleDrawer = (): ThunkAction<void, RootState, null, AnyAction> => async dispatch => {
-  dispatch({ type: TOGGLE_DRAWER })
+const setParam = ({ index, value }: { index: number, value: number }): ThunkAction<void, RootState, null, AnyAction> => async dispatch => {
+  dispatch({
+    type: SET_PARAM,
+    payload: { index, value },
+  })
 }
+
+const updateDot = ({dotNumber, value}: {dotNumber: number, value: CursorGroup}): Action => ({
+  type: UPDATE_DOT,
+  payload: {dotNumber, value},
+})
 
 export {
   setCursorGroup,
   setCursorMode,
   setDragging,
-  toggleDrawer,
+  setParam,
   updateDot,
 }

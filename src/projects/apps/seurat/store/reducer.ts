@@ -3,8 +3,9 @@ import {
   CursorGroup,
 
   SET_CURSOR_GROUP,
-  SET_DRAGGING,
   SET_CURSOR_MODE,
+  SET_DRAGGING,
+  SET_PARAM,
   UPDATE_DOT,
 
   IState,
@@ -21,6 +22,7 @@ const initialState: IState = {
   cursorGroup: 'white',
   cursorIsDragging: false,
   cursorMode: 'draw',
+  params: [0, 0, 0, 0, 0, 0, 0, 0],
   settingsAdvancedDrawing: true,
 }
 
@@ -38,15 +40,20 @@ const reducer = (
     case SET_DRAGGING:
       return { ...state, cursorIsDragging: payload }
 
-      case UPDATE_DOT:
-        const currentBoard = state.boards[state.currentBoard]
-        const newBoards = [...state.boards]
-        const newDots: CursorGroup[] = [...currentBoard.dots]
+    case SET_PARAM:
+      const params = [...state.params]
+      params[payload.index] = payload.value
+      return { ...state, params }
 
-        newDots[payload.dotNumber] = payload.value
-        newBoards[state.currentBoard].dots = newDots
+    case UPDATE_DOT:
+      const currentBoard = state.boards[state.currentBoard]
+      const newBoards = [...state.boards]
+      const newDots: CursorGroup[] = [...currentBoard.dots]
 
-        return { ...state, boards: newBoards }
+      newDots[payload.dotNumber] = payload.value
+      newBoards[state.currentBoard].dots = newDots
+
+      return { ...state, boards: newBoards }
 
     default:
       return state

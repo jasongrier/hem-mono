@@ -1,5 +1,6 @@
 import React, { createElement as e } from 'react'
 import $ from 'jquery'
+import moment from 'moment'
 import { isEmpty, get, last } from 'lodash'
 import Slider from './Slider'
 import Drop from './Drop'
@@ -1002,8 +1003,12 @@ class Midst extends React.Component<IProps, any> {
 
   renderTimeline() {
     const { isPlayer } = this.props
-    const { appTimelineMode, editorTimelineIndex, editorTimelineFrames, editorShowDraftMarkers } = this.state
+    const { appTimelineMode, editorTimelineIndex, editorTimelineFrames, editorShowDraftMarkers, editorPlaying } = this.state
     const value = editorTimelineIndex / editorTimelineFrames.length
+
+    let timestamp = editorTimelineFrames[editorTimelineIndex] && editorTimelineFrames[editorTimelineIndex].timestamp
+    // timestamp = timestamp && moment(timestamp).format('MMM Do YY H:m:s')
+    timestamp = timestamp && moment(timestamp).format('HH:mm:ss')
 
     return (
       e('div', {
@@ -1015,6 +1020,8 @@ class Midst extends React.Component<IProps, any> {
           controlled: true,
           readOnly: false, // creatingDraftMarker,
           value,
+          showDisplayValue: editorPlaying,
+          propsDisplayValue: timestamp,
           onChange: this.sliderOnChange,
           onMouseDown: this.pause,
         }),

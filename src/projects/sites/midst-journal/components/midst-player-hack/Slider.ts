@@ -59,6 +59,20 @@ class Slider extends React.Component {
           background: black;
         }
 
+        .hem-slider__value {
+          position: absolute;
+          bottom: 100%;
+          width: 68px;
+          height: 18px;
+          line-height: 18px;
+          font-size: 10px;
+          background: white;
+          border-radius: 5px;
+          border: 1px solid #000;
+          transform: translate(-40px, -10px);
+          text-align: center;
+        }
+
         .horizontal .hem-slider__progress {
           top: 0;
         }
@@ -165,21 +179,31 @@ class Slider extends React.Component {
   // Render
   // ================================================================================
     render() {
-      const { direction, value: propsValue, controlled } = this.props as any
+      const { direction, value: propsValue, propsDisplayValue, controlled, showDisplayValue } = this.props as any
       const { value: stateValue } = this.state as any
       const value = controlled ? propsValue : stateValue
+      const displayValue = controlled ? propsDisplayValue : stateValue
 
       let style
+      let valueStyle
 
       if (direction === 'vertical') {
         style = {
           height: `${value * 100}%`
+        }
+
+        valueStyle = {
+          bottom: `${value * 100}%`
         }
       }
 
       else {
         style = {
           width: `${value * 100}%`
+        }
+
+        valueStyle = {
+          left: `${value * 100}%`
         }
       }
 
@@ -193,7 +217,11 @@ class Slider extends React.Component {
           e('div', {
             className: 'hem-slider__progress',
             style,
-          })
+          }),
+          showDisplayValue && e('div', {
+            className: 'hem-slider__value',
+            style: valueStyle,
+          }, displayValue)
         )
       )
     }

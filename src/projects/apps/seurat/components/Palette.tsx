@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
-// import { setTempo } from '../../../../common/helpers'
+import { useSelector, useDispatch } from 'react-redux'
+import { RootState } from '../store' // TODO: Why is this not barrelized??
 import ColorSettingXYControl from './ColorSettingXYControl'
 import XYControl from './XYControl'
 import ColorPicker from './ColorPicker'
@@ -7,6 +8,12 @@ import ColorPicker from './ColorPicker'
 const config = require('../config')
 
 function Palette(): ReactElement {
+  const { params } = useSelector((state: RootState) => ({
+    params: state.app.params,
+  }))
+
+  const dispatch = useDispatch()
+
   // useEffect(() => {
   //   setTimeout(() => {
   //     console.log('slower')
@@ -21,18 +28,26 @@ function Palette(): ReactElement {
           <XYControl
             color='white'
             sendVal={() => {}}
+            x={params[0]}
+            y={params[1]}
           />
           <XYControl
             color='red'
             sendVal={() => {}}
+            x={params[2]}
+            y={params[3]}
           />
           <XYControl
             color='yellow'
             sendVal={() => {}}
+            x={params[4]}
+            y={params[5]}
           />
           <XYControl
             color='blue'
             sendVal={() => {}}
+            x={params[6]}
+            y={params[7]}
           />
           <div className="palette-boxes">
             <div className="palette-box">
@@ -53,19 +68,19 @@ function Palette(): ReactElement {
         <div className="palette palette--two">
           <ColorSettingXYControl
             color='white'
-            sendVal={() => {}}
+            xIndex={0}
           />
           <ColorSettingXYControl
             color='red'
-            sendVal={() => {}}
+            xIndex={2}
           />
           <ColorSettingXYControl
             color='yellow'
-            sendVal={() => {}}
+            xIndex={4}
           />
           <ColorSettingXYControl
             color='blue'
-            sendVal={() => {}}
+            xIndex={6}
           />
         </div>
       )
