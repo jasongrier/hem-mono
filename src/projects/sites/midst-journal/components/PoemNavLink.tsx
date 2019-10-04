@@ -1,17 +1,21 @@
 import React, { ReactElement } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { findIndex } from 'lodash'
 import { RootState } from '../store'
-import { Link } from 'react-router-dom'
+import { setProcessNoteOpen } from '../store/actions'
 
 interface IProps {
   match: any
 }
 
 function PoemNavLink({ match }: IProps): ReactElement {
-  const { poems } = useSelector((state: RootState) => ({
+  const { poems, processNoteOpen } = useSelector((state: RootState) => ({
     poems: state.app.poems,
+    processNoteOpen: state.app.processNoteOpen,
   }))
+
+  const dispatch = useDispatch()
 
   const currentPoemIndex = findIndex(poems, { slug: match.params.slug })
   const currentPoem = poems[currentPoemIndex]
@@ -20,9 +24,14 @@ function PoemNavLink({ match }: IProps): ReactElement {
 
   return (
     <>
-      <Link className="poem-credit" to="http://google.com">
-        <i className="author-name">{ currentPoem.author }</i>&nbsp;|&nbsp;{ currentPoem.title }
-      </Link>
+      <a className="poem-credit">
+        <span onClick={() => dispatch(setProcessNoteOpen(!processNoteOpen))}>
+          <i className="author-name">
+            { currentPoem.author }
+          </i>
+          &nbsp;|&nbsp;{ currentPoem.title }
+        </span>
+      </a>
 
       <div id="poem-nav">
         {nextPoem ?

@@ -18,6 +18,7 @@ import Read from '../routes/Read'
 import AboutTheApp from '../routes/AboutTheApp'
 import { RootState } from '../store'
 import { setMobileNavOpen } from '../store/actions'
+import ProcessNote from './ProcessNote'
 
 function App(): ReactElement {
   const { mobileNavOpen } = useSelector((state: RootState) => ({
@@ -34,6 +35,8 @@ function App(): ReactElement {
       </Helmet>
 
       <Route render={(props) => <Shapes {...props} />} />
+
+      <ProcessNote />
 
       <header className="site-header">
         <Hide from="/poem/:slug">
