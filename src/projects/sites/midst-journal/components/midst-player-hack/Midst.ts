@@ -612,23 +612,20 @@ class Midst extends React.Component<IProps, any> {
       return
     }
 
-    let seconds
-    if (playerPlaybackSpeed === 'low') {
-      seconds = 1.6
-    }
+    let time: number = 73 // Default, 'med'
 
-    else if (playerPlaybackSpeed === 'med') {
-      seconds = 0.1
+    if (playerPlaybackSpeed === 'low') {
+      time = 135
     }
 
     else if (playerPlaybackSpeed === 'hi') {
-      seconds = 0.4
+      time = 40
     }
 
     setTimeout(() => {
       this.setPos(editorTimelineIndex + 1)
       this.autoScrub()
-    }, seconds * 1000) // Seconds times 1000ms per second...
+    }, time)
   }
 
   async checkForUnsavedChanges(message: any) {
