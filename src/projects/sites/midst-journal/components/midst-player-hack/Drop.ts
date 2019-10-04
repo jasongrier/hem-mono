@@ -92,7 +92,7 @@ class Drop extends React.Component {
         }
 
         .drop.drop--up .drop__content {
-          bottom: 120px;
+          bottom: 105px;
         }
 
         .drop.drop--open .drop__content {
@@ -141,7 +141,7 @@ class Drop extends React.Component {
   // Render
   // ================================================================================
     render() {
-      const { direction, className, label, children, styleChildren, controlled } = this.props as any
+      const { direction, className, label, setSpeed, styleChildren, controlled } = this.props as any
       const { speed } = this.state as any
       const open = controlled ? (this.props as any).open : (this.state as any).open
 
@@ -155,20 +155,20 @@ class Drop extends React.Component {
           e('div', {
             className: 'drop__toggle',
             onClick: this.onToggleClicked,
-          }, iconFastForward()),
-          e('div', {
-            className: 'drop__content',
-          },
-            e(Slider, {
-              id: 'midst-speed-slider',
-              hideCursor: false,
-              controlled: true,
-              stopPropagation: true,
-              readOnly: false,
-              direction: 'vertical',
-              value: speed,
-              onChange: this.sliderOnChange,
-            })
+          }),
+          e('div', { className: 'drop__content'},
+            e('div', {
+              className: 'speed-icon speed-icon--hi',
+              onClick: () => setSpeed('hi')
+            }),
+            e('div', {
+              className: 'speed-icon speed-icon--med',
+              onClick: () => setSpeed('med')
+            }),
+            e('div', {
+              className: 'speed-icon speed-icon--low',
+              onClick: () => setSpeed('low')
+            }),
           ),
         )
       )
