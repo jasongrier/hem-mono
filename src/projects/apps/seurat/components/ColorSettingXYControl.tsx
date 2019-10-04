@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store' // TODO: Why is this not barrelized??
 import { CursorGroup } from '../store/types' // TODO: Why is this not barrelized??
 import { setCursorGroup, setParam } from '../store/actions' // TODO: Why is this not barrelized??
-import XYControl, { IVal } from './XYControl'
+import { XYControl, IXYVal } from '../../../../common/components'
+import { colorClockDividers } from './App'
 
 interface IProps {
   color: CursorGroup
@@ -21,17 +22,18 @@ function ColorSettingXYControl({ color, xIndex }: IProps): ReactElement {
   const disabled = cursorGroup !== color
 
   return (
-    <div className={`color-setting-xy-control ${disabled ? 'color-setting-xy-control--disabled' : ''}`}>
+    <div className={`color-setting-xy-control color-setting-x-y-control--${color} ${disabled ? 'color-setting-xy-control--disabled' : ''}`}>
       <XYControl
-        color={color}
         disabled={disabled}
         onDisabledClick={() => dispatch(setCursorGroup(color))}
-        sendVal={({x, y}: IVal) => {
+        sendVal={({x, y}: IXYVal) => {
+          colorClockDividers[0].setTempo(Math.round(y * 11 + 1))
           dispatch(setParam({ index: xIndex, value: x }))
           dispatch(setParam({ index: xIndex + 1, value: y }))
         }}
         x={params[xIndex]}
         y={params[xIndex + 1]}
+        invert={false}
       />
     </div>
   )

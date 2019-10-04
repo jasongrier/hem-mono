@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store' // TODO: Why is this not barrelized??
 import ColorSettingXYControl from './ColorSettingXYControl'
-import XYControl from './XYControl'
+import { XYControl } from '../../../../common/components'
 import ColorPicker from './ColorPicker'
 
 const config = require('../config')
@@ -26,25 +26,21 @@ function Palette(): ReactElement {
       return (
         <div className="palette">
           <XYControl
-            color='white'
             sendVal={() => {}}
             x={params[0]}
             y={params[1]}
           />
           <XYControl
-            color='red'
             sendVal={() => {}}
             x={params[2]}
             y={params[3]}
           />
           <XYControl
-            color='yellow'
             sendVal={() => {}}
             x={params[4]}
             y={params[5]}
           />
           <XYControl
-            color='blue'
             sendVal={() => {}}
             x={params[6]}
             y={params[7]}
