@@ -1,12 +1,14 @@
 import { AnyAction } from 'redux'
 import {
   SET_MOBILE_NAV_OPEN,
+  SET_PROCESS_NOTE_OPEN,
 
   IState,
 } from './types'
 
 const initialState: IState = {
   mobileNavOpen: false,
+  processNoteOpen: false,
   poems: [
     {
       slug: 'a-shade-whiter',
@@ -38,6 +40,9 @@ const reducer = (
   switch (type) {
     case SET_MOBILE_NAV_OPEN:
       return { ...state, mobileNavOpen: payload }
+
+    case SET_PROCESS_NOTE_OPEN:
+      return { ...state, processNoteOpen: payload }
 
     default:
       return state
