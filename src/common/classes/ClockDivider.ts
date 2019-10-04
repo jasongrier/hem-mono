@@ -1,45 +1,40 @@
-// let ticksPerBeat = 48 // 6
-// let tickCount = 0
+interface IOpts {
+  ticksPerBeat: number
+  name?: string
+}
 
-// function clockDivider(onBeat: () => void) {
-//   if (tickCount === 1) {
-//     tickCount ++
-//     onBeat()
-//   }
-
-//   else if (tickCount === ticksPerBeat) {
-//     tickCount = 1
-//   }
-
-//   else {
-//     tickCount ++
-//   }
-// }
-
-// function setTempo(tempo: number) {
-//   ticksPerBeat = tempo
-// }
-
-// export { clockDivider, setTempo }
+const defaults: IOpts = {
+  ticksPerBeat: 16,
+  name: 'Untitled',
+}
 
 class ClockDivider {
-  private ticksPerBeat: number = 48 // 6
   private tickCount: number = 0
 
-  constructor(tickCount?: number,  ticksPerBeat?: number) {
-    this.tickCount = tickCount ? tickCount : this.tickCount
-    this.ticksPerBeat = ticksPerBeat ? ticksPerBeat : this.ticksPerBeat
+  private opts: IOpts
+
+  constructor(opts: IOpts) {
+    this.opts = { ...defaults, ...opts }
   }
 
   public onTick(onTickCallback: () => void) {
-    if (this.tickCount === 1) {
-      console.log('it works')
-      onTickCallback()
-      this.tickCount ++
+    if (this.opts.name === 'foo') {
+      console.log(this.tickCount, this.opts.ticksPerBeat)
     }
 
-    else if (this.tickCount === this.ticksPerBeat) {
+    if (this.tickCount === 1 || this.opts.ticksPerBeat === 1) {
+      onTickCallback()
+
+      if (this.opts.ticksPerBeat !== 1) {
+        this.tickCount ++
+      }
+    }
+
+    else if (this.tickCount >= this.opts.ticksPerBeat) {
       this.tickCount = 1
+      if (this.opts.name === 'foo') {
+        console.log('reset')
+      }
     }
 
     else {
@@ -48,7 +43,8 @@ class ClockDivider {
   }
 
   public setTempo(tempo: number) {
-    this.ticksPerBeat = tempo
+    console.log(tempo)
+    this.opts.ticksPerBeat = tempo
   }
 }
 

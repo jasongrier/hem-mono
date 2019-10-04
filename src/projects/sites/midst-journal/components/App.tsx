@@ -82,12 +82,12 @@ function App(): ReactElement {
         </Switch>
       </main>
       <footer className="site-footer">
-        <Hide from="/">
+        {/* <Hide from="/"> */}
           <CampaignMonitorForm
             labelForName="Join us?"
             submitButtonText="Sign up!"
           />
-        </Hide>
+        {/* </Hide> */}
       </footer>
     </div>
   )

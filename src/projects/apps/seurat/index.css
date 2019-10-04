@@ -80,19 +80,19 @@ body {
   transform: translate(-11px, 11px);
 }
 
-.x-y-control--white .x-y-control__handle {
+.color-setting-x-y-control--white .x-y-control__handle {
   background: white;
 }
 
-.x-y-control--red .x-y-control__handle {
+.color-setting-x-y-control--red .x-y-control__handle {
   background: red;
 }
 
-.x-y-control--yellow .x-y-control__handle {
+.color-setting-x-y-control--yellow .x-y-control__handle {
   background: yellow;
 }
 
-.x-y-control--blue .x-y-control__handle {
+.color-setting-x-y-control--blue .x-y-control__handle {
   background: blue;
 }
 
