@@ -25,9 +25,6 @@ function getUrlVars() {
   return vars
 }
 
-const lowSpeed: number = parseFloat(getUrlVars().lowSpeed) || .5
-const speedRange: number = parseFloat(getUrlVars().speedRange) || 1.49999999999999988888888
-
 interface IProps {
   isPlayer: boolean
   MIDST_DATA_URL?: string
@@ -87,7 +84,7 @@ class Midst extends React.Component<IProps, any> {
       editorTimelineFrames: [],
       editorTimelineIndex: 0,
       editorTitle: 'Untitled',
-      playerPlaybackSpeed: 1,
+      playerPlaybackSpeed: 'med',
       playerPlaybackSpeedDropOpen: false,
     }
 
@@ -615,14 +612,23 @@ class Midst extends React.Component<IProps, any> {
       return
     }
 
-    const adjustedSpeed = playerPlaybackSpeed / 2
-    const advanceBy = adjustedSpeed >= 1 ? adjustedSpeed * 2 : 1
-    const timeout = adjustedSpeed < 1 ? (1 / adjustedSpeed) * 50 : 1
+    let seconds
+    if (playerPlaybackSpeed === 'low') {
+      seconds = 1.6
+    }
+
+    else if (playerPlaybackSpeed === 'med') {
+      seconds = 0.1
+    }
+
+    else if (playerPlaybackSpeed === 'hi') {
+      seconds = 0.4
+    }
 
     setTimeout(() => {
-      this.setPos(editorTimelineIndex + advanceBy)
+      this.setPos(editorTimelineIndex + 1)
       this.autoScrub()
-    }, timeout)
+    }, seconds * 1000) // Seconds times 1000ms per second...
   }
 
   async checkForUnsavedChanges(message: any) {
@@ -1039,20 +1045,23 @@ class Midst extends React.Component<IProps, any> {
     return (
       e('div', { className: 'timeline-controls' },
         e('div', {
-          className: 'round-icon timeline-button-3' + (editorPlaying ? ' active' : ''),
+          className: 'round-icon timeline-button-3 play-pause-button' + (editorPlaying ? ' playing' : ''),
           onClick: editorPlaying ? this.pause : this.play,
-        }, iconPlay()),
+        }),
         e('div', {
-          className: 'round-icon timeline-button-2 speed-selector',
-          onClick: this.toggleDrawer,
+          className: 'round-icon timeline-button-2 speed-selector speed--' + playerPlaybackSpeed,
         },
           e(Drop, {
+            speed: playerPlaybackSpeed,
             direction: 'up',
             label: playerPlaybackSpeed + 'x',
             controlled: true,
             open: playerPlaybackSpeedDropOpen,
-            setSpeed: (speed: number) => {
-              this.setState({ playerPlaybackSpeed: speed * speedRange + lowSpeed })
+            setSpeed: (speed: string) => {
+              this.setState({
+                playerPlaybackSpeed: speed,
+                playerPlaybackSpeedDropOpen: false
+              })
             },
             onDropToggled: () => {
               this.setState({ playerPlaybackSpeedDropOpen: !playerPlaybackSpeedDropOpen })

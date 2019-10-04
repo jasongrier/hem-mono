@@ -18,6 +18,7 @@
   "license": "WTFPL",
   "dependencies": {
     "@babel/core": "^7.5.5",
+    "@fortawesome/fontawesome-free": "^5.11.2",
     "@types/jquery": "^3.3.31",
     "@types/lodash": "^4.14.134",
     "@types/node": "^12.7.9",

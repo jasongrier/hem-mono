@@ -25,14 +25,26 @@ function PoemNavLink({ match }: IProps): ReactElement {
       </Link>
 
       <div id="poem-nav">
-        { previousPoem &&
-          <Link to={`/poem/${previousPoem.slug}/`}>Previous poem</Link>
+        {nextPoem ?
+          <Link
+            to={`/poem/${nextPoem.slug}/`}>
+            <i className="arrow arrow-forward"></i>
+          </Link>
+          :
+          <a className='disabled'>
+            <i className="arrow arrow-forward"></i>
+          </a>
         }
 
-        { previousPoem && nextPoem && <>&nbsp;|&nbsp;</> }
-
-        { nextPoem &&
-          <Link to={`/poem/${nextPoem.slug}/`}>Next poem</Link>
+        {previousPoem ?
+          <Link
+            to={`/poem/${previousPoem.slug}/`}>
+            <i className="arrow arrow-back"></i>
+          </Link>
+          :
+          <a className="disabled">
+            <i className="arrow arrow-back"></i>
+          </a>
         }
       </div>
 

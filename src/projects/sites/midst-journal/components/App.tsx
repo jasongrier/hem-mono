@@ -36,9 +36,14 @@ function App(): ReactElement {
       <Route render={(props) => <Shapes {...props} />} />
 
       <header className="site-header">
-        <h1>
-          <Link to="/">Midst</Link>
-        </h1>
+        <Hide from="/poem/:slug">
+          <h1>
+            <Link to="/">Midst</Link>
+          </h1>
+          <h1 className='mini-logo'>
+            <Link to="/">Midst</Link>
+          </h1>
+        </Hide>
 
         <div
           className={mobileNavOpen ? 'open' : ''}
@@ -61,11 +66,18 @@ function App(): ReactElement {
           <Hide from="/poem/:slug">
             <SiteNavLinks />
           </Hide>
-          <NavLink
-            className="about-link--desk"
-            activeClassName="active"
-            to="/about"
-          >?</NavLink>
+          <Hide from="/poem/:slug">
+            <NavLink
+              className="about-link--desk"
+              activeClassName="active"
+              to="/about"
+            >?</NavLink>
+            <NavLink
+              className="about-link--desk light"
+              activeClassName="active"
+              to="/about"
+            >?</NavLink>
+          </Hide>
         </nav>
       </header>
       <main>
@@ -82,12 +94,10 @@ function App(): ReactElement {
         </Switch>
       </main>
       <footer className="site-footer">
-        {/* <Hide from="/"> */}
-          <CampaignMonitorForm
-            labelForName="Join us?"
-            submitButtonText="Sign up!"
-          />
-        {/* </Hide> */}
+        <CampaignMonitorForm
+          labelForName="Sign up and we’ll tell you when we launch! 🚀"
+          submitButtonText="Submit"
+        />
       </footer>
     </div>
   )

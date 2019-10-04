@@ -1,6 +1,8 @@
 import React, { ReactElement } from 'react'
 import Midst from '../components/midst-player-hack/Midst'
-import aShadeWhiter from '../assets/poems/a-shade-whiter'
+// import aShadeWhiter from '../assets/poems/a-shade-whiter'
+import aShadeWhiter from '../assets/poems/angelo_whiter_NO_TITLE'
+import alphabetSong from '../assets/poems/AnnelyseGelman_AlphabetSong_NO_TITLE'
 import pool from '../assets/poems/pool'
 import prosperity from '../assets/poems/prosperity'
 
@@ -8,6 +10,7 @@ const poemsJsData = {
   'a-shade-whiter': aShadeWhiter,
   'pool': pool,
   'prosperity': prosperity,
+  'alphabet-song': alphabetSong,
 } as any
 
 interface IProps {

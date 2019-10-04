@@ -164,7 +164,7 @@
 
 .editor {
   width: 100vw;
-  height: calc(100vh - 25px - 65px);
+  height: calc(100vh - 25px - 175px);
   overflow-x: hidden;
   overflow-y: scroll;
   transition: all 250ms;
@@ -177,8 +177,10 @@
 .editor #editable {
   width: calc(100% - 160px);
   height: calc(100% - 40px);
-  padding: 40px 80px 0 80px;
+  padding: 40px 170px 300px 300px;
   transition: width 250ms;
+  font-family: 'aileronregular';
+  font-size: 16px !important;
 }
 
 .editor #editable.with-drawer {
@@ -246,10 +248,10 @@
 }
 
 .timeline .round-icon {
-  display: inline-flex;
-  background: transparent;
-  justify-content: center;
-  width: 35px;
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 0;
   opacity: 1;
 }
 
@@ -590,11 +592,25 @@
   color: rgb(105, 0, 0);
 }
 
+.play-pause-button {
+  width: 19px !important;
+  height: 19px !important;
+  top: 11px !important;
+  right: 47px !important;
+  background-image: url('./play.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.play-pause-button.playing {
+  background-image: url('./pause.png');
+}
+
 .speed-selector {
   transform: translate(-3px, 0);
   position: absolute;
-  right: 0;
-  bottom: 0;
+  right: 7px !important;
+  bottom: 7px !important;
 }
 
 .speed-selector,
@@ -612,8 +628,9 @@
 
 .speed-selector .drop .drop__toggle {
   top: 2.5px;
-  width: 30px;
-  height: 30px;
+  width: 22px;
+  height: 22px;
+  margin: 2px;
   line-height: 30px;
   background: transparent;
   font-family: 'HelveticaNeueLTStd-BdCn';
@@ -621,6 +638,20 @@
   text-align: center;
   color: rgb(253, 237, 242);
   transform: translate(1px, 0);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.speed-selector.speed--low .drop .drop__toggle {
+  background-image: url('./speedometer_low.png');
+}
+
+.speed-selector.speed--med .drop .drop__toggle {
+  background-image: url('./speedometer_med.png');
+}
+
+.speed-selector.speed--hi .drop .drop__toggle {
+  background-image: url('./speedometer_hi.png');
 }
 
 .speed-selector .drop .drop__content {
@@ -631,8 +662,29 @@
   padding: 10px;
   border-radius: 3px;
   left: -12px;
-  height: 100px;
+  height: 85px;
   transform: translate(4px, 0);
+}
+
+.speed-selector .drop .drop__content .speed-icon {
+  float: left;
+  width: 22px;
+  height: 22px;
+  margin-bottom: 10px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.speed-selector .drop .drop__content .speed-icon--low {
+  background-image: url('./speedometer_low.png');
+}
+
+.speed-selector .drop .drop__content .speed-icon--med {
+  background-image: url('./speedometer_med.png');
+}
+
+.speed-selector .drop .drop__content .speed-icon--hi {
+  background-image: url('./speedometer_hi.png');
 }
 
 .speed-selector .hem-slider {

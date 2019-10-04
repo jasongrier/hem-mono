@@ -22,6 +22,11 @@ const initialState: IState = {
       slug: 'prosperity',
       title: 'Prosperity',
       author: 'Annelyse Gelman',
+    },
+    {
+      slug: 'alphabet-song',
+      title: 'Alphabet Song',
+      author: 'Annelyse Gelman',
     }
   ]
 }
