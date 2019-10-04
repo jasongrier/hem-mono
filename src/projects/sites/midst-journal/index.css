@@ -124,6 +124,10 @@ body {
   top: 10px;
 }
 
+.process-note .process-note__content {
+  padding: 40px;
+}
+
 .close-process-note {
   position: absolute;
   top: 0;

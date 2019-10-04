@@ -47,7 +47,19 @@ function ProcessNote(): ReactElement {
       >
         x
       </div>
-      PROCESS NOTE
+
+      <div className="process-note__content">
+        <h1>PROCESS NOTE</h1>
+        <p>
+          afsdfasdfasdfasdf<br/><br/>
+          afsdfasdfasdfasdf<br/><br/>
+          afsdfasdfasdfasdf<br/><br/>
+          afsdfasdfasdfasdf<br/><br/>
+          afsdfasdfasdfasdf<br/><br/>
+          afsdfasdfasdfasdf<br/><br/>
+          afsdfasdfasdfasdf<br/><br/>
+        </p>
+      </div>
     </div>
   )
 }
