@@ -13,11 +13,31 @@ const initialState: IState = {
     {
       slug: 'a-shade-whiter',
       title: 'A Shade Whiter',
-      author: 'Angelo Colavita',
+      author: 'Angelo Colavita Rodriguez Jr.',
     },
     {
       slug: 'pool',
       title: 'Pool',
+      author: 'Jason Grier Expert Programmer Wow Amazing',
+    },
+    {
+      slug: 'a-shade-whiter',
+      title: 'A Very Long Poem Title Wow It-s So Amazing',
+      author: 'A Jr.',
+    },
+    {
+      slug: 'pool',
+      title: 'Pool',
+      author: 'A. Gelman',
+    },
+    {
+      slug: 'prosperity',
+      title: 'Prosperity',
+      author: 'Annelyse Gelman',
+    },
+    {
+      slug: 'alphabet-song',
+      title: 'Alphabet Song',
       author: 'Annelyse Gelman',
     },
     {

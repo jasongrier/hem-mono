@@ -12,8 +12,8 @@ body {
 
 .board {
   position: fixed;
-  top: 0;
-  right: 0;
+  top: 30px;
+  left: 200px;
   width: 580px;
   height: 580px;
   margin: 20px;
@@ -147,7 +147,7 @@ body {
 }
 
 .palette--two {
-  top: -5px;
+  top: 15px;
   left: -5px;
 }
 

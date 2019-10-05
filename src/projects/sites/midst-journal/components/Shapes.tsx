@@ -58,7 +58,10 @@ function hideShapes() {
 
 function Shapes({ location }: IProps): ReactElement {
   useEffect(() => {
-    if (location.pathname === '/') {
+    if (
+      location.pathname === '/'
+      || location.pathname === '/read'
+    ) {
       showShapes()
     }
 
