@@ -98,7 +98,7 @@ function App(): ReactElement {
       </main>
       <footer className="site-footer">
         <CampaignMonitorForm
-          labelForName="Sign up and we’ll tell you when we launch! 🚀"
+          labelForName="Newsletter &nbsp;🚀"
           submitButtonText="Submit"
         />
       </footer>

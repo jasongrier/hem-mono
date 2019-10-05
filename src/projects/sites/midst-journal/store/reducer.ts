@@ -21,22 +21,22 @@ const initialState: IState = {
       author: 'Jason Grier Expert Programmer Wow Amazing',
     },
     {
-      slug: 'a-shade-whiter',
+      slug: 'a-shade-whiter-1',
       title: 'A Very Long Poem Title Wow It-s So Amazing',
       author: 'A Jr.',
     },
     {
-      slug: 'pool',
+      slug: 'pool-1',
       title: 'Pool',
       author: 'A. Gelman',
     },
     {
-      slug: 'prosperity',
+      slug: 'prosperity-1',
       title: 'Prosperity',
       author: 'Annelyse Gelman',
     },
     {
-      slug: 'alphabet-song',
+      slug: 'alphabet-song-1',
       title: 'Alphabet Song',
       author: 'Annelyse Gelman',
     },

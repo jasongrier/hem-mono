@@ -272,7 +272,7 @@ body {
 
 .table-of-contents .heroine {
   position: absolute;
-  top: 140px;
+  top: 151px;
   left: 50%;
   z-index: 999999;
   width: 620px;
@@ -282,6 +282,27 @@ body {
   text-align: left;
   background: #fff;
   border: 1px solid #000;
+}
+
+.table-of-contents .heroine .issue-date {
+  position: absolute;
+  left: -29px;
+  transform: rotate(-90deg);
+  top: 134px;
+  transform-origin: top left;
+  font-size: 20px;
+  font-family: 'futuralight';
+  color: rgb(255, 53, 107);
+}
+
+.table-of-contents .heroine .issue-number {
+  position: absolute;
+  left: 19px;
+  top: -28px;
+  transform-origin: top left;
+  font-size: 20px;
+  font-family: 'futuralight';
+  color: rgb(255, 53, 107);
 }
 
 .table-of-contents h6 {
