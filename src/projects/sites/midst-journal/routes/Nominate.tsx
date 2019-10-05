@@ -5,11 +5,11 @@ function Nominate(): ReactElement {
     <div className="nominate-form">
       <form action="https://docs.google.com/forms/d/e/1FAIpQLSei-hPO34f2fgPJ1-HWtsWa36CAKLB2TYPlfBUWUuErdnrqOQ/formResponse?embedded=true" target="_blank">
         <div className="form-block">
-          <p>
+          {/* <p>
             Nominations for Issue 1 of Midst are open through Spring 2019. Dream big and let us know whose work you’re excited about!<br />
             We’re especially interested in working with poets who typically write on a computer already, but this isn’t a requirement.<br />
             You may nominate yourself.
-          </p>
+          </p> */}
           <p>
             If you could get a peek into the writing process of <i>any</i> living poet, who would that poet be?
           </p>
