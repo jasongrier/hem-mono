@@ -486,7 +486,7 @@ body {
 
 .nominate-form {
   position: fixed;
-  top: 100px;
+  top: 150px;
   width: 100vw;
   height: calc(100vh - 100px);
   overflow: auto;
@@ -544,7 +544,7 @@ body {
 }
 
 .nominate-form button:hover {
-  background: #eee;
+  background: #FF91AF;
 }
 
 .midst.player .main {
@@ -589,7 +589,20 @@ body {
 }
 
 .app-page .heroine {
-  padding-bottom: 160px;
+  padding-top: 16vh;
+}
+
+.app-page .heroine p {
+  line-height: 27px;
+  margin-bottom: 19px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.app-page .heroine img {
+  width: 100%;
+  height: auto;
+  /* margin-top: 20px; */
 }
 
 @media screen and (max-width: 1024px) {
