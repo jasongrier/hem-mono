@@ -15,20 +15,16 @@ function Read(): ReactElement {
   return (
     <div className="table-of-contents">
       <section className="heroine">
-        <h2 style={{paddingTop: '20px'}}><strong>Pilot poems</strong></h2>
         {poems.map((poem: IPoem) => (
-          <p key={poem.slug}>
-            <Link
-              className="poem-link"
-              to={`/poem/${poem.slug}/`}
-              onClick={() => dispatch(setMobileNavOpen(false))}
-            >
-              {`${poem.author}: ${poem.title}`}
-            </Link>
-          </p>
+          <Link key={poem.slug}
+            className="poem-link"
+            to={`/poem/${poem.slug}/`}
+            onClick={() => dispatch(setMobileNavOpen(false))}
+          >
+            <div className="poem-link__column poem-author">{poem.author}</div>
+            <div className="poem-link__column poem-title">{poem.title}</div>
+          </Link>
         ))}
-        <p style={{paddingTop: '60px'}}>
-        <small>[We’ll add more to this page as we get more sample poems.]</small></p>
       </section>
     </div>
   )

@@ -101,8 +101,10 @@ function App(): ReactElement {
 
   return (
     <div className='hem-application'>
+      {/* <Settings /> */}
       <Palette />
       <Board />
+      {/* <SoundPicker /> */}
     </div>
   )
 }
