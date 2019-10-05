@@ -15,6 +15,8 @@ function Read(): ReactElement {
   return (
     <div className="table-of-contents">
       <section className="heroine">
+        <div className="issue-date">Winter&nbsp;2019</div>
+        <div className="issue-number">The Pilot Issue</div>
         {poems.map((poem: IPoem) => (
           <Link key={poem.slug}
             className="poem-link"
