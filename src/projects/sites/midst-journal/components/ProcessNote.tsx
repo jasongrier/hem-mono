@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store'
 import { setProcessNoteOpen } from '../store/actions'
 
+let proxyProcessNoteOpen: boolean = false // TODO: How not to "freeze in" changing state values in event callbacks?
+
 function ProcessNote(): ReactElement {
   const { processNoteOpen } = useSelector((state: RootState) => ({
     processNoteOpen: state.app.processNoteOpen,
@@ -18,23 +20,26 @@ function ProcessNote(): ReactElement {
     }
   }
 
-  function handleClick(evt: any) {
-    if ((node as any).current.contains(evt.target)) {
-      return
-    }
+  function handleClickOutside(evt: any) {
+    if (!proxyProcessNoteOpen) return
+    if ((node as any).current.contains(evt.target)) return
 
     dispatch(setProcessNoteOpen(false))
   }
 
   useEffect(() => {
     document.body.addEventListener('keydown', handleEsc)
-    document.addEventListener('mousedown', handleClick)
+    document.addEventListener('mousedown', handleClickOutside)
 
     return () => {
       document.removeEventListener('keydown', handleEsc)
-      document.removeEventListener('mousedown', handleClick)
-    };
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
   }, [])
+
+  useEffect(() => {
+    proxyProcessNoteOpen = processNoteOpen
+  }, [processNoteOpen])
 
   return (
     <div
