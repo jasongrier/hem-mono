@@ -1,7 +1,7 @@
 module.exports = {
   BROWSER_WINDOW: {
     width: 802,
-    height: 670,
+    height: 680,
     resizable: false,
     frame: false,
   },
