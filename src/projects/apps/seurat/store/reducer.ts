@@ -22,7 +22,7 @@ const initialState: IState = {
   cursorGroup: 'white',
   cursorIsDragging: false,
   cursorMode: 'draw',
-  params: [0, 0, 0, 0, 0, 0, 0, 0],
+  params: [.5, .5, .5, .5, .5, .5, .5, .5],
   settingsAdvancedDrawing: true,
 }
 

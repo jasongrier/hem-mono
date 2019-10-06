@@ -4,6 +4,7 @@ import { ClockDivider } from '../../../../common/classes'
 import { RootState } from '../store'
 import Board from './Board'
 import Palette from './Palette'
+import SoundPicker from './SoundPicker'
 import { useClock } from '../hooks'
 import { flashDots } from '../helpers'
 import { CursorGroup } from '../store/types'
@@ -100,11 +101,11 @@ function App(): ReactElement {
   })
 
   return (
-    <div className='hem-application'>
+    <div className="hem-application">
       {/* <Settings /> */}
       <Palette />
       <Board />
-      {/* <SoundPicker /> */}
+      <SoundPicker />
     </div>
   )
 }

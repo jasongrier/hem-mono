@@ -12,11 +12,10 @@ body {
 
 .board {
   position: fixed;
-  top: 30px;
-  left: 200px;
+  top: 15px;
+  left: 210px;
   width: 580px;
   height: 580px;
-  margin: 20px;
   -webkit-app-region: no-drag;
   user-select: none;
   transition: left 250ms;
@@ -48,11 +47,10 @@ body {
 
 .palette {
   position: absolute;
-  left: 0;
-  top: 0;
-  width: 185px;
+  left: 20px;
+  top: 20px;
+  width: 175px;
   height: 580px;
-  margin: 20px;
   -webkit-app-region: no-drag;
 }
 
@@ -60,7 +58,7 @@ body {
   position: relative;
   width: 165px;
   height: 120px;
-  margin: 10px 10px 0 10px;
+  margin-bottom: 10px;
   background: #222;
   border-radius: 5px;
 }
@@ -146,12 +144,18 @@ body {
   background: blue;
 }
 
-.palette--two {
-  top: 15px;
-  left: -5px;
-}
-
 .palette--two .x-y-control {
   width: 175px;
   height: 135px;
+}
+
+.sound-picker {
+  position: absolute;
+  bottom: 20px;
+  /* left: 215px; */
+  left: 20px;
+  width: 770px;
+  height: 40px;
+  background: #111;
+  border-radius: 5px;
 }
