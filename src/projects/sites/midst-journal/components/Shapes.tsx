@@ -61,6 +61,7 @@ function Shapes({ location }: IProps): ReactElement {
     if (
       location.pathname === '/'
       || location.pathname === '/read'
+      || location.pathname === '/about'
     ) {
       showShapes()
     }

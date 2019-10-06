@@ -251,11 +251,11 @@ body {
 }
 
 .site-header .about-link.active {
-  color: #C70000;
+  color: rgb(255, 53, 107);
 }
 
 .site-header .about-link--desk.active {
-  color: #C70000;
+  color: rgb(255, 53, 107);
 }
 
 .site-header .about-link--desk.light,
@@ -360,7 +360,7 @@ body {
   color: darkred;
   font-style: italic;
   font-size: 25px;
-  margin: 0 0 50px;
+  margin: 0 0 30px;
 }
 
 .heroine p {
@@ -370,7 +370,7 @@ body {
 .heroine.heroine--normal {
   text-align: left;
   font-size: 20px;
-  padding: 20vh 14vw 0 14vw;
+  padding: 22vh 14vw 7vh 14vw;
 }
 
 .heroine.heroine--normal.center {
