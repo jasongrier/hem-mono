@@ -13,42 +13,42 @@ const initialState: IState = {
     {
       slug: 'a-shade-whiter',
       title: 'A Shade Whiter',
-      author: 'Angelo Colavita Rodriguez Jr.',
+      author: 'Angelo Colavita',
     },
     {
       slug: 'pool',
       title: 'Pool',
-      author: 'Jason Grier Expert Programmer Wow Amazing',
+      author: 'Annelyse Gelman',
     },
     {
       slug: 'a-shade-whiter-1',
-      title: 'A Very Long Poem Title Wow It-s So Amazing',
-      author: 'A Jr.',
+      title: 'This Is the Title of a Poem',
+      author: 'Ryan Paradiso',
     },
     {
       slug: 'pool-1',
-      title: 'Pool',
-      author: 'A. Gelman',
+      title: 'Two Poems',
+      author: 'Zachary Schomburg',
     },
     {
       slug: 'prosperity-1',
-      title: 'Prosperity',
-      author: 'Annelyse Gelman',
+      title: 'Poem Title',
+      author: 'Matthew Zapruder',
     },
     {
       slug: 'alphabet-song-1',
-      title: 'Alphabet Song',
-      author: 'Annelyse Gelman',
+      title: 'A Name of Some Poem by Sarah',
+      author: 'Sarah Matthes',
     },
     {
       slug: 'prosperity',
-      title: 'Prosperity',
-      author: 'Annelyse Gelman',
+      title: 'A New Poem',
+      author: 'Danniel Schoonebeek',
     },
     {
       slug: 'alphabet-song',
-      title: 'Alphabet Song',
-      author: 'Annelyse Gelman',
+      title: 'Something-or-Other',
+      author: 'Anis Mojgani',
     }
   ]
 }
