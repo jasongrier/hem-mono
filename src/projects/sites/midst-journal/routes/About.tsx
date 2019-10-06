@@ -6,13 +6,14 @@ function About(): ReactElement {
       <section className="heroine heroine--normal">
         <h2>About</h2>
         <p>What if you could watch your favorite poet write?</p>
-        <p>Midst is a new literary journal publishing poems in the form of interactive timelapses, giving readers and writers unprecedented access to the creative process.<br />
-        Midst shows you the finished poem by default—just like any other magazine—but then allows you to hit play and “rewind” to find out exactly how it was written: blank page to final draft, and every edit in between.</p>
-        <p>We’re also building custom <a href="http://www.midst.press/app">software</a> to make it happen!</p>
-        <p>We’re currently looking for brave poets for our pilot, and writers of all stripes to test out our desktop app so we can perfect it for you. Want to get involved? <a href="http://www.midst.press/contact">Drop us a line.</a></p>
-        <p>You can also <a href="http://www.midst.press/nominate">nominate</a> your favorite poet to contribute to the Midst journal.</p>
-        <p>Lots more info over at our <a href="http://www.midst.press/faq">FAQ</a>.</p>
-        <h2>Team</h2>
+        <p>Midst is a new digital journal publishing poems in the form of interactive timelapses, giving readers and writers unprecedented access to the creative process.
+        </p>
+        <p>  
+        Midst shows you the finished poem by default—just like any other magazine—but then allows you to hit play and “rewind” to find out exactly how it was written: blank page to final draft, and every edit in between.
+        </p>
+      
+      
+             <h2>Team</h2>
         <p>Founding Director: <a href="http://www.annelysegelman.com">Annelyse Gelman</a><br />
         Lead Software Engineer: Jason Grier<br />
         Advisor: Bret Anthony Johnston</p>
