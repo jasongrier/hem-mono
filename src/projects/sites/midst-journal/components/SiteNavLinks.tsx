@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import { Hide } from '../../../../common/components'
 
 function SiteNavLinks(): ReactElement {
