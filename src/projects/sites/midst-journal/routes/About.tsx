@@ -11,19 +11,42 @@ function About(): ReactElement {
         <p>  
         Midst shows you the finished poem by default—just like any other magazine—but then allows you to hit play and “rewind” to find out exactly how it was written: blank page to final draft, and every edit in between.
         </p>
+        {/* <p>More at the <a href="http://midst.press/faq">FAQ</a>.</p> */}
+        <br />
       
-      
-             <h2>Team</h2>
-        <p>Founding Director: <a href="http://www.annelysegelman.com">Annelyse Gelman</a><br />
-        Lead Software Engineer: Jason Grier<br />
-        Advisor: Bret Anthony Johnston</p>
+             <h2>Who</h2>
+        <p>Founder + Director: <a href="http://www.annelysegelman.com">Annelyse Gelman</a><br />
+        Lead Software Engineer: <a href="http://hem.rocks">Jason Grier</a><br />
+        </p>
+        <br />
+
+        <h2>Why</h2>
+        <p>
+        We hope Midst will make poetry more accessible for everyone. By seeing how a poem is made, readers can understand that writing and editing are parallel processes; that writing is often nonlinear; that making poems is not a matter of intentionally obfuscating or ‘dressing up’ simple ideas in fancy/symbolic language; that poems do not emerge fully-formed and perfect from a writer’s mind, but are crafted through the act of writing itself. We hold no particular aesthetic allegiance, but we believe that poetry is a process, a way of thinking in language, engaging with language, attending to language. Poems are events. Poems are for everyone. Though Midst is intended to be an educational resource for poetry, there is no right or wrong way to make a poem; we’re excited about Midst’s potential to showcase some of the ways writers are going about it.
+        </p>
+
+        
+        <br />
+
         <h2>Contact</h2>
         <p>Nominate a poet: <a href="http://www.midst.press/nominate">midst.press/nominate</a>.<br />
         Tech support: midsthq@gmail.com.<br />
-        Other inquiries: annelysegelman at gmail.</p>
-        <h2>Thank you!</h2>
-        <p>Boots contributed early code. <a href="http://www.chloescheffe.github.io/">Chloe Scheffe</a> made our logo.<br />
-        Thanks to Genesis, Erica and Amardeep Bains, Startup Lab + Josh, Gerald, Aaron, and Rajesh.</p>
+        Other inquiries: annelysegelman@gmail.com.</p>
+        <br />
+
+
+
+
+        
+        <h2>Thanks</h2>
+        <p><a href="https://bretanthonyjohnston.com/">Bret Anthony Johnston</a> is our advisor. <a href="http://www.chloescheffe.github.io/">Chloe Scheffe</a> made our logo and our shapes.
+        Thanks to Genesis, Josh, Gerald, Aaron, and Rajesh, Boots, and Erica and Amardeep Bains. 
+        </p>
+        <br />
+      
+     
+     
+
       </section>
     </div>
   )
