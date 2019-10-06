@@ -149,6 +149,18 @@ class Midst extends React.Component<IProps, any> {
     }
 
     else if (isPlayer && !isEmpty(MIDST_DATA_JS)) {
+      $('body').on('keydown', (evt) => {
+        if (evt.keyCode === 32) {
+          if (this.state.editorPlaying) {
+            this.pause()
+          }
+
+          else {
+            this.play()
+          }
+        }
+      })
+
       this.load({
         data: MIDST_DATA_JS,
       })
@@ -256,7 +268,7 @@ class Midst extends React.Component<IProps, any> {
 // ================================================================================
   appOnKeyDown(evt: any) {
     const { appTimelineMode, editorTimelineIndex, appFocusMode, editorTimelineFrames } = this.state
-
+    debugger
     if (evt.keyCode === 27) {
       this.setState({ appAboutOpen: false })
 
