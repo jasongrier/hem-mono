@@ -255,3 +255,7 @@ body {
 .tmp-icon--turntable {
   background-image: url(./assets/tmp-icons/turntable.png);
 }
+
+.tmp-icon--on-off {
+  background-image: url(./assets/tmp-icons/on-off.png);
+}

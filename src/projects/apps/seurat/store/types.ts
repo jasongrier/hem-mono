@@ -17,7 +17,7 @@ export interface IState {
   cursorIsDragging: boolean
   cursorMode: CursorMode
   params: number[]
-  settingsAdvancedDrawing: Boolean
+  on: boolean
   webVersionBoardPreset: WebVersionPreset
 }
 
@@ -26,7 +26,7 @@ export const SET_CURSOR_MODE = 'SET_CURSOR_MODE'
 export const SET_DRAGGING = 'SET_DRAGGING'
 export const SET_PARAM = 'SET_PARAM'
 export const SET_WEB_VERSION_PRESET = 'SET_WEB_VERSION_PRESET'
-export const TOGGLE_DRAWER = 'TOGGLE_DRAWER'
+export const TOGGLE_ON = 'TOGGLE_ON'
 export const UPDATE_DOT = 'UPDATE_DOT'
 
 export interface ISetCursorGroup extends AnyAction {
@@ -54,8 +54,8 @@ export interface ISetWebVersionPreset extends AnyAction {
   payload: WebVersionPreset
 }
 
-export interface IToggleDrawer extends AnyAction {
-  type: typeof TOGGLE_DRAWER
+export interface IToggleOn extends AnyAction {
+  type: typeof TOGGLE_ON
   payload: null
 }
 
@@ -70,5 +70,5 @@ export type Action =
   | ISetDragging
   | ISetParam
   | ISetWebVersionPreset
-  | IToggleDrawer
+  | IToggleOn
   | IUpdateDot

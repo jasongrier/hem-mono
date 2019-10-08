@@ -17,6 +17,7 @@ interface IActiveNotes {
 }
 
 let activeNotes: IActiveNotes
+let proxyOn: boolean
 
 export const colorClockDividers = [
   new ClockDivider({
@@ -44,9 +45,10 @@ function pickNote(activeNotesInColor: number[]) {
 }
 
 function App(): ReactElement {
-  const { dots, params } = useSelector((state: RootState) => ({
+  const { dots, on, webVersionBoardPreset } = useSelector((state: RootState) => ({
     dots: state.app.canvases[state.app.currentBoard].dots,
-    params: state.app.params,
+    on: state.app.on,
+    webVersionBoardPreset: state.app.webVersionBoardPreset,
   }))
 
   useEffect(() => {
@@ -61,7 +63,9 @@ function App(): ReactElement {
       yellow: [],
       blue: [],
     })
-  }, [dots])
+  }, [dots, webVersionBoardPreset])
+
+  useEffect(() => { proxyOn = on }, [on])
 
   useClock('web', () => {
     const whiteNote = pickNote(activeNotes.white)
@@ -95,7 +99,7 @@ function App(): ReactElement {
       })
     }
 
-    if (notesToFlash.length) {
+    if (notesToFlash.length && proxyOn) { // TODO: How to prevent values getting frozen into a hook??
       flashDots(notesToFlash)
     }
   })

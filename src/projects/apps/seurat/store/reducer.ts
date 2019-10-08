@@ -12,6 +12,7 @@ import {
 
   ICanvas,
   IState,
+  TOGGLE_ON,
 } from './types'
 
 const initialState: IState = {
@@ -23,7 +24,7 @@ const initialState: IState = {
   cursorIsDragging: false,
   cursorMode: 'draw',
   params: [.5, .5, .5, .5, .5, .5, .5, .5],
-  settingsAdvancedDrawing: true,
+  on: false,
   webVersionBoardPreset: 'amp'
 }
 
@@ -53,6 +54,9 @@ const reducer = (
       newCanvases = ([] as ICanvas[]).concat(canvases)
       newCanvases[0] = newCanvas(webVersionBoardSizeFromPreset(payload)) // TODO: Support multiple canvases
       return { ...state, canvases: newCanvases, webVersionBoardPreset: payload }
+
+    case TOGGLE_ON:
+      return { ...state, on: !state.on }
 
     case UPDATE_DOT:
       const currentBoard = state.canvases[state.currentBoard]
