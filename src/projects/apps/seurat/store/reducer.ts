@@ -6,6 +6,7 @@ import {
   SET_CURSOR_MODE,
   SET_DRAGGING,
   SET_PARAM,
+  SET_WEB_VERSION_PRESET,
   UPDATE_DOT,
 
   IState,
@@ -24,6 +25,7 @@ const initialState: IState = {
   cursorMode: 'draw',
   params: [.5, .5, .5, .5, .5, .5, .5, .5],
   settingsAdvancedDrawing: true,
+  webVersionBoardPreset: 'amp'
 }
 
 const reducer = (
@@ -44,6 +46,9 @@ const reducer = (
       const params = [...state.params]
       params[payload.index] = payload.value
       return { ...state, params }
+
+    case SET_WEB_VERSION_PRESET:
+      return { ...state, webVersionBoardPreset: payload }
 
     case UPDATE_DOT:
       const currentBoard = state.boards[state.currentBoard]

@@ -1,59 +1,42 @@
 import React, { ReactElement } from 'react'
+import ControlPanelButton from './ControlPanelButton'
+import WebVersionSelectPresetButton from './WebVersionSelectPresetButton'
+import { setWebVersionPreset } from '../store/actions'
 
 function ControlPanel(): ReactElement {
   return (
     <div className="control-panel">
-      <button className="control-panel__button">
-        <i className="fas fa-drum"></i>
-      </button>
-      <button className="control-panel__button">
-        <i className="fas fa-drum"></i>
-      </button>
-      <button className="control-panel__button">
-        <i className="fas fa-drum"></i>
-      </button>
-      <button className="control-panel__button">
-        <i className="fas fa-drum"></i>
-      </button>
-      <button className="control-panel__button">
-        <i className="fas fa-drum"></i>
-      </button>
-      <button className="control-panel__button" style={{opacity: 0}}>
-        <i className="fas fa-drum"></i>
-      </button>
-      <button className="control-panel__button">
-        <i className="fas fa-drum"></i>
-      </button>
-      <button className="control-panel__button">
-        <i className="fas fa-drum"></i>
-      </button>
-      <button className="control-panel__button">
-        <i className="fas fa-drum"></i>
-      </button>
-      <button className="control-panel__button">
-        <i className="fas fa-drum"></i>
-      </button>
-      <button className="control-panel__button" style={{opacity: 0}}>
-        <i className="fas fa-drum"></i>
-      </button>
-      <button className="control-panel__button" style={{opacity: 0}}>
-        <i className="fas fa-drum"></i>
-      </button>
-      <button className="control-panel__button" style={{opacity: 0}}>
-        <i className="fas fa-drum"></i>
-      </button>
-      <button className="control-panel__button" style={{opacity: 0}}>
-        <i className="fas fa-drum"></i>
-      </button>
-      <button className="control-panel__button">
-        <i className="fas fa-drum"></i>
-      </button>
-      <button className="control-panel__button">
-        <i className="fas fa-drum"></i>
-      </button>
-      <button className="control-panel__button">
-        <i className="fas fa-drum"></i>
-      </button>
+      <WebVersionSelectPresetButton type="amp" />
+      <WebVersionSelectPresetButton type="sax" />
+      <WebVersionSelectPresetButton type="turntable" />
+      <WebVersionSelectPresetButton type="drum" />
+      <WebVersionSelectPresetButton type="bells" />
+      <WebVersionSelectPresetButton type="piano" />
+      <WebVersionSelectPresetButton
+        className="spacer--1"
+        type="guitars"
+      />
+      <ControlPanelButton
+        icon='foo'
+        onClick={() => console.log('worked')}
+      />
+      <ControlPanelButton
+        className='spacer--2'
+        icon='foo'
+        onClick={() => console.log('worked')}
+      />
+      <ControlPanelButton
+        icon='foo'
+        onClick={() => console.log('worked')}
+      />
+      <ControlPanelButton
+        icon='foo'
+        onClick={() => console.log('worked')}
+      />
+      <ControlPanelButton
+        icon='foo'
+        onClick={() => console.log('worked')}
+      />
     </div>
   )
 }

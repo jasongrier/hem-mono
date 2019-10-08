@@ -31,7 +31,6 @@ body {
   height: 50px;
   margin: 4px;
   border-radius: 50px;
-  cursor: pointer;
   user-select: none;
 }
 
@@ -59,7 +58,7 @@ body {
   width: 165px;
   height: 120px;
   margin-bottom: 10px;
-  background: #222;
+  background: #141414;
   border-radius: 5px;
 }
 
@@ -156,8 +155,9 @@ body {
   width: 760px;
   height: 40px;
   padding: 5px;
-  background: #111;
+  background: #0a0a0a;
   border-radius: 5px;
+  -webkit-app-region: no-drag;
 }
 
 .control-panel__button {
@@ -167,9 +167,77 @@ body {
   margin: 2.5px 5px 0 5px;
   border-radius: 5px;
   border: none;
-  background: #222;
+  background: #141414;
+}
+
+.control-panel__button:focus,
+.control-panel__button:active {
+  outline: none;
 }
 
 .control-panel__button:last-child {
   margin-right: 0;
+}
+
+.control-panel__button.spacer--1 {
+  margin-right: calc(35px * 3 + 20px + 15px);
+}
+
+.control-panel__button.spacer--2 {
+  margin-right: calc((35px + 9px) * 2);
+}
+
+.tmp-icon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  filter: invert(100%);
+  opacity: 0.2;
+}
+
+.control-panel__button.selected .tmp-icon {
+  opacity: 0.5;
+}
+
+.tmp-icon--violin {
+  background-image: url(./assets/tmp-icons/violin.png);
+}
+
+.tmp-icon--amp {
+  background-image: url(./assets/tmp-icons/amp.png);
+}
+
+.tmp-icon--bells {
+  background-image: url(./assets/tmp-icons/bells.png);
+}
+
+.tmp-icon--drum {
+  background-image: url(./assets/tmp-icons/drum.png);
+}
+
+.tmp-icon--guitars {
+  background-image: url(./assets/tmp-icons/guitars.png);
+}
+
+.tmp-icon--mic {
+  background-image: url(./assets/tmp-icons/mic.png);
+}
+
+.tmp-icon--piano {
+  background-image: url(./assets/tmp-icons/piano.png);
+}
+
+.tmp-icon--radio {
+  background-image: url(./assets/tmp-icons/radio.png);
+}
+
+.tmp-icon--sax {
+  background-image: url(./assets/tmp-icons/sax.png);
+}
+
+.tmp-icon--turntable {
+  background-image: url(./assets/tmp-icons/turntable.png);
 }
