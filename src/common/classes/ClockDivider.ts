@@ -19,7 +19,7 @@ class ClockDivider {
 
   public onTick(onTickCallback: () => void) {
     if (this.opts.name === 'foo') {
-      console.log(this.tickCount, this.opts.ticksPerBeat)
+      // console.log(this.tickCount, this.opts.ticksPerBeat)
     }
 
     if (this.tickCount === 1 || this.opts.ticksPerBeat === 1) {
@@ -33,7 +33,7 @@ class ClockDivider {
     else if (this.tickCount >= this.opts.ticksPerBeat) {
       this.tickCount = 1
       if (this.opts.name === 'foo') {
-        console.log('reset')
+        // console.log('reset')
       }
     }
 
@@ -43,7 +43,7 @@ class ClockDivider {
   }
 
   public setTempo(tempo: number) {
-    console.log(tempo)
+    // console.log(tempo)
     this.opts.ticksPerBeat = tempo
   }
 }

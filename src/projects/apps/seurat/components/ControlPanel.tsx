@@ -1,9 +1,17 @@
 import React, { ReactElement } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import ControlPanelButton from './ControlPanelButton'
 import WebVersionSelectPresetButton from './WebVersionSelectPresetButton'
-import { setWebVersionPreset } from '../store/actions'
+import { toggleOn } from '../store/actions'
+import { RootState } from '../store'
 
 function ControlPanel(): ReactElement {
+  const { on } = useSelector((state: RootState) => ({
+    on: state.app.on,
+  }))
+
+  const dispatch = useDispatch()
+
   return (
     <div className="control-panel">
       <div className="buttons-left">
@@ -17,8 +25,9 @@ function ControlPanel(): ReactElement {
       </div>
       <div className="buttons-right">
         <ControlPanelButton
-          icon="foo"
-          onClick={() => console.log('worked')}
+          className={on ? 'selected' : ''}
+          icon="on-off"
+          onClick={() => dispatch(toggleOn())}
         />
       </div>
     </div>

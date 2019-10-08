@@ -9,12 +9,12 @@ import {
   SET_DRAGGING,
   SET_CURSOR_MODE,
   SET_WEB_VERSION_PRESET,
-  TOGGLE_DRAWER,
 
   Action,
   CursorMode,
   SET_PARAM,
   WebVersionPreset,
+  TOGGLE_ON,
 } from './types'
 
 const setCursorGroup = (cursorGroup: CursorGroup): Action => ({
@@ -37,12 +37,15 @@ const setWebVersionPreset = (preset: WebVersionPreset): Action => ({
   payload: preset,
 })
 
-const setParam = ({ index, value }: { index: number, value: number }): ThunkAction<void, RootState, null, AnyAction> => async dispatch => {
-  dispatch({
-    type: SET_PARAM,
-    payload: { index, value },
-  })
-}
+const setParam = ({ index, value }: { index: number, value: number }): Action => ({
+  type: SET_PARAM,
+  payload: { index, value },
+})
+
+const toggleOn = (): Action => ({
+  type: TOGGLE_ON,
+  payload: null,
+})
 
 const updateDot = ({dotNumber, value}: {dotNumber: number, value: CursorGroup}): Action => ({
   type: UPDATE_DOT,
@@ -55,5 +58,6 @@ export {
   setDragging,
   setParam,
   setWebVersionPreset,
+  toggleOn,
   updateDot,
 }

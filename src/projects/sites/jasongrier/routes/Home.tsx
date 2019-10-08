@@ -3,7 +3,7 @@ import { Route, Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { RootState } from '../store'
 import { TagFilter, TaggedSubjectsList } from '../../../../common/packages/tag'
-import { Exclude } from '../../../../common/components'
+import { Hide } from '../../../../common/components'
 import InfoSheet from '../components/InfoSheet'
 import { renderArticleListLine } from '../components/ArticleListLine'
 
@@ -33,9 +33,9 @@ function Home(): ReactElement {
         </section>
       </main>
       <section className="info-sheet-container">
-        <Exclude from="/category/:name">
+        <Hide from="/category/:name">
           <Route path="/:articleId?" component={InfoSheet} />
-        </Exclude>
+        </Hide>
       </section>
       <footer>
       </footer>
