@@ -19,7 +19,7 @@ function Board(): ReactElement {
   }))
 
   return (
-    <div className="board">
+    <div className={`board board--${boardSize}`}>
       {renderDots(boardSize)}
     </div>
   )
