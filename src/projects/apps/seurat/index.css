@@ -10,7 +10,11 @@ body {
   -webkit-app-region: drag;
 }
 
-.board { /* Default to .board--100 */
+.invisible {
+  opacity: 0;
+}
+
+.canvas { /* Default to .canvas--100 */
   position: fixed;
   top: 15px;
   left: 210px;
@@ -21,6 +25,12 @@ body {
   transition: left 250ms;
 }
 
+.canvas.canvas--16 .dot {
+  width: 137px;
+  height: 137px;
+  border-radius: 137px;
+}
+
 .dot {
   float: left;
   display: block;
@@ -29,12 +39,6 @@ body {
   margin: 4px;
   border-radius: 50px;
   user-select: none;
-}
-
-.board.board--16 .dot {
-  width: 137px;
-  height: 137px;
-  border-radius: 137px;
 }
 
 .dot.dot--group-empty { background: #111 }
@@ -163,8 +167,23 @@ body {
   -webkit-app-region: no-drag;
 }
 
-.control-panel__button {
+.buttons-left {
   float: left;
+}
+
+.buttons-left .control-panel__button {
+  float: left;
+}
+
+.buttons-right {
+  float: right;
+}
+
+.buttons-right .control-panel__button {
+  float: right;
+}
+
+.control-panel__button {
   width: 35px;
   height: 35px;
   margin: 2.5px 5px 0 5px;
@@ -180,14 +199,6 @@ body {
 
 .control-panel__button:last-child {
   margin-right: 0;
-}
-
-.control-panel__button.spacer--1 {
-  margin-right: calc(35px * 3 + 20px + 15px);
-}
-
-.control-panel__button.spacer--2 {
-  margin-right: calc((35px + 9px) * 2);
 }
 
 .tmp-icon {
