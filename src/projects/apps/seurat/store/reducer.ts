@@ -1,4 +1,5 @@
 import { AnyAction } from 'redux'
+import { webVersionBoardSizeFromPreset, newBoard } from '../helpers'
 import {
   CursorGroup,
 
@@ -9,15 +10,13 @@ import {
   SET_WEB_VERSION_PRESET,
   UPDATE_DOT,
 
+  IBoard,
   IState,
 } from './types'
 
 const initialState: IState = {
   boards: [
-    {
-      dots: new Array(100).fill('empty'),
-      size: 100,
-    }
+    newBoard(100),
   ],
   currentBoard: 0,
   cursorGroup: 'white',
@@ -32,6 +31,8 @@ const reducer = (
   state: IState = initialState,
   { type, payload }: AnyAction,
 ): IState => {
+  let newBoards: IBoard[] // TODO: Should not have to do this in order to avoid block-scoped variable messages
+
   switch (type) {
     case SET_CURSOR_GROUP:
       return { ...state, cursorGroup: payload }
@@ -48,11 +49,14 @@ const reducer = (
       return { ...state, params }
 
     case SET_WEB_VERSION_PRESET:
-      return { ...state, webVersionBoardPreset: payload }
+      const { boards } = state
+      newBoards = ([] as IBoard[]).concat(boards)
+      newBoards[0] = newBoard(webVersionBoardSizeFromPreset(payload)) // TODO: Support multiple boards
+      return { ...state, boards: newBoards, webVersionBoardPreset: payload }
 
     case UPDATE_DOT:
       const currentBoard = state.boards[state.currentBoard]
-      const newBoards = [...state.boards]
+      newBoards = [...state.boards]
       const newDots: CursorGroup[] = [...currentBoard.dots]
 
       newDots[payload.dotNumber] = payload.value

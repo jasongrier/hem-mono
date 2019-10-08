@@ -10,7 +10,7 @@ body {
   -webkit-app-region: drag;
 }
 
-.board {
+.board { /* Default to .board--100 */
   position: fixed;
   top: 15px;
   left: 210px;
@@ -21,17 +21,20 @@ body {
   transition: left 250ms;
 }
 
-.drawer-open .board {
-  left: 200px;
-}
-
 .dot {
   float: left;
+  display: block;
   width: 50px;
   height: 50px;
   margin: 4px;
   border-radius: 50px;
   user-select: none;
+}
+
+.board.board--16 .dot {
+  width: 137px;
+  height: 137px;
+  border-radius: 137px;
 }
 
 .dot.dot--group-empty { background: #111 }
