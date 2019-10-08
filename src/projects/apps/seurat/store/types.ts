@@ -5,13 +5,13 @@ export type CursorGroup = 'empty' | 'white' | 'red' | 'yellow' | 'blue'
 export type CursorMode = 'erase' | 'draw'
 export type WebVersionPreset = 'amp' | 'bells' | 'drum' | 'guitars' | 'mic' | 'piano' | 'radio' | 'sax' | 'turntable' | 'violin'
 
-export interface IBoard {
+export interface ICanvas {
   dots: CursorGroup[]
   size: BoardSize
 }
 
 export interface IState {
-  boards: IBoard[]
+  canvases: ICanvas[]
   currentBoard: number
   cursorGroup: CursorGroup
   cursorIsDragging: boolean

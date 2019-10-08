@@ -15,7 +15,7 @@ function Dot({ dotNumber }: IProps): ReactElement {
     cursorGroup: state.app.cursorGroup,
     cursorIsDragging: state.app.cursorIsDragging,
     cursorMode: state.app.cursorMode,
-    myCursorGroup: state.app.boards[state.app.currentBoard].dots[dotNumber],
+    myCursorGroup: state.app.canvases[state.app.currentBoard].dots[dotNumber],
   }))
 
   const dispatch = useDispatch()

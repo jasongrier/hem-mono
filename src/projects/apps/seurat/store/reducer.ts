@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux'
-import { webVersionBoardSizeFromPreset, newBoard } from '../helpers'
+import { webVersionBoardSizeFromPreset, newCanvas } from '../helpers'
 import {
   CursorGroup,
 
@@ -10,13 +10,13 @@ import {
   SET_WEB_VERSION_PRESET,
   UPDATE_DOT,
 
-  IBoard,
+  ICanvas,
   IState,
 } from './types'
 
 const initialState: IState = {
-  boards: [
-    newBoard(100),
+  canvases: [
+    newCanvas(100),
   ],
   currentBoard: 0,
   cursorGroup: 'white',
@@ -31,7 +31,7 @@ const reducer = (
   state: IState = initialState,
   { type, payload }: AnyAction,
 ): IState => {
-  let newBoards: IBoard[] // TODO: Should not have to do this in order to avoid block-scoped variable messages
+  let newCanvases: ICanvas[] // TODO: Should not have to do this in order to avoid block-scoped variable messages
 
   switch (type) {
     case SET_CURSOR_GROUP:
@@ -49,20 +49,20 @@ const reducer = (
       return { ...state, params }
 
     case SET_WEB_VERSION_PRESET:
-      const { boards } = state
-      newBoards = ([] as IBoard[]).concat(boards)
-      newBoards[0] = newBoard(webVersionBoardSizeFromPreset(payload)) // TODO: Support multiple boards
-      return { ...state, boards: newBoards, webVersionBoardPreset: payload }
+      const { canvases } = state
+      newCanvases = ([] as ICanvas[]).concat(canvases)
+      newCanvases[0] = newCanvas(webVersionBoardSizeFromPreset(payload)) // TODO: Support multiple canvases
+      return { ...state, canvases: newCanvases, webVersionBoardPreset: payload }
 
     case UPDATE_DOT:
-      const currentBoard = state.boards[state.currentBoard]
-      newBoards = [...state.boards]
+      const currentBoard = state.canvases[state.currentBoard]
+      newCanvases = [...state.canvases]
       const newDots: CursorGroup[] = [...currentBoard.dots]
 
       newDots[payload.dotNumber] = payload.value
-      newBoards[state.currentBoard].dots = newDots
+      newCanvases[state.currentBoard].dots = newDots
 
-      return { ...state, boards: newBoards }
+      return { ...state, canvases: newCanvases }
 
     default:
       return state

@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { ClockDivider } from '../../../../common/classes'
 import { RootState } from '../store'
-import Board from './Board'
+import Canvas from './Canvas'
 import Palette from './Palette'
 import ControlPanel from './ControlPanel'
 import { useClock } from '../hooks'
@@ -45,7 +45,7 @@ function pickNote(activeNotesInColor: number[]) {
 
 function App(): ReactElement {
   const { dots, params } = useSelector((state: RootState) => ({
-    dots: state.app.boards[state.app.currentBoard].dots,
+    dots: state.app.canvases[state.app.currentBoard].dots,
     params: state.app.params,
   }))
 
@@ -103,7 +103,7 @@ function App(): ReactElement {
   return (
     <div className="hem-application">
       <Palette />
-      <Board />
+      <Canvas />
       <ControlPanel />
     </div>
   )
