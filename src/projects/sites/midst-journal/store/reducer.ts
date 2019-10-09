@@ -10,45 +10,61 @@ const initialState: IState = {
   mobileNavOpen: false,
   processNoteOpen: false,
   poems: [
-       {
+    {
       slug: 'demo',
       title: '🌱',
       author: 'Issue One launches soon!',
-       },
-       {
-        slug: 'demo',
-        title: ' ',
-        
-        author: ' ',
-         },
-         {
-          slug: 'demo',
-          title: ' ',
-          
-          author: ' ',
-           },
-           {
-            slug: 'demo',
-            title: ' ',
-            
-            author: ' ',
-             },
-             {
-              slug: 'demo',
-              title: ' ',
-              
-              author: ' ',
-               },
-    //            {
-    //   slug: 'pool',
-    //   title: 'Pool (Demo)',
-    //   author: 'Annelyse Gelman',
-    // },
-        {
+      processNote: 'string',
+    }, {
+      slug: 'demo',
+      title: ' ',
+      author: ' ',
+      processNote: 'string',
+  }, {
+      slug: 'demo',
+      title: ' ',
+      author: ' ',
+      processNote: 'string',
+  }, {
+      slug: 'demo',
+      title: ' ',
+      author: ' ',
+      processNote: 'string',
+  }, {
+      slug: 'demo',
+      title: ' ',
+      author: ' ',
+      processNote: 'string',
+  }, {
       slug: 'prosperity',
       title: 'Prosperity (Demonstration Poem)',
       author: 'Annelyse Gelman',
+      processNote: `
+      <h1>
+      Process Note
+      </h1>
+      <p>
+      I wrote "Prosperity" quickly, mostly as a demonstration of how Midst works—a kind of demonstration music for this platform. It is about the intelligence of pigs.
+      </p>
+      <h1>
+      About the Author
+      </h1>
+      <p>
+      Annelyse Gelman founded and directs Midst. Her work has appeared in <i>The New Yorker</i>, <i>BOMB Magazine</i>, <i>the PEN Poetry Series</i>, and elsewhere. 
+      She is the author of <i><a href="http://www.amazon.com/Everyone-I-Love-Stranger-Someone/dp/193891242X">Everyone I Love Is a Stranger to Someone</a></i>. Find her at <a href="http://www.annelysegelman.com">www.annelysegelman.com</a>.
+      </p>
+      <p>
+      <img src="http://midst.press/journal-assets/author-photos/annelyse.png">
+      </p>
+      `,
     },
+
+
+
+
+
+
+
     // {
     //   slug: 'a-shade-whiter',
     //   title: 'A Shade Whiter',

@@ -8,7 +8,7 @@ function SiteNavLinks(): ReactElement {
       <NavLink activeClassName="active" to="/read">Read</NavLink>
       <NavLink activeClassName="active" to="/nominate">Nominate</NavLink>
       <NavLink activeClassName="active" to="/app">App</NavLink>
-      <NavLink activeClassName="active" to="/contact">Contact</NavLink>
+      {/* <NavLink activeClassName="active" to="/contact">Contact</NavLink> */}
       <Hide from="/poem/:slug">
         <NavLink
           className="about-link--mobile"

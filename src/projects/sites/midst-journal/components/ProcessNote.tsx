@@ -1,14 +1,25 @@
 import React, { ReactElement, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store'
+import { IPoem } from '../store/types'
 import { setProcessNoteOpen } from '../store/actions'
+
+interface IProps {
+  match: any
+}
 
 let proxyProcessNoteOpen: boolean = false // TODO: How not to "freeze in" changing state values in event callbacks?
 
-function ProcessNote(): ReactElement {
-  const { processNoteOpen } = useSelector((state: RootState) => ({
+function ProcessNote({ match }: IProps): ReactElement {
+  const { processNoteOpen, poems } = useSelector((state: RootState) => ({
     processNoteOpen: state.app.processNoteOpen,
+    poems: state.app.poems,
   }))
+
+  const poem = poems.find((poem: IPoem) => {
+    if (!match || !match.params || !match.params.slug) return false
+    return poem.slug === match.params.slug
+  })
 
   const dispatch = useDispatch()
 
@@ -53,18 +64,10 @@ function ProcessNote(): ReactElement {
         x
       </div>
 
-      <div className="process-note__content">
-        <h1>PROCESS NOTE</h1>
-        <p>
-          afsdfasdfasdfasdf<br/><br/>
-          afsdfasdfasdfasdf<br/><br/>
-          afsdfasdfasdfasdf<br/><br/>
-          afsdfasdfasdfasdf<br/><br/>
-          afsdfasdfasdfasdf<br/><br/>
-          afsdfasdfasdfasdf<br/><br/>
-          afsdfasdfasdfasdf<br/><br/>
-        </p>
-      </div>
+      <div 
+        className="process-note__content"
+        dangerouslySetInnerHTML={{__html: poem && poem.processNote}}
+      />
     </div>
   )
 }

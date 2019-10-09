@@ -4,6 +4,7 @@ export interface IPoem {
   slug: string
   title: string
   author: string
+  processNote: string
 }
 
 export interface IState {
