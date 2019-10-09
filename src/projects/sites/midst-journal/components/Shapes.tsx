@@ -62,6 +62,9 @@ function Shapes({ location }: IProps): ReactElement {
       location.pathname === '/'
       || location.pathname === '/read'
       || location.pathname === '/about'
+      || location.pathname === '/nominate'
+      || location.pathname === '/contact'
+      || location.pathname === '/app'
     ) {
       showShapes()
     }
