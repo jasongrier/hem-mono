@@ -3,27 +3,30 @@ import { AnyAction } from 'redux'
 export type BoardSize = 1|2|4|9|16|25|36|48|64|81|100|121
 export type CursorGroup = 'empty' | 'white' | 'red' | 'yellow' | 'blue'
 export type CursorMode = 'erase' | 'draw'
+export type WebVersionPreset = 'amp' | 'bells' | 'drum' | 'guitars' | 'mic' | 'piano' | 'radio' | 'sax' | 'turntable' | 'violin'
 
-export interface IBoard {
+export interface ICanvas {
   dots: CursorGroup[]
   size: BoardSize
 }
 
 export interface IState {
-  boards: IBoard[]
+  canvases: ICanvas[]
   currentBoard: number
   cursorGroup: CursorGroup
   cursorIsDragging: boolean
   cursorMode: CursorMode
   params: number[]
-  settingsAdvancedDrawing: Boolean
+  on: boolean
+  webVersionBoardPreset: WebVersionPreset
 }
 
 export const SET_CURSOR_GROUP = 'SET_CURSOR_GROUP'
 export const SET_CURSOR_MODE = 'SET_CURSOR_MODE'
 export const SET_DRAGGING = 'SET_DRAGGING'
 export const SET_PARAM = 'SET_PARAM'
-export const TOGGLE_DRAWER = 'TOGGLE_DRAWER'
+export const SET_WEB_VERSION_PRESET = 'SET_WEB_VERSION_PRESET'
+export const TOGGLE_ON = 'TOGGLE_ON'
 export const UPDATE_DOT = 'UPDATE_DOT'
 
 export interface ISetCursorGroup extends AnyAction {
@@ -46,8 +49,13 @@ export interface ISetParam extends AnyAction {
   payload: { index: number, value: number }
 }
 
-export interface IToggleDrawer extends AnyAction {
-  type: typeof TOGGLE_DRAWER
+export interface ISetWebVersionPreset extends AnyAction {
+  type: typeof SET_WEB_VERSION_PRESET
+  payload: WebVersionPreset
+}
+
+export interface IToggleOn extends AnyAction {
+  type: typeof TOGGLE_ON
   payload: null
 }
 
@@ -61,5 +69,6 @@ export type Action =
   | ISetCursorMode
   | ISetDragging
   | ISetParam
-  | IToggleDrawer
+  | ISetWebVersionPreset
+  | IToggleOn
   | IUpdateDot

@@ -2,11 +2,14 @@ import React, { ReactElement, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { ClockDivider } from '../../../../common/classes'
 import { RootState } from '../store'
-import Board from './Board'
+import Canvas from './Canvas'
 import Palette from './Palette'
+import ControlPanel from './ControlPanel'
 import { useClock } from '../hooks'
-import { flashDots } from '../helpers'
-import { CursorGroup } from '../store/types'
+import { flashDots, webVersionSamplers } from '../helpers'
+import { CursorGroup, WebVersionPreset } from '../store/types'
+
+const samplers = webVersionSamplers()
 
 interface IActiveNotes {
   white: number[]
@@ -16,6 +19,8 @@ interface IActiveNotes {
 }
 
 let activeNotes: IActiveNotes
+let proxyOn: boolean // TODO: How to prevent values getting frozen into a hook??
+let webVersionBoardPresetProxy: WebVersionPreset
 
 export const colorClockDividers = [
   new ClockDivider({
@@ -43,9 +48,10 @@ function pickNote(activeNotesInColor: number[]) {
 }
 
 function App(): ReactElement {
-  const { dots, params } = useSelector((state: RootState) => ({
-    dots: state.app.boards[state.app.currentBoard].dots,
-    params: state.app.params,
+  const { dots, on, webVersionBoardPreset } = useSelector((state: RootState) => ({
+    dots: state.app.canvases[state.app.currentBoard].dots,
+    on: state.app.on,
+    webVersionBoardPreset: state.app.webVersionBoardPreset,
   }))
 
   useEffect(() => {
@@ -60,7 +66,12 @@ function App(): ReactElement {
       yellow: [],
       blue: [],
     })
-  }, [dots])
+  }, [dots, webVersionBoardPreset])
+
+  useEffect(() => {
+    proxyOn = on
+    webVersionBoardPresetProxy = webVersionBoardPreset
+  }, [on, webVersionBoardPreset])
 
   useClock('web', () => {
     const whiteNote = pickNote(activeNotes.white)
@@ -94,17 +105,17 @@ function App(): ReactElement {
       })
     }
 
-    if (notesToFlash.length) {
+    if (notesToFlash.length && proxyOn) {
       flashDots(notesToFlash)
+      // samplers[webVersionBoardPresetProxy].play(dotIndicesToWesternNotes(notesToFlash))
     }
   })
 
   return (
-    <div className='hem-application'>
-      {/* <Settings /> */}
+    <div className="hem-application">
       <Palette />
-      <Board />
-      {/* <SoundPicker /> */}
+      <Canvas />
+      <ControlPanel />
     </div>
   )
 }
