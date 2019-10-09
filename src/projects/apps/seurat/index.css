@@ -23,6 +23,7 @@ body {
   -webkit-app-region: no-drag;
   user-select: none;
   transition: left 250ms;
+  transform: rotate(180deg) scaleX(-1);
 }
 
 .canvas.canvas--16 .dot {

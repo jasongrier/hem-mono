@@ -40,6 +40,7 @@
     "react-router-dom": "^5.0.1",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
+    "tone": "^13.8.25",
     "voca": "^1.4.0"
   },
   "devDependencies": {
