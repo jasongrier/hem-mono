@@ -6,8 +6,10 @@ import Canvas from './Canvas'
 import Palette from './Palette'
 import ControlPanel from './ControlPanel'
 import { useClock } from '../hooks'
-import { flashDots } from '../helpers'
-import { CursorGroup } from '../store/types'
+import { flashDots, webVersionSamplers } from '../helpers'
+import { CursorGroup, WebVersionPreset } from '../store/types'
+
+const samplers = webVersionSamplers()
 
 interface IActiveNotes {
   white: number[]
@@ -17,7 +19,8 @@ interface IActiveNotes {
 }
 
 let activeNotes: IActiveNotes
-let proxyOn: boolean
+let proxyOn: boolean // TODO: How to prevent values getting frozen into a hook??
+let webVersionBoardPresetProxy: WebVersionPreset
 
 export const colorClockDividers = [
   new ClockDivider({
@@ -65,7 +68,10 @@ function App(): ReactElement {
     })
   }, [dots, webVersionBoardPreset])
 
-  useEffect(() => { proxyOn = on }, [on])
+  useEffect(() => {
+    proxyOn = on
+    webVersionBoardPresetProxy = webVersionBoardPreset
+  }, [on, webVersionBoardPreset])
 
   useClock('web', () => {
     const whiteNote = pickNote(activeNotes.white)
@@ -99,8 +105,9 @@ function App(): ReactElement {
       })
     }
 
-    if (notesToFlash.length && proxyOn) { // TODO: How to prevent values getting frozen into a hook??
+    if (notesToFlash.length && proxyOn) {
       flashDots(notesToFlash)
+      // samplers[webVersionBoardPresetProxy].play(dotIndicesToWesternNotes(notesToFlash))
     }
   })
 

@@ -24,7 +24,7 @@ const initialState: IState = {
   cursorIsDragging: false,
   cursorMode: 'draw',
   params: [.5, .5, .5, .5, .5, .5, .5, .5],
-  on: false,
+  on: true,
   webVersionBoardPreset: 'amp'
 }
 
