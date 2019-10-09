@@ -35,8 +35,10 @@ function App(): ReactElement {
       </Helmet>
 
       <Route render={(props) => <Shapes {...props} />} />
-
-      <ProcessNote />
+      <Route 
+        path="/poem/:slug" 
+        render={(props) => <ProcessNote {...props} />}
+      />
 
       <header className="site-header">
         <Hide from="/poem/:slug">

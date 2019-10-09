@@ -29,7 +29,10 @@ function PoemNavLink({ match }: IProps): ReactElement {
           <i className="author-name">
             { currentPoem.author }
           </i>
-          &nbsp;|&nbsp;{ currentPoem.title }
+          &nbsp;|&nbsp;
+          <span className="poem-title">
+            { currentPoem.title }
+          </span>
         </span>
       </a>
 
