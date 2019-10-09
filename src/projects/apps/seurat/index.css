@@ -10,29 +10,35 @@ body {
   -webkit-app-region: drag;
 }
 
-.board {
+.invisible {
+  opacity: 0;
+}
+
+.canvas { /* Default to .canvas--100 */
   position: fixed;
-  top: 30px;
-  left: 200px;
+  top: 15px;
+  left: 210px;
   width: 580px;
   height: 580px;
-  margin: 20px;
   -webkit-app-region: no-drag;
   user-select: none;
   transition: left 250ms;
+  transform: rotate(180deg) scaleX(-1);
 }
 
-.drawer-open .board {
-  left: 200px;
+.canvas.canvas--16 .dot {
+  width: 137px;
+  height: 137px;
+  border-radius: 137px;
 }
 
 .dot {
   float: left;
+  display: block;
   width: 50px;
   height: 50px;
   margin: 4px;
   border-radius: 50px;
-  cursor: pointer;
   user-select: none;
 }
 
@@ -48,11 +54,10 @@ body {
 
 .palette {
   position: absolute;
-  left: 0;
-  top: 0;
-  width: 185px;
+  left: 20px;
+  top: 20px;
+  width: 175px;
   height: 580px;
-  margin: 20px;
   -webkit-app-region: no-drag;
 }
 
@@ -60,8 +65,8 @@ body {
   position: relative;
   width: 165px;
   height: 120px;
-  margin: 10px 10px 0 10px;
-  background: #222;
+  margin-bottom: 10px;
+  background: #141414;
   border-radius: 5px;
 }
 
@@ -146,12 +151,112 @@ body {
   background: blue;
 }
 
-.palette--two {
-  top: 15px;
-  left: -5px;
-}
-
 .palette--two .x-y-control {
   width: 175px;
   height: 135px;
+}
+
+.control-panel {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: 760px;
+  height: 40px;
+  padding: 5px;
+  background: #0a0a0a;
+  border-radius: 5px;
+  -webkit-app-region: no-drag;
+}
+
+.buttons-left {
+  float: left;
+}
+
+.buttons-left .control-panel__button {
+  float: left;
+}
+
+.buttons-right {
+  float: right;
+}
+
+.buttons-right .control-panel__button {
+  float: right;
+}
+
+.control-panel__button {
+  width: 35px;
+  height: 35px;
+  margin: 2.5px 5px 0 5px;
+  border-radius: 5px;
+  border: none;
+  background: #141414;
+}
+
+.control-panel__button:focus,
+.control-panel__button:active {
+  outline: none;
+}
+
+.control-panel__button:last-child {
+  margin-right: 0;
+}
+
+.tmp-icon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  filter: invert(100%);
+  opacity: 0.2;
+}
+
+.control-panel__button.selected .tmp-icon {
+  opacity: 0.5;
+}
+
+.tmp-icon--violin {
+  background-image: url(./assets/tmp-icons/violin.png);
+}
+
+.tmp-icon--amp {
+  background-image: url(./assets/tmp-icons/amp.png);
+}
+
+.tmp-icon--bells {
+  background-image: url(./assets/tmp-icons/bells.png);
+}
+
+.tmp-icon--drum {
+  background-image: url(./assets/tmp-icons/drum.png);
+}
+
+.tmp-icon--guitars {
+  background-image: url(./assets/tmp-icons/guitars.png);
+}
+
+.tmp-icon--mic {
+  background-image: url(./assets/tmp-icons/mic.png);
+}
+
+.tmp-icon--piano {
+  background-image: url(./assets/tmp-icons/piano.png);
+}
+
+.tmp-icon--radio {
+  background-image: url(./assets/tmp-icons/radio.png);
+}
+
+.tmp-icon--sax {
+  background-image: url(./assets/tmp-icons/sax.png);
+}
+
+.tmp-icon--turntable {
+  background-image: url(./assets/tmp-icons/turntable.png);
+}
+
+.tmp-icon--on-off {
+  background-image: url(./assets/tmp-icons/on-off.png);
 }

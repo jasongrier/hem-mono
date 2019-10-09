@@ -1,6 +1,5 @@
 import { AnyAction } from 'redux'
 import { ThunkAction } from 'redux-thunk'
-import { setTempo } from '../../../../common/helpers'
 import { RootState } from './'
 import {
   CursorGroup,
@@ -9,11 +8,13 @@ import {
   UPDATE_DOT,
   SET_DRAGGING,
   SET_CURSOR_MODE,
-  TOGGLE_DRAWER,
+  SET_WEB_VERSION_PRESET,
 
   Action,
   CursorMode,
   SET_PARAM,
+  WebVersionPreset,
+  TOGGLE_ON,
 } from './types'
 
 const setCursorGroup = (cursorGroup: CursorGroup): Action => ({
@@ -31,12 +32,20 @@ const setDragging = (isDragging: boolean): Action => ({
   payload: isDragging,
 })
 
-const setParam = ({ index, value }: { index: number, value: number }): ThunkAction<void, RootState, null, AnyAction> => async dispatch => {
-  dispatch({
-    type: SET_PARAM,
-    payload: { index, value },
-  })
-}
+const setWebVersionPreset = (preset: WebVersionPreset): Action => ({
+  type: SET_WEB_VERSION_PRESET,
+  payload: preset,
+})
+
+const setParam = ({ index, value }: { index: number, value: number }): Action => ({
+  type: SET_PARAM,
+  payload: { index, value },
+})
+
+const toggleOn = (): Action => ({
+  type: TOGGLE_ON,
+  payload: null,
+})
 
 const updateDot = ({dotNumber, value}: {dotNumber: number, value: CursorGroup}): Action => ({
   type: UPDATE_DOT,
@@ -48,5 +57,7 @@ export {
   setCursorMode,
   setDragging,
   setParam,
+  setWebVersionPreset,
+  toggleOn,
   updateDot,
 }
