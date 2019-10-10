@@ -15,9 +15,11 @@ import {
   TOGGLE_ON,
 } from './types'
 
+const webVersionBoardPreset = 'bells'
+
 const initialState: IState = {
   canvases: [
-    newCanvas(100),
+    newCanvas(webVersionBoardSizeFromPreset(webVersionBoardPreset)),
   ],
   currentBoard: 0,
   cursorGroup: 'white',
@@ -25,7 +27,7 @@ const initialState: IState = {
   cursorMode: 'draw',
   params: [.5, .5, .5, .5, .5, .5, .5, .5],
   on: true,
-  webVersionBoardPreset: 'amp'
+  webVersionBoardPreset,
 }
 
 const reducer = (

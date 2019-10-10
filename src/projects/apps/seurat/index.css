@@ -33,6 +33,7 @@ body {
 }
 
 .dot {
+  position: relative;
   float: left;
   display: block;
   width: 50px;
@@ -40,17 +41,34 @@ body {
   margin: 4px;
   border-radius: 50px;
   user-select: none;
+  overflow: hidden;
+}
+
+.dot::after {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: " ";
+  opacity: 0;
+  transition: all 150ms;
+}
+
+.dot.dot--flashing::after {
+  opacity: 1;
 }
 
 .dot.dot--group-empty { background: #111 }
-.dot.dot--group-white { background: #fff }
-.dot.dot--group-red { background: red }
-.dot.dot--group-yellow { background: yellow }
-.dot.dot--group-blue { background: blue }
-
-.dot.dot--flashing {
-  background: pink;
-}
+.dot.dot--group-white { background: #b8b8b8 }
+.dot.dot--group-white.dot.dot--flashing::after { background: #fff }
+.dot.dot--group-red { background: #8f0d0d }
+.dot.dot--group-red.dot.dot--flashing::after { background: #ff0000 }
+.dot.dot--group-yellow { background: #aaaa03 }
+.dot.dot--group-yellow.dot.dot--flashing::after { background: #ffff00 }
+.dot.dot--group-blue { background: #16168a }
+.dot.dot--group-blue.dot.dot--flashing::after { background: #0000ff }
 
 .palette {
   position: absolute;
@@ -66,7 +84,7 @@ body {
   width: 165px;
   height: 120px;
   margin-bottom: 10px;
-  background: #141414;
+  background: #222222;
   border-radius: 5px;
 }
 
@@ -158,12 +176,11 @@ body {
 
 .control-panel {
   position: absolute;
-  bottom: 20px;
-  left: 20px;
-  width: 760px;
+  bottom: 0;
+  left: 10px;
+  width: 775px;
   height: 40px;
   padding: 5px;
-  background: #0a0a0a;
   border-radius: 5px;
   -webkit-app-region: no-drag;
 }
@@ -187,15 +204,20 @@ body {
 .control-panel__button {
   width: 35px;
   height: 35px;
-  margin: 2.5px 5px 0 5px;
+  margin: 2.5px 2px 0 2px;
   border-radius: 5px;
   border: none;
   background: #141414;
+  background: transparent;
 }
 
 .control-panel__button:focus,
 .control-panel__button:active {
   outline: none;
+}
+
+.control-panel__button:first-child {
+  margin-left: 5px;
 }
 
 .control-panel__button:last-child {
@@ -259,4 +281,9 @@ body {
 
 .tmp-icon--on-off {
   background-image: url(./assets/tmp-icons/on-off.png);
+}
+
+.selected .tmp-icon--on-off {
+  filter: none;
+  background-image: url(./assets/tmp-icons/on-off--green.png);
 }
