@@ -1,11 +1,9 @@
-import React, { ReactElement, useEffect, useRef, SyntheticEvent } from 'react'
+import React, { ReactElement, useEffect, useRef } from 'react'
 
 interface IProps {
   content: string
   editable: boolean
-  // onChange: (evt: SyntheticEvent<HTMLTextAreaElement>) => void
-  // onChange: (content: string) => void
-  onChange: (foo: any) => void
+  onChange: (content: string) => void
 }
 
 function TextArea({ content, editable, onChange }: IProps): ReactElement {
@@ -22,15 +20,9 @@ function TextArea({ content, editable, onChange }: IProps): ReactElement {
       <div
         className="text-area"
         contentEditable={editable}
-        // dangerouslySetInnerHTML={{__html: content}}
+        dangerouslySetInnerHTML={{__html: content}}
         ref={el}
       />
-      <textarea
-        className="text-area"
-        onChange={onChange}
-      >
-        {/* {content} */}
-      </textarea>
     </>
   )
 }
