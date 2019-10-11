@@ -24,4 +24,12 @@ describe('Drawer', function () {
   it('shows text', async function () {
 
   })
+
+  it('applies formatting', async function () {
+
+  })
+
+  it('applies multiple formattings to overlapping ranges', async function () {
+
+  })
 })
