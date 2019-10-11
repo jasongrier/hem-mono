@@ -1,7 +1,20 @@
 import { AnyAction } from 'redux'
 
-export interface IState {
+type Theme = 'baker-miller' | 'grape-soda' | 'lakritz'
 
+export interface ITimelineFrame {
+  content: string
+  lineNumber: number
+  timestamp: string
+  draftMarker: string
+}
+
+export interface IState {
+  focusMode: boolean
+  theme: Theme
+  timeline: ITimelineFrame[]
+  timelineIndex: number
+  title: string
 }
 
 export const SOME_ACTION = 'SOME_ACTION'
