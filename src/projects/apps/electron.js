@@ -34,7 +34,7 @@ app.on('ready', () => {
     mainWindow = null
   })
 
-  projectConfig.WORKERS.forEach(workerName => {
+  projectConfig.WORKERS && projectConfig.WORKERS.forEach(workerName => {
     const workerPath = join(process.env.PROJECT_PATH, 'workers', workerName + '.worker.js')
     const workerProcess = fork(workerPath)
 
