@@ -1,16 +1,10 @@
 import React, { ReactElement } from 'react'
-import TextArea from './TextArea'
+import Editor from './Editor'
 
 function App(): ReactElement {
   return (
     <div className="hem-application">
-      <TextArea
-        content="foo"
-        editable={true}
-        onChange={(content: string) => {
-          console.log(content)
-        }}
-      />
+      <Editor />
     </div>
   )
 }

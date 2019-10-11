@@ -57,6 +57,7 @@ export interface IState {
 export const INSERT_LINE = 'INSERT_LINE'
 export const REMOVE_LINE = 'REMOVE_LINE'
 export const UPDATE_LINE = 'UPDATE_LINE'
+export const TMP_UPDATE_CONTENT = 'TMP_UPDATE_CONTENT'
 
 export interface IInsertLine extends AnyAction {
   type: typeof INSERT_LINE
@@ -73,7 +74,13 @@ export interface IUpdateLine extends AnyAction {
   payload: { content: string, selection: ISelection, formatting: Formatting }
 }
 
+export interface ITmpUpdateContent extends AnyAction {
+  type: typeof TMP_UPDATE_CONTENT
+  payload: string
+}
+
 export type Action =
   IInsertLine
   | IRemoveLine
   | IUpdateLine
+  | ITmpUpdateContent
