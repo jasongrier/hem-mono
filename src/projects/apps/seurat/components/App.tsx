@@ -6,7 +6,7 @@ import Canvas from './Canvas'
 import Palette from './Palette'
 import ControlPanel from './ControlPanel'
 import { useClock } from '../hooks'
-import { flashDots, webVersionSamplers } from '../helpers'
+import { flashDots, webVersionSamplers } from '../functions'
 import { CursorGroup, WebVersionPreset } from '../store/types'
 
 const samplers = webVersionSamplers()

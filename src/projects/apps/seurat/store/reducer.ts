@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux'
-import { webVersionBoardSizeFromPreset, newCanvas } from '../helpers'
+import { webVersionBoardSizeFromPreset, newCanvas } from '../functions'
 import {
   CursorGroup,
 

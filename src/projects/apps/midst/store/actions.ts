@@ -4,14 +4,26 @@ import {
   REMOVE_LINE,
   UPDATE_LINE,
 
-  TMP_UPDATE_CONTENT,
+  IRange,
 } from './types'
 
-const tmpUpdateContent = (content: string): AnyAction => ({
-  type: TMP_UPDATE_CONTENT,
-  payload: content,
+const insertLine = (after: number): AnyAction => ({
+  type: INSERT_LINE,
+  payload: after,
+})
+
+const removeLine = (number: number): AnyAction => ({
+  type: REMOVE_LINE,
+  payload: number,
+})
+
+const updateLine = (content: string, number: number, ranges: IRange[] | null): AnyAction => ({
+  type: UPDATE_LINE,
+  payload: { content, number, ranges },
 })
 
 export {
-  tmpUpdateContent,
+  insertLine,
+  removeLine,
+  updateLine,
 }

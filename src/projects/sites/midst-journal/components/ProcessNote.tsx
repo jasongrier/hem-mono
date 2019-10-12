@@ -64,9 +64,9 @@ function ProcessNote({ match }: IProps): ReactElement {
         x
       </div>
 
-      <div 
+      <div
         className="process-note__content"
-        dangerouslySetInnerHTML={{__html: poem && poem.processNote}}
+        dangerouslySetInnerHTML={{__html: poem ? poem.processNote : ''}}
       />
     </div>
   )

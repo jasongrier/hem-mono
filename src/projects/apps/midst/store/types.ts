@@ -9,10 +9,10 @@ type Formatting = 'bold' | 'italic' | 'sans-serif' | 'serif'
  * the same value, which is simply the cursor position.
  */
 export interface ISelection {
-  startLine: number
-  startPos: number
   endLine: number
-  endPos: number
+  endPosition: number
+  startLine: number
+  startPosition: number
 }
 
 /**
@@ -32,7 +32,6 @@ export interface IRange {
  */
 export interface ILine {
   content: string
-  number: number
   ranges: IRange[]
 }
 
@@ -40,16 +39,17 @@ export interface ILine {
  * A captured state of the document at some moment in time.
  */
 export interface ITimelineFrame {
+  draftMarker: string | null
   lines: ILine[]
-  draftMarker: string
-  timestamp: string
+  timestamp: number
 }
 
 export interface IState {
+  bufferedCurrentContent: string
   currentSelection: ISelection
   focusMode: boolean
   theme: Theme
-  timeline: ILine[]
+  timeline: ITimelineFrame[]
   timelineIndex: number
   title: string
 }
@@ -57,11 +57,10 @@ export interface IState {
 export const INSERT_LINE = 'INSERT_LINE'
 export const REMOVE_LINE = 'REMOVE_LINE'
 export const UPDATE_LINE = 'UPDATE_LINE'
-export const TMP_UPDATE_CONTENT = 'TMP_UPDATE_CONTENT'
 
 export interface IInsertLine extends AnyAction {
   type: typeof INSERT_LINE
-  payload: null
+  payload: number
 }
 
 export interface IRemoveLine extends AnyAction {
@@ -71,16 +70,10 @@ export interface IRemoveLine extends AnyAction {
 
 export interface IUpdateLine extends AnyAction {
   type: typeof UPDATE_LINE
-  payload: { content: string, selection: ISelection, formatting: Formatting }
-}
-
-export interface ITmpUpdateContent extends AnyAction {
-  type: typeof TMP_UPDATE_CONTENT
-  payload: string
+  payload: { content: string, formatting: IRange[] }
 }
 
 export type Action =
   IInsertLine
   | IRemoveLine
   | IUpdateLine
-  | ITmpUpdateContent
