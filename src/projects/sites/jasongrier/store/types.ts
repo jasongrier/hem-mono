@@ -1,14 +1,14 @@
-import { ILink } from '../../../../common/components'
-import { ITaggedSubject } from '../../../../common/packages/tag'
-
-export interface IArticle extends ITaggedSubject {
-  slug: string
-  title: string
-  text: string
-  links: ILink[]
-  description: string
-}
+import { AnyAction } from 'redux'
 
 export interface IState {
-  articles: IArticle[]
+  foo: boolean
 }
+
+export const SOME_ACTION = 'SOME_ACTION'
+
+export interface ISomeAction extends AnyAction {
+  type: typeof SOME_ACTION
+  payload: boolean
+}
+
+export type Action = ISomeAction

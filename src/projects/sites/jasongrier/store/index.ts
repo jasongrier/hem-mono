@@ -11,6 +11,4 @@ const store = createStore(
 
 export type RootState = ReturnType<typeof rootReducer>
 
-export { IArticle } from './types'
-
 export default store

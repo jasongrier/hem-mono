@@ -1,16 +1,22 @@
 import { AnyAction } from 'redux'
-import { IState } from './types'
-import articles from '../data'
+import {
+  SOME_ACTION,
+
+  IState,
+} from './types'
 
 const initialState: IState = {
-  articles,
+  foo: false
 }
 
 const reducer = (
   state: IState = initialState,
-  { type }: AnyAction,
+  { type, payload }: AnyAction,
 ): IState => {
   switch (type) {
+    case SOME_ACTION:
+      return state
+
     default:
       return state
   }
