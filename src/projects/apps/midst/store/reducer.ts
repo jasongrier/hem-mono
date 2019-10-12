@@ -1,23 +1,30 @@
 import { AnyAction } from 'redux'
 import {
-  TMP_UPDATE_CONTENT,
+  INSERT_LINE,
+  REMOVE_LINE,
+  UPDATE_LINE,
 
   IState,
+  ITimelineFrame,
 } from './types'
 
 const initialState: IState = {
+  bufferedCurrentContent: '',
   currentSelection: {
     startLine: 0,
-    startPos: 0,
+    startPosition: 0,
     endLine: 0,
-    endPos: 0,
+    endPosition: 0,
   },
   focusMode: false,
   theme: 'baker-miller',
   timeline: [{
-    content: '',
-    number: 0,
-    ranges: [],
+    lines: [{
+      content: '',
+      ranges: [],
+    }],
+    draftMarker: null,
+    timestamp: 0,
   }],
   timelineIndex: 0,
   title: '',
@@ -27,17 +34,17 @@ const reducer = (
   state: IState = initialState,
   { type, payload }: AnyAction,
 ): IState => {
-  let newTimeline
+  let newTimeline: ITimelineFrame[]
 
   switch (type) {
-    case TMP_UPDATE_CONTENT:
-      newTimeline = ([] as any).concat(state.timeline)
-      newTimeline[state.timelineIndex] = {
-        content: payload,
-        number: 0,
-        ranges: [],
-      }
-      return { ...state, timeline: newTimeline }
+    case INSERT_LINE:
+      return state
+
+    case REMOVE_LINE:
+      return state
+
+    case UPDATE_LINE:
+      return state
 
     default:
       return state

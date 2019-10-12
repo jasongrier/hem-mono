@@ -1,25 +1,25 @@
 import React, { ReactElement } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store'
-import { tmpUpdateContent } from '../store/actions'
+import { editorAction } from '../functions/text'
 import TextArea from './TextArea'
 
 function App(): ReactElement {
-  const { currentFrame } = useSelector((state: RootState) => ({
+  const { bufferedCurrentContent, currentSelection, currentFrame } = useSelector((state: RootState) => ({
+    bufferedCurrentContent: state.app.bufferedCurrentContent,
+    currentSelection: state.app.currentSelection,
     currentFrame: state.app.timeline[state.app.timelineIndex],
   }))
 
   const dispatch = useDispatch()
 
-  console.log(currentFrame)
-
   return (
     <div className="editor">
       <TextArea
-        content={currentFrame.content}
+        content={bufferedCurrentContent}
         editable={true}
-        onChange={(content: string) => {
-          dispatch(tmpUpdateContent(content))
+        onKeyDown={(evt: any) => {
+          dispatch(editorAction(currentFrame.lines, currentSelection, evt.keyCode))
         }}
       />
     </div>
