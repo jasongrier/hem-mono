@@ -7,9 +7,9 @@ import {
   IRange,
 } from './types'
 
-const insertLine = (after: number): AnyAction => ({
+const insertLine = (after: number, content: string): AnyAction => ({
   type: INSERT_LINE,
-  payload: after,
+  payload: { after, content },
 })
 
 const removeLine = (number: number): AnyAction => ({

@@ -60,7 +60,7 @@ export const UPDATE_LINE = 'UPDATE_LINE'
 
 export interface IInsertLine extends AnyAction {
   type: typeof INSERT_LINE
-  payload: number
+  payload: { content: string, after: number }
 }
 
 export interface IRemoveLine extends AnyAction {
