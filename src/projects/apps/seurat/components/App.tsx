@@ -24,7 +24,6 @@ let webVersionBoardPresetProxy: WebVersionPreset
 
 export const colorClockDividers = [
   new ClockDivider({
-    name: 'foo',
     ticksPerBeat: 2,
   }),
 
@@ -108,7 +107,7 @@ function App(): ReactElement {
     if (notesToFlash.length && proxyOn) {
       flashDots(notesToFlash)
 
-      samplers[webVersionBoardPresetProxy].triggerAttack('C4')
+      samplers[webVersionBoardPresetProxy].play(1)
 
       // samplers[webVersionBoardPresetProxy].play(dotIndicesToWesternNotes(notesToFlash))
     }

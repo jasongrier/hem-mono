@@ -1,35 +1,15 @@
-import Tone from 'tone'
+import createWebVersionSampler from './create-web-version-sampler'
 const testTone = require('../assets/sounds/Sine-1000Hz-300ms.mp3')
 
 function webVersionSamplers() {
   return {
-    amp: new Tone.Sampler({
-      'C4': testTone,
-    }).toMaster(),
-
-    sax: new Tone.Sampler({
-      'C4': testTone,
-    }).toMaster(),
-
-    turntable: new Tone.Sampler({
-      'C4': testTone,
-    }).toMaster(),
-
-    drum: new Tone.Sampler({
-      'C4': testTone,
-    }).toMaster(),
-
-    bells: new Tone.Sampler({
-      'C4': testTone,
-    }).toMaster(),
-
-    piano: new Tone.Sampler({
-      'C4': testTone,
-    }).toMaster(),
-
-    guitars: new Tone.Sampler({
-      'C4': testTone,
-    }).toMaster(),
+    amp: createWebVersionSampler([testTone]),
+    sax: createWebVersionSampler([testTone]),
+    turntable: createWebVersionSampler([testTone]),
+    drum: createWebVersionSampler([testTone]),
+    bells: createWebVersionSampler([testTone]),
+    piano: createWebVersionSampler([testTone]),
+    guitars: createWebVersionSampler([testTone]),
   }
 }
 
