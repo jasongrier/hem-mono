@@ -6,6 +6,10 @@ import { splitDomString, spliceDomString } from '.'
 /**
  * Determine which editor action to dispatch based on the current
  * cursor position and which key was pressed.
+ *
+ * @param lines
+ * @param selection
+ * @param keyCode
  */
 function editorActions(lines: ILine[], { startLine, startPosition, endLine, endPosition }: ISelection, keyCode: number): AnyAction[] {
   // Work immutably...

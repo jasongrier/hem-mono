@@ -107,6 +107,9 @@ function App(): ReactElement {
 
     if (notesToFlash.length && proxyOn) {
       flashDots(notesToFlash)
+
+      samplers[webVersionBoardPresetProxy].triggerAttack('C4')
+
       // samplers[webVersionBoardPresetProxy].play(dotIndicesToWesternNotes(notesToFlash))
     }
   })
