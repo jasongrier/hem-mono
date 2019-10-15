@@ -8,7 +8,7 @@ module.exports = {
   VARIANTS: {
     palletteType: 2,
   },
-  SAMPLER_TYPE: 'player',
+  SAMPLER_TYPE: 'sampler',
   WORKERS: [
     // 'node-clock',
   ],

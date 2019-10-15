@@ -1,5 +1,5 @@
 import createWebVersionSampler from './create-web-version-sampler'
-const testTone = require('../assets/sounds/Sine-1000Hz-300ms.mp3')
+const testTone = require('../assets/sounds/test-tone.mp3')
 
 function webVersionSamplers() {
   return {
