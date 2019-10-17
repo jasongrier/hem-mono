@@ -25,6 +25,15 @@ function editorActions(lines: ILine[], { startLine, startPosition, endLine, endP
     const currentPosition = startPosition
     const currentLineContent = lines[currentLineNumber].content
 
+    if ( // Ignore arrow keys
+      keyCode === 37
+      || keyCode === 38
+      || keyCode === 39
+      || keyCode === 40
+    ) {
+      return []
+    }
+
     if (keyCode === 13 && currentPosition === currentLineContent.length - 1) {
       // Pressed enter at the end of the line, just append a new blank line
       actions.push(insertLine(currentLineNumber, ''))

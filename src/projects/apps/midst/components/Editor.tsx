@@ -19,7 +19,9 @@ function App(): ReactElement {
         content={bufferedCurrentContent}
         editable={true}
         onKeyDown={(evt: any) => {
-          editorActions(currentFrame.lines, currentSelection, evt.keyCode).map(dispatch)
+          editorActions(currentFrame.lines, currentSelection, evt.keyCode).map(
+            (action) => console.log(action.type, action.payload)
+          )
         }}
       />
     </div>

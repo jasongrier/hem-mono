@@ -1,5 +1,7 @@
 import { WebVersionPreset, BoardSize } from '../store/types'
 
+// TODO: Unify this with `web-version-samplers` and maybe use a JSON definition file
+// rather than hardcoding it.
 function webVersionBoardSizeFromPreset(type: WebVersionPreset): BoardSize {
   switch (type) {
     case 'amp':
@@ -9,8 +11,6 @@ function webVersionBoardSizeFromPreset(type: WebVersionPreset): BoardSize {
     case 'drum':
       return 100
     case 'guitars':
-      return 100
-    case 'mic':
       return 100
     case 'piano':
       return 100

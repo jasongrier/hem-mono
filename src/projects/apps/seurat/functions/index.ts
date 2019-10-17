@@ -1,5 +1,5 @@
 export { flashDot } from './flash-dots'
 export { flashDots } from './flash-dots'
 export { default as newCanvas } from './new-canvas'
-export { default as webVersionBoardSizeFromPreset } from './web-version-canvas-size-from-preset'
+export { default as webVersionCanvasSizeFromPreset } from './web-version-canvas-size-from-preset'
 export { default as webVersionSamplers } from './web-version-samplers'
