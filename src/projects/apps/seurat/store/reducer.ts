@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux'
-import { webVersionBoardSizeFromPreset, newCanvas } from '../functions'
+import { webVersionCanvasSizeFromPreset, newCanvas } from '../functions'
 import {
   CursorGroup,
 
@@ -19,7 +19,7 @@ const webVersionBoardPreset = 'bells'
 
 const initialState: IState = {
   canvases: [
-    newCanvas(webVersionBoardSizeFromPreset(webVersionBoardPreset)),
+    newCanvas(webVersionCanvasSizeFromPreset(webVersionBoardPreset)),
   ],
   currentBoard: 0,
   cursorGroup: 'white',
