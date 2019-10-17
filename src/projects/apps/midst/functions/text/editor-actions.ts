@@ -11,11 +11,15 @@ import { splitDomString, spliceDomString } from '.'
  * @param selection
  * @param keyCode
  */
-function editorActions(lines: ILine[], { startLine, startPosition, endLine, endPosition }: ISelection, keyCode: number): AnyAction[] {
-  // Work immutably...
+function editorActions(
+  lines: ILine[],
+  { startLine, startPosition, endLine, endPosition }: ISelection,
+  keyCode: number
+): AnyAction[] {
+
   lines = [].concat(lines)
 
-  let actions = []
+  const actions = []
 
   if (
     startLine === endLine
@@ -24,6 +28,7 @@ function editorActions(lines: ILine[], { startLine, startPosition, endLine, endP
     const currentLineNumber = startLine
     const currentPosition = startPosition
     const currentLineContent = lines[currentLineNumber].content
+    const currentLineRanges = lines[currentLineNumber].ranges
 
     if ( // Ignore arrow keys
       keyCode === 37
@@ -31,33 +36,40 @@ function editorActions(lines: ILine[], { startLine, startPosition, endLine, endP
       || keyCode === 39
       || keyCode === 40
     ) {
-      return []
+      return actions
     }
 
     if (keyCode === 13 && currentPosition === currentLineContent.length - 1) {
       // Pressed enter at the end of the line, just append a new blank line
-      actions.push(insertLine(currentLineNumber, ''))
+      const selection = {
+        startLine: currentLineNumber + 1,
+        startPosition: 0,
+        endLine: currentLineNumber + 1,
+        endPosition: 0,
+      }
+
+      actions.push(insertLine(selection, currentLineRanges, ''))
     }
 
     else if (keyCode === 13 && startPosition === 0) {
       // Pressed enter at the beginning of the line, prepend a new blank line
-      actions.push(updateLine(
-        '',
-        currentLineNumber,
-        null
-      ))
-      actions.push(insertLine(currentLineNumber, currentLineContent))
+      // actions.push(updateLine(
+      //   '',
+      //   currentLineNumber,
+      //   null
+      // ))
+      // actions.push(insertLine(currentLineNumber, currentLineContent))
     }
 
     else if (keyCode === 13) {
       // Pressed enter in the middle of the line, split and redistribute the content
-      const content = splitDomString(currentLineContent, currentPosition)
-      actions.push(updateLine(
-        content[0],
-        currentLineNumber,
-        null
-      ))
-      actions.push(insertLine(currentLineNumber, content[1]))
+      // const content = splitDomString(currentLineContent, currentPosition)
+      // actions.push(updateLine(
+      //   content[0],
+      //   currentLineNumber,
+      //   null
+      // ))
+      // actions.push(insertLine(currentLineNumber, content[1]))
     }
 
     else if (keyCode === 8 && startPosition === 0) {

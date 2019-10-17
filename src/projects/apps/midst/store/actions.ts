@@ -5,11 +5,12 @@ import {
   UPDATE_LINE,
 
   IRange,
+  ISelection,
 } from './types'
 
-const insertLine = (after: number, content: string): AnyAction => ({
+const insertLine = (selection: ISelection, ranges: IRange[], content: string): AnyAction => ({
   type: INSERT_LINE,
-  payload: { after, content },
+  payload: { selection, ranges, content },
 })
 
 const removeLine = (number: number): AnyAction => ({

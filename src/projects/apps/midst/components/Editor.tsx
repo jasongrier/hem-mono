@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store'
-import { editorActions } from '../functions/text'
+import { editorActions, bufferEditorActions } from '../functions/text'
 import TextArea from './TextArea'
 
 function App(): ReactElement {
@@ -19,9 +19,7 @@ function App(): ReactElement {
         content={bufferedCurrentContent}
         editable={true}
         onKeyDown={(evt: any) => {
-          editorActions(currentFrame.lines, currentSelection, evt.keyCode).map(
-            (action) => console.log(action.type, action.payload)
-          )
+          bufferEditorActions(editorActions(currentFrame.lines, currentSelection, evt.keyCode).map(dispatch))
         }}
       />
     </div>
