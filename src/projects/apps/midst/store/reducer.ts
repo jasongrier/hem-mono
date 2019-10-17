@@ -5,6 +5,8 @@ import {
   UPDATE_LINE,
 
   IState,
+
+  ISelection,
   ITimelineFrame,
 } from './types'
 
@@ -35,10 +37,11 @@ const reducer = (
   { type, payload }: AnyAction,
 ): IState => {
   let newTimeline: ITimelineFrame[]
+  let newSelection: ISelection
 
   switch (type) {
     case INSERT_LINE:
-      return state
+      return { ...state, currentSelection: payload.selection }
 
     case REMOVE_LINE:
       return state

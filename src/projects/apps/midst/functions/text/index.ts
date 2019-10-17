@@ -1,3 +1,4 @@
+export { default as bufferEditorActions } from './buffer-editor-actions'
 export { default as editorActions } from './editor-actions'
 export { default as linesToDom } from './lines-to-dom'
 export { default as selectionToRanges } from './selection-to-ranges'
