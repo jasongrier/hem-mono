@@ -28,6 +28,7 @@
     "@types/react-redux": "^7.1.0",
     "@types/react-router-dom": "^4.3.4",
     "@types/redux-thunk": "^2.1.0",
+    "@types/uuid": "^3.4.5",
     "@types/voca": "^1.4.0",
     "jquery": "^3.4.1",
     "lodash": "^4.17.11",
@@ -39,8 +40,10 @@
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
     "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
     "tone": "^13.8.25",
+    "uuid": "^3.3.3",
     "voca": "^1.4.0"
   },
   "devDependencies": {

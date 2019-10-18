@@ -54,7 +54,7 @@ const reducer = (
     case SET_WEB_VERSION_PRESET:
       const { canvases } = state
       newCanvases = ([] as ICanvas[]).concat(canvases)
-      newCanvases[0] = newCanvas(webVersionBoardSizeFromPreset(payload)) // TODO: Support multiple canvases
+      newCanvases[0] = newCanvas(webVersionCanvasSizeFromPreset(payload)) // TODO: Support multiple canvases
       return { ...state, canvases: newCanvases, webVersionBoardPreset: payload }
 
     case TOGGLE_ON:
