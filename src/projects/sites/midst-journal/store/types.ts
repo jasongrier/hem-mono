@@ -5,6 +5,7 @@ export interface IPoem {
   title: string
   author: string
   processNote: string
+  hidden: boolean
 }
 
 export interface IState {
