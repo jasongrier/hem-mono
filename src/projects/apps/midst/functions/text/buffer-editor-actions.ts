@@ -14,8 +14,8 @@ interface IBufferedAction {
 let actionBuffer: IBufferedAction[] = []
 let flushedActionIds: string[] = []
 let idleTimer: number
-let idleTimeLimit = 1000
-let lastRun: number
+let idleTimeLimit = 250
+let lastRun: number = 0
 let maxBufferSize = 100 // TODO: Tweak this. (Can it be 1000?!)
 
 /**
@@ -30,18 +30,16 @@ function bufferEditorActions(actions: AnyAction[]) {
   clearTimeout(idleTimer)
 
   actionBuffer = actionBuffer.concat(actions.map(action => ({
-    uuid: uuid(),
+    uuid: uuid(), // Use uuid's rather than `Array.push/Array.slice`, in case typing has occurred during replay.
     action,
   })))
-
-  console.log(actions.length)
 
   if (actionBuffer.length > maxBufferSize) { // It's an emergency, just replay now.
     flushActionBuffer()
   }
 
   else { // Wait till it's convenient.
-    setTimeout(() => { // TODO: See if lodash.debounce is more crispy.
+    idleTimer = window.setTimeout(() => { // TODO: See if lodash.debounce is more crispy.
       if (moment.now() > lastRun + 1000) {
         flushActionBuffer()
       }
@@ -61,16 +59,15 @@ function bufferEditorActions(actions: AnyAction[]) {
  */
 function flushActionBuffer() {
   // 1) Immutably grab the actions to be replayed
-  const outputBuffer = JSON.parse(JSON.stringify(actionBuffer))
+  const outputBuffer: IBufferedAction[] = JSON.parse(JSON.stringify(actionBuffer))
 
   // 2) Keep track of which actions got replayed
   flushedActionIds = Object.keys(outputBuffer)
 
   // 3) Replay the buffer
-  outputBuffer.map(store.dispatch)
+  outputBuffer.map(bufferedAction => store.dispatch(bufferedAction.action))
 
   // 4) Remove the replayed actions from the buffer.
-  // (We use uuid's rather than `Array.slice` in case typing has occurred during replay.)
   actionBuffer = actionBuffer.filter(bufferedAction =>
     flushedActionIds.indexOf(bufferedAction.uuid) === -1
   )

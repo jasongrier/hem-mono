@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { RootState } from '../store'
 import { editorActions, bufferEditorActions } from '../functions/text'
 import TextArea from './TextArea'
@@ -11,16 +11,14 @@ function App(): ReactElement {
     currentFrame: state.app.timeline[state.app.timelineIndex],
   }))
 
-  const dispatch = useDispatch()
-
   return (
     <div className="editor">
       <TextArea
         content={bufferedCurrentContent}
         editable={true}
-        onKeyDown={(evt: any) => {
-          bufferEditorActions(editorActions(currentFrame.lines, currentSelection, evt.keyCode).map(dispatch))
-        }}
+        onKeyDown={(evt: any) =>
+          bufferEditorActions(editorActions(currentFrame.lines, currentSelection, evt.keyCode))
+        }
       />
     </div>
   )
