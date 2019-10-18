@@ -11,32 +11,38 @@ const initialState: IState = {
   processNoteOpen: false,
   poems: [
     {
-      slug: 'demo',
+      slug: 'demo-1',
+      hidden: false,
       title: '🌱',
       author: 'Issue One launches soon!',
       processNote: 'string',
     }, {
-      slug: 'demo',
+      slug: 'demo-2',
+      hidden: false,
       title: ' ',
       author: ' ',
       processNote: 'string',
   }, {
-      slug: 'demo',
+      slug: 'demo-3',
+      hidden: false,
       title: ' ',
       author: ' ',
       processNote: 'string',
   }, {
-      slug: 'demo',
+      slug: 'demo-4',
+      hidden: false,
       title: ' ',
       author: ' ',
       processNote: 'string',
   }, {
-      slug: 'demo',
-      title: ' ',
-      author: ' ',
-      processNote: 'string',
+      slug: 'untitled-hedgie',
+      hidden: true,
+      title: 'Untitled',
+      author: 'Hedgie Choi',
+      processNote: 'Lorem ipsum dolor sit amet',
   }, {
       slug: 'prosperity',
+      hidden: false,
       title: 'Prosperity (Demonstration Poem)',
       author: 'Annelyse Gelman',
       processNote: `
@@ -50,7 +56,7 @@ const initialState: IState = {
       About the Author
       </h1>
       <p>
-      Annelyse Gelman founded and directs Midst. Her work has appeared in <i>The New Yorker</i>, <i>BOMB Magazine</i>, <i>the PEN Poetry Series</i>, and elsewhere. 
+      Annelyse Gelman founded and directs Midst. Her work has appeared in <i>The New Yorker</i>, <i>BOMB Magazine</i>, <i>the PEN Poetry Series</i>, and elsewhere.
       She is the author of <i><a href="http://www.amazon.com/Everyone-I-Love-Stranger-Someone/dp/193891242X">Everyone I Love Is a Stranger to Someone</a></i>. Find her at <a href="http://www.annelysegelman.com">www.annelysegelman.com</a>.
       </p>
       <p>

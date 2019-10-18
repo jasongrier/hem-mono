@@ -7,7 +7,7 @@ import { setMobileNavOpen } from '../store/actions'
 
 function Read(): ReactElement {
   const { poems } = useSelector((state: RootState) => ({
-    poems: state.app.poems,
+    poems: state.app.poems.filter(poem => !poem.hidden),
   }))
 
   const dispatch = useDispatch()
