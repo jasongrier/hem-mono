@@ -53,43 +53,49 @@ function editorActions(
 
     else if (keyCode === 13 && startPosition === 0) {
       // Pressed enter at the beginning of the line, prepend a new blank line
-      // actions.push(updateLine(
-      //   '',
-      //   currentLineNumber,
-      //   null
-      // ))
-      // actions.push(insertLine(currentLineNumber, currentLineContent))
+      const selection = {
+        startLine: currentLineNumber + 1,
+        startPosition: 0,
+        endLine: currentLineNumber + 1,
+        endPosition: 0,
+      }
+
+      actions.push(updateLine(selection, currentLineRanges, ''))
+      actions.push(insertLine(selection, currentLineRanges, currentLineContent))
     }
 
     else if (keyCode === 13) {
       // Pressed enter in the middle of the line, split and redistribute the content
-      // const content = splitDomString(currentLineContent, currentPosition)
-      // actions.push(updateLine(
-      //   content[0],
-      //   currentLineNumber,
-      //   null
-      // ))
-      // actions.push(insertLine(currentLineNumber, content[1]))
+      const content = splitDomString(currentLineContent, currentPosition)
+      const selection = {
+        startLine: currentLineNumber + 1,
+        startPosition: 0,
+        endLine: currentLineNumber + 1,
+        endPosition: 0,
+      }
+
+      actions.push(updateLine(selection, currentLineRanges, content[0]))
+      actions.push(insertLine(selection, currentLineRanges, content[1]))
     }
 
     else if (keyCode === 8 && startPosition === 0) {
       // Pressed delete at beginning of a line, move the current line
       // content on to the end of the previous line
-      actions.push(removeLine(currentLineNumber))
-      actions.push(actions.push(updateLine(
-        lines[currentLineNumber - 1].content + currentLineContent,
-        currentLineNumber - 1,
-        null
-      )))
+      // actions.push(removeLine(currentLineNumber))
+      // actions.push(actions.push(updateLine(
+      //   lines[currentLineNumber - 1].content + currentLineContent,
+      //   currentLineNumber - 1,
+      //   null
+      // )))
     }
 
     else if (keyCode === 8) {
       // Pressed delete in the middle or end of a line, just delete the previous character
-      actions.push(updateLine(
-        spliceDomString(currentPosition, currentLineContent),
-        currentLineNumber,
-        null
-      ))
+      // actions.push(updateLine(
+      //   spliceDomString(currentPosition, currentLineContent),
+      //   currentLineNumber,
+      //   null
+      // ))
     }
 
     else {
@@ -99,11 +105,11 @@ function editorActions(
 
       if (char) {
         // It's text, append it
-        actions.push(updateLine(
-          currentLineContent + char,
-          currentLineNumber,
-          null
-        ))
+        // actions.push(updateLine(
+        //   currentLineContent + char,
+        //   currentLineNumber,
+        //   null
+        // ))
       }
     }
   }

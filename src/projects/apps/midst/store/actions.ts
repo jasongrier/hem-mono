@@ -18,9 +18,9 @@ const removeLine = (number: number): AnyAction => ({
   payload: number,
 })
 
-const updateLine = (content: string, number: number, ranges: IRange[] | null): AnyAction => ({
+const updateLine = (selection: ISelection, ranges: IRange[], content: string): AnyAction => ({
   type: UPDATE_LINE,
-  payload: { content, number, ranges },
+  payload: { selection, ranges, content },
 })
 
 export {
