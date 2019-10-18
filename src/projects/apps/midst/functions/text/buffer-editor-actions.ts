@@ -34,6 +34,8 @@ function bufferEditorActions(actions: AnyAction[]) {
     action,
   })))
 
+  console.log(actions.length)
+
   if (actionBuffer.length > maxBufferSize) { // It's an emergency, just replay now.
     flushActionBuffer()
   }

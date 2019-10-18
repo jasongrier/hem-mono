@@ -1,7 +1,9 @@
 import { AnyAction } from 'redux'
 import { ILine, ISelection } from '../../store/types'
 import { insertLine, removeLine, updateLine } from '../../store/actions'
-import { splitDomString, spliceDomString } from '.'
+import splitDomString from './split-dom-string'
+import spliceDomString from './splice-dom-string'
+import { advanceLineAndReturn, changePosition } from './selection-transformations'
 
 /**
  * Determine which editor action to dispatch based on the current
@@ -17,9 +19,9 @@ function editorActions(
   keyCode: number
 ): AnyAction[] {
 
-  lines = [].concat(lines)
+  lines = ([] as any).concat(lines)
 
-  const actions = []
+  const actions: AnyAction[] = []
 
   if (
     startLine === endLine
@@ -41,25 +43,13 @@ function editorActions(
 
     if (keyCode === 13 && currentPosition === currentLineContent.length - 1) {
       // Pressed enter at the end of the line, just append a new blank line
-      const selection = {
-        startLine: currentLineNumber + 1,
-        startPosition: 0,
-        endLine: currentLineNumber + 1,
-        endPosition: 0,
-      }
-
+      const selection = advanceLineAndReturn(currentLineNumber)
       actions.push(insertLine(selection, currentLineRanges, ''))
     }
 
     else if (keyCode === 13 && startPosition === 0) {
       // Pressed enter at the beginning of the line, prepend a new blank line
-      const selection = {
-        startLine: currentLineNumber + 1,
-        startPosition: 0,
-        endLine: currentLineNumber + 1,
-        endPosition: 0,
-      }
-
+      const selection = advanceLineAndReturn(currentLineNumber)
       actions.push(updateLine(selection, currentLineRanges, ''))
       actions.push(insertLine(selection, currentLineRanges, currentLineContent))
     }
@@ -67,13 +57,7 @@ function editorActions(
     else if (keyCode === 13) {
       // Pressed enter in the middle of the line, split and redistribute the content
       const content = splitDomString(currentLineContent, currentPosition)
-      const selection = {
-        startLine: currentLineNumber + 1,
-        startPosition: 0,
-        endLine: currentLineNumber + 1,
-        endPosition: 0,
-      }
-
+      const selection = advanceLineAndReturn(currentLineNumber)
       actions.push(updateLine(selection, currentLineRanges, content[0]))
       actions.push(insertLine(selection, currentLineRanges, content[1]))
     }
@@ -105,11 +89,8 @@ function editorActions(
 
       if (char) {
         // It's text, append it
-        // actions.push(updateLine(
-        //   currentLineContent + char,
-        //   currentLineNumber,
-        //   null
-        // ))
+        const selection = changePosition(currentLineNumber, currentPosition, 'forward')
+        actions.push(updateLine(selection, currentLineRanges, currentLineContent + char))
       }
     }
   }
