@@ -11,11 +11,12 @@ interface IProps {
 }
 
 function Dot({ dotNumber }: IProps): ReactElement {
-  const { cursorGroup, cursorIsDragging, cursorMode, myCursorGroup } = useSelector((state: RootState) => ({
+  const { cursorGroup, cursorIsDragging, cursorMode, myCursorGroup, mySound } = useSelector((state: RootState) => ({
     cursorGroup: state.app.cursorGroup,
     cursorIsDragging: state.app.cursorIsDragging,
     cursorMode: state.app.cursorMode,
-    myCursorGroup: state.app.canvases[state.app.currentBoard].dots[dotNumber],
+    myCursorGroup: state.app.canvases[state.app.currentCanvas].dots[dotNumber].cursorGroup,
+    mySound: state.app.canvases[state.app.currentCanvas].dots[dotNumber].sound,
   }))
 
   const dispatch = useDispatch()
@@ -25,18 +26,18 @@ function Dot({ dotNumber }: IProps): ReactElement {
 
     if (cursorMode === 'draw') {
       if (cursorGroup === myCursorGroup) {
-        dispatch(updateDot({ dotNumber, value: 'empty' }))
+        dispatch(updateDot({ dotNumber, cursorGroup: 'empty', sound: mySound }))
         dispatch(setCursorMode('erase'))
       }
 
       else {
-        dispatch(updateDot({ dotNumber, value: cursorGroup }))
+        dispatch(updateDot({ dotNumber, cursorGroup: cursorGroup, sound: mySound }))
       }
     }
 
     else {
       if (cursorGroup === myCursorGroup) {
-        dispatch(updateDot({ dotNumber, value: 'empty' }))
+        dispatch(updateDot({ dotNumber, cursorGroup: 'empty', sound: mySound }))
       }
     }
   }
@@ -45,11 +46,11 @@ function Dot({ dotNumber }: IProps): ReactElement {
     if (!cursorIsDragging) return
 
     if (cursorMode === 'draw' && cursorGroup !== myCursorGroup) {
-      dispatch(updateDot({ dotNumber, value: cursorGroup }))
+      dispatch(updateDot({ dotNumber, cursorGroup: cursorGroup, sound: mySound }))
     }
 
     else if (cursorMode === 'erase' && cursorGroup === myCursorGroup) {
-      dispatch(updateDot({ dotNumber, value: 'empty' }))
+      dispatch(updateDot({ dotNumber, cursorGroup: 'empty', sound: mySound }))
     }
   }
 

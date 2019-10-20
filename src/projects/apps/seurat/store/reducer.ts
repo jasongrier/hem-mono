@@ -1,33 +1,34 @@
 import { AnyAction } from 'redux'
-import { webVersionCanvasSizeFromPreset, newCanvas } from '../functions'
+import * as presets from '../data/presets'
 import {
-  CursorGroup,
-
   SET_CURSOR_GROUP,
   SET_CURSOR_MODE,
   SET_DRAGGING,
   SET_PARAM,
-  SET_WEB_VERSION_PRESET,
+  TOGGLE_ON,
   UPDATE_DOT,
 
   ICanvas,
+  IDot,
   IState,
-  TOGGLE_ON,
 } from './types'
-
-const webVersionBoardPreset = 'bells'
 
 const initialState: IState = {
   canvases: [
-    newCanvas(webVersionCanvasSizeFromPreset(webVersionBoardPreset)),
+    presets.ampDefault,
+    presets.bellsDefault,
+    presets.drumDefault,
+    presets.guitarsDefault,
+    presets.pianoDefault,
+    presets.saxDefault,
+    presets.turntableDefault,
   ],
-  currentBoard: 0,
+  currentCanvas: 0,
   cursorGroup: 'white',
   cursorIsDragging: false,
   cursorMode: 'draw',
   params: [.5, .5, .5, .5, .5, .5, .5, .5],
   on: true,
-  webVersionBoardPreset,
 }
 
 const reducer = (
@@ -51,22 +52,21 @@ const reducer = (
       params[payload.index] = payload.value
       return { ...state, params }
 
-    case SET_WEB_VERSION_PRESET:
-      const { canvases } = state
-      newCanvases = ([] as ICanvas[]).concat(canvases)
-      newCanvases[0] = newCanvas(webVersionCanvasSizeFromPreset(payload)) // TODO: Support multiple canvases
-      return { ...state, canvases: newCanvases, webVersionBoardPreset: payload }
-
     case TOGGLE_ON:
       return { ...state, on: !state.on }
 
     case UPDATE_DOT:
-      const currentBoard = state.canvases[state.currentBoard]
-      newCanvases = [...state.canvases]
-      const newDots: CursorGroup[] = [...currentBoard.dots]
+      const currentCanvas = state.canvases[state.currentCanvas]
+      const newDots: IDot[] = [...currentCanvas.dots]
 
-      newDots[payload.dotNumber] = payload.value
-      newCanvases[state.currentBoard].dots = newDots
+      newCanvases = [...state.canvases]
+
+      newDots[payload.dotNumber] = {
+        cursorGroup: payload.cursorGroup,
+        sound: payload.sound,
+      }
+
+      newCanvases[state.currentCanvas].dots = newDots
 
       return { ...state, canvases: newCanvases }
 
