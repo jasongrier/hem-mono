@@ -15,7 +15,7 @@ function renderDots(canvasSize: number) {
 
 function Canvas(): ReactElement {
   const { canvasSize } = useSelector((state: RootState) => ({
-    canvasSize: state.app.canvases[state.app.currentBoard].size,
+    canvasSize: state.app.canvases[state.app.currentCanvas].dots.length,
   }))
 
   return (

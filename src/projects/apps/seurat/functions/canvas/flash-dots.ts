@@ -14,4 +14,4 @@ function flashDot(index: number) {
   flashDots([index])
 }
 
-export { flashDot, flashDots }
+export default flashDots

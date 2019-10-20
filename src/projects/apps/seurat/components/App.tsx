@@ -6,21 +6,25 @@ import Canvas from './Canvas'
 import Palette from './Palette'
 import ControlPanel from './ControlPanel'
 import { useClock } from '../hooks'
-import { flashDots, webVersionSamplers } from '../functions'
-import { CursorGroup, WebVersionPreset } from '../store/types'
+import { flashDots } from '../functions/canvas'
+import { setupBuiltInSounds } from '../functions/sounds'
+import { IDot } from '../store/types'
 
-const samplers = webVersionSamplers()
+const samplers = setupBuiltInSounds()
 
-interface IActiveNotes {
-  white: number[]
-  red: number[]
-  yellow: number[]
-  blue: number[]
+interface IActiveDot extends IDot {
+  index: number
 }
 
-let activeNotes: IActiveNotes
-let proxyOn: boolean // TODO: How to prevent values getting frozen into a hook??
-let webVersionBoardPresetProxy: WebVersionPreset
+interface IActiveDots {
+  blue: IActiveDot[]
+  red: IActiveDot[]
+  white: IActiveDot[]
+  yellow: IActiveDot[]
+}
+
+let activeNotesProxy: IActiveDots
+let onProxy: boolean // TODO: How to prevent values getting frozen into a hook??
 
 export const colorClockDividers = [
   new ClockDivider({
@@ -40,23 +44,24 @@ export const colorClockDividers = [
   }),
 ]
 
-function pickNote(activeNotesInColor: number[]) {
+function pickNote(activeNotesInColor: IActiveDot[]) {
   return activeNotesInColor.length ?
     activeNotesInColor[Math.round(Math.random() * (activeNotesInColor.length - 1))]
       : null
 }
 
 function App(): ReactElement {
-  const { dots, on, webVersionBoardPreset } = useSelector((state: RootState) => ({
-    dots: state.app.canvases[state.app.currentBoard].dots,
+  const { canvasName, dots, on } = useSelector((state: RootState) => ({
+    canvasName: state.app.canvases[state.app.currentCanvas].name,
+    dots: state.app.canvases[state.app.currentCanvas].dots,
     on: state.app.on,
-    webVersionBoardPreset: state.app.webVersionBoardPreset,
   }))
 
   useEffect(() => {
-    activeNotes = dots.reduce((acc: any, color: CursorGroup, index: number) => {
-      if (color !== 'empty') {
-        acc[color].push(index)
+    activeNotesProxy = dots.reduce((acc: any, { cursorGroup, sound }: IDot, index: number) => {
+      if (cursorGroup !== 'empty') {
+        console.log(cursorGroup)
+        acc[cursorGroup].push({ index, sound })
       }
       return acc
     }, {
@@ -65,50 +70,45 @@ function App(): ReactElement {
       yellow: [],
       blue: [],
     })
-  }, [dots, webVersionBoardPreset])
+  }, [dots])
 
-  useEffect(() => {
-    proxyOn = on
-    webVersionBoardPresetProxy = webVersionBoardPreset
-  }, [on, webVersionBoardPreset])
+  useEffect(() => { onProxy = on }, [on])
 
   useClock('web', () => {
-    const whiteNote = pickNote(activeNotes.white)
-    const redNote = pickNote(activeNotes.red)
-    const yellowNote = pickNote(activeNotes.yellow)
-    const blueNote = pickNote(activeNotes.blue)
+    const blueNote = pickNote(activeNotesProxy.blue)
+    const redNote = pickNote(activeNotesProxy.red)
+    const whiteNote = pickNote(activeNotesProxy.white)
+    const yellowNote = pickNote(activeNotesProxy.yellow)
 
     const notesToFlash: number[] = []
 
     if (null !== whiteNote) {
       colorClockDividers[0].onTick(() => {
-        notesToFlash.push(whiteNote)
+        notesToFlash.push(whiteNote.index)
       })
     }
 
     if (null !== redNote) {
       colorClockDividers[1].onTick(() => {
-        notesToFlash.push(redNote)
+        notesToFlash.push(redNote.index)
       })
     }
 
     if (null !== yellowNote) {
       colorClockDividers[2].onTick(() => {
-        notesToFlash.push(yellowNote)
+        notesToFlash.push(yellowNote.index)
       })
     }
 
     if (null !== blueNote) {
       colorClockDividers[3].onTick(() => {
-        notesToFlash.push(blueNote)
+        notesToFlash.push(blueNote.index)
       })
     }
 
-    if (notesToFlash.length && proxyOn) {
+    if (notesToFlash.length && onProxy) {
       flashDots(notesToFlash)
-
-      samplers[webVersionBoardPresetProxy].play(1)
-
+      samplers[canvasName].play('C1')
       // samplers[webVersionBoardPresetProxy].play(dotIndicesToWesternNotes(notesToFlash))
     }
   })

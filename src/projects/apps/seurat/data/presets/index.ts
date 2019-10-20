@@ -1,0 +1,7 @@
+export { default as ampDefault } from  './amp-default'
+export { default as bellsDefault } from './bells-default'
+export { default as drumDefault } from './drum-default'
+export { default as guitarsDefault } from './guitars-default'
+export { default as pianoDefault } from './piano-default'
+export { default as saxDefault } from './sax-default'
+export { default as turntableDefault } from './turntable-default'
