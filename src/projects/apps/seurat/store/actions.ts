@@ -2,15 +2,21 @@ import { AnyAction } from 'redux'
 import {
   CursorGroup,
 
+  SET_CANVAS,
   SET_CURSOR_GROUP,
-  UPDATE_DOT,
-  SET_DRAGGING,
   SET_CURSOR_MODE,
+  SET_DRAGGING,
+  UPDATE_DOT,
 
   CursorMode,
   SET_PARAM,
   TOGGLE_ON,
 } from './types'
+
+const setCanvas = (canvasNumber: number): AnyAction => ({
+  type: SET_CANVAS,
+  payload: canvasNumber,
+})
 
 const setCursorGroup = (cursorGroup: CursorGroup): AnyAction => ({
   type: SET_CURSOR_GROUP,
@@ -51,6 +57,7 @@ const updateDot = ({
 })
 
 export {
+  setCanvas,
   setCursorGroup,
   setCursorMode,
   setDragging,

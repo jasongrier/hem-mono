@@ -1,6 +1,7 @@
 import { AnyAction } from 'redux'
 import * as presets from '../data/presets'
 import {
+  SET_CANVAS,
   SET_CURSOR_GROUP,
   SET_CURSOR_MODE,
   SET_DRAGGING,
@@ -38,6 +39,9 @@ const reducer = (
   let newCanvases: ICanvas[] // TODO: Should not have to do this in order to avoid block-scoped variable messages
 
   switch (type) {
+    case SET_CANVAS:
+      return { ...state, currentCanvas: payload }
+
     case SET_CURSOR_GROUP:
       return { ...state, cursorGroup: payload }
 

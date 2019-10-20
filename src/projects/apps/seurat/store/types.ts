@@ -29,6 +29,7 @@ export interface IState {
   params: number[]
 }
 
+export const SET_CANVAS = 'SET_CANVAS'
 export const SET_CURSOR_GROUP = 'SET_CURSOR_GROUP'
 export const SET_CURSOR_MODE = 'SET_CURSOR_MODE'
 export const SET_DRAGGING = 'SET_DRAGGING'
