@@ -19,7 +19,7 @@ const map = [
 ]
 
 function dotNumberToNote(dotNumber: number) {
-
+  return map[dotNumber]
 }
 
 export default dotNumberToNote

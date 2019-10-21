@@ -1,16 +1,16 @@
 import React, { ReactElement, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { ClockDivider } from '../../../../common/classes'
 import { RootState } from '../store'
 import Canvas from './Canvas'
 import Palette from './Palette'
 import ControlPanel from './ControlPanel'
 import { useClock } from '../hooks'
-import { flashDots } from '../functions/canvas'
+import { dotNumberToNote, flashDots } from '../functions/canvas'
 import { setupBuiltInSounds } from '../functions/sounds'
+import { sequencer } from '../functions/performance'
 import { IDot } from '../store/types'
 
-const samplers = setupBuiltInSounds()
+const samplers: any = setupBuiltInSounds()
 
 interface IActiveDot extends IDot {
   index: number
@@ -26,41 +26,16 @@ interface IActiveDots {
 let activeNotesProxy: IActiveDots
 let onProxy: boolean // TODO: How to prevent values getting frozen into a hook??
 
-export const colorClockDividers = [
-  new ClockDivider({
-    ticksPerBeat: 2,
-  }),
-
-  new ClockDivider({
-    ticksPerBeat: 2,
-  }),
-
-  new ClockDivider({
-    ticksPerBeat: 2,
-  }),
-
-  new ClockDivider({
-    ticksPerBeat: 2,
-  }),
-]
-
-function pickNote(activeNotesInColor: IActiveDot[]) {
-  return activeNotesInColor.length ?
-    activeNotesInColor[Math.round(Math.random() * (activeNotesInColor.length - 1))]
-      : null
-}
-
 function App(): ReactElement {
-  const { canvasName, dots, on } = useSelector((state: RootState) => ({
-    canvasName: state.app.canvases[state.app.currentCanvas].name,
+  const { dots, on, sound } = useSelector((state: RootState) => ({
     dots: state.app.canvases[state.app.currentCanvas].dots,
     on: state.app.on,
+    sound: state.app.canvases[state.app.currentCanvas].defaultSound,
   }))
 
   useEffect(() => {
     activeNotesProxy = dots.reduce((acc: any, { cursorGroup, sound }: IDot, index: number) => {
       if (cursorGroup !== 'empty') {
-        console.log(cursorGroup)
         acc[cursorGroup].push({ index, sound })
       }
       return acc
@@ -75,41 +50,40 @@ function App(): ReactElement {
   useEffect(() => { onProxy = on }, [on])
 
   useClock('web', () => {
-    const blueNote = pickNote(activeNotesProxy.blue)
-    const redNote = pickNote(activeNotesProxy.red)
-    const whiteNote = pickNote(activeNotesProxy.white)
-    const yellowNote = pickNote(activeNotesProxy.yellow)
+    const blueRes = sequencer(activeNotesProxy.blue, 'random', prevNote, step)
+    const redRes = sequencer(activeNotesProxy.red, 'random', prevNote, step)
+    const whiteRes = sequencer(activeNotesProxy.white, 'random', prevNote, step)
+    const yellowRes = sequencer(activeNotesProxy.blue, 'random', prevNote, step)
 
-    const notesToFlash: number[] = []
+    const sequencerRes = sequencer(activeNotesProxy, 'random', )
+
+    const blueNote = pickNoteRandom(activeNotesProxy.blue)
+    const redNote = pickNoteRandom(activeNotesProxy.red)
+    const whiteNote = pickNoteRandom(activeNotesProxy.white)
+    const yellowNote = pickNoteRandom(activeNotesProxy.yellow)
+
+    const dotsToTrigger: IActiveDot[] = []
 
     if (null !== whiteNote) {
-      colorClockDividers[0].onTick(() => {
-        notesToFlash.push(whiteNote.index)
-      })
+      dotsToTrigger.push(whiteNote)
     }
 
     if (null !== redNote) {
-      colorClockDividers[1].onTick(() => {
-        notesToFlash.push(redNote.index)
-      })
+      dotsToTrigger.push(redNote)
     }
 
     if (null !== yellowNote) {
-      colorClockDividers[2].onTick(() => {
-        notesToFlash.push(yellowNote.index)
-      })
+      dotsToTrigger.push(yellowNote)
     }
 
     if (null !== blueNote) {
-      colorClockDividers[3].onTick(() => {
-        notesToFlash.push(blueNote.index)
-      })
+      dotsToTrigger.push(blueNote)
     }
 
-    if (notesToFlash.length && onProxy) {
-      flashDots(notesToFlash)
-      samplers[canvasName].play('C1')
-      // samplers[webVersionBoardPresetProxy].play(dotIndicesToWesternNotes(notesToFlash))
+    if (dotsToTrigger.length && onProxy) {
+      const dotNumbers = dotsToTrigger.map(dot => dot.index)
+      flashDots(dotNumbers)
+      samplers[sound].play(dotNumbers.map(dotNumberToNote)) // TODO: Play the sound assigned to the dot, not the canvas' sound
     }
   })
 

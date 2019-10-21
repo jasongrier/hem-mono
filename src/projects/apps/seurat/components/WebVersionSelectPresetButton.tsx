@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store'
 import { setCanvas } from '../store/actions'
 import ControlPanelButton from './ControlPanelButton'
