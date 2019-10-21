@@ -6,7 +6,7 @@ function createSampler(soundAssignments: any) {
 
   return {
     play: function(noteNumber: number) {
-      sampler.triggerAttack(noteNumber)
+      sampler.triggerAttackRelease(noteNumber, .125)
     },
 
     stop: function(noteNumber: number) {
