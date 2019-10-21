@@ -7,7 +7,7 @@ import ControlPanel from './ControlPanel'
 import { useClock } from '../hooks'
 import { dotNumberToNote, flashDots } from '../functions/canvas'
 import { setupBuiltInSounds } from '../functions/sounds'
-import { sequencer } from '../functions/performance'
+import { pickNoteRandom } from '../functions/performance'
 import { IDot } from '../store/types'
 
 const samplers: any = setupBuiltInSounds()
@@ -50,13 +50,6 @@ function App(): ReactElement {
   useEffect(() => { onProxy = on }, [on])
 
   useClock('web', () => {
-    const blueRes = sequencer(activeNotesProxy.blue, 'random', prevNote, step)
-    const redRes = sequencer(activeNotesProxy.red, 'random', prevNote, step)
-    const whiteRes = sequencer(activeNotesProxy.white, 'random', prevNote, step)
-    const yellowRes = sequencer(activeNotesProxy.blue, 'random', prevNote, step)
-
-    const sequencerRes = sequencer(activeNotesProxy, 'random', )
-
     const blueNote = pickNoteRandom(activeNotesProxy.blue)
     const redNote = pickNoteRandom(activeNotesProxy.red)
     const whiteNote = pickNoteRandom(activeNotesProxy.white)
@@ -65,19 +58,19 @@ function App(): ReactElement {
     const dotsToTrigger: IActiveDot[] = []
 
     if (null !== whiteNote) {
-      dotsToTrigger.push(whiteNote)
+      dotsToTrigger.push(whiteNote.note)
     }
 
     if (null !== redNote) {
-      dotsToTrigger.push(redNote)
+      dotsToTrigger.push(redNote.note)
     }
 
     if (null !== yellowNote) {
-      dotsToTrigger.push(yellowNote)
+      dotsToTrigger.push(yellowNote.note)
     }
 
     if (null !== blueNote) {
-      dotsToTrigger.push(blueNote)
+      dotsToTrigger.push(blueNote.note)
     }
 
     if (dotsToTrigger.length && onProxy) {
