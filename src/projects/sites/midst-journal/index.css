@@ -107,6 +107,7 @@ body {
   text-decoration: none;
   font-style: normal;
   font-family: 'futuralight';
+  z-index: 9999;
 }
 
 .site-header .poem-credit span {
@@ -409,7 +410,7 @@ body {
   text-align: center;
 }
 
-/* 
+/*
 .app-page .heroine {
   padding-top: 16vh;
 }
