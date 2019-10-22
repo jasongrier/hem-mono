@@ -48,6 +48,7 @@ class Midst extends React.Component<IProps, any> {
   private initialState = {} as any
   private $editable: any
   private editorNumLines: any
+  private autoScrubTimeout: any
 
   constructor(props: any) {
     super(props)
@@ -634,7 +635,7 @@ class Midst extends React.Component<IProps, any> {
       time = 40
     }
 
-    setTimeout(() => {
+    this.autoScrubTimeout = setTimeout(() => {
       this.setPos(editorTimelineIndex + 1)
       this.autoScrub()
     }, time)
@@ -1049,10 +1050,18 @@ class Midst extends React.Component<IProps, any> {
   }
 
   renderTimelineControlsPlayer() {
-    const { appDrawerOpen, editorPlaying, playerPlaybackSpeed, playerPlaybackSpeedDropOpen } = this.state
+    const { appDrawerOpen, editorPlaying, playerPlaybackSpeed, playerPlaybackSpeedDropOpen, editorTimelineFrames } = this.state
 
     return (
       e('div', { className: 'timeline-controls' },
+        e('div', {
+          className: 'round-icon timeline-button-3 end-button' + (editorPlaying ? ' playing' : ''),
+          onClick: () => {
+            this.pause()
+            clearTimeout(this.autoScrubTimeout)
+            this.setPos(editorTimelineFrames.length - 1)
+          },
+        }),
         e('div', {
           className: 'round-icon timeline-button-3 play-pause-button' + (editorPlaying ? ' playing' : ''),
           onClick: editorPlaying ? this.pause : this.play,
