@@ -8,6 +8,7 @@ import { coords } from './mouse-position'
 class Slider extends React.Component {
     static get defaultProps() {
       return {
+        snapToEnd: true,
         controlled: false,
         readOnly: false,
         hideCursor: true,
@@ -141,10 +142,15 @@ class Slider extends React.Component {
 
     onMouseMove(evt: any) {
       const { onChange, readOnly, direction } = this.props as any
+
       if (readOnly) return
+
       evt.stopPropagation()
+
       if ((window as any).dragging !== (this.props as any).id) return
+
       let value
+
       if (direction === 'vertical') {
         value = coords(evt, this.el).y
       }
@@ -152,7 +158,8 @@ class Slider extends React.Component {
       else {
         value = coords(evt, this.el).x
       }
-      this.setState({value}, () => {
+
+      this.setState({ value }, () => {
         if (onChange) {
           onChange((this.state as any).value)
         }

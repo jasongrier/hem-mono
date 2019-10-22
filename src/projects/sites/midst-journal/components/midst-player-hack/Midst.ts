@@ -493,7 +493,14 @@ class Midst extends React.Component<IProps, any> {
 
   sliderOnChange(val: any) {
     const index = Math.ceil(this.state.editorTimelineFrames.length * val)
-    this.setPos(index)
+
+    if (index / this.state.editorTimelineFrames.length > .98) {
+      this.setPos(this.state.editorTimelineFrames.length - 1)
+    }
+
+    else {
+      this.setPos(index)
+    }
   }
 
 // ================================================================================
