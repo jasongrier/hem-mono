@@ -391,7 +391,7 @@
 }
 
 .timeline .hem-slider {
-  width: calc(100% - 110px);
+  width: calc(100% - 143px);
   margin: 20px 0 0 20px;
   height: 2px;
   border-radius: 3px;
@@ -604,6 +604,16 @@
 
 .play-pause-button.playing {
   background-image: url('./pause.png');
+}
+
+.end-button {
+  width: 19px !important;
+  height: 19px !important;
+  top: 11px !important;
+  right: 82px !important;
+  background-image: url('./end.png');
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .speed-selector {
