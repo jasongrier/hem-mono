@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import Midst from '../components/midst-player-hack/Midst'
 
 interface IProps {
@@ -33,8 +33,19 @@ const poemImportData: IPoemImportData[] = [
 ]
 
 function Poem({ match }: IProps): ReactElement {
+  const el = useRef(null)
+
+  useEffect(() => {
+    const sliderFrame = (el as any).current.querySelector('.sliding-poems__frame')
+    const currentPoem = poemImportData.findIndex(poem => poem.slug === match.params.slug)
+    sliderFrame.style.left = `calc(100vw * -${currentPoem})`
+  }, [match.params.slug])
+
   return (
-    <div className="poem-page">
+    <div
+      ref={el}
+      className="poem-page"
+    >
       <section className="heroine heroine--normal">
         <div className="sliding-poems">
           <div
