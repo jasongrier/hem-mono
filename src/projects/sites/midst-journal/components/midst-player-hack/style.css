@@ -174,7 +174,7 @@
   height: calc(100vh - 25px - 125px);
 }
 
-.editor #editable {
+.editor .editable {
   width: calc(100% - 400px);
   height: calc(100% - 40px);
   padding: 40px 170px 300px 300px;
@@ -183,24 +183,24 @@
   font-size: 16px !important;
 }
 
-.editor #editable.with-drawer {
+.editor .editable.with-drawer {
   width: calc(100% - 160px - 190px);
 }
 
-.editor #editable.with-timeline {
+.editor .editable.with-timeline {
   caret-color: #FFF5EE;
 }
 
-.editor #editable:focus {
+.editor .editable:focus {
   outline: none;
 }
 
-.editor #editable p {
+.editor .editable p {
   margin: 0;
   padding: 0;
 }
 
-#editable .bold {
+.editable .bold {
   font-weight: bold;
 }
 
