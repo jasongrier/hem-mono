@@ -1042,7 +1042,7 @@ class Midst extends React.Component<IProps, any> {
           controlled: true,
           readOnly: false, // creatingDraftMarker,
           value,
-          showDisplayValue: editorPlaying,
+          showDisplayValue: editorTimelineIndex < editorTimelineFrames.length - 1,
           propsDisplayValue: timestamp,
           onChange: this.sliderOnChange,
           onMouseDown: this.pause,
