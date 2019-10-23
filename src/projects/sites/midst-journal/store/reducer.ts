@@ -41,6 +41,12 @@ const initialState: IState = {
       author: 'Hedgie Choi',
       processNote: 'Lorem ipsum dolor sit amet',
   }, {
+      slug: 'veronica-martin-epilogue-in-summer',
+      hidden: true,
+      title: 'Epilogue in Summer',
+      author: 'Veronica Martin',
+      processNote: 'Lorem ipsum dolor sit amet',
+  }, {
       slug: 'prosperity',
       hidden: false,
       title: 'Prosperity (Demonstration Poem)',
