@@ -6,118 +6,115 @@ import {
   IState,
 } from './types'
 
+const prelaunchPoems = [
+  {
+    author: 'Issue One launches soon!',
+    hidden: false,
+    slug: 'demo-1',
+    title: '🌱',
+    processNote: 'string',
+  }, {
+    author: ' ',
+    hidden: false,
+    slug: 'demo-2',
+    title: ' ',
+    processNote: 'string',
+}, {
+    author: ' ',
+    hidden: false,
+    slug: 'demo-3',
+    title: ' ',
+    processNote: 'string',
+}, {
+    author: ' ',
+    hidden: false,
+    slug: 'demo-4',
+    title: ' ',
+    processNote: 'string',
+}, {
+    author: 'Hedgie Choi',
+    hidden: true,
+    slug: 'untitled-hedgie',
+    title: 'Untitled',
+    processNote: 'Lorem ipsum dolor sit amet',
+}, {
+    author: 'Veronica Martin',
+    hidden: true,
+    slug: 'veronica-martin-epilogue-in-summer',
+    title: 'Epilogue in Summer',
+    processNote: 'Lorem ipsum dolor sit amet',
+}, {
+    author: 'Annelyse Gelman',
+    hidden: false,
+    slug: 'prosperity',
+    title: 'Prosperity (Demonstration Poem)',
+    processNote: `
+      <h1>Process Note</h1>
+      <p>
+        I wrote "Prosperity" quickly, mostly as a demonstration of how Midst works—a kind of demonstration music for this platform. It is about the intelligence of pigs.
+      </p>
+
+      <h1>About the Author</h1>
+      <p>
+        Annelyse Gelman founded and directs Midst. Her work has appeared in <i>The New Yorker</i>, <i>BOMB Magazine</i>, <i>the PEN Poetry Series</i>, and elsewhere.
+        She is the author of <i><a href="http://www.amazon.com/Everyone-I-Love-Stranger-Someone/dp/193891242X">Everyone I Love Is a Stranger to Someone</a></i>. Find her at <a href="http://www.annelysegelman.com">www.annelysegelman.com</a>.
+      </p>
+      <p>
+        <img src="http://midst.press/journal-assets/author-photos/annelyse.png">
+      </p>
+    `,
+  }
+]
+
+const devPoems = [
+  {
+    author: 'Angelo Colavita',
+    hidden: false,
+    slug: 'a-shade-whiter',
+    title: 'A Shade Whiter',
+    processNote: 'Lorem ipsum',
+  },
+  {
+    author: 'Annelyse Gelman',
+    hidden: false,
+    slug: 'alphabet-song',
+    title: 'Alphabet Song',
+    processNote: 'Lorem ipsum',
+  },
+  {
+    author: 'Annelyse Gelman',
+    hidden: false,
+    slug: 'pool',
+    title: 'Pool',
+    processNote: 'Lorem ipsum',
+  },
+  {
+    author: 'Annelyse Gelman',
+    hidden: false,
+    slug: 'prosperity',
+    title: 'Prosperity',
+    processNote: 'Lorem ipsum',
+  },
+  {
+    author: 'Hedgie Choi',
+    hidden: false,
+    slug: 'untitled',
+    title: 'Untitled',
+    processNote: 'Lorem ipsum',
+  },
+  {
+    author: 'Veronica Martin',
+    hidden: false,
+    slug: 'epilogue-in-summer',
+    title: 'Epilogue in Summer',
+    processNote: 'Lorem ipsum',
+  },
+]
+
 const initialState: IState = {
   mobileNavOpen: false,
+  poems: devPoems,
   processNoteOpen: false,
-  poems: [
-    {
-      slug: 'demo-1',
-      hidden: false,
-      title: '🌱',
-      author: 'Issue One launches soon!',
-      processNote: 'string',
-    }, {
-      slug: 'demo-2',
-      hidden: false,
-      title: ' ',
-      author: ' ',
-      processNote: 'string',
-  }, {
-      slug: 'demo-3',
-      hidden: false,
-      title: ' ',
-      author: ' ',
-      processNote: 'string',
-  }, {
-      slug: 'demo-4',
-      hidden: false,
-      title: ' ',
-      author: ' ',
-      processNote: 'string',
-  }, {
-      slug: 'untitled-hedgie',
-      hidden: true,
-      title: 'Untitled',
-      author: 'Hedgie Choi',
-      processNote: 'Lorem ipsum dolor sit amet',
-  }, {
-      slug: 'veronica-martin-epilogue-in-summer',
-      hidden: true,
-      title: 'Epilogue in Summer',
-      author: 'Veronica Martin',
-      processNote: 'Lorem ipsum dolor sit amet',
-  }, {
-      slug: 'prosperity',
-      hidden: false,
-      title: 'Prosperity (Demonstration Poem)',
-      author: 'Annelyse Gelman',
-      processNote: `
-      <h1>
-      Process Note
-      </h1>
-      <p>
-      I wrote "Prosperity" quickly, mostly as a demonstration of how Midst works—a kind of demonstration music for this platform. It is about the intelligence of pigs.
-      </p>
-      <h1>
-      About the Author
-      </h1>
-      <p>
-      Annelyse Gelman founded and directs Midst. Her work has appeared in <i>The New Yorker</i>, <i>BOMB Magazine</i>, <i>the PEN Poetry Series</i>, and elsewhere.
-      She is the author of <i><a href="http://www.amazon.com/Everyone-I-Love-Stranger-Someone/dp/193891242X">Everyone I Love Is a Stranger to Someone</a></i>. Find her at <a href="http://www.annelysegelman.com">www.annelysegelman.com</a>.
-      </p>
-      <p>
-      <img src="http://midst.press/journal-assets/author-photos/annelyse.png">
-      </p>
-      `,
-    },
-
-
-
-
-
-
-
-    // {
-    //   slug: 'a-shade-whiter',
-    //   title: 'A Shade Whiter',
-    //   author: 'Angelo Colavita',
-    // },
-    // {
-    //   slug: 'pool',
-    //   title: 'Pool',
-    //   author: 'Annelyse Gelman',
-    // },
-    // {
-    //   slug: 'a-shade-whiter-1',
-    //   title: 'This Is the Title of a Poem',
-    //   author: 'Ryan Paradiso',
-    // },
-    // {
-    //   slug: 'pool-1',
-    //   title: 'Two Poems',
-    //   author: 'Zachary Schomburg',
-    // },
-    // {
-    //   slug: 'prosperity-1',
-    //   title: 'Poem Title',
-    //   author: 'Matthew Zapruder',
-    // },
-    // {
-    //   slug: 'alphabet-song-1',
-    //   title: 'A Name of Some Poem by Sarah',
-    //   author: 'Sarah Matthes',
-    // },
-    // {
-    //   slug: 'prosperity',
-    //   title: 'A New Poem',
-    //   author: 'Danniel Schoonebeek',
-    // },
-    // {
-    //   slug: 'alphabet-song',
-    //   title: 'Something-or-Other',
-    //   author: 'Anis Mojgani',
-    // }
-  ]
 }
 
 const reducer = (

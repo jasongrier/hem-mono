@@ -9,7 +9,7 @@ interface IProps {
   match: any
 }
 
-function PoemNavLink({ match }: IProps): ReactElement {
+function PoemNav({ match }: IProps): ReactElement {
   const { poems, processNoteOpen } = useSelector((state: RootState) => ({
     poems: state.app.poems,
     processNoteOpen: state.app.processNoteOpen,
@@ -19,8 +19,8 @@ function PoemNavLink({ match }: IProps): ReactElement {
 
   const currentPoemIndex = findIndex(poems, { slug: match.params.slug })
   const currentPoem = poems[currentPoemIndex]
-  // const previousPoem = poems[currentPoemIndex - 1]
-  // const nextPoem = poems[currentPoemIndex + 1]
+  const previousPoem = poems[currentPoemIndex - 1]
+  const nextPoem = poems[currentPoemIndex + 1]
 
   return (
     <>
@@ -36,7 +36,7 @@ function PoemNavLink({ match }: IProps): ReactElement {
         </span>
       </a>
 
-      {/* <div id="poem-nav">
+      <div id="poem-nav">
         {nextPoem ?
           <Link
             to={`/poem/${nextPoem.slug}/`}>
@@ -58,7 +58,7 @@ function PoemNavLink({ match }: IProps): ReactElement {
             <i className="arrow arrow-back"></i>
           </a>
         }
-      </div> */}
+      </div>
 
       <div id="back-to-toc">
         <Link to="/read">Table of Contents</Link>
@@ -67,4 +67,4 @@ function PoemNavLink({ match }: IProps): ReactElement {
   )
 }
 
-export default PoemNavLink
+export default PoemNav

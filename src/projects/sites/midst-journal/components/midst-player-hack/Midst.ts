@@ -46,6 +46,7 @@ class Midst extends React.Component<IProps, any> {
   private defaultFontSize = 14
   private FILE_EXT = '.midst'
   private initialState = {} as any
+  private el: any
   private $editable: any
   private editorNumLines: any
   private autoScrubTimeout: any
@@ -133,7 +134,7 @@ class Midst extends React.Component<IProps, any> {
   componentDidMount() {
     const { isPlayer, MIDST_DATA_URL, MIDST_DATA_JS } = this.props
 
-    this.$editable = $('#editable')
+    this.$editable = $(this.el).find('.editable')
 
     // Force first line of contenteditable to be wrapped in a <p>.
     this.$editable.html('<p><br></p>')
@@ -932,8 +933,7 @@ class Midst extends React.Component<IProps, any> {
         },
       },
         e('div', {
-          id: 'editable',
-          className: (appDrawerOpen && !appFocusMode ? 'with-drawer' : '')
+          className: 'editable' + (appDrawerOpen && !appFocusMode ? 'with-drawer' : '')
             + (appTimelineMode ? ' with-timeline' : ''),
           contentEditable: !editorCreatingDraftMarker && !editorEditingDraftMarker && !isPlayer,
         }),
@@ -1236,7 +1236,10 @@ class Midst extends React.Component<IProps, any> {
     const { appFocusMode } = this.state
 
     return (
-      e('div', { className: 'midst' + (appFocusMode ? ' focus-mode' : '')},
+      e('div', {
+        className: 'midst' + (appFocusMode ? ' focus-mode' : ''),
+        ref: (el) => this.el = el,
+      },
         isPlayer ? null : e('div', { id: 'about' }, this.renderAbout()),
         isPlayer ? null : e('header', { id: 'title-bar' }, this.renderHeader()),
         isPlayer ? null : e('section', { id: 'top-toolbar' }, this.renderTopToolbar()),

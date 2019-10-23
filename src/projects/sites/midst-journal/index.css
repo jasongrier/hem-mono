@@ -49,6 +49,7 @@ body {
 }
 
 .midst {
+  position: absolute !important;
   top: 97px !important;
   background-color: transparent !important;
   height: calc(100vh - 136px) !important;
@@ -634,7 +635,7 @@ body {
   display: none;
 }
 
-.body-post-type-poem #editable {
+.body-post-type-poem .editable {
   padding-left: 130px !important;
   padding-right: 130px !important;
 }
@@ -652,6 +653,10 @@ body {
   height: 37px;
   line-height: 37px;
   font-size: 14px;
+}
+
+.timeline {
+  position: absolute;
 }
 
 .timeline .hem-slider {
@@ -692,6 +697,38 @@ body {
   height: 4px;
   content: " ";
   background: rgb(105, 0, 0);
+}
+
+.poem-page .heroine.heroine--normal {
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+}
+
+.sliding-poems {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+}
+
+.sliding-poems__frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.sliding-poems__poem {
+  position: relative;
+  float: left;
+  width: 100vw;
+  height: 100vh;
+}
+
+.sliding-poems__poem .midst main * {
+  overflow: hidden;
 }
 
 @media screen and (max-width: 1024px) {

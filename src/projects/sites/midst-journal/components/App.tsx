@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet'
 import { Hide } from '../../../../common/components'
 import CampaignMonitorForm from '../components/CampaignMonitorForm'
 import Shapes from '../components/Shapes'
-import PoemNavLink from '../components/PoemNavLink'
+import PoemNav from '../components/PoemNav'
 import SiteNavLinks from '../components/SiteNavLinks'
 import About from '../routes/About'
 import Contact from '../routes/Contact'
@@ -61,7 +61,7 @@ function App(): ReactElement {
         </div>
 
         <Switch>
-          <Route exact path="/poem/:slug" component={PoemNavLink} />
+          <Route exact path="/poem/:slug" component={PoemNav} />
         </Switch>
 
         <nav

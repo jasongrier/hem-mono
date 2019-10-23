@@ -1,28 +1,61 @@
 import React, { ReactElement } from 'react'
 import Midst from '../components/midst-player-hack/Midst'
 
-const poemsJsData = {
-  'a-shade-whiter': require('../assets/poems/angelo_whiter_NO_TITLE'),
-  'pool': require('../assets/poems/pool'),
-  'prosperity': require('../assets/poems/prosperity'),
-  'alphabet-song': require('../assets/poems/AnnelyseGelman_AlphabetSong_NO_TITLE'),
-  'untitled-hedgie': require('../assets/poems/untitled-hedgie'),
-  'veronica-martin-epilogue-in-summer': require('../assets/poems/veronica-martin-epilogue-in-summer'),
-} as any
-
 interface IProps {
   match: any
 }
+
+interface IPoemImportData {
+  slug: string
+  poemData: any // TODO: Should be IMidstPlayerFileData
+}
+
+const poemImportData: IPoemImportData[] = [
+  {
+    slug: 'a-shade-whiter',
+    poemData: require('../assets/poems/angelo-colavita--a-shade-whiter'),
+  },{
+    slug: 'alphabet-song',
+    poemData: require('../assets/poems/annelyse-gelman--alphabet-song'),
+  },{
+    slug: 'pool',
+    poemData: require('../assets/poems/annelyse-gelman--pool'),
+  },{
+    slug: 'prosperity',
+    poemData: require('../assets/poems/annelyse-gelman--prosperity'),
+  },{
+    slug: 'untitled',
+    poemData: require('../assets/poems/untitled--hedgie-choi'),
+  },{
+    slug: 'epilogue-in-summer',
+    poemData: require('../assets/poems/veronica-martin--epilogue-in-summer'),
+  }
+]
 
 function Poem({ match }: IProps): ReactElement {
   return (
     <div className="poem-page">
       <section className="heroine heroine--normal">
-        <Midst
-          isPlayer={true}
-          MIDST_DATA_JS={poemsJsData[match.params.slug]}
-          MIDST_DATA_JS_KEY={match.params.slug}
-        />
+        <div className="sliding-poems">
+          <div
+            className="sliding-poems__frame"
+            style={{
+              width: `${poemImportData.length * 200}%`,
+            }}
+          >
+            {poemImportData.map(poem =>
+              <div
+                className="sliding-poems__poem"
+                key={poem.slug}
+              >
+                <Midst
+                  isPlayer={true}
+                  MIDST_DATA_JS={poem.poemData}
+                />
+              </div>
+            )}
+          </div>
+        </div>
       </section>
     </div>
   )
