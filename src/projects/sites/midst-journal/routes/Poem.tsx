@@ -7,6 +7,7 @@ const poemsJsData = {
   'prosperity': require('../assets/poems/prosperity'),
   'alphabet-song': require('../assets/poems/AnnelyseGelman_AlphabetSong_NO_TITLE'),
   'untitled-hedgie': require('../assets/poems/untitled-hedgie'),
+  'veronica-martin-epilogue-in-summer': require('../assets/poems/veronica-martin-epilogue-in-summer'),
 } as any
 
 interface IProps {
