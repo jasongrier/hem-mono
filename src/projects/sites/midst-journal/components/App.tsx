@@ -35,8 +35,8 @@ function App(): ReactElement {
       </Helmet>
 
       <Route render={(props) => <Shapes {...props} />} />
-      <Route 
-        path="/poem/:slug" 
+      <Route
+        path="/poem/:slug"
         render={(props) => <ProcessNote {...props} />}
       />
 
@@ -99,10 +99,12 @@ function App(): ReactElement {
         </Switch>
       </main>
       <footer className="site-footer">
-        <CampaignMonitorForm
-          labelForName="Newsletter &nbsp;🚀"
-          submitButtonText="Submit"
-        />
+        <Hide from="/poem/:slug">
+          <CampaignMonitorForm
+            labelForName="Newsletter &nbsp;🚀"
+            submitButtonText="Submit"
+          />
+        </Hide>
       </footer>
     </div>
   )

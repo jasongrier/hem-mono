@@ -62,7 +62,7 @@ class Slider extends React.Component {
 
         .hem-slider__value {
           position: absolute;
-          bottom: 100%;
+          top: 24px;
           width: 68px;
           height: 36px;
           line-height: 18px;
