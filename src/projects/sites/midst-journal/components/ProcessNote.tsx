@@ -23,7 +23,7 @@ function ProcessNote({ match }: IProps): ReactElement {
 
   const dispatch = useDispatch()
 
-  const node = useRef(null)
+  const el = useRef(null)
 
   function handleEsc(evt: any) {
     if (evt.keyCode === 27) {
@@ -33,7 +33,7 @@ function ProcessNote({ match }: IProps): ReactElement {
 
   function handleClickOutside(evt: any) {
     if (!proxyProcessNoteOpen) return
-    if ((node as any).current.contains(evt.target)) return
+    if ((el as any).current.contains(evt.target)) return
 
     dispatch(setProcessNoteOpen(false))
   }
@@ -54,7 +54,7 @@ function ProcessNote({ match }: IProps): ReactElement {
 
   return (
     <div
-      ref={node}
+      ref={el}
       className={'process-note ' + (processNoteOpen ? 'open' : '')}
     >
       <div
