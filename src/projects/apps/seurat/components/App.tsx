@@ -1,14 +1,15 @@
 import React, { ReactElement, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store'
 import Canvas from './Canvas'
 import Palette from './Palette'
-import ControlPanel from './ControlPanel'
 import { useClock } from '../hooks'
 import { dotNumberToNote, flashDots } from '../functions/canvas'
 import { setupBuiltInSounds } from '../functions/sounds'
 import { pickNoteRandom } from '../functions/performance'
 import { IDot } from '../store/types'
+import { toggleOn } from '../store/actions'
+import IconButton from './IconButton'
 
 const samplers: any = setupBuiltInSounds()
 
@@ -33,9 +34,11 @@ function App(): ReactElement {
     sound: state.app.canvases[state.app.currentCanvas].defaultSound,
   }))
 
+  const dispatch = useDispatch()
+
   useEffect(() => {
     activeNotesProxy = dots.reduce((acc: any, { cursorGroup, sound }: IDot, index: number) => {
-      if (cursorGroup !== 'empty') {
+      if (cursorGroup !== 'none') {
         acc[cursorGroup].push({ index, sound })
       }
       return acc
@@ -50,41 +53,51 @@ function App(): ReactElement {
   useEffect(() => { onProxy = on }, [on])
 
   useClock('web', () => {
-    const blueNote = pickNoteRandom(activeNotesProxy.blue)
-    const redNote = pickNoteRandom(activeNotesProxy.red)
-    const whiteNote = pickNoteRandom(activeNotesProxy.white)
-    const yellowNote = pickNoteRandom(activeNotesProxy.yellow)
+    // const blueNote = pickNoteRandom(activeNotesProxy.blue)
+    // const redNote = pickNoteRandom(activeNotesProxy.red)
+    // const whiteNote = pickNoteRandom(activeNotesProxy.white)
+    // const yellowNote = pickNoteRandom(activeNotesProxy.yellow)
 
-    const dotsToTrigger: IActiveDot[] = []
+    // const dotsToTrigger: IActiveDot[] = []
 
-    if (null !== whiteNote) {
-      dotsToTrigger.push(whiteNote.note)
-    }
+    // if (null !== whiteNote) {
+    //   dotsToTrigger.push(whiteNote.note)
+    // }
 
-    if (null !== redNote) {
-      dotsToTrigger.push(redNote.note)
-    }
+    // if (null !== redNote) {
+    //   dotsToTrigger.push(redNote.note)
+    // }
 
-    if (null !== yellowNote) {
-      dotsToTrigger.push(yellowNote.note)
-    }
+    // if (null !== yellowNote) {
+    //   dotsToTrigger.push(yellowNote.note)
+    // }
 
-    if (null !== blueNote) {
-      dotsToTrigger.push(blueNote.note)
-    }
+    // if (null !== blueNote) {
+    //   dotsToTrigger.push(blueNote.note)
+    // }
 
-    if (dotsToTrigger.length && onProxy) {
-      const dotNumbers = dotsToTrigger.map(dot => dot.index)
-      flashDots(dotNumbers)
-      samplers[sound].play(dotNumbers.map(dotNumberToNote)) // TODO: Play the sound assigned to the dot, not the canvas' sound
-    }
+    // if (dotsToTrigger.length && onProxy) {
+    //   const dotNumbers = dotsToTrigger.map(dot => dot.index)
+    //   flashDots(dotNumbers)
+    //   samplers[sound].play(dotNumbers.map(dotNumberToNote)) // TODO: Play the sound assigned to the dot, not the canvas' sound
+    // }
   })
 
   return (
     <div className="hem-application">
       <Palette />
       <Canvas />
-      <ControlPanel />
+      <div className="device-controls">
+        <div className="device-controls__top">
+          <IconButton
+            selected={on}
+            icon="on-off"
+            onClick={() => dispatch(toggleOn())}
+          />
+        </div>
+        <div className="device-controls__bottom">
+        </div>
+      </div>
     </div>
   )
 }

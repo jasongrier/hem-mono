@@ -1,3 +1,16 @@
+:root {
+  --canvas-size: 600px;
+  --canvas-inner-size: calc(var(--canvas-size) + 8px);
+  --dot-size: 70.6px;
+  --dial-size: 44px;
+  --color-red: #8f0d0d;
+  --color-yellow: #aaaa03;
+  --color-blue: #16168a;
+  --color-white: #b8b8b8;
+  --color-none: #111;
+  --color-app-base: #000;
+}
+
 html,
 body {
   width: 100vw;
@@ -6,31 +19,83 @@ body {
   padding: 0;
   overflow: hidden;
   font-family: Arial, Helvetica, sans-serif;
-  background: black;
+  background: var(--color-app-base);
   -webkit-app-region: drag;
 }
 
-.invisible {
-  opacity: 0;
+.icon-button {
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+.icon-button:active,
+.icon-button:focus {
+  outline: none;
 }
 
-.canvas { /* Default to .canvas--100 */
-  position: fixed;
-  top: 15px;
-  left: 210px;
-  width: 580px;
-  height: 580px;
+.icon-button__icon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  filter: invert(100%);
+  opacity: 0.2;
+}
+
+.icon-button--selected .icon-button__icon {
+  opacity: 0.5;
+}
+
+.icon-button__icon--on-off {
+  background-image: url(./assets/tmp-icons/on-off.png);
+}
+
+.icon-button--selected .icon-button__icon {
+  filter: none;
+  background-image: url(./assets/tmp-icons/on-off--green.png);
+}
+
+.hem-application {
+  position: relative;
+  width: 865px;
+  height: 600px;
+  margin: 15px auto 0 auto;
+}
+
+.canvas {
+  position: absolute;
+  top: 0;
+  left: 200px;
+  width: var(--canvas-size);
+  height: var(--canvas-size);
+  overflow: hidden;
   -webkit-app-region: no-drag;
   user-select: none;
   transition: left 250ms;
   transform: rotate(180deg) scaleX(-1);
 }
 
+.canvas__inner {
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: var(--canvas-inner-size);
+  height: var(--canvas-inner-size);
+}
+
 .dot {
   position: relative;
   float: left;
   display: block;
-  margin: 4px;
+  width: var(--dot-size);
+  height: var(--dot-size);
+  border-radius: 64px;
+  margin: 5px 5px 0 0;
   user-select: none;
   overflow: hidden;
 }
@@ -45,241 +110,150 @@ body {
   transition: all 150ms;
 }
 
-.canvas.canvas--16 .dot,
-.canvas.canvas--16 .dot::after {
-  width: 137px;
-  height: 137px;
-  border-radius: 137px;
-}
-
 .dot.dot--flashing::after {
   opacity: 1;
 }
 
-.dot.dot--group-empty { background: #111 }
-.dot.dot--group-white { background: #b8b8b8 }
+.dot.dot--group-none { background: var(--color-none) }
+.dot.dot--group-white { background: var(--color-white) }
 .dot.dot--group-white.dot.dot--flashing::after { background: #fff }
-.dot.dot--group-red { background: #8f0d0d }
+.dot.dot--group-red { background: var(--color-red) }
 .dot.dot--group-red.dot.dot--flashing::after { background: #ff0000 }
-.dot.dot--group-yellow { background: #aaaa03 }
+.dot.dot--group-yellow { background: var(--color-yellow) }
 .dot.dot--group-yellow.dot.dot--flashing::after { background: #ffff00 }
-.dot.dot--group-blue { background: #16168a }
+.dot.dot--group-blue { background: var(--color-blue) }
 .dot.dot--group-blue.dot.dot--flashing::after { background: #0000ff }
 
 .palette {
   position: absolute;
-  left: 20px;
-  top: 20px;
+  top: 0;
+  left: 0;
   width: 175px;
-  height: 580px;
+  height: 600px;
   -webkit-app-region: no-drag;
 }
 
-.x-y-control {
+.performance-controller {
   position: relative;
-  width: 165px;
-  height: 120px;
-  margin-bottom: 10px;
-  background: #222222;
-  border-radius: 5px;
+  width: 100%;
+  height: 130px;
+  margin-bottom: 25px;
+  opacity: .2;
 }
 
-.x-y-control__handle {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  border-radius: 20px;
-  transform: translate(-7px, 7px);
-  pointer-events: none;
-}
-
-.x-y-control--pressed .x-y-control__handle {
-  width: 22px;
-  height: 22px;
-  transform: translate(-11px, 11px);
-}
-
-.color-setting-x-y-control--white .x-y-control__handle {
-  background: white;
-}
-
-.color-setting-x-y-control--red .x-y-control__handle {
-  background: red;
-}
-
-.color-setting-x-y-control--yellow .x-y-control__handle {
-  background: yellow;
-}
-
-.color-setting-x-y-control--blue .x-y-control__handle {
-  background: blue;
-}
-
-.color-setting-xy-control--disabled {
-  opacity: 0.4;
-}
-
-.palette-boxes {
-  width: 165px;
-  height: 30px;
-  margin-top: 10px;
-  margin-left: 10px;
-  text-align: center;
-}
-
-.palette-box {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  margin: 5px;
-  border-radius: 2px;
-  overflow: hidden;
-  background: #222;
-}
-
-.color-picker__color {
-  float: left;
-  width: 15px;
-  height: 15px;
-  cursor: pointer;
-  opacity: 0.5;
-}
-
-.color-picker__color--active {
+.performance-controller--active {
   opacity: 1;
 }
 
-.color-picker__color--white {
-  background: #fff;
-}
-
-.color-picker__color--red {
-  background: red;
-}
-
-.color-picker__color--yellow {
-  background: yellow;
-}
-
-.color-picker__color--blue {
-  background: blue;
-}
-
-.palette--two .x-y-control {
-  width: 175px;
-  height: 135px;
-}
-
-.control-panel {
+.dial {
   position: absolute;
-  bottom: 0;
-  left: 10px;
-  width: 775px;
-  height: 40px;
-  padding: 5px;
-  border-radius: 5px;
-  -webkit-app-region: no-drag;
+  margin-right: 5px;
+  width: var(--dial-size);
+  height: var(--dial-size);
+  border-radius: var(--dial-size);
 }
 
-.buttons-left {
-  float: left;
+.dial::after {
+  display: block;
+  content: ' ';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: calc(var(--dial-size) - 10px);
+  height: calc(var(--dial-size) - 10px);
+  border-radius: calc(var(--dial-size) - 10px);
+  background: var(--color-app-base);
 }
 
-.buttons-left .control-panel__button {
-  float: left;
-}
-
-.buttons-right {
-  float: right;
-}
-
-.buttons-right .control-panel__button {
-  float: right;
-}
-
-.control-panel__button {
-  width: 35px;
-  height: 35px;
-  margin: 2.5px 2px 0 2px;
-  border-radius: 5px;
-  border: none;
-  background: #141414;
-  background: transparent;
-}
-
-.control-panel__button:focus,
-.control-panel__button:active {
-  outline: none;
-}
-
-.control-panel__button:first-child {
-  margin-left: 5px;
-}
-
-.control-panel__button:last-child {
+.dial:last-child {
   margin-right: 0;
 }
 
-.tmp-icon {
-  display: block;
+.performance-controller--white .dial { background: var(--color-white) }
+.performance-controller--red .dial { background: var(--color-red) }
+.performance-controller--yellow .dial { background: var(--color-yellow) }
+.performance-controller--blue .dial { background: var(--color-blue) }
+
+.performance-controller__selectors {
+  position: absolute;
+  bottom: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  filter: invert(100%);
-  opacity: 0.2;
+  height: 30px;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-.control-panel__button.selected .tmp-icon {
-  opacity: 0.5;
+.performance-controller--white .performance-controller__selectors { background: var(--color-white) }
+.performance-controller--red .performance-controller__selectors { background: var(--color-red) }
+.performance-controller--yellow .performance-controller__selectors { background: var(--color-yellow) }
+.performance-controller--blue .performance-controller__selectors { background: var(--color-blue) }
+
+.performance-controller__selectors button {
+  width: 43.75px;
+  height: 30px;
+  background: transparent;
+  border: none;
 }
 
-.tmp-icon--violin {
-  background-image: url(./assets/tmp-icons/violin.png);
+.performance-controller__selectors button:focus,
+.performance-controller__selectors button:active {
+  outline: none;
 }
 
-.tmp-icon--amp {
-  background-image: url(./assets/tmp-icons/amp.png);
+.performance-controller__color-selector {
+  opacity: .2;
 }
 
-.tmp-icon--bells {
-  background-image: url(./assets/tmp-icons/bells.png);
+.performance-controller--active .performance-controller__color-selector {
+  opacity: 1;
 }
 
-.tmp-icon--drum {
-  background-image: url(./assets/tmp-icons/drum.png);
+.dial:nth-child(1) {
+  top: 0;
+  left: 0;
 }
 
-.tmp-icon--guitars {
-  background-image: url(./assets/tmp-icons/guitars.png);
+.dial:nth-child(2) {
+  top: 40px;
+  left: 41px;
 }
 
-.tmp-icon--mic {
-  background-image: url(./assets/tmp-icons/mic.png);
+.dial:nth-child(3) {
+  top: 0;
+  left: 86px;
 }
 
-.tmp-icon--piano {
-  background-image: url(./assets/tmp-icons/piano.png);
+.dial:nth-child(4) {
+  top: 40px;
+  left: 131px;
 }
 
-.tmp-icon--radio {
-  background-image: url(./assets/tmp-icons/radio.png);
+.device-controls {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 600px;
+  border-radius: 5px;
+  background: var(--color-none);
 }
 
-.tmp-icon--sax {
-  background-image: url(./assets/tmp-icons/sax.png);
+.device-controls__top {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  width: 100%;
 }
 
-.tmp-icon--turntable {
-  background-image: url(./assets/tmp-icons/turntable.png);
+.device-controls__bottom {
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
 }
 
-.tmp-icon--on-off {
-  background-image: url(./assets/tmp-icons/on-off.png);
-}
-
-.selected .tmp-icon--on-off {
-  filter: none;
-  background-image: url(./assets/tmp-icons/on-off--green.png);
+.device-controls .icon-button {
+  display: block;
+  margin: 0 auto;
 }

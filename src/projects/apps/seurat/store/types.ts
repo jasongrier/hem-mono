@@ -1,7 +1,6 @@
 import { AnyAction } from 'redux'
 
-export type CanvasSize = 1|2|4|9|16|25|36|48|64|81|100|121
-export type CursorGroup = 'empty' | 'white' | 'red' | 'yellow' | 'blue'
+export type CursorGroup = 'red' | 'yellow' | 'blue' | 'white' | 'none'
 export type CursorMode = 'erase' | 'draw'
 
 export interface ISound {

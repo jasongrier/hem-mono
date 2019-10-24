@@ -1,18 +1,17 @@
-import { ICanvas, CanvasSize, IDot } from '../../store/types'
+import { ICanvas, IDot } from '../../store/types'
 
 function createCanvas(
   defaultSound: string,
-  size: CanvasSize,
   name?: string,
 ): ICanvas {
   const defaultDot: IDot = {
-    cursorGroup: 'empty',
+    cursorGroup: 'none',
     sound: defaultSound,
   }
 
   return {
     defaultSound,
-    dots: new Array(size).fill(defaultDot),
+    dots: new Array(64).fill(defaultDot),
     name: name || defaultSound,
   }
 }
