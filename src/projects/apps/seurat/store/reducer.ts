@@ -16,13 +16,7 @@ import {
 
 const initialState: IState = {
   canvases: [
-    presets.ampDefault,
-    presets.bellsDefault,
-    presets.drumDefault,
-    presets.guitarsDefault,
-    presets.pianoDefault,
-    presets.saxDefault,
-    presets.turntableDefault,
+    presets.testTones,
   ],
   currentCanvas: 0,
   cursorGroup: 'white',

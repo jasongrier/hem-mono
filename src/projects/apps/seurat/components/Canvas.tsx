@@ -19,8 +19,10 @@ function Canvas(): ReactElement {
   }))
 
   return (
-    <div className={`canvas canvas--${canvasSize}`}>
-      {renderDots(canvasSize)}
+    <div className="canvas">
+      <div className="canvas__inner">
+        {renderDots(canvasSize)}
+      </div>
     </div>
   )
 }

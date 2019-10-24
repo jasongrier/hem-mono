@@ -26,7 +26,7 @@ function Dot({ dotNumber }: IProps): ReactElement {
 
     if (cursorMode === 'draw') {
       if (cursorGroup === myCursorGroup) {
-        dispatch(updateDot({ dotNumber, cursorGroup: 'empty', sound: mySound }))
+        dispatch(updateDot({ dotNumber, cursorGroup: 'none', sound: mySound }))
         dispatch(setCursorMode('erase'))
       }
 
@@ -37,7 +37,7 @@ function Dot({ dotNumber }: IProps): ReactElement {
 
     else {
       if (cursorGroup === myCursorGroup) {
-        dispatch(updateDot({ dotNumber, cursorGroup: 'empty', sound: mySound }))
+        dispatch(updateDot({ dotNumber, cursorGroup: 'none', sound: mySound }))
       }
     }
   }
@@ -50,7 +50,7 @@ function Dot({ dotNumber }: IProps): ReactElement {
     }
 
     else if (cursorMode === 'erase' && cursorGroup === myCursorGroup) {
-      dispatch(updateDot({ dotNumber, cursorGroup: 'empty', sound: mySound }))
+      dispatch(updateDot({ dotNumber, cursorGroup: 'none', sound: mySound }))
     }
   }
 
