@@ -1,21 +1,27 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store'
-import { toggleOn } from '../store/actions'
+import { playOpeningSequence, setOn } from '../store/actions'
+import { uiLocked as uiLockedSel } from '../store/selectors'
 import IconButton from './IconButton'
+import InstrumentLogo from './InstrumentLogo'
 
 /**
  * Buttons
  * – Top
  * –– Power on/off
+ * –– Play
+ * –– Stop
+ * –– Clear (press and hold, flashes red for 5 seconds, clears canvas)
  *
  * – Bottom
  * –– Clear canvas
  */
 
 function DeviceControls(): ReactElement {
-  const { on } = useSelector((state: RootState) => ({
+  const { on, uiLocked } = useSelector((state: RootState) => ({
     on: state.app.on,
+    uiLocked: uiLockedSel(state),
   }))
 
   const dispatch = useDispatch()
@@ -26,16 +32,19 @@ function DeviceControls(): ReactElement {
           <IconButton
             selected={on}
             icon="on-off"
-            onClick={() => dispatch(toggleOn())}
+            onClick={() => {
+              if (on && !uiLocked) {
+                dispatch(setOn(false))
+              }
+
+              else {
+                dispatch(playOpeningSequence(true))
+              }
+            }}
           />
-          {/* <h2 className="vendor-credit">by HEM<sup>TM</sup></h2> */}
         </div>
         <div className="device-controls__bottom">
-          <div className="instrument-logo">
-            <h1>
-              <span>Seurat</span>
-            </h1>
-          </div>
+          <InstrumentLogo />
         </div>
       </div>
   )

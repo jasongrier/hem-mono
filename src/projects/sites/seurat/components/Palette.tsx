@@ -6,9 +6,9 @@ function Palette(): ReactElement {
   return (
     <div className="palette">
       <PerformanceController cursorGroup="white" />
+      <PerformanceController cursorGroup="red" />
       <PerformanceController cursorGroup="yellow" />
       <PerformanceController cursorGroup="blue" />
-      <PerformanceController cursorGroup="red" />
     </div>
   )
 }

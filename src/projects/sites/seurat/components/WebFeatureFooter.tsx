@@ -6,6 +6,7 @@ import React, { ReactElement } from 'react'
  * – Info
  * – Log in/out
  * – Download desktop version
+ * – Support the HARDWARE version
  */
 
 function WebFeatureFooter(): ReactElement {

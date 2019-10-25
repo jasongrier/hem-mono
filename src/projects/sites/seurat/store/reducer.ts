@@ -1,12 +1,14 @@
 import { AnyAction } from 'redux'
 import * as presets from '../data/presets'
 import {
+  OPENING_SEQUENCE_BEGUN,
+  OPENING_SEQUENCE_DONE,
   SET_CANVAS,
   SET_CURSOR_GROUP,
   SET_CURSOR_MODE,
+  SET_ON,
   SET_DRAGGING,
   SET_PARAM,
-  TOGGLE_ON,
   UPDATE_DOT,
 
   ICanvas,
@@ -22,6 +24,7 @@ const initialState: IState = {
   cursorGroup: 'white',
   cursorIsDragging: false,
   cursorMode: 'draw',
+  eventInProgess: true,
   params: [.5, .5, .5, .5, .5, .5, .5, .5],
   on: true,
 }
@@ -30,9 +33,15 @@ const reducer = (
   state: IState = initialState,
   { type, payload }: AnyAction,
 ): IState => {
-  let newCanvases: ICanvas[] // TODO: Should not have to do this in order to avoid block-scoped variable messages
+  let newCanvases: ICanvas[]
 
-  switch (type) {
+  switch (type) { // TODO: All projects. This `switch` be `if... else if` to allow block scoped vars
+    case OPENING_SEQUENCE_BEGUN:
+      return { ...state, eventInProgess: true }
+
+    case OPENING_SEQUENCE_DONE:
+      return { ...state, eventInProgess: false }
+
     case SET_CANVAS:
       return { ...state, currentCanvas: payload }
 
@@ -50,8 +59,8 @@ const reducer = (
       params[payload.index] = payload.value
       return { ...state, params }
 
-    case TOGGLE_ON:
-      return { ...state, on: !state.on }
+    case SET_ON:
+      return { ...state, on: payload }
 
     case UPDATE_DOT:
       const currentCanvas = state.canvases[state.currentCanvas]

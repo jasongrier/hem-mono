@@ -8,11 +8,11 @@ import { dotNumberToNote, flashDots } from '../functions/canvas'
 import { setupBuiltInSounds } from '../functions/sounds'
 import { pickNoteRandom } from '../functions/performance'
 import { IDot } from '../store/types'
-import { toggleOn } from '../store/actions'
+import { playOpeningSequence } from '../store/actions'
 import IconButton from './IconButton'
 import DeviceControls from './DeviceControls'
 
-const samplers: any = setupBuiltInSounds()
+// const samplers: any = setupBuiltInSounds()
 
 interface IActiveDot extends IDot {
   index: number
@@ -36,6 +36,10 @@ function App(): ReactElement {
   }))
 
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(playOpeningSequence())
+  }, [])
 
   useEffect(() => {
     activeNotesProxy = dots.reduce((acc: any, { cursorGroup, sound }: IDot, index: number) => {
@@ -85,7 +89,7 @@ function App(): ReactElement {
   })
 
   return (
-    <div className="seurat">
+    <div className={`seurat seurat--device-${on ? 'on' : 'off'}`}>
       <Palette />
       <Canvas />
       <DeviceControls />
