@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store'
 import { setCursorGroup } from '../store/actions'
+import { uiLocked as uiLockedSel } from '../store/selectors'
 import { CursorGroup } from '../store/types'
 
 /**
@@ -19,8 +20,9 @@ interface IProps {
 }
 
 function PerformanceController({ cursorGroup: myCursorGroup }: IProps): ReactElement {
-  const { active } = useSelector((state: RootState) => ({
+  const { active, uiLocked } = useSelector((state: RootState) => ({
     active: state.app.cursorGroup === myCursorGroup,
+    uiLocked: uiLockedSel(state),
   }))
 
   const dispatch = useDispatch()
@@ -32,7 +34,10 @@ function PerformanceController({ cursorGroup: myCursorGroup }: IProps): ReactEle
         performance-controller--${myCursorGroup}
         ${active ? 'performance-controller--active' : ''}
       `}
-      onClick={() => dispatch(setCursorGroup(myCursorGroup))}
+      onClick={() => {
+        if (uiLocked) return
+        dispatch(setCursorGroup(myCursorGroup)
+      )}}
     >
       <div className="dial" />
       <div className="dial" />

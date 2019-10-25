@@ -1,7 +1,7 @@
 const { join } = require('path')
 const { readdirSync, statSync } = require('fs')
 
-const expectedFiles = [
+const expectedFiles = [ // TODO: Lint for files (incuding selectors) under `store`
   'assets',
   'classes',
   'components',

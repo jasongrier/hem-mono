@@ -1,5 +1,7 @@
 import { AnyAction } from 'redux'
+import { ThunkAction } from 'redux-thunk'
 
+export type ThunkResult<R> = ThunkAction<R, IState, undefined, Action> // TODO: How to get around putting this in every project??
 export type CursorGroup = 'red' | 'yellow' | 'blue' | 'white' | 'none'
 export type CursorMode = 'erase' | 'draw'
 
@@ -24,18 +26,31 @@ export interface IState {
   cursorGroup: CursorGroup
   cursorIsDragging: boolean
   cursorMode: CursorMode
+  eventInProgess: boolean
   on: boolean
   params: number[]
 }
 
+export const OPENING_SEQUENCE_BEGUN = 'OPENING_SEQUENCE_BEGUN'
+export const OPENING_SEQUENCE_DONE = 'OPENING_SEQUENCE_DONE'
 export const SET_CANVAS = 'SET_CANVAS'
 export const SET_CURSOR_GROUP = 'SET_CURSOR_GROUP'
 export const SET_CURSOR_MODE = 'SET_CURSOR_MODE'
 export const SET_DRAGGING = 'SET_DRAGGING'
+export const SET_ON = 'SET_ON'
 export const SET_PARAM = 'SET_PARAM'
 export const SET_PRESET = 'SET_PRESET'
-export const TOGGLE_ON = 'TOGGLE_ON'
 export const UPDATE_DOT = 'UPDATE_DOT'
+
+export interface IOpeningSequenceBegun extends AnyAction {
+  type: typeof OPENING_SEQUENCE_BEGUN
+  payload: null
+}
+
+export interface IOpeningSequenceDone extends AnyAction {
+  type: typeof OPENING_SEQUENCE_DONE
+  payload: null
+}
 
 export interface ISetCursorGroup extends AnyAction {
   type: typeof SET_CURSOR_GROUP
@@ -52,19 +67,14 @@ export interface ISetDragging extends AnyAction {
   payload: boolean
 }
 
+export interface ISetOn extends AnyAction {
+  type: typeof SET_ON
+  payload: boolean
+}
+
 export interface ISetParam extends AnyAction {
   type: typeof SET_PARAM
   payload: { index: number, value: number }
-}
-
-export interface ILoadPreset extends AnyAction {
-  type: typeof SET_PRESET
-  payload: ICanvas
-}
-
-export interface IToggleOn extends AnyAction {
-  type: typeof TOGGLE_ON
-  payload: null
 }
 
 export interface IUpdateDot extends AnyAction {
@@ -73,10 +83,11 @@ export interface IUpdateDot extends AnyAction {
 }
 
 export type Action =
-    ISetCursorGroup
+    IOpeningSequenceBegun
+  | IOpeningSequenceDone
+  | ISetCursorGroup
   | ISetCursorMode
   | ISetDragging
+  | ISetOn
   | ISetParam
-  | ILoadPreset
-  | IToggleOn
   | IUpdateDot

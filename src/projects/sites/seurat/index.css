@@ -1,7 +1,7 @@
 :root {
   --canvas-size: 614px;
-  --canvas-inner-size: calc(var(--canvas-size) + 8px);
-  --dot-size: 70.6px;
+  --canvas-inner-size: calc(var(--canvas-size) + 10px);
+  --dot-size: 69px;
   --dial-size: 44px;
   --dial-hub: 6px;
   --color-red: #8f0d0d;
@@ -10,6 +10,9 @@
   --color-white: #b8b8b8;
   --color-none: #111;
   --color-app-base: #000;
+  --corner-roundness: 4px;
+  --transition-color-change: 300ms;
+  --performance-controller-off-opacity: .4;
 }
 
 html,
@@ -20,7 +23,7 @@ body {
   padding: 0;
   overflow: hidden;
   font-family: Arial, Helvetica, sans-serif;
-  background: #ccc;
+  background-color: #ccc;
   -webkit-app-region: drag;
 }
 
@@ -30,7 +33,7 @@ body {
   margin: 0;
   padding: 0;
   border: none;
-  background: transparent;
+  background-color: transparent;
 }
 
 .icon-button:active,
@@ -54,6 +57,7 @@ body {
 }
 
 .icon-button__icon--on-off {
+  opacity: 0.5;
   background-image: url(./assets/tmp-icons/on-off.png);
 }
 
@@ -64,18 +68,18 @@ body {
 
 .seurat {
   position: relative;
-  width: 880px;
+  width: 915px;
   height: 614px;
   margin: 15px auto 0 auto;
   padding: 15px;
-  background: var(--color-app-base);
+  background-color: var(--color-app-base);
   border-radius: 10px;
 }
 
 .canvas {
   position: absolute;
   top: 15px;
-  left: 225px;
+  left: 245px;
   width: calc(var(--canvas-size) + 1px);
   height: var(--canvas-size);
   overflow: hidden;
@@ -83,6 +87,7 @@ body {
   user-select: none;
   transition: left 250ms;
   transform: rotate(180deg) scaleX(-1);
+  border-radius: var(--corner-roundness);
 }
 
 .canvas__inner {
@@ -100,9 +105,10 @@ body {
   width: var(--dot-size);
   height: var(--dot-size);
   border-radius: 64px;
-  margin: 7px 7px 0 0;
+  margin: 8.82px 9px 0 0;
   user-select: none;
   overflow: hidden;
+  transition: background-color var(--transition-color-change);
 }
 
 .dot::after {
@@ -112,38 +118,39 @@ body {
   left: 0;
   content: " ";
   opacity: 0;
-  transition: all 150ms;
+  transition: opacity 150ms;
 }
 
 .dot.dot--flashing::after {
   opacity: 1;
 }
 
-.dot.dot--group-none { background: var(--color-none) }
-.dot.dot--group-white { background: var(--color-white) }
-.dot.dot--group-white.dot.dot--flashing::after { background: #fff }
-.dot.dot--group-red { background: var(--color-red) }
-.dot.dot--group-red.dot.dot--flashing::after { background: #ff0000 }
-.dot.dot--group-yellow { background: var(--color-yellow) }
-.dot.dot--group-yellow.dot.dot--flashing::after { background: #ffff00 }
-.dot.dot--group-blue { background: var(--color-blue) }
-.dot.dot--group-blue.dot.dot--flashing::after { background: #0000ff }
+.dot.dot--group-none { background-color: var(--color-none) }
+.dot.dot--group-white { background-color: var(--color-white) }
+.dot.dot--group-white.dot.dot--flashing::after { background-color: #fff }
+.dot.dot--group-red { background-color: var(--color-red) }
+.dot.dot--group-red.dot.dot--flashing::after { background-color: #ff0000 }
+.dot.dot--group-yellow { background-color: var(--color-yellow) }
+.dot.dot--group-yellow.dot.dot--flashing::after { background-color: #ffff00 }
+.dot.dot--group-blue { background-color: var(--color-blue) }
+.dot.dot--group-blue.dot.dot--flashing::after { background-color: #0000ff }
 
 .palette {
   position: absolute;
-  top: 15px;
+  top: 20px;
   left: 15px;
   width: 175px;
-  height: 614px;
+  height: 604px;
   -webkit-app-region: no-drag;
 }
 
 .performance-controller {
   position: relative;
   width: 100%;
-  height: 126px;
-  margin-bottom: 37px;
-  opacity: .5;
+  height: 135px;
+  margin-bottom: 21.2px;
+  opacity: var(--performance-controller-off-opacity);
+  transition: opacity var(--transition-color-change);
 }
 
 .performance-controller--active {
@@ -156,6 +163,7 @@ body {
   width: var(--dial-size);
   height: var(--dial-size);
   border-radius: var(--dial-size);
+  transition: background-color var(--transition-color-change);
 }
 
 .dial::after {
@@ -167,17 +175,17 @@ body {
   width: calc(var(--dial-size) - var(--dial-hub));
   height: calc(var(--dial-size) - var(--dial-hub));
   border-radius: calc(var(--dial-size) - var(--dial-hub));
-  background: var(--color-app-base);
+  background-color: var(--color-app-base);
 }
 
 .dial:last-child {
   margin-right: 0;
 }
 
-.performance-controller--white .dial { background: var(--color-white) }
-.performance-controller--red .dial { background: var(--color-red) }
-.performance-controller--yellow .dial { background: var(--color-yellow) }
-.performance-controller--blue .dial { background: var(--color-blue) }
+.performance-controller--white .dial { background-color: var(--color-white) }
+.performance-controller--red .dial { background-color: var(--color-red) }
+.performance-controller--yellow .dial { background-color: var(--color-yellow) }
+.performance-controller--blue .dial { background-color: var(--color-blue) }
 
 .performance-controller__selectors {
   position: absolute;
@@ -185,19 +193,20 @@ body {
   left: 0;
   width: 100%;
   height: 30px;
-  border-radius: 5px;
+  border-radius: var(--corner-roundness);
   overflow: hidden;
+  transition: background-color var(--transition-color-change);
 }
 
-.performance-controller--white .performance-controller__selectors { background: var(--color-white) }
-.performance-controller--red .performance-controller__selectors { background: var(--color-red) }
-.performance-controller--yellow .performance-controller__selectors { background: var(--color-yellow) }
-.performance-controller--blue .performance-controller__selectors { background: var(--color-blue) }
+.performance-controller--white .performance-controller__selectors { background-color: var(--color-white) }
+.performance-controller--red .performance-controller__selectors { background-color: var(--color-red) }
+.performance-controller--yellow .performance-controller__selectors { background-color: var(--color-yellow) }
+.performance-controller--blue .performance-controller__selectors { background-color: var(--color-blue) }
 
 .performance-controller__selectors button {
   width: 43.75px;
   height: 30px;
-  background: transparent;
+  background-color: transparent;
   border: none;
 }
 
@@ -212,7 +221,7 @@ body {
 }
 
 .dial:nth-child(2) {
-  top: 40px;
+  top: 46px;
   left: 41px;
 }
 
@@ -222,16 +231,16 @@ body {
 }
 
 .dial:nth-child(4) {
-  top: 44px;
+  top: 46px;
   left: 126px;
 }
 
 .device-controls {
   position: absolute;
-  top: 15px;
-  right: 15px;
-  width: 40px;
-  height: 614px;
+  top: 20px;
+  right: 20px;
+  width: 15px;
+  height: 604px;
 }
 
 .device-controls__top {
@@ -259,17 +268,21 @@ body {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 40px;
-  height: 122px;
+  width: 30px;
+  height: 145px;
+  transform: scale(.5);
+  transform-origin: bottom left;
 }
 
 .instrument-logo h1 {
   position: relative;
-  height: 122px;
+  height: 126px;
   width: 26px;
   margin: 0 auto;
   padding: 0;
   overflow: hidden;
+  transform: scale(1.15);
+  transform-origin: top center;
 }
 
 .instrument-logo h1 span {
@@ -278,12 +291,37 @@ body {
   bottom: 100%;
   left: 0;
   line-height: 22px;
-  width: 58px;
+  width: 121px;
   height: 26px;
   transform: rotate(90deg);
   transform-origin: bottom left;
-  color: #777;
+  color: var(--color-white);
   font-family: 'u8';
   text-transform: uppercase;
   font-weight: bold;
+  letter-spacing: 1px;
+  transition: color var(--transition-color-change);
+}
+
+.instrument-logo--white h1 span { color: var(--color-white) }
+.instrument-logo--red h1 span { color: var(--color-red) }
+.instrument-logo--yellow h1 span { color: var(--color-yellow) }
+.instrument-logo--blue h1 span { color: var(--color-blue) }
+
+.seurat--device-off .instrument-logo h1 span {
+  color: var(--color-none) !important;
+}
+
+.seurat--device-off .dot {
+  background-color: var(--color-none) !important;
+}
+
+.seurat--device-off .dot,
+.seurat--device-off .performance-controller {
+  opacity: var(--performance-controller-off-opacity) !important;
+}
+
+.seurat--device-off .dial,
+.seurat--device-off .performance-controller .performance-controller__selectors {
+  background-color: var(--color-none) !important;
 }

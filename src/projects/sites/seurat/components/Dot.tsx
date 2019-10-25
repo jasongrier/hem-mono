@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store'
+import { uiLocked as uiLockedSel } from '../store/selectors'
 import { updateDot, setDragging, setCursorMode } from '../store/actions' // TODO: Barrelise actions
 
 // TODO: Move handlers to a helper file
@@ -11,17 +12,20 @@ interface IProps {
 }
 
 function Dot({ dotNumber }: IProps): ReactElement {
-  const { cursorGroup, cursorIsDragging, cursorMode, myCursorGroup, mySound } = useSelector((state: RootState) => ({
+  const { cursorGroup, cursorIsDragging, cursorMode, myCursorGroup, mySound, uiLocked } = useSelector((state: RootState) => ({
     cursorGroup: state.app.cursorGroup,
     cursorIsDragging: state.app.cursorIsDragging,
     cursorMode: state.app.cursorMode,
     myCursorGroup: state.app.canvases[state.app.currentCanvas].dots[dotNumber].cursorGroup,
     mySound: state.app.canvases[state.app.currentCanvas].dots[dotNumber].sound,
+    uiLocked: uiLockedSel(state),
   }))
 
   const dispatch = useDispatch()
 
   function onMouseDown() {
+    if (uiLocked) return
+
     dispatch(setDragging(true))
 
     if (cursorMode === 'draw') {
@@ -43,6 +47,7 @@ function Dot({ dotNumber }: IProps): ReactElement {
   }
 
   function onMouseOver() {
+    if (uiLocked) return
     if (!cursorIsDragging) return
 
     if (cursorMode === 'draw' && cursorGroup !== myCursorGroup) {
@@ -55,6 +60,7 @@ function Dot({ dotNumber }: IProps): ReactElement {
   }
 
   function onMouseUp() {
+    if (uiLocked) return
     dispatch(setDragging(false))
     dispatch(setCursorMode('draw'))
   }

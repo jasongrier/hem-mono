@@ -1,19 +1,48 @@
 import { AnyAction } from 'redux'
+import { promisedTimeout } from '../../../../common/functions'
 import {
-  CursorGroup,
-
+  OPENING_SEQUENCE_BEGUN,
+  OPENING_SEQUENCE_DONE,
   SET_CANVAS,
   SET_CURSOR_GROUP,
   SET_CURSOR_MODE,
   SET_DRAGGING,
+  SET_ON,
+  SET_PARAM,
   UPDATE_DOT,
 
+  CursorGroup,
   CursorMode,
-  SET_PARAM,
-  TOGGLE_ON,
+  ThunkResult,
 } from './types'
 
-const setCanvas = (canvasNumber: number): AnyAction => ({
+const playOpeningSequence = (andTurnOn: boolean = false): ThunkResult<void> =>
+  async dispatch => {
+    dispatch({ type: OPENING_SEQUENCE_BEGUN, payload: null })
+
+    if (andTurnOn) {
+      dispatch({ type: SET_ON, payload: true })
+    }
+
+    dispatch({ type: SET_CURSOR_GROUP, payload: 'white' })
+    await promisedTimeout(500)
+
+    dispatch({ type: SET_CURSOR_GROUP, payload: 'red' })
+    await promisedTimeout(500)
+
+    dispatch({ type: SET_CURSOR_GROUP, payload: 'yellow' })
+    await promisedTimeout(500)
+
+    dispatch({ type: SET_CURSOR_GROUP, payload: 'blue' })
+    await promisedTimeout(500)
+
+    dispatch({ type: SET_CURSOR_GROUP, payload: 'white' })
+    await promisedTimeout(500)
+
+    dispatch({ type: OPENING_SEQUENCE_DONE, payload: null })
+  }
+
+const setCanvas = (canvasNumber: number): AnyAction => ({ // TODO: These should be their respective action types from `./types`!!! (All projects...)
   type: SET_CANVAS,
   payload: canvasNumber,
 })
@@ -38,9 +67,9 @@ const setParam = ({ index, value }: { index: number, value: number }): AnyAction
   payload: { index, value },
 })
 
-const toggleOn = (): AnyAction => ({
-  type: TOGGLE_ON,
-  payload: null,
+const setOn = (on: boolean): AnyAction => ({
+  type: SET_ON,
+  payload: on,
 })
 
 const updateDot = ({
@@ -57,11 +86,12 @@ const updateDot = ({
 })
 
 export {
+  playOpeningSequence,
   setCanvas,
   setCursorGroup,
   setCursorMode,
   setDragging,
+  setOn,
   setParam,
-  toggleOn,
   updateDot,
 }
