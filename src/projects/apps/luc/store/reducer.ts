@@ -6,6 +6,7 @@ import {
 } from './types'
 
 const initialState: IState = {
+  currentDocument: null,
 }
 
 const reducer = (
