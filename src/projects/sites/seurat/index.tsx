@@ -3,6 +3,7 @@ import { Provider } from 'react-redux'
 import store from './store'
 import { BrowserRouter } from 'react-router-dom'
 import App from './components/App'
+import './assets/fonts/u8/u8.css'
 import './index.css'
 
 const Root = (
