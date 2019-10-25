@@ -10,6 +10,7 @@ import { pickNoteRandom } from '../functions/performance'
 import { IDot } from '../store/types'
 import { toggleOn } from '../store/actions'
 import IconButton from './IconButton'
+import DeviceControls from './DeviceControls'
 
 const samplers: any = setupBuiltInSounds()
 
@@ -87,17 +88,7 @@ function App(): ReactElement {
     <div className="seurat">
       <Palette />
       <Canvas />
-      <div className="device-controls">
-        <div className="device-controls__top">
-          <IconButton
-            selected={on}
-            icon="on-off"
-            onClick={() => dispatch(toggleOn())}
-          />
-        </div>
-        <div className="device-controls__bottom">
-        </div>
-      </div>
+      <DeviceControls />
     </div>
   )
 }

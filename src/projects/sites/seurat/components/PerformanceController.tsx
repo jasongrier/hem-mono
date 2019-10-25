@@ -6,9 +6,11 @@ import { CursorGroup } from '../store/types'
 
 /**
  * Selector buttons
- * – Random
- * – Up
- * – Step
+ * – Performance Type
+ * –– Random
+ * –– Up
+ * –– Step
+ * –– Code
  * – Mutually exclusive
  */
 
