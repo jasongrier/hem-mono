@@ -16,8 +16,8 @@ function Dot({ dotNumber }: IProps): ReactElement {
     cursorGroup: state.app.cursorGroup,
     cursorIsDragging: state.app.cursorIsDragging,
     cursorMode: state.app.cursorMode,
-    myCursorGroup: state.app.canvases[state.app.currentCanvas].dots[dotNumber].cursorGroup,
-    mySound: state.app.canvases[state.app.currentCanvas].dots[dotNumber].sound,
+    myCursorGroup: state.app.canvases[state.app.currentCanvasIndex].dots[dotNumber].cursorGroup,
+    mySound: state.app.canvases[state.app.currentCanvasIndex].dots[dotNumber].sound,
     uiLocked: uiLockedSel(state),
   }))
 

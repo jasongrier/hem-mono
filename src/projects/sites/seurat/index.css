@@ -50,20 +50,35 @@ body {
   background-size: contain;
   filter: invert(100%);
   opacity: 0.2;
+  transition: opacity 100ms;
+}
+
+.icon-button--pressed .icon-button__icon {
+  opacity: 1;
+}
+
+.icon-button--hidden .icon-button__icon {
+  opacity: 0 !important;
 }
 
 .icon-button--selected .icon-button__icon {
-  opacity: 0.5;
+  opacity: 0.7;
 }
+
+.icon-button__icon--on-off { background-image: url(./assets/tmp-icons/on-off.png) }
+.icon-button__icon--play { background-image: url(./assets/tmp-icons/play.png) }
+.icon-button__icon--stop { background-image: url(./assets/tmp-icons/stop.png) }
+.icon-button__icon--clear-canvas { background-image: url(./assets/tmp-icons/clear-canvas.png) }
+.icon-button__icon--sound-assignments { background-image: url(./assets/tmp-icons/sound-assignments.png) }
+
+/* TODO: Implement SVG icons!! (ie: Pay for Fontawesome) */
+.icon-button__icon--on-off.icon-button__icon--white svg { fill: var(--color-white) }
+.icon-button__icon--on-off.icon-button__icon--red svg { fill: var(--color-red) }
+.icon-button__icon--on-off.icon-button__icon--yellow svg { fill: var(--color-yellow) }
+.icon-button__icon--on-off.icon-button__icon--blue svg { fill: var(--color-blue) }
 
 .icon-button__icon--on-off {
-  opacity: 0.5;
-  background-image: url(./assets/tmp-icons/on-off.png);
-}
-
-.icon-button--selected .icon-button__icon {
-  filter: none;
-  background-image: url(./assets/tmp-icons/on-off--green.png);
+  opacity: 0.3;
 }
 
 .seurat {
@@ -104,7 +119,7 @@ body {
   display: block;
   width: var(--dot-size);
   height: var(--dot-size);
-  border-radius: 64px;
+  border-radius: var(--dot-size);
   margin: 8.82px 9px 0 0;
   user-select: none;
   overflow: hidden;
@@ -116,24 +131,36 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+  width: var(--dot-size);
+  height: var(--dot-size);
+  border-radius: var(--dot-size);
   content: " ";
   opacity: 0;
   transition: opacity 150ms;
 }
 
-.dot.dot--flashing::after {
+.dot--flashing::after {
   opacity: 1;
 }
 
+.dot.dot--group-forced::after {
+  opacity: 1 !important;
+}
+
+.dot.dot--group-forced.dot--group-forced-white::after { background-color: var(--color-white) }
+.dot.dot--group-forced.dot--group-forced-red::after { background-color: var(--color-red) }
+.dot.dot--group-forced.dot--group-forced-yellow::after { background-color: var(--color-yellow) }
+.dot.dot--group-forced.dot--group-forced-blue::after { background-color: var(--color-blue) }
+
 .dot.dot--group-none { background-color: var(--color-none) }
 .dot.dot--group-white { background-color: var(--color-white) }
-.dot.dot--group-white.dot.dot--flashing::after { background-color: #fff }
+.dot.dot--group-white.dot--flashing::after { background-color: #fff }
 .dot.dot--group-red { background-color: var(--color-red) }
-.dot.dot--group-red.dot.dot--flashing::after { background-color: #ff0000 }
+.dot.dot--group-red.dot--flashing::after { background-color: #ff0000 }
 .dot.dot--group-yellow { background-color: var(--color-yellow) }
-.dot.dot--group-yellow.dot.dot--flashing::after { background-color: #ffff00 }
+.dot.dot--group-yellow.dot--flashing::after { background-color: #ffff00 }
 .dot.dot--group-blue { background-color: var(--color-blue) }
-.dot.dot--group-blue.dot.dot--flashing::after { background-color: #0000ff }
+.dot.dot--group-blue.dot--flashing::after { background-color: #0000ff }
 
 .palette {
   position: absolute;
@@ -261,7 +288,7 @@ body {
   display: block;
   width: 15px;
   height: 15px;
-  margin: 0 auto;
+  margin: 0 auto 40px auto;
 }
 
 .instrument-logo {
@@ -324,4 +351,11 @@ body {
 .seurat--device-off .dial,
 .seurat--device-off .performance-controller .performance-controller__selectors {
   background-color: var(--color-none) !important;
+}
+
+.seurat--device-off .icon-button__icon--play,
+.seurat--device-off .icon-button__icon--stop,
+.seurat--device-off .icon-button__icon--clear-canvas,
+.seurat--device-off .icon-button__icon--sound-assignments {
+  opacity: 0 !important;
 }

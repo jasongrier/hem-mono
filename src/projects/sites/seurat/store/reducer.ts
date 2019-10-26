@@ -3,12 +3,13 @@ import * as presets from '../data/presets'
 import {
   OPENING_SEQUENCE_BEGUN,
   OPENING_SEQUENCE_DONE,
-  SET_CANVAS,
+  SET_CURRENT_CANVAS,
   SET_CURSOR_GROUP,
   SET_CURSOR_MODE,
-  SET_ON,
+  SET_DEVICE_ON,
   SET_DRAGGING,
   SET_PARAM,
+  SET_PLAYING,
   UPDATE_DOT,
 
   ICanvas,
@@ -20,13 +21,14 @@ const initialState: IState = {
   canvases: [
     presets.testTones,
   ],
-  currentCanvas: 0,
+  currentCanvasIndex: 0,
   cursorGroup: 'white',
   cursorIsDragging: false,
   cursorMode: 'draw',
   eventInProgess: true,
-  params: [.5, .5, .5, .5, .5, .5, .5, .5],
   on: true,
+  params: [.5, .5, .5, .5, .5, .5, .5, .5],
+  playing: true,
 }
 
 const reducer = (
@@ -42,8 +44,8 @@ const reducer = (
     case OPENING_SEQUENCE_DONE:
       return { ...state, eventInProgess: false }
 
-    case SET_CANVAS:
-      return { ...state, currentCanvas: payload }
+    case SET_CURRENT_CANVAS:
+      return { ...state, currentCanvasIndex: payload }
 
     case SET_CURSOR_GROUP:
       return { ...state, cursorGroup: payload }
@@ -59,11 +61,14 @@ const reducer = (
       params[payload.index] = payload.value
       return { ...state, params }
 
-    case SET_ON:
+    case SET_PLAYING:
+      return { ...state, playing: payload }
+
+    case SET_DEVICE_ON:
       return { ...state, on: payload }
 
     case UPDATE_DOT:
-      const currentCanvas = state.canvases[state.currentCanvas]
+      const currentCanvas = state.canvases[state.currentCanvasIndex]
       const newDots: IDot[] = [...currentCanvas.dots]
 
       newCanvases = [...state.canvases]
@@ -73,7 +78,7 @@ const reducer = (
         sound: payload.sound,
       }
 
-      newCanvases[state.currentCanvas].dots = newDots
+      newCanvases[state.currentCanvasIndex].dots = newDots
 
       return { ...state, canvases: newCanvases }
 

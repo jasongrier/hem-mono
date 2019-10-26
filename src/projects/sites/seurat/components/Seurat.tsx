@@ -26,13 +26,14 @@ interface IActiveDots {
 }
 
 let activeNotesProxy: IActiveDots
-let onProxy: boolean // TODO: How to prevent values getting frozen into a hook??
+let playingProxy: boolean // TODO: How to prevent values getting frozen into a hook??
 
 function App(): ReactElement {
-  const { dots, on, sound } = useSelector((state: RootState) => ({
-    dots: state.app.canvases[state.app.currentCanvas].dots,
+  const { dots, playing, on, sound } = useSelector((state: RootState) => ({
+    dots: state.app.canvases[state.app.currentCanvasIndex].dots,
+    playing: state.app.playing,
     on: state.app.on,
-    sound: state.app.canvases[state.app.currentCanvas].defaultSound,
+    sound: state.app.canvases[state.app.currentCanvasIndex].defaultSound,
   }))
 
   const dispatch = useDispatch()
@@ -55,7 +56,7 @@ function App(): ReactElement {
     })
   }, [dots])
 
-  useEffect(() => { onProxy = on }, [on])
+  useEffect(() => { playingProxy = playing }, [playing])
 
   useClock('web', () => {
     // const blueNote = pickNoteRandom(activeNotesProxy.blue)
@@ -81,7 +82,7 @@ function App(): ReactElement {
     //   dotsToTrigger.push(blueNote.note)
     // }
 
-    // if (dotsToTrigger.length && onProxy) {
+    // if (dotsToTrigger.length && playingProxy) {
     //   const dotNumbers = dotsToTrigger.map(dot => dot.index)
     //   flashDots(dotNumbers)
     //   samplers[sound].play(dotNumbers.map(dotNumberToNote)) // TODO: Play the sound assigned to the dot, not the canvas' sound

@@ -22,25 +22,32 @@ export interface ICanvas {
 
 export interface IState {
   canvases: ICanvas[]
-  currentCanvas: number
+  currentCanvasIndex: number
   cursorGroup: CursorGroup
   cursorIsDragging: boolean
   cursorMode: CursorMode
   eventInProgess: boolean
   on: boolean
   params: number[]
+  playing: boolean
 }
 
+export const CLEAR_CANVAS = 'CLEAR_CANVAS'
 export const OPENING_SEQUENCE_BEGUN = 'OPENING_SEQUENCE_BEGUN'
 export const OPENING_SEQUENCE_DONE = 'OPENING_SEQUENCE_DONE'
-export const SET_CANVAS = 'SET_CANVAS'
+export const SET_CURRENT_CANVAS = 'SET_CURRENT_CANVAS'
 export const SET_CURSOR_GROUP = 'SET_CURSOR_GROUP'
 export const SET_CURSOR_MODE = 'SET_CURSOR_MODE'
 export const SET_DRAGGING = 'SET_DRAGGING'
-export const SET_ON = 'SET_ON'
+export const SET_DEVICE_ON = 'SET_DEVICE_ON'
 export const SET_PARAM = 'SET_PARAM'
-export const SET_PRESET = 'SET_PRESET'
+export const SET_PLAYING = 'SET_PLAYING'
 export const UPDATE_DOT = 'UPDATE_DOT'
+
+export interface IClearCanvas extends AnyAction {
+  type: typeof CLEAR_CANVAS
+  payload: null
+}
 
 export interface IOpeningSequenceBegun extends AnyAction {
   type: typeof OPENING_SEQUENCE_BEGUN
@@ -50,6 +57,11 @@ export interface IOpeningSequenceBegun extends AnyAction {
 export interface IOpeningSequenceDone extends AnyAction {
   type: typeof OPENING_SEQUENCE_DONE
   payload: null
+}
+
+export interface ISetCanvas extends AnyAction {
+  type: typeof SET_CURRENT_CANVAS
+  payload: number
 }
 
 export interface ISetCursorGroup extends AnyAction {
@@ -67,8 +79,8 @@ export interface ISetDragging extends AnyAction {
   payload: boolean
 }
 
-export interface ISetOn extends AnyAction {
-  type: typeof SET_ON
+export interface ISetDeviceOn extends AnyAction {
+  type: typeof SET_DEVICE_ON
   payload: boolean
 }
 
@@ -77,17 +89,24 @@ export interface ISetParam extends AnyAction {
   payload: { index: number, value: number }
 }
 
+export interface ISetPlaying extends AnyAction {
+  type: typeof SET_PLAYING
+  payload: boolean
+}
+
 export interface IUpdateDot extends AnyAction {
   type: typeof UPDATE_DOT
   payload: {dotNumber: number, value: CursorGroup}
 }
 
 export type Action =
-    IOpeningSequenceBegun
+    IClearCanvas
+  | IOpeningSequenceBegun
   | IOpeningSequenceDone
   | ISetCursorGroup
   | ISetCursorMode
   | ISetDragging
-  | ISetOn
+  | ISetDeviceOn
   | ISetParam
+  | ISetPlaying
   | IUpdateDot
