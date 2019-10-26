@@ -4,6 +4,7 @@ import { RootState } from '../store'
 import { setCursorGroup } from '../store/actions'
 import { uiLocked as uiLockedSel } from '../store/selectors'
 import { CursorGroup } from '../store/types'
+import IconButton from './IconButton'
 
 /**
  * Selector buttons
@@ -45,10 +46,31 @@ function PerformanceController({ cursorGroup: myCursorGroup }: IProps): ReactEle
       <div className="dial" />
 
       <div className="performance-controller__selectors">
-        <button className="performance-controller__color-selector" />
-        <button />
-        <button />
-        <button />
+        <IconButton
+          selected={false}
+          icon="seq-code"
+          onClick={() => {}}
+        />
+        <IconButton
+          selected={false}
+          icon="seq-down"
+          onClick={() => {}}
+        />
+        <IconButton
+          selected={false}
+          icon="seq-random"
+          onClick={() => {}}
+        />
+        <IconButton
+          selected={false}
+          icon="seq-step"
+          onClick={() => {}}
+        />
+        <IconButton
+          selected={false}
+          icon="seq-up"
+          onClick={() => {}}
+        />
       </div>
     </div>
   )

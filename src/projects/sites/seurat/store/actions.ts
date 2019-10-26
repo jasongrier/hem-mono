@@ -1,13 +1,15 @@
 import { AnyAction } from 'redux'
 import { promisedTimeout } from '../../../../common/functions'
+import { flashDot } from '../functions/canvas'
 import {
   OPENING_SEQUENCE_BEGUN,
   OPENING_SEQUENCE_DONE,
-  SET_CANVAS,
+  SET_CURRENT_CANVAS,
   SET_CURSOR_GROUP,
   SET_CURSOR_MODE,
   SET_DRAGGING,
-  SET_ON,
+  SET_DEVICE_ON,
+  SET_PLAYING,
   SET_PARAM,
   UPDATE_DOT,
 
@@ -17,11 +19,30 @@ import {
 } from './types'
 
 const playOpeningSequence = (andTurnOn: boolean = false): ThunkResult<void> =>
-  async dispatch => {
+  async (dispatch, getState) => {
+
+    async function flashNextDot(index: number) {
+      const { canvases, currentCanvasIndex, cursorGroup } = (getState() as any).app
+      const totalDots = canvases[currentCanvasIndex].dots.length
+
+      flashDot(index, ['dot--group-forced', `dot--group-forced-${cursorGroup}`])
+
+      if (index < totalDots - 1) {
+        await promisedTimeout(40)
+        flashNextDot(index + 1)
+      }
+
+      else {
+        dispatch({ type: OPENING_SEQUENCE_DONE, payload: null })
+      }
+    }
+
+    flashNextDot(0)
+
     dispatch({ type: OPENING_SEQUENCE_BEGUN, payload: null })
 
     if (andTurnOn) {
-      dispatch({ type: SET_ON, payload: true })
+      dispatch({ type: SET_DEVICE_ON, payload: true })
     }
 
     dispatch({ type: SET_CURSOR_GROUP, payload: 'white' })
@@ -38,12 +59,10 @@ const playOpeningSequence = (andTurnOn: boolean = false): ThunkResult<void> =>
 
     dispatch({ type: SET_CURSOR_GROUP, payload: 'white' })
     await promisedTimeout(500)
-
-    dispatch({ type: OPENING_SEQUENCE_DONE, payload: null })
   }
 
 const setCanvas = (canvasNumber: number): AnyAction => ({ // TODO: These should be their respective action types from `./types`!!! (All projects...)
-  type: SET_CANVAS,
+  type: SET_CURRENT_CANVAS,
   payload: canvasNumber,
 })
 
@@ -67,8 +86,13 @@ const setParam = ({ index, value }: { index: number, value: number }): AnyAction
   payload: { index, value },
 })
 
+const setPlaying = (playing: boolean): AnyAction => ({
+  type: SET_PLAYING,
+  payload: playing,
+})
+
 const setOn = (on: boolean): AnyAction => ({
-  type: SET_ON,
+  type: SET_DEVICE_ON,
   payload: on,
 })
 
@@ -93,5 +117,6 @@ export {
   setDragging,
   setOn,
   setParam,
+  setPlaying,
   updateDot,
 }

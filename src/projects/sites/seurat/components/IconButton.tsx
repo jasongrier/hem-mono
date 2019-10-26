@@ -1,18 +1,33 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useState } from 'react'
 
 interface IProps {
+  className?: string
   icon: string
+  iconClassName?: string
   onClick: () => void
   selected: boolean
 }
 
-function IconButton({ icon, onClick, selected }: IProps): ReactElement {
+function IconButton({ className, icon, iconClassName, onClick, selected }: IProps): ReactElement {
+  const [pressed, setPressed] = useState(false)
+
   return (
     <button
-      className={`icon-button ${selected ? ' icon-button--selected' : ''}`}
+      className={`
+        icon-button
+          ${pressed ? 'icon-button--pressed' : ''}
+          ${selected ? ' icon-button--selected' : ''}
+          ${className ? ' ' + className : ''}
+      `}
       onClick={onClick}
+      onMouseDown={() => setPressed(true)}
+      onMouseUp={() => setPressed(false)}
     >
-      <i className={`icon-button__icon icon-button__icon--${icon}`}></i>
+      <i className={`
+        icon-button__icon
+          icon-button__icon--${icon}
+          ${iconClassName ? ' ' + iconClassName : ''}
+      `}></i>
     </button>
   )
 }
