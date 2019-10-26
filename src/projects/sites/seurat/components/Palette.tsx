@@ -1,14 +1,14 @@
 import React, { ReactElement } from 'react'
 
-import PerformanceController from './PerformanceController'
+import PerformanceControls from './PerformanceControls'
 
 function Palette(): ReactElement {
   return (
     <div className="palette">
-      <PerformanceController cursorGroup="white" />
-      <PerformanceController cursorGroup="red" />
-      <PerformanceController cursorGroup="yellow" />
-      <PerformanceController cursorGroup="blue" />
+      <PerformanceControls cursorGroup="white" />
+      <PerformanceControls cursorGroup="red" />
+      <PerformanceControls cursorGroup="yellow" />
+      <PerformanceControls cursorGroup="blue" />
     </div>
   )
 }

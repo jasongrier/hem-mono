@@ -1,18 +1,21 @@
 :root {
-  --canvas-size: 614px;
   --canvas-inner-size: calc(var(--canvas-size) + 10px);
-  --dot-size: 69px;
-  --dial-size: 44px;
-  --dial-hub: 6px;
-  --color-red: #8f0d0d;
-  --color-yellow: #aaaa03;
-  --color-blue: #16168a;
-  --color-white: #b8b8b8;
-  --color-none: #111;
+  --canvas-left: 245px;
+  --canvas-size: 614px;
+  --canvas-top: 15px;
   --color-app-base: #000;
+  --color-blue: #16168a;
+  --color-none: #111;
+  --color-red: #8f0d0d;
+  --color-white: #b8b8b8;
+  --color-yellow: #aaaa03;
+  --controller-selectors-height: 30px;
   --corner-roundness: 4px;
-  --transition-color-change: 300ms;
+  --dial-hub: 6px;
+  --dial-size: 44px;
+  --dot-size: 69px;
   --performance-controller-off-opacity: .4;
+  --transition-color-change: 300ms;
 }
 
 html,
@@ -74,7 +77,7 @@ body {
 .icon-button__icon--on-off { background-image: url(./assets/tmp-icons/on-off.png) }
 .icon-button__icon--play { background-image: url(./assets/tmp-icons/play.png) }
 .icon-button__icon--redo { background-image: url(./assets/tmp-icons/redo.png) }
-.icon-button__icon--seq-code { background-image: url(./assets/tmp-icons/seq-code.png) }
+.icon-button__icon--seq-custom { background-image: url(./assets/tmp-icons/seq-custom.png) }
 .icon-button__icon--seq-down { background-image: url(./assets/tmp-icons/seq-down.png) }
 .icon-button__icon--seq-mutually-exclusive { background-image: url(./assets/tmp-icons/seq-mutually-exclusive.png) }
 .icon-button__icon--seq-random { background-image: url(./assets/tmp-icons/seq-random.png) }
@@ -106,14 +109,13 @@ body {
 
 .canvas {
   position: absolute;
-  top: 15px;
-  left: 245px;
+  top: var(--canvas-top);
+  left: var(--canvas-left);
   width: calc(var(--canvas-size) + 1px);
   height: var(--canvas-size);
   overflow: hidden;
   -webkit-app-region: no-drag;
   user-select: none;
-  transition: left 250ms;
   transform: rotate(180deg) scaleX(-1);
   border-radius: var(--corner-roundness);
 }
@@ -232,13 +234,10 @@ body {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 30px;
+  height: var(--controller-selectors-height);
   border-radius: var(--corner-roundness);
   overflow: hidden;
   transition: background-color var(--transition-color-change);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .performance-controller--white .performance-controller__selectors { background-color: var(--color-white) }
@@ -246,21 +245,47 @@ body {
 .performance-controller--yellow .performance-controller__selectors { background-color: var(--color-yellow) }
 .performance-controller--blue .performance-controller__selectors { background-color: var(--color-blue) }
 
-.performance-controller__selectors button {
-  width: 12px;
-  height: 12px;
-  margin-right: 30px;
+.performance-controller__selectors .icon-button {
+  float: left;
+  width: 25%;
+  height: var(--controller-selectors-height);
+  margin: 0;
+  padding: 0;
   background-color: transparent;
   border: none;
-  filter: invert(100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.performance-controller__selectors .icon-button {
-  opacity: 0.5;
+.performance-controller__selectors .icon-button:first-child {
+  border-top-left-radius: var(--corner-roundness);
+  border-bottom-left-radius: var(--corner-roundness);
+}
+
+.performance-controller__selectors .icon-button:last-child {
+  border-top-right-radius: var(--corner-roundness);
+  border-bottom-right-radius: var(--corner-roundness);
 }
 
 .performance-controller__selectors .icon-button--selected {
-  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.performance-controller__selectors .icon-button--emphasised {
+  filter: invert(100%);
+  background-color: rgba(0, 0, 0, 0.9); /* TODO: Don't use opacity to simulate color, pick actual solid colors */
+}
+
+.performance-controller__selectors .icon-button__icon {
+  display: block;
+  width: 12px;
+  height: 12px;
+  opacity: 0.6; /* TODO: Faded icon buttons should be a SVG color (ie: Pay for Fontawesome) */
+}
+
+.performance-controller:last-child .performance-controller__selectors .icon-button__icon {
+  transform: translate(0, 1px); /* TODO: Weird! */
 }
 
 .performance-controller__selectors button:last-child {
@@ -389,3 +414,28 @@ body {
 .seurat--device-off .icon-button__icon--sound-assignments {
   opacity: 0 !important;
 }
+
+.code-editor {
+  position: absolute;
+  top: 100%;
+  left: 100%;
+  opacity: 0;
+  transition: opacity var(--transition-color-change);
+  background: rgba(0, 0, 0, 0.7);
+  border-style: solid;
+  border-width: 2px;
+  border-radius: var(--corner-roundness);
+}
+
+.code-editor--open { /* TODO: Remove doubled BEM classes, eg: `.foo.foo--bar` >> `.foo--bar`  */
+  top: var(--canvas-top);
+  left: var(--canvas-left);
+  width: var(--canvas-size);
+  height: var(--canvas-size);
+  opacity: 1;
+}
+
+.code-editor--white { border-color: var(--color-white) }
+.code-editor--red { border-color: var(--color-red) }
+.code-editor--blue { border-color: var(--color-blue) }
+.code-editor--yellow { border-color: var(--color-yellow) }

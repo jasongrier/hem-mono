@@ -6,18 +6,21 @@ import {
   OPENING_SEQUENCE_BEGUN,
   OPENING_SEQUENCE_DONE,
   REDO,
+  SET_CODE_EDITOR_OPEN,
   SET_CURRENT_CANVAS,
   SET_CURSOR_GROUP,
   SET_CURSOR_MODE,
   SET_DEVICE_ON,
   SET_DRAGGING,
-  SET_PARAM,
   SET_PLAYING,
   UNDO,
+  UPDATE_CONTROL,
   UPDATE_DOT,
 
+  ControlName,
   CursorGroup,
   CursorMode,
+  SequencerMode,
   ThunkResult,
 } from './types'
 
@@ -73,7 +76,12 @@ const redo = (): AnyAction => ({
   payload: null,
 })
 
-const setCanvas = (canvasNumber: number): AnyAction => ({ // TODO: These should be their respective action types from `./types`!!! (All projects...)
+const setCodeEditorOpen = (codeEditorOpen: CursorGroup | false): AnyAction => ({ // TODO: These should be their respective action types from `./types`!!! (All projects...)
+  type: SET_CODE_EDITOR_OPEN,
+  payload: codeEditorOpen,
+})
+
+const setCurrentCanvas = (canvasNumber: number): AnyAction => ({ // TODO: These should be their respective action types from `./types`!!! (All projects...)
   type: SET_CURRENT_CANVAS,
   payload: canvasNumber,
 })
@@ -93,11 +101,6 @@ const setDragging = (isDragging: boolean): AnyAction => ({
   payload: isDragging,
 })
 
-const setParam = ({ index, value }: { index: number, value: number }): AnyAction => ({
-  type: SET_PARAM,
-  payload: { index, value },
-})
-
 const setPlaying = (playing: boolean): AnyAction => ({
   type: SET_PLAYING,
   payload: playing,
@@ -111,6 +114,11 @@ const setOn = (on: boolean): AnyAction => ({
 const undo = (): AnyAction => ({
   type: UNDO,
   payload: null,
+})
+
+const updateControl = (cursorGroup: CursorGroup, key: ControlName, value: SequencerMode | number | boolean): AnyAction => ({
+  type: UPDATE_CONTROL,
+  payload: { cursorGroup, key, value },
 })
 
 const updateDot = ({
@@ -130,13 +138,14 @@ export {
   clearCanvas,
   playOpeningSequence,
   redo,
-  setCanvas,
+  setCodeEditorOpen,
+  setCurrentCanvas,
   setCursorGroup,
   setCursorMode,
   setDragging,
   setOn,
-  setParam,
   setPlaying,
   undo,
+  updateControl,
   updateDot,
 }
