@@ -5,6 +5,7 @@ import React, { ReactElement } from 'react'
  * – Share
  * – Info
  * – Log in/out
+ * – Watch tutorial videos
  * – Download desktop version
  * – Support the HARDWARE version
  */
