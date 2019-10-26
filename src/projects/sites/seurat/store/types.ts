@@ -15,7 +15,6 @@ export interface IDot {
 }
 
 export interface ICanvas {
-  defaultSound: string
   dots: IDot[]
   name: string
 }
@@ -30,18 +29,22 @@ export interface IState {
   on: boolean
   params: number[]
   playing: boolean
+  undoIndex: number
+  undoStack: IState[]
 }
 
 export const CLEAR_CANVAS = 'CLEAR_CANVAS'
 export const OPENING_SEQUENCE_BEGUN = 'OPENING_SEQUENCE_BEGUN'
 export const OPENING_SEQUENCE_DONE = 'OPENING_SEQUENCE_DONE'
+export const REDO = 'REDO'
 export const SET_CURRENT_CANVAS = 'SET_CURRENT_CANVAS'
 export const SET_CURSOR_GROUP = 'SET_CURSOR_GROUP'
 export const SET_CURSOR_MODE = 'SET_CURSOR_MODE'
-export const SET_DRAGGING = 'SET_DRAGGING'
 export const SET_DEVICE_ON = 'SET_DEVICE_ON'
+export const SET_DRAGGING = 'SET_DRAGGING'
 export const SET_PARAM = 'SET_PARAM'
 export const SET_PLAYING = 'SET_PLAYING'
+export const UNDO = 'UNDO'
 export const UPDATE_DOT = 'UPDATE_DOT'
 
 export interface IClearCanvas extends AnyAction {
@@ -56,6 +59,11 @@ export interface IOpeningSequenceBegun extends AnyAction {
 
 export interface IOpeningSequenceDone extends AnyAction {
   type: typeof OPENING_SEQUENCE_DONE
+  payload: null
+}
+
+export interface IRedo extends AnyAction {
+  type: typeof REDO
   payload: null
 }
 
@@ -94,6 +102,11 @@ export interface ISetPlaying extends AnyAction {
   payload: boolean
 }
 
+export interface IUndo extends AnyAction {
+  type: typeof UNDO
+  payload: null
+}
+
 export interface IUpdateDot extends AnyAction {
   type: typeof UPDATE_DOT
   payload: {dotNumber: number, value: CursorGroup}
@@ -103,10 +116,12 @@ export type Action =
     IClearCanvas
   | IOpeningSequenceBegun
   | IOpeningSequenceDone
+  | IRedo
   | ISetCursorGroup
   | ISetCursorMode
-  | ISetDragging
   | ISetDeviceOn
+  | ISetDragging
   | ISetParam
   | ISetPlaying
+  | IUndo
   | IUpdateDot

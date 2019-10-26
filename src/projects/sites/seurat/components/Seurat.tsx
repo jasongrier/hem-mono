@@ -4,6 +4,7 @@ import { RootState } from '../store'
 import Canvas from './Canvas'
 import Palette from './Palette'
 import { useClock } from '../hooks'
+import { DO_OPENING_SEQUENCE } from '../config'
 import { dotNumberToNote, flashDots } from '../functions/canvas'
 import { setupBuiltInSounds } from '../functions/sounds'
 import { pickNoteRandom } from '../functions/performance'
@@ -38,9 +39,11 @@ function App(): ReactElement {
 
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(playOpeningSequence())
-  }, [])
+  if (DO_OPENING_SEQUENCE) {
+    useEffect(() => {
+      dispatch(playOpeningSequence())
+    }, [])
+  }
 
   useEffect(() => {
     activeNotesProxy = dots.reduce((acc: any, { cursorGroup, sound }: IDot, index: number) => {

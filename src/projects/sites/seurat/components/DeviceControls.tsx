@@ -1,27 +1,20 @@
 import React, { ReactElement, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store'
-import { playOpeningSequence, setOn, setPlaying } from '../store/actions'
+import { clearCanvas, playOpeningSequence, setOn, setPlaying } from '../store/actions'
 import { uiLocked as uiLockedSel } from '../store/selectors'
 import IconButton from './IconButton'
 import InstrumentLogo from './InstrumentLogo'
 
-/**
- * Buttons
- * – Top
- * –– Power on/off [on-off.png]
- * –– Play [play.png]
- * –– Stop [stop.png]
- * –– Clear (press and hold, flashes red for 5 seconds, clears canvas) [clear-canvas.png]
- * –– Sound assignments [sound-assignments.png]
- */
-
 function DeviceControls(): ReactElement {
-  const { cursorGroup, on, playing, uiLocked } = useSelector((state: RootState) => ({
+  const { activeDotsCount, cursorGroup, on, playing, uiLocked } = useSelector((state: RootState) => ({
     cursorGroup: state.app.cursorGroup,
     on: state.app.on,
     playing: state.app.playing,
     uiLocked: uiLockedSel(state),
+    activeDotsCount: state.app.canvases[
+      state.app.currentCanvasIndex
+    ].dots.reduce((acc, dot) => dot.cursorGroup !== 'none' ? acc + 1 : acc, 0)
   }))
 
   const dispatch = useDispatch()
@@ -44,33 +37,63 @@ function DeviceControls(): ReactElement {
             }}
           />
           <IconButton
-            className={`${uiLocked ? 'icon-button--hidden' : ''}`}
-            selected={playing}
+            hidden={uiLocked}
             icon="play"
+            selected={playing}
             onClick={() => {
               if (uiLocked) return
               dispatch(setPlaying(true))
             }}
           />
           <IconButton
-            className={`${uiLocked ? 'icon-button--hidden' : ''}`}
-            selected={false}
+            hidden={uiLocked}
             icon="stop"
+            selected={false}
             onClick={() => {
+              if (uiLocked) return
               dispatch(setPlaying(false))
             }}
           />
           <IconButton
-            className={`${uiLocked ? 'icon-button--hidden' : ''}`}
-            selected={false}
+            disabled={activeDotsCount === 0}
+            hidden={uiLocked}
             icon="clear-canvas"
-            onClick={() => {}}
+            selected={false}
+            onClick={() => {
+              if (uiLocked) return
+              dispatch(clearCanvas())
+            }}
           />
           <IconButton
-            className={`${uiLocked ? 'icon-button--hidden' : ''}`}
-            selected={false}
+            hidden={uiLocked}
             icon="sound-assignments"
-            onClick={() => {}}
+            selected={false}
+            onClick={() => {
+              if (uiLocked) return
+              // dispatch(setSoundAssignments(!soundAssignmentsOpen))
+            }}
+          />
+          <IconButton
+            disabled={true}
+            hidden={uiLocked}
+            icon="undo"
+            selected={false}
+            onClick={() => {
+              if (uiLocked) return
+              // if (undoIndex < 1) return
+              // dispatch(undo())
+            }}
+          />
+          <IconButton
+            disabled={true}
+            hidden={uiLocked}
+            icon="redo"
+            selected={false}
+            onClick={() => {
+              if (uiLocked) return
+              // if (undoIndex < undoStack.length) return
+              // dispatch(redo())
+            }}
           />
         </div>
         <div className="device-controls__bottom">
