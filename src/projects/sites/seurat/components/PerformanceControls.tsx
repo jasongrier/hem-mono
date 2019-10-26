@@ -62,19 +62,30 @@ function PerformanceControls({ cursorGroup: myCursorGroup }: IProps): ReactEleme
 
       <div className="performance-controller__selectors">
         <IconButton
-          selected={sequencerMode === 'random'}
+          hidden={uiLocked}
           icon="seq-random"
-          onClick={() => dispatch(updateControl(myCursorGroup, 'sequencerMode', 'random'))}
+          selected={!uiLocked && sequencerMode === 'random'}
+          onClick={() => {
+            if (sequencerMode === 'random') return
+            dispatch(setCodeEditorOpen(false))
+            dispatch(updateControl(myCursorGroup, 'sequencerMode', 'random'))
+          }}
         />
         <IconButton
-          selected={sequencerMode === 'step'}
+          hidden={uiLocked}
           icon="seq-step"
-          onClick={() => dispatch(updateControl(myCursorGroup, 'sequencerMode', 'step'))}
+          selected={!uiLocked && sequencerMode === 'step'}
+          onClick={() => {
+            if (sequencerMode === 'step') return
+            dispatch(setCodeEditorOpen(false))
+            dispatch(updateControl(myCursorGroup, 'sequencerMode', 'step'))
+          }}
         />
         <IconButton
           emphasised={codeEditorOpen === myCursorGroup}
-          selected={sequencerMode === 'custom'}
+          hidden={uiLocked}
           icon="seq-custom"
+          selected={!uiLocked && sequencerMode === 'custom'}
           onClick={() => {
             if (sequencerMode === 'custom') {
               dispatch(setCodeEditorOpen(codeEditorOpen === false ? myCursorGroup : false))
@@ -90,8 +101,9 @@ function PerformanceControls({ cursorGroup: myCursorGroup }: IProps): ReactEleme
           }}
         />
         <IconButton
-          selected={mutuallyExclusive}
+          hidden={uiLocked}
           icon="seq-mutually-exclusive"
+          selected={!uiLocked && mutuallyExclusive}
           onClick={() => dispatch(updateControl(myCursorGroup, 'mutuallyExclusive', !mutuallyExclusive))}
         />
       </div>
