@@ -4,7 +4,7 @@ import { RootState } from '../store'
 import Canvas from './Canvas'
 import Palette from './Palette'
 import { useClock } from '../hooks'
-import { DO_OPENING_SEQUENCE } from '../config'
+import { DO_OPENING_SEQUENCE, WITH_DIVOT } from '../config'
 import { dotNumberToNote, flashDots } from '../functions/canvas'
 import { setupBuiltInSounds } from '../functions/sounds'
 import { pickNoteRandom } from '../functions/performance'
@@ -93,7 +93,11 @@ function Seurat(): ReactElement {
   })
 
   return (
-    <div className={`seurat seurat--device-${on ? 'on' : 'off'}`}>
+    <div className={`
+      seurat
+        ${WITH_DIVOT ? 'seurat--with-divot' : ''}
+        seurat--device-${on ? 'on' : 'off'}
+    `}>
       <Palette />
       <Canvas />
       <DeviceControls />
