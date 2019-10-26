@@ -1,8 +1,13 @@
 import { AnyAction } from 'redux'
+import { createCanvas } from '../functions/canvas'
+import { immutablePush } from '../functions/util'
 import * as presets from '../data/presets'
+import { DO_OPENING_SEQUENCE } from '../config'
 import {
+  CLEAR_CANVAS,
   OPENING_SEQUENCE_BEGUN,
   OPENING_SEQUENCE_DONE,
+  REDO,
   SET_CURRENT_CANVAS,
   SET_CURSOR_GROUP,
   SET_CURSOR_MODE,
@@ -10,6 +15,7 @@ import {
   SET_DRAGGING,
   SET_PARAM,
   SET_PLAYING,
+  UNDO,
   UPDATE_DOT,
 
   ICanvas,
@@ -17,32 +23,61 @@ import {
   IState,
 } from './types'
 
+const blankCanvas = createCanvas('empty')
+
 const initialState: IState = {
   canvases: [
-    presets.testTones,
+    blankCanvas,
   ],
   currentCanvasIndex: 0,
   cursorGroup: 'white',
   cursorIsDragging: false,
   cursorMode: 'draw',
-  eventInProgess: true,
+  eventInProgess: DO_OPENING_SEQUENCE,
   on: true,
   params: [.5, .5, .5, .5, .5, .5, .5, .5],
   playing: true,
+  undoIndex: 0,
+  undoStack: [],
 }
 
 const reducer = (
   state: IState = initialState,
   { type, payload }: AnyAction,
 ): IState => {
+  let currentCanvas: ICanvas
   let newCanvases: ICanvas[]
+  let newDots: IDot[]
+  let newUndoStack: IState[]
 
   switch (type) { // TODO: All projects. This `switch` be `if... else if` to allow block scoped vars
+    case CLEAR_CANVAS:
+      newUndoStack = immutablePush(state.undoStack, state)
+
+      currentCanvas = state.canvases[state.currentCanvasIndex]
+      newDots = [...currentCanvas.dots].map(dot => ({
+        cursorGroup: 'none',
+        sound: dot.sound,
+      }))
+
+      newCanvases = [...state.canvases]
+      newCanvases[state.currentCanvasIndex].dots = newDots
+
+      return {
+        ...state,
+        canvases: newCanvases,
+        undoIndex: state.undoIndex + 1,
+        undoStack: newUndoStack,
+      }
+
     case OPENING_SEQUENCE_BEGUN:
       return { ...state, eventInProgess: true }
 
     case OPENING_SEQUENCE_DONE:
       return { ...state, eventInProgess: false }
+
+    case REDO:
+      return { ...state }
 
     case SET_CURRENT_CANVAS:
       return { ...state, currentCanvasIndex: payload }
@@ -67,17 +102,18 @@ const reducer = (
     case SET_DEVICE_ON:
       return { ...state, on: payload }
 
+    case UNDO:
+        return { ...state }
+
     case UPDATE_DOT:
-      const currentCanvas = state.canvases[state.currentCanvasIndex]
-      const newDots: IDot[] = [...currentCanvas.dots]
-
-      newCanvases = [...state.canvases]
-
+      currentCanvas = state.canvases[state.currentCanvasIndex]
+      newDots = [...currentCanvas.dots]
       newDots[payload.dotNumber] = {
         cursorGroup: payload.cursorGroup,
         sound: payload.sound,
       }
 
+      newCanvases = [...state.canvases]
       newCanvases[state.currentCanvasIndex].dots = newDots
 
       return { ...state, canvases: newCanvases }

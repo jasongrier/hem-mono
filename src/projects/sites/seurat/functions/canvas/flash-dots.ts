@@ -10,6 +10,6 @@ export function flashDots(indices: number[], classList: string[] = ['dot--flashi
   })
 }
 
-export function flashDot(index: number, classList?) {
+export function flashDot(index: number, classList?: string[]) {
   flashDots([index], classList)
 }

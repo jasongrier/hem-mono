@@ -2,15 +2,18 @@ import { AnyAction } from 'redux'
 import { promisedTimeout } from '../../../../common/functions'
 import { flashDot } from '../functions/canvas'
 import {
+  CLEAR_CANVAS,
   OPENING_SEQUENCE_BEGUN,
   OPENING_SEQUENCE_DONE,
+  REDO,
   SET_CURRENT_CANVAS,
   SET_CURSOR_GROUP,
   SET_CURSOR_MODE,
-  SET_DRAGGING,
   SET_DEVICE_ON,
-  SET_PLAYING,
+  SET_DRAGGING,
   SET_PARAM,
+  SET_PLAYING,
+  UNDO,
   UPDATE_DOT,
 
   CursorGroup,
@@ -18,9 +21,13 @@ import {
   ThunkResult,
 } from './types'
 
+const clearCanvas = (): AnyAction => ({
+  type: CLEAR_CANVAS,
+  payload: null,
+})
+
 const playOpeningSequence = (andTurnOn: boolean = false): ThunkResult<void> =>
   async (dispatch, getState) => {
-
     async function flashNextDot(index: number) {
       const { canvases, currentCanvasIndex, cursorGroup } = (getState() as any).app
       const totalDots = canvases[currentCanvasIndex].dots.length
@@ -28,7 +35,7 @@ const playOpeningSequence = (andTurnOn: boolean = false): ThunkResult<void> =>
       flashDot(index, ['dot--group-forced', `dot--group-forced-${cursorGroup}`])
 
       if (index < totalDots - 1) {
-        await promisedTimeout(40)
+        await promisedTimeout(28)
         flashNextDot(index + 1)
       }
 
@@ -46,20 +53,25 @@ const playOpeningSequence = (andTurnOn: boolean = false): ThunkResult<void> =>
     }
 
     dispatch({ type: SET_CURSOR_GROUP, payload: 'white' })
-    await promisedTimeout(500)
+    await promisedTimeout(350)
 
     dispatch({ type: SET_CURSOR_GROUP, payload: 'red' })
-    await promisedTimeout(500)
+    await promisedTimeout(350)
 
     dispatch({ type: SET_CURSOR_GROUP, payload: 'yellow' })
-    await promisedTimeout(500)
+    await promisedTimeout(350)
 
     dispatch({ type: SET_CURSOR_GROUP, payload: 'blue' })
-    await promisedTimeout(500)
+    await promisedTimeout(350)
 
     dispatch({ type: SET_CURSOR_GROUP, payload: 'white' })
-    await promisedTimeout(500)
+    await promisedTimeout(350)
   }
+
+const redo = (): AnyAction => ({
+  type: REDO,
+  payload: null,
+})
 
 const setCanvas = (canvasNumber: number): AnyAction => ({ // TODO: These should be their respective action types from `./types`!!! (All projects...)
   type: SET_CURRENT_CANVAS,
@@ -96,6 +108,11 @@ const setOn = (on: boolean): AnyAction => ({
   payload: on,
 })
 
+const undo = (): AnyAction => ({
+  type: UNDO,
+  payload: null,
+})
+
 const updateDot = ({
   cursorGroup,
   dotNumber,
@@ -110,7 +127,9 @@ const updateDot = ({
 })
 
 export {
+  clearCanvas,
   playOpeningSequence,
+  redo,
   setCanvas,
   setCursorGroup,
   setCursorMode,
@@ -118,5 +137,6 @@ export {
   setOn,
   setParam,
   setPlaying,
+  undo,
   updateDot,
 }
