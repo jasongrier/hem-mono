@@ -256,6 +256,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: background-color var(--transition-color-change);
 }
 
 .performance-controller__selectors .icon-button:first-child {
@@ -281,7 +282,12 @@ body {
   display: block;
   width: 12px;
   height: 12px;
-  opacity: 0.6; /* TODO: Faded icon buttons should be a SVG color (ie: Pay for Fontawesome) */
+  opacity: 0.3; /* TODO: Faded icon buttons should be a SVG color (ie: Pay for Fontawesome) */
+  transition: opacity var(--transition-color-change);
+}
+.performance-controller__selectors .icon-button--selected .icon-button__icon,
+.performance-controller__selectors .icon-button--emphasised .icon-button__icon {
+  opacity: 0.7;
 }
 
 .performance-controller:last-child .performance-controller__selectors .icon-button__icon {
