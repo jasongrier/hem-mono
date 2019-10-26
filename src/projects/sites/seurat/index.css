@@ -4,6 +4,7 @@
   --canvas-size: 614px;
   --canvas-top: 15px;
   --color-app-base: #000;
+  --color-body: #ccc;
   --color-blue: #16168a;
   --color-none: #111;
   --color-red: #8f0d0d;
@@ -13,6 +14,7 @@
   --corner-roundness: 4px;
   --dial-hub: 6px;
   --dial-size: 44px;
+  --divot-size: 100px;
   --dot-size: 69px;
   --performance-controller-off-opacity: .4;
   --transition-color-change: 300ms;
@@ -26,7 +28,7 @@ body {
   padding: 0;
   overflow: hidden;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #ccc;
+  background-color: var(--color-body);
   -webkit-app-region: drag;
 }
 
@@ -105,6 +107,20 @@ body {
   padding: 15px;
   background-color: var(--color-app-base);
   border-radius: 10px;
+  overflow: hidden;
+}
+
+.seurat--with-divot::after {
+  display: block;
+  content: " ";
+  position: absolute;
+  bottom: 115px;
+  right: calc(-1 * (var(--divot-size) / 2 + 15px));
+  z-index: 9999;
+  width: var(--divot-size);
+  height: var(--divot-size);
+  border-radius: var(--divot-size);
+  background-color: var(--color-body);
 }
 
 .canvas {
