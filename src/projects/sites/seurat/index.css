@@ -70,13 +70,19 @@ body {
   opacity: 0.7;
 }
 
+.icon-button__icon--clear-canvas { background-image: url(./assets/tmp-icons/clear-canvas.png) }
 .icon-button__icon--on-off { background-image: url(./assets/tmp-icons/on-off.png) }
 .icon-button__icon--play { background-image: url(./assets/tmp-icons/play.png) }
-.icon-button__icon--stop { background-image: url(./assets/tmp-icons/stop.png) }
-.icon-button__icon--clear-canvas { background-image: url(./assets/tmp-icons/clear-canvas.png) }
-.icon-button__icon--sound-assignments { background-image: url(./assets/tmp-icons/sound-assignments.png) }
-.icon-button__icon--undo { background-image: url(./assets/tmp-icons/undo.png) }
 .icon-button__icon--redo { background-image: url(./assets/tmp-icons/redo.png) }
+.icon-button__icon--seq-code { background-image: url(./assets/tmp-icons/seq-code.png) }
+.icon-button__icon--seq-down { background-image: url(./assets/tmp-icons/seq-down.png) }
+.icon-button__icon--seq-mutually-exclusive { background-image: url(./assets/tmp-icons/seq-mutually-exclusive.png) }
+.icon-button__icon--seq-random { background-image: url(./assets/tmp-icons/seq-random.png) }
+.icon-button__icon--seq-step { background-image: url(./assets/tmp-icons/seq-step.png) }
+.icon-button__icon--seq-up { background-image: url(./assets/tmp-icons/seq-up.png) }
+.icon-button__icon--sound-assignments { background-image: url(./assets/tmp-icons/sound-assignments.png) }
+.icon-button__icon--stop { background-image: url(./assets/tmp-icons/stop.png) }
+.icon-button__icon--undo { background-image: url(./assets/tmp-icons/undo.png) }
 
 /* TODO: Implement SVG icons!! (ie: Pay for Fontawesome) */
 .icon-button__icon--on-off.icon-button__icon--white svg { fill: var(--color-white) }
@@ -230,6 +236,9 @@ body {
   border-radius: var(--corner-roundness);
   overflow: hidden;
   transition: background-color var(--transition-color-change);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .performance-controller--white .performance-controller__selectors { background-color: var(--color-white) }
@@ -238,10 +247,24 @@ body {
 .performance-controller--blue .performance-controller__selectors { background-color: var(--color-blue) }
 
 .performance-controller__selectors button {
-  width: 43.75px;
-  height: 30px;
+  width: 12px;
+  height: 12px;
+  margin-right: 30px;
   background-color: transparent;
   border: none;
+  filter: invert(100%);
+}
+
+.performance-controller__selectors .icon-button {
+  opacity: 0.5;
+}
+
+.performance-controller__selectors .icon-button--selected {
+  opacity: 1;
+}
+
+.performance-controller__selectors button:last-child {
+  margin-right: 0;
 }
 
 .performance-controller__selectors button:focus,

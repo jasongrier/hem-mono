@@ -50,7 +50,6 @@ function DeviceControls(): ReactElement {
             icon="stop"
             selected={false}
             onClick={() => {
-              if (uiLocked) return
               dispatch(setPlaying(false))
             }}
           />
