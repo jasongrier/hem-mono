@@ -4,6 +4,7 @@ import { noop } from 'lodash'
 interface IProps {
   className?: string
   disabled?: boolean
+  emphasised?: boolean
   hidden?: boolean
   icon: string
   iconClassName?: string
@@ -11,7 +12,7 @@ interface IProps {
   selected: boolean
 }
 
-function IconButton({ className, disabled, hidden, icon, iconClassName, onClick, selected }: IProps): ReactElement {
+function IconButton({ className, disabled, emphasised, hidden, icon, iconClassName, onClick, selected }: IProps): ReactElement {
   const [pressed, setPressed] = useState(false)
 
   return (
@@ -20,6 +21,7 @@ function IconButton({ className, disabled, hidden, icon, iconClassName, onClick,
         icon-button
           ${className ? ' ' + className : ''}
           ${disabled ? ' icon-button--disabled' : ''}
+          ${emphasised ? ' icon-button--emphasised' : ''}
           ${hidden ? ' icon-button--hidden' : ''}
           ${pressed ? 'icon-button--pressed' : ''}
           ${selected ? ' icon-button--selected' : ''}

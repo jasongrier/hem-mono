@@ -10,8 +10,9 @@ import { setupBuiltInSounds } from '../functions/sounds'
 import { pickNoteRandom } from '../functions/performance'
 import { IDot } from '../store/types'
 import { playOpeningSequence } from '../store/actions'
-import IconButton from './IconButton'
+import CodeEditor from './CodeEditor'
 import DeviceControls from './DeviceControls'
+import IconButton from './IconButton'
 
 // const samplers: any = setupBuiltInSounds()
 
@@ -29,12 +30,11 @@ interface IActiveDots {
 let activeNotesProxy: IActiveDots
 let playingProxy: boolean // TODO: How to prevent values getting frozen into a hook??
 
-function App(): ReactElement {
-  const { dots, playing, on, sound } = useSelector((state: RootState) => ({
+function Seurat(): ReactElement {
+  const { dots, playing, on } = useSelector((state: RootState) => ({
     dots: state.app.canvases[state.app.currentCanvasIndex].dots,
     playing: state.app.playing,
     on: state.app.on,
-    sound: state.app.canvases[state.app.currentCanvasIndex].defaultSound,
   }))
 
   const dispatch = useDispatch()
@@ -97,8 +97,9 @@ function App(): ReactElement {
       <Palette />
       <Canvas />
       <DeviceControls />
+      <CodeEditor />
     </div>
   )
 }
 
-export default App
+export default Seurat
