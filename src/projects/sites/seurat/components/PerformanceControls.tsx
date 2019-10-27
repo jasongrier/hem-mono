@@ -12,10 +12,11 @@ interface IProps {
 }
 
 function PerformanceControls({ cursorGroup: myCursorGroup }: IProps): ReactElement {
-  const { active, codeEditorOpen, controls, uiLocked } = useSelector((state: RootState) => ({
+  const { active, codeEditorOpen, controls, on, uiLocked } = useSelector((state: RootState) => ({
     active: state.app.cursorGroup === myCursorGroup,
     codeEditorOpen: state.app.codeEditorOpen,
     controls: state.app.canvases[state.app.currentCanvasIndex].controls[myCursorGroup], // TODO: Make `currentCanvas` into a selector
+    on: state.app.on,
     uiLocked: uiLockedSel(state),
   }))
 
@@ -37,26 +38,30 @@ function PerformanceControls({ cursorGroup: myCursorGroup }: IProps): ReactEleme
     >
       <SeuratDial
         cursorGroup={myCursorGroup}
+        label="spd"
         name="continuousControlA"
-        uiLocked={uiLocked}
+        disabled={uiLocked}
         value={controls.continuousControlA}
       />
       <SeuratDial
         cursorGroup={myCursorGroup}
+        label="acc"
         name="continuousControlB"
-        uiLocked={uiLocked}
+        disabled={uiLocked}
         value={controls.continuousControlB}
       />
       <SeuratDial
         cursorGroup={myCursorGroup}
+        label="thr"
         name="continuousControlC"
-        uiLocked={uiLocked}
+        disabled={uiLocked}
         value={controls.continuousControlC}
       />
       <SeuratDial
         cursorGroup={myCursorGroup}
+        label="vol"
         name="continuousControlD"
-        uiLocked={uiLocked}
+        disabled={uiLocked}
         value={controls.continuousControlD}
       />
 
@@ -84,11 +89,11 @@ function PerformanceControls({ cursorGroup: myCursorGroup }: IProps): ReactEleme
         <IconButton
           emphasised={codeEditorOpen === myCursorGroup}
           hidden={uiLocked}
-          icon="seq-custom"
-          selected={!uiLocked && sequencerMode === 'custom'}
+          icon="seq-step-confined"
+          selected={!uiLocked && sequencerMode === 'step-confined'}
           onClick={() => {
             if (uiLocked) return
-            dispatch(updateControl(myCursorGroup, 'sequencerMode', 'custom'))
+            dispatch(updateControl(myCursorGroup, 'sequencerMode', 'step-confined'))
           }}
         />
         <IconButton

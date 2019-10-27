@@ -8,11 +8,13 @@ interface IProps {
   hidden?: boolean
   icon: string
   iconClassName?: string
-  onClick: () => void
+  onClick?: () => void
+  onMouseDown?: () => void
+  onMouseUp?: () => void
   selected: boolean
 }
 
-function IconButton({ className, disabled, emphasised, hidden, icon, iconClassName, onClick, selected }: IProps): ReactElement {
+function IconButton({ className, disabled, emphasised, hidden, icon, iconClassName, onClick, onMouseDown, onMouseUp, selected }: IProps): ReactElement {
   const [pressed, setPressed] = useState(false)
 
   return (
@@ -27,8 +29,14 @@ function IconButton({ className, disabled, emphasised, hidden, icon, iconClassNa
           ${selected ? ' icon-button--selected' : ''}
       `}
       onClick={!disabled ? onClick : noop}
-      onMouseDown={() => setPressed(true)}
-      onMouseUp={() => setPressed(false)}
+      onMouseDown={() => {
+        onMouseDown && onMouseDown()
+        setPressed(true)
+      }}
+      onMouseUp={() => {
+        onMouseUp && onMouseUp()
+        setPressed(false)
+      }}
     >
       <i className={`
         icon-button__icon

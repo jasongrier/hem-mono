@@ -40,7 +40,7 @@ function Dot({ dotNumber }: IProps): ReactElement {
     }
 
     else {
-      if (cursorGroup === myCursorGroup) {
+      if (cursorGroup === myCursorGroup || cursorGroup === 'none') {
         dispatch(updateDot({ dotNumber, cursorGroup: 'none', sound: mySound }))
       }
     }
@@ -54,7 +54,7 @@ function Dot({ dotNumber }: IProps): ReactElement {
       dispatch(updateDot({ dotNumber, cursorGroup: cursorGroup, sound: mySound }))
     }
 
-    else if (cursorMode === 'erase' && cursorGroup === myCursorGroup) {
+    else if (cursorMode === 'erase' && (cursorGroup === myCursorGroup || cursorGroup === 'none')) {
       dispatch(updateDot({ dotNumber, cursorGroup: 'none', sound: mySound }))
     }
   }

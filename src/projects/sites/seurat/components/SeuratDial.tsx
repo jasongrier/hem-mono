@@ -6,30 +6,33 @@ import Dial from './Dial'
 
 interface IProps {
   cursorGroup: CursorGroup
+  label: string
   name: ControlName
-  uiLocked: boolean
+  disabled: boolean
   value: number
 }
 
-function SeuratDial({ cursorGroup, name, uiLocked, value }: IProps): ReactElement {
+function SeuratDial({ cursorGroup, label, name, disabled, value }: IProps): ReactElement {
   const dispatch = useDispatch()
 
   return (
-    <Dial
-      onPress={() => {
-        if (uiLocked) return
-        dispatch(setCursorGroup(cursorGroup))
-      }}
-      onChange={() => {
-        if (uiLocked) return
-        // TODO: Immediately alter playback
-      }}
-      onChangeDone={(finalValue) => {
-        if (uiLocked) return
-        dispatch(updateControl(cursorGroup, name, finalValue))
-      }}
-      value={value}
-    />
+    <div className={`seurat-dial ${disabled ? 'seurat-dial--disabled' : ''}`}>
+      <div className="seurat-dial__label">
+        {label}
+      </div>
+      <Dial // TODO: values in these handlers are frozen by some DOM event handler stuff in Nexus
+        onChange={() => {
+          // TODO: Immediately alter playback
+        }}
+        onChangeDone={(finalValue) => {
+          dispatch(updateControl(cursorGroup, name, finalValue))
+        }}
+        onPress={() => {
+          dispatch(setCursorGroup(cursorGroup))
+        }}
+        value={value}
+      />
+    </div>
   )
 }
 

@@ -15,6 +15,7 @@ import DeviceControls from './DeviceControls'
 import IconButton from './IconButton'
 import { noop } from 'lodash'
 import Dial from './Dial'
+import InstrumentLogo from './InstrumentLogo'
 
 // const samplers: any = setupBuiltInSounds()
 
@@ -96,6 +97,7 @@ function Seurat(): ReactElement {
       <Palette />
       <Canvas />
       <DeviceControls />
+      <InstrumentLogo />
       <Dial
         className="master-volume"
         color="#d8d8d8" // TODO: Standardize colors by keeping color vars in a place both TS and (vanilla) CSS can access them

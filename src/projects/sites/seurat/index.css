@@ -1,7 +1,7 @@
 /* TODO: Break this file up by component, 7-to-1 */
 :root {
   --canvas-inner-size: calc(var(--canvas-size) + 10px);
-  --canvas-left: 245px;
+  --canvas-left: 245px; /* TODO: Not needed */
   --canvas-size: 614px;
   --canvas-top: 15px;
   --color-a: #8f0d0d;
@@ -17,7 +17,7 @@
   --dot-size: 69px;
   --performace-controller-dial-hub: 6px;
   --performace-controller-dial-size: 44px;
-  --performance-controller-off-opacity: .4;
+  --performance-controller-off-opacity: .3;
   --transition-color-change: 300ms;
 }
 
@@ -114,7 +114,8 @@ body.no-cursor * {
 .icon-button__icon--seq-down { background-image: url(./assets/tmp-icons/seq-down.png) }
 .icon-button__icon--seq-mutually-exclusive { background-image: url(./assets/tmp-icons/seq-mutually-exclusive.png) }
 .icon-button__icon--seq-random { background-image: url(./assets/tmp-icons/seq-random.png) }
-.icon-button__icon--seq-step { background-image: url(./assets/tmp-icons/seq-step.png) }
+.icon-button__icon--seq-step { background-image: url(./assets/tmp-icons/seq-step-alt.png) }
+.icon-button__icon--seq-step-confined { background-image: url(./assets/tmp-icons/seq-step-alt-confined.png) }
 .icon-button__icon--seq-up { background-image: url(./assets/tmp-icons/seq-up.png) }
 .icon-button__icon--sound-assignments { background-image: url(./assets/tmp-icons/sound-assignments.png) }
 .icon-button__icon--stop { background-image: url(./assets/tmp-icons/stop.png) }
@@ -226,18 +227,18 @@ body.no-cursor * {
 
 .palette {
   position: absolute;
-  top: 20px;
+  top: 15px;
   left: 15px;
-  width: 175px;
-  height: 609px;
+  width: 180px;
+  height: 614px;
   -webkit-app-region: no-drag;
 }
 
 .performance-controller {
   position: relative;
   width: 100%;
-  height: 135px;
-  margin-bottom: 21.2px;
+  height: 150px;
+  margin-bottom: 24px;
   opacity: var(--performance-controller-off-opacity);
   transition: opacity var(--transition-color-change);
 }
@@ -248,12 +249,15 @@ body.no-cursor * {
 
 .performance-controller .dial {
   position: absolute;
-  margin-right: 5px;
   width: var(--performace-controller-dial-size);
   height: var(--performace-controller-dial-size);
   border-radius: var(--performace-controller-dial-size);
   transition: background-color var(--transition-color-change);
   transform: rotate(-38deg);
+}
+
+.performance-controller .dial__ui {
+  transition: opacity var(--transition-color-change);
 }
 
 .performance-controller .dial__hub {
@@ -269,33 +273,77 @@ body.no-cursor * {
   pointer-events: none;
 }
 
-.performance-controller .dial:nth-child(1) {
+.seurat-dial {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+}
+
+.seurat-dial--disabled {
+  pointer-events: none;
+}
+
+.seurat--device-off .seurat-dial .dial__ui {
+  opacity: 0;
+}
+
+.seurat-dial:nth-child(1) {
   top: 0;
   left: 5px;
 }
 
-.performance-controller .dial:nth-child(2) {
-  top: 46px;
-  left: 41px;
+.seurat-dial:nth-child(2) {
+  top: 56px;
+  left: 46px;
 }
 
-.performance-controller .dial:nth-child(3) {
+.seurat-dial:nth-child(3) {
   top: 0;
   left: 86px;
 }
 
-.performance-controller .dial:nth-child(4) {
-  top: 46px;
-  left: 126px;
+.seurat-dial:nth-child(4) {
+  top: 56px;
+  left: 131px;
 }
 
-.performance-controller .dial:last-child {
-  margin-right: 0; /* TODO: Still need it? */
+.seurat-dial__label {
+  position: absolute;
+  width: 43px;
+  height: 14px;
+  color: #111;
+  font-size: 9px;
+  line-height: 14px;
+  border-radius: 3px;
+  opacity: 0.5;
+  background-color: var(--color-none);
+}
+
+.seurat-dial:nth-child(1) .seurat-dial__label,
+.seurat-dial:nth-child(3) .seurat-dial__label {
+  top: 0;
+  left: 50%;
+  text-align: right;
+  padding-right: 5px;
+}
+
+.seurat-dial:nth-child(2) .seurat-dial__label,
+.seurat-dial:nth-child(4) .seurat-dial__label {
+  bottom: 0;
+  right: 50%;
+  text-align: left;
+  padding-left: 5px;
 }
 
 .performance-controller--a .dial { background-color: var(--color-a) }
 .performance-controller--b .dial { background-color: var(--color-b) }
 .performance-controller--c .dial { background-color: var(--color-c) }
+
+.performance-controller--a .seurat-dial__label { background-color: var(--color-a) }
+.performance-controller--b .seurat-dial__label { background-color: var(--color-b) }
+.performance-controller--c .seurat-dial__label { background-color: var(--color-c) }
+
+.seurat--device-off .seurat-dial__label { background-color: var(--color-none) !important }
 
 .performance-controller__selectors {
   position: absolute;
@@ -322,9 +370,10 @@ body.no-cursor * {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(255, 255, 255, 0.3);
   transition: background-color var(--transition-color-change);
-  border-right: 1px solid rgba(0, 0, 0, 0.01);
+  border-right: 1px solid rgba(255, 255, 255, 0.01);
+  filter: invert(100%);
 }
 
 .performance-controller__selectors .icon-button:first-child {
@@ -348,14 +397,14 @@ body.no-cursor * {
 
 .performance-controller__selectors .icon-button__icon {
   display: block;
-  width: 12px;
-  height: 12px;
-  opacity: 0.3; /* TODO: Faded icon buttons should be a SVG color (ie: Pay for Fontawesome) */
+  width: 11px;
+  height: 11px;
+  opacity: 0.4; /* TODO: Faded icon buttons should be a SVG color (ie: Pay for Fontawesome) */
   transition: opacity var(--transition-color-change);
 }
 .performance-controller__selectors .icon-button--selected .icon-button__icon,
 .performance-controller__selectors .icon-button--emphasised .icon-button__icon {
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 .performance-controller:last-child .performance-controller__selectors .icon-button__icon {
@@ -402,10 +451,10 @@ body.no-cursor * {
 
 .instrument-logo {
   position: absolute;
-  bottom: 0;
-  left: 0;
+  bottom: 15px;
+  left: 15px;
   width: 30px;
-  height: 145px;
+  height: 128px;
   transform: scale(.5);
   transform-origin: bottom left;
 }
@@ -417,7 +466,6 @@ body.no-cursor * {
   margin: 0 auto;
   padding: 0;
   overflow: hidden;
-  transform: scale(1.15);
   transform-origin: top center;
 }
 
@@ -445,6 +493,10 @@ body.no-cursor * {
 
 .seurat--device-off .instrument-logo h1 span {
   color: var(--color-none) !important;
+}
+
+.seurat--device-off .canvas {
+  filter: grayscale(100%);
 }
 
 .seurat--device-off .dot {
@@ -481,8 +533,12 @@ body.no-cursor * {
 }
 
 .master-controls {
-  width: 100%;
-  height: 135px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: calc(100% - 33px);
+  height: 87px;
+  border-radius: var(--corner-roundness);
 }
 
 .master-volume {
@@ -493,6 +549,14 @@ body.no-cursor * {
   height: 30px;
   border-radius: 30px;
   transition: background-color var(--transition-color-change);
+}
+
+.seurat--device-off .master-volume {
+  background-color: var(--color-none);
+}
+
+.seurat--device-off .master-volume .dial__ui {
+  opacity: 0;
 }
 
 .master-volume .dial__hub {
