@@ -6,6 +6,7 @@ import {
   OPENING_SEQUENCE_BEGUN,
   OPENING_SEQUENCE_DONE,
   REDO,
+  SET_CUE_MODE,
   SET_CURRENT_CANVAS,
   SET_CURSOR_GROUP,
   SET_CURSOR_MODE,
@@ -73,6 +74,11 @@ const redo = (): AnyAction => ({
   payload: null,
 })
 
+const setCueMode = (cueMode: boolean): AnyAction => ({
+  type: SET_CUE_MODE,
+  payload: cueMode,
+})
+
 const setCurrentCanvas = (canvasNumber: number): AnyAction => ({ // TODO: These should be their respective action types from `./types`!!! (All projects...)
   type: SET_CURRENT_CANVAS,
   payload: canvasNumber,
@@ -135,6 +141,7 @@ export {
   clearCanvas,
   playOpeningSequence,
   redo,
+  setCueMode,
   setCurrentCanvas,
   setCursorGroup,
   setCursorMode,

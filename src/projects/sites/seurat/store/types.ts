@@ -42,6 +42,7 @@ export interface ICanvas {
 
 export interface IState {
   canvases: ICanvas[]
+  cueMode: boolean
   codeEditorOpen: CursorGroup | false
   currentCanvasIndex: number
   cursorGroup: CursorGroup
@@ -59,6 +60,7 @@ export const CLEAR_CANVAS = 'CLEAR_CANVAS'
 export const OPENING_SEQUENCE_BEGUN = 'OPENING_SEQUENCE_BEGUN'
 export const OPENING_SEQUENCE_DONE = 'OPENING_SEQUENCE_DONE'
 export const REDO = 'REDO'
+export const SET_CUE_MODE = 'SET_CUE_MODE'
 export const SET_CURRENT_CANVAS = 'SET_CURRENT_CANVAS'
 export const SET_CURSOR_GROUP = 'SET_CURSOR_GROUP'
 export const SET_CURSOR_MODE = 'SET_CURSOR_MODE'
@@ -90,7 +92,12 @@ export interface IRedo extends AnyAction {
   payload: null
 }
 
-export interface ISetCanvas extends AnyAction {
+export interface ISetCueMode extends AnyAction {
+  type: typeof SET_CUE_MODE
+  payload: boolean
+}
+
+export interface ISetCurrentCanvas extends AnyAction {
   type: typeof SET_CURRENT_CANVAS
   payload: number
 }
@@ -145,6 +152,8 @@ export type Action =
   | IOpeningSequenceBegun
   | IOpeningSequenceDone
   | IRedo
+  | ISetCueMode
+  | ISetCurrentCanvas
   | ISetCursorGroup
   | ISetCursorMode
   | ISetDeviceOn

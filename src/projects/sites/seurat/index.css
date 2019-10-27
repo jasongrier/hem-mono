@@ -17,7 +17,7 @@
   --dot-size: 69px;
   --performace-controller-dial-hub: 6px;
   --performace-controller-dial-size: 44px;
-  --performance-controller-off-opacity: .3;
+  --performance-controller-off-opacity: .5;
   --transition-color-change: 300ms;
 }
 
@@ -96,6 +96,10 @@ body.no-cursor * {
   opacity: 0.07;
 }
 
+.icon-button--hidden {
+  pointer-events: none; /* TODO: This? Or guarded in JS? Or both?? */
+}
+
 .icon-button--hidden .icon-button__icon {
   opacity: 0 !important;
 }
@@ -104,9 +108,21 @@ body.no-cursor * {
   opacity: 0.7;
 }
 
+/* TODO: Move PressAndHoldButton to common */
+.press-and-hold-button--flashing .icon-button {
+  animation: flashing 255ms infinite;
+}
+
+@keyframes flashing {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
 .icon-button__icon--banks { background-image: url(./assets/tmp-icons/banks.png) }
 .icon-button__icon--clear-canvas { background-image: url(./assets/tmp-icons/clear-canvas.png) }
 .icon-button__icon--connect { background-image: url(./assets/tmp-icons/connect.png) }
+.icon-button__icon--cue { background-image: url(./assets/tmp-icons/cue.png) }
 .icon-button__icon--on-off { background-image: url(./assets/tmp-icons/on-off.png) }
 .icon-button__icon--play { background-image: url(./assets/tmp-icons/play.png) }
 .icon-button__icon--redo { background-image: url(./assets/tmp-icons/redo.png) }
@@ -117,6 +133,10 @@ body.no-cursor * {
 .icon-button__icon--seq-step { background-image: url(./assets/tmp-icons/seq-step-alt.png) }
 .icon-button__icon--seq-step-confined { background-image: url(./assets/tmp-icons/seq-step-alt-confined.png) }
 .icon-button__icon--seq-up { background-image: url(./assets/tmp-icons/seq-up.png) }
+.icon-button--select-color-none .icon-button__icon { background-image: url(./assets/tmp-icons/select-color-none.png) }
+.icon-button--select-color-a .icon-button__icon { background-image: url(./assets/tmp-icons/select-color-a.png) }
+.icon-button--select-color-b .icon-button__icon { background-image: url(./assets/tmp-icons/select-color-b.png) }
+.icon-button--select-color-c .icon-button__icon { background-image: url(./assets/tmp-icons/select-color-c.png) }
 .icon-button__icon--sound-assignments { background-image: url(./assets/tmp-icons/sound-assignments.png) }
 .icon-button__icon--stop { background-image: url(./assets/tmp-icons/stop.png) }
 .icon-button__icon--undo { background-image: url(./assets/tmp-icons/undo.png) }
@@ -132,6 +152,32 @@ body.no-cursor * {
 
 .icon-button__icon--connect {
   transform: scale(1.32);
+}
+
+.icon-button__icon--cue {
+  transform: scale(1.12);
+}
+
+.icon-button__icon--clear-canvas {
+  transform: scale(1.1);
+}
+
+.icon-button--select-color-a .icon-button__icon,
+.icon-button--select-color-b .icon-button__icon,
+.icon-button--select-color-c .icon-button__icon {
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+.seurat--device-off .icon-button--select-color-a .icon-button__icon,
+.seurat--device-off .icon-button--select-color-b .icon-button__icon,
+.seurat--device-off .icon-button--select-color-c .icon-button__icon {
+  opacity: 0 !important;
+}
+
+.icon-button--select-color-none .icon-button__icon {
+  transition: opacity 0ms; /* TODO: Fix HACK: Cause it bounces back to `opacity: 1` and then transitions to `opacity: 2`. Might be fixed by SVG */
+  opacity: 0.2 !important; /* TODO: This is getting messy... */
 }
 
 .seurat {
@@ -238,7 +284,7 @@ body.no-cursor * {
   position: relative;
   width: 100%;
   height: 150px;
-  margin-bottom: 24px;
+  margin-bottom: 30px;
   opacity: var(--performance-controller-off-opacity);
   transition: opacity var(--transition-color-change);
 }
@@ -442,17 +488,31 @@ body.no-cursor * {
   width: 100%;
 }
 
+.device-controls__divider {
+  width: 100%;
+  height: 1px;
+  background-color: #111;
+  transform: translate(0, -22px);
+}
+
 .device-controls .icon-button {
   display: block;
   width: 15px;
   height: 15px;
-  margin: 0 auto 45px auto;
+  margin: 0 auto 44px auto;
+}
+
+.device-controls__bottom .icon-button {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-bottom: 0;
 }
 
 .instrument-logo {
   position: absolute;
-  bottom: 15px;
-  left: 15px;
+  bottom: 0;
+  left: 0;
   width: 30px;
   height: 128px;
   transform: scale(.5);
@@ -472,13 +532,13 @@ body.no-cursor * {
 .instrument-logo h1 span {
   display: block;
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 100%;
   line-height: 22px;
   width: 121px;
   height: 26px;
-  transform: rotate(-90deg);
-  transform-origin: bottom left;
+  transform: rotate(90deg);
+  transform-origin: top left;
   color: var(--color-white);
   font-family: 'u8';
   text-transform: uppercase;
@@ -532,34 +592,49 @@ body.no-cursor * {
   border-radius: var(--corner-roundness);
 }
 
-.master-controls {
+.main-controls {
   position: absolute;
   bottom: 0;
   right: 0;
-  width: calc(100% - 33px);
+  width: 100%;
   height: 87px;
   border-radius: var(--corner-roundness);
 }
 
-.master-volume {
+.main-controls__dial-logo {
   position: absolute;
-  bottom: 15px;
-  right: 15px;
+  bottom: 0;
+  left: 5px;
+  z-index: 9999;
+  width: 62px;
+  height: 62px;
+  line-height: 62px;
+  color: var(--color-white);
+  font-family: 'u8';
+  font-weight: bold;
+  text-align: center;
+  font-size: 11px;
+  transition: color var(--transition-color-change);
+  pointer-events: none;
+  transform: translate(0, -1px);
+}
+
+.main-controls__dial-logo--a { color: var(--color-a) }
+.main-controls__dial-logo--b { color: var(--color-b) }
+.main-controls__dial-logo--c { color: var(--color-c) }
+
+.main-controls__dial {
+  position: absolute;
+  bottom: 0;
   width: 30px;
   height: 30px;
   border-radius: 30px;
   transition: background-color var(--transition-color-change);
+  background-color: #fff;
+  opacity: 0.9;
 }
 
-.seurat--device-off .master-volume {
-  background-color: var(--color-none);
-}
-
-.seurat--device-off .master-volume .dial__ui {
-  opacity: 0;
-}
-
-.master-volume .dial__hub {
+.main-controls__dial .dial__hub {
   display: block;
   position: absolute;
   top: 3px;
@@ -570,4 +645,53 @@ body.no-cursor * {
   background-color: var(--color-app-base);
   content: " ";
   pointer-events: none; /* Should be part of the Dial component's generic styles */
+}
+
+.seurat--device-off .main-controls__dial {
+  background-color: var(--color-none);
+}
+
+.seurat--device-off .main-controls__dial .dial__ui {
+  opacity: 0;
+}
+
+.main-controls__dial--main-volume {
+  left: 5px;
+  width: 60px;
+  height: 60px;
+  border-radius: 60px;
+}
+
+.main-controls__dial--main-volume .dial__hub {
+  top: 5px;
+  left: 5px;
+  width: 52px;
+  height: 52px;
+  border-radius: 52px;
+}
+
+.main-controls__dial--bank-selector {
+  right: 52px;
+}
+
+.main-controls__dial--foo {
+  right: 5px;
+}
+
+.main-controls__dial--bank-selector .dial__hub,
+.main-controls__dial--foo .dial__hub {
+  top: 2px;
+  left: 2px;
+  width: 28px;
+  height: 28px;
+  border-radius: 28px;
+}
+
+.main-controls__screen {
+  position: absolute;
+  top: 25px;
+  right: 15px;
+  width: 64px;
+  height: 15px;
+  background-color: #bbb;
 }
