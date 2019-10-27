@@ -23,10 +23,9 @@ interface IActiveDot extends IDot {
 }
 
 interface IActiveDots {
-  blue: IActiveDot[]
-  red: IActiveDot[]
-  white: IActiveDot[]
-  yellow: IActiveDot[]
+  a: IActiveDot[]
+  b: IActiveDot[]
+  c: IActiveDot[]
 }
 
 let activeNotesProxy: IActiveDots
@@ -54,37 +53,31 @@ function Seurat(): ReactElement {
       }
       return acc
     }, {
-      white: [],
-      red: [],
-      yellow: [],
-      blue: [],
+      a: [],
+      b: [],
+      c: [],
     })
   }, [dots])
 
   useEffect(() => { playingProxy = playing }, [playing])
 
   useClock('web', () => {
-    // const blueNote = pickNoteRandom(activeNotesProxy.blue)
-    // const redNote = pickNoteRandom(activeNotesProxy.red)
-    // const whiteNote = pickNoteRandom(activeNotesProxy.white)
-    // const yellowNote = pickNoteRandom(activeNotesProxy.yellow)
+    // const noteA = pickNoteRandom(activeNotesProxy.a)
+    // const noteB = pickNoteRandom(activeNotesProxy.b)
+    // const noteC = pickNoteRandom(activeNotesProxy.c)
 
     // const dotsToTrigger: IActiveDot[] = []
 
-    // if (null !== whiteNote) {
-    //   dotsToTrigger.push(whiteNote.note)
+    // if (null !== noteA) {
+    //   dotsToTrigger.push(noteA.note)
     // }
 
-    // if (null !== redNote) {
-    //   dotsToTrigger.push(redNote.note)
+    // if (null !== noteB) {
+    //   dotsToTrigger.push(noteB.note)
     // }
 
-    // if (null !== yellowNote) {
-    //   dotsToTrigger.push(yellowNote.note)
-    // }
-
-    // if (null !== blueNote) {
-    //   dotsToTrigger.push(blueNote.note)
+    // if (null !== noteC) {
+    //   dotsToTrigger.push(noteC.note)
     // }
 
     // if (dotsToTrigger.length && playingProxy) {

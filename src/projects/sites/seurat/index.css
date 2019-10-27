@@ -4,19 +4,19 @@
   --canvas-left: 245px;
   --canvas-size: 614px;
   --canvas-top: 15px;
+  --color-a: #8f0d0d;
   --color-app-base: #000;
-  --color-blue: #16168a;
+  --color-b: #aaaa03;
   --color-body: #ccc;
+  --color-c: #16168a;
   --color-none: #111;
-  --color-red: #8f0d0d;
   --color-white: #d8d8d8;
-  --color-yellow: #aaaa03;
   --controller-selectors-height: 30px;
   --corner-roundness: 4px;
+  --divot-size: 110px;
+  --dot-size: 69px;
   --performace-controller-dial-hub: 6px;
   --performace-controller-dial-size: 44px;
-  --divot-size: 100px;
-  --dot-size: 69px;
   --performance-controller-off-opacity: .4;
   --transition-color-change: 300ms;
 }
@@ -106,6 +106,7 @@ body.no-cursor * {
 
 .icon-button__icon--banks { background-image: url(./assets/tmp-icons/banks.png) }
 .icon-button__icon--clear-canvas { background-image: url(./assets/tmp-icons/clear-canvas.png) }
+.icon-button__icon--connect { background-image: url(./assets/tmp-icons/connect.png) }
 .icon-button__icon--on-off { background-image: url(./assets/tmp-icons/on-off.png) }
 .icon-button__icon--play { background-image: url(./assets/tmp-icons/play.png) }
 .icon-button__icon--redo { background-image: url(./assets/tmp-icons/redo.png) }
@@ -120,13 +121,16 @@ body.no-cursor * {
 .icon-button__icon--undo { background-image: url(./assets/tmp-icons/undo.png) }
 
 /* TODO: Implement SVG icons!! (ie: Pay for Fontawesome) */
-.icon-button__icon--on-off.icon-button__icon--white svg { fill: var(--color-white) }
-.icon-button__icon--on-off.icon-button__icon--red svg { fill: var(--color-red) }
-.icon-button__icon--on-off.icon-button__icon--yellow svg { fill: var(--color-yellow) }
-.icon-button__icon--on-off.icon-button__icon--blue svg { fill: var(--color-blue) }
+.icon-button__icon--on-off.icon-button__icon--a svg { fill: var(--color-a) }
+.icon-button__icon--on-off.icon-button__icon--b svg { fill: var(--color-b) }
+.icon-button__icon--on-off.icon-button__icon--c svg { fill: var(--color-c) }
 
 .icon-button__icon--on-off {
   opacity: 0.3;
+}
+
+.icon-button__icon--connect {
+  transform: scale(1.32);
 }
 
 .seurat {
@@ -208,20 +212,17 @@ body.no-cursor * {
   opacity: 1 !important;
 }
 
-.dot.dot--group-forced.dot--group-forced-white::after { background-color: var(--color-white) }
-.dot.dot--group-forced.dot--group-forced-red::after { background-color: var(--color-red) }
-.dot.dot--group-forced.dot--group-forced-yellow::after { background-color: var(--color-yellow) }
-.dot.dot--group-forced.dot--group-forced-blue::after { background-color: var(--color-blue) }
+.dot.dot--group-forced.dot--group-forced-a::after { background-color: var(--color-a) }
+.dot.dot--group-forced.dot--group-forced-b::after { background-color: var(--color-b) }
+.dot.dot--group-forced.dot--group-forced-c::after { background-color: var(--color-c) }
 
 .dot.dot--group-none { background-color: var(--color-none) }
-.dot.dot--group-white { background-color: var(--color-white) }
-.dot.dot--group-white.dot--flashing::after { background-color: #fff }
-.dot.dot--group-red { background-color: var(--color-red) }
-.dot.dot--group-red.dot--flashing::after { background-color: #ff0000 }
-.dot.dot--group-yellow { background-color: var(--color-yellow) }
-.dot.dot--group-yellow.dot--flashing::after { background-color: #ffff00 }
-.dot.dot--group-blue { background-color: var(--color-blue) }
-.dot.dot--group-blue.dot--flashing::after { background-color: #0000ff }
+.dot.dot--group-a { background-color: var(--color-a) }
+.dot.dot--group-a.dot--flashing::after { background-color: #ff0000 }
+.dot.dot--group-b { background-color: var(--color-b) }
+.dot.dot--group-b.dot--flashing::after { background-color: #ffff00 }
+.dot.dot--group-c { background-color: var(--color-c) }
+.dot.dot--group-c.dot--flashing::after { background-color: #0000ff }
 
 .palette {
   position: absolute;
@@ -292,10 +293,9 @@ body.no-cursor * {
   margin-right: 0; /* TODO: Still need it? */
 }
 
-.performance-controller--white .dial { background-color: var(--color-white) }
-.performance-controller--red .dial { background-color: var(--color-red) }
-.performance-controller--yellow .dial { background-color: var(--color-yellow) }
-.performance-controller--blue .dial { background-color: var(--color-blue) }
+.performance-controller--a .dial { background-color: var(--color-a) }
+.performance-controller--b .dial { background-color: var(--color-b) }
+.performance-controller--c .dial { background-color: var(--color-c) }
 
 .performance-controller__selectors {
   position: absolute;
@@ -308,10 +308,9 @@ body.no-cursor * {
   transition: background-color var(--transition-color-change);
 }
 
-.performance-controller--white .performance-controller__selectors { background-color: var(--color-white) }
-.performance-controller--red .performance-controller__selectors { background-color: var(--color-red) }
-.performance-controller--yellow .performance-controller__selectors { background-color: var(--color-yellow) }
-.performance-controller--blue .performance-controller__selectors { background-color: var(--color-blue) }
+.performance-controller--a .performance-controller__selectors { background-color: var(--color-a) }
+.performance-controller--b .performance-controller__selectors { background-color: var(--color-b) }
+.performance-controller--c .performance-controller__selectors { background-color: var(--color-c) }
 
 .performance-controller__selectors .icon-button {
   float: left;
@@ -440,10 +439,9 @@ body.no-cursor * {
   transition: color var(--transition-color-change);
 }
 
-.instrument-logo--white h1 span { color: var(--color-white) }
-.instrument-logo--red h1 span { color: var(--color-red) }
-.instrument-logo--yellow h1 span { color: var(--color-yellow) }
-.instrument-logo--blue h1 span { color: var(--color-blue) }
+.instrument-logo--a h1 span { color: var(--color-a) }
+.instrument-logo--b h1 span { color: var(--color-b) }
+.instrument-logo--c h1 span { color: var(--color-c) }
 
 .seurat--device-off .instrument-logo h1 span {
   color: var(--color-none) !important;
@@ -481,19 +479,6 @@ body.no-cursor * {
   border-width: 2px;
   border-radius: var(--corner-roundness);
 }
-
-.code-editor--open { /* TODO: Remove doubled BEM classes, eg: `.foo.foo--bar` >> `.foo--bar`  */
-  top: var(--canvas-top);
-  left: var(--canvas-left);
-  width: var(--canvas-size);
-  height: var(--canvas-size);
-  opacity: 1;
-}
-
-.code-editor--white { border-color: var(--color-white) }
-.code-editor--red { border-color: var(--color-red) }
-.code-editor--blue { border-color: var(--color-blue) }
-.code-editor--yellow { border-color: var(--color-yellow) }
 
 .master-controls {
   width: 100%;

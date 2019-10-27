@@ -6,7 +6,6 @@ import {
   OPENING_SEQUENCE_BEGUN,
   OPENING_SEQUENCE_DONE,
   REDO,
-  SET_CODE_EDITOR_OPEN,
   SET_CURRENT_CANVAS,
   SET_CURSOR_GROUP,
   SET_CURSOR_MODE,
@@ -56,30 +55,22 @@ const playOpeningSequence = (andTurnOn: boolean = false): ThunkResult<void> =>
       dispatch({ type: SET_DEVICE_ON, payload: true })
     }
 
-    dispatch({ type: SET_CURSOR_GROUP, payload: 'white' })
-    await promisedTimeout(350)
+    dispatch({ type: SET_CURSOR_GROUP, payload: 'a' })
+    await promisedTimeout(450)
 
-    dispatch({ type: SET_CURSOR_GROUP, payload: 'red' })
-    await promisedTimeout(350)
+    dispatch({ type: SET_CURSOR_GROUP, payload: 'b' })
+    await promisedTimeout(450)
 
-    dispatch({ type: SET_CURSOR_GROUP, payload: 'yellow' })
-    await promisedTimeout(350)
+    dispatch({ type: SET_CURSOR_GROUP, payload: 'c' })
+    await promisedTimeout(450)
 
-    dispatch({ type: SET_CURSOR_GROUP, payload: 'blue' })
-    await promisedTimeout(350)
-
-    dispatch({ type: SET_CURSOR_GROUP, payload: 'white' })
-    await promisedTimeout(350)
+    dispatch({ type: SET_CURSOR_GROUP, payload: 'a' })
+    await promisedTimeout(450)
   }
 
 const redo = (): AnyAction => ({
   type: REDO,
   payload: null,
-})
-
-const setCodeEditorOpen = (codeEditorOpen: CursorGroup | false): AnyAction => ({ // TODO: These should be their respective action types from `./types`!!! (All projects...)
-  type: SET_CODE_EDITOR_OPEN,
-  payload: codeEditorOpen,
 })
 
 const setCurrentCanvas = (canvasNumber: number): AnyAction => ({ // TODO: These should be their respective action types from `./types`!!! (All projects...)
@@ -144,7 +135,6 @@ export {
   clearCanvas,
   playOpeningSequence,
   redo,
-  setCodeEditorOpen,
   setCurrentCanvas,
   setCursorGroup,
   setCursorMode,

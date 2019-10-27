@@ -21,11 +21,10 @@ function createCanvas(
 
   return {
     controls: {
-      blue: defaultPerformanceControls,
+      a: defaultPerformanceControls,
+      b: defaultPerformanceControls,
+      c: defaultPerformanceControls,
       none: defaultPerformanceControls,
-      red: defaultPerformanceControls,
-      white: defaultPerformanceControls,
-      yellow: defaultPerformanceControls,
     },
     dots: new Array(64).fill(defaultDot),
     name,
