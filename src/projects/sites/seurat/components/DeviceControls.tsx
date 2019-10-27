@@ -1,13 +1,22 @@
 import React, { ReactElement } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store'
-import { clearCanvas, playOpeningSequence, setDeviceOn, setPlaying } from '../store/actions'
+import {
+  clearCanvas,
+  playOpeningSequence,
+  setCursorGroup,
+  setCursorMode,
+  setDeviceOn,
+  setPlaying,
+} from '../store/actions'
 import { uiLocked as uiLockedSel } from '../store/selectors'
 import IconButton from './IconButton'
+import PressAndHoldButton from './PressAndHoldButton'
 
 function DeviceControls(): ReactElement {
-  const { activeDotsCount, cursorGroup, on, playing, uiLocked } = useSelector((state: RootState) => ({
+  const { activeDotsCount, cursorGroup, cursorMode, on, playing, uiLocked } = useSelector((state: RootState) => ({
     cursorGroup: state.app.cursorGroup,
+    cursorMode: state.app.cursorMode,
     on: state.app.on,
     playing: state.app.playing,
     uiLocked: uiLockedSel(state),
@@ -44,34 +53,29 @@ function DeviceControls(): ReactElement {
               dispatch(setPlaying(!playing))
             }}
           />
-          <IconButton
+          <PressAndHoldButton
             disabled={activeDotsCount === 0}
             hidden={uiLocked}
+            selected={cursorGroup === 'none' && cursorMode === 'erase'}
             icon="clear-canvas"
-            selected={false}
             onClick={() => {
+              if (uiLocked) return
+
+              if (cursorGroup === 'none' && cursorMode === 'erase') {
+                dispatch(setCursorGroup('a'))
+                dispatch(setCursorMode('draw'))
+              }
+
+              else {
+                dispatch(setCursorGroup('none'))
+                dispatch(setCursorMode('erase'))
+              }
+            }}
+            onHold={() => {
               if (uiLocked) return
               dispatch(clearCanvas())
             }}
           />
-          {/* <IconButton
-            hidden={uiLocked}
-            icon="sound-assignments"
-            selected={false}
-            onClick={() => {
-              if (uiLocked) return
-              // dispatch(setSoundAssignments(!soundAssignmentsOpen))
-            }}
-          />
-          <IconButton
-            hidden={uiLocked}
-            icon="banks"
-            selected={false}
-            onClick={() => {
-              if (uiLocked) return
-              // dispatch(setSoundAssignments(!soundAssignmentsOpen))
-            }}
-          /> */}
           <IconButton
             disabled={true}
             hidden={uiLocked}

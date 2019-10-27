@@ -6,7 +6,7 @@ export type ThunkResult<R> = ThunkAction<R, IState, undefined, Action> // TODO: 
 export type ControlName = keyof IControls
 export type CursorGroup = 'a' | 'b' | 'c' | 'none'
 export type CursorMode = 'erase' | 'draw'
-export type SequencerMode = 'random' | 'step' | 'custom'
+export type SequencerMode = 'random' | 'step' | 'custom' | 'step-confined'
 
 export interface ISound {
   [note: string]: string

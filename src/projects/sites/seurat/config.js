@@ -5,7 +5,7 @@ module.exports = {
     resizable: false,
     frame: false,
   },
-  DO_OPENING_SEQUENCE: true,
+  DO_OPENING_SEQUENCE: false,
   WITH_DIVOT: true,
   WORKERS: [
     // 'node-clock',
