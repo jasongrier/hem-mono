@@ -1,4 +1,5 @@
-const Tone = require('tone') // No @types!!
+//@ts-ignore
+import * as Tone from 'tone'
 import { testTones } from '../../data/sounds'
 
 function createSampler(soundAssignments: any) {

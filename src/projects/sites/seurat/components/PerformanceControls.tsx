@@ -5,7 +5,7 @@ import { setCodeEditorOpen, setCursorGroup, updateControl } from '../store/actio
 import { uiLocked as uiLockedSel } from '../store/selectors'
 import { CursorGroup } from '../store/types'
 import IconButton from './IconButton'
-import Dial from './Dial'
+import SeuratDial from './SeuratDial'
 
 interface IProps {
   cursorGroup: CursorGroup
@@ -30,33 +30,33 @@ function PerformanceControls({ cursorGroup: myCursorGroup }: IProps): ReactEleme
         performance-controller--${myCursorGroup}
         ${active ? 'performance-controller--active' : ''}
       `}
-      onClick={() => {
+      onMouseDown={() => {
         if (uiLocked) return
-        dispatch(setCursorGroup(myCursorGroup)
-      )}}
+        dispatch(setCursorGroup(myCursorGroup))
+      }}
     >
-      <Dial
-        controlled={false}
-        onChange={() => {}}
-        onChangeDone={() => {}}
+      <SeuratDial
+        cursorGroup={myCursorGroup}
+        name="continuousControlA"
+        uiLocked={uiLocked}
         value={controls.continuousControlA}
       />
-      <Dial
-        controlled={false}
-        onChange={() => {}}
-        onChangeDone={() => {}}
+      <SeuratDial
+        cursorGroup={myCursorGroup}
+        name="continuousControlB"
+        uiLocked={uiLocked}
         value={controls.continuousControlB}
       />
-      <Dial
-        controlled={false}
-        onChange={() => {}}
-        onChangeDone={() => {}}
+      <SeuratDial
+        cursorGroup={myCursorGroup}
+        name="continuousControlC"
+        uiLocked={uiLocked}
         value={controls.continuousControlC}
       />
-      <Dial
-        controlled={false}
-        onChange={() => {}}
-        onChangeDone={() => {}}
+      <SeuratDial
+        cursorGroup={myCursorGroup}
+        name="continuousControlD"
+        uiLocked={uiLocked}
         value={controls.continuousControlD}
       />
 
@@ -66,6 +66,7 @@ function PerformanceControls({ cursorGroup: myCursorGroup }: IProps): ReactEleme
           icon="seq-random"
           selected={!uiLocked && sequencerMode === 'random'}
           onClick={() => {
+            if (uiLocked) return
             if (sequencerMode === 'random') return
             dispatch(setCodeEditorOpen(false))
             dispatch(updateControl(myCursorGroup, 'sequencerMode', 'random'))
@@ -76,6 +77,7 @@ function PerformanceControls({ cursorGroup: myCursorGroup }: IProps): ReactEleme
           icon="seq-step"
           selected={!uiLocked && sequencerMode === 'step'}
           onClick={() => {
+            if (uiLocked) return
             if (sequencerMode === 'step') return
             dispatch(setCodeEditorOpen(false))
             dispatch(updateControl(myCursorGroup, 'sequencerMode', 'step'))
@@ -87,8 +89,14 @@ function PerformanceControls({ cursorGroup: myCursorGroup }: IProps): ReactEleme
           icon="seq-custom"
           selected={!uiLocked && sequencerMode === 'custom'}
           onClick={() => {
-            if (sequencerMode === 'custom') {
-              dispatch(setCodeEditorOpen(codeEditorOpen === false ? myCursorGroup : false))
+            if (uiLocked) return
+
+            if (sequencerMode === 'custom' && codeEditorOpen !== myCursorGroup) {
+              dispatch(setCodeEditorOpen(myCursorGroup))
+            }
+
+            else if (sequencerMode === 'custom' && codeEditorOpen === myCursorGroup) {
+              dispatch(setCodeEditorOpen(false))
             }
 
             else {
