@@ -1,11 +1,12 @@
+/* TODO: Break this file up by component, 7-to-1 */
 :root {
   --canvas-inner-size: calc(var(--canvas-size) + 10px);
   --canvas-left: 245px;
   --canvas-size: 614px;
   --canvas-top: 15px;
   --color-app-base: #000;
-  --color-body: #ccc;
   --color-blue: #16168a;
+  --color-body: #ccc;
   --color-none: #111;
   --color-red: #8f0d0d;
   --color-white: #b8b8b8;
@@ -32,6 +33,34 @@ body {
   -webkit-app-region: drag;
 }
 
+body.no-cursor,
+body.no-cursor * {
+  cursor: none !important;
+}
+
+/* TODO: Move Dial to common, create some generic styles for it */
+.dial {
+  position: relative;
+  overflow: hidden;
+  background-clip: content-box;
+  padding: 1px;
+}
+
+.dial__ui {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+}
+
+.dial__ui svg {
+  cursor: auto !important;
+}
+
+.dial--pressed .dial__ui svg {
+  cursor: none !important;
+}
+
+/* TODO: Move IconButton to common */
 .icon-button {
   width: 22px;
   height: 22px;
@@ -222,18 +251,20 @@ body {
   height: var(--dial-size);
   border-radius: var(--dial-size);
   transition: background-color var(--transition-color-change);
+  transform: rotate(-38deg);
 }
 
-.dial::after {
+.dial__hub {
   display: block;
-  content: ' ';
   position: absolute;
-  top: calc(var(--dial-hub) / 2);
-  left: calc(var(--dial-hub) / 2);
+  top: 4px;
+  left: 4px;
   width: calc(var(--dial-size) - var(--dial-hub));
   height: calc(var(--dial-size) - var(--dial-hub));
   border-radius: calc(var(--dial-size) - var(--dial-hub));
   background-color: var(--color-app-base);
+  content: " ";
+  pointer-events: none;
 }
 
 .dial:last-child {
@@ -267,12 +298,13 @@ body {
   height: var(--controller-selectors-height);
   margin: 0;
   padding: 0;
-  background-color: transparent;
   border: none;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
   transition: background-color var(--transition-color-change);
+  border-right: 1px solid rgba(0, 0, 0, 0.01);
 }
 
 .performance-controller__selectors .icon-button:first-child {
@@ -286,7 +318,7 @@ body {
 }
 
 .performance-controller__selectors .icon-button--selected {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: transparent;
 }
 
 .performance-controller__selectors .icon-button--emphasised {

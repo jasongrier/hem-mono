@@ -34,6 +34,7 @@
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
     "nanotimer": "^0.3.15",
+    "nexusui": "^2.0.10",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
