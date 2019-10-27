@@ -42,15 +42,7 @@ function DeviceControls(): ReactElement {
             selected={playing}
             onClick={() => {
               if (uiLocked) return
-              dispatch(setPlaying(true))
-            }}
-          />
-          <IconButton
-            hidden={uiLocked}
-            icon="stop"
-            selected={false}
-            onClick={() => {
-              dispatch(setPlaying(false))
+              dispatch(setPlaying(!playing))
             }}
           />
           <IconButton
@@ -63,7 +55,7 @@ function DeviceControls(): ReactElement {
               dispatch(clearCanvas())
             }}
           />
-          <IconButton
+          {/* <IconButton
             hidden={uiLocked}
             icon="sound-assignments"
             selected={false}
@@ -72,6 +64,15 @@ function DeviceControls(): ReactElement {
               // dispatch(setSoundAssignments(!soundAssignmentsOpen))
             }}
           />
+          <IconButton
+            hidden={uiLocked}
+            icon="banks"
+            selected={false}
+            onClick={() => {
+              if (uiLocked) return
+              // dispatch(setSoundAssignments(!soundAssignmentsOpen))
+            }}
+          /> */}
           <IconButton
             disabled={true}
             hidden={uiLocked}
