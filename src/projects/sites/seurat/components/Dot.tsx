@@ -62,7 +62,9 @@ function Dot({ dotNumber }: IProps): ReactElement {
   function onMouseUp() {
     if (uiLocked) return
     dispatch(setDragging(false))
-    dispatch(setCursorMode('draw'))
+    if (cursorGroup !== 'none') {
+      dispatch(setCursorMode('draw'))
+    }
   }
 
   return (

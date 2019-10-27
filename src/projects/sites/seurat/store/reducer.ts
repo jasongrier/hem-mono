@@ -8,12 +8,14 @@ import {
   OPENING_SEQUENCE_BEGUN,
   OPENING_SEQUENCE_DONE,
   REDO,
+  SET_CUE_MODE,
   SET_CURRENT_CANVAS,
   SET_CURSOR_GROUP,
   SET_CURSOR_MODE,
   SET_DEVICE_ON,
   SET_DRAGGING,
   SET_PLAYING,
+  SET_MASTER_VOLUME,
   UNDO,
   UPDATE_CONTROL,
   UPDATE_DOT,
@@ -29,12 +31,13 @@ const blankCanvas = createCanvas('empty')
 const initialState: IState = {
   canvases: [blankCanvas],
   codeEditorOpen: false,
+  cueMode: false,
   currentCanvasIndex: 0,
   cursorGroup: 'a',
   cursorIsDragging: false,
   cursorMode: 'draw',
   eventInProgess: DO_OPENING_SEQUENCE,
-  masterVolume: 0.75,
+  masterVolume: 0.5,
   on: true,
   playing: true,
   undoIndex: 0,
@@ -80,6 +83,9 @@ const reducer = (
     case REDO:
       return { ...state }
 
+    case SET_CUE_MODE:
+      return { ...state, cueMode: payload }
+
     case SET_CURRENT_CANVAS:
       return { ...state, currentCanvasIndex: payload }
 
@@ -91,6 +97,9 @@ const reducer = (
 
     case SET_DRAGGING:
       return { ...state, cursorIsDragging: payload }
+
+    case SET_MASTER_VOLUME:
+      return { ...state, masterVolume: payload }
 
     case UPDATE_CONTROL:
       const { cursorGroup, key, value } = payload

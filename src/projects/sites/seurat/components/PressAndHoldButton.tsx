@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react'
+import React, { ReactElement, useState, useEffect } from 'react'
 import IconButton from './IconButton'
 
 interface IProps {
@@ -13,11 +13,13 @@ interface IProps {
 
 function PressAndHoldButton({ disabled, emphasised, hidden, icon, onClick, onHold, selected }: IProps): ReactElement {
   const [clickDisabled, setClickDisabled] = useState(false)
+  const [flash, setFlash] = useState(false)
 
   let holdTimeout: number
+  let flashTimeout: number
 
   return (
-    <div className="press-and-hold-button">
+    <div className={`press-and-hold-button ${flash ? ' press-and-hold-button--flashing' : ''}`}>
       <IconButton
         disabled={disabled}
         hidden={hidden}
@@ -28,12 +30,19 @@ function PressAndHoldButton({ disabled, emphasised, hidden, icon, onClick, onHol
             if (disabled) return
 
             holdTimeout = window.setTimeout(() => {
-              setClickDisabled(true)
-              onHold()
-            }, 2000)
+              setFlash(true)
+              flashTimeout = window.setTimeout(() => {
+                setFlash(false)
+                setClickDisabled(true)
+                onHold()
+              }, 1000)
+            }, 1000)
         }}
         onMouseUp={() => {
             clearTimeout(holdTimeout)
+            clearTimeout(flashTimeout)
+            setFlash(false)
+
             if (disabled) return
 
             if (clickDisabled) {

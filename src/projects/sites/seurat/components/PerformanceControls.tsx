@@ -59,7 +59,7 @@ function PerformanceControls({ cursorGroup: myCursorGroup }: IProps): ReactEleme
       />
       <SeuratDial
         cursorGroup={myCursorGroup}
-        label="vol"
+        label="vel"
         name="continuousControlD"
         disabled={uiLocked}
         value={controls.continuousControlD}
