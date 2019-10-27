@@ -1,10 +1,9 @@
-import React, { ReactElement, useEffect } from 'react'
+import React, { ReactElement } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store'
-import { clearCanvas, playOpeningSequence, setOn, setPlaying } from '../store/actions'
+import { clearCanvas, playOpeningSequence, setDeviceOn, setPlaying } from '../store/actions'
 import { uiLocked as uiLockedSel } from '../store/selectors'
 import IconButton from './IconButton'
-import InstrumentLogo from './InstrumentLogo'
 
 function DeviceControls(): ReactElement {
   const { activeDotsCount, cursorGroup, on, playing, uiLocked } = useSelector((state: RootState) => ({
@@ -28,7 +27,7 @@ function DeviceControls(): ReactElement {
             icon="on-off"
             onClick={() => {
               if (on && !uiLocked) {
-                dispatch(setOn(false))
+                dispatch(setDeviceOn(false))
               }
 
               else {
@@ -95,9 +94,6 @@ function DeviceControls(): ReactElement {
               // dispatch(redo())
             }}
           />
-        </div>
-        <div className="device-controls__bottom">
-          <InstrumentLogo />
         </div>
       </div>
   )

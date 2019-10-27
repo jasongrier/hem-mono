@@ -49,6 +49,7 @@ export interface IState {
   cursorIsDragging: boolean
   cursorMode: CursorMode
   eventInProgess: boolean
+  masterVolume: number
   on: boolean
   playing: boolean
   undoIndex: number
@@ -66,6 +67,7 @@ export const SET_CURSOR_MODE = 'SET_CURSOR_MODE'
 export const SET_DEVICE_ON = 'SET_DEVICE_ON'
 export const SET_DRAGGING = 'SET_DRAGGING'
 export const SET_PLAYING = 'SET_PLAYING'
+export const SET_MASTER_VOLUME = 'SET_MASTER_VOLUME'
 export const UNDO = 'UNDO'
 export const UPDATE_CONTROL = 'UPDATE_CONTROL'
 export const UPDATE_DOT = 'UPDATE_DOT'
@@ -120,6 +122,11 @@ export interface ISetDeviceOn extends AnyAction {
   payload: boolean
 }
 
+export interface ISetMasterVolume extends AnyAction {
+  type: typeof SET_MASTER_VOLUME
+  payload: boolean
+}
+
 export interface ISetPlaying extends AnyAction {
   type: typeof SET_PLAYING
   payload: boolean
@@ -150,6 +157,7 @@ export type Action =
   | ISetCursorMode
   | ISetDeviceOn
   | ISetDragging
+  | ISetMasterVolume
   | ISetPlaying
   | IUndo
   | IUpdateControl
