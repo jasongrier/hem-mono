@@ -7,16 +7,20 @@ import * as Nexus from 'nexusui'
 const win = window as any // TODO: Draggging IFace for window
 
 interface IProps {
+  className?: string
+  color?: string
   label?: string
   onChange: (value: number) => void
   onChangeDone: (value: number) => void
   onPress: () => void // TODO: Stop our Nexus fork from eating mouse events
+  overflowHack?: number
+  size?: number
   value?: number
 }
 
 let stateValueProxy: number
 
-function Dial({ label, onChange, onChangeDone, onPress, value: propsValue = 0 }: IProps): ReactElement {
+function Dial({ className, color, label, onChange, onChangeDone, onPress, overflowHack = 17, size = 49, value: propsValue = 0 }: IProps): ReactElement {
   const id = uuid()
   const dial = React.useRef<null | Nexus.Dial>(null)
   const el = React.useRef<null | HTMLDivElement>(null)
@@ -27,18 +31,18 @@ function Dial({ label, onChange, onChangeDone, onPress, value: propsValue = 0 }:
     if (!el || !el.current) return
 
     dial.current = new Nexus.Dial(id, {
-      size: [49, 49], // TODO: This is hardcoded in index.css as well
+      size: [size, size], // TODO: This is hardcoded in index.css as well
       interaction: 'vertical',
       mode: 'relative',
     })
 
     dial.current.handleLine.style.display = 'none'
 
-    dial.current.colorize('accent', window.getComputedStyle(el.current).backgroundColor)
+    dial.current.colorize('accent', color || window.getComputedStyle(el.current).backgroundColor)
     dial.current.colorize('fill', '#111')
 
-    dial.current.handle.setAttribute('stroke-width', 17)
-    dial.current.handle2.setAttribute('stroke-width', 17)
+    dial.current.handle.setAttribute('stroke-width', overflowHack)
+    dial.current.handle2.setAttribute('stroke-width', overflowHack)
 
     dial.current.on('click', onMouseDown) // TODO: Fix event name in our Nexus fork
     dial.current.on('release', onMouseUp)
@@ -85,7 +89,11 @@ function Dial({ label, onChange, onChangeDone, onPress, value: propsValue = 0 }:
 
   return (
     <div
-      className={`dial ${label ? ' dial--with-label' : ''}`}
+      className={`
+        dial
+          ${label ? ' dial--with-label' : ''}
+          ${className ? className : ''}
+      `}
       ref={el}
     >
       <div

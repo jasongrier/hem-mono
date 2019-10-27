@@ -12,6 +12,7 @@ import {
   SET_CURSOR_MODE,
   SET_DEVICE_ON,
   SET_DRAGGING,
+  SET_MASTER_VOLUME,
   SET_PLAYING,
   UNDO,
   UPDATE_CONTROL,
@@ -96,19 +97,24 @@ const setCursorMode = (cursorMode: CursorMode): AnyAction => ({
   payload: cursorMode,
 })
 
+const setDeviceOn = (on: boolean): AnyAction => ({
+  type: SET_DEVICE_ON,
+  payload: on,
+})
+
 const setDragging = (isDragging: boolean): AnyAction => ({
   type: SET_DRAGGING,
   payload: isDragging,
 })
 
+const setMasterVolume = (masterVolume: number): AnyAction => ({
+  type: SET_MASTER_VOLUME,
+  payload: masterVolume,
+})
+
 const setPlaying = (playing: boolean): AnyAction => ({
   type: SET_PLAYING,
   payload: playing,
-})
-
-const setOn = (on: boolean): AnyAction => ({
-  type: SET_DEVICE_ON,
-  payload: on,
 })
 
 const undo = (): AnyAction => ({
@@ -143,7 +149,8 @@ export {
   setCursorGroup,
   setCursorMode,
   setDragging,
-  setOn,
+  setMasterVolume,
+  setDeviceOn,
   setPlaying,
   undo,
   updateControl,

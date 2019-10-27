@@ -9,10 +9,12 @@ import { dotNumberToNote, flashDots } from '../functions/canvas'
 import { setupBuiltInSounds } from '../functions/sounds'
 import { pickNoteRandom } from '../functions/performance'
 import { IDot } from '../store/types'
-import { playOpeningSequence } from '../store/actions'
+import { playOpeningSequence, setMasterVolume } from '../store/actions'
 import CodeEditor from './CodeEditor'
 import DeviceControls from './DeviceControls'
 import IconButton from './IconButton'
+import { noop } from 'lodash'
+import Dial from './Dial'
 
 // const samplers: any = setupBuiltInSounds()
 
@@ -101,6 +103,17 @@ function Seurat(): ReactElement {
       <Palette />
       <Canvas />
       <DeviceControls />
+      <Dial
+        className="master-volume"
+        color="#d8d8d8" // TODO: Standardize colors by keeping color vars in a place both TS and (vanilla) CSS can access them
+        onChange={noop} // TODO: Set in real time directly on the audio API
+        onChangeDone={(value) => {
+          dispatch(setMasterVolume(value))
+        }}
+        onPress={noop}
+        size={36}
+        value={0.75}
+      />
       <CodeEditor />
     </div>
   )

@@ -28,15 +28,14 @@ import {
 const blankCanvas = createCanvas('empty')
 
 const initialState: IState = {
-  canvases: [
-    blankCanvas,
-  ],
+  canvases: [blankCanvas],
   codeEditorOpen: false,
   currentCanvasIndex: 0,
   cursorGroup: 'white',
   cursorIsDragging: false,
   cursorMode: 'draw',
   eventInProgess: DO_OPENING_SEQUENCE,
+  masterVolume: 0.75,
   on: true,
   playing: true,
   undoIndex: 0,

@@ -13,8 +13,8 @@
   --color-yellow: #aaaa03;
   --controller-selectors-height: 30px;
   --corner-roundness: 4px;
-  --dial-hub: 6px;
-  --dial-size: 44px;
+  --performace-controller-dial-hub: 6px;
+  --performace-controller-dial-size: 44px;
   --divot-size: 100px;
   --dot-size: 69px;
   --performance-controller-off-opacity: .4;
@@ -228,7 +228,7 @@ body.no-cursor * {
   top: 20px;
   left: 15px;
   width: 175px;
-  height: 604px;
+  height: 609px;
   -webkit-app-region: no-drag;
 }
 
@@ -245,31 +245,51 @@ body.no-cursor * {
   opacity: 1;
 }
 
-.dial {
+.performance-controller .dial {
   position: absolute;
   margin-right: 5px;
-  width: var(--dial-size);
-  height: var(--dial-size);
-  border-radius: var(--dial-size);
+  width: var(--performace-controller-dial-size);
+  height: var(--performace-controller-dial-size);
+  border-radius: var(--performace-controller-dial-size);
   transition: background-color var(--transition-color-change);
   transform: rotate(-38deg);
 }
 
-.dial__hub {
+.performance-controller .dial__hub {
   display: block;
   position: absolute;
   top: 4px;
   left: 4px;
-  width: calc(var(--dial-size) - var(--dial-hub));
-  height: calc(var(--dial-size) - var(--dial-hub));
-  border-radius: calc(var(--dial-size) - var(--dial-hub));
+  width: calc(var(--performace-controller-dial-size) - var(--performace-controller-dial-hub));
+  height: calc(var(--performace-controller-dial-size) - var(--performace-controller-dial-hub));
+  border-radius: calc(var(--performace-controller-dial-size) - var(--performace-controller-dial-hub));
   background-color: var(--color-app-base);
   content: " ";
   pointer-events: none;
 }
 
-.dial:last-child {
-  margin-right: 0;
+.performance-controller .dial:nth-child(1) {
+  top: 0;
+  left: 5px;
+}
+
+.performance-controller .dial:nth-child(2) {
+  top: 46px;
+  left: 41px;
+}
+
+.performance-controller .dial:nth-child(3) {
+  top: 0;
+  left: 86px;
+}
+
+.performance-controller .dial:nth-child(4) {
+  top: 46px;
+  left: 126px;
+}
+
+.performance-controller .dial:last-child {
+  margin-right: 0; /* TODO: Still need it? */
 }
 
 .performance-controller--white .dial { background-color: var(--color-white) }
@@ -352,26 +372,6 @@ body.no-cursor * {
   outline: none;
 }
 
-.dial:nth-child(1) {
-  top: 0;
-  left: 5px;
-}
-
-.dial:nth-child(2) {
-  top: 46px;
-  left: 41px;
-}
-
-.dial:nth-child(3) {
-  top: 0;
-  left: 86px;
-}
-
-.dial:nth-child(4) {
-  top: 46px;
-  left: 126px;
-}
-
 .device-controls {
   position: absolute;
   top: 20px;
@@ -425,12 +425,12 @@ body.no-cursor * {
 .instrument-logo h1 span {
   display: block;
   position: absolute;
-  bottom: 100%;
-  left: 0;
+  bottom: 0;
+  left: 100%;
   line-height: 22px;
   width: 121px;
   height: 26px;
-  transform: rotate(90deg);
+  transform: rotate(-90deg);
   transform-origin: bottom left;
   color: var(--color-white);
   font-family: 'u8';
@@ -494,3 +494,31 @@ body.no-cursor * {
 .code-editor--red { border-color: var(--color-red) }
 .code-editor--blue { border-color: var(--color-blue) }
 .code-editor--yellow { border-color: var(--color-yellow) }
+
+.master-controls {
+  width: 100%;
+  height: 135px;
+}
+
+.master-volume {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  transition: background-color var(--transition-color-change);
+}
+
+.master-volume .dial__hub {
+  display: block;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 26px;
+  height: 26px;
+  border-radius: 26px;
+  background-color: var(--color-app-base);
+  content: " ";
+  pointer-events: none; /* Should be part of the Dial component's generic styles */
+}
