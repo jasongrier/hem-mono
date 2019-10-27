@@ -94,6 +94,16 @@ function DeviceControls(): ReactElement {
               // dispatch(redo())
             }}
           />
+          <IconButton
+            hidden={uiLocked}
+            icon="connect"
+            selected={false}
+            onClick={() => {
+              if (uiLocked) return
+              // if (undoIndex < undoStack.length) return
+              // dispatch(redo())
+            }}
+          />
         </div>
       </div>
   )

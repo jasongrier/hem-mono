@@ -6,9 +6,9 @@ import MasterControls from './MasterControls'
 function Palette(): ReactElement {
   return (
     <div className="palette">
-      <PerformanceControls cursorGroup="red" />
-      <PerformanceControls cursorGroup="yellow" />
-      <PerformanceControls cursorGroup="blue" />
+      <PerformanceControls cursorGroup="a" />
+      <PerformanceControls cursorGroup="b" />
+      <PerformanceControls cursorGroup="c" />
       <MasterControls />
     </div>
   )

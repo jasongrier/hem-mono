@@ -8,7 +8,6 @@ import {
   OPENING_SEQUENCE_BEGUN,
   OPENING_SEQUENCE_DONE,
   REDO,
-  SET_CODE_EDITOR_OPEN,
   SET_CURRENT_CANVAS,
   SET_CURSOR_GROUP,
   SET_CURSOR_MODE,
@@ -31,7 +30,7 @@ const initialState: IState = {
   canvases: [blankCanvas],
   codeEditorOpen: false,
   currentCanvasIndex: 0,
-  cursorGroup: 'white',
+  cursorGroup: 'a',
   cursorIsDragging: false,
   cursorMode: 'draw',
   eventInProgess: DO_OPENING_SEQUENCE,
@@ -80,9 +79,6 @@ const reducer = (
 
     case REDO:
       return { ...state }
-
-    case SET_CODE_EDITOR_OPEN:
-      return { ...state, codeEditorOpen: payload }
 
     case SET_CURRENT_CANVAS:
       return { ...state, currentCanvasIndex: payload }

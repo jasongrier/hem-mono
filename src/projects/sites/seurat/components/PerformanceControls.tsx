@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store'
-import { setCodeEditorOpen, setCursorGroup, updateControl } from '../store/actions'
+import { setCursorGroup, updateControl } from '../store/actions'
 import { uiLocked as uiLockedSel } from '../store/selectors'
 import { CursorGroup } from '../store/types'
 import IconButton from './IconButton'
@@ -21,7 +21,7 @@ function PerformanceControls({ cursorGroup: myCursorGroup }: IProps): ReactEleme
 
   const dispatch = useDispatch()
 
-  const { customScript, mutuallyExclusive, sequencerMode } = controls
+  const { mutuallyExclusive, sequencerMode } = controls
 
   return (
     <div
@@ -68,7 +68,6 @@ function PerformanceControls({ cursorGroup: myCursorGroup }: IProps): ReactEleme
           onClick={() => {
             if (uiLocked) return
             if (sequencerMode === 'random') return
-            dispatch(setCodeEditorOpen(false))
             dispatch(updateControl(myCursorGroup, 'sequencerMode', 'random'))
           }}
         />
@@ -79,7 +78,6 @@ function PerformanceControls({ cursorGroup: myCursorGroup }: IProps): ReactEleme
           onClick={() => {
             if (uiLocked) return
             if (sequencerMode === 'step') return
-            dispatch(setCodeEditorOpen(false))
             dispatch(updateControl(myCursorGroup, 'sequencerMode', 'step'))
           }}
         />
@@ -90,22 +88,7 @@ function PerformanceControls({ cursorGroup: myCursorGroup }: IProps): ReactEleme
           selected={!uiLocked && sequencerMode === 'custom'}
           onClick={() => {
             if (uiLocked) return
-
-            if (sequencerMode === 'custom' && codeEditorOpen !== myCursorGroup) {
-              dispatch(setCodeEditorOpen(myCursorGroup))
-            }
-
-            else if (sequencerMode === 'custom' && codeEditorOpen === myCursorGroup) {
-              dispatch(setCodeEditorOpen(false))
-            }
-
-            else {
-              if (customScript === '') {
-                dispatch(setCodeEditorOpen(myCursorGroup))
-              }
-
-              dispatch(updateControl(myCursorGroup, 'sequencerMode', 'custom'))
-            }
+            dispatch(updateControl(myCursorGroup, 'sequencerMode', 'custom'))
           }}
         />
         <IconButton

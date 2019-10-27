@@ -4,7 +4,7 @@ import { ThunkAction } from 'redux-thunk'
 export type ThunkResult<R> = ThunkAction<R, IState, undefined, Action> // TODO: How to get around putting this in every project??
 
 export type ControlName = keyof IControls
-export type CursorGroup = 'red' | 'yellow' | 'blue' | 'white' | 'none'
+export type CursorGroup = 'a' | 'b' | 'c' | 'none'
 export type CursorMode = 'erase' | 'draw'
 export type SequencerMode = 'random' | 'step' | 'custom'
 
@@ -28,11 +28,10 @@ export interface IControls {
 }
 
 export interface IGroupControls {
-  blue: IControls,
+  a: IControls,
+  b: IControls,
+  c: IControls,
   none: IControls, // TODO: Omit doesn't work in `PerformanceControls.tsx`
-  red: IControls,
-  white: IControls,
-  yellow: IControls,
 }
 
 export interface ICanvas {
@@ -60,7 +59,6 @@ export const CLEAR_CANVAS = 'CLEAR_CANVAS'
 export const OPENING_SEQUENCE_BEGUN = 'OPENING_SEQUENCE_BEGUN'
 export const OPENING_SEQUENCE_DONE = 'OPENING_SEQUENCE_DONE'
 export const REDO = 'REDO'
-export const SET_CODE_EDITOR_OPEN = 'SET_CODE_EDITOR_OPEN'
 export const SET_CURRENT_CANVAS = 'SET_CURRENT_CANVAS'
 export const SET_CURSOR_GROUP = 'SET_CURSOR_GROUP'
 export const SET_CURSOR_MODE = 'SET_CURSOR_MODE'
@@ -90,11 +88,6 @@ export interface IOpeningSequenceDone extends AnyAction {
 export interface IRedo extends AnyAction {
   type: typeof REDO
   payload: null
-}
-
-export interface ISetCodeEditorOpen extends AnyAction {
-  type: typeof SET_CODE_EDITOR_OPEN
-  payload: CursorGroup | false
 }
 
 export interface ISetCanvas extends AnyAction {
@@ -152,7 +145,6 @@ export type Action =
   | IOpeningSequenceBegun
   | IOpeningSequenceDone
   | IRedo
-  | ISetCodeEditorOpen
   | ISetCursorGroup
   | ISetCursorMode
   | ISetDeviceOn
