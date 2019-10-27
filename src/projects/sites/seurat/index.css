@@ -9,7 +9,7 @@
   --color-body: #ccc;
   --color-none: #111;
   --color-red: #8f0d0d;
-  --color-white: #b8b8b8;
+  --color-white: #d8d8d8;
   --color-yellow: #aaaa03;
   --controller-selectors-height: 30px;
   --corner-roundness: 4px;
@@ -104,6 +104,7 @@ body.no-cursor * {
   opacity: 0.7;
 }
 
+.icon-button__icon--banks { background-image: url(./assets/tmp-icons/banks.png) }
 .icon-button__icon--clear-canvas { background-image: url(./assets/tmp-icons/clear-canvas.png) }
 .icon-button__icon--on-off { background-image: url(./assets/tmp-icons/on-off.png) }
 .icon-button__icon--play { background-image: url(./assets/tmp-icons/play.png) }
