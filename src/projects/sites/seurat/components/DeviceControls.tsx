@@ -8,21 +8,22 @@ import {
   setCursorGroup,
   setCursorMode,
   setDeviceOn,
+  setDrumMode,
   setPlaying,
 } from '../store/actions'
 import { uiLocked as uiLockedSel } from '../store/selectors'
 import IconButton from './IconButton'
-import InstrumentLogo from './InstrumentLogo'
 import PressAndHoldButton from './PressAndHoldButton'
 
 function DeviceControls(): ReactElement { // TODO: Rename to "SideButtons" or sth
-  const { activeDotsCount, cueMode, cursorGroup, cursorMode, on, playing, uiLocked } = useSelector((state: RootState) => ({
+  const { activeDotsCount, cueMode, cursorGroup, cursorMode, drumMode, on, playing, uiLocked } = useSelector((state: RootState) => ({
     activeDotsCount: state.app.canvases[ // TODO: Make into a selector
       state.app.currentCanvasIndex
     ].dots.reduce((acc, dot) => dot.cursorGroup !== 'none' ? acc + 1 : acc, 0),
     cueMode: state.app.cueMode,
     cursorGroup: state.app.cursorGroup,
     cursorMode: state.app.cursorMode,
+    drumMode: state.app.drumMode,
     on: state.app.on,
     playing: state.app.playing,
     uiLocked: uiLockedSel(state),
@@ -54,6 +55,9 @@ function DeviceControls(): ReactElement { // TODO: Rename to "SideButtons" or st
             }
           }}
         />
+
+        <div className="device-controls__divider" />
+
         <IconButton
           hidden={uiLocked}
           icon="play"
@@ -72,9 +76,21 @@ function DeviceControls(): ReactElement { // TODO: Rename to "SideButtons" or st
             dispatch(setCueMode(!cueMode))
           }}
         />
+        <IconButton
+          hidden={uiLocked}
+          icon="drum-mode"
+          selected={drumMode}
+          onClick={() => {
+            if (uiLocked) return
+            dispatch(setDrumMode(!drumMode))
+          }}
+        />
+
         <div className="device-controls__divider" />
+
         <IconButton
           className={`icon-button--select-color-${cursorGroup}`}
+          disabled={drumMode}
           hidden={uiLocked}
           icon="select-color"
           selected={cueMode}
@@ -100,7 +116,7 @@ function DeviceControls(): ReactElement { // TODO: Rename to "SideButtons" or st
           }}
         />
         <PressAndHoldButton
-          disabled={activeDotsCount === 0}
+          disabled={activeDotsCount === 0 || drumMode}
           hidden={uiLocked}
           selected={cursorGroup === 'none' && cursorMode === 'erase'}
           icon="clear-canvas"
@@ -146,16 +162,7 @@ function DeviceControls(): ReactElement { // TODO: Rename to "SideButtons" or st
         />
       </div>
       <div className="device-controls__bottom">
-        <IconButton
-          hidden={uiLocked}
-          icon="connect"
-          selected={false}
-          onClick={() => {
-            if (uiLocked) return
-            // if (undoIndex < undoStack.length) return
-            // dispatch(redo())
-          }}
-        />
+
       </div>
     </div>
   )

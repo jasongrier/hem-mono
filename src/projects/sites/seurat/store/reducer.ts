@@ -14,8 +14,9 @@ import {
   SET_CURSOR_MODE,
   SET_DEVICE_ON,
   SET_DRAGGING,
+  SET_DRUM_MODE,
+  SET_MAIN_VOLUME,
   SET_PLAYING,
-  SET_MASTER_VOLUME,
   UNDO,
   UPDATE_CONTROL,
   UPDATE_DOT,
@@ -29,15 +30,16 @@ import {
 const blankCanvas = createCanvas('empty')
 
 const initialState: IState = {
-  canvases: [blankCanvas],
+  canvases: new Array(100).fill(blankCanvas),
   codeEditorOpen: false,
   cueMode: false,
   currentCanvasIndex: 0,
   cursorGroup: 'a',
-  cursorIsDragging: false,
   cursorMode: 'draw',
+  dragging: false,
+  drumMode: false,
   eventInProgess: DO_OPENING_SEQUENCE,
-  masterVolume: 0.5,
+  mainVolume: 0.5,
   on: true,
   playing: true,
   undoIndex: 0,
@@ -96,10 +98,22 @@ const reducer = (
       return { ...state, cursorMode: payload }
 
     case SET_DRAGGING:
-      return { ...state, cursorIsDragging: payload }
+      return { ...state, dragging: payload }
 
-    case SET_MASTER_VOLUME:
-      return { ...state, masterVolume: payload }
+    case SET_DRUM_MODE:
+      return { ...state, drumMode: payload }
+
+    case SET_MAIN_VOLUME:
+      return { ...state, mainVolume: payload }
+
+    case SET_PLAYING:
+      return { ...state, playing: payload }
+
+    case SET_DEVICE_ON:
+      return { ...state, on: payload }
+
+    case UNDO:
+        return { ...state }
 
     case UPDATE_CONTROL:
       const { cursorGroup, key, value } = payload
@@ -110,15 +124,6 @@ const reducer = (
       newCanvases[state.currentCanvasIndex].controls[cursorGroup] = newControls
 
       return { ...state, canvases: newCanvases }
-
-    case SET_PLAYING:
-      return { ...state, playing: payload }
-
-    case SET_DEVICE_ON:
-      return { ...state, on: payload }
-
-    case UNDO:
-        return { ...state }
 
     case UPDATE_DOT:
       currentCanvas = state.canvases[state.currentCanvasIndex]

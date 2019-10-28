@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 
 import PerformanceControls from './PerformanceControls'
-import MasterControls from './MasterControls'
+import MainControls from './MainControls'
 
 function Palette(): ReactElement {
   return (
@@ -9,7 +9,7 @@ function Palette(): ReactElement {
       <PerformanceControls cursorGroup="a" />
       <PerformanceControls cursorGroup="b" />
       <PerformanceControls cursorGroup="c" />
-      <MasterControls />
+      <MainControls />
     </div>
   )
 }

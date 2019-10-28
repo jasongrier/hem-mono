@@ -46,10 +46,11 @@ export interface IState {
   codeEditorOpen: CursorGroup | false
   currentCanvasIndex: number
   cursorGroup: CursorGroup
-  cursorIsDragging: boolean
   cursorMode: CursorMode
+  dragging: boolean
+  drumMode: boolean
   eventInProgess: boolean
-  masterVolume: number
+  mainVolume: number
   on: boolean
   playing: boolean
   undoIndex: number
@@ -66,8 +67,9 @@ export const SET_CURSOR_GROUP = 'SET_CURSOR_GROUP'
 export const SET_CURSOR_MODE = 'SET_CURSOR_MODE'
 export const SET_DEVICE_ON = 'SET_DEVICE_ON'
 export const SET_DRAGGING = 'SET_DRAGGING'
+export const SET_DRUM_MODE = 'SET_DRUM_MODE'
 export const SET_PLAYING = 'SET_PLAYING'
-export const SET_MASTER_VOLUME = 'SET_MASTER_VOLUME'
+export const SET_MAIN_VOLUME = 'SET_MAIN_VOLUME'
 export const UNDO = 'UNDO'
 export const UPDATE_CONTROL = 'UPDATE_CONTROL'
 export const UPDATE_DOT = 'UPDATE_DOT'
@@ -117,13 +119,18 @@ export interface ISetDragging extends AnyAction {
   payload: boolean
 }
 
+export interface ISetDrumMode extends AnyAction {
+  type: typeof SET_DRUM_MODE
+  payload: boolean
+}
+
 export interface ISetDeviceOn extends AnyAction {
   type: typeof SET_DEVICE_ON
   payload: boolean
 }
 
-export interface ISetMasterVolume extends AnyAction {
-  type: typeof SET_MASTER_VOLUME
+export interface ISetMainVolume extends AnyAction {
+  type: typeof SET_MAIN_VOLUME
   payload: boolean
 }
 
@@ -158,7 +165,8 @@ export type Action =
   | ISetCursorMode
   | ISetDeviceOn
   | ISetDragging
-  | ISetMasterVolume
+  | ISetDrumMode
+  | ISetMainVolume
   | ISetPlaying
   | IUndo
   | IUpdateControl

@@ -93,7 +93,7 @@ body.no-cursor * {
 }
 
 .icon-button--disabled .icon-button__icon {
-  opacity: 0.07;
+  opacity: 0.07 !important;
 }
 
 .icon-button--hidden {
@@ -123,6 +123,7 @@ body.no-cursor * {
 .icon-button__icon--clear-canvas { background-image: url(./assets/tmp-icons/clear-canvas.png) }
 .icon-button__icon--connect { background-image: url(./assets/tmp-icons/connect.png) }
 .icon-button__icon--cue { background-image: url(./assets/tmp-icons/cue.png) }
+.icon-button__icon--drum-mode { background-image: url(./assets/tmp-icons/drum-mode.png) }
 .icon-button__icon--on-off { background-image: url(./assets/tmp-icons/on-off.png) }
 .icon-button__icon--play { background-image: url(./assets/tmp-icons/play.png) }
 .icon-button__icon--redo { background-image: url(./assets/tmp-icons/redo.png) }
@@ -155,7 +156,7 @@ body.no-cursor * {
 }
 
 .icon-button__icon--cue {
-  transform: scale(1.12);
+  transform: scale(1.13);
 }
 
 .icon-button__icon--clear-canvas {
@@ -167,6 +168,15 @@ body.no-cursor * {
 .icon-button--select-color-c .icon-button__icon {
   filter: none !important;
   opacity: 1 !important;
+}
+
+.icon-button--disabled.icon-button--select-color-a .icon-button__icon,
+.icon-button--disabled.icon-button--select-color-b .icon-button__icon,
+.icon-button--disabled.icon-button--select-color-c .icon-button__icon {
+  transition: opacity 0ms !important;
+  filter: invert(100%) !important;
+  background-image: url(./assets/tmp-icons/select-color-none.png) !important;
+  opacity: 0.07 !important;
 }
 
 .seurat--device-off .icon-button--select-color-a .icon-button__icon,
@@ -195,7 +205,7 @@ body.no-cursor * {
   display: block;
   content: " ";
   position: absolute;
-  bottom: 115px;
+  bottom: 60px;
   right: calc(-1 * (var(--divot-size) / 2 + 15px));
   z-index: 9999;
   width: var(--divot-size);
@@ -631,7 +641,6 @@ body.no-cursor * {
   border-radius: 30px;
   transition: background-color var(--transition-color-change);
   background-color: #fff;
-  opacity: 0.9;
 }
 
 .main-controls__dial .dial__hub {
@@ -655,14 +664,15 @@ body.no-cursor * {
   opacity: 0;
 }
 
-.main-controls__dial--main-volume {
+.main-controls__dial--preset-selector {
   left: 5px;
   width: 60px;
   height: 60px;
   border-radius: 60px;
+  z-index: 2;
 }
 
-.main-controls__dial--main-volume .dial__hub {
+.main-controls__dial--preset-selector .dial__hub {
   top: 5px;
   left: 5px;
   width: 52px;
@@ -690,8 +700,9 @@ body.no-cursor * {
 .main-controls__screen {
   position: absolute;
   top: 25px;
-  right: 15px;
-  width: 64px;
-  height: 15px;
+  left: 85px;
+  width: 80px;
+  height: 25px;
   background-color: #bbb;
+  z-index: 1;
 }

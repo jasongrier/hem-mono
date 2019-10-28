@@ -12,7 +12,8 @@ import {
   SET_CURSOR_MODE,
   SET_DEVICE_ON,
   SET_DRAGGING,
-  SET_MASTER_VOLUME,
+  SET_DRUM_MODE,
+  SET_MAIN_VOLUME,
   SET_PLAYING,
   UNDO,
   UPDATE_CONTROL,
@@ -99,13 +100,18 @@ const setDeviceOn = (on: boolean): AnyAction => ({
   payload: on,
 })
 
-const setDragging = (isDragging: boolean): AnyAction => ({
+const setDragging = (dragging: boolean): AnyAction => ({
   type: SET_DRAGGING,
-  payload: isDragging,
+  payload: dragging,
 })
 
-const setMasterVolume = (masterVolume: number): AnyAction => ({
-  type: SET_MASTER_VOLUME,
+const setDrumMode = (drumMode: boolean): AnyAction => ({
+  type: SET_DRUM_MODE,
+  payload: drumMode,
+})
+
+const setMainVolume = (masterVolume: number): AnyAction => ({
+  type: SET_MAIN_VOLUME,
   payload: masterVolume,
 })
 
@@ -145,9 +151,10 @@ export {
   setCurrentCanvas,
   setCursorGroup,
   setCursorMode,
-  setDragging,
-  setMasterVolume,
   setDeviceOn,
+  setDragging,
+  setDrumMode,
+  setMainVolume,
   setPlaying,
   undo,
   updateControl,
