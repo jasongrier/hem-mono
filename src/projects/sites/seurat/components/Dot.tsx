@@ -12,9 +12,9 @@ interface IProps {
 }
 
 function Dot({ dotNumber }: IProps): ReactElement {
-  const { cursorGroup, cursorIsDragging, cursorMode, myCursorGroup, mySound, uiLocked } = useSelector((state: RootState) => ({
+  const { cursorGroup, dragging, cursorMode, myCursorGroup, mySound, uiLocked } = useSelector((state: RootState) => ({
     cursorGroup: state.app.cursorGroup,
-    cursorIsDragging: state.app.cursorIsDragging,
+    dragging: state.app.dragging,
     cursorMode: state.app.cursorMode,
     myCursorGroup: state.app.canvases[state.app.currentCanvasIndex].dots[dotNumber].cursorGroup,
     mySound: state.app.canvases[state.app.currentCanvasIndex].dots[dotNumber].sound,
@@ -48,7 +48,7 @@ function Dot({ dotNumber }: IProps): ReactElement {
 
   function onMouseOver() {
     if (uiLocked) return
-    if (!cursorIsDragging) return
+    if (!dragging) return
 
     if (cursorMode === 'draw' && cursorGroup !== myCursorGroup) {
       dispatch(updateDot({ dotNumber, cursorGroup: cursorGroup, sound: mySound }))
