@@ -1,6 +1,8 @@
 import { AnyAction } from 'redux'
+import { merge } from 'lodash' // TODO: Replace with Immer
+import produce from 'immer'
 import { createCanvas } from '../functions/canvas'
-import { immutablePush } from '../functions/util'
+import { immutablePush } from '../functions/util' // TODO: Replace with Immer
 import * as presets from '../data/presets'
 import { DO_OPENING_SEQUENCE } from '../config'
 import {
@@ -30,7 +32,7 @@ import {
 const blankCanvas = createCanvas('empty')
 
 const initialState: IState = {
-  canvases: new Array(100).fill(blankCanvas),
+  canvases: new Array(100).fill(merge({}, blankCanvas)),
   codeEditorOpen: false,
   cueMode: false,
   currentCanvasIndex: 0,
@@ -50,30 +52,15 @@ const reducer = (
   state: IState = initialState,
   { type, payload }: AnyAction,
 ): IState => {
-  let currentCanvas: ICanvas
-  let newCanvases: ICanvas[]
-  let newControls: IControls[]
-  let newDots: IDot[]
-  let newUndoStack: IState[]
-
-  switch (type) { // TODO: All projects. This `switch` be `if... else if` to allow block scoped vars
-    case CLEAR_CANVAS:
-      newUndoStack = immutablePush(state.undoStack, state)
-
-      currentCanvas = state.canvases[state.currentCanvasIndex]
-      newDots = [...currentCanvas.dots].map(dot => ({
-        cursorGroup: 'none',
-        sound: dot.sound,
-      }))
-
-      newCanvases = [...state.canvases]
-      newCanvases[state.currentCanvasIndex].dots = newDots
-
-      return {
-        ...state,
-        canvases: newCanvases,
-        undoIndex: state.undoIndex + 1,
-        undoStack: newUndoStack,
+  switch (type) { // TODO: All projects. Wrap cases in {} to scope these lets above as consts
+    case CLEAR_CANVAS: {
+        return produce(state, draftState => { // TODO: Undo/redo decorator HoFn
+          const draftDots = draftState.canvases[draftState.currentCanvasIndex].dots
+          draftDots.map(dot => ({
+            cursorGroup: 'none',
+            sound: dot.sound,
+          }))
+        })
       }
 
     case OPENING_SEQUENCE_BEGUN:
@@ -113,30 +100,21 @@ const reducer = (
       return { ...state, on: payload }
 
     case UNDO:
-        return { ...state }
+      return { ...state }
 
-    case UPDATE_CONTROL:
+    case UPDATE_CONTROL: {
       const { cursorGroup, key, value } = payload
-      newControls = {...state.canvases[state.currentCanvasIndex].controls[cursorGroup]}
-      newControls[key] = value
+      return produce(state, draftState => {
+        draftState.canvases[draftState.currentCanvasIndex].controls[cursorGroup].cursorGroup[key] = value
+      })
+    }
 
-      newCanvases = [...state.canvases]
-      newCanvases[state.currentCanvasIndex].controls[cursorGroup] = newControls
-
-      return { ...state, canvases: newCanvases }
-
-    case UPDATE_DOT:
-      currentCanvas = state.canvases[state.currentCanvasIndex]
-      newDots = [...currentCanvas.dots]
-      newDots[payload.dotNumber] = {
-        cursorGroup: payload.cursorGroup,
-        sound: payload.sound,
-      }
-
-      newCanvases = [...state.canvases]
-      newCanvases[state.currentCanvasIndex].dots = newDots
-
-      return { ...state, canvases: newCanvases }
+    case UPDATE_DOT: {
+      const { cursorGroup, dotNumber } = payload
+      return produce(state, draftState => {
+        draftState.canvases[draftState.currentCanvasIndex].dots[dotNumber].cursorGroup = cursorGroup
+      })
+    }
 
     default:
       return state
