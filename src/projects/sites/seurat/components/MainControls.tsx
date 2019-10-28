@@ -17,14 +17,14 @@ function MasterControls(): ReactElement {
   const dispatch = useDispatch()
 
   // Keep fast, real time updates in local state
-  const [logoAngle, setLogoAngle] = useState(currentCanvasIndex)
+  const [realCanvasIndexDialValue, setRealCanvasIndexDialValue] = useState(currentCanvasIndex)
 
   return (
     <div className="main-controls">
       <div
         className={`main-controls__dial-logo main-controls__dial-logo--${cursorGroup}`}
         style={{
-          transform: `rotate(${logoAngle * 360 - 180}deg)`,
+          transform: `rotate(${realCanvasIndexDialValue * 360 - 180}deg)`,
         }}
       >
         <span>HEM</span>
@@ -33,14 +33,13 @@ function MasterControls(): ReactElement {
         className="main-controls__dial main-controls__dial--preset-selector"
         color="#d8d8d8" // TODO: Standardize colors by keeping color vars in a place both TS and (vanilla) CSS can access them
         onChange={(value) => {
-          setLogoAngle(value)
+          dispatch(setCurrentCanvas(Math.floor(value * 99)))
+          setRealCanvasIndexDialValue(value)
         }}
-        onChangeDone={(value) => {
-          dispatch(setCurrentCanvas(value)) // TODO: `setCurrentCanvasIndex`
-        }}
+        onChangeDone={noop} // TODO: Should not be required
         onPress={noop}
         size={66}
-        value={currentCanvasIndex}
+        value={realCanvasIndexDialValue}
       />
 
       <div className="main-controls__screen"></div>
