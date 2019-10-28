@@ -31,9 +31,9 @@ function Dial({ className, color, label, onChange, onChangeDone, onPress, overfl
     if (!el || !el.current) return
 
     dial.current = new Nexus.Dial(id, {
-      size: [size, size], // TODO: This is hardcoded in index.css as well
       interaction: 'vertical',
       mode: 'relative',
+      size: [size, size], // TODO: This is hardcoded in index.css as well
     })
 
     dial.current.handleLine.style.display = 'none'
