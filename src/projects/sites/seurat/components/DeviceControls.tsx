@@ -76,26 +76,30 @@ function DeviceControls(): ReactElement { // TODO: Rename to "SideButtons" or st
             dispatch(setCueMode(!cueMode))
           }}
         />
+
+        <div className="device-controls__divider" />
+
         <IconButton
           hidden={uiLocked}
           icon="drum-mode"
           selected={drumMode}
           onClick={() => {
             if (uiLocked) return
-            dispatch(setDrumMode(!drumMode))
+            dispatch(setCursorGroup('none'))
+            dispatch(setDrumMode(true))
           }}
         />
 
-        <div className="device-controls__divider" />
-
         <IconButton
           className={`icon-button--select-color-${cursorGroup}`}
-          disabled={drumMode}
           hidden={uiLocked}
           icon="select-color"
-          selected={cueMode}
+          selected={false}
           onClick={() => {
             if (uiLocked) return
+
+            dispatch(setDrumMode(false))
+
             let nextCursorGroup
             switch (cursorGroup) {
               case 'none':
@@ -116,22 +120,15 @@ function DeviceControls(): ReactElement { // TODO: Rename to "SideButtons" or st
           }}
         />
         <PressAndHoldButton
-          disabled={activeDotsCount === 0 || drumMode}
+          disabled={activeDotsCount === 0}
           hidden={uiLocked}
           selected={cursorGroup === 'none' && cursorMode === 'erase'}
           icon="clear-canvas"
           onClick={() => {
             if (uiLocked) return
-
-            if (cursorGroup === 'none' && cursorMode === 'erase') {
-              dispatch(setCursorGroup('a'))
-              dispatch(setCursorMode('draw'))
-            }
-
-            else {
-              dispatch(setCursorGroup('none'))
-              dispatch(setCursorMode('erase'))
-            }
+            dispatch(setDrumMode(false))
+            dispatch(setCursorGroup('none'))
+            dispatch(setCursorMode('erase'))
           }}
           onHold={() => {
             if (uiLocked) return

@@ -1,5 +1,4 @@
 import React, { ReactElement } from 'react'
-
 import PerformanceControls from './PerformanceControls'
 import MainControls from './MainControls'
 

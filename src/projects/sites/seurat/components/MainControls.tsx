@@ -5,6 +5,7 @@ import { setCurrentCanvas } from '../store/actions'
 import { RootState } from '../store'
 import { uiLocked as uiLockedSel } from '../store/selectors'
 import IconButton from './IconButton'
+import LcdScreen from './LcdScreen'
 import Dial from './Dial'
 
 function MasterControls(): ReactElement {
@@ -24,7 +25,7 @@ function MasterControls(): ReactElement {
       <div
         className={`main-controls__dial-logo main-controls__dial-logo--${cursorGroup}`}
         style={{
-          transform: `rotate(${realCanvasIndexDialValue * 360 - 180}deg)`,
+          transform: `rotate(${realCanvasIndexDialValue * 360}deg)`,
         }}
       >
         <span>HEM</span>
@@ -42,6 +43,8 @@ function MasterControls(): ReactElement {
         value={realCanvasIndexDialValue}
       />
 
+
+      <LcdScreen content="FOO" />
       <div className="main-controls__screen"></div>
 
       {/* <Dial
