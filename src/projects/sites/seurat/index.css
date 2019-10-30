@@ -706,3 +706,21 @@ body.no-cursor * {
   background-color: #bbb;
   z-index: 1;
 }
+
+.lcd-screen { /* TODO: Move to common with the component */
+  position: absolute;
+  top: 25px;
+  left: 85px;
+  width: 80px;
+  height: 25px;
+}
+
+.lcd-screen__pixel {
+  float: left;
+  width: 10px;
+  height: 10px;
+}
+
+.lcd-screen__pixel--on {
+  background: #333;
+}

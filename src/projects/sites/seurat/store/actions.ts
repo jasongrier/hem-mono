@@ -20,9 +20,9 @@ import {
   UPDATE_DOT,
 
   ControlName,
+  ControlValue,
   CursorGroup,
   CursorMode,
-  SequencerMode,
   ThunkResult,
 } from './types'
 
@@ -125,7 +125,7 @@ const undo = (): AnyAction => ({
   payload: null,
 })
 
-const updateControl = (cursorGroup: CursorGroup, key: ControlName, value: SequencerMode | number | boolean): AnyAction => ({
+const updateControl = (cursorGroup: CursorGroup, key: ControlName, value: ControlValue): AnyAction => ({
   type: UPDATE_CONTROL,
   payload: { cursorGroup, key, value },
 })

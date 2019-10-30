@@ -4,6 +4,7 @@ import { ThunkAction } from 'redux-thunk'
 export type ThunkResult<R> = ThunkAction<R, IState, undefined, Action> // TODO: How to get around putting this in every project??
 
 export type ControlName = keyof IControls
+export type ControlValue = SequencerMode | number | boolean
 export type CursorGroup = 'a' | 'b' | 'c' | 'none'
 export type CursorMode = 'erase' | 'draw'
 export type SequencerMode = 'random' | 'step' | 'custom' | 'step-confined'

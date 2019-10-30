@@ -23,10 +23,11 @@ import {
   UPDATE_CONTROL,
   UPDATE_DOT,
 
-  ICanvas,
-  IControls,
-  IDot,
   IState,
+
+  ControlName,
+  ControlValue,
+  CursorGroup,
 } from './types'
 
 const blankCanvas = createCanvas('empty')
@@ -103,9 +104,10 @@ const reducer = (
       return { ...state }
 
     case UPDATE_CONTROL: {
-      const { cursorGroup, key, value } = payload
+      const { cursorGroup, key, value }: { cursorGroup: CursorGroup, key: ControlName, value: ControlValue } = payload // TODO: Use action-specific interfaces, not AnyAction on the action creators
       return produce(state, draftState => {
-        draftState.canvases[draftState.currentCanvasIndex].controls[cursorGroup].cursorGroup[key] = value
+        // TODO: Why does the long property access below get a type of "never"? Try suggestion above
+        (draftState.canvases[draftState.currentCanvasIndex].controls[cursorGroup][key] as ControlValue) = value
       })
     }
 
