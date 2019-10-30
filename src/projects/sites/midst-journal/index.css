@@ -71,30 +71,56 @@ body {
   left: 20px;
   width: 250px;
   height: 77px;
-  mask: url(./assets/logo_heavy.svg) no-repeat 100% 100%;
-  -webkit-mask: url(./assets/logo_heavy.svg) no-repeat 100% 100%;
-  background-color: #000;
   background-repeat: no-repeat;
   font-size: 0;
-  z-index: 9999;
-}
-
-.site-header h1:hover {
-  background-color: rgb(255, 83, 129);
-  mask: url(./assets/logo_heavy.svg) no-repeat 100% 100%;
-  -webkit-mask: url(./assets/logo_heavy.svg) no-repeat 100% 100%;
-}
-
-.site-header h1.mini-logo {
-  mask: none;
-  -webkit-mask: none;
-  background: #FFF5EE url(./assets/logo_mini_light.svg) no-repeat;
+  z-index: 99999;
 }
 
 .site-header h1 a {
   display: block;
   width: 100%;
   height: 100%;
+}
+
+.site-header h1 .logo-svgs {
+  pointer-events: none;
+  transition: fill 250ms;
+}
+
+.site-header h1 .logo-svgs * {
+  pointer-events: none;
+}
+
+.site-header h1 a:hover .logo-svgs svg {
+  fill: rgb(255, 83, 129);
+}
+
+.site-header h1 .logo-svgs .logo-m {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.little-m {
+  transform: translate(-3px, -3px);
+}
+
+.little-m,
+.big-m,
+.logo-idst {
+  transition: opacity 250ms;
+}
+
+.little-m--hidden,
+.big-m--hidden,
+.logo-idst--hidden {
+  opacity: 0;
+}
+
+.site-header h1 .logo-svgs .logo-idst {
+  position: absolute;
+  right: 0;
+  left: 0;
 }
 
 .site-header .poem-credit {

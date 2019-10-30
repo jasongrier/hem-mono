@@ -19,6 +19,7 @@ import AboutTheApp from '../routes/AboutTheApp'
 import { RootState } from '../store'
 import { setMobileNavOpen } from '../store/actions'
 import ProcessNote from './ProcessNote'
+import LogoSvg from './LogoSvg'
 
 function App(): ReactElement {
   const { mobileNavOpen } = useSelector((state: RootState) => ({
@@ -41,14 +42,12 @@ function App(): ReactElement {
       />
 
       <header className="site-header">
-        <Hide from="/poem/:slug">
-          <h1>
-            <Link to="/">Midst</Link>
-          </h1>
-          <h1 className='mini-logo'>
-            <Link to="/">Midst</Link>
-          </h1>
-        </Hide>
+        <h1>
+          <Link to="/">
+            <span>Midst</span>
+            <Route render={(props) => <LogoSvg {...props} />} />
+          </Link>
+        </h1>
 
         <div
           className={mobileNavOpen ? 'open' : ''}
