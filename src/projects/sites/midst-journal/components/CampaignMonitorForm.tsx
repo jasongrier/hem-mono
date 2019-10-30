@@ -7,7 +7,7 @@ interface IProps {
   submitButtonText: string
 }
 
-function CampaignMonitorForm({
+function CampaignMonitorForm({ // TODO: All projects: Use line breaks for all component props
   labelForName,
   labelForEmail,
   submitButtonText,
