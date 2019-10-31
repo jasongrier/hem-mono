@@ -46,8 +46,6 @@ const initialState: IState = {
   undoStack: [],
 }
 
-// console.log(initialState.canvases.map(c => c.name))
-
 const reducer = (
   state: IState = initialState,
   { type, payload }: AnyAction,

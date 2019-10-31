@@ -9,7 +9,7 @@ import { dotNumberToNote, flashDots } from '../functions/canvas'
 import { setupBuiltInSounds } from '../functions/sounds'
 import { pickNoteRandom } from '../functions/performance'
 import { IDot } from '../store/types'
-import { playOpeningSequence } from '../store/actions'
+import { playOpeningSequence, setMainVolume } from '../store/actions'
 import DeviceControls from './DeviceControls'
 import IconButton from './IconButton'
 import { noop } from 'lodash'
@@ -32,8 +32,9 @@ let activeNotesProxy: IActiveDots
 let playingProxy: boolean // TODO: How to prevent values getting frozen into a hook??
 
 function Seurat(): ReactElement {
-  const { dots, playing, on } = useSelector((state: RootState) => ({
+  const { dots, mainVolume, playing, on } = useSelector((state: RootState) => ({
     dots: state.app.canvases[state.app.currentCanvasIndex].dots,
+    mainVolume: state.app.mainVolume,
     playing: state.app.playing,
     on: state.app.on,
   }))
@@ -96,6 +97,17 @@ function Seurat(): ReactElement {
       <Palette />
       <Canvas />
       <DeviceControls />
+      <Dial
+        className="main-volume-dial"
+        color="#d8d8d8" // TODO: Standardize colors by keeping color vars in a place both TS and (vanilla) CSS can access them
+        onChange={noop}
+        onChangeDone={value => {
+          dispatch(setMainVolume(value))
+        }} // TODO: Should not be required
+        onPress={noop}
+        size={35}
+        value={mainVolume}
+      />
     </div>
   )
 }
