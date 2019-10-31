@@ -707,18 +707,61 @@ body.no-cursor * {
   z-index: 1;
 }
 
-.lcd-screen { /* TODO: Move to common with the component */
+.lcd-screen-test {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999999;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+}
+
+.main-controls__screen {
+  display: flex;
   position: absolute;
   top: 25px;
   left: 85px;
-  width: 80px;
+  width: 85px;
   height: 25px;
+  line-height: 25px;
+  background: #fff;
+  justify-content: center;
+  align-items: center;
+}
+
+.lcd-screen { /* TODO: Move to common with the component */
+  position: relative;
+  width: 72px;
+  height: 8px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.lcd-screen__chars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  margin: 0 auto;
+  transform: scale(0.7, 1.1);
+  transform-origin: top left;
+}
+
+.lcd-screen__char {
+  float: left;
+  width: 7px;
+  margin-right: 2.2px;
+}
+
+.lcd-screen__char:last-child {
+  margin-right: 0;
 }
 
 .lcd-screen__pixel {
   float: left;
-  width: 10px;
-  height: 10px;
+  width: 1px;
+  height: 1px;
 }
 
 .lcd-screen__pixel--on {

@@ -1,3 +1,4 @@
+// TODO: tone @types
 //@ts-ignore
 import * as Tone from 'tone'
 import { testTones } from '../../data/sounds'

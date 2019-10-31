@@ -1,8 +1,7 @@
 import { AnyAction } from 'redux'
 import { merge } from 'lodash' // TODO: Replace with Immer
 import produce from 'immer'
-import { createCanvas } from '../functions/canvas'
-import { immutablePush } from '../functions/util' // TODO: Replace with Immer
+import { createRandomCanvases } from '../functions/canvas'
 import * as presets from '../data/presets'
 import { DO_OPENING_SEQUENCE } from '../config'
 import {
@@ -30,10 +29,8 @@ import {
   CursorGroup,
 } from './types'
 
-const blankCanvas = createCanvas('empty')
-
 const initialState: IState = {
-  canvases: new Array(100).fill(merge({}, blankCanvas)),
+  canvases: createRandomCanvases(100),
   codeEditorOpen: false,
   cueMode: false,
   currentCanvasIndex: 0,
@@ -48,6 +45,8 @@ const initialState: IState = {
   undoIndex: 0,
   undoStack: [],
 }
+
+// console.log(initialState.canvases.map(c => c.name))
 
 const reducer = (
   state: IState = initialState,

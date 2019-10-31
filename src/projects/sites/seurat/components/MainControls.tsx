@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react'
+import React, { ReactElement, useState, useEffect } from 'react'
 import { noop } from 'lodash'
 import { useDispatch, useSelector } from 'react-redux'
 import { setCurrentCanvas } from '../store/actions'
@@ -8,14 +8,41 @@ import IconButton from './IconButton'
 import LcdScreen from './LcdScreen'
 import Dial from './Dial'
 
+let currentCanvasIndexProxy: number
+
 function MasterControls(): ReactElement {
-  const { currentCanvasIndex, cursorGroup, uiLocked } = useSelector((state: RootState) => ({
-    cursorGroup: state.app.cursorGroup,
+  const { currentCanvasIndex, currentCanvasName, cursorGroup, maxCanvasIndex, uiLocked } = useSelector((state: RootState) => ({
     currentCanvasIndex: state.app.currentCanvasIndex,
+    currentCanvasName: state.app.canvases[state.app.currentCanvasIndex].name, // TODO: Current canvas selector
+    cursorGroup: state.app.cursorGroup,
+    maxCanvasIndex: state.app.canvases.length - 1,
     uiLocked: uiLockedSel(state),
   }))
 
   const dispatch = useDispatch()
+
+  function advancePresetFromArrowKeys(evt: any) {
+    if (evt.keyCode === 38 && currentCanvasIndexProxy < maxCanvasIndex) {
+      dispatch(setCurrentCanvas(currentCanvasIndexProxy + 1))
+      setRealCanvasIndexDialValue((currentCanvasIndexProxy + 1) / 99)
+    }
+
+    else if (evt.keyCode === 40 && currentCanvasIndexProxy > 0) {
+      dispatch(setCurrentCanvas(currentCanvasIndexProxy - 1))
+      setRealCanvasIndexDialValue((currentCanvasIndexProxy - 1) / 99)
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('keydown', advancePresetFromArrowKeys)
+    return function destroy() {
+      document.removeEventListener('keydown', advancePresetFromArrowKeys)
+    }
+  }, [])
+
+  useEffect(() => {
+    currentCanvasIndexProxy = currentCanvasIndex
+  }, [currentCanvasIndex])
 
   // Keep fast, real time updates in local state
   const [realCanvasIndexDialValue, setRealCanvasIndexDialValue] = useState(currentCanvasIndex)
@@ -44,8 +71,9 @@ function MasterControls(): ReactElement {
       />
 
 
-      <LcdScreen content="FOO" />
-      <div className="main-controls__screen"></div>
+      <div className="main-controls__screen">
+        <LcdScreen content={currentCanvasName} />
+      </div>
 
       {/* <Dial
         className="main-controls__dial main-controls__dial--foo"
