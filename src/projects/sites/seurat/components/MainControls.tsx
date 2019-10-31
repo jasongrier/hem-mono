@@ -75,26 +75,20 @@ function MasterControls(): ReactElement {
         <LcdScreen content={currentCanvasName} />
       </div>
 
-      {/* <Dial
-        className="main-controls__dial main-controls__dial--foo"
-        color="#d8d8d8" // TODO: Standardize colors by keeping color vars in a place both TS and (vanilla) CSS can access them
-        onChange={noop} // TODO: Set in real time directly on the audio API
-        onChangeDone={noop}
-        onPress={noop}
-        size={36}
-        value={0.5}
+      <IconButton
+        className="icon-button--connect"
+        hidden={uiLocked}
+        icon="connect"
+        selected={false}
+        onClick={() => {
+          if (uiLocked) return
+          // if (undoIndex < undoStack.length) return
+          // dispatch(redo())
+        }}
       />
-      <Dial
-        className="main-controls__dial main-controls__dial--bank-selector"
-        color="#d8d8d8" // TODO: Standardize colors by keeping color vars in a place both TS and (vanilla) CSS can access them
-        onChange={noop} // TODO: Set in real time directly on the audio API
-        onChangeDone={noop}
-        onPress={noop}
-        size={36}
-        value={0.5}
-      /> */}
 
       <IconButton
+        className="icon-button--connect"
         hidden={uiLocked}
         icon="connect"
         selected={false}
