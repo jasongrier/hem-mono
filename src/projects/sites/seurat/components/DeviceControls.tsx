@@ -60,27 +60,6 @@ function DeviceControls(): ReactElement { // TODO: Rename to "SideButtons" or st
 
         <IconButton
           hidden={uiLocked}
-          icon="play"
-          selected={playing}
-          onClick={() => {
-            if (uiLocked) return
-            dispatch(setPlaying(!playing))
-          }}
-        />
-        <IconButton
-          hidden={uiLocked}
-          icon="cue"
-          selected={cueMode}
-          onClick={() => {
-            if (uiLocked) return
-            dispatch(setCueMode(!cueMode))
-          }}
-        />
-
-        <div className="device-controls__divider" />
-
-        <IconButton
-          hidden={uiLocked}
           icon="drum-mode"
           selected={drumMode}
           onClick={() => {
@@ -150,6 +129,17 @@ function DeviceControls(): ReactElement { // TODO: Rename to "SideButtons" or st
           disabled={true}
           hidden={uiLocked}
           icon="redo"
+          selected={false}
+          onClick={() => {
+            if (uiLocked) return
+            // if (undoIndex < undoStack.length) return
+            // dispatch(redo())
+          }}
+        />
+        <IconButton
+          disabled={true}
+          hidden={uiLocked}
+          icon="connect"
           selected={false}
           onClick={() => {
             if (uiLocked) return
