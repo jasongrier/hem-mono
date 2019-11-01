@@ -1,7 +1,7 @@
 import React, { ReactElement, useState, useEffect } from 'react'
 import { noop } from 'lodash'
 import { useDispatch, useSelector } from 'react-redux'
-import { setCurrentCanvas } from '../store/actions'
+import { setCurrentCanvas, setPlaying } from '../store/actions'
 import { RootState } from '../store'
 import { uiLocked as uiLockedSel } from '../store/selectors'
 import IconButton from './IconButton'
@@ -11,11 +11,12 @@ import Dial from './Dial'
 let currentCanvasIndexProxy: number
 
 function MasterControls(): ReactElement {
-  const { currentCanvasIndex, currentCanvasName, cursorGroup, maxCanvasIndex, uiLocked } = useSelector((state: RootState) => ({
+  const { currentCanvasIndex, currentCanvasName, cursorGroup, maxCanvasIndex, playing, uiLocked } = useSelector((state: RootState) => ({
     currentCanvasIndex: state.app.currentCanvasIndex,
     currentCanvasName: state.app.canvases[state.app.currentCanvasIndex].name, // TODO: Current canvas selector
     cursorGroup: state.app.cursorGroup,
     maxCanvasIndex: state.app.canvases.length - 1,
+    playing: state.app.playing,
     uiLocked: uiLockedSel(state),
   }))
 
@@ -66,38 +67,38 @@ function MasterControls(): ReactElement {
         }}
         onChangeDone={noop} // TODO: Should not be required
         onPress={noop}
-        size={66}
-        value={realCanvasIndexDialValue}
+        size={79}
+        value={1}
       />
 
 
-      <div className="main-controls__screen">
-        <LcdScreen content={currentCanvasName} />
+      <div className="main-controls__cue-control">
+        <div className="main-controls__screen">
+          <LcdScreen content={currentCanvasName} />
+        </div>
+
+        <IconButton
+          className="icon-button--play"
+          hidden={uiLocked}
+          icon="play"
+          selected={playing}
+          onClick={() => {
+            if (uiLocked) return
+            dispatch(setPlaying(!playing))
+          }}
+        />
+
+        <IconButton
+          className="icon-button--cue"
+          hidden={uiLocked}
+          icon="cue"
+          selected={false}
+          onClick={() => {
+            // if (uiLocked) return
+            // dispatch(setCueMode(!cueMode))
+          }}
+        />
       </div>
-
-      <IconButton
-        className="icon-button--connect"
-        hidden={uiLocked}
-        icon="connect"
-        selected={false}
-        onClick={() => {
-          if (uiLocked) return
-          // if (undoIndex < undoStack.length) return
-          // dispatch(redo())
-        }}
-      />
-
-      <IconButton
-        className="icon-button--connect"
-        hidden={uiLocked}
-        icon="connect"
-        selected={false}
-        onClick={() => {
-          if (uiLocked) return
-          // if (undoIndex < undoStack.length) return
-          // dispatch(redo())
-        }}
-      />
     </div>
   )
 }

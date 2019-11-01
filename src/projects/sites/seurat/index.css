@@ -614,11 +614,11 @@ body.no-cursor * {
 .main-controls__dial-logo {
   position: absolute;
   bottom: 0;
-  left: 5px;
+  left: 0;
   z-index: 9999;
-  width: 62px;
-  height: 62px;
-  line-height: 62px;
+  width: 72px;
+  height: 72px;
+  line-height: 72px;
   color: var(--color-white);
   font-family: 'u8';
   font-weight: bold;
@@ -665,65 +665,38 @@ body.no-cursor * {
 }
 
 .main-controls__dial--preset-selector {
-  left: 5px;
-  width: 60px;
-  height: 60px;
-  border-radius: 60px;
+  left: 0;
+  width: 72px;
+  height: 72px;
+  border-radius: 80px;
   z-index: 2;
 }
 
 .main-controls__dial--preset-selector .dial__hub {
-  top: 5px;
-  left: 5px;
-  width: 52px;
-  height: 52px;
-  border-radius: 52px;
+  top: 4px;
+  left: 4px;
+  width: 66px;
+  height: 66px;
+  border-radius: 72px;
 }
 
-.main-controls .icon-button {
+.main-controls__cue-control {
   position: absolute;
-  bottom: 5px;
-  width: 12px;
-  height: 12px;
-  margin: 0;
-  padding: 0;
-  border: none;
-  background-color: transparent;
-}
-
-.main-controls .icon-button--connect {
-  right: 15px;
-}
-
-.main-controls__screen {
-  position: absolute;
-  top: 25px;
-  left: 85px;
-  width: 80px;
-  height: 25px;
-  background-color: #bbb;
-  z-index: 1;
-}
-
-.lcd-screen-test {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 999999;
-  width: 100vw;
-  height: 100vh;
-  background: black;
+  bottom: 0;
+  right: 0;
+  width: 86px;
+  height: 75px;
 }
 
 .main-controls__screen {
   display: flex;
   position: absolute;
-  top: 25px;
-  left: 85px;
-  width: 85px;
-  height: 25px;
+  top: 0;
+  right: 0;
+  width: 86px;
+  height: 15px;
   line-height: 25px;
-  background: #fff;
+  background: #d8d8d8;
   justify-content: center;
   align-items: center;
 }
@@ -764,6 +737,30 @@ body.no-cursor * {
 
 .lcd-screen__pixel--on {
   background: #333;
+}
+
+.main-controls .icon-button {
+  position: absolute;
+  bottom: 0;
+  width: 35px;
+  height: 45px;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.main-controls .icon-button__icon {
+  width: 15px;
+  height: 15px;
+  margin: 0 auto;
+}
+
+.main-controls .icon-button--play {
+  right: 0;
+}
+
+.main-controls .icon-button--cue {
+  left: 0;
 }
 
 .main-volume-dial {
