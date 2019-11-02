@@ -38,6 +38,28 @@ body.no-cursor * {
   cursor: none !important;
 }
 
+.trc-src {
+  position: fixed;
+  top: -369px;
+  left: 101px;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  filter: invert(100%);
+  transform: scale(0.79);
+  transform-origin: 230px 400px;
+  pointer-events: none;
+}
+
+.find-center {
+  position: fixed;
+  top: -370px;
+  left: 100px;
+  width: 230px;
+  height: 400px;
+  z-index: 99999;
+  background: red;
+}
+
 /* TODO: Move Dial to common, create some generic styles for it */
 .dial {
   position: relative;
