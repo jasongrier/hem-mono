@@ -10,7 +10,7 @@ function Home(): ReactElement {
   return (
     <div className="page page--home">
       <img
-        className="trc-src"
+        className="trc-src trc-src--proportion-test"
         src={tracingSource}
       />
       <div className="find-center" />
