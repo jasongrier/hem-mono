@@ -90,7 +90,7 @@ function Seurat(): ReactElement {
 
   return (
     <div className={`
-      seurat
+      seurat seurat--proportion-test
         ${WITH_DIVOT ? 'seurat--with-divot' : ''}
         seurat--device-${on ? 'on' : 'off'}
     `}>

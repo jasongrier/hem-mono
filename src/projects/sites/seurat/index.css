@@ -39,18 +39,24 @@ body.no-cursor * {
 }
 
 .trc-src {
+  display: none;
   position: fixed;
-  top: -369px;
-  left: 101px;
+  top: 0;
+  left: 0;
   z-index: 9999;
   mix-blend-mode: difference;
   filter: invert(100%);
   transform: scale(0.79);
-  transform-origin: 230px 400px;
+  transform-origin: top left;
   pointer-events: none;
 }
 
+.trc-src--proportion-test {
+  transform: scale(1.15);
+}
+
 .find-center {
+  display: none;
   position: fixed;
   top: -370px;
   left: 100px;
@@ -221,6 +227,16 @@ body.no-cursor * {
   background-color: var(--color-app-base);
   border-radius: 10px;
   overflow: hidden;
+}
+
+.seurat--proportion-test {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 962px;
+  margin: 0;
+  transform: scale(1.45);
+  transform-origin: top left;
 }
 
 .seurat--with-divot::after {
