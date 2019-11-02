@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import $ from 'jquery'
 import { camelCase } from 'voca'
-import shapeImages from '../assets/shapes'
+import * as shapeImages from '../assets/shapes'
 
 interface IProps {
   location: any
