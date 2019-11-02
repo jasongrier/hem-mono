@@ -1,91 +1,132 @@
-import midstShapeJYellow from './midst-shape-j-yellow.png'
-import midstShapeABlue from './midst-shape-a-blue.png'
-import midstShapeAGreen from './midst-shape-a-green.png'
-import midstShapeAPink from './midst-shape-a-pink.png'
-import midstShapeAYellow from './midst-shape-a-yellow.png'
-import midstShapeBBlue from './midst-shape-b-blue.png'
-import midstShapeBGreen from './midst-shape-b-green.png'
-import midstShapeBPink from './midst-shape-b-pink.png'
-import midstShapeBYellow from './midst-shape-b-yellow.png'
-import midstShapeCBlue from './midst-shape-c-blue.png'
-import midstShapeCGreen from './midst-shape-c-green.png'
-import midstShapeCPink from './midst-shape-c-pink.png'
-import midstShapeCYellow from './midst-shape-c-yellow.png'
-import midstShapeDBlue from './midst-shape-d-blue.png'
-import midstShapeDGreen from './midst-shape-d-green.png'
-import midstShapeDPink from './midst-shape-d-pink.png'
-import midstShapeDYellow from './midst-shape-d-yellow.png'
-import midstShapeEBlue from './midst-shape-e-blue.png'
-import midstShapeEGreen from './midst-shape-e-green.png'
-import midstShapeEPink from './midst-shape-e-pink.png'
-import midstShapeEYellow from './midst-shape-e-yellow.png'
-import midstShapeFBlue from './midst-shape-f-blue.png'
-import midstShapeFGreen from './midst-shape-f-green.png'
-import midstShapeFPink from './midst-shape-f-pink.png'
-import midstShapeFYellow from './midst-shape-f-yellow.png'
-import midstShapeGBlue from './midst-shape-g-blue.png'
-import midstShapeGGreen from './midst-shape-g-green.png'
-import midstShapeGPink from './midst-shape-g-pink.png'
-import midstShapeGYellow from './midst-shape-g-yellow.png'
-import midstShapeHBlue from './midst-shape-h-blue.png'
-import midstShapeHGreen from './midst-shape-h-green.png'
-import midstShapeHPink from './midst-shape-h-pink.png'
-import midstShapeHYellow from './midst-shape-h-yellow.png'
-import midstShapeIBlue from './midst-shape-i-blue.png'
-import midstShapeIGreen from './midst-shape-i-green.png'
-import midstShapeIPink from './midst-shape-i-pink.png'
-import midstShapeIYellow from './midst-shape-i-yellow.png'
-import midstShapeJBlue from './midst-shape-j-blue.png'
-import midstShapeJGreen from './midst-shape-j-green.png'
-import midstShapeJPink from './midst-shape-j-pink.png'
-import midstShapeKBlue from './midst-shape-k-blue.png'
-import midstShapeKGreen from './midst-shape-k-green.png'
-import midstShapeKPink from './midst-shape-k-pink.png'
-import midstShapeKYellow from './midst-shape-k-yellow.png'
-
-export default {
-  midstShapeJYellow,
-  midstShapeABlue,
-  midstShapeAGreen,
-  midstShapeAPink,
-  midstShapeAYellow,
-  midstShapeBBlue,
-  midstShapeBGreen,
-  midstShapeBPink,
-  midstShapeBYellow,
-  midstShapeCBlue,
-  midstShapeCGreen,
-  midstShapeCPink,
-  midstShapeCYellow,
-  midstShapeDBlue,
-  midstShapeDGreen,
-  midstShapeDPink,
-  midstShapeDYellow,
-  midstShapeEBlue,
-  midstShapeEGreen,
-  midstShapeEPink,
-  midstShapeEYellow,
-  midstShapeFBlue,
-  midstShapeFGreen,
-  midstShapeFPink,
-  midstShapeFYellow,
-  midstShapeGBlue,
-  midstShapeGGreen,
-  midstShapeGPink,
-  midstShapeGYellow,
-  midstShapeHBlue,
-  midstShapeHGreen,
-  midstShapeHPink,
-  midstShapeHYellow,
-  midstShapeIBlue,
-  midstShapeIGreen,
-  midstShapeIPink,
-  midstShapeIYellow,
-  midstShapeJBlue,
-  midstShapeJGreen,
-  midstShapeJPink,
-  midstShapeKBlue,
-  midstShapeKGreen,
-  midstShapeKPink,
-  midstShapeKYellow,
-} as any
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeJYellow} from './midst-shape-j-yellow.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeABlue} from './midst-shape-a-blue.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeAGreen} from './midst-shape-a-green.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeAPink} from './midst-shape-a-pink.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeAYellow} from './midst-shape-a-yellow.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeBBlue} from './midst-shape-b-blue.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeBGreen} from './midst-shape-b-green.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeBPink} from './midst-shape-b-pink.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeBYellow} from './midst-shape-b-yellow.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeCBlue} from './midst-shape-c-blue.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeCGreen} from './midst-shape-c-green.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeCPink} from './midst-shape-c-pink.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeCYellow} from './midst-shape-c-yellow.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeDBlue} from './midst-shape-d-blue.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeDGreen} from './midst-shape-d-green.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeDPink} from './midst-shape-d-pink.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeDYellow} from './midst-shape-d-yellow.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeEBlue} from './midst-shape-e-blue.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeEGreen} from './midst-shape-e-green.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeEPink} from './midst-shape-e-pink.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeEYellow} from './midst-shape-e-yellow.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeFBlue} from './midst-shape-f-blue.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeFGreen} from './midst-shape-f-green.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeFPink} from './midst-shape-f-pink.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeFYellow} from './midst-shape-f-yellow.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeGBlue} from './midst-shape-g-blue.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeGGreen} from './midst-shape-g-green.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeGPink} from './midst-shape-g-pink.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeGYellow} from './midst-shape-g-yellow.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeHBlue} from './midst-shape-h-blue.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeHGreen} from './midst-shape-h-green.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeHPink} from './midst-shape-h-pink.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeHYellow} from './midst-shape-h-yellow.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeIBlue} from './midst-shape-i-blue.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeIGreen} from './midst-shape-i-green.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeIPink} from './midst-shape-i-pink.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeIYellow} from './midst-shape-i-yellow.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeJBlue} from './midst-shape-j-blue.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeJGreen} from './midst-shape-j-green.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeJPink} from './midst-shape-j-pink.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeKBlue} from './midst-shape-k-blue.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeKGreen} from './midst-shape-k-green.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeKPink} from './midst-shape-k-pink.png'
+// TODO: Switch to Webpack
+//@ts-ignore
+export { default as midstShapeKYellow} from './midst-shape-k-yellow.png'
