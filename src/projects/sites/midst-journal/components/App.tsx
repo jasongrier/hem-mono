@@ -60,7 +60,7 @@ function App(): ReactElement {
         </div>
 
         <Switch>
-          <Route exact path="/poem/:slug" component={PoemNav} />
+          <Route exact path="/poem/:poemUrl" component={PoemNav} />
         </Switch>
 
         <nav

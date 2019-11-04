@@ -6,114 +6,61 @@ import {
   IState,
 } from './types'
 
-const prelaunchPoems = [
-  {
-    author: 'Issue One launches soon!',
-    hidden: false,
-    slug: 'demo-1',
-    title: '🌱',
-    processNote: 'string',
-  }, {
-    author: ' ',
-    hidden: false,
-    slug: 'demo-2',
-    title: ' ',
-    processNote: 'string',
-}, {
-    author: ' ',
-    hidden: false,
-    slug: 'demo-3',
-    title: ' ',
-    processNote: 'string',
-}, {
-    author: ' ',
-    hidden: false,
-    slug: 'demo-4',
-    title: ' ',
-    processNote: 'string',
-}, {
-    author: 'Hedgie Choi',
-    hidden: true,
-    slug: 'untitled-hedgie',
-    title: 'Untitled',
-    processNote: 'Lorem ipsum dolor sit amet',
-}, {
-    author: 'Veronica Martin',
-    hidden: true,
-    slug: 'veronica-martin-epilogue-in-summer',
-    title: 'Epilogue in Summer',
-    processNote: 'Lorem ipsum dolor sit amet',
-}, {
-    author: 'Annelyse Gelman',
-    hidden: false,
-    slug: 'prosperity',
-    title: 'Prosperity (Demonstration Poem)',
-    processNote: `
-      <h1>Process Note</h1>
-      <p>
-        I wrote "Prosperity" quickly, mostly as a demonstration of how Midst works—a kind of demonstration music for this platform. It is about the intelligence of pigs.
-      </p>
-
-      <h1>About the Author</h1>
-      <p>
-        Annelyse Gelman founded and directs Midst. Her work has appeared in <i>The New Yorker</i>, <i>BOMB Magazine</i>, <i>the PEN Poetry Series</i>, and elsewhere.
-        She is the author of <i><a href="http://www.amazon.com/Everyone-I-Love-Stranger-Someone/dp/193891242X">Everyone I Love Is a Stranger to Someone</a></i>. Find her at <a href="http://www.annelysegelman.com">www.annelysegelman.com</a>.
-      </p>
-      <p>
-        <img src="http://midst.press/journal-assets/author-photos/annelyse.png">
-      </p>
-    `,
-  }
-]
-
-const devPoems = [
+const poems = [
   {
     author: 'Angelo Colavita',
-    hidden: false,
-    slug: 'a-shade-whiter',
+    authorId: 'angelo-colavita',
+    poemId: 'angelo-colavita--a-shade-whiter',
+    url: 'a-shade-whiter',
     title: 'A Shade Whiter',
-    processNote: 'Lorem ipsum',
-  },
-  {
+  }, {
     author: 'Annelyse Gelman',
-    hidden: false,
-    slug: 'alphabet-song',
+    authorId: 'annelyse-gelman',
+    poemId: 'annelyse-gelman--alphabet-song',
+    url: 'alphabet-song',
     title: 'Alphabet Song',
-    processNote: 'Lorem ipsum',
-  },
-  {
+  }, {
     author: 'Annelyse Gelman',
-    hidden: false,
-    slug: 'pool',
-    title: 'Pool',
-    processNote: 'Lorem ipsum',
-  },
-  {
+    authorId: 'annelyse-gelman',
+    poemId: 'annelyse-gelman--haiku',
+    url: 'haiku',
+    title: 'Haiku',
+  }, {
     author: 'Annelyse Gelman',
-    hidden: false,
-    slug: 'prosperity',
-    title: 'Prosperity',
-    processNote: 'Lorem ipsum',
-  },
-  {
+    authorId: 'annelyse-gelman',
+    poemId: 'annelyse-gelman--park',
+    url: 'park',
+    title: 'Park',
+  }, {
+    author: 'Annelyse Gelman',
+    authorId: 'annelyse-gelman',
+    poemId: 'annelyse-gelman--the-story',
+    url: 'the-story',
+    title: 'The Story',
+  }, {
+    author: 'Annelyse Gelman',
+    authorId: 'annelyse-gelman',
+    poemId: 'annelyse-gelman--watering-cows',
+    url: 'watering-cows',
+    title: 'Watering Cows',
+  }, {
     author: 'Hedgie Choi',
-    hidden: false,
-    slug: 'untitled',
+    authorId: 'hedgie-choi',
+    poemId: 'hedgie-choi--i-get-it-phases',
+    url: 'i-get-it-phases',
     title: 'Untitled',
-    processNote: 'Lorem ipsum',
-  },
-  {
+  }, {
     author: 'Veronica Martin',
-    hidden: false,
-    slug: 'epilogue-in-summer',
+    authorId: 'veronica-martin',
+    poemId: 'veronica-martin--epilogue-in-summer',
+    url: 'epilogue-in-summer',
     title: 'Epilogue in Summer',
-    processNote: 'Lorem ipsum',
   },
 ]
 
 const initialState: IState = {
   mobileNavOpen: false,
-  poems: devPoems,
+  poems,
   processNoteOpen: false,
 }
 

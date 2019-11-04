@@ -2,7 +2,6 @@ import React, { ReactElement, useEffect } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import $ from 'jquery'
 import { camelCase } from 'voca'
-import * as shapeImages from '../assets/shapes'
 
 interface IProps {
   location: any
@@ -81,9 +80,8 @@ function Shapes({ location }: IProps): ReactElement {
             <div
               key={`${shape}-${color}`}
               className="shape-container"
-              style={{backgroundImage: `url(../assets/shapes/midst-shape-${shape}-${color}.png)`}}
             >
-              <img src={shapeImages[camelCase(`midstShape-${shape}-${color}`)]} />
+              <img src={`http://midst.press/static-assets/website-assets/shapes/midst-shape-${shape}-${color}.png`} />
             </div>
           ))
         )}
