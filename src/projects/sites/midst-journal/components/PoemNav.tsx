@@ -17,7 +17,8 @@ function PoemNav({ match }: IProps): ReactElement {
 
   const dispatch = useDispatch()
 
-  const currentPoemIndex = findIndex(poems, { slug: match.params.slug })
+
+  const currentPoemIndex = findIndex(poems, { url: match.params.poemUrl })
   const currentPoem = poems[currentPoemIndex]
   const previousPoem = poems[currentPoemIndex - 1]
   const nextPoem = poems[currentPoemIndex + 1]
@@ -39,7 +40,7 @@ function PoemNav({ match }: IProps): ReactElement {
       <div id="poem-nav">
         {nextPoem ?
           <Link
-            to={`/poem/${nextPoem.slug}/`}>
+            to={`/poem/${nextPoem.url}/`}>
             <i className="arrow arrow-forward"></i>
           </Link>
           :
@@ -50,7 +51,7 @@ function PoemNav({ match }: IProps): ReactElement {
 
         {previousPoem ?
           <Link
-            to={`/poem/${previousPoem.slug}/`}>
+            to={`/poem/${previousPoem.url}/`}>
             <i className="arrow arrow-back"></i>
           </Link>
           :

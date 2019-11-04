@@ -18,9 +18,9 @@ function Read(): ReactElement {
         <div className="issue-date">Winter&nbsp;2019</div>
         <div className="issue-number">The Pilot Issue</div>
         {poems.map((poem: IPoem) => (
-          <Link key={poem.slug}
+          <Link key={poem.url}
             className="poem-link"
-            to={`/poem/${poem.slug}/`}
+            to={`/poem/${poem.url}/`}
             onClick={() => dispatch(setMobileNavOpen(false))}
           >
             <div className="poem-link__column poem-author">{poem.author}</div>
