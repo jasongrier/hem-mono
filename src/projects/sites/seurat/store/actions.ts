@@ -67,7 +67,6 @@ const playOpeningSequence = (andTurnOn: boolean = false): ThunkResult<void> =>
     await promisedTimeout(450)
 
     dispatch({ type: SET_CURSOR_GROUP, payload: 'a' })
-    await promisedTimeout(450)
   }
 
 const redo = (): AnyAction => ({
