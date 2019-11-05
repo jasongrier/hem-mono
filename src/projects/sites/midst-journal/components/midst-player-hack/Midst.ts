@@ -14,6 +14,7 @@ import iconPlay from './icon-play'
 import iconSquare from './icon-square'
 import iconTimeline from './icon-timeline'
 import iconTrash from './icon-trash'
+import { IMidstFile } from '../../store/types'
 import './style.css'
 
 function getUrlVars() {
@@ -28,7 +29,7 @@ function getUrlVars() {
 interface IProps {
   isPlayer: boolean
   MIDST_DATA_URL?: string
-  MIDST_DATA_JS?: string
+  MIDST_DATA_JS?: IMidstFile
   MIDST_DATA_JS_KEY?: string
 }
 
@@ -203,6 +204,7 @@ class Midst extends React.Component<IProps, any> {
 
   componentDidUpdate(prevProps: IProps) {
     const { isPlayer, MIDST_DATA_JS, MIDST_DATA_JS_KEY } = this.props
+
     if (
       isPlayer
       && !isEmpty(MIDST_DATA_JS)
@@ -270,7 +272,7 @@ class Midst extends React.Component<IProps, any> {
 // ================================================================================
   appOnKeyDown(evt: any) {
     const { appTimelineMode, editorTimelineIndex, appFocusMode, editorTimelineFrames } = this.state
-    debugger
+
     if (evt.keyCode === 27) {
       this.setState({ appAboutOpen: false })
 

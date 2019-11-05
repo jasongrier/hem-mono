@@ -37,7 +37,7 @@ function App(): ReactElement {
 
       <Route render={(props) => <Shapes {...props} />} />
       <Route
-        path="/poem/:slug"
+        path="/poem/:poemUrl"
         render={(props) => <ProcessNote {...props} />}
       />
 
@@ -67,10 +67,10 @@ function App(): ReactElement {
           className={mobileNavOpen ? 'open' : ''}
           onClick={() => dispatch(setMobileNavOpen(false))}
         >
-          <Hide from="/poem/:slug">
+          <Hide from="/poem/:poemUrl">
             <SiteNavLinks />
           </Hide>
-          <Hide from="/poem/:slug">
+          <Hide from="/poem/:poemUrl">
             <NavLink
               className="about-link--desk"
               activeClassName="active"
@@ -94,11 +94,11 @@ function App(): ReactElement {
           <Route exact path="/nominate" component={Nominate} />
           <Route exact path="/read" component={Read} />
           <Route exact path="/app" component={AboutTheApp} />
-          <Route exact path="/poem/:slug" component={Poem} />
+          <Route exact path="/poem/:poemUrl" component={Poem} />
         </Switch>
       </main>
       <footer className="site-footer">
-        <Hide from="/poem/:slug">
+        <Hide from="/poem/:poemUrl">
           <CampaignMonitorForm
             labelForName="Newsletter &nbsp;🚀"
             submitButtonText="Submit"
