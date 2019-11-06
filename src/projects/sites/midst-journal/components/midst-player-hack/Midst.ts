@@ -1056,7 +1056,7 @@ class Midst extends React.Component<IProps, any> {
     const value = editorTimelineIndex / editorTimelineFrames.length
 
     let timestamp = editorTimelineFrames[editorTimelineIndex] && editorTimelineFrames[editorTimelineIndex].timestamp
-    timestamp = timestamp && moment(timestamp).format('h:mma[\r\n]MMMM D')
+    timestamp = timestamp && moment(timestamp).format('h:mm a[\r\n]MMMM D')
 
     return (
       e('div', {
