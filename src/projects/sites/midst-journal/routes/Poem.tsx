@@ -48,6 +48,7 @@ function Poem({ match }: IProps): ReactElement {
             {poems.map((poem: IPoem, i: number) =>
               <div
                 className="sliding-poems__poem"
+                data-trigger={poem.trigger ? 'true' : 'false'}
                 key={poem.poemId}
               >
                 <Midst

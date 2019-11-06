@@ -21,8 +21,6 @@ function ProcessNote({ match }: IProps): ReactElement {
     return poem.url === match.params.poemUrl
   })
 
-  console.log(poem)
-
   const dispatch = useDispatch()
 
   const el = useRef(null)
