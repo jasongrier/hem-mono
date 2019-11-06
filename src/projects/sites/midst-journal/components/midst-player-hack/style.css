@@ -164,7 +164,7 @@
 
 .editor {
   width: 100vw;
-  height: calc(100vh - 25px - 175px);
+  height: calc(100vh - 25px - 146px);
   overflow-x: hidden;
   overflow-y: scroll;
   transition: all 250ms;
