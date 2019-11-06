@@ -65,7 +65,10 @@ function Triptych(): ReactElement {
           <div
             className="triptych__panel triptych__panel--left-overlay"
             style={{
-              opacity: Math.random() < 0.2 ? 1 : 0
+              opacity: (centerFrameNumber < 100 ?
+                Math.random() < 0.8 ? 1 : 0
+                : 1
+              )
             }}
           >
             {frameStack(96).map((_, i) => (
