@@ -1,5 +1,7 @@
 import { AnyAction } from 'redux'
 import $ from 'jquery'
+import marked from 'marked'
+import insane from 'insane'
 import {
   LOAD_POEM_DATA,
   SET_MOBILE_NAV_OPEN,
@@ -17,7 +19,9 @@ const loadPoemData = (): any => // TODO: Should be: ThunkResult<void>. Why doesn
         // TODO: Remove jQuery dependency
         // TODO: This needs to be non-blocking!!!
         const data = await $.getJSON(`http://midst.press/static-assets/journal-assets/dev-authors/${poem.authorId}/${poem.poemId}.midst`)
-        dispatch({ type: LOAD_POEM_DATA, payload: { poemId: poem.poemId, data }})
+        const processNoteRaw = await $.get(`http://midst.press/static-assets/journal-assets/dev-authors/${poem.authorId}/${poem.authorId}.md`)
+        const processNote = insane(marked(processNoteRaw), { allowedTags: ['h1', 'p', 'i', 'a', 'em', 'b', 'strong', 'img']})
+        dispatch({ type: LOAD_POEM_DATA, payload: { poemId: poem.poemId, data, processNote }})
       }
 
       catch(err) {

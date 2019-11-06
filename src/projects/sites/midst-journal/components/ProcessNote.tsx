@@ -17,9 +17,11 @@ function ProcessNote({ match }: IProps): ReactElement {
   }))
 
   const poem = poems.find((poem: IPoem) => {
-    if (!match || !match.params || !match.params.slug) return false
-    return poem.slug === match.params.slug
+    if (!match || !match.params || !match.params.poemUrl) return false
+    return poem.url === match.params.poemUrl
   })
+
+  console.log(poem)
 
   const dispatch = useDispatch()
 
@@ -54,8 +56,8 @@ function ProcessNote({ match }: IProps): ReactElement {
 
   return (
     <div
-      ref={el}
       className={'process-note ' + (processNoteOpen ? 'open' : '')}
+      ref={el}
     >
       <div
         className="close-process-note"
