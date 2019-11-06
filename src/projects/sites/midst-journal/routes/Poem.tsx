@@ -12,7 +12,8 @@ interface IProps {
 }
 
 function Poem({ match }: IProps): ReactElement {
-  const { poems } = useSelector((state: RootState) => ({
+  const { currentPoemIndex, poems } = useSelector((state: RootState) => ({
+    currentPoemIndex: state.app.poems.findIndex(poem => poem.url === match.params.poemUrl),
     poems: state.app.poems.filter(poem => poem.hidden !== null),
   }))
 
@@ -22,8 +23,6 @@ function Poem({ match }: IProps): ReactElement {
 
   useEffect(() => {
     const sliderFrame = (el as any).current.querySelector('.sliding-poems__frame')
-    const currentPoemIndex = poems.findIndex(poem => poem.url === match.params.poemUrl)
-    console.log(currentPoemIndex)
     if (currentPoemIndex > -1) {
       sliderFrame.style.left = `calc(100vw * -${currentPoemIndex})`
     }
@@ -46,12 +45,13 @@ function Poem({ match }: IProps): ReactElement {
               width: `${poems.length * 200}%`,
             }}
           >
-            {poems.map((poem: IPoem) =>
+            {poems.map((poem: IPoem, i: number) =>
               <div
                 className="sliding-poems__poem"
                 key={poem.poemId}
               >
                 <Midst
+                  activePlayer={i === currentPoemIndex}
                   isPlayer={true}
                   MIDST_DATA_JS_KEY={poem.data ? poem.poemId : null}
                   MIDST_DATA_JS={poem.data}

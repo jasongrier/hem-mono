@@ -27,6 +27,7 @@ function getUrlVars() {
 }
 
 interface IProps {
+  activePlayer: boolean
   isPlayer: boolean
   MIDST_DATA_URL?: string
   MIDST_DATA_JS?: IMidstFile
@@ -89,6 +90,7 @@ class Midst extends React.Component<IProps, any> {
       editorTitle: 'Untitled',
       playerPlaybackSpeed: 'med',
       playerPlaybackSpeedDropOpen: false,
+      onKeydownSet: false,
     }
 
     this.state = JSON.parse(JSON.stringify(this.initialState))
@@ -203,7 +205,11 @@ class Midst extends React.Component<IProps, any> {
   }
 
   componentDidUpdate(prevProps: IProps) {
-    const { isPlayer, MIDST_DATA_JS, MIDST_DATA_JS_KEY } = this.props
+    const { isPlayer, MIDST_DATA_JS, MIDST_DATA_JS_KEY, activePlayer } = this.props
+
+    if (!activePlayer && prevProps.activePlayer) {
+      this.pause()
+    }
 
     if (
       isPlayer
@@ -213,6 +219,24 @@ class Midst extends React.Component<IProps, any> {
       this.load({
         data: MIDST_DATA_JS,
       })
+
+      if (!this.state.onKeydownSet) {
+        $('body').on('keydown', (evt) => {
+          if (evt.keyCode === 32) {
+            if (!this.props.activePlayer) return
+
+            if (this.state.editorPlaying) {
+              this.pause()
+            }
+
+            else {
+              this.play()
+            }
+          }
+        })
+
+        this.setState({onKeydownSet: true})
+      }
     }
   }
 
@@ -1234,13 +1258,16 @@ class Midst extends React.Component<IProps, any> {
 // Render
 // ================================================================================
   render() {
-    const { isPlayer } = this.props
+    const { isPlayer, activePlayer } = this.props
     const { appFocusMode } = this.state
 
     return (
       e('div', {
         className: 'midst' + (appFocusMode ? ' focus-mode' : ''),
         ref: (el) => this.el = el,
+        // style: {
+        //   opacity: activePlayer ? 0.2 : 1
+        // }
       },
         isPlayer ? null : e('div', { id: 'about' }, this.renderAbout()),
         isPlayer ? null : e('header', { id: 'title-bar' }, this.renderHeader()),
