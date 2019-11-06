@@ -26,7 +26,9 @@ export interface IPoem {
   data: IMidstFile | null
   hidden?: boolean
   poemId: string
+  processNote: string
   title: string
+  trigger?: boolean
   url: string
 }
 

@@ -20,6 +20,7 @@ function Read(): ReactElement {
         {poems.map((poem: IPoem) => (
           <Link key={poem.url}
             className="poem-link"
+            data-trigger={poem.trigger ? 'true' : 'false'}
             to={`/poem/${poem.url}/`}
             onClick={() => dispatch(setMobileNavOpen(false))}
           >
