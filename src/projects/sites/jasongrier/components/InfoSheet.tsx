@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../store'
 import { Link } from '../../../../common/components'
-import { autoParagraph } from '../../../../common/helpers'
+import { autoParagraph } from '../../../../common/functions'
 import { Helmet } from 'react-helmet'
 
 interface IProps {
