@@ -48,6 +48,7 @@
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
+    "resemblejs": "^3.2.3",
     "tone": "^13.8.25",
     "uuid": "^3.3.3",
     "voca": "^1.4.0"
