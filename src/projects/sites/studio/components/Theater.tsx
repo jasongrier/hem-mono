@@ -1,51 +1,63 @@
 import React, { ReactElement, useState } from 'react'
+import { generateImageSequenceUrls } from '../functions'
 import FlipBook from '../components/FlipBook'
 import LoadImages from '../components/LoadImages' // TODO: Barrel file (all projects)
-import { generateImageSequenceUrls } from '../functions'
 
-export interface IFrameSet {
+export interface IMovieSpec {
+  ext: string
   name: string
+  flickerThreshold?: number
+  frameRate?: number
   sequenceEndNumber: number
   sequenceStartNumber: number
 }
 
 interface IProps {
-  frameSets: IFrameSet[]
+  frameSets: IMovieSpec[]
+  name: string
 }
 
-function Theater({ frameSets: rawFrameSets }: IProps): ReactElement {
+function Theater({ frameSets: rawFrameSets, name }: IProps): ReactElement {
   const [ready, setReady] = useState(false)
 
-  const frameSets = rawFrameSets.map(({name, sequenceEndNumber, sequenceStartNumber}) => ({
+  const frameSets = rawFrameSets.map(({ ext, flickerThreshold, frameRate, name, sequenceEndNumber, sequenceStartNumber }) => ({
     name,
-    frames: generateImageSequenceUrls({
-      base: `http://hem.rocks/studio-assets/films/frames/${name}/IMG_`,
-      end: sequenceEndNumber,
-      ext: 'jpeg',
-      start: sequenceStartNumber,
-    }),
+    flickerThreshold,
+    frameRate,
+    frames: generateImageSequenceUrls(
+      `http://hem.rocks/studio-assets/films/frames/${name}/IMG_`,
+      sequenceEndNumber,
+      ext,
+      sequenceStartNumber,
+    ),
   }))
 
   return (
-    <div className="theater">
-      {frameSets.map(({ name, frames }) => (
-        <div
-          className={`theater__projector theater__projector--${name}`}
-          key={name}
-        >
-          <LoadImages
-            images={frames}
-            onImagesLoaded={() => setReady(true)}
-          />
-          {ready ?
-            <div className="theater__flip-book">
-              <FlipBook frames={frames} />
-            </div>
-            :
-            <div>loading...</div>
-          }
-        </div>
-      ))}
+    <div className={`theater theater--${name}`}>
+      <div className={`theater__projector-set`}>
+        {frameSets.map(({ name, flickerThreshold, frameRate, frames }) => (
+          <div
+            className={`theater__projector theater__projector--${name}`}
+            key={name}
+          >
+            <LoadImages
+              images={frames}
+              onImagesLoaded={() => setReady(true)}
+            />
+            {ready ?
+              <FlipBook
+                flickerThreshold={flickerThreshold}
+                frameRate={frameRate}
+                frames={frames}
+              />
+              :
+              <div className="theater__loading">
+                <div>loading...</div>
+              </div>
+            }
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
