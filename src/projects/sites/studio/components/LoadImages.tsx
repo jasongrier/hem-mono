@@ -4,7 +4,7 @@ import $ from 'jquery'
 interface IProps {
   images: string[]
   onImageLoaded?: (imageNumber: number) => void
-  onImagesLoaded: () => void
+  onImagesLoaded?: () => void
 }
 
 function LoadImages({ images, onImageLoaded, onImagesLoaded }: IProps): ReactElement {
@@ -15,7 +15,7 @@ function LoadImages({ images, onImageLoaded, onImagesLoaded }: IProps): ReactEle
       $('<img>')
         .on('load', () => {
           if (imagesLoaded === images.length - 1) {
-            onImagesLoaded()
+            onImagesLoaded && onImagesLoaded()
           }
 
           else {
