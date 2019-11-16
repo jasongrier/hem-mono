@@ -29,7 +29,7 @@ function FlipBook({
   startFrame = 0,
   styleFunction = () => {},
 }: IProps): ReactElement {
-  const loopEnd = endFrame || frames.length - 1
+  const loopEnd = endFrame || frames.length - 2
 
   const [frameNumber, setFrameNumber] = useState(startFrame)
 
