@@ -112,10 +112,10 @@ function DemoMovies(): ReactElement {
         frameSets={puddle}
         name="puddle"
       />
-      {/* <Theater
+      <Theater
         frameSets={puddleOverlay}
         name="puddle-overlay"
-      /> */}
+      />
       <Theater
         frameSets={cta}
         name="cta"
