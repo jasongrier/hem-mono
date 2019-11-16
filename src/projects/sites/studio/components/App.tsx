@@ -2,8 +2,8 @@ import React, { ReactElement } from 'react'
 import { Switch, Route, Link, NavLink } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import { Hide } from '../../../../common/components'
+import DemoMovies from '../routes/demos/DemoMovies'
 import Home from '../routes/Home'
-import DemoMovies from '../routes/DemoMovies'
 
 function App(): ReactElement {
   return (

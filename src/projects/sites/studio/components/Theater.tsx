@@ -1,44 +1,39 @@
 import React, { ReactElement, useState } from 'react'
-import { generateImageSequenceUrls } from '../functions'
-import FlipBook from '../components/FlipBook'
+import FlipBook, { directionFunction } from '../components/FlipBook'
 import LoadImages from '../components/LoadImages' // TODO: Barrel file (all projects)
+import { formatMovieSpecs } from '../functions'
 
 export interface IMovieSpec {
-  ext: string
-  name: string
-  flickerThreshold?: number
-  frameRate?: number
-  sequenceEndNumber: number
-  sequenceStartNumber: number
+  frameSrc: {
+    ext: string
+    name: string
+    sequenceEndNumber: number
+    sequenceStartNumber: number
+  }
+  movieProps?: {
+    direction?: directionFunction | 'forward' | 'reverse'
+    flickerThreshold?: number
+    frameRate?: number
+  }
 }
 
 interface IProps {
-  frameSets: IMovieSpec[]
+  movieSpecs: IMovieSpec[]
   name: string
 }
 
-function Theater({ frameSets: rawFrameSets, name }: IProps): ReactElement {
+function Theater({ movieSpecs: rawMovieSpecs, name }: IProps): ReactElement {
   const [ready, setReady] = useState(false)
 
-  const frameSets = rawFrameSets.map(({ ext, flickerThreshold, frameRate, name, sequenceEndNumber, sequenceStartNumber }) => ({
-    name,
-    flickerThreshold,
-    frameRate,
-    frames: generateImageSequenceUrls(
-      `http://hem.rocks/studio-assets/films/frames/${name}/IMG_`,
-      sequenceEndNumber,
-      ext,
-      sequenceStartNumber,
-    ),
-  }))
+  const frameSets = formatMovieSpecs(rawMovieSpecs)
 
   return (
     <div className={`theater theater--${name}`}>
       <div className={`theater__projector-set`}>
-        {frameSets.map(({ name, flickerThreshold, frameRate, frames }) => (
+        {frameSets.map(({ frames, movieProps, name }, i) => (
           <div
-            className={`theater__projector theater__projector--${name}`}
-            key={name}
+            className={`theater__projector theater__projector--${name} theater__projector--${i}`}
+            key={name + i}
           >
             <LoadImages
               images={frames}
@@ -46,9 +41,8 @@ function Theater({ frameSets: rawFrameSets, name }: IProps): ReactElement {
             />
             {ready ?
               <FlipBook
-                flickerThreshold={flickerThreshold}
-                frameRate={frameRate}
                 frames={frames}
+                {...movieProps}
               />
               :
               <div className="theater__loading">
