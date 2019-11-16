@@ -3,7 +3,7 @@ import { Switch, Route, Link, NavLink } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import { Hide } from '../../../../common/components'
 import Home from '../routes/Home'
-import Tree from '../routes/Tree'
+import DemoMovies from '../routes/DemoMovies'
 
 function App(): ReactElement {
   return (
@@ -13,7 +13,7 @@ function App(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
 
-      <Hide from="/tree">
+      <Hide from="/demo-movies">
         <header>
           <h1>
             <Link to="/">HEM Studio</Link>
@@ -27,7 +27,7 @@ function App(): ReactElement {
       <main>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/tree" component={Tree} />
+          <Route exact path="/demo-movies" component={DemoMovies} />
         </Switch>
       </main>
       <footer></footer>

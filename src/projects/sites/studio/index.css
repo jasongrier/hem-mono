@@ -4,13 +4,13 @@ body {
   padding: 0;
 }
 
-.page--tree {
+.page--demo-movies {
   width: 100vw;
   height: 100vh;
   background: black;
 }
 
-.tree-movie {
+.theater__projector--tree {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -18,7 +18,7 @@ body {
   margin-left: -200px;
 }
 
-.tree-movie img {
+.theater__projector--tree img {
   width: 400px;
   height: auto;
 }
