@@ -22,7 +22,6 @@ body {
   align-items: center;
   justify-content: center;
   color: aliceblue;
-  background: cornflowerblue;
   font-family: 'Courier New', Courier, monospace;
   font-style: italic;
 }
@@ -58,7 +57,6 @@ body {
   float: left;
   width: 350px;
   height: 262px;
-  background: cornflowerblue;
 }
 
 .theater--puddle .flip-book {

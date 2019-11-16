@@ -1,10 +1,12 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 
-type flickerFunction = (frameNumber: number) => boolean
+export type flickerFunction = (frameNumber: number) => boolean
+export type directionFunction = (frameNumber: number) => 'forward' | 'reverse'
 
 interface IProps {
   frames: string[] // TODO: All projects, separate alphabetized required props from optionals
 
+  direction?: directionFunction | 'forward' | 'reverse'
   endFrame?: number
   flickerMax?: number
   flickerMin?: number
@@ -19,6 +21,7 @@ interface IProps {
 function FlipBook({
   frames,
 
+  direction: propsDirection = 'forward',
   endFrame,
   flickerMax = 1,
   flickerMin = 0,
@@ -35,10 +38,25 @@ function FlipBook({
 
   useEffect(() => {
     if (!playing) return
-    if (!loop && frameNumber >= loopEnd) return
+
+    const direction = typeof propsDirection === 'function' ? propsDirection(frameNumber) : propsDirection
+
+    if (direction === 'forward') {
+      if (!loop && frameNumber >= loopEnd) return
+    }
+
+    else {
+      if (!loop && frameNumber <= startFrame) return
+    }
 
     const projectorInterval = setTimeout(() => {
-      setFrameNumber(frameNumber > loopEnd ? startFrame : frameNumber + 1)
+      if (direction === 'forward') {
+        setFrameNumber(frameNumber > loopEnd ? startFrame : frameNumber + 1)
+      }
+
+      else {
+        setFrameNumber(frameNumber > startFrame ? frameNumber - 1 : loopEnd)
+      }
     }, frameRate * 12)
 
     return function destroy() {
