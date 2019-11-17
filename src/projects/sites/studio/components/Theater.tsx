@@ -9,6 +9,8 @@ export interface IMovieSpec {
     name: string
     sequenceEndNumber: number
     sequenceStartNumber: number
+
+    diff?: number[]
   }
   movieProps?: {
     direction?: directionType
@@ -30,7 +32,7 @@ function Theater({ movieSpecs: rawMovieSpecs, name }: IProps): ReactElement {
   return (
     <div className={`theater theater--${name}`}>
       <div className={`theater__projector-set`}>
-        {frameSets.map(({ frames, movieProps, name }, i) => (
+        {frameSets.map(({ diff, frames, movieProps, name }, i) => (
           <div
             className={`theater__projector theater__projector--${name} theater__projector--${i}`}
             key={name + i}
@@ -41,8 +43,8 @@ function Theater({ movieSpecs: rawMovieSpecs, name }: IProps): ReactElement {
             />
             {ready ?
               <FlipBook
+                diff={diff}
                 frames={frames}
-                name={name}
                 {...movieProps}
               />
               :
