@@ -13,7 +13,7 @@ function App(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
 
-      <Hide from="/demo-movies">
+      <Hide from="/demo-movies/:name">
         <header>
           <h1>
             <Link to="/">HEM Studio</Link>
@@ -27,7 +27,7 @@ function App(): ReactElement {
       <main>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/demo-movies" component={DemoMovies} />
+          <Route exact path="/demo-movies/:name" component={DemoMovies} />
         </Switch>
       </main>
       <footer></footer>

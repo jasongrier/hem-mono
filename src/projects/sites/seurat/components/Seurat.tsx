@@ -62,7 +62,7 @@ function Seurat(): ReactElement {
 
   useEffect(() => { playingProxy = playing }, [playing])
 
-  useClock('web', () => {
+  useClock(() => {
     // const noteA = pickNoteRandom(activeNotesProxy.a)
     // const noteB = pickNoteRandom(activeNotesProxy.b)
     // const noteC = pickNoteRandom(activeNotesProxy.c)

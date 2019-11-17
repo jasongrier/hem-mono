@@ -4,6 +4,7 @@ import { IMovieSpec } from '../components/Theater'
 function formatMovieSpecs(rawMovieSpecs: IMovieSpec[]) {
   return rawMovieSpecs.map(({
     frameSrc: {
+      diff,
       ext,
       name,
       sequenceEndNumber,
@@ -11,6 +12,7 @@ function formatMovieSpecs(rawMovieSpecs: IMovieSpec[]) {
     },
     movieProps = {},
   }) => ({
+    diff,
     name,
     movieProps,
     frames: generateImageSequenceUrls(
