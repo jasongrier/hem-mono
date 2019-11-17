@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from 'react'
-import FlipBook, { directionFunction } from '../components/FlipBook'
+import FlipBook, { directionType } from '../components/FlipBook'
 import LoadImages from '../components/LoadImages' // TODO: Barrel file (all projects)
 import { formatMovieSpecs } from '../functions'
 
@@ -11,7 +11,7 @@ export interface IMovieSpec {
     sequenceStartNumber: number
   }
   movieProps?: {
-    direction?: directionFunction | 'forward' | 'reverse'
+    direction?: directionType
     flickerThreshold?: number
     frameRate?: number
   }
@@ -42,6 +42,7 @@ function Theater({ movieSpecs: rawMovieSpecs, name }: IProps): ReactElement {
             {ready ?
               <FlipBook
                 frames={frames}
+                name={name}
                 {...movieProps}
               />
               :
