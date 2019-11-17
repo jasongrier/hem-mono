@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store'
 import { loadPoemData } from '../store/actions'
-import { IPoem } from '../store/types'
+import { IPoem, IMidstFile } from '../store/types'
 import Midst from '../components/midst-player-hack/Midst'
 
 const win = window as any
@@ -54,8 +54,8 @@ function Poem({ match }: IProps): ReactElement {
                 <Midst
                   activePlayer={i === currentPoemIndex}
                   isPlayer={true}
-                  MIDST_DATA_JS_KEY={poem.data ? poem.poemId : null}
-                  MIDST_DATA_JS={poem.data}
+                  MIDST_DATA_JS_KEY={poem.data ? poem.poemId : undefined}
+                  MIDST_DATA_JS={poem.data as IMidstFile}
                 />
               </div>
             )}
