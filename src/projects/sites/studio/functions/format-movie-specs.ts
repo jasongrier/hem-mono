@@ -14,6 +14,8 @@ function formatMovieSpecs(rawMovieSpecs: IMovieSpec[]) {
     name,
     movieProps,
     frames: generateImageSequenceUrls(
+      // TODO: "IMG_" should be a param: "prefix"
+      // TODO: URL base should come from ENV
       `http://hem.rocks/studio-assets/films/frames/${name}/IMG_`,
       sequenceEndNumber,
       ext,

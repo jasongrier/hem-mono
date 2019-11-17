@@ -9,6 +9,9 @@ const tree: IMovieSpec[] = [
       sequenceEndNumber: 3255,
       sequenceStartNumber: 3130,
     },
+    movieProps: {
+      direction: 'similarity',
+    },
   },
 ]
 
@@ -72,14 +75,12 @@ const puddleOverlay: IMovieSpec[] = [
   },
 ]
 
-function hallDirectionFunction(which) {
-  return function (frameNumber) {
-    if (frameNumber === 50) {
-      const dir = Math.random() > 0.9 ? 'reverse' : 'forward'
-      return dir
-    }
-    return 'forward'
+function hallDirectionFunction(frameNumber: number) {
+  if (frameNumber === 50) {
+    const dir = Math.random() > 0.9 ? 'reverse' : 'forward'
+    return dir
   }
+  return 'forward'
 }
 
 const hall: IMovieSpec[] = [
@@ -155,15 +156,15 @@ const cta: IMovieSpec[] = [
 function DemoMovies(): ReactElement {
   return (
     <div className="page page--demo-movies">
-      <Theater
+      {/* <Theater
         movieSpecs={hall} // TODO: Rename prop "frameSets" to "movieSpec"
         name="hall"
-      />
-      {/* <Theater
+      /> */}
+      <Theater
         movieSpecs={tree}
         name="tree"
       />
-      <Theater
+      {/* <Theater
         movieSpecs={puddle}
         name="puddle"
       />
