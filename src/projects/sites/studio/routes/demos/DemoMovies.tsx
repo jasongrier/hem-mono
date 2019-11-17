@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
-import Theater , { IMovieSpec } from '../../components/Theater' // TODO: Barrel file (all projects)
+import { Theater, IMovieSpec } from '../../components/animation' // TODO: Barrel file (done here, but not in all projects)
 
 interface IProps {
   match: any
@@ -180,6 +180,7 @@ function DemoMovies({ match }: IProps): ReactElement {
         <Link to="/demo-movies/cta">cta</Link>&nbsp;
         <Link to="/demo-movies/field">field</Link>
       </nav>
+      {/* TODO: Should be a single component that gets passed route params */}
       {theaterRoute('hall', hall, match)}
       {theaterRoute('tree', tree, match)}
       {theaterRoute('puddle', puddle, match)}

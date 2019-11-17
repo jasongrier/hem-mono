@@ -1,6 +1,10 @@
 import React, { ReactElement } from 'react'
 
-function Arrangement({ children }): ReactElement {
+interface IProps {
+  children: any
+}
+
+function Arrangement({ children }: IProps): ReactElement {
   return (
     <div className="arrangement">
       {children}
