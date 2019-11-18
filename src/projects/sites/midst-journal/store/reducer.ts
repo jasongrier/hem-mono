@@ -14,6 +14,7 @@ const poems = [
     authorId: 'angelo-colavita',
     data: null,
     poemId: 'angelo-colavita--a-shade-whiter',
+    loaded: false,
     processNote: null,
     url: 'a-shade-whiter',
     title: 'A Shade Whiter',
@@ -22,6 +23,7 @@ const poems = [
     authorId: 'annelyse-gelman',
     data: null,
     poemId: 'annelyse-gelman--alphabet-song',
+    loaded: false,
     processNote: null,
     url: 'alphabet-song',
     title: 'Alphabet Song',
@@ -30,6 +32,7 @@ const poems = [
     authorId: 'annelyse-gelman',
     data: null,
     poemId: 'annelyse-gelman--haiku',
+    loaded: false,
     processNote: null,
     url: 'haiku',
     title: 'Haiku',
@@ -38,6 +41,7 @@ const poems = [
     authorId: 'annelyse-gelman',
     data: null,
     poemId: 'annelyse-gelman--park',
+    loaded: false,
     processNote: null,
     url: 'park',
     title: 'Park',
@@ -46,6 +50,7 @@ const poems = [
     authorId: 'annelyse-gelman',
     data: null,
     poemId: 'annelyse-gelman--the-story',
+    loaded: false,
     processNote: null,
     url: 'the-story',
     title: 'The Story',
@@ -54,6 +59,7 @@ const poems = [
     authorId: 'annelyse-gelman',
     data: null,
     poemId: 'annelyse-gelman--watering-cows',
+    loaded: false,
     processNote: null,
     url: 'watering-cows',
     title: 'Watering Cows',
@@ -62,6 +68,7 @@ const poems = [
     authorId: 'hedgie-choi',
     data: null,
     poemId: 'hedgie-choi--i-get-it-phases',
+    loaded: false,
     processNote: null,
     url: 'i-get-it-phases',
     title: 'Untitled',
@@ -70,6 +77,7 @@ const poems = [
     authorId: 'veronica-martin',
     data: null,
     poemId: 'veronica-martin--epilogue-in-summer',
+    loaded: false,
     processNote: null,
     url: 'epilogue-in-summer',
     title: 'Epilogue in Summer',
@@ -92,6 +100,7 @@ const reducer = (
       return produce(state, draftState => {
         const poem = draftState.poems.find(poem => poem.poemId === poemId)
         if (poem) {
+          poem.loaded = true
           poem.data = data
           poem.processNote = processNote
         }
