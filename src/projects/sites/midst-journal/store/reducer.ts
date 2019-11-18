@@ -15,7 +15,7 @@ const poems = [
     data: null,
     poemId: 'angelo-colavita--a-shade-whiter',
     loaded: false,
-    processNote: null,
+    processNote: '',
     url: 'a-shade-whiter',
     title: 'A Shade Whiter',
   }, {
@@ -24,7 +24,7 @@ const poems = [
     data: null,
     poemId: 'annelyse-gelman--alphabet-song',
     loaded: false,
-    processNote: null,
+    processNote: '',
     url: 'alphabet-song',
     title: 'Alphabet Song',
   }, {
@@ -33,7 +33,7 @@ const poems = [
     data: null,
     poemId: 'annelyse-gelman--haiku',
     loaded: false,
-    processNote: null,
+    processNote: '',
     url: 'haiku',
     title: 'Haiku',
   }, {
@@ -42,7 +42,7 @@ const poems = [
     data: null,
     poemId: 'annelyse-gelman--park',
     loaded: false,
-    processNote: null,
+    processNote: '',
     url: 'park',
     title: 'Park',
   }, {
@@ -51,7 +51,7 @@ const poems = [
     data: null,
     poemId: 'annelyse-gelman--the-story',
     loaded: false,
-    processNote: null,
+    processNote: '',
     url: 'the-story',
     title: 'The Story',
   }, {
@@ -60,7 +60,7 @@ const poems = [
     data: null,
     poemId: 'annelyse-gelman--watering-cows',
     loaded: false,
-    processNote: null,
+    processNote: '',
     url: 'watering-cows',
     title: 'Watering Cows',
   }, {
@@ -69,7 +69,7 @@ const poems = [
     data: null,
     poemId: 'hedgie-choi--i-get-it-phases',
     loaded: false,
-    processNote: null,
+    processNote: '',
     url: 'i-get-it-phases',
     title: 'Untitled',
   }, {
@@ -78,7 +78,7 @@ const poems = [
     data: null,
     poemId: 'veronica-martin--epilogue-in-summer',
     loaded: false,
-    processNote: null,
+    processNote: '',
     url: 'epilogue-in-summer',
     title: 'Epilogue in Summer',
   },

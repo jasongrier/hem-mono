@@ -1,5 +1,6 @@
 import React, { ReactElement, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import uuid from 'uuid/v1'
 import { RootState } from '../store'
 import { loadPoemData } from '../store/actions'
 import { IPoem, IMidstFile } from '../store/types'
