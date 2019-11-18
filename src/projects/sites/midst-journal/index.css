@@ -757,6 +757,22 @@ body {
   float: left;
   width: 100vw;
   height: 100vh;
+  background: url(./assets/midst-loading.svg) no-repeat center center;
+  background-size: 100px 100px;
+}
+
+.sliding-poems__poem .timeline {
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.sliding-poems__poem--loaded {
+  background: transparent;
+}
+
+.sliding-poems__poem--loaded .timeline {
+  opacity: 1;
+  pointer-events: all;
 }
 
 .sliding-poems__poem .midst main * {

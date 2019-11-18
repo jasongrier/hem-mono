@@ -25,6 +25,7 @@ export interface IPoem {
   authorId: string
   data: IMidstFile | null
   hidden?: boolean
+  loaded: boolean
   poemId: string
   processNote: string
   title: string
