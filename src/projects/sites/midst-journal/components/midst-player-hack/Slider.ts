@@ -1,4 +1,5 @@
 import React, { createElement as e } from 'react'
+import uuid from 'uuid/v1'
 import appendStyle from './append-style'
 import { coords } from './mouse-position'
 
@@ -19,6 +20,7 @@ class Slider extends React.Component {
 
     private css: any
     private el: any
+    private id: string
 
     constructor(props: any) {
       super(props)
@@ -88,6 +90,7 @@ class Slider extends React.Component {
   // Class Properties
   // ================================================================================#
       this.el = null
+      this.id = uuid()
     }
 
   // ================================================================================
@@ -109,17 +112,21 @@ class Slider extends React.Component {
   // Handlers
   // ================================================================================
     onMouseDown(evt: any) {
-      const { id, direction, hideCursor, onDragStart, onMouseDown, onChange, readOnly, stopPropagation } = this.props as any
+      const { direction, hideCursor, onDragStart, onMouseDown, onChange, readOnly, stopPropagation } = this.props as any
       if (readOnly) return
 
       if (stopPropagation) {
         evt.stopPropagation()
       }
-      (window as any).dragging = id
+
+      (window as any).dragging = this.id
+
       if (hideCursor) {
         document.body.style.cursor = 'none'
       }
+
       let value
+
       if (direction === 'vertical') {
         value = coords(evt, this.el).y
       }
@@ -127,27 +134,30 @@ class Slider extends React.Component {
       else {
         value = coords(evt, this.el).x
       }
+
       this.setState({value}, () => {
         if (onChange) {
           onChange((this.state as any).value)
         }
       })
+
       if (onDragStart) {
         onDragStart()
       }
+
       if (onMouseDown) {
         onMouseDown()
       }
     }
 
     onMouseMove(evt: any) {
-      const { onChange, readOnly, direction } = this.props as any
-
-      if (readOnly) return
+      if ((window as any).dragging !== this.id) return
 
       evt.stopPropagation()
 
-      if ((window as any).dragging !== (this.props as any).id) return
+      const { onChange, readOnly, direction } = this.props as any
+
+      if (readOnly) return
 
       let value
 
@@ -167,9 +177,14 @@ class Slider extends React.Component {
     }
 
     onMouseUp(evt: any) {
+      if ((window as any).dragging !== this.id) return
+
       evt.stopPropagation()
+
       const { hideCursor, onDragEnd } = this.props as any
+
       (window as any).dragging = undefined
+
       if (hideCursor) {
         document.body.style.cursor = 'auto'
       }

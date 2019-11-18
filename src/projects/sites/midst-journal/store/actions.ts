@@ -1,7 +1,9 @@
 import { AnyAction } from 'redux'
 import $ from 'jquery'
-import marked from 'marked'
-import insane from 'insane'
+//@ts-ignore
+import marked from 'marked' // TODO: Type def file
+//@ts-ignore
+import insane from 'insane' // TODO: Type def file
 import {
   LOAD_POEM_DATA,
   SET_MOBILE_NAV_OPEN,
