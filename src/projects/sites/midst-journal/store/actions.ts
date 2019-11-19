@@ -1,5 +1,6 @@
 import arrayMove from 'array-move'
 import { AnyAction } from 'redux'
+import pako from 'pako'
 import $ from 'jquery'
 //@ts-ignore
 import marked from 'marked' // TODO: Type def file
@@ -9,6 +10,8 @@ import {
   LOAD_POEM_DATA,
   SET_MOBILE_NAV_OPEN,
   SET_PROCESS_NOTE_OPEN,
+
+  IPoem,
 } from './types'
 
 const loadPoemData = (firstPoemIndex: number): any => // TODO: Should be: ThunkResult<void>. Why doesn't it work?
@@ -19,7 +22,7 @@ const loadPoemData = (firstPoemIndex: number): any => // TODO: Should be: ThunkR
     for (let i = 0; i < poems.length; i++) {
       try {
         // TODO: Gzip these on the server
-        const poem = poems[i]
+        const poem: IPoem = poems[i]
         // TODO: Remove jQuery dependency
         // TODO: This needs to be non-blocking!!!
         const data = await $.getJSON(`http://midst.press/static-assets/journal-assets/staging-authors/${poem.authorId}/${poem.poemId}.midst`)
