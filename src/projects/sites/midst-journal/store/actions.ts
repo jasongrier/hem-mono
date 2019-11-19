@@ -1,3 +1,4 @@
+import arrayMove from 'array-move'
 import { AnyAction } from 'redux'
 import $ from 'jquery'
 //@ts-ignore
@@ -10,9 +11,10 @@ import {
   SET_PROCESS_NOTE_OPEN,
 } from './types'
 
-const loadPoemData = (): any => // TODO: Should be: ThunkResult<void>. Why doesn't it work?
+const loadPoemData = (firstPoemIndex: number): any => // TODO: Should be: ThunkResult<void>. Why doesn't it work?
   async (dispatch: any, getState: any) => { // TODO: Above should be: ThunkResult<void>, then `any` is not needed here
-    const poems = getState().app.poems
+    let poems = [].concat(getState().app.poems)
+    poems = arrayMove(poems, firstPoemIndex, 0)
 
     for (let i = 0; i < poems.length; i++) {
       try {
