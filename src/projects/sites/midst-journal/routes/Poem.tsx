@@ -30,7 +30,7 @@ function Poem({ match }: IProps): ReactElement {
   }, [match.params.poemUrl])
 
   useEffect(() => {
-    dispatch(loadPoemData())
+    dispatch(loadPoemData(currentPoemIndex))
   }, [])
 
   return (
