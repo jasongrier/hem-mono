@@ -22,8 +22,8 @@ const loadPoemData = (firstPoemIndex: number): any => // TODO: Should be: ThunkR
         const poem = poems[i]
         // TODO: Remove jQuery dependency
         // TODO: This needs to be non-blocking!!!
-        const data = await $.getJSON(`http://midst.press/static-assets/journal-assets/dev-authors/${poem.authorId}/${poem.poemId}.midst`)
-        const processNoteRaw = await $.get(`http://midst.press/static-assets/journal-assets/dev-authors/${poem.authorId}/${poem.authorId}.md`)
+        const data = await $.getJSON(`http://midst.press/static-assets/journal-assets/staging-authors/${poem.authorId}/${poem.poemId}.midst`)
+        const processNoteRaw = await $.get(`http://midst.press/static-assets/journal-assets/staging-authors/${poem.authorId}/${poem.authorId}.md`)
         const processNote = insane(marked(processNoteRaw), { allowedTags: ['h1', 'p', 'i', 'a', 'em', 'b', 'strong', 'img']})
         dispatch({ type: LOAD_POEM_DATA, payload: { poemId: poem.poemId, data, processNote }})
       }
