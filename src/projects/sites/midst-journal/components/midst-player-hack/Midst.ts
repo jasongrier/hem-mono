@@ -1051,7 +1051,7 @@ class Midst extends React.Component<IProps, any> {
   }
 
   renderTimeline() {
-    const { isPlayer, playerId } = this.props
+    const { isPlayer } = this.props
     const { appTimelineMode, editorTimelineIndex, editorTimelineFrames, editorShowDraftMarkers, editorPlaying } = this.state
     const value = editorTimelineIndex / editorTimelineFrames.length
 
@@ -1257,12 +1257,11 @@ class Midst extends React.Component<IProps, any> {
 // Render
 // ================================================================================
   render() {
-    const { isPlayer, activePlayer, playerId } = this.props
+    const { isPlayer } = this.props
     const { appFocusMode } = this.state
 
     return (
       e('div', {
-        id: playerId,
         className: 'midst' + (appFocusMode ? ' focus-mode' : ''),
         ref: (el) => this.el = el,
         // style: {
