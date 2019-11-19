@@ -472,12 +472,15 @@ body {
 .app-page .heroine img {
   width: 650px;
   height: auto;
- /* margin-top: 10px;  */
 }
 
 .heroine.heroine--normal p {
   margin-bottom: 30px;
   line-height: 1.3;
+}
+
+.heroine.heroine--normal .editor p {
+  margin-bottom: 0;
 }
 
 .site-footer {
@@ -782,6 +785,52 @@ body {
 .sliding-poems__poem .midst main .editor .editable {
   overflow-y: scroll;
 }
+
+/* Issue 1 poem-specific styles */
+
+.sliding-poems__poem--aja-moore--tgif .editable {
+  margin-left: 109px !important;
+}
+
+.sliding-poems__poem--eleanor-eli-moss---the-hammer .editable {
+  margin-left: -90px !important;
+}
+
+.sliding-poems__poem--hedgie-choi--i-get-it-phases .editable {
+  margin-left: -40px !important;
+}
+
+.sliding-poems__poem--jackson-holbert--poem-about-judges .editable {
+  margin-left: 90px !important;
+}
+
+.sliding-poems__poem--jackson-holbert--poem-involving-the-sea .editable {
+  margin-left: 160px !important;
+}
+
+.sliding-poems__poem--jose-hernandez-diaz--the-dahlias-in-autumn .editable {
+  margin-left: -70px !important;
+}
+
+.sliding-poems__poem--manuel-arturo-abreau--ablation .editable {
+  margin-left: 0px !important;
+}
+
+.sliding-poems__poem--sarah-matthes--averting-my-eyes .editable {
+  margin-left: 70px !important;
+}
+
+.sliding-poems__poem--veronica-martin--epilogue-in-summer .editable {
+  margin-left: 90px !important;
+}
+
+.sliding-poems__poem--zachary-schomburg--2-poems .editable {
+  margin-left: -85px !important;
+}
+
+
+
+/* End Issue 1 poem-specific styles */
 
 @media screen and (max-width: 1024px) {
   .site-header h1 {
