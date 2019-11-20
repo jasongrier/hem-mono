@@ -826,6 +826,10 @@ body {
   width: auto;
 }
 
+.editor .editable i {
+  padding-right: 5px;
+}
+
 .editable p,
 .editable a,
 .editable i,
