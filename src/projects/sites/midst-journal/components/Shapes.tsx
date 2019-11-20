@@ -1,7 +1,5 @@
 import React, { ReactElement, useEffect } from 'react'
-import { Switch, Route } from 'react-router-dom'
 import $ from 'jquery'
-import { camelCase } from 'voca'
 
 interface IProps {
   location: any
@@ -59,7 +57,6 @@ function Shapes({ location }: IProps): ReactElement {
   useEffect(() => {
     if (
       location.pathname === '/'
-      || location.pathname === '/read'
       || location.pathname === '/about'
       || location.pathname === '/nominate'
       || location.pathname === '/contact'
@@ -75,16 +72,16 @@ function Shapes({ location }: IProps): ReactElement {
 
   return (
     <div className="shapes">
-        {colors.map(color =>
-          shapes.map(shape => (
-            <div
-              key={`${shape}-${color}`}
-              className="shape-container"
-            >
-              <img src={`http://midst.press/static-assets/website-assets/shapes/midst-shape-${shape}-${color}.png`} />
-            </div>
-          ))
-        )}
+      {colors.map(color =>
+        shapes.map(shape => (
+          <div
+            key={`${shape}-${color}`}
+            className="shape-container"
+          >
+            <img src={`http://midst.press/static-assets/website-assets/shapes/midst-shape-${shape}-${color}.png`} />
+          </div>
+        ))
+      )}
     </div>
   )
 }

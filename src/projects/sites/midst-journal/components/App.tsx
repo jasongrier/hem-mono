@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useEffect } from 'react'
 import { Switch, Route, Link, NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { Helmet } from 'react-helmet'
@@ -28,6 +28,16 @@ function App(): ReactElement {
 
   const dispatch = useDispatch()
 
+  function handleEsc(evt: any) {
+    if (evt.keyCode === 27) {
+      dispatch(setMobileNavOpen(false))
+    }
+  }
+
+  useEffect(() => {
+    document.body.addEventListener('keydown', handleEsc)
+  }, [])
+
   return (
     <div className="hem-application">
       <Helmet>
@@ -36,6 +46,7 @@ function App(): ReactElement {
       </Helmet>
 
       <Route render={(props) => <Shapes {...props} />} />
+
       <Route
         path="/poem/:poemUrl"
         render={(props) => <ProcessNote {...props} />}
@@ -67,9 +78,8 @@ function App(): ReactElement {
           className={mobileNavOpen ? 'open' : ''}
           onClick={() => dispatch(setMobileNavOpen(false))}
         >
-          <Hide from="/poem/:poemUrl">
-            <SiteNavLinks />
-          </Hide>
+          <Route render={(props) => <SiteNavLinks {...props} />} />
+
           <Hide from="/poem/:poemUrl">
             <NavLink
               className="about-link--desk"
