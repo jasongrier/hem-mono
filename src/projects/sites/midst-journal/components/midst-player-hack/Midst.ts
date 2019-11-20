@@ -661,7 +661,8 @@ class Midst extends React.Component<IProps, any> {
       return
     }
 
-    let time: number = 73 // Default, 'med'
+    // let time: number = 73 // Default, 'med'
+    let time: number = 10 // Default, 'med'
 
     if (playerPlaybackSpeed === 'low') {
       time = 135
