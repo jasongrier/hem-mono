@@ -64,10 +64,11 @@ function ProcessNote({ match }: IProps): ReactElement {
         x
       </div>
 
-      <div
-        className="process-note__content"
-        dangerouslySetInnerHTML={{__html: poem ? poem.processNote : ''}}
-      />
+
+      <div className="process-note__content">
+        <div dangerouslySetInnerHTML={{__html: poem ? poem.processNote : ''}} />
+        <img src={`http://midst.press/static-assets/journal-assets/staging-authors/${poem.authorId}/${poem.authorId}.jpg`} />
+      </div>
     </div>
   )
 }

@@ -68,7 +68,7 @@ body {
 .site-header h1 {
   position: absolute;
   top: 15px;
-  left: 20px;
+  left: 15px;
   width: 250px;
   height: 77px;
   background-repeat: no-repeat;
@@ -188,12 +188,10 @@ body {
 }
 
 .process-note img {
-  position: absolute;
-  left: 50%;
-  margin-left: -150px;
+  display: block;
+  margin: 40px auto;
   width: 300px;
-  padding-top:10px;
-  padding-bottom:30px;
+  height: auto;
 }
 
 .process-note.open {
@@ -215,7 +213,7 @@ body {
 .site-header #poem-nav {
   position: fixed;
   top: 50vh;
-  right: 15px;
+  right: 5px;
   width: 50px;
   height: 300px;
   margin-top: -110px;
@@ -305,7 +303,7 @@ body {
 .site-header .about-link--desk {
   position: fixed;
   top: 31px;
-  right: 40px;
+  right: 30px;
   margin: 0;
   padding: 0;
   font-size: 30px;
@@ -788,38 +786,37 @@ body {
   overflow-y: scroll;
 }
 
-/* Issue 1 poem-specific styles */
-
 .editor {
-  width: calc(100vw - 140px);
-  height: calc(100vh - 241px);
+  box-sizing: border-box;
+  width: 100vw;
+  height: calc(100vh - 172px);
   text-align: center;
   padding-top: 70px;
   padding-left: 70px;
   padding-right: 70px;
-  background: green;
 }
 
 .editor .editable {
   display: inline-block;
   width: 200px;
   max-width: 800px;
-  height: calc(100vh - 242px);
-  padding: 0 20px 0 0;
+  height: calc(100vh - 262px);
+  padding: 0;
+  padding-bottom: 20px;
   margin: 0 auto;
-  background: yellow;
-  transform: translateX(20px);
+  text-align: left;
 }
 
 .sliding-poems__poem--loaded .editable {
   width: auto;
+  padding: 0 20px 0 0;
+  transform: translateX(20px);
 }
 
 .editor .editable p {
   float: left;
   clear: both;
   width: auto;
-  padding-right: 5px;
 }
 
 .editable p,
@@ -831,6 +828,7 @@ body {
   font-size: 16px !important;
 }
 
+/* Issue 1 poem-specific styles */
 
 .sliding-poems__poem--aja-moore--tgif .editable {
 
@@ -879,18 +877,12 @@ body {
 /* End Issue 1 poem-specific styles */
 
 @media screen and (max-width: 1024px) {
-  .site-header h1 {
-    /* top: 0px;
-    left: 20px;
-    padding-top: 20px; */
-  }
-
   .site-header #mobile-nav-toggle {
     display: block;
     position: fixed;
-    top: 30px;
+    top: 36px;
     right: 20px;
-    z-index: 9999;
+    z-index: 99999;
     width: 30px;
     height: 25px;
     cursor: pointer;
@@ -938,7 +930,7 @@ body {
     display: block;
     top: 0;
     right: 0;
-    z-index: 9998;
+    z-index: 99998;
     width: 50vw;
     height: 100vh;
     padding-top: 50px;
@@ -978,5 +970,79 @@ body {
 
   .issue-one-alert {
     display: none;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .editor .editable {
+    max-width: 500px;
+  }
+
+  .site-header .poem-credit {
+    top: 25px;
+  }
+
+  .poem-credit .author-name,
+  .poem-credit .poem-title {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .poem-credit .divider {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .editor .editable {
+    max-width: 300px;
+  }
+
+  .poem-credit .author-name,
+  .poem-credit .poem-title {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .editor {
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .sliding-poems__poem--loaded  .editable {
+    height: calc(100vh - 172px);
+    max-width: calc(100vw - 20px);
+    transform: translateX(0);
+    padding-left: 20px;
+  }
+
+  #back-to-toc,
+  #poem-nav {
+    display: none;
+  }
+
+  .site-header .poem-credit {
+    top: 30px;
+    left: 90px;
+    right: 90px;
+  }
+
+  .site-header h1 {
+    width: 70px;
+  }
+
+  .site-header h1 .logo-svgs {
+    transform: scale(2.5) translate(14px, 5px);
+  }
+
+  .poem-credit .author-name,
+  .poem-credit .poem-title {
+    font-size: 16px;
+  }
+
+  .site-header #mobile-nav-toggle {
+    right: 10px;
   }
 }
