@@ -661,8 +661,7 @@ class Midst extends React.Component<IProps, any> {
       return
     }
 
-    // let time: number = 73 // Default, 'med'
-    let time: number = 10 // Default, 'med'
+    let time: number = 73 // Default, 'med'
 
     if (playerPlaybackSpeed === 'low') {
       time = 135
@@ -1261,11 +1260,13 @@ class Midst extends React.Component<IProps, any> {
 // ================================================================================
   render() {
     const { isPlayer } = this.props
-    const { appFocusMode } = this.state
+    const { appFocusMode, editorTimelineIndex, editorTimelineFrames } = this.state
 
     return (
       e('div', {
-        className: 'midst' + (appFocusMode ? ' focus-mode' : ''),
+        className: 'midst'
+          + (appFocusMode ? ' focus-mode' : '')
+          + (editorTimelineIndex < editorTimelineFrames.length - 1 ? '' : ' last-frame'),
         ref: (el) => this.el = el,
         // style: {
         //   opacity: activePlayer ? 0.2 : 1
