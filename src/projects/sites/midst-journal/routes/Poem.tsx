@@ -27,11 +27,11 @@ function Poem({ match }: IProps): ReactElement {
     if (currentPoemIndex > -1) {
       sliderFrame.style.left = `calc(100vw * -${currentPoemIndex})`
     }
-  }, [match.params.poemUrl])
 
-  useEffect(() => {
-    dispatch(loadPoemData(currentPoemIndex))
-  }, [])
+    if (!poems[currentPoemIndex].loaded) {
+      dispatch(loadPoemData(currentPoemIndex))
+    }
+  }, [match.params.poemUrl])
 
   return (
     <div
