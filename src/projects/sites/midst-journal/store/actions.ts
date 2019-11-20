@@ -33,7 +33,6 @@ const loadPoemData = (poemIndex: number): any => // TODO: Should be: ThunkResult
           entries[0].getData(writer, blob => {
             const reader = new FileReader()
             reader.addEventListener('loadend', (e: any) => {
-              console.log(poem.poemId)
               const data = JSON.parse(e.srcElement.result)
               dispatch({ type: LOAD_POEM_DATA, payload: { poemId: poem.poemId, data, processNote }})
             })
