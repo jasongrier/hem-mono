@@ -150,8 +150,11 @@ body {
   color: rgb(230, 132, 158);
 }
 
-.site-header .author-name:hover {
+.site-header .poem-credit:hover {
   font-style:normal;
+  cursor: help;
+}
+.site-header .poem-credit:hover * {
   cursor: help;
 }
 
@@ -1002,6 +1005,24 @@ body {
   .poem-credit .poem-title {
     font-size: 18px;
   }
+
+  .process-note {
+    position: absolute;
+    top: -700px;
+    left: 0;
+    z-index: 99999;
+    margin-left: 0;
+    width: 100vw;
+    height: 85vh;
+  }
+
+  .process-note  .process-note__content {
+    padding: 10px;
+  }
+
+  .process-note img {
+    width: calc(100vw - 20px);
+  }
 }
 
 @media screen and (max-width: 450px) {
@@ -1024,9 +1045,12 @@ body {
   }
 
   .site-header .poem-credit {
-    top: 30px;
+    top: 0;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-right: 30px;
     left: 90px;
-    right: 90px;
+    right: 60px;
   }
 
   .site-header h1 {
