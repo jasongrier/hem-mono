@@ -754,7 +754,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  transition: left 250ms;
+  /* transition: left 250ms; */
 }
 
 .sliding-poems__poem {
@@ -790,53 +790,79 @@ body {
 
 /* Issue 1 poem-specific styles */
 
-.sliding-poems__poem--aja-moore--tgif .editable p {
-  margin-left: 159px !important;
+.editor {
+  width: calc(100vw - 140px);
+  text-align: center;
+  padding-left: 70px;
+  padding-right: 70px;
+  /* background: green; */
 }
 
-.sliding-poems__poem--annelyse-gelman--prosperity .editable p {
-  margin-left: 180px !important;
+.editor .editable {
+  display: inline-block;
+  width: 200px;
+  max-width: 800px;
+  height: 100%;
+  padding: 0 20px 0 0;
+  margin: 0 auto;
+  /* background: yellow; */
+  transform: translateX(20px);
 }
 
-.sliding-poems__poem--annelyse-gelman--prosperity .editable span,
-.sliding-poems__poem--annelyse-gelman--prosperity .editable em {
+.sliding-poems__poem--loaded .editable {
+  width: auto;
+}
+
+.editor .editable p {
+  float: left;
+  clear: both;
+  width: auto;
+  padding-right: 5px;
+  /* background: red;
+  border: 1px solid black; */
+}
+
+.sliding-poems__poem--aja-moore--tgif .editable {
+
+}
+
+.sliding-poems__poem--annelyse-gelman--prosperity .editable {
+}
+
+.sliding-poems__poem--annelyse-gelman--prosperity .editable span {
   font-size: 16px !important;
 }
 
-.sliding-poems__poem--eleanor-eli-moss--the-hammer .editable p {
-  margin-left: -90px !important;
+.sliding-poems__poem--annelyse-gelman--prosperity .editable em {
+  display: none;
 }
 
-.sliding-poems__poem--hedgie-choi--i-get-it-phases .editable p {
-  margin-left: -40px !important;
+.sliding-poems__poem--eleanor-eli-moss---the-hammer .editor .editable {
+  width: 800px;
 }
 
-.sliding-poems__poem--jackson-holbert--poem-about-judges .editable p {
-  margin-left: 90px !important;
+.sliding-poems__poem--hedgie-choi--i-get-it-phases .editable {
 }
 
-.sliding-poems__poem--jackson-holbert--poem-involving-the-sea .editable p {
-  margin-left: 160px !important;
+.sliding-poems__poem--jackson-holbert--poem-about-judges .editable {
 }
 
-.sliding-poems__poem--jose-hernandez-diaz--the-dahlias-in-autumn .editable p {
-  margin-left: -70px !important;
+.sliding-poems__poem--jackson-holbert--poem-involving-the-sea .editable {
 }
 
-.sliding-poems__poem--manuel-arturo-abreau--ablation .editable p {
-  margin-left: 0px !important;
+.sliding-poems__poem--jose-hernandez-diaz--the-dahlias-in-autumn .editable {
 }
 
-.sliding-poems__poem--sarah-matthes--averting-my-eyes .editable p {
-  margin-left: 70px !important;
+.sliding-poems__poem--manuel-arturo-abreau--ablation .editable {
 }
 
-.sliding-poems__poem--veronica-martin--epilogue-in-summer .editable p {
-  margin-left: 90px !important;
+.sliding-poems__poem--sarah-matthes--averting-my-eyes .editable {
 }
 
-.sliding-poems__poem--zachary-schomburg--2-poems .editable p {
-  margin-left: -85px !important;
+.sliding-poems__poem--veronica-martin--epilogue-in-summer .editable {
+}
+
+.sliding-poems__poem--zachary-schomburg--2-poems .editable {
 }
 
 /* End Issue 1 poem-specific styles */
