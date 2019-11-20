@@ -65,7 +65,7 @@ class Midst extends React.Component<IProps, any> {
 // ================================================================================
     this.initialState = {
       appAboutOpen: false,
-      appCursorFollowing: true,
+      appCursorFollowing: false,
       appDrawerOpen: false,
       appFileAbsPath: false,
       appFocusMode: false,
@@ -209,6 +209,8 @@ class Midst extends React.Component<IProps, any> {
 
     if (!activePlayer && prevProps.activePlayer) {
       this.pause()
+      clearTimeout(this.autoScrubTimeout)
+      this.setPos(this.state.editorTimelineFrames.length - 1)
     }
 
     if (

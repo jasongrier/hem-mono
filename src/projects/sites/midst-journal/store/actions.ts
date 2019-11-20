@@ -1,6 +1,5 @@
 import arrayMove from 'array-move'
 import { AnyAction } from 'redux'
-import pako from 'pako'
 import $ from 'jquery'
 //@ts-ignore
 import marked from 'marked' // TODO: Type def file
@@ -19,16 +18,39 @@ const loadPoemData = (firstPoemIndex: number): any => // TODO: Should be: ThunkR
     let poems = [].concat(getState().app.poems)
     poems = arrayMove(poems, firstPoemIndex, 0)
 
+    const zip = (window as any).zip
+    zip.workerScriptsPath = '/static-assets/website-assets/scripts/'
+
     for (let i = 0; i < poems.length; i++) {
       try {
         // TODO: Gzip these on the server
         const poem: IPoem = poems[i]
         // TODO: Remove jQuery dependency
         // TODO: This needs to be non-blocking!!!
-        const data = await $.getJSON(`http://midst.press/static-assets/journal-assets/staging-authors/${poem.authorId}/${poem.poemId}.midst`)
+        // const data = await $.getJSON(`http://midst.press/static-assets/journal-assets/staging-authors/${poem.authorId}/${poem.poemId}.midst`)
+        // dispatch({ type: LOAD_POEM_DATA, payload: { poemId: poem.poemId, data, processNote }})
+
         const processNoteRaw = await $.get(`http://midst.press/static-assets/journal-assets/staging-authors/${poem.authorId}/${poem.authorId}.md`)
         const processNote = insane(marked(processNoteRaw), { allowedTags: ['h1', 'p', 'i', 'a', 'em', 'b', 'strong', 'img']})
-        dispatch({ type: LOAD_POEM_DATA, payload: { poemId: poem.poemId, data, processNote }})
+        const zipTest = await fetch(`http://midst.press/static-assets/journal-assets/staging-authors/${poem.authorId}/${poem.poemId}.midst.zip`)
+        const reader = new zip.BlobReader(await zipTest.blob())
+
+        zip.createReader(reader, zipReader => {
+          zipReader.getEntries(entries => {
+            const writer = new zip.BlobWriter()
+            entries[0].getData(writer, blob => {
+              const reader = new FileReader()
+              reader.addEventListener('loadend', (e: any) => {
+                console.log(poem.poemId)
+                const data = JSON.parse(e.srcElement.result)
+                dispatch({ type: LOAD_POEM_DATA, payload: { poemId: poem.poemId, data, processNote }})
+              })
+              reader.readAsText(blob)
+            })
+          })
+        }, err => {
+          console.log(err)
+        })
       }
 
       catch(err) {

@@ -126,8 +126,8 @@ body {
 .site-header .poem-credit {
   position: absolute;
   top: 35px;
-  left: 0;
-  width: 100vw;
+  left: 170px;
+  right: 170px;
   text-align: center;
   font-size: 24px;
   color: inherit;
@@ -242,11 +242,13 @@ body {
 .site-header #poem-nav .arrow.arrow-forward {
   mask: url(./assets/arrow_forward.svg) no-repeat 100% 100%;
   -webkit-mask: url(./assets/arrow_forward.svg) no-repeat 100% 100%;
+  transform: scale(1.4);
 }
 
 .site-header #poem-nav .arrow.arrow-back {
   mask: url(./assets/arrow_back.svg) no-repeat 100% 100%;
   -webkit-mask: url(./assets/arrow_back.svg) no-repeat 100% 100%;
+  transform: scale(1.3);
 }
 
 .site-header #poem-nav a.disabled .arrow {
@@ -788,47 +790,54 @@ body {
 
 /* Issue 1 poem-specific styles */
 
-.sliding-poems__poem--aja-moore--tgif .editable {
-  margin-left: 109px !important;
+.sliding-poems__poem--aja-moore--tgif .editable p {
+  margin-left: 159px !important;
 }
 
-.sliding-poems__poem--eleanor-eli-moss---the-hammer .editable {
+.sliding-poems__poem--annelyse-gelman--prosperity .editable p {
+  margin-left: 180px !important;
+}
+
+.sliding-poems__poem--annelyse-gelman--prosperity .editable span,
+.sliding-poems__poem--annelyse-gelman--prosperity .editable em {
+  font-size: 16px !important;
+}
+
+.sliding-poems__poem--eleanor-eli-moss--the-hammer .editable p {
   margin-left: -90px !important;
 }
 
-.sliding-poems__poem--hedgie-choi--i-get-it-phases .editable {
+.sliding-poems__poem--hedgie-choi--i-get-it-phases .editable p {
   margin-left: -40px !important;
 }
 
-.sliding-poems__poem--jackson-holbert--poem-about-judges .editable {
+.sliding-poems__poem--jackson-holbert--poem-about-judges .editable p {
   margin-left: 90px !important;
 }
 
-.sliding-poems__poem--jackson-holbert--poem-involving-the-sea .editable {
+.sliding-poems__poem--jackson-holbert--poem-involving-the-sea .editable p {
   margin-left: 160px !important;
 }
 
-.sliding-poems__poem--jose-hernandez-diaz--the-dahlias-in-autumn .editable {
+.sliding-poems__poem--jose-hernandez-diaz--the-dahlias-in-autumn .editable p {
   margin-left: -70px !important;
 }
 
-.sliding-poems__poem--manuel-arturo-abreau--ablation .editable {
+.sliding-poems__poem--manuel-arturo-abreau--ablation .editable p {
   margin-left: 0px !important;
 }
 
-.sliding-poems__poem--sarah-matthes--averting-my-eyes .editable {
+.sliding-poems__poem--sarah-matthes--averting-my-eyes .editable p {
   margin-left: 70px !important;
 }
 
-.sliding-poems__poem--veronica-martin--epilogue-in-summer .editable {
+.sliding-poems__poem--veronica-martin--epilogue-in-summer .editable p {
   margin-left: 90px !important;
 }
 
-.sliding-poems__poem--zachary-schomburg--2-poems .editable {
+.sliding-poems__poem--zachary-schomburg--2-poems .editable p {
   margin-left: -85px !important;
 }
-
-
 
 /* End Issue 1 poem-specific styles */
 

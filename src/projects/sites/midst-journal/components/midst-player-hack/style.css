@@ -175,9 +175,9 @@
 }
 
 .editor .editable {
-  width: calc(100% - 400px);
-  height: calc(100% - 40px);
-  padding: 40px 170px 300px 300px;
+  width: calc(100% - 540px);
+  height: calc(100% - 140px);
+  padding: 40px 170px 100px 300px;
   transition: width 250ms;
   font-family: 'aileronregular';
   font-size: 16px !important;
