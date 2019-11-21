@@ -1,5 +1,5 @@
-import React, { ReactElement, useEffect } from 'react'
-import { CampaignMonitorForm as BaseCampaignMonitorForm } from '../../../../common/packages/mailing-list'
+import React, { ReactElement } from 'react'
+import { CampaignMonitorForm as BaseCampaignMonitorForm } from '../../../lib/packages/mailing-list'
 
 interface IProps {
   labelForName?: string
