@@ -3,6 +3,7 @@ import { Switch, Route, Link, NavLink } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import { Hide } from '../../../../common/components'
 import DemoMovies from '../routes/demos/DemoMovies'
+import Midi from '../routes/demos/Midi'
 import Home from '../routes/Home'
 
 function App(): ReactElement {
@@ -28,6 +29,7 @@ function App(): ReactElement {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/demo-movies/:name" component={DemoMovies} />
+          <Route exact path="/demo-midi" component={Midi} />
         </Switch>
       </main>
       <footer></footer>

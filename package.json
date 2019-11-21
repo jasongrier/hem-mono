@@ -12,7 +12,8 @@
     "start": "node bin/index start",
     "build": "node bin/index build",
     "test": "node bin/index test",
-    "lint": "node bin/index lint"
+    "lint": "node bin/index lint",
+    "midi": "node bin/index midi"
   },
   "license": "WTFPL",
   "dependencies": {
@@ -37,6 +38,7 @@
     "jquery-ui": "^1.12.1",
     "lodash": "^4.17.11",
     "marked": "^0.7.0",
+    "midi": "^1.0.0",
     "moment": "^2.24.0",
     "nanotimer": "^0.3.15",
     "nexusui": "^2.0.10",
@@ -54,6 +56,7 @@
     "tone": "^13.8.25",
     "uuid": "^3.3.3",
     "voca": "^1.4.0",
+    "webmidi": "^2.5.1",
     "zip-js": "0.0.2"
   },
   "devDependencies": {
