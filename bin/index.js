@@ -1,91 +1,30 @@
-const { join } = require('path')
-const { readFileSync, writeFileSync, existsSync, readdirSync, statSync } = require('fs')
-const { execSync } = require('child_process')
-const testSite = require('./test-site')
-const testApp = require('./test-app')
-const { startMidiServer } = require('./midi-tunnel')
-const { lintFiles, lintMultipleProjects } = require('./lint-files')
+const build = require('./tasks/build')
+const lint = require('./tasks/lint')
+const midi = require('./tasks/midi')
+const start = require('./tasks/start')
+const test = require('./tasks/test')
 
-const TASK = process.argv[2]
-const PROJECT_TYPE = process.argv[3]
-const PROJECT_NAME = process.argv[4]
-const projects = join(__dirname, '..', 'src', 'projects')
+const task = process.argv[2]
+let projectName = process.argv[3]
 
-if (TASK !== 'lint' && TASK !== 'midi') {
-  process.env.PROJECT_PATH = join(projects, PROJECT_TYPE + 's', PROJECT_NAME)
-}
-
-function cleanUp() {
-  console.log('Cleaning up...')
-
-  execSync('rm -rf .cache && rm -rf dist && rm -rf build')
-
-  if (
-    !existsSync(`${__dirname}/../src/projects/apps/electron.js`)
-    && existsSync(`${__dirname}/../src/projects/apps/index.js`)
-  ) {
-    execSync(`mv ${__dirname}/../src/projects/apps/index.js ${__dirname}/../src/projects/apps/electron.js`)
-  }
-}
-
-if (TASK !== 'midi') {
-  cleanUp()
-
-  writeFileSync(join(__dirname, '..', 'src', 'index.ts'),
-    readFileSync(join(__dirname, 'entry-template'), { encoding: 'utf8' })
-      .replace('<% PROJECT_PATH %>', `./projects/${PROJECT_TYPE}s/${PROJECT_NAME}`)
-  )
-}
-
-let startCmd
-let buildCmd
-
-if (PROJECT_TYPE === 'site') {
-  startCmd = 'parcel src/index.html'
-  buildCmd = 'parcel build src/index.html'
-}
-
-else if (PROJECT_TYPE === 'app') {
-  startCmd = 'nf start -w -p 1234'
-  buildCmd =
-    'parcel build src/index.html --public-url ./'
-    + ' && mv dist build'
-    + ' && cp src/projects/apps/electron.js build/electron.js'
-    + ' && cp project.config.js build/project.config.js'
-    + ' && electron-builder'
-}
-
-switch (TASK) {
-  case 'start':
-    execSync(startCmd, { stdio: 'inherit' })
-    break
-
+switch (task) {
   case 'build':
-    execSync(buildCmd, { stdio: 'inherit' })
-    break
-
-  case 'test':
-    if (PROJECT_TYPE === 'site') {
-      testSite()
-    }
-
-    else if (PROJECT_TYPE === 'app') {
-      testApp()
-    }
+    build(projectName)
     break
 
   case 'lint':
-    if (PROJECT_TYPE === 'all') {
-      lintMultipleProjects('app', join(projects, 'apps'))
-      lintMultipleProjects('site', join(projects, 'sites'))
-    }
-
-    else {
-      lintFiles(PROJECT_TYPE, PROJECT_NAME)
-    }
+    lint(projectName)
     break
 
   case 'midi':
-    startMidiServer()
+    midi()
     break
+
+  case 'test':
+    test(projectName)
+    break
+
+  default:
+    projectName = task
+    start(projectName)
 }

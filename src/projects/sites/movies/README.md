@@ -1,1 +1,0 @@
-# Official site of the Midst poetry journal
