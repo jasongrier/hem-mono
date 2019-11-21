@@ -1,7 +1,7 @@
 import React, { ReactElement, useState } from 'react'
-import FlipBook, { directionType } from '../components/FlipBook'
-import LoadImages from '../components/LoadImages' // TODO: Barrel file (all projects)
-import { formatMovieSpecs } from '../functions'
+import FlipBook, { directionType } from './FlipBook' // TODO: Barrel file (all projects)
+import LoadImages from '../utility/LoadImages' // TODO: Move to common
+import { formatMovieSpecs } from '../../functions'
 
 export interface IMovieSpec {
   frameSrc: {

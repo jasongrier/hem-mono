@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState } from 'react'
-import { findMiddleFrame } from '../functions'
-import { useClock } from '../../seurat/hooks'
+import { findMiddleFrame } from '../../functions'
+import { useClock } from '../../../seurat/hooks'
 
 export type directionFunction = (frameNumber: number) => 'forward' | 'reverse'
 export type directionType = directionFunction | 'similarity' | 'forward' | 'reverse'
