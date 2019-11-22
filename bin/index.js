@@ -1,8 +1,9 @@
-const build = require('./tasks/build')
 const { lint, lintAll } = require('./tasks/lint')
+const { test, testAll } = require('./tasks/test')
+const { todo, todoAll } = require('./tasks/todo')
+const build = require('./tasks/build')
 const midi = require('./tasks/midi')
 const start = require('./tasks/start')
-const { test, testAll } = require('./tasks/test')
 
 const a1 = process.argv[2]
 const a2 = process.argv[3]
@@ -17,6 +18,7 @@ else if (a1 === 'test') { // `npm test my-project`
 }
 
 else if (a1 && !a2 && !a3) { // `npm start my-project`
+  todoAll()
   start(a1)
 }
 
@@ -36,6 +38,14 @@ else if (a1 === 'task') {
 
     case 'test-all': // `npm run task test-all`
       testAll()
+      break
+
+    case 'todo': // `npm run task todo my-project`
+      todo(a3)
+      break
+
+    case 'todo-all': // `npm run task todo-all`
+      todoAll()
       break
   }
 }

@@ -1,7 +1,8 @@
 import { AnyAction } from 'redux'
 import { ThunkAction } from 'redux-thunk'
 
-export type ThunkResult<R> = ThunkAction<R, IState, undefined, Action> // TODO: How to get around putting this in every project??
+// TODO: How to get around putting this in every project??
+export type ThunkResult<R> = ThunkAction<R, IState, undefined, Action>
 
 export type ControlName = keyof IControls
 export type ControlValue = SequencerMode | number | boolean
@@ -32,7 +33,8 @@ export interface IGroupControls {
   a: IControls,
   b: IControls,
   c: IControls,
-  none: IControls, // TODO: Omit doesn't work in `PerformanceControls.tsx`
+  // TODO: Omit doesn't work in `PerformanceControls.tsx`
+  none: IControls,
 }
 
 export interface ICanvas {

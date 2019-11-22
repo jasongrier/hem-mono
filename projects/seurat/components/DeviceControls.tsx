@@ -15,9 +15,11 @@ import { uiLocked as uiLockedSel } from '../store/selectors'
 import IconButton from './IconButton'
 import PressAndHoldButton from './PressAndHoldButton'
 
-function DeviceControls(): ReactElement { // TODO: Rename to "SideButtons" or sth
+// TODO: Rename to "SideButtons" or sth
+function DeviceControls(): ReactElement {
   const { activeDotsCount, cueMode, cursorGroup, cursorMode, drumMode, on, playing, uiLocked } = useSelector((state: RootState) => ({
-    activeDotsCount: state.app.canvases[ // TODO: Make into a selector
+    // TODO: Make into a selector
+    activeDotsCount: state.app.canvases[
       state.app.currentCanvasIndex
     ].dots.reduce((acc, dot) => dot.cursorGroup !== 'none' ? acc + 1 : acc, 0),
     cueMode: state.app.cueMode,
@@ -95,7 +97,8 @@ function DeviceControls(): ReactElement { // TODO: Rename to "SideButtons" or st
                 break
             }
             dispatch(setCursorMode('draw'))
-            dispatch(setCursorGroup(nextCursorGroup))
+            // TODO: Any??
+            dispatch(setCursorGroup(nextCursorGroup as any))
           }}
         />
         <PressAndHoldButton

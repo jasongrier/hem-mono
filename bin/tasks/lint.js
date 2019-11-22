@@ -1,5 +1,6 @@
 const { join } = require('path')
-const { readdirSync, statSync } = require('fs')
+const { readdirSync } = require('fs')
+const doAll = require('../helpers/do-all')
 
 const expectedProjectFiles = [
   'assets',
@@ -18,6 +19,7 @@ const expectedProjectFiles = [
   'index.html',
   'index.ts',
   'README.md',
+  'TODO.md',
 ]
 
 const expectedComponentsFiles = [
@@ -85,7 +87,8 @@ function lintProject(projectName) {
   evaluateLint(projectName, expectedStoreFiles, 'store/')
 
   lintFiles(join(projectDir, 'tests'), expectedTestsFiles)
-  evaluateLint(projectName, expectedTestsFiles, 'tests/', false) // TODO: This bypasses checks for, for example, `i-dont-belong.foo`, the correct check should be `requiredFiles`
+  // TODO: This bypasses checks for, for example, `i-dont-belong.foo`, the correct check should be `requiredFiles`
+  evaluateLint(projectName, expectedTestsFiles, 'tests/', false)
 }
 
 function evaluateLint(projectName, expectedFiles, prefix, checkUnexpected = true) {
@@ -121,14 +124,7 @@ function lint(projectName) {
 }
 
 function lintAll() {
-  const projects = readdirSync(join(__dirname, '..', '..', 'projects'))
-
-  for (let p = 0; p < projects.length; p ++) {
-    const projectName = projects[p]
-    if (statSync(join(__dirname, '..', '..', 'projects', projectName)).isDirectory()) {
-      lint(projectName)
-    }
-  }
+  doAll(lint)
 }
 
 module.exports = { lint, lintAll }

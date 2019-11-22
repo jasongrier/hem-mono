@@ -1,6 +1,8 @@
 import React, { ReactElement, useState } from 'react'
-import FlipBook, { directionType } from './FlipBook' // TODO: Barrel file (all projects)
-import LoadImages from '../utility/LoadImages' // TODO: Move to common
+// TODO: Barrel file (all projects)
+import FlipBook, { directionType } from './FlipBook'
+// TODO: Move to common
+import LoadImages from '../utility/LoadImages'
 import { formatMovieSpecs } from '../../functions'
 
 export interface IMovieSpec {

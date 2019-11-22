@@ -253,7 +253,8 @@ const initialState: IState = {
 
 const reducer = (
   state: IState = initialState,
-  { type, payload }: AnyAction, // TODO: Should be Action from `../types.ts`
+  // TODO: Should be Action from `../types.ts`
+  { type, payload }: AnyAction,
 ): IState => {
   switch (type) {
     case LOAD_POEM_DATA:

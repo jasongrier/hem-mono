@@ -5,7 +5,8 @@ import TaggedSubjectsList from './TaggedSubjectsList';
 
 export interface IBaseProps {
   subjects: ITaggedSubject[]
-  renderSubject: (subject: any) => ReactElement // TODO: Why doesn't <T extends ITaggedSubject> work here??
+  // TODO: Why doesn't <T extends ITaggedSubject> work here??
+  renderSubject: (subject: any) => ReactElement
 }
 
 interface IProps extends IBaseProps{

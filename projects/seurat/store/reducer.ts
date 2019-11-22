@@ -1,8 +1,6 @@
 import { AnyAction } from 'redux'
-import { merge } from 'lodash' // TODO: Replace with Immer
 import produce from 'immer'
 import { createRandomCanvases } from '../functions/canvas'
-import * as presets from '../data/presets'
 import { DO_OPENING_SEQUENCE } from '../config'
 import {
   CLEAR_CANVAS,
@@ -50,16 +48,18 @@ const reducer = (
   state: IState = initialState,
   { type, payload }: AnyAction,
 ): IState => {
-  switch (type) { // TODO: All projects. Wrap cases in {} to scope these lets above as consts
+  // TODO: All projects. Wrap cases in {} to scope these lets above as consts
+  switch (type) {
     case CLEAR_CANVAS: {
-        return produce(state, draftState => { // TODO: Undo/redo decorator HoFn
-          const draftDots = draftState.canvases[draftState.currentCanvasIndex].dots
-          draftDots.map(dot => ({
-            cursorGroup: 'none',
-            sound: dot.sound,
-          }))
-        })
-      }
+      // TODO: Undo/redo decorator HoFn
+      return produce(state, draftState => {
+        const draftDots = draftState.canvases[draftState.currentCanvasIndex].dots
+        draftDots.map(dot => ({
+          cursorGroup: 'none',
+          sound: dot.sound,
+        }))
+      })
+    }
 
     case OPENING_SEQUENCE_BEGUN:
       return { ...state, eventInProgess: true }
@@ -101,7 +101,8 @@ const reducer = (
       return { ...state }
 
     case UPDATE_CONTROL: {
-      const { cursorGroup, key, value }: { cursorGroup: CursorGroup, key: ControlName, value: ControlValue } = payload // TODO: Use action-specific interfaces, not AnyAction on the action creators
+      // TODO: Use action-specific interfaces, not AnyAction on the action creators
+      const { cursorGroup, key, value }: { cursorGroup: CursorGroup, key: ControlName, value: ControlValue } = payload
       return produce(state, draftState => {
         // TODO: Why does the long property access below get a type of "never"? Try suggestion above
         (draftState.canvases[draftState.currentCanvasIndex].controls[cursorGroup][key] as ControlValue) = value

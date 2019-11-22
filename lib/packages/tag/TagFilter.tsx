@@ -1,6 +1,7 @@
 import React, { Fragment, ReactElement } from 'react'
 import { Link } from 'react-router-dom'
-import Hide from '../../components/Hide' // TODO: In a registry setup, this would require Hide to also be a package
+// TODO: In a registry setup, this would require Hide to also be a package
+import Hide from '../../components/Hide'
 import getTagsCounts from './get-tags-counts'
 import { ITaggedSubject } from './types'
 

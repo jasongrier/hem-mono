@@ -1,9 +1,11 @@
 import { AnyAction } from 'redux'
 import $ from 'jquery'
+// TODO: Type def file
 //@ts-ignore
-import marked from 'marked' // TODO: Type def file
+import marked from 'marked'
+// TODO: Type def file
 //@ts-ignore
-import insane from 'insane' // TODO: Type def file
+import insane from 'insane'
 import {
   LOAD_POEM_DATA,
   SET_MOBILE_NAV_OPEN,
@@ -14,8 +16,10 @@ import {
 
 const cdnUrl = process.env.CDN_URL + '/midst-journal/authors/staging'
 
-const loadPoemData = (poemIndex: number): any => // TODO: Should be: ThunkResult<void>. Why doesn't it work?
-  async (dispatch: any, getState: any) => { // TODO: Above should be: ThunkResult<void>, then `any` is not needed here
+// TODO: Should be: ThunkResult<void>. Why doesn't it work?
+const loadPoemData = (poemIndex: number): any =>
+  // TODO: Above should be: ThunkResult<void>, then `any` is not needed here
+  async (dispatch: any, getState: any) => {
     let poems = [].concat(getState().app.poems)
 
     const zip = (window as any).zip

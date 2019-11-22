@@ -26,7 +26,8 @@ function Movie({
   flickerMax = 1,
   flickerMin = 0,
   flickerThreshold = 1,
-  frameRate = 6, // TODO: Make this truly fps not some weird fudge factor
+  // TODO: Make this truly fps not some weird fudge factor
+  frameRate = 6,
   frameType = 'jpg',
   frameUrl,
   loop = true,

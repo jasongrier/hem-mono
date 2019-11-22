@@ -36,7 +36,15 @@ Any sites and apps somehow connected to HEM all in one place
 
         npm run task test-all
 
-_Note: ATTOW the build task does not work. It is sufficient to run the start command and upload the contents of the `dist` directory to your server, however, React will not be in production mode._
+#### Find TODO comments in a project.
+<small>_(Will be saved in `projects/my-project/TODO.md`)_</small>
+
+        npm run task todo my-project
+
+#### Find TODO comments in all projects.
+<small>_(Will be saved in `projects/TODO.md`)_</small>
+
+        npm run task todo-all
 
 ## Virtual MIDI tunnel
 

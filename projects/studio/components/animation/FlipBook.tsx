@@ -7,7 +7,8 @@ export type directionType = directionFunction | 'similarity' | 'forward' | 'reve
 export type flickerFunction = (frameNumber: number) => boolean
 
 interface IProps {
-  frames: string[] // TODO: All projects, separate alphabetized required props from optionals
+  // TODO: All projects, separate alphabetized required props from optionals
+  frames: string[]
 
   diff?: number[]
   direction?: directionType
@@ -33,7 +34,8 @@ function FlipBook({
   flickerMax = 1,
   flickerMin = 0,
   flickerThreshold = 1,
-  frameRate = 6, // TODO: Should be "speed" ––or rather, "slowness"–– not "frameRate"
+  // TODO: Should be "speed" ––or rather, "slowness"–– not "frameRate"
+  frameRate = 6,
   loop = true,
   playing = true,
   startFrame = 0,
@@ -52,8 +54,10 @@ function FlipBook({
       if (!playing) return
 
       const sortedDiffs: number[] = ([] as any).concat(diff).sort()
-      const myDiff = diff[frameNumber] // TODO: What if ––unlikely, but–– two frames have the same difference score??
-      const myDiffIndex = sortedDiffs.indexOf(myDiff) // TODO: What if ––unlikely, but–– myDiffIndex === -1??
+      // TODO: What if ––unlikely, but–– two frames have the same difference score??
+      const myDiff = diff[frameNumber]
+      // TODO: What if ––unlikely, but–– myDiffIndex === -1??
+      const myDiffIndex = sortedDiffs.indexOf(myDiff)
 
       const possibleNextDiffs: number[] = []
       let low

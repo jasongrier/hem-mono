@@ -79,7 +79,8 @@ const setCueMode = (cueMode: boolean): AnyAction => ({
   payload: cueMode,
 })
 
-const setCurrentCanvas = (canvasNumber: number): AnyAction => ({ // TODO: These should be their respective action types from `./types`!!! (All projects...)
+// TODO: These should be their respective action types from `./types`!!! (All projects...)
+const setCurrentCanvas = (canvasNumber: number): AnyAction => ({
   type: SET_CURRENT_CANVAS,
   payload: canvasNumber,
 })

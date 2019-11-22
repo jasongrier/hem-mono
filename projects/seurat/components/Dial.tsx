@@ -4,7 +4,8 @@ import uuid from 'uuid/v1'
 //@ts-ignore
 import * as Nexus from 'nexusui'
 
-const win = window as any // TODO: Draggging IFace for window
+// TODO: Draggging IFace for window
+const win = window as any
 
 interface IProps {
   className?: string
@@ -12,7 +13,8 @@ interface IProps {
   label?: string
   onChange: (value: number) => void
   onChangeDone: (value: number) => void
-  onPress: () => void // TODO: Stop our Nexus fork from eating mouse events
+  // TODO: Stop our Nexus fork from eating mouse events
+  onPress: () => void
   overflowHack?: number
   size?: number
   value?: number
@@ -33,7 +35,8 @@ function Dial({ className, color, label, onChange, onChangeDone, onPress, overfl
     dial.current = new Nexus.Dial(id, {
       interaction: 'vertical',
       mode: 'relative',
-      size: [size, size], // TODO: This is hardcoded in index.css as well
+      // TODO: This is hardcoded in index.css as well
+      size: [size, size],
     })
 
     dial.current.handleLine.style.display = 'none'
@@ -44,7 +47,8 @@ function Dial({ className, color, label, onChange, onChangeDone, onPress, overfl
     dial.current.handle.setAttribute('stroke-width', overflowHack)
     dial.current.handle2.setAttribute('stroke-width', overflowHack)
 
-    dial.current.on('click', onMouseDown) // TODO: Fix event name in our Nexus fork
+    // TODO: Fix event name in our Nexus fork
+    dial.current.on('click', onMouseDown)
     dial.current.on('release', onMouseUp)
     dial.current.on('change', (value: number) => {
       win.dragging = id
