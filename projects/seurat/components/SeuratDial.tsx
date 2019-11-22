@@ -20,7 +20,8 @@ function SeuratDial({ cursorGroup, label, name, disabled, value }: IProps): Reac
       <div className="seurat-dial__label">
         {label}
       </div>
-      <Dial // TODO: values in these handlers are frozen by some DOM event handler stuff in Nexus
+      {/* TODO: values in these handlers are frozen by some DOM event handler stuff in Nexus */}
+      <Dial
         onChange={() => {
           // TODO: Immediately alter playback
         }}

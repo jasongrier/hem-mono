@@ -15,7 +15,8 @@ function PerformanceControls({ cursorGroup: myCursorGroup }: IProps): ReactEleme
   const { active, codeEditorOpen, controls, on, uiLocked } = useSelector((state: RootState) => ({
     active: state.app.cursorGroup === myCursorGroup,
     codeEditorOpen: state.app.codeEditorOpen,
-    controls: state.app.canvases[state.app.currentCanvasIndex].controls[myCursorGroup], // TODO: Make `currentCanvas` into a selector
+    // TODO: Make `currentCanvas` into a selector
+    controls: state.app.canvases[state.app.currentCanvasIndex].controls[myCursorGroup],
     on: state.app.on,
     uiLocked: uiLockedSel(state),
   }))

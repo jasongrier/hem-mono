@@ -13,7 +13,8 @@ let currentCanvasIndexProxy: number
 function MasterControls(): ReactElement {
   const { currentCanvasIndex, currentCanvasName, cursorGroup, maxCanvasIndex, playing, uiLocked } = useSelector((state: RootState) => ({
     currentCanvasIndex: state.app.currentCanvasIndex,
-    currentCanvasName: state.app.canvases[state.app.currentCanvasIndex].name, // TODO: Current canvas selector
+    // TODO: Current canvas selector
+    currentCanvasName: state.app.canvases[state.app.currentCanvasIndex].name,
     cursorGroup: state.app.cursorGroup,
     maxCanvasIndex: state.app.canvases.length - 1,
     playing: state.app.playing,
@@ -60,12 +61,14 @@ function MasterControls(): ReactElement {
       </div>
       <Dial
         className="main-controls__dial main-controls__dial--preset-selector"
-        color="#d8d8d8" // TODO: Standardize colors by keeping color vars in a place both TS and (vanilla) CSS can access them
+        // TODO: Standardize colors by keeping color vars in a place both TS and (vanilla) CSS can access them
+        color="#d8d8d8"
         onChange={(value) => {
           dispatch(setCurrentCanvas(Math.floor(value * 99)))
           setRealCanvasIndexDialValue(value)
         }}
-        onChangeDone={noop} // TODO: Should not be required
+        // TODO: Should not be required
+        onChangeDone={noop}
         onPress={noop}
         size={79}
         value={1}

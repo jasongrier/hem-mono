@@ -1,6 +1,7 @@
 function generateImageSequenceUrls(base: string, end: number, ext: string, start: number) {
   const images = []
-  for (let i = start; i <= end; i ++) { // TODO: Install Prettier/Eslint
+  // TODO: Install Prettier/Eslint
+  for (let i = start; i <= end; i ++) {
     images.push(`${base}${i}.${ext}`)
   }
   return images

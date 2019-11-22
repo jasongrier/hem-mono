@@ -8,7 +8,8 @@ interface IProps {
   match: any
 }
 
-let proxyProcessNoteOpen: boolean = false // TODO: How not to "freeze in" changing state values in event callbacks?
+// TODO: How not to "freeze in" changing state values in event callbacks?
+let proxyProcessNoteOpen: boolean = false
 
 function ProcessNote({ match }: IProps): ReactElement {
   const { processNoteOpen, poems } = useSelector((state: RootState) => ({

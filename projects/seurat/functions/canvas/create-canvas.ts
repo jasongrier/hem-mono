@@ -45,9 +45,11 @@ function createCanvas(
 
 export function createRandomCanvas(dots: boolean = true, name: boolean = true, sound: boolean = true) {
   return createCanvas(
-    dots ? ['a', 'b', 'c', 'none'][Math.floor(Math.random() * 3)] as CursorGroup : 'none', // TODO: This makes every single dot the same random color!
+    // TODO: This makes every single dot the same random color!
+    dots ? ['a', 'b', 'c', 'none'][Math.floor(Math.random() * 3)] as CursorGroup : 'none',
     name ? randomWords(randomWordsConfig)[0].toUpperCase() : 'UNTITLED',
-    sound ? 'empty' : 'empty', // TODO: Sound impl.
+    // TODO: Sound impl.
+    sound ? 'empty' : 'empty',
   )
 }
 

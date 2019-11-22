@@ -29,7 +29,8 @@ interface IActiveDots {
 }
 
 let activeNotesProxy: IActiveDots
-let playingProxy: boolean // TODO: How to prevent values getting frozen into a hook??
+// TODO: How to prevent values getting frozen into a hook??
+let playingProxy: boolean
 
 function Seurat(): ReactElement {
   const { dots, mainVolume, playing, on } = useSelector((state: RootState) => ({
@@ -84,7 +85,8 @@ function Seurat(): ReactElement {
     // if (dotsToTrigger.length && playingProxy) {
     //   const dotNumbers = dotsToTrigger.map(dot => dot.index)
     //   flashDots(dotNumbers)
-    //   samplers[sound].play(dotNumbers.map(dotNumberToNote)) // TODO: Play the sound assigned to the dot, not the canvas' sound
+    // TODO: Play the sound assigned to the dot, not the canvas' sound
+    //   samplers[sound].play(dotNumbers.map(dotNumberToNote))
     // }
   })
 
@@ -99,11 +101,12 @@ function Seurat(): ReactElement {
       <DeviceControls />
       <Dial
         className="main-volume-dial"
-        color="#d8d8d8" // TODO: Standardize colors by keeping color vars in a place both TS and (vanilla) CSS can access them
+        // TODO: Standardize colors by keeping color vars in a place both TS and (vanilla) CSS can access them
+        color="#d8d8d8"
         onChange={noop}
         onChangeDone={value => {
           dispatch(setMainVolume(value))
-        }} // TODO: Should not be required
+        }}
         onPress={noop}
         size={35}
         value={mainVolume}

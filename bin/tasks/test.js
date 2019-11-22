@@ -1,5 +1,6 @@
 const { spawn } = require('child_process')
 const { execSync } = require('child_process')
+const doAll = require('../helpers/do-all')
 const onStart = require('../helpers/on-start')
 
 function test(projectName, kill = true) {
@@ -23,15 +24,10 @@ function test(projectName, kill = true) {
   })
 }
 
-const testAll = function() {
-  const projects = readdirSync(join(__dirname, '..', '..', 'projects'))
-
-  for (let p = 0; p < projects.length; p ++) {
-    const projectName = projects[p]
-    if (statSync(join(__dirname, '..', '..', 'projects', projectName)).isDirectory()) {
-      test(projectName, false)
-    }
-  }
+function testAll() {
+  doAll(function(projectName) {
+    test(projectName, false)
+  })
 }
 
 module.exports = { test, testAll }

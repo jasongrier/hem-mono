@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
-import { Theater, IMovieSpec } from '../../components/animation' // TODO: Barrel file (done here, but not in all projects)
+// TODO: Barrel file (done here, but not in all projects)
+import { Theater, IMovieSpec } from '../../components/animation'
 
 interface IProps {
   match: any

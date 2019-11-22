@@ -1,6 +1,7 @@
 import resemble from 'resemblejs'
 
-function readAsDataURL(blob: Blob): Promise<string> { // TODO: Make it its own helper
+// TODO: Make it its own helper
+function readAsDataURL(blob: Blob): Promise<string> {
   const temporaryFileReader = new FileReader()
 
   return new Promise((resolve, reject) => {
@@ -17,7 +18,8 @@ function readAsDataURL(blob: Blob): Promise<string> { // TODO: Make it its own h
   })
 }
 
-function diffImagesAsDataUrls(a: string, b: string): Promise<number> { // TODO: Make it its own helper
+// TODO: Make it its own helper
+function diffImagesAsDataUrls(a: string, b: string): Promise<number> {
   return new Promise((resolve) => {
     resemble(a)
       .compareTo(b)
@@ -28,7 +30,8 @@ function diffImagesAsDataUrls(a: string, b: string): Promise<number> { // TODO: 
   })
 }
 
-export function findMiddleFrame(frames: string[]) { // TODO: Make it its own helper
+// TODO: Make it its own helper
+export function findMiddleFrame(frames: string[]) {
   return Math.floor((frames.length - 1) / 2)
 }
 

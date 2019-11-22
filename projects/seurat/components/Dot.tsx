@@ -2,7 +2,8 @@ import React, { ReactElement } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store'
 import { uiLocked as uiLockedSel } from '../store/selectors'
-import { updateDot, setDragging, setCursorMode } from '../store/actions' // TODO: Barrelise actions
+// TODO: Barrelise actions
+import { updateDot, setDragging, setCursorMode } from '../store/actions'
 
 // TODO: Move handlers to a helper file
 // TODO: Bug when releasing outside a dot including outside the window; should be the same as releasing on a dot

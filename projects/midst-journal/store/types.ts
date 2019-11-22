@@ -1,15 +1,18 @@
 import { AnyAction } from 'redux'
 import { ThunkAction } from 'redux-thunk'
 
-export type ThunkResult<R> = ThunkAction<R, IState, undefined, Action> // TODO: How to get around putting this in every project??
+// TODO: How to get around putting this in every project??
+export type ThunkResult<R> = ThunkAction<R, IState, undefined, Action>
 
-export interface IMidstTimelineFrame { // TODO: Move Midst types to common
+// TODO: Move Midst types to common
+export interface IMidstTimelineFrame {
   content: string
   lineNumber: number
   timestamp: number
 }
 
-export interface IMidstFile { // TODO: Move Midst types to common
+// TODO: Move Midst types to common
+export interface IMidstFile {
   editorTimelineFrames: IMidstTimelineFrame[]
   meta: {
 		editorFontFamily: string

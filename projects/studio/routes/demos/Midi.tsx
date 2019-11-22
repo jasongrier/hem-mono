@@ -2,7 +2,9 @@ import React, { ReactElement, useEffect } from 'react'
 import WebMidi from 'webmidi'
 
 function Midi(): ReactElement {
-  useEffect(() => { // TODO: useMidi hook // TODO: Navigate away, then back, beeps don't start again
+  // TODO: useMidi hook
+  // TODO: Navigate away, then back, beeps don't start again
+  useEffect(() => {
     let input: any
     let output: any
     let clock: number
@@ -30,7 +32,8 @@ function Midi(): ReactElement {
       }, 500)
     })
 
-    return function cleanup() { // TODO: Replace all `return function destroy` with `return function cleanup`
+    // TODO: Replace all `return function destroy` with `return function cleanup`
+    return function cleanup() {
       input.removeListener('noteon')
       clearInterval(clock)
     }
