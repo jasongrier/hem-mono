@@ -1,4 +1,3 @@
-import arrayMove from 'array-move'
 import { AnyAction } from 'redux'
 import $ from 'jquery'
 //@ts-ignore
@@ -13,18 +12,20 @@ import {
   IPoem,
 } from './types'
 
+const cdnUrl = process.env.CDN_URL + '/midst-journal/authors/staging'
+
 const loadPoemData = (poemIndex: number): any => // TODO: Should be: ThunkResult<void>. Why doesn't it work?
   async (dispatch: any, getState: any) => { // TODO: Above should be: ThunkResult<void>, then `any` is not needed here
     let poems = [].concat(getState().app.poems)
 
     const zip = (window as any).zip
-    zip.workerScriptsPath = '/static-assets/website-assets/scripts/'
+    zip.workerScriptsPath = '/workers/'
 
     try {
       const poem: IPoem = poems[poemIndex]
-      const processNoteRaw = await $.get(`http://midst.press/static-assets/journal-assets/staging-authors/${poem.authorId}/${poem.authorId}.md`)
+      const processNoteRaw = await $.get(`${cdnUrl}/${poem.authorId}/${poem.authorId}.md`)
       const processNote = insane(marked(processNoteRaw), { allowedTags: ['h1', 'p', 'i', 'a', 'em', 'b', 'strong', 'img']})
-      const zipTest = await fetch(`http://midst.press/static-assets/journal-assets/staging-authors/${poem.authorId}/${poem.poemId}.midst.zip`)
+      const zipTest = await fetch(`${cdnUrl}/${poem.authorId}/${poem.poemId}.midst.zip`)
       const reader = new zip.BlobReader(await zipTest.blob())
 
       zip.createReader(reader, zipReader => {

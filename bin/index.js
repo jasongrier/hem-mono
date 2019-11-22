@@ -22,7 +22,7 @@ else if (a1 && !a2 && !a3) { // `npm start my-project`
 
 else if (a1 === 'task') {
   switch (a2) {
-    case 'build': // `npm run task build my-project` // TODO: Build not working
+    case 'build': // `npm run task build my-project`
       build(a3)
       break
 

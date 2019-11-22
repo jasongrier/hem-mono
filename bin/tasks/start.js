@@ -1,7 +1,18 @@
 const { execSync } = require('child_process')
 
-function start(projectName) {
-  execSync(`parcel projects/${projectName}/index.html`, { stdio: 'inherit' })
+function start(projectName, build = false) {
+  execSync(`rm -rf dist`, { stdio: 'inherit' })
+  execSync(`mkdir dist`, { stdio: 'inherit' })
+  execSync(`cp -r projects/${projectName}/workers dist/workers`, { stdio: 'inherit' })
+  execSync(`cp -r projects/${projectName}/static dist/static`, { stdio: 'inherit' })
+
+  if (build) {
+    execSync(`parcel build projects/${projectName}/index.html`, { stdio: 'inherit' })
+  }
+
+  else {
+    execSync(`parcel projects/${projectName}/index.html`, { stdio: 'inherit' })
+  }
 }
 
 module.exports = start

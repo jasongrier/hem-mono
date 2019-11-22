@@ -1,7 +1,7 @@
-const { execSync } = require('child_process')
+const start = require('./start')
 
 function build(projectName) {
-  execSync(`parcel build projects/${projectName}/index.html`, { stdio: 'inherit' })
+  start(projectName, true)
 }
 
 module.exports = build
