@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { Switch, Route, Link, NavLink } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
-import { Hide } from '../../../../common/components'
+import { Hide } from '../../../lib/components'
 import DemoMovies from '../routes/demos/DemoMovies'
 import Midi from '../routes/demos/Midi'
 import Home from '../routes/Home'
