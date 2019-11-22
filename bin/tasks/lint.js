@@ -1,5 +1,5 @@
 const { join } = require('path')
-const { readdirSync } = require('fs')
+const { readdirSync, statSync } = require('fs')
 
 const expectedFiles = [ // TODO: Lint for files (including selectors) under `store`
   'assets',
@@ -10,6 +10,7 @@ const expectedFiles = [ // TODO: Lint for files (including selectors) under `sto
   'hooks',
   'routes',
   'store',
+  'static',
   'tests',
   'workers',
 
@@ -49,22 +50,29 @@ const lintFiles = function(projectName) {
   })
 
   if (unexpectedFilesFound[0] === '.gitkeep') {
-    console.log(`Skipping placeholder project: ${projectName}.`)
+    console.log(projectName + ' –– SKIP')
     return
   }
 
   if (expectedFiles.length !== expectedFilesFound.length) {
     expectedFiles.forEach(filepath => {
       if (expectedFilesFound.indexOf(filepath) === -1) {
-        console.log(`!!!! Sorry ${projectName}, seems like you are missing ${filepath}.`)
+        console.log(`!!!! Sorry ${projectName}, seems like you are missing ${filepath}`)
       }
     })
   }
 
   if (unexpectedFilesFound.length) {
     unexpectedFilesFound.forEach(filepath => {
-      console.log(`!!!! Sorry ${projectName}, seems like you have ${filepath} where it does not belong.`)
+      console.log(`!!!! Sorry ${projectName}, seems like you have ${filepath} where it does not belong`)
     })
+  }
+
+  if (
+    expectedFiles.length === expectedFilesFound.length
+    && !unexpectedFilesFound.length
+  ) {
+    console.log(projectName + ' –– OK')
   }
 }
 
@@ -72,4 +80,15 @@ function lint(projectName) {
   lintFiles(projectName)
 }
 
-module.exports = lint
+const lintAll = function() {
+  const projects = readdirSync(join(__dirname, '..', '..', 'projects'))
+
+  for (let p = 0; p < projects.length; p ++) {
+    const projectName = projects[p]
+    if (statSync(join(__dirname, '..', '..', 'projects', projectName)).isDirectory()) {
+      lintFiles(projectName)
+    }
+  }
+}
+
+module.exports = { lint, lintAll }
