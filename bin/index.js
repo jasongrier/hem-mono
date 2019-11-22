@@ -12,7 +12,7 @@ if (a1 === 'midi') { // `npm start midi`
   midi()
 }
 
-else if (a1 === 'test') { // `npm test`
+else if (a1 === 'test') { // `npm test my-project`
   test(a2)
 }
 
@@ -20,21 +20,21 @@ else if (a1 && !a2 && !a3) { // `npm start my-project`
   start(a1)
 }
 
-else if (a1 === 'task') { // `npm run task build`, npm run task lint`, etc.
+else if (a1 === 'task') {
   switch (a2) {
-    case 'build': // TODO: Build not working
+    case 'build': // `npm run task build my-project` // TODO: Build not working
       build(a3)
       break
 
-    case 'lint':
+    case 'lint': // `npm run task lint my-project`
       lint(a3)
       break
 
-    case 'lint-all':
+    case 'lint-all': // `npm run task lint-all`
       lintAll()
       break
 
-    case 'test-all':
+    case 'test-all': // `npm run task test-all`
       testAll()
       break
   }

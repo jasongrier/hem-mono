@@ -1,7 +1,7 @@
 const { join } = require('path')
 const { readdirSync, statSync } = require('fs')
 
-const expectedFiles = [ // TODO: Lint for files (including selectors) under `store`
+const expectedProjectFiles = [
   'assets',
   'classes',
   'components',
@@ -17,8 +17,27 @@ const expectedFiles = [ // TODO: Lint for files (including selectors) under `sto
   'index.css',
   'index.html',
   'index.ts',
-
   'README.md',
+]
+
+const expectedComponentsFiles = [
+  'actions.ts',
+  'index.ts',
+  'reducer.ts',
+  'selectors.ts',
+  'types.ts',
+]
+
+const expectedStoreFiles = [
+  'actions.ts',
+  'index.ts',
+  'reducer.ts',
+  'selectors.ts',
+  'types.ts',
+]
+
+const expectedTestsFiles = [
+  'app.test.js',
 ]
 
 const ignoredFiles = [
@@ -27,15 +46,16 @@ const ignoredFiles = [
   '.DS_Store',
 ]
 
-const lintFiles = function(projectName) {
-  const project = join(__dirname, '..', '..', 'projects', projectName)
-  const projectFiles = readdirSync(project)
+let expectedFilesFound = []
+let ignoredFilesFound = []
+let unexpectedFilesFound = []
 
-  const expectedFilesFound = []
-  const ignoredFilesFound = []
-  const unexpectedFilesFound = []
+function lintFiles(dir, expectedFiles) {
+  expectedFilesFound = []
+  ignoredFilesFound = []
+  unexpectedFilesFound = []
 
-  projectFiles.forEach(filepath => {
+  readdirSync(dir).forEach(filepath => {
     if (expectedFiles.indexOf(filepath) > -1) {
       expectedFilesFound.push(filepath)
     }
@@ -48,23 +68,43 @@ const lintFiles = function(projectName) {
       unexpectedFilesFound.push(filepath)
     }
   })
+}
 
+function lintProject(projectName) {
+  const projectDir = join(__dirname, '..', '..', 'projects', projectName)
+
+  lintFiles(projectDir, expectedProjectFiles)
+  const skip = evaluateLint(projectName, expectedProjectFiles)
+
+  if (skip) return
+
+  lintFiles(join(projectDir, 'store'), expectedComponentsFiles)
+  evaluateLint(projectName, expectedComponentsFiles, 'components/')
+
+  lintFiles(join(projectDir, 'store'), expectedStoreFiles)
+  evaluateLint(projectName, expectedStoreFiles, 'store/')
+
+  lintFiles(join(projectDir, 'tests'), expectedTestsFiles)
+  evaluateLint(projectName, expectedTestsFiles, 'tests/', false) // TODO: This bypasses checks for, for example, `i-dont-belong.foo`, the correct check should be `requiredFiles`
+}
+
+function evaluateLint(projectName, expectedFiles, prefix, checkUnexpected = true) {
   if (unexpectedFilesFound[0] === '.gitkeep') {
-    console.log(projectName + ' –– SKIP')
-    return
+    console.log(`${projectName}${prefix ? '/' + prefix : ''} –– SKIP`)
+    return true
   }
 
   if (expectedFiles.length !== expectedFilesFound.length) {
     expectedFiles.forEach(filepath => {
       if (expectedFilesFound.indexOf(filepath) === -1) {
-        console.log(`!!!! Sorry ${projectName}, seems like you are missing ${filepath}`)
+        console.log(`!!!! Sorry ${projectName}, seems like you are missing ${prefix}${filepath}`)
       }
     })
   }
 
-  if (unexpectedFilesFound.length) {
+  if (checkUnexpected && unexpectedFilesFound.length) {
     unexpectedFilesFound.forEach(filepath => {
-      console.log(`!!!! Sorry ${projectName}, seems like you have ${filepath} where it does not belong`)
+      console.log(`!!!! Sorry ${projectName}, seems like you have ${prefix}${filepath} where it does not belong`)
     })
   }
 
@@ -72,21 +112,21 @@ const lintFiles = function(projectName) {
     expectedFiles.length === expectedFilesFound.length
     && !unexpectedFilesFound.length
   ) {
-    console.log(projectName + ' –– OK')
+    console.log(`${projectName}${prefix ? '/' + prefix : ''} –– OK`)
   }
 }
 
 function lint(projectName) {
-  lintFiles(projectName)
+  lintProject(projectName)
 }
 
-const lintAll = function() {
+function lintAll() {
   const projects = readdirSync(join(__dirname, '..', '..', 'projects'))
 
   for (let p = 0; p < projects.length; p ++) {
     const projectName = projects[p]
     if (statSync(join(__dirname, '..', '..', 'projects', projectName)).isDirectory()) {
-      lintFiles(projectName)
+      lint(projectName)
     }
   }
 }
