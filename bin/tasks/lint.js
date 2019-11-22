@@ -49,7 +49,7 @@ const lintFiles = function(projectName) {
   })
 
   if (unexpectedFilesFound[0] === '.gitkeep') {
-    console.log(`Skipping placeholder project: ${PROJECT_TYPE}/${projectName}.`)
+    console.log(`Skipping placeholder project: ${projectName}.`)
     return
   }
 
