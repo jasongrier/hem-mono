@@ -9,7 +9,9 @@
     "url": "https://hem.rocks"
   },
   "scripts": {
-    "start": "node bin/index"
+    "start": "node bin/index",
+    "task": "node bin/index task",
+    "test": "node bin/index test"
   },
   "license": "WTFPL",
   "dependencies": {

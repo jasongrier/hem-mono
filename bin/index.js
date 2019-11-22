@@ -1,30 +1,41 @@
 const build = require('./tasks/build')
-const lint = require('./tasks/lint')
+const { lint, lintAll } = require('./tasks/lint')
 const midi = require('./tasks/midi')
 const start = require('./tasks/start')
-const test = require('./tasks/test')
+const { test, testAll } = require('./tasks/test')
 
-const task = process.argv[2]
-let projectName = process.argv[3]
+const a1 = process.argv[2]
+const a2 = process.argv[3]
+const a3 = process.argv[4]
 
-switch (task) {
-  case 'build':
-    build(projectName)
-    break
+if (a1 === 'midi') {
+  midi()
+}
 
-  case 'lint':
-    lint(projectName)
-    break
+else if (a1 === 'test') {
+  test(a2)
+}
 
-  case 'midi':
-    midi()
-    break
+else if (a1 && !a2 && !a3) {
+  start(a1)
+}
 
-  case 'test':
-    test(projectName)
-    break
+else if (a1 === 'task') {
+  switch (a2) {
+    case 'build':
+      build(a3)
+      break
 
-  default:
-    projectName = task
-    start(projectName)
+    case 'lint':
+      lint(a3)
+      break
+
+    case 'lint-all':
+      lintAll()
+      break
+
+    case 'test-all':
+      testAll()
+      break
+  }
 }
