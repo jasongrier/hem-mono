@@ -2,42 +2,40 @@
 
 Any sites and apps somehow connected to HEM all in one place.
 
-## Getting started
+## Installation
 
         npm i
 
-### Website
+## Overview of commands
 
-        npm start site [folder-name]
+### Start a project for local dev
 
-### Electron
+        npm start my-project
 
-        npm start app [folder-name]
+### Start the virtual MIDI tunnel
 
-## Test
+        npm start midi
 
-        npm test site [folder-name]
+### Run automated tests in a project
 
-        ––or––
+        npm test my-project
 
-        npm test app [folder-name]
+### Build a project
 
-## Build
+        npm run task build
 
-        npm run build site [folder-name]
+### Lint a project
 
-        ––or––
+        npm run task lint my-project
 
-        npm run build app [folder-name]
+### Lint all projects
 
-_Note: ATTOW the build task does not work. For sites, it is sufficient to run the start command and upload the contents of the `dist` directory to your server._
+        npm run task lint-all
 
-## Active Projects / Sanity Checks
+### Run automated tests in all projects
 
-(In the case that core changes are made to the repository, framework, or common files, these projects _must_ be manually checked. Just cut and paste the commands below and see they still runs.)
+        npm run task test-all
 
-1. `npm start app midst`
-1. `npm start app midst-player`
-1. `npm start app seurat`
-1. `npm start site jasongrier`
-1. `npm start site midst-journal`
+_Note: ATTOW the build task does not work. It is sufficient to run the start command and upload the contents of the `dist` directory to your server, however, React will not be in production mode._
+
+## Virtual MIDI tunnel
