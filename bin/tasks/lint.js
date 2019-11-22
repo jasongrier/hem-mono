@@ -9,8 +9,8 @@ const expectedProjectFiles = [
   'functions',
   'hooks',
   'routes',
-  'store',
   'static',
+  'store',
   'tests',
   'workers',
 
