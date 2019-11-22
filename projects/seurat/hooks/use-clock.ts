@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { ClockDivider } from '../../../../common/classes'
+import { ClockDivider } from '../../../lib/classes'
 
 function useClock(speed: number, onTickCallback: (tickCount: number) => void) {
   useEffect(() => {

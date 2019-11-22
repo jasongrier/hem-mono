@@ -19,14 +19,15 @@ function createVirtualMidiPortOutput(name) {
 }
 
 function startMidi() {
-  const dawHemOutput = createVirtualMidiPortOutput('HEM MIDI Tunnel: A')
-  createVirtualMidiPortInput('HEM MIDI Tunnel: B', (timestamp, msg) => {
-    dawHemOutput.sendMessage(msg)
+  const hemMidiTunnelA = createVirtualMidiPortOutput('HEM MIDI Tunnel: A')
+  const hemMidiTunnelB = createVirtualMidiPortOutput('HEM MIDI Tunnel: B')
+
+  createVirtualMidiPortInput('HEM MIDI Tunnel: C', (timestamp, msg) => {
+    hemMidiTunnelA.sendMessage(msg)
   })
 
-  const hemDawOutput = createVirtualMidiPortOutput('HEM MIDI Tunnel: C')
   createVirtualMidiPortInput('HEM MIDI Tunnel: D', (timestamp, msg) => {
-    hemDawOutput.sendMessage(msg)
+    hemMidiTunnelB.sendMessage(msg)
   })
 }
 
