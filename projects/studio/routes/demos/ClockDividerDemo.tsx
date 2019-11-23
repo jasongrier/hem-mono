@@ -74,7 +74,6 @@ function ClockDividerDemo(): ReactElement {
     <div className='page clock-divider-demo'>
       <h1>Clock Divider Demo</h1>
       <p>Generate precise timers</p>
-      <p>Requires Google Chrome</p>
       <h2>Instructions</h2>
       <ul>
         <li>Click start</li>
@@ -82,9 +81,7 @@ function ClockDividerDemo(): ReactElement {
         <li>Light "C" should light at exactly 1/2 the rate of light "A"</li>
       </ul>
       <p>
-        <button
-          onClick={() => setStarted(!started)}
-        >
+        <button onClick={() => setStarted(!started)}>
           {started ? 'STOP' : 'START'}
         </button>
       </p>

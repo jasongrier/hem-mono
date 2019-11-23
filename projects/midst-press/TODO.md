@@ -1,12 +1,20 @@
 ### TODOs
 | Filename | line # | TODO
 |:------|:------:|:------
-| [projects/hem/store/selectors.ts](projects/hem/store/selectors.ts#L1) | 1 | Example selector
-| [projects/hem/components/SlSoundPlayer.tsx](projects/hem/components/SlSoundPlayer.tsx#L51) | 51 | Update the playback engine
-| [projects/hem/components/SlSoundPlayer.tsx](projects/hem/components/SlSoundPlayer.tsx#L53) | 53 | Update the state
-| [projects/jason-grier/components/Movie.tsx](projects/jason-grier/components/Movie.tsx#L29) | 29 | Make this truly fps not some weird fudge factor
-| [projects/midst-journal/components/CampaignMonitorForm.tsx](projects/midst-journal/components/CampaignMonitorForm.tsx#L10) | 10 | All projects: Use line breaks for all component props
-| [projects/midst-journal/components/ProcessNote.tsx](projects/midst-journal/components/ProcessNote.tsx#L11) | 11 | How not to "freeze in" changing state values in event callbacks?
+| [projects/midst-press/store/actions.ts](projects/midst-press/store/actions.ts#L3) | 3 | Type def file
+| [projects/midst-press/store/actions.ts](projects/midst-press/store/actions.ts#L6) | 6 | Type def file
+| [projects/midst-press/store/actions.ts](projects/midst-press/store/actions.ts#L19) | 19 | Should be: ThunkResult<void>. Why doesn't it work?
+| [projects/midst-press/store/actions.ts](projects/midst-press/store/actions.ts#L21) | 21 | Above should be: ThunkResult<void>, then `any` is not needed here
+| [projects/midst-press/store/reducer.ts](projects/midst-press/store/reducer.ts#L256) | 256 | Should be Action from `../types.ts`
+| [projects/midst-press/store/selectors.ts](projects/midst-press/store/selectors.ts#L1) | 1 | Find a use for selectors in this project
+| [projects/midst-press/store/types.ts](projects/midst-press/store/types.ts#L4) | 4 | How to get around putting this in every project??
+| [projects/midst-press/store/types.ts](projects/midst-press/store/types.ts#L7) | 7 | Move Midst types to common
+| [projects/midst-press/store/types.ts](projects/midst-press/store/types.ts#L14) | 14 | Move Midst types to common
+| [projects/hem-rocks/components/SlSoundPlayer.tsx](projects/hem-rocks/components/SlSoundPlayer.tsx#L51) | 51 | Update the playback engine
+| [projects/hem-rocks/components/SlSoundPlayer.tsx](projects/hem-rocks/components/SlSoundPlayer.tsx#L53) | 53 | Update the state
+| [projects/jasonaarongrier-com/components/Movie.tsx](projects/jasonaarongrier-com/components/Movie.tsx#L29) | 29 | Make this truly fps not some weird fudge factor
+| [projects/midst-press/components/CampaignMonitorForm.tsx](projects/midst-press/components/CampaignMonitorForm.tsx#L10) | 10 | All projects: Use line breaks for all component props
+| [projects/midst-press/components/ProcessNote.tsx](projects/midst-press/components/ProcessNote.tsx#L11) | 11 | How not to "freeze in" changing state values in event callbacks?
 | [projects/seurat/components/DeviceControls.tsx](projects/seurat/components/DeviceControls.tsx#L18) | 18 | Rename to "SideButtons" or sth
 | [projects/seurat/components/DeviceControls.tsx](projects/seurat/components/DeviceControls.tsx#L21) | 21 | Make into a selector
 | [projects/seurat/components/DeviceControls.tsx](projects/seurat/components/DeviceControls.tsx#L100) | 100 | Any??
@@ -24,7 +32,7 @@
 | [projects/seurat/components/SeuratDial.tsx](projects/seurat/components/SeuratDial.tsx#L26) | 26 | Immediately alter playback
 | [projects/seurat/routes/Home.tsx](projects/seurat/routes/Home.tsx#L5) | 5 | Switch to Webpack
 | [projects/studio/components/App.tsx](projects/studio/components/App.tsx#L3) | 3 | Use barrel files
-| [projects/studio/components/App.tsx](projects/studio/components/App.tsx#L19) | 19 | 404 page
+| [projects/studio/components/App.tsx](projects/studio/components/App.tsx#L21) | 21 | 404 page
 | [projects/studio/routes/Home.tsx](projects/studio/routes/Home.tsx#L7) | 7 | Header/Footer components
 | [projects/studio/routes/Home.tsx](projects/studio/routes/Home.tsx#L8) | 8 | Helmet here
 | [projects/studio/routes/Home.tsx](projects/studio/routes/Home.tsx#L16) | 16 | Create a separate public Github repo as a submodule
@@ -37,8 +45,8 @@
 | [projects/studio/components/animation/Theater.tsx](projects/studio/components/animation/Theater.tsx#L4) | 4 | Move to common
 | [projects/studio/routes/demos/MidiDemo.tsx](projects/studio/routes/demos/MidiDemo.tsx#L7) | 7 | Midi class
 | [projects/studio/routes/demos/MidiDemo.tsx](projects/studio/routes/demos/MidiDemo.tsx#L28) | 28 | Use ClockDivider
-| [projects/studio/routes/demos/MidiDemo.tsx](projects/studio/routes/demos/MidiDemo.tsx#L50) | 50 | What test file? Where? (/resources)
-| [projects/studio/routes/demos/MidiDemo.tsx](projects/studio/routes/demos/MidiDemo.tsx#L52) | 52 | Screenshot and better description
+| [projects/studio/routes/demos/MidiDemo.tsx](projects/studio/routes/demos/MidiDemo.tsx#L49) | 49 | Screenshot of how to do this in Ableton Live
+| [projects/studio/routes/demos/MidiDemo.tsx](projects/studio/routes/demos/MidiDemo.tsx#L51) | 51 | Screenshot and better description
 | [projects/studio/routes/projects/FlipBookDemo.tsx](projects/studio/routes/projects/FlipBookDemo.tsx#L3) | 3 | Barrel file (done here, but not in all projects)
 | [projects/studio/routes/projects/FlipBookDemo.tsx](projects/studio/routes/projects/FlipBookDemo.tsx#L141) | 141 | Should this be IFlipBookSpec?
 | [projects/studio/routes/projects/FlipBookDemo.tsx](projects/studio/routes/projects/FlipBookDemo.tsx#L185) | 185 | Should be a single component that gets passed route params
