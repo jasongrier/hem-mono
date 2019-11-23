@@ -14,7 +14,7 @@ interface IProps {
   onChange: (value: number) => void
   onChangeDone: (value: number) => void
   // TODO: Stop our Nexus fork from eating mouse events
-  onPress: () => void
+  onPress?: () => void
   overflowHack?: number
   size?: number
   value?: number

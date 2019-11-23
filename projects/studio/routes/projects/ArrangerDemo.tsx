@@ -4,7 +4,7 @@ import { Arrangement, Clip, Section } from '../../components/arrangement'
 function DemoArrangements(): ReactElement {
   return (
     <div className="page page--demo-arrangements">
-      <Arrangement>
+      {/* <Arrangement>
         <Section>
           <h1>Lorem Ipsum</h1>
           <Clip src="lol.mp3">
@@ -20,7 +20,7 @@ function DemoArrangements(): ReactElement {
           <Clip src="wtf.mp3" />
           <Clip src="asap.mp3" />
         </Section>
-      </Arrangement>
+      </Arrangement> */}
     </div>
   )
 }

@@ -30,6 +30,10 @@ const expectedComponentsFiles = [
   'types.ts',
 ]
 
+const expectedRoutesFiles = [
+  'index.ts',
+]
+
 const expectedStoreFiles = [
   'actions.ts',
   'index.ts',
@@ -82,6 +86,9 @@ function lintProject(projectName) {
 
   lintFiles(join(projectDir, 'store'), expectedComponentsFiles)
   evaluateLint(projectName, expectedComponentsFiles, 'components/')
+
+  lintFiles(join(projectDir, 'store'), expectedRoutesFiles)
+  evaluateLint(projectName, expectedRoutesFiles, 'routes/')
 
   lintFiles(join(projectDir, 'store'), expectedStoreFiles)
   evaluateLint(projectName, expectedStoreFiles, 'store/')

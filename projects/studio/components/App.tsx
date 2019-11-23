@@ -1,38 +1,23 @@
 import React, { ReactElement } from 'react'
-import { Switch, Route, Link, NavLink } from 'react-router-dom'
-import { Helmet } from 'react-helmet'
-import { Hide } from '../../../lib/components'
-import DemoMovies from '../routes/demos/DemoMovies'
-import Midi from '../routes/demos/Midi'
+import { Switch, Route } from 'react-router-dom'
+// TODO: Use barrel files
 import Home from '../routes/Home'
+import ArrangerDemo from '../routes/demos/ArrangerDemo'
+import ClockDividerDemo from '../routes/demos/ClockDividerDemo'
+import FlipBookDemo from '../routes/demos/FlipBookDemo'
+import MidiDemo from '../routes/demos/MidiDemo'
 
 function App(): ReactElement {
   return (
     <div className="hem-application">
-      <Helmet>
-        <title>Studio</title>
-        <meta name="description" content="" />
-      </Helmet>
-
-      <Hide from="/demo-movies/:name">
-        <header>
-          <h1>
-            <Link to="/">HEM Studio</Link>
-          </h1>
-          <nav>
-            <NavLink to="/">Table of Contents</NavLink>
-            <NavLink to="/demos">Demos</NavLink>
-          </nav>
-        </header>
-      </Hide>
-      <main>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/demo-movies/:name" component={DemoMovies} />
-          <Route exact path="/demo-midi" component={Midi} />
-        </Switch>
-      </main>
-      <footer></footer>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/demos/arranger" component={ArrangerDemo} />
+        <Route exact path="/demos/clock-divider" component={ClockDividerDemo} />
+        <Route exact path="/demos/flip-book" component={FlipBookDemo} />
+        <Route exact path="/demos/midi" component={MidiDemo} />
+        {/* TODO: 404 page */}
+      </Switch>
     </div>
   )
 }

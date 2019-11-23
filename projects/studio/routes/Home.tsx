@@ -4,15 +4,44 @@ import { Link } from 'react-router-dom'
 function Home(): ReactElement {
   return (
     <div className="page page--home">
-      <h2>Table of Contents</h2>
-      <p>Space for utilities, prototyping, live coding, etc.</p>
-      <p>Note: Though this project is set up as a website, most of these tools require you to work locally. Browse the demos to see what stuff can be done. Clone the git repo to get doing.</p>
+      {/* TODO: Header/Footer components */}
+      {/* TODO: Helmet here */}
+      <header>
+        <h1>
+          <Link to="/">HEM Studio</Link>
+        </h1>
+      </header>
 
+      <p>Space for utilities, prototyping, live coding, etc.</p>
+      <p>Note: Though this project is set up as a website, most of these tools require you to work locally.</p>
+      <p>Browse the MVP's and demos to see what stuff can be done.</p>
+      {/* TODO: Create a separate public Github repo as a submodule */}
+      {/* TODO: Link to Github repo */}
+      <p>Clone the git repo to get going.</p>
+
+      <h2>Demos</h2>
       <nav>
-        <Link to="/live-coding-animation">Live Coding for Animation/Video</Link>
-        <Link to="/live-coding-sound">Live Coding for Sound</Link>
-        <Link to="/arrangement">Podcast/Audiobook arrangement</Link>
-        <Link to="/utilities">Utilities, such as moving, renaming trimming files</Link>
+        <ul>
+          <li><Link to="/demos/arranger">Arranger</Link></li>
+          <li><Link to="/demos/clock-divider">Clock Divider</Link></li>
+          <li><Link to="/demos/flip-book">Flip Book</Link></li>
+          <li><Link to="/demos/midi">MIDI</Link></li>
+        </ul>
+      </nav>
+
+      <h2>Projects</h2>
+      <p>
+        Link your projects here
+      </p>
+
+      <h2>Docs</h2>
+      <nav>
+        <ul>
+          <li><Link to="/docs/live-coding-animation">Live Coding for Animation/Video</Link></li>
+          <li><Link to="/docs/live-coding-sound">Live Coding for Sound</Link></li>
+          <li><Link to="/docs/arrangement">Podcast/Audiobook arrangement</Link></li>
+          <li><Link to="/docs/utilities">Utilities, such as moving, renaming trimming files</Link></li>
+        </ul>
       </nav>
     </div>
   )
