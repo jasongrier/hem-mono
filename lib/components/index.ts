@@ -1,3 +1,4 @@
+export { default as Dial } from './Dial'
 export { default as Link } from './Link'
 export { ILink } from './Link'
 export { default as Hide } from './Hide'

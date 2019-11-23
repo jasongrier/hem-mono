@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import UseAnIdeWarning from '../components/UseAnIdeWarning'
+import { UseAnIdeWarning } from '../../components/layout'
 
 function Animation(): ReactElement {
   return (

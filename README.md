@@ -20,6 +20,10 @@ Any sites and apps somehow connected to HEM all in one place
 
         npm test my-project
 
+#### Run automated tests in all projects
+
+        npm run task test-all
+
 #### Build a project
 
         npm run task build my-project
@@ -32,17 +36,13 @@ Any sites and apps somehow connected to HEM all in one place
 
         npm run task lint-all
 
-#### Run automated tests in all projects
-
-        npm run task test-all
-
-#### Find TODO comments in a project.
-<small>_(Will be saved in `projects/my-project/TODO.md`)_</small>
+#### Find TODO comments in a project
+<sub><sup>_(Will be saved in `projects/my-project/TODO.md`)_</sub></sup>
 
         npm run task todo my-project
 
-#### Find TODO comments in all projects.
-<small>_(Will be saved in `projects/TODO.md`)_</small>
+#### Find TODO comments in all projects
+<sub><sup>_(Will be saved in `projects/TODO.md`)_</sub></sup>
 
         npm run task todo-all
 

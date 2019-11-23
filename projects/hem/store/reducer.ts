@@ -2,7 +2,7 @@ import { AnyAction } from 'redux'
 import { IState } from './types'
 
 const initialState: IState = {
-  foo: 'bar',
+  slSounds: [],
 }
 
 const reducer = (

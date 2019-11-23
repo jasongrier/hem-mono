@@ -1,35 +1,40 @@
-interface IOpts {
-  ticksPerBeat: number
-  name?: string
-}
+import uuid from 'uuid/v1'
 
-const defaults: IOpts = {
-  ticksPerBeat: 16,
-  name: 'Untitled',
+type OnTickCallback = (tickCount: number) => void
+
+export interface IClockDividerOpts {
+  onTickCallback: OnTickCallback
+  ticksPerBeat: number
 }
 
 class ClockDivider {
-  private tickCount: number = 0
+  private onTickCallback: OnTickCallback
+  private on: boolean
+  private tickCount: number
+  private ticksPerBeat: number
 
-  private opts: IOpts
+  public id: string
 
-  constructor(opts?: IOpts) {
-    this.opts = { ...defaults, ...(opts || {})}
+  constructor({ ticksPerBeat, onTickCallback }: IClockDividerOpts) {
+    this.id = uuid()
+    this.on = false
+    this.onTickCallback = onTickCallback
+    this.tickCount = 1
+    this.ticksPerBeat = ticksPerBeat
   }
 
-  public onTick(onTickCallback: (tickCount: number) => void) {
-    if (this.opts.name === 'foo') {
-    }
+  public onTick() {
+    if (!this.on) return
 
-    if (this.tickCount === 1 || this.opts.ticksPerBeat === 1) {
-      onTickCallback(this.tickCount)
+    if (this.tickCount === 1 || this.ticksPerBeat === 1) {
+      this.onTickCallback(this.tickCount)
 
-      if (this.opts.ticksPerBeat !== 1) {
+      if (this.ticksPerBeat !== 1) {
         this.tickCount ++
       }
     }
 
-    else if (this.tickCount >= this.opts.ticksPerBeat) {
+    else if (this.tickCount >= this.ticksPerBeat) {
       this.tickCount = 1
     }
 
@@ -38,8 +43,17 @@ class ClockDivider {
     }
   }
 
-  public setTempo(tempo: number) {
-    this.opts.ticksPerBeat = tempo
+  public start() {
+    this.tickCount = 1
+    this.on = true
+  }
+
+  public stop() {
+    this.on = false
+  }
+
+  public setTicksPerBeat(ticksPerBeat: number) {
+    this.ticksPerBeat = ticksPerBeat
   }
 }
 

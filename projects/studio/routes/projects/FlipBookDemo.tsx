@@ -138,6 +138,7 @@ const field: IMovieSpec[] = [
   },
 ]
 
+// TODO: Should this be IFlipBookSpec?
 const cta: IMovieSpec[] = [
   {
     frameSrc: {
@@ -171,7 +172,7 @@ function theaterRoute(name: string, specs: IMovieSpec[], match: any) {
   )
 }
 
-function DemoMovies({ match }: IProps): ReactElement {
+function FlipBookDemo({ match }: IProps): ReactElement {
   return (
     <div className="page page--demo-movies">
       <nav>
@@ -192,4 +193,4 @@ function DemoMovies({ match }: IProps): ReactElement {
   )
 }
 
-export default DemoMovies
+export default FlipBookDemo

@@ -1,7 +1,18 @@
 import { AnyAction } from 'redux'
 
+export interface ISlSoundPreset {
+  id: string
+  title: string
+}
+
+export interface ISlSound {
+  id: string
+  presets: ISlSoundPreset[]
+  title: string
+}
+
 export interface IState {
-  foo: string
+  slSounds: ISlSound[]
 }
 
 export const SOME_ACTION = 'SOME_ACTION'
