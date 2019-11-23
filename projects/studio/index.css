@@ -16,7 +16,7 @@ body {
   border-radius: 15px;
   background: white;
   border: 3px solid black;
-  transform: translate(10px, 5px);
+  transform: translate(10px, 5.5px);
 }
 
 .studio__demo-light--lighted {

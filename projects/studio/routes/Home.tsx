@@ -7,9 +7,7 @@ function Home(): ReactElement {
       {/* TODO: Header/Footer components */}
       {/* TODO: Helmet here */}
       <header>
-        <h1>
-          <Link to="/">HEM Studio</Link>
-        </h1>
+        <h1>HEM Studio</h1>
       </header>
 
       <p>Space for utilities, prototyping, live coding, etc.</p>
@@ -17,11 +15,12 @@ function Home(): ReactElement {
       <p>Browse the MVP's and demos to see what stuff can be done.</p>
       {/* TODO: Create a separate public Github repo as a submodule */}
       {/* TODO: Link to Github repo */}
-      <p>Clone the git repo to get going.</p>
+      <p>Fork the git repo to get going.</p>
 
       <h2>Demos</h2>
       <nav>
         <ul>
+          <li><Link to="/demos/arpeggiator">Arpeggiator</Link></li>
           <li><Link to="/demos/arranger">Arranger</Link></li>
           <li><Link to="/demos/clock-divider">Clock Divider</Link></li>
           <li><Link to="/demos/flip-book">Flip Book</Link></li>

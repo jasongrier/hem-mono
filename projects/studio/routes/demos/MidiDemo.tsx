@@ -42,7 +42,7 @@ function MidiDemo(): ReactElement {
 
   return (
     <div className='page midi-demo'>
-      <h1>MIDI MVP</h1>
+      <h1>MIDI Demo</h1>
       <p>Send MIDI to and from a sequencer</p>
       <p>Requires Google Chrome and Ableton Live</p>
       <h2>Instructions</h2>
