@@ -44,13 +44,12 @@ function MidiDemo(): ReactElement {
     <div className='page midi-demo'>
       <h1>MIDI Demo</h1>
       <p>Send MIDI to and from a sequencer</p>
-      <p>Requires Google Chrome and Ableton Live</p>
       <h2>Instructions</h2>
       <ul>
-        {/* TODO: What test file? Where? (/resources) */}
-        <li>Launch the test file in Ableton Live</li>
+        {/* TODO: Screenshot of how to do this in Ableton Live */}
+        <li>Set up something like this in your DAW</li>
         {/* TODO: Screenshot and better description */}
-        <li>Configure MIDI preferences</li>
+        <li>Configure MIDI preferences like this</li>
         <li>Click start</li>
         <li>Click play in Ableton Live</li>
         <li>The input and output lights below should flash</li>

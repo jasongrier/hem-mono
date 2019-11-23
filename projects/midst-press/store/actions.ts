@@ -14,7 +14,7 @@ import {
   IPoem,
 } from './types'
 
-const cdnUrl = process.env.CDN_URL + '/midst-journal/authors/staging'
+const cdnUrl = process.env.CDN_URL + 'midst-press/authors/staging'
 
 // TODO: Should be: ThunkResult<void>. Why doesn't it work?
 const loadPoemData = (poemIndex: number): any =>

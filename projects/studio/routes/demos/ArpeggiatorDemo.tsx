@@ -60,7 +60,6 @@ function ArpeggiatorDemo(): ReactElement {
     <div className='page arpeggiator-demo'>
       <h1>Arpeggiator Demo</h1>
       <p>A multimode arpeggiator</p>
-      <p>Requires Google Chrome</p>
       <h2>Instructions</h2>
       <ul>
         <li>Click start</li>
@@ -73,9 +72,7 @@ function ArpeggiatorDemo(): ReactElement {
         <li>Use the tempo selectors to change the speed at which each color group plays</li>
       </ul>
       <p>
-        <button
-          onClick={() => setStarted(!started)}
-        >
+        <button onClick={() => setStarted(!started)}>
           {started ? 'STOP' : 'START'}
         </button>
       </p>
