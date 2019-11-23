@@ -25,10 +25,11 @@
 | [projects/seurat/components/SeuratDial.tsx](projects/seurat/components/SeuratDial.tsx#L26) | 26 | Immediately alter playback
 | [projects/seurat/routes/Home.tsx](projects/seurat/routes/Home.tsx#L5) | 5 | Switch to Webpack
 | [projects/studio/components/App.tsx](projects/studio/components/App.tsx#L3) | 3 | Use barrel files
+| [projects/studio/components/App.tsx](projects/studio/components/App.tsx#L19) | 19 | 404 page
 | [projects/studio/routes/Home.tsx](projects/studio/routes/Home.tsx#L7) | 7 | Header/Footer components
 | [projects/studio/routes/Home.tsx](projects/studio/routes/Home.tsx#L8) | 8 | Helmet here
-| [projects/studio/routes/Home.tsx](projects/studio/routes/Home.tsx#L18) | 18 | Create a separate public Github repo as a submodule
-| [projects/studio/routes/Home.tsx](projects/studio/routes/Home.tsx#L19) | 19 | Link to Github repo
+| [projects/studio/routes/Home.tsx](projects/studio/routes/Home.tsx#L16) | 16 | Create a separate public Github repo as a submodule
+| [projects/studio/routes/Home.tsx](projects/studio/routes/Home.tsx#L17) | 17 | Link to Github repo
 | [projects/studio/components/animation/FlipBook.tsx](projects/studio/components/animation/FlipBook.tsx#L10) | 10 | All projects, separate alphabetized required props from optionals
 | [projects/studio/components/animation/FlipBook.tsx](projects/studio/components/animation/FlipBook.tsx#L37) | 37 | Should be "speed" ––or rather, "slowness"–– not "frameRate"
 | [projects/studio/components/animation/FlipBook.tsx](projects/studio/components/animation/FlipBook.tsx#L57) | 57 | What if ––unlikely, but–– two frames have the same difference score??

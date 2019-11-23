@@ -45,7 +45,7 @@ class Arpeggiator {
     this.mode = mode
   }
 
-  public getNotes() {
+  public getNotes(): number[] {
     if (this.mode === 'across') {
       return this.pickAcross()
     }
@@ -61,6 +61,10 @@ class Arpeggiator {
     else if (this.mode === 'up') {
       return this.pickUp()
     }
+
+    else {
+      return []
+    }
   }
 
   private fillNotes(numNotes: number): boolean[] {
@@ -73,21 +77,21 @@ class Arpeggiator {
     return notes
   }
 
-  private pickRandom() {
+  private pickRandom(): number[] {
     this.position = Math.floor(Math.random() * this.notes.length - 1)
-    return this.position
+    return [this.position]
   }
 
-  private pickUp() {
-
+  private pickUp(): number[] {
+    return []
   }
 
-  private pickDown() {
-
+  private pickDown(): number[] {
+    return []
   }
 
-  private pickAcross() {
-
+  private pickAcross(): number[] {
+    return []
   }
 }
 

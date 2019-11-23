@@ -18,7 +18,7 @@ function lightLight(name: string) {
   }, 100)
 }
 
-function initMvp() {
+function initDemo() {
   clockDividerA = new ClockDivider({
     ticksPerBeat: 32,
     onTickCallback: () => lightLight('a'),
@@ -51,7 +51,7 @@ function stop() {
   clockDividerC.stop()
 }
 
-function cleanupMvp() {
+function cleanupDemo() {
   clock.unsubscribe(clockDividerA)
   clock.unsubscribe(clockDividerB)
   clock.unsubscribe(clockDividerC)
@@ -61,26 +61,18 @@ function ClockDividerDemo(): ReactElement {
   const [started, setStarted] = useState(false)
 
   useEffect(() => {
-    initMvp()
+    initDemo()
 
     return function cleanup() {
-      cleanupMvp()
+      cleanupDemo()
     }
   }, [])
 
-  useEffect(() => {
-    if (started) {
-      start()
-    }
-
-    else {
-      stop()
-    }
-  }, [started])
+  useEffect(() => started ? start() : stop(), [started])
 
   return (
     <div className='page clock-divider-demo'>
-      <h1>Clock Divider MVP</h1>
+      <h1>Clock Divider Demo</h1>
       <p>Generate precise timers</p>
       <p>Requires Google Chrome</p>
       <h2>Instructions</h2>
