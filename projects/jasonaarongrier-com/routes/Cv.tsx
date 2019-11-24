@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 
 function Cv(): ReactElement {
   return (
-    <div className="home-page">
+    <div className="page page-cv">
 
     </div>
   )
