@@ -1,4 +1,8 @@
 import { AnyAction } from 'redux'
+import { ThunkAction } from 'redux-thunk'
+
+// TODO: How to get around putting this in every project??
+export type ThunkResult<R> = ThunkAction<R, IState, undefined, Action>
 
 export interface ILink {
   href: string
@@ -27,11 +31,11 @@ export interface IState {
   items: IItem[]
 }
 
-export const SOME_ACTION = 'SOME_ACTION'
+export const LOAD_ITEMS = 'LOAD_ITEMS'
 
-export interface ISomeAction extends AnyAction {
-  type: typeof SOME_ACTION
-  payload: null
+export interface ILoadItems extends AnyAction {
+  type: typeof LOAD_ITEMS
+  payload: IItem[]
 }
 
-export type Action = ISomeAction
+export type Action = ILoadItems

@@ -12,42 +12,38 @@ function Home(): ReactElement {
   const dispatch = useDispatch()
 
   return (
-    <div className="page page-home">
+    <div className="page home">
       <Helmet>
         <title>Jason Aaron Grier</title>
         <meta name="description" content="" />
       </Helmet>
       <header>
-        <h1>Jason Aaron Grier</h1>
-        <div className="page-home__contact-links">
+        <div className="header-contact-links">
           <a href="mailto:j@hem.rocks">j@hem.rocks</a>&nbsp;| &nbsp;
           <a href="http://instagram.com/hem.rocks">@hem.rocks</a>
         </div>
-        <nav className="page-home__page-links">
+        <nav className="secondary-page-links">
           <Link to="/cv">CV</Link>
           <Link to="/press">Press</Link>
         </nav>
       </header>
       <main>
         <div className="items-list">
-          <header className="items-list__header">
-            <div className="items-list__column-header items-list-column-header--first"></div>
-            <div className="items-list-column-header items-list-column-header--second">tags</div>
-            <div className="items-list-column-header items-list-column-header--third">date</div>
+          <header>
+            <div className="column-header"></div>
+            <div className="column-header">tags</div>
+            <div className="column-header">date</div>
           </header>
-          <ul className="items-list__items">
+          <ul>
             {items.map(item => (
-              <li
-                key={item.id}
-                className="items-list__item"
-              >
-                <div className="items-list__item-cell items-list__item-cell--first">
+              <li key={item.id}>
+                <div className="item-cell">
                   {item.title}
                 </div>
-                <div className="items-list__item-cell items-list__item-cell--second">
+                <div className="item-cell">
                   {item.tags.map(tag => (
                     <Link
-                      className="items-list__tag"
+                      className="item-tag"
                       key={tag.id}
                       to={`/${tag.name}`}
                     >
@@ -55,7 +51,7 @@ function Home(): ReactElement {
                     </Link>
                   ))}
                 </div>
-                <div className="items-list__item-cell items-list__item-cell--third">
+                <div className="item-cell">
                   {item.date}
                 </div>
               </li>
@@ -64,7 +60,7 @@ function Home(): ReactElement {
         </div>
       </main>
       <footer>
-        <p className="page-home__footer-small-text">&copy; 2020 Jason Aaron Grier</p>
+        <p className="small-text">&copy; 2020 Jason Aaron Grier</p>
       </footer>
     </div>
   )

@@ -2,12 +2,12 @@
 | Filename | line # | TODO
 |:------|:------:|:------
 | [projects/jasonaarongrier-com/store/selectors.ts](projects/jasonaarongrier-com/store/selectors.ts#L1) | 1 | Find a use for selectors in this project
+| [projects/jasonaarongrier-com/store/types.ts](projects/jasonaarongrier-com/store/types.ts#L4) | 4 | How to get around putting this in every project??
 | [projects/hem-rocks/components/SlSoundPlayer.tsx](projects/hem-rocks/components/SlSoundPlayer.tsx#L51) | 51 | Update the playback engine
 | [projects/hem-rocks/components/SlSoundPlayer.tsx](projects/hem-rocks/components/SlSoundPlayer.tsx#L53) | 53 | Update the state
 | [projects/jasonaarongrier-com/components/App.tsx](projects/jasonaarongrier-com/components/App.tsx#L14) | 14 | 404 page
-| [projects/jasonaarongrier-com/routes/Home.tsx](projects/jasonaarongrier-com/routes/Home.tsx#L35) | 35 | Some kind of fun icon here
 | [projects/midst-press/components/CampaignMonitorForm.tsx](projects/midst-press/components/CampaignMonitorForm.tsx#L10) | 10 | All projects: Use line breaks for all component props
-| [projects/midst-press/components/ProcessNote.tsx](projects/midst-press/components/ProcessNote.tsx#L11) | 11 | How not to "freeze in" changing state values in event callbacks?
+| [projects/midst-press/components/ProcessNote.tsx](projects/midst-press/components/ProcessNote.tsx#L13) | 13 | How not to "freeze in" changing state values in event callbacks?
 | [projects/seurat/components/DeviceControls.tsx](projects/seurat/components/DeviceControls.tsx#L18) | 18 | Rename to "SideButtons" or sth
 | [projects/seurat/components/DeviceControls.tsx](projects/seurat/components/DeviceControls.tsx#L21) | 21 | Make into a selector
 | [projects/seurat/components/DeviceControls.tsx](projects/seurat/components/DeviceControls.tsx#L100) | 100 | Any??

@@ -17,7 +17,6 @@ function PoemNav({ match }: IProps): ReactElement {
 
   const dispatch = useDispatch()
 
-
   const currentPoemIndex = findIndex(poems, { url: match.params.poemUrl })
   const currentPoem = poems[currentPoemIndex]
   const previousPoem = poems[currentPoemIndex - 1]

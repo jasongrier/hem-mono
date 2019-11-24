@@ -54,35 +54,35 @@ br, p { clear:both}
 
 @font-face {
   font-family: 'futuraregular';
-  src: url('./assets/futuraregular.ttf') format('truetype');
+  src: url('./static/assets/futuraregular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'futuralight';
-  src: url('./assets/futuralight.ttf') format('truetype');
+  src: url('./static/assets/futuralight.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'futuramedium';
-  src: url('./assets/futuramedium.ttf') format('truetype');
+  src: url('./static/assets/futuramedium.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Futura_Bk_BT_Book';
-  src: url('./assets/Futura_Bk_BT_Book.ttf') format('truetype');
+  src: url('./static/assets/Futura_Bk_BT_Book.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'aileronregular';
-  src: url('./assets/aileron_regular_macroman/Aileron-Regular-webfont.ttf') format('truetype');
+  src: url('./static/assets/aileron_regular_macroman/Aileron-Regular-webfont.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -295,14 +295,14 @@ body {
 }
 
 .site-header #poem-nav .arrow.arrow-forward {
-  mask: url(./assets/arrow_forward.svg) no-repeat 100% 100%;
-  -webkit-mask: url(./assets/arrow_forward.svg) no-repeat 100% 100%;
+  mask: url(./static/assets/arrow_forward.svg) no-repeat 100% 100%;
+  -webkit-mask: url(./static/assets/arrow_forward.svg) no-repeat 100% 100%;
   transform: scale(1.4);
 }
 
 .site-header #poem-nav .arrow.arrow-back {
-  mask: url(./assets/arrow_back.svg) no-repeat 100% 100%;
-  -webkit-mask: url(./assets/arrow_back.svg) no-repeat 100% 100%;
+  mask: url(./static/assets/arrow_back.svg) no-repeat 100% 100%;
+  -webkit-mask: url(./static/assets/arrow_back.svg) no-repeat 100% 100%;
   transform: scale(1.3);
 }
 
@@ -821,7 +821,7 @@ body {
   float: left;
   width: 100vw;
   height: 100vh;
-  background: url(./assets/midst-loading.svg) no-repeat center center;
+  background: url(./static/assets/midst-loading.svg) no-repeat center center;
   background-size: 100px 100px;
 }
 
