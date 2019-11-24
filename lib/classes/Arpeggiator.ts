@@ -24,6 +24,33 @@ class Arpeggiator {
     this.position = 0
   }
 
+  private fillNotes(numNotes: number): boolean[] {
+    const notes: boolean[] = []
+
+    for (let i = 0; i < numNotes; i ++) {
+      notes.push(false)
+    }
+
+    return notes
+  }
+
+  private pickRandom(): number[] {
+    this.position = Math.floor(Math.random() * this.notes.length - 1)
+    return [this.position]
+  }
+
+  private pickUp(): number[] {
+    return []
+  }
+
+  private pickDown(): number[] {
+    return []
+  }
+
+  private pickAcross(): number[] {
+    return []
+  }
+
   public activateNote(note: number) {
     this.notes[note] = true
   }
@@ -65,33 +92,6 @@ class Arpeggiator {
     else {
       return []
     }
-  }
-
-  private fillNotes(numNotes: number): boolean[] {
-    const notes: boolean[] = []
-
-    for (let i = 0; i < numNotes; i ++) {
-      notes.push(false)
-    }
-
-    return notes
-  }
-
-  private pickRandom(): number[] {
-    this.position = Math.floor(Math.random() * this.notes.length - 1)
-    return [this.position]
-  }
-
-  private pickUp(): number[] {
-    return []
-  }
-
-  private pickDown(): number[] {
-    return []
-  }
-
-  private pickAcross(): number[] {
-    return []
   }
 }
 

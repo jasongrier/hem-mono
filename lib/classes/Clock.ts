@@ -1,12 +1,17 @@
 import { each } from 'lodash'
-import ClockDivider from './ClockDivider'
+
+export interface IClockSubscriber {
+  destroy: () => void
+  id: string
+  onTick: () => void
+}
 
 class Clock {
   private static instance: Clock
-  private clockDividers: {[id: string]: ClockDivider}
+  private subscribers: {[id: string]: IClockSubscriber}
 
   constructor() {
-    this.clockDividers = {}
+    this.subscribers = {}
 
     const tick = () => {
       requestAnimationFrame(tick)
@@ -24,17 +29,17 @@ class Clock {
   }
 
   private notifySubscribers() {
-    each(this.clockDividers, clockDivider => {
-      clockDivider.onTick()
+    each(this.subscribers, subscriber => {
+      subscriber.onTick()
     })
   }
 
-  public subscribe(clockDivider: ClockDivider) {
-    this.clockDividers[clockDivider.id] = clockDivider
+  public subscribe(subscriber: IClockSubscriber) {
+    this.subscribers[subscriber.id] = subscriber
   }
 
-  public unsubscribe({ id }: ClockDivider) {
-    delete this.clockDividers[id]
+  public unsubscribe({ id }: IClockSubscriber) {
+    delete this.subscribers[id]
   }
 }
 

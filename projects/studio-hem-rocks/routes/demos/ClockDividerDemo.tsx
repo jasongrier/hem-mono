@@ -1,42 +1,26 @@
 import React, { ReactElement, useEffect, useState } from 'react'
-import { Clock, ClockDivider } from '../../../../lib/classes'
+import { flashLight } from '../../functions'
+import { ClockDivider } from '../../../../lib/classes'
 
-const clock = Clock.getInstance()
-
-let clockDividerA
-let clockDividerB
-let clockDividerC
-
-function lightLight(name: string) {
-  const light = document.getElementById('clock-divider-demo-light-' + name)
-
-  if (!light) return
-
-  light.classList.add('studio__demo-light--lighted')
-  setTimeout(() => {
-    light.classList.remove('studio__demo-light--lighted')
-  }, 100)
-}
+let clockDividerA: ClockDivider
+let clockDividerB: ClockDivider
+let clockDividerC: ClockDivider
 
 function initDemo() {
   clockDividerA = new ClockDivider({
     ticksPerBeat: 32,
-    onTickCallback: () => lightLight('a'),
+    onTickCallback: () => flashLight('a'),
   })
 
   clockDividerB = new ClockDivider({
     ticksPerBeat: 24,
-    onTickCallback: () => lightLight('b'),
+    onTickCallback: () => flashLight('b'),
   })
 
   clockDividerC = new ClockDivider({
     ticksPerBeat: 16,
-    onTickCallback: () => lightLight('c'),
+    onTickCallback: () => flashLight('c'),
   })
-
-  clock.subscribe(clockDividerA)
-  clock.subscribe(clockDividerB)
-  clock.subscribe(clockDividerC)
 }
 
 function start() {
@@ -52,9 +36,9 @@ function stop() {
 }
 
 function cleanupDemo() {
-  clock.unsubscribe(clockDividerA)
-  clock.unsubscribe(clockDividerB)
-  clock.unsubscribe(clockDividerC)
+  clockDividerA.destroy()
+  clockDividerB.destroy()
+  clockDividerC.destroy()
 }
 
 function ClockDividerDemo(): ReactElement {
@@ -74,6 +58,7 @@ function ClockDividerDemo(): ReactElement {
     <div className='page clock-divider-demo'>
       <h1>Clock Divider Demo</h1>
       <p>Generate precise timers</p>
+
       <h2>Instructions</h2>
       <ul>
         <li>Click start</li>
