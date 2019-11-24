@@ -3,7 +3,7 @@ import { IState } from './types'
 import articles from '../data'
 
 const initialState: IState = {
-  articles,
+  items: [],
 }
 
 const reducer = (

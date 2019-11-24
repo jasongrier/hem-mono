@@ -1,43 +1,70 @@
 import React, { ReactElement } from 'react'
-import { Route, Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { Helmet } from 'react-helmet'
+import { Link } from 'react-router-dom'
 import { RootState } from '../store'
-import { TagFilter, TaggedSubjectsList } from '../../../../common/packages/tag'
-import { Hide } from '../../../../common/components'
-import InfoSheet from '../components/InfoSheet'
-import { renderArticleListLine } from '../components/ArticleListLine'
 
 function Home(): ReactElement {
-  const { articles } = useSelector((state: RootState) => ({
-    articles: state.app.articles
+  const { items } = useSelector((state: RootState) => ({
+    items: state.app.items,
   }))
 
+  const dispatch = useDispatch()
+
   return (
-    <div className="home-page">
+    <div className="page page-home">
+      <Helmet>
+        <title>Jason Aaron Grier</title>
+        <meta name="description" content="" />
+      </Helmet>
       <header>
-        <h1>
-          <Link to="/">JG</Link>
-        </h1>
+        <h1>Jason Aaron Grier</h1>
+        <div className="page-home__contact-links">
+          <a href="mailto:j@hem.rocks">j@hem.rocks</a>&nbsp;| &nbsp;
+          <a href="http://instagram.com/hem.rocks">@hem.rocks</a>
+        </div>
+        <nav className="page-home__page-links">
+          <Link to="/cv">CV</Link>
+          <Link to="/press">Press</Link>
+        </nav>
       </header>
       <main>
-        <section className="tags-filter">
-          <TagFilter subjects={articles} />
-        </section>
-        <section className="articles-list">
-          <ul>
-            <TaggedSubjectsList
-              subjects={articles}
-              renderSubject={renderArticleListLine}
-            />
+        <div className="items-list">
+          <header className="items-list__header">
+            <div className="items-list__column-header items-list-column-header--first"></div>
+            <div className="items-list-column-header items-list-column-header--second">tags</div>
+            <div className="items-list-column-header items-list-column-header--third">date</div>
+          </header>
+          <ul className="items-list__items">
+            {items.map(item => (
+              <li
+                key={item.id}
+                className="items-list__item"
+              >
+                <div className="items-list__item-cell items-list__item-cell--first">
+                  {item.title}
+                </div>
+                <div className="items-list__item-cell items-list__item-cell--second">
+                  {item.tags.map(tag => (
+                    <Link
+                      className="items-list__tag"
+                      key={tag.id}
+                      to={`/${tag.name}`}
+                    >
+                      {tag.name}
+                    </Link>
+                  ))}
+                </div>
+                <div className="items-list__item-cell items-list__item-cell--third">
+                  {item.date}
+                </div>
+              </li>
+            ))}
           </ul>
-        </section>
+        </div>
       </main>
-      <section className="info-sheet-container">
-        <Hide from="/category/:name">
-          <Route path="/:articleId?" component={InfoSheet} />
-        </Hide>
-      </section>
       <footer>
+        <p className="page-home__footer-small-text">&copy; 2020 Jason Aaron Grier</p>
       </footer>
     </div>
   )
