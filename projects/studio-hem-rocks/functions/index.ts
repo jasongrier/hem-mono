@@ -1,3 +1,4 @@
+export { default as flashLight } from './flash-light'
 export { default as formatMovieSpecs } from './format-movie-specs'
 export { default as generateImageSequenceUrls } from './generate-image-sequence-urls'
 export { default as imageDiffMatrix } from './image-diff-matrix'

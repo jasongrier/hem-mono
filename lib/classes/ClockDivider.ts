@@ -1,4 +1,7 @@
 import uuid from 'uuid/v1'
+import Clock, { IClockSubscriber } from './Clock'
+
+const clock = Clock.getInstance()
 
 type OnTickCallback = (tickCount: number) => void
 
@@ -16,11 +19,14 @@ class ClockDivider {
   public id: string
 
   constructor({ ticksPerBeat, onTickCallback }: IClockDividerOpts) {
-    this.id = uuid()
     this.on = false
     this.onTickCallback = onTickCallback
     this.tickCount = 1
     this.ticksPerBeat = ticksPerBeat
+
+    this.id = uuid()
+
+    clock.subscribe(this)
   }
 
   public onTick() {
@@ -54,6 +60,10 @@ class ClockDivider {
 
   public setTicksPerBeat(ticksPerBeat: number) {
     this.ticksPerBeat = ticksPerBeat
+  }
+
+  public destroy() {
+    clock.unsubscribe(this)
   }
 }
 

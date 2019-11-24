@@ -7,6 +7,7 @@ import ArrangerDemo from '../routes/demos/ArrangerDemo'
 import ClockDividerDemo from '../routes/demos/ClockDividerDemo'
 import FlipBookDemo from '../routes/demos/FlipBookDemo'
 import MidiDemo from '../routes/demos/MidiDemo'
+import PerformerDemo from '../routes/demos/PerformerDemo'
 
 function App(): ReactElement {
   return (
@@ -18,6 +19,7 @@ function App(): ReactElement {
         <Route exact path="/demos/clock-divider" component={ClockDividerDemo} />
         <Route exact path="/demos/flip-book" component={FlipBookDemo} />
         <Route exact path="/demos/midi" component={MidiDemo} />
+        <Route exact path="/demos/performer-demo" component={PerformerDemo} />
         {/* TODO: 404 page */}
       </Switch>
     </div>

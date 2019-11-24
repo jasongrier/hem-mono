@@ -25,6 +25,7 @@ function Home(): ReactElement {
           <li><Link to="/demos/clock-divider">Clock Divider</Link></li>
           <li><Link to="/demos/flip-book">Flip Book</Link></li>
           <li><Link to="/demos/midi">MIDI</Link></li>
+          <li><Link to="/demos/performer-demo">Performer Demo</Link></li>
         </ul>
       </nav>
 
