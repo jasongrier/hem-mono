@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet'
 
 function Sl(): ReactElement {
   return (
-    <div className="page page--sl">
+    <div className="page sl">
       <Helmet>
         <title>HEM: Sound Library</title>
         <meta name="description" content="" />

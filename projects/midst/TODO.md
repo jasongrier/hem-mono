@@ -4,9 +4,9 @@
 | [projects/midst/store/selectors.ts](projects/midst/store/selectors.ts#L1) | 1 | Example selector
 | [projects/hem-rocks/components/SlSoundPlayer.tsx](projects/hem-rocks/components/SlSoundPlayer.tsx#L51) | 51 | Update the playback engine
 | [projects/hem-rocks/components/SlSoundPlayer.tsx](projects/hem-rocks/components/SlSoundPlayer.tsx#L53) | 53 | Update the state
-| [projects/jasonaarongrier-com/components/Movie.tsx](projects/jasonaarongrier-com/components/Movie.tsx#L29) | 29 | Make this truly fps not some weird fudge factor
+| [projects/jasonaarongrier-com/components/App.tsx](projects/jasonaarongrier-com/components/App.tsx#L14) | 14 | 404 page
 | [projects/midst-press/components/CampaignMonitorForm.tsx](projects/midst-press/components/CampaignMonitorForm.tsx#L10) | 10 | All projects: Use line breaks for all component props
-| [projects/midst-press/components/ProcessNote.tsx](projects/midst-press/components/ProcessNote.tsx#L11) | 11 | How not to "freeze in" changing state values in event callbacks?
+| [projects/midst-press/components/ProcessNote.tsx](projects/midst-press/components/ProcessNote.tsx#L13) | 13 | How not to "freeze in" changing state values in event callbacks?
 | [projects/seurat/components/DeviceControls.tsx](projects/seurat/components/DeviceControls.tsx#L18) | 18 | Rename to "SideButtons" or sth
 | [projects/seurat/components/DeviceControls.tsx](projects/seurat/components/DeviceControls.tsx#L21) | 21 | Make into a selector
 | [projects/seurat/components/DeviceControls.tsx](projects/seurat/components/DeviceControls.tsx#L100) | 100 | Any??
@@ -23,22 +23,22 @@
 | [projects/seurat/components/SeuratDial.tsx](projects/seurat/components/SeuratDial.tsx#L23) | 23 | values in these handlers are frozen by some DOM event handler stuff in Nexus
 | [projects/seurat/components/SeuratDial.tsx](projects/seurat/components/SeuratDial.tsx#L26) | 26 | Immediately alter playback
 | [projects/seurat/routes/Home.tsx](projects/seurat/routes/Home.tsx#L5) | 5 | Switch to Webpack
-| [projects/studio/components/App.tsx](projects/studio/components/App.tsx#L3) | 3 | Use barrel files
-| [projects/studio/components/App.tsx](projects/studio/components/App.tsx#L21) | 21 | 404 page
-| [projects/studio/routes/Home.tsx](projects/studio/routes/Home.tsx#L7) | 7 | Header/Footer components
-| [projects/studio/routes/Home.tsx](projects/studio/routes/Home.tsx#L8) | 8 | Helmet here
-| [projects/studio/routes/Home.tsx](projects/studio/routes/Home.tsx#L16) | 16 | Create a separate public Github repo as a submodule
-| [projects/studio/routes/Home.tsx](projects/studio/routes/Home.tsx#L17) | 17 | Link to Github repo
-| [projects/studio/components/animation/FlipBook.tsx](projects/studio/components/animation/FlipBook.tsx#L10) | 10 | All projects, separate alphabetized required props from optionals
-| [projects/studio/components/animation/FlipBook.tsx](projects/studio/components/animation/FlipBook.tsx#L37) | 37 | Should be "speed" ––or rather, "slowness"–– not "frameRate"
-| [projects/studio/components/animation/FlipBook.tsx](projects/studio/components/animation/FlipBook.tsx#L57) | 57 | What if ––unlikely, but–– two frames have the same difference score??
-| [projects/studio/components/animation/FlipBook.tsx](projects/studio/components/animation/FlipBook.tsx#L59) | 59 | What if ––unlikely, but–– myDiffIndex === -1??
-| [projects/studio/components/animation/Theater.tsx](projects/studio/components/animation/Theater.tsx#L2) | 2 | Barrel file (all projects)
-| [projects/studio/components/animation/Theater.tsx](projects/studio/components/animation/Theater.tsx#L4) | 4 | Move to common
-| [projects/studio/routes/demos/MidiDemo.tsx](projects/studio/routes/demos/MidiDemo.tsx#L7) | 7 | Midi class
-| [projects/studio/routes/demos/MidiDemo.tsx](projects/studio/routes/demos/MidiDemo.tsx#L28) | 28 | Use ClockDivider
-| [projects/studio/routes/demos/MidiDemo.tsx](projects/studio/routes/demos/MidiDemo.tsx#L49) | 49 | Screenshot of how to do this in Ableton Live
-| [projects/studio/routes/demos/MidiDemo.tsx](projects/studio/routes/demos/MidiDemo.tsx#L51) | 51 | Screenshot and better description
-| [projects/studio/routes/projects/FlipBookDemo.tsx](projects/studio/routes/projects/FlipBookDemo.tsx#L3) | 3 | Barrel file (done here, but not in all projects)
-| [projects/studio/routes/projects/FlipBookDemo.tsx](projects/studio/routes/projects/FlipBookDemo.tsx#L141) | 141 | Should this be IFlipBookSpec?
-| [projects/studio/routes/projects/FlipBookDemo.tsx](projects/studio/routes/projects/FlipBookDemo.tsx#L185) | 185 | Should be a single component that gets passed route params
+| [projects/studio-hem-rocks/components/App.tsx](projects/studio-hem-rocks/components/App.tsx#L3) | 3 | Use barrel files
+| [projects/studio-hem-rocks/components/App.tsx](projects/studio-hem-rocks/components/App.tsx#L21) | 21 | 404 page
+| [projects/studio-hem-rocks/routes/Home.tsx](projects/studio-hem-rocks/routes/Home.tsx#L7) | 7 | Header/Footer components
+| [projects/studio-hem-rocks/routes/Home.tsx](projects/studio-hem-rocks/routes/Home.tsx#L8) | 8 | Helmet here
+| [projects/studio-hem-rocks/routes/Home.tsx](projects/studio-hem-rocks/routes/Home.tsx#L16) | 16 | Create a separate public Github repo as a submodule
+| [projects/studio-hem-rocks/routes/Home.tsx](projects/studio-hem-rocks/routes/Home.tsx#L17) | 17 | Link to Github repo
+| [projects/studio-hem-rocks/components/animation/FlipBook.tsx](projects/studio-hem-rocks/components/animation/FlipBook.tsx#L10) | 10 | All projects, separate alphabetized required props from optionals
+| [projects/studio-hem-rocks/components/animation/FlipBook.tsx](projects/studio-hem-rocks/components/animation/FlipBook.tsx#L37) | 37 | Should be "speed" ––or rather, "slowness"–– not "frameRate"
+| [projects/studio-hem-rocks/components/animation/FlipBook.tsx](projects/studio-hem-rocks/components/animation/FlipBook.tsx#L57) | 57 | What if ––unlikely, but–– two frames have the same difference score??
+| [projects/studio-hem-rocks/components/animation/FlipBook.tsx](projects/studio-hem-rocks/components/animation/FlipBook.tsx#L59) | 59 | What if ––unlikely, but–– myDiffIndex === -1??
+| [projects/studio-hem-rocks/components/animation/Theater.tsx](projects/studio-hem-rocks/components/animation/Theater.tsx#L2) | 2 | Barrel file (all projects)
+| [projects/studio-hem-rocks/components/animation/Theater.tsx](projects/studio-hem-rocks/components/animation/Theater.tsx#L4) | 4 | Move to common
+| [projects/studio-hem-rocks/routes/demos/MidiDemo.tsx](projects/studio-hem-rocks/routes/demos/MidiDemo.tsx#L7) | 7 | Midi class
+| [projects/studio-hem-rocks/routes/demos/MidiDemo.tsx](projects/studio-hem-rocks/routes/demos/MidiDemo.tsx#L28) | 28 | Use ClockDivider
+| [projects/studio-hem-rocks/routes/demos/MidiDemo.tsx](projects/studio-hem-rocks/routes/demos/MidiDemo.tsx#L49) | 49 | Screenshot of how to do this in Ableton Live
+| [projects/studio-hem-rocks/routes/demos/MidiDemo.tsx](projects/studio-hem-rocks/routes/demos/MidiDemo.tsx#L51) | 51 | Screenshot and better description
+| [projects/studio-hem-rocks/routes/projects/FlipBookDemo.tsx](projects/studio-hem-rocks/routes/projects/FlipBookDemo.tsx#L3) | 3 | Barrel file (done here, but not in all projects)
+| [projects/studio-hem-rocks/routes/projects/FlipBookDemo.tsx](projects/studio-hem-rocks/routes/projects/FlipBookDemo.tsx#L141) | 141 | Should this be IFlipBookSpec?
+| [projects/studio-hem-rocks/routes/projects/FlipBookDemo.tsx](projects/studio-hem-rocks/routes/projects/FlipBookDemo.tsx#L185) | 185 | Should be a single component that gets passed route params

@@ -1,6 +1,4 @@
+export { default as CampaignMonitorForm } from './CampaignMonitorForm'
 export { default as Dial } from './Dial'
-export { default as Link } from './Link'
-export { ILink } from './Link'
 export { default as Hide } from './Hide'
-export { default as Only } from './Only'
 export { default as XYControl, IXYVal } from './XYControl'

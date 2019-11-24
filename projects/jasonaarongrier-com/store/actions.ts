@@ -1,11 +1,16 @@
 import { AnyAction } from 'redux'
-import { SOME_ACTION } from './types'
+import {
+  LOAD_ITEMS,
 
-const someAction = (): AnyAction => ({
-  type: SOME_ACTION,
-  payload: null,
-})
+  ThunkResult,
+} from './types'
+
+const loadItems = (): ThunkResult<void> =>
+  async (dispatch) => {
+    const articlesList = await fetch('/static/data/index.json')
+    dispatch({ type: LOAD_ITEMS, payload: 'b' })
+  }
 
 export {
-  someAction,
+  loadItems,
 }
