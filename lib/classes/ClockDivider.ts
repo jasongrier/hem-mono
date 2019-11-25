@@ -1,9 +1,7 @@
 import uuid from 'uuid/v1'
-import Clock, { IClockSubscriber } from './Clock'
+import Clock, { OnTickCallback } from './Clock'
 
 const clock = Clock.getInstance()
-
-type OnTickCallback = (tickCount: number) => void
 
 export interface IClockDividerOpts {
   onTickCallback: OnTickCallback

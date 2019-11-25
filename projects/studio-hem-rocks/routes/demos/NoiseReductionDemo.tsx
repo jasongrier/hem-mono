@@ -2,17 +2,15 @@ import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
 import { BASE_SITE_PAGE_TITLE } from '../../config'
 
-function FlipBookDemo(): ReactElement {
+function NoiseReductionDemo(): ReactElement {
   return (
-    <main className='page flip-book-demo'>
+    <main className='page noise-reduction-demo'>
       <Helmet>
-        <title>{BASE_SITE_PAGE_TITLE} Flip Book Demo</title>
+        <title>{BASE_SITE_PAGE_TITLE} Noise Reduction Demo</title>
         <meta name="description" content="" />
       </Helmet>
-
-      <h1>Flip Book Demo</h1>
     </main>
   )
 }
 
-export default FlipBookDemo
+export default NoiseReductionDemo

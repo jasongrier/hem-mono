@@ -1,5 +1,5 @@
-function flashLight(name: string) {
-  const light = document.getElementById('clock-divider-demo-light-' + name)
+function flashLight(id: string) {
+  const light = document.getElementById(id)
 
   if (!light) return
 

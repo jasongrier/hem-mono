@@ -19,12 +19,30 @@ function Home(): ReactElement {
       </Helmet>
       <header>
         <div className="header-contact-links">
-          <a href="mailto:j@hem.rocks">j@hem.rocks</a>&nbsp;| &nbsp;
-          <a href="http://instagram.com/hem.rocks">@hem.rocks</a>
+          <ul>
+            <li>
+              <a href="mailto:j@hem.rocks">j@hem.rocks</a>
+            </li>
+            <li>
+              <a href="https://instagram.com/hem.rocks">@hem.rocks</a>
+            </li>
+          </ul>
         </div>
         <nav className="secondary-page-links">
-          <Link to="/cv">CV</Link>
-          <Link to="/press">Press</Link>
+          <ul>
+            <li>
+              <Link to="/cv">CV</Link>
+            </li>
+            <li>
+              <Link to="/press">Press</Link>
+            </li>
+            <li>
+              <Link to="/react-dev">Hire me</Link>
+            </li>
+            <li>
+              <a href="https://studio.hem.rocks">Studio</a>
+            </li>
+          </ul>
         </nav>
       </header>
       <main>

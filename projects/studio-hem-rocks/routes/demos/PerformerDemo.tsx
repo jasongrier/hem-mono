@@ -1,20 +1,26 @@
-import React, { ReactElement, useEffect, useState } from 'react'
-import { Clock, ClockDivider, Performer, PerformerMode } from '../../../../lib/classes'
+import React, { ReactElement, useEffect } from 'react'
+import { Helmet } from 'react-helmet'
+import { Performer, PerformerMode } from '../../../../lib/classes'
+import { flashLight } from '../../functions'
+import { BASE_SITE_PAGE_TITLE } from '../../config'
 
 let performer: Performer
 
 function initDemo() {
   performer = new Performer({
-    duration: 0,
+    duration: 100,
     mode: 'blink',
     speed: 1,
+    onTickCallback: () => flashLight('performer-divider-demo-light'),
   })
 }
 
 function start() {
+  performer.start(64)
 }
 
 function stop() {
+  performer.stop()
 }
 
 function cleanupDemo() {
@@ -29,9 +35,6 @@ const modes: PerformerMode[] = [
 ]
 
 function PerformerDemo(): ReactElement {
-  const [mode, setMode] = useState(0)
-  const [speed, setSpeed] = useState(1)
-
   useEffect(() => {
     initDemo()
 
@@ -41,7 +44,12 @@ function PerformerDemo(): ReactElement {
   }, [])
 
   return (
-    <div className='page performer-demo'>
+    <main className='page performer-demo'>
+      <Helmet>
+        <title>{BASE_SITE_PAGE_TITLE} Performer Demo</title>
+        <meta name="description" content="" />
+      </Helmet>
+
       <h1>Performer Demo</h1>
       <p>A phrase synthesiser</p>
 
@@ -53,11 +61,14 @@ function PerformerDemo(): ReactElement {
         <li>Use the speed selector to switch between speed</li>
       </ul>
       <p>
-        <button onClick={() => {}}>
+        <button
+          onMouseDown={start}
+          onMouseUp={stop}
+        >
           PLAY
         </button>
       </p>
-      <p>
+      {/* <p>
         <select
           value={mode}
           onChange={evt => setMode(parseInt(evt.target.value, 10))}
@@ -71,10 +82,15 @@ function PerformerDemo(): ReactElement {
             </option>
           ))}
         </select>
+      </p> */}
+      <p>
+        A:
+        <span
+          className="studio__demo-light"
+          id="performer-divider-demo-light"
+        />
       </p>
-      <p className="arpeggiator-demo__lights">
-      </p>
-    </div>
+    </main>
   )
 }
 
