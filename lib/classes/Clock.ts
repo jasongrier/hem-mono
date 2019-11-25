@@ -1,5 +1,7 @@
 import { each } from 'lodash'
 
+export type OnTickCallback = (tickCount: number) => void
+
 export interface IClockSubscriber {
   destroy: () => void
   id: string

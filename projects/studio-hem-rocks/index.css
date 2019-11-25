@@ -4,7 +4,9 @@ body {
   padding: 0;
 }
 
-.page {
+.page-header,
+.page,
+.page-footer {
   width: 768px;
   margin: 0 auto;
 }

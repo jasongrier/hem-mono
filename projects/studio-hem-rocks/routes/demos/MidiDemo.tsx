@@ -1,5 +1,7 @@
 import React, { ReactElement, useEffect, useState } from 'react'
+import { Helmet } from 'react-helmet'
 import WebMidi from 'webmidi'
+import { BASE_SITE_PAGE_TITLE } from '../../config'
 
 function MidiDemo(): ReactElement {
   const [started, setStarted] = useState(false)
@@ -12,18 +14,27 @@ function MidiDemo(): ReactElement {
 
     WebMidi.enable(function (err) {
       if (err) {
-        console.log('WebMidi could not be enabled.', err)
+        alert('WebMidi could not be enabled')
+        console.log('WebMidi could not be enabled', err)
         return
       }
 
       input = WebMidi.getInputByName('HEM MIDI Tunnel: A')
       output = WebMidi.getOutputByName('HEM MIDI Tunnel: D')
 
-      input.addListener('noteon', 'all',
-        function (evt: any) {
-          console.log(evt.note.name, evt.note.octave)
-        }
-      )
+      try {
+        input.addListener('noteon', 'all',
+          function (evt: any) {
+            console.log(evt.note.name, evt.note.octave)
+          }
+        )
+      }
+
+      catch(err) {
+        alert('MIDI communication could not be set up')
+        console.log('MIDI communication could not be set up', err)
+        return
+      }
 
       // TODO: Use ClockDivider
       clock = window.setInterval(() => {
@@ -35,17 +46,24 @@ function MidiDemo(): ReactElement {
     })
 
     return function cleanup() {
-      input.removeListener('noteon')
+      input && input.removeListener('noteon')
       clearInterval(clock)
     }
   }, [])
 
   return (
-    <div className='page midi-demo'>
+    <main className='page midi-demo'>
+      <Helmet>
+        <title>{BASE_SITE_PAGE_TITLE} MIDI Demo</title>
+        <meta name="description" content="" />
+      </Helmet>
+
       <h1>MIDI Demo</h1>
       <p>Send MIDI to and from a sequencer</p>
+
       <h2>Instructions</h2>
       <ul>
+        <li>Start the MIDI Tunnel</li>
         {/* TODO: Screenshot of how to do this in Ableton Live */}
         <li>Set up something like this in your DAW</li>
         {/* TODO: Screenshot and better description */}
@@ -72,7 +90,7 @@ function MidiDemo(): ReactElement {
           id="midi-demo-light-out"
         />
       </p>
-    </div>
+    </main>
   )
 }
 

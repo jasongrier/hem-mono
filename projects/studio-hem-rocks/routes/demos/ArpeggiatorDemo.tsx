@@ -9,7 +9,7 @@ const arpeggiator = new Arpeggiator({
   dimensions: initialDimensions,
 })
 
-let clockDivider
+let clockDivider: ClockDivider
 
 function lightLight(number: number) {
   const light = document.getElementById('arpeggiator-demo-light-' + number)
@@ -40,7 +40,7 @@ function stop() {
 }
 
 function cleanupDemo() {
-  clock.unsubscribe(clockDivider)
+  clock.unsubscribe(clockDivider) // TODO: Use new self-starting API
 }
 
 function ArpeggiatorDemo(): ReactElement {

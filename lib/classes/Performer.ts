@@ -1,5 +1,5 @@
 import uuid from 'uuid/v1'
-import Clock, { IClockSubscriber } from './Clock'
+import Clock, { IClockSubscriber, OnTickCallback } from './Clock'
 
 export type PerformanceFunction = (tick: number) => number[]
 export type PerformerMode = 'blink' | 'shrink' | 'swell' | 'trill' | PerformanceFunction
@@ -7,6 +7,7 @@ export type PerformerMode = 'blink' | 'shrink' | 'swell' | 'trill' | Performance
 export interface IPerformerOpts {
   duration: number
   mode: PerformerMode
+  onTickCallback: OnTickCallback
   speed: number
 }
 

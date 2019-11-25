@@ -1,49 +1,41 @@
 import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
+import { DemosNav } from '../components/content'
+import { BASE_SITE_TITLE } from '../config'
 
 function Home(): ReactElement {
   return (
-    <div className="page page--home">
-      {/* TODO: Header/Footer components */}
-      {/* TODO: Helmet here */}
-      <header>
-        <h1>HEM Studio</h1>
-      </header>
+    <main className="page home">
+      <Helmet>
+        <title>{BASE_SITE_TITLE}</title>
+        <meta name="description" content="" />
+      </Helmet>
 
-      <p>Space for utilities, prototyping, live coding, etc.</p>
-      <p>Note: Though this project is set up as a website, most of these tools require you to work locally.</p>
-      <p>Browse the MVP's and demos to see what stuff can be done.</p>
-      {/* TODO: Create a separate public Github repo as a submodule */}
-      {/* TODO: Link to Github repo */}
-      <p>Fork the git repo to get going.</p>
+      <p>Space for utilities, prototyping, live coding, works-in-progress, etc.</p>
+      <p>Browse the <Link to="/demos">demos</Link> to see what stuff can be done</p>
+      <p>Browse the <Link to="/projects">projects</Link> to see what stuff can be done</p>
+      {/* TODO: Link to zip; deploy task to update zip (without projects) */}
+      <p>Download the source code here</p>
+
+      <h2>Quick Start</h2>
+      <p>TBA</p>
 
       <h2>Demos</h2>
-      <nav>
-        <ul>
-          <li><Link to="/demos/arpeggiator">Arpeggiator</Link></li>
-          <li><Link to="/demos/arranger">Arranger</Link></li>
-          <li><Link to="/demos/clock-divider">Clock Divider</Link></li>
-          <li><Link to="/demos/flip-book">Flip Book</Link></li>
-          <li><Link to="/demos/midi">MIDI</Link></li>
-          <li><Link to="/demos/performer-demo">Performer Demo</Link></li>
-        </ul>
-      </nav>
+      <DemosNav />
 
       <h2>Projects</h2>
-      <p>
-        Link your projects here
-      </p>
-
-      <h2>Docs</h2>
       <nav>
         <ul>
-          <li><Link to="/docs/live-coding-animation">Live Coding for Animation/Video</Link></li>
-          <li><Link to="/docs/live-coding-sound">Live Coding for Sound</Link></li>
-          <li><Link to="/docs/arrangement">Podcast/Audiobook arrangement</Link></li>
-          <li><Link to="/docs/utilities">Utilities, such as moving, renaming trimming files</Link></li>
+          <li>
+            <Link to="/projects/orion">Orion</Link>
+          </li>
         </ul>
       </nav>
-    </div>
+
+      <h2>Documentation</h2>
+      <p>TBA</p>
+    </main>
   )
 }
 
