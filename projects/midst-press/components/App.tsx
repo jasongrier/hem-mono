@@ -7,19 +7,22 @@ import CampaignMonitorForm from '../components/CampaignMonitorForm'
 import Shapes from '../components/Shapes'
 import PoemNav from '../components/PoemNav'
 import SiteNavLinks from '../components/SiteNavLinks'
-import About from '../routes/About'
-import Contact from '../routes/Contact'
-import Faq from '../routes/Faq'
-import FaqForPoets from '../routes/FaqForPoets'
-import Home from '../routes/Home'
-import Nominate from '../routes/Nominate'
-import Poem from '../routes/Poem'
-import Read from '../routes/Read'
-import AboutTheApp from '../routes/AboutTheApp'
 import { RootState } from '../store'
 import { setMobileNavOpen } from '../store/actions'
 import ProcessNote from './ProcessNote'
 import LogoSvg from './LogoSvg'
+
+import {
+  About,
+  AboutTheApp,
+  Contact,
+  Faq,
+  FaqForPoets,
+  Home,
+  Nominate,
+  Poem,
+  Read,
+} from '../routes'
 
 function App(): ReactElement {
   const { mobileNavOpen } = useSelector((state: RootState) => ({

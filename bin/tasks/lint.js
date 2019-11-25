@@ -3,21 +3,20 @@ const { readdirSync } = require('fs')
 const doAll = require('../helpers/do-all')
 
 const expectedProjectFiles = [
-  'assets',
   'classes',
   'components',
-  'data',
   'functions',
   'hooks',
   'routes',
   'static',
   'store',
   'tests',
-  'workers',
 
   'index.css',
   'index.html',
   'index.ts',
+  '.htaccess',
+  'config.ts',
   'README.md',
   'TODO.md',
 ]
@@ -31,6 +30,7 @@ const expectedComponentsFiles = [
 ]
 
 const expectedRoutesFiles = [
+  'Home.tsx',
   'index.ts',
 ]
 
@@ -40,6 +40,13 @@ const expectedStoreFiles = [
   'reducer.ts',
   'selectors.ts',
   'types.ts',
+]
+
+const expectedStaticFiles = [
+  'assets',
+  'data',
+  'scripts',
+  'workers',
 ]
 
 const expectedTestsFiles = [
@@ -87,8 +94,11 @@ function lintProject(projectName) {
   lintFiles(join(projectDir, 'store'), expectedComponentsFiles)
   evaluateLint(projectName, expectedComponentsFiles, 'components/')
 
-  lintFiles(join(projectDir, 'store'), expectedRoutesFiles)
-  evaluateLint(projectName, expectedRoutesFiles, 'routes/')
+  lintFiles(join(projectDir, 'routes'), expectedRoutesFiles)
+  evaluateLint(projectName, expectedRoutesFiles, 'routes/', false)
+
+  lintFiles(join(projectDir, 'static'), expectedStaticFiles)
+  evaluateLint(projectName, expectedStaticFiles, 'static/')
 
   lintFiles(join(projectDir, 'store'), expectedStoreFiles)
   evaluateLint(projectName, expectedStoreFiles, 'store/')
@@ -98,12 +108,7 @@ function lintProject(projectName) {
   evaluateLint(projectName, expectedTestsFiles, 'tests/', false)
 }
 
-function evaluateLint(projectName, expectedFiles, prefix, checkUnexpected = true) {
-  if (unexpectedFilesFound[0] === '.gitkeep') {
-    console.log(`${projectName}${prefix ? '/' + prefix : ''} –– SKIP`)
-    return true
-  }
-
+function evaluateLint(projectName, expectedFiles, prefix = '', checkUnexpected = true) {
   if (expectedFiles.length !== expectedFilesFound.length) {
     expectedFiles.forEach(filepath => {
       if (expectedFilesFound.indexOf(filepath) === -1) {
