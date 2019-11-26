@@ -18,7 +18,6 @@ body {
   border-radius: 15px;
   background: white;
   border: 3px solid black;
-  transform: translate(10px, 5.5px);
 }
 
 .studio-demo-light-active {
@@ -29,17 +28,10 @@ body {
   background: orange;
 }
 
-.arpeggiator-demo-grid {
-  display: inline-block;
-  margin-left: 50px;
-  transform: rotate(180deg) scaleX(-1);
+.metronome-demo .studio-demo-light {
+  transform: translate(10px, 5.5px);
 }
 
-.arpeggiator-demo-grid-row {
-  display: block;
-  margin-bottom: 10px;
-}
-
-.arpeggiator-demo-grid .studio-demo-light {
+.arpeggiator-demo .studio-demo-light {
   margin-right: 15px;
 }

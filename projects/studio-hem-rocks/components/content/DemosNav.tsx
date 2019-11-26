@@ -12,7 +12,7 @@ function DemosNav(): ReactElement {
           <Link to="/demos/arranger">Arranger</Link>
         </li>
         <li>
-          <Link to="/demos/clock-divider">Clock Divider</Link>
+          <Link to="/demos/metronome">Metronome</Link>
         </li>
         <li>
           <Link to="/demos/flip-book">Flip Book</Link>

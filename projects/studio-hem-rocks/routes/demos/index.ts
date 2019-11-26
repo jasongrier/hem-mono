@@ -1,6 +1,6 @@
 export { default as ArpeggiatorDemo } from './ArpeggiatorDemo'
 export { default as ArrangerDemo } from './ArrangerDemo'
-export { default as ClockDividerDemo } from './ClockDividerDemo'
+export { default as MetronomeDemo } from './MetronomeDemo'
 export { default as Demos } from './Demos'
 export { default as FlipBookDemo } from './FlipBookDemo'
 export { default as MidiDemo } from './MidiDemo'
