@@ -79,14 +79,14 @@ function MidiDemo(): ReactElement {
       <p>
         IN:
         <span
-          className="studio__demo-light"
+          className="studio-demo-light"
           id="midi-demo-light-in"
         />
       </p>
       <p>
         OUT:
         <span
-          className="studio__demo-light"
+          className="studio-demo-light"
           id="midi-demo-light-out"
         />
       </p>

@@ -5,30 +5,34 @@ import { flashLight } from '../../functions'
 
 const clock = Clock.getInstance()
 
-const initialDimensions = { x: 4, y: 4 }
+const dimensions = { x: 4, y: 4 }
+const numNotes = dimensions.x * dimensions.y
 
 export const modes: Mode[] = [
+  'across',
   'random',
   'up',
   'down',
-  'across',
 ]
 
 const arpeggiator = new Arpeggiator({
-  dimensions: initialDimensions,
+  dimensions,
   mode: modes[0],
 })
 
 let clockDivider: ClockDivider
 
-function lightCol(rowNum: number) {
+function lightCol(rowNum: number, offset: number) {
   const lights = []
 
   for (let i = 1; i <= 4; i ++) {
+    const noteNum = (rowNum * 4 + i) + offset
+    const id = `clock-divider-demo-light-${noteNum}`
     lights.push(
       <span
-        className="studio__demo-light"
-        id={`clock-divider-demo-light-${rowNum * 4 + i}`}
+        className="studio-demo-light"
+        id={id}
+        key={id}
       />
     )
   }
@@ -36,17 +40,67 @@ function lightCol(rowNum: number) {
   return lights
 }
 
-function lightGrid() {
+function lightGrid(offset: number = 0) {
   const rows = []
 
   for (let r = 0; r < 4; r ++) {
     rows.push(
-      <p>{lightCol(r)}</p>
+      <span
+        className="arpeggiator-demo-grid-row"
+        key={r}
+      >
+        {lightCol(r, offset)}
+      </span>
     )
   }
 
   return rows
 }
+
+function activateNotes(some: boolean) {
+  deactivateAllNotes()
+
+  some ? activateSomeNotes() : activateAllNotes()
+
+  for (let i = 1; i <= numNotes; i ++) {
+    const light = document.getElementById(`clock-divider-demo-light-${i}`)
+
+    if (!light) return
+
+    if (arpeggiator.isNoteActive(i)) {
+      light.classList.add('studio-demo-light-active')
+    }
+
+    else {
+      light.classList.remove('studio-demo-light-active')
+    }
+  }
+}
+
+function deactivateAllNotes() {
+  for (let i = 1; i <= numNotes; i ++) {
+    arpeggiator.deactivateNote(i)
+  }
+}
+
+function activateAllNotes() {
+  for (let i = 1; i <= numNotes; i ++) {
+    arpeggiator.activateNote(i)
+  }
+}
+
+function activateSomeNotes() {
+  arpeggiator.activateNote(1)
+  arpeggiator.activateNote(2)
+  arpeggiator.activateNote(3)
+  arpeggiator.activateNote(4)
+  arpeggiator.activateNote(13)
+  arpeggiator.activateNote(14)
+  arpeggiator.activateNote(15)
+  arpeggiator.activateNote(16)
+}
+
+activateAllNotes()
 
 function initDemo() {
   clockDivider = new ClockDivider({
@@ -73,6 +127,7 @@ function cleanupDemo() {
 
 function ArpeggiatorDemo(): ReactElement {
   const [started, setStarted] = useState(false)
+  const [some, setSome] = useState(false)
 
   useEffect(() => {
     initDemo()
@@ -83,6 +138,7 @@ function ArpeggiatorDemo(): ReactElement {
   }, [])
 
   useEffect(() => started ? start() : stop(), [started])
+  useEffect(() => activateNotes(some), [some])
 
   return (
     <div className='page arpeggiator-demo'>
@@ -91,19 +147,22 @@ function ArpeggiatorDemo(): ReactElement {
 
       <h2>Instructions</h2>
       <ul>
-        <li>Click start</li>
+        <li>Click "START"</li>
         <li>The lights below should light according to the arpeggiator's mode</li>
-        <li>Click the lights to activate/deactivate them for playback</li>
         <li>Use the mode selector to switch between modes</li>
-        <li>Use the dimensions selector to change the grid size</li>
-        <li>Use the group selector to change the lights' colors</li>
-        <li>Use the isolate toggle make it so the two colors will not play at the same time</li>
-        <li>Use the tempo selectors to change the speed at which each color group plays</li>
+        <li>Click "SOME" to make only selected notes eligible to play</li>
+        <li>Click "EXCLUSIVE" to make the second arpeggiator block the first</li>
       </ul>
 
       <p>
         <button onClick={() => setStarted(!started)}>
           {started ? 'STOP' : 'START'}
+        </button>
+      </p>
+
+      <p>
+        <button onClick={() => setSome(!some)}>
+          {some ? 'ALL' : 'SOME'}
         </button>
       </p>
 
@@ -120,9 +179,15 @@ function ArpeggiatorDemo(): ReactElement {
         </select>
       </p>
 
-      <div className="arpeggiator-demo-grid">
-        {lightGrid()}
-      </div>
+      <p>
+        <span className="arpeggiator-demo-grid">
+          {lightGrid()}
+        </span>
+
+        <span className="arpeggiator-demo-grid">
+          {lightGrid(numNotes)}
+        </span>
+      </p>
     </div>
   )
 }

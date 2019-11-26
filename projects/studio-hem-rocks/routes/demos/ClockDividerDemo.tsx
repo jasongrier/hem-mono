@@ -80,21 +80,21 @@ function ClockDividerDemo(): ReactElement {
       <p>
         A:
         <span
-          className="studio__demo-light"
+          className="studio-demo-light"
           id="clock-divider-demo-light-a"
         />
       </p>
       <p>
         B:
         <span
-          className="studio__demo-light"
+          className="studio-demo-light"
           id="clock-divider-demo-light-b"
         />
       </p>
       <p>
         C:
         <span
-          className="studio__demo-light"
+          className="studio-demo-light"
           id="clock-divider-demo-light-c"
         />
       </p>

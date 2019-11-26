@@ -11,7 +11,7 @@ body {
   margin: 0 auto;
 }
 
-.studio__demo-light {
+.studio-demo-light {
   display: inline-block;
   width: 15px;
   height: 15px;
@@ -21,14 +21,25 @@ body {
   transform: translate(10px, 5.5px);
 }
 
-.studio__demo-light--lighted {
+.studio-demo-light-active {
+  background: gray;
+}
+
+.studio-demo-light-flashing {
   background: orange;
 }
 
 .arpeggiator-demo-grid {
+  display: inline-block;
+  margin-left: 50px;
   transform: rotate(180deg) scaleX(-1);
 }
 
-.arpeggiator-demo-grid .studio__demo-light {
+.arpeggiator-demo-grid-row {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.arpeggiator-demo-grid .studio-demo-light {
   margin-right: 15px;
 }
