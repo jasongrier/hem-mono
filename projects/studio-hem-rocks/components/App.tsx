@@ -10,7 +10,7 @@ import {
 import {
   ArpeggiatorDemo,
   ArrangerDemo,
-  ClockDividerDemo,
+  MetronomeDemo,
   Demos,
   FlipBookDemo,
   MidiDemo,
@@ -38,7 +38,7 @@ function App(): ReactElement {
         <Route exact path="/demos" component={Demos} />
         <Route exact path="/demos/arpeggiator" component={ArpeggiatorDemo} />
         <Route exact path="/demos/arranger" component={ArrangerDemo} />
-        <Route exact path="/demos/clock-divider" component={ClockDividerDemo} />
+        <Route exact path="/demos/metronome" component={MetronomeDemo} />
         <Route exact path="/demos/flip-book" component={FlipBookDemo} />
         <Route exact path="/demos/noise-reduction" component={NoiseReductionDemo} />
         <Route exact path="/demos/midi" component={MidiDemo} />
@@ -50,6 +50,7 @@ function App(): ReactElement {
       </Switch>
 
       <footer className="page-footer">
+        <hr/>
         <p>
           &copy; HEM 2020
         </p>
