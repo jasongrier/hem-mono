@@ -24,3 +24,7 @@ body {
 .studio__demo-light--lighted {
   background: orange;
 }
+
+.arpeggiator-demo .studio__demo-light {
+  margin-right: 15px;
+}

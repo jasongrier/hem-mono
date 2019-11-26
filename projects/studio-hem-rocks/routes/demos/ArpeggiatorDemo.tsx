@@ -1,9 +1,10 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import { Arpeggiator, Clock, ClockDivider } from '../../../../lib/classes'
+import { flashLight } from '../../functions'
 
 const clock = Clock.getInstance()
 
-const initialDimensions = { x: 8, y: 1 }
+const initialDimensions = { x: 4, y: 4 }
 
 const arpeggiator = new Arpeggiator({
   dimensions: initialDimensions,
@@ -11,21 +12,39 @@ const arpeggiator = new Arpeggiator({
 
 let clockDivider: ClockDivider
 
-function lightLight(number: number) {
-  const light = document.getElementById('arpeggiator-demo-light-' + number)
+function lightCol(rowNum: number) {
+  const lights = []
 
-  if (!light) return
+  for (let i = 1; i <= 4; i ++) {
+    lights.push(
+      <span
+        className="studio__demo-light"
+        id={`clock-divider-demo-light-${rowNum * 4 + i}`}
+      />
+    )
+  }
 
-  light.classList.add('studio__demo-light--lighted')
-  setTimeout(() => {
-    light.classList.remove('studio__demo-light--lighted')
-  }, 100)
+  return lights
+}
+
+function lightGrid() {
+  const rows = []
+
+  for (let r = 0; r < 4; r ++) {
+    rows.push(
+      <p>{lightCol(r)}</p>
+    )
+  }
+
+  return rows
 }
 
 function initDemo() {
   clockDivider = new ClockDivider({
-    ticksPerBeat: 32,
-    onTickCallback: () => arpeggiator.getNotes().forEach(lightLight),
+    ticksPerBeat: 8,
+    onTickCallback: () => {
+      arpeggiator.getNotes().forEach(n => flashLight(`clock-divider-demo-light-${n}`))
+    },
   })
 
   clock.subscribe(clockDivider)
@@ -60,6 +79,7 @@ function ArpeggiatorDemo(): ReactElement {
     <div className='page arpeggiator-demo'>
       <h1>Arpeggiator Demo</h1>
       <p>A multimode arpeggiator</p>
+
       <h2>Instructions</h2>
       <ul>
         <li>Click start</li>
@@ -71,13 +91,14 @@ function ArpeggiatorDemo(): ReactElement {
         <li>Use the isolate toggle make it so the two colors will not play at the same time</li>
         <li>Use the tempo selectors to change the speed at which each color group plays</li>
       </ul>
+
       <p>
         <button onClick={() => setStarted(!started)}>
           {started ? 'STOP' : 'START'}
         </button>
       </p>
-      <p className="arpeggiator-demo__lights">
-      </p>
+
+      {lightGrid()}
     </div>
   )
 }
