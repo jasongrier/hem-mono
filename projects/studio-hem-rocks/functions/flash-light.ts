@@ -3,9 +3,9 @@ function flashLight(id: string) {
 
   if (!light) return
 
-  light.classList.add('studio__demo-light--lighted')
+  light.classList.add('studio-demo-light-flashing')
   setTimeout(() => {
-    light.classList.remove('studio__demo-light--lighted')
+    light.classList.remove('studio-demo-light-flashing')
   }, 100)
 }
 

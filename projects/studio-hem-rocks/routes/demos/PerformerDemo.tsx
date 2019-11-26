@@ -86,7 +86,7 @@ function PerformerDemo(): ReactElement {
       <p>
         A:
         <span
-          className="studio__demo-light"
+          className="studio-demo-light"
           id="performer-divider-demo-light"
         />
       </p>
