@@ -1,13 +1,22 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import { Arpeggiator, Clock, ClockDivider } from '../../../../lib/classes'
+import { Mode } from '../../../../lib/classes/Arpeggiator'
 import { flashLight } from '../../functions'
 
 const clock = Clock.getInstance()
 
 const initialDimensions = { x: 4, y: 4 }
 
+export const modes: Mode[] = [
+  'random',
+  'up',
+  'down',
+  'across',
+]
+
 const arpeggiator = new Arpeggiator({
   dimensions: initialDimensions,
+  mode: modes[0],
 })
 
 let clockDivider: ClockDivider
@@ -96,6 +105,19 @@ function ArpeggiatorDemo(): ReactElement {
         <button onClick={() => setStarted(!started)}>
           {started ? 'STOP' : 'START'}
         </button>
+      </p>
+
+      <p>
+        <select onChange={evt => arpeggiator.setMode(evt.target.value as Mode)}>
+          {modes.map((mode: Mode) => (
+            <option
+              key={mode}
+              value={mode}
+            >
+              {mode}
+            </option>
+          ))}
+        </select>
       </p>
 
       <div className="arpeggiator-demo-grid">
