@@ -98,7 +98,9 @@ function ArpeggiatorDemo(): ReactElement {
         </button>
       </p>
 
-      {lightGrid()}
+      <div className="arpeggiator-demo-grid">
+        {lightGrid()}
+      </div>
     </div>
   )
 }

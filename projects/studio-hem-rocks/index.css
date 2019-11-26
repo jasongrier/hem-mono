@@ -23,8 +23,13 @@ body {
 
 .studio__demo-light--lighted {
   background: orange;
+
 }
 
-.arpeggiator-demo .studio__demo-light {
+.arpeggiator-demo-grid {
+  transform: rotate(180deg) scaleX(-1);
+}
+
+.arpeggiator-demo-grid .studio__demo-light {
   margin-right: 15px;
 }
