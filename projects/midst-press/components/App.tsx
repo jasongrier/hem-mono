@@ -1,7 +1,6 @@
 import React, { ReactElement, useEffect } from 'react'
 import { Switch, Route, Link, NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { Helmet } from 'react-helmet'
 import { Hide } from '../../../lib/components'
 import CampaignMonitorForm from '../components/CampaignMonitorForm'
 import Shapes from '../components/Shapes'
@@ -43,11 +42,6 @@ function App(): ReactElement {
 
   return (
     <div className="hem-application">
-      <Helmet>
-        <title>Midst</title>
-        <meta name="description" content="" />
-      </Helmet>
-
       <Route render={(props) => <Shapes {...props} />} />
 
       <Route

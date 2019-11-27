@@ -1,6 +1,8 @@
 import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+import { Helmet } from 'react-helmet'
+import { BASE_SITE_PAGE_TITLE } from '../config'
 import { RootState } from '../store'
 import { IPoem } from '../store/types'
 import { setMobileNavOpen } from '../store/actions'
@@ -14,6 +16,11 @@ function Read(): ReactElement {
 
   return (
     <div className="table-of-contents">
+      <Helmet>
+        <title>{BASE_SITE_PAGE_TITLE} Read</title>
+        <meta name="description" content="" />
+      </Helmet>
+
       <section className="heroine">
         <div className="issue-date">Winter&nbsp;2019</div>
         <div className="issue-number">The Pilot Issue</div>

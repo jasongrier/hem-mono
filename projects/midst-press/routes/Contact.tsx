@@ -1,8 +1,15 @@
 import React, { ReactElement } from 'react'
+import { Helmet } from 'react-helmet'
+import { BASE_SITE_PAGE_TITLE } from '../config'
 
 function Contact(): ReactElement {
   return (
     <div className="contact-page">
+      <Helmet>
+        <title>{BASE_SITE_PAGE_TITLE} Contact</title>
+        <meta name="description" content="" />
+      </Helmet>
+
       <div className="nominate-form">
         <form action="https://docs.google.com/forms/d/e/1FAIpQLSdKCn_TEKC8rHn6jiVdtvFzEeI1wzO2rRz-nz2hFYTvPMdfZQ/formResponse?embedded=true" target="_blank">
           <div className="form-block">
