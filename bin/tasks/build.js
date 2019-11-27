@@ -11,8 +11,6 @@ function build(projectName, andStart = false) {
 
   buildContent(projectName)
 
-  return
-
   if (andStart) {
     execSync(`parcel projects/${projectName}/index.html`, { stdio: 'inherit' })
   }
