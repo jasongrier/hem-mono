@@ -1,6 +1,7 @@
 import React, { ReactElement, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import uuid from 'uuid/v1'
+import { Helmet } from 'react-helmet'
+import { BASE_SITE_PAGE_TITLE } from '../config'
 import { RootState } from '../store'
 import { loadPoemData } from '../store/actions'
 import { IPoem, IMidstFile } from '../store/types'
@@ -38,7 +39,13 @@ function Poem({ match }: IProps): ReactElement {
       className="poem-page"
       ref={el}
     >
+      {/* TODO: Why is this a section and not a div like other pages? */}
       <section className="heroine heroine--normal">
+        <Helmet>
+          <title>{BASE_SITE_PAGE_TITLE} Player</title>
+          <meta name="description" content="" />
+        </Helmet>
+
         <div className="sliding-poems">
           <div
             className="sliding-poems__frame"

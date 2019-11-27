@@ -1,8 +1,15 @@
 import React, { ReactElement } from 'react'
+import { Helmet } from 'react-helmet'
+import { BASE_SITE_PAGE_TITLE } from '../config'
 
 function Faq(): ReactElement {
   return (
     <div className="faq-page">
+      <Helmet>
+        <title>{BASE_SITE_PAGE_TITLE} FAQ</title>
+        <meta name="description" content="" />
+      </Helmet>
+
       <section className="heroine heroine--normal">
         <h2>FAQ</h2>
           <h4>What is Midst?</h4>

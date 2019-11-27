@@ -1,8 +1,15 @@
 import React, { ReactElement } from 'react'
+import { Helmet } from 'react-helmet'
+import { BASE_SITE_PAGE_TITLE } from '../config'
 
 function Nominate(): ReactElement {
   return (
     <div className="nominate-form">
+      <Helmet>
+        <title>{BASE_SITE_PAGE_TITLE} Nominate</title>
+        <meta name="description" content="" />
+      </Helmet>
+
       <form action="https://docs.google.com/forms/d/e/1FAIpQLSei-hPO34f2fgPJ1-HWtsWa36CAKLB2TYPlfBUWUuErdnrqOQ/formResponse?embedded=true" target="_blank">
         <div className="form-block">
           {/* <p>
