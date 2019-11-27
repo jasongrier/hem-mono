@@ -22,7 +22,7 @@ else if (a1 && !a2 && !a3) { // `npm start my-project`
   start(a1)
 }
 
-else if (a1 === 'task') {
+else if (a1 === 'task') { // TODO: Command not found error
   switch (a2) {
     case 'build': // `npm run task build my-project`
       build(a3)

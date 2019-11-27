@@ -44,6 +44,7 @@ const expectedStoreFiles = [
 
 const expectedStaticFiles = [
   'assets',
+  'content',
   'data',
   'scripts',
   'workers',
@@ -123,12 +124,12 @@ function evaluateLint(projectName, expectedFiles, prefix = '', checkUnexpected =
     })
   }
 
-  if (
-    expectedFiles.length === expectedFilesFound.length
-    && !unexpectedFilesFound.length
-  ) {
-    console.log(`${projectName}${prefix ? '/' + prefix : ''} –– OK`)
-  }
+  // if ( // TODO: Verbose flag for this
+  //   expectedFiles.length === expectedFilesFound.length
+  //   && !unexpectedFilesFound.length
+  // ) {
+  //   console.log(`${projectName}${prefix ? '/' + prefix : ''} –– OK`)
+  // }
 }
 
 function lint(projectName) {
