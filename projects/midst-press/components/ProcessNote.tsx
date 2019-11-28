@@ -8,7 +8,7 @@ interface IProps {
   match: any
 }
 
-const cdnUrl = process.env.CDN_URL + 'midst-press/authors/staging/'
+const staticAssetsUrl = process.env.STATIC_ASSETS_URL + 'midst-press/authors/staging/'
 
 // TODO: How not to "freeze in" changing state values in event callbacks?
 let proxyProcessNoteOpen: boolean = false
@@ -69,7 +69,7 @@ function ProcessNote({ match }: IProps): ReactElement {
       {poem &&
         <div className="process-note__content">
           <div dangerouslySetInnerHTML={{__html: poem ? poem.processNote : ''}} />
-          <img src={`${cdnUrl}/${poem.authorId}/${poem.authorId}.jpg`} />
+          <img src={`${staticAssetsUrl}/${poem.authorId}/${poem.authorId}.jpg`} />
         </div>
       }
     </div>

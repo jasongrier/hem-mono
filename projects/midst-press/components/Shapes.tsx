@@ -1,6 +1,8 @@
 import React, { ReactElement, useEffect } from 'react'
 import $ from 'jquery'
 
+const staticAssetsUrl = process.env.STATIC_ASSETS_URL + 'midst-press/site/shapes/'
+
 interface IProps {
   location: any
 }
@@ -78,7 +80,7 @@ function Shapes({ location }: IProps): ReactElement {
             key={`${shape}-${color}`}
             className="shape-container"
           >
-            <img src={`http://midst.press/static-assets/website-assets/shapes/midst-shape-${shape}-${color}.png`} />
+            <img src={`${staticAssetsUrl}midst-shape-${shape}-${color}.png`} />
           </div>
         ))
       )}
