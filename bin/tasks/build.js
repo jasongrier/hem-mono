@@ -11,6 +11,8 @@ function build(projectName, andStart = false) {
 
   buildContent(projectName)
 
+  runTasks(projectName, andStart)
+
   if (andStart) {
     execSync(`parcel projects/${projectName}/index.html`, { stdio: 'inherit' })
   }
@@ -57,6 +59,17 @@ function buildContent(projectName) {
   }
 
   writeFileSync(join(outputDir, 'index.json'), JSON.stringify(index))
+}
+
+function runTasks(projectName, isStartup) {
+  const tasksFile = join(__dirname, '..', '..', 'projects', projectName, 'tasks.js')
+  const tasks = require(tasksFile)
+
+  if (!tasks || !tasks.length) return
+
+  for (let i = 0; i < tasks.length; i ++) {
+    tasks[i](isStartup)
+  }
 }
 
 module.exports = build

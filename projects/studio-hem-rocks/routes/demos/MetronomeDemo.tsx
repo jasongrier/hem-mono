@@ -56,7 +56,7 @@ function MetronomeDemo(): ReactElement {
   useEffect(() => started ? startDemo() : stopDemo(), [started])
 
   return (
-    <main className='page metronome-demo'>
+    <main className="page metronome-demo">
       <Helmet>
         <title>{BASE_SITE_PAGE_TITLE} Metronome Demo</title>
         <meta name="description" content="" />

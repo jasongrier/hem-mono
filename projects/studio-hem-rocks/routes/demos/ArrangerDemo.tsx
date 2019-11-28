@@ -4,7 +4,7 @@ import { BASE_SITE_PAGE_TITLE } from '../../config'
 
 function ArrangerDemo(): ReactElement {
   return (
-    <main className='page arranger-demo'>
+    <main className="page arranger-demo">
       <Helmet>
         <title>{BASE_SITE_PAGE_TITLE} Arranger Demo</title>
         <meta name="description" content="" />

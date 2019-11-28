@@ -5,7 +5,7 @@ import { BASE_SITE_PAGE_TITLE } from '../../../config'
 
 function Orion(): ReactElement {
   return (
-    <main className='page orion'>
+    <main className="page orion">
       <Helmet>
         <title>{BASE_SITE_PAGE_TITLE} Orion</title>
         <meta name="description" content="" />

@@ -73,7 +73,7 @@ function XYControl({ x = 0, y = 0, disabled = false, invert = true, onDisabledCl
       onMouseUp={onMouseUp}
       ref={el}
     >
-      <div className='x-y-control__handle'
+      <div className="x-y-control__handle"
         style={{
           bottom: toPercent(invert ? y : (y - 1) * -1),
           left: toPercent(x),

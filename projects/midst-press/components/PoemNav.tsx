@@ -45,7 +45,7 @@ function PoemNav({ match }: IProps): ReactElement {
             <i className="arrow arrow-forward"></i>
           </Link>
           :
-          <a className='disabled'>
+          <a className="disabled">
             <i className="arrow arrow-forward"></i>
           </a>
         }
