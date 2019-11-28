@@ -71,7 +71,7 @@ function ArpeggiatorDemo(): ReactElement {
   }, [pattern])
 
   return (
-    <div className='page arpeggiator-demo'>
+    <div className="page arpeggiator-demo">
       <h1>Arpeggiator Demo</h1>
       <p>A multimode arpeggiator</p>
 

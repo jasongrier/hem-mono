@@ -44,7 +44,7 @@ function PerformerDemo(): ReactElement {
   }, [])
 
   return (
-    <main className='page performer-demo'>
+    <main className="page performer-demo">
       <Helmet>
         <title>{BASE_SITE_PAGE_TITLE} Performer Demo</title>
         <meta name="description" content="" />

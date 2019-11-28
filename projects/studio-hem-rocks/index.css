@@ -28,6 +28,10 @@ body {
   background: orange;
 }
 
+.midi-demo .studio-demo-light {
+  transform: translate(5px, 5.5px);
+}
+
 .metronome-demo .studio-demo-light {
   transform: translate(10px, 5.5px);
 }

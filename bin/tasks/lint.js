@@ -12,12 +12,13 @@ const expectedProjectFiles = [
   'store',
   'tests',
 
+  '.htaccess',
+  'config.ts',
   'index.css',
   'index.html',
   'index.ts',
-  '.htaccess',
-  'config.ts',
   'README.md',
+  'tasks.js',
   'TODO.md',
 ]
 

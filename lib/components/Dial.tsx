@@ -101,13 +101,13 @@ function Dial({ className, color, label, onChange, onChangeDone, onPress, overfl
       ref={el}
     >
       <div
-        className='dial__ui'
+        className="dial__ui"
         id={id}
       />
-      <div className='dial__hub'>
+      <div className="dial__hub">
         {label && (
           <div
-            className='dial__label'
+            className="dial__label"
             id={id}
           />
         )}

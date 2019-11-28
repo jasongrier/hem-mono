@@ -4,7 +4,7 @@ import { BASE_SITE_PAGE_TITLE } from '../../config'
 
 function FlipBookDemo(): ReactElement {
   return (
-    <main className='page flip-book-demo'>
+    <main className="page flip-book-demo">
       <Helmet>
         <title>{BASE_SITE_PAGE_TITLE} Flip Book Demo</title>
         <meta name="description" content="" />

@@ -5,7 +5,7 @@ import { BASE_SITE_PAGE_TITLE } from '../../config'
 
 function Projects(): ReactElement {
   return (
-    <main className='page projects'>
+    <main className="page projects">
       <Helmet>
         <title>{BASE_SITE_PAGE_TITLE} Projects</title>
         <meta name="description" content="" />
