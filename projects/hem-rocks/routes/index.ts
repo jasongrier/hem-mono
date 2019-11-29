@@ -1,2 +1,2 @@
 export { default as Home } from './Home'
-export { default as Sl } from './Sl'
+export { default as SoundLibraryHome } from './SoundLibraryHome'

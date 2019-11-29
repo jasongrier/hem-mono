@@ -3,3 +3,31 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.site-header {
+  background: #222;
+  height: 50px;
+  line-height: 50px;
+}
+
+.site-header h1 {
+  display: inline-block;
+  width: 76px;
+  height: 25px;
+  line-height: 25px;
+  margin: 0 0 0 10px;
+  padding: 0;
+  color: #fff;
+  font-family: 'U8', sans-serif;
+  letter-spacing: 4px;
+  overflow: hidden;
+  vertical-align: middle;
+  transform: translate(0, -2px);
+}
+
+.site-header h1 span {
+  display: block;
+  width: 78px;
+  height: 25px;
+  transform: translate(-2px, -2px);
+}

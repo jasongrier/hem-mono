@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react'
 import { useDispatch } from 'react-redux'
 import { Helmet } from 'react-helmet'
+import { BASE_SITE_PAGE_TITLE } from '../config'
 
 function setCarouselPosition(id: string, position: number) { // Redux Thunk Action
   // Trigger Slick carousel to the selected panel
@@ -15,13 +16,13 @@ function openSoundDownloadPopup(id: string, stack: boolean = false) { // Redux A
   // TODO: Modal module
 }
 
-function Sl(): ReactElement {
+function SoundLibraryHome(): ReactElement {
   const dispatch = useDispatch()
 
   return (
-    <div className="page sl">
+    <div className="page sound-library-home">
       <Helmet>
-        <title>HEM: Sound Library</title>
+        <title>{BASE_SITE_PAGE_TITLE} Sound Library</title>
         <meta name="description" content="" />
       </Helmet>
       {/* TODO: Header component */}
@@ -36,7 +37,7 @@ function Sl(): ReactElement {
             <h2>New Packs</h2>
             <p>Four new packs for Ableton Live:</p>
           </header>
-          <nav className="new-packs-carousel-nav">
+          <nav className="carousel-nav">
             <ul>
               <li onClick={() => dispatch(setCarouselPosition('new-packs-heroine', 1))}>Grand Piano</li>
               <li onClick={() => dispatch(setCarouselPosition('new-packs-heroine', 3))}>Viola</li>
@@ -44,31 +45,31 @@ function Sl(): ReactElement {
               <li onClick={() => dispatch(setCarouselPosition('new-packs-heroine', 5))}>Seurat for Push</li>
             </ul>
           </nav>
-          <div className="new-packs">
+          <div className="pack-carousel">
             {/* <Carousel> */}
-              <div className="new-pack-panel">
+              <div className="pack-carousel-panel">
                 <h3>Grand Piano</h3>
                 <p>Lorem ipsum dolor sit amet</p>
-                <div className="new-pack-inset-image">
+                <div className="pack-carousel-inset-image">
                   {/* TODO: Closeup of the top four dials */}
                   {/* <img src="" alt=""/> */}
                 </div>
-                <div className="new-pack-movie-wallpaper">
+                <div className="pack-carousel-movie-wallpaper">
                   {/* TODO: This should be a flip book film and/or 3D CSS animation */}
                 </div>
-                <div className="new-pack-play">
+                <div className="pack-carousel-player">
                   {/* TODO:
                     Starts as a speaker icon, waveform playing
                     First click turns up the volume and resets the track to zero
                     Next button skips to the next demo, without seeming to advance the carousel
                   */}
-                  <div className="new-pack-speaker-up-button"></div>
-                  <div className="new-pack-next-button"></div>
-                  <div className="new-pack-waveform"></div>
+                  <div className="pack-carousel-speaker-up-button"></div>
+                  <div className="pack-carousel-next-button"></div>
+                  <div className="pack-carousel-waveform"></div>
                 </div>
                 {/* TODO: Analytics event */}
                 <button
-                  className="new-pack-download"
+                  className="pack-carousel-download"
                   onClick={() => dispatch(openSoundDownloadPopup('grand'))}
                 >
                   Download
@@ -78,7 +79,7 @@ function Sl(): ReactElement {
             {/* </Carousel> */}
             <div
               onClick={() => dispatch(advanceCarousel())}
-              className="new-packs-big-next-arrow"
+              className="pack-carousel-big-next-arrow"
             />
           </div>
         {/* </Displace> */}
@@ -90,4 +91,4 @@ function Sl(): ReactElement {
   )
 }
 
-export default Sl
+export default SoundLibraryHome
