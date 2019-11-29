@@ -56,6 +56,10 @@ async function composition() {
 
 composition()
 
+// Behind the scenes
+// Clock
+// Midi
+//
 // Basics
 // Counter
 //   setSpeed // number

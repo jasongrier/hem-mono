@@ -95,7 +95,7 @@ function Dial({ className, color, label, onChange, onChangeDone, onPress, overfl
     <div
       className={`
         dial
-          ${label ? ' dial--with-label' : ''}
+          ${label ? 'dial--with-label' : ''}
           ${className ? className : ''}
       `}
       ref={el}
