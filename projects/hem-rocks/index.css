@@ -5,6 +5,7 @@ body {
 }
 
 .site-header {
+  position: relative;
   background: #222;
   height: 50px;
   line-height: 50px;
@@ -30,4 +31,28 @@ body {
   width: 78px;
   height: 25px;
   transform: translate(-2px, -2px);
+}
+
+.site-header .hem-hamburger-menu-toggle {
+  z-index: 99999;
+  top: 13px;
+  right: 10px;
+}
+
+.site-header .hem-hamburger-menu-toggle-open {
+  top: 13px;
+  right: 12px;
+}
+
+.site-header .hem-hamburger-menu-toggle span {
+  background-color: #fff;
+}
+
+.site-header .hem-hamburger-menu-content {
+  z-index: 99998;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: red;
 }

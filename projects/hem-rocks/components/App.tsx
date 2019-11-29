@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
 import { Switch, Route } from 'react-router-dom'
+import { HamburgerMenu } from '../../../lib/components'
 import { Displace } from './layout'
 
 import {
@@ -16,6 +17,15 @@ function App(): ReactElement {
             <span>HEM</span>
           </h1>
         </Displace>
+        <HamburgerMenu>
+          <nav>
+            <ul>
+              <li>Foo</li>
+              <li>Bar</li>
+              <li>Baz</li>
+            </ul>
+          </nav>
+        </HamburgerMenu>
       </header>
       <main>
         <Switch>
