@@ -1,8 +1,15 @@
 import React, { ReactElement, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import { PlayPauseButton, Slider, SpeakerButton } from '../../../lib/components'
 import { Displace, Carousel } from '../components/layout'
 import { BASE_SITE_PAGE_TITLE } from '../config'
+import { RootState } from '../store'
+import { playerPlay, playerPause, playerSetVolume } from '../store/actions'
+
+function setPlayerPosition(foo: number) {
+
+}
 
 const dummySlides = [
   'Grand Piano',
@@ -21,9 +28,23 @@ const slideColors = [
 ]
 
 function SoundLibraryHome(): ReactElement {
+  const { playerMuted, playerPlaying } = useSelector((state: RootState) => ({
+    playerMuted: state.app.playerVolume === 0,
+    playerPlaying: state.app.playerPlaying,
+  }))
+
+  const dispatch = useDispatch()
+
   const [slideIndex, setSlideIndex] = useState(0)
-  const [muted, setMuted] = useState(false)
-  const [playing, setPlaying] = useState(true)
+  const [sliderValue, setSliderValue] = useState(0)
+
+  function setMuted() {
+    dispatch(playerMuted ? playerSetVolume(1) : playerSetVolume(0))
+  }
+
+  function setPlaying() {
+    dispatch(playerPlaying ? playerPause() : playerPlay())
+  }
 
   return (
     <div className="page sound-library-home">
@@ -48,12 +69,6 @@ function SoundLibraryHome(): ReactElement {
             >
               <span className="pack-nav-caret">{slideIndex === index ? '> ' : ''}</span>
               <span>{ title }</span>
-              {/* <div
-                className="pack-nav-play"
-                style={{
-                  backgroundColor: slideColors[slideIndex],
-                }}
-              /> */}
             </li>
           ))}
         </ul>
@@ -88,7 +103,7 @@ function SoundLibraryHome(): ReactElement {
               compensate={['skewX']}
               key={index}
               random={true}
-              skewX={1}
+              skewX={1.2}
               translateY={15}
               unipolar={['skewX']}
             >
@@ -111,27 +126,26 @@ function SoundLibraryHome(): ReactElement {
                   backgroundColor: slideColors[slideIndex],
                 }}
               >
-                Download
+                Download Now
               </button>
             </p>
           </div>
-          <div
-            className="pack-player"
-            // style={{
-            //   backgroundColor: slideColors[slideIndex],
-            // }}
-          >
+          <div className={`pack-player pack-player-${slideColors[slideIndex].replace('#', '')}`}>
             <PlayPauseButton
               className="pack-info-play"
-              playing={playing}
+              playing={playerPlaying}
               setPlaying={setPlaying}
             />
             <SpeakerButton
               className="pack-info-volume"
-              muted={muted}
+              muted={playerMuted}
               setMuted={setMuted}
             />
-            <Slider value={.5} />
+            <Slider
+              value={sliderValue}
+              onChange={setSliderValue}
+              onChangeDone={() => { dispatch(setPlayerPosition(sliderValue)) }}
+            />
           </div>
         </div>
       </div>

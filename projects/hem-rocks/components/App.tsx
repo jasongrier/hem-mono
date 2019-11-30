@@ -13,7 +13,7 @@ function App(): ReactElement {
       <header className="site-header">
         <Displace
           random={true}
-          rotate={1}
+          rotate={1.1}
         >
           <h1>
             <span>
