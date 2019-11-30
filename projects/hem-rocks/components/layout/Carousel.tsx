@@ -7,12 +7,12 @@ interface IProps {
 }
 
 const styleSheet = `
-  .hem-slider {
+  .hem-carousel {
     position: relative;
     overflow-x: hidden;
   }
 
-  .hem-slider-track {
+  .hem-carousel-track {
     position: absolute;
     top: 0;
     left: 0;
@@ -21,13 +21,13 @@ const styleSheet = `
   }
 `
 
-function Slider({ children, panelWidth, slideIndex, unit }: PropsWithChildren<IProps>): ReactElement {
+function Carousel({ children, panelWidth, slideIndex, unit }: PropsWithChildren<IProps>): ReactElement {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: styleSheet }}/>
-      <div className="hem-slider">
+      <div className="hem-carousel">
         <div
-          className="hem-slider-track"
+          className="hem-carousel-track"
           style={{
             left: '-' + (slideIndex * panelWidth) + unit,
           }}
@@ -39,4 +39,4 @@ function Slider({ children, panelWidth, slideIndex, unit }: PropsWithChildren<IP
   )
 }
 
-export default Slider
+export default Carousel
