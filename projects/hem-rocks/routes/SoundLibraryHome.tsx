@@ -5,7 +5,7 @@ import { BASE_SITE_PAGE_TITLE } from '../config'
 
 const dummySlides = [
   'Grand Piano',
-  'Grand Piano: Extended',
+  'Grand Piano – Extended',
   'Viola',
   'Noise Reduction Artefacts',
   'Seurat for Push',
@@ -35,7 +35,7 @@ function SoundLibraryHome(): ReactElement {
           backgroundColor: slideColors[slideIndex],
         }}
       >
-        <h2 className="pack-nav-header">Sound Library, Second Edition</h2>
+        <h2 className="pack-nav-header">NEW SOUNDS:</h2>
         <ul>
           {dummySlides.map((title, index) => (
             <li
@@ -45,20 +45,38 @@ function SoundLibraryHome(): ReactElement {
             >
               <span className="pack-nav-caret">{slideIndex === index ? '> ' : ''}</span>
               <span>{ title }</span>
-              {/* <div
+              <div
                 className="pack-nav-play"
                 style={{
                   backgroundColor: slideColors[slideIndex],
                 }}
-              /> */}
+              />
             </li>
           ))}
         </ul>
       </nav>
 
+      { slideIndex > 0 &&
+        <div
+          className="pack-slider-arrow pack-slider-arrow-prev"
+          onClick={() => setSlideIndex(slideIndex - 1)}
+        >
+          <div className="pack-slider-arrow-icon" />
+        </div>
+      }
+
+      { slideIndex < dummySlides.length - 1 &&
+        <div
+          className="pack-slider-arrow pack-slider-arrow-next"
+          onClick={() => setSlideIndex(slideIndex + 1)}
+        >
+          <div className="pack-slider-arrow-icon" />
+        </div>
+      }
+
       <div className="pack-slider">
         <Slider
-          panelWidth={80}
+          panelWidth={81}
           slideIndex={slideIndex}
           unit="vw"
         >
@@ -74,17 +92,31 @@ function SoundLibraryHome(): ReactElement {
               <div
                 className="pack-slider-panel"
                 style={{ backgroundImage: `url(../../static/assets/images/carousel-test/carousel-test-${index}.jpg)` }}
-              >
-                { index > 0 && index < dummySlides.length && (
-                  <div className="pack-slider-panel-content">
-                    <div className="panel-button panel-play" />
-                    <div className="panel-button panel-volume" />
-                  </div>
-                )}
-              </div>
+              />
             </Displace>
           ))}
         </Slider>
+
+        <div className="pack-info">
+          <div className="pack-info-text">
+            <h4>{ dummySlides[slideIndex] }</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend nisi non enim consequat tempus. Phasellus eget lacinia mi. Suspendisse molestie commodo mauris, quis maximus odio varius ut.</p>
+            <p>
+              <button
+                className="pack-info-cta"
+                style={{
+                  backgroundColor: slideColors[slideIndex],
+                }}
+              >
+                Download
+              </button>
+            </p>
+          </div>
+          <div className="pack-player">
+            <div className="pack-info-button pack-info-play" />
+            <div className="pack-info-button pack-info-volume" />
+          </div>
+        </div>
       </div>
     </div>
   )
