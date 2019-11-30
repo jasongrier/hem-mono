@@ -13,7 +13,7 @@ function App(): ReactElement {
       <header className="site-header">
         <Displace
           random={true}
-          rotate={1.5}
+          rotate={1}
         >
           <h1>
             <span>
@@ -21,8 +21,10 @@ function App(): ReactElement {
             </span>
           </h1>
         </Displace>
-        <MegaMenu />
       </header>
+
+      <MegaMenu />
+
       <main>
         <Switch>
           <Route exact path="/home" component={Home} />
