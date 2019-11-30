@@ -1,6 +1,9 @@
-import React, { PropsWithChildren, ReactElement, useState, CSSProperties } from 'react'
+import React, { PropsWithChildren, ReactElement, useRef, useState, useEffect } from 'react'
+import $ from 'jquery'
 
 interface IProps {}
+
+const contentSel = '.hem-hamburger-menu-content'
 
 const styleSheet = `
   .hem-hamburger-menu-toggle {
@@ -44,7 +47,7 @@ const styleSheet = `
     transform-origin: top right;
   }
 
-  .hem-hamburger-menu-content {
+  ${contentSel} {
     display: none;
   }
 
@@ -56,6 +59,16 @@ const styleSheet = `
 
 function HamburgerMenu({ children }: PropsWithChildren<IProps>): ReactElement {
   const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    const $menuLink = $(contentSel).find('a')
+
+    $menuLink.on('click', () => setOpen(false))
+
+    return function cleanup() {
+      $menuLink.off('click')
+    }
+  }, [])
 
   return (
     <>

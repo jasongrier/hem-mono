@@ -1,19 +1,23 @@
 import React, { ReactElement } from 'react'
 
 interface IProps {
+  hasNameField: boolean
   id: string
-  labelForName?: string
   labelForEmail?: string
-  submitButtonText?: string
+  labelForName?: string
   onFormSubmitted?: (evt: React.SyntheticEvent<HTMLFormElement>) => void
+  placeholderText: string
+  submitButtonText?: string
 }
 
 function CampaignMonitorForm({
+  hasNameField = true,
   id,
-  labelForName,
   labelForEmail,
-  submitButtonText = 'Sumbit',
+  labelForName,
   onFormSubmitted,
+  placeholderText = 'Email address',
+  submitButtonText = 'Submit',
  }: IProps): ReactElement {
   return (
     <div className="campaign-monitor-form">
@@ -25,11 +29,17 @@ function CampaignMonitorForm({
         data-id={id}
         onSubmit={onFormSubmitted}
       >
-        {labelForName && <label>{labelForName}</label>}
+        {hasNameField && labelForName &&
+          <label>{labelForName}</label>
+        }
 
-        <input id="fieldName" name="cm-name" type="text" placeholder="Name" />
+        {hasNameField &&
+          <input id="fieldName" name="cm-name" type="text" placeholder="Name" />
+        }
 
-        {labelForEmail && <label>{labelForEmail}</label>}
+        {labelForEmail &&
+          <label>{labelForEmail}</label>
+        }
 
         <input
           id="fieldEmail"
@@ -37,7 +47,7 @@ function CampaignMonitorForm({
           type="email"
           className="js-cm-email-input"
           required
-          placeholder="Email address"
+          placeholder={placeholderText}
         />
 
         <button type="submit">{submitButtonText}</button>
