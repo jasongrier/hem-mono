@@ -227,7 +227,7 @@ a {
   border: 1px solid #ccc;
 }
 
-.pack-slider .hem-slider {
+.pack-carousel .hem-carousel {
   position: absolute;
   width: 100vw;
   height: 95vh;
@@ -237,13 +237,13 @@ a {
   overflow: visible;
 }
 
-.pack-slider .hem-slider-track {
+.pack-carousel .hem-carousel-track {
   height: 100vh;
 }
 
-.pack-slider .hem-displace,
-.pack-slider .hem-displace-frame,
-.pack-slider-panel {
+.pack-carousel .hem-displace,
+.pack-carousel .hem-displace-frame,
+.pack-carousel-panel {
   display: inline-block;
   width: 80vw;
   height: 95vh;
@@ -251,7 +251,7 @@ a {
   background-size: cover;
 }
 
-.pack-slider-panel {
+.pack-carousel-panel {
   position: relative;
   transform: scale(1.2);
   transform-origin: center center;
@@ -264,28 +264,6 @@ a {
   z-index: 9999;
 }
 
-.pack-player {
-  position: absolute;
-  bottom: -12px;
-  right: -10px;
-  width: 60vw;
-  height: 60px;
-  background: rgba(0, 0, 0, 0.5);
-}
-
-.pack-player .pack-info-volume,
-.pack-player .pack-info-play {
-  position: absolute;
-}
-
-.pack-player .pack-info-volume {
-  right: 0;
-}
-
-.pack-player .pack-info-play {
-  left: 0;
-}
-
 .pack-info-text {
   position: absolute;
   bottom: -5px;
@@ -295,6 +273,7 @@ a {
   padding: 0 15px;
   background: rgba(0, 0, 0, 0.5);
   font-family: Arial, Helvetica, sans-serif;
+  /* TODO: Does Avenir need to be @font-face'd?? */
   font-family: Avenir, Arial, Helvetica, sans-serif;
   line-height: 24px;
   font-size: 14px;
@@ -317,7 +296,7 @@ a {
 }
 
 .pack-info-cta {
-  margin: 10px 0 0 10px;
+  margin: 10px 0 0 5px;
   padding: 15px 25px;
   border: none;
   color: #fff;
@@ -327,7 +306,7 @@ a {
   letter-spacing: .7px;
 }
 
-.pack-slider .hem-displace-frame {
+.pack-carousel .hem-displace-frame {
   overflow: hidden;
 }
 
@@ -430,7 +409,7 @@ a {
   transform: scaleX(1.6) translateX(0) translateY(1.5px);
 }
 
-.pack-slider-arrow {
+.pack-carousel-arrow {
   position: absolute;
   z-index: 9999;
   bottom: 5vh;
@@ -440,7 +419,7 @@ a {
   cursor: pointer;
 }
 
-.pack-slider-arrow .pack-slider-arrow-icon {
+.pack-carousel-arrow .pack-carousel-arrow-icon {
   position: absolute;
   top: 0;
   left: 0;
@@ -449,8 +428,8 @@ a {
   transform: scale(.8) translateX(8px) translateY(3px);
 }
 
-.pack-slider-arrow .pack-slider-arrow-icon::after,
-.pack-slider-arrow .pack-slider-arrow-icon::before {
+.pack-carousel-arrow .pack-carousel-arrow-icon::after,
+.pack-carousel-arrow .pack-carousel-arrow-icon::before {
   display: block;
   content: " ";
   position: absolute;
@@ -465,22 +444,48 @@ a {
   transition: opacity 300ms;
 }
 
-.pack-slider-arrow:hover .pack-slider-arrow-icon::after,
-.pack-slider-arrow:hover .pack-slider-arrow-icon::before {
+.pack-carousel-arrow:hover .pack-carousel-arrow-icon::after,
+.pack-carousel-arrow:hover .pack-carousel-arrow-icon::before {
   opacity: 1;
 }
 
-.pack-slider-arrow .pack-slider-arrow-icon::before {
+.pack-carousel-arrow .pack-carousel-arrow-icon::before {
   transform: rotate(20deg);
   top: 46px;
   left: 17px;
 }
 
-.pack-slider-arrow-prev {
+.pack-carousel-arrow-prev {
   left: 0;
   transform: rotate(180deg);
 }
 
-.pack-slider-arrow-next {
+.pack-carousel-arrow-next {
   right: 0;
+}
+
+.pack-player {
+  position: absolute;
+  bottom: -12px;
+  right: -10px;
+  width: 460px;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.pack-player .pack-info-volume,
+.pack-player .pack-info-play {
+  float: left;
+  margin-right: 4px;
+}
+
+.pack-player .hem-slider {
+  float: left;
+  width: 332px;
+  height: 60px;
+  border: none;
+}
+
+.pack-player .hem-slider-progress {
+  background: #222;
 }

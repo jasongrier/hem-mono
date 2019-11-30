@@ -1,7 +1,7 @@
 import React, { ReactElement, useState } from 'react'
 import { Helmet } from 'react-helmet'
-import { PlayPauseButton, SpeakerButton } from '../../../lib/components'
-import { Displace, Slider } from '../components/layout'
+import { PlayPauseButton, Slider, SpeakerButton } from '../../../lib/components'
+import { Displace, Carousel } from '../components/layout'
 import { BASE_SITE_PAGE_TITLE } from '../config'
 
 const dummySlides = [
@@ -48,12 +48,12 @@ function SoundLibraryHome(): ReactElement {
             >
               <span className="pack-nav-caret">{slideIndex === index ? '> ' : ''}</span>
               <span>{ title }</span>
-              <div
+              {/* <div
                 className="pack-nav-play"
                 style={{
                   backgroundColor: slideColors[slideIndex],
                 }}
-              />
+              /> */}
             </li>
           ))}
         </ul>
@@ -61,24 +61,24 @@ function SoundLibraryHome(): ReactElement {
 
       { slideIndex > 0 &&
         <div
-          className="pack-slider-arrow pack-slider-arrow-prev"
+          className="pack-carousel-arrow pack-carousel-arrow-prev"
           onClick={() => setSlideIndex(slideIndex - 1)}
         >
-          <div className="pack-slider-arrow-icon" />
+          <div className="pack-carousel-arrow-icon" />
         </div>
       }
 
       { slideIndex < dummySlides.length - 1 &&
         <div
-          className="pack-slider-arrow pack-slider-arrow-next"
+          className="pack-carousel-arrow pack-carousel-arrow-next"
           onClick={() => setSlideIndex(slideIndex + 1)}
         >
-          <div className="pack-slider-arrow-icon" />
+          <div className="pack-carousel-arrow-icon" />
         </div>
       }
 
-      <div className="pack-slider">
-        <Slider
+      <div className="pack-carousel">
+        <Carousel
           panelWidth={81}
           slideIndex={slideIndex}
           unit="vw"
@@ -93,12 +93,12 @@ function SoundLibraryHome(): ReactElement {
               unipolar={['skewX']}
             >
               <div
-                className="pack-slider-panel"
+                className="pack-carousel-panel"
                 style={{ backgroundImage: `url(../../static/assets/images/carousel-test/carousel-test-${index}.jpg)` }}
               />
             </Displace>
           ))}
-        </Slider>
+        </Carousel>
 
         <div className="pack-info">
           <div className="pack-info-text">
@@ -115,7 +115,12 @@ function SoundLibraryHome(): ReactElement {
               </button>
             </p>
           </div>
-          <div className="pack-player">
+          <div
+            className="pack-player"
+            // style={{
+            //   backgroundColor: slideColors[slideIndex],
+            // }}
+          >
             <PlayPauseButton
               className="pack-info-play"
               playing={playing}
@@ -126,6 +131,7 @@ function SoundLibraryHome(): ReactElement {
               muted={muted}
               setMuted={setMuted}
             />
+            <Slider value={.5} />
           </div>
         </div>
       </div>
