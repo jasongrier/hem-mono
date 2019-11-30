@@ -1,5 +1,6 @@
 import React, { ReactElement, useState } from 'react'
 import { Helmet } from 'react-helmet'
+import { PlayPauseButton, SpeakerButton } from '../../../lib/components'
 import { Displace, Slider } from '../components/layout'
 import { BASE_SITE_PAGE_TITLE } from '../config'
 
@@ -21,6 +22,8 @@ const slideColors = [
 
 function SoundLibraryHome(): ReactElement {
   const [slideIndex, setSlideIndex] = useState(0)
+  const [muted, setMuted] = useState(false)
+  const [playing, setPlaying] = useState(true)
 
   return (
     <div className="page sound-library-home">
@@ -35,7 +38,7 @@ function SoundLibraryHome(): ReactElement {
           backgroundColor: slideColors[slideIndex],
         }}
       >
-        <h2 className="pack-nav-header">NEW SOUNDS:</h2>
+        <h2 className="pack-nav-header">FEB 2020 &mdash; New packs in the Sound Library:</h2>
         <ul>
           {dummySlides.map((title, index) => (
             <li
@@ -99,7 +102,7 @@ function SoundLibraryHome(): ReactElement {
 
         <div className="pack-info">
           <div className="pack-info-text">
-            <h4>{ dummySlides[slideIndex] }</h4>
+            <h4>New Pack: { dummySlides[slideIndex] }</h4>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend nisi non enim consequat tempus. Phasellus eget lacinia mi. Suspendisse molestie commodo mauris, quis maximus odio varius ut.</p>
             <p>
               <button
@@ -113,8 +116,16 @@ function SoundLibraryHome(): ReactElement {
             </p>
           </div>
           <div className="pack-player">
-            <div className="pack-info-button pack-info-play" />
-            <div className="pack-info-button pack-info-volume" />
+            <PlayPauseButton
+              className="pack-info-play"
+              playing={playing}
+              setPlaying={setPlaying}
+            />
+            <SpeakerButton
+              className="pack-info-volume"
+              muted={muted}
+              setMuted={setMuted}
+            />
           </div>
         </div>
       </div>

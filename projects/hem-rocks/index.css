@@ -273,54 +273,51 @@ a {
   background: rgba(0, 0, 0, 0.5);
 }
 
-.pack-info-button {
+.pack-player .pack-info-volume,
+.pack-player .pack-info-play {
   position: absolute;
-  top: 0;
-  width: 60px;
-  height: 60px;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
 }
 
-.pack-info-volume {
+.pack-player .pack-info-volume {
   right: 0;
 }
 
-.pack-info-play {
+.pack-player .pack-info-play {
   left: 0;
-}
-
-.pack-info-button::after {
-  display: block;
-  content: " ";
-  width: 0px;
-  height: 0px;
-  border-top: 16px solid transparent;
-  border-bottom: 16px solid transparent;
-  border-left: 16px solid #fff;
-  transform: scaleX(1.6) translateX(2.5px);
 }
 
 .pack-info-text {
   position: absolute;
   bottom: -5px;
   right: -7px;
-  width: 250px;
-  height: 350px;
+  width: 350px;
+  height: 300px;
   padding: 0 15px;
   background: rgba(0, 0, 0, 0.5);
   font-family: Arial, Helvetica, sans-serif;
   font-family: Avenir, Arial, Helvetica, sans-serif;
   line-height: 24px;
-  font-size: 15px;
+  font-size: 14px;
   color: #eee;
 }
 
+.pack-info-text h4 {
+  margin-left: 5px;
+  letter-spacing: 1px;
+  font-weight: normal;
+  text-transform: uppercase;
+  scroll-margin-bottom: 0;
+}
+
+.pack-info-text p {
+  height: 100px;
+  margin-top: -5px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
 .pack-info-cta {
-  margin: 10px 0 0 0;
+  margin: 10px 0 0 10px;
   padding: 15px 25px;
   border: none;
   color: #fff;
@@ -336,23 +333,24 @@ a {
 
 .pack-nav-header {
   position: absolute;
-  top: 3px;
-  left: 7px;
+  top: 7px;
+  left: 10px;
   margin: 0 0 10px 0;
   padding: 0;
   font-family: 'U8', sans-serif;
-  font-weight: bold;
-  font-size: 10px;
+  font-weight: normal;
+  font-size: 11px;
   color: #fff;
-  opacity: 0.5;
+  opacity: 0.7;
+  letter-spacing: 1px;
 }
 
 .pack-nav {
   position: absolute;
-  top: 70px;
+  top: 90px;
   left: 20px;
   z-index: 9999;
-  padding: 60px 60px 30px 30px;
+  padding: 70px 60px 30px 30px;
   font-family: 'U8', sans-serif;
   font-size: 18px;
   background-color: #000;
@@ -435,7 +433,7 @@ a {
 .pack-slider-arrow {
   position: absolute;
   z-index: 9999;
-  bottom: 25vh;
+  bottom: 5vh;
   width: 30px;
   height: 100px;
   background: rgba(0, 0, 0, .5);
