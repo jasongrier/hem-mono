@@ -72,7 +72,7 @@ function HamburgerMenu({ children }: PropsWithChildren<IProps>): ReactElement {
 
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: styleSheet }}/>
+      <style dangerouslySetInnerHTML={{ __html: styleSheet }} />
       <div
         className={`
           hem-hamburger-menu-toggle
