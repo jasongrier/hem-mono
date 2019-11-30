@@ -2,24 +2,27 @@ html,
 body {
   margin: 0;
   padding: 0;
+  background: #111;
 }
 
 .site-header {
   position: absolute;
-  z-index: 9999;
+  top: 0;
+  left: 0;
+  z-index: 9998;
   width: 100vw;
   height: 50px;
-  background: #222;
+  background: #111;
 }
 
 .site-header .hem-displace-frame {
   margin-left: -10px;
   padding: 0 60px;
-  background: #222;
+  background: #111;
   height: 50px;
 }
 
-.site-header a {
+a {
   color: inherit;
   text-decoration: none;
 }
@@ -50,34 +53,34 @@ body {
   transform: translate(-2px, -2px);
 }
 
-.site-header .hem-hamburger-menu-toggle {
+.hem-hamburger-menu-toggle {
   z-index: 99999;
   top: 9px;
   right: 10px;
   transform: scale(0.7);
 }
 
-.site-header .hem-hamburger-menu-toggle-open {
+.hem-hamburger-menu-toggle-open {
   top: 13px;
   right: 12px;
 }
 
-.site-header .hem-hamburger-menu-toggle span {
-  background-color: #fff;
+.hem-hamburger-menu-toggle span {
+  background-color: #fff !important;
 }
 
-.site-header .hem-hamburger-menu-toggle-open span {
-  background-color: #000;
+.hem-hamburger-menu-toggle-open span {
+  background-color: #000 !important;
 }
 
-.site-header .hem-hamburger-menu-content {
+.hem-hamburger-menu-content {
   z-index: 99998;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   padding: 100px 0;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.97);
   box-sizing: border-box;
   font-family: 'U8', sans-serif;
 }
@@ -224,14 +227,174 @@ body {
   border: 1px solid #ccc;
 }
 
-.pack-carousel {
+.pack-slider .hem-slider {
+  position: absolute;
+  width: 100vw;
+  height: 95vh;
+  top: 0;
+  left: -75vw;
+  z-index: 9997;
+  overflow: visible;
+}
+
+.pack-slider .hem-slider-track {
+  height: 100vh;
+}
+
+.pack-slider .hem-displace,
+.pack-slider .hem-displace-frame,
+.pack-slider-panel {
+  display: inline-block;
+  width: 80vw;
+  height: 95vh;
+  margin-right: 10px;
+  background-size: cover;
+}
+
+.pack-slider-panel {
+  position: relative;
+  transform: scale(1.2);
+  transform-origin: center center;
+}
+
+.pack-slider-panel-content {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 9998;
+  width: 80vw;
+  height: 95vh;
+  transform: scale(.8);
 }
 
-.pack-carousel img {
-  width: auto;
-  height: 100vh;
+.panel-button {
+  position: absolute;
+  bottom: -5px;
+  right: -7px;
+  width: 60px;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.panel-volume {
+  right: 56px;
+}
+
+.panel-button::after {
+  display: block;
+  content: " ";
+  width: 0px;
+  height: 0px;
+  border-top: 16px solid transparent;
+  border-bottom: 16px solid transparent;
+  border-left: 16px solid #fff;
+  transform: scaleX(1.6) translateX(2.5px);
+}
+
+.pack-slider .hem-displace-frame {
+  overflow: hidden;
+}
+
+.pack-nav-header {
+  position: absolute;
+  top: 1px;
+  left: 5px;
+  margin: 0 0 10px 0;
+  padding: 0;
+  font-family: 'U8', sans-serif;
+  font-weight: bold;
+  font-size: 10px;
+  font-weight: normal;
+  color: #999;
+}
+
+.pack-nav {
+  position: absolute;
+  top: 70px;
+  left: 20px;
+  z-index: 9999;
+  padding: 40px 40px 15px 15px;
+  font-family: 'U8', sans-serif;
+  font-size: 18px;
+  background-color: #000;
+  color: #fff;
+  transition: background-color 500ms;
+}
+
+.pack-nav ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.pack-nav ul li {
+  position: relative;
+  margin: 0 0 20px 0;
+  padding: 0;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.pack-nav ul li span {
+  display: inline-block;
+  padding-bottom: 3px;
+}
+
+.pack-nav ul li span.pack-nav-caret {
+  margin-right: 7px;
+  transform: translateY(-3px);
+}
+
+.pack-nav ul li:hover span {
+  padding-bottom: 1px;
+  border-bottom: 2px solid #fff;
+}
+
+.pack-nav ul li.active {
+  font-size: 28px;
+  cursor: auto;
+}
+
+.pack-nav ul li.active:hover span {
+  padding-bottom: 3px;
+  border-bottom: none;
+}
+
+.pack-nav-play {
+  padding-bottom: 3px;
+  border-bottom: none;
+}
+
+.pack-nav li {
+  width: calc(100% + 40px);
+}
+
+.pack-nav-play {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 50px;
+  height: calc(100% - 3px);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.pack-nav li.active .pack-nav-play {
+  display: flex;
+}
+
+.pack-nav-play::after {
+  display: block;
+  content: " ";
+  width: 0px;
+  height: 0px;
+  border-top: 16px solid transparent;
+  border-bottom: 16px solid transparent;
+  border-left: 16px solid #fff;
+  transform: scaleX(1.6) translateX(1px) translateY(1.5px);
 }
