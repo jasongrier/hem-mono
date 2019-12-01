@@ -31,6 +31,7 @@ function App(): ReactElement {
           <Route exact path="/sound-library" component={SoundLibraryHome} />
         </Switch>
       </main>
+
       <div className="site-footer">
 
       </div>
