@@ -23,7 +23,7 @@ interface IProps {
 let stateValueProxy: number
 
 function Dial({ className, color, label, onChange, onChangeDone, onPress, overflowHack = 17, size = 49, value: propsValue = 0 }: IProps): ReactElement {
-  const id = uuid()
+  const id = uuid() // TODO: This doesn't (technically) work; uuid will change every render
   const dial = React.useRef<null | Nexus.Dial>(null)
   const el = React.useRef<null | HTMLDivElement>(null)
 
@@ -35,7 +35,7 @@ function Dial({ className, color, label, onChange, onChangeDone, onPress, overfl
     dial.current = new Nexus.Dial(id, {
       interaction: 'vertical',
       mode: 'relative',
-      // TODO: This is hardcoded in index.css as well
+      // TODO: This is hard coded in index.css as well
       size: [size, size],
     })
 

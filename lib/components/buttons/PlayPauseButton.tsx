@@ -11,7 +11,6 @@ const styleSheet = `
     position: relative;
     width: 60px;
     height: 60px;
-    background: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
