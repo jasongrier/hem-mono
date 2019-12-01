@@ -2,7 +2,7 @@ import React, { ReactElement, useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
-import { PlayPauseButton, ChevronButton } from '../../../lib/components/buttons'
+import { PlayPauseButton, FastForwardButton } from '../../../lib/components/buttons'
 import { Slider } from '../../../lib/components'
 import { WebsitePlayer } from '../../../lib/classes/audio'
 import { Displace, Carousel } from '../components/layout'
@@ -187,6 +187,14 @@ function SoundLibraryHome(): ReactElement {
                 className="pack-info-play"
                 playing={playerPlaying}
                 setPlaying={togglePlaying}
+              />
+            </div>
+            <div className="pack-player-button-wrapper">
+              <FastForwardButton
+                className="pack-info-fast-forward"
+                onClick={() => {
+                  setCarouselIndex(carouselIndex < 4 ? carouselIndex + 1 : 0)
+                }}
               />
             </div>
             <Slider
