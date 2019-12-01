@@ -1,7 +1,9 @@
 import React, { ReactElement, useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Helmet } from 'react-helmet'
-import { PlayPauseButton, Slider, SpeakerButton } from '../../../lib/components'
+import { Link } from 'react-router-dom'
+import { PlayPauseButton, ChevronButton } from '../../../lib/components/buttons'
+import { Slider } from '../../../lib/components'
 import { WebsitePlayer } from '../../../lib/classes/audio'
 import { Displace, Carousel } from '../components/layout'
 import { BASE_SITE_PAGE_TITLE } from '../config'
@@ -14,22 +16,32 @@ const carouselItems = [
     title: 'Grand Piano',
     color: '#000000',
     soundUrl: 'http://static.hem.rocks/hem-rocks/sl-demos/grand_piano_test_november.mp3',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend nisi non enim consequat tempus. Phasellus eget lacinia mi. Suspendisse molestie commodo mauris, quis maximus odio varius ut.',
+    heightDisplacement: Math.random() * 100,
   }, {
     title: 'Grand Piano – Extended',
     color: '#103740',
     soundUrl: 'http://static.hem.rocks/hem-rocks/sl-demos/grand_piano_test_november.mp3',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend nisi non enim consequat tempus. Phasellus eget lacinia mi. Suspendisse molestie commodo mauris, quis maximus odio varius ut.',
+    heightDisplacement: Math.random() * 100,
   }, {
     title: 'Viola',
     color: '#271040',
     soundUrl: 'http://static.hem.rocks/hem-rocks/sl-demos/grand_piano_test_november.mp3',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend nisi non enim consequat tempus. Phasellus eget lacinia mi. Suspendisse molestie commodo mauris, quis maximus odio varius ut.',
+    heightDisplacement: Math.random() * 100,
   }, {
     title: 'Noise Reduction Artefacts',
     color: '#104014',
     soundUrl: 'http://static.hem.rocks/hem-rocks/sl-demos/grand_piano_test_november.mp3',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend nisi non enim consequat tempus. Phasellus eget lacinia mi. Suspendisse molestie commodo mauris, quis maximus odio varius ut.',
+    heightDisplacement: Math.random() * 100,
   }, {
     title: 'Seurat for Push',
     color: '#591107',
     soundUrl: 'http://static.hem.rocks/hem-rocks/sl-demos/grand_piano_test_november.mp3',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend nisi non enim consequat tempus. Phasellus eget lacinia mi. Suspendisse molestie commodo mauris, quis maximus odio varius ut.',
+    heightDisplacement: Math.random() * 100,
   }
 ]
 
@@ -126,42 +138,26 @@ function SoundLibraryHome(): ReactElement {
         </ul>
       </nav>
 
-      { carouselIndex > 0 &&
-        <div
-          className="pack-carousel-arrow pack-carousel-arrow-prev"
-          onClick={() => setCarouselIndex(carouselIndex - 1)}
-        >
-          <div className="pack-carousel-arrow-icon" />
-        </div>
-      }
-
-      { carouselIndex < carouselItems.length - 1 &&
-        <div
-          className="pack-carousel-arrow pack-carousel-arrow-next"
-          onClick={() => setCarouselIndex(carouselIndex + 1)}
-        >
-          <div className="pack-carousel-arrow-icon" />
-        </div>
-      }
-
       <div className="pack-carousel">
         <Carousel
           panelWidth={81}
           index={carouselIndex}
           unit="vw"
         >
-          {[{}].concat(carouselItems).concat({}).map((name, index) => (
+          {[{} as any].concat(carouselItems).concat({} as any).map(({ heightDisplacement }, index) => (
             <Displace
               compensate={['skewX']}
               key={index}
               random={true}
               skewX={1.2}
-              translateY={15}
               unipolar={['skewX']}
             >
               <div
                 className="pack-carousel-panel"
-                style={{ backgroundImage: `url(../../static/assets/images/carousel-test/carousel-test-${index}.jpg)` }}
+                style={{
+                  backgroundImage: `url(../../static/assets/images/carousel-test/carousel-test-${index}.jpg)`,
+                  borderBottom: `${heightDisplacement}px solid #111`,
+                }}
               />
             </Displace>
           ))}
@@ -170,7 +166,10 @@ function SoundLibraryHome(): ReactElement {
         <div className="pack-info">
           <div className="pack-info-text">
             <h4>New Pack: { carouselItems[carouselIndex].title }</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend nisi non enim consequat tempus. Phasellus eget lacinia mi. Suspendisse molestie commodo mauris, quis maximus odio varius ut.</p>
+            <p>
+              { carouselItems[carouselIndex].description }
+              &nbsp;&nbsp;<Link to="/">&rarr;</Link>
+            </p>
             <p>
               <button
                 className="pack-info-cta"
@@ -188,13 +187,6 @@ function SoundLibraryHome(): ReactElement {
                 className="pack-info-play"
                 playing={playerPlaying}
                 setPlaying={togglePlaying}
-              />
-            </div>
-            <div className="pack-player-button-wrapper">
-              <SpeakerButton
-                className="pack-info-volume"
-                muted={playerMuted}
-                setMuted={toggleMuted}
               />
             </div>
             <Slider

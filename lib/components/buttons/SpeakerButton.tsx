@@ -11,11 +11,11 @@ const styleSheet = `
     position: relative;
     width: 60px;
     height: 60px;
-    background: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    opacity: 1;
   }
 
   .hem-speaker-button::after {
@@ -76,7 +76,7 @@ function SpeakerButton({ className, muted, setMuted }: IProps): ReactElement {
       <div
         className={`
           hem-speaker-button
-          ${muted ? 'volume-up' : ''}
+          ${muted ? '' : 'volume-up'}
           ${className}
         `}
         onClick={() => setMuted(!muted)}

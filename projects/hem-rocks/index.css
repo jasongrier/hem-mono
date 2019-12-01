@@ -3,6 +3,7 @@ body {
   margin: 0;
   padding: 0;
   background: #111;
+  overflow-x: hidden;
 }
 
 .site-header {
@@ -244,18 +245,21 @@ a {
 
 .pack-carousel .hem-displace,
 .pack-carousel .hem-displace-frame,
+.pack-carousel .hem-displace-content,
 .pack-carousel-panel {
   display: inline-block;
   width: 80vw;
   height: 95vh;
-  margin-right: 10px;
+  margin-right: 0;
   background-size: cover;
+  border-left: 10px solid #111;
 }
 
 .pack-carousel-panel {
   position: relative;
   transform: scale(1.2);
   transform-origin: center center;
+  box-sizing: border-box;
 }
 
 .pack-info {
@@ -300,6 +304,10 @@ a {
   margin-top: -5px;
   margin-bottom: 20px;
   overflow: hidden;
+}
+
+.pack-info-text p.more-link {
+  height: 16px;
 }
 
 .pack-info-cta {
@@ -416,66 +424,11 @@ a {
   transform: scaleX(1.6) translateX(0) translateY(1.5px);
 }
 
-.pack-carousel-arrow {
-  position: absolute;
-  z-index: 9999;
-  bottom: 5vh;
-  width: 30px;
-  height: 100px;
-  background: rgba(0, 0, 0, .5);
-  cursor: pointer;
-}
-
-.pack-carousel-arrow .pack-carousel-arrow-icon {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transform: scale(.8) translateX(8px) translateY(3px);
-}
-
-.pack-carousel-arrow .pack-carousel-arrow-icon::after,
-.pack-carousel-arrow .pack-carousel-arrow-icon::before {
-  display: block;
-  content: " ";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 2px;
-  height: 50%;
-  background: #fff;
-  transform: rotate(-20deg);
-  transform-origin: top left;
-  opacity: .5;
-  transition: opacity 300ms;
-}
-
-.pack-carousel-arrow:hover .pack-carousel-arrow-icon::after,
-.pack-carousel-arrow:hover .pack-carousel-arrow-icon::before {
-  opacity: 1;
-}
-
-.pack-carousel-arrow .pack-carousel-arrow-icon::before {
-  transform: rotate(20deg);
-  top: 46px;
-  left: 17px;
-}
-
-.pack-carousel-arrow-prev {
-  left: 0;
-  transform: rotate(180deg);
-}
-
-.pack-carousel-arrow-next {
-  right: 0;
-}
-
 .pack-player {
   position: absolute;
   bottom: -12px;
   right: -10px;
-  width: 570px;
+  width: 510px;
   height: 60px;
   background: rgba(0, 0, 0, 0.5);
 }

@@ -42,6 +42,7 @@
 | [projects/studio-hem-rocks/routes/demos/ArrangerDemo.tsx](projects/studio-hem-rocks/routes/demos/ArrangerDemo.tsx#L14) | 14 | Describe the arranger
 | [projects/studio-hem-rocks/routes/demos/MidiDemo.tsx](projects/studio-hem-rocks/routes/demos/MidiDemo.tsx#L10) | 10 | Move to the new Midi class
 | [projects/studio-hem-rocks/routes/demos/MidiDemo.tsx](projects/studio-hem-rocks/routes/demos/MidiDemo.tsx#L28) | 28 | Use the new Counter class
+| [projects/hem-rocks/index.css](projects/hem-rocks/index.css#L287) | 287 | Does Avenir need to be @font-face'd??
 | [projects/seurat/index.css](projects/seurat/index.css#L1) | 1 | Break this file up by component, 7-to-1
 | [projects/seurat/index.css](projects/seurat/index.css#L4) | 4 | Not needed
 | [projects/seurat/index.css](projects/seurat/index.css#L69) | 69 | Move Dial to common, create some generic styles for it

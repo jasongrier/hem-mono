@@ -1,5 +1,4 @@
 import { each } from 'lodash'
-import uuid from 'uuid/v1'
 
 export interface IClockSubscriber {
   destroy: () => void
@@ -36,6 +35,7 @@ class Clock {
   }
 
   public subscribe(subscriber: IClockSubscriber) {
+    if (this.subscribers[subscriber.id]) throw new Error('Clock: Duplicate subscriber id: ' + subscriber.id)
     this.subscribers[subscriber.id] = subscriber
   }
 

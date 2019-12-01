@@ -4,11 +4,15 @@ import { coords } from '../functions'
 
 interface IProps {
   direction?: 'horizontal' | 'vertical'
+  hideCursor?: boolean
   id?: string
-  onChange?: (value: number) => void
   onChangeDone?: () => void
+  onMouseDown?: () => void
+  onMouseUp?: () => void
   readOnly?: boolean
-  value?: number
+
+  onChange: (value: number) => void
+  value: number
 }
 
 const win: any = window
@@ -46,10 +50,14 @@ const styleSheet = `
 
 function Slider({
   direction = 'horizontal',
-  id = uuid(),
-  onChange,
+  hideCursor = false,
   onChangeDone,
+  onMouseDown: fwdOnMouseDown,
+  onMouseUp: fwdOnMouseUp,
   readOnly = false,
+
+  id,
+  onChange,
   value,
 }: IProps): ReactElement {
   const el = useRef(null)
@@ -64,30 +72,33 @@ function Slider({
     }
   })
 
-  function getValueFromMouseCoords(evt) {
-    const mouse = coords(evt, el)
+  function getValueFromMouseCoords(evt: any) {
+    const mouse = coords(evt, el.current)
     return direction === 'vertical' ? mouse.y : mouse.x
   }
 
   function onMouseDown(evt: any) {
+    fwdOnMouseDown && fwdOnMouseDown()
     if (readOnly) return
     evt.stopPropagation()
     win.dragging = id
-    document.body.style.cursor = 'none'
-    onChange(getValueFromMouseCoords(evt))
+    hideCursor && (document.body.style.cursor = 'none')
+    onChange && onChange(getValueFromMouseCoords(evt))
   }
 
   function onMouseMove(evt: any) {
-    if (readOnly || win.dragging !== id) return
+    if (readOnly) return
+    if (win.dragging !== id) return
     evt.stopPropagation()
-    onChange(getValueFromMouseCoords(evt))
+    onChange && onChange(getValueFromMouseCoords(evt))
   }
 
   function onMouseUp(evt: any) {
-    if (win.dragging !== this.id) return
+    fwdOnMouseUp && fwdOnMouseUp()
+    if (win.dragging !== id) return
     evt.stopPropagation()
     win.dragging = undefined
-    document.body.style.cursor = 'auto'
+    hideCursor && (document.body.style.cursor = 'auto')
     onChangeDone && onChangeDone()
   }
 
