@@ -2,6 +2,9 @@
 | Filename | line # | TODO
 |:------|:------:|:------
 | [projects/hem-rocks/store/selectors.ts](projects/hem-rocks/store/selectors.ts#L1) | 1 | Example selector
+| [projects/hem-rocks/store/types.ts](projects/hem-rocks/store/types.ts#L4) | 4 | How to get around putting this in every project??
+| [projects/hem-rocks/routes/SoundLibraryHome.tsx](projects/hem-rocks/routes/SoundLibraryHome.tsx#L13) | 13 | Move consentedToVolumeUp to App
+| [projects/hem-rocks/routes/SoundLibraryHome.tsx](projects/hem-rocks/routes/SoundLibraryHome.tsx#L14) | 14 | Move CONSENTED_TO_VOLUME_UP_COOKIE_NAME to config.ts
 | [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L16) | 16 | Modal module
 | [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L28) | 28 | Header component
 | [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L54) | 54 | Closeup of the top four dials
@@ -41,3 +44,4 @@
 | [projects/studio-hem-rocks/routes/demos/ArrangerDemo.tsx](projects/studio-hem-rocks/routes/demos/ArrangerDemo.tsx#L14) | 14 | Describe the arranger
 | [projects/studio-hem-rocks/routes/demos/MidiDemo.tsx](projects/studio-hem-rocks/routes/demos/MidiDemo.tsx#L10) | 10 | Move to the new Midi class
 | [projects/studio-hem-rocks/routes/demos/MidiDemo.tsx](projects/studio-hem-rocks/routes/demos/MidiDemo.tsx#L28) | 28 | Use the new Counter class
+| [projects/hem-rocks/index.css](projects/hem-rocks/index.css#L282) | 282 | Does Avenir need to be @font-face'd??

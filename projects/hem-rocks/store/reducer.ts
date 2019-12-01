@@ -2,7 +2,7 @@ import { AnyAction } from 'redux'
 import {
   PLAYER_PAUSE,
   PLAYER_PLAY,
-  PLAYER_SET_SOUND_URL,
+  PLAYER_SET_SOUND,
   PLAYER_SET_VOLUME,
 
   IState,
@@ -10,8 +10,8 @@ import {
 
 const initialState: IState = {
   playerPlaying: false,
-  playerVolume: 0,
   playerSoundUrl: '',
+  playerVolume: 0,
 }
 
 const reducer = (
@@ -25,7 +25,7 @@ const reducer = (
     case PLAYER_PLAY:
       return { ...state, playerPlaying: true }
 
-    case PLAYER_SET_SOUND_URL:
+    case PLAYER_SET_SOUND:
       return { ...state, playerSoundUrl: payload }
 
     case PLAYER_SET_VOLUME:
