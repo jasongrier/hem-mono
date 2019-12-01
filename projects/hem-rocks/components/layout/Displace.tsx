@@ -18,7 +18,7 @@ interface IProps {
 function Displace({
   children,
   compensate = [],
-  id = uuid(),
+  id = uuid(), // TODO: This doesn't (technically) work; uuid will change every render
   random,
   rotate = 0,
   skewX = 0,

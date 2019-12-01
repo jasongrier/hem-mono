@@ -36,14 +36,15 @@ a {
   width: 76px;
   height: 25px;
   line-height: 25px;
-  margin: 14px 0 0 0;
+  margin: 14px 0 0 -35px;
   padding: 0;
   color: #fff;
   font-family: 'U8', sans-serif;
   letter-spacing: 4px;
   overflow: hidden;
   vertical-align: middle;
-  transform: translate(0, -2px);
+  transform-origin: top left;
+  transform: translate(0, -2px) scale(.8);
 }
 
 .site-header h1 span {
@@ -479,10 +480,10 @@ a {
   background: rgba(0, 0, 0, 0.5);
 }
 
-.pack-player .pack-info-volume,
-.pack-player .pack-info-play {
+.pack-player-button-wrapper {
   float: left;
   margin-right: 4px;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .pack-player .hem-slider {
