@@ -4,6 +4,7 @@ import {
   PLAYER_PLAY,
   PLAYER_SET_SOUND,
   PLAYER_SET_VOLUME,
+  PLAYER_TOGGLE_PLAYING,
 
   IState,
 } from './types'
@@ -30,6 +31,9 @@ const reducer = (
 
     case PLAYER_SET_VOLUME:
       return { ...state, playerVolume: payload }
+
+    case PLAYER_TOGGLE_PLAYING:
+      return { ...state, playerPlaying: !state.playerPlaying }
 
     default:
       return state

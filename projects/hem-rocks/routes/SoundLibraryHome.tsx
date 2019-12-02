@@ -2,13 +2,18 @@ import React, { ReactElement, useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
-import { PlayPauseButton, FastForwardButton } from '../../../lib/components/buttons'
+import {
+  ChevronButton,
+  NextButton,
+  PlayPauseButton,
+  SpeakerButton,
+} from '../../../lib/components/buttons'
 import { Slider } from '../../../lib/components'
 import { WebsitePlayer } from '../../../lib/classes/audio'
 import { Displace, Carousel } from '../components/layout'
 import { BASE_SITE_PAGE_TITLE } from '../config'
 import { RootState } from '../store'
-import { playerPlay, playerPause, playerSetVolume } from '../store/actions'
+import { playerSetVolume, playerTogglePlaying, playerPlay } from '../store/actions'
 
 const playerEngine = WebsitePlayer.getInstance()
 const carouselItems = [
@@ -68,7 +73,6 @@ function SoundLibraryHome(): ReactElement {
     playerEngine.load(carouselItems[0].soundUrl)
 
     setMuted(true)
-    setPlaying(false)
   }, [])
 
   useEffect(() => {
@@ -79,35 +83,34 @@ function SoundLibraryHome(): ReactElement {
     wasPlaying && playerEngine.play()
   }, [carouselIndex])
 
-  function toggleMuted() {
-    setMuted(!playerMuted)
-  }
+  useEffect(() => {
+    document.body.addEventListener('keypress', togglePlayingFromSpaceBar)
+    return function cleanup() {
+      document.body.removeEventListener('keypress', togglePlayingFromSpaceBar)
+    }
+  }, [])
 
-  function togglePlaying() {
-    setPlaying(!playerPlaying)
+  useEffect(() => {
+    if (playerPlaying) {
+      playerEngine.play()
+      setMuted(false)
+    }
+
+    else {
+      playerEngine.pause()
+    }
+  }, [playerPlaying])
+
+  function togglePlayingFromSpaceBar(evt: any) {
+    if (evt.keyCode === 32) {
+      dispatch(playerTogglePlaying())
+    }
   }
 
   function setMuted(muted: boolean) {
     const newVolume = muted ? 0 : 1
     playerEngine.setVolume(newVolume)
     dispatch(playerSetVolume(newVolume))
-  }
-
-  function setPlaying(playing: boolean) {
-    let action
-
-    if (playing) {
-      action = playerPlay()
-      playerEngine.play()
-      setMuted(false)
-    }
-
-    else {
-      action = playerPause()
-      playerEngine.pause()
-    }
-
-    dispatch(action)
   }
 
   return (
@@ -123,7 +126,7 @@ function SoundLibraryHome(): ReactElement {
           backgroundColor: carouselItems[carouselIndex].color,
         }}
       >
-        <h2 className="pack-nav-header">FEB 2020 &mdash; New packs in the Sound Library:</h2>
+        <h2 className="pack-nav-header">New Packs for Ableton Live</h2>
         <ul>
           {carouselItems.map(({ title }, index) => (
             <li
@@ -131,12 +134,23 @@ function SoundLibraryHome(): ReactElement {
               key={index}
               onClick={() => setCarouselIndex(index)}
             >
-              <span className="pack-nav-caret">{carouselIndex === index ? '> ' : ''}</span>
               <span>{ title }</span>
             </li>
           ))}
         </ul>
       </nav>
+
+      { carouselIndex > 0 &&
+        <div className="carousel-arrow carousel-arrow-prev">
+          <ChevronButton onClick={() => setCarouselIndex(carouselIndex - 1)} />
+        </div>
+      }
+
+      { carouselIndex < 4 &&
+        <div className="carousel-arrow carousel-arrow-next">
+          <ChevronButton onClick={() => setCarouselIndex(carouselIndex + 1)} />
+        </div>
+      }
 
       <div className="pack-carousel">
         <Carousel
@@ -184,17 +198,15 @@ function SoundLibraryHome(): ReactElement {
           <div className={`pack-player pack-player-${carouselItems[carouselIndex].color.replace('#', '')}`}>
             <div className="pack-player-button-wrapper">
               <PlayPauseButton
-                className="pack-info-play"
                 playing={playerPlaying}
-                setPlaying={togglePlaying}
+                onClick={() => dispatch(playerTogglePlaying())}
               />
             </div>
             <div className="pack-player-button-wrapper">
-              <FastForwardButton
-                className="pack-info-fast-forward"
-                onClick={() => {
-                  setCarouselIndex(carouselIndex < 4 ? carouselIndex + 1 : 0)
-                }}
+              <SpeakerButton
+                muted={playerMuted}
+                // TODO: Should simply forward the onClick, not set the value
+                setMuted={setMuted}
               />
             </div>
             <Slider
@@ -205,6 +217,11 @@ function SoundLibraryHome(): ReactElement {
               }}
               value={progress}
             />
+            <div className="pack-player-button-wrapper">
+              <NextButton onClick={() => {
+                  setCarouselIndex(carouselIndex < 4 ? carouselIndex + 1 : 0)
+              }} />
+            </div>
           </div>
         </div>
       </div>

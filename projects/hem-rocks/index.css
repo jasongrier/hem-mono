@@ -327,17 +327,15 @@ a {
 }
 
 .pack-nav-header {
-  position: absolute;
-  top: 7px;
-  left: 10px;
-  margin: 0 0 10px 0;
+  margin: 0 0 30px -20px;
   padding: 0;
   font-family: 'U8', sans-serif;
   font-weight: normal;
-  font-size: 11px;
+  font-size: 28px;
   color: #fff;
   opacity: 0.7;
   letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .pack-nav {
@@ -345,7 +343,7 @@ a {
   top: 90px;
   left: 20px;
   z-index: 9999;
-  padding: 70px 60px 30px 30px;
+  padding: 10px 60px 30px 30px;
   font-family: 'U8', sans-serif;
   font-size: 18px;
   background-color: #000;
@@ -370,11 +368,6 @@ a {
 .pack-nav ul li span {
   display: inline-block;
   padding-bottom: 3px;
-}
-
-.pack-nav ul li span.pack-nav-caret {
-  margin-right: 7px;
-  transform: translateY(-3px);
 }
 
 .pack-nav ul li:hover span {
@@ -428,7 +421,7 @@ a {
   position: absolute;
   bottom: -12px;
   right: -10px;
-  width: 510px;
+  width: 540px;
   height: 60px;
   background: rgba(0, 0, 0, 0.5);
 }
@@ -441,7 +434,7 @@ a {
 
 .pack-player .hem-slider {
   float: left;
-  width: 382px;
+  width: 348px;
   height: 60px;
   border: none;
 }
@@ -474,4 +467,19 @@ a {
 .pack-info-cta,
 .hem-slider-progress {
   transition: background-color 500ms;
+}
+
+.carousel-arrow {
+  position: fixed;
+  bottom: 100px;
+  z-index: 9999;
+}
+
+.carousel-arrow-prev {
+  left: 0;
+  transform: rotate(180deg);
+}
+
+.carousel-arrow-next {
+  right: 0;
 }

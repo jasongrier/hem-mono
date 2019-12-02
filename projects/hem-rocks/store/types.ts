@@ -19,6 +19,7 @@ export const PLAYER_PAUSE = 'PLAYER_PAUSE'
 export const PLAYER_PLAY = 'PLAYER_PLAY'
 export const PLAYER_SET_SOUND = 'PLAYER_SET_SOUND'
 export const PLAYER_SET_VOLUME = 'PLAYER_SET_VOLUME'
+export const PLAYER_TOGGLE_PLAYING = 'PLAYER_TOGGLE_PLAYING'
 
 export interface IPlayerPause extends AnyAction {
   type: typeof PLAYER_PAUSE
@@ -40,8 +41,14 @@ export interface IPlayerSetVolume extends AnyAction {
   payload: number
 }
 
+export interface IPlayerTogglePlaying extends AnyAction {
+  type: typeof PLAYER_TOGGLE_PLAYING
+  payload: null
+}
+
 export type Action =
   IPlayerPause
   | IPlayerPlay
   | IPlayerSetSound
   | IPlayerSetVolume
+  | IPlayerTogglePlaying

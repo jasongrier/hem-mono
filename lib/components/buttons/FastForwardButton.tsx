@@ -1,7 +1,6 @@
 import React, { ReactElement } from 'react'
 
 interface IProps {
-  className: string
   onClick: () => void
 }
 
@@ -37,15 +36,12 @@ const styleSheet = `
   }
 `
 
-function FastForwardButton({ className, onClick }: IProps): ReactElement {
+function FastForwardButton({ onClick }: IProps): ReactElement {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: styleSheet }} />
       <div
-        className={`
-          hem-fast-forward-button
-          ${className}
-        `}
+        className="hem-fast-forward-button"
         onClick={onClick}
       />
     </>
