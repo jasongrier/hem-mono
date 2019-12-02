@@ -1,9 +1,8 @@
 import React, { ReactElement } from 'react'
 
 interface IProps {
-  className: string
   playing: boolean
-  setPlaying: (playing: boolean) => void
+  onClick: () => void
 }
 
 const styleSheet = `
@@ -66,7 +65,7 @@ const styleSheet = `
   }
 `
 
-function PlayPauseButton({ className, playing, setPlaying }: IProps): ReactElement {
+function PlayPauseButton({ playing, onClick }: IProps): ReactElement {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: styleSheet }} />
@@ -74,9 +73,8 @@ function PlayPauseButton({ className, playing, setPlaying }: IProps): ReactEleme
         className={`
           hem-play-pause-button
           ${playing ? 'playing' : ''}
-          ${className}
         `}
-        onClick={() => setPlaying(!playing)}
+        onClick={onClick}
       >
         <span></span>
       </div>

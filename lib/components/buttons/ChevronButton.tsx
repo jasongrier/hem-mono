@@ -1,7 +1,7 @@
 import React, { ReactElement, PropsWithChildren } from 'react'
 
 interface IProps {
-  className: string
+  className?: string
   onClick: () => void
 }
 

@@ -3,6 +3,7 @@ import {
   PLAYER_PAUSE,
   PLAYER_SET_SOUND,
   PLAYER_SET_VOLUME,
+  PLAYER_TOGGLE_PLAYING,
 
   Action,
 
@@ -29,9 +30,15 @@ const playerSetVolume = (volume: number): Action => ({
   payload: volume,
 })
 
+const playerTogglePlaying = (): Action => ({
+  type: PLAYER_TOGGLE_PLAYING,
+  payload: null,
+})
+
 export {
   playerPause,
   playerPlay,
   playerSetSound,
   playerSetVolume,
+  playerTogglePlaying,
 }
