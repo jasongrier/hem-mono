@@ -45,31 +45,31 @@ function SoundLibraryHome(): ReactElement {
               <li onClick={() => dispatch(setCarouselPosition('new-packs-heroine', 5))}>Seurat for Push</li>
             </ul>
           </nav>
-          <div className="pack-carousel">
+          <div className="player-carousel">
             {/* <Carousel> */}
-              <div className="pack-carousel-panel">
+              <div className="player-carousel-panel">
                 <h3>Grand Piano</h3>
                 <p>Lorem ipsum dolor sit amet</p>
-                <div className="pack-carousel-inset-image">
+                <div className="player-carousel-inset-image">
                   {/* TODO: Closeup of the top four dials */}
                   {/* <img src="" alt=""/> */}
                 </div>
-                <div className="pack-carousel-movie-wallpaper">
+                <div className="player-carousel-movie-wallpaper">
                   {/* TODO: This should be a flip book film and/or 3D CSS animation */}
                 </div>
-                <div className="pack-carousel-player">
+                <div className="player-carousel-player">
                   {/* TODO:
                     Starts as a speaker icon, waveform playing
                     First click turns up the volume and resets the track to zero
                     Next button skips to the next demo, without seeming to advance the carousel
                   */}
-                  <div className="pack-carousel-speaker-up-button"></div>
-                  <div className="pack-carousel-next-button"></div>
-                  <div className="pack-carousel-waveform"></div>
+                  <div className="player-carousel-speaker-up-button"></div>
+                  <div className="player-carousel-next-button"></div>
+                  <div className="player-carousel-waveform"></div>
                 </div>
                 {/* TODO: Analytics event */}
                 <button
-                  className="pack-carousel-download"
+                  className="player-carousel-download"
                   onClick={() => dispatch(openSoundDownloadPopup('grand'))}
                 >
                   Download
@@ -79,7 +79,7 @@ function SoundLibraryHome(): ReactElement {
             {/* </Carousel> */}
             <div
               onClick={() => dispatch(advanceCarousel())}
-              className="pack-carousel-big-next-arrow"
+              className="player-carousel-big-next-arrow"
             />
           </div>
         {/* </Displace> */}

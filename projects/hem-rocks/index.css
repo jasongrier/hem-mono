@@ -4,6 +4,8 @@ body {
   padding: 0;
   background: #111;
   overflow-x: hidden;
+  /* TODO: Import Avenir */
+  font-family: Avenir, Arial, Helvetica, sans-serif;
 }
 
 .site-header {
@@ -13,14 +15,9 @@ body {
   z-index: 9998;
   width: 100vw;
   height: 50px;
+  line-height: 50px;
   background: #111;
-}
-
-.site-header .hem-displace-frame {
-  margin-left: -10px;
-  padding: 0 60px;
-  background: #111;
-  height: 50px;
+  padding: 0;
 }
 
 a {
@@ -33,19 +30,17 @@ a {
 }
 
 .site-header h1 {
-  display: inline-block;
   width: 76px;
   height: 25px;
   line-height: 25px;
-  margin: 14px 0 0 -35px;
+  margin: 12.5px 0 0 15px;
   padding: 0;
   color: #fff;
   font-family: 'U8', sans-serif;
   letter-spacing: 4px;
   overflow: hidden;
-  vertical-align: middle;
-  transform-origin: top left;
-  transform: translate(0, -2px) scale(.8);
+  transform-origin: center center;
+  transform: scale(0.9);
 }
 
 .site-header h1 span {
@@ -57,9 +52,10 @@ a {
 
 .hem-hamburger-menu-toggle {
   z-index: 99999;
-  top: 9px;
+  top: 12.5px;
   right: 10px;
-  transform: scale(0.7);
+  transform-origin: center center;
+  transform: scale(.9);
 }
 
 .hem-hamburger-menu-toggle-open {
@@ -143,10 +139,16 @@ a {
   margin: 0 0 10px 0;
   font-size: 12px;
   line-height: 12px;
+  /* TODO: Mega menu; only set U8 specifically on headings */
+  font-family: Avenir, Arial, Helvetica, sans-serif;
 }
 
 .hem-mega-menu-content li.mailing-list-form {
   line-height: 24px;
+}
+
+.hem-mega-menu-content li.mailing-list-form input {
+  font-family: Avenir, Arial, Helvetica, sans-serif;
 }
 
 .hem-mega-menu-content p {
@@ -155,6 +157,7 @@ a {
   padding: 0;
   font-size: 12px;
   line-height: 20px;
+  font-family: Avenir, Arial, Helvetica, sans-serif;
 }
 
 .hem-mega-menu-content .small-text,
@@ -229,81 +232,61 @@ a {
   border: 1px solid #ccc;
 }
 
-.pack-carousel .hem-carousel {
+.player-carousel .hem-carousel {
   position: absolute;
   width: 100vw;
   height: 95vh;
   top: 0;
-  left: -75vw;
+  left: 0;
   z-index: 9997;
   overflow: visible;
 }
 
-.pack-carousel .hem-carousel-track {
+.player-carousel .hem-carousel-track {
   height: 100vh;
 }
 
-.pack-carousel .hem-displace,
-.pack-carousel .hem-displace-frame,
-.pack-carousel .hem-displace-content,
-.pack-carousel-panel {
-  display: inline-block;
-  width: 80vw;
+.player-carousel-panel {
+  float: left;
+  width: 100vw;
   height: 95vh;
-  margin-right: 0;
   background-size: cover;
-  border-left: 10px solid #111;
 }
 
-.pack-carousel-panel {
+.player-carousel-panel {
   position: relative;
-  transform: scale(1.2);
   transform-origin: center center;
   box-sizing: border-box;
 }
 
 .pack-info {
   position: absolute;
-  bottom: 9vh;
-  right: 16vw;
+  top: 70px;
+  left: 20px;
   z-index: 9999;
-}
-
-@media screen and (max-width: 1176px) {
-  .pack-info {
-    right: 9vw;
-  }
-}
-
-.pack-info-text {
-  position: absolute;
-  bottom: -5px;
-  right: -7px;
-  width: 350px;
-  height: 350px;
-  padding: 20px 35px;
-  background: rgba(0, 0, 0, 0.5);
-  font-family: Arial, Helvetica, sans-serif;
-  /* TODO: Does Avenir need to be @font-face'd?? */
-  font-family: Avenir, Arial, Helvetica, sans-serif;
+  width: 250px;
+  height: calc(95vh - 210px);
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.8);
   line-height: 24px;
   font-size: 14px;
   color: #eee;
 }
 
-.pack-info-text h4 {
-  margin-left: 7px;
+.pack-info h4 {
+  margin: 0 0 40px 0;
   letter-spacing: 1px;
-  /* font-weight: normal; */
+  font-size: 30px;
+  line-height: 39px;
+  font-family: 'U8', sans-serif;
   text-transform: uppercase;
   scroll-margin-bottom: 0;
 }
 
-.pack-info-text p {
-  height: 100px;
-  margin-top: -5px;
-  margin-bottom: 20px;
-  overflow: hidden;
+.pack-info p {
+  font-size: 15px;
+  line-height: 28px;
+  margin: 0 0 20px 0;
 }
 
 .pack-info-text p.more-link {
@@ -312,129 +295,47 @@ a {
 
 .pack-info-cta {
   display: block;
-  margin: 40px auto 0 auto;
+  margin: 40px 0 0 0;
   padding: 15px 25px;
   border: none;
   color: #fff;
+  font-family: 'U8', sans-serif;
+  font-weight: bold;
   font-size: 14px;
   text-transform: uppercase;
   cursor: pointer;
   letter-spacing: .7px;
+  background: orange;
 }
 
-.pack-carousel .hem-displace-frame {
+.player-carousel .hem-displace-frame {
   overflow: hidden;
 }
-
-.pack-nav-header {
-  margin: 0 0 30px -20px;
-  padding: 0;
-  font-family: 'U8', sans-serif;
-  font-weight: normal;
-  font-size: 28px;
-  color: #fff;
-  opacity: 0.7;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-.pack-nav {
-  position: absolute;
-  top: 90px;
-  left: 20px;
-  z-index: 9999;
-  padding: 10px 60px 30px 30px;
-  font-family: 'U8', sans-serif;
-  font-size: 18px;
-  background-color: #000;
-  color: #fff;
-}
-
-.pack-nav ul {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-
-.pack-nav ul li {
-  position: relative;
-  width: calc(100% + 60px);
-  margin: 0 0 20px 0;
-  padding: 0;
-  cursor: pointer;
-  text-transform: uppercase;
-}
-
-.pack-nav ul li span {
-  display: inline-block;
-  padding-bottom: 3px;
-}
-
-.pack-nav ul li:hover span {
-  padding-bottom: 1px;
-  border-bottom: 2px solid #fff;
-}
-
-.pack-nav ul li.active {
-  font-size: 28px;
-  cursor: auto;
-}
-
-.pack-nav ul li.active:hover span {
-  padding-bottom: 3px;
-  border-bottom: none;
-}
-
-.pack-nav-play {
-  padding-bottom: 3px;
-  border-bottom: none;
-}
-
-.pack-nav-play {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 100%;
-  width: 28px;
-  height: calc(100% - 3px);
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.pack-nav li:hover .pack-nav-play {
-  display: flex;
-}
-
-.pack-nav-play::after {
-  display: block;
-  content: " ";
-  width: 0px;
-  height: 0px;
-  border-top: 7px solid transparent;
-  border-bottom: 7px solid transparent;
-  border-left: 7px solid #fff;
-  transform: scaleX(1.6) translateX(0) translateY(1.5px);
-}
-
 .pack-player {
   position: absolute;
-  bottom: -12px;
-  right: -10px;
-  width: 540px;
+  bottom: calc(5vh + 20px);
+  left: 20px;
+  z-index: 9999;
+  width: calc(100vw - 40px);
   height: 60px;
   background: rgba(0, 0, 0, 0.5);
 }
 
 .pack-player-button-wrapper {
   float: left;
-  margin-right: 4px;
-  background: rgba(0, 0, 0, 0.5);
+  width: 60px;
+  height: 60px;
+  margin-right: 5px;
+  background: rgba(0, 0, 0, 1);
+}
+
+.pack-player-button-wrapper:last-child {
+  margin-right: 0;
 }
 
 .pack-player .hem-slider {
   float: left;
-  width: 348px;
+  width: calc(100vw - 230px);
   height: 60px;
   border: none;
 }

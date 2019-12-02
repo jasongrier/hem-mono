@@ -1,9 +1,7 @@
 import React, { PropsWithChildren, ReactElement, useEffect, useState } from 'react'
 
 interface IProps {
-  panelWidth: number
   index: number
-  unit: string
 }
 
 const styleSheet = `
@@ -21,7 +19,7 @@ const styleSheet = `
   }
 `
 
-function Carousel({ children, panelWidth, index, unit }: PropsWithChildren<IProps>): ReactElement {
+function HeroineCarousel({ children, index }: PropsWithChildren<IProps>): ReactElement {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: styleSheet }}/>
@@ -29,7 +27,7 @@ function Carousel({ children, panelWidth, index, unit }: PropsWithChildren<IProp
         <div
           className="hem-carousel-track"
           style={{
-            left: '-' + (index * panelWidth) + unit,
+            left: (-1 * index * 100) + 'vw',
           }}
         >
           { children }
@@ -39,4 +37,4 @@ function Carousel({ children, panelWidth, index, unit }: PropsWithChildren<IProp
   )
 }
 
-export default Carousel
+export default HeroineCarousel

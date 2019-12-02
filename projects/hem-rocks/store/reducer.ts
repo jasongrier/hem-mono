@@ -1,5 +1,7 @@
 import { AnyAction } from 'redux'
 import {
+  CAROUSEL_NEXT,
+  CAROUSEL_PREVIOUS,
   PLAYER_PAUSE,
   PLAYER_PLAY,
   PLAYER_SET_SOUND,
@@ -7,9 +9,46 @@ import {
   PLAYER_TOGGLE_PLAYING,
 
   IState,
+  CAROUSEL_SET_INDEX,
 } from './types'
 
+const carouselItems = [
+  {
+    title: 'Grand Piano',
+    color: '#000000',
+    soundUrl: 'http://static.hem.rocks/hem-rocks/sl-demos/grand_piano_test_november.mp3',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend nisi non enim consequat tempus. Phasellus eget lacinia mi. Suspendisse molestie commodo mauris, quis maximus odio varius ut.',
+    heightDisplacement: Math.random() * 100,
+  }, {
+    title: 'Grand Piano – Extended',
+    color: '#103740',
+    soundUrl: 'http://static.hem.rocks/hem-rocks/sl-demos/grand_piano_test_november.mp3',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend nisi non enim consequat tempus. Phasellus eget lacinia mi. Suspendisse molestie commodo mauris, quis maximus odio varius ut.',
+    heightDisplacement: Math.random() * 100,
+  }, {
+    title: 'Viola',
+    color: '#271040',
+    soundUrl: 'http://static.hem.rocks/hem-rocks/sl-demos/grand_piano_test_november.mp3',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend nisi non enim consequat tempus. Phasellus eget lacinia mi. Suspendisse molestie commodo mauris, quis maximus odio varius ut.',
+    heightDisplacement: Math.random() * 100,
+  }, {
+    title: 'Noise Reduction Artefacts',
+    color: '#104014',
+    soundUrl: 'http://static.hem.rocks/hem-rocks/sl-demos/grand_piano_test_november.mp3',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend nisi non enim consequat tempus. Phasellus eget lacinia mi. Suspendisse molestie commodo mauris, quis maximus odio varius ut.',
+    heightDisplacement: Math.random() * 100,
+  }, {
+    title: 'Seurat for Push',
+    color: '#591107',
+    soundUrl: 'http://static.hem.rocks/hem-rocks/sl-demos/grand_piano_test_november.mp3',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend nisi non enim consequat tempus. Phasellus eget lacinia mi. Suspendisse molestie commodo mauris, quis maximus odio varius ut.',
+    heightDisplacement: Math.random() * 100,
+  }
+]
+
 const initialState: IState = {
+  carouselIndex: 0,
+  carouselItems,
   playerPlaying: false,
   playerSoundUrl: '',
   playerVolume: 0,
@@ -20,6 +59,27 @@ const reducer = (
   { type, payload }: AnyAction,
 ): IState => {
   switch (type) {
+    case CAROUSEL_NEXT: {
+      const { carouselIndex, carouselItems } = state
+      return {
+        ...state,
+        carouselIndex: carouselIndex < carouselItems.length - 1 ? carouselIndex + 1 : carouselIndex
+      }
+    }
+
+    // TODO: All projects; Wrap all cases in {}
+    case CAROUSEL_PREVIOUS: {
+      const { carouselIndex } = state
+      return {
+        ...state,
+        carouselIndex: carouselIndex > 0 ? carouselIndex - 1 : 0
+      }
+    }
+
+    case CAROUSEL_SET_INDEX: {
+      return { ...state, carouselIndex: payload }
+    }
+
     case PLAYER_PAUSE:
       return { ...state, playerPlaying: false }
 

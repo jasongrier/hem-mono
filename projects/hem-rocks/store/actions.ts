@@ -1,14 +1,29 @@
 import {
-  PLAYER_PLAY,
+  CAROUSEL_NEXT,
+  CAROUSEL_PREVIOUS,
+  CAROUSEL_SET_INDEX,
   PLAYER_PAUSE,
-  PLAYER_SET_SOUND,
+  PLAYER_PLAY,
   PLAYER_SET_VOLUME,
   PLAYER_TOGGLE_PLAYING,
 
   Action,
-
-  IPlayerSound,
 } from './types'
+
+const carouselNext = (): Action => ({
+  type: CAROUSEL_NEXT,
+  payload: null,
+})
+
+const carouselPrevious = (): Action => ({
+  type: CAROUSEL_PREVIOUS,
+  payload: null,
+})
+
+const carouselSetIndex = (index: number): Action => ({
+  type: CAROUSEL_SET_INDEX,
+  payload: index,
+})
 
 const playerPause = (): Action => ({
   type: PLAYER_PAUSE,
@@ -18,11 +33,6 @@ const playerPause = (): Action => ({
 const playerPlay = (): Action => ({
   type: PLAYER_PLAY,
   payload: null,
-})
-
-const playerSetSound = (sound: IPlayerSound): Action => ({
-  type: PLAYER_SET_SOUND,
-  payload: sound,
 })
 
 const playerSetVolume = (volume: number): Action => ({
@@ -36,9 +46,11 @@ const playerTogglePlaying = (): Action => ({
 })
 
 export {
+  carouselNext,
+  carouselPrevious,
+  carouselSetIndex,
   playerPause,
   playerPlay,
-  playerSetSound,
   playerSetVolume,
   playerTogglePlaying,
 }

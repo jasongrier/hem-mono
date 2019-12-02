@@ -11,16 +11,16 @@ function App(): ReactElement {
   return (
     <div className="hem-application">
       <header className="site-header">
-        <Displace
+        {/* <Displace
           random={true}
           rotate={1.1}
-        >
+        > */}
           <h1>
             <span>
               <Link to="/">HEM</Link>
             </span>
           </h1>
-        </Displace>
+        {/* </Displace> */}
       </header>
 
       <MegaMenu />
