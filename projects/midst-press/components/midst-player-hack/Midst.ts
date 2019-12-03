@@ -210,7 +210,11 @@ class Midst extends React.Component<IProps, any> {
     if (!activePlayer && prevProps.activePlayer) {
       this.pause()
       clearTimeout(this.autoScrubTimeout)
-      this.setPos(this.state.editorTimelineFrames.length - 1)
+      this.setPos(this.state.editorTimelineFrames.length - 1, false)
+
+      setTimeout(() => {
+        this.$editable[0].scrollTop = 0
+      }, 1)
     }
 
     if (
@@ -627,16 +631,19 @@ class Midst extends React.Component<IProps, any> {
     // })
   }
 
-  setPos(index: any) {
+  setPos(index: any, scrollCursorIntoView: boolean = true) {
     this.setState({ editorTimelineIndex: index }, () => {
       index = Math.ceil(index)
       if (this.state.editorTimelineFrames[index]) {
         this.$editable.html(this.state.editorTimelineFrames[index].content)
       }
     })
-    setTimeout(() => {
-      this.scrollCursorIntoView()
-    }, 1)
+
+    if (scrollCursorIntoView) {
+      setTimeout(() => {
+        this.scrollCursorIntoView()
+      }, 1)
+    }
   }
 
   play() {
