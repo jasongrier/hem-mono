@@ -36,7 +36,7 @@ const poems = [
   createPoem('Jackson Holbert', 'Poem Involving the Sea'),
   createPoem('Jenny Qi', 'When This Is All Over'),
   createPoem('Jose Hernandez Diaz', 'The Dahlias in Autumn'),
-  createPoem('Madeleine Mori', 'After Watching Westworld the Left Side of My Body Malfunctions'),
+  createPoem('Madeleine Mori', 'After Watching Westworld, the Left Side of My Body Malfunctions'),
   createPoem('manuel arturo abreu', 'Ablation'),
   createPoem('Max Seifert', 'Benjamins'),
   createPoem('Mia You', 'Go Bokito'),
