@@ -65,7 +65,7 @@ class Midst extends React.Component<IProps, any> {
 // ================================================================================
     this.initialState = {
       appAboutOpen: false,
-      appCursorFollowing: false,
+      appCursorFollowing: true,
       appDrawerOpen: false,
       appFileAbsPath: false,
       appFocusMode: false,
