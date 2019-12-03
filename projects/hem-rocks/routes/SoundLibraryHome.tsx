@@ -123,7 +123,7 @@ function SoundLibraryHome(): ReactElement {
       </div>
 
       <div className="pack-info">
-        <h4>New Pack: { currentCarouselItem.title }</h4>
+        <h4>{ currentCarouselItem.title }</h4>
         <p>
           { currentCarouselItem.description }
         </p>
@@ -145,41 +145,39 @@ function SoundLibraryHome(): ReactElement {
         </p>
       </div>
 
-      { carouselIndex > 0 &&
-        <div className="pack-player">
-          <div className="pack-player-button-wrapper">
-            <PlayPauseButton
-              playing={playerPlaying}
-              onClick={() => dispatch(playerTogglePlaying())}
-            />
-          </div>
-          <div className="pack-player-button-wrapper">
-            <SpeakerButton
-              muted={playerMuted}
-              // TODO: Should simply forward the onClick, not set the value
-              setMuted={() => dispatch(playerToggleMuted())}
-            />
-          </div>
-          <Slider
-            id="new-packs-progress-slider"
-            onChange={value => {
-              playerEngine.seek(value)
-              setProgress(value)
-            }}
-            value={progress}
+      <div className="pack-player">
+        <div className="pack-player-button-wrapper">
+          <PlayPauseButton
+            playing={playerPlaying}
+            onClick={() => dispatch(playerTogglePlaying())}
           />
-          <div className="pack-player-button-wrapper prev-button">
-            <NextButton onClick={() => {
-                dispatch(carouselPrevious())
-            }} />
-          </div>
-          <div className="pack-player-button-wrapper">
-            <NextButton onClick={() => {
-                dispatch(carouselNext())
-            }} />
-          </div>
         </div>
-      }
+        <div className="pack-player-button-wrapper">
+          <SpeakerButton
+            muted={playerMuted}
+            // TODO: Should simply forward the onClick, not set the value
+            setMuted={() => dispatch(playerToggleMuted())}
+          />
+        </div>
+        <Slider
+          id="new-packs-progress-slider"
+          onChange={value => {
+            playerEngine.seek(value)
+            setProgress(value)
+          }}
+          value={progress}
+        />
+        <div className="pack-player-button-wrapper prev-button">
+          <NextButton onClick={() => {
+              dispatch(carouselPrevious())
+          }} />
+        </div>
+        <div className="pack-player-button-wrapper">
+          <NextButton onClick={() => {
+              dispatch(carouselNext())
+          }} />
+        </div>
+      </div>
     </div>
   )
 }

@@ -10,7 +10,7 @@
 | [projects/midst-press/store/types.ts](projects/midst-press/store/types.ts#L4) | 4 | How to get around putting this in every project??
 | [projects/midst-press/store/types.ts](projects/midst-press/store/types.ts#L7) | 7 | Move Midst types to common
 | [projects/midst-press/store/types.ts](projects/midst-press/store/types.ts#L14) | 14 | Move Midst types to common
-| [projects/hem-rocks/routes/SoundLibraryHome.tsx](projects/hem-rocks/routes/SoundLibraryHome.tsx#L159) | 159 | Should simply forward the onClick, not set the value
+| [projects/hem-rocks/routes/SoundLibraryHome.tsx](projects/hem-rocks/routes/SoundLibraryHome.tsx#L158) | 158 | Should simply forward the onClick, not set the value
 | [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L16) | 16 | Modal module
 | [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L28) | 28 | Header component
 | [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L54) | 54 | Closeup of the top four dials

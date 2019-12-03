@@ -18,36 +18,36 @@ const packButtonText = 'Download now'
 const carouselItems = [
   {
     title: '5 New Packs for Ableton Live',
-    buttonText: 'Listen',
-    packId: null,
+    buttonText: 'Listen and download',
+    packId: '',
     soundUrl: 'http://static.hem.rocks/hem-rocks/sl-demos/grand_piano_test_november.mp3',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend nisi non enim consequat tempus. Phasellus eget lacinia mi. Suspendisse molestie commodo mauris, quis maximus odio varius ut.',
   }, {
-    title: 'Grand Piano',
+    title: 'New Pack: Grand Piano',
     buttonText: packButtonText,
     packId: 'grand-piano',
     soundUrl: 'http://static.hem.rocks/hem-rocks/sl-demos/grand_piano_test_november.mp3',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend nisi non enim consequat tempus. Phasellus eget lacinia mi. Suspendisse molestie commodo mauris, quis maximus odio varius ut.',
   }, {
-    title: 'Grand Piano – Extended',
+    title: 'New Pack: Grand Piano – Extended',
     buttonText: packButtonText,
     packId: 'grand-piano',
     soundUrl: 'http://static.hem.rocks/hem-rocks/sl-demos/grand_piano_test_november.mp3',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend nisi non enim consequat tempus. Phasellus eget lacinia mi. Suspendisse molestie commodo mauris, quis maximus odio varius ut.',
   }, {
-    title: 'Viola',
+    title: 'New Pack: Viola',
     buttonText: packButtonText,
     packId: 'grand-piano',
     soundUrl: 'http://static.hem.rocks/hem-rocks/sl-demos/grand_piano_test_november.mp3',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend nisi non enim consequat tempus. Phasellus eget lacinia mi. Suspendisse molestie commodo mauris, quis maximus odio varius ut.',
   }, {
-    title: 'Noise Reduction Artefacts',
+    title: 'New Pack: Noise Reduction Artefacts',
     buttonText: packButtonText,
     packId: 'grand-piano',
     soundUrl: 'http://static.hem.rocks/hem-rocks/sl-demos/grand_piano_test_november.mp3',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend nisi non enim consequat tempus. Phasellus eget lacinia mi. Suspendisse molestie commodo mauris, quis maximus odio varius ut.',
   }, {
-    title: 'Seurat for Push',
+    title: 'New Pack: Seurat for Push',
     buttonText: packButtonText,
     packId: 'grand-piano',
     soundUrl: 'http://static.hem.rocks/hem-rocks/sl-demos/grand_piano_test_november.mp3',
