@@ -440,20 +440,34 @@ body {
   font-size: 20px;
   font-family: 'futuralight';
   color: rgb(201, 50, 181);
+  cursor: pointer;
 }
 
+.table-of-contents .heroine .editor-letter-container {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: calc(100% - 120px);
+  height: 10000px;
+  padding:  39px 50px;
+  overflow: hidden;
+  pointer-events: none;
+}
 
 .table-of-contents .heroine .editor-letter {
   position: absolute;
-  left: 10px;
+  left: 0;
   height: auto;
-  width: calc(100% - 120px);
-  top: 10px;
+  top: -900px;
   padding:  39px 50px;
   font-size: 24px;
   font-family: 'futuralight';
   background-color: rgba(247, 177, 237, .96);
   color: #400404;
+  transition: top 250ms;
+}
+.table-of-contents .heroine .editor-letter-open {
+  top: 0;
 }
 
 .table-of-contents .heroine .editor-button {
