@@ -902,8 +902,8 @@ body {
   box-sizing: border-box;
   width: 100vw;
   height: calc(100vh - 172px);
+  padding-top: 2px;
   text-align: center;
-  padding-top: 39px;
   padding-left: 70px;
   padding-right: 70px;
 }
@@ -912,16 +912,17 @@ body {
   display: inline-block;
   width: 200px;
   max-width: 800px;
-  height: calc(100vh - 262px);
-  padding: 0;
-  padding-bottom: 20px;
+  height: calc(100vh - 231px);
+  padding-top: 15px;
+  padding-bottom: 13px;
   margin: 0 auto;
   text-align: left;
 }
 
 .sliding-poems__poem--loaded .editable {
   width: auto;
-  padding: 0 20px 0 0;
+  padding-right: 20px;
+  padding-left: 0;
   transform: translateX(20px);
 }
 
@@ -944,7 +945,23 @@ body {
   font-size: 16px !important;
 }
 
+.scrolling-area-border {
+  position: absolute;
+  top: 98px;
+  left: 55px;
+  right: 55px;
+  bottom: 103px;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.1;
+  border-top: 1px dashed indigo;
+  border-right: 1px dashed indigo;
+  border-bottom: 1px dashed indigo;
+  border-left: 1px dashed indigo;
+}
+
 /* Issue 1 poem-specific styles */
+/* TODO: Does Redux even render these class names any more? */
 
 .sliding-poems__poem--aja-moore--tgif .editable {
 
