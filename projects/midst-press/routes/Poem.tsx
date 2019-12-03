@@ -7,8 +7,6 @@ import { loadPoemData } from '../store/actions'
 import { IPoem, IMidstFile } from '../store/types'
 import Midst from '../components/midst-player-hack/Midst'
 
-const win = window as any
-
 interface IProps {
   match: any
 }
@@ -25,6 +23,7 @@ function Poem({ match }: IProps): ReactElement {
 
   useEffect(() => {
     const sliderFrame = (el as any).current.querySelector('.sliding-poems__frame')
+
     if (currentPoemIndex > -1) {
       sliderFrame.style.left = `calc(100vw * -${currentPoemIndex})`
     }
@@ -57,8 +56,8 @@ function Poem({ match }: IProps): ReactElement {
               <div
                 className={`
                   sliding-poems__poem
-                   sliding-poems__poem--${poem.loaded ? 'loaded' : ''}
-                   sliding-poems__poem--${poem.poemId}
+                  sliding-poems__poem--${poem.loaded ? 'loaded' : ''}
+                  sliding-poems__poem--${poem.poemId}
                 `}
                 data-trigger={poem.trigger ? 'true' : 'false'}
                 key={poem.poemId}

@@ -67,6 +67,7 @@ function App(): ReactElement {
           <span></span>
         </div>
 
+        {/* TODO: Move PoemNav out of the Switch/Route and directly into the Poem component */}
         <Switch>
           <Route exact path="/poem/:poemUrl" component={PoemNav} />
         </Switch>

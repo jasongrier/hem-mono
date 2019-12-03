@@ -124,9 +124,9 @@ function SoundLibraryHome(): ReactElement {
 
       <div className="pack-info">
         <h4>{ currentCarouselItem.title }</h4>
-        <p>
-          { currentCarouselItem.description }
-        </p>
+        <div className="pack-info-description"
+          dangerouslySetInnerHTML={{__html: currentCarouselItem.description}}
+        />
         <p>
           <button
             className="pack-info-cta"
