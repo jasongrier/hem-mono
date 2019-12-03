@@ -1,15 +1,16 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { findIndex } from 'lodash'
 import { RootState } from '../store'
 import { setProcessNoteOpen } from '../store/actions'
 
 interface IProps {
+  history: any
   match: any
 }
 
-function PoemNav({ match }: IProps): ReactElement {
+function PoemNav({ history, match }: IProps): ReactElement {
   const { poems, processNoteOpen } = useSelector((state: RootState) => ({
     poems: state.app.poems,
     processNoteOpen: state.app.processNoteOpen,
@@ -21,6 +22,26 @@ function PoemNav({ match }: IProps): ReactElement {
   const currentPoem = poems[currentPoemIndex]
   const previousPoem = poems[currentPoemIndex - 1]
   const nextPoem = poems[currentPoemIndex + 1]
+  const nextPoemUrl = nextPoem && `/poem/${nextPoem.url}/`
+  const previousPoemUrl = previousPoem && `/poem/${previousPoem.url}/`
+
+  useEffect(() => {
+    function slidePoemOnArrowKeyDown(evt: any) {
+      if (evt.keyCode === 37) {
+        history.push(previousPoemUrl)
+      }
+
+      else if (evt.keyCode === 39) {
+        history.push(nextPoemUrl)
+      }
+    }
+
+    document.addEventListener('keydown', slidePoemOnArrowKeyDown)
+
+    return function cleanup() {
+      document.removeEventListener('keydown', slidePoemOnArrowKeyDown)
+    }
+  }, [nextPoemUrl, previousPoemUrl])
 
   return (
     <>
@@ -41,7 +62,7 @@ function PoemNav({ match }: IProps): ReactElement {
       <div id="poem-nav">
         {nextPoem ?
           <Link
-            to={`/poem/${nextPoem.url}/`}>
+            to={nextPoemUrl}>
             <i className="arrow arrow-forward"></i>
           </Link>
           :
@@ -52,7 +73,7 @@ function PoemNav({ match }: IProps): ReactElement {
 
         {previousPoem ?
           <Link
-            to={`/poem/${previousPoem.url}/`}>
+            to={previousPoemUrl}>
             <i className="arrow arrow-back"></i>
           </Link>
           :
@@ -69,4 +90,4 @@ function PoemNav({ match }: IProps): ReactElement {
   )
 }
 
-export default PoemNav
+export default withRouter(PoemNav)
