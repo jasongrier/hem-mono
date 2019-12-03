@@ -431,6 +431,42 @@ body {
   color: rgb(255, 53, 107);
 }
 
+
+.table-of-contents .heroine .editor-letter-toggle {
+  position: absolute;
+  left: 510px;
+  top: -28px;
+  transform-origin: top left;
+  font-size: 20px;
+  font-family: 'futuralight';
+  color: rgb(201, 50, 181);
+}
+
+
+.table-of-contents .heroine .editor-letter {
+  position: absolute;
+  left: 10px;
+  height: auto;
+  width: calc(100% - 120px);
+  top: 10px;
+  padding:  39px 50px;
+  font-size: 24px;
+  font-family: 'futuralight';
+  background-color: rgba(247, 177, 237, .96);
+  color: #400404;
+}
+
+.table-of-contents .heroine .editor-button {
+  transform: rotate(-90deg);
+  position: absolute;
+  top: -22px;
+  left: 48%;
+}
+
+.table-of-contents .heroine .editor-button .hem-chevron-button {
+  background-color: rgba(247, 177, 237, .96);
+}
+
 .table-of-contents h6 {
   font-size: 16px;
   margin-bottom: 80px;
