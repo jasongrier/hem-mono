@@ -14,17 +14,18 @@ import { RootState } from '../store'
 import {
   carouselNext,
   carouselPrevious,
-  carouselSetIndex,
   playerSetVolume,
+  playerToggleMuted,
   playerTogglePlaying,
 } from '../store/actions'
 
 const playerEngine = WebsitePlayer.getInstance()
 
 function SoundLibraryHome(): ReactElement {
-  const { carouselIndex, carouselItems, playerMuted, playerPlaying } = useSelector((state: RootState) => ({
+  const { carouselIndex, carouselItems, currentCarouselItem, playerMuted, playerPlaying } = useSelector((state: RootState) => ({
     carouselIndex: state.app.carouselIndex,
     carouselItems: state.app.carouselItems,
+    currentCarouselItem: state.app.carouselItems[state.app.carouselIndex],
     playerMuted: state.app.playerVolume === 0,
     playerPlaying: state.app.playerPlaying,
   }))
@@ -111,6 +112,7 @@ function SoundLibraryHome(): ReactElement {
         <HeroineCarousel index={carouselIndex}>
           {carouselItems.map((_, index) => (
             <div
+              className="player-carousel-panel"
               key={index}
               style={{
                 backgroundImage: `url(../../static/assets/images/carousel-test/carousel-test-${index}.jpg)`,
@@ -121,45 +123,63 @@ function SoundLibraryHome(): ReactElement {
       </div>
 
       <div className="pack-info">
-        <h4>New Pack: { carouselItems[carouselIndex].title }</h4>
+        <h4>New Pack: { currentCarouselItem.title }</h4>
         <p>
-          { carouselItems[carouselIndex].description }
+          { currentCarouselItem.description }
         </p>
         <p>
-          <button className="pack-info-cta">
-            Download Now
+          <button
+            className="pack-info-cta"
+            onClick={() => {
+              if (carouselIndex === 0) {
+                dispatch(carouselNext())
+              }
+
+              else {
+                // dispatch(openPopup('download-sample', currentCarouselItem.packId))
+              }
+            }}
+          >
+            { currentCarouselItem.buttonText }
           </button>
         </p>
       </div>
 
-      <div className="pack-player">
-        <div className="pack-player-button-wrapper">
-          <PlayPauseButton
-            playing={playerPlaying}
-            onClick={() => dispatch(playerTogglePlaying())}
+      { carouselIndex > 0 &&
+        <div className="pack-player">
+          <div className="pack-player-button-wrapper">
+            <PlayPauseButton
+              playing={playerPlaying}
+              onClick={() => dispatch(playerTogglePlaying())}
+            />
+          </div>
+          <div className="pack-player-button-wrapper">
+            <SpeakerButton
+              muted={playerMuted}
+              // TODO: Should simply forward the onClick, not set the value
+              setMuted={() => dispatch(playerToggleMuted())}
+            />
+          </div>
+          <Slider
+            id="new-packs-progress-slider"
+            onChange={value => {
+              playerEngine.seek(value)
+              setProgress(value)
+            }}
+            value={progress}
           />
+          <div className="pack-player-button-wrapper prev-button">
+            <NextButton onClick={() => {
+                dispatch(carouselPrevious())
+            }} />
+          </div>
+          <div className="pack-player-button-wrapper">
+            <NextButton onClick={() => {
+                dispatch(carouselNext())
+            }} />
+          </div>
         </div>
-        <div className="pack-player-button-wrapper">
-          <SpeakerButton
-            muted={playerMuted}
-            // TODO: Should simply forward the onClick, not set the value
-            setMuted={() => dispatch(playerSetVolume(playerMuted ? 0 : 1))}
-          />
-        </div>
-        <Slider
-          id="new-packs-progress-slider"
-          onChange={value => {
-            playerEngine.seek(value)
-            setProgress(value)
-          }}
-          value={progress}
-        />
-        <div className="pack-player-button-wrapper">
-          <NextButton onClick={() => {
-              dispatch(carouselSetIndex(carouselIndex < carouselItems.length - 1 ? carouselIndex + 1 : 0))
-          }} />
-        </div>
-      </div>
+      }
     </div>
   )
 }
