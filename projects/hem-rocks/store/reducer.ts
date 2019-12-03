@@ -21,7 +21,16 @@ const carouselItems = [
     buttonText: 'Listen and download',
     packId: '',
     soundUrl: 'http://static.hem.rocks/hem-rocks/sl-demos/grand_piano_test_november.mp3',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend nisi non enim consequat tempus. Phasellus eget lacinia mi. Suspendisse molestie commodo mauris, quis maximus odio varius ut.',
+    description: `
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <ul>
+        <li>Grand Piano</li>
+        <li>Grand Piano – Extended</li>
+        <li>Viola</li>
+        <li>Noise Reduction Artefacts</li>
+        <li>Seurat for Push</li>
+      </ul>
+    `,
   }, {
     title: 'New Pack: Grand Piano',
     buttonText: packButtonText,
