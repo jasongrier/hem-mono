@@ -14,14 +14,16 @@ function Home(): ReactElement {
         <p className="first">
           What if you could watch your favorite poet write?
         </p>
-{/*
-        <p style={{ color: 'darkred', paddingTop: '20px' }}>
-          <a href="http://midst.press/read">Let’s find out.</a>
-        </p> */}
 
         <p style={{ paddingTop: '20px' }}>
           Midst is a new digital journal publishing poems in the form of interactive timelapses. You’ll see the finished text by default, but then you can rewind it to see exactly how it was written: start to finish, blank page to final draft, and every edit in between.
         </p>
+
+                {
+        <p style={{ color: 'darkred', paddingTop: '20px' }}>
+        <a href="http://midst.press/read">Go forth to the Pilot Issue!</a>
+        </p> }
+
 
         <p style={{ paddingTop: '10px' }} />
       </section>
