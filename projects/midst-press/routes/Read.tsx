@@ -82,16 +82,16 @@ function Read(): ReactElement {
 
         {poems.map((poem: IPoem) => (
           <Link key={poem.url}
-            className={`
-              poem-link
-              ${poem.italicizeTitle ? 'poem-link--italic-title' : ''}
-            `}
+            className="poem-link"
             data-trigger={poem.trigger ? 'true' : 'false'}
             to={`/poem/${poem.url}/`}
             onClick={() => dispatch(setMobileNavOpen(false))}
           >
             <div className="poem-link__column poem-author">{poem.author}</div>
-            <div className="poem-link__column poem-title">{poem.title}</div>
+            <div
+              className="poem-link__column poem-title"
+              dangerouslySetInnerHTML={{ __html: poem.title }}
+            />
           </Link>
         ))}
       </section>

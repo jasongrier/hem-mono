@@ -47,10 +47,7 @@ function PoemNav({ history, match }: IProps): ReactElement {
 
   return (
     <>
-      <a className={`
-        poem-credit
-        ${currentPoem.italicizeTitle ? 'poem-credit--italic-title' : ''}
-      `}>
+      <a className="poem-credit">
         <span onClick={() => dispatch(setProcessNoteOpen(!processNoteOpen))}>
           <i className="author-name">
             { currentPoem.author }
@@ -58,9 +55,10 @@ function PoemNav({ history, match }: IProps): ReactElement {
           <span className="divider">
             &nbsp;|&nbsp;
           </span>
-          <span className="poem-title">
-            { currentPoem.title }
-          </span>
+          <span
+            className="poem-title"
+            dangerouslySetInnerHTML={{__html: currentPoem.title}}
+          />
         </span>
       </a>
 
