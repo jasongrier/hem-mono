@@ -7,7 +7,7 @@ export type ThunkResult<R> = ThunkAction<R, IState, undefined, Action>
 export interface ICarouselItem {
   buttonText: string
   description: string
-  heightDisplacement: number
+  packId: string
   soundUrl: string
   title: string
 }
@@ -27,6 +27,7 @@ export const PLAYER_PAUSE = 'PLAYER_PAUSE'
 export const PLAYER_PLAY = 'PLAYER_PLAY'
 export const PLAYER_SET_SOUND = 'PLAYER_SET_SOUND'
 export const PLAYER_SET_VOLUME = 'PLAYER_SET_VOLUME'
+export const PLAYER_TOGGLE_MUTED = 'PLAYER_TOGGLE_MUTED'
 export const PLAYER_TOGGLE_PLAYING = 'PLAYER_TOGGLE_PLAYING'
 
 export interface ICarouselNext extends AnyAction {
@@ -59,6 +60,11 @@ export interface IPlayerSetVolume extends AnyAction {
   payload: number
 }
 
+export interface IPlayerToggleMuted extends AnyAction {
+  type: typeof PLAYER_TOGGLE_MUTED
+  payload: null
+}
+
 export interface IPlayerTogglePlaying extends AnyAction {
   type: typeof PLAYER_TOGGLE_PLAYING
   payload: null
@@ -71,4 +77,5 @@ export type Action =
   | IPlayerPlay
   | IPlayerSetVolume
   | ICarouselSetIndex
+  | IPlayerToggleMuted
   | IPlayerTogglePlaying
