@@ -200,6 +200,10 @@ body {
   font-style: italic !important;
 }
 
+.site-header .poem-title:hover i {
+  font-style: normal;
+}
+
 .site-header .poem-credit .author-name {
   color: rgb(230, 132, 158);
 }
@@ -211,14 +215,6 @@ body {
 
 .site-header .poem-credit:hover * {
   cursor: help;
-}
-
-.site-header .poem-credit--italic-title .poem-title {
-  font-style: italic !important;
-}
-
-.site-header .poem-credit--italic-title .poem-title:hover {
-  font-style: normal !important;
 }
 
 .process-note {
@@ -525,6 +521,10 @@ body {
   font-style: italic;
 }
 
+.table-of-contents a.poem-link .poem-title i {
+  font-style: normal;
+}
+
 .table-of-contents a.poem-link:hover .poem-author {
   font-style: italic;
 }
@@ -533,12 +533,8 @@ body {
   font-style: normal;
 }
 
-.table-of-contents a.poem-link--italic-title .poem-title {
-  font-style: normal !important;
-}
-
-.table-of-contents a.poem-link--italic-title:hover .poem-title {
-  font-style: italic !important;
+.table-of-contents a.poem-link:hover .poem-title i {
+  font-style: italic;
 }
 
 .table-of-contents small {

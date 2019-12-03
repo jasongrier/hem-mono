@@ -873,17 +873,29 @@ class Midst extends React.Component<IProps, any> {
         const $fifthLineAbove = this.$editable.find('[data-line-number="' + (currentLineNumber - 5) + '"]')
         const $topLine = this.$editable.find('[data-line-number="0"]')
 
+        let $subject
+
         if ($fifthLineAbove.length) {
-          $fifthLineAbove[0].scrollIntoView({ behavior: 'smooth' })
+          $subject = $fifthLineAbove
         }
 
         else if ($topLine.length) {
-          $topLine[0].scrollIntoView({ behavior: 'smooth' })
+          $subject = $topLine
         }
 
         else if ($currentLine.length) {
-          $currentLine[0].scrollIntoView({ behavior: 'smooth' })
+          $subject = $currentLine
         }
+
+        // $subject[0].scrollIntoView({ behavior: 'smooth' })
+        $subject[0].scrollIntoView({ behavior: 'auto' })
+
+        this.$editable.focus()
+        var range = document.createRange()
+        range.selectNodeContents($currentLine[0])
+        var sel = window.getSelection()
+        sel.removeAllRanges()
+        sel.addRange(range)
       }
     }
   }
