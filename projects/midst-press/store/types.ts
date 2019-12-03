@@ -29,6 +29,7 @@ export interface IPoem {
   authorSecondaryFolder: string
   data: IMidstFile | null
   hidden?: boolean
+  italicizeTitle?: boolean
   loaded: boolean
   poemId: string
   processNote: string
