@@ -1,9 +1,10 @@
 ### TODOs
 | Filename | line # | TODO
 |:------|:------:|:------
+| [projects/hem-rocks/store/reducer.ts](projects/hem-rocks/store/reducer.ts#L72) | 72 | All projects; Wrap all cases in {}
 | [projects/hem-rocks/store/selectors.ts](projects/hem-rocks/store/selectors.ts#L1) | 1 | Example selector
 | [projects/hem-rocks/store/types.ts](projects/hem-rocks/store/types.ts#L4) | 4 | How to get around putting this in every project??
-| [projects/hem-rocks/routes/SoundLibraryHome.tsx](projects/hem-rocks/routes/SoundLibraryHome.tsx#L224) | 224 | Should simply forward the onClick, not set the value
+| [projects/hem-rocks/routes/SoundLibraryHome.tsx](projects/hem-rocks/routes/SoundLibraryHome.tsx#L145) | 145 | Should simply forward the onClick, not set the value
 | [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L16) | 16 | Modal module
 | [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L28) | 28 | Header component
 | [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L54) | 54 | Closeup of the top four dials
@@ -43,4 +44,5 @@
 | [projects/studio-hem-rocks/routes/demos/ArrangerDemo.tsx](projects/studio-hem-rocks/routes/demos/ArrangerDemo.tsx#L14) | 14 | Describe the arranger
 | [projects/studio-hem-rocks/routes/demos/MidiDemo.tsx](projects/studio-hem-rocks/routes/demos/MidiDemo.tsx#L10) | 10 | Move to the new Midi class
 | [projects/studio-hem-rocks/routes/demos/MidiDemo.tsx](projects/studio-hem-rocks/routes/demos/MidiDemo.tsx#L28) | 28 | Use the new Counter class
-| [projects/hem-rocks/index.css](projects/hem-rocks/index.css#L287) | 287 | Does Avenir need to be @font-face'd??
+| [projects/hem-rocks/index.css](projects/hem-rocks/index.css#L7) | 7 | Import Avenir
+| [projects/hem-rocks/index.css](projects/hem-rocks/index.css#L142) | 142 | Mega menu; only set U8 specifically on headings

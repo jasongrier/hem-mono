@@ -12,34 +12,36 @@ import {
   CAROUSEL_SET_INDEX,
 } from './types'
 
+const packButtonText = 'Download now'
+
 const carouselItems = [
   {
     title: 'Grand Piano',
-    color: '#000000',
+    buttonText: packButtonText,
     soundUrl: 'http://static.hem.rocks/hem-rocks/sl-demos/grand_piano_test_november.mp3',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend nisi non enim consequat tempus. Phasellus eget lacinia mi. Suspendisse molestie commodo mauris, quis maximus odio varius ut.',
     heightDisplacement: Math.random() * 100,
   }, {
     title: 'Grand Piano – Extended',
-    color: '#103740',
+    buttonText: packButtonText,
     soundUrl: 'http://static.hem.rocks/hem-rocks/sl-demos/grand_piano_test_november.mp3',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend nisi non enim consequat tempus. Phasellus eget lacinia mi. Suspendisse molestie commodo mauris, quis maximus odio varius ut.',
     heightDisplacement: Math.random() * 100,
   }, {
     title: 'Viola',
-    color: '#271040',
+    buttonText: packButtonText,
     soundUrl: 'http://static.hem.rocks/hem-rocks/sl-demos/grand_piano_test_november.mp3',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend nisi non enim consequat tempus. Phasellus eget lacinia mi. Suspendisse molestie commodo mauris, quis maximus odio varius ut.',
     heightDisplacement: Math.random() * 100,
   }, {
     title: 'Noise Reduction Artefacts',
-    color: '#104014',
+    buttonText: packButtonText,
     soundUrl: 'http://static.hem.rocks/hem-rocks/sl-demos/grand_piano_test_november.mp3',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend nisi non enim consequat tempus. Phasellus eget lacinia mi. Suspendisse molestie commodo mauris, quis maximus odio varius ut.',
     heightDisplacement: Math.random() * 100,
   }, {
     title: 'Seurat for Push',
-    color: '#591107',
+    buttonText: packButtonText,
     soundUrl: 'http://static.hem.rocks/hem-rocks/sl-demos/grand_piano_test_november.mp3',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend nisi non enim consequat tempus. Phasellus eget lacinia mi. Suspendisse molestie commodo mauris, quis maximus odio varius ut.',
     heightDisplacement: Math.random() * 100,

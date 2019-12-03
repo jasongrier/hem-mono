@@ -111,7 +111,6 @@ function SoundLibraryHome(): ReactElement {
         <HeroineCarousel index={carouselIndex}>
           {carouselItems.map((_, index) => (
             <div
-              className="player-carousel-panel"
               key={index}
               style={{
                 backgroundImage: `url(../../static/assets/images/carousel-test/carousel-test-${index}.jpg)`,

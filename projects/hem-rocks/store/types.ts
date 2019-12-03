@@ -5,7 +5,7 @@ import { ThunkAction } from 'redux-thunk'
 export type ThunkResult<R> = ThunkAction<R, IState, undefined, Action>
 
 export interface ICarouselItem {
-  color: string
+  buttonText: string
   description: string
   heightDisplacement: number
   soundUrl: string

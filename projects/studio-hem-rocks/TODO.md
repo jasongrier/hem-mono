@@ -8,6 +8,7 @@
 | [projects/studio-hem-rocks/functions/image-diff-matrix.ts](projects/studio-hem-rocks/functions/image-diff-matrix.ts#L21) | 21 | Make it its own helper
 | [projects/studio-hem-rocks/functions/image-diff-matrix.ts](projects/studio-hem-rocks/functions/image-diff-matrix.ts#L33) | 33 | Make it its own helper
 | [projects/studio-hem-rocks/store/selectors.ts](projects/studio-hem-rocks/store/selectors.ts#L1) | 1 | Find a use for selectors in this project
+| [projects/hem-rocks/routes/SoundLibraryHome.tsx](projects/hem-rocks/routes/SoundLibraryHome.tsx#L145) | 145 | Should simply forward the onClick, not set the value
 | [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L16) | 16 | Modal module
 | [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L28) | 28 | Header component
 | [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L54) | 54 | Closeup of the top four dials
