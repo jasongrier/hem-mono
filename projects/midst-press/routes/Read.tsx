@@ -57,9 +57,7 @@ function Read(): ReactElement {
             ${editorLetterOpen ? 'editor-letter-open' : ''}
           `}>
             <div className="editor-button">
-              <ChevronButton
-                onClick={() => setEditorLetterOpen(!editorLetterOpen)}
-              />
+              <ChevronButton onClick={() => setEditorLetterOpen(!editorLetterOpen)} />
             </div>
             <p> Dear friends,</p>
             <p>
@@ -84,7 +82,10 @@ function Read(): ReactElement {
 
         {poems.map((poem: IPoem) => (
           <Link key={poem.url}
-            className="poem-link"
+            className={`
+              poem-link
+              ${poem.italicizeTitle ? 'poem-link--italic-title' : ''}
+            `}
             data-trigger={poem.trigger ? 'true' : 'false'}
             to={`/poem/${poem.url}/`}
             onClick={() => dispatch(setMobileNavOpen(false))}

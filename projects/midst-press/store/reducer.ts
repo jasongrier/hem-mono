@@ -8,7 +8,7 @@ import {
   IState,
 } from './types'
 
-function createPoem(author: string, title: string, authorSecondaryFolder?) {
+function createPoem(author: string, title: string, authorSecondaryFolder?, italicizeTitle?) {
   const authorId = author.toLowerCase().replace(/ /g, '-')
   const url = title.toLowerCase().replace(/ /g, '-').replace(/\,/g, '')
 
@@ -16,6 +16,7 @@ function createPoem(author: string, title: string, authorSecondaryFolder?) {
     author,
     authorId,
     authorSecondaryFolder,
+    italicizeTitle,
     data: null,
     poemId: `${authorId}--${url}`,
     loaded: false,
@@ -40,7 +41,7 @@ const poems = [
   createPoem('Veronica Martin', 'Epilogue in Summer'),
   createPoem('Jose Hernandez Diaz', 'The Dahlias in Autumn'),
   createPoem('Max Seifert', 'Benjamins'),
-  createPoem('Madeleine Mori', 'After Watching Westworld, the Left Side of My Body Malfunctions'),
+  createPoem('Madeleine Mori', 'After Watching Westworld, the Left Side of My Body Malfunctions', null, true),
   createPoem('Mia You', 'Go Bokito'),
   createPoem('Sarah Matthes', 'Averting My Eyes'),
   createPoem('Annelyse Gelman', 'Prosperity'),
