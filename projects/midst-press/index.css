@@ -465,6 +465,7 @@ body {
   background-color: rgba(247, 177, 237, .96);
   color: #400404;
   transition: top 250ms;
+  pointer-events: all;
 }
 .table-of-contents .heroine .editor-letter-open {
   top: 0;
