@@ -28,10 +28,12 @@ function PoemNav({ history, match }: IProps): ReactElement {
   useEffect(() => {
     function slidePoemOnArrowKeyDown(evt: any) {
       if (evt.keyCode === 37) {
+        dispatch(setProcessNoteOpen(false))
         history.push(previousPoemUrl)
       }
 
       else if (evt.keyCode === 39) {
+        dispatch(setProcessNoteOpen(false))
         history.push(nextPoemUrl)
       }
     }
