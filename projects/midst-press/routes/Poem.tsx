@@ -63,6 +63,7 @@ function Poem({ match }: IProps): ReactElement {
                 data-trigger={poem.trigger ? 'true' : 'false'}
                 key={poem.poemId}
               >
+                <div className="scrolling-area-border" />
                 <Midst
                   activePlayer={i === currentPoemIndex}
                   isPlayer={true}
