@@ -10,41 +10,48 @@ import {
 
   IState,
   CAROUSEL_SET_INDEX,
+  PLAYER_TOGGLE_MUTED,
 } from './types'
 
 const packButtonText = 'Download now'
 
 const carouselItems = [
   {
-    title: 'Grand Piano',
-    buttonText: packButtonText,
+    title: '5 New Packs for Ableton Live',
+    buttonText: 'Listen',
+    packId: null,
     soundUrl: 'http://static.hem.rocks/hem-rocks/sl-demos/grand_piano_test_november.mp3',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend nisi non enim consequat tempus. Phasellus eget lacinia mi. Suspendisse molestie commodo mauris, quis maximus odio varius ut.',
-    heightDisplacement: Math.random() * 100,
+  }, {
+    title: 'Grand Piano',
+    buttonText: packButtonText,
+    packId: 'grand-piano',
+    soundUrl: 'http://static.hem.rocks/hem-rocks/sl-demos/grand_piano_test_november.mp3',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend nisi non enim consequat tempus. Phasellus eget lacinia mi. Suspendisse molestie commodo mauris, quis maximus odio varius ut.',
   }, {
     title: 'Grand Piano – Extended',
     buttonText: packButtonText,
+    packId: 'grand-piano',
     soundUrl: 'http://static.hem.rocks/hem-rocks/sl-demos/grand_piano_test_november.mp3',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend nisi non enim consequat tempus. Phasellus eget lacinia mi. Suspendisse molestie commodo mauris, quis maximus odio varius ut.',
-    heightDisplacement: Math.random() * 100,
   }, {
     title: 'Viola',
     buttonText: packButtonText,
+    packId: 'grand-piano',
     soundUrl: 'http://static.hem.rocks/hem-rocks/sl-demos/grand_piano_test_november.mp3',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend nisi non enim consequat tempus. Phasellus eget lacinia mi. Suspendisse molestie commodo mauris, quis maximus odio varius ut.',
-    heightDisplacement: Math.random() * 100,
   }, {
     title: 'Noise Reduction Artefacts',
     buttonText: packButtonText,
+    packId: 'grand-piano',
     soundUrl: 'http://static.hem.rocks/hem-rocks/sl-demos/grand_piano_test_november.mp3',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend nisi non enim consequat tempus. Phasellus eget lacinia mi. Suspendisse molestie commodo mauris, quis maximus odio varius ut.',
-    heightDisplacement: Math.random() * 100,
   }, {
     title: 'Seurat for Push',
     buttonText: packButtonText,
+    packId: 'grand-piano',
     soundUrl: 'http://static.hem.rocks/hem-rocks/sl-demos/grand_piano_test_november.mp3',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend nisi non enim consequat tempus. Phasellus eget lacinia mi. Suspendisse molestie commodo mauris, quis maximus odio varius ut.',
-    heightDisplacement: Math.random() * 100,
   }
 ]
 
@@ -93,6 +100,10 @@ const reducer = (
 
     case PLAYER_SET_VOLUME:
       return { ...state, playerVolume: payload }
+
+    case PLAYER_TOGGLE_MUTED:
+      const { playerVolume } = state
+      return { ...state, playerVolume: playerVolume > 0 ? 0 : 1 }
 
     case PLAYER_TOGGLE_PLAYING:
       return { ...state, playerPlaying: !state.playerPlaying }
