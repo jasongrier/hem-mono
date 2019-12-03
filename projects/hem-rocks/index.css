@@ -308,6 +308,11 @@ a {
   background: orange;
 }
 
+.pack-info-cta:focus,
+.pack-info-cta:active {
+  outline: none;
+}
+
 .player-carousel .hem-displace-frame {
   overflow: hidden;
 }
@@ -333,15 +338,20 @@ a {
   margin-right: 0;
 }
 
+.prev-button .hem-next-button {
+  transform: rotate(180deg);
+}
+
 .pack-player .hem-slider {
   float: left;
-  width: calc(100vw - 230px);
+  width: calc(100vw - 300px);
   height: 60px;
+  margin-right: 5px;
   border: none;
 }
 
 .pack-player .hem-slider-progress {
-  background: #222;
+  background: #000;
 }
 
 .pack-player-000000 .hem-slider-progress {
