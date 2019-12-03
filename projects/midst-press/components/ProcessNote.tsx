@@ -53,6 +53,7 @@ function ProcessNote({ match }: IProps): ReactElement {
 
   useEffect(() => {
     proxyProcessNoteOpen = processNoteOpen
+    document.body.querySelector('.process-note__content').scrollTop = 0
   }, [processNoteOpen])
 
   return (
