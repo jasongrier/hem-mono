@@ -26,6 +26,7 @@ export interface IMidstFile {
 export interface IPoem {
   author: string
   authorId: string
+  authorSecondaryFolder: string
   data: IMidstFile | null
   hidden?: boolean
   loaded: boolean

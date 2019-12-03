@@ -14,7 +14,7 @@ import {
   IPoem,
 } from './types'
 
-const staticAssetsUrl = process.env.STATIC_ASSETS_URL + 'midst-press/authors/staging/'
+const staticAssetsUrl = process.env.STATIC_ASSETS_URL + 'midst-press/authors/production/'
 
 // TODO: Should be: ThunkResult<void>. Why doesn't it work?
 const loadPoemData = (poemIndex: number): any =>
@@ -27,9 +27,10 @@ const loadPoemData = (poemIndex: number): any =>
 
     try {
       const poem: IPoem = poems[poemIndex]
-      const processNoteRaw = await $.get(`${staticAssetsUrl}${poem.authorId}/${poem.authorId}.md`)
+      const folder = poem.authorSecondaryFolder || poem.authorId
+      const processNoteRaw = await $.get(`${staticAssetsUrl}${folder}/${poem.authorId}.md`)
       const processNote = insane(marked(processNoteRaw), { allowedTags: ['h1', 'p', 'i', 'a', 'em', 'b', 'strong', 'img']})
-      const zipTest = await fetch(`${staticAssetsUrl}/${poem.authorId}/${poem.poemId}.midst.zip`)
+      const zipTest = await fetch(`${staticAssetsUrl}${folder}/${poem.poemId}.midst.zip`)
       const reader = new zip.BlobReader(await zipTest.blob())
 
       zip.createReader(reader, zipReader => {
