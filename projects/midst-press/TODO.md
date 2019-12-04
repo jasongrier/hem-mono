@@ -5,7 +5,7 @@
 | [projects/midst-press/store/actions.ts](projects/midst-press/store/actions.ts#L6) | 6 | Type def file
 | [projects/midst-press/store/actions.ts](projects/midst-press/store/actions.ts#L19) | 19 | Should be: ThunkResult<void>. Why doesn't it work?
 | [projects/midst-press/store/actions.ts](projects/midst-press/store/actions.ts#L21) | 21 | Above should be: ThunkResult<void>, then `any` is not needed here
-| [projects/midst-press/store/reducer.ts](projects/midst-press/store/reducer.ts#L58) | 58 | Should be Action from `../types.ts`
+| [projects/midst-press/store/reducer.ts](projects/midst-press/store/reducer.ts#L61) | 61 | Should be Action from `../types.ts`
 | [projects/midst-press/store/selectors.ts](projects/midst-press/store/selectors.ts#L1) | 1 | Find a use for selectors in this project
 | [projects/midst-press/store/types.ts](projects/midst-press/store/types.ts#L4) | 4 | How to get around putting this in every project??
 | [projects/midst-press/store/types.ts](projects/midst-press/store/types.ts#L7) | 7 | Move Midst types to common
@@ -52,4 +52,4 @@
 | [projects/studio-hem-rocks/routes/demos/ArrangerDemo.tsx](projects/studio-hem-rocks/routes/demos/ArrangerDemo.tsx#L14) | 14 | Describe the arranger
 | [projects/studio-hem-rocks/routes/demos/MidiDemo.tsx](projects/studio-hem-rocks/routes/demos/MidiDemo.tsx#L10) | 10 | Move to the new Midi class
 | [projects/studio-hem-rocks/routes/demos/MidiDemo.tsx](projects/studio-hem-rocks/routes/demos/MidiDemo.tsx#L28) | 28 | Use the new Counter class
-| [projects/midst-press/index.css](projects/midst-press/index.css#L981) | 981 | Does Redux even render these class names any more?
+| [projects/midst-press/index.css](projects/midst-press/index.css#L977) | 977 | Does Redux even render these class names any more?

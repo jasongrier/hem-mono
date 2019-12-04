@@ -52,6 +52,9 @@ class Midst extends React.Component<IProps, any> {
   private $editable: any
   private editorNumLines: any
   private autoScrubTimeout: any
+  private scrollIntoViewTimeout: any
+  private isAutoScrolling: boolean = false
+  private isAutoScrollingOnce: boolean = false
 
   constructor(props: any) {
     super(props)
@@ -124,6 +127,8 @@ class Midst extends React.Component<IProps, any> {
     this.toggleFontFormatBold = this.toggleFontFormatBold.bind(this)
     this.toggleFontFormatItalic = this.toggleFontFormatItalic.bind(this)
     this.toggleTimeline = this.toggleTimeline.bind(this)
+
+    this.doneScrollingIntoView = this.doneScrollingIntoView.bind(this)
 
 // ================================================================================
 // Styles
@@ -631,24 +636,25 @@ class Midst extends React.Component<IProps, any> {
     // })
   }
 
-  setPos(index: any, scrollCursorIntoView: boolean = true) {
+  setPos(index: any, scrollCursorIntoView: boolean = true, once: boolean = true) {
     this.setState({ editorTimelineIndex: index }, () => {
       index = Math.ceil(index)
       if (this.state.editorTimelineFrames[index]) {
         this.$editable.html(this.state.editorTimelineFrames[index].content)
       }
-    })
 
-    if (scrollCursorIntoView) {
-      setTimeout(() => {
-        this.scrollCursorIntoView()
-      }, 1)
-    }
+      if (scrollCursorIntoView) {
+        this.isAutoScrollingOnce = once
+        setTimeout(() => {
+          this.scrollCursorIntoView()
+        }, 1)
+      }
+    })
   }
 
   play() {
     if (this.state.editorTimelineIndex >= this.state.editorTimelineFrames.length - 1) {
-      this.setPos(0)
+      this.setPos(0, true, false)
     }
 
     this.setState({ editorPlaying: true }, this.autoScrub)
@@ -661,7 +667,7 @@ class Midst extends React.Component<IProps, any> {
   autoScrub() {
     const { editorPlaying, playerPlaybackSpeed, editorTimelineIndex, editorTimelineFrames } = this.state
 
-    if (!editorPlaying) return
+    if (!editorPlaying || this.isAutoScrolling) return
 
     if (editorTimelineIndex === undefined || editorTimelineIndex >= editorTimelineFrames.length) {
       this.setState({ editorPlaying: false })
@@ -679,7 +685,7 @@ class Midst extends React.Component<IProps, any> {
     }
 
     this.autoScrubTimeout = setTimeout(() => {
-      this.setPos(editorTimelineIndex + 1)
+      this.setPos(editorTimelineIndex + 1, true, false)
       this.autoScrub()
     }, time)
   }
@@ -863,41 +869,95 @@ class Midst extends React.Component<IProps, any> {
     // sel.addRange(range)
   }
 
+  getScrollSubject() {
+    const currentFrame = this.state.editorTimelineFrames[this.state.editorTimelineIndex]
+    const currentLineNumber = parseInt(currentFrame.lineNumber)
+    const $currentLine = this.$editable.find('[data-line-number="' + currentLineNumber + '"]')
+    const $fifthLineAbove = this.$editable.find('[data-line-number="' + (currentLineNumber - 5) + '"]')
+    const $topLine = this.$editable.find('[data-line-number="0"]')
+
+    let $subject
+
+    if ($fifthLineAbove.length) {
+      $subject = $fifthLineAbove
+    }
+
+    else if ($topLine.length) {
+      $subject = $topLine
+    }
+
+    else if ($currentLine.length) {
+      $subject = $currentLine
+    }
+
+    // this.$editable.focus()
+    // var range = document.createRange()
+    // range.selectNodeContents($currentLine[0])
+    // var sel = window.getSelection()
+    // sel.removeAllRanges()
+    // sel.addRange(range)
+
+    return $currentLine
+  }
+
   scrollCursorIntoView() {
     if (this.state.appCursorFollowing) {
       const currentFrame = this.state.editorTimelineFrames[this.state.editorTimelineIndex]
 
       if (currentFrame) {
-        const currentLineNumber = parseInt(currentFrame.lineNumber)
-        const $currentLine = this.$editable.find('[data-line-number="' + currentLineNumber + '"]')
-        const $fifthLineAbove = this.$editable.find('[data-line-number="' + (currentLineNumber - 5) + '"]')
-        const $topLine = this.$editable.find('[data-line-number="0"]')
-
-        let $subject
-
-        if ($fifthLineAbove.length) {
-          $subject = $fifthLineAbove
+        const $subject = this.getScrollSubject()
+        if (this.isOutOfView($subject)) {
+          const manualScrollStopper = $('<div class="manual-scroll-stopper"></div>')
+          manualScrollStopper.css({
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            bottom: 0,
+            right: 0,
+            // backgroundColor: 'red',
+            // opacity: 0.3,
+          })
+          this.$editable.parents('.editor').append(manualScrollStopper)
+          this.isAutoScrolling = true
+          // setTimeout(() => {
+          this.$editable[0].addEventListener('scroll', this.doneScrollingIntoView)
+          $subject[0].scrollIntoView({ behavior: 'smooth' })
+          // }, 300)
         }
-
-        else if ($topLine.length) {
-          $subject = $topLine
-        }
-
-        else if ($currentLine.length) {
-          $subject = $currentLine
-        }
-
-        // $subject[0].scrollIntoView({ behavior: 'smooth' })
-        $subject[0].scrollIntoView({ behavior: 'auto' })
-
-        this.$editable.focus()
-        var range = document.createRange()
-        range.selectNodeContents($currentLine[0])
-        var sel = window.getSelection()
-        sel.removeAllRanges()
-        sel.addRange(range)
       }
     }
+  }
+
+  doneScrollingIntoView() {
+    clearTimeout(this.scrollIntoViewTimeout)
+    this.scrollIntoViewTimeout = setTimeout(() => {
+      if (this.isAutoScrolling) {
+        this.isAutoScrolling = false
+        this.$editable[0].removeEventListener('scroll', this.doneScrollingIntoView)
+        $('.manual-scroll-stopper').remove()
+
+        if (!this.isAutoScrollingOnce) {
+          this.play()
+        }
+      }
+    }, 100)
+  }
+
+  isOutOfView($line: any) {
+    const lineTop = $line.position().top
+    const editorBottom = this.$editable.outerHeight()
+    const tooHigh = lineTop < 0
+    const tooLow = lineTop > editorBottom - 20
+
+    if (tooHigh) {
+      console.log('down', lineTop)
+    }
+
+    else if (tooLow) {
+      console.log('up', editorBottom - 20 - lineTop)
+    }
+
+    return tooHigh || tooLow
   }
 
 // ================================================================================
