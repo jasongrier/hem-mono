@@ -908,7 +908,7 @@ body {
 }
 
 .sliding-poems__poem .midst main .editor .editable {
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 
 .editor {
@@ -925,7 +925,8 @@ body {
   display: inline-block;
   width: 200px;
   max-width: 800px;
-  height: calc(100vh - 231px);
+  /* height: calc(100vh - 231px); */
+  height: auto;
   padding-top: 15px;
   padding-bottom: 13px;
   margin: 0 auto;
