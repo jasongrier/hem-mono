@@ -55,6 +55,7 @@ class Midst extends React.Component<IProps, any> {
   private scrollIntoViewTimeout: any
   private isAutoScrolling: boolean = false
   private isAutoScrollingOnce: boolean = false
+  private preAutoScrollTimeout: any
 
   constructor(props: any) {
     super(props)
@@ -669,7 +670,11 @@ class Midst extends React.Component<IProps, any> {
 
     if (!editorPlaying || this.isAutoScrolling) return
 
+    console.log('IT GO', editorTimelineIndex, editorTimelineFrames.length)
+
     if (editorTimelineIndex === undefined || editorTimelineIndex >= editorTimelineFrames.length) {
+      console.log('IT ENDED')
+      console.log(this.autoScrubTimeout)
       this.setState({ editorPlaying: false })
       return
     }
@@ -864,7 +869,7 @@ class Midst extends React.Component<IProps, any> {
     var range = document.createRange()
     range.selectNodeContents(this.$editable[0])
     range.collapse(false)
-    var sel = window.getSelection()
+    var sel: any = window.getSelection()
     // sel.removeAllRanges()
     // sel.addRange(range)
   }
@@ -890,10 +895,11 @@ class Midst extends React.Component<IProps, any> {
       $subject = $currentLine
     }
 
+    // Highlight the current line for debugging...
     // this.$editable.focus()
     // var range = document.createRange()
     // range.selectNodeContents($currentLine[0])
-    // var sel = window.getSelection()
+    // var sel: any = window.getSelection()
     // sel.removeAllRanges()
     // sel.addRange(range)
 
@@ -906,38 +912,54 @@ class Midst extends React.Component<IProps, any> {
 
       if (currentFrame) {
         const $subject = this.getScrollSubject()
+
         if (this.isOutOfView($subject)) {
+
           const manualScrollStopper = $('<div class="manual-scroll-stopper"></div>')
+
           manualScrollStopper.css({
             position: 'absolute',
             top: 0,
             left: 0,
             bottom: 0,
             right: 0,
-            // backgroundColor: 'red',
-            // opacity: 0.3,
           })
+
           this.$editable.parents('.editor').append(manualScrollStopper)
           this.isAutoScrolling = true
-          // setTimeout(() => {
-          this.$editable[0].addEventListener('scroll', this.doneScrollingIntoView)
-          $subject[0].scrollIntoView({ behavior: 'smooth' })
-          // }, 300)
+
+          clearTimeout(this.preAutoScrollTimeout)
+          this.preAutoScrollTimeout = setTimeout(() => {
+            if (this.isOutOfView($subject)) {
+              this.$editable[0].addEventListener('scroll', this.doneScrollingIntoView)
+              $subject[0].scrollIntoView({ behavior: 'smooth' })
+            }
+
+            else {
+              if (this.isAutoScrolling && !this.isAutoScrollingOnce) {
+                // Oops! An autoscroll completed before we could detect, just kick off playback again
+                console.log('oops!')
+                this.isAutoScrolling = false
+                this.autoScrub()
+              }
+            }
+          }, 300)
         }
       }
     }
   }
 
   doneScrollingIntoView() {
-    clearTimeout(this.scrollIntoViewTimeout)
     this.scrollIntoViewTimeout = setTimeout(() => {
+      clearTimeout(this.scrollIntoViewTimeout)
+      this.$editable[0].removeEventListener('scroll', this.doneScrollingIntoView)
+
       if (this.isAutoScrolling) {
         this.isAutoScrolling = false
-        this.$editable[0].removeEventListener('scroll', this.doneScrollingIntoView)
         $('.manual-scroll-stopper').remove()
 
         if (!this.isAutoScrollingOnce) {
-          this.play()
+          this.autoScrub()
         }
       }
     }, 100)
@@ -948,15 +970,6 @@ class Midst extends React.Component<IProps, any> {
     const editorBottom = this.$editable.outerHeight()
     const tooHigh = lineTop < 0
     const tooLow = lineTop > editorBottom - 20
-
-    if (tooHigh) {
-      console.log('down', lineTop)
-    }
-
-    else if (tooLow) {
-      console.log('up', editorBottom - 20 - lineTop)
-    }
-
     return tooHigh || tooLow
   }
 
