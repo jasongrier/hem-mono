@@ -1,6 +1,7 @@
 import React, { createElement as e } from 'react'
 import $ from 'jquery'
 import moment from 'moment'
+import Scrollbars from 'react-scrollbars-custom'
 import { isEmpty, get, last } from 'lodash'
 import Slider from './Slider'
 import Drop from './Drop'
@@ -16,6 +17,13 @@ import iconTimeline from './icon-timeline'
 import iconTrash from './icon-trash'
 import { IMidstFile } from '../../store/types'
 import './style.css'
+
+const LOG_AUTO_SCROLL = false
+
+function autoScrollLog(...args: any[]) {
+  if (!LOG_AUTO_SCROLL) return
+  console.log(...args)
+}
 
 function getUrlVars() {
   var vars: any = {}
@@ -50,6 +58,7 @@ class Midst extends React.Component<IProps, any> {
   private initialState = {} as any
   private el: any
   private $editable: any
+  private $scrollable: any
   private editorNumLines: any
   private autoScrubTimeout: any
   private scrollIntoViewTimeout: any
@@ -144,6 +153,9 @@ class Midst extends React.Component<IProps, any> {
     const { isPlayer, MIDST_DATA_URL, MIDST_DATA_JS } = this.props
 
     this.$editable = $(this.el).find('.editable')
+    this.$scrollable = $(this.el).find('.ScrollbarsCustom-Scroller')
+
+    this.$scrollable[0].addEventListener('scroll', () => autoScrollLog('scrolled somehow'))
 
     // Force first line of contenteditable to be wrapped in a <p>.
     this.$editable.html('<p><br></p>')
@@ -219,7 +231,7 @@ class Midst extends React.Component<IProps, any> {
       this.setPos(this.state.editorTimelineFrames.length - 1, false)
 
       setTimeout(() => {
-        this.$editable[0].scrollTop = 0
+        this.$scrollable[0].scrollTop = 0
       }, 1)
     }
 
@@ -654,6 +666,7 @@ class Midst extends React.Component<IProps, any> {
   }
 
   play() {
+    autoScrollLog('play')
     if (this.state.editorTimelineIndex >= this.state.editorTimelineFrames.length - 1) {
       this.setPos(0, true, false)
     }
@@ -667,17 +680,22 @@ class Midst extends React.Component<IProps, any> {
 
   autoScrub() {
     const { editorPlaying, playerPlaybackSpeed, editorTimelineIndex, editorTimelineFrames } = this.state
+    autoScrollLog('autoscrub')
 
-    if (!editorPlaying || this.isAutoScrolling) return
+    clearTimeout(this.autoScrubTimeout)
 
-    console.log('IT GO', editorTimelineIndex, editorTimelineFrames.length)
+    if (editorPlaying === false || this.isAutoScrolling) return
+
+    autoScrollLog('can autoscrub')
 
     if (editorTimelineIndex === undefined || editorTimelineIndex >= editorTimelineFrames.length) {
-      console.log('IT ENDED')
-      console.log(this.autoScrubTimeout)
+      autoScrollLog('stop playing')
+      clearTimeout(this.autoScrubTimeout)
       this.setState({ editorPlaying: false })
       return
     }
+
+    autoScrollLog('continue playing ' + editorTimelineIndex + ' ' + editorTimelineFrames.length)
 
     let time: number = 73 // Default, 'med'
 
@@ -896,12 +914,12 @@ class Midst extends React.Component<IProps, any> {
     }
 
     // Highlight the current line for debugging...
-    // this.$editable.focus()
-    // var range = document.createRange()
-    // range.selectNodeContents($currentLine[0])
-    // var sel: any = window.getSelection()
-    // sel.removeAllRanges()
-    // sel.addRange(range)
+    this.$editable.focus()
+    var range = document.createRange()
+    range.selectNodeContents($currentLine[0])
+    var sel: any = window.getSelection()
+    sel.removeAllRanges()
+    sel.addRange(range)
 
     return $currentLine
   }
@@ -915,6 +933,8 @@ class Midst extends React.Component<IProps, any> {
 
         if (this.isOutOfView($subject)) {
 
+          autoScrollLog('needs to scroll')
+
           const manualScrollStopper = $('<div class="manual-scroll-stopper"></div>')
 
           manualScrollStopper.css({
@@ -925,20 +945,31 @@ class Midst extends React.Component<IProps, any> {
             right: 0,
           })
 
-          this.$editable.parents('.editor').append(manualScrollStopper)
+          // this.$editable.parents('.editor').append(manualScrollStopper)
+
           this.isAutoScrolling = true
+
+          autoScrollLog('start prescroll')
 
           clearTimeout(this.preAutoScrollTimeout)
           this.preAutoScrollTimeout = setTimeout(() => {
+
+            autoScrollLog('end prescroll')
+
             if (this.isOutOfView($subject)) {
-              this.$editable[0].addEventListener('scroll', this.doneScrollingIntoView)
+
+              autoScrollLog('starting scroll...')
+
+              // this.$scrollable[0].addEventListener('scroll', this.doneScrollingIntoView)
               $subject[0].scrollIntoView({ behavior: 'smooth' })
             }
 
             else {
+              autoScrollLog('checking for oops...')
               if (this.isAutoScrolling && !this.isAutoScrollingOnce) {
                 // Oops! An autoscroll completed before we could detect, just kick off playback again
-                console.log('oops!')
+                autoScrollLog('oops!')
+                clearTimeout(this.autoScrubTimeout)
                 this.isAutoScrolling = false
                 this.autoScrub()
               }
@@ -946,30 +977,56 @@ class Midst extends React.Component<IProps, any> {
           }, 300)
         }
       }
+
+      else {
+        autoScrollLog('no need to scroll')
+      }
     }
   }
 
   doneScrollingIntoView() {
-    this.scrollIntoViewTimeout = setTimeout(() => {
+
+    // autoScrollLog('scrolling...')
+
+    // this.scrollIntoViewTimeout = setTimeout(() => {
+      autoScrollLog('done scrolling')
+
       clearTimeout(this.scrollIntoViewTimeout)
-      this.$editable[0].removeEventListener('scroll', this.doneScrollingIntoView)
+      this.$scrollable[0].removeEventListener('scroll', this.doneScrollingIntoView)
 
       if (this.isAutoScrolling) {
         this.isAutoScrolling = false
         $('.manual-scroll-stopper').remove()
 
         if (!this.isAutoScrollingOnce) {
+          autoScrollLog('resuming replay')
+          clearTimeout(this.autoScrubTimeout)
           this.autoScrub()
         }
+
+        else {
+          autoScrollLog('not resuming replay')
+        }
       }
-    }, 100)
+
+      else {
+        autoScrollLog('was not autoscrolling just now?!')
+      }
+    // }, 100)
   }
 
   isOutOfView($line: any) {
-    const lineTop = $line.position().top
-    const editorBottom = this.$editable.outerHeight()
-    const tooHigh = lineTop < 0
+    const lineTop = $line.offset().top
+    const editorBottom = this.$scrollable.outerHeight() + this.$scrollable.offset().top
+    const tooHigh = lineTop + $line.outerHeight() < this.$scrollable.offset().top
     const tooLow = lineTop > editorBottom - 20
+    console.log(lineTop + $line.outerHeight(), this.$scrollable.offset().top)
+    console.log(tooHigh, tooLow)
+
+    if (lineTop + $line.outerHeight() === 0) {
+      this.$scrollable[0].scrollTop = this.$scrollable[0].scrollTop + 1
+    }
+
     return tooHigh || tooLow
   }
 
@@ -1052,11 +1109,26 @@ class Midst extends React.Component<IProps, any> {
           fontSize: editorFontSize + 'px',
         },
       },
-        e('div', {
-          className: 'editable' + (appDrawerOpen && !appFocusMode ? 'with-drawer' : '')
-            + (appTimelineMode ? ' with-timeline' : ''),
-          contentEditable: !editorCreatingDraftMarker && !editorEditingDraftMarker && !isPlayer,
-        }),
+        e(Scrollbars, {
+          onScrollStop: () => {
+            this.doneScrollingIntoView()
+            autoScrollLog('component stopped scrolling')
+            autoScrollLog('checking for oops...')
+              if (this.isAutoScrolling && !this.isAutoScrollingOnce) {
+                // Oops! An autoscroll completed before we could detect, just kick off playback again
+                autoScrollLog('oops!')
+                clearTimeout(this.autoScrubTimeout)
+                this.isAutoScrolling = false
+                this.autoScrub()
+              }
+          }
+        },
+          e('div', {
+            className: 'editable' + (appDrawerOpen && !appFocusMode ? 'with-drawer' : '')
+              + (appTimelineMode ? ' with-timeline' : ''),
+            contentEditable: !editorCreatingDraftMarker && !editorEditingDraftMarker && !isPlayer,
+          })
+        )
       )
     )
   }
