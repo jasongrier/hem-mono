@@ -56,11 +56,11 @@ const carouselItems = [
     soundUrl: 'http://static.hem.rocks/hem-rocks/sl-demos/grand_piano_test_november.mp3',
     description: 'A cosmic synth made entirely from the sonic waste products of the industry\'s top noise reduction algorithms. Get sounds raging from glossy and chic to brain-rattling bass and haunting psychoacoustic effects',
   }, {
-    title: 'New Pack: Seurat for Push',
+    title: 'New Pack: Seurat 2',
     buttonText: packButtonText,
     packId: 'grand-piano',
     soundUrl: 'http://static.hem.rocks/hem-rocks/sl-demos/grand_piano_test_november.mp3',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eleifend nisi non enim consequat tempus. Phasellus eget lacinia mi. Suspendisse molestie commodo mauris, quis maximus odio varius ut.',
+    description: 'Seurat.',
   }
 ]
 
