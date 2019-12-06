@@ -2,18 +2,13 @@ const { lint, lintAll } = require('./tasks/lint')
 const { test, testAll } = require('./tasks/test')
 const { todo, todoAll } = require('./tasks/todo')
 const build = require('./tasks/build')
-const midi = require('./tasks/midi')
 const start = require('./tasks/start')
 
 const a1 = process.argv[2]
 const a2 = process.argv[3]
 const a3 = process.argv[4]
 
-if (a1 === 'midi') { // `npm start midi`
-  midi()
-}
-
-else if (a1 === 'test') { // `npm test my-project`
+if (a1 === 'test') { // `npm test my-project`
   test(a2)
 }
 
