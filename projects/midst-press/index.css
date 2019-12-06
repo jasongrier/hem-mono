@@ -914,11 +914,11 @@ body {
 .editor {
   box-sizing: border-box;
   width: 100vw;
-  height: calc(100vh - 172px);
+  height: calc(100vh - 201px);
   padding-top: 2px;
   text-align: center;
-  padding-left: 70px;
-  padding-right: 70px;
+  padding-left: 61px;
+  padding-right: 61px;
 }
 
 .editor .editable {

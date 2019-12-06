@@ -914,12 +914,12 @@ class Midst extends React.Component<IProps, any> {
     }
 
     // Highlight the current line for debugging...
-    this.$editable.focus()
-    var range = document.createRange()
-    range.selectNodeContents($currentLine[0])
-    var sel: any = window.getSelection()
-    sel.removeAllRanges()
-    sel.addRange(range)
+    // this.$editable.focus()
+    // var range = document.createRange()
+    // range.selectNodeContents($currentLine[0])
+    // var sel: any = window.getSelection()
+    // sel.removeAllRanges()
+    // sel.addRange(range)
 
     return $currentLine
   }
