@@ -65,6 +65,7 @@ class Midst extends React.Component<IProps, any> {
   private isAutoScrolling: boolean = false
   private isAutoScrollingOnce: boolean = false
   private preAutoScrollTimeout: any
+  private scrollerInstance: Scrollbars
 
   constructor(props: any) {
     super(props)
@@ -319,6 +320,7 @@ class Midst extends React.Component<IProps, any> {
 // Handlers
 // ================================================================================
   appOnKeyDown(evt: any) {
+    const { isPlayer } = this.props
     const { appTimelineMode, editorTimelineIndex, appFocusMode, editorTimelineFrames } = this.state
 
     if (evt.keyCode === 27) {
@@ -333,13 +335,30 @@ class Midst extends React.Component<IProps, any> {
       }
     }
 
-    if (appTimelineMode) {
+    if (appTimelineMode || isPlayer) {
       if (evt.keyCode === 37 && editorTimelineIndex > 0) {
-        this.setPos(editorTimelineIndex - 1)
+        if (evt.shiftKey && editorTimelineIndex > 9) {
+          this.setPos(editorTimelineIndex - 10)
+        }
+
+        else {
+          this.setPos(editorTimelineIndex - 1)
+        }
       }
 
       else if (evt.keyCode === 39 && editorTimelineIndex < editorTimelineFrames.length) {
-        this.setPos(editorTimelineIndex + 1)
+        if (evt.shiftKey && editorTimelineIndex < editorTimelineFrames.length - 11) {
+          this.setPos(editorTimelineIndex + 10)
+        }
+
+        else {
+          this.setPos(editorTimelineIndex + 1)
+        }
+
+        if (editorTimelineIndex / this.state.editorTimelineFrames.length > .98) {
+          this.setPos(this.state.editorTimelineFrames.length - 1)
+          this.scrollerInstance.scrollToTop()
+        }
       }
     }
   }
@@ -547,6 +566,7 @@ class Midst extends React.Component<IProps, any> {
 
     if (index / this.state.editorTimelineFrames.length > .98) {
       this.setPos(this.state.editorTimelineFrames.length - 1)
+      this.scrollerInstance.scrollToTop()
     }
 
     else {
@@ -689,9 +709,10 @@ class Midst extends React.Component<IProps, any> {
     autoScrollLog('can autoscrub')
 
     if (editorTimelineIndex === undefined || editorTimelineIndex >= editorTimelineFrames.length) {
-      autoScrollLog('stop playing')
+      autoScrollLog('end of timeline')
       clearTimeout(this.autoScrubTimeout)
       this.setState({ editorPlaying: false })
+      this.scrollerInstance.scrollToTop()
       return
     }
 
@@ -929,6 +950,10 @@ class Midst extends React.Component<IProps, any> {
       const currentFrame = this.state.editorTimelineFrames[this.state.editorTimelineIndex]
 
       if (currentFrame) {
+        if (this.state.editorTimelineIndex / this.state.editorTimelineFrames.length > .98) {
+          return
+        }
+
         const $subject = this.getScrollSubject()
 
         if (this.isOutOfView($subject)) {
@@ -945,8 +970,6 @@ class Midst extends React.Component<IProps, any> {
             right: 0,
           })
 
-          // this.$editable.parents('.editor').append(manualScrollStopper)
-
           this.isAutoScrolling = true
 
           autoScrollLog('start prescroll')
@@ -957,10 +980,7 @@ class Midst extends React.Component<IProps, any> {
             autoScrollLog('end prescroll')
 
             if (this.isOutOfView($subject)) {
-
               autoScrollLog('starting scroll...')
-
-              // this.$scrollable[0].addEventListener('scroll', this.doneScrollingIntoView)
               $subject[0].scrollIntoView({ behavior: 'smooth' })
             }
 
@@ -1016,12 +1036,12 @@ class Midst extends React.Component<IProps, any> {
   }
 
   isOutOfView($line: any) {
+    if (!$line.offset()) return false
+
     const lineTop = $line.offset().top
     const editorBottom = this.$scrollable.outerHeight() + this.$scrollable.offset().top
     const tooHigh = lineTop + $line.outerHeight() < this.$scrollable.offset().top
     const tooLow = lineTop > editorBottom - 20
-    console.log(lineTop + $line.outerHeight(), this.$scrollable.offset().top)
-    console.log(tooHigh, tooLow)
 
     if (lineTop + $line.outerHeight() === 0) {
       this.$scrollable[0].scrollTop = this.$scrollable[0].scrollTop + 1
@@ -1110,6 +1130,7 @@ class Midst extends React.Component<IProps, any> {
         },
       },
         e(Scrollbars, {
+          ref: (ref: Scrollbars) => this.scrollerInstance = ref,
           onScrollStop: () => {
             this.doneScrollingIntoView()
             autoScrollLog('component stopped scrolling')
@@ -1233,7 +1254,7 @@ class Midst extends React.Component<IProps, any> {
           controlled: true,
           readOnly: false, // creatingDraftMarker,
           value,
-          showDisplayValue: editorPlaying, // Alternatively: editorTimelineIndex < editorTimelineFrames.length - 1,
+          showDisplayValue: editorTimelineIndex < editorTimelineFrames.length - 1,
           propsDisplayValue: timestamp,
           onChange: this.sliderOnChange,
           onMouseDown: () => {
@@ -1260,6 +1281,7 @@ class Midst extends React.Component<IProps, any> {
             this.pause()
             clearTimeout(this.autoScrubTimeout)
             this.setPos(editorTimelineFrames.length - 1)
+            this.scrollerInstance.scrollToTop()
           },
         }),
         e('div', {
