@@ -1,8 +1,12 @@
 import { AnyAction } from 'redux'
-import { IState } from './types'
+import {
+  LOAD_PRODUCT,
+
+  IState,
+} from './types'
 
 const initialState: IState = {
-  foo: 'bar',
+  product: null,
 }
 
 const reducer = (
@@ -10,8 +14,13 @@ const reducer = (
   { type }: AnyAction,
 ): IState => {
   switch (type) {
-    default:
+    case LOAD_PRODUCT: {
       return state
+    }
+
+    default: {
+      return state
+    }
   }
 }
 
