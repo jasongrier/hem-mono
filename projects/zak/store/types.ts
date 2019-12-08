@@ -1,14 +1,21 @@
 import { AnyAction } from 'redux'
 
+export interface IProduct {
+  description: string
+  id: string
+  imageUrl: string
+  title: string
+}
+
 export interface IState {
-  foo: string
+  product: IProduct
 }
 
-export const SOME_ACTION = 'SOME_ACTION'
+export const LOAD_PRODUCT = 'LOAD_PRODUCT'
 
-export interface ISomeAction extends AnyAction {
-  type: typeof SOME_ACTION
-  payload: null
+export interface ILoadProduct extends AnyAction {
+  type: typeof LOAD_PRODUCT
+  payload: IProduct
 }
 
-export type Action = ISomeAction
+export type Action = ILoadProduct

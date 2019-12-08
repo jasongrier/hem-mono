@@ -1,13 +1,15 @@
 import { AnyAction } from 'redux'
 import {
-  SOME_ACTION
+  LOAD_PRODUCT,
+
+  IProduct,
 } from './types'
 
-const someAction = (): AnyAction => ({
-  type: SOME_ACTION,
-  payload: null,
+const loadProduct = (product: IProduct): AnyAction => ({
+  type: LOAD_PRODUCT,
+  payload: product,
 })
 
 export {
-  someAction,
+  loadProduct,
 }
