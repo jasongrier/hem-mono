@@ -2,8 +2,10 @@ import { AnyAction } from 'redux'
 
 export interface IProduct {
   description: string
+  hasHighIndexAddOn: boolean
   id: string
   imageUrl: string
+  secondaryTitle: string
   title: string
 }
 
