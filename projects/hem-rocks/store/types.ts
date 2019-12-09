@@ -7,9 +7,10 @@ export type ThunkResult<R> = ThunkAction<R, IState, undefined, Action>
 export interface ICarouselItem {
   buttonText: string
   description: string
+  headline: string
   packId: string
   soundUrl: string
-  title: string
+  subHeadline: string
 }
 
 export interface IState {

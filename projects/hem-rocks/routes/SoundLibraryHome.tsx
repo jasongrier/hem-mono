@@ -115,7 +115,7 @@ function SoundLibraryHome(): ReactElement {
               className="player-carousel-panel"
               key={index}
               style={{
-                backgroundImage: `url(../../static/assets/images/carousel-test/carousel-test-${index}.jpg)`,
+                backgroundImage: `url(../../static/assets/images/ex-piano.jpg)`,
               }}
             />
           ))}
@@ -123,26 +123,28 @@ function SoundLibraryHome(): ReactElement {
       </div>
 
       <div className="pack-info">
-        <h4>{ currentCarouselItem.title }</h4>
-        <div className="pack-info-description"
-          dangerouslySetInnerHTML={{__html: currentCarouselItem.description}}
-        />
-        <p>
-          <button
-            className="pack-info-cta"
-            onClick={() => {
-              if (carouselIndex === 0) {
-                dispatch(carouselNext())
-              }
+        <h3>{ currentCarouselItem.headline }</h3>
+        <div className="pack-info-description">
+          <div className="pack-info-text"
+            dangerouslySetInnerHTML={{__html: currentCarouselItem.description}}
+          />
+          <p>
+            <button
+              className="pack-info-cta"
+              onClick={() => {
+                if (carouselIndex === 0) {
+                  dispatch(carouselNext())
+                }
 
-              else {
-                // dispatch(openPopup('download-sample', currentCarouselItem.packId))
-              }
-            }}
-          >
-            { currentCarouselItem.buttonText }
-          </button>
-        </p>
+                else {
+                  // dispatch(openPopup('download-sample', currentCarouselItem.packId))
+                }
+              }}
+            >
+              { currentCarouselItem.buttonText }
+            </button>
+          </p>
+        </div>
       </div>
 
       <div className="pack-player">
@@ -178,6 +180,8 @@ function SoundLibraryHome(): ReactElement {
           }} />
         </div>
       </div>
+
+      <h3>Next up: Seurat 2</h3>
     </div>
   )
 }

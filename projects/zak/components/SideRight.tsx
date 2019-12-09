@@ -5,16 +5,19 @@ import OptionRow from './OptionRow'
 import SwatchPicker from './SwatchPicker'
 
 // TODO: Move these to config or ENV
-const lensOptions = []
-const lensPickerOptions = []
-const prescriptionOptions = []
-const swatchPickerOptions = []
-const tintOptions = []
+const lensOptions: any[] = []
+const lensPickerOptions: any[] = []
+const prescriptionOptions: any[] = []
+const swatchPickerOptions: any[] = []
+const tintOptions: any[] = []
 
 function SideRight(): ReactElement {
-  const { productTitle } = useSelector((state: RootState) => ({
-    productTitle: state.app.product.title,
-  }))
+  const { productTitle } = useSelector((state: RootState) => {
+    const product = state.app.product
+    return {
+      productTitle: product && product.title,
+    }
+  })
 
   const total = 395
 
