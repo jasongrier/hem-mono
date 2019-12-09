@@ -15,6 +15,7 @@ body {
   position: sticky;
   top: 0;
   width: 100%;
+  background: black;
 }
 
 .zak-mock-header::after {
@@ -23,7 +24,6 @@ body {
   height: 40px;
   margin-top: 32px;
   content: " ";
-  background: black;
 }
 
 .zak-mock-main {
@@ -33,12 +33,10 @@ body {
 .zak-widget {
   width: 100vw;
   min-height: 550px;
-  background: red;
 }
 
 .zw-layout {
   margin: 0 25px;
-  background: green;
 }
 
 .zw-section {
@@ -48,7 +46,6 @@ body {
 
 .zw-section-left {
   margin-right: 12.5px;
-  background: aquamarine;
 }
 
 .zw-main-image {
@@ -64,7 +61,6 @@ body {
 .zw-description {
   font-size: 14px;
   line-height: 18px;
-  background: grey;
 }
 
 .zw-description p {
@@ -73,7 +69,6 @@ body {
 
 .zw-section-right {
   margin-left: 12.5px;
-  background: purple;
 }
 
 /* TODO: Remove height */
@@ -81,11 +76,10 @@ body {
   width: calc(100% - 70px);
   max-width: 450px;
   margin-left: 70px;
-  background: orange;
 }
 
 .zw-product-options h2 {
-  margin: 0 0 10px 0;
+  margin: 0 0 20px 0;
   padding: 0;
   font-size: 24px;
   line-height: 24px;
@@ -93,11 +87,10 @@ body {
 }
 
 .zw-swatch-picker h3 {
-  margin: 0 0 10px 0;
+  margin: 0 0 15px 0;
   padding: 0;
   font-size: 16px;
   line-height: 16px;
-  background: gray;
 }
 
 .zw-swatch-picker ul {
@@ -126,7 +119,7 @@ body {
   height: 30px;
   border-radius: 30px;
   cursor: pointer;
-  background: yellow;
+  background: gray;
 }
 
 .zw-swatch-picker-item-active {
@@ -135,14 +128,12 @@ body {
 
 .zw-primary-picker {
   height: 67px;
-  margin-bottom: 10px;
-  background: red;
+  margin-bottom: 20px;
 }
 
 .zw-lens-picker {
   height: 54px;
-  margin-bottom: 15px;
-  background: red;
+  margin-bottom: 30px;
 }
 
 .zw-lens-picker .zw-swatch-picker ul li {
@@ -158,11 +149,16 @@ body {
 
 .zw-option-row {
   height: 40px;
+  margin-bottom: 5px;
   font-size: 14px;
-  background: palegreen;
 }
 
-.zw-option-row .zw-custom-select {
+.zw-last-option-row {
+  margin-bottom: 0;
+}
+
+.zw-custom-select {
+  position: relative;
   float: left;
   margin-right: 10px;
   width: 150px;
@@ -170,6 +166,30 @@ body {
   line-height: 30px;
   text-indent: 5px;
   border: 1px solid #333;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.zw-custom-select .zw-select-options {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: -1px;
+  z-index: 9999;
+  width: calc(100% + 2px);
+  border: 1px solid #333;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.zw-custom-select-open .zw-select-options {
+  display: block;
+}
+
+.zw-custom-select .zw-select-options ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .zw-option-row .zw-option-action {
@@ -181,7 +201,6 @@ body {
 .zw-total-row {
   height: 60px;
   line-height: 60px;
-  background: peachpuff;
 }
 
 .zw-total-row div {
@@ -232,7 +251,6 @@ body {
 
 .zw-submit-row {
   height: 60px;
-  background: firebrick;
 }
 
 .zw-submit-row button {
@@ -264,7 +282,6 @@ body {
 .zak-mock-bottom {
   width: 100%;
   height: 400px;
-  background: yellow;
 }
 
 @media only screen and (max-width: 800px) {

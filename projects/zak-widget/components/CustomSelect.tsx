@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useState } from 'react'
 
 export interface ICustomSelectOption {
   text: string
@@ -13,20 +13,38 @@ export interface IProps {
 }
 
 function CustomSelect({ onChange, options, title, value }: IProps): ReactElement {
+  const [open, setOpen] = useState()
+  // TODO: This can be compared against props when Redux is hooked up
+  const [selectedText, setSelectedText] = useState(title)
+
+  function setAndClose({ value, text }: ICustomSelectOption) {
+    setOpen(false)
+    setSelectedText(text)
+    onChange(value)
+  }
+
   return (
-    <div className="zw-custom-select">
+    <div className={`zw-custom-select ${open ? 'zw-custom-select-open' : ''}`}>
       <div
         className="zw-selected-value"
-        onClick={() => {}}
+        onClick={() => setOpen(!open)}
       >
-        { title }
+        { selectedText }
       </div>
       <div className="zw-select-options">
         <ul>
-          { options.map(({ value: optionValue, text }) => (
+          <li onClick={() => {
+            setAndClose({ value: '', text: title })
+          }}>
+            None
+          </li>
+          { options.map(({ value: optionValue, text }, index) => (
             <li className={value === optionValue ? 'zw-custom-select-item-active' : ''}
-              key={value}
-              onClick={() => onChange(value)}>
+              key={index}
+              onClick={() => {
+                setAndClose({ value: optionValue, text })
+              }}
+            >
               { text }
             </li>
           ))}
