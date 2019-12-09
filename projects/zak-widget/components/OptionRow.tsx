@@ -9,11 +9,13 @@ interface IAction {
 interface IProps {
   action: IAction
   select: ICustomSelectProps
+
+  className?: string
 }
 
-function ZwOptionRow({ action, select }: IProps): ReactElement {
+function ZwOptionRow({ action, className, select }: IProps): ReactElement {
   return (
-    <div className="zw-option-row">
+    <div className={`zw-option-row ${className}`}>
       <CustomSelect
         onChange={select.onChange}
         options={select.options}

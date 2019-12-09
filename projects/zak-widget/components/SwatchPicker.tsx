@@ -18,10 +18,10 @@ function SwatchPicker({ onChange, options, title, value }: IProps): ReactElement
     <div className="zw-swatch-picker">
       <h3>{ title }</h3>
       <ul className="zw-clearfix">
-        { options.map(({ value: optionValue, imageUrl }) => (
+        { options.map(({ value: optionValue, imageUrl }, index) => (
           <li
             className={value === optionValue ? 'zw-swatch-picker-item-active' : ''}
-            key={value}
+            key={index}
           >
             <div
               className="zw-swatch-picker-item-image"

@@ -10,6 +10,10 @@ function tempSwatch(value: string) {
   return { imageUrl: 'foo', value }
 }
 
+function tempSelectOption(value: string) {
+  return { text: value, value }
+}
+
 // TODO: Move these to config or ENV
 const lensOptions: any[] = []
 const lensPickerOptions: any[] = [
@@ -18,7 +22,14 @@ const lensPickerOptions: any[] = [
   tempSwatch('three'),
 ]
 
-const prescriptionOptions: any[] = []
+const prescriptionOptions: any[] = [
+  tempSelectOption('one'),
+  tempSelectOption('two'),
+  tempSelectOption('three'),
+  tempSelectOption('four'),
+  tempSelectOption('five'),
+  tempSelectOption('six'),
+]
 
 const swatchPickerOptions: any[] = [
   tempSwatch('one'),
@@ -73,11 +84,12 @@ function SideRight(): ReactElement {
         />
         <OptionRow
           action={{ onClick: () => {}, text: 'What’s right for me?' }}
-          select={{ onChange: () => {}, options: lensOptions, title: 'Lens Option', value: 'foo' }}
+          select={{ onChange: () => {}, options: lensOptions, title: 'Lens Option', value: 'bar' }}
         />
         <OptionRow
+          className="zw-last-option-row"
           action={{ onClick: () => {}, text: 'Customize it!' }}
-          select={{ onChange: () => {}, options: tintOptions, title: 'Tint', value: 'foo' }}
+          select={{ onChange: () => {}, options: tintOptions, title: 'Tint', value: 'bar' }}
         />
         <div className="zw-total-row">
           <div className="zw-total">
