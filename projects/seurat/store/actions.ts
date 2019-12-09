@@ -1,6 +1,8 @@
 import { AnyAction } from 'redux'
-import { promisedTimeout } from '../../../../common/functions'
+import { ThunkAction } from 'redux-thunk'
+import { promisedTimeout } from '../../../lib/functions'
 import { flashDot } from '../functions/canvas'
+import { RootState } from '../store'
 import {
   CLEAR_CANVAS,
   OPENING_SEQUENCE_BEGUN,
@@ -23,7 +25,7 @@ import {
   ControlValue,
   CursorGroup,
   CursorMode,
-  ThunkResult,
+  Action,
 } from './types'
 
 const clearCanvas = (): AnyAction => ({
@@ -31,7 +33,8 @@ const clearCanvas = (): AnyAction => ({
   payload: null,
 })
 
-const playOpeningSequence = (andTurnOn: boolean = false): ThunkResult<void> =>
+// TODO: Switch to Saga
+const playOpeningSequence = (andTurnOn: boolean = false): ThunkAction<void, RootState, null, Action> =>
   async (dispatch, getState) => {
     async function flashNextDot(index: number) {
       const { canvases, currentCanvasIndex, cursorGroup } = (getState() as any).app
