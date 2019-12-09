@@ -18,12 +18,10 @@ function SideLeft(): ReactElement {
         <div className="zw-main-image">
           <img src="/static/assets/images/fpo-pdp-main.jpg" alt={productTitle} />
         </div>
-        <div className="zw-description-container">
-          <div
-            className="zw-description"
-            dangerouslySetInnerHTML={{__html: description}}
-          />
-        </div>
+        <div
+          className="zw-description"
+          dangerouslySetInnerHTML={{__html: description}}
+        />
       </div>
     </div>
   )

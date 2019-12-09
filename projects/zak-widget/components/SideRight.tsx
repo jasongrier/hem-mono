@@ -1,23 +1,49 @@
 import React, { ReactElement } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store'
 import OptionRow from './OptionRow'
 import SwatchPicker from './SwatchPicker'
 
+function toggleHighIndexAddOn() {}
+
+function tempSwatch(value: string) {
+  return { imageUrl: 'foo', value }
+}
+
 // TODO: Move these to config or ENV
 const lensOptions: any[] = []
-const lensPickerOptions: any[] = []
+const lensPickerOptions: any[] = [
+  tempSwatch('one'),
+  tempSwatch('two'),
+  tempSwatch('three'),
+]
+
 const prescriptionOptions: any[] = []
-const swatchPickerOptions: any[] = []
-const tintOptions: any[] = []
+
+const swatchPickerOptions: any[] = [
+  tempSwatch('one'),
+  tempSwatch('two'),
+  tempSwatch('three'),
+  tempSwatch('four'),
+  tempSwatch('five'),
+  tempSwatch('six'),
+]
+
+const tintOptions: any[
+
+] = []
 
 function SideRight(): ReactElement {
-  const { productTitle } = useSelector((state: RootState) => {
+  const { productHasHighIndexAddOn, productSecondaryTitle, productTitle } = useSelector((state: RootState) => {
     const product = state.app.product
     return {
+      productHasHighIndexAddOn: product && product.hasHighIndexAddOn,
+      productSecondaryTitle: product && product.secondaryTitle,
       productTitle: product && product.title,
     }
   })
+
+  const dispatch = useDispatch()
 
   const total = 395
 
@@ -30,7 +56,7 @@ function SideRight(): ReactElement {
             onChange={() => {}}
             options={swatchPickerOptions}
             title="Frame color:"
-            value={'foo'}
+            value={'one'}
           />
         </div>
         <div className="zw-lens-picker">
@@ -38,7 +64,7 @@ function SideRight(): ReactElement {
             onChange={() => {}}
             options={lensPickerOptions}
             title="Lens color:"
-            value={'foo'}
+            value={'one'}
           />
         </div>
         <OptionRow
@@ -54,11 +80,14 @@ function SideRight(): ReactElement {
           select={{ onChange: () => {}, options: tintOptions, title: 'Tint', value: 'foo' }}
         />
         <div className="zw-total-row">
-          <span className="zw-total">
+          <div className="zw-total">
             ${ total }
-          </span>
-          <div className="zw-add-on">
-            <button className="zw-add-on-button" />
+          </div>
+          <div
+            className="zw-add-on"
+            onClick={() => dispatch(toggleHighIndexAddOn())}
+          >
+            <button className={`zw-add-on-button ${productHasHighIndexAddOn ? 'zw-add-on-button-active' : ''}`} />
             <span className="zw-add-on-label">
               High-index 1.67 lens (+ $75)
             </span>
