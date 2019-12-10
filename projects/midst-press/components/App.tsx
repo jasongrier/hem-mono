@@ -1,6 +1,7 @@
 import React, { ReactElement, useEffect } from 'react'
 import { Switch, Route, Link, NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+//@ts-ignore
 import smoothscroll from 'smoothscroll-polyfill'
 import { Hide } from '../../../lib/components'
 import CampaignMonitorForm from '../components/CampaignMonitorForm'
