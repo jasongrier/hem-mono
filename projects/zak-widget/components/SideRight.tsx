@@ -3,10 +3,13 @@ import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store'
 import OptionRow from './OptionRow'
 import SwatchPicker from './SwatchPicker'
+import swatchImages from '../static/assets/images/fpo-swatches'
+import { setLensColor, setSwatchType } from '../store/actions'
+import { SwatchType, LensColor } from '../store/types'
 
 function toggleHighIndexAddOn() {}
 
-function tempSwatch(value: string, imageUrl: string) {
+function tempSwatch(value: SwatchType, imageUrl: string) {
   return { imageUrl, value }
 }
 
@@ -17,9 +20,9 @@ function tempSelectOption(value: string) {
 // TODO: Move these to config or ENV
 const lensOptions: any[] = []
 const lensPickerOptions: any[] = [
-  tempSwatch('one', 'lens-gray.png'),
-  tempSwatch('two', 'lens-green.png'),
-  tempSwatch('three', 'lens-brown.png'),
+  tempSwatch('lens-gray', swatchImages.lensGray),
+  tempSwatch('lens-green', swatchImages.lensGreen),
+  tempSwatch('lens-brown', swatchImages.lensBrown),
 ]
 
 const prescriptionOptions: any[] = [
@@ -32,12 +35,12 @@ const prescriptionOptions: any[] = [
 ]
 
 const swatchPickerOptions: any[] = [
-  tempSwatch('one', 'eyeglass-black.png'),
-  tempSwatch('two', 'eyeglass-tortoise.png'),
-  tempSwatch('three', 'eyeglass-clear.png'),
-  tempSwatch('four', 'sunglass-black.png'),
-  tempSwatch('five', 'sunglass-tortoise.png'),
-  tempSwatch('six', 'sunglass-clear.png'),
+  tempSwatch('eyeglass-black', swatchImages.eyeglassBlack),
+  tempSwatch('eyeglass-tortoise', swatchImages.eyeglassTortoise),
+  tempSwatch('eyeglass-clear', swatchImages.eyeglassClear),
+  tempSwatch('sunglass-black', swatchImages.sunglassBlack),
+  tempSwatch('sunglass-tortoise', swatchImages.sunglassTortoise),
+  tempSwatch('sunglass-clear', swatchImages.sunglassClear),
 ]
 
 const tintOptions: any[
@@ -45,39 +48,30 @@ const tintOptions: any[
 ] = []
 
 function SideRight(): ReactElement {
-  const { productHasHighIndexAddOn, productSecondaryTitle, productTitle } = useSelector((state: RootState) => {
-    const product = state.app.product
-    return {
-      productHasHighIndexAddOn: product && product.hasHighIndexAddOn,
-      productSecondaryTitle: product && product.secondaryTitle,
-      productTitle: product && product.title,
-    }
-  })
+  const { hasHighIndexAddOn, lensColor, swatchType, title } = useSelector((state: RootState) => state.app.product)
 
   const dispatch = useDispatch()
 
   const total = 395
 
-  console.log(swatchPickerOptions)
-
   return (
     <div className="zw-right">
       <div className="zw-product-options">
-        <h2>{ productTitle }</h2>
+        <h2>{ title }</h2>
         <div className="zw-primary-picker">
           <SwatchPicker
-            onChange={() => {}}
+            onChange={(value: SwatchType) => dispatch(setSwatchType(value))}
             options={swatchPickerOptions}
             title="Frame color:"
-            value={'one'}
+            value={ swatchType }
           />
         </div>
         <div className="zw-lens-picker">
           <SwatchPicker
-            onChange={() => {}}
+            onChange={(value: LensColor) => dispatch(setLensColor(value))}
             options={lensPickerOptions}
             title="Lens color:"
-            value={'one'}
+            value={ lensColor }
           />
         </div>
         <OptionRow
@@ -101,7 +95,7 @@ function SideRight(): ReactElement {
             className="zw-add-on"
             onClick={() => dispatch(toggleHighIndexAddOn())}
           >
-            <button className={`zw-add-on-button ${productHasHighIndexAddOn ? 'zw-add-on-button-active' : ''}`} />
+            <button className={`zw-add-on-button ${hasHighIndexAddOn ? 'zw-add-on-button-active' : ''}`} />
             <span className="zw-add-on-label">
               High-index 1.67 lens (+ $75)
             </span>

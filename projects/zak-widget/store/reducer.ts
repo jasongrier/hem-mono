@@ -1,6 +1,9 @@
 import { AnyAction } from 'redux'
+import produce from 'immer'
 import {
   LOAD_PRODUCT,
+  SET_LENS_COLOR,
+  SET_SWATCH_TYPE,
 
   IState,
 } from './types'
@@ -12,7 +15,9 @@ const tempProduct = {
   hasHighIndexAddOn: false,
   id: 'temp-product',
   imageUrl: '/static/assets/images/fpo-pdp-main.jpg',
+  lensColor: 'lens-gray' as 'lens-gray',
   secondaryTitle: 'foo',
+  swatchType: 'eyeglass-black' as 'eyeglass-black',
   title: 'The Round Eyeglass',
 }
 
@@ -23,11 +28,23 @@ const initialState: IState = {
 
 const reducer = (
   state: IState = initialState,
-  { type }: AnyAction,
+  { type, payload }: AnyAction, // TODO: Why doesn't Saga like union types?
 ): IState => {
   switch (type) {
     case LOAD_PRODUCT: {
       return state
+    }
+
+    case SET_LENS_COLOR: {
+      return produce(state, draftState => {
+        draftState.product.lensColor = payload
+      })
+    }
+
+    case SET_SWATCH_TYPE: {
+      return produce(state, draftState => {
+        draftState.product.swatchType = payload
+      })
     }
 
     default: {
