@@ -7,7 +7,7 @@ export interface ISwatchPickerOption {
 
 // TODO: All projects; Export all props
 export interface IProps {
-  onChange: (value: string) => void
+  onChange: (value: any) => void
   options: ISwatchPickerOption[]
   title: string
   value: string
@@ -25,9 +25,9 @@ function SwatchPicker({ onChange, options, title, value }: IProps): ReactElement
           >
             <div
               className="zw-swatch-picker-item-image"
-              onClick={() => onChange(value)}
+              onClick={() => onChange(optionValue)}
               style={{
-                backgroundImage: `url(../static/assets/images/fpo-swatches/${imageUrl})`,
+                backgroundImage: `url(${imageUrl})`,
               }}
             />
           </li>
