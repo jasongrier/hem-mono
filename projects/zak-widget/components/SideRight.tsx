@@ -6,8 +6,8 @@ import SwatchPicker from './SwatchPicker'
 
 function toggleHighIndexAddOn() {}
 
-function tempSwatch(value: string) {
-  return { imageUrl: 'foo', value }
+function tempSwatch(value: string, imageUrl: string) {
+  return { imageUrl, value }
 }
 
 function tempSelectOption(value: string) {
@@ -17,9 +17,9 @@ function tempSelectOption(value: string) {
 // TODO: Move these to config or ENV
 const lensOptions: any[] = []
 const lensPickerOptions: any[] = [
-  tempSwatch('one'),
-  tempSwatch('two'),
-  tempSwatch('three'),
+  tempSwatch('one', 'lens-gray.png'),
+  tempSwatch('two', 'lens-green.png'),
+  tempSwatch('three', 'lens-brown.png'),
 ]
 
 const prescriptionOptions: any[] = [
@@ -32,12 +32,12 @@ const prescriptionOptions: any[] = [
 ]
 
 const swatchPickerOptions: any[] = [
-  tempSwatch('one'),
-  tempSwatch('two'),
-  tempSwatch('three'),
-  tempSwatch('four'),
-  tempSwatch('five'),
-  tempSwatch('six'),
+  tempSwatch('one', 'eyeglass-black.png'),
+  tempSwatch('two', 'eyeglass-tortoise.png'),
+  tempSwatch('three', 'eyeglass-clear.png'),
+  tempSwatch('four', 'sunglass-black.png'),
+  tempSwatch('five', 'sunglass-tortoise.png'),
+  tempSwatch('six', 'sunglass-clear.png'),
 ]
 
 const tintOptions: any[
@@ -57,6 +57,8 @@ function SideRight(): ReactElement {
   const dispatch = useDispatch()
 
   const total = 395
+
+  console.log(swatchPickerOptions)
 
   return (
     <div className="zw-right">
