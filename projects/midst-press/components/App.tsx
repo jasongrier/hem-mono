@@ -1,6 +1,7 @@
 import React, { ReactElement, useEffect } from 'react'
 import { Switch, Route, Link, NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+import smoothscroll from 'smoothscroll-polyfill'
 import { Hide } from '../../../lib/components'
 import CampaignMonitorForm from '../components/CampaignMonitorForm'
 import Shapes from '../components/Shapes'
@@ -22,6 +23,8 @@ import {
   Poem,
   Read,
 } from '../routes'
+
+smoothscroll.polyfill()
 
 function App(): ReactElement {
   const { mobileNavOpen } = useSelector((state: RootState) => ({

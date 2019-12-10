@@ -26,6 +26,7 @@ const carouselItems = [
       <p>Spicy concert grand in seven preparations: <i>Rice Paper, Black Cinefoil, Louis V Chain Strap, Modulor Tinplate, Vanilla, and Guitar Pick</i></p>
       <p><b>PLUS</b> a full percussion and drone selection sporting hand slaps, pedal hits, tickly scratches, growling bass, and the <b><i>full 88–key cluster chord</i></b></p>
       <p>Recorded <i>fortissississimo</i> in Berlin thru seven vintage mics and a crispy analog console</p>
+      <p><b>Ten Ableton Live devices in total</b></p>
     `,
   },
   // {

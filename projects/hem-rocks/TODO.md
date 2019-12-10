@@ -1,7 +1,7 @@
 ### TODOs
 | Filename | line # | TODO
 |:------|:------:|:------
-| [projects/hem-rocks/store/reducer.ts](projects/hem-rocks/store/reducer.ts#L117) | 117 | All projects; Wrap all cases in {}
+| [projects/hem-rocks/store/reducer.ts](projects/hem-rocks/store/reducer.ts#L118) | 118 | All projects; Wrap all cases in {}
 | [projects/hem-rocks/store/selectors.ts](projects/hem-rocks/store/selectors.ts#L1) | 1 | Example selector
 | [projects/hem-rocks/store/types.ts](projects/hem-rocks/store/types.ts#L4) | 4 | How to get around putting this in every project??
 | [projects/hem-rocks/routes/SoundLibraryHome.tsx](projects/hem-rocks/routes/SoundLibraryHome.tsx#L160) | 160 | Should simply forward the onClick, not set the value
@@ -36,7 +36,8 @@
 | [projects/seurat/components/SeuratDial.tsx](projects/seurat/components/SeuratDial.tsx#L26) | 26 | Immediately alter playback
 | [projects/seurat/routes/Home.tsx](projects/seurat/routes/Home.tsx#L5) | 5 | Switch to Webpack
 | [projects/studio-hem-rocks/routes/Home.tsx](projects/studio-hem-rocks/routes/Home.tsx#L18) | 18 | Link to zip; deploy task to update zip (without projects)
-| [projects/zak-widget/components/SideRight.tsx](projects/zak-widget/components/SideRight.tsx#L13) | 13 | Move these to config or ENV
+| [projects/zak-widget/components/CustomSelect.tsx](projects/zak-widget/components/CustomSelect.tsx#L17) | 17 | This can be compared against props when Redux is hooked up
+| [projects/zak-widget/components/SideRight.tsx](projects/zak-widget/components/SideRight.tsx#L17) | 17 | Move these to config or ENV
 | [projects/zak-widget/components/SwatchPicker.tsx](projects/zak-widget/components/SwatchPicker.tsx#L8) | 8 | All projects; Export all props
 | [projects/hem-rocks/components/layout/Displace.tsx](projects/hem-rocks/components/layout/Displace.tsx#L17) | 17 | All projects; use PropsWithChildren instead of `children: any` in IProps
 | [projects/studio-hem-rocks/components/animation/FlipBook.tsx](projects/studio-hem-rocks/components/animation/FlipBook.tsx#L10) | 10 | All projects, separate alphabetized required props from optionals

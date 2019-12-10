@@ -367,10 +367,11 @@ body {
   top: 31px;
   right: 30px;
   margin: 0;
-  padding: 0;
+  padding: 0 5px 0 0;
   font-size: 30px;
   text-decoration: none;
   color: #000;
+  transform: translateX(5px);
 }
 
 .site-header .about-link--mobile {
@@ -648,7 +649,7 @@ body {
   border: 1px solid #000;
   width: 20vw;
   height: 26px;
-  line-height: 40px;
+  line-height: 26px;
   padding: 0 0 0 5px;
   text-align: left;
   font-size: 14px;
@@ -1026,7 +1027,7 @@ body {
 @media screen and (max-width: 1024px) {
   .site-header #mobile-nav-toggle {
     display: block;
-    position: fixed;
+    position: absolute;
     top: 36px;
     right: 20px;
     z-index: 99999;
