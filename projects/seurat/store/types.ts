@@ -1,8 +1,4 @@
 import { AnyAction } from 'redux'
-import { ThunkAction } from 'redux-thunk'
-
-// TODO: How to get around putting this in every project??
-export type ThunkResult<R> = ThunkAction<R, IState, undefined, Action>
 
 export type ControlName = keyof IControls
 export type ControlValue = SequencerMode | number | boolean
