@@ -4,6 +4,7 @@ import { Link, withRouter } from 'react-router-dom'
 import { findIndex } from 'lodash'
 import { RootState } from '../store'
 import { setProcessNoteOpen } from '../store/actions'
+import { POEM_ARROW_KEY } from '../config'
 
 interface IProps {
   history: any
@@ -25,25 +26,27 @@ function PoemNav({ history, match }: IProps): ReactElement {
   const nextPoemUrl = nextPoem && `/poem/${nextPoem.url}/`
   const previousPoemUrl = previousPoem && `/poem/${previousPoem.url}/`
 
-  useEffect(() => {
-    function slidePoemOnArrowKeyDown(evt: any) {
-      if (evt.keyCode === 37) {
-        dispatch(setProcessNoteOpen(false))
-        history.push(previousPoemUrl)
+  if (POEM_ARROW_KEY === 'slide') {
+    useEffect(() => {
+      function slidePoemOnArrowKeyDown(evt: any) {
+        if (evt.keyCode === 37) {
+          dispatch(setProcessNoteOpen(false))
+          history.push(previousPoemUrl)
+        }
+
+        else if (evt.keyCode === 39) {
+          dispatch(setProcessNoteOpen(false))
+          history.push(nextPoemUrl)
+        }
       }
 
-      else if (evt.keyCode === 39) {
-        dispatch(setProcessNoteOpen(false))
-        history.push(nextPoemUrl)
+      document.addEventListener('keydown', slidePoemOnArrowKeyDown)
+
+      return function cleanup() {
+        document.removeEventListener('keydown', slidePoemOnArrowKeyDown)
       }
-    }
-
-    document.addEventListener('keydown', slidePoemOnArrowKeyDown)
-
-    return function cleanup() {
-      document.removeEventListener('keydown', slidePoemOnArrowKeyDown)
-    }
-  }, [nextPoemUrl, previousPoemUrl])
+    }, [nextPoemUrl, previousPoemUrl])
+  }
 
   return (
     <>

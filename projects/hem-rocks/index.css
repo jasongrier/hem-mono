@@ -33,14 +33,14 @@ a {
   width: 76px;
   height: 25px;
   line-height: 25px;
-  margin: 12.5px 0 0 15px;
+  margin: 12.5px 0 0 10px;
   padding: 0;
   color: #fff;
   font-family: 'U8', sans-serif;
   letter-spacing: 4px;
   overflow: hidden;
   transform-origin: center center;
-  transform: scale(0.9);
+  transform: scale(0.7);
 }
 
 .site-header h1 span {
@@ -250,10 +250,8 @@ a {
   float: left;
   width: 100vw;
   height: 95vh;
+  background-repeat: no-repeat;
   background-size: cover;
-}
-
-.player-carousel-panel {
   position: relative;
   transform-origin: center center;
   box-sizing: border-box;
@@ -262,35 +260,41 @@ a {
 .pack-info {
   position: absolute;
   top: 70px;
-  left: 20px;
+  left: 40px;
   z-index: 9999;
-  width: 250px;
+  width: 500px;
   height: calc(95vh - 210px);
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.8);
+  padding: 0;
   line-height: 24px;
   font-size: 14px;
   color: #eee;
 }
 
-.pack-info h4 {
-  margin: 0 0 40px 0;
-  letter-spacing: 1px;
-  font-size: 30px;
-  line-height: 39px;
+.pack-info h3 {
+  margin: 0 0 25px 0;
+  letter-spacing: 4px;
+  font-size: 60px;
+  line-height: 60px;
   font-family: 'U8', sans-serif;
   text-transform: uppercase;
   scroll-margin-bottom: 0;
 }
 
-.pack-info p {
-  font-size: 15px;
-  line-height: 28px;
-  margin: 0 0 20px 0;
+.pack-info-description {
+  padding: 20px 40px;
+  background: rgba(0, 0, 0, 0.9);
+  font-size: 18px;
+  line-height: 30px;
 }
 
-.pack-info-text p.more-link {
-  height: 16px;
+.pack-info-description p {
+  margin-bottom: 25px;
+}
+
+.pack-info-description ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
 }
 
 .pack-info-cta {

@@ -10,7 +10,7 @@
 | [projects/midst-press/store/types.ts](projects/midst-press/store/types.ts#L4) | 4 | How to get around putting this in every project??
 | [projects/midst-press/store/types.ts](projects/midst-press/store/types.ts#L7) | 7 | Move Midst types to common
 | [projects/midst-press/store/types.ts](projects/midst-press/store/types.ts#L14) | 14 | Move Midst types to common
-| [projects/hem-rocks/routes/SoundLibraryHome.tsx](projects/hem-rocks/routes/SoundLibraryHome.tsx#L158) | 158 | Should simply forward the onClick, not set the value
+| [projects/hem-rocks/routes/SoundLibraryHome.tsx](projects/hem-rocks/routes/SoundLibraryHome.tsx#L160) | 160 | Should simply forward the onClick, not set the value
 | [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L16) | 16 | Modal module
 | [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L28) | 28 | Header component
 | [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L54) | 54 | Closeup of the top four dials
@@ -20,7 +20,7 @@
 | [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L76) | 76 | Popup with suggested price paywall and not-too-hidden "I can't pay" link
 | [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L88) | 88 | Footer component
 | [projects/jasonaarongrier-com/components/App.tsx](projects/jasonaarongrier-com/components/App.tsx#L14) | 14 | 404 page
-| [projects/midst-press/components/App.tsx](projects/midst-press/components/App.tsx#L70) | 70 | Move PoemNav out of the Switch/Route and directly into the Poem component
+| [projects/midst-press/components/App.tsx](projects/midst-press/components/App.tsx#L73) | 73 | Move PoemNav out of the Switch/Route and directly into the Poem component
 | [projects/midst-press/components/CampaignMonitorForm.tsx](projects/midst-press/components/CampaignMonitorForm.tsx#L10) | 10 | All projects: Use line breaks for all component props
 | [projects/midst-press/components/ProcessNote.tsx](projects/midst-press/components/ProcessNote.tsx#L13) | 13 | How not to "freeze in" changing state values in event callbacks?
 | [projects/midst-press/routes/Poem.tsx](projects/midst-press/routes/Poem.tsx#L41) | 41 | Why is this a section and not a div like other pages?
@@ -42,6 +42,9 @@
 | [projects/seurat/components/SeuratDial.tsx](projects/seurat/components/SeuratDial.tsx#L26) | 26 | Immediately alter playback
 | [projects/seurat/routes/Home.tsx](projects/seurat/routes/Home.tsx#L5) | 5 | Switch to Webpack
 | [projects/studio-hem-rocks/routes/Home.tsx](projects/studio-hem-rocks/routes/Home.tsx#L18) | 18 | Link to zip; deploy task to update zip (without projects)
+| [projects/zak-widget/components/CustomSelect.tsx](projects/zak-widget/components/CustomSelect.tsx#L17) | 17 | This can be compared against props when Redux is hooked up
+| [projects/zak-widget/components/SideRight.tsx](projects/zak-widget/components/SideRight.tsx#L17) | 17 | Move these to config or ENV
+| [projects/zak-widget/components/SwatchPicker.tsx](projects/zak-widget/components/SwatchPicker.tsx#L8) | 8 | All projects; Export all props
 | [projects/hem-rocks/components/layout/Displace.tsx](projects/hem-rocks/components/layout/Displace.tsx#L17) | 17 | All projects; use PropsWithChildren instead of `children: any` in IProps
 | [projects/studio-hem-rocks/components/animation/FlipBook.tsx](projects/studio-hem-rocks/components/animation/FlipBook.tsx#L10) | 10 | All projects, separate alphabetized required props from optionals
 | [projects/studio-hem-rocks/components/animation/FlipBook.tsx](projects/studio-hem-rocks/components/animation/FlipBook.tsx#L37) | 37 | Should be "speed" ––or rather, "slowness"–– not "frameRate"
@@ -52,4 +55,4 @@
 | [projects/studio-hem-rocks/routes/demos/ArrangerDemo.tsx](projects/studio-hem-rocks/routes/demos/ArrangerDemo.tsx#L14) | 14 | Describe the arranger
 | [projects/studio-hem-rocks/routes/demos/MidiDemo.tsx](projects/studio-hem-rocks/routes/demos/MidiDemo.tsx#L10) | 10 | Move to the new Midi class
 | [projects/studio-hem-rocks/routes/demos/MidiDemo.tsx](projects/studio-hem-rocks/routes/demos/MidiDemo.tsx#L28) | 28 | Use the new Counter class
-| [projects/midst-press/index.css](projects/midst-press/index.css#L978) | 978 | Does Redux even render these class names any more?
+| [projects/midst-press/index.css](projects/midst-press/index.css#L980) | 980 | Does Redux even render these class names any more?
