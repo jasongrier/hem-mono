@@ -119,7 +119,8 @@ body {
   height: 30px;
   border-radius: 30px;
   cursor: pointer;
-  background: gray;
+  background-size: 30px 30px;
+  background-position: center center;
 }
 
 .zw-swatch-picker-item-active {

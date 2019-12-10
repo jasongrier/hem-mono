@@ -27,7 +27,7 @@ function SwatchPicker({ onChange, options, title, value }: IProps): ReactElement
               className="zw-swatch-picker-item-image"
               onClick={() => onChange(value)}
               style={{
-                backgroundImage: `url(${imageUrl})`,
+                backgroundImage: `url(../static/assets/images/fpo-swatches/${imageUrl})`,
               }}
             />
           </li>
