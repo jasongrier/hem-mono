@@ -3,7 +3,10 @@ import produce from 'immer'
 import {
   LOAD_PRODUCT,
   SET_LENS_COLOR,
+  SET_LENS_TREATMENT_TYPE,
+  SET_PRESCRIPTION_TYPE,
   SET_SWATCH_TYPE,
+  SET_TINT_TYPE,
 
   IState,
 } from './types'
@@ -16,9 +19,12 @@ const tempProduct = {
   id: 'temp-product',
   imageUrl: '/static/assets/images/fpo-pdp-main.jpg',
   lensColor: 'lens-gray' as 'lens-gray',
+  lensTreatmentType: 'standard' as 'standard',
+  prescriptionType: 'single-vision' as 'single-vision',
   secondaryTitle: 'foo',
   swatchType: 'eyeglass-black' as 'eyeglass-black',
   title: 'The Round Eyeglass',
+  tintType: 'none' as 'none',
 }
 
 const initialState: IState = {
@@ -41,7 +47,25 @@ const reducer = (
       })
     }
 
+    case SET_LENS_TREATMENT_TYPE: {
+      return produce(state, draftState => {
+        draftState.product.lensTreatmentType = payload
+      })
+    }
+
+    case SET_PRESCRIPTION_TYPE: {
+      return produce(state, draftState => {
+        draftState.product.prescriptionType = payload
+      })
+    }
+
     case SET_SWATCH_TYPE: {
+      return produce(state, draftState => {
+        draftState.product.swatchType = payload
+      })
+    }
+
+    case SET_TINT_TYPE: {
       return produce(state, draftState => {
         draftState.product.swatchType = payload
       })

@@ -19,7 +19,6 @@ function ZwOptionRow({ action, className, select }: IProps): ReactElement {
       <CustomSelect
         onChange={select.onChange}
         options={select.options}
-        title={select.title}
         value={select.value}
       />
       <div className="zw-option-action">
