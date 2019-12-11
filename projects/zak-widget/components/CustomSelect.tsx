@@ -1,4 +1,5 @@
-import React, { ReactElement, useState } from 'react'
+import React, { ReactElement, useState, useEffect } from 'react'
+import { useClickOutside } from 'react-click-outside-hook'
 
 export interface ICustomSelectOption {
   text: string
@@ -8,23 +9,29 @@ export interface ICustomSelectOption {
 export interface IProps {
   onChange: (value: string) => void
   options: ICustomSelectOption[]
-  title: string
   value: string
+
+  placeholder?: string
 }
 
-function CustomSelect({ onChange, options, title, value }: IProps): ReactElement {
+function CustomSelect({ onChange, options, placeholder, value }: IProps): ReactElement {
   const [open, setOpen] = useState()
-  // TODO: This can be compared against props when Redux is hooked up
-  const [selectedText, setSelectedText] = useState(title)
+  const [selectedText, setSelectedText] = useState(placeholder || options[0] && options[0].text)
+  const [ref, hasClickedOutside] = useClickOutside()
 
-  function setAndClose({ value, text }: ICustomSelectOption) {
+  useEffect(() => { hasClickedOutside && setOpen(false) }, [hasClickedOutside])
+
+  function setAndClose({ text, value }: ICustomSelectOption) {
     setOpen(false)
     setSelectedText(text)
     onChange(value)
   }
 
   return (
-    <div className={`zw-custom-select ${open ? 'zw-custom-select-open' : ''}`}>
+    <div
+      className={`zw-custom-select ${open ? 'zw-custom-select-open' : ''}`}
+      ref={ref}
+    >
       <div
         className="zw-selected-value"
         onClick={() => setOpen(!open)}
@@ -33,11 +40,13 @@ function CustomSelect({ onChange, options, title, value }: IProps): ReactElement
       </div>
       <div className="zw-select-options">
         <ul>
-          <li onClick={() => {
-            setAndClose({ value: '', text: title })
-          }}>
-            None
-          </li>
+          { placeholder &&
+            <li onClick={() => {
+              setAndClose({ value: '', text: placeholder })
+            }}>
+              None
+            </li>
+          }
           { options.map(({ value: optionValue, text }, index) => (
             <li className={value === optionValue ? 'zw-custom-select-item-active' : ''}
               key={index}
