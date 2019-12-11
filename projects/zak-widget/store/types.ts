@@ -54,6 +54,7 @@ export interface IPrescription {
 }
 
 export interface IProduct {
+  basePrice: number
   description: string
   hasHighIndexAddOn: boolean
   id: string
@@ -77,6 +78,7 @@ export const SET_LENS_TREATMENT_TYPE = 'SET_LENS_TREATMENT_TYPE'
 export const SET_PRESCRIPTION_TYPE = 'SET_PRESCRIPTION_TYPE'
 export const SET_SWATCH_TYPE = 'SET_SWATCH_TYPE'
 export const SET_TINT_TYPE = 'SET_TINT_TYPE'
+export const TOGGLE_HIGH_INDEX_ADD_ON = 'TOGGLE_HIGH_INDEX_ADD_ON'
 
 export interface ILoadProduct extends AnyAction {
   type: typeof LOAD_PRODUCT
@@ -108,9 +110,15 @@ export interface ISetTintType extends AnyAction {
   payload: TintType
 }
 
+export interface IToggleHighIndexAddOn extends AnyAction {
+  type: typeof TOGGLE_HIGH_INDEX_ADD_ON
+  payload: null
+}
+
 export type Action =
     ILoadProduct
   | ISetLensColor
   | ISetPrescriptionType
   | ISetSwatchType
   | ISetTintType
+  | IToggleHighIndexAddOn

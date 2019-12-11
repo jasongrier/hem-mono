@@ -229,6 +229,11 @@ body {
   background: transparent;
 }
 
+.zw-total-row .zw-add-on-button:focus,
+.zw-total-row .zw-add-on-button:active {
+  outline: none;
+}
+
 .zw-total-row .zw-add-on-button-active {
   background: #fff;
 }

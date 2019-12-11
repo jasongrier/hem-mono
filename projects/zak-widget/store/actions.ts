@@ -1,14 +1,19 @@
 import {
   LensColor,
+  LensTreatmentType,
   PrescriptionType,
   SwatchType,
+  TintType,
 
   IProduct,
 
   LOAD_PRODUCT,
   SET_LENS_COLOR,
+  SET_LENS_TREATMENT_TYPE,
   SET_PRESCRIPTION_TYPE,
   SET_SWATCH_TYPE,
+  SET_TINT_TYPE,
+  TOGGLE_HIGH_INDEX_ADD_ON,
 
   ILoadProduct,
   ISetLensColor,
@@ -16,10 +21,7 @@ import {
   ISetPrescriptionType,
   ISetSwatchType,
   ISetTintType,
-  SET_TINT_TYPE,
-  TintType,
-  LensTreatmentType,
-  SET_LENS_TREATMENT_TYPE,
+  IToggleHighIndexAddOn,
 } from './types'
 
 const loadProduct = (product: IProduct): ILoadProduct => ({
@@ -52,6 +54,11 @@ const setTintType = (tintType: TintType): ISetTintType => ({
   payload: tintType,
 })
 
+const toggleHighIndexAddOn = (): IToggleHighIndexAddOn => ({
+  type: TOGGLE_HIGH_INDEX_ADD_ON,
+  payload: null,
+})
+
 export {
   loadProduct,
   setLensColor,
@@ -59,4 +66,5 @@ export {
   setPrescriptionType,
   setSwatchType,
   setTintType,
+  toggleHighIndexAddOn,
 }

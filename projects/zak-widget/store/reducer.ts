@@ -1,5 +1,6 @@
 import { AnyAction } from 'redux'
 import produce from 'immer'
+import { getPricing } from '../functions'
 import {
   LOAD_PRODUCT,
   SET_LENS_COLOR,
@@ -7,11 +8,13 @@ import {
   SET_PRESCRIPTION_TYPE,
   SET_SWATCH_TYPE,
   SET_TINT_TYPE,
+  TOGGLE_HIGH_INDEX_ADD_ON,
 
   IState,
 } from './types'
 
 const tempProduct = {
+  basePrice: 1,
   description: `
     <p>Unisex. Classic proportions. Constructed with high quality acetate and adjusted for a symmetrical fit. Lightweight Polycarbonate lens, AR coating to block glare, and 100% UV-A and UV-B protection. Paired with Zak. case, cleaning cloth and spray.</p>
   `,
@@ -67,7 +70,13 @@ const reducer = (
 
     case SET_TINT_TYPE: {
       return produce(state, draftState => {
-        draftState.product.swatchType = payload
+        draftState.product.tintType = payload
+      })
+    }
+
+    case TOGGLE_HIGH_INDEX_ADD_ON: {
+      return produce(state, draftState => {
+        draftState.product.hasHighIndexAddOn = !draftState.product.hasHighIndexAddOn
       })
     }
 

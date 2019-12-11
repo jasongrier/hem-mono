@@ -3,21 +3,47 @@ import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store'
 import OptionRow from './OptionRow'
 import SwatchPicker from './SwatchPicker'
+import { getOptionPricing, getProductTotalPrice } from '../functions'
 import swatchImages from '../static/assets/images/fpo-swatches'
 import {
   setLensColor,
+  setLensTreatmentType,
   setPrescriptionType,
-  setSwatchType
+  setSwatchType,
+  setTintType,
+  toggleHighIndexAddOn,
 } from '../store/actions'
-import { SwatchType, LensColor, IPrescription, PrescriptionType } from '../store/types'
+import {
+  LensColor,
+  LensTreatmentType,
+  PrescriptionType,
+  SwatchType,
 
-function toggleHighIndexAddOn() {}
+  IPrescription,
+  TintType,
+} from '../store/types'
 
 function tempSwatch(value: SwatchType, imageUrl: string) {
   return { imageUrl, value }
 }
 
-const lensOptions: any[] = []
+const lensTreatmentOptions: any[] = [
+  {
+    text: `Standard`,
+    price: getOptionPricing('lensTreatmentPrices', 'standard'),
+    value: 'standard',
+  },
+  {
+    text: `Traditional Lens $${getOptionPricing('lensTreatmentPrices', 'traditional-lens')}`,
+    price: getOptionPricing('lensTreatmentPrices', 'traditional-lens'),
+    value: 'traditional-lens',
+  },
+  {
+    text: `Blue AR Coating $${getOptionPricing('lensTreatmentPrices', 'blue-ar-coating')}`,
+    price: getOptionPricing('lensTreatmentPrices', 'blue-ar-coating'),
+    value: 'blue-ar-coating',
+  },
+]
 
 const lensPickerOptions: any[] = [
   tempSwatch('lens-gray', swatchImages.lensGray),
@@ -25,26 +51,20 @@ const lensPickerOptions: any[] = [
   tempSwatch('lens-brown', swatchImages.lensBrown),
 ]
 
-const prescriptionPrices = {
-  'single-vision': 1,
-  'progressive': 2,
-  'no-prescription': 3,
-}
-
 const prescriptionOptions: IPrescription[] = [
   {
-    text: `Single Vision $${prescriptionPrices['single-vision']}`,
-    price: prescriptionPrices['single-vision'],
+    text: `Single Vision $${getOptionPricing('prescriptionPrices', 'single-vision')}`,
+    price: getOptionPricing('prescriptionPrices', 'single-vision'),
     value: 'single-vision',
   },
   {
-    text: `Progressive $${prescriptionPrices['progressive']}`,
-    price: prescriptionPrices['progressive'],
+    text: `Progressive $${getOptionPricing('prescriptionPrices', 'progressive')}`,
+    price: getOptionPricing('prescriptionPrices', 'progressive'),
     value: 'progressive',
   },
   {
-    text: `No Prescription $${prescriptionPrices['no-prescription']}`,
-    price: prescriptionPrices['no-prescription'],
+    text: `No Prescription $${getOptionPricing('prescriptionPrices', 'single-vision')}`,
+    price: getOptionPricing('prescriptionPrices', 'no-prescription'),
     value: 'no-prescription',
   },
 ]
@@ -58,132 +78,154 @@ const swatchPickerOptions: any[] = [
   tempSwatch('sunglass-clear', swatchImages.sunglassClear),
 ]
 
-const tintPrices = {
-  'blue': 50,
-  'gradient-blue': 50,
-  'gradient-brown': 50,
-  'gradient-dark-gray': 50,
-  'gradient-green': 50,
-  'gradient-light-gray': 50,
-  'gradient-rose': 50,
-  'lime': 50,
-  'mirror-black': 75,
-  'mirror-blue': 75,
-  'mirror-gold': 75,
-  'mirror-lavender': 75,
-  'mirror-orange': 75,
-  'mirror-silver': 75,
-  'none': 0,
-  'orange': 50,
-  'purple': 50,
-  'rose': 50,
-  'yellow': 50,
-}
+const tintOptionsOrder = [
+  'none',
+  'rose',
+  'orange',
+  'yellow',
+  'blue',
+  'lime',
+  'purple',
+  'gradient-rose',
+  'gradient-blue',
+  'gradient-green',
+  'gradient-brown',
+  'gradient-light-gray',
+  'gradient-dark-gray',
+  'mirror-orange',
+  'mirror-blue',
+  'mirror-lavender',
+  'mirror-gold',
+  'mirror-silver',
+  'mirror-black',
+]
 
-const tintOptions: any[] = [
+const tintOptionsUnordered: any[] = [
   {
-    price: tintPrices['blue'],
-    text: `Blue $${tintPrices['blue']}`,
-    type: 'blue',
+    price: getOptionPricing('tintPrices', 'blue'),
+    text: `Blue $${getOptionPricing('tintPrices', 'blue')}`,
+    value: 'blue',
   },
   {
-    price: tintPrices['gradient-blue'],
-    text: `Gradient Blue $${tintPrices['gradient-blue']}`,
-    type: 'gradient-blue',
+    price: getOptionPricing('tintPrices', 'gradient-blue'),
+    text: `Gradient Blue $${getOptionPricing('tintPrices', 'gradient-blue')}`,
+    value: 'gradient-blue',
   },
   {
-    price: tintPrices['gradient-brown'],
-    text: `Gradient Brown $${tintPrices['gradient-brown']}`,
-    type: 'gradient-brown',
+    price: getOptionPricing('tintPrices', 'gradient-brown'),
+    text: `Gradient Brown $${getOptionPricing('tintPrices', 'gradient-brown')}`,
+    value: 'gradient-brown',
   },
   {
-    price: tintPrices['gradient-dark-gray'],
-    text: `Gradient Dark Gray $${tintPrices['gradient-dark-gray']}`,
-    type: 'gradient-dark-gray',
+    price: getOptionPricing('tintPrices', 'gradient-dark-gray'),
+    text: `Gradient Dark Gray $${getOptionPricing('tintPrices', 'gradient-dark-gray')}`,
+    value: 'gradient-dark-gray',
   },
   {
-    price: tintPrices['gradient-green'],
-    text: `Gradient Green $${tintPrices['gradient-green']}`,
-    type: 'gradient-green',
+    price: getOptionPricing('tintPrices', 'gradient-green'),
+    text: `Gradient Green $${getOptionPricing('tintPrices', 'gradient-green')}`,
+    value: 'gradient-green',
   },
   {
-    price: tintPrices['gradient-light-gray'],
-    text: `Gradient Light Gray $${tintPrices['gradient-light-gray']}`,
-    type: 'gradient-light-gray',
+    price: getOptionPricing('tintPrices', 'gradient-light-gray'),
+    text: `Gradient Light Gray $${getOptionPricing('tintPrices', 'gradient-light-gray')}`,
+    value: 'gradient-light-gray',
   },
   {
-    price: tintPrices['gradient-rose'],
-    text: `Gradient Rose $${tintPrices['gradient-rose']}`,
-    type: 'gradient-rose',
+    price: getOptionPricing('tintPrices', 'gradient-rose'),
+    text: `Gradient Rose $${getOptionPricing('tintPrices', 'gradient-rose')}`,
+    value: 'gradient-rose',
   },
   {
-    price: tintPrices['lime'],
-    text: `Lime $${tintPrices['lime']}`,
-    type: 'lime',
+    price: getOptionPricing('tintPrices', 'lime'),
+    text: `Lime $${getOptionPricing('tintPrices', 'lime')}`,
+    value: 'lime',
   },
   {
-    price: tintPrices['mirror-black'],
-    text: `Mirror Black $${tintPrices['mirror-black']}`,
-    type: 'mirror-black',
+    price: getOptionPricing('tintPrices', 'mirror-black'),
+    text: `Mirror Black $${getOptionPricing('tintPrices', 'mirror-black')}`,
+    value: 'mirror-black',
   },
   {
-    price: tintPrices['mirror-blue'],
-    text: `Mirror Blue $${tintPrices['mirror-blue']}`,
-    type: 'mirror-blue',
+    price: getOptionPricing('tintPrices', 'mirror-blue'),
+    text: `Mirror Blue $${getOptionPricing('tintPrices', 'mirror-blue')}`,
+    value: 'mirror-blue',
   },
   {
-    price: tintPrices['mirror-gold'],
-    text: `Mirror Gold $${tintPrices['mirror-gold']}`,
-    type: 'mirror-gold',
+    price: getOptionPricing('tintPrices', 'mirror-gold'),
+    text: `Mirror Gold $${getOptionPricing('tintPrices', 'mirror-gold')}`,
+    value: 'mirror-gold',
   },
   {
-    price: tintPrices['mirror-lavender'],
-    text: `Mirror Lavender $${tintPrices['mirror-lavender']}`,
-    type: 'mirror-lavender',
+    price: getOptionPricing('tintPrices', 'mirror-lavender'),
+    text: `Mirror Lavender $${getOptionPricing('tintPrices', 'mirror-lavender')}`,
+    value: 'mirror-lavender',
   },
   {
-    price: tintPrices['mirror-orange'],
-    text: `Mirror Orange $${tintPrices['mirror-orange']}`,
-    type: 'mirror-orange',
+    price: getOptionPricing('tintPrices', 'mirror-orange'),
+    text: `Mirror Orange $${getOptionPricing('tintPrices', 'mirror-orange')}`,
+    value: 'mirror-orange',
   },
   {
-    price: tintPrices['mirror-silver'],
-    text: `Mirror Silver $${tintPrices['mirror-silver']}`,
-    type: 'mirror-silver',
+    price: getOptionPricing('tintPrices', 'mirror-silver'),
+    text: `Mirror Silver $${getOptionPricing('tintPrices', 'mirror-silver')}`,
+    value: 'mirror-silver',
   },
   {
-    price: tintPrices['none'],
+    price: getOptionPricing('tintPrices', 'none'),
     text: `None`,
-    type: 'none',
+    value: 'none',
   },
   {
-    price: tintPrices['orange'],
-    text: `Orange $${tintPrices['orange']}`,
-    type: 'orange',
+    price: getOptionPricing('tintPrices', 'orange'),
+    text: `Orange $${getOptionPricing('tintPrices', 'orange')}`,
+    value: 'orange',
   },
   {
-    price: tintPrices['purple'],
-    text: `Purple $${tintPrices['purple']}`,
-    type: 'purple',
+    price: getOptionPricing('tintPrices', 'purple'),
+    text: `Purple $${getOptionPricing('tintPrices', 'purple')}`,
+    value: 'purple',
   },
   {
-    price: tintPrices['rose'],
-    text: `Rose $${tintPrices['rose']}`,
-    type: 'rose',
+    price: getOptionPricing('tintPrices', 'rose'),
+    text: `Rose $${getOptionPricing('tintPrices', 'rose')}`,
+    value: 'rose',
   },
   {
-    price: tintPrices['yellow'],
-    text: `Yellow $${tintPrices['yellow']}`,
-    type: 'yellow',
+    price: getOptionPricing('tintPrices', 'yellow'),
+    text: `Yellow $${getOptionPricing('tintPrices', 'yellow')}`,
+    value: 'yellow',
   },
 ]
 
+const tintOptions = []
+
+for (const optionType of tintOptionsOrder) {
+  const foundOption = tintOptionsUnordered.find(option => option.value === optionType)
+  if (foundOption) {
+    tintOptions.push(foundOption)
+  }
+
+  else {
+    console.log(optionType)
+  }
+}
+
 function SideRight(): ReactElement {
-  const { hasHighIndexAddOn, lensColor, swatchType, title } = useSelector((state: RootState) => state.app.product)
+  const product = useSelector((state: RootState) => state.app.product)
+  const {
+    hasHighIndexAddOn,
+    lensColor,
+    lensTreatmentType,
+    prescriptionType,
+    swatchType,
+    tintType,
+    title,
+  } = product
 
   const dispatch = useDispatch()
 
-  const total = 395
+  const total = getProductTotalPrice(product)
 
   return (
     <div className="zw-right">
@@ -206,17 +248,38 @@ function SideRight(): ReactElement {
           />
         </div>
         <OptionRow
-          action={{ onClick: () => {}, text: 'Do you have questions?' }}
-          select={{ onChange: (value: PrescriptionType) => dispatch(setPrescriptionType(value)), options: prescriptionOptions, value: 'foo' }}
+          action={{
+            onClick: () => {},
+            text: 'Do you have questions?',
+          }}
+          select={{
+            onChange: (value: PrescriptionType) => dispatch(setPrescriptionType(value)),
+            options: prescriptionOptions,
+            value: prescriptionType,
+          }}
         />
         <OptionRow
-          action={{ onClick: () => {}, text: 'What’s right for me?' }}
-          select={{ onChange: () => {}, options: lensOptions, value: 'bar' }}
+          action={{
+            onClick: () => {},
+            text: 'What’s right for me?',
+          }}
+          select={{
+            onChange: (value: LensTreatmentType) => dispatch(setLensTreatmentType(value)),
+            options: lensTreatmentOptions,
+            value: lensTreatmentType,
+          }}
         />
         <OptionRow
           className="zw-last-option-row"
-          action={{ onClick: () => {}, text: 'Customize it!' }}
-          select={{ onChange: () => {}, options: tintOptions, value: 'bar' }}
+          action={{
+            onClick: () => {},
+            text: 'Customize it!',
+          }}
+          select={{
+            onChange: (value: TintType) => dispatch(setTintType(value)),
+            options: tintOptions,
+            value: tintType,
+          }}
         />
         <div className="zw-total-row">
           <div className="zw-total">
