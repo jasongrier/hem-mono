@@ -1425,7 +1425,7 @@ class Midst extends React.Component<IProps, any> {
         e('br'),
         e('span', {}, 'Annelyse Gelman'),
         e('br'),
-        e('span', {}, 'and Jason Grier.'),
+        e('span', {}, 'and Jason Gillis-Grier.'),
         e('br'),
         e('span', {}, '© 2019 All Rights Reserved'),
         e('br'),
