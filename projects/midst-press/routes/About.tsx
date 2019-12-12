@@ -23,7 +23,7 @@ function About(): ReactElement {
 
              <h2>Who</h2>
         <p>Founder + Director: <a href="http://www.annelysegelman.com">Annelyse Gelman</a><br />
-        Lead Software Engineer: <a href="http://hem.rocks">Jason Grier</a><br />
+        Lead Software Engineer: <a href="http://hem.rocks">Jason Gillis-Grier</a><br />
         </p>
         <br />
 
