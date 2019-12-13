@@ -8,7 +8,7 @@ import {
   IState,
 } from './types'
 
-function createPoem(author: string, title: string, authorSecondaryFolder?) {
+function createPoem(author: string, title: string, authorSecondaryFolder?: any) {
   const authorId = author.toLowerCase().replace(/ /g, '-')
   const url = title.toLowerCase()
     .replace(/ /g, '-')

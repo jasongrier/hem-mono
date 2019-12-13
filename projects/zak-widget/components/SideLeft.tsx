@@ -2,12 +2,13 @@ import React, { ReactElement } from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../store'
 
+declare const PDP_WIDGET_MAIN_IMAGE_URL: string
+
 function SideLeft(): ReactElement {
-  const { description, imageUrl, productTitle } = useSelector((state: RootState) => {
+  const { description, productTitle } = useSelector((state: RootState) => {
     const product = state.app.product
     return {
       description: product && product.description,
-      imageUrl: product && product.imageUrl,
       productTitle: product && product.title,
     }
   })
@@ -16,7 +17,7 @@ function SideLeft(): ReactElement {
     <div className="zw-left">
       <div className="zw-info">
         <div className="zw-main-image">
-          <img src="/static/assets/images/fpo-pdp-main.jpg" alt={productTitle} />
+          <img src={PDP_WIDGET_MAIN_IMAGE_URL} alt={productTitle} />
         </div>
         <div
           className="zw-description"

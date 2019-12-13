@@ -58,12 +58,12 @@ export interface IProduct {
   description: string
   hasHighIndexAddOn: boolean
   id: string
-  imageUrl: string
   lensColor: LensColor
   lensTreatmentType: LensTreatmentType
   prescriptionType: PrescriptionType
   secondaryTitle: string
   swatchType: SwatchType
+  swatchTypeText: string
   tintType: TintType
   title: string
 }

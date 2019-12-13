@@ -1,4 +1,5 @@
 import React, { ReactElement, useState, useEffect } from 'react'
+//@ts-ignore
 import { useClickOutside } from 'react-click-outside-hook'
 
 export interface ICustomSelectOption {

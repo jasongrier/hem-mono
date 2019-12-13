@@ -14,10 +14,9 @@ function App(): ReactElement {
   }, [])
 
   return (
-    <div className="hem-application">
-      <div className="zak-mock-header" />
-      <div className="zak-mock-main">
-        <div className="zak-widget zw-clearfix">
+    <div className="hem-application page__content-wrapper--force-background">
+      <div className="zw-layout-container">
+        <div className="zw-widget zw-clearfix">
           <div className="zw-layout">
             <div className="zw-section zw-section-left">
               <SideLeft />
@@ -28,7 +27,6 @@ function App(): ReactElement {
           </div>
         </div>
       </div>
-      <div className="zak-mock-bottom" />
     </div>
   )
 }
