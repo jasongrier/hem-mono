@@ -1,5 +1,6 @@
 import { AnyAction } from 'redux'
 import produce from 'immer'
+import { SWATCH_TYPES } from '../config'
 import {
   LOAD_PRODUCT,
   SET_LENS_COLOR,
@@ -64,7 +65,7 @@ const reducer = (
     case SET_SWATCH_TYPE: {
       return produce(state, draftState => {
         draftState.product.swatchType = payload
-        draftState.product.swatchTypeText = payload
+        draftState.product.swatchTypeText = SWATCH_TYPES.find(type => type.id === payload).text
       })
     }
 

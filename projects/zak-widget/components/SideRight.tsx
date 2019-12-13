@@ -70,6 +70,12 @@ function SideRight(): ReactElement {
             value={ lensColor }
           />
         </div>
+        <a
+          className="zw-fit-guide-link zw-plus-left"
+          onClick={() => {}}
+        >
+          Fit Guide
+        </a>
         <OptionRow
           label="Prescription"
           action={{
@@ -122,21 +128,27 @@ function SideRight(): ReactElement {
           </div>
         </div>
         <div className="zw-submit-row">
-          <button onClick={() => {}}>
+          <button
+            className="zw-submit-button"
+            onClick={() => {}}
+          >
             Add to Cart
           </button>
-          <a
-            className="zw-fit-guide-link zw-plus-left"
+          <button
+            className="zw-upload-rx-button"
             onClick={() => {}}
           >
-            Fit Guide
-          </a>
+            Upload RX
+          </button>
           <a
-            className="zw-custom-link zw-arrow-right"
+            className="zw-more-info-link zw-plus-left"
             onClick={() => {}}
           >
-            Custom Options
+            More info
           </a>
+          <p className="zw-patient-info">
+            If you’re a Zak. patient or have ordered with us in the past, we have your prescription on file. You do not need to upload it. Just check out!
+          </p>
         </div>
       </div>
     </div>
