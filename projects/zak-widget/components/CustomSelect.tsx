@@ -8,7 +8,7 @@ export interface ICustomSelectOption {
 }
 
 export interface IProps {
-  onChange: (value: string) => void
+  onChange: (value: any) => void
   options: ICustomSelectOption[]
   value: string
 

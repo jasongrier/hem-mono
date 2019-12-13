@@ -1,16 +1,23 @@
-import { combineReducers, createStore, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
+// TODO: Alphabetize this everywhere
+import { applyMiddleware, combineReducers, createStore } from 'redux'
+// TODO: Replace Thunk with Saga in all projects
+import createSagaMiddleware from 'redux-saga'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { reducer } from './reducer'
+import { fetchProductSaga } from './sagas'
+
+const sagaMiddleware = createSagaMiddleware()
 
 const rootReducer = combineReducers({ app: reducer })
 
 const store = createStore(
   rootReducer,
   composeWithDevTools(
-    applyMiddleware(thunk),
+    applyMiddleware(sagaMiddleware),
   )
 )
+
+sagaMiddleware.run(fetchProductSaga)
 
 export type RootState = ReturnType<typeof rootReducer>
 

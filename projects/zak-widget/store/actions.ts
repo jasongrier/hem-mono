@@ -7,63 +7,71 @@ import {
 
   IProduct,
 
-  LOAD_PRODUCT,
+  REQUEST_PRODUCT,
   SET_LENS_COLOR,
   SET_LENS_TREATMENT_TYPE,
   SET_PRESCRIPTION_TYPE,
+  SET_PRODUCT,
   SET_SWATCH_TYPE,
   SET_TINT_TYPE,
   TOGGLE_HIGH_INDEX_ADD_ON,
 
-  ILoadProduct,
+  IRequestProduct,
   ISetLensColor,
   ISetLensTreatmentType,
   ISetPrescriptionType,
   ISetSwatchType,
   ISetTintType,
   IToggleHighIndexAddOn,
+  ISetProduct,
 } from './types'
 
-const loadProduct = (product: IProduct): ILoadProduct => ({
-  type: LOAD_PRODUCT,
-  payload: product,
+const requestProduct = (productId: string): IRequestProduct => ({
+  payload: productId,
+  type: REQUEST_PRODUCT,
 })
 
 const setLensColor = (lensColor: LensColor): ISetLensColor => ({
-  type: SET_LENS_COLOR,
   payload: lensColor,
+  type: SET_LENS_COLOR,
 })
 
 const setLensTreatmentType = (lensTreatmentType: LensTreatmentType): ISetLensTreatmentType => ({
-  type: SET_LENS_TREATMENT_TYPE,
   payload: lensTreatmentType,
+  type: SET_LENS_TREATMENT_TYPE,
 })
 
 const setPrescriptionType = (prescriptionType: PrescriptionType): ISetPrescriptionType => ({
-  type: SET_PRESCRIPTION_TYPE,
   payload: prescriptionType,
+  type: SET_PRESCRIPTION_TYPE,
+})
+
+const setProduct = (product: IProduct): ISetProduct => ({
+  payload: product,
+  type: SET_PRODUCT,
 })
 
 const setSwatchType = (swatchType: SwatchType): ISetSwatchType => ({
-  type: SET_SWATCH_TYPE,
   payload: swatchType,
+  type: SET_SWATCH_TYPE,
 })
 
 const setTintType = (tintType: TintType): ISetTintType => ({
-  type: SET_TINT_TYPE,
   payload: tintType,
+  type: SET_TINT_TYPE,
 })
 
 const toggleHighIndexAddOn = (): IToggleHighIndexAddOn => ({
-  type: TOGGLE_HIGH_INDEX_ADD_ON,
   payload: null,
+  type: TOGGLE_HIGH_INDEX_ADD_ON,
 })
 
 export {
-  loadProduct,
+  requestProduct,
   setLensColor,
   setLensTreatmentType,
   setPrescriptionType,
+  setProduct,
   setSwatchType,
   setTintType,
   toggleHighIndexAddOn,

@@ -1,7 +1,7 @@
 ### TODOs
 | Filename | line # | TODO
 |:------|:------:|:------
-| [bin/tasks/lint.js](bin/tasks/lint.js#L109) | 109 | This bypasses checks for, for example, `i-dont-belong.foo`, the correct check should be `requiredFiles`
+| [bin/tasks/lint.js](bin/tasks/lint.js#L110) | 110 | This bypasses checks for, for example, `i-dont-belong.foo`, the correct check should be `requiredFiles`
 | [bin/tasks/todo.js](bin/tasks/todo.js#L10) | 10 | How to handle TODO's in CI?
 | [projects/hem-rocks/routes/SoundLibraryHome.tsx](projects/hem-rocks/routes/SoundLibraryHome.tsx#L160) | 160 | Should simply forward the onClick, not set the value
 | [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L16) | 16 | Modal module
@@ -62,4 +62,3 @@
 | [projects/seurat/index.css](projects/seurat/index.css#L496) | 496 | Faded icon buttons should be a SVG color (ie: Pay for Fontawesome)
 | [projects/seurat/index.css](projects/seurat/index.css#L505) | 505 | Weird!
 | [projects/seurat/index.css](projects/seurat/index.css#L742) | 742 | Move to common with the component
-| [projects/zak-widget/index.css](projects/zak-widget/index.css#L66) | 66 | Remove height

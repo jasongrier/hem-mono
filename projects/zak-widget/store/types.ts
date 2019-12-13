@@ -69,20 +69,21 @@ export interface IProduct {
 }
 
 export interface IState {
-  product: IProduct
+  product: IProduct | null
 }
 
-export const LOAD_PRODUCT = 'LOAD_PRODUCT'
+export const REQUEST_PRODUCT = 'REQUEST_PRODUCT'
 export const SET_LENS_COLOR = 'SET_LENS_COLOR'
 export const SET_LENS_TREATMENT_TYPE = 'SET_LENS_TREATMENT_TYPE'
 export const SET_PRESCRIPTION_TYPE = 'SET_PRESCRIPTION_TYPE'
+export const SET_PRODUCT = 'SET_PRODUCT'
 export const SET_SWATCH_TYPE = 'SET_SWATCH_TYPE'
 export const SET_TINT_TYPE = 'SET_TINT_TYPE'
 export const TOGGLE_HIGH_INDEX_ADD_ON = 'TOGGLE_HIGH_INDEX_ADD_ON'
 
-export interface ILoadProduct extends AnyAction {
-  type: typeof LOAD_PRODUCT
-  payload: IProduct
+export interface IRequestProduct extends AnyAction {
+  type: typeof REQUEST_PRODUCT
+  payload: string
 }
 
 export interface ISetLensColor extends AnyAction {
@@ -98,6 +99,11 @@ export interface ISetLensTreatmentType extends AnyAction {
 export interface ISetPrescriptionType extends AnyAction {
   type: typeof SET_PRESCRIPTION_TYPE
   payload: PrescriptionType
+}
+
+export interface ISetProduct extends AnyAction {
+  type: typeof SET_PRODUCT
+  payload: IProduct
 }
 
 export interface ISetSwatchType extends AnyAction {
@@ -116,9 +122,10 @@ export interface IToggleHighIndexAddOn extends AnyAction {
 }
 
 export type Action =
-    ILoadProduct
+    IRequestProduct
   | ISetLensColor
   | ISetPrescriptionType
+  | ISetProduct
   | ISetSwatchType
   | ISetTintType
   | IToggleHighIndexAddOn

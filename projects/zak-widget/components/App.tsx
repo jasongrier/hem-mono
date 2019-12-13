@@ -1,16 +1,16 @@
 import React, { ReactElement, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { loadProduct } from '../store/actions'
+import { requestProduct } from '../store/actions'
 import SideLeft from './SideLeft'
 import SideRight from './SideRight'
 
-declare const PDP_ENV: any
+declare const PDP_WIDGET_PRODUCT_ID: any
 
 function App(): ReactElement {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    // dispatch(loadProduct(PDP_ENV.productId))
+    dispatch(requestProduct(PDP_WIDGET_PRODUCT_ID))
   }, [])
 
   return (

@@ -10,7 +10,7 @@ import {
   LENS_TREATMENT_OPTIONS,
   PRESCRIPTION_OPTIONS,
   SWATCH_TYPES,
-  TINT_OPTIONS
+  TINT_OPTIONS,
 } from '../config'
 
 import {
@@ -32,6 +32,11 @@ import {
 
 function SideRight(): ReactElement {
   const product = useSelector((state: RootState) => state.app.product)
+
+  const dispatch = useDispatch()
+
+  if (!product) return <div />
+
   const {
     hasHighIndexAddOn,
     lensColor,
@@ -43,8 +48,6 @@ function SideRight(): ReactElement {
     tintType,
     title,
   } = product
-
-  const dispatch = useDispatch()
 
   const total = getProductTotalPrice(product)
 
