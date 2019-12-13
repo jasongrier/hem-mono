@@ -1,5 +1,6 @@
 import { getOptionPricing } from './functions'
 import { IPrescription } from './store/types'
+import { ICustomSelectOption } from './components/CustomSelect'
 
 const LENS_OPTIONS: any[] = [
   'lens-gray',
@@ -190,7 +191,7 @@ const tintOptionsOrder = [
   'mirror-black',
 ]
 
-const TINT_OPTIONS = []
+const TINT_OPTIONS: ICustomSelectOption[] = []
 
 for (const optionType of tintOptionsOrder) {
   const foundOption = tintOptionsUnordered.find(option => option.value === optionType)

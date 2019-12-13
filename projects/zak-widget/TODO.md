@@ -2,6 +2,8 @@
 | Filename | line # | TODO
 |:------|:------:|:------
 | [projects/zak-widget/store/selectors.ts](projects/zak-widget/store/selectors.ts#L1) | 1 | Example selector
+| [projects/zak-widget/store/selectors.ts](projects/zak-widget/store/selectors.ts#L2) | 2 | Start using selectors everywhere
+| [projects/zak-widget/store/selectors.ts](projects/zak-widget/store/selectors.ts#L3) | 3 | Start using useCallback & useMemo everywhere
 | [projects/hem-rocks/routes/SoundLibraryHome.tsx](projects/hem-rocks/routes/SoundLibraryHome.tsx#L160) | 160 | Should simply forward the onClick, not set the value
 | [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L16) | 16 | Modal module
 | [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L28) | 28 | Header component
@@ -45,4 +47,3 @@
 | [projects/studio-hem-rocks/routes/demos/ArrangerDemo.tsx](projects/studio-hem-rocks/routes/demos/ArrangerDemo.tsx#L14) | 14 | Describe the arranger
 | [projects/studio-hem-rocks/routes/demos/MidiDemo.tsx](projects/studio-hem-rocks/routes/demos/MidiDemo.tsx#L10) | 10 | Move to the new Midi class
 | [projects/studio-hem-rocks/routes/demos/MidiDemo.tsx](projects/studio-hem-rocks/routes/demos/MidiDemo.tsx#L28) | 28 | Use the new Counter class
-| [projects/zak-widget/index.css](projects/zak-widget/index.css#L66) | 66 | Remove height

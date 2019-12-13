@@ -39,6 +39,7 @@ const expectedStoreFiles = [
   'actions.ts',
   'index.ts',
   'reducer.ts',
+  'sagas.ts',
   'selectors.ts',
   'types.ts',
 ]

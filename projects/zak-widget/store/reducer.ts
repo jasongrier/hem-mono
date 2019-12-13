@@ -2,7 +2,7 @@ import { AnyAction } from 'redux'
 import produce from 'immer'
 import { SWATCH_TYPES } from '../config'
 import {
-  LOAD_PRODUCT,
+  SET_PRODUCT,
   SET_LENS_COLOR,
   SET_LENS_TREATMENT_TYPE,
   SET_PRESCRIPTION_TYPE,
@@ -13,57 +13,45 @@ import {
   IState,
 } from './types'
 
-const tempProduct = {
-  basePrice: 1,
-  description: `
-    <p>Unisex. Classic proportions. Constructed with high quality acetate and adjusted for a symmetrical fit. Lightweight Polycarbonate lens, AR coating to block glare, and 100% UV-A and UV-B protection. Paired with Zak. case, cleaning cloth and spray.</p>
-  `,
-  hasHighIndexAddOn: false,
-  id: 'temp-product',
-  lensColor: 'lens-gray' as 'lens-gray',
-  lensTreatmentType: 'standard' as 'standard',
-  prescriptionType: 'single-vision' as 'single-vision',
-  secondaryTitle: 'Thick. Tortoise.',
-  swatchType: 'eyeglass-black' as 'eyeglass-black',
-  swatchTypeText: 'Eyeglass, Black',
-  title: 'The Round Eyeglass',
-  tintType: 'none' as 'none',
-}
-
 const initialState: IState = {
-  // product: null,
-  product: tempProduct,
+  product: null,
 }
 
 const reducer = (
   state: IState = initialState,
-  { type, payload }: AnyAction, // TODO: Why doesn't Saga like union types?
+  { type, payload }: AnyAction,
 ): IState => {
   switch (type) {
-    case LOAD_PRODUCT: {
-      return state
+    case SET_PRODUCT: {
+      return produce(state, draftState => {
+        draftState.product = payload
+      })
     }
 
     case SET_LENS_COLOR: {
       return produce(state, draftState => {
+        if (!draftState.product) return
         draftState.product.lensColor = payload
       })
     }
 
     case SET_LENS_TREATMENT_TYPE: {
       return produce(state, draftState => {
+        if (!draftState.product) return
         draftState.product.lensTreatmentType = payload
       })
     }
 
     case SET_PRESCRIPTION_TYPE: {
       return produce(state, draftState => {
+        if (!draftState.product) return
         draftState.product.prescriptionType = payload
       })
     }
 
     case SET_SWATCH_TYPE: {
       return produce(state, draftState => {
+        if (!draftState.product) return
         draftState.product.swatchType = payload
         draftState.product.swatchTypeText = SWATCH_TYPES.find(type => type.id === payload).text
       })
@@ -71,12 +59,14 @@ const reducer = (
 
     case SET_TINT_TYPE: {
       return produce(state, draftState => {
+        if (!draftState.product) return
         draftState.product.tintType = payload
       })
     }
 
     case TOGGLE_HIGH_INDEX_ADD_ON: {
       return produce(state, draftState => {
+        if (!draftState.product) return
         draftState.product.hasHighIndexAddOn = !draftState.product.hasHighIndexAddOn
       })
     }
