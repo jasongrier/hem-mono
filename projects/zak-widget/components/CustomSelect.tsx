@@ -49,7 +49,8 @@ function CustomSelect({ onChange, options, placeholder, value }: IProps): ReactE
             </li>
           }
           { options.map(({ value: optionValue, text }, index) => (
-            <li className={value === optionValue ? 'zw-custom-select-item-active' : ''}
+            <li
+              className={value === optionValue ? 'zw-custom-select-item-active' : ''}
               key={index}
               onClick={() => {
                 setAndClose({ value: optionValue, text })
