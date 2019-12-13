@@ -1,6 +1,5 @@
 import { AnyAction } from 'redux'
 import produce from 'immer'
-import { getPricing } from '../functions'
 import {
   LOAD_PRODUCT,
   SET_LENS_COLOR,
@@ -20,12 +19,12 @@ const tempProduct = {
   `,
   hasHighIndexAddOn: false,
   id: 'temp-product',
-  imageUrl: '/static/assets/images/fpo-pdp-main.jpg',
   lensColor: 'lens-gray' as 'lens-gray',
   lensTreatmentType: 'standard' as 'standard',
   prescriptionType: 'single-vision' as 'single-vision',
-  secondaryTitle: 'foo',
+  secondaryTitle: 'Thick. Tortoise.',
   swatchType: 'eyeglass-black' as 'eyeglass-black',
+  swatchTypeText: 'Eyeglass, Black',
   title: 'The Round Eyeglass',
   tintType: 'none' as 'none',
 }
@@ -65,6 +64,7 @@ const reducer = (
     case SET_SWATCH_TYPE: {
       return produce(state, draftState => {
         draftState.product.swatchType = payload
+        draftState.product.swatchTypeText = payload
       })
     }
 

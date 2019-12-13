@@ -44,6 +44,7 @@
     "nexusui": "^2.0.10",
     "random-words": "^1.1.0",
     "react": "^16.8.6",
+    "react-click-outside-hook": "^1.1.1",
     "react-custom-scrollbars": "^4.2.1",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
@@ -69,6 +70,7 @@
     "assert": "^2.0.0",
     "mocha": "^6.2.0",
     "parcel": "^1.12.3",
+    "parcel-plugin-bundle-manifest": "^0.2.0",
     "prettier": "1.18.2",
     "puppeteer": "^1.19.0",
     "typescript": "^3.5.3"

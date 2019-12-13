@@ -3,7 +3,7 @@ const { join } = require('path') // TODO: Group alphabetize all imports
 const { readdirSync, readFileSync, writeFileSync } = require('fs')
 const parseFrontMatter = require('front-matter')
 
-function build(projectName, andStart = false) {
+function build(projectName, andStart = false, developmentBuild = false) {
   execSync(`rm -rf dist`, { stdio: 'inherit' })
   execSync(`mkdir dist`, { stdio: 'inherit' })
   execSync(`cp -rf projects/${projectName}/static dist/static`, { stdio: 'inherit' })
@@ -11,15 +11,17 @@ function build(projectName, andStart = false) {
 
   buildContent(projectName)
 
-  runTasks(projectName, andStart)
+  runPreBuildTasks(projectName, andStart)
 
   if (andStart) {
     execSync(`parcel projects/${projectName}/index.html`, { stdio: 'inherit' })
   }
 
   else {
-    execSync(`parcel build projects/${projectName}/index.html`, { stdio: 'inherit' })
+    execSync(`${developmentBuild ? 'NODE_ENV=development ' : ''}parcel build projects/${projectName}/index.html`, { stdio: 'inherit' })
   }
+
+  runPostBuildTasks(projectName, andStart)
 }
 
 function buildContent(projectName) {
@@ -61,9 +63,9 @@ function buildContent(projectName) {
   writeFileSync(join(outputDir, 'index.json'), JSON.stringify(index))
 }
 
-function runTasks(projectName, isStartup) {
+function runTasks(projectName, isStartup, preBuild) {
   const tasksFile = join(__dirname, '..', '..', 'projects', projectName, 'tasks.js')
-  const tasks = require(tasksFile)
+  const tasks = require(tasksFile)[(preBuild ? 'preBuild' : 'postBuild')]
 
   if (!tasks || !tasks.length) return
 
@@ -71,5 +73,14 @@ function runTasks(projectName, isStartup) {
     tasks[i](isStartup)
   }
 }
+
+function runPreBuildTasks(...args) {
+  runTasks(...args, true)
+}
+
+function runPostBuildTasks(...args) {
+  runTasks(...args, false)
+}
+
 
 module.exports = build

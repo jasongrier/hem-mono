@@ -1,14 +1,11 @@
 import React, { ReactElement } from 'react'
 
-export interface ISwatchPickerOption {
-  imageUrl: string
-  value: string
-}
+declare const PDP_WIDGET_SWATCH_URLS: string[]
 
 // TODO: All projects; Export all props
 export interface IProps {
   onChange: (value: any) => void
-  options: ISwatchPickerOption[]
+  options: string[]
   title: string
   value: string
 }
@@ -16,9 +13,9 @@ export interface IProps {
 function SwatchPicker({ onChange, options, title, value }: IProps): ReactElement {
   return (
     <div className="zw-swatch-picker">
-      <h3>{ title }</h3>
+      <h5>{ title }</h5>
       <ul className="zw-clearfix">
-        { options.map(({ value: optionValue, imageUrl }, index) => (
+        { options.map((optionValue: string, index: number) => (
           <li
             className={value === optionValue ? 'zw-swatch-picker-item-active' : ''}
             key={index}
@@ -27,7 +24,7 @@ function SwatchPicker({ onChange, options, title, value }: IProps): ReactElement
               className="zw-swatch-picker-item-image"
               onClick={() => onChange(optionValue)}
               style={{
-                backgroundImage: `url(${imageUrl})`,
+                backgroundImage: `url(${PDP_WIDGET_SWATCH_URLS[optionValue]})`,
               }}
             />
           </li>
