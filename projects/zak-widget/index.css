@@ -12,6 +12,26 @@ body {
   display: table;
 }
 
+.zw-plus-left {
+  display: inline-block;
+  position: relative;
+  text-indent: 14px;
+}
+
+.zw-plus-left::before {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  margin-top: -6px;
+  font-size: 16px;
+  line-height: 10px;
+  text-indent: 0;
+  content: "+";
+}
+
 .zw-layout-container {
   max-width: 1330px;
   margin: 0 auto;
@@ -181,7 +201,7 @@ body {
 .zw-custom-select {
   position: relative;
   display: inline-block;
-  margin-right: 10px;
+  margin-right: 5px;
   width: 220px;
   height: 36px;
   line-height: 36px;
@@ -190,6 +210,25 @@ body {
   box-sizing: border-box;
   cursor: pointer;
   font-size: 14px;
+}
+
+.zw-custom-select::after {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  width: 5px;
+  height: 5px;
+  margin-top: -2.5px;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #000;
+  content: " ";
+  transform: scaleX(.9) scaleY(1.7);
+}
+
+.zw-selected-value {
+  transform: translateY(-1px);
 }
 
 .zw-custom-select .zw-select-options {
@@ -219,6 +258,11 @@ body {
   height: 30px;
   line-height: 30px;
   font-size: 12px;
+  transform: translateY(-2.5px);
+}
+
+.zw-option-row .zw-option-action a:hover {
+  color: #000;
 }
 
 .zw-total-row {
@@ -239,6 +283,8 @@ body {
 
 .zw-total-row .zw-add-on {
   font-size: 14px;
+  cursor: pointer;
+  transform: translateY(-.5px);
 }
 
 .zw-total-row .zw-add-on-button {
@@ -248,7 +294,7 @@ body {
   margin: 0 5px 0 0;
   padding: 0;
   border-radius: 14px;
-  border: 1px solid #333;
+  border: 1px solid #000;
   background: transparent;
 }
 
@@ -270,7 +316,7 @@ body {
   width: 10px;
   height: 10px;
   border-radius: 10px;
-  background: #333;
+  background: #000;
 }
 
 .zw-total-row .zw-add-on-label {
@@ -299,8 +345,17 @@ body {
   color: #fff;
 }
 
+.zw-submit-button:hover {
+  background: #6f6f6f;
+}
+
 .zw-submit-row .zw-upload-rx-button {
   border: 1px solid #000;
+}
+
+.zw-submit-row .zw-upload-rx-button-text {
+  display: inline-block;
+  transform: translateY(-2px);
 }
 
 .zw-submit-row .zw-upload-rx-button:hover {
@@ -314,10 +369,18 @@ body {
   margin-bottom: 20px;
 }
 
+.zw-fit-guide-link:hover {
+  color: #000;
+}
+
 .zw-more-info-link {
   display: block;
   font-size: 14px;
   margin-bottom: 20px;
+}
+
+.zw-more-info-link:hover {
+  color: #000;
 }
 
 .zw-patient-info {

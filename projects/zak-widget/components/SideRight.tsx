@@ -138,7 +138,10 @@ function SideRight(): ReactElement {
             className="zw-upload-rx-button"
             onClick={() => {}}
           >
-            Upload RX
+            <span className="zw-upload-rx-button-text">
+              Upload RX
+              <span className="ion-ios-arrow-thin-right" />
+            </span>
           </button>
           <a
             className="zw-more-info-link zw-plus-left"
