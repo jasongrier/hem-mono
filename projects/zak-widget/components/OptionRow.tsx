@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import CustomSelect, { IProps as ICustomSelectProps } from './CustomSelect'
 
 interface IAction {
-  onClick: () => void
+  remodalTarget: string
   text: string
 }
 
@@ -26,7 +26,7 @@ function ZwOptionRow({ action, className, label, select }: IProps): ReactElement
         <div className="zw-option-action">
           <a
             className="zw-plus-left"
-            onClick={action.onClick}
+            data-remodal-target={action.remodalTarget}
           >
             { action.text }
           </a>

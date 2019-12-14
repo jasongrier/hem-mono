@@ -83,6 +83,7 @@ function SideRight(): ReactElement {
         </div>
         <a
           className="zw-fit-guide-link zw-plus-left"
+          data-remodal-target="fit-guide-view"
           onClick={() => {}}
         >
           Fit Guide
@@ -91,7 +92,7 @@ function SideRight(): ReactElement {
           <OptionRow
             label="Prescription"
             action={{
-              onClick: () => {},
+              remodalTarget: 'prescription-options-view',
               text: 'Do you have questions?',
             }}
             select={{
@@ -105,7 +106,7 @@ function SideRight(): ReactElement {
           <OptionRow
             label="Lens Treatment"
             action={{
-              onClick: () => {},
+              remodalTarget: 'lens-treatment-options-view',
               text: 'What’s right for me?',
             }}
             select={{
@@ -120,7 +121,7 @@ function SideRight(): ReactElement {
             label="Tints"
             className="zw-last-option-row"
             action={{
-              onClick: () => {},
+              remodalTarget: 'tint-options-view',
               text: 'Customize it!',
             }}
             select={{
@@ -162,7 +163,7 @@ function SideRight(): ReactElement {
           </button>
           <a
             className="zw-more-info-link zw-plus-left"
-            onClick={() => {}}
+            data-remodal-target="upload-options-view"
           >
             More info
           </a>
