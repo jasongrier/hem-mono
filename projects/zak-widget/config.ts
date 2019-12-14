@@ -26,27 +26,6 @@ const LENS_TREATMENT_OPTIONS: any[] = [
   },
 ]
 
-const PRESCRIPTION_OPTIONS: IPrescriptionOption[] = [
-  {
-    index: 1,
-    text: `Single Vision $${getOptionPricing('prescriptionPrices', 'single-vision')}`,
-    price: getOptionPricing('prescriptionPrices', 'single-vision'),
-    value: 'single-vision',
-  },
-  {
-    index: 2,
-    text: `Progressive $${getOptionPricing('prescriptionPrices', 'progressive')}`,
-    price: getOptionPricing('prescriptionPrices', 'progressive'),
-    value: 'progressive',
-  },
-  {
-    index: 0,
-    text: `No Prescription $${getOptionPricing('prescriptionPrices', 'single-vision')}`,
-    price: getOptionPricing('prescriptionPrices', 'no-prescription'),
-    value: 'no-prescription',
-  },
-]
-
 const SWATCH_TYPES: any[] = [
   {
     id: 'eyeglass-black',
@@ -206,7 +185,6 @@ for (const optionType of tintOptionsOrder) {
 export {
   LENS_OPTIONS,
   LENS_TREATMENT_OPTIONS,
-  PRESCRIPTION_OPTIONS,
   SWATCH_TYPES,
   TINT_OPTIONS,
 }
