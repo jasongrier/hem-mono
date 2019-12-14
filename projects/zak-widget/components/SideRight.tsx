@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback, useEffect } from 'react'
+import React, { ReactElement, useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store'
 import OptionRow from './OptionRow'
