@@ -13,6 +13,7 @@ function getProduct(): IProduct {
     id: 'temp-product',
     lensColor: 'lens-gray' as 'lens-gray',
     lensTreatmentType: 'standard' as 'standard',
+    mainImageUrl: rawProduct.images[0],
     prescriptionType: 'single-vision' as 'single-vision',
     secondaryTitle: getProductSecondaryTitle(rawProduct),
     swatchType: 'eyeglass-black' as 'eyeglass-black',
