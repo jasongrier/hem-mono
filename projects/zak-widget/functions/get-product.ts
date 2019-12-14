@@ -14,6 +14,7 @@ function getProduct(): IProduct {
     lensColor: 'lens-gray' as 'lens-gray',
     lensTreatmentType: 'standard' as 'standard',
     mainImageUrl: rawProduct.images[0],
+    prescriptionFile: null,
     prescriptionType: 'single-vision' as 'single-vision',
     secondaryTitle: getProductSecondaryTitle(rawProduct),
     swatchType: 'eyeglass-black' as 'eyeglass-black',

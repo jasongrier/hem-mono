@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useCallback, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store'
 import OptionRow from './OptionRow'
@@ -17,6 +17,7 @@ import {
 import {
   setLensColor,
   setLensTreatmentType,
+  setPrescriptionFile,
   setPrescriptionType,
   setSwatchType,
   setTintType,
@@ -42,6 +43,12 @@ function SideRight(): ReactElement {
   const product = useSelector((state: RootState) => state.app.product)
 
   const dispatch = useDispatch()
+
+  const onFileInputChanged = useCallback(
+    (evt: any) => {
+      dispatch(setPrescriptionFile(evt.target.files[0]))
+    }, [],
+  )
 
   if (!product) return <div />
 
@@ -160,6 +167,11 @@ function SideRight(): ReactElement {
               Upload RX
               <span className="ion-ios-arrow-thin-right" />
             </span>
+            <input
+              multiple={false}
+              onChange={onFileInputChanged}
+              type="file"
+            />
           </button>
           <a
             className="zw-more-info-link zw-plus-left"
