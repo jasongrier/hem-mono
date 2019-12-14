@@ -1,18 +1,8 @@
-import React, { ReactElement, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { requestProduct } from '../store/actions'
+import React, { ReactElement } from 'react'
 import SideLeft from './SideLeft'
 import SideRight from './SideRight'
 
-declare const PDP_WIDGET_PRODUCT_ID: any
-
 function App(): ReactElement {
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(requestProduct(PDP_WIDGET_PRODUCT_ID))
-  }, [])
-
   return (
     <div className="hem-application page__content-wrapper--force-background">
       <div className="zw-layout-container">

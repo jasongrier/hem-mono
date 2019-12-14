@@ -1,5 +1,5 @@
 import { getOptionPricing } from './functions'
-import { IPrescription } from './store/types'
+import { IPrescriptionOption } from './store/types'
 import { ICustomSelectOption } from './components/CustomSelect'
 
 const LENS_OPTIONS: any[] = [
@@ -26,18 +26,21 @@ const LENS_TREATMENT_OPTIONS: any[] = [
   },
 ]
 
-const PRESCRIPTION_OPTIONS: IPrescription[] = [
+const PRESCRIPTION_OPTIONS: IPrescriptionOption[] = [
   {
+    index: 1,
     text: `Single Vision $${getOptionPricing('prescriptionPrices', 'single-vision')}`,
     price: getOptionPricing('prescriptionPrices', 'single-vision'),
     value: 'single-vision',
   },
   {
+    index: 2,
     text: `Progressive $${getOptionPricing('prescriptionPrices', 'progressive')}`,
     price: getOptionPricing('prescriptionPrices', 'progressive'),
     value: 'progressive',
   },
   {
+    index: 0,
     text: `No Prescription $${getOptionPricing('prescriptionPrices', 'single-vision')}`,
     price: getOptionPricing('prescriptionPrices', 'no-prescription'),
     value: 'no-prescription',

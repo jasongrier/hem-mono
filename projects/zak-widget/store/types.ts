@@ -47,9 +47,10 @@ export type TintType =
   | 'rose'
   | 'yellow'
 
-export interface IPrescription {
-  text: string
+export interface IPrescriptionOption {
+  index: number
   price: number
+  text: string
   value: PrescriptionType
 }
 
