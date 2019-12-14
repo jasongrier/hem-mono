@@ -3,12 +3,15 @@ import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store'
 import OptionRow from './OptionRow'
 import SwatchPicker from './SwatchPicker'
-import { getProductTotalPrice, productOptions } from '../functions'
+
+import {
+  getLensTreatmentOptions,
+  getPrescriptionOptions,
+  getProductTotalPrice,
+} from '../functions'
 
 import {
   LENS_OPTIONS,
-  LENS_TREATMENT_OPTIONS,
-  PRESCRIPTION_OPTIONS,
   SWATCH_TYPES,
   TINT_OPTIONS,
 } from '../config'
@@ -30,11 +33,12 @@ import {
   TintType,
 } from '../store/types'
 
-const {
-  prescriptionOptions,
-} = productOptions()
+const prescriptionOptions = getPrescriptionOptions()
+const lensTreatmentOptions = getLensTreatmentOptions()
 
+console.log('***')
 console.log(prescriptionOptions)
+console.log('***')
 
 function SideRight(): ReactElement {
   const product = useSelector((state: RootState) => state.app.product)
@@ -85,30 +89,34 @@ function SideRight(): ReactElement {
         >
           Fit Guide
         </a>
-        <OptionRow
-          label="Prescription"
-          action={{
-            onClick: () => {},
-            text: 'Do you have questions?',
-          }}
-          select={{
-            onChange: (value: PrescriptionType) => dispatch(setPrescriptionType(value)),
-            options: prescriptionOptions,
-            value: prescriptionType,
-          }}
-        />
-        <OptionRow
-          label="Lens Treatment"
-          action={{
-            onClick: () => {},
-            text: 'What’s right for me?',
-          }}
-          select={{
-            onChange: (value: LensTreatmentType) => dispatch(setLensTreatmentType(value)),
-            options: LENS_TREATMENT_OPTIONS,
-            value: lensTreatmentType,
-          }}
-        />
+        { prescriptionOptions && (
+          <OptionRow
+            label="Prescription"
+            action={{
+              onClick: () => {},
+              text: 'Do you have questions?',
+            }}
+            select={{
+              onChange: (value: PrescriptionType) => dispatch(setPrescriptionType(value)),
+              options: prescriptionOptions,
+              value: prescriptionType,
+            }}
+          />
+        )}
+        { lensTreatmentOptions && (
+          <OptionRow
+            label="Lens Treatment"
+            action={{
+              onClick: () => {},
+              text: 'What’s right for me?',
+            }}
+            select={{
+              onChange: (value: LensTreatmentType) => dispatch(setLensTreatmentType(value)),
+              options: lensTreatmentOptions,
+              value: lensTreatmentType,
+            }}
+          />
+        )}
         <OptionRow
           label="Tints"
           className="zw-last-option-row"

@@ -1,6 +1,5 @@
 import { IProduct } from '../store/types'
-import productOptions from './product-options'
-import productSecondaryTitle from './product-secondary-title'
+import getProductSecondaryTitle from './get-product-secondary-title'
 
 declare const PDP_WIDGET_PRODUCT: string
 
@@ -24,8 +23,6 @@ function getProduct(): IProduct {
 
   const rawProduct = JSON.parse(PDP_WIDGET_PRODUCT)
 
-  const {} = productOptions()
-
   return {
     basePrice: 1,
     description: rawProduct.description,
@@ -34,7 +31,7 @@ function getProduct(): IProduct {
     lensColor: 'lens-gray' as 'lens-gray',
     lensTreatmentType: 'standard' as 'standard',
     prescriptionType: 'single-vision' as 'single-vision',
-    secondaryTitle: productSecondaryTitle(rawProduct),
+    secondaryTitle: getProductSecondaryTitle(rawProduct),
     swatchType: 'eyeglass-black' as 'eyeglass-black',
     swatchTypeText: 'Eyeglass, Black',
     title: rawProduct.title,
