@@ -1,5 +1,5 @@
 import { kebabCase } from 'voca'
-import { IPrescriptionOption, PrescriptionType } from '../../store/types'
+import { IProductOption, LensTreatmentType } from '../../store/types'
 import getRawOptions from './get-raw-options'
 
 function getLensTreatmentOptions() {
@@ -8,14 +8,14 @@ function getLensTreatmentOptions() {
 
   if (!rawLensTreatmentOptions) return []
 
-  return rawLensTreatmentOptions.values.reduce((acc: IPrescriptionOption[], text: string, index: number) => {
+  return rawLensTreatmentOptions.values.reduce((acc: IProductOption[], text: string, index: number) => {
     const textSplit = text.split('+$')
 
     acc.push({
       index,
       price: textSplit[1] ? parseInt(textSplit[1], 10) : 0,
       text,
-      value: kebabCase(textSplit[0]) as PrescriptionType,
+      value: kebabCase(textSplit[0]) as LensTreatmentType,
     })
 
     return acc

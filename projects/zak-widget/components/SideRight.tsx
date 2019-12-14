@@ -8,12 +8,12 @@ import {
   getLensTreatmentOptions,
   getPrescriptionOptions,
   getProductTotalPrice,
+  getTintOptions,
 } from '../functions'
 
 import {
   LENS_OPTIONS,
   SWATCH_TYPES,
-  TINT_OPTIONS,
 } from '../config'
 
 import {
@@ -35,10 +35,7 @@ import {
 
 const prescriptionOptions = getPrescriptionOptions()
 const lensTreatmentOptions = getLensTreatmentOptions()
-
-console.log('***')
-console.log(prescriptionOptions)
-console.log('***')
+const tintOptions = getTintOptions()
 
 function SideRight(): ReactElement {
   const product = useSelector((state: RootState) => state.app.product)
@@ -117,19 +114,21 @@ function SideRight(): ReactElement {
             }}
           />
         )}
-        <OptionRow
-          label="Tints"
-          className="zw-last-option-row"
-          action={{
-            onClick: () => {},
-            text: 'Customize it!',
-          }}
-          select={{
-            onChange: (value: TintType) => dispatch(setTintType(value)),
-            options: TINT_OPTIONS,
-            value: tintType,
-          }}
-        />
+        { tintOptions && (
+          <OptionRow
+            label="Tints"
+            className="zw-last-option-row"
+            action={{
+              onClick: () => {},
+              text: 'Customize it!',
+            }}
+            select={{
+              onChange: (value: TintType) => dispatch(setTintType(value)),
+              options: tintOptions,
+              value: tintType,
+            }}
+          />
+        )}
         <div className="zw-total-row">
           <div className="zw-total">
             ${ total }
