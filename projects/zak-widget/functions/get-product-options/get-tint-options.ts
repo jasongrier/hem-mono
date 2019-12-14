@@ -1,25 +1,30 @@
 import { kebabCase } from 'voca'
-import { IProductOption, PrescriptionType } from '../../store/types'
-import getRawOptions from './get-raw-options'
+import { IProductOption, TintType } from '../../store/types'
+
+declare const PDP_WIDGET_TINT_ADD_ON_PRODUCT: string
 
 function getTintOptions() {
-  const rawOptions = getRawOptions()
-  const rawTintOptions = rawOptions.find((option: any) => option.name === 'Tints')
+  const product = JSON.parse(PDP_WIDGET_TINT_ADD_ON_PRODUCT)
 
-  if (!rawTintOptions) return []
+  if (!product) return []
+  if (!product.variants.length) return []
 
-  return rawTintOptions.values.reduce((acc: IProductOption[], text: string, index: number) => {
-    const textSplit = text.split('+$')
+  return product.variants.reduce((acc: IProductOption[], variant: any, index: number) => {
 
     acc.push({
       index,
-      price: textSplit[1] ? parseInt(textSplit[1], 10) : 0,
-      text,
-      value: kebabCase(textSplit[0]) as PrescriptionType,
+      price: variant.price / 100,
+      text: `${variant.public_title} $${variant.price / 100}`,
+      value: kebabCase(variant.public_title) as TintType,
     })
 
     return acc
-  }, [])
+  }, [{
+    index: -1,
+    price: 0,
+    text: 'None',
+    value: 'none',
+  }])
 }
 
 export default getTintOptions
