@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store'
 import OptionRow from './OptionRow'
 import SwatchPicker from './SwatchPicker'
-import { getProductTotalPrice } from '../functions'
+import { getProductTotalPrice, productOptions } from '../functions'
 
 import {
   LENS_OPTIONS,
@@ -29,6 +29,12 @@ import {
   SwatchType,
   TintType,
 } from '../store/types'
+
+const {
+  prescriptionOptions,
+} = productOptions()
+
+console.log(prescriptionOptions)
 
 function SideRight(): ReactElement {
   const product = useSelector((state: RootState) => state.app.product)
@@ -87,7 +93,7 @@ function SideRight(): ReactElement {
           }}
           select={{
             onChange: (value: PrescriptionType) => dispatch(setPrescriptionType(value)),
-            options: PRESCRIPTION_OPTIONS,
+            options: prescriptionOptions,
             value: prescriptionType,
           }}
         />

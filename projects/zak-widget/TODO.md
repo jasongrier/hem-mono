@@ -1,9 +1,12 @@
 ### TODOs
 | Filename | line # | TODO
 |:------|:------:|:------
+| [projects/zak-widget/store/index.ts](projects/zak-widget/store/index.ts#L1) | 1 | Alphabetize this everywhere
+| [projects/zak-widget/store/index.ts](projects/zak-widget/store/index.ts#L3) | 3 | Replace Thunk with Saga in all projects
 | [projects/zak-widget/store/selectors.ts](projects/zak-widget/store/selectors.ts#L1) | 1 | Example selector
 | [projects/zak-widget/store/selectors.ts](projects/zak-widget/store/selectors.ts#L2) | 2 | Start using selectors everywhere
 | [projects/zak-widget/store/selectors.ts](projects/zak-widget/store/selectors.ts#L3) | 3 | Start using useCallback & useMemo everywhere
+| [projects/zak-widget/store/selectors.ts](projects/zak-widget/store/selectors.ts#L4) | 4 | Turn on module-per-file
 | [projects/hem-rocks/routes/SoundLibraryHome.tsx](projects/hem-rocks/routes/SoundLibraryHome.tsx#L160) | 160 | Should simply forward the onClick, not set the value
 | [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L16) | 16 | Modal module
 | [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L28) | 28 | Header component

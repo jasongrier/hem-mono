@@ -26,8 +26,8 @@ import {
   ISetProduct,
 } from './types'
 
-const requestProduct = (productId: string): IRequestProduct => ({
-  payload: productId,
+const requestProduct = (productHandle: string): IRequestProduct => ({
+  payload: productHandle,
   type: REQUEST_PRODUCT,
 })
 

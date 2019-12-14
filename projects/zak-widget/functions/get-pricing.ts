@@ -1,4 +1,5 @@
-import { IProduct } from "../store/types"
+import { IProduct } from '../store/types'
+import productOptions from './product-options'
 
 const highIndexPrices: any = {
   'yes': 75,
@@ -46,8 +47,19 @@ const allPrices = {
   tintPrices,
 }
 
+// TODO: Remove
 function getOptionPricing(option: string, key: string): number {
   return allPrices[option][key]
+}
+
+function getOptionPrice(optionKey: string, value: string): number {
+  const option = productOptions()[optionKey].find(o => o.value === value)
+
+  if (option) {
+    return option.price
+  }
+
+  return 0
 }
 
 function getProductTotalPrice(product: IProduct) {
@@ -55,7 +67,7 @@ function getProductTotalPrice(product: IProduct) {
     product.basePrice
       + getOptionPricing('highIndexPrices', product.hasHighIndexAddOn ? 'yes' : 'no')
       + getOptionPricing('lensTreatmentPrices', product.lensTreatmentType)
-      + getOptionPricing('prescriptionPrices', product.prescriptionType)
+      + getOptionPrice('prescriptionOptions', product.prescriptionType)
       + getOptionPricing('tintPrices', product.tintType)
   )
 }

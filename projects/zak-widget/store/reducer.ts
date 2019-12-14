@@ -1,5 +1,6 @@
 import { AnyAction } from 'redux'
 import produce from 'immer'
+import { getProduct } from '../functions'
 import { SWATCH_TYPES } from '../config'
 import {
   SET_PRODUCT,
@@ -14,7 +15,7 @@ import {
 } from './types'
 
 const initialState: IState = {
-  product: null,
+  product: getProduct(),
 }
 
 const reducer = (
