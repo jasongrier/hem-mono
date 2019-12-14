@@ -1,12 +1,12 @@
 import { AnyAction } from 'redux'
 import produce from 'immer'
+import { titleCase } from 'voca'
 import { getProduct } from '../functions'
-import { SWATCH_TYPES } from '../config'
 import {
-  SET_PRODUCT,
   SET_LENS_COLOR,
   SET_LENS_TREATMENT_TYPE,
   SET_PRESCRIPTION_TYPE,
+  SET_PRODUCT,
   SET_SWATCH_TYPE,
   SET_TINT_TYPE,
   TOGGLE_HIGH_INDEX_ADD_ON,
@@ -54,7 +54,7 @@ const reducer = (
       return produce(state, draftState => {
         if (!draftState.product) return
         draftState.product.swatchType = payload
-        draftState.product.swatchTypeText = SWATCH_TYPES.find(type => type.id === payload).text
+        draftState.product.swatchTypeText = titleCase(payload.replace(/-/g, '. ')) + '.'
       })
     }
 

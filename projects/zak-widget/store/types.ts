@@ -61,6 +61,7 @@ export interface IProduct {
   id: string
   lensColor: LensColor
   lensTreatmentType: LensTreatmentType
+  mainImageUrl: string
   prescriptionType: PrescriptionType
   secondaryTitle: string
   swatchType: SwatchType
