@@ -24,7 +24,7 @@ function getProduct(): IProduct {
   const rawProduct = JSON.parse(PDP_WIDGET_PRODUCT)
 
   return {
-    basePrice: 1,
+    basePrice: rawProduct.price / 100,
     description: rawProduct.description,
     hasHighIndexAddOn: false,
     id: 'temp-product',
