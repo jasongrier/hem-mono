@@ -10,6 +10,7 @@ import {
   REQUEST_PRODUCT,
   SET_LENS_COLOR,
   SET_LENS_TREATMENT_TYPE,
+  SET_PRESCRIPTION_FILE,
   SET_PRESCRIPTION_TYPE,
   SET_PRODUCT,
   SET_SWATCH_TYPE,
@@ -19,6 +20,7 @@ import {
   IRequestProduct,
   ISetLensColor,
   ISetLensTreatmentType,
+  ISetPrescriptionFile,
   ISetPrescriptionType,
   ISetSwatchType,
   ISetTintType,
@@ -39,6 +41,11 @@ const setLensColor = (lensColor: LensColor): ISetLensColor => ({
 const setLensTreatmentType = (lensTreatmentType: LensTreatmentType): ISetLensTreatmentType => ({
   payload: lensTreatmentType,
   type: SET_LENS_TREATMENT_TYPE,
+})
+
+const setPrescriptionFile = (prescriptionFile: File): ISetPrescriptionFile => ({
+  payload: prescriptionFile,
+  type: SET_PRESCRIPTION_FILE,
 })
 
 const setPrescriptionType = (prescriptionType: PrescriptionType): ISetPrescriptionType => ({
@@ -70,6 +77,7 @@ export {
   requestProduct,
   setLensColor,
   setLensTreatmentType,
+  setPrescriptionFile,
   setPrescriptionType,
   setProduct,
   setSwatchType,

@@ -62,6 +62,7 @@ export interface IProduct {
   lensColor: LensColor
   lensTreatmentType: LensTreatmentType
   mainImageUrl: string
+  prescriptionFile: File | null
   prescriptionType: PrescriptionType
   secondaryTitle: string
   swatchType: SwatchType
@@ -77,6 +78,7 @@ export interface IState {
 export const REQUEST_PRODUCT = 'REQUEST_PRODUCT'
 export const SET_LENS_COLOR = 'SET_LENS_COLOR'
 export const SET_LENS_TREATMENT_TYPE = 'SET_LENS_TREATMENT_TYPE'
+export const SET_PRESCRIPTION_FILE = 'SET_PRESCRIPTION_FILE'
 export const SET_PRESCRIPTION_TYPE = 'SET_PRESCRIPTION_TYPE'
 export const SET_PRODUCT = 'SET_PRODUCT'
 export const SET_SWATCH_TYPE = 'SET_SWATCH_TYPE'
@@ -96,6 +98,11 @@ export interface ISetLensColor extends AnyAction {
 export interface ISetLensTreatmentType extends AnyAction {
   type: typeof SET_LENS_TREATMENT_TYPE
   payload: LensTreatmentType
+}
+
+export interface ISetPrescriptionFile extends AnyAction {
+  type: typeof SET_PRESCRIPTION_FILE
+  payload: File
 }
 
 export interface ISetPrescriptionType extends AnyAction {
@@ -126,6 +133,7 @@ export interface IToggleHighIndexAddOn extends AnyAction {
 export type Action =
     IRequestProduct
   | ISetLensColor
+  | ISetPrescriptionFile
   | ISetPrescriptionType
   | ISetProduct
   | ISetSwatchType

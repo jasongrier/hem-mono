@@ -261,6 +261,10 @@ body {
   transform: translateY(-2.5px);
 }
 
+.zw-option-row .zw-option-action a {
+  cursor: pointer;
+}
+
 .zw-option-row .zw-option-action a:hover {
   color: #000;
 }
@@ -350,6 +354,7 @@ body {
 }
 
 .zw-submit-row .zw-upload-rx-button {
+  position: relative;
   border: 1px solid #000;
 }
 
@@ -363,10 +368,23 @@ body {
   color: #fff;
 }
 
+.zw-submit-row .zw-upload-rx-button input {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 160px;
+  height: 40px;
+  opacity: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+
 .zw-fit-guide-link {
   display: block;
   font-size: 14px;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .zw-fit-guide-link:hover {
@@ -377,6 +395,7 @@ body {
   display: block;
   font-size: 14px;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .zw-more-info-link:hover {
