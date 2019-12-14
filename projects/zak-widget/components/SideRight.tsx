@@ -4,6 +4,9 @@ import { RootState } from '../store'
 import OptionRow from './OptionRow'
 import SwatchPicker from './SwatchPicker'
 
+declare const PDP_WIDGET_LENS_OPTIONS: string[]
+declare const PDP_WIDGET_SWATCH_TYPES: string[]
+
 import {
   getHighIndexOption,
   getLensTreatmentOptions,
@@ -11,11 +14,6 @@ import {
   getProductTotalPrice,
   getTintOptions,
 } from '../functions'
-
-import {
-  LENS_OPTIONS,
-  SWATCH_TYPES,
-} from '../config'
 
 import {
   setLensColor,
@@ -69,7 +67,7 @@ function SideRight(): ReactElement {
         <div className="zw-primary-picker">
           <SwatchPicker
             onChange={(value: SwatchType) => dispatch(setSwatchType(value))}
-            options={SWATCH_TYPES.map(type => type.id)}
+            options={PDP_WIDGET_SWATCH_TYPES}
             title="Frame color:"
             value={ swatchType }
           />
@@ -77,7 +75,7 @@ function SideRight(): ReactElement {
         <div className="zw-lens-picker">
           <SwatchPicker
             onChange={(value: LensColor) => dispatch(setLensColor(value))}
-            options={LENS_OPTIONS}
+            options={PDP_WIDGET_LENS_OPTIONS}
             title="Lens color:"
             value={ lensColor }
           />
