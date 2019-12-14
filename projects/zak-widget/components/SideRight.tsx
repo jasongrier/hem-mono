@@ -5,6 +5,7 @@ import OptionRow from './OptionRow'
 import SwatchPicker from './SwatchPicker'
 
 import {
+  getHighIndexOption,
   getLensTreatmentOptions,
   getPrescriptionOptions,
   getProductTotalPrice,
@@ -36,6 +37,7 @@ import {
 const prescriptionOptions = getPrescriptionOptions()
 const lensTreatmentOptions = getLensTreatmentOptions()
 const tintOptions = getTintOptions()
+const highIndexOption = getHighIndexOption()
 
 function SideRight(): ReactElement {
   const product = useSelector((state: RootState) => state.app.product)
@@ -139,7 +141,7 @@ function SideRight(): ReactElement {
           >
             <button className={`zw-add-on-button ${hasHighIndexAddOn ? 'zw-add-on-button-active' : ''}`} />
             <span className="zw-add-on-label">
-              High-index 1.67 lens (+ $75)
+              { highIndexOption.title } (+ ${ highIndexOption.price })
             </span>
           </div>
         </div>
