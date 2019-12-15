@@ -1,46 +1,40 @@
 import {
   LensColor,
-  LensTreatmentType,
-  PrescriptionType,
-  SwatchType,
-  TintType,
+  Theme,
 
   IProduct,
+  IProductOption,
 
-  REQUEST_PRODUCT,
   SET_LENS_COLOR,
-  SET_LENS_TREATMENT_TYPE,
+  SET_LENS_TREATMENT,
   SET_PRESCRIPTION_FILE,
-  SET_PRESCRIPTION_TYPE,
-  SET_PRODUCT,
-  SET_SWATCH_TYPE,
-  SET_TINT_TYPE,
+  SET_PRESCRIPTION,
+  SET_THEME,
+  SET_TINT,
   TOGGLE_HIGH_INDEX_ADD_ON,
 
-  IRequestProduct,
   ISetLensColor,
-  ISetLensTreatmentType,
+  ISetLensTreatment,
+  ISetPrescription,
   ISetPrescriptionFile,
-  ISetPrescriptionType,
-  ISetSwatchType,
-  ISetTintType,
+  ISetTheme,
+  ISetTint,
   IToggleHighIndexAddOn,
-  ISetProduct,
 } from './types'
-
-const requestProduct = (productHandle: string): IRequestProduct => ({
-  payload: productHandle,
-  type: REQUEST_PRODUCT,
-})
 
 const setLensColor = (lensColor: LensColor): ISetLensColor => ({
   payload: lensColor,
   type: SET_LENS_COLOR,
 })
 
-const setLensTreatmentType = (lensTreatmentType: LensTreatmentType): ISetLensTreatmentType => ({
-  payload: lensTreatmentType,
-  type: SET_LENS_TREATMENT_TYPE,
+const setLensTreatment = (lensTreatmentName: string): ISetLensTreatment => ({
+  payload: lensTreatmentName,
+  type: SET_LENS_TREATMENT,
+})
+
+const setPrescription = (prescriptionName: string): ISetPrescription => ({
+  payload: prescriptionName,
+  type: SET_PRESCRIPTION,
 })
 
 const setPrescriptionFile = (prescriptionFile: File): ISetPrescriptionFile => ({
@@ -48,24 +42,14 @@ const setPrescriptionFile = (prescriptionFile: File): ISetPrescriptionFile => ({
   type: SET_PRESCRIPTION_FILE,
 })
 
-const setPrescriptionType = (prescriptionType: PrescriptionType): ISetPrescriptionType => ({
-  payload: prescriptionType,
-  type: SET_PRESCRIPTION_TYPE,
+const setTheme = (theme: Theme): ISetTheme => ({
+  payload: theme,
+  type: SET_THEME,
 })
 
-const setProduct = (product: IProduct): ISetProduct => ({
-  payload: product,
-  type: SET_PRODUCT,
-})
-
-const setSwatchType = (swatchType: SwatchType): ISetSwatchType => ({
-  payload: swatchType,
-  type: SET_SWATCH_TYPE,
-})
-
-const setTintType = (tintType: TintType): ISetTintType => ({
-  payload: tintType,
-  type: SET_TINT_TYPE,
+const setTint = (tintName: string): ISetTint => ({
+  payload: tintName,
+  type: SET_TINT,
 })
 
 const toggleHighIndexAddOn = (): IToggleHighIndexAddOn => ({
@@ -74,13 +58,11 @@ const toggleHighIndexAddOn = (): IToggleHighIndexAddOn => ({
 })
 
 export {
-  requestProduct,
   setLensColor,
-  setLensTreatmentType,
+  setLensTreatment,
+  setPrescription,
   setPrescriptionFile,
-  setPrescriptionType,
-  setProduct,
-  setSwatchType,
-  setTintType,
+  setTheme,
+  setTint,
   toggleHighIndexAddOn,
 }

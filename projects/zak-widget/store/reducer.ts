@@ -1,15 +1,13 @@
 import { AnyAction } from 'redux'
 import produce from 'immer'
-import { titleCase } from 'voca'
-import { getProduct } from '../functions'
+import { getProduct, getProductOptionByName } from '../functions'
 import {
   SET_LENS_COLOR,
-  SET_LENS_TREATMENT_TYPE,
+  SET_LENS_TREATMENT,
   SET_PRESCRIPTION_FILE,
-  SET_PRESCRIPTION_TYPE,
-  SET_PRODUCT,
-  SET_SWATCH_TYPE,
-  SET_TINT_TYPE,
+  SET_PRESCRIPTION,
+  SET_THEME,
+  SET_TINT,
   TOGGLE_HIGH_INDEX_ADD_ON,
 
   IState,
@@ -17,6 +15,7 @@ import {
 
 const initialState: IState = {
   product: getProduct(),
+  theme: 'eyeglass-black',
 }
 
 const reducer = (
@@ -24,12 +23,6 @@ const reducer = (
   { type, payload }: AnyAction,
 ): IState => {
   switch (type) {
-    case SET_PRODUCT: {
-      return produce(state, draftState => {
-        draftState.product = payload
-      })
-    }
-
     case SET_LENS_COLOR: {
       return produce(state, draftState => {
         if (!draftState.product) return
@@ -37,10 +30,10 @@ const reducer = (
       })
     }
 
-    case SET_LENS_TREATMENT_TYPE: {
+    case SET_LENS_TREATMENT: {
       return produce(state, draftState => {
         if (!draftState.product) return
-        draftState.product.lensTreatmentType = payload
+        draftState.product.lensTreatment = getProductOptionByName(payload)
       })
     }
 
@@ -51,25 +44,24 @@ const reducer = (
       })
     }
 
-    case SET_PRESCRIPTION_TYPE: {
+    case SET_PRESCRIPTION: {
       return produce(state, draftState => {
         if (!draftState.product) return
-        draftState.product.prescriptionType = payload
+        draftState.product.prescription = getProductOptionByName(payload)
       })
     }
 
-    case SET_SWATCH_TYPE: {
+    case SET_THEME: {
       return produce(state, draftState => {
         if (!draftState.product) return
-        draftState.product.swatchType = payload
-        draftState.product.swatchTypeText = titleCase(payload.replace(/-/g, '. ')) + '.'
+        draftState.theme = payload
       })
     }
 
-    case SET_TINT_TYPE: {
+    case SET_TINT: {
       return produce(state, draftState => {
         if (!draftState.product) return
-        draftState.product.tintType = payload
+        draftState.product.tint = getProductOptionByName(payload)
       })
     }
 

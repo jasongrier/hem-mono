@@ -3,7 +3,7 @@ import React, { ReactElement, useState, useEffect } from 'react'
 import { useClickOutside } from 'react-click-outside-hook'
 
 export interface ICustomSelectOption {
-  text: string
+  name: string
   value: string
 }
 
@@ -17,14 +17,14 @@ export interface IProps {
 
 function CustomSelect({ onChange, options, placeholder, value }: IProps): ReactElement {
   const [open, setOpen] = useState()
-  const [selectedText, setSelectedText] = useState(placeholder || options[0] && options[0].text)
+  const [selectedText, setSelectedText] = useState(placeholder || options[0] && options[0].name)
   const [ref, hasClickedOutside] = useClickOutside()
 
   useEffect(() => { hasClickedOutside && setOpen(false) }, [hasClickedOutside])
 
-  function setAndClose({ text, value }: ICustomSelectOption) {
+  function setAndClose({ name, value }: ICustomSelectOption) {
     setOpen(false)
-    setSelectedText(text)
+    setSelectedText(name)
     onChange(value)
   }
 
@@ -43,20 +43,20 @@ function CustomSelect({ onChange, options, placeholder, value }: IProps): ReactE
         <ul>
           { placeholder &&
             <li onClick={() => {
-              setAndClose({ value: '', text: placeholder })
+              setAndClose({ value: '', name: placeholder })
             }}>
               None
             </li>
           }
-          { options.map(({ value: optionValue, text }, index) => (
+          { options.map(({ value: optionValue, name }, index) => (
             <li
               className={value === optionValue ? 'zw-custom-select-item-active' : ''}
               key={index}
               onClick={() => {
-                setAndClose({ value: optionValue, text })
+                setAndClose({ value: optionValue, name })
               }}
             >
-              { text }
+              { name }
             </li>
           ))}
         </ul>

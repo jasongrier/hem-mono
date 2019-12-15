@@ -1,5 +1,7 @@
 import { IProduct } from '../store/types'
+import getProductOptions from './get-product-options'
 import getProductSecondaryTitle from './get-product-secondary-title'
+import getTintOptions from './get-tint-options'
 
 declare const PDP_WIDGET_PRODUCT: string
 
@@ -8,19 +10,19 @@ function getProduct(): IProduct {
 
   return {
     basePrice: rawProduct.price / 100,
+    defaultImageUrl: rawProduct.images[0],
     description: rawProduct.description,
+    frame: getProductOptions('Frame')[0],
     hasHighIndexAddOn: false,
-    id: 'temp-product',
+    id: rawProduct.id,
     lensColor: 'lens-gray' as 'lens-gray',
-    lensTreatmentType: 'standard' as 'standard',
-    mainImageUrl: rawProduct.images[0],
+    lensTreatment: getProductOptions('Lens Treatment')[0],
+    optionNames: rawProduct.options,
+    prescription: getProductOptions('Prescription')[0],
     prescriptionFile: null,
-    prescriptionType: 'single-vision' as 'single-vision',
     secondaryTitle: getProductSecondaryTitle(rawProduct),
-    swatchType: 'eyeglass-black' as 'eyeglass-black',
-    swatchTypeText: 'Eyeglass, Black',
+    tint: getTintOptions()[0],
     title: rawProduct.title,
-    tintType: 'none' as 'none',
   }
 }
 

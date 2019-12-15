@@ -1,46 +1,53 @@
 import React, { ReactElement, useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store'
-import OptionRow from './OptionRow'
-import SwatchPicker from './SwatchPicker'
-
 import {
   getHighIndexOption,
-  getLensColorOptions,
-  getLensTreatmentOptions,
-  getPrescriptionOptions,
+  getProductOptions,
   getProductTotalPrice,
-  getSwatchOptions,
+  getThemeTitle,
   getTintOptions,
+  productOptionsToSelectOptions,
 } from '../functions'
 
 import {
   setLensColor,
-  setLensTreatmentType,
+  setLensTreatment,
+  setPrescription,
   setPrescriptionFile,
-  setPrescriptionType,
-  setSwatchType,
-  setTintType,
+  setTheme,
+  setTint,
   toggleHighIndexAddOn,
 } from '../store/actions'
 
 import {
   LensColor,
-  LensTreatmentType,
-  PrescriptionType,
-  SwatchType,
-  TintType,
+  Theme,
 } from '../store/types'
 
-const highIndexOption = getHighIndexOption()
-const lensColorOptions = getLensColorOptions()
-const lensTreatmentOptions = getLensTreatmentOptions()
-const prescriptionOptions = getPrescriptionOptions()
-const swatchOptions = getSwatchOptions()
-const tintOptions = getTintOptions()
+import OptionRow from './OptionRow'
+import SwatchPicker from './SwatchPicker'
+
+const themeOptions: Theme[] = [
+  'eyeglass-black',
+  'eyeglass-tortoise',
+  'eyeglass-clear',
+  'sunglass-black',
+  'sunglass-tortoise',
+  'sunglass-clear',
+]
+
+const lensColorOptions: LensColor[] = [
+  'lens-gray',
+  'lens-green',
+  'lens-brown',
+]
 
 function SideRight(): ReactElement {
-  const product = useSelector((state: RootState) => state.app.product)
+  const { product, theme } = useSelector((state: RootState) => ({
+    product: state.app.product,
+    theme: state.app.theme,
+  }))
 
   const dispatch = useDispatch()
 
@@ -55,15 +62,19 @@ function SideRight(): ReactElement {
   const {
     hasHighIndexAddOn,
     lensColor,
-    lensTreatmentType,
-    prescriptionType,
+    lensTreatment,
+    prescription,
     secondaryTitle,
-    swatchType,
-    swatchTypeText,
-    tintType,
+    tint,
     title,
   } = product
 
+  const highIndexOption = getHighIndexOption()
+  const lensTreatmentOptions = getProductOptions('Lens Treatment')
+  const prescriptionOptions = getProductOptions('Prescription')
+  const tintOptions = getTintOptions()
+
+  const themeTitle = getThemeTitle(theme)
   const total = getProductTotalPrice(product)
 
   return (
@@ -71,13 +82,13 @@ function SideRight(): ReactElement {
       <div className="zw-product-options">
         <h2>{ title }</h2>
         <h3>{ secondaryTitle }</h3>
-        <h4>{ swatchTypeText }</h4>
+        <h4>{ themeTitle }</h4>
         <div className="zw-primary-picker">
           <SwatchPicker
-            onChange={(value: SwatchType) => dispatch(setSwatchType(value))}
-            options={swatchOptions}
+            onChange={(theme: Theme) => dispatch(setTheme(theme))}
+            options={themeOptions}
             title="Frame color:"
-            value={ swatchType }
+            value={theme}
           />
         </div>
         <div className="zw-lens-picker">
@@ -85,7 +96,7 @@ function SideRight(): ReactElement {
             onChange={(value: LensColor) => dispatch(setLensColor(value))}
             options={lensColorOptions}
             title="Lens color:"
-            value={ lensColor }
+            value={lensColor}
           />
         </div>
         <a
@@ -103,9 +114,9 @@ function SideRight(): ReactElement {
               text: 'Do you have questions?',
             }}
             select={{
-              onChange: (value: PrescriptionType) => dispatch(setPrescriptionType(value)),
-              options: prescriptionOptions,
-              value: prescriptionType,
+              onChange: (name: string) => dispatch(setPrescription(name)),
+              options: productOptionsToSelectOptions(prescriptionOptions),
+              value: prescription.name,
             }}
           />
         )}
@@ -117,9 +128,9 @@ function SideRight(): ReactElement {
               text: 'What’s right for me?',
             }}
             select={{
-              onChange: (value: LensTreatmentType) => dispatch(setLensTreatmentType(value)),
-              options: lensTreatmentOptions,
-              value: lensTreatmentType,
+              onChange: (name: string) => dispatch(setLensTreatment(name)),
+              options: productOptionsToSelectOptions(lensTreatmentOptions),
+              value: lensTreatment.name,
             }}
           />
         )}
@@ -132,9 +143,9 @@ function SideRight(): ReactElement {
               text: 'Customize it!',
             }}
             select={{
-              onChange: (value: TintType) => dispatch(setTintType(value)),
-              options: tintOptions,
-              value: tintType,
+              onChange: (name: string) => dispatch(setTint(name)),
+              options:productOptionsToSelectOptions(tintOptions),
+              value: tint.name,
             }}
           />
         )}

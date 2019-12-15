@@ -1,22 +1,22 @@
 import React, { ReactElement } from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../store'
-import { getProduct } from '../functions'
+import { getCurrentVariant } from '../functions'
 
 function SideLeft(): ReactElement {
-  const { description, productTitle } = useSelector((state: RootState) => {
-    const product = state.app.product
-    return {
-      description: product && product.description,
-      productTitle: product && product.title,
-    }
-  })
+  const product = useSelector((state: RootState) => state.app.product)
+
+  if (!product) return <div />
+
+  const { defaultImageUrl, description } = product
+  const currentVariant = getCurrentVariant(product)
+  const currentImageUrl = currentVariant && currentVariant.featured_image ? currentVariant.featured_image : defaultImageUrl
 
   return (
     <div className="zw-left">
       <div className="zw-info">
         <div className="zw-main-image">
-          <img src={getProduct().mainImageUrl} alt={productTitle} />
+          <img src={currentImageUrl} />
         </div>
         <div
           className="zw-description"
