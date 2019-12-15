@@ -71,17 +71,17 @@ function lintFiles(dir, expectedFiles) {
   ignoredFilesFound = []
   unexpectedFilesFound = []
 
-  readdirSync(dir).forEach(filepath => {
-    if (expectedFiles.indexOf(filepath) > -1) {
-      expectedFilesFound.push(filepath)
+  readdirSync(dir).forEach(filePath => {
+    if (expectedFiles.indexOf(filePath) > -1) {
+      expectedFilesFound.push(filePath)
     }
 
-    else if (ignoredFiles.indexOf(filepath) > -1) {
-      ignoredFilesFound.push(filepath)
+    else if (ignoredFiles.indexOf(filePath) > -1) {
+      ignoredFilesFound.push(filePath)
     }
 
     else {
-      unexpectedFilesFound.push(filepath)
+      unexpectedFilesFound.push(filePath)
     }
   })
 }
@@ -113,16 +113,16 @@ function lintProject(projectName) {
 
 function evaluateLint(projectName, expectedFiles, prefix = '', checkUnexpected = true) {
   if (expectedFiles.length !== expectedFilesFound.length) {
-    expectedFiles.forEach(filepath => {
-      if (expectedFilesFound.indexOf(filepath) === -1) {
-        console.log(`!!!! Sorry ${projectName}, seems like you are missing ${prefix}${filepath}`)
+    expectedFiles.forEach(filePath => {
+      if (expectedFilesFound.indexOf(filePath) === -1) {
+        console.log(`!!!! Sorry ${projectName}, seems like you are missing ${prefix}${filePath}`)
       }
     })
   }
 
   if (checkUnexpected && unexpectedFilesFound.length) {
-    unexpectedFilesFound.forEach(filepath => {
-      console.log(`!!!! Sorry ${projectName}, seems like you have ${prefix}${filepath} where it does not belong`)
+    unexpectedFilesFound.forEach(filePath => {
+      console.log(`!!!! Sorry ${projectName}, seems like you have ${prefix}${filePath} where it does not belong`)
     })
   }
 
