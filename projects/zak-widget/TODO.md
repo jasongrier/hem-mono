@@ -1,21 +1,14 @@
 ### TODOs
 | Filename | line # | TODO
 |:------|:------:|:------
+| [projects/zak-widget/functions/is-product-eyeglass.ts](projects/zak-widget/functions/is-product-eyeglass.ts#L2) | 2 | How to initialise this from the backend data??
 | [projects/zak-widget/store/index.ts](projects/zak-widget/store/index.ts#L1) | 1 | Alphabetize this everywhere
 | [projects/zak-widget/store/index.ts](projects/zak-widget/store/index.ts#L3) | 3 | Replace Thunk with Saga in all projects
 | [projects/zak-widget/store/selectors.ts](projects/zak-widget/store/selectors.ts#L1) | 1 | Example selector
 | [projects/zak-widget/store/selectors.ts](projects/zak-widget/store/selectors.ts#L2) | 2 | Start using selectors everywhere
 | [projects/zak-widget/store/selectors.ts](projects/zak-widget/store/selectors.ts#L3) | 3 | Start using useCallback & useMemo everywhere
 | [projects/zak-widget/store/selectors.ts](projects/zak-widget/store/selectors.ts#L4) | 4 | Turn on module-per-file
-| [projects/hem-rocks/routes/SoundLibraryHome.tsx](projects/hem-rocks/routes/SoundLibraryHome.tsx#L160) | 160 | Should simply forward the onClick, not set the value
-| [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L16) | 16 | Modal module
-| [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L28) | 28 | Header component
-| [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L54) | 54 | Closeup of the top four dials
-| [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L58) | 58 | This should be a flip book film and/or 3D CSS animation
-| [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L61) | 61 | 
-| [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L70) | 70 | Analytics event
-| [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L76) | 76 | Popup with suggested price paywall and not-too-hidden "I can't pay" link
-| [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L88) | 88 | Footer component
+| [projects/hem-rocks/routes/SoundLibrary.tsx](projects/hem-rocks/routes/SoundLibrary.tsx#L162) | 162 | Should simply forward the onClick, not set the value
 | [projects/jasonaarongrier-com/components/App.tsx](projects/jasonaarongrier-com/components/App.tsx#L14) | 14 | 404 page
 | [projects/midst-press/components/App.tsx](projects/midst-press/components/App.tsx#L74) | 74 | Move PoemNav out of the Switch/Route and directly into the Poem component
 | [projects/midst-press/components/CampaignMonitorForm.tsx](projects/midst-press/components/CampaignMonitorForm.tsx#L10) | 10 | All projects: Use line breaks for all component props

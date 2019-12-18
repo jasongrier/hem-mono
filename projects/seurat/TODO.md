@@ -9,15 +9,7 @@
 | [projects/seurat/store/reducer.ts](projects/seurat/store/reducer.ts#L104) | 104 | Use action-specific interfaces, not AnyAction on the action creators
 | [projects/seurat/store/reducer.ts](projects/seurat/store/reducer.ts#L107) | 107 | Why does the long property access below get a type of "never"? Try suggestion above
 | [projects/seurat/store/types.ts](projects/seurat/store/types.ts#L32) | 32 | Omit doesn't work in `PerformanceControls.tsx`
-| [projects/hem-rocks/routes/SoundLibraryHome.tsx](projects/hem-rocks/routes/SoundLibraryHome.tsx#L160) | 160 | Should simply forward the onClick, not set the value
-| [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L16) | 16 | Modal module
-| [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L28) | 28 | Header component
-| [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L54) | 54 | Closeup of the top four dials
-| [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L58) | 58 | This should be a flip book film and/or 3D CSS animation
-| [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L61) | 61 | 
-| [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L70) | 70 | Analytics event
-| [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L76) | 76 | Popup with suggested price paywall and not-too-hidden "I can't pay" link
-| [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L88) | 88 | Footer component
+| [projects/hem-rocks/routes/SoundLibrary.tsx](projects/hem-rocks/routes/SoundLibrary.tsx#L162) | 162 | Should simply forward the onClick, not set the value
 | [projects/jasonaarongrier-com/components/App.tsx](projects/jasonaarongrier-com/components/App.tsx#L14) | 14 | 404 page
 | [projects/midst-press/components/App.tsx](projects/midst-press/components/App.tsx#L74) | 74 | Move PoemNav out of the Switch/Route and directly into the Poem component
 | [projects/midst-press/components/CampaignMonitorForm.tsx](projects/midst-press/components/CampaignMonitorForm.tsx#L10) | 10 | All projects: Use line breaks for all component props

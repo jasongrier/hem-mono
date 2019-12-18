@@ -1,40 +1,20 @@
 import React, { ReactElement } from 'react'
-import { Link, Route, Switch } from 'react-router-dom'
-import { Displace, MegaMenu } from './layout'
+import { Route, Switch } from 'react-router-dom'
 
 import {
   Home,
-  SoundLibraryHome,
+  SoundLibrary,
 } from '../routes'
 
 function App(): ReactElement {
   return (
     <div className="hem-application">
-      <header className="site-header">
-        {/* <Displace
-          random={true}
-          rotate={1.1}
-        > */}
-          <h1>
-            <span>
-              <Link to="/">HEM</Link>
-            </span>
-          </h1>
-        {/* </Displace> */}
-      </header>
-
-      <MegaMenu />
-
       <main>
         <Switch>
-          <Route exact path="/home" component={Home} />
-          <Route exact path="/sound-library" component={SoundLibraryHome} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/sound-library" component={SoundLibrary} />
         </Switch>
       </main>
-
-      <div className="site-footer">
-
-      </div>
     </div>
   )
 }

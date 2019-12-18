@@ -18,7 +18,7 @@ import iconTrash from './icon-trash'
 import { IMidstFile } from '../../store/types'
 import './style.css'
 
-const LOG_AUTO_SCROLL = false
+const LOG_AUTO_SCROLL = true
 
 function autoScrollLog(...args: any[]) {
   if (!LOG_AUTO_SCROLL) return

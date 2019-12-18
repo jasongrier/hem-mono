@@ -989,11 +989,12 @@ body {
 .sliding-poems__poem--annelyse-gelman--prosperity .last-frame .editable p:nth-child(2),
 .sliding-poems__poem--annelyse-gelman--prosperity .last-frame .editable p:nth-child(3),
 .sliding-poems__poem--annelyse-gelman--prosperity .last-frame .editable p:nth-child(4) {
-  display: none;
+  /* display: none; */
 }
 
 .sliding-poems__poem--annelyse-gelman--prosperity .editable em {
-  display: none;
+  /* display: none; */
+  padding-right: 2px;
 }
 
 .sliding-poems__poem--eleanor-eli-moss---the-hammer .editor .editable {
