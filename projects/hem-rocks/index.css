@@ -30,7 +30,7 @@ body {
 
 .home main {
   width: 960px;
-  height: 80vh;
+  height: 85vh;
   margin: 0 auto;
 }
 
@@ -74,15 +74,20 @@ body {
   font-weight: bold;
 }
 
-.home .mailing-list-pencil {
-  height: 60px;
-  line-height: 60px;
+.home .pencil-extras {
+  position: relative;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  background: #000;
+  font-size: 11px;
+  color: #aaa;
   text-align: center;
   background: #000;
 }
 
 .home .campaign-monitor-form {
-  transform: translateY(-1px);
+  transform: translateY(1px);
 }
 
 .home .campaign-monitor-form input {
@@ -115,17 +120,7 @@ body {
   color: #fff;
 }
 
-.home .extra-links-pencil {
-  position: relative;
-  height: 40px;
-  line-height: 40px;
-  text-align: center;
-  background: #333;
-  font-size: 12px;
-  color: #aaa;
-}
-
-.home .extra-links-pencil ul {
+.home .pencil-extras ul {
   position: absolute;
   top: 0;
   margin: 0;
@@ -134,34 +129,34 @@ body {
   vertical-align: middle;
 }
 
-.home .extra-links-pencil ul li {
+.home .pencil-extras ul li {
   display: inline-block;
   height: 14px;
 }
 
-.home .extra-links-pencil ul li a {
+.home .pencil-extras ul li a {
   display: inline-block;
   height: 14px;
 }
 
-.home .extra-links-pencil ul li a:hover {
+.home .pencil-extras ul li a:hover {
   text-decoration: underline;
 }
 
-.home .extra-links-pencil .extra-links-left {
+.home .pencil-extras .extra-links-left {
   left: 20px;
 }
 
-.home .extra-links-pencil .extra-links-left a {
+.home .pencil-extras .extra-links-left a {
   margin-right: 10px;
   padding-right: 10px;
 }
 
-.home .extra-links-pencil .extra-links-right {
+.home .pencil-extras .extra-links-right {
   right: 20px;
 }
 
-.home .extra-links-pencil .extra-links-right a {
+.home .pencil-extras .extra-links-right a {
   margin-left: 10px;
   padding-left: 10px;
 }
