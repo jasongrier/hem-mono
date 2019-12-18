@@ -4,15 +4,7 @@
 | [projects/hem-rocks/store/reducer.ts](projects/hem-rocks/store/reducer.ts#L118) | 118 | All projects; Wrap all cases in {}
 | [projects/hem-rocks/store/selectors.ts](projects/hem-rocks/store/selectors.ts#L1) | 1 | Example selector
 | [projects/hem-rocks/store/types.ts](projects/hem-rocks/store/types.ts#L4) | 4 | How to get around putting this in every project??
-| [projects/hem-rocks/routes/SoundLibraryHome.tsx](projects/hem-rocks/routes/SoundLibraryHome.tsx#L160) | 160 | Should simply forward the onClick, not set the value
-| [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L16) | 16 | Modal module
-| [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L28) | 28 | Header component
-| [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L54) | 54 | Closeup of the top four dials
-| [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L58) | 58 | This should be a flip book film and/or 3D CSS animation
-| [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L61) | 61 | 
-| [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L70) | 70 | Analytics event
-| [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L76) | 76 | Popup with suggested price paywall and not-too-hidden "I can't pay" link
-| [projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx](projects/hem-rocks/routes/SoundLibraryHomeSketch.tsx#L88) | 88 | Footer component
+| [projects/hem-rocks/routes/SoundLibrary.tsx](projects/hem-rocks/routes/SoundLibrary.tsx#L162) | 162 | Should simply forward the onClick, not set the value
 | [projects/jasonaarongrier-com/components/App.tsx](projects/jasonaarongrier-com/components/App.tsx#L14) | 14 | 404 page
 | [projects/midst-press/components/App.tsx](projects/midst-press/components/App.tsx#L74) | 74 | Move PoemNav out of the Switch/Route and directly into the Poem component
 | [projects/midst-press/components/CampaignMonitorForm.tsx](projects/midst-press/components/CampaignMonitorForm.tsx#L10) | 10 | All projects: Use line breaks for all component props
@@ -48,4 +40,5 @@
 | [projects/studio-hem-rocks/routes/demos/MidiDemo.tsx](projects/studio-hem-rocks/routes/demos/MidiDemo.tsx#L10) | 10 | Move to the new Midi class
 | [projects/studio-hem-rocks/routes/demos/MidiDemo.tsx](projects/studio-hem-rocks/routes/demos/MidiDemo.tsx#L28) | 28 | Use the new Counter class
 | [projects/hem-rocks/index.css](projects/hem-rocks/index.css#L7) | 7 | Import Avenir
-| [projects/hem-rocks/index.css](projects/hem-rocks/index.css#L142) | 142 | Mega menu; only set U8 specifically on headings
+| [projects/hem-rocks/index.css](projects/hem-rocks/index.css#L63) | 63 | Visually hidden
+| [projects/hem-rocks/index.css](projects/hem-rocks/index.css#L210) | 210 | Mega menu; only set U8 specifically on headings

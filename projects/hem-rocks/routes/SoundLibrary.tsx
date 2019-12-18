@@ -8,7 +8,7 @@ import {
 } from '../../../lib/components/buttons'
 import { Slider } from '../../../lib/components'
 import { WebsitePlayer } from '../../../lib/classes/audio'
-import { HeroineCarousel } from '../components/layout'
+import { Header, HeroineCarousel } from '../components/layout'
 import { BASE_SITE_PAGE_TITLE } from '../config'
 import { RootState } from '../store'
 import {
@@ -107,6 +107,8 @@ function SoundLibraryHome(): ReactElement {
         <title>{BASE_SITE_PAGE_TITLE} Sound Library</title>
         <meta name="description" content="" />
       </Helmet>
+
+      <Header />
 
       <div className="player-carousel">
         <HeroineCarousel index={carouselIndex}>
