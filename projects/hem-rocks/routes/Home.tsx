@@ -45,14 +45,18 @@ function Home(): ReactElement {
         <CampaignMonitorForm
           hasNameField={false}
           id="foo"
-          placeholderText="Get updates in your inbox. Enter your email here"
+          placeholderText="Get updates in your inbox. Enter your email here!  🚀🚀🚀"
+          submitButtonText="Sign up"
         />
         <ul className="extra-links-left">
           <li>
             <Link to="/human-ear-music">Human Ear Music</Link>
           </li>
           <li>
-            <Link to="/react-dev">React Development</Link>
+            <Link to="/blog">Blog</Link>
+          </li>
+          <li>
+            <Link to="/react-dev">ReactJS Consulting</Link>
           </li>
           <li>
             <Link to="/more-projects">More projects!</Link>

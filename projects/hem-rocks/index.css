@@ -4,233 +4,10 @@ body {
   padding: 0;
   background: #111;
   overflow-x: hidden;
-  /* TODO: Import Avenir */
-  font-family: Avenir, Arial, Helvetica, sans-serif;
+  font-family: "Avenir LT W05_35 Light";
 }
 
-/* Home Page */
-
-.home {
-  width: 100vw;
-  height: 100vh;
-  background: #fff;
-}
-
-.home .site-header {
-  background: #fff;
-}
-
-.home .site-header h1 {
-  color: #ccc;
-}
-
-.home .hem-hamburger-menu-toggle span {
-  background-color: #ccc !important;
-}
-
-.home main {
-  width: 1024px;
-  height: 85vh;
-  margin: 0 auto;
-}
-
-.home main section {
-  float: left;
-  width: calc(100% / 3);
-  height: 100%;
-  box-sizing: border-box;
-  text-align: center;
-}
-
-.home main section h1 {
-  display: flex;
-  height: 100%;
-  margin: 0;
-  padding: 0 25%;
-  align-items: center;
-  justify-content: center;
-}
-
-.home main section h1 a {
-  position: relative;
-  display: flex;
-  width: 100%;
-  height: 160px;
-  align-items: center;
-  justify-content: center;
-}
-
-.home main section h1 a img {
-  width: 100%;
-  height: auto;
-}
-
-.home main section h1 a span {
-  display: block;
-  position: absolute;
-  top: 100%;
-  width: 100%;
-  font-family: U8;
-  font-weight: bold;
-}
-
-.home .pencil-extras {
-  position: relative;
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
-  background: #000;
-  font-size: 11px;
-  color: #aaa;
-  text-align: center;
-  background: #000;
-}
-
-.home .campaign-monitor-form {
-  transform: translateY(1px);
-}
-
-.home .campaign-monitor-form input {
-  display: inline-block;
-  width: 300px;
-  height: 30px;
-  margin: 0 10px 0 0;
-  padding: 0 10px;
-  line-height: 30px;
-  border: 0;
-  border-radius: 3px;
-  background: #ccc;
-}
-
-.home .campaign-monitor-form button {
-  display: inline-block;
-  width: 70px;
-  height: 30px;
-  margin: 0;
-  padding: 0 10px;
-  border: 0;
-  border-radius: 3px;
-  background: #ccc;
-  transform: translateY(1px);
-  cursor: pointer;
-}
-
-.home .campaign-monitor-form button:hover {
-  background: #333;
-  color: #fff;
-}
-
-.home .pencil-extras ul {
-  position: absolute;
-  top: 0;
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  vertical-align: middle;
-}
-
-.home .pencil-extras ul li {
-  display: inline-block;
-  height: 14px;
-}
-
-.home .pencil-extras ul li a {
-  display: inline-block;
-  height: 14px;
-}
-
-.home .pencil-extras ul li a:hover {
-  text-decoration: underline;
-}
-
-.home .pencil-extras .extra-links-left {
-  left: 20px;
-}
-
-.home .pencil-extras .extra-links-left a {
-  margin-right: 10px;
-  padding-right: 10px;
-}
-
-.home .pencil-extras .extra-links-right {
-  right: 20px;
-}
-
-.home .pencil-extras .extra-links-right a {
-  margin-left: 10px;
-  padding-left: 10px;
-}
-
-.home .news {
-  padding-top: 30px;
-  padding-bottom: 50px;
-  text-align: center;
-  background: #ccc;
-}
-
-.home .news h2 {
-  margin-top: 0;
-  margin-bottom: 80px;
-}
-
-.home .news ul {
-  width: 480px;
-  margin: 0 auto;
-  padding: 0;
-  list-style-type: none;
-}
-
-.home .news ul li {
-  margin: 0 0 50px 0;
-  padding: 0;
-  border-top: 1px solid #999;
-  list-style-type: none;
-  font-size: 16px;
-}
-
-.home .news ul li h3,
-.home .news ul li p {
-  margin: 10px 0;
-}
-
-.home .news .all-news-link {
-  margin: 100px auto 0 auto;
-  width: 120px;
-  height: 40px;
-  line-height: 40px;
-  background: #999;
-  border: 1px solid #fff;
-  border-radius: 3px;
-  cursor: pointer;
-  color: #fff;
-  text-transform: uppercase;
-  font-size: 11px;
-}
-
-.home footer {
-  height: 50px;
-  line-height: 50px;
-  padding: 0 20px;
-  background: #000;
-  color: #666;
-  font-size: 10px;
-}
-
-/* TODO: Visually hidden */
-.home main section h1 span {
-  font-size: 10px;
-  text-transform: uppercase;
-}
-
-.home-section-midst img {
-  transform: scale(1.7);
-}
-
-.home-section-seurat img {
-  transform: scale(.8);
-}
-
-/* Sound Library */
+/* Header and Megamenu */
 
 .site-header {
   position: absolute;
@@ -455,6 +232,232 @@ a {
   padding: 7px;
   border: 1px solid #ccc;
 }
+
+/* Home Page */
+
+.home {
+  width: 100vw;
+  height: 100vh;
+  background: #fff;
+}
+
+.home .site-header {
+  background: #fff;
+}
+
+.home .site-header h1 {
+  color: #ccc;
+}
+
+.home .hem-hamburger-menu-toggle span {
+  background-color: #ccc !important;
+}
+
+.home main {
+  width: 1024px;
+  height: 85vh;
+  margin: 0 auto;
+}
+
+.home main section {
+  float: left;
+  width: calc(100% / 3);
+  height: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.home main section h1 {
+  display: flex;
+  height: 100%;
+  margin: 0;
+  padding: 0 25%;
+  align-items: center;
+  justify-content: center;
+}
+
+.home main section h1 a {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 160px;
+  align-items: center;
+  justify-content: center;
+}
+
+.home main section h1 a img {
+  width: 100%;
+  height: auto;
+}
+
+.home main section h1 a span {
+  display: block;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  font-family: U8;
+  font-weight: bold;
+}
+
+.home .pencil-extras {
+  position: relative;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  background: #000;
+  font-size: 11px;
+  color: #aaa;
+  text-align: center;
+  background: #000;
+}
+
+.home .pencil-extras .campaign-monitor-form {
+  transform: translateY(1px);
+}
+
+.home .pencil-extras .campaign-monitor-form input {
+  display: inline-block;
+  width: 320px;
+  height: 30px;
+  margin: 0 10px 0 0;
+  padding: 0 15px;
+  line-height: 30px;
+  border: 0;
+  border-radius: 3px;
+  background: #eee;
+  font-family: Avenir, Arial, Helvetica, sans-serif;
+}
+
+.home .pencil-extras .campaign-monitor-form button {
+  display: inline-block;
+  width: 70px;
+  height: 30px;
+  margin: 0;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 3px;
+  background: #ccc;
+  transform: translateY(1px);
+  cursor: pointer;
+  font-family: Avenir, Arial, Helvetica, sans-serif;
+}
+
+.home .pencil-extras .campaign-monitor-form button:hover {
+  background: #333;
+  color: #fff;
+}
+
+.home .pencil-extras ul {
+  position: absolute;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  vertical-align: middle;
+}
+
+.home .pencil-extras ul li {
+  display: inline-block;
+  height: 14px;
+}
+
+.home .pencil-extras ul li a {
+  display: inline-block;
+  height: 14px;
+}
+
+.home .pencil-extras ul li a:hover {
+  text-decoration: underline;
+}
+
+.home .pencil-extras .extra-links-left {
+  left: 20px;
+}
+
+.home .pencil-extras .extra-links-left a {
+  margin-right: 10px;
+  padding-right: 10px;
+}
+
+.home .pencil-extras .extra-links-right {
+  right: 20px;
+}
+
+.home .pencil-extras .extra-links-right a {
+  margin-left: 10px;
+  padding-left: 10px;
+}
+
+.home .news {
+  padding-top: 30px;
+  padding-bottom: 50px;
+  text-align: center;
+  background: #ccc;
+}
+
+.home .news h2 {
+  margin-top: 0;
+  margin-bottom: 80px;
+}
+
+.home .news ul {
+  width: 480px;
+  margin: 0 auto;
+  padding: 0;
+  list-style-type: none;
+}
+
+.home .news ul li {
+  margin: 0 0 50px 0;
+  padding: 0;
+  border-top: 1px solid #999;
+  list-style-type: none;
+  font-size: 16px;
+}
+
+.home .news ul li h3,
+.home .news ul li p {
+  margin: 10px 0;
+}
+
+.home .news .all-news-link {
+  margin: 100px auto 0 auto;
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  background: #999;
+  border: 1px solid #fff;
+  border-radius: 3px;
+  cursor: pointer;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+.home footer {
+  height: 50px;
+  line-height: 50px;
+  padding: 0 20px;
+  background: #000;
+  color: #666;
+  font-size: 10px;
+}
+
+/* TODO: Visually hidden */
+.home main section h1 span {
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.home-section-midst img {
+  transform: scale(1.7);
+}
+
+.home-section-seurat img {
+  transform: scale(.8);
+}
+
+/* Sound Library */
 
 .player-carousel .hem-carousel {
   position: absolute;
