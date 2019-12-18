@@ -41,14 +41,12 @@ function Home(): ReactElement {
           </h1>
         </section>
       </main>
-      <section className="mailing-list-pencil">
+      <section className="pencil-extras">
         <CampaignMonitorForm
           hasNameField={false}
           id="foo"
           placeholderText="Get updates in your inbox. Enter your email here"
         />
-      </section>
-      <section className="extra-links-pencil">
         <ul className="extra-links-left">
           <li>
             <Link to="/human-ear-music">Human Ear Music</Link>
