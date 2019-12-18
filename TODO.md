@@ -39,8 +39,8 @@
 | [projects/studio-hem-rocks/routes/demos/MidiDemo.tsx](projects/studio-hem-rocks/routes/demos/MidiDemo.tsx#L10) | 10 | Move to the new Midi class
 | [projects/studio-hem-rocks/routes/demos/MidiDemo.tsx](projects/studio-hem-rocks/routes/demos/MidiDemo.tsx#L28) | 28 | Use the new Counter class
 | [projects/hem-rocks/index.css](projects/hem-rocks/index.css#L7) | 7 | Import Avenir
-| [projects/hem-rocks/index.css](projects/hem-rocks/index.css#L224) | 224 | Visually hidden
-| [projects/hem-rocks/index.css](projects/hem-rocks/index.css#L371) | 371 | Mega menu; only set U8 specifically on headings
+| [projects/hem-rocks/index.css](projects/hem-rocks/index.css#L219) | 219 | Visually hidden
+| [projects/hem-rocks/index.css](projects/hem-rocks/index.css#L366) | 366 | Mega menu; only set U8 specifically on headings
 | [projects/midst-press/index.css](projects/midst-press/index.css#L981) | 981 | Does Redux even render these class names any more?
 | [projects/seurat/index.css](projects/seurat/index.css#L1) | 1 | Break this file up by component, 7-to-1
 | [projects/seurat/index.css](projects/seurat/index.css#L4) | 4 | Not needed
