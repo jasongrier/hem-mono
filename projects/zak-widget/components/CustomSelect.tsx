@@ -17,7 +17,7 @@ export interface IProps {
 
 function CustomSelect({ onChange, options, placeholder, value }: IProps): ReactElement {
   const [open, setOpen] = useState()
-  const [selectedText, setSelectedText] = useState(placeholder || options[0] && options[0].name)
+  const [selectedText, setSelectedText] = useState(value || placeholder || options[0] && options[0].name)
   const [ref, hasClickedOutside] = useClickOutside()
 
   useEffect(() => { hasClickedOutside && setOpen(false) }, [hasClickedOutside])

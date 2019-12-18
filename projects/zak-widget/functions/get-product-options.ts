@@ -1,9 +1,9 @@
 import { IProductOption } from '../store/types'
 
-declare const PDP_PRODUCT_OPTIONS_WITH_VALUES: string
+declare const PDP_WIDGET_PRODUCT_OPTIONS_WITH_VALUES: string
 
 function getProductOptions(optionName: string): IProductOption[] {
-  const rawOptions = JSON.parse(PDP_PRODUCT_OPTIONS_WITH_VALUES)
+  const rawOptions = JSON.parse(PDP_WIDGET_PRODUCT_OPTIONS_WITH_VALUES)
   const rawOption = rawOptions.find(o => o.name === optionName)
 
   if (!rawOption) return []

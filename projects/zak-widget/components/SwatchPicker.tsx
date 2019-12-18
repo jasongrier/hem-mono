@@ -6,14 +6,17 @@ declare const PDP_WIDGET_SWATCH_URLS: string[]
 export interface IProps {
   onChange: (value: any) => void
   options: string[]
-  title: string
   value: string
+
+  title?: string
 }
 
 function SwatchPicker({ onChange, options, title, value }: IProps): ReactElement {
   return (
     <div className="zw-swatch-picker">
-      <h5>{ title }</h5>
+      {title && (
+        <h5>{ title }</h5>
+      )}
       <ul className="zw-clearfix">
         { options.map((optionValue: string, index: number) => (
           <li

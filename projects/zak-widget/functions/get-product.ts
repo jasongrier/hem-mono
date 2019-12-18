@@ -1,6 +1,5 @@
 import { IProduct } from '../store/types'
 import getProductOptions from './get-product-options'
-import getProductSecondaryTitle from './get-product-secondary-title'
 import getTintOptions from './get-tint-options'
 
 declare const PDP_WIDGET_PRODUCT: string
@@ -16,11 +15,10 @@ function getProduct(): IProduct {
     hasHighIndexAddOn: false,
     id: rawProduct.id,
     lensColor: 'lens-gray' as 'lens-gray',
-    lensTreatment: getProductOptions('Lens Treatment')[0],
+    lensTreatment: getProductOptions('Lens Treatment').find(o => o.name === 'Standard'),
     optionNames: rawProduct.options,
     prescription: getProductOptions('Prescription')[0],
     prescriptionFile: null,
-    secondaryTitle: getProductSecondaryTitle(rawProduct),
     tint: getTintOptions()[0],
     title: rawProduct.title,
   }

@@ -13,8 +13,7 @@ function getHighIndexPrice(): number {
 
 function getProductTotalPrice(product: IProduct) {
   return (
-    product.basePrice
-      + product.prescription.price
+      product.prescription.price
       + product.lensTreatment.price
       + product.tint.price
       + (product.hasHighIndexAddOn ? getHighIndexPrice() : 0)

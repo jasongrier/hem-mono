@@ -30,7 +30,6 @@ export interface IProduct {
   optionNames: string[]
   prescription: IProductOption
   prescriptionFile: File | null
-  secondaryTitle: string
   tint: IProductOption
   title: string
 }
