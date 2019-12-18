@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
+import { CampaignMonitorForm } from '../../../lib/components'
 import { Header } from '../components/layout'
 import { BASE_SITE_TITLE } from '../config'
 
@@ -40,6 +41,13 @@ function Home(): ReactElement {
           </h1>
         </section>
       </main>
+      <section className="mailing-list-pencil">
+        <CampaignMonitorForm
+          hasNameField={false}
+          id="foo"
+          placeholderText="Get updates in your inbox. Enter your email here"
+        />
+      </section>
       <section className="extra-links-pencil">
         <ul className="extra-links-left">
           <li>
