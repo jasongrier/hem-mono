@@ -30,7 +30,7 @@ body {
 
 .home main {
   width: 960px;
-  height: 85vh;
+  height: 80vh;
   margin: 0 auto;
 }
 
@@ -72,6 +72,47 @@ body {
   width: 100%;
   font-family: U8;
   font-weight: bold;
+}
+
+.home .mailing-list-pencil {
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  background: #000;
+}
+
+.home .campaign-monitor-form {
+  transform: translateY(-1px);
+}
+
+.home .campaign-monitor-form input {
+  display: inline-block;
+  width: 300px;
+  height: 30px;
+  margin: 0 10px 0 0;
+  padding: 0 10px;
+  line-height: 30px;
+  border: 0;
+  border-radius: 3px;
+  background: #ccc;
+}
+
+.home .campaign-monitor-form button {
+  display: inline-block;
+  width: 70px;
+  height: 30px;
+  margin: 0;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 3px;
+  background: #ccc;
+  transform: translateY(1px);
+  cursor: pointer;
+}
+
+.home .campaign-monitor-form button:hover {
+  background: #333;
+  color: #fff;
 }
 
 .home .extra-links-pencil {
@@ -126,7 +167,7 @@ body {
 }
 
 .home .news {
-  padding-top: 50px;
+  padding-top: 30px;
   padding-bottom: 50px;
   text-align: center;
   background: #ccc;

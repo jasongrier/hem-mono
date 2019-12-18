@@ -1,18 +1,20 @@
 import React, { ReactElement } from 'react'
 
 interface IProps {
-  hasNameField: boolean
   id: string
+
+  hasNameField?: boolean
   labelForEmail?: string
   labelForName?: string
   onFormSubmitted?: (evt: React.SyntheticEvent<HTMLFormElement>) => void
-  placeholderText: string
+  placeholderText?: string
   submitButtonText?: string
 }
 
 function CampaignMonitorForm({
-  hasNameField = true,
   id,
+
+  hasNameField = true,
   labelForEmail,
   labelForName,
   onFormSubmitted,
