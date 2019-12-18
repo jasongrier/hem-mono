@@ -2,9 +2,6 @@ import {
   LensColor,
   Theme,
 
-  IProduct,
-  IProductOption,
-
   SET_LENS_COLOR,
   SET_LENS_TREATMENT,
   SET_PRESCRIPTION_FILE,

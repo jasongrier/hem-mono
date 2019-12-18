@@ -7,6 +7,7 @@ import {
   getProductTotalPrice,
   getThemeTitle,
   getTintOptions,
+  productOptionToTitle,
   productOptionsToSelectOptions,
 } from '../functions'
 
@@ -64,10 +65,10 @@ function SideRight(): ReactElement {
     lensColor,
     lensTreatment,
     prescription,
-    secondaryTitle,
     tint,
     title,
   } = product
+
 
   const highIndexOption = getHighIndexOption()
   const lensTreatmentOptions = getProductOptions('Lens Treatment')
@@ -76,29 +77,31 @@ function SideRight(): ReactElement {
 
   const themeTitle = getThemeTitle(theme)
   const total = getProductTotalPrice(product)
+  const isEyeglass = theme.split('-')[0] === 'eyeglass'
+  const hasPrescription = prescription.name !== 'No Prescription'
 
   return (
     <div className="zw-right">
       <div className="zw-product-options">
         <h2>{ title }</h2>
-        <h3>{ secondaryTitle }</h3>
-        <h4>{ themeTitle }</h4>
+        <h3>{ themeTitle }</h3>
         <div className="zw-primary-picker">
           <SwatchPicker
             onChange={(theme: Theme) => dispatch(setTheme(theme))}
             options={themeOptions}
-            title="Frame color:"
             value={theme}
           />
         </div>
-        <div className="zw-lens-picker">
-          <SwatchPicker
-            onChange={(value: LensColor) => dispatch(setLensColor(value))}
-            options={lensColorOptions}
-            title="Lens color:"
-            value={lensColor}
-          />
-        </div>
+        { !isEyeglass && (
+          <div className="zw-lens-picker">
+            <SwatchPicker
+              onChange={(value: LensColor) => dispatch(setLensColor(value))}
+              options={lensColorOptions}
+              title="Lens color:"
+              value={lensColor}
+            />
+          </div>
+        )}
         <a
           className="zw-fit-guide-link zw-plus-left"
           data-remodal-target="fit-guide-view"
@@ -116,11 +119,11 @@ function SideRight(): ReactElement {
             select={{
               onChange: (name: string) => dispatch(setPrescription(name)),
               options: productOptionsToSelectOptions(prescriptionOptions),
-              value: prescription.name,
+              value: productOptionToTitle(prescription),
             }}
           />
         )}
-        { lensTreatmentOptions && (
+        { lensTreatmentOptions && isEyeglass && (
           <OptionRow
             label="Lens Treatment"
             action={{
@@ -130,11 +133,11 @@ function SideRight(): ReactElement {
             select={{
               onChange: (name: string) => dispatch(setLensTreatment(name)),
               options: productOptionsToSelectOptions(lensTreatmentOptions),
-              value: lensTreatment.name,
+              value: productOptionToTitle(lensTreatment),
             }}
           />
         )}
-        { tintOptions && (
+        { tintOptions && isEyeglass && (
           <OptionRow
             label="Tints"
             className="zw-last-option-row"
@@ -144,8 +147,8 @@ function SideRight(): ReactElement {
             }}
             select={{
               onChange: (name: string) => dispatch(setTint(name)),
-              options:productOptionsToSelectOptions(tintOptions),
-              value: tint.name,
+              options: productOptionsToSelectOptions(tintOptions),
+              value: productOptionToTitle(tint),
             }}
           />
         )}
@@ -153,15 +156,17 @@ function SideRight(): ReactElement {
           <div className="zw-total">
             ${ total }
           </div>
-          <div
-            className="zw-add-on"
-            onClick={() => dispatch(toggleHighIndexAddOn())}
-          >
-            <button className={`zw-add-on-button ${hasHighIndexAddOn ? 'zw-add-on-button-active' : ''}`} />
-            <span className="zw-add-on-label">
-              { highIndexOption.title } (+ ${ highIndexOption.price })
-            </span>
-          </div>
+          { hasPrescription && (
+            <div
+              className="zw-add-on"
+              onClick={() => dispatch(toggleHighIndexAddOn())}
+            >
+              <button className={`zw-add-on-button ${hasHighIndexAddOn ? 'zw-add-on-button-active' : ''}`} />
+              <span className="zw-add-on-label">
+                { highIndexOption.title } (+ ${ highIndexOption.price })
+              </span>
+            </div>
+          )}
         </div>
         <div className="zw-submit-row">
           <button
