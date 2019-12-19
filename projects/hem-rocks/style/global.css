@@ -1,0 +1,21 @@
+html {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: scroll;
+  font-family: "Avenir LT W05_35 Light", sans-serif;
+}
+
+body {
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  font-family: "Avenir LT W05_35 Light", sans-serif;
+}
+
+.clearfix::after {
+  content: " ";
+  clear: both;
+  display: table;
+}

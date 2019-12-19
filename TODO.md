@@ -29,6 +29,9 @@
 | [projects/studio-hem-rocks/routes/Home.tsx](projects/studio-hem-rocks/routes/Home.tsx#L18) | 18 | Link to zip; deploy task to update zip (without projects)
 | [projects/zak-widget/components/SwatchPicker.tsx](projects/zak-widget/components/SwatchPicker.tsx#L5) | 5 | All projects; Export all props
 | [projects/hem-rocks/components/layout/Displace.tsx](projects/hem-rocks/components/layout/Displace.tsx#L17) | 17 | All projects; use PropsWithChildren instead of `children: any` in IProps
+| [projects/hem-rocks/components/layout/ProjectsList.tsx](projects/hem-rocks/components/layout/ProjectsList.tsx#L24) | 24 | Collect this hook, and spacer element into a "SneakyBody" component
+| [projects/hem-rocks/components/layout/ProjectsList.tsx](projects/hem-rocks/components/layout/ProjectsList.tsx#L25) | 25 | New build task: `npm run task npm-publish lib/my-package`
+| [projects/hem-rocks/components/layout/ProjectsList.tsx](projects/hem-rocks/components/layout/ProjectsList.tsx#L26) | 26 | Publish SneakyBody, Displace, Dial, etc to NPM
 | [projects/studio-hem-rocks/components/animation/FlipBook.tsx](projects/studio-hem-rocks/components/animation/FlipBook.tsx#L10) | 10 | All projects, separate alphabetized required props from optionals
 | [projects/studio-hem-rocks/components/animation/FlipBook.tsx](projects/studio-hem-rocks/components/animation/FlipBook.tsx#L37) | 37 | Should be "speed" ––or rather, "slowness"–– not "frameRate"
 | [projects/studio-hem-rocks/components/animation/FlipBook.tsx](projects/studio-hem-rocks/components/animation/FlipBook.tsx#L57) | 57 | What if ––unlikely, but–– two frames have the same difference score??
@@ -38,8 +41,6 @@
 | [projects/studio-hem-rocks/routes/demos/ArrangerDemo.tsx](projects/studio-hem-rocks/routes/demos/ArrangerDemo.tsx#L14) | 14 | Describe the arranger
 | [projects/studio-hem-rocks/routes/demos/MidiDemo.tsx](projects/studio-hem-rocks/routes/demos/MidiDemo.tsx#L10) | 10 | Move to the new Midi class
 | [projects/studio-hem-rocks/routes/demos/MidiDemo.tsx](projects/studio-hem-rocks/routes/demos/MidiDemo.tsx#L28) | 28 | Use the new Counter class
-| [projects/hem-rocks/index.css](projects/hem-rocks/index.css#L143) | 143 | Mega menu; only set U8 specifically on headings
-| [projects/hem-rocks/index.css](projects/hem-rocks/index.css#L446) | 446 | Visually hidden
 | [projects/midst-press/index.css](projects/midst-press/index.css#L981) | 981 | Does Redux even render these class names any more?
 | [projects/seurat/index.css](projects/seurat/index.css#L1) | 1 | Break this file up by component, 7-to-1
 | [projects/seurat/index.css](projects/seurat/index.css#L4) | 4 | Not needed

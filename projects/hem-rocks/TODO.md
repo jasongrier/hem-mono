@@ -4,6 +4,7 @@
 | [projects/hem-rocks/store/reducer.ts](projects/hem-rocks/store/reducer.ts#L118) | 118 | All projects; Wrap all cases in {}
 | [projects/hem-rocks/store/selectors.ts](projects/hem-rocks/store/selectors.ts#L1) | 1 | Example selector
 | [projects/hem-rocks/store/types.ts](projects/hem-rocks/store/types.ts#L4) | 4 | How to get around putting this in every project??
+| [projects/hem-rocks/style/index.ts](projects/hem-rocks/style/index.ts#L1) | 1 | Further divide into folders/components
 | [projects/hem-rocks/routes/SoundLibrary.tsx](projects/hem-rocks/routes/SoundLibrary.tsx#L162) | 162 | Should simply forward the onClick, not set the value
 | [projects/jasonaarongrier-com/components/App.tsx](projects/jasonaarongrier-com/components/App.tsx#L14) | 14 | 404 page
 | [projects/midst-press/components/App.tsx](projects/midst-press/components/App.tsx#L74) | 74 | Move PoemNav out of the Switch/Route and directly into the Poem component
@@ -30,6 +31,9 @@
 | [projects/studio-hem-rocks/routes/Home.tsx](projects/studio-hem-rocks/routes/Home.tsx#L18) | 18 | Link to zip; deploy task to update zip (without projects)
 | [projects/zak-widget/components/SwatchPicker.tsx](projects/zak-widget/components/SwatchPicker.tsx#L5) | 5 | All projects; Export all props
 | [projects/hem-rocks/components/layout/Displace.tsx](projects/hem-rocks/components/layout/Displace.tsx#L17) | 17 | All projects; use PropsWithChildren instead of `children: any` in IProps
+| [projects/hem-rocks/components/layout/ProjectsList.tsx](projects/hem-rocks/components/layout/ProjectsList.tsx#L24) | 24 | Collect this hook, and spacer element into a "SneakyBody" component
+| [projects/hem-rocks/components/layout/ProjectsList.tsx](projects/hem-rocks/components/layout/ProjectsList.tsx#L25) | 25 | New build task: `npm run task npm-publish lib/my-package`
+| [projects/hem-rocks/components/layout/ProjectsList.tsx](projects/hem-rocks/components/layout/ProjectsList.tsx#L26) | 26 | Publish SneakyBody, Displace, Dial, etc to NPM
 | [projects/studio-hem-rocks/components/animation/FlipBook.tsx](projects/studio-hem-rocks/components/animation/FlipBook.tsx#L10) | 10 | All projects, separate alphabetized required props from optionals
 | [projects/studio-hem-rocks/components/animation/FlipBook.tsx](projects/studio-hem-rocks/components/animation/FlipBook.tsx#L37) | 37 | Should be "speed" ––or rather, "slowness"–– not "frameRate"
 | [projects/studio-hem-rocks/components/animation/FlipBook.tsx](projects/studio-hem-rocks/components/animation/FlipBook.tsx#L57) | 57 | What if ––unlikely, but–– two frames have the same difference score??
@@ -39,5 +43,4 @@
 | [projects/studio-hem-rocks/routes/demos/ArrangerDemo.tsx](projects/studio-hem-rocks/routes/demos/ArrangerDemo.tsx#L14) | 14 | Describe the arranger
 | [projects/studio-hem-rocks/routes/demos/MidiDemo.tsx](projects/studio-hem-rocks/routes/demos/MidiDemo.tsx#L10) | 10 | Move to the new Midi class
 | [projects/studio-hem-rocks/routes/demos/MidiDemo.tsx](projects/studio-hem-rocks/routes/demos/MidiDemo.tsx#L28) | 28 | Use the new Counter class
-| [projects/hem-rocks/index.css](projects/hem-rocks/index.css#L143) | 143 | Mega menu; only set U8 specifically on headings
-| [projects/hem-rocks/index.css](projects/hem-rocks/index.css#L446) | 446 | Visually hidden
+| [projects/hem-rocks/style/megamenu.css](projects/hem-rocks/style/megamenu.css#L90) | 90 | Mega menu; only set U8 specifically on headings

@@ -1,0 +1,92 @@
+.pencil-extras {
+  position: sticky;
+  top: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  background: #000;
+  font-size: 11px;
+  color: #aaa;
+  text-align: center;
+  text-transform: lowercase;
+  background: #000;
+}
+
+.pencil-extras .campaign-monitor-form {
+  transform: translateY(1px);
+}
+
+.pencil-extras .campaign-monitor-form input {
+  display: inline-block;
+  width: 320px;
+  height: 30px;
+  margin: 0 10px 0 0;
+  padding: 0 15px;
+  line-height: 30px;
+  border: 0;
+  /* border-radius: 3px; */
+  background: #eee;
+  font-family: Avenir, Arial, Helvetica, sans-serif;
+}
+
+.pencil-extras .campaign-monitor-form button {
+  display: inline-block;
+  width: 70px;
+  height: 30px;
+  margin: 0;
+  padding: 0 10px;
+  border: 0;
+  /* border-radius: 3px; */
+  color: #000;
+  background: #ccc;
+  transform: translateY(1px);
+  cursor: pointer;
+  font-family: Avenir, Arial, Helvetica, sans-serif;
+  transition: all 200ms;
+}
+
+.pencil-extras .campaign-monitor-form button:hover {
+  background: #333;
+  color: #fff;
+}
+
+.pencil-extras ul {
+  position: absolute;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  vertical-align: middle;
+}
+
+.pencil-extras ul li {
+  display: inline-block;
+  height: 14px;
+}
+
+.pencil-extras ul li a {
+  display: inline-block;
+  height: 14px;
+}
+
+.pencil-extras ul li a:hover {
+  text-decoration: underline;
+}
+
+.pencil-extras .extra-links-left {
+  left: 20px;
+}
+
+.pencil-extras .extra-links-left a {
+  margin-right: 10px;
+  padding-right: 10px;
+}
+
+.pencil-extras .extra-links-right {
+  right: 20px;
+}
+
+.pencil-extras .extra-links-right a {
+  margin-left: 10px;
+  padding-left: 10px;
+}

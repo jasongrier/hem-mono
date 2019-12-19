@@ -9,12 +9,10 @@ import {
 function App(): ReactElement {
   return (
     <div className="hem-application">
-      <main>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/sound-library" component={SoundLibrary} />
-        </Switch>
-      </main>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/sound-library" component={SoundLibrary} />
+      </Switch>
     </div>
   )
 }
