@@ -102,6 +102,7 @@
   background: none;
   font-family: U8, sans-serif;
   text-transform: lowercase;
+  font-size: 12px;
   font-weight: bold;
   cursor: pointer;
   color: #333;

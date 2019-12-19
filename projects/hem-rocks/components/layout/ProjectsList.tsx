@@ -1,4 +1,5 @@
 import React, { ReactElement, useEffect, useState, useCallback } from 'react'
+import $ from 'jquery'
 import randomHexColor from 'random-hex-color'
 import { ChevronButton } from '../../../../lib/components/buttons'
 import { GenericProjectLogo, MidstLogo, SeuratLogo, SoundLibraryLogo } from '../svg'
@@ -35,6 +36,19 @@ function ProjectsList(): ReactElement {
       document.body.style.pointerEvents = 'all'
     }
   }, [])
+
+  useEffect(() => {
+    document.addEventListener('scroll', bodyOnScroll)
+    return function cleanup() {
+      document.removeEventListener('scroll', bodyOnScroll)
+    }
+  }, [])
+
+  function bodyOnScroll(evt: any) {
+    // if (window.pageYOffset < 10) {
+      setOpen(false)
+    // }
+  }
 
   const toggleOpen = useCallback(
     function toggleOpen() {
