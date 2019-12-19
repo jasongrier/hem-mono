@@ -1,0 +1,49 @@
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9998;
+  width: 100vw;
+  height: 50px;
+  background: #fff;
+  line-height: 50px;
+  padding: 0;
+}
+
+.site-header .black {
+  background: #111;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-header .classic-link {
+  text-decoration: underline;
+}
+
+.site-header h1 {
+  width: 76px;
+  height: 25px;
+  line-height: 25px;
+  margin: 12.5px 0 0 10px;
+  padding: 0;
+  color: #ccc;
+  font-family: 'U8', sans-serif;
+  letter-spacing: 4px;
+  overflow: hidden;
+  transform-origin: center center;
+  transform: scale(0.7);
+}
+
+.site-header .black h1 {
+  color: #fff;
+}
+
+.site-header h1 span {
+  display: block;
+  width: 78px;
+  height: 25px;
+  transform: translate(-2px, -2px);
+}

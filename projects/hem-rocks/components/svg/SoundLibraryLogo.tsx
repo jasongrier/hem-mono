@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 
-function SLLogo(): ReactElement {
+function SoundLibraryLogo(): ReactElement {
   const style = `
     .cls-1 {
       stroke-width: 30px;
@@ -23,4 +23,4 @@ function SLLogo(): ReactElement {
   )
 }
 
-export default SLLogo
+export default SoundLibraryLogo
