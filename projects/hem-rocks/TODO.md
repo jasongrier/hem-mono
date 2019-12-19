@@ -39,6 +39,5 @@
 | [projects/studio-hem-rocks/routes/demos/ArrangerDemo.tsx](projects/studio-hem-rocks/routes/demos/ArrangerDemo.tsx#L14) | 14 | Describe the arranger
 | [projects/studio-hem-rocks/routes/demos/MidiDemo.tsx](projects/studio-hem-rocks/routes/demos/MidiDemo.tsx#L10) | 10 | Move to the new Midi class
 | [projects/studio-hem-rocks/routes/demos/MidiDemo.tsx](projects/studio-hem-rocks/routes/demos/MidiDemo.tsx#L28) | 28 | Use the new Counter class
-| [projects/hem-rocks/index.css](projects/hem-rocks/index.css#L7) | 7 | Import Avenir
-| [projects/hem-rocks/index.css](projects/hem-rocks/index.css#L221) | 221 | Visually hidden
-| [projects/hem-rocks/index.css](projects/hem-rocks/index.css#L368) | 368 | Mega menu; only set U8 specifically on headings
+| [projects/hem-rocks/index.css](projects/hem-rocks/index.css#L143) | 143 | Mega menu; only set U8 specifically on headings
+| [projects/hem-rocks/index.css](projects/hem-rocks/index.css#L446) | 446 | Visually hidden

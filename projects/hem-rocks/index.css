@@ -271,23 +271,25 @@ a {
   display: flex;
   height: 100%;
   margin: 0;
-  padding: 0 25%;
   align-items: center;
   justify-content: center;
+}
+
+.home-section-logo {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  transform: translateY(-30px);
 }
 
 .home main section h1 a {
   position: relative;
   display: flex;
-  width: 100%;
+  width: 160px;
   height: 160px;
+  margin: 0 auto;
   align-items: center;
   justify-content: center;
-}
-
-.home main section h1 a img {
-  width: 100%;
-  height: auto;
 }
 
 .home main section h1 a span {
@@ -336,10 +338,12 @@ a {
   padding: 0 10px;
   border: 0;
   border-radius: 3px;
+  color: #000;
   background: #ccc;
   transform: translateY(1px);
   cursor: pointer;
   font-family: Avenir, Arial, Helvetica, sans-serif;
+  transition: all 200ms;
 }
 
 .home .pencil-extras .campaign-monitor-form button:hover {
@@ -426,7 +430,6 @@ a {
   height: 40px;
   line-height: 40px;
   background: #999;
-  border: 1px solid #fff;
   border-radius: 3px;
   cursor: pointer;
   color: #fff;
@@ -443,18 +446,53 @@ a {
   font-size: 10px;
 }
 
-/* TODO: Visually hidden */
 .home main section h1 span {
   font-size: 10px;
   text-transform: uppercase;
 }
 
-.home-section-midst img {
+.home-section-midst svg {
+  width: 170px;
+  height: 90px;
   transform: scale(1.7);
 }
 
-.home-section-seurat img {
+.home main section,
+.home main section svg {
+  transition: all 250ms;
+}
+
+.home-section-midst a:hover {
+  color: #FF91AF;
+}
+
+.home-section-midst a:hover svg {
+  fill: #FF91AF;
+}
+
+.home-section-sl svg {
+  stroke: #000;
+}
+
+.home-section-sl a:hover {
+  color: #0471a3;
+}
+
+.home-section-sl a:hover svg {
+  stroke: #0471a3;
+  fill: #0471a3;
+}
+
+.home-section-seurat svg {
   transform: scale(.8);
+}
+
+.home-section-seurat a:hover {
+  color: #a30473;
+}
+
+.home-section-seurat a:hover svg {
+  fill: #a30473;
 }
 
 /* Sound Library */
@@ -547,6 +585,7 @@ a {
 .player-carousel .hem-displace-frame {
   overflow: hidden;
 }
+
 .pack-player {
   position: absolute;
   bottom: calc(5vh + 20px);
