@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import { CampaignMonitorForm } from '../../../lib/components'
 import { Header } from '../components/layout'
+import { MidstLogo, SeuratLogo, SLLogo } from '../components/svg'
 import { BASE_SITE_TITLE } from '../config'
 
 function Home(): ReactElement {
@@ -18,26 +19,32 @@ function Home(): ReactElement {
       <main>
         <section className="home-section-midst">
           <h1>
-            <Link to="/midst">
-              <img src="/static/assets/svg/midst_logo_mini.svg" alt="Midst"/>
-              <span>Midst</span>
-            </Link>
+            <div className="home-section-logo">
+              <Link to="/midst">
+                <MidstLogo />
+                <span>Midst</span>
+              </Link>
+            </div>
           </h1>
         </section>
         <section className="home-section-sl">
           <h1>
-            <Link to="/sound-library">
-              <img src="/static/assets/svg/sl_temp_logo.svg" alt="HEM Sound Library"/>
-              <span>Sound Library</span>
-            </Link>
+            <div className="home-section-logo">
+              <Link to="/sound-library">
+                <SLLogo />
+                <span>Sound Library</span>
+              </Link>
+            </div>
           </h1>
         </section>
         <section className="home-section-seurat">
           <h1>
-            <Link to="/seurat">
-              <img src="/static/assets/svg/seurat_temp_logo.svg" alt="Seurat"/>
-              <span>Seurat</span>
-            </Link>
+            <div className="home-section-logo">
+              <Link to="/seurat">
+                <SeuratLogo />
+                <span>Seurat</span>
+              </Link>
+            </div>
           </h1>
         </section>
       </main>
@@ -45,18 +52,21 @@ function Home(): ReactElement {
         <CampaignMonitorForm
           hasNameField={false}
           id="foo"
-          placeholderText="Get updates in your inbox. Enter your email here!  🚀🚀🚀"
+          placeholderText="Get updates in your inbox. Enter your email here! 🚀🚀🚀"
           submitButtonText="Sign up"
         />
         <ul className="extra-links-left">
           <li>
-            <Link to="/human-ear-music">Human Ear Music</Link>
+            <Link to="/human-ear-music">About</Link>
+          </li>
+          <li>
+            <Link to="/human-ear-music">Label</Link>
           </li>
           <li>
             <Link to="/blog">Blog</Link>
           </li>
           <li>
-            <Link to="/react-dev">ReactJS Consulting</Link>
+            <Link to="/react-dev">ReactJS consulting</Link>
           </li>
           <li>
             <Link to="/more-projects">More projects!</Link>
