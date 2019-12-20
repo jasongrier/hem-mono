@@ -18,7 +18,7 @@ import iconTrash from './icon-trash'
 import { IMidstFile } from '../../store/types'
 import './style.css'
 
-const LOG_AUTO_SCROLL = true
+const LOG_AUTO_SCROLL = false
 
 function autoScrollLog(...args: any[]) {
   if (!LOG_AUTO_SCROLL) return
@@ -65,6 +65,7 @@ class Midst extends React.Component<IProps, any> {
   private isAutoScrolling: boolean = false
   private isAutoScrollingOnce: boolean = false
   private preAutoScrollTimeout: any
+  //@ts-ignore
   private scrollerInstance: Scrollbars
 
   constructor(props: any) {

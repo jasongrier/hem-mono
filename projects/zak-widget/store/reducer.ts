@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux'
 import produce from 'immer'
-import { getProduct, getProductOptionByName } from '../functions'
+import { getProduct, getProductOptionByName, getProductWithRestrictions } from '../functions'
 import {
   SET_LENS_COLOR,
   SET_LENS_TREATMENT,
@@ -27,6 +27,7 @@ const reducer = (
       return produce(state, draftState => {
         if (!draftState.product) return
         draftState.product.lensColor = payload
+        draftState.product = getProductWithRestrictions(draftState)
       })
     }
 
@@ -34,6 +35,7 @@ const reducer = (
       return produce(state, draftState => {
         if (!draftState.product) return
         draftState.product.lensTreatment = getProductOptionByName(payload)
+        draftState.product = getProductWithRestrictions(draftState)
       })
     }
 
@@ -41,6 +43,7 @@ const reducer = (
       return produce(state, draftState => {
         if (!draftState.product) return
         draftState.product.prescriptionFile = payload
+        draftState.product = getProductWithRestrictions(draftState)
       })
     }
 
@@ -48,6 +51,7 @@ const reducer = (
       return produce(state, draftState => {
         if (!draftState.product) return
         draftState.product.prescription = getProductOptionByName(payload)
+        draftState.product = getProductWithRestrictions(draftState)
       })
     }
 
@@ -55,6 +59,7 @@ const reducer = (
       return produce(state, draftState => {
         if (!draftState.product) return
         draftState.theme = payload
+        draftState.product = getProductWithRestrictions(draftState)
       })
     }
 
@@ -62,6 +67,7 @@ const reducer = (
       return produce(state, draftState => {
         if (!draftState.product) return
         draftState.product.tint = getProductOptionByName(payload)
+        draftState.product = getProductWithRestrictions(draftState)
       })
     }
 
@@ -69,6 +75,7 @@ const reducer = (
       return produce(state, draftState => {
         if (!draftState.product) return
         draftState.product.hasHighIndexAddOn = !draftState.product.hasHighIndexAddOn
+        draftState.product = getProductWithRestrictions(draftState)
       })
     }
 
