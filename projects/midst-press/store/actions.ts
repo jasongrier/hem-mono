@@ -33,10 +33,10 @@ const loadPoemData = (poemIndex: number): any =>
       const zipTest = await fetch(`${staticAssetsUrl}${folder}/${poem.poemId}.midst.zip`)
       const reader = new zip.BlobReader(await zipTest.blob())
 
-      zip.createReader(reader, zipReader => {
-        zipReader.getEntries(entries => {
+      zip.createReader(reader, (zipReader: any) => {
+        zipReader.getEntries((entries: any) => {
           const writer = new zip.BlobWriter()
-          entries[0].getData(writer, blob => {
+          entries[0].getData(writer, (blob: Blob) => {
             const reader = new FileReader()
             reader.addEventListener('loadend', (e: any) => {
               const data = JSON.parse(e.srcElement.result)
@@ -45,7 +45,7 @@ const loadPoemData = (poemIndex: number): any =>
             reader.readAsText(blob)
           })
         })
-      }, err => {
+      }, (err: Error) => {
         console.log(err)
       })
     }
