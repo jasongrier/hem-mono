@@ -2,12 +2,7 @@ import React, { ReactElement } from 'react'
 import { createPortal } from 'react-dom'
 import MidstPlayerStandalone from './MidstPlayerStandalone'
 
-const poems = [
-  'id-rather-go-blind',
-  'pool',
-  'the-climate',
-  'the-story',
-]
+declare const POEMS
 
 function App(): ReactElement {
   function createPoemPortal(poemId: string) {
@@ -19,7 +14,7 @@ function App(): ReactElement {
 
   return (
     <div className="hem-application">
-      { poems.map(createPoemPortal) }
+      { POEMS.map(createPoemPortal) }
     </div>
   )
 }

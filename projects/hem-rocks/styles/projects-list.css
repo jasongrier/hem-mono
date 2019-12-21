@@ -20,8 +20,8 @@
 
 .projects-list-open {
   position: relative;
-  height: 100vh;
-  margin-top: -65px;
+  height: 200vh;
+  /* margin-top: -65px; */
   padding-top: 0;
   padding-bottom: 100px;
 }
@@ -68,7 +68,7 @@
 .projects-list-logo span {
   display: block;
   position: absolute;
-  bottom: 0;
+  bottom: 10px;
   width: 100%;
   font-family: U8, sans-serif;
   text-transform: uppercase;
@@ -84,7 +84,7 @@
   transition: all 250ms;
 }
 
-.see-all-projects {
+.projects-micronav {
   position: absolute;
   bottom: 40px;
   width: 100vw;
@@ -92,12 +92,12 @@
   pointer-events: all;
 }
 
-.projects-list-open .see-all-projects {
+.projects-list-open .projects-micronav {
   bottom: 90px;
 }
 
 /* TODO: .not-a-button */
-.see-all-projects button {
+.projects-micronav button {
   border: 0;
   background: none;
   font-family: U8, sans-serif;
@@ -105,20 +105,20 @@
   font-size: 12px;
   font-weight: bold;
   cursor: pointer;
-  color: #333;
+  color: #ccc;
 }
 
 /* TODO: .not-a-button */
-.see-all-projects button:active,
-.see-all-projects button:focus {
+.projects-micronav button:active,
+.projects-micronav button:focus {
   outline: none;
 }
 
 .projects-list-scroll-down-button {
-  position: absolute;
-  bottom: 80px;
+  position: fixed;
+  bottom: 0;
   width: 100vw;
-  height: 50px;
+  height: 30px;
   pointer-events: all;
   cursor: pointer;
   text-align: center;

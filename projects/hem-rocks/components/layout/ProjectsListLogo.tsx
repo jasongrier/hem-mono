@@ -1,6 +1,7 @@
 import React, { ReactElement, SFC } from 'react'
 import { kebabCase } from 'voca'
 import { Link } from 'react-router-dom'
+import { TipPop } from '../ui'
 
 interface IProps {
   index: number
@@ -41,6 +42,10 @@ function ProjectsListLogo({
     <div className={`projects-list-logo ${name}-project-logo ${index < 3 ? 'projects-list-logo-featured' : ''}`}>
       <style dangerouslySetInnerHTML={{__html: style}} />
       <Link to={linkTo}>
+        <TipPop>
+          <h2>Look</h2>
+          <p>It works</p>
+        </TipPop>
         <Logo />
         <span>{title}</span>
       </Link>
