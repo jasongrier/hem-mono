@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom'
 import { TipPop } from '../ui'
 
 interface IProps {
-  index: number
   hoverColor: string
+  index: number
   linkTo: string
   logo: SFC
+  tipContent: string
+  tipTitle: string
   title: string
 
   transform?: string
@@ -18,6 +20,8 @@ function ProjectsListLogo({
   hoverColor,
   linkTo,
   logo: Logo,
+  tipContent,
+  tipTitle,
   title,
 
   transform,
@@ -43,8 +47,8 @@ function ProjectsListLogo({
       <style dangerouslySetInnerHTML={{__html: style}} />
       <Link to={linkTo}>
         <TipPop>
-          <h2>Look</h2>
-          <p>It works</p>
+          <h2>{ tipTitle }</h2>
+          <p>{ tipContent }</p>
         </TipPop>
         <Logo />
         <span>{title}</span>

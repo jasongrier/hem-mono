@@ -7,7 +7,7 @@ interface IProps {
 }
 
 // TODO: Move to common
-function TipPop({ children, delay = 750, onClick = noop }: PropsWithChildren<IProps>): ReactElement {
+function TipPop({ children, delay = 300, onClick = noop }: PropsWithChildren<IProps>): ReactElement {
   const [open, setOpen] = useState()
   const [timeoutId, setTimeoutId] = useState()
 
