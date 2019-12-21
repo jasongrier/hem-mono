@@ -2,4 +2,5 @@ import ReactDOM from 'react-dom'
 import { Root } from './components'
 import './index.css'
 
-ReactDOM.render(Root, document.getElementById('root'))
+// TODO: All projects; root div id should be 'react-root'
+ReactDOM.render(Root, document.getElementById('react-root'))

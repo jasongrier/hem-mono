@@ -21,7 +21,13 @@ const logos = [
   createLogo(SeuratLogo, '#a30473', '/seurat', 'Seurat', 'scale(.6)'),
   createLogo(GenericProjectLogo, randomHexColor(), '/relineator', 'Relineator', 'scale(.6) translateX(4px)'),
   createLogo(GenericProjectLogo, randomHexColor(), '/luc', 'Luc: Structured Audio', 'scale(.6) translateX(4px)'),
-  createLogo(GenericProjectLogo, randomHexColor(), '/vexations-searchlight', 'Vexations Searchlight', 'scale(.6) translateX(4px)'),
+  createLogo(GenericProjectLogo, randomHexColor(), '/foo', 'Another Project 1', 'scale(.6) translateX(4px)'),
+  createLogo(GenericProjectLogo, randomHexColor(), '/foo', 'Another Project 2', 'scale(.6) translateX(4px)'),
+  createLogo(GenericProjectLogo, randomHexColor(), '/foo', 'Another Project 3', 'scale(.6) translateX(4px)'),
+  createLogo(GenericProjectLogo, randomHexColor(), '/foo', 'Another Project 4', 'scale(.6) translateX(4px)'),
+  createLogo(GenericProjectLogo, randomHexColor(), '/foo', 'Another Project 5', 'scale(.6) translateX(4px)'),
+  createLogo(GenericProjectLogo, randomHexColor(), '/foo', 'Another Project 6', 'scale(.6) translateX(4px)'),
+  createLogo(GenericProjectLogo, randomHexColor(), '/foo', 'Another Project 7', 'scale(.6) translateX(4px)'),
 ]
 
 function ProjectsList(): ReactElement {
@@ -36,19 +42,6 @@ function ProjectsList(): ReactElement {
       document.body.style.pointerEvents = 'all'
     }
   }, [])
-
-  useEffect(() => {
-    document.addEventListener('scroll', bodyOnScroll)
-    return function cleanup() {
-      document.removeEventListener('scroll', bodyOnScroll)
-    }
-  }, [])
-
-  function bodyOnScroll(evt: any) {
-    // if (window.pageYOffset < 10) {
-      setOpen(false)
-    // }
-  }
 
   const toggleOpen = useCallback(
     function toggleOpen() {
@@ -82,22 +75,32 @@ function ProjectsList(): ReactElement {
           ))}
         </div>
 
-        {!open && (
-          <div className="see-all-projects">
-            <button onClick={toggleOpen}>
-              &gt;&gt; all projects &lt;&lt;
-            </button>
+          <div className="projects-micronav">
+            {!open && (
+              <button onClick={toggleOpen}>
+                more projects...
+              </button>
+            )}
+            {open && (
+              <>
+                <button onClick={toggleOpen}>
+                  back
+                </button>
+                <button onClick={scrollDown}>
+                  even more...
+                </button>
+              </>
+            )}
           </div>
-        )}
 
-        {open && (
-          <>
-            <div className="projects-list-scroll-down-button">
-              <ChevronButton onClick={scrollDown} />
-            </div>
-            <div id="projects-list-scroll-target" />
-          </>
-        )}
+          {open && (
+            <>
+              <div className="projects-list-scroll-down-button">
+                <ChevronButton onClick={scrollDown} />
+              </div>
+              <div id="projects-list-scroll-target" />
+            </>
+          )}
       </div>
     </>
   )

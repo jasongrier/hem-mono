@@ -3,6 +3,7 @@
 |:------|:------:|:------
 | [bin/tasks/lint.js](bin/tasks/lint.js#L110) | 110 | This bypasses checks for, for example, `i-dont-belong.foo`, the correct check should be `requiredFiles`
 | [bin/tasks/todo.js](bin/tasks/todo.js#L10) | 10 | How to handle TODO's in CI?
+| [projects/midst-player-widget/index.ts](projects/midst-player-widget/index.ts#L5) | 5 | All projects; root div id should be 'react-root'
 | [projects/hem-rocks/routes/SoundLibrary.tsx](projects/hem-rocks/routes/SoundLibrary.tsx#L162) | 162 | Should simply forward the onClick, not set the value
 | [projects/jasonaarongrier-com/components/App.tsx](projects/jasonaarongrier-com/components/App.tsx#L14) | 14 | 404 page
 | [projects/midst-press/components/App.tsx](projects/midst-press/components/App.tsx#L74) | 74 | Move PoemNav out of the Switch/Route and directly into the Poem component
