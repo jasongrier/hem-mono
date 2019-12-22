@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux'
 
-export type Theme =
+export type ThemeSwatch =
   'eyeglass-black'
    | 'eyeglass-tortoise'
    | 'sunglass-black'
@@ -8,48 +8,43 @@ export type Theme =
    | 'sunglass-tortoise'
    | 'eyeglass-clear'
 
-export type LensColor =
+export type LensColorSwatch =
     'lens-gray'
   | 'lens-green'
   | 'lens-brown'
-
-export interface IProductOption {
-  name: string
-  price: number
-}
 
 export interface IProduct {
   basePrice: number
   defaultImageUrl: string
   description: string
-  frame: IProductOption
+  theme: string
   hasHighIndexAddOn: boolean
   id: string
-  lensColor: LensColor
-  lensTreatment: IProductOption
+  lensColorSwatch: LensColorSwatch
+  lensTreatment: string
   optionNames: string[]
-  prescription: IProductOption
+  prescription: string
   prescriptionFile: File | null
-  tint: IProductOption
+  tint: string
   title: string
 }
 
 export interface IState {
   product: IProduct | null
-  theme: Theme
+  themeSwatch: ThemeSwatch
 }
 
-export const SET_LENS_COLOR = 'SET_LENS_COLOR'
+export const SET_LENS_COLOR_SWATCH = 'SET_LENS_COLOR_SWATCH'
 export const SET_LENS_TREATMENT = 'SET_LENS_TREATMENT'
 export const SET_PRESCRIPTION_FILE = 'SET_PRESCRIPTION_FILE'
 export const SET_PRESCRIPTION = 'SET_PRESCRIPTION'
-export const SET_THEME = 'SET_THEME'
+export const SET_THEME_SWATCH = 'SET_THEME_SWATCH'
 export const SET_TINT = 'SET_TINT'
 export const TOGGLE_HIGH_INDEX_ADD_ON = 'TOGGLE_HIGH_INDEX_ADD_ON'
 
-export interface ISetLensColor extends AnyAction {
-  type: typeof SET_LENS_COLOR
-  payload: LensColor
+export interface ISetLensColorSwatch extends AnyAction {
+  type: typeof SET_LENS_COLOR_SWATCH
+  payload: LensColorSwatch
 }
 
 export interface ISetLensTreatment extends AnyAction {
@@ -67,9 +62,9 @@ export interface ISetPrescription extends AnyAction {
   payload: string
 }
 
-export interface ISetTheme extends AnyAction {
-  type: typeof SET_THEME
-  payload: Theme
+export interface ISetThemeSwatch extends AnyAction {
+  type: typeof SET_THEME_SWATCH
+  payload: ThemeSwatch
 }
 
 export interface ISetTint extends AnyAction {
@@ -83,10 +78,10 @@ export interface IToggleHighIndexAddOn extends AnyAction {
 }
 
 export type Action =
-  ISetLensColor
+  ISetLensColorSwatch
   | ISetLensTreatment
   | ISetPrescriptionFile
   | ISetPrescription
-  | ISetTheme
+  | ISetThemeSwatch
   | ISetTint
   | IToggleHighIndexAddOn

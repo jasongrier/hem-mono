@@ -6,18 +6,19 @@ declare const PDP_WIDGET_PRODUCT: string
 
 function getProduct(): IProduct {
   const rawProduct = JSON.parse(PDP_WIDGET_PRODUCT)
+  const theme = getProductOptions('Theme')[0]
 
   return {
     basePrice: rawProduct.price / 100,
     defaultImageUrl: rawProduct.images[0],
     description: rawProduct.description,
-    frame: getProductOptions('Frame')[0],
+    theme,
     hasHighIndexAddOn: false,
     id: rawProduct.id,
-    lensColor: 'lens-gray' as 'lens-gray',
-    lensTreatment: getProductOptions('Lens Treatment').find(o => o.name === 'Standard'),
+    lensColorSwatch: 'lens-gray' as 'lens-gray',
+    lensTreatment: 'Standard',
     optionNames: rawProduct.options,
-    prescription: getProductOptions('Prescription')[0],
+    prescription: getProductOptions('Prescription', { theme }, true)[0],
     prescriptionFile: null,
     tint: getTintOptions()[0],
     title: rawProduct.title,

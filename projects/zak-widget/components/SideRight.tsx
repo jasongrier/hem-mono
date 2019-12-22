@@ -8,28 +8,27 @@ import {
   getThemeTitle,
   getTintOptions,
   productOptionToTitle,
-  productOptionsToSelectOptions,
 } from '../functions'
 
 import {
-  setLensColor,
+  setLensColorSwatch,
   setLensTreatment,
   setPrescription,
   setPrescriptionFile,
-  setTheme,
+  setThemeSwatch,
   setTint,
   toggleHighIndexAddOn,
 } from '../store/actions'
 
 import {
-  LensColor,
-  Theme,
+  LensColorSwatch,
+  ThemeSwatch,
 } from '../store/types'
 
 import OptionRow from './OptionRow'
 import SwatchPicker from './SwatchPicker'
 
-const themeOptions: Theme[] = [
+const swatchOptions: ThemeSwatch[] = [
   'eyeglass-black',
   'eyeglass-tortoise',
   'eyeglass-clear',
@@ -38,16 +37,16 @@ const themeOptions: Theme[] = [
   'sunglass-clear',
 ]
 
-const lensColorOptions: LensColor[] = [
+const lensColorOptions: LensColorSwatch[] = [
   'lens-gray',
   'lens-green',
   'lens-brown',
 ]
 
 function SideRight(): ReactElement {
-  const { product, theme } = useSelector((state: RootState) => ({
+  const { product, themeSwatch } = useSelector((state: RootState) => ({
     product: state.app.product,
-    theme: state.app.theme,
+    themeSwatch: state.app.themeSwatch,
   }))
 
   const dispatch = useDispatch()
@@ -62,23 +61,26 @@ function SideRight(): ReactElement {
 
   const {
     hasHighIndexAddOn,
-    lensColor,
+    lensColorSwatch,
     lensTreatment,
     prescription,
+    theme,
     tint,
     title,
   } = product
 
-
   const highIndexOption = getHighIndexOption()
-  const lensTreatmentOptions = getProductOptions('Lens Treatment')
-  const prescriptionOptions = getProductOptions('Prescription')
+  const lensTreatmentOptions = getProductOptions('Lens Treatment', product, true)
+  const prescriptionOptions = getProductOptions('Prescription', product, true)
   const tintOptions = getTintOptions()
 
+  console.log(lensTreatmentOptions)
+
   const themeTitle = getThemeTitle(theme)
-  const total = getProductTotalPrice(product)
-  const isEyeglass = theme.split('-')[0] === 'eyeglass'
-  const hasPrescription = prescription.name !== 'No Prescription'
+  // const total = getProductTotalPrice(product)
+  const total = 0
+  const isEyeglass = theme.split(' ')[1] === 'Eyeglass'
+  const hasPrescription = prescription !== 'No Prescription'
 
   return (
     <div className="zw-right">
@@ -87,18 +89,18 @@ function SideRight(): ReactElement {
         <h3>{ themeTitle }</h3>
         <div className="zw-primary-picker">
           <SwatchPicker
-            onChange={(theme: Theme) => dispatch(setTheme(theme))}
-            options={themeOptions}
+            onChange={(swatch: ThemeSwatch) => dispatch(setThemeSwatch(swatch))}
+            options={swatchOptions}
             value={theme}
           />
         </div>
         { !isEyeglass && (
           <div className="zw-lens-picker">
             <SwatchPicker
-              onChange={(value: LensColor) => dispatch(setLensColor(value))}
+              onChange={(value: LensColorSwatch) => dispatch(setLensColorSwatch(value))}
               options={lensColorOptions}
               title="Lens color:"
-              value={lensColor}
+              value={lensColorSwatch}
             />
           </div>
         )}
@@ -118,7 +120,7 @@ function SideRight(): ReactElement {
             }}
             select={{
               onChange: (name: string) => dispatch(setPrescription(name)),
-              options: productOptionsToSelectOptions(prescriptionOptions),
+              options: prescriptionOptions.map(o => ({ name: o, value: o })),
               value: productOptionToTitle(prescription),
             }}
           />
@@ -132,7 +134,7 @@ function SideRight(): ReactElement {
             }}
             select={{
               onChange: (name: string) => dispatch(setLensTreatment(name)),
-              options: productOptionsToSelectOptions(lensTreatmentOptions),
+              options: lensTreatmentOptions.map(o => ({ name: o, value: o })),
               value: productOptionToTitle(lensTreatment),
             }}
           />
@@ -147,7 +149,7 @@ function SideRight(): ReactElement {
             }}
             select={{
               onChange: (name: string) => dispatch(setTint(name)),
-              options: productOptionsToSelectOptions(tintOptions),
+              options: tintOptions.map(o => ({ name: o, value: o })),
               value: productOptionToTitle(tint),
             }}
           />
