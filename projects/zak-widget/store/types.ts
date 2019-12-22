@@ -1,13 +1,5 @@
 import { AnyAction } from 'redux'
 
-export type ThemeSwatch =
-  'eyeglass-black'
-   | 'eyeglass-tortoise'
-   | 'sunglass-black'
-   | 'sunglass-clear'
-   | 'sunglass-tortoise'
-   | 'eyeglass-clear'
-
 export type LensColorSwatch =
     'lens-gray'
   | 'lens-green'
@@ -31,14 +23,13 @@ export interface IProduct {
 
 export interface IState {
   product: IProduct | null
-  themeSwatch: ThemeSwatch
 }
 
 export const SET_LENS_COLOR_SWATCH = 'SET_LENS_COLOR_SWATCH'
 export const SET_LENS_TREATMENT = 'SET_LENS_TREATMENT'
 export const SET_PRESCRIPTION_FILE = 'SET_PRESCRIPTION_FILE'
 export const SET_PRESCRIPTION = 'SET_PRESCRIPTION'
-export const SET_THEME_SWATCH = 'SET_THEME_SWATCH'
+export const SET_THEME = 'SET_THEME'
 export const SET_TINT = 'SET_TINT'
 export const TOGGLE_HIGH_INDEX_ADD_ON = 'TOGGLE_HIGH_INDEX_ADD_ON'
 
@@ -62,9 +53,9 @@ export interface ISetPrescription extends AnyAction {
   payload: string
 }
 
-export interface ISetThemeSwatch extends AnyAction {
-  type: typeof SET_THEME_SWATCH
-  payload: ThemeSwatch
+export interface ISetTheme extends AnyAction {
+  type: typeof SET_THEME
+  payload: string
 }
 
 export interface ISetTint extends AnyAction {
@@ -82,6 +73,6 @@ export type Action =
   | ISetLensTreatment
   | ISetPrescriptionFile
   | ISetPrescription
-  | ISetThemeSwatch
+  | ISetTheme
   | ISetTint
   | IToggleHighIndexAddOn

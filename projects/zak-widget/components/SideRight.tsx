@@ -1,5 +1,6 @@
 import React, { ReactElement, useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { kebabCase, titleCase } from 'voca'
 import { RootState } from '../store'
 import {
   getHighIndexOption,
@@ -8,6 +9,7 @@ import {
   getThemeTitle,
   getTintOptions,
   productOptionToTitle,
+  isProductEyeglass,
 } from '../functions'
 
 import {
@@ -15,27 +17,15 @@ import {
   setLensTreatment,
   setPrescription,
   setPrescriptionFile,
-  setThemeSwatch,
+  setTheme,
   setTint,
   toggleHighIndexAddOn,
 } from '../store/actions'
 
-import {
-  LensColorSwatch,
-  ThemeSwatch,
-} from '../store/types'
+import { LensColorSwatch } from '../store/types'
 
 import OptionRow from './OptionRow'
 import SwatchPicker from './SwatchPicker'
-
-const swatchOptions: ThemeSwatch[] = [
-  'eyeglass-black',
-  'eyeglass-tortoise',
-  'eyeglass-clear',
-  'sunglass-black',
-  'sunglass-tortoise',
-  'sunglass-clear',
-]
 
 const lensColorOptions: LensColorSwatch[] = [
   'lens-gray',
@@ -44,9 +34,8 @@ const lensColorOptions: LensColorSwatch[] = [
 ]
 
 function SideRight(): ReactElement {
-  const { product, themeSwatch } = useSelector((state: RootState) => ({
+  const { product } = useSelector((state: RootState) => ({
     product: state.app.product,
-    themeSwatch: state.app.themeSwatch,
   }))
 
   const dispatch = useDispatch()
@@ -72,14 +61,12 @@ function SideRight(): ReactElement {
   const highIndexOption = getHighIndexOption()
   const lensTreatmentOptions = getProductOptions('Lens Treatment', product, true)
   const prescriptionOptions = getProductOptions('Prescription', product, true)
+  const themeOptions = getProductOptions('Theme')
   const tintOptions = getTintOptions()
 
-  console.log(lensTreatmentOptions)
-
   const themeTitle = getThemeTitle(theme)
-  // const total = getProductTotalPrice(product)
-  const total = 0
-  const isEyeglass = theme.split(' ')[1] === 'Eyeglass'
+  const total = getProductTotalPrice(product)
+  const isEyeglass = isProductEyeglass(product)
   const hasPrescription = prescription !== 'No Prescription'
 
   return (
@@ -89,9 +76,9 @@ function SideRight(): ReactElement {
         <h3>{ themeTitle }</h3>
         <div className="zw-primary-picker">
           <SwatchPicker
-            onChange={(swatch: ThemeSwatch) => dispatch(setThemeSwatch(swatch))}
-            options={swatchOptions}
-            value={theme}
+            onChange={(themeKebab: string) => dispatch(setTheme(titleCase(themeKebab.replace(/-/g, ' '))))}
+            options={themeOptions.map(kebabCase)}
+            value={kebabCase(theme)}
           />
         </div>
         { !isEyeglass && (
@@ -165,7 +152,7 @@ function SideRight(): ReactElement {
             >
               <button className={`zw-add-on-button ${hasHighIndexAddOn ? 'zw-add-on-button-active' : ''}`} />
               <span className="zw-add-on-label">
-                { highIndexOption.title } (+ ${ highIndexOption.price })
+                { highIndexOption }
               </span>
             </div>
           )}
