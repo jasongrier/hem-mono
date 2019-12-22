@@ -94,14 +94,23 @@ function App(): ReactElement {
           </div>
           <div className="hem-mega-menu-internal-content-box">
             { loggedIn && (
-              <ul>
-                <li>
-                  <Link to="/internal">Internal pages...</Link>
-                </li>
-              </ul>
+              <>
+                <h3 className="small-heading">Secret stuff</h3>
+                <ul>
+                  <li>
+                    <Link to="/internal">Internal pages...</Link>
+                  </li>
+                  <li>
+                    <Link to="/log-out">Log out</Link>
+                  </li>
+                </ul>
+              </>
             )}
             { !loggedIn && (
-              <LogInForm />
+              <>
+                <h3 className="small-heading">Log in</h3>
+                <LogInForm />
+              </>
             )}
           </div>
         </div>

@@ -1,0 +1,37 @@
+/* TODO: Global pencil style */
+.internal-header {
+  position: relative;
+  height: 50px;
+  line-height: 50px;
+  color: #ccc;
+  background: #000;
+}
+
+.internal-header h1 {
+  font-size: 12px;
+  margin: 0 0 0 10px;
+}
+
+.internal-header nav {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  height: 50px;
+  line-height: 50px;
+}
+
+.internal-header ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.internal-header li {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 12px;
+}
+
+.internal-header li a:hover {
+  text-decoration: underline;
+}

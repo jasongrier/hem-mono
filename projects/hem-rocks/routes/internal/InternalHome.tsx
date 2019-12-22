@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react'
+import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import { Header, InternalHeader, Footer } from '../../components/layout'
-import { Protected } from '../../components/ui'
+import { ProtectedContent } from '../../components/ui'
 import { BASE_SITE_TITLE } from '../../config'
-import { internalLogIn } from '../../store/actions'
 
 function InternalHome(): ReactElement {
   return (
@@ -13,24 +13,21 @@ function InternalHome(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
 
-      <Protected
-        action={internalLogIn}
-        key="internalLoggedIn"
-      >
-        <Header />
+      <Header />
+
+      <ProtectedContent header="Enter password to view this content">
         <InternalHeader />
 
         <main>
-          <h1>HEM Internal Pages</h1>
           <section>
             <h2>Quick Links: Infrastructure</h2>
             <div className="internal-page-column">
               <h3>Active Jira Projects</h3>
               <ul>
-                <li><a href="#">Foo</a></li>
-                <li><a href="#">Foo</a></li>
-                <li><a href="#">Foo</a></li>
-                <li><a href="#">Foo</a></li>
+                <li><a href="#">Midst</a></li>
+                <li><a href="#">Midst Journal</a></li>
+                <li><a href="#">Seurat</a></li>
+                <li><a href="#">Relineator</a></li>
               </ul>
             </div>
             <div className="internal-page-column">
@@ -62,14 +59,16 @@ function InternalHome(): ReactElement {
             <h2>Quick Links: Midst</h2>
             <ul>
               <li><a href="#">Updating Midst Journal</a></li>
-              <li><a href="#">Using Midst Widgets</a></li>
+              <li>
+                <Link to="/internal/midst-widgets">Using Midst Widgets</Link>
+              </li>
               <li><a href="#">Developing/Deploying Midst App</a></li>
             </ul>
           </section>
         </main>
+      </ProtectedContent>
 
-        <Footer />
-      </Protected>
+      <Footer />
     </div>
   )
 }

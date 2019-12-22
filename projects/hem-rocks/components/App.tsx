@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 
 import {
   Home,
+  LogOut,
   SoundLibrary,
 } from '../routes'
 
@@ -19,6 +20,7 @@ function App(): ReactElement {
         <Route exact path="/sound-library" component={SoundLibrary} />
         <Route exact path="/internal" component={InternalHome} />
         <Route exact path="/internal/midst-widgets" component={MidstWidgets} />
+        <Route exact path="/log-out" component={LogOut} />
       </Switch>
     </div>
   )

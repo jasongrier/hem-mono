@@ -1,4 +1,70 @@
+.internal-page {
+  padding-top: 50px;
+}
+
 .internal-page main {
   width: 1024px;
+  min-height: calc(100vh - 170px);
   margin: 0 auto;
+}
+
+.internal-page .blocked-content {
+  display: flex;
+  min-height: calc(100vh - 100px);
+  width: 450px;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.internal-page .blocked-content h2 {
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.internal-page .blocked-content .login-form {
+  transform: translateY(-150px);
+}
+
+.internal-page .blocked-content .login-form .error-message {
+  width: 250px;
+  margin: 0 auto 20px auto;
+  text-align: center;
+  color: #ff0000;
+}
+
+.internal-page .blocked-content .login-form input {
+  display: block;
+  width: 250px;
+  height: 50px;
+  line-height: 50px;
+  margin: 0 auto 20px auto;
+  text-align: center;
+  border: 0;
+  background: #ccc;
+  border-radius: 3px;
+}
+
+.internal-page .blocked-content .login-form input:focus,
+.internal-page .blocked-content .login-form input:active {
+  outline: none;
+}
+
+.internal-page .blocked-content .login-form button {
+  display: block;
+  width: 250px;
+  height: 50px;
+  line-height: 50px;
+  margin: 0 auto;
+  text-align: center;
+  border: 0;
+  background: #ccc;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+/* TODO: Global button className */
+.internal-page .blocked-content .login-form button:hover {
+  background: #333;
+  color: #ccc;
 }
