@@ -1,4 +1,3 @@
-export { default as applyProductRestrictions } from './apply-product-restrictions'
 export { default as extractPrice } from './extract-price'
 export { default as getCurrentVariant } from './get-current-variant'
 export { default as getHighIndexOption } from './get-high-index-option'

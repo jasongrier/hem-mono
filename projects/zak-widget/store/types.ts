@@ -25,6 +25,7 @@ export interface IState {
   product: IProduct | null
 }
 
+export const INIT_PRODUCT = 'INIT_PRODUCT'
 export const SET_LENS_COLOR_SWATCH = 'SET_LENS_COLOR_SWATCH'
 export const SET_LENS_TREATMENT = 'SET_LENS_TREATMENT'
 export const SET_PRESCRIPTION_FILE = 'SET_PRESCRIPTION_FILE'
@@ -32,6 +33,11 @@ export const SET_PRESCRIPTION = 'SET_PRESCRIPTION'
 export const SET_THEME = 'SET_THEME'
 export const SET_TINT = 'SET_TINT'
 export const TOGGLE_HIGH_INDEX_ADD_ON = 'TOGGLE_HIGH_INDEX_ADD_ON'
+
+export interface IInitProduct extends AnyAction {
+  type: typeof INIT_PRODUCT
+  payload: null
+}
 
 export interface ISetLensColorSwatch extends AnyAction {
   type: typeof SET_LENS_COLOR_SWATCH
@@ -69,7 +75,8 @@ export interface IToggleHighIndexAddOn extends AnyAction {
 }
 
 export type Action =
-  ISetLensColorSwatch
+  IInitProduct
+  | ISetLensColorSwatch
   | ISetLensTreatment
   | ISetPrescriptionFile
   | ISetPrescription

@@ -1,7 +1,9 @@
 import { AnyAction } from 'redux'
 import produce from 'immer'
-import { getProduct, applyProductRestrictions } from '../functions'
+import { getProduct, getCurrentVariant } from '../functions'
+import { applyProductRestrictions } from '../functions/rules'
 import {
+  INIT_PRODUCT,
   SET_LENS_COLOR_SWATCH,
   SET_LENS_TREATMENT,
   SET_PRESCRIPTION_FILE,
@@ -22,6 +24,17 @@ const reducer = (
   { type, payload }: AnyAction,
 ): IState => {
   switch (type) {
+    case INIT_PRODUCT: {
+      return produce(state, draftState => {
+        if (!draftState.product) return state
+
+        const currentVariant = getCurrentVariant(draftState.product)
+        if (!currentVariant) return state
+
+        draftState.product.id = currentVariant.id
+      })
+    }
+
     case SET_LENS_COLOR_SWATCH: {
       return produce(state, draftState => {
         if (!draftState.product) return

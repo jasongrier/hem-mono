@@ -1,6 +1,7 @@
 import {
   LensColorSwatch,
 
+  INIT_PRODUCT,
   SET_LENS_COLOR_SWATCH,
   SET_LENS_TREATMENT,
   SET_PRESCRIPTION_FILE,
@@ -9,6 +10,7 @@ import {
   SET_TINT,
   TOGGLE_HIGH_INDEX_ADD_ON,
 
+  IInitProduct,
   ISetLensColorSwatch,
   ISetLensTreatment,
   ISetPrescription,
@@ -17,6 +19,11 @@ import {
   ISetTint,
   IToggleHighIndexAddOn,
 } from './types'
+
+const initProduct = (): IInitProduct => ({
+  payload: null,
+  type: INIT_PRODUCT,
+})
 
 const setLensColorSwatch = (lensColor: LensColorSwatch): ISetLensColorSwatch => ({
   payload: lensColor,
@@ -54,6 +61,7 @@ const toggleHighIndexAddOn = (): IToggleHighIndexAddOn => ({
 })
 
 export {
+  initProduct,
   setLensColorSwatch,
   setLensTreatment,
   setPrescription,

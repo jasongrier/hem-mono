@@ -4,7 +4,7 @@ import { applyMiddleware, combineReducers, createStore } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { reducer } from './reducer'
-// import { fetchProductSaga } from './sagas'
+// import zakSaga from './sagas'
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -17,7 +17,7 @@ const store = createStore(
   )
 )
 
-// sagaMiddleware.run(fetchProductSaga)
+// sagaMiddleware.run(zakSaga)
 
 export type RootState = ReturnType<typeof rootReducer>
 
