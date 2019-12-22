@@ -1,5 +1,7 @@
+import { trim } from 'voca'
+
 function removePrice(title: string) {
-  return title.split(' – ')[0]
+  return trim(title.split(/[\+\$]/)[0].replace(' – ', ''))
 }
 
 export default removePrice

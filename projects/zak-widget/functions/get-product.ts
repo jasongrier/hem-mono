@@ -14,7 +14,7 @@ function getProduct(): IProduct {
     description: rawProduct.description,
     theme,
     hasHighIndexAddOn: false,
-    id: rawProduct.id,
+    id: null,
     lensColorSwatch: 'lens-gray' as 'lens-gray',
     lensTreatment: 'Standard',
     optionNames: rawProduct.options,

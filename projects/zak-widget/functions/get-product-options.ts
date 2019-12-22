@@ -1,3 +1,4 @@
+import { without } from 'lodash'
 import { IProduct } from '../store/types'
 import removePrice from './remove-price'
 
@@ -24,9 +25,10 @@ function getProductOptions(optionGroupName: string, product?: Partial<IProduct>,
     }
 
     else if (optionGroupName === 'Lens Treatment') {
-      return rawOptionGroup.values.map(optionName => {
+      const unorderedLensTreatmentOptions = rawOptionGroup.values.map(optionName => {
         const standardVariantPublicTitle = removePrice(product.prescription) + ' / Standard / ' + product.theme
         const standardVariant = rawProduct.variants.find(variant => variant.public_title === standardVariantPublicTitle)
+
         if (!standardVariant) return optionName
 
         const variantPublicTitle = removePrice(product.prescription) + ' / ' + optionName + ' / ' + product.theme
@@ -38,6 +40,8 @@ function getProductOptions(optionGroupName: string, product?: Partial<IProduct>,
 
         return optionName + ' +$' + (priceDifference / 100)
       })
+
+      return ['Standard'].concat(without(unorderedLensTreatmentOptions, 'Standard'))
     }
   }
 

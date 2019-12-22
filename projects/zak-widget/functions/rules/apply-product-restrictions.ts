@@ -1,15 +1,20 @@
-import { IState } from '../store/types'
-import getProductOptions from './get-product-options'
-import removePrice from './remove-price'
+import { IState } from '../../store/types'
+import getCurrentVariant from '../get-current-variant'
+import getProductOptions from '../get-product-options'
+import isProductEyeglass from '../is-product-eyeglass'
+import removePrice from '../remove-price'
 
 function applyProductRestrictions(draftState: IState) {
   if (removePrice(draftState.product.prescription) === 'No Prescription') {
     draftState.product.hasHighIndexAddOn = false
-    draftState.product.lensTreatment = 'Standard'
-    draftState.product.tint = 'None'
   }
 
   if (draftState.product.lensTreatment !== 'Standard') {
+    draftState.product.tint = 'None'
+  }
+
+  if (!isProductEyeglass(draftState.product)) {
+    draftState.product.lensTreatment = 'Standard'
     draftState.product.tint = 'None'
   }
 
@@ -19,6 +24,9 @@ function applyProductRestrictions(draftState: IState) {
   draftState.product.prescription = productOptions.find(
     optionName => optionName.indexOf(currentPrescription) === 0
   )
+
+  const currentVariant = getCurrentVariant(draftState.product)
+  draftState.product.id = currentVariant.id
 }
 
 export default applyProductRestrictions

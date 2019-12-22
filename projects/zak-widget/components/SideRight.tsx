@@ -9,9 +9,12 @@ import {
   getThemeTitle,
   getTintOptions,
   productOptionToTitle,
-  isProductEyeglass,
   removePrice,
 } from '../functions'
+
+import {
+  getFieldVisibility,
+} from '../functions/rules'
 
 import {
   setLensColorSwatch,
@@ -23,10 +26,12 @@ import {
   toggleHighIndexAddOn,
 } from '../store/actions'
 
-import { LensColorSwatch } from '../store/types'
+import { LensColorSwatch, IProduct } from '../store/types'
 
 import OptionRow from './OptionRow'
 import SwatchPicker from './SwatchPicker'
+
+declare function doAddToCart(product: IProduct): void
 
 const lensColorOptions: LensColorSwatch[] = [
   'lens-gray',
@@ -67,8 +72,14 @@ function SideRight(): ReactElement {
 
   const themeTitle = getThemeTitle(theme)
   const total = getProductTotalPrice(product)
-  const isEyeglass = isProductEyeglass(product)
   const hasPrescription = removePrice(prescription) !== 'No Prescription'
+
+  const {
+    showLensColorPicker,
+    showPrescriptionOptions,
+    showLensTreatmentOptions,
+    showTintOptions,
+  } = getFieldVisibility(product)
 
   return (
     <div className="zw-right">
@@ -82,7 +93,7 @@ function SideRight(): ReactElement {
             value={kebabCase(theme)}
           />
         </div>
-        { !isEyeglass && (
+        { showLensColorPicker && (
           <div className="zw-lens-picker">
             <SwatchPicker
               onChange={(value: LensColorSwatch) => dispatch(setLensColorSwatch(value))}
@@ -99,7 +110,7 @@ function SideRight(): ReactElement {
         >
           Fit Guide
         </a>
-        { prescriptionOptions && (
+        { showPrescriptionOptions && (
           <OptionRow
             label="Prescription"
             action={{
@@ -113,7 +124,7 @@ function SideRight(): ReactElement {
             }}
           />
         )}
-        { lensTreatmentOptions && isEyeglass && (
+        { showLensTreatmentOptions && (
           <OptionRow
             label="Lens Treatment"
             action={{
@@ -127,7 +138,7 @@ function SideRight(): ReactElement {
             }}
           />
         )}
-        { tintOptions && isEyeglass && (
+        { showTintOptions && (
           <OptionRow
             label="Tints"
             className="zw-last-option-row"
@@ -161,7 +172,7 @@ function SideRight(): ReactElement {
         <div className="zw-submit-row">
           <button
             className="zw-submit-button"
-            onClick={() => {}}
+            onClick={() => doAddToCart(product)}
           >
             Add to Cart
           </button>

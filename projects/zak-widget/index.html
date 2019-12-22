@@ -39,6 +39,21 @@
         'green',
         'brown',
       ]
+
+      function doAddToCart(product) {
+        const primaryProductData = {
+          id: product.id,
+          quantity: 1,
+        }
+
+        const res = fetch('/cart/add/', {
+          method: 'POST',
+          body: JSON.stringify(primaryProductData)
+        })
+          .then(function() {
+            console.log(res)
+          })
+      }
     </script>
   </head>
 <body>

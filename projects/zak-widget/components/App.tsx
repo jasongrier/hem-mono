@@ -1,8 +1,16 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { initProduct } from '../store/actions'
 import SideLeft from './SideLeft'
 import SideRight from './SideRight'
 
 function App(): ReactElement {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(initProduct())
+  }, [])
+
   return (
     <div className="hem-application page__content-wrapper--force-background">
       <div className="zw-layout-container">
