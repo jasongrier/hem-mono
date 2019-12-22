@@ -37,6 +37,7 @@
   height: 100%;
   margin: 0 auto;
   box-sizing: border-box;
+  pointer-events: all;
 }
 
 .hem-mega-menu-content h3,
