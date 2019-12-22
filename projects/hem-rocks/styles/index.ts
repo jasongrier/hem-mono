@@ -1,6 +1,7 @@
 // TODO: Further divide into folders/components
 import './global.css'
 import './header.css'
+import './internal-page.css'
 import './megamenu.css'
 import './news-list.css'
 import './pencil-extras.css'

@@ -2,6 +2,9 @@ import { AnyAction } from 'redux'
 import {
   CAROUSEL_NEXT,
   CAROUSEL_PREVIOUS,
+  LOG_IN,
+  LOG_IN_RESET,
+  LOG_OUT,
   PLAYER_PAUSE,
   PLAYER_PLAY,
   PLAYER_SET_SOUND,
@@ -97,6 +100,8 @@ const carouselItems = [
 const initialState: IState = {
   carouselIndex: 0,
   carouselItems,
+  loggedIn: null,
+  loginFailed: false,
   playerPlaying: false,
   playerSoundUrl: '',
   playerVolume: 0,
@@ -128,27 +133,47 @@ const reducer = (
       return { ...state, carouselIndex: payload }
     }
 
-    case PLAYER_PAUSE:
+    case LOG_IN: {
+      const success = (payload === 'easyeasy')
+      return { ...state, loggedIn: success, loginFailed: !success }
+    }
+
+    case LOG_IN_RESET: {
+      return { ...state, loginFailed: false }
+    }
+
+    case LOG_OUT: {
+      return { ...state, loggedIn: false, loginFailed: false }
+    }
+
+    case PLAYER_PAUSE: {
       return { ...state, playerPlaying: false }
+    }
 
-    case PLAYER_PLAY:
+    case PLAYER_PLAY: {
       return { ...state, playerPlaying: true }
+    }
 
-    case PLAYER_SET_SOUND:
+    case PLAYER_SET_SOUND: {
       return { ...state, playerSoundUrl: payload }
+    }
 
-    case PLAYER_SET_VOLUME:
+    case PLAYER_SET_VOLUME: {
       return { ...state, playerVolume: payload }
+    }
 
-    case PLAYER_TOGGLE_MUTED:
+    case PLAYER_TOGGLE_MUTED: {
       const { playerVolume } = state
       return { ...state, playerVolume: playerVolume > 0 ? 0 : 1 }
+    }
 
-    case PLAYER_TOGGLE_PLAYING:
+    case PLAYER_TOGGLE_PLAYING: {
       return { ...state, playerPlaying: !state.playerPlaying }
+    }
 
-    default:
+    default: {
       return state
+    }
   }
 }
 

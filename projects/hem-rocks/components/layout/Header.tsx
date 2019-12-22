@@ -1,12 +1,13 @@
+import { noop } from 'lodash'
 import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 import MegaMenu from './MegaMenu'
 
 interface IProps {
-  onLogoClicked: () => void
+  onLogoClicked?: () => void
 }
 
-function Header({ onLogoClicked }: IProps): ReactElement {
+function Header({ onLogoClicked = noop }: IProps): ReactElement {
   return (
     <>
       <header className="site-header">

@@ -1,9 +1,6 @@
 import { AnyAction } from 'redux'
-import { ThunkAction } from 'redux-thunk'
 
-// TODO: How to get around putting this in every project??
-export type ThunkResult<R> = ThunkAction<R, IState, undefined, Action>
-
+// TODO: Break into separate Redux modules
 export interface ICarouselItem {
   buttonText: string
   description: string
@@ -16,6 +13,8 @@ export interface ICarouselItem {
 export interface IState {
   carouselIndex: number
   carouselItems: ICarouselItem[]
+  loggedIn: boolean | null
+  loginFailed: boolean | null
   playerPlaying: boolean
   playerSoundUrl: string
   playerVolume: number
@@ -24,6 +23,9 @@ export interface IState {
 export const CAROUSEL_NEXT = 'CAROUSEL_NEXT'
 export const CAROUSEL_PREVIOUS = 'CAROUSEL_PREVIOUS'
 export const CAROUSEL_SET_INDEX = 'CAROUSEL_SET_INDEX'
+export const LOG_IN = 'LOG_IN'
+export const LOG_OUT = 'LOG_OUT'
+export const LOG_IN_RESET = 'LOG_IN_RESET'
 export const PLAYER_PAUSE = 'PLAYER_PAUSE'
 export const PLAYER_PLAY = 'PLAYER_PLAY'
 export const PLAYER_SET_SOUND = 'PLAYER_SET_SOUND'
@@ -44,6 +46,21 @@ export interface ICarouselPrevious extends AnyAction {
 export interface ICarouselSetIndex extends AnyAction {
   type: typeof CAROUSEL_SET_INDEX
   payload: number
+}
+
+export interface ILogIn extends AnyAction {
+  type: typeof LOG_IN
+  payload: string
+}
+
+export interface ILogInReset extends AnyAction {
+  type: typeof LOG_IN_RESET
+  payload: null
+}
+
+export interface ILogOut extends AnyAction {
+  type: typeof LOG_OUT
+  payload: null
 }
 
 export interface IPlayerPause extends AnyAction {
@@ -74,6 +91,9 @@ export interface IPlayerTogglePlaying extends AnyAction {
 export type Action =
   ICarouselNext
   | ICarouselPrevious
+  | ILogIn
+  | ILogInReset
+  | ILogOut
   | IPlayerPause
   | IPlayerPlay
   | IPlayerSetVolume

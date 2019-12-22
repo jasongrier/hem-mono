@@ -1,10 +1,18 @@
 import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import { CampaignMonitorForm, HamburgerMenu } from '../../../../lib/components'
+import { LogInForm } from '../ui'
+import { RootState } from '../../store'
 
 function App(): ReactElement {
+  const { loggedIn } = useSelector((state: RootState) => ({
+    loggedIn: state.app.loggedIn,
+  }))
+
   return (
     <HamburgerMenu>
+      {/* TODO: Remove `hem-` prefix */}
       <section className="hem-mega-menu-content">
         <div className="hem-mega-menu-content-column">
           <h2 className="hem-mega-menu-big-logo">
@@ -83,6 +91,18 @@ function App(): ReactElement {
               <li className="social-link twitter">Twitter</li>
               <li className="social-link facebook">Facebook</li>
             </ul>
+          </div>
+          <div className="hem-mega-menu-internal-content-box">
+            { loggedIn && (
+              <ul>
+                <li>
+                  <Link to="/internal">Internal pages...</Link>
+                </li>
+              </ul>
+            )}
+            { !loggedIn && (
+              <LogInForm />
+            )}
           </div>
         </div>
       </section>
