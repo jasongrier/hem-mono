@@ -40,6 +40,11 @@
   pointer-events: all;
 }
 
+.hem-mega-menu-content input:active
+.hem-mega-menu-content input:focus {
+  outline: none;
+}
+
 .hem-mega-menu-content h3,
 .hem-mega-menu-content h4 {
   margin-top: 0;

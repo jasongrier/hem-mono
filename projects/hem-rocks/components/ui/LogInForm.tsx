@@ -32,19 +32,20 @@ function LogInForm({ header }: PropsWithChildren<IProps>): ReactElement {
   )
 
   return (
-    <div className="log-in-form">
+    <div className="login-form">
       <form onSubmit={onSubmit}>
         { header && (
-          <h2>Enter Password</h2>
+          <h2>{ header }</h2>
         )}
         { loginFailed && (
-          <strong>Login failed. Try again</strong>
+          <p className="error-message">Login failed. Try again</p>
         )}
         <input
           onChange={onInputChanged}
-          type="text"
+          type="password"
           value={password}
         />
+        <button type="submit">Log in</button>
       </form>
     </div>
   )
