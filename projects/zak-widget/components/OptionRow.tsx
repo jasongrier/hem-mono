@@ -14,7 +14,7 @@ interface IProps {
   className?: string
 }
 
-function ZwOptionRow({ action, className, label, select }: IProps): ReactElement {
+function OptionRow({ action, className, label, select }: IProps): ReactElement {
   return (
     <div className={`zw-option-row zw-clearfix ${className ? className : ''}`}>
       <div className="zw-option-row-label">{ label }</div>
@@ -35,4 +35,4 @@ function ZwOptionRow({ action, className, label, select }: IProps): ReactElement
   )
 }
 
-export default ZwOptionRow
+export default OptionRow

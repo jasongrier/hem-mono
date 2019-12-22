@@ -1,4 +1,4 @@
-import React, { ReactElement, useState, useEffect } from 'react'
+import React, { ReactElement, useState, useEffect, useCallback } from 'react'
 //@ts-ignore
 import { useClickOutside } from 'react-click-outside-hook'
 
@@ -12,6 +12,7 @@ export interface IProps {
   options: ICustomSelectOption[]
   value: string
 
+  id?: string
   placeholder?: string
 }
 
@@ -20,13 +21,18 @@ function CustomSelect({ onChange, options, placeholder, value }: IProps): ReactE
   const [selectedText, setSelectedText] = useState(value || placeholder || options[0] && options[0].name)
   const [ref, hasClickedOutside] = useClickOutside()
 
+  useEffect(() => {
+    setSelectedText(value)
+   }, [value])
+
   useEffect(() => { hasClickedOutside && setOpen(false) }, [hasClickedOutside])
 
-  function setAndClose({ name, value }: ICustomSelectOption) {
-    setOpen(false)
-    setSelectedText(name)
-    onChange(value)
-  }
+  const setAndClose = useCallback(
+    function setAndClose({ value }: ICustomSelectOption) {
+      setOpen(false)
+      onChange(value)
+    }, [],
+  )
 
   return (
     <div

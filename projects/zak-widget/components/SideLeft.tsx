@@ -9,7 +9,10 @@ function SideLeft(): ReactElement {
   if (!product) return <div />
 
   const { defaultImageUrl, description } = product
-  const currentVariant = getCurrentVariant(product)
+
+  getCurrentVariant(product)
+
+  const currentVariant = null
   const currentImageUrl = currentVariant && currentVariant.featured_image ? currentVariant.featured_image : defaultImageUrl
 
   return (

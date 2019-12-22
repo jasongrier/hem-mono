@@ -1,27 +1,49 @@
-import { IProductOption } from '../store/types'
+import { IProduct } from '../store/types'
+import removePrice from './remove-price'
 
 declare const PDP_WIDGET_PRODUCT_OPTIONS_WITH_VALUES: string
+declare const PDP_WIDGET_PRODUCT: string
 
-function getProductOptions(optionName: string): IProductOption[] {
-  const rawOptions = JSON.parse(PDP_WIDGET_PRODUCT_OPTIONS_WITH_VALUES)
-  const rawOption = rawOptions.find(o => o.name === optionName)
+function getProductOptions(optionGroupName: string, product?: Partial<IProduct>, withPrice: boolean = false): string[] {
+  const rawOptionGroups = JSON.parse(PDP_WIDGET_PRODUCT_OPTIONS_WITH_VALUES)
+  const rawOptionGroup = rawOptionGroups.find(o => o.name === optionGroupName)
 
-  if (!rawOption) return []
+  if (!rawOptionGroup) return []
+  if (!rawOptionGroup.values) return []
 
-  return rawOption.values.reduce((acc, name) => {
-    const nameSplit = name.split(' – ')
+  if (withPrice) {
+    const rawProduct = JSON.parse(PDP_WIDGET_PRODUCT)
 
-    const price = nameSplit[1]
-      ? parseInt(nameSplit[1].replace(/[\+\$]+/, ''))
-      : 0
+    if (optionGroupName === 'Prescription') {
+      return rawOptionGroup.values.map(optionName => {
+        const variantPublicTitle = optionName + ' / Standard / ' + product.theme
+        const variant = rawProduct.variants.find(variant => variant.public_title === variantPublicTitle)
+        if (!variant) return optionName
+        return optionName + ' – $' + (variant.price / 100)
+      })
+    }
 
-    acc.push({
-      name: nameSplit[0],
-      price,
-    })
+    else if (optionGroupName === 'Lens Treatment') {
+      return rawOptionGroup.values.map(optionName => {
+        const standardVariantPublicTitle = removePrice(product.prescription) + ' / Standard / ' + product.theme
+        const standardVariant = rawProduct.variants.find(variant => variant.public_title === standardVariantPublicTitle)
+        if (!standardVariant) return optionName
 
-    return acc
-  }, [])
+        const variantPublicTitle = removePrice(product.prescription) + ' / ' + optionName + ' / ' + product.theme
+        const variant = rawProduct.variants.find(variant => variant.public_title === variantPublicTitle)
+        if (!variant) return optionName
+
+        const priceDifference = variant.price - standardVariant.price
+        if (priceDifference === 0)  return optionName
+
+        return optionName + ' +$' + (priceDifference / 100)
+      })
+    }
+  }
+
+  else {
+    return rawOptionGroup.values
+  }
 }
 
 export default getProductOptions

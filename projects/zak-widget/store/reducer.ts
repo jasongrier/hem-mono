@@ -1,12 +1,12 @@
 import { AnyAction } from 'redux'
 import produce from 'immer'
-import { getProduct, getProductOptionByName, getProductWithRestrictions } from '../functions'
+import { getProduct, applyProductRestrictions } from '../functions'
 import {
-  SET_LENS_COLOR,
+  SET_LENS_COLOR_SWATCH,
   SET_LENS_TREATMENT,
   SET_PRESCRIPTION_FILE,
   SET_PRESCRIPTION,
-  SET_THEME,
+  SET_THEME_SWATCH,
   SET_TINT,
   TOGGLE_HIGH_INDEX_ADD_ON,
 
@@ -15,7 +15,7 @@ import {
 
 const initialState: IState = {
   product: getProduct(),
-  theme: 'eyeglass-black',
+  themeSwatch: 'eyeglass-black',
 }
 
 const reducer = (
@@ -23,19 +23,19 @@ const reducer = (
   { type, payload }: AnyAction,
 ): IState => {
   switch (type) {
-    case SET_LENS_COLOR: {
+    case SET_LENS_COLOR_SWATCH: {
       return produce(state, draftState => {
         if (!draftState.product) return
-        draftState.product.lensColor = payload
-        draftState.product = getProductWithRestrictions(draftState)
+        draftState.product.lensColorSwatch = payload
+        applyProductRestrictions(draftState)
       })
     }
 
     case SET_LENS_TREATMENT: {
       return produce(state, draftState => {
         if (!draftState.product) return
-        draftState.product.lensTreatment = getProductOptionByName(payload)
-        draftState.product = getProductWithRestrictions(draftState)
+        draftState.product.lensTreatment = payload
+        applyProductRestrictions(draftState)
       })
     }
 
@@ -43,31 +43,31 @@ const reducer = (
       return produce(state, draftState => {
         if (!draftState.product) return
         draftState.product.prescriptionFile = payload
-        draftState.product = getProductWithRestrictions(draftState)
+        applyProductRestrictions(draftState)
       })
     }
 
     case SET_PRESCRIPTION: {
       return produce(state, draftState => {
         if (!draftState.product) return
-        draftState.product.prescription = getProductOptionByName(payload)
-        draftState.product = getProductWithRestrictions(draftState)
+        draftState.product.prescription = payload
+        applyProductRestrictions(draftState)
       })
     }
 
-    case SET_THEME: {
+    case SET_THEME_SWATCH: {
       return produce(state, draftState => {
         if (!draftState.product) return
-        draftState.theme = payload
-        draftState.product = getProductWithRestrictions(draftState)
+        draftState.themeSwatch = payload
+        applyProductRestrictions(draftState)
       })
     }
 
     case SET_TINT: {
       return produce(state, draftState => {
         if (!draftState.product) return
-        draftState.product.tint = getProductOptionByName(payload)
-        draftState.product = getProductWithRestrictions(draftState)
+        draftState.product.tint = payload
+        applyProductRestrictions(draftState)
       })
     }
 
@@ -75,7 +75,7 @@ const reducer = (
       return produce(state, draftState => {
         if (!draftState.product) return
         draftState.product.hasHighIndexAddOn = !draftState.product.hasHighIndexAddOn
-        draftState.product = getProductWithRestrictions(draftState)
+        applyProductRestrictions(draftState)
       })
     }
 
