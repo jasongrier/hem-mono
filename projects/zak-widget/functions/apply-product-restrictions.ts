@@ -3,7 +3,7 @@ import getProductOptions from './get-product-options'
 import removePrice from './remove-price'
 
 function applyProductRestrictions(draftState: IState) {
-  if (draftState.product.prescription === 'No Prescription') {
+  if (removePrice(draftState.product.prescription) === 'No Prescription') {
     draftState.product.hasHighIndexAddOn = false
     draftState.product.lensTreatment = 'Standard'
     draftState.product.tint = 'None'

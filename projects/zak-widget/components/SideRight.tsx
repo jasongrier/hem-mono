@@ -10,6 +10,7 @@ import {
   getTintOptions,
   productOptionToTitle,
   isProductEyeglass,
+  removePrice,
 } from '../functions'
 
 import {
@@ -67,7 +68,7 @@ function SideRight(): ReactElement {
   const themeTitle = getThemeTitle(theme)
   const total = getProductTotalPrice(product)
   const isEyeglass = isProductEyeglass(product)
-  const hasPrescription = prescription !== 'No Prescription'
+  const hasPrescription = removePrice(prescription) !== 'No Prescription'
 
   return (
     <div className="zw-right">

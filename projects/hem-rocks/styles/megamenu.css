@@ -1,9 +1,10 @@
 .hem-hamburger-menu-toggle {
   z-index: 99999;
   top: 12.5px;
-  right: 10px;
+  left: 10px;
   transform-origin: center center;
   transform: scale(.9);
+  pointer-events: all;
 }
 
 .hem-hamburger-menu-toggle-open {
@@ -12,7 +13,7 @@
 }
 
 .hem-hamburger-menu-toggle span {
-  background-color: #fff !important;
+  background-color: #ccc !important;
 }
 
 .hem-hamburger-menu-toggle-open span {

@@ -1,7 +1,6 @@
 ### TODOs
 | Filename | line # | TODO
 |:------|:------:|:------
-| [projects/zak-widget/functions/is-product-eyeglass.ts](projects/zak-widget/functions/is-product-eyeglass.ts#L2) | 2 | How to initialise this from the backend data??
 | [projects/zak-widget/store/index.ts](projects/zak-widget/store/index.ts#L1) | 1 | Alphabetize this everywhere
 | [projects/zak-widget/store/index.ts](projects/zak-widget/store/index.ts#L3) | 3 | Replace Thunk with Saga in all projects
 | [projects/zak-widget/store/selectors.ts](projects/zak-widget/store/selectors.ts#L1) | 1 | Example selector
