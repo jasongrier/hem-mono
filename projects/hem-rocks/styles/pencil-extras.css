@@ -10,6 +10,7 @@
   text-align: center;
   text-transform: lowercase;
   background: #000;
+  pointer-events: all;
 }
 
 .pencil-extras .campaign-monitor-form {

@@ -9,7 +9,6 @@ interface IProps {
   linkTo: string
   logo: SFC
   tipContent: string
-  tipTitle: string
   title: string
 
   transform?: string
@@ -21,7 +20,6 @@ function ProjectsListLogo({
   linkTo,
   logo: Logo,
   tipContent,
-  tipTitle,
   title,
 
   transform,
@@ -47,8 +45,7 @@ function ProjectsListLogo({
       <style dangerouslySetInnerHTML={{__html: style}} />
       <Link to={linkTo}>
         <TipPop>
-          <h2>{ tipTitle }</h2>
-          <p>{ tipContent }</p>
+          <div dangerouslySetInnerHTML={{ __html: tipContent }} />
         </TipPop>
         <Logo />
         <span>{title}</span>

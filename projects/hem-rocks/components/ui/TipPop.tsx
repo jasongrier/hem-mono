@@ -30,6 +30,7 @@ function TipPop({ children, delay = 300, onClick = noop }: PropsWithChildren<IPr
 
   const style = `
     .tip-pop {
+      display: flex;
       position: absolute;
       top: 0;
       left: 0;
@@ -41,6 +42,8 @@ function TipPop({ children, delay = 300, onClick = noop }: PropsWithChildren<IPr
       border: 1px solid #000;
       box-sizing: border-box;
       transition: all 250ms;
+      justify-content: center;
+      align-items: center;
     }
 
     .tip-pop-open {

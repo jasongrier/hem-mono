@@ -46,6 +46,10 @@ function SoundLibraryHome(): ReactElement {
     playerEngine.load(carouselItems[0].soundUrl)
 
     dispatch(playerSetVolume(0))
+
+    return function cleanup() {
+      playerEngine.unsubscribe(subscriber)
+    }
   }, [])
 
   useEffect(() => {
