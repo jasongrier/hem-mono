@@ -1,12 +1,11 @@
 import {
   LensColorSwatch,
-  ThemeSwatch,
 
   SET_LENS_COLOR_SWATCH,
   SET_LENS_TREATMENT,
   SET_PRESCRIPTION_FILE,
   SET_PRESCRIPTION,
-  SET_THEME_SWATCH,
+  SET_THEME,
   SET_TINT,
   TOGGLE_HIGH_INDEX_ADD_ON,
 
@@ -14,7 +13,7 @@ import {
   ISetLensTreatment,
   ISetPrescription,
   ISetPrescriptionFile,
-  ISetThemeSwatch,
+  ISetTheme,
   ISetTint,
   IToggleHighIndexAddOn,
 } from './types'
@@ -39,9 +38,9 @@ const setPrescriptionFile = (prescriptionFile: File): ISetPrescriptionFile => ({
   type: SET_PRESCRIPTION_FILE,
 })
 
-const setThemeSwatch = (theme: ThemeSwatch): ISetThemeSwatch => ({
+const setTheme = (theme: string): ISetTheme => ({
   payload: theme,
-  type: SET_THEME_SWATCH,
+  type: SET_THEME,
 })
 
 const setTint = (tintName: string): ISetTint => ({
@@ -59,7 +58,7 @@ export {
   setLensTreatment,
   setPrescription,
   setPrescriptionFile,
-  setThemeSwatch,
+  setTheme,
   setTint,
   toggleHighIndexAddOn,
 }

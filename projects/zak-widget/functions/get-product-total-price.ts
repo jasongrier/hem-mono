@@ -1,22 +1,15 @@
 import { IProduct } from '../store/types'
 import getHighIndexOption from './get-high-index-option'
-
-function getHighIndexPrice(): number {
-  const option = getHighIndexOption()
-
-  if (option) {
-    return option.price
-  }
-
-  return 0
-}
+import extractPrice from './extract-price'
 
 function getProductTotalPrice(product: IProduct) {
+  const highIndexOption = getHighIndexOption()
+
   return (
-      product.prescription.price
-      + product.lensTreatment.price
-      + product.tint.price
-      + (product.hasHighIndexAddOn ? getHighIndexPrice() : 0)
+    extractPrice(product.prescription)
+    + extractPrice(product.lensTreatment)
+    + extractPrice(product.tint)
+    + (product.hasHighIndexAddOn ? extractPrice(highIndexOption) : 0)
   )
 }
 

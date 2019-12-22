@@ -6,7 +6,7 @@ import {
   SET_LENS_TREATMENT,
   SET_PRESCRIPTION_FILE,
   SET_PRESCRIPTION,
-  SET_THEME_SWATCH,
+  SET_THEME,
   SET_TINT,
   TOGGLE_HIGH_INDEX_ADD_ON,
 
@@ -15,7 +15,6 @@ import {
 
 const initialState: IState = {
   product: getProduct(),
-  themeSwatch: 'eyeglass-black',
 }
 
 const reducer = (
@@ -55,10 +54,10 @@ const reducer = (
       })
     }
 
-    case SET_THEME_SWATCH: {
+    case SET_THEME: {
       return produce(state, draftState => {
         if (!draftState.product) return
-        draftState.themeSwatch = payload
+        draftState.product.theme = payload
         applyProductRestrictions(draftState)
       })
     }
