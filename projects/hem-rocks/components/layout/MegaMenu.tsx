@@ -56,6 +56,7 @@ function App(): ReactElement {
               <li>Seurat for MacOS and iOS</li>
               <li>Luc: Structured Audio</li>
               <li>Relineator</li>
+              <li>React Components</li>
               <li>Lab&hellip;</li>
             </ul>
           </div>
@@ -111,7 +112,7 @@ function App(): ReactElement {
                 <h3 className="small-heading">Secret stuff</h3>
                 <ul>
                   <li>
-                    <Link to="/internal">Internal pages...</Link>
+                    <Link to="/internal">Internal pages</Link>
                   </li>
                   <li>
                     <Link to="/log-out">Log out</Link>

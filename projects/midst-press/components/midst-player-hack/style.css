@@ -685,18 +685,6 @@
   background-repeat: no-repeat;
 }
 
-.speed-selector .drop .drop__content .speed-icon--low {
-  background-image: url('./speedometer_low.png');
-}
-
-.speed-selector .drop .drop__content .speed-icon--med {
-  background-image: url('./speedometer_med.png');
-}
-
-.speed-selector .drop .drop__content .speed-icon--hi {
-  background-image: url('./speedometer_hi.png');
-}
-
 .speed-selector .hem-slider {
   position: absolute;
   top: -7px;

@@ -1,28 +1,31 @@
 import React, { ReactElement, useState, useEffect } from 'react'
 import Midst from '../../midst-press/components/midst-player-hack/Midst'
 
+declare const MIDST_WIDGET_URL: string
+declare const MIDST_WIDGET_FILES_URL: string
+
 const zip = (window as any).zip
-zip.workerScriptsPath = '/static/workers/'
+zip.workerScriptsPath = MIDST_WIDGET_URL + '/static/workers/'
 
 interface IProps {
-  poemId: string
+  fileName: string
 }
 
-function MidstPlayerStandalone({ poemId }: IProps): ReactElement {
+function MidstPlayerStandalone({ fileName }: IProps): ReactElement {
   const [poemData, setPoemData] = useState()
 
   useEffect(() => {
-    loadPoem(poemId)
+    loadPoem(fileName)
   }, [])
 
   async function loadPoem(poemId: string) {
-    const zipTest = await fetch(`http://static.hem.rocks/portfolio-annelysegelman-com/midst-files/${poemId}.midst.zip`)
+    const zipTest = await fetch(`${MIDST_WIDGET_FILES_URL}/${fileName}`)
     const reader = new zip.BlobReader(await zipTest.blob())
 
-    zip.createReader(reader, zipReader => {
-      zipReader.getEntries(entries => {
+    zip.createReader(reader, (zipReader: any) => {
+      zipReader.getEntries((entries: any) => {
         const writer = new zip.BlobWriter()
-        entries[0].getData(writer, blob => {
+        entries[0].getData(writer, (blob: Blob) => {
           const reader = new FileReader()
           reader.addEventListener('loadend', (e: any) => {
             const data = JSON.parse(e.srcElement.result)
@@ -31,7 +34,7 @@ function MidstPlayerStandalone({ poemId }: IProps): ReactElement {
           reader.readAsText(blob)
         })
       })
-    }, err => {
+    }, (err: any) => {
       console.log(err)
     })
   }
@@ -42,7 +45,7 @@ function MidstPlayerStandalone({ poemId }: IProps): ReactElement {
         <Midst
           activePlayer={true}
           isPlayer={true}
-          MIDST_DATA_JS_KEY={poemId}
+          MIDST_DATA_JS_KEY={fileName.replace(/^\.midst\.zip/, '')}
           MIDST_DATA_JS={poemData}
         />
       }

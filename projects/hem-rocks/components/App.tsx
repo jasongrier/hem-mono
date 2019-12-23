@@ -14,6 +14,11 @@ import {
   MidstWidgets,
 } from '../routes/internal'
 
+import {
+  DemosHome,
+  MidstJavascriptWidgetDemo,
+} from '../routes/demos'
+
 function App(): ReactElement {
   const dispatch = useDispatch()
 
@@ -25,11 +30,21 @@ function App(): ReactElement {
   return (
     <div className="hem-application">
       <Switch>
+        {/* Landing pages */}
         <Route exact path="/" component={Home} />
         <Route exact path="/sound-library" component={SoundLibrary} />
+
+        {/* Demo pages */}
+        <Route exact path="/demos" component={DemosHome} />
+        <Route exact path="/demos/midst-javascript-widget" component={MidstJavascriptWidgetDemo} />
+
+        {/* Internal pages */}
         <Route exact path="/internal" component={InternalHome} />
         <Route exact path="/internal/midst-widgets" component={MidstWidgets} />
+
+        {/* Utility pages */}
         <Route exact path="/log-out" component={LogOut} />
+        <Route exact path="*" component={FourOhFour} />
       </Switch>
     </div>
   )

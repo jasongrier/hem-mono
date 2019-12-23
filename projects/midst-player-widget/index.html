@@ -1,48 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title></title>
-    <script type="text/javascript" src="http://static.hem.rocks/midst-press/site/scripts/zip.js"></script>
-    <style>
-      .poem-container {
-        position: relative;
-        width: 100vw;
-        height: 100vh;
-      }
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <script type="text/javascript" src="http://static.hem.rocks/midst-press/site/scripts/zip.js"></script>
+  <style>
+    .poem-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
 
-      .poem-container .midst {
-        position: absolute;
-        transform: scale(.5);
-      }
-    </style>
+    .poem-container .midst {
+      position: absolute;
+      transform: scale(.5);
+    }
+  </style>
 
-    <script>
-      const POEMS = [
-        'id-rather-go-blind',
-        'pool',
-        'the-climate',
-        'the-story',
-      ]
-    </script>
-  </head>
+  <script>
+    var MIDST_WIDGET_URL = 'http://localhost:1234'
+    var MIDST_WIDGET_FILES_URL = 'http://static.hem.rocks/portfolio-annelysegelman-com/midst-files'
+    var MIDST_WIDGET_FILES = [
+      'id-rather-go-blind.midst.zip',
+      'pool.midst.zip',
+      'the-climate.midst.zip',
+      'the-story.midst.zip',
+    ]
+  </script>
+</head>
 <body>
   <div id="react-root"></div>
 
   <div class="poem-container">
-    <div id="id-rather-go-blind"></div>
+    <div id="id-rather-go-blind.midst.zip"></div>
   </div>
 
   <div class="poem-container">
-    <div id="pool"></div>
+    <div id="pool.midst.zip"></div>
   </div>
 
   <div class="poem-container">
-    <div id="the-climate"></div>
+    <div id="the-climate.midst.zip"></div>
   </div>
 
   <div class="poem-container">
-    <div id="the-story"></div>
+    <div id="the-story.midst.zip"></div>
   </div>
 
   <script src="./index.ts"></script>

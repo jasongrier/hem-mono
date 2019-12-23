@@ -19,6 +19,7 @@ function InternalHome(): ReactElement {
         <InternalHeader />
 
         <main>
+          <h1>HEM's Internal Pages</h1>
           <section>
             <h2>Quick Links: Infrastructure</h2>
             <div className="internal-page-column">
