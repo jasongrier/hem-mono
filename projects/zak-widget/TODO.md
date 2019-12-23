@@ -7,6 +7,7 @@
 | [projects/zak-widget/store/selectors.ts](projects/zak-widget/store/selectors.ts#L2) | 2 | Start using selectors everywhere
 | [projects/zak-widget/store/selectors.ts](projects/zak-widget/store/selectors.ts#L3) | 3 | Start using useCallback & useMemo everywhere
 | [projects/zak-widget/store/selectors.ts](projects/zak-widget/store/selectors.ts#L4) | 4 | Turn on module-per-file
+| [projects/hem-rocks/components/App.tsx](projects/hem-rocks/components/App.tsx#L20) | 20 | "logIn" or "login" or "loggedIn"??
 | [projects/hem-rocks/routes/SoundLibrary.tsx](projects/hem-rocks/routes/SoundLibrary.tsx#L166) | 166 | Should simply forward the onClick, not set the value
 | [projects/jasonaarongrier-com/components/App.tsx](projects/jasonaarongrier-com/components/App.tsx#L14) | 14 | 404 page
 | [projects/midst-press/components/App.tsx](projects/midst-press/components/App.tsx#L74) | 74 | Move PoemNav out of the Switch/Route and directly into the Poem component

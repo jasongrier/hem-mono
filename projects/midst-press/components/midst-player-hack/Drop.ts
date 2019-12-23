@@ -1,7 +1,10 @@
 import React, { createElement as e } from 'react'
-import Slider from './Slider'
 import appendStyle from './append-style'
-import iconFastForward from './icon-fast-forward'
+import {
+  speedometerHi,
+  speedometerLow,
+  speedometerMed,
+} from './base64icons'
 
 // ================================================================================
 // Constructor
@@ -159,14 +162,17 @@ class Drop extends React.Component {
           e('div', { className: 'drop__content'},
             e('div', {
               className: 'speed-icon speed-icon--hi',
+              style: { backgroundImage: `url(data:image/gif;base64,${speedometerHi})` },
               onClick: () => setSpeed('hi')
             }),
             e('div', {
               className: 'speed-icon speed-icon--med',
+              style: { backgroundImage: `url(data:image/gif;base64,${speedometerMed})` },
               onClick: () => setSpeed('med')
             }),
             e('div', {
               className: 'speed-icon speed-icon--low',
+              style: { backgroundImage: `url(data:image/gif;base64,${speedometerLow})` },
               onClick: () => setSpeed('low')
             }),
           ),

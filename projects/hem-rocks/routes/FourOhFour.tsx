@@ -6,7 +6,7 @@ import { Header, Footer } from '../components/layout'
 import { BASE_SITE_TITLE } from '../config'
 import { logOut } from '../store/actions'
 
-function LogOut(): ReactElement {
+function FourOhFour(): ReactElement {
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -14,7 +14,7 @@ function LogOut(): ReactElement {
   }, [])
 
   return (
-    <div className="page generic-page log-out">
+    <div className="page generic-page four-oh-four">
       <Helmet>
         <title>{ BASE_SITE_TITLE }</title>
         <meta name="description" content="" />
@@ -23,7 +23,7 @@ function LogOut(): ReactElement {
       <Header />
 
       <main>
-        <h1>You are now logged out</h1>
+        <h1>Uh oh! We can't find what you're looking for</h1>
         <p>
           <Link to="/">Go home</Link>
         </p>
@@ -34,4 +34,4 @@ function LogOut(): ReactElement {
   )
 }
 
-export default LogOut
+export default FourOhFour

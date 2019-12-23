@@ -16,6 +16,14 @@ import iconSquare from './icon-square'
 import iconTimeline from './icon-timeline'
 import iconTrash from './icon-trash'
 import { IMidstFile } from '../../store/types'
+import {
+  end,
+  pause,
+  play,
+  speedometerHi,
+  speedometerLow,
+  speedometerMed,
+} from './base64icons'
 import './style.css'
 
 const LOG_AUTO_SCROLL = false
@@ -1277,6 +1285,7 @@ class Midst extends React.Component<IProps, any> {
     return (
       e('div', { className: 'timeline-controls' },
         e('div', {
+          style: { backgroundImage: `url(data:image/gif;base64,${end})` },
           className: 'round-icon timeline-button-3 end-button' + (editorPlaying ? ' playing' : ''),
           onClick: () => {
             this.pause()
@@ -1286,6 +1295,7 @@ class Midst extends React.Component<IProps, any> {
           },
         }),
         e('div', {
+          style: { backgroundImage: `url(data:image/gif;base64,${editorPlaying ? pause : play})` },
           className: 'round-icon timeline-button-3 play-pause-button' + (editorPlaying ? ' playing' : ''),
           onClick: editorPlaying ? this.pause : this.play,
         }),

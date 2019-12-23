@@ -2,19 +2,25 @@ import React, { ReactElement } from 'react'
 import { createPortal } from 'react-dom'
 import MidstPlayerStandalone from './MidstPlayerStandalone'
 
-declare const POEMS
+declare const MIDST_WIDGET_FILES: string[]
 
 function App(): ReactElement {
-  function createPoemPortal(poemId: string) {
+  function createPoemPortal(fileName: string) {
+    const portalRoot = document.getElementById(fileName)
+
+    if (!portalRoot) {
+      throw new Error(`Could not find a <div> with id="${fileName}"!`)
+    }
+
     return createPortal(
-      <MidstPlayerStandalone poemId={poemId} />,
-      document.getElementById(poemId),
+      <MidstPlayerStandalone fileName={fileName} />,
+      portalRoot,
     )
   }
 
   return (
     <div className="hem-application">
-      { POEMS.map(createPoemPortal) }
+      { MIDST_WIDGET_FILES.map(createPoemPortal) }
     </div>
   )
 }
