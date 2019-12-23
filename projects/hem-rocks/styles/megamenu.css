@@ -26,10 +26,11 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  padding: 100px 0;
-  background: rgba(255, 255, 255, 0.97);
+  padding: 70px 0;
+  background: rgba(255, 255, 255, 0.98);
   box-sizing: border-box;
-  font-family: 'U8', sans-serif;
+  font-family: Avenir, sans-serif;
+  pointer-events: all;
 }
 
 .hem-mega-menu-content {
@@ -38,6 +39,44 @@
   margin: 0 auto;
   box-sizing: border-box;
   pointer-events: all;
+}
+
+/* TODO: Standard input */
+.hem-mega-menu-content input {
+  width: 170px;
+  height: 20px;
+  line-height: 20px;
+  margin: 0 5px 0 0;
+  padding: 5px 10px;
+  border-radius: 3px;
+  border: 0;
+  background: #ccc !important;
+  font-family: Avenir, sans-serif;
+}
+
+.hem-mega-menu-content input:focus,
+.hem-mega-menu-content input:active {
+  outline: none;
+}
+
+/* TODO: Standard button */
+.hem-mega-menu-content button {
+  height: 30px;
+  line-height: 20px;
+  border-radius: 3px;
+  padding: 5px 10px;
+  border: 0;
+  background: #ccc;
+  cursor: pointer;
+  box-sizing: border-box;
+  /* transform: translateY(1px); */
+  transition: all 250ms;
+  font-family: Avenir, Arial, Helvetica, sans-serif;
+}
+
+.hem-mega-menu-content button:hover {
+  background: #333;
+  color: #ccc;
 }
 
 .hem-mega-menu-content input:active
@@ -58,6 +97,7 @@
 }
 
 .hem-mega-menu-content h3.big-heading {
+  font-family: 'U8', sans-serif;
   font-size: 22px;
   line-height: 22px;
 }
@@ -94,7 +134,6 @@
   margin: 0 0 10px 0;
   font-size: 12px;
   line-height: 12px;
-  /* TODO: Mega menu; only set U8 specifically on headings */
   font-family: Avenir, Arial, Helvetica, sans-serif;
 }
 
@@ -102,12 +141,8 @@
   line-height: 24px;
 }
 
-.hem-mega-menu-content li.mailing-list-form input {
-  font-family: Avenir, Arial, Helvetica, sans-serif;
-}
-
 .hem-mega-menu-content p {
-  width: 210px;
+  width: 250px;
   margin: 0 0 20px 0;
   padding: 0;
   font-size: 12px;
@@ -147,7 +182,6 @@
   color: #000;
   margin: 0;
   padding: 0;
-  font-family: 'U8', sans-serif;
   letter-spacing: 4px;
   overflow: hidden;
   vertical-align: middle;
@@ -168,21 +202,14 @@
 }
 
 .hem-mega-menu-content-box {
-  margin: 0 0 50px 0;
+  margin: 0 0 40px 0;
 }
 
 .hem-mega-menu-content .campaign-monitor-form {
   margin: 0 0 0 0;
 }
 
-.hem-mega-menu-content .campaign-monitor-form input {
-  width: 170px;
-  margin: 0 5px 0 0;
-  padding: 7px;
-  border: 1px solid #ccc;
-}
-
-.hem-mega-menu-content .campaign-monitor-form button {
-  padding: 7px;
-  border: 1px solid #ccc;
+.hem-mega-menu-content .login-form input {
+  display: block;
+  margin-bottom: 5px;
 }

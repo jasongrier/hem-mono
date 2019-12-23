@@ -1,34 +1,42 @@
 import React, { PropsWithChildren, ReactElement, useCallback, useState, SyntheticEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../store'
-import { logIn, logInReset } from '../../store/actions'
+import { logIn, logInResetError } from '../../store/actions'
 
 interface IProps {
   header?: string
 }
 
 function LogInForm({ header }: PropsWithChildren<IProps>): ReactElement {
-  const { loggedIn, loginFailed } = useSelector((state: RootState) => ({
+  const { loginFailed } = useSelector((state: RootState) => ({
     loggedIn: state.app.loggedIn,
     loginFailed: state.app.loginFailed,
   }))
 
   const dispatch = useDispatch()
 
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const onInputChanged = useCallback(
-    function onInputChanged(evt: SyntheticEvent<HTMLInputElement>) {
-      dispatch(logInReset())
+  const onEmailInputChanged = useCallback(
+    function onEmailInputChanged(evt: SyntheticEvent<HTMLInputElement>) {
+      loginFailed && dispatch(logInResetError())
+      setEmail(evt.currentTarget.value)
+    }, [loginFailed],
+  )
+
+  const onPasswordInputChanged = useCallback(
+    function onPasswordInputChanged(evt: SyntheticEvent<HTMLInputElement>) {
+      loginFailed && dispatch(logInResetError())
       setPassword(evt.currentTarget.value)
-    }, [],
+    }, [loginFailed],
   )
 
   const onSubmit = useCallback(
     function onSubmit(evt: SyntheticEvent<HTMLFormElement>) {
       evt.preventDefault()
-      dispatch(logIn(password))
-    }, [password],
+      dispatch(logIn(email, password))
+    }, [email, password],
   )
 
   return (
@@ -41,7 +49,16 @@ function LogInForm({ header }: PropsWithChildren<IProps>): ReactElement {
           <p className="error-message">Login failed. Try again</p>
         )}
         <input
-          onChange={onInputChanged}
+          name="Username"
+          onChange={onEmailInputChanged}
+          placeholder="Email"
+          type="text"
+          value={email}
+        />
+        <input
+          name="Password"
+          onChange={onPasswordInputChanged}
+          placeholder="Password"
           type="password"
           value={password}
         />

@@ -27,18 +27,17 @@ function App(): ReactElement {
               <Link to="/sound-library">Sound Library</Link>
             </h3>
             <h4>
-              <Link to="/sound-library">Second Edition</Link>
+              <Link to="/sound-library">New packs in 2020</Link>
             </h4>
             <ul>
               <li>Grand Piano</li>
-              <li>Grand Piano: Extended</li>
               <li>Viola</li>
               <li>Noise Reduction Artefacts</li>
-              <li>Seurat for Push</li>
-              <li>Upcoming packs...</li>
+              <li>Free Guitar</li>
+              <li>Seurat 2</li>
             </ul>
 
-            <h4>First Edition</h4>
+            <h4>Old Packs</h4>
             <p>
               Available until February 14th, 2020<br/>
               <Link
@@ -48,48 +47,62 @@ function App(): ReactElement {
               </Link>
             </p>
           </div>
+          <div className="hem-mega-menu-content-box">
+            <h3 className="big-heading">
+              <Link to="/sound-library">Apps &amp; Projects</Link>
+            </h3>
+            <ul>
+              <li>Midst</li>
+              <li>Seurat for MacOS and iOS</li>
+              <li>Luc: Structured Audio</li>
+              <li>Relineator</li>
+              <li>Lab&hellip;</li>
+            </ul>
+          </div>
+          <div className="hem-mega-menu-content-box">
+            <h3 className="big-heading">
+              <Link to="/sound-library">Label</Link>
+            </h3>
+            <ul>
+              <li>Discography</li>
+              <li>Listen to the Archive</li>
+            </ul>
+          </div>
         </div>
         <div className="hem-mega-menu-content-column">
           <div className="hem-mega-menu-content-box">
-            <h3 className="small-heading">Apps &amp; Projects</h3>
-            <ul>
-              <li>Midst</li>
-              <li>Seurat</li>
-              <li>Luc</li>
-              <li>Studio Tools</li>
-            </ul>
-          </div>
-
-          <div className="hem-mega-menu-content-box">
-            <h3 className="solo-heading">
-              Archive
-            </h3>
-          </div>
-
-          <div className="hem-mega-menu-content-box">
             <h3 className="small-heading">About</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquam urna et est accumsan, vitae faucibus tortor faucibus.</p>
+            <p>
+              HEM is an artistic research and technology studio focussed on experimental text and sound practices, based in Copenhagen.
+            </p>
+
+            <p>
+              HEM started in 2016 as an independent record label with Ariel Pink, Julia Holter, Michael Pisaro, Lucrecia Dalt counting among its roster.
+            </p>
           </div>
 
           <div className="hem-mega-menu-content-box">
-            <h3 className="small-heading">Contact</h3>
+            <h3 className="small-heading">Mailing list</h3>
             <ul>
-              <li>
-                <Link to="/about">Send an email</Link>
-              </li>
               <li className="mailing-list-form">
-                Mailing list:<br/>
                 <CampaignMonitorForm
                   hasNameField={false}
                   id=""
                   labelForEmail=""
                   labelForName=""
-                  placeholderText="Enter email to receive updates"
+                  placeholderText="Get updates in your inbox 🚀"
+                  submitButtonText="Sign up"
                 />
               </li>
-              <li className="social-link instagram">Instagram</li>
-              <li className="social-link twitter">Twitter</li>
-              <li className="social-link facebook">Facebook</li>
+            </ul>
+            <h3 className="small-heading">Contact</h3>
+            <ul>
+              <li>
+                <Link to="/about">info@hem.rocks</Link>
+              </li>
+              <li className="social-link instagram">NPM</li>
+              <li className="social-link twitter">Github</li>
+              <li className="social-link facebook">Instagram</li>
             </ul>
           </div>
           <div className="hem-mega-menu-internal-content-box">

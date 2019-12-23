@@ -3,7 +3,9 @@ import {
   CAROUSEL_PREVIOUS,
   CAROUSEL_SET_INDEX,
   LOG_IN,
-  LOG_IN_RESET,
+  LOG_IN_CHECK_REQUEST,
+  LOG_IN_CHECK_RESULT,
+  LOG_IN_RESET_ERROR,
   LOG_OUT,
   PLAYER_PAUSE,
   PLAYER_PLAY,
@@ -30,13 +32,23 @@ const carouselSetIndex = (index: number): Action => ({
 })
 
 // TODO: Use the appropriate action types
-const logIn = (password: string): Action => ({
+const logIn = (email: string, password: string): Action => ({
   type: LOG_IN,
-  payload: password,
+  payload: { email, password },
 })
 
-const logInReset = (): Action => ({
-  type: LOG_IN_RESET,
+const logInCheckRequest = (): Action => ({
+  type: LOG_IN_CHECK_REQUEST,
+  payload: null,
+})
+
+const logInCheckResult = (loggedIn: boolean): Action => ({
+  type: LOG_IN_CHECK_RESULT,
+  payload: loggedIn,
+})
+
+const logInResetError = (): Action => ({
+  type: LOG_IN_RESET_ERROR,
   payload: null,
 })
 
@@ -75,7 +87,9 @@ export {
   carouselPrevious,
   carouselSetIndex,
   logIn,
-  logInReset,
+  logInCheckRequest,
+  logInCheckResult,
+  logInResetError,
   logOut,
   playerPause,
   playerPlay,

@@ -1,5 +1,7 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useEffect } from 'react'
 import { Route, Switch } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { logInCheckRequest } from '../store/actions'
 
 import {
   Home,
@@ -13,6 +15,13 @@ import {
 } from '../routes/internal'
 
 function App(): ReactElement {
+  const dispatch = useDispatch()
+
+  // TODO: "logIn" or "login" or "loggedIn"??
+  useEffect(function logInCheck() {
+    dispatch(logInCheckRequest())
+  }, [])
+
   return (
     <div className="hem-application">
       <Switch>

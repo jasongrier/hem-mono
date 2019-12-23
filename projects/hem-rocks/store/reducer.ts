@@ -3,7 +3,9 @@ import {
   CAROUSEL_NEXT,
   CAROUSEL_PREVIOUS,
   LOG_IN,
-  LOG_IN_RESET,
+  LOG_IN_CHECK_REQUEST,
+  LOG_IN_CHECK_RESULT,
+  LOG_IN_RESET_ERROR,
   LOG_OUT,
   PLAYER_PAUSE,
   PLAYER_PLAY,
@@ -134,11 +136,22 @@ const reducer = (
     }
 
     case LOG_IN: {
-      const success = (payload === 'easyeasy')
+      const success = (
+        payload.email === 'info@hem.rocks'
+        && payload.password === 'easyeasy'
+      )
       return { ...state, loggedIn: success, loginFailed: !success }
     }
 
-    case LOG_IN_RESET: {
+    case LOG_IN_CHECK_REQUEST: {
+      return state
+    }
+
+    case LOG_IN_CHECK_RESULT: {
+      return { ...state, loggedIn: payload }
+    }
+
+    case LOG_IN_RESET_ERROR: {
       return { ...state, loginFailed: false }
     }
 

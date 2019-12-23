@@ -23,9 +23,11 @@ export interface IState {
 export const CAROUSEL_NEXT = 'CAROUSEL_NEXT'
 export const CAROUSEL_PREVIOUS = 'CAROUSEL_PREVIOUS'
 export const CAROUSEL_SET_INDEX = 'CAROUSEL_SET_INDEX'
+export const LOG_IN_CHECK_REQUEST = 'LOG_IN_CHECK_REQUEST'
+export const LOG_IN_CHECK_RESULT = 'LOG_IN_CHECK_RESULT'
 export const LOG_IN = 'LOG_IN'
 export const LOG_OUT = 'LOG_OUT'
-export const LOG_IN_RESET = 'LOG_IN_RESET'
+export const LOG_IN_RESET_ERROR = 'LOG_IN_RESET_ERROR'
 export const PLAYER_PAUSE = 'PLAYER_PAUSE'
 export const PLAYER_PLAY = 'PLAYER_PLAY'
 export const PLAYER_SET_SOUND = 'PLAYER_SET_SOUND'
@@ -50,11 +52,21 @@ export interface ICarouselSetIndex extends AnyAction {
 
 export interface ILogIn extends AnyAction {
   type: typeof LOG_IN
-  payload: string
+  payload: { email: string, password: string }
 }
 
-export interface ILogInReset extends AnyAction {
-  type: typeof LOG_IN_RESET
+export interface ILogInCheckRequest extends AnyAction {
+  type: typeof LOG_IN_CHECK_REQUEST
+  payload: boolean
+}
+
+export interface ILogInCheckResult extends AnyAction {
+  type: typeof LOG_IN_CHECK_RESULT
+  payload: boolean
+}
+
+export interface ILogInResetError extends AnyAction {
+  type: typeof LOG_IN_RESET_ERROR
   payload: null
 }
 
@@ -91,12 +103,14 @@ export interface IPlayerTogglePlaying extends AnyAction {
 export type Action =
   ICarouselNext
   | ICarouselPrevious
+  | ICarouselSetIndex
   | ILogIn
-  | ILogInReset
+  | ILogInCheckRequest
+  | ILogInCheckResult
+  | ILogInResetError
   | ILogOut
   | IPlayerPause
   | IPlayerPlay
   | IPlayerSetVolume
-  | ICarouselSetIndex
   | IPlayerToggleMuted
   | IPlayerTogglePlaying

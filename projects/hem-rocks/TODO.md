@@ -49,7 +49,8 @@
 | [projects/studio-hem-rocks/routes/demos/MidiDemo.tsx](projects/studio-hem-rocks/routes/demos/MidiDemo.tsx#L28) | 28 | Use the new Counter class
 | [projects/hem-rocks/styles/internal-header.css](projects/hem-rocks/styles/internal-header.css#L1) | 1 | Global pencil style
 | [projects/hem-rocks/styles/internal-page.css](projects/hem-rocks/styles/internal-page.css#L66) | 66 | Global button className
-| [projects/hem-rocks/styles/megamenu.css](projects/hem-rocks/styles/megamenu.css#L97) | 97 | Mega menu; only set U8 specifically on headings
+| [projects/hem-rocks/styles/megamenu.css](projects/hem-rocks/styles/megamenu.css#L44) | 44 | Standard input
+| [projects/hem-rocks/styles/megamenu.css](projects/hem-rocks/styles/megamenu.css#L62) | 62 | Standard button
 | [projects/hem-rocks/styles/projects-list.css](projects/hem-rocks/styles/projects-list.css#L99) | 99 | .not-a-button
 | [projects/hem-rocks/styles/projects-list.css](projects/hem-rocks/styles/projects-list.css#L111) | 111 | .not-a-button
 | [projects/hem-rocks/styles/site-header.css](projects/hem-rocks/styles/site-header.css#L11) | 11 | SneakyBody should take care of resetting pointer events all over the place
