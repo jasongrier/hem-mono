@@ -3,9 +3,43 @@
 }
 
 .internal-page main {
-  width: 1024px;
+  width: 960px;
   min-height: calc(100vh - 170px);
   margin: 0 auto;
+}
+
+.internal-page main h1 {
+  padding: 10px;
+  background: #ccc;
+  border-radius: 3px;
+}
+
+.internal-page main code,
+.internal-page main pre {
+  padding: 1px 5px;
+  background: #ccc;
+  border-radius: 3px;
+}
+
+.internal-page main a {
+  text-decoration: underline;
+}
+
+.internal-page main section {
+  padding: 5px 20px 20px 20px;
+  border-radius: 3px;
+}
+
+.internal-page main section h2,
+.internal-page main section h3 {
+  padding: 10px;
+  margin: 40px 0;
+  background: #eee;
+  border-radius: 3px;
+}
+
+.internal-page main section li {
+  margin-bottom: 20px;
 }
 
 .internal-page .blocked-content {

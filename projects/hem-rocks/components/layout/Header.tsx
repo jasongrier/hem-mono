@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom'
 import MegaMenu from './MegaMenu'
 
 interface IProps {
+  linkBack?: boolean
   onLogoClicked?: () => void
 }
 
-function Header({ onLogoClicked = noop }: IProps): ReactElement {
+function Header({ linkBack = true, onLogoClicked = noop }: IProps): ReactElement {
   return (
     <>
       <header className="site-header">
