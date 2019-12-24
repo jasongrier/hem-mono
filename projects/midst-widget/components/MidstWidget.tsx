@@ -1,25 +1,29 @@
 import React, { ReactElement, useState, useEffect } from 'react'
 import Midst from '../../midst-press/components/midst-player-hack/Midst'
 
-declare const MIDST_WIDGET_URL: string
+const win = (window as any)
+declare const zip: any
+declare const SCRIPT_URL: string
 declare const MIDST_WIDGET_FILES_URL: string
-
-const zip = (window as any).zip
-zip.workerScriptsPath = MIDST_WIDGET_URL + '/static/workers/'
 
 interface IProps {
   fileName: string
 }
 
-function MidstPlayerStandalone({ fileName }: IProps): ReactElement {
+function MidstWidget({ fileName }: IProps): ReactElement {
   const [poemData, setPoemData] = useState()
 
   useEffect(() => {
-    loadPoem(fileName)
+    loadPoem()
   }, [])
 
-  async function loadPoem(poemId: string) {
-    const zipTest = await fetch(`${MIDST_WIDGET_FILES_URL}/${fileName}`)
+  async function loadPoem() {
+    const filesUrl = (
+      typeof MIDST_WIDGET_FILES_URL === 'string'
+        ? MIDST_WIDGET_FILES_URL
+        : SCRIPT_URL + '/midst-widget'
+    )
+    const zipTest = await fetch(`${filesUrl}/${fileName}`)
     const reader = new zip.BlobReader(await zipTest.blob())
 
     zip.createReader(reader, (zipReader: any) => {
@@ -40,7 +44,12 @@ function MidstPlayerStandalone({ fileName }: IProps): ReactElement {
   }
 
   return (
-    <div className="hem-application">
+    <div
+      className="hem-application midst-widget"
+      style={{
+        backgroundImage: `url(${win.SCRIPT_URL}/static/assets/midst-loading.svg)`,
+      }}
+    >
       { poemData &&
         <Midst
           activePlayer={true}
@@ -53,4 +62,4 @@ function MidstPlayerStandalone({ fileName }: IProps): ReactElement {
   )
 }
 
-export default MidstPlayerStandalone
+export default MidstWidget

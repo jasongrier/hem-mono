@@ -7,19 +7,20 @@ import { BASE_SITE_TITLE } from '../../config'
 
 const javascriptWidgetSnippet = `
   <script>
-    var MIDST_WIDGET_URL = 'http://my-domain.com/midst-widget-subfolder'
-    var MIDST_WIDGET_FILES_URL = 'http://my-domain.com/midst-files-subfolder'
+    var MIDST_WIDGET_FILES_URL = '/midst-files'
     var MIDST_WIDGET_FILES = [
       'my-poem-1.midst.zip',
       'my-poem-2.midst.zip',
       'my-poem-3.midst.zip',
     ]
   </script>
+  <link rel="stylesheet" href="/midst-widget/midst-widget.css">
+  <script src="/midst-widget/midst-widget.js"></script>
 `
 
-function MidstWidgets(): ReactElement {
+function UsingMidstWidgets(): ReactElement {
   return (
-    <div className="page internal-page midst-widgets">
+    <div className="page internal-page using-midst-widgets">
       <Helmet>
         <title>{ BASE_SITE_TITLE }</title>
         <meta name="description" content="" />
@@ -41,15 +42,15 @@ function MidstWidgets(): ReactElement {
             <ol>
               <li>Make sure your users have web worker support</li>
               <li>Download the Midst Javascript Widget <a href="">here</a></li>
-              <li>Unzip the downloaded file and upload to your server</li>
+              <li>Unzip the downloaded file and upload the entire folder to your server</li>
               <li>
-                Add the following to the <code>&lt;head&gt;</code> of your webpage:
+                Add the following snippet to the <code>&lt;head&gt;</code> of your webpage:
                 <code dangerouslySetInnerHTML={{__html: javascriptWidgetSnippet}} />
               </li>
-              <li>Replace <code>http://my-domain.com/midst-widget-subfolder</code> with your domain name, and whatever subfolder you put the Midst Widget in</li>
-              <li>Replace <code>http://my-domain.com/midst-files-subfolder</code> with your domain name, and whatever subfolder you put the Midst files in</li>
+              <li>Upload your .midst files to your server or anywhere accessible on the web</li>
               <li><sup>*</sup>Remember to ZIP your Midst files prior to uploading!</li>
-              <li>Replace <code>my-poem-1.midst.zip</code>, etc. with the name(s) of the Midst files you'd like to display</li>
+              <li>Set 'MIDST_WIDGET_FILES_URL' to wherever you uploaded your Midst files</li>
+              <li>Replace <code>my-poem-1.midst.zip</code>, etc. with the name(s) of the Midst files</li>
               <li>Create a <code>&lt;div&gt;</code> element wherever on your webpage, for each file you'd like to display</li>
               <li>
                 Give each div an <code>id</code> attribute, equal to the Midst file name that should be displayed there, for example:
@@ -71,4 +72,4 @@ function MidstWidgets(): ReactElement {
   )
 }
 
-export default MidstWidgets
+export default UsingMidstWidgets

@@ -3,7 +3,7 @@
 |:------|:------:|:------
 | [projects/jasonaarongrier-com/store/selectors.ts](projects/jasonaarongrier-com/store/selectors.ts#L1) | 1 | Find a use for selectors in this project
 | [projects/jasonaarongrier-com/store/types.ts](projects/jasonaarongrier-com/store/types.ts#L4) | 4 | How to get around putting this in every project??
-| [projects/hem-rocks/components/App.tsx](projects/hem-rocks/components/App.tsx#L20) | 20 | "logIn" or "login" or "loggedIn"??
+| [projects/hem-rocks/components/App.tsx](projects/hem-rocks/components/App.tsx#L25) | 25 | "logIn" or "login" or "loggedIn"??
 | [projects/hem-rocks/routes/SoundLibrary.tsx](projects/hem-rocks/routes/SoundLibrary.tsx#L166) | 166 | Should simply forward the onClick, not set the value
 | [projects/jasonaarongrier-com/components/App.tsx](projects/jasonaarongrier-com/components/App.tsx#L14) | 14 | 404 page
 | [projects/midst-press/components/App.tsx](projects/midst-press/components/App.tsx#L74) | 74 | Move PoemNav out of the Switch/Route and directly into the Poem component

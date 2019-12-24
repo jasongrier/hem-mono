@@ -9,7 +9,7 @@
 | [projects/seurat/store/reducer.ts](projects/seurat/store/reducer.ts#L104) | 104 | Use action-specific interfaces, not AnyAction on the action creators
 | [projects/seurat/store/reducer.ts](projects/seurat/store/reducer.ts#L107) | 107 | Why does the long property access below get a type of "never"? Try suggestion above
 | [projects/seurat/store/types.ts](projects/seurat/store/types.ts#L32) | 32 | Omit doesn't work in `PerformanceControls.tsx`
-| [projects/hem-rocks/components/App.tsx](projects/hem-rocks/components/App.tsx#L20) | 20 | "logIn" or "login" or "loggedIn"??
+| [projects/hem-rocks/components/App.tsx](projects/hem-rocks/components/App.tsx#L25) | 25 | "logIn" or "login" or "loggedIn"??
 | [projects/hem-rocks/routes/SoundLibrary.tsx](projects/hem-rocks/routes/SoundLibrary.tsx#L166) | 166 | Should simply forward the onClick, not set the value
 | [projects/jasonaarongrier-com/components/App.tsx](projects/jasonaarongrier-com/components/App.tsx#L14) | 14 | 404 page
 | [projects/midst-press/components/App.tsx](projects/midst-press/components/App.tsx#L74) | 74 | Move PoemNav out of the Switch/Route and directly into the Poem component
