@@ -1,6 +1,6 @@
 .projects-list-spacer {
   width: 100vw;
-  height: 85vh;
+  height: 80vh;
 }
 
 .projects-list-spacer-open {
@@ -86,7 +86,7 @@
 
 .projects-micronav {
   position: absolute;
-  bottom: 40px;
+  bottom: 100px;
   width: 100vw;
   text-align: center;
   pointer-events: all;
@@ -102,8 +102,7 @@
   background: none;
   font-family: U8, sans-serif;
   text-transform: lowercase;
-  font-size: 12px;
-  font-weight: bold;
+  font-size: 11px;
   cursor: pointer;
   color: #ccc;
 }

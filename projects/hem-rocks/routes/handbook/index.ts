@@ -1,2 +1,4 @@
-export { default as HandbookHome } from './HandbookHome'
-export { default as UsingMidstWidgets } from './UsingMidstWidgets'
+import { createDynamicImport } from '../../../../lib/functions'
+
+export const HandbookHome = createDynamicImport(() => import('./HandbookHome'))
+export const UsingMidstWidgets = createDynamicImport(() => import('./UsingMidstWidgets'))

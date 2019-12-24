@@ -1,4 +1,6 @@
 import { AnyAction } from 'redux'
+import { slugify, titleCase } from 'voca'
+import randomWords from 'random-words'
 import {
   CAROUSEL_NEXT,
   CAROUSEL_PREVIOUS,
@@ -16,6 +18,7 @@ import {
   IState,
   CAROUSEL_SET_INDEX,
   PLAYER_TOGGLE_MUTED,
+  IArticle,
 } from './types'
 
 const packButtonText = 'Download now'
@@ -99,7 +102,41 @@ const carouselItems = [
   // }
 ]
 
+const randomExcerptConfig = {
+  exactly: 1,
+  wordsPerString: 20,
+}
+
+const randomTitleConfig = {
+  exactly: 1,
+  wordsPerString: 2,
+}
+
+function fakeArticle(): IArticle {
+  const category = 'Sound Library'
+  const tags = ['sound', 'technology']
+  const title = titleCase(randomWords(randomTitleConfig))
+  const url = `/${slugify(category)}/${slugify(title)}`
+
+  return {
+    category,
+    excerpt: randomWords(randomExcerptConfig),
+    featured: true,
+    image: {
+      alt: title,
+      tags,
+      url: 'https://picsum.photos/720/400',
+    },
+    tags,
+    title,
+    url,
+  }
+}
+
+const fakeArticles = Array(100).fill(null).map(fakeArticle)
+
 const initialState: IState = {
+  articles: fakeArticles,
   carouselIndex: 0,
   carouselItems,
   loggedIn: null,
