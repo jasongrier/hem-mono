@@ -10,7 +10,24 @@ export interface ICarouselItem {
   subHeadline: string
 }
 
+export interface IImage {
+  alt: string
+  tags: string[]
+  url: string
+}
+
+export interface IArticle {
+  category: string,
+  excerpt: string,
+  featured: true,
+  image: IImage,
+  tags: string[],
+  title: string,
+  url: string,
+}
+
 export interface IState {
+  articles: IArticle[]
   carouselIndex: number
   carouselItems: ICarouselItem[]
   loggedIn: boolean | null

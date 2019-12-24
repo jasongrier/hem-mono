@@ -1,1 +1,4 @@
-export { default as DemosHome } from './DemosHome'
+import { createDynamicImport } from '../../../../lib/functions'
+
+export const DemosHome = createDynamicImport(() => import('./DemosHome'))
+

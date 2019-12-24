@@ -5,8 +5,13 @@ import { logInCheckRequest } from '../store/actions'
 
 import {
   Home,
-  SoundLibrary,
 } from '../routes/flagship'
+
+console.log(Home)
+
+import {
+  SoundLibrary,
+} from '../routes/sound-library'
 
 import {
   HandbookHome,
