@@ -6,7 +6,7 @@
 | [projects/hem-rocks/store/selectors.ts](projects/hem-rocks/store/selectors.ts#L1) | 1 | Example selector
 | [projects/hem-rocks/store/types.ts](projects/hem-rocks/store/types.ts#L3) | 3 | Break into separate Redux modules
 | [projects/hem-rocks/styles/index.ts](projects/hem-rocks/styles/index.ts#L1) | 1 | Further divide into folders/components
-| [projects/hem-rocks/components/App.tsx](projects/hem-rocks/components/App.tsx#L20) | 20 | "logIn" or "login" or "loggedIn"??
+| [projects/hem-rocks/components/App.tsx](projects/hem-rocks/components/App.tsx#L25) | 25 | "logIn" or "login" or "loggedIn"??
 | [projects/hem-rocks/routes/SoundLibrary.tsx](projects/hem-rocks/routes/SoundLibrary.tsx#L166) | 166 | Should simply forward the onClick, not set the value
 | [projects/jasonaarongrier-com/components/App.tsx](projects/jasonaarongrier-com/components/App.tsx#L14) | 14 | 404 page
 | [projects/midst-press/components/App.tsx](projects/midst-press/components/App.tsx#L74) | 74 | Move PoemNav out of the Switch/Route and directly into the Poem component

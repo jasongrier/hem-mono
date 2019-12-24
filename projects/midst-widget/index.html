@@ -11,14 +11,15 @@
       height: 100vh;
     }
 
-    .poem-container .midst {
+    .poem-container .midst-widget {
       position: absolute;
+      width: 100vw;
+      height: 100vh;
       transform: scale(.5);
     }
   </style>
 
   <script>
-    var MIDST_WIDGET_URL = 'http://localhost:1234'
     var MIDST_WIDGET_FILES_URL = 'http://static.hem.rocks/portfolio-annelysegelman-com/midst-files'
     var MIDST_WIDGET_FILES = [
       'id-rather-go-blind.midst.zip',
@@ -27,6 +28,8 @@
       'the-story.midst.zip',
     ]
   </script>
+  <!-- <link rel="stylesheet" href="/midst-widget/midst-widget.css">
+  <script src="/midst-widget/midst-widget.js"></script> -->
 </head>
 <body>
   <div id="react-root"></div>

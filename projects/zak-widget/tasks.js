@@ -1,8 +1,8 @@
 const { execSync } = require('child_process')
-const { extname, join } = require('path')
-const { readdirSync, readFileSync } = require('fs')
+const { join } = require('path')
+const { readFileSync } = require('fs')
 
-function helloWorld() {
+function zakPostBuild() {
   // Copy Zak Widget build to a custom working directory
   const distDir = join(__dirname, '..', '..', 'dist')
   const zakDistDir = join(__dirname, '..', '..', 'zak-widget-dist')
@@ -18,11 +18,14 @@ function helloWorld() {
 
   execSync(`mv ${distDir}${manifest['index.ts']} ${zakDistDir}/zw-${mainJsFile}`, { stdio: 'inherit' })
   execSync(`mv ${distDir}${manifest['index.css']} ${zakDistDir}/zw-${mainCssFile}`, { stdio: 'inherit' })
+
+  execSync(`rm -rf ${distDir}`, { stdio: 'inherit' })
+  execSync(`mv ${zakDistDir} ${distDir}`, { stdio: 'inherit' })
 }
 
 module.exports = {
   preBuild: [],
   postBuild: [
-    helloWorld,
+    zakPostBuild,
   ],
 }

@@ -1,0 +1,10 @@
+.midst-widget {
+  background-color: #FF91AF;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100px 100px;
+}
+
+.midst-widget .midst {
+  position: static;
+}

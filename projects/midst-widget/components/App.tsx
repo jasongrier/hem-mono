@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import { createPortal } from 'react-dom'
-import MidstPlayerStandalone from './MidstPlayerStandalone'
+import MidstWidget from './MidstWidget'
 
 declare const MIDST_WIDGET_FILES: string[]
 
@@ -13,7 +13,7 @@ function App(): ReactElement {
     }
 
     return createPortal(
-      <MidstPlayerStandalone fileName={fileName} />,
+      <MidstWidget fileName={fileName} />,
       portalRoot,
     )
   }
