@@ -2,9 +2,9 @@ import React, { ReactElement, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { Helmet } from 'react-helmet'
-import { Header, Footer } from '../components/layout'
-import { BASE_SITE_TITLE } from '../config'
-import { logOut } from '../store/actions'
+import { Header, Footer } from '../../components/layout'
+import { BASE_SITE_TITLE } from '../../config'
+import { logOut } from '../../store/actions'
 
 function FourOhFour(): ReactElement {
   const dispatch = useDispatch()

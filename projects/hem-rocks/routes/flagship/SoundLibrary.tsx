@@ -5,19 +5,19 @@ import {
   NextButton,
   PlayPauseButton,
   SpeakerButton,
-} from '../../../lib/components/buttons'
-import { Slider } from '../../../lib/components'
-import { WebsitePlayer } from '../../../lib/classes/audio'
-import { Header, HeroineCarousel } from '../components/layout'
-import { BASE_SITE_PAGE_TITLE } from '../config'
-import { RootState } from '../store'
+} from '../../../../lib/components/buttons'
+import { Slider } from '../../../../lib/components'
+import { WebsitePlayer } from '../../../../lib/classes/audio'
+import { Header, HeroineCarousel } from '../../components/layout'
+import { BASE_SITE_PAGE_TITLE } from '../../config'
+import { RootState } from '../../store'
 import {
   carouselNext,
   carouselPrevious,
   playerSetVolume,
   playerToggleMuted,
   playerTogglePlaying,
-} from '../store/actions'
+} from '../../store/actions'
 
 const playerEngine = WebsitePlayer.getInstance()
 

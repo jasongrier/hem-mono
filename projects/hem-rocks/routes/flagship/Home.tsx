@@ -1,7 +1,7 @@
 import React, { ReactElement, useState, useCallback } from 'react'
 import { Helmet } from 'react-helmet'
-import { Header, Footer, NewsList, PencilExtras, ProjectsList } from '../components/layout'
-import { BASE_SITE_TITLE } from '../config'
+import { Header, Footer, NewsList, PencilExtras, ProjectsList } from '../../components/layout'
+import { BASE_SITE_TITLE } from '../../config'
 
 function Home(): ReactElement {
   const [projectsListOpen, setProjectsListOpen] = useState(false)

@@ -7,7 +7,11 @@ interface IProps {
   header?: string
 }
 
-function ProtectedContent({ children, header }: PropsWithChildren<IProps>): ReactElement {
+function ProtectedContent({
+  children,
+
+  header = 'Log in to view this content'
+}: PropsWithChildren<IProps>): ReactElement {
   const { loggedIn } = useSelector((state: RootState) => ({
     loggedIn: state.app.loggedIn,
   }))

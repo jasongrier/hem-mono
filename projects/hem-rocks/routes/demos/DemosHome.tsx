@@ -19,7 +19,14 @@ function DemosHome(): ReactElement {
           <h2>Midst</h2>
           <div className="internal-page-column">
             <ul>
-              <li><a href="#">Midst Javascript Widget</a></li>
+              <li>
+                <a
+                  href="http://static.hem.rocks/midst/widget-demo/"
+                  target="_blank"
+                >
+                  Midst Javascript Widget (opens in a new window)
+                </a>
+              </li>
               <li><a href="#">Midst IFrame Widget</a></li>
             </ul>
           </div>

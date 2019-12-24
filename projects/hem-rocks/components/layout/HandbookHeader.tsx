@@ -3,20 +3,23 @@ import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 
 interface IProps {
+  linkBack?: boolean
   onLogoClicked?: () => void
 }
 
-function InternalHeader({ onLogoClicked = noop }: IProps): ReactElement {
+function HandbookHeader({ linkBack = true, onLogoClicked = noop }: IProps): ReactElement {
   return (
     <header className="internal-header">
       <h1>
         <span>
-          <Link
-            onClick={onLogoClicked}
-            to="/internal"
-          >
-            &larr; HEM Internal Pages
-          </Link>
+          { linkBack &&
+            <Link
+              onClick={onLogoClicked}
+              to="/handbook"
+            >
+              &larr; HEM Handbook
+            </Link>
+          }
         </span>
       </h1>
       <nav>
@@ -30,4 +33,4 @@ function InternalHeader({ onLogoClicked = noop }: IProps): ReactElement {
   )
 }
 
-export default InternalHeader
+export default HandbookHeader

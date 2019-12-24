@@ -5,19 +5,22 @@ import { logInCheckRequest } from '../store/actions'
 
 import {
   Home,
-  LogOut,
   SoundLibrary,
-} from '../routes'
+} from '../routes/flagship'
 
 import {
-  InternalHome,
-  MidstWidgets,
-} from '../routes/internal'
+  HandbookHome,
+  UsingMidstWidgets,
+} from '../routes/handbook'
 
 import {
   DemosHome,
-  MidstJavascriptWidgetDemo,
 } from '../routes/demos'
+
+import {
+  FourOhFour,
+  LogOut,
+} from '../routes/utility'
 
 function App(): ReactElement {
   const dispatch = useDispatch()
@@ -30,17 +33,16 @@ function App(): ReactElement {
   return (
     <div className="hem-application">
       <Switch>
-        {/* Landing pages */}
+        {/* Flagship pages */}
         <Route exact path="/" component={Home} />
         <Route exact path="/sound-library" component={SoundLibrary} />
 
         {/* Demo pages */}
         <Route exact path="/demos" component={DemosHome} />
-        <Route exact path="/demos/midst-javascript-widget" component={MidstJavascriptWidgetDemo} />
 
         {/* Internal pages */}
-        <Route exact path="/internal" component={InternalHome} />
-        <Route exact path="/internal/midst-widgets" component={MidstWidgets} />
+        <Route exact path="/handbook" component={HandbookHome} />
+        <Route exact path="/handbook/using-midst-widgets" component={UsingMidstWidgets} />
 
         {/* Utility pages */}
         <Route exact path="/log-out" component={LogOut} />

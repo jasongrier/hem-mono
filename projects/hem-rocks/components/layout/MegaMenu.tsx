@@ -112,7 +112,7 @@ function App(): ReactElement {
                 <h3 className="small-heading">Secret stuff</h3>
                 <ul>
                   <li>
-                    <Link to="/internal">Internal pages</Link>
+                    <Link to="/handbook">Handbook</Link>
                   </li>
                   <li>
                     <Link to="/log-out">Log out</Link>

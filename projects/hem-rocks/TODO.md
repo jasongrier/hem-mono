@@ -6,8 +6,7 @@
 | [projects/hem-rocks/store/selectors.ts](projects/hem-rocks/store/selectors.ts#L1) | 1 | Example selector
 | [projects/hem-rocks/store/types.ts](projects/hem-rocks/store/types.ts#L3) | 3 | Break into separate Redux modules
 | [projects/hem-rocks/styles/index.ts](projects/hem-rocks/styles/index.ts#L1) | 1 | Further divide into folders/components
-| [projects/hem-rocks/components/App.tsx](projects/hem-rocks/components/App.tsx#L25) | 25 | "logIn" or "login" or "loggedIn"??
-| [projects/hem-rocks/routes/SoundLibrary.tsx](projects/hem-rocks/routes/SoundLibrary.tsx#L166) | 166 | Should simply forward the onClick, not set the value
+| [projects/hem-rocks/components/App.tsx](projects/hem-rocks/components/App.tsx#L28) | 28 | "logIn" or "login" or "loggedIn"??
 | [projects/jasonaarongrier-com/components/App.tsx](projects/jasonaarongrier-com/components/App.tsx#L14) | 14 | 404 page
 | [projects/midst-press/components/App.tsx](projects/midst-press/components/App.tsx#L74) | 74 | Move PoemNav out of the Switch/Route and directly into the Poem component
 | [projects/midst-press/components/CampaignMonitorForm.tsx](projects/midst-press/components/CampaignMonitorForm.tsx#L10) | 10 | All projects: Use line breaks for all component props
@@ -39,6 +38,7 @@
 | [projects/hem-rocks/components/layout/ProjectsList.tsx](projects/hem-rocks/components/layout/ProjectsList.tsx#L95) | 95 | Publish SneakyBody, Displace, Dial, etc to NPM
 | [projects/hem-rocks/components/ui/TipPop.tsx](projects/hem-rocks/components/ui/TipPop.tsx#L9) | 9 | Move to common
 | [projects/hem-rocks/components/ui/TipPop.tsx](projects/hem-rocks/components/ui/TipPop.tsx#L15) | 15 | All projects; Use named functions in hooks, even useEffect
+| [projects/hem-rocks/routes/flagship/SoundLibrary.tsx](projects/hem-rocks/routes/flagship/SoundLibrary.tsx#L166) | 166 | Should simply forward the onClick, not set the value
 | [projects/studio-hem-rocks/components/animation/FlipBook.tsx](projects/studio-hem-rocks/components/animation/FlipBook.tsx#L10) | 10 | All projects, separate alphabetized required props from optionals
 | [projects/studio-hem-rocks/components/animation/FlipBook.tsx](projects/studio-hem-rocks/components/animation/FlipBook.tsx#L37) | 37 | Should be "speed" ––or rather, "slowness"–– not "frameRate"
 | [projects/studio-hem-rocks/components/animation/FlipBook.tsx](projects/studio-hem-rocks/components/animation/FlipBook.tsx#L57) | 57 | What if ––unlikely, but–– two frames have the same difference score??
@@ -49,7 +49,7 @@
 | [projects/studio-hem-rocks/routes/demos/MidiDemo.tsx](projects/studio-hem-rocks/routes/demos/MidiDemo.tsx#L10) | 10 | Move to the new Midi class
 | [projects/studio-hem-rocks/routes/demos/MidiDemo.tsx](projects/studio-hem-rocks/routes/demos/MidiDemo.tsx#L28) | 28 | Use the new Counter class
 | [projects/hem-rocks/styles/internal-header.css](projects/hem-rocks/styles/internal-header.css#L1) | 1 | Global pencil style
-| [projects/hem-rocks/styles/internal-page.css](projects/hem-rocks/styles/internal-page.css#L66) | 66 | Global button className
+| [projects/hem-rocks/styles/internal-page.css](projects/hem-rocks/styles/internal-page.css#L100) | 100 | Global button className
 | [projects/hem-rocks/styles/megamenu.css](projects/hem-rocks/styles/megamenu.css#L44) | 44 | Standard input
 | [projects/hem-rocks/styles/megamenu.css](projects/hem-rocks/styles/megamenu.css#L62) | 62 | Standard button
 | [projects/hem-rocks/styles/projects-list.css](projects/hem-rocks/styles/projects-list.css#L99) | 99 | .not-a-button
