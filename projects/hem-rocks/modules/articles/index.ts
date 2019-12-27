@@ -23,13 +23,14 @@ export interface IArticle {
 
 export interface IState {
   articles: IArticle[]
+  requests: string[]
 }
 
 export const INDEX_RECEIVED = 'INDEX_RECEIVED'
 export const INDEX_REQUESTED = 'INDEX_REQUESTED'
 
 export interface IIndexReceived extends AnyAction {
-  payload: IArticle[]
+  payload: { articles: IArticle[], pathToIndex: string }
   type: typeof INDEX_RECEIVED
 }
 

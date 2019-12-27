@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useSelector, useDispatch } from 'react-redux'
 import { Header, Footer, ArticlesGrid, PencilExtras } from '../../components/layout'
@@ -22,13 +22,7 @@ const pencilExtrasItems = {
 }
 
 function SoundLibraryHome(): ReactElement {
-  const { articles, grandPianoArticles } = useSelector((state: RootState) => ({
-    articles: state.articles.articles.filter(a => {
-      return (
-        a.category === 'Sound Library'
-        && a.subCategory !== 'Grand Piano'
-      )
-    }),
+  const { grandPianoArticles } = useSelector((state: RootState) => ({
     grandPianoArticles: state.articles.articles.filter(a => a.subCategory === 'Grand Piano').sort((a, b) => a.order - b.order),
   }))
 
@@ -93,11 +87,11 @@ function SoundLibraryHome(): ReactElement {
         </ArticlesGrid>
       </div>
 
-      <ArticlesGrid
+      {/* <ArticlesGrid
         articles={articles}
         displaySubcategory={true}
         heading="All Packs"
-      />
+      /> */}
 
       <Footer />
     </div>
