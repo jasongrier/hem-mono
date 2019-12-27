@@ -8,7 +8,7 @@ import {
   HEM_WEBSITE_PLAYER_TOGGLE_PLAYING,
 
   IState,
-} from './types'
+} from './index'
 
 const initialState: IState = {
   playing: false,

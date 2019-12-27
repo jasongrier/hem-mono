@@ -7,7 +7,7 @@ import {
   HEM_WEBSITE_PLAYER_TOGGLE_PLAYING,
 
   Action,
-} from './types'
+} from './index'
 
 const init = (): Action => ({
   type: HEM_WEBSITE_PLAYER_INIT,

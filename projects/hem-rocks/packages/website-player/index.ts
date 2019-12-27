@@ -51,3 +51,7 @@ export type Action =
   | ISetVolume
   | IToggleMuted
   | ITogglePlaying
+
+export { default as WebsitePlayer } from './components/WebsitePlayer'
+export { default as WebsitePlayerControls } from './components/WebsitePlayerControls'
+export { reducer } from './reducer'

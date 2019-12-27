@@ -32,9 +32,9 @@
 | [projects/seurat/routes/Home.tsx](projects/seurat/routes/Home.tsx#L5) | 5 | Switch to Webpack
 | [projects/studio-hem-rocks/routes/Home.tsx](projects/studio-hem-rocks/routes/Home.tsx#L18) | 18 | Link to zip; deploy task to update zip (without projects)
 | [projects/zak-widget/components/SwatchPicker.tsx](projects/zak-widget/components/SwatchPicker.tsx#L5) | 5 | All projects; Export all props
+| [projects/hem-rocks/components/art/Planes.tsx](projects/hem-rocks/components/art/Planes.tsx#L17) | 17 | Move to a common/packages
 | [projects/hem-rocks/components/layout/Displace.tsx](projects/hem-rocks/components/layout/Displace.tsx#L17) | 17 | All projects; use PropsWithChildren instead of `children: any` in IProps
 | [projects/hem-rocks/components/layout/MegaMenu.tsx](projects/hem-rocks/components/layout/MegaMenu.tsx#L15) | 15 | Remove `hem-` prefix
-| [projects/hem-rocks/components/ui/Planes.tsx](projects/hem-rocks/components/ui/Planes.tsx#L22) | 22 | Move to common
 | [projects/hem-rocks/components/ui/SneakyHero.tsx](projects/hem-rocks/components/ui/SneakyHero.tsx#L11) | 11 | New build task: `npm run task npm-publish lib/my-package`
 | [projects/hem-rocks/components/ui/SneakyHero.tsx](projects/hem-rocks/components/ui/SneakyHero.tsx#L12) | 12 | Prep: No redux just yet, or else state boldly that Redux needs to be separately installed. Use the defaultStyles pattern. Use the controlled/uncontrolled autoswitch pattern
 | [projects/hem-rocks/components/ui/SneakyHero.tsx](projects/hem-rocks/components/ui/SneakyHero.tsx#L13) | 13 | NPM steps: Manually place component in lib/packages, create a package.json there with only the needed deps, React goes in dev dependencies, no Redux, create a .d.ts and doc blocks, docs generator, tests and code coverage, prettier, readme file, license file, (lint for all this), and bundle with ROLLUP, then what??
@@ -42,7 +42,6 @@
 | [projects/hem-rocks/components/ui/SneakyHero.tsx](projects/hem-rocks/components/ui/SneakyHero.tsx#L15) | 15 | Publish sneaky-hero, Displace, Dial, etc to NPM
 | [projects/hem-rocks/components/ui/TipPop.tsx](projects/hem-rocks/components/ui/TipPop.tsx#L9) | 9 | Move to common
 | [projects/hem-rocks/components/ui/TipPop.tsx](projects/hem-rocks/components/ui/TipPop.tsx#L15) | 15 | All projects; Use named functions in hooks, even useEffect
-| [projects/hem-rocks/routes/sound-library/SoundLibrary.tsx](projects/hem-rocks/routes/sound-library/SoundLibrary.tsx#L167) | 167 | Should simply forward the onClick, not set the value
 | [projects/studio-hem-rocks/components/animation/FlipBook.tsx](projects/studio-hem-rocks/components/animation/FlipBook.tsx#L10) | 10 | All projects, separate alphabetized required props from optionals
 | [projects/studio-hem-rocks/components/animation/FlipBook.tsx](projects/studio-hem-rocks/components/animation/FlipBook.tsx#L37) | 37 | Should be "speed" ––or rather, "slowness"–– not "frameRate"
 | [projects/studio-hem-rocks/components/animation/FlipBook.tsx](projects/studio-hem-rocks/components/animation/FlipBook.tsx#L57) | 57 | What if ––unlikely, but–– two frames have the same difference score??

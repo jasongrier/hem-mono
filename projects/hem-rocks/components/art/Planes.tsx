@@ -6,40 +6,44 @@ interface IPlane {
   scale: number
 }
 
-interface ICoords {
-  x: number
-  y: number
-  z: number
-}
-
 interface IProps {
-  animationSpeed: number
-  cameraPosition: ICoords
-  lightPosition: ICoords
-  sphereCount: 0
+  colorBackgroundFrom?: string
+  colorBackgroundTo?: string
+  colorPlaneFrom?: string
+  colorPlaneTo?: string
+  numPlanes?: number
 }
 
-// TODO: Move to common
-function Planes(): ReactElement {
+// TODO: Move to a common/packages
+function Planes({
+  colorBackgroundFrom = '#cccccc',
+  colorBackgroundTo = '#e5e5e5',
+  colorPlaneFrom = '#000000',
+  colorPlaneTo = '#e5e5e5',
+  numPlanes = 10,
+}: IProps): ReactElement {
   const [planes, setPlanes] = useState([] as IPlane[])
 
   useEffect(() => {
     const planes = []
-    for (let i = 0; i < 10; i ++) {
-      planes.push({
-        skewX: Math.random() * 90 - 45,
-        rotate: Math.random() * 90 - 45,
-        scale: Math.random() * 1,
-      })
+    for (let i = 0; i < numPlanes; i ++) {
+      planes.push(generatePlaneStyle())
     }
     setPlanes(planes)
   }, [])
+
+  function generatePlaneStyle() {
+    return {
+      skewX: Math.random() * 90 - 45,
+      rotate: Math.random() * 90 - 45,
+      scale: Math.random() * 1,
+    }
+  }
 
   const style = `
     .planes {
       position: relative;
       overflow: hidden;
-      background: linear-gradient(to top,  #cccccc 0%, #e5e5e5 100%);
     }
 
     .planes-frame {
@@ -56,7 +60,6 @@ function Planes(): ReactElement {
       left: 0;
       width: 200%;
       height: 200%;
-      background: linear-gradient(to right,  #000000 0%, #e5e5e5 100%);
       opacity: 0.5;
     }
 
@@ -75,13 +78,19 @@ function Planes(): ReactElement {
   return (
     <>
       <style dangerouslySetInnerHTML={{__html: style}} />
-      <div className="planes">
+      <div
+        className="planes"
+        style={{
+          background: `linear-gradient(to top, ${colorBackgroundFrom} 0%, ${colorBackgroundTo} 100%)`
+        }}
+      >
         <div className="planes-frame">
           {planes.map((plane, index) => (
             <div
               className="planes-plane"
               key={index}
               style={{
+                background: `linear-gradient(to right, ${colorPlaneFrom} 0%, ${colorPlaneTo} 100%)`,
                 transform: `
                   skewX(${plane.skewX}deg)
                   rotate(${plane.rotate}deg)

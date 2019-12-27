@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async'
 import { useSelector } from 'react-redux'
 import { Header, Footer, ArticlesGrid, PencilExtras, ProjectsGrid } from '../../components/layout'
 import { SneakyHero } from '../../components/ui'
-import { RootState } from '../../store'
+import { RootState } from '../../index'
 import { BASE_SITE_TITLE } from '../../config'
 
 const pencilExtrasItems = {
@@ -23,8 +23,8 @@ const pencilExtrasItems = {
 
 function Home(): ReactElement {
   const { articles, projects } = useSelector((state: RootState) => ({
-    articles: state.app.articles.filter(a => a.featured).slice(0, 12),
-    projects: state.app.projects.filter(p => p.featured),
+    articles: state.articles.articles.filter(a => a.tags.indexOf('featured')).slice(0, 12),
+    projects: state.misc.projects.filter(p => p.featured),
   }))
 
   return (

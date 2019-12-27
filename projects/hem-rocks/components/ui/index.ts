@@ -1,6 +1,5 @@
 export { default as LogInForm } from './LogInForm'
 export { default as MailingListFormMirror } from './MailingListFormMirror'
 export { default as ProtectedContent } from './ProtectedContent'
-export { default as Planes } from './Planes'
 export { default as SneakyHero } from './SneakyHero'
 export { default as TipPop } from './TipPop'

@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 import { MailingListFormMirror } from '../ui'
-import { WebsitePlayerControls } from '../packages/website-player'
+import { WebsitePlayerControls } from '../../packages/website-player'
 
 function Footer(): ReactElement {
   return (
