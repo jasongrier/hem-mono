@@ -1,9 +1,9 @@
 import React, { ReactElement, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { WebsitePlayerControls } from '../packages/website-player'
-import { setStuckPencil, setStuckPlayer } from '../../store/actions'
-import { RootState } from '../../store'
+import { WebsitePlayerControls } from '../../packages/website-player'
+import { setStuckPencil, setStuckPlayer } from '../../modules/ui'
+import { RootState } from '../../index'
 
 interface IPencilExtrasItem {
   text: string
@@ -39,8 +39,8 @@ function renderItemGroup(items: IPencilExtrasItem[]) {
 
 function PencilExtras({ items }: IProps): ReactElement {
   const { stuckPencil, stuckPlayer } = useSelector((state: RootState) => ({
-    stuckPencil: state.app.stuckPencil,
-    stuckPlayer: state.app.stuckPlayer,
+    stuckPencil: state.ui.stuckPencil,
+    stuckPlayer: state.ui.stuckPlayer,
   }))
 
   const dispatch = useDispatch()

@@ -43,9 +43,7 @@ function buildContent(projectName) {
     const fileContent = readFileSync(join(contentDir, fileName), 'utf8')
     const fileData = parseFrontMatter(fileContent, { content: true })
     const indexData = {
-      excerpt: fileData.attributes.excerpt,
-      tags: fileData.attributes.tags,
-      title: fileData.attributes.title,
+      ...fileData.attributes,
       url: `/static/content/compiled/${fileName}.json`,
     }
 

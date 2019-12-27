@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { CampaignMonitorForm, HamburgerMenu } from '../../../../lib/components'
 import { LogInForm } from '../ui'
-import { RootState } from '../../store'
+import { RootState } from '../../index'
 
 function App(): ReactElement {
   const { loggedIn } = useSelector((state: RootState) => ({
-    loggedIn: state.app.loggedIn,
+    loggedIn: state.login.loggedIn,
   }))
 
   return (

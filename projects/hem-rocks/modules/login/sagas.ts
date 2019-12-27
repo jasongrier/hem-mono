@@ -1,6 +1,6 @@
-import { call, put, select, takeLatest } from 'redux-saga/effects'
+import { put, takeLatest } from 'redux-saga/effects'
 import Cookies from 'js-cookie'
-import { LOG_IN, LOG_OUT, LOG_IN_CHECK_REQUEST, LOG_IN_CHECK_RESULT } from './types'
+import { LOG_IN, LOG_OUT, LOG_IN_CHECK_REQUEST, LOG_IN_CHECK_RESULT } from './index'
 
 function* checkLoginCookie() {
   const cookieValue = Cookies.get('hem-rocks-logged-in')
@@ -8,12 +8,10 @@ function* checkLoginCookie() {
 }
 
 function* setLoginCookie() {
-  console.log('setLoginCookie')
   Cookies.set('hem-rocks-logged-in', 'true')
 }
 
 function* unsetLoginCookie() {
-  console.log('unsetLoginCookie')
   Cookies.set('hem-rocks-logged-in', null)
 }
 

@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 import classnames from 'classnames'
-import { IArticle } from '../../store/types'
-import * as uiComponents from '../../components/ui'
+import { IArticle } from '../../modules/articles'
+import * as keyArtComponents from '../../components/art'
 
 interface IProps {
   articles: IArticle[]
@@ -25,18 +25,18 @@ function ArticlesGrid({ articles, className, heading, fourUp = false, displayCat
         { heading && (
           <h2 className="articles-grid-heading">{ heading }</h2>
         )}
-        { articles && articles.map(({ category, image, imageComponent, title, subCategory, url }, index) => (
+        { articles && articles.map(({ category, keyArtImage, keyArtComponent, keyArtComponentProps, title, subCategory, url }) => (
           <Link
             className="articles-grid-item"
             key={url}
             to={url}
           >
             <div className="articles-grid-item-image">
-              {image && (
-                <img src={image.url} alt={image.alt} />
+              {keyArtImage && (
+                <img src={keyArtImage.url} alt={keyArtImage.alt} />
               )}
-              {imageComponent && (
-                React.createElement(uiComponents[imageComponent])
+              {keyArtComponent && (
+                React.createElement(keyArtComponents[keyArtComponent], keyArtComponentProps || {})
               )}
             </div>
             <div className="articles-grid-item-text">

@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
-import { IProjectLogo } from '../../store/types'
+import { IProjectLogo } from '../../modules/misc'
 import ProjectLogo from './ProjectLogo'
 
 interface IProps {

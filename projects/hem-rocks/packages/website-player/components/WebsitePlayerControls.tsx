@@ -2,9 +2,9 @@ import React, { ReactElement, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import classnames from 'classnames'
-import { Slider } from '../../../../../../lib/components'
-import { NextButton, PlayPauseButton, PreviousButton } from '../../../../../../lib/components/buttons'
-import { RootState } from '../../../../store'
+import { Slider } from '../../../../../lib/components'
+import { NextButton, PlayPauseButton, PreviousButton } from '../../../../../lib/components/buttons'
+import { RootState } from '../../../index'
 import { togglePlaying } from '../actions'
 
 interface IProps {

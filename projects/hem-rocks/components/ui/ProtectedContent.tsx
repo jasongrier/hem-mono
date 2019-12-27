@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, ReactElement } from 'react'
 import { useSelector } from 'react-redux'
-import { RootState } from '../../store'
+import { RootState } from '../../index'
 import LogInForm from './LogInForm'
 
 interface IProps {
@@ -13,7 +13,7 @@ function ProtectedContent({
   header = 'Log in to view this content'
 }: PropsWithChildren<IProps>): ReactElement {
   const { loggedIn } = useSelector((state: RootState) => ({
-    loggedIn: state.app.loggedIn,
+    loggedIn: state.login.loggedIn,
   }))
 
   return (

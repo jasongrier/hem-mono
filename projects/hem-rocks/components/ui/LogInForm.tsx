@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, ReactElement, useCallback, useState, SyntheticEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../store'
-import { logIn, logInResetError } from '../../store/actions'
+import { RootState } from '../../index'
+import { logIn, logInResetError } from '../../modules/login'
 
 interface IProps {
   header?: string
@@ -9,8 +9,8 @@ interface IProps {
 
 function LogInForm({ header }: PropsWithChildren<IProps>): ReactElement {
   const { loginFailed } = useSelector((state: RootState) => ({
-    loggedIn: state.app.loggedIn,
-    loginFailed: state.app.loginFailed,
+    loggedIn: state.login.loggedIn,
+    loginFailed: state.login.loginFailed,
   }))
 
   const dispatch = useDispatch()
