@@ -4,6 +4,8 @@
   background: #000;
   color: #fff;
   text-align: center;
+  /* TODO: StickyBody has to restore all pointer-events on its own */
+  pointer-events: all;
 }
 
 .articles-grid-content {
@@ -47,4 +49,40 @@
 
 .articles-grid-item-text p {
   margin: 0 0 10px 0;
+}
+
+.articles-grid-four-up .articles-grid-item {
+  width: calc(100% / 4);
+}
+
+@media screen and (max-width: 1279px) {
+  .articles-grid-content {
+    width: 1024px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .articles-grid-content {
+    width: 768px;
+  }
+
+  .articles-grid-item {
+    float: left;
+    width: calc(100% / 2);
+    margin: 0 0 50px 0;
+    padding: 0 30px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .articles-grid-content {
+    width: 100vw;
+  }
+
+  .articles-grid-item {
+    float: left;
+    width: 100%;
+    margin: 0 0 50px 0;
+    padding: 0 10px;
+  }
 }

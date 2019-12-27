@@ -4,7 +4,7 @@
 | [bin/tasks/lint.js](bin/tasks/lint.js#L110) | 110 | This bypasses checks for, for example, `i-dont-belong.foo`, the correct check should be `requiredFiles`
 | [bin/tasks/todo.js](bin/tasks/todo.js#L10) | 10 | How to handle TODO's in CI?
 | [projects/hem-rocks/index.ts](projects/hem-rocks/index.ts#L6) | 6 | All projects; root div id should be 'react-root'
-| [projects/hem-rocks/components/App.tsx](projects/hem-rocks/components/App.tsx#L31) | 31 | "logIn" or "login" or "loggedIn"??
+| [projects/hem-rocks/components/App.tsx](projects/hem-rocks/components/App.tsx#L32) | 32 | "logIn" or "login" or "loggedIn"??
 | [projects/jasonaarongrier-com/components/App.tsx](projects/jasonaarongrier-com/components/App.tsx#L14) | 14 | 404 page
 | [projects/midst-press/components/App.tsx](projects/midst-press/components/App.tsx#L74) | 74 | Move PoemNav out of the Switch/Route and directly into the Poem component
 | [projects/midst-press/components/CampaignMonitorForm.tsx](projects/midst-press/components/CampaignMonitorForm.tsx#L10) | 10 | All projects: Use line breaks for all component props
@@ -31,12 +31,14 @@
 | [projects/zak-widget/components/SwatchPicker.tsx](projects/zak-widget/components/SwatchPicker.tsx#L5) | 5 | All projects; Export all props
 | [projects/hem-rocks/components/layout/Displace.tsx](projects/hem-rocks/components/layout/Displace.tsx#L17) | 17 | All projects; use PropsWithChildren instead of `children: any` in IProps
 | [projects/hem-rocks/components/layout/MegaMenu.tsx](projects/hem-rocks/components/layout/MegaMenu.tsx#L15) | 15 | Remove `hem-` prefix
-| [projects/hem-rocks/components/layout/ProjectsList.tsx](projects/hem-rocks/components/layout/ProjectsList.tsx#L93) | 93 | Collect this hook, and spacer element into a "SneakyBody" component
-| [projects/hem-rocks/components/layout/ProjectsList.tsx](projects/hem-rocks/components/layout/ProjectsList.tsx#L94) | 94 | New build task: `npm run task npm-publish lib/my-package`
-| [projects/hem-rocks/components/layout/ProjectsList.tsx](projects/hem-rocks/components/layout/ProjectsList.tsx#L95) | 95 | Publish SneakyBody, Displace, Dial, etc to NPM
+| [projects/hem-rocks/components/ui/SneakyHero.tsx](projects/hem-rocks/components/ui/SneakyHero.tsx#L11) | 11 | New build task: `npm run task npm-publish lib/my-package`
+| [projects/hem-rocks/components/ui/SneakyHero.tsx](projects/hem-rocks/components/ui/SneakyHero.tsx#L12) | 12 | Prep: No redux just yet, or else state boldly that Redux needs to be separately installed. Use the defaultStyles pattern. Use the controlled/uncontrolled autoswitch pattern
+| [projects/hem-rocks/components/ui/SneakyHero.tsx](projects/hem-rocks/components/ui/SneakyHero.tsx#L13) | 13 | NPM steps: Manually place component in lib/packages, create a package.json there with only the needed deps, React goes in dev dependencies, no Redux, create a .d.ts and doc blocks, docs generator, tests and code coverage, prettier, readme file, license file, (lint for all this), and bundle with ROLLUP, then what??
+| [projects/hem-rocks/components/ui/SneakyHero.tsx](projects/hem-rocks/components/ui/SneakyHero.tsx#L14) | 14 | https://codeburst.io/deploy-react-component-as-an-npm-library-d396efc25122
+| [projects/hem-rocks/components/ui/SneakyHero.tsx](projects/hem-rocks/components/ui/SneakyHero.tsx#L15) | 15 | Publish sneaky-hero, Displace, Dial, etc to NPM
 | [projects/hem-rocks/components/ui/TipPop.tsx](projects/hem-rocks/components/ui/TipPop.tsx#L9) | 9 | Move to common
 | [projects/hem-rocks/components/ui/TipPop.tsx](projects/hem-rocks/components/ui/TipPop.tsx#L15) | 15 | All projects; Use named functions in hooks, even useEffect
-| [projects/hem-rocks/routes/sound-library/SoundLibrary.tsx](projects/hem-rocks/routes/sound-library/SoundLibrary.tsx#L166) | 166 | Should simply forward the onClick, not set the value
+| [projects/hem-rocks/routes/sound-library/SoundLibrary.tsx](projects/hem-rocks/routes/sound-library/SoundLibrary.tsx#L167) | 167 | Should simply forward the onClick, not set the value
 | [projects/studio-hem-rocks/components/animation/FlipBook.tsx](projects/studio-hem-rocks/components/animation/FlipBook.tsx#L10) | 10 | All projects, separate alphabetized required props from optionals
 | [projects/studio-hem-rocks/components/animation/FlipBook.tsx](projects/studio-hem-rocks/components/animation/FlipBook.tsx#L37) | 37 | Should be "speed" ––or rather, "slowness"–– not "frameRate"
 | [projects/studio-hem-rocks/components/animation/FlipBook.tsx](projects/studio-hem-rocks/components/animation/FlipBook.tsx#L57) | 57 | What if ––unlikely, but–– two frames have the same difference score??

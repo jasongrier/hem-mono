@@ -19,3 +19,18 @@ body {
   clear: both;
   display: table;
 }
+
+.ghost-cta {
+  border: 0;
+  background: none;
+  font-family: U8, sans-serif;
+  text-transform: lowercase;
+  font-size: 11px;
+  cursor: pointer;
+  color: #ccc;
+}
+
+.ghost-cta:active,
+.ghost-cta:focus {
+  outline: none;
+}

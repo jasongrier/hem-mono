@@ -24,8 +24,8 @@ let stateValueProxy: number
 
 function Dial({ className, color, label, onChange, onChangeDone, onPress, overflowHack = 17, size = 49, value: propsValue = 0 }: IProps): ReactElement {
   const id = uuid() // TODO: This doesn't (technically) work; uuid will change every render
-  const dial = React.useRef<null | Nexus.Dial>(null)
-  const el = React.useRef<null | HTMLDivElement>(null)
+  const dial = useRef<null | Nexus.Dial>(null)
+  const el = useRef<null | HTMLDivElement>(null)
 
   const [stateValue, setStateValue] = useState(propsValue)
 

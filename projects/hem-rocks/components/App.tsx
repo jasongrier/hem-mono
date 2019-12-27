@@ -1,16 +1,15 @@
 import React, { ReactElement, useEffect } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+import { WebsitePlayer } from './packages/website-player'
 import { logInCheckRequest } from '../store/actions'
 
 import {
   Home,
 } from '../routes/flagship'
 
-console.log(Home)
-
 import {
-  SoundLibrary,
+  SoundLibraryHome,
 } from '../routes/sound-library'
 
 import {
@@ -37,10 +36,12 @@ function App(): ReactElement {
 
   return (
     <div className="hem-application">
+      <WebsitePlayer />
+
       <Switch>
         {/* Flagship pages */}
         <Route exact path="/" component={Home} />
-        <Route exact path="/sound-library" component={SoundLibrary} />
+        <Route exact path="/sound-library" component={SoundLibraryHome} />
 
         {/* Demo pages */}
         <Route exact path="/demos" component={DemosHome} />

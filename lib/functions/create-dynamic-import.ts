@@ -1,4 +1,4 @@
-import { createElement as e, SFC }  from 'react'
+import { createElement as e }  from 'react'
 import { DynamicImport } from '../components'
 
 function createDynamicImport(load: () => Promise<any>) {

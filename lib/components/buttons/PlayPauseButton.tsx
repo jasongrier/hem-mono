@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react'
+import classnames from 'classnames'
 
 interface IProps {
   playing: boolean
@@ -10,13 +11,22 @@ const styleSheet = `
     position: relative;
     width: 60px;
     height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     cursor: pointer;
+    background: red;
   }
 
-  .hem-play-pause-button::after {
+  .hem-play-pause-button-icon {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hem-play-pause-button-icon::after {
     display: block;
     content: " ";
     width: 0px;
@@ -27,22 +37,22 @@ const styleSheet = `
     transform: scaleX(1.6) translateX(1.5px);
   }
 
-  .hem-play-pause-button span {
+  .hem-play-pause-button-icon span {
     display: none;
   }
 
-  .hem-play-pause-button.playing::after {
+  .hem-play-pause-button.hem-play-pause-button-playing .hem-play-pause-button-icon::after {
     display: none;
   }
 
-  .hem-play-pause-button.playing span {
+  .hem-play-pause-button.hem-play-pause-button-playing .hem-play-pause-button-icon span {
     position: relative;
     display: block;
     width: 27px;
     height: 30px;
   }
 
-  .hem-play-pause-button.playing span::before {
+  .hem-play-pause-button.hem-play-pause-button-playing .hem-play-pause-button-icon span::before {
     display: block;
     content: " ";
     position: absolute;
@@ -53,7 +63,7 @@ const styleSheet = `
     background-color: #fff;
   }
 
-  .hem-play-pause-button.playing span::after {
+  .hem-play-pause-button.hem-play-pause-button-playing .hem-play-pause-button-icon span::after {
     display: block;
     content: " ";
     position: absolute;
@@ -70,13 +80,15 @@ function PlayPauseButton({ playing, onClick }: IProps): ReactElement {
     <>
       <style dangerouslySetInnerHTML={{ __html: styleSheet }} />
       <div
-        className={`
-          hem-play-pause-button
-          ${playing ? 'playing' : ''}
-        `}
+        className={classnames({
+          'hem-play-pause-button': true,
+          'hem-play-pause-button-playing': playing,
+        })}
         onClick={onClick}
       >
-        <span></span>
+        <div className="hem-play-pause-button-icon">
+          <span></span>
+        </div>
       </div>
     </>
   )

@@ -8,7 +8,7 @@ import {
 } from '../../../../lib/components/buttons'
 import { Slider } from '../../../../lib/components'
 import { WebsitePlayer } from '../../../../lib/classes/audio'
-import { Header, HeroineCarousel } from '../../components/layout'
+import { ArticlesGrid, Header, HeroineCarousel } from '../../components/layout'
 import { BASE_SITE_PAGE_TITLE } from '../../config'
 import { RootState } from '../../store'
 import {
@@ -22,7 +22,8 @@ import {
 const playerEngine = WebsitePlayer.getInstance()
 
 function SoundLibraryHome(): ReactElement {
-  const { carouselIndex, carouselItems, currentCarouselItem, playerMuted, playerPlaying } = useSelector((state: RootState) => ({
+  const { articles, carouselIndex, carouselItems, currentCarouselItem, playerMuted, playerPlaying } = useSelector((state: RootState) => ({
+    articles: state.app.articles.filter(a => a.featured).slice(0, 12),
     carouselIndex: state.app.carouselIndex,
     carouselItems: state.app.carouselItems,
     currentCarouselItem: state.app.carouselItems[state.app.carouselIndex],
@@ -187,7 +188,10 @@ function SoundLibraryHome(): ReactElement {
         </div>
       </div>
 
-      <h3>Next up: Seurat 2</h3>
+      <ArticlesGrid
+        articles={articles}
+        heading="Latest News"
+      />
     </div>
   )
 }

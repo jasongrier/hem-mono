@@ -1,6 +1,7 @@
 import { AnyAction } from 'redux'
 import { slugify, titleCase } from 'voca'
 import randomWords from 'random-words'
+import randomHexColor from 'random-hex-color'
 import {
   CAROUSEL_NEXT,
   CAROUSEL_PREVIOUS,
@@ -20,6 +21,32 @@ import {
   PLAYER_TOGGLE_MUTED,
   IArticle,
 } from './types'
+
+function createLogo(logoComponentName, hoverColor, linkTo, title, tipContent, transform) {
+  return {
+    featured: true,
+    logoComponentName,
+    hoverColor,
+    linkTo,
+    tipContent,
+    title,
+    transform,
+  }
+}
+
+const projectLogos = [
+  createLogo('MidstLogo', '#FF91AF', '/midst', 'Midst',
+    '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse justo enim, pharetra mattis pretium vitae, pharetra vitae orci. Ut sit amet iaculis dui.</p><p>Suspendisse posuere nulla hendrerit lectus feugiat imperdiet. Nulla eu hendrerit ipsum. Pellentesque ac dictum diam, sed imperdiet augue. Phasellus sagittis nisl sit amet purus ultricies scelerisque.</p>',
+  'translateX(-1px)'),
+
+  createLogo('SoundLibraryLogo', '#0471a3', '/sound-library', 'Sound Library',
+    '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse justo enim, pharetra mattis pretium vitae, pharetra vitae orci. Ut sit amet iaculis dui.</p><p>Suspendisse posuere nulla hendrerit lectus feugiat imperdiet. Nulla eu hendrerit ipsum. Pellentesque ac dictum diam, sed imperdiet augue. Phasellus sagittis nisl sit amet purus ultricies scelerisque.</p>',
+  'scale(.7)'),
+
+  createLogo('SeuratLogo', '#a30473', '/seurat', 'Seurat',
+    '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse justo enim, pharetra mattis pretium vitae, pharetra vitae orci. Ut sit amet iaculis dui.</p><p>Suspendisse posuere nulla hendrerit lectus feugiat imperdiet. Nulla eu hendrerit ipsum. Pellentesque ac dictum diam, sed imperdiet augue. Phasellus sagittis nisl sit amet purus ultricies scelerisque.</p>',
+  'scale(.6)'),
+]
 
 const packButtonText = 'Download now'
 
@@ -144,6 +171,7 @@ const initialState: IState = {
   playerPlaying: false,
   playerSoundUrl: '',
   playerVolume: 0,
+  projects: projectLogos,
 }
 
 const reducer = (
