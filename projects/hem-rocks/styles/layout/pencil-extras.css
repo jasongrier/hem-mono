@@ -74,3 +74,8 @@
   left: 0;
   border-top: 1px solid #fff;
 }
+
+.pencil-extras-stuck .website-player-controls-expanded-controls,
+.pencil-extras-stuck .website-player-controls-expanded-controls .hem-slider {
+  transition: none !important;
+}

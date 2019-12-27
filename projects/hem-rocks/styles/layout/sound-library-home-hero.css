@@ -1,0 +1,38 @@
+.sound-library-home-hero {
+  position: relative;
+  width: 1024px;
+  height: 80vh;
+}
+
+.sound-library-home-hero-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 1024px;
+  height: 80vh;
+}
+
+.sound-library-home-hero-backdrop .planes {
+  width: 1024px;
+  height: 80vh;
+}
+
+.sound-library-home-hero-content {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 1024px;
+  height: 80vh;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.sound-library-home-hero-content h1 {
+  font-family: U8;
+  font-size: 80px;
+  text-transform: uppercase;
+}
