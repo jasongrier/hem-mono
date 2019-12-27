@@ -37,3 +37,5 @@ function DemosHome(): ReactElement {
     </div>
   )
 }
+
+export default DemosHome

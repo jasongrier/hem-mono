@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useSelector } from 'react-redux'
 import { Header, Footer, ArticlesGrid, PencilExtras } from '../../components/layout'
-import { SneakyHero } from '../../components/ui'
+import { Planes, SneakyHero } from '../../components/ui'
 import { RootState } from '../../store'
 import { BASE_SITE_TITLE } from '../../config'
 
@@ -33,17 +33,26 @@ function SoundLibraryHome(): ReactElement {
       <Header />
 
       <SneakyHero>
-        <h1>Grand Piano</h1>
-        <div>
-          <h2>What's so great about it</h2>
-          <ul>
-            <li>Great thing</li>
-            <li>Great thing</li>
-            <li>Great thing</li>
-            <li>Great thing</li>
-          </ul>
-          <button>Commit to it!</button>
-          <button>Learn more</button>
+        <div className="sound-library-home-hero">
+          <div className="sound-library-home-hero-backdrop">
+            <Planes />
+          </div>
+          <div className="sound-library-home-hero-content">
+            <div className="sound-library-home-hero-blurb">
+              <h1>Grand Piano</h1>
+              <div>
+                <h2>What's so great about it</h2>
+                <ul>
+                  <li>Great thing</li>
+                  <li>Great thing</li>
+                  <li>Great thing</li>
+                  <li>Great thing</li>
+                </ul>
+                <button>Commit to it!</button>
+                <button>Learn more</button>
+              </div>
+            </div>
+          </div>
         </div>
       </SneakyHero>
 
