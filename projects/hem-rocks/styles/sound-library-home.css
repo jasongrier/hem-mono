@@ -3,3 +3,16 @@
   height: 0;
   padding-bottom: 50%;
 }
+
+.multi-pack-explorer h2 {
+  /* margin-bottom: 30px; */
+}
+
+.multi-pack-explorer .download-all-button {
+  width: 100px;
+  height: 20px;
+  line-height: 10px;
+  padding: 5px;
+  margin-bottom: 20px;
+  font-size: 12px;
+}

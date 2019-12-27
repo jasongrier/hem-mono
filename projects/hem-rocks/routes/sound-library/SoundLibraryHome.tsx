@@ -64,15 +64,16 @@ function SoundLibraryHome(): ReactElement {
                 Grand Piano
               </h1>
               <div>
-                <h2>What's so great about it</h2>
+                <h2>Eight new packs for Ableton Live</h2>
                 <ul>
-                  <li>Great thing</li>
-                  <li>Great thing</li>
-                  <li>Great thing</li>
-                  <li>Great thing</li>
+                  <li>Multimic recording of a 9-foot grand</li>
+                  <li>Five "prepared" pianos</li>
+                  <li>Full range of percussive slaps and body strikes</li>
+                  <li>Drones from bowing, mallet rolls, and electromagnet</li>
+                  <li>Cluster catalogue, <i>including the full 88-key cluster chord</i></li>
                 </ul>
-                <button>Commit to it!</button>
-                <button>Learn more</button>
+                {/* <button className="standard-button">Commit to it!</button> */}
+                <button className="standard-button">Listen &amp; Download</button>
               </div>
             </div>
           </div>
@@ -81,12 +82,16 @@ function SoundLibraryHome(): ReactElement {
 
       <PencilExtras items={pencilExtrasItems} />
 
-      <ArticlesGrid
-        articles={grandPianoArticles}
-        displaySubcategory={true}
-        heading="Explore the Grand Piano Sounds"
-        fourUp={true}
-      />
+      <div className="multi-pack-explorer">
+        <ArticlesGrid
+          articles={grandPianoArticles}
+          displaySubcategory={true}
+          heading="Explore the Grand Piano Sounds"
+          fourUp={true}
+        >
+          {/* <button className="standard-button download-all-button">Download All</button> */}
+        </ArticlesGrid>
+      </div>
 
       <ArticlesGrid
         articles={articles}

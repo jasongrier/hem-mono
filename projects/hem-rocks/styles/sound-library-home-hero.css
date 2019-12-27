@@ -23,6 +23,10 @@
   height: 80vh;
 }
 
+.sound-library-home .sneaky-hero {
+  pointer-events: all;
+}
+
 .sound-library-home-hero {
   position: relative;
   width: 100%;
@@ -40,6 +44,7 @@
   z-index: 1;
   width: 100vw;
   height: 80vh;
+  opacity: .8;
 }
 
 .sound-library-home-hero-backdrop .planes {
@@ -61,7 +66,27 @@
 }
 
 .sound-library-home-hero-content h1 {
+  margin: 0;
   font-family: U8;
   font-size: 80px;
   text-transform: uppercase;
+}
+
+.sound-library-home-hero-content h2 {
+  margin: 0 0 30px 0;
+  font-family: U8;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+.sound-library-home-hero-content ul {
+  margin: 0 0 30px 0;
+  padding: 0;
+  text-indent: 0;
+  list-style-type: none;
+}
+
+.sound-library-home-hero-content li {
+  margin: 0 0 10px 0;
+  padding: 0;
 }

@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, PropsWithChildren } from 'react'
 import { Link } from 'react-router-dom'
 import classnames from 'classnames'
 import { IArticle } from '../../modules/articles'
@@ -14,7 +14,16 @@ interface IProps {
   displaySubcategory?: boolean
 }
 
-function ArticlesGrid({ articles, className, heading, fourUp = false, displayCategory = false, displaySubcategory = false }: IProps): ReactElement {
+function ArticlesGrid({
+  articles,
+
+  children,
+  className,
+  displayCategory = false,
+  displaySubcategory = false,
+  fourUp = false,
+  heading,
+}: PropsWithChildren<IProps>): ReactElement {
   return (
     <div className={classnames({
       'articles-grid': true,
@@ -22,9 +31,12 @@ function ArticlesGrid({ articles, className, heading, fourUp = false, displayCat
       className,
     })}>
       <div className="articles-grid-content clearfix">
-        { heading && (
-          <h2 className="articles-grid-heading">{ heading }</h2>
-        )}
+        <div className="articles-grid-pre-content">
+          { heading && (
+            <h2 className="articles-grid-heading">{ heading }</h2>
+          )}
+          { children }
+        </div>
         { articles && articles.map(({ category, keyArtImage, keyArtComponent, keyArtComponentProps, title, subCategory, url }) => (
           <Link
             className="articles-grid-item"
