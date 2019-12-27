@@ -17,13 +17,16 @@ export interface IImage {
 }
 
 export interface IArticle {
-  category: string,
-  excerpt: string,
-  featured: true,
-  image: IImage,
-  tags: string[],
-  title: string,
-  url: string,
+  category: string
+  excerpt: string
+  featured: true
+  subCategory: string
+  tags: string[]
+  title: string
+  url: string
+
+  image?: IImage
+  imageComponent?: string
 }
 
 export interface IProjectLogo {
@@ -38,36 +41,20 @@ export interface IProjectLogo {
 
 export interface IState {
   articles: IArticle[]
-  carouselIndex: number
-  carouselItems: ICarouselItem[]
   loggedIn: boolean | null
   loginFailed: boolean | null
   projects: IProjectLogo[]
+  stuckPencil: boolean
+  stuckPlayer: boolean
 }
 
-export const CAROUSEL_NEXT = 'CAROUSEL_NEXT'
-export const CAROUSEL_PREVIOUS = 'CAROUSEL_PREVIOUS'
-export const CAROUSEL_SET_INDEX = 'CAROUSEL_SET_INDEX'
 export const LOG_IN_CHECK_REQUEST = 'LOG_IN_CHECK_REQUEST'
 export const LOG_IN_CHECK_RESULT = 'LOG_IN_CHECK_RESULT'
 export const LOG_IN = 'LOG_IN'
 export const LOG_OUT = 'LOG_OUT'
 export const LOG_IN_RESET_ERROR = 'LOG_IN_RESET_ERROR'
-
-export interface ICarouselNext extends AnyAction {
-  type: typeof CAROUSEL_NEXT
-  payload: null
-}
-
-export interface ICarouselPrevious extends AnyAction {
-  type: typeof CAROUSEL_PREVIOUS
-  payload: null
-}
-
-export interface ICarouselSetIndex extends AnyAction {
-  type: typeof CAROUSEL_SET_INDEX
-  payload: number
-}
+export const SET_STUCK_PENCIL = 'SET_STUCK_PENCIL'
+export const SET_STUCK_PLAYER = 'SET_STUCK_PLAYER'
 
 export interface ILogIn extends AnyAction {
   type: typeof LOG_IN
@@ -94,12 +81,21 @@ export interface ILogOut extends AnyAction {
   payload: null
 }
 
+export interface ISetStuckPencil extends AnyAction {
+  type: typeof SET_STUCK_PENCIL
+  payload: boolean
+}
+
+export interface ISetStuckPlayer extends AnyAction {
+  type: typeof SET_STUCK_PLAYER
+  payload: boolean
+}
+
 export type Action =
-  ICarouselNext
-  | ICarouselPrevious
-  | ICarouselSetIndex
-  | ILogIn
+  ILogIn
   | ILogInCheckRequest
   | ILogInCheckResult
   | ILogInResetError
   | ILogOut
+  | ISetStuckPencil
+  | ISetStuckPlayer

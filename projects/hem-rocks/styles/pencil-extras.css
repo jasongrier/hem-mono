@@ -1,6 +1,7 @@
 .pencil-extras {
   position: sticky;
   top: 50px;
+  z-index: 9999;
   height: 50px;
   line-height: 50px;
   text-align: center;
@@ -54,6 +55,10 @@
   padding-left: 10px;
 }
 
+.pencil-extras-website-player-controls {
+  transition: opacity 250ms;
+}
+
 .pencil-extras-website-player-controls .website-player-controls {
   position: absolute;
   top: -40px;
@@ -61,21 +66,7 @@
   pointer-events: all;
 }
 
-.pencil-extras-stuck .pencil-extras-website-player-controls {
-  position: fixed;
-  bottom: 0;
-  left: 40px;
-  width: calc(100vw - 80px);
-  height: 50px;
-  background: #000;
-}
-
-.pencil-extras-stuck .pencil-extras-website-player-controls .website-player-controls {
-  left: 0;
-  border-top: 1px solid #fff;
-}
-
-.pencil-extras-stuck .website-player-controls-expanded-controls,
-.pencil-extras-stuck .website-player-controls-expanded-controls .hem-slider {
-  transition: none !important;
+.website-player-stuck .pencil-extras-website-player-controls {
+  opacity: 0;
+  pointer-events: none;
 }

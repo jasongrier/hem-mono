@@ -1,9 +1,13 @@
-import { noop } from 'lodash'
 import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 import MegaMenu from './MegaMenu'
 
-function Header(): ReactElement {
+interface IProps {
+  subheading?: string
+  subheadingLink?: string
+}
+
+function Header({ subheading, subheadingLink }: IProps): ReactElement {
   return (
     <>
       <header className="site-header">
@@ -12,6 +16,13 @@ function Header(): ReactElement {
             <Link to="/">HEM </Link>
           </span>
         </h1>
+        { subheading &&
+          <h2>
+            <span>
+              <Link to={subheadingLink}>{ subheading }</Link>
+            </span>
+          </h2>
+        }
       </header>
 
       <MegaMenu />

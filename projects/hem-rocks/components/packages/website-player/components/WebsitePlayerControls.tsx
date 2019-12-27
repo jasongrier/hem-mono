@@ -97,6 +97,7 @@ function WebsitePlayerControls({ expanded: forceExpanded = null }: IProps): Reac
       line-height: 40px;
       opacity: 0;
       transition: opacity 250ms;
+      user-select: none;
     }
 
     .website-player-controls-playing .website-player-current-info {
