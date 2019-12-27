@@ -1,5 +1,8 @@
 export { default as ChevronButton } from './ChevronButton'
+export { default as CloseButton } from './CloseButton'
 export { default as FastForwardButton } from './FastForwardButton'
+export { default as HamburgerButton } from './HamburgerButton'
 export { default as NextButton } from './NextButton'
 export { default as PlayPauseButton } from './PlayPauseButton'
+export { default as PreviousButton } from './PreviousButton'
 export { default as SpeakerButton } from './SpeakerButton'

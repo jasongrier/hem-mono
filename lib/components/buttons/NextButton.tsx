@@ -6,22 +6,26 @@ interface IProps {
 
 const styleSheet = `
   .hem-next-button {
-    position: relative;
     width: 60px;
     height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     cursor: pointer;
   }
 
-  .hem-next-button::before,
-  .hem-next-button::after {
+  .hem-next-button-icon {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hem-next-button-icon::before,
+  .hem-next-button-icon::after {
     display: block;
     content: " ";
   }
 
-  .hem-next-button::before {
+  .hem-next-button-icon::before {
     width: 0px;
     height: 0px;
     border-top: 18px solid transparent;
@@ -30,7 +34,7 @@ const styleSheet = `
     transform: scaleX(1.3) scaleY(.9);
   }
 
-  .hem-next-button::after {
+  .hem-next-button-icon::after {
     width: 4px;
     height: 36px;
     background: #fff;
@@ -45,7 +49,9 @@ function NextButton({ onClick }: IProps): ReactElement {
       <div
         className="hem-next-button"
         onClick={onClick}
-      />
+      >
+        <div className="hem-next-button-icon" />
+      </div>
     </>
   )
 }

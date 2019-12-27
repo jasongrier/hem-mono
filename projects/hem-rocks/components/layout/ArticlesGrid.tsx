@@ -1,16 +1,23 @@
 import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
+import classnames from 'classnames'
 import { IArticle } from '../../store/types'
 
 interface IProps {
   articles: IArticle[]
 
+  className?: string
   heading?: string
+  fourUp?: boolean
 }
 
-function ArticlesGrid({ articles, heading }: IProps): ReactElement {
+function ArticlesGrid({ articles, className, heading, fourUp = false}: IProps): ReactElement {
   return (
-    <div className="articles-grid">
+    <div className={classnames({
+      'articles-grid': true,
+      'articles-grid-four-up': fourUp,
+      className,
+    })}>
       <div className="articles-grid-content clearfix">
         { heading && (
           <h2 className="articles-grid-heading">{ heading }</h2>

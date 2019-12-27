@@ -1,44 +1,69 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { CampaignMonitorForm } from '../../../../lib/components'
+import classnames from 'classnames'
+import { WebsitePlayerControls } from '../packages/website-player'
 
-function PencilExtras(): ReactElement {
+interface IPencilExtrasItem {
+  text: string
+  type: string
+  url: string
+}
+
+interface IProps {
+  items: {
+    left: IPencilExtrasItem[]
+    right: IPencilExtrasItem[]
+  }
+}
+
+function renderItemGroup(items: IPencilExtrasItem[]) {
+  return items.map(({ text, type, url }, index) => (
+    type === 'internal'
+      ?
+      <li key={index}>
+        <Link to={url}>
+          <span dangerouslySetInnerHTML={{ __html: text }} />
+        </Link>
+      </li>
+      :
+      <li key={index}>
+        <a href={url}>
+          <span dangerouslySetInnerHTML={{ __html: text }} />
+        </a>
+      </li>
+    )
+  )
+}
+
+function PencilExtras({ items }: IProps): ReactElement {
+  const [stuck, setStuck] = useState()
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      if (!stuck && window.scrollY >= 605) {
+        setStuck(true)
+      }
+
+      if (stuck && window.scrollY < 605) {
+        setStuck(false)
+      }
+    })
+  }, [stuck])
+
   return (
-    <div className="pencil-extras">
-      {/* <CampaignMonitorForm
-        hasNameField={false}
-        id="foo"
-        placeholderText="Get updates in your inbox. Enter your email here! 🚀🚀🚀"
-        submitButtonText="Sign up"
-      /> */}
+    <div className={classnames({
+      'pencil-extras': true,
+      'pencil-extras-stuck': stuck,
+    })}>
       <ul className="extra-links-left">
-        <li>
-          <Link to="/human-ear-music">About</Link>
-        </li>
-        <li>
-          <Link to="/blog">Blog</Link>
-        </li>
-        <li>
-          <Link to="/blog">Sound &amp; Video</Link>
-        </li>
-        <li>
-          <Link to="/human-ear-music">Label</Link>
-        </li>
+        { renderItemGroup(items.left) }
       </ul>
       <ul className="extra-links-right">
-        <li>
-          <a href="#">Github</a>
-        </li>
-        <li>
-          <a href="#">NPM</a>
-        </li>
-        <li>
-          <a href="#">Instagram</a>
-        </li>
-        <li>
-          <a href="#">info@hem.rocks</a>
-        </li>
+        { renderItemGroup(items.right) }
       </ul>
+      <div className="pencil-extras-website-player-controls">
+        <WebsitePlayerControls expanded={stuck ? true : null} />
+      </div>
     </div>
   )
 }

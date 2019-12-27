@@ -1,10 +1,17 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import createSagaMiddleware from 'redux-saga'
-import { reducer } from './reducer'
+
+import { reducer as appReducer } from './reducer'
 import { loginCheckSaga, loginSaga, logoutSaga } from './sagas'
 
-const rootReducer = combineReducers({ app: reducer })
+import { reducer as playerReducer } from '../components/packages/website-player/reducer'
+
+const rootReducer = combineReducers({
+  app: appReducer,
+  player: playerReducer,
+})
+
 const sagaMiddleware = createSagaMiddleware()
 
 const store = createStore(

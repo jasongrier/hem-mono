@@ -1,3 +1,3 @@
 import { createDynamicImport } from '../../../../lib/functions'
 
-export const SoundLibrary = createDynamicImport(() => import('./SoundLibrary'))
+export const SoundLibraryHome = createDynamicImport(() => import('./SoundLibraryHome'))

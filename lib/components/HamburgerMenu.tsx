@@ -19,6 +19,7 @@ const styleSheet = `
     height: 3px;
     margin-bottom: 7px;
     background-color: #000;
+    transition: all 250ms;
   }
 
   .hem-hamburger-menu-toggle-open {
@@ -35,7 +36,7 @@ const styleSheet = `
   }
 
   .hem-hamburger-menu-toggle-open span:nth-child(2) {
-    display: none;
+    opacity: 0;
   }
 
   .hem-hamburger-menu-toggle-open span:nth-child(3) {

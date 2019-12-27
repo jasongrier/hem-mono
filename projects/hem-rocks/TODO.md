@@ -1,12 +1,11 @@
 ### TODOs
 | Filename | line # | TODO
 |:------|:------:|:------
-| [projects/hem-rocks/store/actions.ts](projects/hem-rocks/store/actions.ts#L34) | 34 | Use the appropriate action types
-| [projects/hem-rocks/store/reducer.ts](projects/hem-rocks/store/reducer.ts#L162) | 162 | All projects; Wrap all cases in {}
+| [projects/hem-rocks/store/actions.ts](projects/hem-rocks/store/actions.ts#L29) | 29 | Use the appropriate action types
+| [projects/hem-rocks/store/reducer.ts](projects/hem-rocks/store/reducer.ts#L190) | 190 | All projects; Wrap all cases in {}
 | [projects/hem-rocks/store/selectors.ts](projects/hem-rocks/store/selectors.ts#L1) | 1 | Example selector
 | [projects/hem-rocks/store/types.ts](projects/hem-rocks/store/types.ts#L3) | 3 | Break into separate Redux modules
-| [projects/hem-rocks/styles/index.ts](projects/hem-rocks/styles/index.ts#L1) | 1 | Further divide into folders/components
-| [projects/hem-rocks/components/App.tsx](projects/hem-rocks/components/App.tsx#L31) | 31 | "logIn" or "login" or "loggedIn"??
+| [projects/hem-rocks/components/App.tsx](projects/hem-rocks/components/App.tsx#L32) | 32 | "logIn" or "login" or "loggedIn"??
 | [projects/jasonaarongrier-com/components/App.tsx](projects/jasonaarongrier-com/components/App.tsx#L14) | 14 | 404 page
 | [projects/midst-press/components/App.tsx](projects/midst-press/components/App.tsx#L74) | 74 | Move PoemNav out of the Switch/Route and directly into the Poem component
 | [projects/midst-press/components/CampaignMonitorForm.tsx](projects/midst-press/components/CampaignMonitorForm.tsx#L10) | 10 | All projects: Use line breaks for all component props
@@ -33,12 +32,14 @@
 | [projects/zak-widget/components/SwatchPicker.tsx](projects/zak-widget/components/SwatchPicker.tsx#L5) | 5 | All projects; Export all props
 | [projects/hem-rocks/components/layout/Displace.tsx](projects/hem-rocks/components/layout/Displace.tsx#L17) | 17 | All projects; use PropsWithChildren instead of `children: any` in IProps
 | [projects/hem-rocks/components/layout/MegaMenu.tsx](projects/hem-rocks/components/layout/MegaMenu.tsx#L15) | 15 | Remove `hem-` prefix
-| [projects/hem-rocks/components/layout/ProjectsList.tsx](projects/hem-rocks/components/layout/ProjectsList.tsx#L93) | 93 | Collect this hook, and spacer element into a "SneakyBody" component
-| [projects/hem-rocks/components/layout/ProjectsList.tsx](projects/hem-rocks/components/layout/ProjectsList.tsx#L94) | 94 | New build task: `npm run task npm-publish lib/my-package`
-| [projects/hem-rocks/components/layout/ProjectsList.tsx](projects/hem-rocks/components/layout/ProjectsList.tsx#L95) | 95 | Publish SneakyBody, Displace, Dial, etc to NPM
+| [projects/hem-rocks/components/ui/SneakyHero.tsx](projects/hem-rocks/components/ui/SneakyHero.tsx#L11) | 11 | New build task: `npm run task npm-publish lib/my-package`
+| [projects/hem-rocks/components/ui/SneakyHero.tsx](projects/hem-rocks/components/ui/SneakyHero.tsx#L12) | 12 | Prep: No redux just yet, or else state boldly that Redux needs to be separately installed. Use the defaultStyles pattern. Use the controlled/uncontrolled autoswitch pattern
+| [projects/hem-rocks/components/ui/SneakyHero.tsx](projects/hem-rocks/components/ui/SneakyHero.tsx#L13) | 13 | NPM steps: Manually place component in lib/packages, create a package.json there with only the needed deps, React goes in dev dependencies, no Redux, create a .d.ts and doc blocks, docs generator, tests and code coverage, prettier, readme file, license file, (lint for all this), and bundle with ROLLUP, then what??
+| [projects/hem-rocks/components/ui/SneakyHero.tsx](projects/hem-rocks/components/ui/SneakyHero.tsx#L14) | 14 | https://codeburst.io/deploy-react-component-as-an-npm-library-d396efc25122
+| [projects/hem-rocks/components/ui/SneakyHero.tsx](projects/hem-rocks/components/ui/SneakyHero.tsx#L15) | 15 | Publish sneaky-hero, Displace, Dial, etc to NPM
 | [projects/hem-rocks/components/ui/TipPop.tsx](projects/hem-rocks/components/ui/TipPop.tsx#L9) | 9 | Move to common
 | [projects/hem-rocks/components/ui/TipPop.tsx](projects/hem-rocks/components/ui/TipPop.tsx#L15) | 15 | All projects; Use named functions in hooks, even useEffect
-| [projects/hem-rocks/routes/sound-library/SoundLibrary.tsx](projects/hem-rocks/routes/sound-library/SoundLibrary.tsx#L166) | 166 | Should simply forward the onClick, not set the value
+| [projects/hem-rocks/routes/sound-library/SoundLibrary.tsx](projects/hem-rocks/routes/sound-library/SoundLibrary.tsx#L167) | 167 | Should simply forward the onClick, not set the value
 | [projects/studio-hem-rocks/components/animation/FlipBook.tsx](projects/studio-hem-rocks/components/animation/FlipBook.tsx#L10) | 10 | All projects, separate alphabetized required props from optionals
 | [projects/studio-hem-rocks/components/animation/FlipBook.tsx](projects/studio-hem-rocks/components/animation/FlipBook.tsx#L37) | 37 | Should be "speed" ––or rather, "slowness"–– not "frameRate"
 | [projects/studio-hem-rocks/components/animation/FlipBook.tsx](projects/studio-hem-rocks/components/animation/FlipBook.tsx#L57) | 57 | What if ––unlikely, but–– two frames have the same difference score??
@@ -48,10 +49,3 @@
 | [projects/studio-hem-rocks/routes/demos/ArrangerDemo.tsx](projects/studio-hem-rocks/routes/demos/ArrangerDemo.tsx#L14) | 14 | Describe the arranger
 | [projects/studio-hem-rocks/routes/demos/MidiDemo.tsx](projects/studio-hem-rocks/routes/demos/MidiDemo.tsx#L10) | 10 | Move to the new Midi class
 | [projects/studio-hem-rocks/routes/demos/MidiDemo.tsx](projects/studio-hem-rocks/routes/demos/MidiDemo.tsx#L28) | 28 | Use the new Counter class
-| [projects/hem-rocks/styles/internal-header.css](projects/hem-rocks/styles/internal-header.css#L1) | 1 | Global pencil style
-| [projects/hem-rocks/styles/internal-page.css](projects/hem-rocks/styles/internal-page.css#L100) | 100 | Global button className
-| [projects/hem-rocks/styles/megamenu.css](projects/hem-rocks/styles/megamenu.css#L44) | 44 | Standard input
-| [projects/hem-rocks/styles/megamenu.css](projects/hem-rocks/styles/megamenu.css#L62) | 62 | Standard button
-| [projects/hem-rocks/styles/projects-list.css](projects/hem-rocks/styles/projects-list.css#L99) | 99 | .not-a-button
-| [projects/hem-rocks/styles/projects-list.css](projects/hem-rocks/styles/projects-list.css#L110) | 110 | .not-a-button
-| [projects/hem-rocks/styles/site-header.css](projects/hem-rocks/styles/site-header.css#L11) | 11 | SneakyBody should take care of resetting pointer events all over the place

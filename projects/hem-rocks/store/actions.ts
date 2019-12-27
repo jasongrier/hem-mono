@@ -7,11 +7,6 @@ import {
   LOG_IN_CHECK_RESULT,
   LOG_IN_RESET_ERROR,
   LOG_OUT,
-  PLAYER_PAUSE,
-  PLAYER_PLAY,
-  PLAYER_SET_VOLUME,
-  PLAYER_TOGGLE_MUTED,
-  PLAYER_TOGGLE_PLAYING,
 
   Action,
 } from './types'
@@ -57,31 +52,6 @@ const logOut = (): Action => ({
   payload: null,
 })
 
-const playerPause = (): Action => ({
-  type: PLAYER_PAUSE,
-  payload: null,
-})
-
-const playerPlay = (): Action => ({
-  type: PLAYER_PLAY,
-  payload: null,
-})
-
-const playerSetVolume = (volume: number): Action => ({
-  type: PLAYER_SET_VOLUME,
-  payload: volume,
-})
-
-const playerToggleMuted = (): Action => ({
-  type: PLAYER_TOGGLE_MUTED,
-  payload: null,
-})
-
-const playerTogglePlaying = (): Action => ({
-  type: PLAYER_TOGGLE_PLAYING,
-  payload: null,
-})
-
 export {
   carouselNext,
   carouselPrevious,
@@ -91,9 +61,4 @@ export {
   logInCheckResult,
   logInResetError,
   logOut,
-  playerPause,
-  playerPlay,
-  playerSetVolume,
-  playerToggleMuted,
-  playerTogglePlaying,
 }
