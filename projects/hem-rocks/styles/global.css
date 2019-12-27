@@ -39,3 +39,28 @@ a {
 .ghost-cta:focus {
   outline: none;
 }
+
+.standard-button {
+  width: 250px;
+  height: 50px;
+  line-height: 50px;
+  margin: 10px;
+  text-align: center;
+  border: 0;
+  background: #ccc;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: U8, sans-serif;
+  font-size: 14px;
+}
+
+.standard-button:hover {
+  background: #333;
+  color: #ccc;
+}
+
+.standard-button:focus,
+.standard-button:active {
+  background: #333;
+  color: #ccc;
+}
