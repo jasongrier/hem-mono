@@ -6,8 +6,8 @@ import {
   Action,
 } from './index'
 
-const indexReceived = (articleIndexEntries: IArticle[]): Action => ({
-  payload: articleIndexEntries,
+const indexReceived = (articles: IArticle[], pathToIndex): Action => ({
+  payload: { articles, pathToIndex },
   type: INDEX_RECEIVED,
 })
 

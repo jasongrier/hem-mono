@@ -10,6 +10,7 @@ import {
 
 const initialState: IState = {
   articles: [],
+  requests: [],
 }
 
 const reducer = (
@@ -23,8 +24,9 @@ const reducer = (
 
     case INDEX_RECEIVED: {
       return produce(state, draftState => {
-        const articles = payload.map(formatArticleData)
+        const articles = payload.articles.map(formatArticleData)
         draftState.articles = draftState.articles.concat(articles)
+        draftState.requests.push(payload.pathToIndex)
       })
     }
 
