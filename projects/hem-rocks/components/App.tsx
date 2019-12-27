@@ -1,8 +1,10 @@
 import React, { ReactElement, useEffect } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import classnames from 'classnames'
 import { WebsitePlayer } from './packages/website-player'
 import { logInCheckRequest } from '../store/actions'
+import { RootState } from '../store'
 
 import {
   Home,
@@ -27,6 +29,11 @@ import {
 } from '../routes/utility'
 
 function App(): ReactElement {
+  const { stuckPencil, stuckPlayer } = useSelector((state: RootState) => ({
+    stuckPencil: state.app.stuckPencil,
+    stuckPlayer: state.app.stuckPlayer,
+  }))
+
   const dispatch = useDispatch()
 
   // TODO: "logIn" or "login" or "loggedIn"??
@@ -35,7 +42,11 @@ function App(): ReactElement {
   }, [])
 
   return (
-    <div className="hem-application">
+    <div className={classnames({
+      'hem-application': true,
+      'pencil-stuck': stuckPencil,
+      'website-player-stuck': stuckPlayer,
+    })}>
       <WebsitePlayer />
 
       <Switch>

@@ -1,7 +1,9 @@
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { ReactElement, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import classnames from 'classnames'
 import { WebsitePlayerControls } from '../packages/website-player'
+import { setStuckPencil, setStuckPlayer } from '../../store/actions'
+import { RootState } from '../../store'
 
 interface IPencilExtrasItem {
   text: string
@@ -36,25 +38,44 @@ function renderItemGroup(items: IPencilExtrasItem[]) {
 }
 
 function PencilExtras({ items }: IProps): ReactElement {
-  const [stuck, setStuck] = useState()
+  const { stuckPencil, stuckPlayer } = useSelector((state: RootState) => ({
+    stuckPencil: state.app.stuckPencil,
+    stuckPlayer: state.app.stuckPlayer,
+  }))
+
+  const dispatch = useDispatch()
+
+  const stickPencilAt = 605
+  const stickPlayerAt = 360
 
   useEffect(() => {
-    window.addEventListener('scroll', () => {
-      if (!stuck && window.scrollY >= 605) {
-        setStuck(true)
-      }
+    window.addEventListener('scroll', evalScrollHeight)
 
-      if (stuck && window.scrollY < 605) {
-        setStuck(false)
-      }
-    })
-  }, [stuck])
+    return function cleanup() {
+      window.removeEventListener('scroll', evalScrollHeight)
+    }
+  }, [stuckPencil, stuckPlayer])
+
+  function evalScrollHeight() {
+    if (!stuckPencil && window.scrollY >= stickPencilAt) {
+      dispatch(setStuckPencil(true))
+    }
+
+    if (stuckPencil && window.scrollY < stickPencilAt) {
+      dispatch(setStuckPencil(false))
+    }
+
+    if (!stuckPlayer && window.scrollY >= stickPlayerAt) {
+      dispatch(setStuckPlayer(true))
+    }
+
+    if (stuckPlayer && window.scrollY < stickPlayerAt) {
+      dispatch(setStuckPlayer(false))
+    }
+  }
 
   return (
-    <div className={classnames({
-      'pencil-extras': true,
-      'pencil-extras-stuck': stuck,
-    })}>
+    <div className="pencil-extras">
       <ul className="extra-links-left">
         { renderItemGroup(items.left) }
       </ul>
@@ -62,7 +83,7 @@ function PencilExtras({ items }: IProps): ReactElement {
         { renderItemGroup(items.right) }
       </ul>
       <div className="pencil-extras-website-player-controls">
-        <WebsitePlayerControls expanded={stuck ? true : null} />
+        <WebsitePlayerControls />
       </div>
     </div>
   )

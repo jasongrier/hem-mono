@@ -8,6 +8,7 @@ import { BASE_SITE_TITLE } from '../../config'
 
 const pencilExtrasItems = {
   left: [
+    { text: 'HEM Home Page', type: 'internal', url: '/' },
     { text: 'About Sound Library', type: 'internal', url: '/about' },
     { text: 'View all packs', type: 'internal', url: '/articles' },
     { text: 'Made with SL', type: 'internal', url: '/media' },
@@ -19,18 +20,23 @@ const pencilExtrasItems = {
 }
 
 function SoundLibraryHome(): ReactElement {
-  const { articles } = useSelector((state: RootState) => ({
+  const { articles, comingSoonArticles, grandPianoArticles } = useSelector((state: RootState) => ({
     articles: state.app.articles.filter(a => a.featured).slice(0, 12),
+    comingSoonArticles: state.app.articles.filter(a => a.subCategory === 'Coming Soon'),
+    grandPianoArticles: state.app.articles.filter(a => a.subCategory === 'Grand Piano'),
   }))
 
   return (
     <div className="page sound-library-home">
+
+      <div className="site-header-cover"></div>
+
       <Helmet>
         <title>{ BASE_SITE_TITLE }</title>
         <meta name="description" content="" />
       </Helmet>
 
-      <Header />
+      <Header subheading="Sound Library" />
 
       <SneakyHero>
         <div className="sound-library-home-hero">
@@ -40,7 +46,7 @@ function SoundLibraryHome(): ReactElement {
           <div className="sound-library-home-hero-content">
             <div className="sound-library-home-hero-blurb">
               <h1>Grand Piano</h1>
-              <div>
+              {/* <div>
                 <h2>What's so great about it</h2>
                 <ul>
                   <li>Great thing</li>
@@ -50,7 +56,7 @@ function SoundLibraryHome(): ReactElement {
                 </ul>
                 <button>Commit to it!</button>
                 <button>Learn more</button>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -59,15 +65,21 @@ function SoundLibraryHome(): ReactElement {
       <PencilExtras items={pencilExtrasItems} />
 
       <ArticlesGrid
-        articles={articles}
-        className="bonus-hero"
-        heading="Explore all the Grand Piano Packs"
+        articles={grandPianoArticles}
+        displaySubcategory={true}
+        heading="Explore the Grand Piano Sounds"
+        fourUp={true}
+      />
+
+      <ArticlesGrid
+        articles={comingSoonArticles}
+        heading="Coming Soon"
         fourUp={true}
       />
 
       <ArticlesGrid
         articles={articles}
-        heading="Latest News"
+        heading="All Packs"
       />
 
       <Footer />

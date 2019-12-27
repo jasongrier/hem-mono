@@ -7,6 +7,8 @@ import {
   LOG_IN_CHECK_RESULT,
   LOG_IN_RESET_ERROR,
   LOG_OUT,
+  SET_STUCK_PENCIL,
+  SET_STUCK_PLAYER,
 
   Action,
 } from './types'
@@ -52,6 +54,16 @@ const logOut = (): Action => ({
   payload: null,
 })
 
+const setStuckPencil = (stuck: boolean): Action => ({
+  type: SET_STUCK_PENCIL,
+  payload: stuck,
+})
+
+const setStuckPlayer = (stuck: boolean): Action => ({
+  type: SET_STUCK_PLAYER,
+  payload: stuck,
+})
+
 export {
   carouselNext,
   carouselPrevious,
@@ -61,4 +73,6 @@ export {
   logInCheckResult,
   logInResetError,
   logOut,
+  setStuckPencil,
+  setStuckPlayer,
 }
