@@ -24,6 +24,11 @@ import {
 } from '../routes/demos'
 
 import {
+  LabsHome,
+  MidstFlipBookLab,
+} from '../routes/labs'
+
+import {
   FourOhFour,
   LogOut,
 } from '../routes/utility'
@@ -56,6 +61,10 @@ function App(): ReactElement {
 
         {/* Demo pages */}
         <Route exact path="/demos" component={DemosHome} />
+
+        {/* Labs pages */}
+        <Route exact path="/labs" component={LabsHome} />
+        <Route exact path="/labs/midst-flip-book" component={MidstFlipBookLab} />
 
         {/* Internal pages */}
         <Route exact path="/handbook" component={HandbookHome} />
