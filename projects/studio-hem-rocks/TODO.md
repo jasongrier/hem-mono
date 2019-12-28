@@ -8,7 +8,7 @@
 | [projects/studio-hem-rocks/functions/image-diff-matrix.ts](projects/studio-hem-rocks/functions/image-diff-matrix.ts#L21) | 21 | Make it its own helper
 | [projects/studio-hem-rocks/functions/image-diff-matrix.ts](projects/studio-hem-rocks/functions/image-diff-matrix.ts#L33) | 33 | Make it its own helper
 | [projects/studio-hem-rocks/store/selectors.ts](projects/studio-hem-rocks/store/selectors.ts#L1) | 1 | Find a use for selectors in this project
-| [projects/hem-rocks/components/App.tsx](projects/hem-rocks/components/App.tsx#L39) | 39 | "logIn" or "login" or "loggedIn"??
+| [projects/hem-rocks/components/App.tsx](projects/hem-rocks/components/App.tsx#L44) | 44 | "logIn" or "login" or "loggedIn"??
 | [projects/jasonaarongrier-com/components/App.tsx](projects/jasonaarongrier-com/components/App.tsx#L14) | 14 | 404 page
 | [projects/midst-press/components/App.tsx](projects/midst-press/components/App.tsx#L74) | 74 | Move PoemNav out of the Switch/Route and directly into the Poem component
 | [projects/midst-press/components/CampaignMonitorForm.tsx](projects/midst-press/components/CampaignMonitorForm.tsx#L10) | 10 | All projects: Use line breaks for all component props
