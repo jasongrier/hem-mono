@@ -3,6 +3,8 @@ title: Guitar Pick
 category: Sound Library
 subCategory: Grand Piano
 keyArtComponent: Planes
+keyArtComponentProps:
+  colorBackgroundFrom: '#0044fd'
 tags: [foo, bar]
 status: published
 order: 5

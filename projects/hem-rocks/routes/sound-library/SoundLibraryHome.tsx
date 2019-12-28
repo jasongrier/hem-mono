@@ -1,12 +1,12 @@
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { ReactElement, useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useSelector, useDispatch } from 'react-redux'
-import { Header, Footer, ArticlesGrid, PencilExtras } from '../../components/layout'
-import { Planes } from '../../components/art'
+import { Footer, Header, PencilExtras } from '../../components/layout'
 import { SneakyHero } from '../../components/ui'
-import { indexRequested } from '../../modules/articles'
+import { ArticlesGrid, indexRequested } from '../../modules/articles'
 import { RootState } from '../../index'
 import { BASE_SITE_TITLE } from '../../config'
+import { GrandPianoHeroine } from './components'
 
 const pencilExtrasItems = {
   left: [
@@ -49,28 +49,7 @@ function SoundLibraryHome(): ReactElement {
 
       <SneakyHero>
         <div className="sound-library-home-hero">
-          <div className="sound-library-home-hero-backdrop">
-            <Planes />
-          </div>
-          <div className="sound-library-home-hero-content">
-            <div className="sound-library-home-hero-blurb">
-              <h1>
-                Grand Piano
-              </h1>
-              <div>
-                <h2>Eight new packs for Ableton Live</h2>
-                <ul>
-                  <li>Multimic recording of a 9-foot grand</li>
-                  <li>Five "prepared" pianos</li>
-                  <li>Full range of percussive slaps and body strikes</li>
-                  <li>Drones from bowing, mallet rolls, and electromagnet</li>
-                  <li>Cluster catalogue, <i>including the full 88-key cluster chord</i></li>
-                </ul>
-                {/* <button className="standard-button">Commit to it!</button> */}
-                <button className="standard-button">Listen &amp; Download</button>
-              </div>
-            </div>
-          </div>
+          <GrandPianoHeroine />
         </div>
       </SneakyHero>
 
