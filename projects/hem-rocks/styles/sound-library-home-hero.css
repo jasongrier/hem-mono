@@ -44,7 +44,7 @@
   z-index: 1;
   width: 100vw;
   height: 80vh;
-  opacity: .8;
+  opacity: .5;
 }
 
 .sound-library-home-hero-backdrop .planes {
@@ -63,6 +63,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  user-select: none;
 }
 
 .sound-library-home-hero-content h1 {
@@ -90,5 +91,14 @@
 .sound-library-home-hero-content li {
   margin: 0 0 10px 0;
   padding: 0;
-  font-weight: bold;
+  text-transform: lowercase;
+  font-size: 22px;
+}
+
+.sound-library-home-hero-content li small {
+  font-size: 12px;
+}
+
+.sound-library-home-hero-content button {
+  box-shadow: 0px 5px 4px -3px rgba(0, 0, 0, 0.6);
 }

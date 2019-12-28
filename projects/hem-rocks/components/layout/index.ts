@@ -1,4 +1,3 @@
-export { default as ArticlesGrid } from './ArticlesGrid'
 export { default as Displace } from './Displace'
 export { default as Footer } from './Footer'
 export { default as Header } from './Header'

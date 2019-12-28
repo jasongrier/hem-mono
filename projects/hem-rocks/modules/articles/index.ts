@@ -42,5 +42,6 @@ export interface IIndexRequested extends AnyAction {
 export type Action = IIndexReceived | IIndexRequested
 
 export { indexRequested } from './actions'
+export { ArticlesGrid, ArticleTile } from './components'
 export { indexSaga } from './sagas'
 export { reducer } from './reducer'

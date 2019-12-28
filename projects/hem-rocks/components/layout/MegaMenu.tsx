@@ -115,6 +115,9 @@ function App(): ReactElement {
                     <Link to="/handbook">Handbook</Link>
                   </li>
                   <li>
+                    <Link to="/labs">Labs</Link>
+                  </li>
+                  <li>
                     <Link to="/log-out">Log out</Link>
                   </li>
                 </ul>
