@@ -10,7 +10,7 @@
 | [projects/midst-press/store/types.ts](projects/midst-press/store/types.ts#L4) | 4 | How to get around putting this in every project??
 | [projects/midst-press/store/types.ts](projects/midst-press/store/types.ts#L7) | 7 | Move Midst types to common
 | [projects/midst-press/store/types.ts](projects/midst-press/store/types.ts#L14) | 14 | Move Midst types to common
-| [projects/hem-rocks/components/App.tsx](projects/hem-rocks/components/App.tsx#L39) | 39 | "logIn" or "login" or "loggedIn"??
+| [projects/hem-rocks/components/App.tsx](projects/hem-rocks/components/App.tsx#L44) | 44 | "logIn" or "login" or "loggedIn"??
 | [projects/jasonaarongrier-com/components/App.tsx](projects/jasonaarongrier-com/components/App.tsx#L14) | 14 | 404 page
 | [projects/midst-press/components/App.tsx](projects/midst-press/components/App.tsx#L74) | 74 | Move PoemNav out of the Switch/Route and directly into the Poem component
 | [projects/midst-press/components/CampaignMonitorForm.tsx](projects/midst-press/components/CampaignMonitorForm.tsx#L10) | 10 | All projects: Use line breaks for all component props

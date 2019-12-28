@@ -44,6 +44,7 @@ function FileUploader({ onUpload }: IProps): ReactElement {
   const onFileInputChanged = useCallback(
     function onFileInputChanged(evt: any) {
       onUpload(evt.target.files[0])
+      evt.target.value = null
     }, [],
   )
 

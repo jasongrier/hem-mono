@@ -2,7 +2,7 @@
 | Filename | line # | TODO
 |:------|:------:|:------
 | [projects/vexations-searchlight/store/selectors.ts](projects/vexations-searchlight/store/selectors.ts#L1) | 1 | Example selector
-| [projects/hem-rocks/components/App.tsx](projects/hem-rocks/components/App.tsx#L39) | 39 | "logIn" or "login" or "loggedIn"??
+| [projects/hem-rocks/components/App.tsx](projects/hem-rocks/components/App.tsx#L44) | 44 | "logIn" or "login" or "loggedIn"??
 | [projects/jasonaarongrier-com/components/App.tsx](projects/jasonaarongrier-com/components/App.tsx#L14) | 14 | 404 page
 | [projects/midst-press/components/App.tsx](projects/midst-press/components/App.tsx#L74) | 74 | Move PoemNav out of the Switch/Route and directly into the Poem component
 | [projects/midst-press/components/CampaignMonitorForm.tsx](projects/midst-press/components/CampaignMonitorForm.tsx#L10) | 10 | All projects: Use line breaks for all component props

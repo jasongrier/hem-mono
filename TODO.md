@@ -4,7 +4,7 @@
 | [bin/tasks/lint.js](bin/tasks/lint.js#L110) | 110 | This bypasses checks for, for example, `i-dont-belong.foo`, the correct check should be `requiredFiles`
 | [bin/tasks/todo.js](bin/tasks/todo.js#L10) | 10 | How to handle TODO's in CI?
 | [projects/hem-rocks/index.ts](projects/hem-rocks/index.ts#L48) | 48 | All projects; root div id should be 'react-root'
-| [projects/hem-rocks/components/App.tsx](projects/hem-rocks/components/App.tsx#L39) | 39 | "logIn" or "login" or "loggedIn"??
+| [projects/hem-rocks/components/App.tsx](projects/hem-rocks/components/App.tsx#L44) | 44 | "logIn" or "login" or "loggedIn"??
 | [projects/jasonaarongrier-com/components/App.tsx](projects/jasonaarongrier-com/components/App.tsx#L14) | 14 | 404 page
 | [projects/midst-press/components/App.tsx](projects/midst-press/components/App.tsx#L74) | 74 | Move PoemNav out of the Switch/Route and directly into the Poem component
 | [projects/midst-press/components/CampaignMonitorForm.tsx](projects/midst-press/components/CampaignMonitorForm.tsx#L10) | 10 | All projects: Use line breaks for all component props
