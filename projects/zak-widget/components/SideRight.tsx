@@ -4,6 +4,7 @@ import { kebabCase, titleCase } from 'voca'
 import { RootState } from '../store'
 import {
   getHighIndexOption,
+  getLensTreatmentOptions,
   getProductOptions,
   getProductTotalPrice,
   getThemeTitle,
@@ -17,7 +18,7 @@ import {
 } from '../functions/rules'
 
 import {
-  setLensColorSwatch,
+  setLensColor,
   setLensTreatment,
   setPrescription,
   setPrescriptionFile,
@@ -26,18 +27,12 @@ import {
   toggleHighIndexAddOn,
 } from '../store/actions'
 
-import { LensColorSwatch, IProduct } from '../store/types'
+import { IProduct } from '../store/types'
 
 import OptionRow from './OptionRow'
 import SwatchPicker from './SwatchPicker'
 
 declare function doAddToCart(product: IProduct): void
-
-const lensColorOptions: LensColorSwatch[] = [
-  'lens-gray',
-  'lens-green',
-  'lens-brown',
-]
 
 function SideRight(): ReactElement {
   const { product } = useSelector((state: RootState) => ({
@@ -56,7 +51,7 @@ function SideRight(): ReactElement {
 
   const {
     hasHighIndexAddOn,
-    lensColorSwatch,
+    lensColor,
     lensTreatment,
     prescription,
     theme,
@@ -65,7 +60,8 @@ function SideRight(): ReactElement {
   } = product
 
   const highIndexOption = getHighIndexOption()
-  const lensTreatmentOptions = getProductOptions('Lens Treatment', product, true)
+  const lensColorOptions = getProductOptions('Lens Color', product, true)
+  const lensTreatmentOptions = getLensTreatmentOptions()
   const prescriptionOptions = getProductOptions('Prescription', product, true)
   const themeOptions = getProductOptions('Theme')
   const tintOptions = getTintOptions()
@@ -96,10 +92,11 @@ function SideRight(): ReactElement {
         { showLensColorPicker && (
           <div className="zw-lens-picker">
             <SwatchPicker
-              onChange={(value: LensColorSwatch) => dispatch(setLensColorSwatch(value))}
+              onChange={value => dispatch(setLensColor(value))}
+              optionKeyTransform={value => `lens-${value.toLowerCase()}`}
               options={lensColorOptions}
               title="Lens color:"
-              value={lensColorSwatch}
+              value={lensColor}
             />
           </div>
         )}

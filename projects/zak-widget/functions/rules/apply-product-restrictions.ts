@@ -13,8 +13,15 @@ function applyProductRestrictions(draftState: IState) {
     draftState.product.tint = 'None'
   }
 
+  if (isProductEyeglass(draftState.product)) {
+    draftState.product.lensColor = 'NA'
+  }
+
   if (!isProductEyeglass(draftState.product)) {
     draftState.product.lensTreatment = 'Standard'
+    if (draftState.product.lensColor === 'NA') {
+      draftState.product.lensColor = 'Gray'
+    }
     draftState.product.tint = 'None'
   }
 

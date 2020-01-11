@@ -9,9 +9,17 @@ export interface IProps {
   value: string
 
   title?: string
+  optionKeyTransform?: (value) => string
 }
 
-function SwatchPicker({ onChange, options, title, value }: IProps): ReactElement {
+function SwatchPicker({
+  onChange,
+  options,
+  value,
+
+  title,
+  optionKeyTransform,
+}: IProps): ReactElement {
   return (
     <div className="zw-swatch-picker">
       {title && (
@@ -27,7 +35,11 @@ function SwatchPicker({ onChange, options, title, value }: IProps): ReactElement
               className="zw-swatch-picker-item-image"
               onClick={() => onChange(optionValue)}
               style={{
-                backgroundImage: `url(${PDP_WIDGET_SWATCH_URLS[optionValue]})`,
+                backgroundImage: `url(${PDP_WIDGET_SWATCH_URLS[
+                  (optionKeyTransform
+                    ? optionKeyTransform(optionValue)
+                    : optionValue)
+                ]})`,
               }}
             />
           </li>

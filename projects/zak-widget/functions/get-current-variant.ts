@@ -9,7 +9,7 @@ function getCurrentVariant(product: IProduct) {
 
   const variantPublicTitle =
     removePrice(productOptionToTitle(product.prescription)) + ' / '
-    + removePrice(productOptionToTitle(product.lensTreatment, true)) + ' / '
+    + removePrice(productOptionToTitle(product.lensColor, true)) + ' / '
     + removePrice(productOptionToTitle(product.theme, true))
 
   const currentVariant = rawProduct.variants.find(variant => variant.public_title === variantPublicTitle)

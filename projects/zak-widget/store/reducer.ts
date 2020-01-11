@@ -4,7 +4,7 @@ import { getProduct, getCurrentVariant } from '../functions'
 import { applyProductRestrictions } from '../functions/rules'
 import {
   INIT_PRODUCT,
-  SET_LENS_COLOR_SWATCH,
+  SET_LENS_COLOR,
   SET_LENS_TREATMENT,
   SET_PRESCRIPTION_FILE,
   SET_PRESCRIPTION,
@@ -35,10 +35,10 @@ const reducer = (
       })
     }
 
-    case SET_LENS_COLOR_SWATCH: {
+    case SET_LENS_COLOR: {
       return produce(state, draftState => {
         if (!draftState.product) return
-        draftState.product.lensColorSwatch = payload
+        draftState.product.lensColor = payload
         applyProductRestrictions(draftState)
       })
     }
