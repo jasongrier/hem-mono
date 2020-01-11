@@ -26,6 +26,8 @@ import {
 import {
   LabsHome,
   MidstFlipBookLab,
+  RoomTest,
+  FileTaskRunner
 } from '../routes/labs'
 
 import {
@@ -65,6 +67,8 @@ function App(): ReactElement {
         {/* Labs pages */}
         <Route exact path="/labs" component={LabsHome} />
         <Route exact path="/labs/midst-flip-book" component={MidstFlipBookLab} />
+        <Route exact path="/labs/room-test" component={RoomTest} />
+        <Route exact path="/labs/file-task-runner" component={FileTaskRunner} />
 
         {/* Internal pages */}
         <Route exact path="/handbook" component={HandbookHome} />

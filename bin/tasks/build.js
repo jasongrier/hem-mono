@@ -1,3 +1,5 @@
+const Bundler = require('parcel-bundler')
+const lazyRequire = require('lazy-require')
 const { execSync } = require('child_process')
 const { join } = require('path') // TODO: Group alphabetize all imports
 const { readdirSync, readFileSync, writeFileSync } = require('fs')
@@ -14,7 +16,15 @@ function build(projectName, andStart = false, developmentBuild = false) {
   runPreBuildTasks(projectName, andStart)
 
   if (andStart) {
+    // The CLI way...
     execSync(`parcel projects/${projectName}/index.html`, { stdio: 'inherit' })
+
+    // TODO: Make programmatic bundler work with parcel-manifest's
+    // const bundler = new Bundler(`${__dirname}/../../projects/${projectName}/index.html`)
+    // bundler.on('buildEnd', () => {
+    //   runPostBuildTasks(projectName, false)
+    // })
+    // bundler.serve()
   }
 
   else {
@@ -61,9 +71,10 @@ function buildContent(projectName) {
   writeFileSync(join(outputDir, 'index.json'), JSON.stringify(index))
 }
 
-function runTasks(projectName, isStartup, preBuild) {
+function runTasks(projectName, isStartup, taskType) {
   const tasksFile = join(__dirname, '..', '..', 'projects', projectName, 'tasks.js')
-  const tasks = require(tasksFile)[(preBuild ? 'preBuild' : 'postBuild')]
+  const allTasks = lazyRequire(tasksFile)
+  const tasks = allTasks[taskType]
 
   if (!tasks || !tasks.length) return
 
@@ -73,12 +84,11 @@ function runTasks(projectName, isStartup, preBuild) {
 }
 
 function runPreBuildTasks(...args) {
-  runTasks(...args, true)
+  runTasks(...args, 'preBuild')
 }
 
 function runPostBuildTasks(...args) {
-  runTasks(...args, false)
+  runTasks(...args, 'postBuild')
 }
-
 
 module.exports = build

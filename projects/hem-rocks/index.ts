@@ -9,6 +9,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import { App } from './components'
 import './static/assets/fonts/u8/u8.css'
 import './styles'
+import './tasks'
 
 // Put together Reducers
 import { reducer as articlesReducer } from './modules/articles'

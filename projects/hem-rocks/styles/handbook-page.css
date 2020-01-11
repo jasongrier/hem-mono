@@ -2,9 +2,11 @@
   padding-top: 50px;
 }
 
+/* TODO: Labs pages are "borrowing" internal page styles */
+/* TODO: This file is named wrong!! */
 .internal-page main {
   width: 960px;
-  min-height: calc(100vh - 170px);
+  min-height: calc(100vh - 70px);
   margin: 0 auto;
 }
 
