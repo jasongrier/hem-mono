@@ -66,11 +66,11 @@ function SoundLibraryHome(): ReactElement {
         </ArticlesGrid>
       </div>
 
-      {/* <ArticlesGrid
-        articles={articles}
+      <ArticlesGrid
+        articles={grandPianoArticles}
         displaySubcategory={true}
         heading="All Packs"
-      /> */}
+      />
 
       <Footer />
     </div>

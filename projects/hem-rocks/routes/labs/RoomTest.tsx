@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
-import { Header, Footer, PencilExtras } from '../../components/layout'
+import { Header, Footer } from '../../components/layout'
 import { BASE_SITE_TITLE } from '../../config'
 
 function RoomTest(): ReactElement {
@@ -12,19 +12,18 @@ function RoomTest(): ReactElement {
       </Helmet>
 
       <Header />
-      <PencilExtras />
 
       <main>
-      <section id="container">
-        <div id="room">
-          <figure className="n">N</figure>
-          <figure className="e">O</figure>
-          <figure className="s">Z</figure>
-          <figure className="w">W</figure>
-          <figure className="t">T</figure>
-          <figure className="b">B</figure>
-        </div>
-      </section>
+        <section id="container">
+          <div id="room">
+            <figure className="n">N</figure>
+            <figure className="e">O</figure>
+            <figure className="s">Z</figure>
+            <figure className="w">W</figure>
+            <figure className="t">T</figure>
+            <figure className="b">B</figure>
+          </div>
+        </section>
       </main>
 
       <Footer />

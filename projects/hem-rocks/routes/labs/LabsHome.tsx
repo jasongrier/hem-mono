@@ -30,6 +30,30 @@ function LabsHome(): ReactElement {
               </ul>
             </div>
           </section>
+          <section>
+            <h2>3D in CSS</h2>
+            <div className="internal-page-column">
+              <ul>
+                <li>
+                  <Link to="/labs/room-test">
+                    A dark space in CSS
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <h2>Utils</h2>
+            <div className="internal-page-column">
+              <ul>
+                <li>
+                  <Link to="/labs/file-task-runner">
+                    Batch-rename/trim/normalize files (requires local env)
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </section>
         </main>
       </ProtectedContent>
 

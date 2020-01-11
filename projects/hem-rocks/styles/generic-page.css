@@ -1,22 +1,9 @@
-.page.generic-page {
-  display: flex;
-  height: 100vh;
-  align-items: center;
-  justify-content: center;
-}
-
 .page.generic-page main {
+  margin-top: 250px;
+  min-height: calc(100vh - 70px);
   text-align: center;
-  transform: translateY(-120px);
 }
 
 .page.generic-page main a:hover {
   text-decoration: underline;
-}
-
-.page.generic-page .site-footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
 }
