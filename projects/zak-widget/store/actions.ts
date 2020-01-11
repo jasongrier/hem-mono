@@ -2,7 +2,7 @@ import {
   LensColorSwatch,
 
   INIT_PRODUCT,
-  SET_LENS_COLOR_SWATCH,
+  SET_LENS_COLOR,
   SET_LENS_TREATMENT,
   SET_PRESCRIPTION_FILE,
   SET_PRESCRIPTION,
@@ -11,7 +11,7 @@ import {
   TOGGLE_HIGH_INDEX_ADD_ON,
 
   IInitProduct,
-  ISetLensColorSwatch,
+  ISetLensColor,
   ISetLensTreatment,
   ISetPrescription,
   ISetPrescriptionFile,
@@ -25,9 +25,9 @@ const initProduct = (): IInitProduct => ({
   type: INIT_PRODUCT,
 })
 
-const setLensColorSwatch = (lensColor: LensColorSwatch): ISetLensColorSwatch => ({
+const setLensColor = (lensColor: string): ISetLensColor => ({
   payload: lensColor,
-  type: SET_LENS_COLOR_SWATCH,
+  type: SET_LENS_COLOR,
 })
 
 const setLensTreatment = (lensTreatmentName: string): ISetLensTreatment => ({
@@ -62,7 +62,7 @@ const toggleHighIndexAddOn = (): IToggleHighIndexAddOn => ({
 
 export {
   initProduct,
-  setLensColorSwatch,
+  setLensColor,
   setLensTreatment,
   setPrescription,
   setPrescriptionFile,

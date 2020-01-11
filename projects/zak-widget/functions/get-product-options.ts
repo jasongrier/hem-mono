@@ -1,6 +1,5 @@
-import { without } from 'lodash'
+import { compact } from 'lodash'
 import { IProduct } from '../store/types'
-import removePrice from './remove-price'
 
 declare const PDP_WIDGET_PRODUCT_OPTIONS_WITH_VALUES: string
 declare const PDP_WIDGET_PRODUCT: string
@@ -17,31 +16,21 @@ function getProductOptions(optionGroupName: string, product?: Partial<IProduct>,
 
     if (optionGroupName === 'Prescription') {
       return rawOptionGroup.values.map(optionName => {
-        const variantPublicTitle = optionName + ' / Standard / ' + product.theme
+        const variantPublicTitle = optionName + ' / ' + product.lensColor + ' / ' + product.theme
         const variant = rawProduct.variants.find(variant => variant.public_title === variantPublicTitle)
         if (!variant) return optionName
         return optionName + ' – $' + (variant.price / 100)
       })
     }
 
-    else if (optionGroupName === 'Lens Treatment') {
-      const unorderedLensTreatmentOptions = rawOptionGroup.values.map(optionName => {
-        const standardVariantPublicTitle = removePrice(product.prescription) + ' / Standard / ' + product.theme
-        const standardVariant = rawProduct.variants.find(variant => variant.public_title === standardVariantPublicTitle)
-
-        if (!standardVariant) return optionName
-
-        const variantPublicTitle = removePrice(product.prescription) + ' / ' + optionName + ' / ' + product.theme
+    else if (optionGroupName === 'Lens Color') {
+      return compact(rawOptionGroup.values.map(optionName => {
+        if (optionName === 'NA') return
+        const variantPublicTitle = product.prescription + ' / ' + optionName + ' / ' + product.theme
         const variant = rawProduct.variants.find(variant => variant.public_title === variantPublicTitle)
         if (!variant) return optionName
-
-        const priceDifference = variant.price - standardVariant.price
-        if (priceDifference === 0)  return optionName
-
-        return optionName + ' +$' + (priceDifference / 100)
-      })
-
-      return ['Standard'].concat(without(unorderedLensTreatmentOptions, 'Standard'))
+        return optionName + ' – $' + (variant.price / 100)
+      }))
     }
   }
 

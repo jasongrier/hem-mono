@@ -1,6 +1,7 @@
 import { IProduct } from '../../store/types'
 import {
   getHighIndexOption,
+  getLensTreatmentOptions,
   getProductOptions,
   getTintOptions,
   isProductEyeglass,
@@ -8,7 +9,7 @@ import {
 } from '../index'
 
 function getFieldVisibility(product: IProduct) {
-  const lensTreatmentOptions = getProductOptions('Lens Treatment', product, true)
+  const lensTreatmentOptions = getLensTreatmentOptions()
   const prescriptionOptions = getProductOptions('Prescription', product, true)
   const tintOptions = getTintOptions()
 
