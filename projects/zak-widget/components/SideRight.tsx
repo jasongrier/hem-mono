@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { kebabCase, titleCase } from 'voca'
 import { RootState } from '../store'
 import {
+  allProductIds,
   getHighIndexOption,
   getLensTreatmentOptions,
   getProductOptions,
@@ -27,12 +28,10 @@ import {
   toggleHighIndexAddOn,
 } from '../store/actions'
 
-import { IProduct } from '../store/types'
-
 import OptionRow from './OptionRow'
 import SwatchPicker from './SwatchPicker'
 
-declare function doAddToCart(product: IProduct): void
+declare function doAddToCart(mainProduct, allProductIds: string[]): void
 
 function SideRight(): ReactElement {
   const { product } = useSelector((state: RootState) => ({
@@ -169,7 +168,7 @@ function SideRight(): ReactElement {
         <div className="zw-submit-row">
           <button
             className="zw-submit-button"
-            onClick={() => doAddToCart(product)}
+            onClick={() => doAddToCart(product, allProductIds(product))}
           >
             Add to Cart
           </button>
