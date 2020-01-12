@@ -1,3 +1,4 @@
+export { default as allProductIds } from './all-product-ids'
 export { default as extractPrice } from './extract-price'
 export { default as getCurrentVariant } from './get-current-variant'
 export { default as getHighIndexOption } from './get-high-index-option'

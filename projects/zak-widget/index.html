@@ -4,6 +4,8 @@
     <meta charset="utf-8" />
     <title>Zak Widget Dev</title>
 
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" type="text/javascript"></script>
+
     <script src="//use.fontawesome.com/d822a9b4f8.js" type="text/javascript"></script>
 
     <link rel="stylesheet" type="text/css" href="/static/assets/mock-styles/featherlight.min.css">
@@ -36,25 +38,46 @@
         'tortoise-sunglass': 'http://static.hem.rocks/zak/zw-sunglass-tortoise.png',
       }
 
-      var PDP_WIDGET_LENS_COLOR_OPTIONS = [
-        'gray',
-        'green',
-        'brown',
-      ]
+      function doAddToCart(mainProduct, productIds) {
+        var fd = new FormData()
 
-      function doAddToCart(product) {
-        const primaryProductData = {
-          id: product.id,
-          quantity: 1,
+        var items = productIds.map(function(id) {
+          const item = {
+            quantity: 1,
+            id: id,
+          }
+
+          if (
+            id === mainProduct.id
+            && mainProduct.lensColor !== 'NA'
+          ) {
+            const property = 'Lens Color: ' + mainProduct.lensColor
+
+            item.properties = {
+              [property]: property
+            }
+          }
+
+          return item
+        })
+
+        fd.append('items', JSON.stringify(items.reverse()))
+
+        if (mainProduct.prescriptionFile) {
+          fd.append('file', mainProduct.prescriptionFile)
         }
 
-        const res = fetch('/cart/add/', {
-          method: 'POST',
-          body: JSON.stringify(primaryProductData)
+        $.ajax({
+          url: 'http://upload:8888/index.php',
+          // url: '/cart/add.js',
+          type: 'post',
+          data: fd,
+          contentType: false,
+          processData: false,
+          success: function(response) {
+            // window.location.href = '/cart'
+          },
         })
-          .then(function() {
-            console.log(res)
-          })
       }
     </script>
   </head>

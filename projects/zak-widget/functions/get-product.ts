@@ -17,7 +17,7 @@ function getProduct(): IProduct {
     lensColor: 'NA',
     lensTreatment: 'Standard',
     optionNames: rawProduct.options,
-    prescription: getProductOptions('Prescription', { theme }, true)[0],
+    prescription: getProductOptions('Prescription', { theme, lensColor: 'NA' }, true)[0],
     prescriptionFile: null,
     theme,
     tint: getTintOptions()[0],
