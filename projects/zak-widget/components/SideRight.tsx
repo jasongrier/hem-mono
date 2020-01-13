@@ -12,6 +12,7 @@ import {
   getTintOptions,
   productOptionToTitle,
   removePrice,
+  isProductEyeglass,
 } from '../functions'
 
 import {
@@ -172,20 +173,32 @@ function SideRight(): ReactElement {
           >
             Add to Cart
           </button>
-          <button
-            className="zw-upload-rx-button"
-            onClick={() => {}}
+
+          <form
+            action="/cart/add"
+            className="pdp-form zw-upload-rx-button-form"
+            encType="multipart/form-data"
+            method="POST"
           >
-            <span className="zw-upload-rx-button-text">
-              Upload RX
-              <span className="ion-ios-arrow-thin-right" />
-            </span>
             <input
-              multiple={false}
-              onChange={onFileInputChanged}
-              type="file"
+              className="id-input"
+              name="id"
+              type="hidden"
             />
-          </button>
+            { hasPrescription &&
+              <button id="zw-upload-rx-button">
+                <span className="zw-upload-rx-button-text">
+                  Upload RX
+                  <span className="ion-ios-arrow-thin-right" />
+                </span>
+                  <input
+                    id="zw-upload-rx-input"
+                    name="properties[Uploaded Prescription File]"
+                    type="file"
+                  />
+              </button>
+            }
+          </form>
           <a
             className="zw-more-info-link zw-plus-left"
             data-remodal-target="upload-options-view"
