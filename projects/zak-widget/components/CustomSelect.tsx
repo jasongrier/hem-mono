@@ -12,12 +12,11 @@ export interface IProps {
   options: ICustomSelectOption[]
   value: string
 
-  availabilities?: any
   id?: string
   placeholder?: string
 }
 
-function CustomSelect({ id, onChange, options, availabilities, placeholder, value }: IProps): ReactElement {
+function CustomSelect({ id, onChange, options, placeholder, value }: IProps): ReactElement {
   const [open, setOpen] = useState()
   const [selectedText, setSelectedText] = useState(value || placeholder || options[0] && options[0].name)
   const [ref, hasClickedOutside] = useClickOutside()
@@ -59,12 +58,7 @@ function CustomSelect({ id, onChange, options, availabilities, placeholder, valu
             <li
               className={value === optionValue ? 'zw-custom-select-item-active' : ''}
               key={index}
-              style={{
-                cursor: !availabilities ? 'pointer' : (availabilities[optionValue] ? 'pointer' : 'default'),
-                opacity: !availabilities ? 1 : (availabilities[optionValue] ? 1 : 0.5),
-              }}
               onClick={() => {
-                if (availabilities && !availabilities[optionValue]) return
                 setAndClose({ value: optionValue, name })
               }}
             >

@@ -6,14 +6,18 @@ declare const PDP_WIDGET_SWATCH_URLS: string[]
 
 // TODO: All projects; Export all props
 export interface IProps {
-  availabilities: any
   onChange: (value: any) => void
   options: string[]
   product: IProduct
   value: string
 
+  availabilities?: any
   title?: string
   optionKeyTransform?: (value) => string
+}
+
+function isOptionUnavailable(availabilities, optionValue) {
+  return availabilities && !availabilities[optionValue]
 }
 
 function SwatchPicker({
@@ -36,13 +40,15 @@ function SwatchPicker({
             className={value === optionValue ? 'zw-swatch-picker-item-active' : ''}
             key={index}
           >
-            {title === 'foo' && console.log(optionValue)}
             <div
               className="zw-swatch-picker-item-image"
-              onClick={() => availabilities[optionValue] ? onChange(optionValue) : noop}
+              onClick={() => {
+                if (isOptionUnavailable(availabilities, optionValue)) return
+                onChange(optionValue)
+              }}
               style={{
-                cursor: availabilities[optionValue] ? 'pointer' : 'auto',
-                opacity: availabilities[optionValue] ? 1 : 0.5,
+                cursor: isOptionUnavailable(availabilities, optionValue) ? 'auto' : 'pointer',
+                opacity: isOptionUnavailable(availabilities, optionValue) ? 0.5 : 1,
                 backgroundImage: `url(${PDP_WIDGET_SWATCH_URLS[
                   (optionKeyTransform
                     ? optionKeyTransform(optionValue)
