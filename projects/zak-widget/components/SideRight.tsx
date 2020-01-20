@@ -17,7 +17,7 @@ import {
 
 import {
   getFieldVisibility,
-  getVariantAvailability,
+  getThemeAvailability,
 } from '../functions/rules'
 
 import {
@@ -79,29 +79,7 @@ function SideRight(): ReactElement {
 
   const themeOptions = rawThemeOptions.map(kebabCase)
   const themeAvailabilities = reduce(themeOptions, (acc, option) => {
-    acc[option] = getVariantAvailability(
-      product.prescription,
-      product.lensColor,
-      titleCase(option).replace(/-/g, ' ')
-    )
-    return acc
-  }, {})
-
-  const lensColorAvailabilities = reduce(lensColorOptions, (acc, option) => {
-    acc[option] = getVariantAvailability(
-      product.prescription,
-      titleCase(option).replace(/-/g, ' '),
-      product.theme,
-    )
-    return acc
-  }, {})
-
-  const prescriptionAvailabilities = reduce(prescriptionOptions, (acc, option) => {
-    acc[option] = getVariantAvailability(
-      removePrice(option),
-      product.lensColor,
-      product.theme,
-    )
+    acc[option] = getThemeAvailability(titleCase(option).replace(/-/g, ' '))
     return acc
   }, {})
 
@@ -132,7 +110,6 @@ function SideRight(): ReactElement {
               onChange={value => dispatch(setLensColor(value))}
               optionKeyTransform={value => `lens-${value.toLowerCase()}`}
               options={lensColorOptions}
-              availabilities={lensColorAvailabilities}
               product={product}
               title="Lens color:"
               value={lensColor}
@@ -156,7 +133,6 @@ function SideRight(): ReactElement {
             select={{
               onChange: (name: string) => dispatch(setPrescription(name)),
               options: prescriptionOptions.map(o => ({ name: o, value: o })),
-              availabilities: prescriptionAvailabilities,
               value: productOptionToTitle(prescription),
             }}
           />
