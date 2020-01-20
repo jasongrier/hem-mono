@@ -22,6 +22,8 @@ function OptionRow({ action, className, label, select }: IProps): ReactElement {
         onChange={select.onChange}
         options={select.options}
         value={select.value}
+        availabilities={select.availabilities}
+        id={select.id}
       />
         <div className="zw-option-action">
           <a

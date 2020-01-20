@@ -23,7 +23,7 @@ else if (a1 === 'task') { // TODO: Command not found error
       build(a3)
       break
 
-    case 'development-build': // `npm run task build my-project`
+    case 'developer-build': // `npm run task build my-project`
       build(a3, false, true)
       break
 

@@ -1,3 +1,8 @@
+html,
+body {
+  overflow: scroll !important;
+}
+
 .zw-clearfix::after {
   content: " ";
   clear: both;
@@ -69,6 +74,10 @@
   line-height: 18px;
 }
 
+.zw-description-mobile {
+  display: none;
+}
+
 .zw-description p {
   margin: 0;
 }
@@ -90,6 +99,11 @@
   line-height: 24px;
   letter-spacing: .3px;
   font-weight: bold;
+}
+
+.zw-product-options .lens-color-title {
+  font-weight: normal;
+  color: #fc2530;
 }
 
 .zw-product-options h3 {
@@ -403,10 +417,15 @@
 }
 
 .zw-patient-info {
+  margin-bottom: 20px;
   font-size: 14px;
 }
 
 @media only screen and (max-width: 800px) {
+  .zw-widget {
+    width: 100%;
+  }
+
   .zw-section {
     position: static;
     display: block;
@@ -419,5 +438,14 @@
   .zw-product-options {
     width: 100%;
     margin-left: 0;
+  }
+
+  .zw-description {
+    display: none;
+  }
+
+  .zw-description-mobile {
+    display: block;
+    font-style: italic;
   }
 }

@@ -1,11 +1,15 @@
+import { noop } from 'lodash'
 import React, { ReactElement } from 'react'
+import { IProduct } from '../store/types'
 
 declare const PDP_WIDGET_SWATCH_URLS: string[]
 
 // TODO: All projects; Export all props
 export interface IProps {
+  availabilities: any
   onChange: (value: any) => void
   options: string[]
+  product: IProduct
   value: string
 
   title?: string
@@ -13,6 +17,7 @@ export interface IProps {
 }
 
 function SwatchPicker({
+  availabilities,
   onChange,
   options,
   value,
@@ -31,10 +36,13 @@ function SwatchPicker({
             className={value === optionValue ? 'zw-swatch-picker-item-active' : ''}
             key={index}
           >
+            {title === 'foo' && console.log(optionValue)}
             <div
               className="zw-swatch-picker-item-image"
-              onClick={() => onChange(optionValue)}
+              onClick={() => availabilities[optionValue] ? onChange(optionValue) : noop}
               style={{
+                cursor: availabilities[optionValue] ? 'pointer' : 'auto',
+                opacity: availabilities[optionValue] ? 1 : 0.5,
                 backgroundImage: `url(${PDP_WIDGET_SWATCH_URLS[
                   (optionKeyTransform
                     ? optionKeyTransform(optionValue)
