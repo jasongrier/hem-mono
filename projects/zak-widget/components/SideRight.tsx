@@ -1,4 +1,5 @@
-import React, { ReactElement, useCallback } from 'react'
+import { reduce } from 'lodash'
+import React, { ReactElement, useCallback, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { kebabCase, titleCase } from 'voca'
 import { RootState } from '../store'
@@ -12,18 +13,17 @@ import {
   getTintOptions,
   productOptionToTitle,
   removePrice,
-  isProductEyeglass,
 } from '../functions'
 
 import {
   getFieldVisibility,
+  getVariantAvailability,
 } from '../functions/rules'
 
 import {
   setLensColor,
   setLensTreatment,
   setPrescription,
-  setPrescriptionFile,
   setTheme,
   setTint,
   toggleHighIndexAddOn,
@@ -41,15 +41,10 @@ function SideRight(): ReactElement {
 
   const dispatch = useDispatch()
 
-  const onFileInputChanged = useCallback(
-    (evt: any) => {
-      dispatch(setPrescriptionFile(evt.target.files[0]))
-    }, [],
-  )
-
   if (!product) return <div />
 
   const {
+    description,
     hasHighIndexAddOn,
     lensColor,
     lensTreatment,
@@ -63,7 +58,7 @@ function SideRight(): ReactElement {
   const lensColorOptions = getProductOptions('Lens Color', product, true)
   const lensTreatmentOptions = getLensTreatmentOptions()
   const prescriptionOptions = getProductOptions('Prescription', product, true)
-  const themeOptions = getProductOptions('Theme')
+  const rawThemeOptions = getProductOptions('Theme')
   const tintOptions = getTintOptions()
 
   const themeTitle = getThemeTitle(theme)
@@ -77,15 +72,57 @@ function SideRight(): ReactElement {
     showTintOptions,
   } = getFieldVisibility(product)
 
+  let lensColorTitle
+  if (lensColor !== 'NA') {
+    lensColorTitle = `. <span class="lens-color-title">${lensColor} Lens</span>`
+  }
+
+  const themeOptions = rawThemeOptions.map(kebabCase)
+  const themeAvailabilities = reduce(themeOptions, (acc, option) => {
+    acc[option] = getVariantAvailability(
+      product.prescription,
+      product.lensColor,
+      titleCase(option).replace(/-/g, ' ')
+    )
+    return acc
+  }, {})
+
+  const lensColorAvailabilities = reduce(lensColorOptions, (acc, option) => {
+    acc[option] = getVariantAvailability(
+      product.prescription,
+      titleCase(option).replace(/-/g, ' '),
+      product.theme,
+    )
+    return acc
+  }, {})
+
+  const prescriptionAvailabilities = reduce(prescriptionOptions, (acc, option) => {
+    acc[option] = getVariantAvailability(
+      removePrice(option),
+      product.lensColor,
+      product.theme,
+    )
+    return acc
+  }, {})
+
   return (
     <div className="zw-right">
       <div className="zw-product-options">
         <h2>{ title }</h2>
-        <h3>{ themeTitle }</h3>
+        <h3>
+          <span className="theme-title">{ themeTitle }</span>
+          { lensColorTitle &&
+            <span dangerouslySetInnerHTML={{
+              __html: lensColorTitle
+            }}/>
+          }
+        </h3>
         <div className="zw-primary-picker">
           <SwatchPicker
             onChange={(themeKebab: string) => dispatch(setTheme(titleCase(themeKebab.replace(/-/g, ' '))))}
-            options={themeOptions.map(kebabCase)}
+            options={themeOptions}
+            availabilities={themeAvailabilities}
+            product={product}
             value={kebabCase(theme)}
           />
         </div>
@@ -95,6 +132,8 @@ function SideRight(): ReactElement {
               onChange={value => dispatch(setLensColor(value))}
               optionKeyTransform={value => `lens-${value.toLowerCase()}`}
               options={lensColorOptions}
+              availabilities={lensColorAvailabilities}
+              product={product}
               title="Lens color:"
               value={lensColor}
             />
@@ -117,6 +156,7 @@ function SideRight(): ReactElement {
             select={{
               onChange: (name: string) => dispatch(setPrescription(name)),
               options: prescriptionOptions.map(o => ({ name: o, value: o })),
+              availabilities: prescriptionAvailabilities,
               value: productOptionToTitle(prescription),
             }}
           />
@@ -173,12 +213,14 @@ function SideRight(): ReactElement {
           >
             Add to Cart
           </button>
-
           <form
             action="/cart/add"
             className="pdp-form zw-upload-rx-button-form"
             encType="multipart/form-data"
             method="POST"
+            style={{
+              height: hasPrescription ? '40px' : '0',
+            }}
           >
             <input
               className="id-input"
@@ -199,15 +241,23 @@ function SideRight(): ReactElement {
               </button>
             }
           </form>
-          <a
-            className="zw-more-info-link zw-plus-left"
-            data-remodal-target="upload-options-view"
-          >
-            More info
-          </a>
-          <p className="zw-patient-info">
-            If you’re a Zak. patient or have ordered with us in the past, we have your prescription on file. You do not need to upload it. Just check out!
-          </p>
+          { hasPrescription &&
+            <>
+              <a
+                className="zw-more-info-link zw-plus-left"
+                data-remodal-target="upload-options-view"
+              >
+                More info
+              </a>
+              <p className="zw-patient-info">
+                If you’re a Zak. patient or have ordered with us in the past, we have your prescription on file. You do not need to upload it. Just check out!
+              </p>
+            </>
+          }
+          <div
+            className="zw-description-mobile"
+            dangerouslySetInnerHTML={{__html: description}}
+          />
         </div>
       </div>
     </div>

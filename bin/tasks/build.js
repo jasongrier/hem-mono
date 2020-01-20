@@ -1,11 +1,11 @@
-const Bundler = require('parcel-bundler')
+// const Bundler = require('parcel-bundler')
 const lazyRequire = require('lazy-require')
 const { execSync } = require('child_process')
 const { join } = require('path') // TODO: Group alphabetize all imports
 const { readdirSync, readFileSync, writeFileSync } = require('fs')
 const parseFrontMatter = require('front-matter')
 
-function build(projectName, andStart = false, developmentBuild = false) {
+function build(projectName, andStart = false, developerBuild = false) {
   execSync(`rm -rf dist`, { stdio: 'inherit' })
   execSync(`mkdir dist`, { stdio: 'inherit' })
   execSync(`cp -rf projects/${projectName}/static dist/static`, { stdio: 'inherit' })
@@ -28,7 +28,7 @@ function build(projectName, andStart = false, developmentBuild = false) {
   }
 
   else {
-    execSync(`${developmentBuild ? 'NODE_ENV=development ' : ''}parcel build projects/${projectName}/index.html`, { stdio: 'inherit' })
+    execSync(`${developerBuild ? 'NODE_ENV=development ' : ''}parcel build projects/${projectName}/index.html --no-minify`, { stdio: 'inherit' })
   }
 
   runPostBuildTasks(projectName, andStart)
