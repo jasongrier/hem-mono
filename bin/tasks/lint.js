@@ -21,13 +21,11 @@ const expectedProjectFiles = [
   'TODO.md',
 ]
 
-const expectedComponentsFiles = [
-  'App.tsx',
+const expectedFunctionsFiles = [
   'index.ts',
-  'Root.tsx'
 ]
 
-const expectedFunctionsFiles = [
+const expectedHooksFiles = [
   'index.ts',
 ]
 
@@ -47,6 +45,10 @@ const expectedStaticFiles = [
   'workers',
 ]
 
+const expectedStylesFiles = [
+  'index.ts',
+]
+
 const expectedTestsFiles = [
   'app.test.js',
 ]
@@ -57,58 +59,76 @@ const ignoredFiles = [
   '.DS_Store',
 ]
 
+function getProjectDir(projectName) {
+  return join(__dirname, '..', '..', 'projects', projectName)
+}
+
 function lintProject(projectName) {
-  const projectDir = join(__dirname, '..', '..', 'projects', projectName)
+  const projectDir = getProjectDir(projectName)
 
   lintFiles(projectName, projectDir, expectedProjectFiles)
 
-  // lintFiles(join(projectDir, 'components'), expectedComponentsFiles)
-  // evaluateLint(projectName, expectedModuleFiles, 'components/')
+  expectedProjectFiles.forEach((subdir) => {
+    foldersOnly(projectName, join(projectDir, subdir))
+  })
 
-  // lintFiles(join(projectDir, 'routes'), expectedModuleFiles)
-  // evaluateLint(projectName, expectedModuleFiles, 'routes/', false)
-
-  // lintFiles(join(projectDir, 'static'), expectedStaticFiles)
-  // evaluateLint(projectName, expectedStaticFiles, 'static/')
-
-  // lintFiles(join(projectDir, 'store'), expectedStoreFiles)
-  // evaluateLint(projectName, expectedStoreFiles, 'store/')
-
-  // lintFiles(join(projectDir, 'tests'), expectedTestsFiles)
-  // // TODO: This bypasses checks for, for example, `i-dont-belong.foo`, the correct check should be `requiredFiles`
-  // evaluateLint(projectName, expectedTestsFiles, 'tests/', false)
+  readdirSync(join(projectDir, 'modules')).forEach(fileName => {
+    if (ignoredFiles.indexOf(fileName)) return
+    lintFiles(projectName, join('modules', fileName), expectedModulesFiles)
+  })
 }
 
-function lintFiles(projectName, checkDir, expectedFiles) {
+function foldersOnly(projectName, checkDir) {
+  const projectDir = getProjectDir(projectName)
+  const unexpectedFilesFound = []
+
+  readdirSync(checkDir).forEach(fileName => {
+    if (ignoredFiles.indexOf(fileName)) return
+    if (!lstatSync(join(projectDir, checkDir, fileName)).isDirectory()) {
+      unexpectedFilesFound.push(fileName)
+    }
+  })
+
+  reportUnexpectedFiles(projectName, unexpectedFilesFound)
+}
+
+function lintFiles(projectName, checkDir, expectedFiles, reportUnexpected = true) {
   const expectedFilesFound = []
   const ignoredFilesFound = []
   const unexpectedFilesFound = []
 
-  readdirSync(checkDir).forEach(filePath => {
-    if (expectedFiles.indexOf(filePath) > -1) {
-      expectedFilesFound.push(filePath)
+  readdirSync(checkDir).forEach(fileName => {
+    if (expectedFiles.indexOf(fileName) > -1) {
+      expectedFilesFound.push(fileName)
     }
 
-    else if (ignoredFiles.indexOf(filePath) > -1) {
-      ignoredFilesFound.push(filePath)
+    else if (ignoredFiles.indexOf(fileName) > -1) {
+      ignoredFilesFound.push(fileName)
     }
 
     else {
-      unexpectedFilesFound.push(filePath)
+      unexpectedFilesFound.push(fileName)
     }
   })
 
+  reportExpectedFiles(projectName, checkDir, expectedFiles, expectedFilesFound)
+  reportUnexpected && reportUnexpectedFiles(projectName, unexpectedFilesFound)
+}
+
+function reportExpectedFiles(projectName, checkDir, expectedFiles, expectedFilesFound) {
   if (expectedFiles.length !== expectedFilesFound.length) {
-    expectedFiles.forEach(filePath => {
-      if (expectedFilesFound.indexOf(filePath) === -1) {
-        console.log(`!!!! Sorry ${projectName}, seems like you are missing ${filePath}`)
+    expectedFiles.forEach(fileName => {
+      if (expectedFilesFound.indexOf(fileName) === -1) {
+        console.log(`!!!! Sorry ${projectName}, seems like you are missing ${fileName} in ${checkDir}`)
       }
     })
   }
+}
 
+function reportUnexpectedFiles(projectName, unexpectedFilesFound) {
   if (unexpectedFilesFound.length) {
-    unexpectedFilesFound.forEach(filePath => {
-      console.log(`!!!! Sorry ${projectName}, seems like you have ${filePath} where it does not belong`)
+    unexpectedFilesFound.forEach(fileName => {
+      console.log(`!!!! Sorry ${projectName}, seems like you have ${fileName} where it does not belong`)
     })
   }
 }
