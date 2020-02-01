@@ -13,7 +13,7 @@ function ItemRow({ collection, item, options }: IProps): ReactElement {
   const [currentVariantId, setCurrentVariantId] = useState(item.variants[0].id)
 
   return (
-    <div className="zw-item-row">
+    <div className="zw-item-row zw-clearfix">
       <div className="zw-item-column zw-item-column-left">
         <Title
           collectionTitle={collection.title}
@@ -31,7 +31,7 @@ function ItemRow({ collection, item, options }: IProps): ReactElement {
         <Picker
           currentVariantId={currentVariantId}
           item={item}
-          onThemeSelected={(theme) => console.log(theme)}
+          onThemeSelected={setCurrentVariantId}
           options={options[item.id]}
         />
       </div>

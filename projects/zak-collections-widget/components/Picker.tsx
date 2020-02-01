@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useCallback } from 'react'
 import { find, reduce } from 'lodash'
 import { kebabCase, titleCase } from 'voca'
 import SwatchPicker from '../../zak-pdp-widget/components/SwatchPicker'
@@ -7,7 +7,7 @@ import getThemeAvailability from '../../zak-pdp-widget/functions/rules/get-theme
 interface IProps {
   currentVariantId: string
   item: any
-  onThemeSelected: (theme: string) => void
+  onThemeSelected: (variantId: string) => void
   options: any[]
 }
 
@@ -27,10 +27,18 @@ function Picker({ currentVariantId, item, onThemeSelected, options }: IProps): R
     return acc
   }, {} as any)
 
+  const swatchPickerOnChange = useCallback(
+    function swatchPickerOnChange(themeKebab: string) {
+      var themeName = titleCase(themeKebab).replace(/-/g, ' ')
+      var variant = find(item.variants, {option3: themeName})
+      onThemeSelected(variant.id)
+    }, []
+  )
+
   return (
     <div className="zw-item-picker">
       <SwatchPicker
-        onChange={(themeKebab: string) => onThemeSelected(titleCase(themeKebab.replace(/-/g, ' ')))}
+        onChange={swatchPickerOnChange}
         options={themeOptions}
         availabilities={themeAvailabilities}
         value={kebabCase(currentTheme)}
