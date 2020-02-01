@@ -1,5 +1,105 @@
-html,
 body {
-  margin: 0;
+  background: #fff;
+}
+
+.zw-clearfix::after {
+  content: " ";
+  clear: both;
+  display: table;
+}
+
+.zw-item-row {
+  width: 100%;
+  padding: 60px 0;
+  border-top: 1px solid #000;
+}
+
+.zw-item-column {
+  position: relative;
+  float: left;
+  width: calc(100% / 3);
+}
+
+.zw-item-title {
+  margin-top: 20px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.zw-item-title h2 {
+  font-size: 40px;
+  margin-bottom: 40px;
+}
+
+.zw-item-title p {
+  font-size: 18px;
+  font-style: italic;
+}
+
+.zw-item-image {
+  width: 100%;
+  height: 0;
+  padding-bottom: 40%;
+  overflow: hidden;
+}
+
+.zw-item-image img {
+  width: 100%;
+  height: auto;
+}
+
+.zw-item-picker {
+  position: absolute;
+  top: 30px;
+  right: 20px;
+  width: 122px;
+  transform: scale(1.5);
+}
+
+.zw-swatch-picker h5 {
+  margin: 0 0 15px 0;
   padding: 0;
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: bold;
+}
+
+.zw-swatch-picker ul {
+  height: 30px;
+  margin: 0 0 22px 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.zw-swatch-picker ul li {
+  position: relative;
+  float: left;
+  width: 30px;
+  height: 40px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  box-sizing: border-box !important;
+}
+
+.zw-swatch-picker ul li .zw-swatch-picker-item-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  content: " ";
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  cursor: pointer;
+  background-size: 30px 30px;
+  background-position: center center;
+}
+
+.zw-swatch-picker-item-active {
+  border-bottom: 1px solid #333;
+}
+
+.zw-primary-picker {
+  height: 47px;
+  margin-bottom: 20px;
 }
