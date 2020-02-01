@@ -7,7 +7,7 @@ import getThemeAvailability from '../../zak-pdp-widget/functions/rules/get-theme
 interface IProps {
   currentVariantId: string
   item: any
-  onThemeSelected: (variantId: string) => void
+  onThemeSelected: (variantId: string, themeKebab: string) => void
   options: any[]
 }
 
@@ -31,7 +31,8 @@ function Picker({ currentVariantId, item, onThemeSelected, options }: IProps): R
     function swatchPickerOnChange(themeKebab: string) {
       var themeName = titleCase(themeKebab).replace(/-/g, ' ')
       var variant = find(item.variants, {option3: themeName})
-      onThemeSelected(variant.id)
+      console.log(themeKebab)
+      onThemeSelected(variant.id, themeKebab)
     }, []
   )
 

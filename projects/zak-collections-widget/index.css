@@ -40,6 +40,7 @@ body {
   height: 0;
   padding-bottom: 40%;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .zw-item-image img {
