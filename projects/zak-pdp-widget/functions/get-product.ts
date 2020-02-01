@@ -1,4 +1,6 @@
 import { IProduct } from '../store/types'
+import { find } from 'lodash'
+import { titleCase } from 'voca'
 import getProductOptions from './get-product-options'
 import getTintOptions from './get-tint-options'
 
@@ -6,7 +8,26 @@ declare const PDP_WIDGET_PRODUCT: string
 
 function getProduct(): IProduct {
   const rawProduct = JSON.parse(PDP_WIDGET_PRODUCT)
-  const theme = getProductOptions('Theme')[0]
+  const themeOptions = getProductOptions('Theme')
+
+  let theme
+  if (window.location.search) {
+    const urlSplit = window.location.search.split('preselected-theme=')
+
+    if (urlSplit[1]) {
+      theme = urlSplit[1].split('&')[0]
+    }
+
+    else {
+      theme = themeOptions[0]
+    }
+  }
+
+  else {
+    theme = themeOptions[0]
+  }
+
+  theme = titleCase(theme).replace(/-/g, ' ')
 
   return {
     basePrice: rawProduct.price / 100,

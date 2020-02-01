@@ -5,7 +5,7 @@
 | [projects/midst-press/store/actions.ts](projects/midst-press/store/actions.ts#L6) | 6 | Type def file
 | [projects/midst-press/store/actions.ts](projects/midst-press/store/actions.ts#L19) | 19 | Should be: ThunkResult<void>. Why doesn't it work?
 | [projects/midst-press/store/actions.ts](projects/midst-press/store/actions.ts#L21) | 21 | Above should be: ThunkResult<void>, then `any` is not needed here
-| [projects/midst-press/store/reducer.ts](projects/midst-press/store/reducer.ts#L61) | 61 | Should be Action from `../types.ts`
+| [projects/midst-press/store/reducer.ts](projects/midst-press/store/reducer.ts#L62) | 62 | Should be Action from `../types.ts`
 | [projects/midst-press/store/selectors.ts](projects/midst-press/store/selectors.ts#L1) | 1 | Find a use for selectors in this project
 | [projects/midst-press/store/types.ts](projects/midst-press/store/types.ts#L4) | 4 | How to get around putting this in every project??
 | [projects/midst-press/store/types.ts](projects/midst-press/store/types.ts#L7) | 7 | Move Midst types to common
@@ -34,7 +34,7 @@
 | [projects/seurat/components/SeuratDial.tsx](projects/seurat/components/SeuratDial.tsx#L26) | 26 | Immediately alter playback
 | [projects/seurat/routes/Home.tsx](projects/seurat/routes/Home.tsx#L5) | 5 | Switch to Webpack
 | [projects/studio-hem-rocks/routes/Home.tsx](projects/studio-hem-rocks/routes/Home.tsx#L18) | 18 | Link to zip; deploy task to update zip (without projects)
-| [projects/zak-widget/components/SwatchPicker.tsx](projects/zak-widget/components/SwatchPicker.tsx#L7) | 7 | All projects; Export all props
+| [projects/zak-pdp-widget/components/SwatchPicker.tsx](projects/zak-pdp-widget/components/SwatchPicker.tsx#L5) | 5 | All projects; Export all props
 | [projects/hem-rocks/components/layout/Displace.tsx](projects/hem-rocks/components/layout/Displace.tsx#L17) | 17 | All projects; use PropsWithChildren instead of `children: any` in IProps
 | [projects/hem-rocks/components/layout/MegaMenu.tsx](projects/hem-rocks/components/layout/MegaMenu.tsx#L15) | 15 | Remove `hem-` prefix
 | [projects/hem-rocks/components/ui/SneakyHero.tsx](projects/hem-rocks/components/ui/SneakyHero.tsx#L11) | 11 | New build task: `npm run task npm-publish lib/my-package`

@@ -25,7 +25,7 @@ function Image({ currentVariantId, currentThemeHandle, item }: IProps): ReactEle
           url = `/products/${item.handle}`
         }
 
-        window.location.pathname = url
+        window.location.href = url
       }}
     >
       <img src={currentImageUrl} />

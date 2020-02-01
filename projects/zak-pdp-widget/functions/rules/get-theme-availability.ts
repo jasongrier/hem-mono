@@ -1,10 +1,7 @@
-import removePrice from '../remove-price'
-import productOptionToTitle from '../product-option-to-title'
-
 declare const PDP_WIDGET_PRODUCT: string
 
-function getThemeAvailability(theme) {
-  const rawProduct = JSON.parse(PDP_WIDGET_PRODUCT)
+function getThemeAvailability(theme, rawProduct?) {
+  rawProduct = rawProduct || JSON.parse(PDP_WIDGET_PRODUCT)
 
   // Only frame colors can be sold out
   // The admin must be configured so that all variants with the sold-out frame color are unavailable

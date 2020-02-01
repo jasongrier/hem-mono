@@ -67,6 +67,7 @@
     "redux-saga": "^1.1.3",
     "redux-thunk": "^2.3.0",
     "resemblejs": "^3.2.3",
+    "roman-numeral-to-decimal": "^1.0.1",
     "scroll-into-view": "^1.12.3",
     "slick-carousel": "^1.8.1",
     "smoothscroll-polyfill": "^0.4.4",
