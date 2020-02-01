@@ -48,6 +48,7 @@ const poems = [
   createPoem('Mia You', 'Go Bokito'),
   createPoem('Sarah Matthes', 'Averting My Eyes'),
   createPoem('Annelyse Gelman', 'Prosperity'),
+  createPoem('Annelyse Gelman', 'Pool'),
 ]
 
 const initialState: IState = {

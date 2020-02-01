@@ -100,7 +100,6 @@ function SideRight(): ReactElement {
             onChange={(themeKebab: string) => dispatch(setTheme(titleCase(themeKebab.replace(/-/g, ' '))))}
             options={themeOptions}
             availabilities={themeAvailabilities}
-            product={product}
             value={kebabCase(theme)}
           />
         </div>
@@ -110,7 +109,6 @@ function SideRight(): ReactElement {
               onChange={value => dispatch(setLensColor(value))}
               optionKeyTransform={value => `lens-${value.toLowerCase()}`}
               options={lensColorOptions}
-              product={product}
               title="Lens color:"
               value={lensColor}
             />

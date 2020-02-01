@@ -11,7 +11,7 @@ interface IProps {
 
 function ItemRow({ collection, item, options }: IProps): ReactElement {
   const [currentVariantId, setCurrentVariantId] = useState(item.variants[0].id)
-  const [currentThemeHandle, setCurrentThemeHandle] = useState(å)
+  const [currentThemeHandle, setCurrentThemeHandle] = useState()
 
   return (
     <div className="zw-item-row zw-clearfix">

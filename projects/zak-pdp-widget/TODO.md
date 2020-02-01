@@ -1,12 +1,12 @@
 ### TODOs
 | Filename | line # | TODO
 |:------|:------:|:------
-| [projects/zak-widget/store/index.ts](projects/zak-widget/store/index.ts#L1) | 1 | Alphabetize this everywhere
-| [projects/zak-widget/store/index.ts](projects/zak-widget/store/index.ts#L3) | 3 | Replace Thunk with Saga in all projects
-| [projects/zak-widget/store/selectors.ts](projects/zak-widget/store/selectors.ts#L1) | 1 | Example selector
-| [projects/zak-widget/store/selectors.ts](projects/zak-widget/store/selectors.ts#L2) | 2 | Start using selectors everywhere
-| [projects/zak-widget/store/selectors.ts](projects/zak-widget/store/selectors.ts#L3) | 3 | Start using useCallback & useMemo everywhere
-| [projects/zak-widget/store/selectors.ts](projects/zak-widget/store/selectors.ts#L4) | 4 | Turn on module-per-file
+| [projects/zak-pdp-widget/store/index.ts](projects/zak-pdp-widget/store/index.ts#L1) | 1 | Alphabetize this everywhere
+| [projects/zak-pdp-widget/store/index.ts](projects/zak-pdp-widget/store/index.ts#L3) | 3 | Replace Thunk with Saga in all projects
+| [projects/zak-pdp-widget/store/selectors.ts](projects/zak-pdp-widget/store/selectors.ts#L1) | 1 | Example selector
+| [projects/zak-pdp-widget/store/selectors.ts](projects/zak-pdp-widget/store/selectors.ts#L2) | 2 | Start using selectors everywhere
+| [projects/zak-pdp-widget/store/selectors.ts](projects/zak-pdp-widget/store/selectors.ts#L3) | 3 | Start using useCallback & useMemo everywhere
+| [projects/zak-pdp-widget/store/selectors.ts](projects/zak-pdp-widget/store/selectors.ts#L4) | 4 | Turn on module-per-file
 | [projects/hem-rocks/components/App.tsx](projects/hem-rocks/components/App.tsx#L46) | 46 | "logIn" or "login" or "loggedIn"??
 | [projects/jasonaarongrier-com/components/App.tsx](projects/jasonaarongrier-com/components/App.tsx#L14) | 14 | 404 page
 | [projects/midst-press/components/App.tsx](projects/midst-press/components/App.tsx#L74) | 74 | Move PoemNav out of the Switch/Route and directly into the Poem component
@@ -31,7 +31,7 @@
 | [projects/seurat/components/SeuratDial.tsx](projects/seurat/components/SeuratDial.tsx#L26) | 26 | Immediately alter playback
 | [projects/seurat/routes/Home.tsx](projects/seurat/routes/Home.tsx#L5) | 5 | Switch to Webpack
 | [projects/studio-hem-rocks/routes/Home.tsx](projects/studio-hem-rocks/routes/Home.tsx#L18) | 18 | Link to zip; deploy task to update zip (without projects)
-| [projects/zak-widget/components/SwatchPicker.tsx](projects/zak-widget/components/SwatchPicker.tsx#L7) | 7 | All projects; Export all props
+| [projects/zak-pdp-widget/components/SwatchPicker.tsx](projects/zak-pdp-widget/components/SwatchPicker.tsx#L5) | 5 | All projects; Export all props
 | [projects/hem-rocks/components/layout/Displace.tsx](projects/hem-rocks/components/layout/Displace.tsx#L17) | 17 | All projects; use PropsWithChildren instead of `children: any` in IProps
 | [projects/hem-rocks/components/layout/MegaMenu.tsx](projects/hem-rocks/components/layout/MegaMenu.tsx#L15) | 15 | Remove `hem-` prefix
 | [projects/hem-rocks/components/ui/SneakyHero.tsx](projects/hem-rocks/components/ui/SneakyHero.tsx#L11) | 11 | New build task: `npm run task npm-publish lib/my-package`

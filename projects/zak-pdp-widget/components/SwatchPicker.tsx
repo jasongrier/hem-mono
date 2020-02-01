@@ -1,6 +1,4 @@
-import { noop } from 'lodash'
 import React, { ReactElement } from 'react'
-import { IProduct } from '../store/types'
 
 declare const PDP_WIDGET_SWATCH_URLS: string[]
 
@@ -8,15 +6,14 @@ declare const PDP_WIDGET_SWATCH_URLS: string[]
 export interface IProps {
   onChange: (value: any) => void
   options: string[]
-  product: IProduct
   value: string
 
   availabilities?: any
   title?: string
-  optionKeyTransform?: (value) => string
+  optionKeyTransform?: (value: string) => string
 }
 
-function isOptionUnavailable(availabilities, optionValue) {
+function isOptionUnavailable(availabilities: any, optionValue: any) {
   return availabilities && !availabilities[optionValue]
 }
 
@@ -50,9 +47,8 @@ function SwatchPicker({
                 cursor: isOptionUnavailable(availabilities, optionValue) ? 'auto' : 'pointer',
                 opacity: isOptionUnavailable(availabilities, optionValue) ? 0.5 : 1,
                 backgroundImage: `url(${PDP_WIDGET_SWATCH_URLS[
-                  (optionKeyTransform
-                    ? optionKeyTransform(optionValue)
-                    : optionValue)
+                  //@ts-ignore
+                  (optionKeyTransform ? optionKeyTransform(optionValue) : optionValue)
                 ]})`,
               }}
             />
