@@ -15,10 +15,10 @@ const options = reduce(PDP_WIDGET_PRODUCT_OPTIONS_WITH_VALUES, (acc, optsString,
   return acc
 }, {} as any)
 
-const itemsSorted = items.sort((a, b) => {
+const itemsSorted = items.sort((a: any, b: any) => {
   const numeralA = romanNumeralToDecimal(trim(a.title.replace(collection.title, '')))
   const numeralB = romanNumeralToDecimal(trim(b.title.replace(collection.title, '')))
-  return numeralB - numeralA
+  return numeralA - numeralB
 })
 
 function App(): ReactElement {
