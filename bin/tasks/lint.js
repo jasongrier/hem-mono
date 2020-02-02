@@ -1,5 +1,5 @@
 const { join } = require('path')
-const { readdirSync, lstatSync } = require('fs')
+const { existsSync, readdirSync, lstatSync } = require('fs')
 const doAll = require('../helpers/do-all')
 
 const expectedProjectFiles = [
@@ -21,6 +21,15 @@ const expectedProjectFiles = [
   'TODO.md',
 ]
 
+const expectedComponentsFiles = [
+  'index.ts',
+  'Root.tsx',
+]
+
+const expectedSubcomponentsFiles = [
+  'index.ts',
+]
+
 const expectedFunctionsFiles = [
   'index.ts',
 ]
@@ -30,6 +39,12 @@ const expectedHooksFiles = [
 ]
 
 const expectedModulesFiles = [
+  'app',
+  'another',
+]
+
+const expectedModuleFiles = [
+  'components',
   'actions.ts',
   'index.ts',
   'reducer.ts',
@@ -59,6 +74,10 @@ const ignoredFiles = [
   '.DS_Store',
 ]
 
+const disallowedFiles = [
+  '.gitkeep',
+]
+
 function getProjectDir(projectName) {
   return join(__dirname, '..', '..', 'projects', projectName)
 }
@@ -66,16 +85,39 @@ function getProjectDir(projectName) {
 function lintProject(projectName) {
   const projectDir = getProjectDir(projectName)
 
-  lintFiles(projectName, projectDir, expectedProjectFiles)
+  lintFiles(projectName, '.', expectedProjectFiles)
+  lintFiles(projectName, 'components', expectedComponentsFiles, false)
 
-  expectedProjectFiles.forEach((subdir) => {
-    foldersOnly(projectName, join(projectDir, subdir))
+  if (existsSync(join(projectDir, 'components', 'App.tsx'))) {
+    console.log(`!!!! Sorry ${projectName}, seems like you have an App.tsx in your components folder`)
+  }
+
+  lintFiles(projectName, 'functions', expectedFunctionsFiles, false)
+  lintFiles(projectName, 'hooks', expectedHooksFiles, false)
+  foldersOnly(projectName, join(projectDir, 'modules'))
+  lintFiles(projectName, 'modules', expectedModulesFiles, false)
+
+  readdirSync(join(projectDir, 'modules')).forEach(fileName => {
+    if (ignoredFiles.includes(fileName)) return
+    lintFiles(projectName, join('modules', fileName), expectedModuleFiles)
   })
 
   readdirSync(join(projectDir, 'modules')).forEach(fileName => {
-    if (ignoredFiles.indexOf(fileName)) return
-    lintFiles(projectName, join('modules', fileName), expectedModulesFiles)
+    if (ignoredFiles.includes(fileName)) return
+    lintFiles(projectName, join('modules', fileName, 'components'), expectedSubcomponentsFiles, false)
+
+    if (
+      fileName === 'app'
+      && !existsSync(join(projectDir, 'modules', 'app', 'components', 'App.tsx'))
+    ) {
+      console.log(`!!!! Sorry ${projectName}, seems like you are missing App.tsx in your app module`)
+    }
   })
+
+  foldersOnly(projectName, join(projectDir, 'routes'))
+  lintFiles(projectName, 'static', expectedStaticFiles, false)
+  lintFiles(projectName, 'styles', expectedStylesFiles, false)
+  lintFiles(projectName, 'tests', expectedTestsFiles, false)
 }
 
 function foldersOnly(projectName, checkDir) {
@@ -93,17 +135,24 @@ function foldersOnly(projectName, checkDir) {
 }
 
 function lintFiles(projectName, checkDir, expectedFiles, reportUnexpected = true) {
+  const projectDir = getProjectDir(projectName)
+
   const expectedFilesFound = []
   const ignoredFilesFound = []
   const unexpectedFilesFound = []
+  const disallowedFilesFound = []
 
-  readdirSync(checkDir).forEach(fileName => {
-    if (expectedFiles.indexOf(fileName) > -1) {
+  readdirSync(join(projectDir, checkDir)).forEach(fileName => {
+    if (expectedFiles.includes(fileName)) {
       expectedFilesFound.push(fileName)
     }
 
-    else if (ignoredFiles.indexOf(fileName) > -1) {
+    else if (ignoredFiles.includes(fileName)) {
       ignoredFilesFound.push(fileName)
+    }
+
+    else if (disallowedFiles.includes(fileName)) {
+      disallowedFilesFound.push(fileName)
     }
 
     else {
@@ -112,6 +161,7 @@ function lintFiles(projectName, checkDir, expectedFiles, reportUnexpected = true
   })
 
   reportExpectedFiles(projectName, checkDir, expectedFiles, expectedFilesFound)
+  reportDisallowedFiles(projectName, checkDir, disallowedFiles, disallowedFilesFound)
   reportUnexpected && reportUnexpectedFiles(projectName, unexpectedFilesFound)
 }
 
@@ -120,6 +170,16 @@ function reportExpectedFiles(projectName, checkDir, expectedFiles, expectedFiles
     expectedFiles.forEach(fileName => {
       if (expectedFilesFound.indexOf(fileName) === -1) {
         console.log(`!!!! Sorry ${projectName}, seems like you are missing ${fileName} in ${checkDir}`)
+      }
+    })
+  }
+}
+
+function reportDisallowedFiles(projectName, checkDir, disallowedFiles, disallowedFilesFound) {
+  if (disallowedFilesFound.length) {
+    disallowedFiles.forEach(fileName => {
+      if (disallowedFilesFound.indexOf(fileName) === -1) {
+        console.log(`!!!! Sorry ${projectName}, seems like you are have a disallowed ${fileName} in ${checkDir}`)
       }
     })
   }
