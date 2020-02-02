@@ -1,20 +1,19 @@
 const { join } = require('path')
-const { readdirSync } = require('fs')
+const { readdirSync, lstatSync } = require('fs')
 const doAll = require('../helpers/do-all')
 
 const expectedProjectFiles = [
-  'classes',
   'components',
   'functions',
   'hooks',
+  'modules',
   'routes',
   'static',
-  'store',
+  'styles',
   'tests',
 
   '.htaccess',
   'config.ts',
-  'index.css',
   'index.html',
   'index.ts',
   'README.md',
@@ -22,24 +21,18 @@ const expectedProjectFiles = [
   'TODO.md',
 ]
 
-const expectedComponentsFiles = [
-  'actions.ts',
-  'index.ts',
-  'reducer.ts',
-  'selectors.ts',
-  'types.ts',
-]
-
-const expectedRoutesFiles = [
-  'Home.tsx',
+const expectedFunctionsFiles = [
   'index.ts',
 ]
 
-const expectedStoreFiles = [
+const expectedHooksFiles = [
+  'index.ts',
+]
+
+const expectedModulesFiles = [
   'actions.ts',
   'index.ts',
   'reducer.ts',
-  'sagas.ts',
   'selectors.ts',
   'types.ts',
 ]
@@ -52,6 +45,10 @@ const expectedStaticFiles = [
   'workers',
 ]
 
+const expectedStylesFiles = [
+  'index.ts',
+]
+
 const expectedTestsFiles = [
   'app.test.js',
 ]
@@ -62,76 +59,78 @@ const ignoredFiles = [
   '.DS_Store',
 ]
 
-let expectedFilesFound = []
-let ignoredFilesFound = []
-let unexpectedFilesFound = []
-
-function lintFiles(dir, expectedFiles) {
-  expectedFilesFound = []
-  ignoredFilesFound = []
-  unexpectedFilesFound = []
-
-  readdirSync(dir).forEach(filePath => {
-    if (expectedFiles.indexOf(filePath) > -1) {
-      expectedFilesFound.push(filePath)
-    }
-
-    else if (ignoredFiles.indexOf(filePath) > -1) {
-      ignoredFilesFound.push(filePath)
-    }
-
-    else {
-      unexpectedFilesFound.push(filePath)
-    }
-  })
+function getProjectDir(projectName) {
+  return join(__dirname, '..', '..', 'projects', projectName)
 }
 
 function lintProject(projectName) {
-  const projectDir = join(__dirname, '..', '..', 'projects', projectName)
+  const projectDir = getProjectDir(projectName)
 
-  lintFiles(projectDir, expectedProjectFiles)
-  const skip = evaluateLint(projectName, expectedProjectFiles)
+  lintFiles(projectName, projectDir, expectedProjectFiles)
 
-  if (skip) return
+  expectedProjectFiles.forEach((subdir) => {
+    foldersOnly(projectName, join(projectDir, subdir))
+  })
 
-  lintFiles(join(projectDir, 'store'), expectedComponentsFiles)
-  evaluateLint(projectName, expectedComponentsFiles, 'components/')
-
-  lintFiles(join(projectDir, 'routes'), expectedRoutesFiles)
-  evaluateLint(projectName, expectedRoutesFiles, 'routes/', false)
-
-  lintFiles(join(projectDir, 'static'), expectedStaticFiles)
-  evaluateLint(projectName, expectedStaticFiles, 'static/')
-
-  lintFiles(join(projectDir, 'store'), expectedStoreFiles)
-  evaluateLint(projectName, expectedStoreFiles, 'store/')
-
-  lintFiles(join(projectDir, 'tests'), expectedTestsFiles)
-  // TODO: This bypasses checks for, for example, `i-dont-belong.foo`, the correct check should be `requiredFiles`
-  evaluateLint(projectName, expectedTestsFiles, 'tests/', false)
+  readdirSync(join(projectDir, 'modules')).forEach(fileName => {
+    if (ignoredFiles.indexOf(fileName)) return
+    lintFiles(projectName, join('modules', fileName), expectedModulesFiles)
+  })
 }
 
-function evaluateLint(projectName, expectedFiles, prefix = '', checkUnexpected = true) {
+function foldersOnly(projectName, checkDir) {
+  const projectDir = getProjectDir(projectName)
+  const unexpectedFilesFound = []
+
+  readdirSync(checkDir).forEach(fileName => {
+    if (ignoredFiles.indexOf(fileName)) return
+    if (!lstatSync(join(projectDir, checkDir, fileName)).isDirectory()) {
+      unexpectedFilesFound.push(fileName)
+    }
+  })
+
+  reportUnexpectedFiles(projectName, unexpectedFilesFound)
+}
+
+function lintFiles(projectName, checkDir, expectedFiles, reportUnexpected = true) {
+  const expectedFilesFound = []
+  const ignoredFilesFound = []
+  const unexpectedFilesFound = []
+
+  readdirSync(checkDir).forEach(fileName => {
+    if (expectedFiles.indexOf(fileName) > -1) {
+      expectedFilesFound.push(fileName)
+    }
+
+    else if (ignoredFiles.indexOf(fileName) > -1) {
+      ignoredFilesFound.push(fileName)
+    }
+
+    else {
+      unexpectedFilesFound.push(fileName)
+    }
+  })
+
+  reportExpectedFiles(projectName, checkDir, expectedFiles, expectedFilesFound)
+  reportUnexpected && reportUnexpectedFiles(projectName, unexpectedFilesFound)
+}
+
+function reportExpectedFiles(projectName, checkDir, expectedFiles, expectedFilesFound) {
   if (expectedFiles.length !== expectedFilesFound.length) {
-    expectedFiles.forEach(filePath => {
-      if (expectedFilesFound.indexOf(filePath) === -1) {
-        console.log(`!!!! Sorry ${projectName}, seems like you are missing ${prefix}${filePath}`)
+    expectedFiles.forEach(fileName => {
+      if (expectedFilesFound.indexOf(fileName) === -1) {
+        console.log(`!!!! Sorry ${projectName}, seems like you are missing ${fileName} in ${checkDir}`)
       }
     })
   }
+}
 
-  if (checkUnexpected && unexpectedFilesFound.length) {
-    unexpectedFilesFound.forEach(filePath => {
-      console.log(`!!!! Sorry ${projectName}, seems like you have ${prefix}${filePath} where it does not belong`)
+function reportUnexpectedFiles(projectName, unexpectedFilesFound) {
+  if (unexpectedFilesFound.length) {
+    unexpectedFilesFound.forEach(fileName => {
+      console.log(`!!!! Sorry ${projectName}, seems like you have ${fileName} where it does not belong`)
     })
   }
-
-  // if ( // TODO: Verbose flag for this
-  //   expectedFiles.length === expectedFilesFound.length
-  //   && !unexpectedFilesFound.length
-  // ) {
-  //   console.log(`${projectName}${prefix ? '/' + prefix : ''} –– OK`)
-  // }
 }
 
 function lint(projectName) {
