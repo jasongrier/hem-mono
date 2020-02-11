@@ -26,7 +26,7 @@ function Step4(): ReactElement {
   return (
     <div className="step-content step-4">
       <h1>What’s your Undertone?</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
       <div className="undertone-options">
         <UndertoneOption
           onSelect={() => setUndertoneOptionAndProgress('warm')}

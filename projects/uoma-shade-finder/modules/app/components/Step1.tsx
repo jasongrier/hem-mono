@@ -24,6 +24,7 @@ function Step1(): ReactElement {
 
       <button onClick={launchBrandMatchPopup}>Match by brand</button>
       <button onClick={startQuiz}>Shade Finder Quiz</button>
+      <img class="bottom-banner" src="https://cdn.shopify.com/s/files/1/0300/0254/4777/files/1-banner.jpg?v=1581378579"/>
     </div>
   )
 }

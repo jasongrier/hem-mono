@@ -61,6 +61,7 @@ function App(): ReactElement {
         }
 
         <StepsProgress />
+        <div className="step-color-strip"></div>
       </div>
 
       {isPopup &&  (
