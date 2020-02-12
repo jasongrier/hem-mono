@@ -38,6 +38,10 @@
   font-style: normal;
 }
 
+div#root * {
+    box-sizing: content-box;
+}
+
 .step-popup-overlay {
   position: fixed;
   top: 0;
@@ -50,7 +54,7 @@
 
 .step-container-popup {
   position: fixed;
-  top: 80px;
+  top: 150px;
   left: 50%;
   width: 1024px;
   height: 570px;
@@ -303,7 +307,7 @@
     width: 380px;
     height: 100%;
     margin-left: -190px;
-    top:auto;
+    top:80px;
   }
   
   .step-container-on-1 .step-slider-container { margin-left: 0 }
@@ -318,6 +322,7 @@
   }
   
   .step-chevron-button{
+    position:fixed;
     top:auto;
     bottom:40px;
     z-index:10;
@@ -417,7 +422,7 @@
   
   .undertone-options {
     text-align: right;
-    margin-top:120px;
+    margin-top:70px;
   }
 
   .undertone-option {
@@ -450,12 +455,12 @@
   
   /* Cheat Vertical Centering to be improved */
   .skin-tone-options{
-    margin-top:60px;
-  }
+    margin-top:10px;
+   }
   .shade-options{
     margin-top:110px;
   }
   .step-content.step-1 p{
-    margin-bottom:120px;
+    margin-bottom:80px;
   }
 }
