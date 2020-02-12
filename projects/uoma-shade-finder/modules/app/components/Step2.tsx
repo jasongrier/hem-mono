@@ -15,6 +15,7 @@ function Step2(): ReactElement {
       if (skinToneOptions.hasOwnProperty(optionName)) {
         skinToneOptionsUi.push(
           <div
+            key={optionName}
             className="skin-tone-option"
             style={{
               backgroundImage: `url(${skinToneOptions[optionName][0]})`,

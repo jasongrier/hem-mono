@@ -1,30 +1,27 @@
 import { AnyAction } from 'redux'
 import produce from 'immer'
 import {
+  SET_NEEDS_SUBQUIZ,
   SET_SHADE_OPTION,
   SET_SKIN_TONE_OPTION,
   SET_STEP,
+  SET_SUBQUIZ_TONE,
+  SET_SUBQUIZ_VEINS,
   SET_UNDERTONE_OPTION,
   SET_WIDGET_DATA,
 
   IState,
 } from './'
 
-// const initialState: IState = {
-//   completedSteps: 1,
-//   currentStep: 1,
-//   isPopup: true,
-//   shadeOption: null,
-//   skinToneOption: null,
-//   widgetData: null,
-// }
-
 const initialState: IState = {
-  completedSteps: 4,
-  currentStep: 4,
+  completedSteps: 1,
+  currentStep: 1,
   isPopup: true,
+  needsSubquiz: false,
   shadeOption: null,
   skinToneOption: null,
+  subQuizTone: null,
+  subQuizVeins: null,
   undertoneOption: null,
   widgetData: null,
 }
@@ -34,6 +31,12 @@ const reducer = (
   { type, payload }: AnyAction,
 ): IState => {
   switch (type) {
+    case (SET_NEEDS_SUBQUIZ): {
+      return produce(state, draftState => {
+        draftState.needsSubquiz = payload
+      })
+    }
+
     case (SET_SHADE_OPTION): {
       return produce(state, draftState => {
         draftState.shadeOption = payload
@@ -52,6 +55,18 @@ const reducer = (
           draftState.completedSteps = payload
         }
         draftState.currentStep = payload
+      })
+    }
+
+    case (SET_SUBQUIZ_TONE): {
+      return produce(state, draftState => {
+        draftState.subQuizTone = payload
+      })
+    }
+
+    case (SET_SUBQUIZ_VEINS): {
+      return produce(state, draftState => {
+        draftState.subQuizVeins = payload
       })
     }
 

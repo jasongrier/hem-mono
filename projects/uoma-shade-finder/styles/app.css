@@ -155,6 +155,10 @@ div#root * {
 .step-container-on-2 .step-slider-container { margin-left: -1024px }
 .step-container-on-3 .step-slider-container { margin-left: -2048px }
 .step-container-on-4 .step-slider-container { margin-left: -3072px }
+.step-container-on-5 .step-slider-container {
+  transition: none;
+  margin-left: -4096px
+}
 
 .step-content {
   float: left;
@@ -302,6 +306,71 @@ div#root * {
   background-color: #f30000;
 }
 
+.sub-quiz-cols {
+  width: 602px;
+  margin: 50px auto 0 auto;
+}
+
+.sub-quiz-col {
+  float: left;
+  height: 200px;
+}
+
+.sub-quiz-col.sub-quiz-left {
+  width: 300px;
+  border-right: 2px solid #000;
+}
+
+.sub-quiz-col.sub-quiz-right {
+  width: 230px;
+  padding-left: 70px;
+}
+
+.sub-quiz-col h3 {
+  width: 220px;
+  margin-top: -10px;
+  font-family: Univers, sans-serif;
+}
+
+.sub-quiz-question {
+  height: 20px;
+  line-height: 20px;
+  margin-bottom: 20px;
+  font-family: Univers, sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.sub-quiz-question-radio {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  border-radius: 20px;
+  border: 1px solid #000;
+  transform: translateX(-5px);
+}
+
+.sub-quiz-question-title {
+  display: inline-block;
+  transform: translateY(-6px);
+}
+
+.sub-quiz-question-radio-active {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  border-radius: 14px;
+  margin-top: -8px;
+  margin-left: -8px;
+  border: 1px solid #000;
+  background-color: #f30000;
+}
+
 @media screen and (max-width: 480px) {
   .step-container-popup {
     width: 380px;
@@ -309,25 +378,25 @@ div#root * {
     margin-left: -190px;
     top:80px;
   }
-  
+
   .step-container-on-1 .step-slider-container { margin-left: 0 }
   .step-container-on-2 .step-slider-container { margin-left: -380px }
   .step-container-on-3 .step-slider-container { margin-left: -760px }
   .step-container-on-4 .step-slider-container { margin-left: -1140px }
-  
+
   .step-content {
       width: calc(380px - 50px);
       height: auto;
       padding: 25px;
   }
-  
+
   .step-chevron-button{
     position:fixed;
     top:auto;
     bottom:40px;
     z-index:10;
   }
-  
+
   .steps-progress{
     width: 30px;
     bottom: auto;
@@ -336,7 +405,7 @@ div#root * {
     top: 50%;
     transform: translateY(-50%);
   }
-  
+
   .steps-progress-item{
     width: 40px;
     display: block;
@@ -353,15 +422,15 @@ div#root * {
     background: white;
     font-size: .001px;
   }
-  
+
   .steps-progress-item-active::after {
     display:none;
   }
-  
+
   .steps-progress-item-active{
     background-color: #f30000;
   }
-  
+
   .step-content h1 {
     margin-left:20px;
     margin-right:20px;
@@ -374,7 +443,7 @@ div#root * {
     text-transform: uppercase;
     letter-spacing: .7px;
   }
-  
+
   .step-color-strip{
     position:absolute;
     display:block;
@@ -385,27 +454,27 @@ div#root * {
     width:15px;
     background-color:#000;
   }
-  
+
   .step-container-on-1 .step-color-strip{
     background-color:#ca93c7;
   }
-  
+
   .step-container-on-2 .step-color-strip{
     background-color:#58c4b7;
   }
-  
+
   .step-container-on-3 .step-color-strip{
     background-color:#ffaf5b;
   }
-  
+
   .step-container-on-4 .step-color-strip{
     background-color:#f6e85f;
   }
-  
+
   .step-container-on-5 .step-color-strip{
     background-color:#58c4b7;
   }
-  
+
   .skin-tone-options, .shade-options{
     display: flex;
     flex-wrap: wrap;
@@ -413,13 +482,13 @@ div#root * {
     margin: auto;
     justify-content: center;
   }
-  
+
   .skin-tone-options .skin-tone-option, .shade-options .shade-option{
     width:140px;
     height:140px;
     margin:5px;
   }
-  
+
   .undertone-options {
     text-align: right;
     margin-top:70px;
@@ -448,11 +517,11 @@ div#root * {
     position: relative;
     display:block;
   }
-  
+
   .step-content.step-2 p, .step-content.step-2 h3, .step-content.step-3 p, .step-content.step-3 h3{
     display:none;
   }
-  
+
   /* Cheat Vertical Centering to be improved */
   .skin-tone-options{
     margin-top:10px;
