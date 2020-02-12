@@ -8,6 +8,7 @@ import Step2 from './Step2'
 import Step3 from './Step3'
 import Step4 from './Step4'
 import Step5 from './Step5'
+import Subquiz from './Subquiz'
 import StepsProgress from './StepsProgress'
 
 function App(): ReactElement {
@@ -48,7 +49,7 @@ function App(): ReactElement {
           <Step5 />
         </div>
 
-        { currentStep > 1 &&
+        { currentStep > 1 && currentStep < 5 &&
           <div className="step-chevron-button step-chevron-button-left">
             <ChevronButton onClick={onLeftButtonClicked} />
           </div>
@@ -60,7 +61,9 @@ function App(): ReactElement {
           </div>
         }
 
-        <StepsProgress />
+        { currentStep < 4 &&
+          <StepsProgress />
+        }
         <div className="step-color-strip"></div>
       </div>
 
