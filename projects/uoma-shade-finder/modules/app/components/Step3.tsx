@@ -21,6 +21,7 @@ function Step3(): ReactElement {
       if (shadeOptions.hasOwnProperty(optionNumber)) {
         shadeOptionsUi.push(
           <div
+            key={optionNumber}
             className="shade-option"
             style={{
               backgroundImage: `url(${shadeOptions[optionNumber]})`,
