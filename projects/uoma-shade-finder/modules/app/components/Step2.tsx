@@ -37,7 +37,7 @@ function Step2(): ReactElement {
   return (
     <div className="step-content step-2">
       <h1>Which skin tone best matches yours?</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
+      <p></p>
       <div className="skin-tone-options">
         {renderSkinToneOptions()}
       </div>

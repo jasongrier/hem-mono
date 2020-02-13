@@ -171,8 +171,9 @@ div#root * {
   margin: 0 0 20px 0;
   font-family: 'Druk', sans-serif;
   font-size: 43px;
-  letter-spacing: 1.2px;
+  letter-spacing: .5px;
   text-transform:uppercase;
+  font-weight:500;
 }
 
 .step-content p {
@@ -289,10 +290,12 @@ div#root * {
   margin: 0 0 10px -100px;
   text-align: center;
   font-family: 'Druk', sans-serif;
-  letter-spacing: .7px;
+  letter-spacing: .5px;
+  font-weight:500;
   white-space: nowrap;
   text-transform: uppercase;
   font-size: 36px;
+  
 }
 
 .undertone-option-active {
@@ -369,6 +372,159 @@ div#root * {
   margin-left: -8px;
   border: 1px solid #000;
   background-color: #f30000;
+}
+
+.step-container-popup.step-container-on-5.step-container{
+  height:auto;
+  overflow-y:visible;
+  position:absolute;
+} 
+
+.step-content.step-5{
+  height:auto;
+}
+
+.solution-layout-row{
+  display:flex;
+}
+.solution-product.solution-product-foundation{
+  width:33%;
+}
+
+.solution-hero{
+  width:67%;
+  display:flex;
+  align-items: stretch;
+  height:fit-content;
+}
+
+.solution-hero-pic{
+  width:50%;
+  overflow:hidden;
+}
+
+.solution-hero-pic img{
+  max-width: 100%;
+  height: 100%;
+  width: max-content;
+}
+
+.solution-hero-text{
+  width:50%;
+  background:#000;
+  color:#fff;
+  padding: 1.5625rem;
+}
+
+.solution-hero-text h2{
+  font-family: Druk,Arial,sans-serif;
+  font-weight: 500;
+  font-size: 2.5rem;
+  text-transform:uppercase;
+  letter-spacing: .7px;
+  margin-top:0;
+}
+
+.solution-hero-text h3{
+  font-family: Druk,Arial,sans-serif;
+  font-weight: 500;
+  font-size: 1.5rem;
+  text-transform:uppercase;  
+  letter-spacing: .7px;
+}
+
+.solution-hero-text p{
+  font-family: Univers,Arial,sans-serif;
+  font-size: 0.875rem;
+  width: 100%;
+  text-decoration: none;
+  text-transform: uppercase;
+  margin-bottom:0;
+  
+}
+
+.product-tile{
+  font-family: Univers,Arial,sans-serif;
+  font-size: 0.875rem;
+  width: 100%;
+  color: #000;
+  text-decoration: none;
+  text-transform: uppercase;
+  max-width: 450px;
+  padding: 1.875rem 10px;
+  margin: 0 auto;
+  text-align: center;    
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.solution-product.solution-product-foundation .product-tile{
+  width:100%;
+  padding:0;
+}
+
+.product-tile img{
+  max-width: 100%;
+}
+
+.product-tile:hover img{
+  opacity:.9;
+}
+
+.product-tile .product-title{
+  margin: 1.25rem 0 0;
+  font-family: Univers;
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #000000;
+  font-weight: bold;
+  height:45px;
+}
+
+.product-tile:hover .product-title{
+  color:#d3000d;
+}
+
+.product-tile .product-subtitle{
+  font-weight: 500;
+  text-transform: none;
+  margin: 0;
+  font-size: 14px;
+}
+
+.product-tile .product-price{
+  padding: 7px 0;
+  font-weight: bold;
+  margin: 0;
+  font-size: 14px;
+}
+
+.product-tile .product-reviews{
+  display:none;
+}
+
+.product-tile .product-cta button{
+  display: block;
+  width: auto;
+  max-width: 130px;
+  height: 45px;
+  line-height: 45px;
+  margin: 10px auto 50px;
+  padding: 0 30px;
+  background: #000;
+  letter-spacing: .02em;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: Druk,Arial,sans-serif;
+  font-weight: bold;
+  font-size: 1.625rem;
+  border: none;
+}
+
+.product-tile .product-cta button:hover{
+  color:#d3000d;
 }
 
 @media screen and (max-width: 480px) {
@@ -491,7 +647,7 @@ div#root * {
 
   .undertone-options {
     text-align: right;
-    margin-top:70px;
+    margin-top:110px;
   }
 
   .undertone-option {
@@ -521,15 +677,55 @@ div#root * {
   .step-content.step-2 p, .step-content.step-2 h3, .step-content.step-3 p, .step-content.step-3 h3{
     display:none;
   }
+  
+  .sub-quiz-col{
+    padding-left:20px;
+  }
+  
+  .sub-quiz-col.sub-quiz-right{
+    clear:both;
+    padding-left:20px;
+    margin-top:40px;
+    width:auto;
+  }
+  
+  .sub-quiz-col.sub-quiz-left{
+    border-right:0;
+  }
+  
+  .sub-quiz-col h3{
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .7px;
+  width:280px;
+  }
+  
+  .sub-quiz-question-title{
+    font-family: 'Druk', sans-serif;
+    letter-spacing: .5px;
+    font-weight: 500;
+    white-space: nowrap;
+    text-transform: uppercase;
+    font-size: 30px;
+  }
+  
+  .sub-quiz-question {
+      height: 25px;
+      line-height: 30px;
+    }
+  .sub-quiz-question-title {
+      transform: translateY(3px);
+  }
 
   /* Cheat Vertical Centering to be improved */
   .skin-tone-options{
-    margin-top:10px;
+    margin-top:0;
    }
   .shade-options{
-    margin-top:110px;
+    margin-top:80px;
   }
   .step-content.step-1 p{
-    margin-bottom:80px;
+    margin-bottom:50px;
   }
 }
