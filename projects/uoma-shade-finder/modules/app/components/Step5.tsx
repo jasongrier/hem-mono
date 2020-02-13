@@ -1,7 +1,35 @@
 import React, { ReactElement } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../../../index'
 import ProductTile from './ProductTile'
 
 function Step5(): ReactElement {
+  const {
+    currentStep,
+    shadeOption,
+    skinToneOption,
+    subQuizTone,
+    subQuizVeins,
+    undertoneOption,
+   } = useSelector((state: RootState) => ({
+    currentStep: state.app.currentStep,
+    shadeOption: state.app.shadeOption,
+    skinToneOption: state.app.skinToneOption,
+    subQuizTone: state.app.subQuizTone,
+    subQuizVeins: state.app.subQuizVeins,
+    undertoneOption: state.app.undertoneOption,
+  }))
+
+  console.log(currentStep)
+
+  if (currentStep === 5) {
+    console.log('shadeOption', shadeOption)
+    console.log('skinToneOption', skinToneOption)
+    console.log('subQuizTone', subQuizTone)
+    console.log('subQuizVeins', subQuizVeins)
+    console.log('undertoneOption', undertoneOption)
+  }
+
   return (
     <div className="step-content step-5">
       <h1>You are...</h1>
