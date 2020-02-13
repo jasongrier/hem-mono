@@ -53,7 +53,7 @@ function Step4(): ReactElement {
       {!needsSubquiz &&
         <div className="step-content step-4">
           <h1>What’s your Undertone?</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
+          <p></p>
           <div className="undertone-options">
             <UndertoneOption
               onSelect={() => setUndertoneOptionAndProgress('warm')}
@@ -81,7 +81,6 @@ function Step4(): ReactElement {
       {needsSubquiz &&
         <div className="step-content step-4 sub-quiz">
           <h1>That’s okay, we’re here to help</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
 
           <div className="sub-quiz-cols">
             <div className="sub-quiz-col sub-quiz-left">
