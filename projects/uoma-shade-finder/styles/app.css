@@ -42,6 +42,10 @@ div#root * {
     box-sizing: content-box;
 }
 
+.std-pages__container.shade-finder-ii{
+  margin-bottom:0;
+}
+
 .step-popup-overlay {
   position: fixed;
   top: 0;
@@ -186,7 +190,7 @@ div#root * {
   margin-bottom: 60px;
 }
 
-.step-content.step-1 button {
+.step-content.step-1 button, .findation_widget{
   display: block;
   width: 254px;
   height: 64px;
@@ -199,6 +203,11 @@ div#root * {
   color: #fff;
   text-transform: uppercase;
   cursor: pointer;
+  margin-top: 100px; /* temp findation */ 
+}
+
+.findation_widget{
+  display:none; /* temp findation */
 }
 
 .step-content.step-1 button:focus,
@@ -212,7 +221,7 @@ div#root * {
 
 .skin-tone-options {
   width: calc(149px * 6);
-  margin: 50px auto 0 auto;
+  margin: 120px auto 0 auto;
 }
 
 .skin-tone-options .skin-tone-option {
@@ -221,6 +230,7 @@ div#root * {
   width: 149px;
   height: 149px;
   background-size: cover;
+  background-position: center;
   cursor: pointer;
 }
 
@@ -239,7 +249,7 @@ div#root * {
 
 .shade-options {
   width: 100%;
-  margin: 50px auto 0 auto;
+  margin: 120px auto 0 auto;
   text-align: center;
 }
 
@@ -249,6 +259,7 @@ div#root * {
   width: 149px;
   height: 149px;
   background-size: cover;
+  background-position: center;
   cursor: pointer;
 }
 
@@ -267,7 +278,7 @@ div#root * {
 
 .undertone-options {
   width: 100%;
-  margin: 150px auto 0 auto;
+  margin: 200px auto 0 auto;
   text-align: center;
 }
 
@@ -377,11 +388,31 @@ div#root * {
 .step-container-popup.step-container-on-5.step-container{
   height:auto;
   overflow-y:visible;
-  position:absolute;
-} 
+  position: relative;
+  top: 15px;
+}
 
 .step-content.step-5{
   height:auto;
+}
+
+.step-content.step-5 h1.solution-banner{
+  display:block;
+  white-space:nowrap;
+  width:100vw;
+  margin: 0 0 0 -50px;
+  color:#fff;
+  background:#ffaf5c;
+  position:absolute;
+  height:fit-content;
+}
+
+.step-content.step-5 h1.solution-banner{
+  top:0;
+}
+
+.solution-layout{
+  margin-bottom:0;
 }
 
 .solution-layout-row{
@@ -401,6 +432,10 @@ div#root * {
 .solution-hero-pic{
   width:50%;
   overflow:hidden;
+  background-image:url('http://placekitten.com/900/1000');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .solution-hero-pic img{
@@ -425,6 +460,10 @@ div#root * {
   margin-top:0;
 }
 
+.solution-hero-text h2.solution-page-scroll, .mobile-solution-scroll-container{
+  display:none;
+}
+
 .solution-hero-text h3{
   font-family: Druk,Arial,sans-serif;
   font-weight: 500;
@@ -433,14 +472,13 @@ div#root * {
   letter-spacing: .7px;
 }
 
-.solution-hero-text p{
+.step-content .solution-hero-text p{
   font-family: Univers,Arial,sans-serif;
   font-size: 0.875rem;
   width: 100%;
   text-decoration: none;
   text-transform: uppercase;
   margin-bottom:0;
-  
 }
 
 .product-tile{
@@ -451,7 +489,7 @@ div#root * {
   text-decoration: none;
   text-transform: uppercase;
   max-width: 450px;
-  padding: 1.875rem 10px;
+  padding:0 10px;
   margin: 0 auto;
   text-align: center;    
   max-height: 100%;
@@ -461,6 +499,41 @@ div#root * {
 .solution-product.solution-product-foundation .product-tile{
   width:100%;
   padding:0;
+}
+
+.solution-scroll-container{
+  display: block;
+  margin: auto;
+  text-align: center;
+  width:200px;
+  position: relative;
+  top: -100px;
+  margin-bottom: -120px;
+  display:none; /* temp scroll */
+}
+
+.solution-scroll-container h3{
+  font-family: Druk,Arial,sans-serif;
+  font-weight: 500;
+  font-size: 1.5rem;
+  text-transform:uppercase;  
+  letter-spacing: .7px;
+  margin-bottom:0;
+}
+
+.solution-chevron::before {
+	border-style: solid;
+	border-width: 0.25em 0.25em 0 0;
+	content: '';
+	display: inline-block;
+	height: 2em;
+	left: 0.15em;
+	position: relative;
+	top: 0em;
+	transform: rotate(135deg);
+	vertical-align: top;
+	width:2em;
+  opacity:.2;
 }
 
 .product-tile img{
@@ -518,7 +591,7 @@ div#root * {
   color: #fff;
   text-transform: uppercase;
   font-family: Druk,Arial,sans-serif;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 1.625rem;
   border: none;
 }
@@ -532,13 +605,18 @@ div#root * {
     width: 380px;
     height: 100%;
     margin-left: -190px;
-    top:80px;
+    top:109px;
   }
 
   .step-container-on-1 .step-slider-container { margin-left: 0 }
   .step-container-on-2 .step-slider-container { margin-left: -380px }
   .step-container-on-3 .step-slider-container { margin-left: -760px }
   .step-container-on-4 .step-slider-container { margin-left: -1140px }
+  .step-container-on-5 .step-slider-container { margin-left: -1520px }
+  
+  .step-popup-overlay{
+    display:none;
+  }
 
   .step-content {
       width: calc(380px - 50px);
@@ -628,7 +706,11 @@ div#root * {
   }
 
   .step-container-on-5 .step-color-strip{
-    background-color:#58c4b7;
+    display:none;
+  }
+  
+  .step-content.step-1 button{
+    width:210px;
   }
 
   .skin-tone-options, .shade-options{
@@ -643,11 +725,6 @@ div#root * {
     width:140px;
     height:140px;
     margin:5px;
-  }
-
-  .undertone-options {
-    text-align: right;
-    margin-top:110px;
   }
 
   .undertone-option {
@@ -672,10 +749,20 @@ div#root * {
     bottom: 0;
     position: relative;
     display:block;
+    max-width: initial;
+    margin-top:130px;/* temp findation */
   }
 
   .step-content.step-2 p, .step-content.step-2 h3, .step-content.step-3 p, .step-content.step-3 h3{
     display:none;
+  }
+  
+  .step-content.sub-quiz h1{
+    margin-top:-20px;
+  }
+  
+  .sub-quiz-cols{
+    margin-top:30px;
   }
   
   .sub-quiz-col{
@@ -685,7 +772,7 @@ div#root * {
   .sub-quiz-col.sub-quiz-right{
     clear:both;
     padding-left:20px;
-    margin-top:40px;
+    margin-top:5px;
     width:auto;
   }
   
@@ -694,7 +781,7 @@ div#root * {
   }
   
   .sub-quiz-col h3{
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: .7px;
@@ -717,14 +804,136 @@ div#root * {
   .sub-quiz-question-title {
       transform: translateY(3px);
   }
+  
+  .solution-layout-row{
+    flex-wrap:wrap;
+  }
+  
+  .product-tile{
+    width:43%;
+    padding:0 10px;
+  }
+  
+  .step-content.step-5{
+    padding:0;
+    margin-left:0;
+    width:380px;
+  }
+  
+  .step-container-popup.step-container-on-5.step-container{
+    position: relative;
+    top: 0;
+  }
+  
+  .step-content.step-5 h1{
+    display:none;
+  }
+  
+  .step-content.step-5 h1.solution-banner{
+    top:0;
+    margin:0;
+  }
+
+  .solution-layout{
+    margin-top:50px;
+    margin-bottom:-150px;
+  }
+  
+  .solution-layout-row.solution-hero-container{
+    flex-direction:column;
+  }
+  
+  .solution-product.solution-product-foundation{
+    width:100%;
+    order:2;
+  }
+
+  .solution-hero{
+    width:100%;
+    display:flex;
+    order:1;
+    flex-direction:column;
+  }
+  
+  .solution-hero-pic{
+    width:100%;
+    height:310px;
+  }
+  
+  .solution-hero-text{
+    width:100%;
+    padding:0;
+    text-align:center;
+  }
+  
+  .solution-hero-text h2, .solution-hero-text h3, .solution-hero-text p{
+    padding-left: 1.5625rem;
+    padding-right: 1.5625rem;
+  }
+  
+  .solution-hero-text h2{
+    margin-top: 35px;
+    margin-bottom: 0px;
+  }
+    
+  .solution-hero-text h3{
+    margin-top: 10px;
+  }
+
+  .step-content .solution-hero-text p{
+    width: calc(100% - 40px);
+    text-align:left;
+    max-width:80%;
+    margin:0 0 0 20px;
+    padding-bottom:35px; /* temp scroll */
+  }
+  
+  .solution-scroll-container{
+    display:none;
+  }
+  
+  .solution-hero-text h2.solution-page-scroll{
+    display:block;
+    padding-bottom:35px;
+    display:none;/* temp page scroll */
+  }
+  
+  .mobile-solution-scroll-container{
+    display: block;
+    margin: auto;
+    text-align: center;
+    width:200px;
+    position: relative;
+  }
+  
+  .mobile-solution-chevron::before {
+	border-style: solid;
+	border-width: 0.25em 0.25em 0 0;
+	content: '';
+	display: inline-block;
+	height: 2em;
+	left: 0.15em;
+	position: relative;
+	top: 0em;
+	transform: rotate(135deg);
+	vertical-align: top;
+	width:2em;
+  opacity:1;
+}
 
   /* Cheat Vertical Centering to be improved */
   .skin-tone-options{
-    margin-top:0;
+    margin-top:-10;
    }
   .shade-options{
-    margin-top:80px;
+    margin-top:40px;
   }
+
+  .undertone-options {
+    text-align: right;
+    margin-top:100px;
+  }
+  
   .step-content.step-1 p{
     margin-bottom:50px;
   }
