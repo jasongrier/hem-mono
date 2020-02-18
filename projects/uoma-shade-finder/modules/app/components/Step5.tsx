@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { map, find } from 'lodash'
 import { RootState } from '../../../index'
+import $ from "jquery";
 import ProductTile from './ProductTile'
 
 declare const toneMatrix: any
@@ -61,8 +62,9 @@ function Step5(): ReactElement {
     return (
       <div className="step-content step-5">
         <h1>You are...</h1>
+        <h1 className="solution-banner">Brown Sugar Brown Sugar Brown Sugar Brown Sugar Brown Sugar Brown Sugar Brown Sugar Brown Sugar Brown Sugar Brown Sugar</h1>
         <div className="solution-layout">
-          <div className="solution-layout-row">
+          <div className="solution-layout-row solution-hero-container">
             <div className="solution-product solution-product-foundation">
               <ProductTile
                 ctaOnClick={() => {}}
