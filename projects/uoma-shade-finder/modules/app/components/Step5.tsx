@@ -91,8 +91,13 @@ function Step5(): ReactElement {
                   Lorem ipsum dolor sit amet.
                 </h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
+                <h2 className="solution-page-scroll">Shop Now</h2>
               </div>
             </div>
+          </div>
+          <div className="solution-scroll-container">
+              <h3>Scroll for More</h3>
+              <span className="solution-chevron"></span>
           </div>
           <div className="solution-layout-row">
             <ProductTile
