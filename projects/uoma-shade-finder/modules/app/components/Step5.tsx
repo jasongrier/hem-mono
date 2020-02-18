@@ -6,8 +6,8 @@ import $ from "jquery";
 import ProductTile from './ProductTile'
 
 declare const toneMatrix: any
-declare var skinToneOptions: any[]
-declare const jsQuizResultsKey: any
+declare const skinToneOptions: any[]
+declare const blurbs: any[]
 declare const jsQuizResultsById: any
 declare const allProducts: any
 
@@ -29,8 +29,8 @@ function Step5(): ReactElement {
   }))
 
   if (currentStep === 5) {
-    const allVariants = allProducts.reduce((acc, product) => {
-      const variants = product.variants.map((variant) => {
+    const allVariants = allProducts.reduce((acc: any, product: any) => {
+      const variants = product.variants.map((variant: any) => {
         variant.productId = product.id
         return variant
       })
@@ -40,11 +40,40 @@ function Step5(): ReactElement {
       return acc
     }, [])
 
-    const solution = `${skinToneOption}-t${(parseInt(shadeOption) + 1)}-${undertoneOption}`
+    const subQuizCodes = {
+      aa: 'cool',
+      ab: 'neutral',
+      ac: 'neutral',
+      ad: 'neutral',
+      ba: 'neutral',
+      bb: 'neutral',
+      bc: 'warm',
+      bd: 'neutral',
+      ca: 'neutral',
+      cb: 'neutral',
+      cc: 'neutral',
+      cd: 'neutral',
+    }
+
+    let subQuizUndertoneOption
+
+    if (
+      !undertoneOption
+      && subQuizTone
+      && subQuizVeins
+    ) {
+      // @ts-ignore
+      subQuizUndertoneOption = subQuizCodes[subQuizTone + subQuizVeins]
+    }
+
+    // @ts-ignore
+    const solution = `${skinToneOption}-t${(parseInt(shadeOption) + 1)}-${subQuizUndertoneOption || undertoneOption}`
+    // @ts-ignore
     const mainImage = skinToneOptions[skinToneOption][shadeOption]
 
     const foundationVariantId = jsQuizResultsById[solution].foundation
     const concealerVariantId = jsQuizResultsById[solution].concealer
+    // @ts-ignore
     const contourStickVariantId = parseInt(toneMatrix[skinToneOption].contour, 10)
     const spongeProduct = find(allProducts, { handle: 'big-head-dual-density-makeup-sponge' })
     const spongeVariant = spongeProduct.variants[0]
@@ -57,7 +86,9 @@ function Step5(): ReactElement {
     const contourStickVariant = find(allVariants, { id: contourStickVariantId })
     const contourStickProduct = find(allProducts, { id: contourStickVariant.productId })
 
-    console.log(mainImage)
+    // @ts-ignore
+    const subhead = toneMatrix[skinToneOption].subhead
+    const blurb = blurbs[subhead]
 
     return (
       <div className="step-content step-5">
@@ -88,16 +119,16 @@ function Step5(): ReactElement {
               <div className="solution-hero-text">
                 <h2>{ foundationVariant.title.replace(' - ', ' ') }</h2>
                 <h3>
-                  Lorem ipsum dolor sit amet.
+                  { subhead }
                 </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
+                <p>{ blurb }</p>
                 <h2 className="solution-page-scroll">Shop Now</h2>
               </div>
             </div>
           </div>
           <div className="solution-scroll-container">
-              <h3>Scroll for More</h3>
-              <span className="solution-chevron"></span>
+            <h3>Scroll for More</h3>
+            <span className="solution-chevron"></span>
           </div>
           <div className="solution-layout-row">
             <ProductTile

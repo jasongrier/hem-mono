@@ -86,41 +86,41 @@ function Step4(): ReactElement {
             <div className="sub-quiz-col sub-quiz-left">
               <h3>What tone of jewelry do you look best in?</h3>
               <SubQuizQuestion
-                onClick={() => setSubQuizToneCb('silver/platinum')}
-                selected={subQuizTone === 'silver/platinum'}
+                onClick={() => setSubQuizToneCb('a')}
+                selected={subQuizTone === 'a'}
                 title="Silver/Platinum"
               />
               <SubQuizQuestion
-                onClick={() => setSubQuizToneCb('yellow-gold')}
-                selected={subQuizTone === 'yellow-gold'}
+                onClick={() => setSubQuizToneCb('b')}
+                selected={subQuizTone === 'b'}
                 title="Yellow Gold"
               />
               <SubQuizQuestion
-                onClick={() => setSubQuizToneCb('no-answer')}
-                selected={subQuizTone === 'no-answer'}
+                onClick={() => setSubQuizToneCb('c')}
+                selected={subQuizTone === 'c'}
                 title="What? Girl, I have no idea"
               />
             </div>
             <div className="sub-quiz-col sub-quiz-right">
               <h3>What color are the veins on your wrist?</h3>
               <SubQuizQuestion
-                onClick={() => setSubQuizVeinsCb('purple')}
-                selected={subQuizVeins === 'purple'}
+                onClick={() => setSubQuizVeinsCb('a')}
+                selected={subQuizVeins === 'a'}
                 title="Purple"
               />
               <SubQuizQuestion
-                onClick={() => setSubQuizVeinsCb('blue/green')}
-                selected={subQuizVeins === 'blue/green'}
+                onClick={() => setSubQuizVeinsCb('b')}
+                selected={subQuizVeins === 'b'}
                 title="Blue/Green"
               />
               <SubQuizQuestion
-                onClick={() => setSubQuizVeinsCb('green')}
-                selected={subQuizVeins === 'green'}
+                onClick={() => setSubQuizVeinsCb('c')}
+                selected={subQuizVeins === 'c'}
                 title="Green"
               />
               <SubQuizQuestion
-                onClick={() => setSubQuizVeinsCb('no-answer')}
-                selected={subQuizVeins === 'no-answer'}
+                onClick={() => setSubQuizVeinsCb('d')}
+                selected={subQuizVeins === 'd'}
                 title="What? Girl, I have no idea"
               />
             </div>
