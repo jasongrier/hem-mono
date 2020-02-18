@@ -39,9 +39,8 @@ function Step5(): ReactElement {
       return acc
     }, [])
 
-    const shadeOptionNumber = parseInt(shadeOption) + 1
-    const solution = `${skinToneOption}-t${(shadeOptionNumber)}-${undertoneOption}`
-    const mainImage = skinToneOptions[skinToneOption][shadeOptionNumber]
+    const solution = `${skinToneOption}-t${(parseInt(shadeOption) + 1)}-${undertoneOption}`
+    const mainImage = skinToneOptions[skinToneOption][shadeOption]
 
     const foundationVariantId = jsQuizResultsById[solution].foundation
     const concealerVariantId = jsQuizResultsById[solution].concealer
@@ -77,9 +76,13 @@ function Step5(): ReactElement {
               />
             </div>
             <div className="solution-hero">
-              <div className="solution-hero-pic" >
-                <img src={mainImage} alt=""/>
-              </div>
+              <div
+                className="solution-hero-pic"
+                style={{
+                  background: `url(${mainImage}) center center no-repeat`,
+                  backgroundSize: 'cover',
+                }}
+              />
               <div className="solution-hero-text">
                 <h2>{ foundationVariant.title.replace(' - ', ' ') }</h2>
                 <h3>
