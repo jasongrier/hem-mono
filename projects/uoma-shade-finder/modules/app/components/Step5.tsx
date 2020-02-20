@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { map, find } from 'lodash'
+import { noop, find } from 'lodash'
+import { resetQuiz } from '../index'
 import { RootState } from '../../../index'
-import $ from "jquery";
 import ProductTile from './ProductTile'
 
 declare const toneMatrix: any
@@ -27,6 +27,8 @@ function Step5(): ReactElement {
     subQuizVeins: state.app.subQuizVeins,
     undertoneOption: state.app.undertoneOption,
   }))
+
+  const dispatch = useDispatch()
 
   if (currentStep === 5) {
     const allVariants = allProducts.reduce((acc: any, product: any) => {
@@ -99,7 +101,7 @@ function Step5(): ReactElement {
             <div className="solution-product solution-product-foundation">
               <ProductTile
                 ctaOnClick={() => {}}
-                ctaText="Shop now"
+                ctaText="Add to bag"
                 imgSrc={foundationVariant.featured_image.src}
                 price={`$${foundationVariant.price / 100}.00`}
                 reviewsCount="43"
@@ -161,6 +163,14 @@ function Step5(): ReactElement {
               subtitle={`in ${spongeVariant.title}`}
               title={spongeProduct.title}
             />
+          </div>
+          <div className="solution-layout-row">
+            <div
+              className="reset-quiz"
+              onClick={() => dispatch(resetQuiz())}
+            >
+              <button>Restart the Quiz</button>
+            </div>
           </div>
         </div>
       </div>
