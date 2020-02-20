@@ -11,6 +11,7 @@ import {
   SET_WIDGET_DATA,
 
   IState,
+  RESET_QUIZ,
 } from './'
 
 const initialState: IState = {
@@ -31,6 +32,10 @@ const reducer = (
   { type, payload }: AnyAction,
 ): IState => {
   switch (type) {
+    case (RESET_QUIZ): {
+      return initialState
+    }
+
     case (SET_NEEDS_SUBQUIZ): {
       return produce(state, draftState => {
         draftState.needsSubquiz = payload

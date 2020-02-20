@@ -53,7 +53,7 @@ function Step4(): ReactElement {
       {!needsSubquiz &&
         <div className="step-content step-4">
           <h1>What’s your Undertone?</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
+          <p></p>
           <div className="undertone-options">
             <UndertoneOption
               onSelect={() => setUndertoneOptionAndProgress('warm')}
@@ -81,47 +81,46 @@ function Step4(): ReactElement {
       {needsSubquiz &&
         <div className="step-content step-4 sub-quiz">
           <h1>That’s okay, we’re here to help</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
 
           <div className="sub-quiz-cols">
             <div className="sub-quiz-col sub-quiz-left">
               <h3>What tone of jewelry do you look best in?</h3>
               <SubQuizQuestion
-                onClick={() => setSubQuizToneCb('silver/platinum')}
-                selected={subQuizTone === 'silver/platinum'}
+                onClick={() => setSubQuizToneCb('a')}
+                selected={subQuizTone === 'a'}
                 title="Silver/Platinum"
               />
               <SubQuizQuestion
-                onClick={() => setSubQuizToneCb('yellow-gold')}
-                selected={subQuizTone === 'yellow-gold'}
+                onClick={() => setSubQuizToneCb('b')}
+                selected={subQuizTone === 'b'}
                 title="Yellow Gold"
               />
               <SubQuizQuestion
-                onClick={() => setSubQuizToneCb('no-answer')}
-                selected={subQuizTone === 'no-answer'}
+                onClick={() => setSubQuizToneCb('c')}
+                selected={subQuizTone === 'c'}
                 title="What? Girl, I have no idea"
               />
             </div>
             <div className="sub-quiz-col sub-quiz-right">
               <h3>What color are the veins on your wrist?</h3>
               <SubQuizQuestion
-                onClick={() => setSubQuizVeinsCb('purple')}
-                selected={subQuizVeins === 'purple'}
+                onClick={() => setSubQuizVeinsCb('a')}
+                selected={subQuizVeins === 'a'}
                 title="Purple"
               />
               <SubQuizQuestion
-                onClick={() => setSubQuizVeinsCb('blue/green')}
-                selected={subQuizVeins === 'blue/green'}
+                onClick={() => setSubQuizVeinsCb('b')}
+                selected={subQuizVeins === 'b'}
                 title="Blue/Green"
               />
               <SubQuizQuestion
-                onClick={() => setSubQuizVeinsCb('green')}
-                selected={subQuizVeins === 'green'}
+                onClick={() => setSubQuizVeinsCb('c')}
+                selected={subQuizVeins === 'c'}
                 title="Green"
               />
               <SubQuizQuestion
-                onClick={() => setSubQuizVeinsCb('no-answer')}
-                selected={subQuizVeins === 'no-answer'}
+                onClick={() => setSubQuizVeinsCb('d')}
+                selected={subQuizVeins === 'd'}
                 title="What? Girl, I have no idea"
               />
             </div>

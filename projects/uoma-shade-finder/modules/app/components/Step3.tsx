@@ -43,7 +43,7 @@ function Step3(): ReactElement {
   return (
     <div className="step-content step-3">
       <h1>Which skin shade best matches yours?</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
+      <p></p>
       <div className="shade-options">
         {renderShadeOptions()}
       </div>
