@@ -23,6 +23,7 @@ export interface IState {
   widgetData: IWidgetData | null
 }
 
+export const RESET_QUIZ = 'RESET_QUIZ'
 export const SET_NEEDS_SUBQUIZ = 'SET_NEEDS_SUBQUIZ'
 export const SET_SHADE_OPTION = 'SET_SHADE_OPTION'
 export const SET_SKIN_TONE_OPTION = 'SET_SKIN_TONE_OPTION'
@@ -31,6 +32,11 @@ export const SET_SUBQUIZ_TONE = 'SET_SUBQUIZ_TONE'
 export const SET_SUBQUIZ_VEINS = 'SET_SUBQUIZ_VEINS'
 export const SET_UNDERTONE_OPTION = 'SET_UNDERTONE_OPTION'
 export const SET_WIDGET_DATA = 'SET_WIDGET_DATA'
+
+export interface IResetQuiz extends AnyAction {
+  payload: null
+  type: typeof RESET_QUIZ
+}
 
 export interface ISetNeedsSubQuiz extends AnyAction {
   payload: boolean
@@ -78,7 +84,8 @@ export interface ISetWidgetData extends AnyAction {
 }
 
 export type Action =
-  ISetNeedsSubQuiz
+  IResetQuiz
+  | ISetNeedsSubQuiz
   | ISetShadeOption
   | ISetSkinToneOption
   | ISetStep
@@ -88,6 +95,7 @@ export type Action =
   | ISetWidgetData
 
 export {
+  resetQuiz,
   setNeedsSubquiz,
   setShadeOption,
   setSkinToneOption,

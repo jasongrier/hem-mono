@@ -1,5 +1,6 @@
 import { AnyAction } from 'redux'
 import {
+  RESET_QUIZ,
   SET_NEEDS_SUBQUIZ,
   SET_SHADE_OPTION,
   SET_SKIN_TONE_OPTION,
@@ -11,6 +12,11 @@ import {
 
   IWidgetData,
 } from './'
+
+const resetQuiz = (): AnyAction => ({
+  type: RESET_QUIZ,
+  payload: null,
+})
 
 const setNeedsSubquiz = (needsSubquiz: boolean): AnyAction => ({
   type: SET_NEEDS_SUBQUIZ,
@@ -53,6 +59,7 @@ const setWidgetData = (widgetData: IWidgetData): AnyAction => ({
 })
 
 export {
+  resetQuiz,
   setNeedsSubquiz,
   setShadeOption,
   setSkinToneOption,

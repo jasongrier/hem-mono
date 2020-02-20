@@ -61,7 +61,7 @@ function App(): ReactElement {
           </div>
         }
 
-        { currentStep < 4 &&
+        { currentStep < 5 &&
           <StepsProgress />
         }
         <div className="step-color-strip"></div>
