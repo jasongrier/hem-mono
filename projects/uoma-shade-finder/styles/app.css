@@ -203,7 +203,7 @@ div#root * {
   color: #fff;
   text-transform: uppercase;
   cursor: pointer;
-  margin-top: 100px; /* temp findation */ 
+  margin-top: 100px; /* temp findation */
 }
 
 .findation_widget{
@@ -306,7 +306,7 @@ div#root * {
   white-space: nowrap;
   text-transform: uppercase;
   font-size: 36px;
-  
+
 }
 
 .undertone-option-active {
@@ -468,7 +468,7 @@ div#root * {
   font-family: Druk,Arial,sans-serif;
   font-weight: 500;
   font-size: 1.5rem;
-  text-transform:uppercase;  
+  text-transform:uppercase;
   letter-spacing: .7px;
 }
 
@@ -491,7 +491,7 @@ div#root * {
   max-width: 450px;
   padding:0 10px;
   margin: 0 auto;
-  text-align: center;    
+  text-align: center;
   max-height: 100%;
   max-width: 100%;
 }
@@ -516,7 +516,7 @@ div#root * {
   font-family: Druk,Arial,sans-serif;
   font-weight: 500;
   font-size: 1.5rem;
-  text-transform:uppercase;  
+  text-transform:uppercase;
   letter-spacing: .7px;
   margin-bottom:0;
 }
@@ -578,7 +578,12 @@ div#root * {
   display:none;
 }
 
-.product-tile .product-cta button{
+.reset-quiz {
+  width: 100%;
+}
+
+.product-tile .product-cta button,
+.solution-layout-row .reset-quiz button {
   display: block;
   width: auto;
   max-width: 130px;
@@ -594,6 +599,7 @@ div#root * {
   font-weight: 500;
   font-size: 1.625rem;
   border: none;
+  cursor: pointer;
 }
 
 .product-tile .product-cta button:hover{
@@ -613,7 +619,7 @@ div#root * {
   .step-container-on-3 .step-slider-container { margin-left: -760px }
   .step-container-on-4 .step-slider-container { margin-left: -1140px }
   .step-container-on-5 .step-slider-container { margin-left: -1520px }
-  
+
   .step-popup-overlay{
     display:none;
   }
@@ -708,7 +714,7 @@ div#root * {
   .step-container-on-5 .step-color-strip{
     display:none;
   }
-  
+
   .step-content.step-1 button{
     width:210px;
   }
@@ -756,30 +762,30 @@ div#root * {
   .step-content.step-2 p, .step-content.step-2 h3, .step-content.step-3 p, .step-content.step-3 h3{
     display:none;
   }
-  
+
   .step-content.sub-quiz h1{
     margin-top:-20px;
   }
-  
+
   .sub-quiz-cols{
     margin-top:30px;
   }
-  
+
   .sub-quiz-col{
     padding-left:20px;
   }
-  
+
   .sub-quiz-col.sub-quiz-right{
     clear:both;
     padding-left:20px;
     margin-top:5px;
     width:auto;
   }
-  
+
   .sub-quiz-col.sub-quiz-left{
     border-right:0;
   }
-  
+
   .sub-quiz-col h3{
   font-size: 15px;
   font-weight: 600;
@@ -787,7 +793,7 @@ div#root * {
   letter-spacing: .7px;
   width:280px;
   }
-  
+
   .sub-quiz-question-title{
     font-family: 'Druk', sans-serif;
     letter-spacing: .5px;
@@ -796,7 +802,7 @@ div#root * {
     text-transform: uppercase;
     font-size: 30px;
   }
-  
+
   .sub-quiz-question {
       height: 25px;
       line-height: 30px;
@@ -804,31 +810,31 @@ div#root * {
   .sub-quiz-question-title {
       transform: translateY(3px);
   }
-  
+
   .solution-layout-row{
     flex-wrap:wrap;
   }
-  
+
   .product-tile{
     width:43%;
     padding:0 10px;
   }
-  
+
   .step-content.step-5{
     padding:0;
     margin-left:0;
     width:380px;
   }
-  
+
   .step-container-popup.step-container-on-5.step-container{
     position: relative;
     top: 0;
   }
-  
+
   .step-content.step-5 h1{
     display:none;
   }
-  
+
   .step-content.step-5 h1.solution-banner{
     top:0;
     margin:0;
@@ -838,11 +844,11 @@ div#root * {
     margin-top:50px;
     margin-bottom:-150px;
   }
-  
+
   .solution-layout-row.solution-hero-container{
     flex-direction:column;
   }
-  
+
   .solution-product.solution-product-foundation{
     width:100%;
     order:2;
@@ -854,28 +860,28 @@ div#root * {
     order:1;
     flex-direction:column;
   }
-  
+
   .solution-hero-pic{
     width:100%;
     height:310px;
   }
-  
+
   .solution-hero-text{
     width:100%;
     padding:0;
     text-align:center;
   }
-  
+
   .solution-hero-text h2, .solution-hero-text h3, .solution-hero-text p{
     padding-left: 1.5625rem;
     padding-right: 1.5625rem;
   }
-  
+
   .solution-hero-text h2{
     margin-top: 35px;
     margin-bottom: 0px;
   }
-    
+
   .solution-hero-text h3{
     margin-top: 10px;
   }
@@ -887,17 +893,17 @@ div#root * {
     margin:0 0 0 20px;
     padding-bottom:35px; /* temp scroll */
   }
-  
+
   .solution-scroll-container{
     display:none;
   }
-  
+
   .solution-hero-text h2.solution-page-scroll{
     display:block;
     padding-bottom:35px;
     display:none;/* temp page scroll */
   }
-  
+
   .mobile-solution-scroll-container{
     display: block;
     margin: auto;
@@ -905,7 +911,7 @@ div#root * {
     width:200px;
     position: relative;
   }
-  
+
   .mobile-solution-chevron::before {
 	border-style: solid;
 	border-width: 0.25em 0.25em 0 0;
@@ -933,7 +939,7 @@ div#root * {
     text-align: right;
     margin-top:100px;
   }
-  
+
   .step-content.step-1 p{
     margin-bottom:50px;
   }
