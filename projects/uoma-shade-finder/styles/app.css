@@ -38,6 +38,10 @@
   font-style: normal;
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
 div#root * {
     box-sizing: content-box;
 }
@@ -203,11 +207,12 @@ div#root * {
   color: #fff;
   text-transform: uppercase;
   cursor: pointer;
-  margin-top: 100px; /* temp findation */
+  padding: 2px 7px;
+  /*margin-top: 100px;*/ /* temp findation - if findation is hidden reveal this property */
 }
 
 .findation_widget{
-  display:none; /* temp findation */
+ /* display:none;*/ /* temp findation */
 }
 
 .step-content.step-1 button:focus,
@@ -460,7 +465,7 @@ div#root * {
   margin-top:0;
 }
 
-.solution-hero-text h2.solution-page-scroll, .mobile-solution-scroll-container{
+.solution-hero-text a.solution-page-scroll, .mobile-solution-scroll-container{
   display:none;
 }
 
@@ -501,24 +506,24 @@ div#root * {
   padding:0;
 }
 
-.solution-scroll-container{
+a.solution-scroll-container{
   display: block;
   margin: auto;
   text-align: center;
   width:200px;
   position: relative;
-  top: -100px;
-  margin-bottom: -120px;
-  display:none; /* temp scroll */
+  top: -20px;
+  text-decoration:none;
 }
 
-.solution-scroll-container h3{
+a.solution-scroll-container h3{
   font-family: Druk,Arial,sans-serif;
   font-weight: 500;
   font-size: 1.5rem;
   text-transform:uppercase;
   letter-spacing: .7px;
-  margin-bottom:0;
+  margin-bottom:-15px;
+  color:#000;
 }
 
 .solution-chevron::before {
@@ -534,6 +539,7 @@ div#root * {
 	vertical-align: top;
 	width:2em;
   opacity:.2;
+  color:#000;
 }
 
 .product-tile img{
@@ -602,39 +608,48 @@ div#root * {
   cursor: pointer;
 }
 
+.solution-layout-row .reset-quiz button{
+  background: #f30000;
+  margin-top:30px;
+}
+
 .product-tile .product-cta button:hover{
   color:#d3000d;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 1020px) {
   .step-container-popup {
-    width: 380px;
-    height: 100%;
-    margin-left: -190px;
+    width: 500px;
+    height:calc(100vh - 120px);
+    margin-left: -250px;
     top:109px;
   }
 
   .step-container-on-1 .step-slider-container { margin-left: 0 }
-  .step-container-on-2 .step-slider-container { margin-left: -380px }
-  .step-container-on-3 .step-slider-container { margin-left: -760px }
-  .step-container-on-4 .step-slider-container { margin-left: -1140px }
-  .step-container-on-5 .step-slider-container { margin-left: -1520px }
+  .step-container-on-2 .step-slider-container { margin-left: -500px }
+  .step-container-on-3 .step-slider-container { margin-left: -1000px }
+  .step-container-on-4 .step-slider-container { margin-left: -1500px }
+  .step-container-on-5 .step-slider-container { margin-left: -2000px }
 
   .step-popup-overlay{
-    display:none;
+    
   }
-
+  /* bug fix for scroll sticking */
+  .step-container-popup.step-container-on-5.step-container{
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+  
   .step-content {
-      width: calc(380px - 50px);
+      width: calc(500px - 50px);
       height: auto;
       padding: 25px;
   }
 
   .step-chevron-button{
-    position:fixed;
-    top:auto;
-    bottom:40px;
-    z-index:10;
+    top: auto;
+    margin: 0;
+    bottom: 140px;
   }
 
   .steps-progress{
@@ -715,7 +730,11 @@ div#root * {
     display:none;
   }
 
-  .step-content.step-1 button{
+  .findation_widget{
+    margin-top:150px;
+  }
+  
+  .step-content.step-1 button, .findation_widget{
     width:210px;
   }
 
@@ -728,8 +747,8 @@ div#root * {
   }
 
   .skin-tone-options .skin-tone-option, .shade-options .shade-option{
-    width:140px;
-    height:140px;
+    width:180px;
+    height:180px;
     margin:5px;
   }
 
@@ -748,15 +767,12 @@ div#root * {
   }
 
   .step-content.step-1 img.bottom-banner{
-    width: calc( 100% + 50px);
-    margin-left: -25px;
-    margin-right: -25px;
-    margin-top: 90px;
+    width: 100%;
     bottom: 0;
-    position: relative;
-    display:block;
+    position: absolute;
+    display: block;
     max-width: initial;
-    margin-top:130px;/* temp findation */
+    margin: auto auto auto -25px;
   }
 
   .step-content.step-2 p, .step-content.step-2 h3, .step-content.step-3 p, .step-content.step-3 h3{
@@ -768,6 +784,11 @@ div#root * {
   }
 
   .sub-quiz-cols{
+    height: calc(100vh - 300px);
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
     margin-top:30px;
   }
 
@@ -823,7 +844,7 @@ div#root * {
   .step-content.step-5{
     padding:0;
     margin-left:0;
-    width:380px;
+    width:500px;
   }
 
   .step-container-popup.step-container-on-5.step-container{
@@ -863,7 +884,7 @@ div#root * {
 
   .solution-hero-pic{
     width:100%;
-    height:310px;
+    height:490px;
   }
 
   .solution-hero-text{
@@ -891,17 +912,23 @@ div#root * {
     text-align:left;
     max-width:80%;
     margin:0 0 0 20px;
-    padding-bottom:35px; /* temp scroll */
   }
 
-  .solution-scroll-container{
+  a.solution-scroll-container{
     display:none;
   }
 
-  .solution-hero-text h2.solution-page-scroll{
+  .solution-hero-text a.solution-page-scroll{
     display:block;
-    padding-bottom:35px;
-    display:none;/* temp page scroll */
+    font-family: Druk,Arial,sans-serif;
+    font-weight: 500;
+    font-size: 2.5rem;
+    text-transform:uppercase;
+    letter-spacing: .7px;
+    margin-top:0;
+    text-decoration:none;
+    color:#fff;
+    padding:25px;
   }
 
   .mobile-solution-scroll-container{
@@ -929,14 +956,95 @@ div#root * {
 
   /* Cheat Vertical Centering to be improved */
   .skin-tone-options{
-    margin-top:-10;
+    margin-top:90px;
+   }
+  .shade-options{
+    margin-top:140px;
+  }
+
+  .undertone-options {
+    text-align: right;
+    margin-top:200px;
+  }
+
+  .step-content.step-1 p{
+    margin-bottom:50px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .step-container-popup {
+    width: 380px;
+    height: 100%;
+    margin-left: -190px;
+    top:109px;
+  }
+
+  .step-container-on-1 .step-slider-container { margin-left: 0 }
+  .step-container-on-2 .step-slider-container { margin-left: -380px }
+  .step-container-on-3 .step-slider-container { margin-left: -760px }
+  .step-container-on-4 .step-slider-container { margin-left: -1140px }
+  .step-container-on-5 .step-slider-container { margin-left: -1520px }
+
+  .step-popup-overlay{
+    display:none;
+  }
+
+  .step-content {
+      width: calc(380px - 50px);
+      height: auto;
+      padding: 25px;
+  }
+
+  .step-chevron-button{
+    position:fixed;
+    top:auto;
+    bottom:40px;
+    z-index:10;
+  }
+
+  .skin-tone-options .skin-tone-option, .shade-options .shade-option{
+    width:140px;
+    height:140px;
+    margin:5px;
+  }
+  
+  .findation_widget{
+    margin-top:40px;
+  }
+
+  .step-content.step-1 img.bottom-banner{
+    margin-left: -25px;
+    margin-right: -25px;
+    bottom: 110px;
+    display:block;
+    max-width: initial;
+    /*margin-top:130px;*/ /* temp findation */
+  }
+
+  .sub-quiz-cols{
+    margin-top:30px;
+  }
+
+  .step-content.step-5{
+    padding:0;
+    margin-left:0;
+    width:380px;
+  }
+
+  .solution-hero-pic{
+    height:310px;
+  }
+
+  /* Cheat Vertical Centering to be improved */
+  .skin-tone-options{
+    margin-top:-10px;
    }
   .shade-options{
     margin-top:40px;
   }
 
   .undertone-options {
-    text-align: right;
     margin-top:100px;
   }
 
@@ -944,3 +1052,4 @@ div#root * {
     margin-bottom:50px;
   }
 }
+

@@ -98,7 +98,7 @@ function Step5(): ReactElement {
         <h1 className="solution-banner">Brown Sugar Brown Sugar Brown Sugar Brown Sugar Brown Sugar Brown Sugar Brown Sugar Brown Sugar Brown Sugar Brown Sugar</h1>
         <div className="solution-layout">
           <div className="solution-layout-row solution-hero-container">
-            <div className="solution-product solution-product-foundation">
+            <div id="scroll-destination-mobile" className="solution-product solution-product-foundation">
               <ProductTile
                 ctaOnClick={() => {}}
                 ctaText="Add to bag"
@@ -124,15 +124,18 @@ function Step5(): ReactElement {
                   { subhead }
                 </h3>
                 <p>{ blurb }</p>
-                <h2 className="solution-page-scroll">Shop Now</h2>
+                <a href="#scroll-destination-mobile" className="solution-page-scroll">Shop Now</a>
               </div>
             </div>
           </div>
-          <div className="solution-scroll-container">
+          <a href="#scroll-destination" className="solution-scroll-container">
             <h3>Scroll for More</h3>
             <span className="solution-chevron"></span>
-          </div>
-          <div className="solution-layout-row">
+          </a>
+          <div 
+              id="scroll-destination"    
+              className="solution-layout-row"
+          >
             <ProductTile
               ctaOnClick={() => {}}
               ctaText="Add to bag"
