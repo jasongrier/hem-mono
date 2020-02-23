@@ -100,7 +100,9 @@ function Step5(): ReactElement {
           <div className="solution-layout-row solution-hero-container">
             <div id="scroll-destination-mobile" className="solution-product solution-product-foundation">
               <ProductTile
-                ctaOnClick={() => {}}
+                ctaOnClick={() => {
+                  window.location.href = `/products/${foundationProduct.handle}?variant=${foundationVariant.id}`
+                }}
                 ctaText="Add to bag"
                 imgSrc={foundationVariant.featured_image.src}
                 price={`$${foundationVariant.price / 100}.00`}
@@ -132,12 +134,14 @@ function Step5(): ReactElement {
             <h3>Scroll for More</h3>
             <span className="solution-chevron"></span>
           </a>
-          <div 
-              id="scroll-destination"    
+          <div
+              id="scroll-destination"
               className="solution-layout-row"
           >
             <ProductTile
-              ctaOnClick={() => {}}
+              ctaOnClick={() => {
+                window.location.href = `/products/${concealerProduct.handle}?variant=${concealerVariant.id}`
+              }}
               ctaText="Add to bag"
               imgSrc={concealerVariant.featured_image.src}
               price={`$${concealerVariant.price / 100}.00`}
@@ -147,7 +151,9 @@ function Step5(): ReactElement {
               title={concealerProduct.title}
             />
             <ProductTile
-              ctaOnClick={() => {}}
+              ctaOnClick={() => {
+                window.location.href = `/products/${contourStickProduct.handle}?variant=${contourStickVariant.id}`
+              }}
               ctaText="Add to bag"
               imgSrc={contourStickVariant.featured_image.src}
               price={`$${contourStickVariant.price / 100}.00`}
@@ -157,13 +163,15 @@ function Step5(): ReactElement {
               title={contourStickProduct.title}
             />
             <ProductTile
-              ctaOnClick={() => {}}
+              ctaOnClick={() => {
+                window.location.href = `/products/${spongeProduct.handle}?variant=${spongeVariant.id}`
+              }}
               ctaText="Add to bag"
               imgSrc={spongeVariant.featured_image.src}
               price={`$${spongeVariant.price / 100}.00`}
               reviewsCount="43"
               starsCount={4}
-              subtitle={`in ${spongeVariant.title}`}
+              subtitle=""
               title={spongeProduct.title}
             />
           </div>
