@@ -499,11 +499,13 @@ div#root * {
   text-align: center;
   max-height: 100%;
   max-width: 100%;
+  cursor: pointer;
 }
 
 .solution-product.solution-product-foundation .product-tile{
   width:100%;
   padding:0;
+  cursor: pointer;
 }
 
 a.solution-scroll-container{
@@ -632,14 +634,14 @@ a.solution-scroll-container h3{
   .step-container-on-5 .step-slider-container { margin-left: -2000px }
 
   .step-popup-overlay{
-    
+
   }
   /* bug fix for scroll sticking */
   .step-container-popup.step-container-on-5.step-container{
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
   }
-  
+
   .step-content {
       width: calc(500px - 50px);
       height: auto;
@@ -733,7 +735,7 @@ a.solution-scroll-container h3{
   .findation_widget{
     margin-top:150px;
   }
-  
+
   .step-content.step-1 button, .findation_widget{
     width:210px;
   }
@@ -839,6 +841,7 @@ a.solution-scroll-container h3{
   .product-tile{
     width:43%;
     padding:0 10px;
+    cursor: pointer;
   }
 
   .step-content.step-5{
@@ -1008,7 +1011,7 @@ a.solution-scroll-container h3{
     height:140px;
     margin:5px;
   }
-  
+
   .findation_widget{
     margin-top:40px;
   }

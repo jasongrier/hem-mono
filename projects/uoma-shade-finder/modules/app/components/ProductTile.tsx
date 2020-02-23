@@ -13,7 +13,10 @@ interface IProps {
 
 function ProductTile({ ctaOnClick, ctaText, imgSrc, price, reviewsCount, starsCount, subtitle, title }: IProps): ReactElement {
   return (
-    <div className="product-tile">
+    <div
+      className="product-tile"
+      onClick={ctaOnClick}
+    >
       <img src={imgSrc} />
       <h2 className="product-title">
         { title }
@@ -36,10 +39,7 @@ function ProductTile({ ctaOnClick, ctaText, imgSrc, price, reviewsCount, starsCo
           {reviewsCount} reviews
         </div>
       </div>
-      <div
-        className="product-cta"
-        onClick={ctaOnClick}
-      >
+      <div className="product-cta">
         <button>{ ctaText }</button>
       </div>
     </div>
