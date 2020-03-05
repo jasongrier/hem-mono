@@ -1,7 +1,9 @@
 declare const PDP_WIDGET_PRODUCT: string
 
-function getThemeAvailability(theme, rawProduct?) {
+function getThemeAvailability(theme: any, rawProduct?: any) {
   rawProduct = rawProduct || JSON.parse(PDP_WIDGET_PRODUCT)
+
+  console.log(theme)
 
   // Only frame colors can be sold out
   // The admin must be configured so that all variants with the sold-out frame color are unavailable
@@ -12,11 +14,11 @@ function getThemeAvailability(theme, rawProduct?) {
   }
 
   else {
-    lensColor = 'Gray'
+    lensColor = 'Gray Lens'
   }
 
   const checkTitle = `No Prescription / ${lensColor} / ${theme}`
-  const testVariant = rawProduct.variants.find(variant => variant.public_title === checkTitle)
+  const testVariant = rawProduct.variants.find((variant: any) => variant.public_title === checkTitle)
 
   if (!testVariant) return false
 

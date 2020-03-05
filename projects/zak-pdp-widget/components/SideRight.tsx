@@ -32,7 +32,7 @@ import {
 import OptionRow from './OptionRow'
 import SwatchPicker from './SwatchPicker'
 
-declare function doAddToCart(mainProduct, allProductIds: string[]): void
+declare function doAddToCart(mainProduct: any, allProductIds: string[]): void
 
 function SideRight(): ReactElement {
   const { product } = useSelector((state: RootState) => ({
@@ -81,7 +81,7 @@ function SideRight(): ReactElement {
   const themeAvailabilities = reduce(themeOptions, (acc, option) => {
     acc[option] = getThemeAvailability(titleCase(option).replace(/-/g, ' '))
     return acc
-  }, {})
+  }, {} as any)
 
   return (
     <div className="zw-right">
