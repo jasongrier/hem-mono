@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { noop, find } from 'lodash'
+import { titleCase } from 'voca'
 import { resetQuiz } from '../index'
 import { RootState } from '../../../index'
 import ProductTile from './ProductTile'
@@ -10,6 +11,7 @@ declare const skinToneOptions: any[]
 declare const blurbs: any[]
 declare const jsQuizResultsById: any
 declare const allProducts: any
+declare function doAddToCart(productId: string): void
 
 function Step5(): ReactElement {
   const {
@@ -92,6 +94,9 @@ function Step5(): ReactElement {
     const subhead = toneMatrix[skinToneOption].subhead
     const blurb = blurbs[subhead]
 
+    // @ts-ignore
+    // console.log('????', titleCase(skinToneOption.replace(/'-'/g, ' ')))
+
     return (
       <div className="step-content step-5">
         <h1>You are...</h1>
@@ -100,8 +105,12 @@ function Step5(): ReactElement {
           <div className="solution-layout-row solution-hero-container">
             <div id="scroll-destination-mobile" className="solution-product solution-product-foundation">
               <ProductTile
-                ctaOnClick={() => {
+                imgOnClick={() => {
                   window.location.href = `/products/${foundationProduct.handle}?variant=${foundationVariant.id}`
+                }}
+                ctaOnClick={() => {
+                  console.log('doAddToCart')
+                  doAddToCart(foundationVariant.id)
                 }}
                 ctaText="Add to bag"
                 imgSrc={foundationVariant.featured_image.src}
@@ -139,8 +148,12 @@ function Step5(): ReactElement {
               className="solution-layout-row"
           >
             <ProductTile
-              ctaOnClick={() => {
+              imgOnClick={() => {
                 window.location.href = `/products/${concealerProduct.handle}?variant=${concealerVariant.id}`
+              }}
+              ctaOnClick={() => {
+                console.log('doAddToCart')
+                doAddToCart(concealerVariant.id)
               }}
               ctaText="Add to bag"
               imgSrc={concealerVariant.featured_image.src}
@@ -151,8 +164,12 @@ function Step5(): ReactElement {
               title={concealerProduct.title}
             />
             <ProductTile
-              ctaOnClick={() => {
+              imgOnClick={() => {
                 window.location.href = `/products/${contourStickProduct.handle}?variant=${contourStickVariant.id}`
+              }}
+              ctaOnClick={() => {
+                console.log('doAddToCart')
+                doAddToCart(contourStickVariant.id)
               }}
               ctaText="Add to bag"
               imgSrc={contourStickVariant.featured_image.src}
@@ -163,8 +180,12 @@ function Step5(): ReactElement {
               title={contourStickProduct.title}
             />
             <ProductTile
-              ctaOnClick={() => {
+              imgOnClick={() => {
                 window.location.href = `/products/${spongeProduct.handle}?variant=${spongeVariant.id}`
+              }}
+              ctaOnClick={() => {
+                console.log('doAddToCart')
+                doAddToCart(spongeVariant.id)
               }}
               ctaText="Add to bag"
               imgSrc={spongeVariant.featured_image.src}
