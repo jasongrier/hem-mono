@@ -3,8 +3,6 @@ declare const PDP_WIDGET_PRODUCT: string
 function getThemeAvailability(theme: any, rawProduct?: any) {
   rawProduct = rawProduct || JSON.parse(PDP_WIDGET_PRODUCT)
 
-  console.log(theme)
-
   // Only frame colors can be sold out
   // The admin must be configured so that all variants with the sold-out frame color are unavailable
   // (Prescriptions and lens colors never get sold out, but sunglasses and eyeglasses have different lens color options)

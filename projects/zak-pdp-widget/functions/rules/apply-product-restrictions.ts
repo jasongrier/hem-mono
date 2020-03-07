@@ -20,7 +20,7 @@ function applyProductRestrictions(draftState: IState) {
   if (!isProductEyeglass(draftState.product)) {
     draftState.product.lensTreatment = 'Standard'
     if (draftState.product.lensColor === 'NA') {
-      draftState.product.lensColor = 'Gray'
+      draftState.product.lensColor = 'Gray Lens'
     }
     draftState.product.tint = 'None'
   }

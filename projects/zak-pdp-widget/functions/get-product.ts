@@ -27,7 +27,7 @@ function getProduct(): IProduct {
     theme = themeOptions[0]
   }
 
-  theme = titleCase(theme).replace(/-/g, ' ')
+  const themeUppercase = titleCase(theme).replace(/-/g, ' ')
 
   return {
     basePrice: rawProduct.price / 100,
@@ -35,12 +35,12 @@ function getProduct(): IProduct {
     description: rawProduct.description,
     hasHighIndexAddOn: false,
     id: null,
-    lensColor: 'NA',
+    lensColor: theme.includes('sunglass') ? 'Gray Lens' : 'NA',
     lensTreatment: 'Standard',
     optionNames: rawProduct.options,
     prescription: getProductOptions('Prescription', { theme, lensColor: 'NA' }, true)[0],
     prescriptionFile: null,
-    theme,
+    theme: themeUppercase,
     tint: getTintOptions()[0],
     title: rawProduct.title,
   }
