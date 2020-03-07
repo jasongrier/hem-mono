@@ -37,6 +37,7 @@ function SwatchPicker({
             className={value === optionValue ? 'zw-swatch-picker-item-active' : ''}
             key={index}
           >
+            {title === 'Lens color:' && console.log((optionKeyTransform ? optionKeyTransform(optionValue) : optionValue))}
             <div
               className="zw-swatch-picker-item-image"
               onClick={() => {
