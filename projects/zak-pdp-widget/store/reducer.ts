@@ -38,6 +38,7 @@ const reducer = (
     case SET_LENS_COLOR: {
       return produce(state, draftState => {
         if (!draftState.product) return
+        console.log('Set option in reducer', payload)
         draftState.product.lensColor = payload
         applyProductRestrictions(draftState)
       })
