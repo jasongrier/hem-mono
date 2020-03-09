@@ -74,7 +74,7 @@ function SideRight(): ReactElement {
 
   let lensColorTitle
   if (lensColor !== 'NA') {
-    lensColorTitle = `. <span class="lens-color-title">${lensColor}</span>`
+    lensColorTitle = `. <span class="lens-color-title">${lensColor}.</span>`
   }
 
   const themeOptions = rawThemeOptions.map(kebabCase)
