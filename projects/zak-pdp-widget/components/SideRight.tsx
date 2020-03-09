@@ -32,7 +32,7 @@ import {
 import OptionRow from './OptionRow'
 import SwatchPicker from './SwatchPicker'
 
-declare function doAddToCart(mainProduct, allProductIds: string[]): void
+declare function doAddToCart(mainProduct: any, allProductIds: string[]): void
 
 function SideRight(): ReactElement {
   const { product } = useSelector((state: RootState) => ({
@@ -74,14 +74,14 @@ function SideRight(): ReactElement {
 
   let lensColorTitle
   if (lensColor !== 'NA') {
-    lensColorTitle = `. <span class="lens-color-title">${lensColor} Lens</span>`
+    lensColorTitle = `. <span class="lens-color-title">${lensColor}</span>`
   }
 
   const themeOptions = rawThemeOptions.map(kebabCase)
   const themeAvailabilities = reduce(themeOptions, (acc, option) => {
     acc[option] = getThemeAvailability(titleCase(option).replace(/-/g, ' '))
     return acc
-  }, {})
+  }, {} as any)
 
   return (
     <div className="zw-right">
@@ -107,7 +107,7 @@ function SideRight(): ReactElement {
           <div className="zw-lens-picker">
             <SwatchPicker
               onChange={value => dispatch(setLensColor(value))}
-              optionKeyTransform={value => `lens-${value.toLowerCase()}`}
+              optionKeyTransform={value => `lens-${value.toLowerCase().replace(/ lens/, '').replace(/ \– [0-9\$]+/, '')}`}
               options={lensColorOptions}
               title="Lens color:"
               value={lensColor}

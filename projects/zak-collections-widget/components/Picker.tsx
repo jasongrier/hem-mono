@@ -31,7 +31,6 @@ function Picker({ currentVariantId, item, onThemeSelected, options }: IProps): R
     function swatchPickerOnChange(themeKebab: string) {
       var themeName = titleCase(themeKebab).replace(/-/g, ' ')
       var variant = find(item.variants, {option3: themeName})
-      console.log(themeKebab)
       onThemeSelected(variant.id, themeKebab)
     }, []
   )

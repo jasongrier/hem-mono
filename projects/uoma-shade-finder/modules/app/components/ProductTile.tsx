@@ -3,6 +3,7 @@ import React, { ReactElement } from 'react'
 interface IProps {
   ctaOnClick: () => void
   ctaText: string
+  imgOnClick: () => void
   imgSrc: string
   price: string
   reviewsCount: string
@@ -11,10 +12,13 @@ interface IProps {
   title: string
 }
 
-function ProductTile({ ctaOnClick, ctaText, imgSrc, price, reviewsCount, starsCount, subtitle, title }: IProps): ReactElement {
+function ProductTile({ ctaOnClick, ctaText, imgOnClick, imgSrc, price, reviewsCount, starsCount, subtitle, title }: IProps): ReactElement {
   return (
     <div className="product-tile">
-      <img src={imgSrc} />
+      <img
+        src={imgSrc}
+        onClick={imgOnClick}
+      />
       <h2 className="product-title">
         { title }
       </h2>
@@ -36,11 +40,8 @@ function ProductTile({ ctaOnClick, ctaText, imgSrc, price, reviewsCount, starsCo
           {reviewsCount} reviews
         </div>
       </div>
-      <div
-        className="product-cta"
-        onClick={ctaOnClick}
-      >
-        <button>{ ctaText }</button>
+      <div className="product-cta">
+        <button onClick={ctaOnClick}>{ ctaText }</button>
       </div>
     </div>
   )
