@@ -10,7 +10,7 @@ function PopupContainer({ children, isOpen }: PropsWithChildren<IProps>): ReactE
       'pop-up-container'
       ${isOpen ? ' pop-up-container-open' : ''}
     `}>
-      { children({}) }
+      { children }
     </div>
   )
 }

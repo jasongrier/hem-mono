@@ -2,7 +2,8 @@ import { AnyAction } from 'redux'
 import { IState } from './index'
 
 const initialState: IState = {
-  foo: null,
+  currentlyOpenPopUp: null,
+  popupPayload: null,
 }
 
 const reducer = (
