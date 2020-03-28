@@ -1,7 +1,8 @@
 import { AnyAction } from 'redux'
 
 export interface IState {
-  foo: any
+  currentlyOpenPopUp: string | null
+  popupPayload: any
 }
 
 export const SOME_ACTION = 'SOME_ACTION'
@@ -13,5 +14,5 @@ export interface ISomeAction extends AnyAction {
 
 export type Action = ISomeAction
 
-export { reducer as appReducer } from './reducer'
-export { App } from './components'
+export { reducer as popupsReducer } from './reducer'
+export { PopupContainer } from './components'

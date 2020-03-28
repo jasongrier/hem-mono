@@ -5,11 +5,13 @@ import { BrowserRouter } from 'react-router-dom'
 import { combineReducers, createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
+import { popupsReducer } from '../../lib/modules/popups'
 import { App, appReducer } from './modules/app'
 import { siteContentReducer } from './modules/site-content'
 
 const rootReducer = combineReducers({
   app: appReducer,
+  popups: popupsReducer,
   siteContent: siteContentReducer,
 })
 
