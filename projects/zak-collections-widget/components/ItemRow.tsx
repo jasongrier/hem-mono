@@ -28,6 +28,13 @@ function ItemRow({ collection, item, options }: IProps): ReactElement {
           currentVariantId={currentVariantId}
           item={item}
         />
+        <div className="mobile-collection-title">
+          <Title
+            collectionTitle={collection.title}
+            itemTitle={item.title}
+            itemTagline={item.tags[0]}
+          />
+        </div>
       </div>
       <div className="zw-item-column zw-item-column-right">
         <Picker
