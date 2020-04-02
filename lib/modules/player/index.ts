@@ -26,4 +26,10 @@ export type Action =
   | IOpenPopup
 
 export { reducer as popupsReducer } from './reducer'
-export { PopupContainer } from './components'
+export { MuteButton } from './components'
+export { PauseButton } from './components'
+export { PlayButton } from './components'
+export { PlayPauseButton } from './components'
+export { ProgressBar } from './components'
+export { StopButton } from './components'
+
