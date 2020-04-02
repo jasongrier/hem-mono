@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux'
-import { IState } from './types'
+import { IState } from './index'
 
 const initialState: IState = {
   foo: 'bar',
