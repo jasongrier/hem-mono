@@ -11,6 +11,12 @@ function Home(): ReactElement {
     products: state.products.products,
   }))
 
+  function getProductsWithTag(tag: string) {
+    return products.filter(product => {
+      product.tags.includes(tag)
+    })
+  }
+
   return (
     <div className="page page-home">
       <header className="top-bar">
@@ -104,37 +110,21 @@ function Home(): ReactElement {
 
       <main>
         <Switch>
-          <Route
-            exact
-            path="sl1"
-            render={props =>
-              <MediaContentList content={siteContent[props.location.pathname]} />
-            }
-          />
+          <Route exact path="sl1">
+            <MediaContentList content={getProductsWithTag('sl1')} />
+          </Route>
 
-          <Route
-            exact
-            path="sl2"
-            render={props =>
-              <MediaContentList content={siteContent[props.location.pathname]} />
-            }
-          />
+          <Route exact path="sl2">
+            <MediaContentList content={getProductsWithTag('sl2')} />
+          </Route>
 
-          <Route
-            exact
-            path="past-releases"
-            render={props =>
-              <MediaContentList content={siteContent[props.location.pathname]} />
-            }
-          />
+          <Route exact path="past-releases">
+            <MediaContentList content={getProductsWithTag('past-releases')} />
+          </Route>
 
-          <Route
-            exact
-            path="archive"
-            render={props =>
-              <MediaContentList content={siteContent[props.location.pathname]} />
-            }
-          />
+          <Route exact path="archive">
+            <MediaContentList content={getProductsWithTag('archive')} />
+          </Route>
         </Switch>
       </main>
     </div>
