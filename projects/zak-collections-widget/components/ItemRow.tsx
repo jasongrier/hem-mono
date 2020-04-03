@@ -24,6 +24,7 @@ function ItemRow({ collection, item, options }: IProps): ReactElement {
       </div>
       <div className="zw-item-column zw-item-column-center">
         <Image
+          // @ts-ignore
           currentThemeHandle={currentThemeHandle}
           currentVariantId={currentVariantId}
           item={item}
@@ -42,6 +43,7 @@ function ItemRow({ collection, item, options }: IProps): ReactElement {
           item={item}
           onThemeSelected={(variantId, themeKebab) => {
             setCurrentVariantId(variantId)
+            // @ts-ignore
             setCurrentThemeHandle(themeKebab)
           }}
           options={options[item.id]}
