@@ -40,13 +40,22 @@ function Home(): ReactElement {
             </div>
           </div>
         </div>
-        <button className="heroine-mute-button">
+        <div className="heroine-mute-button">
           <MuteButton />
-        </button>
+        </div>
       </div>
 
       <div className="pricing-banner">
         Pay what you can. All devices run in Ableton Live Lite
+      </div>
+
+      <div className="covid-19-banner">
+        <p>
+          <em>*</em>Druing the COVID-19 crisis, 90% of all proceeds will be donated back to the music community.
+        </p>
+        <p>
+          Read more <Link to="/covid-19-pricing">here</Link>.
+        </p>
       </div>
 
       <div className="sub-heroine new-devices-heroine">
