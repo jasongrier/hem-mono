@@ -3,7 +3,7 @@ export interface IProduct {
   name: string
   tags: string[]
   description: string
-  hasFixedPrice: number | null
+  hasFixedPrice: boolean
   fixedPrice: number | null
   flexPriceMinimum: number | null
 }
