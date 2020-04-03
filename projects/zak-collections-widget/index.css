@@ -22,17 +22,20 @@ body {
 
 .zw-item-title {
   margin-top: 20px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: adobe-garamond-pro, serif;
+  font-weight:400;
 }
 
 .zw-item-title h2 {
   font-size: 40px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
+  font-weight:inherit;
 }
 
 .zw-item-title p {
   font-size: 18px;
   font-style: italic;
+  line-height:28px;
 }
 
 .zw-item-image {
@@ -46,6 +49,12 @@ body {
 .zw-item-image img {
   width: 100%;
   height: auto;
+}
+
+@media only screen and (min-width: 801px) {
+.zw-item-image:hover img{
+  margin-top:-44%;
+}
 }
 
 .zw-item-picker {
@@ -104,3 +113,88 @@ body {
   height: 47px;
   margin-bottom: 20px;
 }
+
+.mobile-collection-title {
+  display: none;
+}
+
+@media only screen and (max-width: 800px) {
+  #shopify-section-collection-template {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .zak-collection-header {
+    padding-bottom: 20px !important;
+  }
+
+  .zw-item-row {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .zw-item-row:last-child {
+    border-bottom: 1px solid black;
+    margin-bottom: 50px;
+  }
+
+  .zak-collection-nav {
+    display: none;
+  }
+
+  #shopify-section-collection-template .zak-collection-header h1 {
+    position: static;
+    text-align: center;
+  }
+
+  .zw-item-column {
+    float: none;
+    width: 100%;
+    text-align: center;
+  }
+
+  .zw-item-title {
+    width: 100%;
+    text-align: center;
+  }
+
+  .zw-item-title h2 {
+    font-weight: inherit;
+  }
+
+  .zw-item-picker {
+    position: static;
+    width: 100%;
+    margin-top: 50px;
+  }
+
+  .zw-swatch-picker ul {
+    text-align: center;
+  }
+
+  .zw-swatch-picker ul li {
+    float: none;
+    display: inline-block;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  .zw-item-title p {
+    display: none;
+  }
+
+  .mobile-collection-title {
+    display: block;
+  }
+
+  .mobile-collection-title h2 {
+    display: none;
+  }
+
+  .mobile-collection-title p {
+    display: block;
+  }
+}
+
+
+/*# sourceMappingURL=/zak-collections-widget.f80ea9e1.css.map */
