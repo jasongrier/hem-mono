@@ -56,9 +56,9 @@ function App(): ReactElement {
     <div className="hem-application relineator">
       <div className="relineator-header">
         {/* <h1 className="logo">lskjdfa</h1> */}
-      
+
       </div>
-  
+
       <div className="relineator-poems">
         <div className="relineator-poem-before">
           <textarea
@@ -66,14 +66,13 @@ function App(): ReactElement {
             // cols={100}
             onChange={textareaOnChange}
           />
-
+          <button
+            className="relineate-button"
+            onClick={relineateButtonOnClick}
+          >
+            Relineate!
+          </button>
         </div>
-        <button
-          className="relineate-button"
-          onClick={relineateButtonOnClick}
-        >
-          Relineate!
-        </button>
         <div className="relineator-poem-after">
           <pre>
             { relineatedPoem }
