@@ -4,13 +4,16 @@ import { IState } from './index'
 
 function fakeProduct(tag: string) {
   return {
-    id: uuid(),
-    name: 'Foo',
-    tags: [tag],
     description: '',
-    hasFixedPrice: false,
+    featureList: [],
     fixedPrice: null,
     flexPriceMinimum: 0,
+    hasFixedPrice: false,
+    id: uuid(),
+    images: [],
+    tags: [tag],
+    title: 'Foo',
+    videos: [],
   }
 }
 
@@ -25,6 +28,8 @@ const initialState: IState = {
     fakeProduct('past-releases'),
     fakeProduct('past-releases'),
     fakeProduct('past-releases'),
+    fakeProduct('archive'),
+    fakeProduct('archive'),
     fakeProduct('archive'),
   ],
 }

@@ -1,11 +1,19 @@
+export interface IProductImage {
+  alt: string
+  src: string
+}
+
 export interface IProduct {
-  id: string
-  name: string
-  tags: string[]
   description: string
-  hasFixedPrice: boolean
+  featureList: string[]
   fixedPrice: number | null
   flexPriceMinimum: number | null
+  hasFixedPrice: boolean
+  id: string
+  images: IProductImage[]
+  tags: string[]
+  title: string
+  videos: string[]
 }
 
 export interface IState {
@@ -13,4 +21,4 @@ export interface IState {
 }
 
 export { reducer as productsReducer } from './reducer'
-export { BuyPopUp, ProductTileA } from './components'
+export { BuyPopUp, ProductTile } from './components'
