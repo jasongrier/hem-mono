@@ -1,5 +1,82 @@
 html,
 body {
-  margin: 0;
-  padding: 0;
+  background:rgb(255, 217, 217);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+img {
+  width: 270px; 
+}
+
+.logo {
+  position: absolute;
+  top: 5px;
+  left: 25px;
+  width: 100px; 
+  background-repeat: no-repeat;
+  z-index: 99999;
+}
+
+textarea {
+  position: fixed;
+  top: 180px;
+  left: 4%;
+  width: 40%;
+  height: 400px;
+  padding: 13px;
+  border: 3px dotted rgb(23, 212, 23);
+  font-size:11pt;
+  box-shadow: 5px 10px yellow;
+}
+/* 
+
+.relineator-poem-before {
+  position:relative;
+} */
+
+.relineate-button {
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  border: 0px;
+  height:30px;
+  z-index: 10000000;
+  border: 3px yellow;
+  border-style:double;
+}
+/* 
+.relineator-poem-after {
+position: fixed;
+left:53%;
+top: 150px;
+width: 40%;
+height: 400px;
+font-family: Arial, Helvetica, sans-serif;
+background:white;
+} */
+
+.relineator-poem-after {
+position: fixed;
+top: 180px;
+  left: 53%;
+  width: 40%;
+  height: 400px;
+  padding: 13px;
+  font-size:11pt;
+  opacity: .8;
+  border: 3px dotted rgb(224, 17, 231);
+  box-shadow: 5px 10px blue;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+
+div.about {
+position:fixed;
+display: flex;
+justify-content:center;
+bottom: 20px;
+font-family:courier;
+font-size: smaller;
+text-align:center;
+color: rgb(187, 150, 150);
 }
