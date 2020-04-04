@@ -55,22 +55,25 @@ function App(): ReactElement {
   return (
     <div className="hem-application relineator">
       <div className="relineator-header">
-        <h1 className="logo">Relineator</h1>
+        {/* <h1 className="logo">lskjdfa</h1> */}
+      
+      </div>
+  
+      <div className="relineator-poems">
+        <div className="relineator-poem-before">
+          <textarea
+            // rows={30}
+            // cols={100}
+            onChange={textareaOnChange}
+          />
+
+        </div>
         <button
           className="relineate-button"
           onClick={relineateButtonOnClick}
         >
-            Relineate!
+          Relineate!
         </button>
-      </div>
-      <div className="relineator-poems">
-        <div className="relineator-poem-before">
-          <textarea
-            rows={30}
-            cols={100}
-            onChange={textareaOnChange}
-          />
-        </div>
         <div className="relineator-poem-after">
           <pre>
             { relineatedPoem }
