@@ -1,8 +1,7 @@
 import React, { ReactElement } from 'react'
 import { Link, Route, Switch } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { MediaContentList } from '../../../lib/components'
-import { ProductTileA } from '../modules/products'
+import { ProductTile } from '../modules/products'
 import { RootState } from '../index'
 import { MuteButton } from '../../../lib/modules/player'
 
@@ -11,9 +10,9 @@ function Home(): ReactElement {
     products: state.products.products,
   }))
 
-  function getProductsWithTag(tag: string) {
-    return products.filter(product => {
-      product.tags.includes(tag)
+  function getContentWithTag(collection: any[], tag: string) {
+    return collection.filter(collectionItem => {
+      return collectionItem.tags.includes(tag)
     })
   }
 
@@ -49,20 +48,11 @@ function Home(): ReactElement {
         Pay what you can. All devices run in Ableton Live Lite
       </div>
 
-      <div className="covid-19-banner">
-        <p>
-          <em>*</em>Druing the COVID-19 crisis, 90% of all proceeds will be donated back to the music community.
-        </p>
-        <p>
-          Read more <Link to="/covid-19-pricing">here</Link>.
-        </p>
-      </div>
-
       <div className="sub-heroine new-devices-heroine">
         <h2>New Devices</h2>
         <div className="sub-heroine-columns">
           <div className="sub-heroine-column">
-            <ProductTileA
+            {/* <ProductTile
               title="Seurat 2"
               featureList={[
                 'Supports multiple Seurat devices per track for more complex patterns',
@@ -73,10 +63,10 @@ function Home(): ReactElement {
               imgAlt=""
               productId=""
               videoPopUpId=""
-            />
+            /> */}
           </div>
           <div className="sub-heroine-column">
-            <ProductTileA
+            {/* <ProductTile
               title="Chord Brush"
               featureList={[
                 'Supports multiple Seurat devices per track for more complex patterns',
@@ -87,10 +77,10 @@ function Home(): ReactElement {
               imgAlt=""
               productId=""
               videoPopUpId=""
-            />
+            /> */}
           </div>
           <div className="sub-heroine-column">
-            <ProductTileA
+            {/* <ProductTile
               title="Voice Splitter"
               featureList={[
                 'Takes a single melody line and passes it around to different instruments',
@@ -101,7 +91,7 @@ function Home(): ReactElement {
               imgAlt=""
               productId=""
               videoPopUpId=""
-            />
+            /> */}
           </div>
         </div>
       </div>
@@ -118,23 +108,39 @@ function Home(): ReactElement {
       </nav>
 
       <main>
-        <Switch>
-          <Route exact path="sl1">
-            <MediaContentList content={getProductsWithTag('sl1')} />
-          </Route>
+        <div className="tabs-content">
+          <Switch>
+            <Route path="/:tag?"
+              render={props => {
+                const allowedTags = ['sl1', 'sl2', 'past-releases', 'archive']
+                const tagsToTitles = {
+                  'sl1': 'Sound Library 1',
+                  'sl2': 'Sound Library 2',
+                  'past-releases': 'Past Releases',
+                  'archive': 'Archive',
+                }
 
-          <Route exact path="sl2">
-            <MediaContentList content={getProductsWithTag('sl2')} />
-          </Route>
+                let tag = props.match.params.tag
 
-          <Route exact path="past-releases">
-            <MediaContentList content={getProductsWithTag('past-releases')} />
-          </Route>
+                if (!tag || !allowedTags.includes(tag)) {
+                  tag = 'sl2'
+                }
 
-          <Route exact path="archive">
-            <MediaContentList content={getProductsWithTag('archive')} />
-          </Route>
-        </Switch>
+                return (
+                  <section className="tab-content">
+                    <h1>{ tagsToTitles[tag] }</h1>
+                    {getContentWithTag(products, tag).map(product =>
+                      <ProductTile
+                        key={product.id}
+                        product={product}
+                      />
+                    )}
+                  </section>
+                )
+              }}
+            />
+          </Switch>
+        </div>
       </main>
     </div>
   )

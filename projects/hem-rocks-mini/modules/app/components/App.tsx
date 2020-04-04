@@ -7,18 +7,18 @@ import { PopupContainer } from '../../../../../lib/modules/popups'
 import { RootState } from '../../../index'
 
 function App(): ReactElement {
-  const { currentlyOpenPopUp, popupPayload } = useSelector((state: RootState) => ({
+  const { currentlyOpenPopUp, popupData } = useSelector((state: RootState) => ({
     currentlyOpenPopUp: state.popups.currentlyOpenPopUp,
-    popupPayload: state.popups.popupPayload,
+    popupData: state.popups.popupData,
   }))
 
   return (
     <div className="hem-application">
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route path="/" component={Home} />
       </Switch>
       <PopupContainer isOpen={currentlyOpenPopUp === 'buy-pop-up'}>
-        <BuyPopUp product={popupPayload} />
+        <BuyPopUp product={popupData} />
       </PopupContainer>
     </div>
   )
