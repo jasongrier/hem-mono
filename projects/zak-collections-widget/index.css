@@ -159,7 +159,7 @@ body {
   }
 
   .zw-item-title h2 {
-    font-weight: inherit;
+    font-weight: normal;
   }
 
   .zw-item-picker {
@@ -195,6 +195,3 @@ body {
     display: block;
   }
 }
-
-
-/*# sourceMappingURL=/zak-collections-widget.f80ea9e1.css.map */

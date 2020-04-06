@@ -19,7 +19,7 @@ function build(projectName, andStart = false, developerBuild = false) {
     // The CLI way...
     execSync(`parcel projects/${projectName}/index.html`, { stdio: 'inherit' })
 
-    // TODO: Make programmatic bundler work with parcel-manifest's
+    // TODO: Make programmatic bundler work with parcel-manifests
     // const bundler = new Bundler(`${__dirname}/../../projects/${projectName}/index.html`)
     // bundler.on('buildEnd', () => {
     //   runPostBuildTasks(projectName, false)

@@ -2,6 +2,7 @@ import React, { ReactElement, useEffect, useState, useCallback } from 'react'
 
 interface IProps {
   onUpload: (file: File) => void
+  onUploadError: (msg: string) => void
 }
 
 function FileUploader({ onUpload }: IProps): ReactElement {
