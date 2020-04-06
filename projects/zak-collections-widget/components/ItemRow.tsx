@@ -24,10 +24,18 @@ function ItemRow({ collection, item, options }: IProps): ReactElement {
       </div>
       <div className="zw-item-column zw-item-column-center">
         <Image
+          // @ts-ignore
           currentThemeHandle={currentThemeHandle}
           currentVariantId={currentVariantId}
           item={item}
         />
+        <div className="mobile-collection-title">
+          <Title
+            collectionTitle={collection.title}
+            itemTitle={item.title}
+            itemTagline={item.tags[0]}
+          />
+        </div>
       </div>
       <div className="zw-item-column zw-item-column-right">
         <Picker
@@ -35,6 +43,7 @@ function ItemRow({ collection, item, options }: IProps): ReactElement {
           item={item}
           onThemeSelected={(variantId, themeKebab) => {
             setCurrentVariantId(variantId)
+            // @ts-ignore
             setCurrentThemeHandle(themeKebab)
           }}
           options={options[item.id]}

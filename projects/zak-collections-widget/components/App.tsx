@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react'
 import { reduce } from 'lodash'
 import { trim } from 'voca'
+// @ts-ignore
 import romanNumeralToDecimal from 'roman-numeral-to-decimal'
 import ItemRow from './ItemRow'
 
@@ -12,6 +13,7 @@ const collection = JSON.parse(COLLECTIONS_WIDGET_COLLECTION)
 const items = JSON.parse(COLLECTIONS_WIDGET_PRODUCTS)
 const options = reduce(PDP_WIDGET_PRODUCT_OPTIONS_WITH_VALUES, (acc, optsString, id) => {
   acc[id] = JSON.parse(optsString)
+  console.log(optsString)
   return acc
 }, {} as any)
 
