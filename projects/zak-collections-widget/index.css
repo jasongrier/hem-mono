@@ -22,17 +22,20 @@ body {
 
 .zw-item-title {
   margin-top: 20px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: adobe-garamond-pro, serif;
+  font-weight:400;
 }
 
 .zw-item-title h2 {
   font-size: 40px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
+  font-weight:inherit;
 }
 
 .zw-item-title p {
   font-size: 18px;
   font-style: italic;
+  line-height:28px;
 }
 
 .zw-item-image {
@@ -46,6 +49,12 @@ body {
 .zw-item-image img {
   width: 100%;
   height: auto;
+}
+
+@media only screen and (min-width: 801px) {
+.zw-item-image:hover img{
+  margin-top:-44%;
+}
 }
 
 .zw-item-picker {
