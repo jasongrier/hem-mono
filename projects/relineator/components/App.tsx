@@ -64,6 +64,7 @@ function App(): ReactElement {
           <textarea
             // rows={30}
             // cols={100}
+            placeholder="Paste your poem here..."
             onChange={textareaOnChange}
           />
           <button
