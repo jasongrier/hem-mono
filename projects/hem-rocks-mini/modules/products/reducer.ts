@@ -19,18 +19,18 @@ function fakeProduct(tag: string) {
 
 const initialState: IState = {
   products: [
-    fakeProduct('sl1'),
-    fakeProduct('sl1'),
-    fakeProduct('sl1'),
-    fakeProduct('sl2'),
-    fakeProduct('sl2'),
-    fakeProduct('sl2'),
-    fakeProduct('past-releases'),
-    fakeProduct('past-releases'),
-    fakeProduct('past-releases'),
-    fakeProduct('archive'),
-    fakeProduct('archive'),
-    fakeProduct('archive'),
+    fakeProduct('sound-library'),
+    fakeProduct('sound-library'),
+    fakeProduct('sound-library'),
+    fakeProduct('label'),
+    fakeProduct('label'),
+    fakeProduct('label'),
+    fakeProduct('compilation'),
+    fakeProduct('compilation'),
+    fakeProduct('compilation'),
+    fakeProduct('products'),
+    fakeProduct('products'),
+    fakeProduct('products'),
   ],
 }
 

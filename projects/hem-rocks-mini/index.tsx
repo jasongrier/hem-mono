@@ -9,6 +9,7 @@ import { popupsReducer } from '../../lib/modules/popups'
 import { App, appReducer } from './modules/app'
 import { productsReducer } from './modules/products'
 import { siteContentReducer } from './modules/site-content'
+import './styles'
 
 const rootReducer = combineReducers({
   app: appReducer,
