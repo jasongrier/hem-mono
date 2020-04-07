@@ -54,16 +54,10 @@ function App(): ReactElement {
 
   return (
     <div className="hem-application relineator">
-      <div className="relineator-header">
-        {/* <h1 className="logo">lskjdfa</h1> */}
-
-      </div>
-
+      <div className="relineator-header" />
       <div className="relineator-poems">
         <div className="relineator-poem-before">
           <textarea
-            // rows={30}
-            // cols={100}
             placeholder="Paste your poem here..."
             onChange={textareaOnChange}
           />
@@ -79,6 +73,10 @@ function App(): ReactElement {
             { relineatedPoem }
           </pre>
         </div>
+      </div>
+      <div className="about">
+        Relineator! is a tool for automatically re-lineating poems.<br />
+        Brought to you by Zoe Bursztajn-Illingworth &amp; the UT Austin Digital Writing &amp; Research Lab. ♥
       </div>
     </div>
   )

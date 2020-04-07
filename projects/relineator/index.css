@@ -1,24 +1,15 @@
-@media screen and (max-width: 200px) {
-  .relineator-poem-before {
-    display:inline-block; 
-    width:99vw;
-  }
-  .relineator-poem-after {
-    display:inline-block;
-    width:80vw;
-  }
-}
-
 html,
 body,
 pre {
   background:rgb(255, 217, 217);
   font-family: Arial, Helvetica, sans-serif;
   font-size:13pt;
+  margin: 0;
+  padding: 0;
 }
 
 img {
-  width: 270px; 
+  width: 270px;
 }
 
 .logo {
@@ -82,12 +73,47 @@ textarea {
   color: rgb(187, 150, 150);
 }
 
+@media screen and (max-width: 375px) {
+  .relineator-poems {
+    width: 100vw;
+  }
 
+  .relineator-poem-before {
+    float: none;
+    display: block;
+    width: calc(100vw - 30px);
+    box-shadow: none;
+  }
 
+  .relineator-poem-before textarea {
+    width: calc(100vw - 60px);
+  }
 
-/* 
+  .relineate-button {
+    float: none;
+    display: block;
+    margin: 10px auto 0 auto;
+  }
 
-ANNELYSE'S CODE GRAVEYARD RIP 
+  .relineator-poem-after {
+    float: none;
+    display: block;
+    width: calc(100vw - 30px);
+    box-shadow: none;
+  }
+
+  .about {
+    display: block;
+    position: static;
+    width: calc(100vw - 20px);
+    margin-top: 50px;
+    padding: 0 10px 30px 10px;
+  }
+}
+
+/*
+
+ANNELYSE'S CODE GRAVEYARD RIP
 
 .relineator-poem-after {
 position: fixed;
