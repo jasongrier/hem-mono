@@ -18,8 +18,8 @@ function ItemRow({ collection, item, options }: IProps): ReactElement {
       <div className="zw-item-column zw-item-column-left">
         <Title
           collectionTitle={collection.title}
-          itemTitle={item.title}
-          itemTagline={item.tags[0]}
+          currentThemeHandle={currentThemeHandle}
+          item={item}
         />
       </div>
       <div className="zw-item-column zw-item-column-center">
@@ -32,8 +32,8 @@ function ItemRow({ collection, item, options }: IProps): ReactElement {
         <div className="mobile-collection-title">
           <Title
             collectionTitle={collection.title}
-            itemTitle={item.title}
-            itemTagline={item.tags[0]}
+            currentThemeHandle={currentThemeHandle}
+            item={item}
           />
         </div>
       </div>

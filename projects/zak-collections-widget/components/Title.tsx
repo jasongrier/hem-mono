@@ -1,16 +1,24 @@
 import React, { ReactElement } from 'react'
+import { productClicked } from '../functions'
 
 interface IProps {
   collectionTitle: string
-  itemTagline: string
-  itemTitle: string
+  currentThemeHandle: string
+  item: any
 }
 
-function Title({ collectionTitle, itemTagline, itemTitle }: IProps): ReactElement {
+function Title({ collectionTitle, currentThemeHandle, item }: IProps): ReactElement {
   return (
     <div className="zw-item-title">
-      <h2>{itemTitle.replace(collectionTitle, '')}</h2>
-      <p>{ itemTagline }</p>
+      <a
+        href="#"
+        onClick={() => {
+          productClicked(item, currentThemeHandle)
+        }}
+      >
+        <h2>{item.title.replace(collectionTitle, '')}</h2>
+        <p>{ item.tags[0] }</p>
+      </a>
     </div>
   )
 }

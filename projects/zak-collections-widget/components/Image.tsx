@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
 import { find } from 'lodash'
+import { productClicked } from '../functions'
 
 interface IProps {
   currentThemeHandle: string
@@ -15,17 +16,7 @@ function Image({ currentVariantId, currentThemeHandle, item }: IProps): ReactEle
     <div
       className="zw-item-image"
       onClick={() => {
-        let url
-
-        if (currentThemeHandle) {
-          url = `/products/${item.handle}?preselected-theme=${currentThemeHandle}`
-        }
-
-        else {
-          url = `/products/${item.handle}`
-        }
-
-        window.location.href = url
+        productClicked(item, currentThemeHandle)
       }}
     >
       <img src={currentImageUrl} />
