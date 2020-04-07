@@ -177,6 +177,15 @@ function SideRight(): ReactElement {
               <span className="zw-add-on-label">
                 { highIndexOption }
               </span>
+              <a
+                className="zw-high-index-link zw-plus-left"
+                data-remodal-target="high-index-guide-view"
+                onClick={(evt) => {
+                  evt.stopPropagation()
+                }}
+              >
+                More info
+              </a>
             </div>
           )}
         </div>
