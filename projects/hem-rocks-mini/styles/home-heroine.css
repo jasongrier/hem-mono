@@ -1,8 +1,3 @@
 .home-heroine {
-  height: calc(100vh - var(--top-bar-height) - var(--main-nav-height));
-  margin-top: 30px;
-}
-
-.home-heroine {
-  margin-top: var(--top-bar-height);
+  height: 100vh;
 }
