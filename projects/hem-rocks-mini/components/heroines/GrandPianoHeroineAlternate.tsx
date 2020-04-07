@@ -19,7 +19,7 @@ function GrandPianoHeroineAlternate(): ReactElement {
             muted={false}
             setMuted={() => {}}
           />
-          <caption>Listen</caption>
+          {/* <caption>Listen</caption> */}
         </div>
         <div className="grand-piano-heroine-text">
           <h2>New in Sound Library: Grand Piano</h2>
