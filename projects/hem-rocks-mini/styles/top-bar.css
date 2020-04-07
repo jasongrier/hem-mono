@@ -5,6 +5,12 @@
   z-index: 8888;
   width: 100vw;
   height: 30px;
+  opacity: 0;
+  transition: opacity 100ms;
+}
+
+.app-activated .top-bar {
+  opacity: 1;
 }
 
 .top-bar .logo {

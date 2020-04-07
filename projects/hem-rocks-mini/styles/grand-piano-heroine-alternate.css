@@ -20,13 +20,14 @@
 .alternate .grand-piano-heroine-details {
   position: absolute;
   bottom: 10px;
-  left: 10px;
+  left: 40px;
   z-index: 2;
   width: 100vw;
-  height: 80px;
+  height: 180px;
   color: #ffffff;
   font-size: 12px;
 }
+
 .alternate .grand-piano-heroine-speaker-button caption {
   display: block;
   position: absolute;
@@ -43,20 +44,37 @@
   height: 60px;
   background-color: red;
   transform: scale(1.5) translate(10px, 0);
+  animation: deactivated-app-speaker-button-pulse 1s infinite;
+}
+
+@keyframes deactivated-app-speaker-button-pulse {
+  0%   { border: 1px solid rgba(255, 251, 0, 0); }
+  100% { border: 1px solid rgba(255, 251, 0, 1); }
+}
+
+.app-activated .alternate.grand-piano-heroine .hem-speaker-button {
+  animation: none;
+  padding: 1px;
 }
 
 .alternate .grand-piano-heroine-text {
   position: absolute;
-  top: -30px;
-  left: 205px;
+  top: 0;
+  left: 215px;
   width: 500px;
   height: 60px;
   transform: scale(1.5) translate(10px, 0);
+  opacity: 0;
+  transition: opacity 100ms;
+}
+
+.app-activated .grand-piano-heroine-text {
+  opacity: 1;
 }
 
 .alternate .grand-piano-heroine-text h2 {
   margin: 0;
-  font-size: 14px;
+  font-size: 24px;
   font-weight: 100;
   background-color: red;
 }
@@ -65,15 +83,15 @@
   float: left;
   width: 250px;
   margin: 0 30px 0 0;
-  font-size: 8px;
+  font-size: 14px;
   font-weight: 100;
   background-color: red;
 }
 
 .alternate .grand-piano-heroine-text button {
   position: absolute;
-  top: 40px;
-  left: 270px;
+  top: 30px;
+  left: 265px;
   width: 100px;
   height: 24px;
   margin: 0 30px 0 0;
