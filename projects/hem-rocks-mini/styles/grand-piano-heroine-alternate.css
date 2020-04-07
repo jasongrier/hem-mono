@@ -27,10 +27,60 @@
   color: #ffffff;
   font-size: 12px;
 }
+.alternate .grand-piano-heroine-speaker-button caption {
+  display: block;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 80px;
+  height: 10px;
+  color: #fff;
+  font-size: 10px;
+}
 
 .alternate.grand-piano-heroine .hem-speaker-button {
   width: 60px;
   height: 60px;
   background-color: red;
   transform: scale(1.5) translate(10px, 0);
+}
+
+.alternate .grand-piano-heroine-text {
+  position: absolute;
+  top: -30px;
+  left: 205px;
+  width: 500px;
+  height: 60px;
+  transform: scale(1.5) translate(10px, 0);
+}
+
+.alternate .grand-piano-heroine-text h2 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 100;
+  background-color: red;
+}
+
+.alternate .grand-piano-heroine-text p {
+  float: left;
+  width: 250px;
+  margin: 0 30px 0 0;
+  font-size: 8px;
+  font-weight: 100;
+  background-color: red;
+}
+
+.alternate .grand-piano-heroine-text button {
+  position: absolute;
+  top: 40px;
+  left: 270px;
+  width: 100px;
+  height: 24px;
+  margin: 0 30px 0 0;
+  font-size: 14px;
+  font-weight: 100;
+  background-color: red;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  color: #fff;
 }

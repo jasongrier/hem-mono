@@ -1,19 +1,19 @@
 import { AnyAction } from 'redux'
 
 export interface IState {
-  activated: boolean
+  foo: any
 }
 
-export const ACTIVATE_APP = 'ACTIVATE_APP'
+export const SOME_ACTION = 'SOME_ACTION'
 
-export interface IActivateApp extends AnyAction {
-  type: typeof ACTIVATE_APP
+export interface ISomeAction extends AnyAction {
+  type: typeof SOME_ACTION
   payload: null
 }
 
-export type Action = IActivateApp
+export type Action = ISomeAction
 
-export { activateApp } from './actions'
+export { someAction } from './actions'
 
 export { App } from './components'
 

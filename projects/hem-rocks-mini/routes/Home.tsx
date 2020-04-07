@@ -18,6 +18,8 @@ function Home(): ReactElement {
 
   return (
     <div className="page page-home">
+      <div className="top-bar-bg"></div>
+
       <header className="top-bar">
         <h1 className="logo">
           <Link to="/">HEM</Link>
@@ -36,9 +38,9 @@ function Home(): ReactElement {
           <li>
             <NavLink to="/label">Label</NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink to="/compilation">Compilation</NavLink>
-          </li>
+          </li> */}
           <li>
             <NavLink to="/projects">Projects</NavLink>
           </li>
@@ -105,11 +107,11 @@ function Home(): ReactElement {
           <Switch>
             <Route path="/:tag?"
               render={props => {
-                const allowedTags = ['sound-library', 'label', 'compilation', 'projects']
+                const allowedTags = ['sound-library', 'label', 'projects', 'info']
                 const tagsToTitles = {
                   'sound-library': 'Sound Library',
                   'label': 'Label',
-                  'compilation': 'Compilation',
+                  // 'compilation': 'Compilation',
                   'projects': 'Projects',
                   'info': 'Info',
                 }
