@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react'
-import { Link, Route, Switch } from 'react-router-dom'
+import { Link, NavLink, Route, Switch } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { ProductTile } from '../modules/products'
+import { GrandPianoHeroine } from '../components/heroines'
 import { RootState } from '../index'
-import { MuteButton } from '../../../lib/modules/player'
 
 function Home(): ReactElement {
   const { products } = useSelector((state: RootState) => ({
@@ -19,36 +19,37 @@ function Home(): ReactElement {
   return (
     <div className="page page-home">
       <header className="top-bar">
-        <h1>
+        <h1 className="logo">
           <Link to="/">HEM</Link>
         </h1>
       </header>
 
-      <div className="heroine">
-        <div className="grand-piano-heroine">
-          <div className="grand-piano-heroine-banner">
-            <div className="grand-piano-heroine-banner-image"></div>
-            <div className="grand-piano-heroine-banner-description">
-              <h2>Grand Piano</h2>
-              <ul>
-                <li>Feature 1</li>
-                <li>Feature 2</li>
-                <li>Feature 3</li>
-                <li>Feature 4</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div className="heroine-mute-button">
-          <MuteButton />
-        </div>
+      <div className="home-heroine">
+        <GrandPianoHeroine />
       </div>
 
-      <div className="pricing-banner">
+      <nav className="main-nav">
+        <ul>
+          <li>
+            <NavLink to="/sound-library">Sound Library</NavLink>
+          </li>
+          <li>
+            <NavLink to="/label">Label</NavLink>
+          </li>
+          <li>
+            <NavLink to="/compilation">Compilation</NavLink>
+          </li>
+          <li>
+            <NavLink to="/projects">Projects</NavLink>
+          </li>
+        </ul>
+      </nav>
+
+      <div className="pricing-banner" hidden>
         Pay what you can. All devices run in Ableton Live Lite
       </div>
 
-      <div className="sub-heroine new-devices-heroine">
+      <div className="sub-heroine new-devices-heroine" hidden>
         <h2>New Devices</h2>
         <div className="sub-heroine-columns">
           <div className="sub-heroine-column">
@@ -96,34 +97,23 @@ function Home(): ReactElement {
         </div>
       </div>
 
-      <nav className="tabs-nav">
-        <ul>
-          <li>
-            <Link to="/sl1">Sound Library 1</Link>
-            <Link to="/sl2">Sound Library 2</Link>
-            <Link to="/past-releases">Past Releases</Link>
-            <Link to="/archive">Archive</Link>
-          </li>
-        </ul>
-      </nav>
-
-      <main>
+      <main className="home-content">
         <div className="tabs-content">
           <Switch>
             <Route path="/:tag?"
               render={props => {
-                const allowedTags = ['sl1', 'sl2', 'past-releases', 'archive']
+                const allowedTags = ['sound-library', 'label', 'compilation', 'projects']
                 const tagsToTitles = {
-                  'sl1': 'Sound Library 1',
-                  'sl2': 'Sound Library 2',
-                  'past-releases': 'Past Releases',
-                  'archive': 'Archive',
+                  'sound-library': 'Sound Library',
+                  'label': 'Label',
+                  'compilation': 'Compilation',
+                  'projects': 'Projects',
                 }
 
                 let tag = props.match.params.tag
 
                 if (!tag || !allowedTags.includes(tag)) {
-                  tag = 'sl2'
+                  tag = 'sound-library'
                 }
 
                 return (

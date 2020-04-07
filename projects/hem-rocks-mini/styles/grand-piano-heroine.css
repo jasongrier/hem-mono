@@ -1,0 +1,92 @@
+.grand-piano-heroine {
+  position: relative;
+  width: 100vw;
+  height: 100%;
+  background-color: #000;
+}
+
+.grand-piano-heroine-banner-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.grand-piano-heroine-banner-description {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 2;
+  width: 260px;
+  height: calc(100vh - var(--top-bar-height) - var(--main-nav-height) - 40px);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #ffffff;
+  font-size: 12px;
+}
+
+.grand-piano-heroine-banner-description-inner {
+  width: 240px;
+  height: 100%;
+  padding: 0 10px;
+}
+
+.grand-piano-heroine-banner-description h2 {
+  margin: 10px 0 20px 0;
+  padding: 0;
+  font-size: 32px;
+  font-weight: normal;
+}
+
+.grand-piano-heroine-banner-description p {
+  width: 200px;
+  margin: 0 0 30px 0;
+  /* text-align: justify; */
+  line-height: 20px;
+}
+
+.grand-piano-heroine-banner-description ul {
+  margin: 40px 0 60px 0;
+  padding: 0;
+  list-style-type: none;
+  font-weight: bold;
+}
+
+.grand-piano-heroine-banner-description li {
+  margin: 0 0 20px 10px;
+}
+
+.grand-piano-heroine-buttons {
+  width: 180px;
+  margin: 0 auto;
+}
+
+.grand-piano-heroine-banner-description button {
+  float: left;
+  height: 35px;
+  background-color: blue;
+  border: 0;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  line-height: 35px;
+}
+
+.grand-piano-heroine-banner-description button:focus,
+.grand-piano-heroine-banner-description button:active {
+  outline: none;
+}
+
+.grand-piano-heroine-download-button {
+  width: 140px;
+  margin-right: 5px;
+}
+
+.grand-piano-heroine-mute-play-button {
+  width: 35px;
+}
