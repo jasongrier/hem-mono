@@ -73,7 +73,7 @@ textarea {
   color: rgb(187, 150, 150);
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 640px) {
   .relineator-poems {
     width: 100vw;
   }
