@@ -1,13 +1,13 @@
 import { AnyAction } from 'redux'
 import produce from 'immer'
 import {
-  SOME_ACTION,
+  ACTIVATE_APP,
 
   IState,
 } from './index'
 
 const initialState: IState = {
-  foo: false,
+  activated: false,
 }
 
 const reducer = (
@@ -15,9 +15,9 @@ const reducer = (
   { type }: AnyAction,
 ): IState => {
   switch (type) {
-    case SOME_ACTION: {
+    case ACTIVATE_APP: {
       return produce(state, draftState => {
-        draftState.foo = true
+        draftState.activated = true
       })
     }
 

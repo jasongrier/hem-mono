@@ -5,6 +5,12 @@
   width: 100vw;
   z-index: 9999;
   height: var(--top-bar-height);
+  opacity: 0;
+  transition: opacity 100ms;
+}
+
+.app-activated .main-nav {
+  opacity: 1;
 }
 
 .main-nav ul {

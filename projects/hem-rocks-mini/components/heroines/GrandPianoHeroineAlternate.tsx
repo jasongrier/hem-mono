@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { SpeakerButton } from '../../../../lib/components/buttons'
+import { activateApp } from '../../modules/app'
 
 function GrandPianoHeroineAlternate(): ReactElement {
   const dispatch = useDispatch()
@@ -14,12 +15,16 @@ function GrandPianoHeroineAlternate(): ReactElement {
         }}
       />
       <div className="grand-piano-heroine-details">
-        <div className="grand-piano-heroine-speaker-button">
+        <div
+          className="grand-piano-heroine-speaker-button"
+          onClick={() => {
+            dispatch(activateApp())
+          }}
+        >
           <SpeakerButton
             muted={false}
             setMuted={() => {}}
           />
-          {/* <caption>Listen</caption> */}
         </div>
         <div className="grand-piano-heroine-text">
           <h2>New in Sound Library: Grand Piano</h2>
