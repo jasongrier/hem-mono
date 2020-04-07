@@ -1,13 +1,13 @@
 import { AnyAction } from 'redux'
 import {
-  SOME_ACTION
+  ACTIVATE_APP
 } from './index'
 
-const someAction = (): AnyAction => ({
-  type: SOME_ACTION,
+const activateApp = (): AnyAction => ({
+  type: ACTIVATE_APP,
   payload: null,
 })
 
 export {
-  someAction,
+  activateApp,
 }

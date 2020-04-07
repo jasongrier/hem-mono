@@ -3,7 +3,7 @@ import { MuteButton } from '../../../../lib/modules/player'
 
 function GrandPianoHeroine(): ReactElement {
   return (
-    <div className="alternate grand-piano-heroine">
+    <div className="grand-piano-heroine">
       <div
         className="grand-piano-heroine-banner-image"
         style={{

@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { Link, NavLink, Route, Switch } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { ProductTile } from '../modules/products'
-import { GrandPianoHeroine } from '../components/heroines'
+import { GrandPianoHeroineAlternate } from '../components/heroines'
 import { RootState } from '../index'
 
 function Home(): ReactElement {
@@ -25,7 +25,7 @@ function Home(): ReactElement {
       </header>
 
       <div className="home-heroine">
-        <GrandPianoHeroine />
+        <GrandPianoHeroineAlternate />
       </div>
 
       <nav className="main-nav">
@@ -41,6 +41,9 @@ function Home(): ReactElement {
           </li>
           <li>
             <NavLink to="/projects">Projects</NavLink>
+          </li>
+          <li>
+            <NavLink to="/info">Info</NavLink>
           </li>
         </ul>
       </nav>
@@ -108,6 +111,7 @@ function Home(): ReactElement {
                   'label': 'Label',
                   'compilation': 'Compilation',
                   'projects': 'Projects',
+                  'info': 'Info',
                 }
 
                 let tag = props.match.params.tag

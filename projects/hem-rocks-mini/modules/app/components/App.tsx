@@ -7,13 +7,17 @@ import { PopupContainer } from '../../../../../lib/modules/popups'
 import { RootState } from '../../../index'
 
 function App(): ReactElement {
-  const { currentlyOpenPopUp, popupData } = useSelector((state: RootState) => ({
+  const { activated, currentlyOpenPopUp, popupData } = useSelector((state: RootState) => ({
+    activated: state.app.activated,
     currentlyOpenPopUp: state.popups.currentlyOpenPopUp,
     popupData: state.popups.popupData,
   }))
 
   return (
-    <div className="hem-application">
+    <div className={`
+      hem-application
+      ${activated ? ' app-activated' : ''}
+    `}>
       <Switch>
         <Route path="/" component={Home} />
       </Switch>
