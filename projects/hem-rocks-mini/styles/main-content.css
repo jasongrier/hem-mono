@@ -1,0 +1,12 @@
+.main-content {
+  width: 1096px;
+  margin: 0 auto;
+  min-height: 10000px;
+  background-color: gray;
+}
+
+.main-content h1 {
+  font-size: 100px;
+  text-transform: uppercase;
+  font-weight: 100;
+}
