@@ -8,12 +8,7 @@ function GrandPianoHeroineAlternate(): ReactElement {
 
   return (
     <div className="alternate grand-piano-heroine">
-      <div
-        className="grand-piano-heroine-image"
-        style={{
-          backgroundImage: "url(http://static.hem.rocks/hem-rocks/site/heroines/ex-piano.jpg)",
-        }}
-      />
+      <div className="grand-piano-heroine-image" />
       <div className="grand-piano-heroine-details">
         <div
           className="grand-piano-heroine-speaker-button"

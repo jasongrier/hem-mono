@@ -1,6 +1,7 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useEffect } from 'react'
 import { NavLink, Route, Switch } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import $ from 'jquery'
 import { ProductTile } from '../modules/products'
 import { TopBar } from '../components'
 import { GrandPianoHeroineAlternate } from '../components/heroines'
@@ -30,6 +31,28 @@ function Home(): ReactElement {
     // TODO: How to fix index signature error?
     return dict[tag]
   }
+
+  // useEffect(function checkOnInit() {
+  //   checkScrollTop()
+  // }, [])
+
+  // useEffect(function scrollSpy() {
+  //   $(window).on('scroll', checkScrollTop)
+  // }, [collapsed])
+
+  // function checkScrollTop() {
+  //   const scrollTop = $(window).scrollTop()
+
+  //   if (!scrollTop) return
+
+  //   if (scrollTop >= 665 && !collapsed) {
+  //     setCollapsed(true)
+  //   }
+
+  //   else if (scrollTop < 665 && collapsed) {
+  //     setCollapsed(false)
+  //   }
+  // }
 
   return (
     <div className="page page-home">
@@ -119,6 +142,14 @@ function Home(): ReactElement {
                 const allowedTags = ['sound-library', 'label', 'projects', 'info']
 
                 let tag = props.match.params.tag
+
+                if (tag === undefined) {
+                  $('html, body').stop().animate({ scrollTop: 0 }, 250, 'swing')
+                }
+
+                if (allowedTags.includes(tag)) {
+                  $('html, body').stop().animate({ scrollTop: 760 }, 250, 'swing')
+                }
 
                 if (!tag || !allowedTags.includes(tag)) {
                   tag = 'sound-library'
