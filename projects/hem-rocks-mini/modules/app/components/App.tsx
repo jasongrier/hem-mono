@@ -1,6 +1,6 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useEffect } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { Home } from '../../../routes'
 import { BuyPopUp } from '../../products'
 import { PopupContainer } from '../../../../../lib/modules/popups'

@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { activateApp } from '../../modules/app/actions'
 import { SpeakerButton } from '../../../../lib/components/buttons'
-import { activateApp } from '../../modules/app'
 
 function GrandPianoHeroineAlternate(): ReactElement {
   const dispatch = useDispatch()

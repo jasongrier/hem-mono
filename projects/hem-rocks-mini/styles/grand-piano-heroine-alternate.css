@@ -1,3 +1,4 @@
+/* TODO: Remove ".alternate" and make this the one true heroine */
 .alternate.grand-piano-heroine {
   position: relative;
   width: 100vw;
@@ -28,28 +29,17 @@
   font-size: 12px;
 }
 
-.alternate .grand-piano-heroine-speaker-button caption {
-  display: block;
-  position: absolute;
-  bottom: 10px;
-  left: 0;
-  width: 80px;
-  height: 10px;
-  color: #fff;
-  font-size: 10px;
-}
-
 .alternate.grand-piano-heroine .hem-speaker-button {
   width: 60px;
   height: 60px;
   background-color: red;
-  transform: scale(1.5) translate(10px, 0);
+  transform: scale(1.5) translate(10px, 5px);
   animation: deactivated-app-speaker-button-pulse 1s infinite;
 }
 
 @keyframes deactivated-app-speaker-button-pulse {
-  0%   { border: 1px solid rgba(255, 251, 0, 0); }
-  100% { border: 1px solid rgba(255, 251, 0, 1); }
+  0%   { border: 1px solid rgba(255, 255, 255, 0); }
+  100% { border: 1px solid rgba(255, 255, 255, 1); }
 }
 
 .app-activated .alternate.grand-piano-heroine .hem-speaker-button {
@@ -92,8 +82,8 @@
   position: absolute;
   top: 30px;
   left: 265px;
-  width: 100px;
-  height: 24px;
+  width: 120px;
+  height: 36px;
   margin: 0 30px 0 0;
   font-size: 14px;
   font-weight: 100;
@@ -101,4 +91,9 @@
   cursor: pointer;
   border: 1px solid #ccc;
   color: #fff;
+}
+
+.alternate .grand-piano-heroine-text button:focus,
+.alternate .grand-piano-heroine-text button:active {
+  outline: none;
 }
