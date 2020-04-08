@@ -9,7 +9,7 @@
   transition: all 100ms;
 }
 
-.top-bar-collapsed {
+.top-bar-collapsed .top-bar {
   background-color: #000;
   overflow: hidden;
 }
