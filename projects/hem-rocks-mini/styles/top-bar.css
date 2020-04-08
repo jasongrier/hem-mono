@@ -6,7 +6,12 @@
   width: 100vw;
   height: 30px;
   opacity: 0;
-  transition: opacity 100ms;
+  transition: all 100ms;
+}
+
+.top-bar-collapsed {
+  background-color: #000;
+  overflow: hidden;
 }
 
 .app-activated .top-bar {
@@ -21,6 +26,7 @@
   line-height: 30px;
   color: #fff;
   font-weight: normal;
+  transition: all 100ms;
 }
 
 .top-bar .logo a {
@@ -28,13 +34,7 @@
   text-decoration: none;
 }
 
-.top-bar-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  width: 100vw;
-  height: 127px;
-  background: black;
-  content: " ";
+.top-bar-collapsed .logo {
+  margin: 0;
+  font-size: 65px;
 }

@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   right: 5px;
-  width: 100vw;
+  width: 80vw;
   z-index: 9999;
   height: var(--top-bar-height);
   opacity: 0;
@@ -14,7 +14,7 @@
 }
 
 .main-nav ul {
-  width: 100vw;
+  width: 80vw;
   height: var(--top-bar-height);
   line-height: var(--top-bar-height);
   margin: 0;
@@ -39,5 +39,7 @@
 
 .main-nav ul li a.active,
 .main-nav ul li a:hover {
-  /* border-bottom: 1px solid #fff; */
+  display: inline-block;
+  height: 25px;
+  border-bottom: 5px solid #fff;
 }
