@@ -1,7 +1,8 @@
 import React, { ReactElement } from 'react'
-import { Link, NavLink, Route, Switch } from 'react-router-dom'
+import { NavLink, Route, Switch } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { ProductTile } from '../modules/products'
+import { TopBar } from '../components'
 import { GrandPianoHeroineAlternate } from '../components/heroines'
 import { RootState } from '../index'
 
@@ -16,15 +17,23 @@ function Home(): ReactElement {
     })
   }
 
+  function tagToTitle(tag: string): string {
+    const dict = {
+      'sound-library': 'Sound Library',
+      'label': 'Label',
+      // 'compilation': 'Compilation',
+      'projects': 'Projects',
+      'info': 'Info',
+    }
+
+    // @ts-ignore
+    // TODO: How to fix index signature error?
+    return dict[tag]
+  }
+
   return (
     <div className="page page-home">
-      <div className="top-bar-bg"></div>
-
-      <header className="top-bar">
-        <h1 className="logo">
-          <Link to="/">HEM</Link>
-        </h1>
-      </header>
+      <TopBar />
 
       <div className="home-heroine">
         <GrandPianoHeroineAlternate />
@@ -108,13 +117,6 @@ function Home(): ReactElement {
             <Route path="/:tag?"
               render={props => {
                 const allowedTags = ['sound-library', 'label', 'projects', 'info']
-                const tagsToTitles = {
-                  'sound-library': 'Sound Library',
-                  'label': 'Label',
-                  // 'compilation': 'Compilation',
-                  'projects': 'Projects',
-                  'info': 'Info',
-                }
 
                 let tag = props.match.params.tag
 
@@ -124,7 +126,7 @@ function Home(): ReactElement {
 
                 return (
                   <section className="tab-content">
-                    <h1>{ tagsToTitles[tag] }</h1>
+                    <h1>{ tagToTitle(tag) }</h1>
                     {getContentWithTag(products, tag).map(product =>
                       <ProductTile
                         key={product.id}

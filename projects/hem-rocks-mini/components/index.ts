@@ -1,1 +1,1 @@
-export { default as ProductTileA } from './product-tile-a'
+export { default as TopBar } from './TopBar'
