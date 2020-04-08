@@ -37,8 +37,7 @@
   font-weight: 100;
 }
 
-.main-nav ul li a.active,
-.main-nav ul li a:hover {
+.top-bar-collapsed .main-nav ul li a.active {
   display: inline-block;
   height: 25px;
   border-bottom: 5px solid #fff;

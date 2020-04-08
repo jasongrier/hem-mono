@@ -1,16 +1,19 @@
-import React, { ReactElement, useEffect } from 'react'
-import { NavLink, Route, Switch } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import $ from 'jquery'
+import React, { ReactElement } from 'react'
+import { Route, Switch } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 import { ProductTile } from '../modules/products'
-import { TopBar } from '../components'
+import { MainNavItem, TopBar } from '../components'
 import { GrandPianoHeroineAlternate } from '../components/heroines'
 import { RootState } from '../index'
 
 function Home(): ReactElement {
-  const { products } = useSelector((state: RootState) => ({
+  const { currentTag, products, topBarCollapsed } = useSelector((state: RootState) => ({
+    currentTag: state.app.currentTag,
     products: state.products.products,
+    topBarCollapsed: state.app.topBarCollapsed,
   }))
+
+  const dispatch = useDispatch()
 
   function getContentWithTag(collection: any[], tag: string) {
     return collection.filter(collectionItem => {
@@ -32,31 +35,9 @@ function Home(): ReactElement {
     return dict[tag]
   }
 
-  // useEffect(function checkOnInit() {
-  //   checkScrollTop()
-  // }, [])
-
-  // useEffect(function scrollSpy() {
-  //   $(window).on('scroll', checkScrollTop)
-  // }, [collapsed])
-
-  // function checkScrollTop() {
-  //   const scrollTop = $(window).scrollTop()
-
-  //   if (!scrollTop) return
-
-  //   if (scrollTop >= 665 && !collapsed) {
-  //     setCollapsed(true)
-  //   }
-
-  //   else if (scrollTop < 665 && collapsed) {
-  //     setCollapsed(false)
-  //   }
-  // }
-
   return (
     <div className="page page-home">
-      <TopBar />
+      <TopBar collapsed={topBarCollapsed} />
 
       <div className="home-heroine">
         <GrandPianoHeroineAlternate />
@@ -64,21 +45,22 @@ function Home(): ReactElement {
 
       <nav className="main-nav">
         <ul>
-          <li>
-            <NavLink to="/sound-library">Sound Library</NavLink>
-          </li>
-          <li>
-            <NavLink to="/label">Label</NavLink>
-          </li>
-          {/* <li>
-            <NavLink to="/compilation">Compilation</NavLink>
-          </li> */}
-          <li>
-            <NavLink to="/projects">Projects</NavLink>
-          </li>
-          <li>
-            <NavLink to="/info">Info</NavLink>
-          </li>
+          <MainNavItem
+            currentTag={currentTag}
+            name="Sound Library"
+          />
+          <MainNavItem
+            currentTag={currentTag}
+            name="Label"
+          />
+          <MainNavItem
+            currentTag={currentTag}
+            name="Projects"
+          />
+          <MainNavItem
+            currentTag={currentTag}
+            name="Info"
+          />
         </ul>
       </nav>
 
@@ -142,14 +124,6 @@ function Home(): ReactElement {
                 const allowedTags = ['sound-library', 'label', 'projects', 'info']
 
                 let tag = props.match.params.tag
-
-                if (tag === undefined) {
-                  $('html, body').stop().animate({ scrollTop: 0 }, 250, 'swing')
-                }
-
-                if (allowedTags.includes(tag)) {
-                  $('html, body').stop().animate({ scrollTop: 760 }, 250, 'swing')
-                }
 
                 if (!tag || !allowedTags.includes(tag)) {
                   tag = 'sound-library'
