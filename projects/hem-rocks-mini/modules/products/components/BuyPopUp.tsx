@@ -35,7 +35,7 @@ function BuyPopUp({ product }: IProps): ReactElement {
   )
 
   return (
-    <div className="pop-up buy-pop-up">
+    <div className="buy-popup">
       {!product && (
         <div />
       )}

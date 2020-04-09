@@ -25,5 +25,6 @@ export type Action =
   IClosePopup
   | IOpenPopup
 
+export { closePopup, openPopup } from './actions'
 export { reducer as popupsReducer } from './reducer'
 export { PopupContainer } from './components'

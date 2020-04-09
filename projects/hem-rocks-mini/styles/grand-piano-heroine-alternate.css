@@ -38,7 +38,7 @@
 .alternate.grand-piano-heroine .hem-speaker-button {
   width: 60px;
   height: 60px;
-  background-color: red;
+  background-color: var(--line-orange);
   transform: scale(1.5) translate(10px, 5px);
   animation: deactivated-app-speaker-button-pulse 1s infinite;
 }
@@ -72,7 +72,7 @@
   margin: 0;
   font-size: 24px;
   font-weight: 100;
-  background-color: red;
+  background-color: var(--line-orange);
 }
 
 .alternate .grand-piano-heroine-text p {
@@ -81,22 +81,14 @@
   margin: 0 30px 0 0;
   font-size: 14px;
   font-weight: 100;
-  background-color: red;
+  background-color: var(--line-orange);
 }
 
 .alternate .grand-piano-heroine-text button {
   position: absolute;
   top: 30px;
   left: 265px;
-  width: 120px;
-  height: 36px;
-  margin: 0 30px 0 0;
-  font-size: 14px;
-  font-weight: 100;
-  background-color: red;
-  cursor: pointer;
   border: 1px solid #ccc;
-  color: #fff;
 }
 
 .alternate .grand-piano-heroine-text button:focus,

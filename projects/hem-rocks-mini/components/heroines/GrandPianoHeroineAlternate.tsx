@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { activateApp } from '../../modules/app/actions'
-import { SpeakerButton } from '../../../../lib/components/buttons'
+import { SpeakerButton } from '../../../../lib/packages/hem-buttons'
 
 function GrandPianoHeroineAlternate(): ReactElement {
   const dispatch = useDispatch()
@@ -29,7 +29,7 @@ function GrandPianoHeroineAlternate(): ReactElement {
           <p>
             &bull; 1400 One-shots: Bowing, Scraping, Hand Percussion, Cluster Chords, etc.
           </p>
-          <button>&raquo;Download&laquo;</button>
+          <button className="buy-button">&raquo;Download&laquo;</button>
         </div>
       </div>
     </div>

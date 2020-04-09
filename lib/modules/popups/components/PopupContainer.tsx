@@ -1,16 +1,38 @@
 import React, { ReactElement, PropsWithChildren, SFC } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { closePopup } from '../index'
 
 interface IProps {
-  isOpen: boolean
+  id: string
+  closeIcon?: SFC
 }
 
-function PopupContainer({ children, isOpen }: PropsWithChildren<IProps>): ReactElement {
+function PopupContainer({ children, id, closeIcon: CloseIcon }: PropsWithChildren<IProps>): ReactElement {
+  const { currentlyOpenPopUp } = useSelector((state: any) => ({
+    currentlyOpenPopUp: state.popups.currentlyOpenPopUp,
+  }))
+
+  const dispatch = useDispatch()
+
+  const isOpen = currentlyOpenPopUp === id
+
   return (
     <div className={`
-      'pop-up-container'
-      ${isOpen ? ' pop-up-container-open' : ''}
+      hem-popup-container
+      ${ isOpen ? ' hem-popup-container-open' : '' }
     `}>
-      { children }
+      <div className="hem-popup-content">
+        <div
+          className="hem-popup-close"
+          onClick={() => {
+            dispatch(closePopup())
+          }}
+        >
+          close
+          { CloseIcon && <CloseIcon /> }
+        </div>
+        { children }
+      </div>
     </div>
   )
 }
