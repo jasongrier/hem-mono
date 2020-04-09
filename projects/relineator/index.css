@@ -81,6 +81,7 @@ textarea {
   .relineator-poem-before {
     float: none;
     display: block;
+    min-height: 300px;
     width: calc(100vw - 30px);
     box-shadow: none;
   }
