@@ -9,6 +9,13 @@ import { GrandPianoHeroineAlternate } from '../../../components/heroines'
 import { RootState } from '../../../index'
 import { setTopBarCollapsed } from '../actions'
 
+import {
+  Info,
+  Label,
+  Projects,
+  SoundLibrary,
+} from '../../../routes'
+
 function App(): ReactElement {
   const {
     activated,
@@ -124,14 +131,14 @@ function App(): ReactElement {
       <main className="main-content">
         <div className="tabs-content">
           <Switch>
-            <Route exact path="/sound-library" render={props => { return <h1>SOUND LIBRARY</h1>}}/>
-            <Route exact path="/label" render={props => { return <h1>LABEL</h1>}}/>
-            <Route exact path="/projects" render={props => { return <h1>PROJECTS</h1>}}/>
-            <Route exact path="/info" render={props => { return <h1>INFO</h1>}}/>
+            <Route exact path="/info" component={Info} />
+            <Route exact path="/label" component={Label} />
+            <Route exact path="/projects" component={Projects} />
+            <Route exact path="/sound-library" component={SoundLibrary} />
           </Switch>
         </div>
       </main>
-      <PopupContainer isOpen={currentlyOpenPopUp === 'buy-pop-up'}>
+      <PopupContainer id="buy-popup">
         <BuyPopUp product={popupData} />
       </PopupContainer>
     </div>

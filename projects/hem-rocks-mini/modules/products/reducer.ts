@@ -4,7 +4,8 @@ import { IState } from './index'
 
 function fakeProduct(tag: string) {
   return {
-    description: '',
+    blurb: "I'm baby austin flexitarian artisan typewriter vice tofu crucifix. Pinterest truffaut stumptown, raw denim offal viral four dollar toast man bun. Church-key cardigan authentic, microdosing chambray literally seitan quinoa mixtape man bun. Viral meggings master cleanse 90's affogato raclette.",
+    description: "I'm baby austin flexitarian artisan typewriter vice tofu crucifix. Pinterest truffaut stumptown, raw denim offal viral four dollar toast man bun. Church-key cardigan authentic, microdosing chambray literally seitan quinoa mixtape man bun. Viral meggings master cleanse 90's affogato raclette.",
     featureList: [],
     fixedPrice: null,
     flexPriceMinimum: 0,
@@ -12,7 +13,7 @@ function fakeProduct(tag: string) {
     id: uuid(),
     images: [],
     tags: [tag],
-    title: 'Foo',
+    title: 'Grand Piano',
     videos: [],
   }
 }

@@ -4,6 +4,7 @@ export interface IProductImage {
 }
 
 export interface IProduct {
+  blurb: string
   description: string
   featureList: string[]
   fixedPrice: number | null

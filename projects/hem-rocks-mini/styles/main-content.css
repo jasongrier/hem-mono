@@ -2,11 +2,33 @@
   width: 1096px;
   margin: 0 auto;
   min-height: 10000px;
-  background-color: gray;
 }
 
 .main-content h1 {
   font-size: 100px;
   text-transform: uppercase;
   font-weight: 100;
+}
+
+.page {
+  position: relative;
+}
+
+.header-info-badge {
+  position: absolute;
+  top: -26px;
+  right: 265px;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  border-radius: 100px;
+  background-color: var(--nice-blue);
+  font-size: 54px;
+  font-family: 'Times New Roman', Times, serif;
+  text-align: center;
+  font-style: italic;
+  color: #ffff;
+  cursor: pointer;
+  text-transform: lowercase;
+  transform: scale(0.4)
 }
