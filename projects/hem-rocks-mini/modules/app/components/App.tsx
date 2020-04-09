@@ -5,7 +5,7 @@ import $ from 'jquery'
 import { BuyPopUp } from '../../products'
 import { PopupContainer } from '../../../../../lib/modules/popups'
 import { MainNavItem, TopBar } from '../../../components'
-import { GrandPianoHeroineAlternate } from '../../../components/heroines'
+import { GrandPianoHeroine } from '../../../components/heroines'
 import { RootState } from '../../../index'
 import { setTopBarCollapsed } from '../actions'
 
@@ -17,18 +17,10 @@ import {
 } from '../../../routes'
 
 function App(): ReactElement {
-  const {
-    activated,
-    topBarCollapsed,
-
-    currentlyOpenPopUp,
-    popupData,
-  } = useSelector((state: RootState) => ({
+  const { activated, popupData, topBarCollapsed } = useSelector((state: RootState) => ({
     activated: state.app.activated,
-    topBarCollapsed: state.app.topBarCollapsed,
-
-    currentlyOpenPopUp: state.popups.currentlyOpenPopUp,
     popupData: state.popups.popupData,
+    topBarCollapsed: state.app.topBarCollapsed,
   }))
 
   const dispatch = useDispatch()
@@ -64,7 +56,7 @@ function App(): ReactElement {
       <TopBar collapsed={topBarCollapsed} />
 
       <div className="main-heroine">
-        <GrandPianoHeroineAlternate />
+        <GrandPianoHeroine />
       </div>
 
       <nav className="main-nav">

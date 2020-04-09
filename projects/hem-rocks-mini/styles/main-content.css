@@ -32,3 +32,73 @@
   text-transform: lowercase;
   transform: scale(0.4)
 }
+
+.main-content-box {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  margin: 0 0 30px 0;
+  padding: 10px;
+}
+
+.main-content-box-key-art {
+  cursor: pointer;
+}
+
+.main-content-box-text {
+  float: left;
+  margin-left: 220px;
+  cursor: pointer;
+}
+
+.main-content-box-actions {
+  float: left;
+  width: 300px;
+  height: 106px;
+  margin: 70px 0 0 50px;
+}
+
+.main-content-box-actions .hem-play-pause-button {
+  float: left;
+  margin-right: 10px;
+  background-color: var(--line-orange);
+}
+
+.main-content-box-actions .buy-button {
+  float: left;
+  width: 160px;
+  height: 60px;
+  font-size: 20px;
+  font-weight: normal;
+}
+
+.main-content-box h3 {
+  margin: 0 0 20px 0;
+  font-size: 30px;
+  font-weight: 100;
+}
+
+.main-content-box p {
+  width: 450px;
+}
+
+.main-content-box .planes {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 200px;
+  height: 200px;
+}
+
+.main-content-box .planes::after {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--line-orange);
+  content: " ";
+  opacity: 0.2;
+}
+
