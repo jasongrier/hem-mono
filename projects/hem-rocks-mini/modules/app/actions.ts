@@ -3,19 +3,22 @@ import {
   ACTIVATE_APP,
   SET_CURRENT_TAG,
   SET_TOP_BAR_COLLAPSED,
+
+  Action,
 } from './index'
 
-const activateApp = (): AnyAction => ({
+// TODO: All projects. Use Action not AnyAction
+const activateApp = (): Action => ({
   type: ACTIVATE_APP,
   payload: null,
 })
 
-const setCurrentTag = (tag: string | null): AnyAction => ({
+const setCurrentTag = (tag: string | null): Action => ({
   type: SET_CURRENT_TAG,
   payload: tag,
 })
 
-const setTopBarCollapsed = (collapsed: boolean): AnyAction => ({
+const setTopBarCollapsed = (collapsed: boolean): Action => ({
   type: SET_TOP_BAR_COLLAPSED,
   payload: collapsed,
 })

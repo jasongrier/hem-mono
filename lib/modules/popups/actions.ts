@@ -9,9 +9,9 @@ const closePopup = (): AnyAction => ({
   payload: null,
 })
 
-const openPopup = (id: string, data?: string): AnyAction => ({
+const openPopup = (id: string): AnyAction => ({
   type: OPEN_POPUP,
-  payload: { id, data },
+  payload: id,
 })
 
 export {

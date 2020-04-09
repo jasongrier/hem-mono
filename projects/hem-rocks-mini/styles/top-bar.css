@@ -6,7 +6,7 @@
   width: 100vw;
   height: 30px;
   opacity: 0;
-  transition: all 100ms;
+  /* transition: all 100ms; */
 }
 
 .top-bar-collapsed .top-bar {
@@ -26,7 +26,7 @@
   line-height: 30px;
   color: #fff;
   font-weight: normal;
-  transition: all 100ms;
+  /* transition: all 100ms; */
 }
 
 .top-bar .logo a {

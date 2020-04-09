@@ -7,6 +7,12 @@ body {
   overflow-x: hidden;
 }
 
+.clearfix::after {
+  content: " ";
+  clear: both;
+  display: table;
+}
+
 .buy-button {
   width: 120px;
   height: 36px;
@@ -17,6 +23,11 @@ body {
   cursor: pointer;
   border: 0;
   color: #fff;
+}
+
+.buy-button:focus,
+.buy-button:active {
+  outline: none;
 }
 
 .hem-application.popup-open {

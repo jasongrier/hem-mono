@@ -1,4 +1,4 @@
-import React, { ReactElement, PropsWithChildren, SFC, useEffect } from 'react'
+import React, { ReactElement, PropsWithChildren, SFC, useEffect, SyntheticEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { closePopup } from '../index'
 
@@ -28,11 +28,22 @@ function PopupContainer({ children, id, closeIcon: CloseIcon }: PropsWithChildre
   const isOpen = currentlyOpenPopUp === id
 
   return (
-    <div className={`
-      hem-popup-container
-      ${ isOpen ? ' hem-popup-container-open' : '' }
-    `}>
-      <div className="hem-popup-content">
+    <div
+      className={`
+        hem-popup-container
+        ${ isOpen ? ' hem-popup-container-open' : '' }
+      `}
+      id={id}
+      onClick={(evt: SyntheticEvent<HTMLDivElement>) => {
+        dispatch(closePopup())
+      }}
+    >
+      <div
+        className="hem-popup-content"
+        onClick={(evt: SyntheticEvent<HTMLDivElement>) => {
+          evt.stopPropagation()
+        }}
+      >
         <div
           className="hem-popup-close"
           onClick={() => {
@@ -42,7 +53,7 @@ function PopupContainer({ children, id, closeIcon: CloseIcon }: PropsWithChildre
           close
           { CloseIcon && <CloseIcon /> }
         </div>
-        { children }
+        { isOpen && children }
       </div>
     </div>
   )
