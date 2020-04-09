@@ -28,29 +28,29 @@ function SoundLibrary(): ReactElement {
           i
         </div>
       </h1>
-      <div className="stacked-boxes">
+      <div className="main-content">
         { packs.map((pack, i) => (
           <div
             className={`
-              stacked-boxes-box
+              main-content-box
               ${ i === 0 ? ' heroine-box' : '' }
             `}
             key={pack.id}
           >
             <div
-              className="stacked-boxes-box-key-art"
+              className="main-content-box-key-art"
               onClick={() => {}}
             >
               <Planes />
             </div>
             <div
-              className="stacked-boxes-box-text"
+              className="main-content-box-text"
               onClick={() => {}}
             >
               <h3>{ pack.title }</h3>
               <p>{ pack.blurb }</p>
             </div>
-            <div className="stacked-boxes-box-actions">
+            <div className="main-content-box-actions">
               <PlayPauseButton
                 playing={false}
                 onClick={() => {}}
