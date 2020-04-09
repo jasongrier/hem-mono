@@ -2,12 +2,13 @@ import React, { ReactElement, useEffect } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import $ from 'jquery'
-import { BuyPopUp } from '../../products'
-import { PopupContainer } from '../../../../../lib/modules/popups'
+import { BuyPopUp, CartPopup } from '../../products'
+import { CloseButton } from '../../../../../lib/packages/hem-buttons'
+import { PopupContainer, openPopup } from '../../../../../lib/modules/popups'
 import { MainNavItem, TopBar } from '../../../components'
 import { GrandPianoHeroine } from '../../../components/heroines'
-import { RootState } from '../../../index'
 import { setTopBarCollapsed } from '../actions'
+import { RootState } from '../../../index'
 
 import {
   Info,
@@ -17,10 +18,10 @@ import {
 } from '../../../routes'
 
 function App(): ReactElement {
-  const { activated, popupData, topBarCollapsed } = useSelector((state: RootState) => ({
+  const { activated, currentProduct, topBarCollapsed } = useSelector((state: RootState) => ({
     activated: state.app.activated,
-    popupData: state.popups.popupData,
     topBarCollapsed: state.app.topBarCollapsed,
+    currentProduct: state.products.currentProduct,
   }))
 
   const dispatch = useDispatch()
@@ -64,7 +65,11 @@ function App(): ReactElement {
           <MainNavItem name="Sound Library" />
           <MainNavItem name="Label" />
           <MainNavItem name="Projects" />
-          <MainNavItem name="Info" />
+          <li className="main-nav-item">
+            <a onClick={() => dispatch(openPopup('cart-popup'))}>
+              Cart
+            </a>
+          </li>
         </ul>
       </nav>
 
@@ -130,8 +135,17 @@ function App(): ReactElement {
           </Switch>
         </div>
       </main>
-      <PopupContainer id="buy-popup">
-        <BuyPopUp product={popupData} />
+      <PopupContainer
+        id="buy-popup"
+        closeIcon={CloseButton}
+      >
+        <BuyPopUp product={currentProduct} />
+      </PopupContainer>
+      <PopupContainer
+        id="cart-popup"
+        closeIcon={CloseButton}
+      >
+        <CartPopup />
       </PopupContainer>
     </div>
   )

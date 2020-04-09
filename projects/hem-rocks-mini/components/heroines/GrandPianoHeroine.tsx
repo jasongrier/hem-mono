@@ -1,13 +1,24 @@
 import React, { ReactElement } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { find } from 'lodash'
 import { activateApp } from '../../modules/app/actions'
 import { SpeakerButton } from '../../../../lib/packages/hem-buttons'
+import { LaunchBuyPopupButton } from '../index'
+import { RootState } from '../../index'
 
 function GrandPianoHeroineAlternate(): ReactElement {
+  const { allProducts } = useSelector((state: RootState) => ({
+    allProducts: state.products.products,
+  }))
+
   const dispatch = useDispatch()
 
+  const grandPianoProduct = find(allProducts, { slug: 'grand-piano' })
+
+  if (!grandPianoProduct) return (<div />)
+
   return (
-    <div className="alternate grand-piano-heroine">
+    <div className="grand-piano-heroine">
       <div className="grand-piano-heroine-image" />
       <div className="grand-piano-heroine-details">
         <div
@@ -29,7 +40,7 @@ function GrandPianoHeroineAlternate(): ReactElement {
           <p>
             &bull; 1400 One-shots: Bowing, Scraping, Hand Percussion, Cluster Chords, etc.
           </p>
-          <button className="buy-button">&raquo;Download&laquo;</button>
+          <LaunchBuyPopupButton product={grandPianoProduct} />
         </div>
       </div>
     </div>

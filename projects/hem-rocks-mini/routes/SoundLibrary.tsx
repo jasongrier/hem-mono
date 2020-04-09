@@ -1,10 +1,12 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Scrollbars from 'react-scrollbars-custom'
+import { LaunchBuyPopupButton } from '../components'
+import { setCurrentProduct } from '../modules/products'
 import { PopupContainer, openPopup } from '../../../lib/modules/popups'
-import { RootState } from '../index'
 import { CloseButton, PlayPauseButton } from '../../../lib/packages/hem-buttons'
 import { Planes } from '../../../lib/packages/hem-placemats'
+import { RootState } from '../index'
 
 function SoundLibrary(): ReactElement {
   const { allProducts } = useSelector((state: RootState) => ({
@@ -14,6 +16,11 @@ function SoundLibrary(): ReactElement {
   const dispatch = useDispatch()
 
   const packs = allProducts.filter(product => product.tags.includes('sound-library'))
+
+  function launchBuyPopup(pack) {
+    dispatch(setCurrentProduct(pack))
+    dispatch(openPopup('buy-popup'))
+  }
 
   return (
     <div className="page page-sound-library">
@@ -29,6 +36,9 @@ function SoundLibrary(): ReactElement {
         </div>
       </h1>
       <div className="main-content">
+        <p className="main-content-blurb">
+          I'm baby austin flexitarian artisan typewriter vice tofu crucifix. Pinterest truffaut stumptown, raw denim offal viral four dollar toast man bun. Church-key cardigan authentic, microdosing chambray literally seitan quinoa mixtape man bun. Viral meggings master cleanse 90's affogato raclette.
+        </p>
         { packs.map((pack, i) => (
           <div
             className={`
@@ -39,15 +49,19 @@ function SoundLibrary(): ReactElement {
           >
             <div
               className="main-content-box-key-art"
-              onClick={() => {}}
+              onClick={() => {
+                launchBuyPopup(pack)
+              }}
             >
               <Planes />
             </div>
             <div
               className="main-content-box-text"
-              onClick={() => {}}
+              onClick={() => {
+                launchBuyPopup(pack)
+              }}
             >
-              <h3>{ pack.title }</h3>
+              <h3>{ pack.name }</h3>
               <p>{ pack.blurb }</p>
             </div>
             <div className="main-content-box-actions">
@@ -55,13 +69,14 @@ function SoundLibrary(): ReactElement {
                 playing={false}
                 onClick={() => {}}
               />
-              <button className="buy-button">Download</button>
+              <LaunchBuyPopupButton product={pack} />
             </div>
           </div>
         ))}
       </div>
       <PopupContainer
         id="sound-library-info"
+        // @ts-ignore
         closeIcon={CloseButton}
       >
         <Scrollbars>

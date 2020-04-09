@@ -27,6 +27,7 @@
   display: inline;
   margin: 0 0 0 40px;
   text-transform: uppercase;
+  cursor: pointer;
 }
 
 .main-nav ul li a {

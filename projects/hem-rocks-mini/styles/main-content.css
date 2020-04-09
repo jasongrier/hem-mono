@@ -5,9 +5,20 @@
 }
 
 .main-content h1 {
+  margin: 50px 0 0 0;
   font-size: 100px;
   text-transform: uppercase;
   font-weight: 100;
+  color: var(--line-orange);
+}
+
+.main-content h1.no-blurb {
+  margin-bottom: 50px;
+}
+
+.main-content-blurb {
+  width: 680px;
+  margin-bottom: 50px;
 }
 
 .page {
