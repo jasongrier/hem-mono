@@ -9,7 +9,6 @@ import {
 
 const initialState: IState = {
   currentlyOpenPopUp: null,
-  popupData: null,
 }
 
 const reducer = (
@@ -19,8 +18,7 @@ const reducer = (
   switch (type) {
     case OPEN_POPUP: {
       return produce(state, draftState => {
-        draftState.currentlyOpenPopUp = payload.id
-        draftState.popupData = payload.data
+        draftState.currentlyOpenPopUp = payload
       })
     }
 

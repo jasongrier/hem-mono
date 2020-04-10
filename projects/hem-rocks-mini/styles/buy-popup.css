@@ -1,0 +1,149 @@
+.buy-popup {
+  height: 100%;
+}
+
+.buy-popup .ScrollbarsCustom-Wrapper[style] {
+  right: 0 !important;
+}
+
+#buy-popup .hem-popup-content {
+  top: 20px;
+  height: calc(100vh - 40px);
+}
+
+.buy-popup header {
+  position: relative;
+  width: 800px;
+  height: 358px;
+}
+
+.buy-popup header .planes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  opacity: 0.4;
+}
+
+.buy-popup header .buy-popup-header-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  padding: 0 20px 40px 20px;
+}
+
+.buy-popup header h1 {
+  width: 760px;
+  height: 60px;
+  line-height: 60px;
+  margin: 15px 0 2px -10px;
+  padding: 0;
+  font-weight: normal;
+  font-size: 80px;
+  text-transform: uppercase;
+}
+
+.buy-popup header h2 {
+  width: 760px;
+  margin: 0 0 20px 0;
+  padding: 0;
+  font-size: 12px;
+  color: #666;
+}
+
+.buy-popup-actions {
+  width: 760px;
+}
+
+.buy-popup-form {
+  position: relative;
+  width: 430px;
+  margin-top: 30px;
+}
+
+.buy-popup header input,
+.buy-popup header label,
+.buy-popup header small {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.buy-popup header label {
+  font-size: 20px;
+}
+
+.buy-popup header input {
+  width: 200px;
+  height: 60px;
+  padding: 0 10px;
+  border: 0;
+  font-size: 24px;
+}
+
+.buy-popup .invalid-message {
+  position: absolute;
+  top: 56px;
+  right: 15px;
+  color: red;
+}
+
+.buy-popup header small {
+  font-size: 11px;
+}
+
+.buy-popup-currency-symbol {
+  position: absolute;
+  top: 52px;
+  left: 195px;
+  font-size: 24px;
+}
+
+.buy-popup-buttons {
+  margin-top: 30px;
+}
+
+.buy-popup-buttons button {
+  float: left;
+  width: 200px;
+  height: 50px;
+  font-size: 24px;
+  font-weight: normal;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.buy-popup-buttons .buy-popup-cart-link {
+  display: block;
+  position: absolute;
+  bottom: -21px;
+  left: 215px;
+  width: 200px;
+  font-size: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+  text-align: center;
+}
+
+.buy-popup header .hem-play-pause-button {
+  position: absolute;
+  bottom: 60px;
+  right: 60px;
+  transform: scale(2);
+  transform-origin: bottom right;
+  background-color: var(--line-orange);
+}
+
+.buy-popup-details {
+  padding: 30px 0;
+  background-color: var(--line-orange);
+}
+
+.hem-popup-content .buy-popup-details h2 {
+  margin-left: -4px;
+  font-size: 30px;
+}

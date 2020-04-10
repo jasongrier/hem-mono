@@ -1,0 +1,58 @@
+.hem-popup-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+  background-color: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  /* transition: opacity 100ms; */
+  pointer-events: none;
+}
+
+.hem-popup-container-open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.hem-popup-content {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  width: 800px;
+  height: 600px;
+  margin-left: -400px;
+  padding: 0;
+  background: #fff;
+}
+
+.hem-popup-content .ScrollbarsCustom-TrackY[style] {
+  width: 5px !important;
+  border-radius: 0 !important;
+}
+
+.hem-popup-content .ScrollbarsCustom-ThumbY[style] {
+  border-radius: 0 !important;
+}
+
+.hem-popup-content h2 {
+  margin: 0;
+  padding: 0 20px;
+  font-size: 60px;
+  font-weight: 100;
+  text-transform: uppercase;
+}
+
+.hem-popup-content p {
+  width: 700px;
+  padding: 0 20px;
+}
+
+.hem-popup-close {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  z-index: 9999;
+  font-size: 0;
+}

@@ -1,8 +1,12 @@
-import './defaults.css'
-import './grand-piano-heroine-alternate.css'
+import './app.css'
+import './variables.css'
+
+import './buy-popup.css'
+import './cart-popup.css'
 import './grand-piano-heroine.css'
-import './home-content.css'
-import './home-heroine.css'
+import './main-content.css'
+import './main-heroine.css'
 import './main-nav.css'
+import './popups.css'
 import './top-bar.css'
-import './vars.css'
+

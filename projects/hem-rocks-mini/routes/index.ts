@@ -1,1 +1,6 @@
-export { default as Home } from './Home'
+export { default as Info } from './Info'
+export { default as Label } from './Label'
+export { default as MadeWithSlOneShowcase } from './MadeWithSlOneShowcase'
+export { default as MadeWithSlOneSurvey } from './MadeWithSlOneSurvey'
+export { default as Projects } from './Projects'
+export { default as SoundLibrary } from './SoundLibrary'

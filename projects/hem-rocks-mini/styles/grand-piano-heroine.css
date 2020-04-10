@@ -3,90 +3,99 @@
   width: 100vw;
   height: 100%;
   background-color: #000;
+  user-select: none;
 }
 
-.grand-piano-heroine-banner-image {
+.grand-piano-heroine * {
+  user-select: none;
+}
+
+.top-bar-collapsed .grand-piano-heroine {
+  opacity: 0;
+}
+
+.grand-piano-heroine-image {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: 1;
+  background-image: url(http://static.hem.rocks/hem-rocks/site/heroines/ex-piano.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-.grand-piano-heroine-banner-description {
+.grand-piano-heroine-details {
   position: absolute;
-  top: 20px;
-  left: 20px;
+  bottom: 10px;
+  left: 40px;
   z-index: 2;
-  width: 260px;
-  height: calc(100vh - var(--top-bar-height) - var(--main-nav-height) - 40px);
-  background-color: rgba(0, 0, 0, 0.7);
+  width: 100vw;
+  height: 180px;
   color: #ffffff;
   font-size: 12px;
 }
 
-.grand-piano-heroine-banner-description-inner {
-  width: 240px;
-  height: 100%;
-  padding: 0 10px;
+.grand-piano-heroine .hem-speaker-button {
+  width: 60px;
+  height: 60px;
+  background-color: var(--line-orange);
+  transform: scale(1.5) translate(10px, 5px);
+  animation: deactivated-app-speaker-button-pulse 1s infinite;
 }
 
-.grand-piano-heroine-banner-description h2 {
-  margin: 10px 0 20px 0;
-  padding: 0;
-  font-size: 32px;
+@keyframes deactivated-app-speaker-button-pulse {
+  0%   { border: 1px solid rgba(255, 255, 255, 0); }
+  100% { border: 1px solid rgba(255, 255, 255, 1); }
+}
+
+.app-activated .grand-piano-heroine .hem-speaker-button {
+  animation: none;
+  padding: 1px;
+}
+
+.grand-piano-heroine-text {
+  position: absolute;
+  top: 0;
+  left: 215px;
+  width: 500px;
+  height: 60px;
+  transform: scale(1.5) translate(10px, 0);
+  opacity: 0;
+  transition: opacity 100ms;
+}
+
+.app-activated .grand-piano-heroine-text {
+  opacity: 1;
+}
+
+.grand-piano-heroine-text h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 100;
+  background-color: var(--line-orange);
+}
+
+.grand-piano-heroine-text p {
+  float: left;
+  width: 250px;
+  margin: 0 30px 0 0;
+  font-size: 14px;
+  font-weight: 100;
+  background-color: var(--line-orange);
+}
+
+.grand-piano-heroine-text button {
+  position: absolute;
+  top: 30px;
+  left: 265px;
+  border: 1px solid #ccc;
   font-weight: normal;
 }
 
-.grand-piano-heroine-banner-description p {
-  width: 200px;
-  margin: 0 0 30px 0;
-  /* text-align: justify; */
-  line-height: 20px;
-}
-
-.grand-piano-heroine-banner-description ul {
-  margin: 40px 0 60px 0;
-  padding: 0;
-  list-style-type: none;
-  font-weight: bold;
-}
-
-.grand-piano-heroine-banner-description li {
-  margin: 0 0 20px 10px;
-}
-
-.grand-piano-heroine-buttons {
-  width: 180px;
-  margin: 0 auto;
-}
-
-.grand-piano-heroine-banner-description button {
-  float: left;
-  height: 35px;
-  background-color: blue;
-  border: 0;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-  letter-spacing: 1px;
-  line-height: 35px;
-}
-
-.grand-piano-heroine-banner-description button:focus,
-.grand-piano-heroine-banner-description button:active {
+.grand-piano-heroine-text button:focus,
+.grand-piano-heroine-text button:active {
   outline: none;
-}
-
-.grand-piano-heroine-download-button {
-  width: 140px;
-  margin-right: 5px;
-}
-
-.grand-piano-heroine-mute-play-button {
-  width: 35px;
 }
