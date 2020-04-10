@@ -14,8 +14,9 @@ A chicken hawk floats over, looking for home.
 I have wasted my life.
 */
 
-import React, { ReactElement, useState, useCallback, SyntheticEvent, useEffect } from 'react'
-import {  } from '../../../lib/modules/popups'
+import React, { ReactElement, useState, useCallback, SyntheticEvent } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { closePopup, openPopup, PopupContainer } from '../../../lib/modules/popups'
 
 function relineate(text: string) {
   const proseBlock = text.replace(/\r?\n|\r/g, ' ')
@@ -39,7 +40,10 @@ function relineate(text: string) {
 
 function App(): ReactElement {
   const [originalPoem, setOriginalPoem] = useState('')
+
   const [relineatedPoem, setRelineatedPoem] = useState('')
+
+  const dispatch = useDispatch()
 
   const textareaOnChange = useCallback(
     function textareaOnChangeFn(evt: SyntheticEvent<HTMLTextAreaElement>) {
@@ -56,6 +60,7 @@ function App(): ReactElement {
   return (
     <div className="hem-application relineator">
       <div className="relineator-header" />
+
       <div className="relineator-poems">
         <div className="relineator-poem-before">
           <textarea
@@ -76,10 +81,28 @@ function App(): ReactElement {
         </div>
       </div>
 
-      {/* <div className="about">
-        Relineator! is a tool for automatically re-lineating poems.<br />
-        Brought to you by Zoe Bursztajn-Illingworth &amp; the UT Austin Digital Writing &amp; Research Lab. ♥
-      </div> */}
+      <div>
+        <a
+          href="#"
+          onClick={() => {
+            dispatch(openPopup('test-popup'))
+          }}
+        >
+          Open the popup
+        </a>
+      </div>
+      <PopupContainer id="test-popup">
+        <div className="test-popup-content">
+          <a
+            href="#"
+            onClick={() => {
+              dispatch(closePopup())
+            }}
+          >
+            Close the popup
+          </a>
+        </div>
+      </PopupContainer>
     </div>
   )
 }
