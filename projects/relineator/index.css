@@ -82,7 +82,7 @@ font-size:smaller;
 text-align:center;
 color: rgb(187, 150, 150);
 }
-/* 
+/*
 .about-button {
   justify-content:center;
   width:100vw;
@@ -168,7 +168,7 @@ color: rgb(187, 150, 150);
     width: calc(100vw - 30px);
     box-shadow: none;
   }
-  
+
   .about-button {
     display:block;
     position:static;
@@ -176,6 +176,4 @@ color: rgb(187, 150, 150);
     margin-top:50px;
     padding: 0 10px 30px 10px;
   }
-
-/*
-
+}
