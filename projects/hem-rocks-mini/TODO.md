@@ -1,4 +1,4 @@
 ### TODOs
 | Filename | line # | TODO
 |:------|:------:|:------
-| [projects/hem-rocks-mini/styles/grand-piano-heroine-alternate.css](projects/hem-rocks-mini/styles/grand-piano-heroine-alternate.css#L1) | 1 | Remove ".alternate" and make this the one true heroine
+| [projects/hem-rocks-mini/styles/cart-popup.css](projects/hem-rocks-mini/styles/cart-popup.css#L5) | 5 | Global H1 class

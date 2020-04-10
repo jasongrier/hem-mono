@@ -69,7 +69,6 @@
   padding: 0 10px;
   border: 0;
   font-size: 24px;
-  text-indent: 20px;
 }
 
 .buy-popup .invalid-message {
@@ -86,7 +85,7 @@
 .buy-popup-currency-symbol {
   position: absolute;
   top: 52px;
-  left: 10px;
+  left: 195px;
   font-size: 24px;
 }
 
@@ -102,6 +101,18 @@
   font-weight: normal;
   margin-right: 15px;
   cursor: pointer;
+}
+
+.buy-popup-buttons .buy-popup-cart-link {
+  display: block;
+  position: absolute;
+  bottom: -21px;
+  left: 215px;
+  width: 200px;
+  font-size: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+  text-align: center;
 }
 
 .buy-popup header .hem-play-pause-button {

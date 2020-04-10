@@ -61,10 +61,22 @@ function BuyPopUp({ product }: IProps): ReactElement {
     }, [suggestedPrice],
   )
 
+  const onKeyDown = useCallback(
+    function onKeyDownFn(evt: React.KeyboardEvent) {
+      if (evt.keyCode !== 13) return
+      if (!addToCart()) return
+      dispatch(closePopup())
+      dispatch(openPopup('cart-popup'))
+    }, [suggestedPrice],
+  )
+
   if (!product) return (<div />)
 
   return (
-    <section className="buy-popup">
+    <section
+      className="buy-popup"
+      onKeyDown={onKeyDown}
+    >
       <header>
         <Planes />
         <div className="buy-popup-header-content">
@@ -80,6 +92,7 @@ function BuyPopUp({ product }: IProps): ReactElement {
               {!product.hasFixedPrice && (
                 <>
                   <label htmlFor="suggested-price">Name your price!</label>
+                  {/* TODO: Use Intl.NumberFormat and type intent timeout to validate and format the state */}
                   <span className="buy-popup-currency-symbol">€</span>
                   <input
                     name="suggested-price"
@@ -87,7 +100,7 @@ function BuyPopUp({ product }: IProps): ReactElement {
                     type="text"
                     value={suggestedPrice}
                   />
-                  <small>Minimum price: { product.flexPriceMinimum }</small>
+                  <small>Minimum price: { product.flexPriceMinimum } €</small>
                   {!valid && (
                     <div className="invalid-message">
                       Please enter a valid price.
@@ -108,6 +121,14 @@ function BuyPopUp({ product }: IProps): ReactElement {
                 >
                   Add to Cart
                 </button>
+                <a
+                  className="buy-popup-cart-link"
+                  onClick={() => {
+                    dispatch(openPopup('cart-popup'))
+                  }}
+                >
+                  View cart
+                </a>
               </div>
             </div>
           </div>
