@@ -5,7 +5,7 @@ import { closePopup } from '../index'
 interface IProps {
   id: string
 
-  closeIcon?: SFC
+  closeIcon?: SFC | false
 }
 
 function PopupContainer({ children, id, closeIcon: CloseIcon }: PropsWithChildren<IProps>): ReactElement {
@@ -14,6 +14,20 @@ function PopupContainer({ children, id, closeIcon: CloseIcon }: PropsWithChildre
   }))
 
   const dispatch = useDispatch()
+
+  useEffect(function addBodyClass() {
+    function bodyOnKeyDown(evt: any) {
+      if (evt.keyCode === 27) {
+        dispatch(closePopup())
+      }
+    }
+
+    document.body.addEventListener('keydown', bodyOnKeyDown)
+
+    return function cleanup() {
+      document.body.removeEventListener('keydown', bodyOnKeyDown)
+    }
+  }, [])
 
   useEffect(function addBodyClass() {
     if (currentlyOpenPopUp) {
@@ -44,15 +58,17 @@ function PopupContainer({ children, id, closeIcon: CloseIcon }: PropsWithChildre
           evt.stopPropagation()
         }}
       >
-        <div
-          className="hem-popup-close"
-          onClick={() => {
-            dispatch(closePopup())
-          }}
-        >
-          close
-          { CloseIcon && <CloseIcon /> }
-        </div>
+        { CloseIcon !== false && (
+          <div
+            className="hem-popup-close"
+            onClick={() => {
+              dispatch(closePopup())
+            }}
+          >
+            close
+            { CloseIcon && <CloseIcon /> }
+          </div>
+        )}
         { isOpen && children }
       </div>
     </div>
