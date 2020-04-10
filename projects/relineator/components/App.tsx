@@ -108,9 +108,12 @@ function App(): ReactElement {
           </div>
 
           <div className="popup-content">
-            <i>Relineator!</i> is a tool for randomly relineating poems. Brought to you by Zoe Bursztajn-Illingworth and the UT Austin Digital Writing & Research Lab.
+          ✏️ <i>Relineator!</i> is a tool for randomly relineating poems. 
             <p>
-              Designed and built by Annelyse Gelman and Jason Gillis-Grier.
+            🏠 Brought to you by Zoe Bursztajn-Illingworth and the UT Austin Digital Writing & Research Lab.
+            </p>
+            <p>
+            🌱 Built by Annelyse Gelman and Jason Gillis-Grier.
             </p>
           </div>
         </div>
