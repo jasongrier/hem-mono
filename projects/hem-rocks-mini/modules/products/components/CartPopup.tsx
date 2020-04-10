@@ -15,7 +15,13 @@ function CartPopup(): ReactElement {
 
   const checkoutOnClick = useCallback(
     function checkoutOnClickFn() {
-      // Submit to shopify cart and redirect
+      if (getGrandTotal() === 0) {
+
+      }
+
+      else {
+        // Shopify...
+      }
     }, [],
   )
 

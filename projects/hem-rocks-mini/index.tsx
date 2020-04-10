@@ -6,6 +6,7 @@ import { combineReducers, createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { popupsReducer } from '../../lib/modules/popups'
+import { playerReducer } from '../../lib/modules/player'
 import { App, appReducer } from './modules/app'
 import { productsReducer } from './modules/products'
 import { siteContentReducer } from './modules/site-content'
@@ -13,6 +14,7 @@ import './styles'
 
 const rootReducer = combineReducers({
   app: appReducer,
+  player: playerReducer,
   popups: popupsReducer,
   products: productsReducer,
   siteContent: siteContentReducer,

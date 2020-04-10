@@ -1,20 +1,43 @@
 import { AnyAction } from 'redux'
 import {
-  CLOSE_POPUP,
-  OPEN_POPUP,
+  LOAD,
+  MUTE,
+  PAUSE,
+  PLAY,
+  UNMUTE,
+
+  Action,
 } from './index'
 
-const closePopup = (): AnyAction => ({
-  type: CLOSE_POPUP,
+const load = (trackId: string): Action => ({
+  type: LOAD,
+  payload: trackId,
+})
+
+const mute = (): Action => ({
+  type: MUTE,
   payload: null,
 })
 
-const openPopup = (id: string, data: string): AnyAction => ({
-  type: openPopup,
+const pause = (): Action => ({
+  type: PAUSE,
+  payload: null,
+})
+
+const play = (): Action => ({
+  type: PLAY,
+  payload: null,
+})
+
+const unmute = (): Action => ({
+  type: UNMUTE,
   payload: null,
 })
 
 export {
-  closePopup,
-  openPopup,
+  load,
+  mute,
+  pause,
+  play,
+  unmute
 }
