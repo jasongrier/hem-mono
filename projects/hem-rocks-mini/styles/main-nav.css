@@ -1,35 +1,45 @@
 .main-nav {
-  position: sticky;
+  position: fixed;
   top: 0;
-  width: 100vw;
+  right: 5px;
+  width: 80vw;
   z-index: 9999;
-  height: var(--main-nav-height);
-  background-color: #000;
+  height: var(--top-bar-height);
+  opacity: 0;
+  transition: opacity 100ms;
+}
+
+.app-activated .main-nav {
+  opacity: 1;
 }
 
 .main-nav ul {
-  width: 100vw;
-  height: calc(var(--main-nav-height) - 15px);
+  width: 80vw;
+  height: var(--top-bar-height);
+  line-height: var(--top-bar-height);
   margin: 0;
-  padding: 15px 0 0 0;
+  padding: 0;
   list-style-type: none;
-  text-align: center;
+  text-align: right;
 }
 
 .main-nav ul li {
   display: inline;
-  margin: 0 30px;
+  margin: 0 0 0 40px;
   text-transform: uppercase;
-  font-weight: bold;
+  cursor: pointer;
 }
 
 .main-nav ul li a {
-  font-size: 14px;
+  font-size: 30px;
   color: #fff;
   text-decoration: none;
+  letter-spacing: 2px;
+  font-weight: 100;
 }
 
-.main-nav ul li a.active,
-.main-nav ul li a:hover {
-  border-bottom: 1px solid #fff;
+.top-bar-collapsed .main-nav ul li a.active {
+  display: inline-block;
+  height: 25px;
+  border-bottom: 5px solid #fff;
 }

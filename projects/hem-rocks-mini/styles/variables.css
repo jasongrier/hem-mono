@@ -1,0 +1,9 @@
+:root {
+  --top-bar-height: 30px;
+  --main-nav-height: 100px;
+
+  /* Colors */
+  --line-orange: #fa563c;
+  --light-gray: #cac9c9;
+  --nice-blue: #3535e6;
+}

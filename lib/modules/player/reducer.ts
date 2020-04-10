@@ -1,15 +1,19 @@
 import { AnyAction } from 'redux'
 import produce from 'immer'
 import {
-  CLOSE_POPUP,
-  OPEN_POPUP,
+  LOAD,
+  MUTE,
+  PAUSE,
+  PLAY,
+  UNMUTE,
 
   IState,
 } from './index'
 
 const initialState: IState = {
-  currentlyOpenPopUp: null,
-  popupData: null,
+  currentTrackId: null,
+  muted: true,
+  playing: false,
 }
 
 const reducer = (
@@ -17,16 +21,33 @@ const reducer = (
   { type, payload }: AnyAction,
 ): IState => {
   switch (type) {
-    case OPEN_POPUP: {
+    case LOAD: {
       return produce(state, draftState => {
-        draftState.currentlyOpenPopUp = payload.id
-        draftState.popupData = payload.data
+        draftState.currentTrackId = payload
       })
     }
 
-    case CLOSE_POPUP: {
+    case MUTE: {
       return produce(state, draftState => {
-        draftState.currentlyOpenPopUp = null
+        draftState.muted = payload
+      })
+    }
+
+    case PAUSE: {
+      return produce(state, draftState => {
+        draftState.playing = false
+      })
+    }
+
+    case PLAY: {
+      return produce(state, draftState => {
+        draftState.playing = true
+      })
+    }
+
+    case UNMUTE: {
+      return produce(state, draftState => {
+        draftState.muted = true
       })
     }
 

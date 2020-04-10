@@ -1,35 +1,57 @@
 import { AnyAction } from 'redux'
 
 export interface IState {
-  currentlyOpenPopUp: string | null
-  popupData: any
+  currentTrackId: string | null
+  muted: boolean
+  playing: boolean
 }
 
-export const CLOSE_POPUP = 'CLOSE_POPUP'
-export const OPEN_POPUP = 'OPEN_POPUP'
+export const LOAD = 'LOAD'
+export const MUTE = 'MUTE'
+export const PAUSE = 'PAUSE'
+export const PLAY = 'PLAY'
+export const UNMUTE = 'UNMUTE'
 
-export interface IClosePopup extends AnyAction {
-  type: typeof CLOSE_POPUP
+export interface ILoad extends AnyAction {
+  type: typeof LOAD
+  payload: string
+}
+
+export interface IMute extends AnyAction {
+  type: typeof MUTE
   payload: null
 }
 
-export interface IOpenPopup extends AnyAction {
-  type: typeof OPEN_POPUP
-  payload: {
-    id: string,
-    data: string,
-  }
+export interface IPause extends AnyAction {
+  type: typeof PAUSE
+  payload: null
+}
+
+export interface IPlay extends AnyAction {
+  type: typeof PLAY
+  payload: null
+}
+
+export interface IUnmute extends AnyAction {
+  type: typeof UNMUTE
+  payload: null
 }
 
 export type Action =
-  IClosePopup
-  | IOpenPopup
+  ILoad
+  | IMute
+  | IPause
+  | IPlay
+  |IUnmute
 
-export { reducer as popupsReducer } from './reducer'
+
+export { load, mute, pause, play, unmute } from './actions'
+
+export { reducer as playerReducer } from './reducer'
+
 export { MuteButton } from './components'
 export { PauseButton } from './components'
 export { PlayButton } from './components'
 export { PlayPauseButton } from './components'
 export { ProgressBar } from './components'
 export { StopButton } from './components'
-

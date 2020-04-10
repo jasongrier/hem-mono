@@ -5,19 +5,36 @@
   z-index: 8888;
   width: 100vw;
   height: 30px;
+  opacity: 0;
+  /* transition: all 100ms; */
+}
+
+.top-bar-collapsed .top-bar {
   background-color: #000;
+  overflow: hidden;
+}
+
+.app-activated .top-bar {
+  opacity: 1;
 }
 
 .top-bar .logo {
   height: 30px;
-  margin: 0 0 0 5px;
+  margin: 80px 0 0 5px;
   padding: 0;
-  font-size: 18px;
+  font-size: 100px;
   line-height: 30px;
   color: #fff;
+  font-weight: normal;
+  /* transition: all 100ms; */
 }
 
 .top-bar .logo a {
   color: inherit;
   text-decoration: none;
+}
+
+.top-bar-collapsed .logo {
+  margin: 0;
+  font-size: 65px;
 }
