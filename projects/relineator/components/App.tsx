@@ -74,10 +74,49 @@ function App(): ReactElement {
           </pre>
         </div>
       </div>
-      <div className="about">
+
+
+
+
+      {/* <div className="about">
         Relineator! is a tool for automatically re-lineating poems.<br />
         Brought to you by Zoe Bursztajn-Illingworth &amp; the UT Austin Digital Writing &amp; Research Lab. ♥
-      </div>
+      </div> */}
+
+
+
+
+
+
+                      <div id="myModal" class="full reveal" data-reveal></div>
+                      <script>
+                      $("#myTrigger").on("click",function(e) {
+                        e.preventDefault();
+                        $("#myModal")
+                          .html('<object width="100%" height="100%" type="text/html" data="http://textmechanic.com" ></object>')
+                          .foundation("open");
+                    
+                      });
+                      </script>
+
+
+                   <div class="open-modal">
+                     <a data-open="aboutModal">
+                          link to open the modal
+                    </div>
+                    
+                    <div class="reveal" id="aboutModal" data-reveal>
+
+       
+                       inside the modal   about the relineator blah blah
+
+                      <button class="close-button" data-close aria-label="Close modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+            
+                    
+
     </div>
   )
 }
