@@ -93,14 +93,6 @@ function App(): ReactElement {
       </div>
       <PopupContainer id="test-popup">
         <div className="test-popup-content">
-          <a
-            href="#"
-            onClick={() => {
-              dispatch(closePopup())
-            }}
-          >
-            Close the popup
-          </a>
         </div>
       </PopupContainer>
     </div>
