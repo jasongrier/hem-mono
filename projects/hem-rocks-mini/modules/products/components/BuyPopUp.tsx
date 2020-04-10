@@ -77,73 +77,73 @@ function BuyPopUp({ product }: IProps): ReactElement {
       className="buy-popup"
       onKeyDown={onKeyDown}
     >
-      <header>
-        <Planes />
-        <div className="buy-popup-header-content">
-          <div className="buy-popup-title">
-            <h1>{ product.name }</h1>
-            <h2>{ product.type }</h2>
-          </div>
-          <div className="buy-popup-actions">
-            <div className="buy-popup-form">
-              {product.hasFixedPrice && (
-                <p>{ product.fixedPrice }</p>
-              )}
-              {!product.hasFixedPrice && (
-                <>
-                  <label htmlFor="suggested-price">Name your price!</label>
-                  {/* TODO: Use Intl.NumberFormat and type intent timeout to validate and format the state */}
-                  <span className="buy-popup-currency-symbol">€</span>
-                  <input
-                    name="suggested-price"
-                    onChange={suggestedPriceOnChange}
-                    type="text"
-                    value={suggestedPrice}
-                  />
-                  <small>Minimum price: { product.flexPriceMinimum } €</small>
-                  {!valid && (
-                    <div className="invalid-message">
-                      Please enter a valid price.
-                    </div>
-                  )}
-                </>
-              )}
-              <div className="buy-popup-buttons clearfix">
-                <button
-                  className="buy-button"
-                  onClick={buyNowOnClick}
-                >
-                  Check out now
-                </button>
-                <button
-                  className="buy-button"
-                  onClick={addToCartOnClick}
-                >
-                  Add to Cart
-                </button>
-                <a
-                  className="buy-popup-cart-link"
-                  onClick={() => {
-                    dispatch(openPopup('cart-popup'))
-                  }}
-                >
-                  View cart
-                </a>
+      <Scrollbars noScrollX={true}>
+        <header>
+          <Planes />
+          <div className="buy-popup-header-content">
+            <div className="buy-popup-title">
+              <h1>{ product.name }</h1>
+              <h2>{ product.type }</h2>
+            </div>
+            <div className="buy-popup-actions">
+              <div className="buy-popup-form">
+                {product.hasFixedPrice && (
+                  <p>{ product.fixedPrice }</p>
+                )}
+                {!product.hasFixedPrice && (
+                  <>
+                    <label htmlFor="suggested-price">Name your price!</label>
+                    {/* TODO: Use Intl.NumberFormat and type intent timeout to validate and format the state */}
+                    <span className="buy-popup-currency-symbol">€</span>
+                    <input
+                      name="suggested-price"
+                      onChange={suggestedPriceOnChange}
+                      type="text"
+                      value={suggestedPrice}
+                    />
+                    <small>Minimum price: { product.flexPriceMinimum } €</small>
+                    {!valid && (
+                      <div className="invalid-message">
+                        Please enter a valid price.
+                      </div>
+                    )}
+                  </>
+                )}
+                <div className="buy-popup-buttons clearfix">
+                  <button
+                    className="buy-button"
+                    onClick={buyNowOnClick}
+                  >
+                    Check out now
+                  </button>
+                  <button
+                    className="buy-button"
+                    onClick={addToCartOnClick}
+                  >
+                    Add to Cart
+                  </button>
+                  <a
+                    className="buy-popup-cart-link"
+                    onClick={() => {
+                      dispatch(openPopup('cart-popup'))
+                    }}
+                  >
+                    View cart
+                  </a>
+                </div>
               </div>
             </div>
+            <PlayPauseButton
+              playing={false}
+              onClick={() => {}}
+            />
           </div>
-          <PlayPauseButton
-            playing={false}
-            onClick={() => {}}
-          />
+        </header>
+        <div className="buy-popup-details">
+            <h2>Details</h2>
+            <div dangerouslySetInnerHTML={{__html: product.description}} />
         </div>
-      </header>
-      <div className="buy-popup-details">
-        <Scrollbars>
-          <h2>Details</h2>
-          <div dangerouslySetInnerHTML={{__html: product.description}} />
-        </Scrollbars>
-      </div>
+      </Scrollbars>
     </section>
   )
 }

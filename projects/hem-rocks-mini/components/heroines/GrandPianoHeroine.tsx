@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { find } from 'lodash'
 import { activateApp } from '../../modules/app/actions'
-import { SpeakerButton } from '../../../../lib/packages/hem-buttons'
+import { MuteButton } from '../../../../lib/modules/player'
 import { LaunchBuyPopupButton } from '../index'
 import { RootState } from '../../index'
 
@@ -27,10 +27,7 @@ function GrandPianoHeroineAlternate(): ReactElement {
             dispatch(activateApp())
           }}
         >
-          <SpeakerButton
-            muted={false}
-            setMuted={() => {}}
-          />
+          <MuteButton />
         </div>
         <div className="grand-piano-heroine-text">
           <h2>New in Sound Library: Grand Piano</h2>

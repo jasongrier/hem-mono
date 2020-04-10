@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 
 interface IProps {
   muted: boolean
-  setMuted: (muted: boolean) => void
+  onSetMuted: (muted: boolean) => void
 }
 
 const styleSheet = `
@@ -68,7 +68,7 @@ const styleSheet = `
   }
 `
 
-function SpeakerButton({ muted, setMuted }: IProps): ReactElement {
+function SpeakerButton({ muted, onSetMuted }: IProps): ReactElement {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: styleSheet }} />
@@ -77,7 +77,7 @@ function SpeakerButton({ muted, setMuted }: IProps): ReactElement {
           hem-speaker-button
           ${muted ? '' : 'volume-up'}
         `}
-        onClick={() => setMuted(!muted)}
+        onClick={() => onSetMuted(!muted)}
       >
         <span></span>
         <span></span>
