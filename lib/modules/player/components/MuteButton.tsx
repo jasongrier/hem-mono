@@ -1,36 +1,50 @@
 import React, { ReactElement, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { SpeakerButton } from '../../../packages/hem-buttons'
-import { mute, unmute } from '../index'
+import { SpeakerButton as BaseSpeakerButton } from '../../../packages/hem-buttons'
+import { ITrack, playPlayer, mutePlayer, unmutePlayer, unpausePlayer } from '../index'
 
 interface IProps {
-
+  canStartPlayback?: boolean
+  crossedState?: 'muted' | 'unmuted'
+  track: ITrack
 }
 
-function MuteButton({ }: IProps): ReactElement {
-  const { muted } = useSelector((state: any) => ({
+function MuteButton({ canStartPlayback, crossedState, track }: IProps): ReactElement {
+  const { currentTrackId, muted, playing } = useSelector((state: any) => ({
+    currentTrackId: state.player.currentTrackId,
     muted: state.player.muted,
+    playing: state.player.playing,
   }))
 
   const dispatch = useDispatch()
 
-  const onSetMuted = useCallback(
-    function onSetMutedFn(val: boolean) {
-      if (val) {
-        dispatch(mute())
+  const speakerButtonOnClick = useCallback(
+    function speakerButtonOnClick() {
+      if (muted) {
+        dispatch(unmutePlayer())
+
+        if (canStartPlayback && !playing && currentTrackId) {
+          console.log(1)
+          dispatch(unpausePlayer())
+        }
+
+        else if (canStartPlayback && !playing && track) {
+          dispatch(playPlayer(track))
+        }
       }
 
       else {
-        dispatch(unmute())
+        dispatch(mutePlayer())
       }
-    }, [muted],
+    }, [playing, muted],
   )
 
   return (
     <div className="hem-player-mute-button">
-      <SpeakerButton
+      <BaseSpeakerButton
+        crossedState={crossedState}
         muted={muted}
-        onSetMuted={onSetMuted}
+        onClick={speakerButtonOnClick}
       />
     </div>
   )

@@ -1,57 +1,90 @@
 import { AnyAction } from 'redux'
 
+export interface ITrack {
+  id: string
+  type: 'local' | 'soundcloud'
+  resource: string
+}
+
 export interface IState {
   currentTrackId: string | null
+  currentTrackType: string | null
+  currentTrackResource: string | null
+  inited: boolean
   muted: boolean
   playing: boolean
+  playerInstance: any
 }
 
-export const LOAD = 'LOAD'
-export const MUTE = 'MUTE'
-export const PAUSE = 'PAUSE'
-export const PLAY = 'PLAY'
-export const UNMUTE = 'UNMUTE'
+export const MUTE_PLAYER = 'MUTE_PLAYER'
+export const PAUSE_PLAYER = 'PAUSE_PLAYER'
+export const PLAY_PLAYER = 'PLAY_PLAYER'
+export const SET_PLAYER_INSTANCE = 'SET_PLAYER_INSTANCE'
+export const UNMUTE_PLAYER = 'UNMUTE_PLAYER'
+export const UNPAUSE_PLAYER = 'UNPAUSE_PLAYER'
 
-export interface ILoad extends AnyAction {
-  type: typeof LOAD
-  payload: string
-}
-
-export interface IMute extends AnyAction {
-  type: typeof MUTE
+export interface IMutePlayer extends AnyAction {
+  type: typeof MUTE_PLAYER
   payload: null
 }
 
-export interface IPause extends AnyAction {
-  type: typeof PAUSE
+export interface IPausePlayer extends AnyAction {
+  type: typeof PAUSE_PLAYER
   payload: null
 }
 
-export interface IPlay extends AnyAction {
-  type: typeof PLAY
+export interface IPlayPlayer extends AnyAction {
+  type: typeof PLAY_PLAYER
+  payload: ITrack
+}
+
+export interface ISetPlayerInstance extends AnyAction {
+  type: typeof SET_PLAYER_INSTANCE
   payload: null
 }
 
-export interface IUnmute extends AnyAction {
-  type: typeof UNMUTE
+export interface IUnmutePlayer extends AnyAction {
+  type: typeof UNMUTE_PLAYER
+  payload: null
+}
+
+export interface IUnpausePlayer extends AnyAction {
+  type: typeof UNPAUSE_PLAYER
   payload: null
 }
 
 export type Action =
-  ILoad
-  | IMute
-  | IPause
-  | IPlay
-  |IUnmute
+  IMutePlayer
+  | IPausePlayer
+  | IPlayPlayer
+  | ISetPlayerInstance
+  | IUnmutePlayer
+  | IUnpausePlayer
+
+export {
+  mutePlayer,
+  pausePlayer,
+  playPlayer,
+  setPlayerInstance,
+  unmutePlayer,
+  unpausePlayer,
+} from './actions'
 
 
-export { load, mute, pause, play, unmute } from './actions'
+export {
+  MuteButton,
+  PauseButton,
+  ProgressBar,
+  StopButton,
+  TrackPlayPauseButton,
+} from './components'
 
 export { reducer as playerReducer } from './reducer'
 
-export { MuteButton } from './components'
-export { PauseButton } from './components'
-export { PlayButton } from './components'
-export { PlayPauseButton } from './components'
-export { ProgressBar } from './components'
-export { StopButton } from './components'
+export {
+  mutePlayerSaga,
+  pausePlayerSaga,
+  playPlayerSaga,
+  unmutePlayerSaga,
+  unpausePlayerSaga,
+} from './sagas'

@@ -10,7 +10,7 @@ function ProductTile({ product }: IProps): ReactElement {
 
   return (
     <article className="product-tile">
-      <h1>{ product.title }</h1>
+      <h1>{ product.name }</h1>
       {productImage && (
         <img
           src={product.images[0].src}

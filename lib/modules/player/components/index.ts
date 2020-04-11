@@ -1,6 +1,5 @@
 export { default as MuteButton } from './MuteButton'
 export { default as PauseButton } from './PauseButton'
-export { default as PlayButton } from './PlayButton'
-export { default as PlayPauseButton } from './PlayPauseButton'
+export { default as TrackPlayPauseButton } from './TrackPlayPauseButton'
 export { default as ProgressBar } from './ProgressBar'
 export { default as StopButton } from './StopButton'

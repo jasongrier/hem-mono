@@ -26,7 +26,7 @@ function App(): ReactElement {
 
   const dispatch = useDispatch()
 
-  useEffect(function checkOnInit() {
+  useEffect(function init() {
     checkScrollTop()
   }, [])
 

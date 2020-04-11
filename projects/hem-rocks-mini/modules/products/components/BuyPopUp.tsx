@@ -4,6 +4,7 @@ import { find, isNaN } from 'lodash'
 import Scrollbars from 'react-scrollbars-custom'
 import { PlayPauseButton } from '../../../../../lib/packages/hem-buttons'
 import { closePopup, openPopup } from '../../../../../lib/modules/popups'
+import { TrackPlayPauseButton } from '../../../../../lib/modules/player'
 import { Planes } from '../../../../../lib/packages/hem-placemats'
 import { IProduct, addProductToCart } from '../../products'
 import { RootState } from '../../../index'
@@ -133,9 +134,12 @@ function BuyPopUp({ product }: IProps): ReactElement {
                 </div>
               </div>
             </div>
-            <PlayPauseButton
-              playing={false}
-              onClick={() => {}}
+            <TrackPlayPauseButton
+              track={{
+                id: product.slug,
+                type: 'soundcloud',
+                resource: product.soundCloudTrackId,
+              }}
             />
           </div>
         </header>
