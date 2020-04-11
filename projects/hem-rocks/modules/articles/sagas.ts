@@ -9,7 +9,7 @@ function* fetchIndex({ payload: pathToIndex }: any) {
   if (state.articles.requests.indexOf(pathToIndex) > -1) return
 
   try {
-    const res = yield call(fetch, `/static/content/compiled/${pathToIndex}/index.json`);
+    const res = yield call(fetch, `/static/content/compiled/${pathToIndex}/index.json`)
     const articles = yield res.json()
 
     yield put(indexReceived(articles, pathToIndex))

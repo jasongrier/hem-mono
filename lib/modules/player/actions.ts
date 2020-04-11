@@ -1,43 +1,51 @@
-import { AnyAction } from 'redux'
 import {
-  LOAD,
-  MUTE,
-  PAUSE,
-  PLAY,
-  UNMUTE,
+  MUTE_PLAYER,
+  PAUSE_PLAYER,
+  PLAY_PLAYER,
+  SET_PLAYER_INSTANCE,
+  UNMUTE_PLAYER,
+  UNPAUSE_PLAYER,
 
   Action,
+
+  ITrack,
 } from './index'
 
-const load = (trackId: string): Action => ({
-  type: LOAD,
-  payload: trackId,
-})
-
-const mute = (): Action => ({
-  type: MUTE,
+const mutePlayer = (): Action => ({
+  type: MUTE_PLAYER,
   payload: null,
 })
 
-const pause = (): Action => ({
-  type: PAUSE,
+const pausePlayer = (): Action => ({
+  type: PAUSE_PLAYER,
   payload: null,
 })
 
-const play = (): Action => ({
-  type: PLAY,
+const playPlayer = (track: ITrack): Action => ({
+  type: PLAY_PLAYER,
+  payload: track,
+})
+
+const setPlayerInstance = (player: any): Action => ({
+  type: SET_PLAYER_INSTANCE,
+  payload: player,
+})
+
+const unmutePlayer = (): Action => ({
+  type: UNMUTE_PLAYER,
   payload: null,
 })
 
-const unmute = (): Action => ({
-  type: UNMUTE,
+const unpausePlayer = (): Action => ({
+  type: UNPAUSE_PLAYER,
   payload: null,
 })
 
 export {
-  load,
-  mute,
-  pause,
-  play,
-  unmute
+  mutePlayer,
+  pausePlayer,
+  playPlayer,
+  setPlayerInstance,
+  unmutePlayer,
+  unpausePlayer,
 }

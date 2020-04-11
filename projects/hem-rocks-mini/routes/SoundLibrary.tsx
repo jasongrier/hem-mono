@@ -4,7 +4,8 @@ import Scrollbars from 'react-scrollbars-custom'
 import { LaunchBuyPopupButton } from '../components'
 import { setCurrentProduct } from '../modules/products'
 import { PopupContainer, openPopup } from '../../../lib/modules/popups'
-import { CloseButton, PlayPauseButton } from '../../../lib/packages/hem-buttons'
+import { TrackPlayPauseButton } from '../../../lib/modules/player'
+import { CloseButton } from '../../../lib/packages/hem-buttons'
 import { Planes } from '../../../lib/packages/hem-placemats'
 import { RootState } from '../index'
 
@@ -65,10 +66,11 @@ function SoundLibrary(): ReactElement {
               <p>{ pack.blurb }</p>
             </div>
             <div className="main-content-box-actions">
-              <PlayPauseButton
-                playing={false}
-                onClick={() => {}}
-              />
+              <TrackPlayPauseButton track={{
+                id: pack.slug,
+                type: 'soundcloud',
+                resource: pack.soundCloudTrackId,
+              }}/>
               <LaunchBuyPopupButton product={pack} />
             </div>
           </div>

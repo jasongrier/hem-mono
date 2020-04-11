@@ -1,7 +1,6 @@
 import React, { ReactElement } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { find } from 'lodash'
-import { activateApp } from '../../modules/app/actions'
 import { MuteButton } from '../../../../lib/modules/player'
 import { LaunchBuyPopupButton } from '../index'
 import { RootState } from '../../index'
@@ -11,8 +10,6 @@ function GrandPianoHeroineAlternate(): ReactElement {
     allProducts: state.products.products,
   }))
 
-  const dispatch = useDispatch()
-
   const grandPianoProduct = find(allProducts, { slug: 'grand-piano' })
 
   if (!grandPianoProduct) return (<div />)
@@ -21,13 +18,15 @@ function GrandPianoHeroineAlternate(): ReactElement {
     <div className="grand-piano-heroine">
       <div className="grand-piano-heroine-image" />
       <div className="grand-piano-heroine-details">
-        <div
-          className="grand-piano-heroine-speaker-button"
-          onClick={() => {
-            dispatch(activateApp())
-          }}
-        >
-          <MuteButton />
+        <div>
+          <MuteButton
+            canStartPlayback={true}
+            track={{
+              id: grandPianoProduct.slug,
+              type: 'soundcloud',
+              resource: grandPianoProduct.soundCloudTrackId,
+            }}
+          />
         </div>
         <div className="grand-piano-heroine-text">
           <h2>New in Sound Library: Grand Piano</h2>

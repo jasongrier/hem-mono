@@ -16,6 +16,7 @@ export interface IProduct {
   images: IProductImage[]
   tags: string[]
   name: string
+  soundCloudTrackId: string
   slug: string
   type: string
   userSuggestedPrice: number

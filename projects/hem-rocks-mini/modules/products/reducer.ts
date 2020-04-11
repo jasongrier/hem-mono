@@ -4,7 +4,7 @@ import produce from 'immer'
 import uuid from 'uuid/v1'
 import { IState, SET_CURRENT_PRODUCT, ADD_PRODUCT_TO_CART, REMOVE_PRODUCT_FROM_CART } from './index'
 
-function fakeProduct(tag: string) {
+function fakeProduct(tag: string, soundCloudTrackId: string, slug: string) {
   return {
     blurb: "I'm baby austin flexitarian artisan typewriter vice tofu crucifix. Pinterest truffaut stumptown, raw denim offal viral four dollar toast man bun. Church-key cardigan authentic, microdosing chambray literally seitan quinoa mixtape man bun. Viral meggings master cleanse 90's affogato raclette.",
     description: `
@@ -32,7 +32,8 @@ function fakeProduct(tag: string) {
     images: [],
     tags: [tag],
     name: 'Grand Piano',
-    slug: 'grand-piano',
+    soundCloudTrackId,
+    slug,
     type: 'Sample Pack for Ableton Live',
     userSuggestedPrice: null,
     videos: [],
@@ -46,18 +47,9 @@ const initialState: IState = {
   ],
   currentProduct: null,
   products: [
-    fakeProduct('sound-library'),
-    fakeProduct('sound-library'),
-    fakeProduct('sound-library'),
-    fakeProduct('label'),
-    fakeProduct('label'),
-    fakeProduct('label'),
-    fakeProduct('compilation'),
-    fakeProduct('compilation'),
-    fakeProduct('compilation'),
-    fakeProduct('products'),
-    fakeProduct('products'),
-    fakeProduct('products'),
+    fakeProduct('sound-library', '310321087', 'grand-piano'),
+    fakeProduct('sound-library', '310321091', 'foo'),
+    fakeProduct('sound-library', '310321093', 'bar'),
   ],
 }
 

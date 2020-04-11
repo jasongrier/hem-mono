@@ -1,19 +1,24 @@
 import { AnyAction } from 'redux'
 import produce from 'immer'
 import {
-  LOAD,
-  MUTE,
-  PAUSE,
-  PLAY,
-  UNMUTE,
+  MUTE_PLAYER,
+  PAUSE_PLAYER,
+  PLAY_PLAYER,
+  SET_PLAYER_INSTANCE,
+  UNMUTE_PLAYER,
 
   IState,
+  UNPAUSE_PLAYER,
 } from './index'
 
 const initialState: IState = {
   currentTrackId: null,
+  currentTrackType: null,
+  currentTrackResource: null,
+  inited: false,
   muted: true,
   playing: false,
+  playerInstance: null,
 }
 
 const reducer = (
@@ -21,33 +26,42 @@ const reducer = (
   { type, payload }: AnyAction,
 ): IState => {
   switch (type) {
-    case LOAD: {
+    case MUTE_PLAYER: {
       return produce(state, draftState => {
-        draftState.currentTrackId = payload
+        draftState.muted = true
       })
     }
 
-    case MUTE: {
-      return produce(state, draftState => {
-        draftState.muted = payload
-      })
-    }
-
-    case PAUSE: {
+    case PAUSE_PLAYER: {
       return produce(state, draftState => {
         draftState.playing = false
       })
     }
 
-    case PLAY: {
+    case PLAY_PLAYER: {
       return produce(state, draftState => {
         draftState.playing = true
+        draftState.currentTrackId = payload.id
+        draftState.currentTrackType = payload.type
+        draftState.currentTrackResource = payload.resource
       })
     }
 
-    case UNMUTE: {
+    case SET_PLAYER_INSTANCE: {
       return produce(state, draftState => {
-        draftState.muted = true
+        draftState.playerInstance = payload
+      })
+    }
+
+    case UNMUTE_PLAYER: {
+      return produce(state, draftState => {
+        draftState.muted = false
+      })
+    }
+
+    case UNPAUSE_PLAYER: {
+      return produce(state, draftState => {
+        draftState.playing = true
       })
     }
 

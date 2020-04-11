@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import { combineReducers, createStore, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
+import createSagaMiddleware from 'redux-saga'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { popupsReducer } from '../../lib/modules/popups'
 import { playerReducer } from '../../lib/modules/player'
@@ -20,12 +20,30 @@ const rootReducer = combineReducers({
   siteContent: siteContentReducer,
 })
 
+const sagaMiddleware = createSagaMiddleware()
+
 const store = createStore(
   rootReducer,
   composeWithDevTools(
-    applyMiddleware(thunk),
+    applyMiddleware(sagaMiddleware),
   )
 )
+
+import { mutePlayerSaga } from '../../lib/modules/player'
+sagaMiddleware.run(mutePlayerSaga)
+
+import { pausePlayerSaga } from '../../lib/modules/player'
+sagaMiddleware.run(pausePlayerSaga)
+
+import { playPlayerSaga } from '../../lib/modules/player'
+sagaMiddleware.run(playPlayerSaga)
+
+import { unmutePlayerSaga } from '../../lib/modules/player'
+sagaMiddleware.run(unmutePlayerSaga)
+
+import { unpausePlayerSaga } from '../../lib/modules/player'
+sagaMiddleware.run(unpausePlayerSaga)
+
 
 const Root = (
   <Provider store={store}>

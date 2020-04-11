@@ -2,7 +2,9 @@ import React, { ReactElement } from 'react'
 
 interface IProps {
   muted: boolean
-  onSetMuted: (muted: boolean) => void
+  onClick: () => void
+
+  crossedState?: 'muted' | 'unmuted'
 }
 
 const styleSheet = `
@@ -40,44 +42,56 @@ const styleSheet = `
   .hem-speaker-button span {
     display: block;
     position: absolute;
-    top: 24px;
-    right: 19px;
     width: 2px;
     height: 12px;
     background-color: #fff;
+  }
+
+  .hem-speaker-button span {
+    right: 22px;
+    transform: scaleY(.7);
+  }
+
+  .hem-speaker-button span:nth-child(2) {
+    right: 16px;
+    transform: scaleY(1.6);
+  }
+
+  .hem-speaker-button.crossed span {
+    top: 24px;
+    right: 19px;
     transform: rotate(45deg);
     transform-origin: center;
   }
 
-  .hem-speaker-button span:nth-child(2) {
+  .hem-speaker-button.crossed span:nth-child(2) {
     transform: rotate(-45deg);
   }
 
-  .hem-speaker-button span:nth-child(3) {
+  .hem-speaker-button.crossed span:nth-child(3) {
     display: none;
-  }
-
-  .hem-speaker-button.volume-up span {
-    right: 22px;
-    transform: rotate(0deg) scaleY(.7);
-  }
-
-  .hem-speaker-button.volume-up span:nth-child(2) {
-    right: 16px;
-    transform: rotate(0deg) scaleY(1.6);
   }
 `
 
-function SpeakerButton({ muted, onSetMuted }: IProps): ReactElement {
+function SpeakerButton({ muted, onClick, crossedState = 'unmuted' }: IProps): ReactElement {
+  let crossedClassName
+
+  if (
+    crossedState === 'muted' && muted
+    || crossedState === 'unmuted' && !muted
+  ) {
+    crossedClassName = 'crossed'
+  }
+
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: styleSheet }} />
       <div
         className={`
           hem-speaker-button
-          ${muted ? '' : 'volume-up'}
+          ${crossedClassName}
         `}
-        onClick={() => onSetMuted(!muted)}
+        onClick={onClick}
       >
         <span></span>
         <span></span>
