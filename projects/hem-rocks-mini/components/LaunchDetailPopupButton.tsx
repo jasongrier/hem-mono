@@ -4,27 +4,28 @@ import { openPopup } from '../../../lib/modules/popups'
 import { setCurrentProduct, IProduct } from '../modules/products'
 
 interface IProps {
-  product: IProduct
+  contentItem: IContentItem
+  text: string
 }
 
-function LaunchBuyPopupButton({ product }: IProps): ReactElement {
+function LaunchDetailPopupButton({ contentItem, text }: IProps): ReactElement {
   const dispatch = useDispatch()
 
   const onClick = useCallback(
     function onClickFn() {
-      dispatch(setCurrentProduct(product))
-      dispatch(openPopup('buy-popup'))
+      dispatch(setCurrentContentItem(contentItem))
+      dispatch(openPopup('detail-popup'))
     }, [],
   )
 
   return (
     <button
-      className="buy-button"
+      className="launch-detail-popup-button"
       onClick={onClick}
     >
-      Download
+      { text }
     </button>
   )
 }
 
-export default LaunchBuyPopupButton
+export default LaunchDetailPopupButton
