@@ -6,21 +6,22 @@ import { PlayPauseButton } from '../../../../../lib/packages/hem-buttons'
 import { closePopup, openPopup } from '../../../../../lib/modules/popups'
 import { TrackPlayPauseButton } from '../../../../../lib/modules/player'
 import { Planes } from '../../../../../lib/packages/hem-placemats'
-import { IProduct, addProductToCart } from '../../products'
+import { IProduct, addProductToCart } from '../../content'
 import { RootState } from '../../../index'
 
 interface IProps {
   product: IProduct
 }
 
-function BuyPopUp({ product }: IProps): ReactElement {
+function DetailPopUp({ product }: IProps): ReactElement {
   const { cartProducts } = useSelector((state: RootState) => ({
-    cartProducts: state.products.cartProducts,
+    cartProducts: state.cart.products,
   }))
 
   const dispatch = useDispatch()
 
   const [suggestedPrice, setSuggestedPrice] = useState((product ? product.flexPriceMinimum : 0) as any)
+
   const [valid, setValid] = useState(true)
 
   function addToCart() {
@@ -152,4 +153,4 @@ function BuyPopUp({ product }: IProps): ReactElement {
   )
 }
 
-export default BuyPopUp
+export default DetailPopUp

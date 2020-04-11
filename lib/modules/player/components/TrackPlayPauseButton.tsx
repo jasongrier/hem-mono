@@ -17,8 +17,6 @@ function TrackPlayPauseButton({ track }: IProps): ReactElement {
 
   const playPauseButtonOnClick = useCallback(
     function playPauseButtonOnClick() {
-      console.log(track.id)
-
       if (track.id !== currentTrackId) {
         dispatch(playPlayer(track))
       }
