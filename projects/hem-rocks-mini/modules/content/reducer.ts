@@ -1,5 +1,4 @@
 import { AnyAction } from 'redux'
-import { clone } from 'lodash'
 import produce from 'immer'
 import uuid from 'uuid/v1'
 import {
@@ -7,6 +6,8 @@ import {
 
   IState,
 } from './index'
+
+import contentItems from './data'
 
 function fakeContentItem(tag: string, soundCloudTrackId: string, slug: string) {
   return {
@@ -44,13 +45,11 @@ function fakeContentItem(tag: string, soundCloudTrackId: string, slug: string) {
   }
 }
 
+console.log(contentItems)
+
 const initialState: IState = {
   currentContentItem: null,
-  contentItems: [
-    fakeContentItem('sound-library', '310321087', 'grand-piano'),
-    fakeContentItem('sound-library', '310321091', 'foo'),
-    fakeContentItem('sound-library', '310321093', 'bar'),
-  ],
+  contentItems,
 }
 
 const reducer = (

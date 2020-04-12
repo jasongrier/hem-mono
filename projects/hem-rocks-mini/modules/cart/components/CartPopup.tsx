@@ -42,7 +42,6 @@ function CartPopup(): ReactElement {
   function getSubotal() {
     // @ts-ignore
     return cartProducts.reduce((acc: number, product: IProduct) => {
-      console.log(acc, getFinalPrice(product))
       return acc + getFinalPrice(product)
     }, 0)
   }
