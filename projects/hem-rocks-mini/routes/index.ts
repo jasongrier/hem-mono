@@ -1,4 +1,4 @@
-export { default as Info } from './Info'
+// export { default as Info } from './Info'
 export { default as Label } from './Label'
 export { default as MadeWithSlOneShowcase } from './MadeWithSlOneShowcase'
 export { default as MadeWithSlOneSurvey } from './MadeWithSlOneSurvey'

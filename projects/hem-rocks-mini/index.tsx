@@ -8,16 +8,16 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import { popupsReducer } from '../../lib/modules/popups'
 import { playerReducer } from '../../lib/modules/player'
 import { App, appReducer } from './modules/app'
-import { productsReducer } from './modules/products'
-import { siteContentReducer } from './modules/site-content'
+import { cartReducer } from './modules/cart'
+import { contentReducer } from './modules/content'
 import './styles'
 
 const rootReducer = combineReducers({
   app: appReducer,
+  cart: cartReducer,
+  content: contentReducer,
   player: playerReducer,
   popups: popupsReducer,
-  products: productsReducer,
-  siteContent: siteContentReducer,
 })
 
 const sagaMiddleware = createSagaMiddleware()

@@ -2,9 +2,13 @@ import { AnyAction } from 'redux'
 import { clone } from 'lodash'
 import produce from 'immer'
 import uuid from 'uuid/v1'
-import { IState, SET_CURRENT_PRODUCT, ADD_PRODUCT_TO_CART, REMOVE_PRODUCT_FROM_CART } from './index'
+import {
+  SET_CURRENT_CONTENT_ITEM,
 
-function fakeProduct(tag: string, soundCloudTrackId: string, slug: string) {
+  IState,
+} from './index'
+
+function fakeContentItem(tag: string, soundCloudTrackId: string, slug: string) {
   return {
     blurb: "I'm baby austin flexitarian artisan typewriter vice tofu crucifix. Pinterest truffaut stumptown, raw denim offal viral four dollar toast man bun. Church-key cardigan authentic, microdosing chambray literally seitan quinoa mixtape man bun. Viral meggings master cleanse 90's affogato raclette.",
     description: `
@@ -41,15 +45,11 @@ function fakeProduct(tag: string, soundCloudTrackId: string, slug: string) {
 }
 
 const initialState: IState = {
-  cartProducts: [
-    // fakeProduct('sound-library'),
-    // fakeProduct('sound-library'),
-  ],
-  currentProduct: null,
-  products: [
-    fakeProduct('sound-library', '310321087', 'grand-piano'),
-    fakeProduct('sound-library', '310321091', 'foo'),
-    fakeProduct('sound-library', '310321093', 'bar'),
+  currentContentItem: null,
+  contentItems: [
+    fakeContentItem('sound-library', '310321087', 'grand-piano'),
+    fakeContentItem('sound-library', '310321091', 'foo'),
+    fakeContentItem('sound-library', '310321093', 'bar'),
   ],
 }
 
@@ -58,29 +58,9 @@ const reducer = (
   { payload, type }: AnyAction,
 ): IState => {
   switch (type) {
-    case ADD_PRODUCT_TO_CART: {
+    case SET_CURRENT_CONTENT_ITEM: {
       return produce(state, draftState => {
-        const product = clone(payload.product)
-
-        if (!product.hasFixedPrice) {
-          product.userSuggestedPrice = payload.suggestedPrice
-        }
-
-        draftState.cartProducts = draftState.cartProducts.concat([product])
-      })
-    }
-
-    case REMOVE_PRODUCT_FROM_CART: {
-      return produce(state, draftState => {
-        draftState.cartProducts = draftState.cartProducts.filter(product =>
-          product.id !== payload
-        )
-      })
-    }
-
-    case SET_CURRENT_PRODUCT: {
-      return produce(state, draftState => {
-        draftState.currentProduct = payload
+        draftState.currentContentItem = payload
       })
     }
 
