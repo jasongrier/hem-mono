@@ -2,7 +2,8 @@ import React, { ReactElement, useEffect } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import $ from 'jquery'
-import { BuyPopUp, CartPopup } from '../../products'
+import { CartPopup } from '../../cart'
+import { DetailPopUp } from '../../content'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup } from '../../../../../lib/modules/popups'
 import { MainNavItem, TopBar } from '../../../components'
@@ -18,10 +19,10 @@ import {
 } from '../../../routes'
 
 function App(): ReactElement {
-  const { activated, currentProduct, topBarCollapsed } = useSelector((state: RootState) => ({
+  const { activated, currentContentItem, topBarCollapsed } = useSelector((state: RootState) => ({
     activated: state.app.activated,
     topBarCollapsed: state.app.topBarCollapsed,
-    currentProduct: state.products.currentProduct,
+    currentContentItem: state.content.currentContentItem,
   }))
 
   const dispatch = useDispatch()
@@ -77,54 +78,6 @@ function App(): ReactElement {
         Pay what you can. All devices run in Ableton Live Lite
       </div>
 
-      <div className="sub-heroine new-devices-heroine" hidden>
-        <h2>New Devices</h2>
-        <div className="sub-heroine-columns">
-          <div className="sub-heroine-column">
-            {/* <ProductTile
-              title="Seurat 2"
-              featureList={[
-                'Supports multiple Seurat devices per track for more complex patterns',
-                'Generates both completely random and semi-random melodic patterns',
-                'Works entirely in Live Lite', // TODO: Place  repeated string in config
-              ]}
-              imgSrc=""
-              imgAlt=""
-              productId=""
-              videoPopUpId=""
-            /> */}
-          </div>
-          <div className="sub-heroine-column">
-            {/* <ProductTile
-              title="Chord Brush"
-              featureList={[
-                'Supports multiple Seurat devices per track for more complex patterns',
-                'Generates both completely random and semi-random melodic patterns',
-                'Works entirely in Live Lite', // TODO: Place  repeated string in config
-              ]}
-              imgSrc=""
-              imgAlt=""
-              productId=""
-              videoPopUpId=""
-            /> */}
-          </div>
-          <div className="sub-heroine-column">
-            {/* <ProductTile
-              title="Voice Splitter"
-              featureList={[
-                'Takes a single melody line and passes it around to different instruments',
-                'Can go note-by-note or according to various patterns',
-                'Works entirely in Live Lite', // TODO: Place  repeated string in config
-              ]}
-              imgSrc=""
-              imgAlt=""
-              productId=""
-              videoPopUpId=""
-            /> */}
-          </div>
-        </div>
-      </div>
-
       <main className="main-content">
         <div className="tabs-content">
           <Switch>
@@ -136,10 +89,10 @@ function App(): ReactElement {
         </div>
       </main>
       <PopupContainer
-        id="buy-popup"
+        id="detail-popup"
         closeIcon={CloseButton}
       >
-        <BuyPopUp product={currentProduct} />
+        <DetailPopUp contentItem={currentContentItem} />
       </PopupContainer>
       <PopupContainer
         id="cart-popup"

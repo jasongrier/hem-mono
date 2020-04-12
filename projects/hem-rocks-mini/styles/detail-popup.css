@@ -1,23 +1,23 @@
-.buy-popup {
+.detail-popup {
   height: 100%;
 }
 
-.buy-popup .ScrollbarsCustom-Wrapper[style] {
+.detail-popup .ScrollbarsCustom-Wrapper[style] {
   right: 0 !important;
 }
 
-#buy-popup .hem-popup-content {
+#detail-popup .hem-popup-content {
   top: 20px;
   height: calc(100vh - 40px);
 }
 
-.buy-popup header {
+.detail-popup header {
   position: relative;
   width: 800px;
   height: 358px;
 }
 
-.buy-popup header .planes {
+.detail-popup header .planes {
   position: absolute;
   top: 0;
   left: 0;
@@ -27,7 +27,7 @@
   opacity: 0.4;
 }
 
-.buy-popup header .buy-popup-header-content {
+.detail-popup header .detail-popup-header-content {
   position: absolute;
   top: 0;
   left: 0;
@@ -37,7 +37,7 @@
   padding: 0 20px 40px 20px;
 }
 
-.buy-popup header h1 {
+.detail-popup header h1 {
   width: 760px;
   height: 60px;
   line-height: 60px;
@@ -48,7 +48,7 @@
   text-transform: uppercase;
 }
 
-.buy-popup header h2 {
+.detail-popup header h2 {
   width: 760px;
   margin: 0 0 20px 0;
   padding: 0;
@@ -56,28 +56,28 @@
   color: #666;
 }
 
-.buy-popup-actions {
+.detail-popup-actions {
   width: 760px;
 }
 
-.buy-popup-form {
+.detail-popup-form {
   position: relative;
   width: 430px;
   margin-top: 30px;
 }
 
-.buy-popup header input,
-.buy-popup header label,
-.buy-popup header small {
+.detail-popup header input,
+.detail-popup header label,
+.detail-popup header small {
   display: block;
   margin-bottom: 10px;
 }
 
-.buy-popup header label {
+.detail-popup header label {
   font-size: 20px;
 }
 
-.buy-popup header input {
+.detail-popup header input {
   width: 200px;
   height: 60px;
   padding: 0 10px;
@@ -85,29 +85,29 @@
   font-size: 24px;
 }
 
-.buy-popup .invalid-message {
+.detail-popup .invalid-message {
   position: absolute;
   top: 56px;
   right: 15px;
   color: red;
 }
 
-.buy-popup header small {
+.detail-popup header small {
   font-size: 11px;
 }
 
-.buy-popup-currency-symbol {
+.detail-popup-currency-symbol {
   position: absolute;
   top: 52px;
   left: 195px;
   font-size: 24px;
 }
 
-.buy-popup-buttons {
+.detail-popup-buttons {
   margin-top: 30px;
 }
 
-.buy-popup-buttons button {
+.detail-popup-buttons button {
   float: left;
   width: 200px;
   height: 50px;
@@ -117,7 +117,7 @@
   cursor: pointer;
 }
 
-.buy-popup-buttons .buy-popup-cart-link {
+.detail-popup-buttons .detail-popup-cart-link {
   display: block;
   position: absolute;
   bottom: -21px;
@@ -129,7 +129,7 @@
   text-align: center;
 }
 
-.buy-popup header .hem-play-pause-button {
+.detail-popup header .hem-play-pause-button {
   position: absolute;
   bottom: 60px;
   right: 60px;
@@ -138,12 +138,12 @@
   background-color: var(--line-orange);
 }
 
-.buy-popup-details {
+.detail-popup-details {
   padding: 30px 0;
   background-color: var(--line-orange);
 }
 
-.hem-popup-content .buy-popup-details h2 {
+.hem-popup-content .detail-popup-details h2 {
   margin-left: -4px;
   font-size: 30px;
 }
