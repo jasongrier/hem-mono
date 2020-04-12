@@ -45,6 +45,7 @@
     "jspdf": "^1.5.3",
     "lazy-require": "^3.5.0",
     "leasot": "^9.3.1",
+    "lines-to-paragraphs": "^1.0.3",
     "lodash": "^4.17.11",
     "marked": "^0.7.0",
     "moment": "^2.24.0",

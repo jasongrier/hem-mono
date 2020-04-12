@@ -21,8 +21,8 @@ import {
 function App(): ReactElement {
   const { activated, currentContentItem, topBarCollapsed } = useSelector((state: RootState) => ({
     activated: state.app.activated,
-    topBarCollapsed: state.app.topBarCollapsed,
     currentContentItem: state.content.currentContentItem,
+    topBarCollapsed: state.app.topBarCollapsed,
   }))
 
   const dispatch = useDispatch()

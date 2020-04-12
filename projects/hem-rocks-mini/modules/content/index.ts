@@ -38,5 +38,7 @@ export interface ISetCurrentContentItem extends AnyAction {
 export type Action = ISetCurrentContentItem
 
 export { setCurrentContentItem } from './actions'
+
 export { reducer as contentReducer } from './reducer'
+
 export { DetailPopUp, ProductTile } from './components'
