@@ -1,14 +1,13 @@
-import React, { ReactElement, useCallback } from 'react'
+import React, { PropsWithChildren, ReactElement, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import { openPopup } from '../../../lib/modules/popups'
-import { setCurrentProduct, IProduct } from '../modules/products'
+import { setCurrentContentItem, IContentItem } from '../modules/content'
 
 interface IProps {
   contentItem: IContentItem
-  text: string
 }
 
-function LaunchDetailPopupButton({ contentItem, text }: IProps): ReactElement {
+function LaunchDetailPopupButton({ children, contentItem }: PropsWithChildren<IProps>): ReactElement {
   const dispatch = useDispatch()
 
   const onClick = useCallback(
@@ -20,10 +19,10 @@ function LaunchDetailPopupButton({ contentItem, text }: IProps): ReactElement {
 
   return (
     <button
-      className="launch-detail-popup-button"
+      className="action-button"
       onClick={onClick}
     >
-      { text }
+      { children }
     </button>
   )
 }

@@ -1,15 +1,14 @@
 import React, { PropsWithChildren, ReactElement } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Scrollbars from 'react-scrollbars-custom'
+import { CloseButton } from '../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup } from '../../../lib/modules/popups'
-import { MainContentBox, LaunchDetailPopupButton } from './index'
-import { setCurrentProduct } from '../modules/products'
+import { MainContentBox } from './index'
+import { setCurrentContentItem } from '../modules/content'
 import { RootState } from '../index'
 
 interface IProps {
   buttonText: string
-  stateSlice: string
-  stateField: string
   tag: string
   title: string
 }
@@ -17,13 +16,11 @@ interface IProps {
 function MainContentList({
   buttonText,
   children,
-  stateSlice,
-  stateField,
   tag,
   title
 }: PropsWithChildren<IProps>): ReactElement {
   const { allContentItems } = useSelector((state: RootState) => ({
-    allContentItems: state[stateSlice][stateField],
+    allContentItems: state.content.contentItems,
   }))
 
   const dispatch = useDispatch()
@@ -31,8 +28,8 @@ function MainContentList({
   const contentItems = allContentItems.filter(item => item.tags.includes(tag))
 
   function launchDetailPopup(pack) {
-    dispatch(setCurrentProduct(pack))
-    dispatch(openPopup('buy-popup'))
+    dispatch(setCurrentContentItem(pack))
+    dispatch(openPopup('detail-popup'))
   }
 
   return (
@@ -55,14 +52,11 @@ function MainContentList({
         {contentItems.map(contentItem => (
           <MainContentBox
             action={launchDetailPopup}
+            buttonText={buttonText}
             key={contentItem.id}
             contentItem={contentItem}
           >
             { children }
-            <LaunchDetailPopupButton
-              contentItem={contentItem}
-              text={ buttonText }
-            />
           </MainContentBox>
         ))}
       </div>
