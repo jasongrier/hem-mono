@@ -1,7 +1,7 @@
 import './app.css'
 import './variables.css'
 
-import './buy-popup.css'
+import './detail-popup.css'
 import './cart-popup.css'
 import './grand-piano-heroine.css'
 import './main-content.css'

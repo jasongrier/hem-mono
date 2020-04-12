@@ -2,12 +2,12 @@ import React, { ReactElement } from 'react'
 import { useSelector } from 'react-redux'
 import { find } from 'lodash'
 import { MuteButton } from '../../../../lib/modules/player'
-import { LaunchBuyPopupButton } from '../index'
+import { LaunchDetailPopupButton } from '../index'
 import { RootState } from '../../index'
 
 function GrandPianoHeroineAlternate(): ReactElement {
   const { allProducts } = useSelector((state: RootState) => ({
-    allProducts: state.products.products,
+    allProducts: state.content.contentItems,
   }))
 
   const grandPianoProduct = find(allProducts, { slug: 'grand-piano' })
@@ -36,7 +36,9 @@ function GrandPianoHeroineAlternate(): ReactElement {
           <p>
             &bull; 1400 One-shots: Bowing, Scraping, Hand Percussion, Cluster Chords, etc.
           </p>
-          <LaunchBuyPopupButton product={grandPianoProduct} />
+          <LaunchDetailPopupButton contentItem={grandPianoProduct}>
+            Download
+          </LaunchDetailPopupButton>
         </div>
       </div>
     </div>

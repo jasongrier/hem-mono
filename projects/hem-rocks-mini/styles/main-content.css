@@ -75,7 +75,7 @@
   background-color: var(--line-orange);
 }
 
-.main-content-box-actions .buy-button {
+.main-content-box-actions .action-button {
   float: left;
   width: 160px;
   height: 60px;

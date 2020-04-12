@@ -1,14 +1,14 @@
 import React, { ReactElement, useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
-import { IProduct } from '../../products'
+import { IContentItem } from '../../content'
 import { RootState } from '../../../index'
 import { removeProductFromCart } from '../actions'
 import { closePopup } from '../../../../../lib/modules/popups'
 
 function CartPopup(): ReactElement {
   const { cartProducts } = useSelector((state: RootState) => ({
-    cartProducts: state.products.cartProducts,
+    cartProducts: state.cart.products,
   }))
 
   const dispatch = useDispatch()
@@ -25,7 +25,7 @@ function CartPopup(): ReactElement {
     }, [],
   )
 
-  function getFinalPrice(product: IProduct) {
+  function getFinalPrice(product: IContentItem) {
     let price
 
     if (product.hasFixedPrice) {
@@ -98,7 +98,7 @@ function CartPopup(): ReactElement {
             </div>
             <div className="cart-popup-checkout">
               <button
-                className="buy-button continue-button"
+                className="action-button continue-button"
                 onClick={() => {
                   dispatch(closePopup())
                 }}
@@ -106,7 +106,7 @@ function CartPopup(): ReactElement {
                 Continue shopping
               </button>
               <button
-                className="buy-button"
+                className="action-button"
                 onClick={checkoutOnClick}
               >
                 Checkout
