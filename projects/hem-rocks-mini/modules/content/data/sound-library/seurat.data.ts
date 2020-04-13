@@ -16,7 +16,7 @@ const seuratData: IContentItem = {
   id: uuid(),
   images: [],
   tags: ['sound-library'],
-  name: 'name',
+  name: 'Seurat',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
   slug: 'slug',

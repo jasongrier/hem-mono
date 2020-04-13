@@ -7,6 +7,7 @@ import { CloseButton } from '../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup } from '../../../lib/modules/popups'
 import { MainContentBox } from './index'
 import { setCurrentContentItem, IContentItem } from '../modules/content'
+import { CampaignMonitorForm } from '../../../lib/components'
 import { RootState } from '../index'
 
 interface IProps {
@@ -17,7 +18,9 @@ interface IProps {
   tag: string
   title: string
 
+  campaignMonitorId?: string
   filters?: string[]
+  highlights?: string[]
   infoPopupText?: string
 }
 
@@ -29,7 +32,9 @@ function MainContentList({
   tag,
   title,
 
+  campaignMonitorId,
   filters,
+  highlights,
   infoPopupText,
 }: IProps): ReactElement {
   const { allContentItems } = useSelector((state: RootState) => ({
@@ -46,10 +51,13 @@ function MainContentList({
     item.tags.includes(tag) && item.published && !item.sticky
   )
 
-  const stickyContentItems = allContentItems.filter(item => item.sticky)
+  let stickyContentItems = allContentItems.filter(
+    item => item.tags.includes(tag) && item.published && item.sticky
+  )
 
   if (filter !== 'all') {
     contentItems = contentItems.filter(item => item.tags.includes(filter))
+    stickyContentItems = stickyContentItems.filter(item => item.tags.includes(filter))
   }
 
   function sortFn(a, b) {
@@ -69,7 +77,7 @@ function MainContentList({
 
   return (
     <header className="main-content-list">
-      <h1>
+      <h1 className={ !blurb ? 'no-blurb' : '' }>
         { title }
         { infoPopupText && (
           <div
@@ -83,9 +91,33 @@ function MainContentList({
         )}
       </h1>
       <div
-        className="main-content-blurb"
+        className={`
+          main-content-blurb
+          ${highlights ? 'has-highlights' : ''}
+        `}
         dangerouslySetInnerHTML={{__html: blurb}}
       />
+      <div className="main-content-highlights clearfix">
+        {highlights && (
+          highlights.map(highlight => (
+            <div
+              className="main-content-highlight"
+              dangerouslySetInnerHTML={{__html: '– ' + highlight}}
+            />
+          ))
+        )}
+        {campaignMonitorId && (
+          <div className="main-content-highlights-mailing-list-form">
+            <CampaignMonitorForm
+              id={campaignMonitorId}
+              hasNameField={false}
+              labelForName={null}
+              labelForEmail="Sign up to receive updates"
+              submitButtonText="Sign up"
+            />
+          </div>
+        )}
+      </div>
       {filters && (
         <div className="main-content-filters clearfix">
           <h3>Filter</h3>
