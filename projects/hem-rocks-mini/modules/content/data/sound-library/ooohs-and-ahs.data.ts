@@ -2,11 +2,11 @@ import { IContentItem } from '../../index'
 import uuid from 'uuid/v1'
 import autop from 'lines-to-paragraphs'
 
-const grandPianoData: IContentItem = {
+const ooohsAndAhsData: IContentItem = {
   blurb: `
   `,
-  date: '01.06.2020',
-  badgeText: 'New in the Library',
+  date: '01.09.2017',
+  badgeText: null,
   description: autop(`
   `),
   featureList: [],
@@ -16,14 +16,14 @@ const grandPianoData: IContentItem = {
   id: uuid(),
   images: [],
   tags: ['sound-library'],
-  name: 'Grand Piano',
+  name: 'Ooohs and Ahs',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
-  slug: 'grand-piano',
-  sticky: true,
+  slug: 'ooohs-and-ahs',
+  sticky: false,
   type: 'Sample Pack for Ableton Live',
   userSuggestedPrice: null,
   videos: [],
 }
 
-export default grandPianoData
+export default ooohsAndAhsData
