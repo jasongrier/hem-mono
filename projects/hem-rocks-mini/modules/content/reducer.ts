@@ -45,8 +45,6 @@ function fakeContentItem(tag: string, soundCloudTrackId: string, slug: string) {
   }
 }
 
-console.log(contentItems)
-
 const initialState: IState = {
   currentContentItem: null,
   contentItems,

@@ -6,7 +6,9 @@ export interface IProductImage {
 }
 
 export interface IContentItem {
+  badgeText: string | null
   blurb: string
+  date: string
   description: string
   featureList: string[]
   fixedPrice: number | null
@@ -16,8 +18,10 @@ export interface IContentItem {
   images: IProductImage[]
   tags: string[]
   name: string
+  published: boolean
   soundCloudTrackId: string
   slug: string
+  sticky: boolean
   type: string
   userSuggestedPrice: number
   videos: string[]
