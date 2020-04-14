@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, ReactElement, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
-import { openPopup } from '../../../lib/modules/popups'
-import { setCurrentContentItem, IContentItem } from '../modules/content'
+import { openPopup } from '../../../../../lib/modules/popups'
+import { setCurrentContentItem, IContentItem } from '../index'
 
 interface IProps {
   contentItem: IContentItem

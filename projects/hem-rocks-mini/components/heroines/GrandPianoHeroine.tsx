@@ -2,10 +2,10 @@ import React, { ReactElement } from 'react'
 import { useSelector } from 'react-redux'
 import { find } from 'lodash'
 import { MuteButton } from '../../../../lib/modules/player'
-import { LaunchDetailPopupButton } from '../index'
+import { LaunchDetailPopupButton } from '../../modules/content'
 import { RootState } from '../../index'
 
-function GrandPianoHeroineAlternate(): ReactElement {
+function GrandPianoHeroine(): ReactElement {
   const { allProducts } = useSelector((state: RootState) => ({
     allProducts: state.content.contentItems,
   }))
@@ -45,4 +45,4 @@ function GrandPianoHeroineAlternate(): ReactElement {
   )
 }
 
-export default GrandPianoHeroineAlternate
+export default GrandPianoHeroine

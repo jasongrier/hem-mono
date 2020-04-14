@@ -1,30 +1,20 @@
 import { AnyAction } from 'redux'
 import {
-  ACTIVATE_APP,
-  SET_CURRENT_TAG,
-  SET_TOP_BAR_COLLAPSED,
-
-  Action,
+  COLLAPSE_TOP_BAR,
+  EXPAND_TOP_BAR,
 } from './index'
 
-// TODO: All projects. Use Action not AnyAction
-const activateApp = (): Action => ({
-  type: ACTIVATE_APP,
+const collapseTopBar = (): AnyAction => ({
+  type: COLLAPSE_TOP_BAR,
   payload: null,
 })
 
-const setCurrentTag = (tag: string | null): Action => ({
-  type: SET_CURRENT_TAG,
-  payload: tag,
-})
-
-const setTopBarCollapsed = (collapsed: boolean): Action => ({
-  type: SET_TOP_BAR_COLLAPSED,
-  payload: collapsed,
+const expandTopBar = (): AnyAction => ({
+  type: EXPAND_TOP_BAR,
+  payload: null,
 })
 
 export {
-  activateApp,
-  setCurrentTag,
-  setTopBarCollapsed,
+  collapseTopBar,
+  expandTopBar,
 }

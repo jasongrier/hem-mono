@@ -4,12 +4,12 @@ import Scrollbars from 'react-scrollbars-custom'
 import { slugify } from 'voca'
 import { compact } from 'lodash'
 import moment from 'moment'
-import { CloseButton } from '../../../lib/packages/hem-buttons'
-import { PopupContainer, openPopup } from '../../../lib/modules/popups'
+import { CloseButton } from '../../../../../lib/packages/hem-buttons'
+import { PopupContainer, openPopup } from '../../../../../lib/modules/popups'
 import { MainContentBox } from './index'
-import { setCurrentContentItem, IContentItem } from '../modules/content'
-import { CampaignMonitorForm } from '../../../lib/components'
-import { RootState } from '../index'
+import { setCurrentContentItem, IContentItem } from '../index'
+import { CampaignMonitorForm } from '../../../../../lib/components'
+import { RootState } from '../../../index'
 
 interface IProps {
   blurb: string

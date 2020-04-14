@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import autop from 'lines-to-paragraphs'
-import { MainContentList } from '../components'
+import { MainContentList } from '../modules/content'
 import { TrackPlayPauseButton } from '../../../lib/modules/player'
 
 function Label(): ReactElement {

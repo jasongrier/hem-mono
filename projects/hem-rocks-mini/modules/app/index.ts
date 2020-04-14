@@ -1,34 +1,26 @@
 import { AnyAction } from 'redux'
 
 export interface IState {
-  activated: boolean
-  currentTag: string | null
   topBarCollapsed: boolean
 }
 
-export const ACTIVATE_APP = 'ACTIVATE_APP'
-export const SET_CURRENT_TAG = 'SET_CURRENT_TAG'
-export const SET_TOP_BAR_COLLAPSED = 'SET_TOP_BAR_COLLAPSED'
+export const COLLAPSE_TOP_BAR = 'COLLAPSE_TOP_BAR'
+export const EXPAND_TOP_BAR = 'EXPAND_TOP_BAR'
 
-export interface IActivateApp extends AnyAction {
-  type: typeof ACTIVATE_APP
+export interface ICollapseTopBar extends AnyAction {
+  type: typeof COLLAPSE_TOP_BAR
   payload: null
 }
 
-export interface ISetCurrentTag extends AnyAction {
-  type: typeof SET_CURRENT_TAG
-  payload: string
+export interface IExpandTopBar extends AnyAction {
+  type: typeof EXPAND_TOP_BAR
+  payload: null
 }
 
-export interface ISetTopBarCollapsed extends AnyAction {
-  type: typeof SET_TOP_BAR_COLLAPSED
-  payload: boolean
-}
+export type Action = ICollapseTopBar | IExpandTopBar
 
-export type Action = IActivateApp | ISetTopBarCollapsed | ISetCurrentTag
+export { collapseTopBar, expandTopBar } from './actions'
 
-export { activateApp, setTopBarCollapsed, setCurrentTag } from './actions'
-
-export { App } from './components'
+export { App, MainNavItem, TopBar } from './components'
 
 export { reducer as appReducer } from './reducer'
