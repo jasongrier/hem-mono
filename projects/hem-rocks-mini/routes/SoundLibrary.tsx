@@ -7,7 +7,7 @@ function SoundLibrary(): ReactElement {
   return (
     <div className="page page-sound-library">
       <MainContentList
-        blurb={autop(`HEM Sound Library is a collection of sounds and instruments that are not likely to be found anywhere else: A crumbling 200 year-old piano, eerie sounds discarded by oise reduction algorithms, a grand piano with rice paper laid across the strings, NYC post-election protests as recorded off a web browser with a choppy internet connection in Berlin.
+        blurb={autop(`HEM Sound Library is a collection of sounds and instruments that are not likely to be found anywhere else: A crumbling 200 year-old piano, eerie sounds discarded by noise reduction algorithms, a grand piano with rice paper laid across the strings, NYC post-election protests as recorded off a web browser with a choppy internet connection in Berlin.
 
         As an issues-based sample library, HEM-SL reaches beyond its role as a production tool to engage in discourses on sonic detritus, acoustic ecology, psychoacoustics, labor theory, and performativity. HEM-SL also includes some complex generative MIDI tools to aid in ––or to supplant entirely–– the process of music creation.`)}
         buttonText="Download"

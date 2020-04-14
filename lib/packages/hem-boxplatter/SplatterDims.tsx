@@ -1,13 +1,14 @@
 import React, { ReactElement, PropsWithChildren, useState, useEffect } from 'react'
 
 interface IProps {
-  className: string
   height: number
   rangeX: number
   rangeY: number
   width: number
 
-  bipolar?: boolean
+  bipolarX?: boolean
+  bipolarY?: boolean
+  className?: string
   disabled?: boolean
 }
 
@@ -19,7 +20,8 @@ function SplatterDims({
   rangeY,
   width,
 
-  bipolar = false,
+  bipolarX = false,
+  bipolarY = false,
   disabled = false,
 }: PropsWithChildren<IProps>): ReactElement {
   const [widthOffset, setWidthOffset] = useState(0)
@@ -29,17 +31,18 @@ function SplatterDims({
     if (disabled) return
 
     function randomOffset(range) {
-      return (Math.random() * (range * 2))
+      return (Math.random() * (range))
     }
 
     function randomOffsetBipolar(range) {
-      return randomOffset(range) - range
+      return randomOffset(range * 2) - range
     }
 
-    const randomOffsetFn = bipolar ? randomOffsetBipolar : randomOffset
+    const randomXOffsetFn = bipolarX ? randomOffsetBipolar : randomOffset
+    const randomYOffsetFn = bipolarY ? randomOffsetBipolar : randomOffset
 
-    setWidthOffset(randomOffsetFn(rangeX))
-    setHeightOffset(randomOffsetFn(rangeY))
+    setWidthOffset(randomXOffsetFn(rangeX))
+    setHeightOffset(randomYOffsetFn(rangeY))
   }, [])
 
   let style = {}
@@ -54,7 +57,7 @@ function SplatterDims({
 
   return (
     <div
-      className={`hem-boxplatter hem-boxplatter-splatterdims ${className}`}
+      className={`hem-boxplatter hem-boxplatter-splatter-dims ${className}`}
       style={style}
     >
       { children }
