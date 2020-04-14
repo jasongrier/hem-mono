@@ -2,6 +2,7 @@ import React, { ReactElement, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Scrollbars from 'react-scrollbars-custom'
 import { slugify } from 'voca'
+import { compact } from 'lodash'
 import moment from 'moment'
 import { CloseButton } from '../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup } from '../../../lib/modules/popups'
@@ -45,7 +46,7 @@ function MainContentList({
 
   const [filter, setFilter] = useState('all')
 
-  filters = ['All'].concat(filters)
+  filters = compact(['All'].concat(filters))
 
   let contentItems = allContentItems.filter(item =>
     item.tags.includes(tag) && item.published && !item.sticky
@@ -97,7 +98,12 @@ function MainContentList({
         `}
         dangerouslySetInnerHTML={{__html: blurb}}
       />
-      <div className="main-content-highlights clearfix">
+      <div
+        className={`
+          main-content-highlights clearfix
+          ${highlights ? 'has-highlights' : ''}
+        `}
+      >
         {highlights && (
           highlights.map(highlight => (
             <div
@@ -118,7 +124,7 @@ function MainContentList({
           </div>
         )}
       </div>
-      {filters && (
+      {filters.length > 1 && (
         <div className="main-content-filters clearfix">
           <h3>Filter</h3>
           { filters.map(name => (

@@ -55,6 +55,7 @@
 
 .main-content-highlights {
   position: relative;
+  min-height: 100px;
   margin-bottom: 20px;
   font-size: 18px;
 }
@@ -72,12 +73,16 @@
 .main-content-highlights-mailing-list-form {
   position: absolute;
   top: 0;
-  left: 666px;
+  left: 0;
   width: 350px;
   height: 90px;
   padding: 5px 15px;
   background-color: var(--line-orange);
   color: #fff;
+}
+
+.has-highlights .main-content-highlights-mailing-list-form {
+  left: 666px;
 }
 
 .main-content-highlights-mailing-list-form label {

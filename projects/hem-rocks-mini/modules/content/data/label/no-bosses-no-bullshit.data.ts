@@ -2,7 +2,7 @@ import { IContentItem } from '../../index'
 import uuid from 'uuid/v1'
 import autop from 'lines-to-paragraphs'
 
-const violaData: IContentItem = {
+const noBossesNoBullshit: IContentItem = {
   blurb: `
   `,
   date: '01.09.2017',
@@ -15,15 +15,15 @@ const violaData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library'],
-  name: 'Viola',
+  tags: ['label'],
+  name: 'No Bosses No Bullshit',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
-  slug: 'slug',
+  slug: 'no-bosses-no-bullshit',
   sticky: false,
   type: 'Sample Pack for Ableton Live',
   userSuggestedPrice: null,
   videos: [],
 }
 
-export default violaData
+export default noBossesNoBullshit
