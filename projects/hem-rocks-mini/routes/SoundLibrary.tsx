@@ -25,7 +25,7 @@ function SoundLibrary(): ReactElement {
         highlights={[
           'Works in <em>all</em> versions of Ableton Live (even Live Lite)',
           'Pay-what-you-can pricing, from zero to whatever',
-          // 'Desktop, Javascript and GarageBand formats in development'
+          'GarageBand, Standalone, and Kontakt formats coming soon'
         ]}
         infoPopupTitle="About the Sound Library"
         tag="sound-library"

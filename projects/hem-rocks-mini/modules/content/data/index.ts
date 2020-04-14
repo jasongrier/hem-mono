@@ -31,6 +31,45 @@ import violaIi from './sound-library/viola-ii.data'
 import viola from './sound-library/viola.data'
 import zither from './sound-library/zither.data'
 
+import archive from './label/archive.data'
+import ascendingSeriesThree from './label/ascending-series-three.data'
+import betrieb from './label/betrieb.data'
+import blackAndWhiteRainbow from './label/black-and-white-rainbow.data'
+import clouds from './label/clouds.data'
+import commotus from './label/commotus.data'
+import demonstrationDisc from './label/demonstration-disc.data'
+import earlyLiveRecordings from './label/early-live-recordings.data'
+import eatingTheStars from './label/eating-the-stars.data'
+import gillisGrierBerlinArtPrize from './label/gillis-grier-berlin-art-prize.data'
+import gillisGrierGaudemus from './label/gillis-grier-gaudemus.data'
+import gillisGrierHolterBbc from './label/gillis-grier-holter-bbc.data'
+import gillisGrierNtsMix from './label/gillis-grier-nts-mix.data'
+import gillisGrierStudioAcht from './label/gillis-grier-studio-acht.data'
+import heartShapedRock from './label/heart-shaped-rock.data'
+import hemAnniversaryOne from './label/hem-anniversary-one.data'
+import hemAnniversaryTwo from './label/hem-anniversary-two.data'
+import instantComa from './label/instant-coma.data'
+import lindaPerhacsJuliaHolter from './label/linda-perhacs-julia-holter.data'
+import noBossesNoBullshit from './label/no-bosses-no-bullshit.data'
+import scaredFamous from './label/scared-famous.data'
+import sysygy from './label/sysygy.data'
+import theHumanEarVolumeI from './label/the-human-ear-volume-i.data'
+import theHumanEarVolumeIi from './label/the-human-ear-volume-ii.data'
+import theHumanEarVolumeIii from './label/the-human-ear-volume-iii.data'
+import thrashAndBurn from './label/thrash-and-burn.data'
+import tombstones from './label/tombstones.data'
+import trauermusik from './label/trauermusik.data'
+import twelveRadios from './label/twelve-radios.data'
+import unbekannte from './label/unbekannte.data'
+import vibeCentral from './label/vibe-central.data'
+
+import buttons from './projects/buttons.data'
+import luc from './projects/luc.data'
+import midst from './projects/midst.data'
+import placemats from './projects/placemats.data'
+import relineator from './projects/relineator.data'
+import seuratStandalone from './projects/seurat-standalone.data'
+
 export default [
   acousticGuitar,
   antiquePiano,
@@ -64,4 +103,43 @@ export default [
   violaIi,
   viola,
   zither,
+
+  archive,
+  ascendingSeriesThree,
+  betrieb,
+  blackAndWhiteRainbow,
+  clouds,
+  commotus,
+  demonstrationDisc,
+  earlyLiveRecordings,
+  eatingTheStars,
+  gillisGrierBerlinArtPrize,
+  gillisGrierGaudemus,
+  gillisGrierHolterBbc,
+  gillisGrierNtsMix,
+  gillisGrierStudioAcht,
+  heartShapedRock,
+  hemAnniversaryOne,
+  hemAnniversaryTwo,
+  instantComa,
+  lindaPerhacsJuliaHolter,
+  noBossesNoBullshit,
+  scaredFamous,
+  sysygy,
+  theHumanEarVolumeI,
+  theHumanEarVolumeIi,
+  theHumanEarVolumeIii,
+  thrashAndBurn,
+  tombstones,
+  trauermusik,
+  twelveRadios,
+  unbekannte,
+  vibeCentral,
+
+  buttons,
+  luc,
+  midst,
+  placemats,
+  relineator,
+  seuratStandalone,
 ]
