@@ -37,7 +37,7 @@ function GrandPianoHeroine(): ReactElement {
             &bull; 1400 One-shots: Bowing, Scraping, Hand Percussion, Cluster Chords, etc.
           </p>
           <LaunchDetailPopupButton contentItem={grandPianoProduct}>
-            Download
+            Learn More
           </LaunchDetailPopupButton>
         </div>
       </div>

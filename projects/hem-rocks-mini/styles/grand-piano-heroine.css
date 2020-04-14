@@ -52,7 +52,7 @@
 
 .grand-piano-heroine-text h2 {
   margin: 0;
-  font-size: 24px;
+  font-size: 32px;
   font-weight: 100;
   background-color: var(--line-orange);
 }
@@ -68,7 +68,7 @@
 
 .grand-piano-heroine-text button {
   position: absolute;
-  top: 30px;
+  top: 60px;
   left: 265px;
   border: 1px solid #ccc;
   font-weight: normal;

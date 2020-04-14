@@ -1,5 +1,6 @@
 import React, { ReactElement, PropsWithChildren } from 'react'
 import { Planes } from '../../../../../lib/packages/hem-placemats'
+import { SplatterDims } from '../../../../../lib/packages/hem-boxplatter'
 import { LaunchDetailPopupButton } from './index'
 import { IContentItem } from '../index'
 
@@ -7,21 +8,26 @@ interface IProps {
   action: (contentItem: any) => void
   buttonText: string
   contentItem: IContentItem
+
+  index?: number
 }
 
 function MainContentBox({
   action,
   buttonText,
   children,
-  contentItem
+  contentItem,
+  index,
 }: PropsWithChildren<IProps>): ReactElement {
-  const isComingSoon = contentItem.badgeText === 'Coming Soon'
-
   return (
-    <div className={`
-      main-content-box
-      ${ isComingSoon ? 'coming-soon' : '' }
-    `}>
+    <SplatterDims
+      className="main-content-box"
+      width={800}
+      height={200}
+      rangeX={100}
+      rangeY={20}
+      disabled={index < 1}
+    >
       { contentItem.badgeText && (
         <div className="main-content-box-coming-soon-badge">
           <strong>{  contentItem.badgeText }</strong>
@@ -55,7 +61,7 @@ function MainContentBox({
           </LaunchDetailPopupButton>
         </div>
       </div>
-    </div>
+    </SplatterDims>
   )
 }
 
