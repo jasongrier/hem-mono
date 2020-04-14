@@ -5,17 +5,11 @@
   z-index: 8888;
   width: 100vw;
   height: 30px;
-  opacity: 0;
-  /* transition: all 100ms; */
 }
 
-.top-bar-collapsed .top-bar {
+.top-bar-collapsed {
   background-color: #000;
   overflow: hidden;
-}
-
-.app-activated .top-bar {
-  opacity: 1;
 }
 
 .top-bar .logo {
@@ -26,7 +20,6 @@
   line-height: 30px;
   color: #fff;
   font-weight: normal;
-  /* transition: all 100ms; */
 }
 
 .top-bar .logo a {

@@ -1,12 +1,15 @@
 import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
-import $ from 'jquery'
+import { useDispatch } from 'react-redux'
+import { expandTopBar } from '../index'
 
 interface IProps {
   collapsed: boolean
 }
 
 function TopBar({ collapsed }: IProps): ReactElement {
+  const dispatch = useDispatch()
+
   return (
     <header className={`
       top-bar
@@ -14,9 +17,7 @@ function TopBar({ collapsed }: IProps): ReactElement {
     `}>
       <h1
         className="logo"
-        onClick={() => {
-          $('html, body').stop().animate({ scrollTop: 0 }, 250, 'swing')
-        }}
+        onClick={() => dispatch(expandTopBar())}
       >
         <Link to="/">HEM</Link>
       </h1>

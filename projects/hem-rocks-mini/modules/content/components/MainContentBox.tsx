@@ -1,7 +1,7 @@
 import React, { ReactElement, PropsWithChildren } from 'react'
-import { Planes } from '../../../lib/packages/hem-placemats'
+import { Planes } from '../../../../../lib/packages/hem-placemats'
 import { LaunchDetailPopupButton } from './index'
-import { IContentItem } from '../modules/content'
+import { IContentItem } from '../index'
 
 interface IProps {
   action: (contentItem: any) => void

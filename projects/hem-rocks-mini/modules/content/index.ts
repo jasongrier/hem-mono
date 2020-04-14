@@ -45,4 +45,10 @@ export { setCurrentContentItem } from './actions'
 
 export { reducer as contentReducer } from './reducer'
 
-export { DetailPopUp, ProductTile } from './components'
+export {
+  DetailPopUp,
+  LaunchDetailPopupButton,
+  MainContentBox,
+  MainContentList,
+  ProductTile,
+} from './components'

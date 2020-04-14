@@ -1,39 +1,31 @@
 import { AnyAction } from 'redux'
 import produce from 'immer'
 import {
-  ACTIVATE_APP,
-  SET_CURRENT_TAG,
-  SET_TOP_BAR_COLLAPSED,
+  COLLAPSE_TOP_BAR,
+  EXPAND_TOP_BAR,
 
   IState,
 } from './index'
 
 const initialState: IState = {
-  activated: true,
-  currentTag: null,
   topBarCollapsed: false,
 }
 
+// TODO: This should be the duck template in projects/template!!
 const reducer = (
   state: IState = initialState,
   { type, payload }: AnyAction,
 ): IState => {
   switch (type) {
-    case ACTIVATE_APP: {
+    case COLLAPSE_TOP_BAR: {
       return produce(state, draftState => {
-        draftState.activated = true
+        draftState.topBarCollapsed = true
       })
     }
 
-    case SET_CURRENT_TAG: {
+    case EXPAND_TOP_BAR: {
       return produce(state, draftState => {
-        draftState.currentTag = payload
-      })
-    }
-
-    case SET_TOP_BAR_COLLAPSED: {
-      return produce(state, draftState => {
-        draftState.topBarCollapsed = payload
+        draftState.topBarCollapsed = false
       })
     }
 
