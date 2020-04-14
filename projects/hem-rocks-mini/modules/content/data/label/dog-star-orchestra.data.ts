@@ -26,4 +26,4 @@ const dogStarOrchestraData: IContentItem = {
   videos: [],
 }
 
-export default dogStarOrchestra
+export default dogStarOrchestraData

@@ -78,7 +78,7 @@ function MainContentList({
 
   return (
     <header className="main-content-list">
-      <h1 className={ !blurb ? 'no-blurb' : '' }>
+      <h1>
         { title }
         { infoPopupText && (
           <div
@@ -91,14 +91,11 @@ function MainContentList({
           </div>
         )}
       </h1>
-      <div
-        className={`
-          main-content-blurb
-          ${highlights ? 'has-highlights' : ''}
-        `}
+      <div className="main-content-blurb"
         dangerouslySetInnerHTML={{__html: blurb}}
       />
       <div
+        hidden
         className={`
           main-content-highlights clearfix
           ${highlights ? 'has-highlights' : ''}
@@ -109,6 +106,7 @@ function MainContentList({
             <div
               className="main-content-highlight"
               dangerouslySetInnerHTML={{__html: '– ' + highlight}}
+              key={highlight}
             />
           ))
         )}
@@ -141,12 +139,13 @@ function MainContentList({
           )) }
         </div>
       )}
-      {contentItems.map(contentItem => (
+      {contentItems.map((contentItem, index) => (
         <MainContentBox
           action={launchDetailPopup}
           buttonText={buttonText}
-          key={contentItem.id}
           contentItem={contentItem}
+          index={index}
+          key={contentItem.id}
         >
           { children(contentItem) }
         </MainContentBox>
