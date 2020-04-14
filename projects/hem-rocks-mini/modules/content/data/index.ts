@@ -48,6 +48,7 @@ import gillisGrierStudioAcht from './label/gillis-grier-studio-acht.data'
 import heartShapedRock from './label/heart-shaped-rock.data'
 import hemAnniversaryOne from './label/hem-anniversary-one.data'
 import hemAnniversaryTwo from './label/hem-anniversary-two.data'
+import humanGeniusAtSoundwalkData from './label/human-genius-at-soundwalk.data'
 import instantComa from './label/instant-coma.data'
 import lindaPerhacsJuliaHolter from './label/linda-perhacs-julia-holter.data'
 import noBossesNoBullshit from './label/no-bosses-no-bullshit.data'
@@ -121,6 +122,7 @@ export default [
   heartShapedRock,
   hemAnniversaryOne,
   hemAnniversaryTwo,
+  humanGeniusAtSoundwalkData,
   instantComa,
   lindaPerhacsJuliaHolter,
   noBossesNoBullshit,

@@ -5,6 +5,11 @@
   z-index: 8888;
   width: 100vw;
   height: 30px;
+  user-select: none;
+}
+
+.top-bar * {
+  user-select: none;
 }
 
 .top-bar-collapsed {
