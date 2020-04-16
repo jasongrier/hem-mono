@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react'
+// @ts-ignore
 import autop from 'lines-to-paragraphs'
 import { MainContentList } from '../modules/content'
 import { TrackPlayPauseButton } from '../../../lib/modules/player'

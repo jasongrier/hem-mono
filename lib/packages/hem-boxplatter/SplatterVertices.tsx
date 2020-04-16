@@ -7,8 +7,25 @@ interface IProps {
   bipolarX?: boolean
   bipolarY?: boolean
   className?: string
+  compensate?: boolean
   disabled?: boolean
 }
+
+const styleSheet = `
+  .hem-boxplatter-splatter-vertices {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-origin: center;
+  }
+
+  .hem-boxplatter-splatter-vertices-compensator {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-origin: center center;
+  }
+`
 
 function SplatterVertices({
   children,
@@ -18,6 +35,7 @@ function SplatterVertices({
 
   bipolarX = false,
   bipolarY = false,
+  compensate = true,
   disabled = false,
 }: PropsWithChildren<IProps>): ReactElement {
   const [skewX, setSkewX] = useState(0)
@@ -48,23 +66,28 @@ function SplatterVertices({
       transform: `skewX(${skewX}deg) skewY(${skewY}deg)`,
     }
 
-    compensatorStyle = {
-      transform: `skewX(${-1 * skewX}deg) skewY(${-1 * skewY}deg)`,
+    if (compensate) {
+      compensatorStyle = {
+        transform: `skewX(${-1 * skewX}deg) skewY(${-1 * skewY}deg)`,
+      }
     }
   }
 
   return (
-    <div
-      className={`hem-boxplatter hem-boxplatter-splatter-vertices ${className}`}
-      style={style}
-    >
+    <>
+      <style dangerouslySetInnerHTML={{ __html: styleSheet }} />
       <div
-        className="hem-boxplatter-splatter-vertices-compensator"
-        style={compensatorStyle}
+        className={`hem-boxplatter hem-boxplatter-splatter-vertices ${className}`}
+        style={style}
       >
-        { children }
+        <div
+          className="hem-boxplatter-splatter-vertices-compensator"
+          style={compensatorStyle}
+        >
+          { children }
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

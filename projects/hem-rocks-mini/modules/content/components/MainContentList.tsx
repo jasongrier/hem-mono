@@ -77,7 +77,7 @@ function MainContentList({
   }
 
   return (
-    <header className="main-content-list">
+    <header className="main-content-list clearfix">
       <h1>
         { title }
         { infoPopupText && (
@@ -124,7 +124,7 @@ function MainContentList({
       </div>
       {filters.length > 1 && (
         <div className="main-content-filters clearfix">
-          <h3>Filter</h3>
+          <h3>Filter:</h3>
           { filters.map(name => (
             <div
               className={`
