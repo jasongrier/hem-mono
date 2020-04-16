@@ -1,5 +1,6 @@
 import { IContentItem } from '../../index'
 import uuid from 'uuid/v1'
+// @ts-ignore
 import autop from 'lines-to-paragraphs'
 
 const zitherData: IContentItem = {
@@ -16,7 +17,7 @@ const zitherData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library'],
+  tags: ['sound-library', 'toy-instruments', 'instruments'],
   name: 'Zither',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',

@@ -1,5 +1,6 @@
 import { IContentItem } from '../../index'
 import uuid from 'uuid/v1'
+// @ts-ignore
 import autop from 'lines-to-paragraphs'
 
 const germanFolkGuitarLessonVinylData: IContentItem = {
@@ -16,7 +17,7 @@ const germanFolkGuitarLessonVinylData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library'],
+  tags: ['sound-library', 'found-sound', 'thrift-store-vinyl'],
   name: 'Guitar Lesson Vinyl',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',

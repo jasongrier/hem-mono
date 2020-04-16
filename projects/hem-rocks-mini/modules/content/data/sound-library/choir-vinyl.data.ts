@@ -1,5 +1,6 @@
 import { IContentItem } from '../../index'
 import uuid from 'uuid/v1'
+// @ts-ignore
 import autop from 'lines-to-paragraphs'
 
 const choirVinylData: IContentItem = {
@@ -16,7 +17,7 @@ const choirVinylData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library'],
+  tags: ['sound-library', 'choral', 'vocal', 'found-sound', 'thrift-store-vinyl'],
   name: 'Choir Vinyl',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',

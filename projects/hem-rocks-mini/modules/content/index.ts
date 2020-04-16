@@ -23,7 +23,7 @@ export interface IContentItem {
   slug: string
   sticky: boolean
   type: string
-  userSuggestedPrice: number
+  userSuggestedPrice: number | null
   videos: string[]
 }
 

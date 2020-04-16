@@ -1,5 +1,6 @@
 import { IContentItem } from '../../index'
 import uuid from 'uuid/v1'
+// @ts-ignore
 import autop from 'lines-to-paragraphs'
 
 const cymbalsData: IContentItem = {
@@ -16,7 +17,7 @@ const cymbalsData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library'],
+  tags: ['sound-library', 'instruments', 'percussion', 'extended-technique'],
   name: 'Cymbals',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
