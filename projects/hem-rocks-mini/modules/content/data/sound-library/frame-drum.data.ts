@@ -1,5 +1,6 @@
 import { IContentItem } from '../../index'
 import uuid from 'uuid/v1'
+// @ts-ignore
 import autop from 'lines-to-paragraphs'
 
 const frameDrumData: IContentItem = {
@@ -16,7 +17,7 @@ const frameDrumData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library'],
+  tags: ['sound-library', 'instruments', 'percussion'],
   name: 'Frame Drum',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',

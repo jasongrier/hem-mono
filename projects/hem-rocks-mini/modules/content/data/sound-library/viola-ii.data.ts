@@ -1,5 +1,6 @@
 import { IContentItem } from '../../index'
 import uuid from 'uuid/v1'
+// @ts-ignore
 import autop from 'lines-to-paragraphs'
 
 const violaIiData: IContentItem = {
@@ -16,7 +17,7 @@ const violaIiData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library'],
+  tags: ['sound-library', 'coming-soon', 'extended-technique', 'asmr', 'instruments', 'microtonality', 'strings'],
   name: 'Viola II',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',

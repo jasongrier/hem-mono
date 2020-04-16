@@ -1,5 +1,6 @@
 import { IContentItem } from '../../index'
 import uuid from 'uuid/v1'
+// @ts-ignore
 import autop from 'lines-to-paragraphs'
 
 const overtoneSingingData: IContentItem = {
@@ -16,9 +17,9 @@ const overtoneSingingData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library'],
+  tags: ['sound-library', 'vocal', 'extended-technique'],
   name: 'Overtone Singing',
-  published: true,
+  published: false,
   soundCloudTrackId: 'soundCloudTrackId',
   slug: 'overtone-singing',
   sticky: false,
