@@ -5,6 +5,7 @@ import autop from 'lines-to-paragraphs'
 const violaIiData: IContentItem = {
   badgeText: 'Coming Soon',
   blurb: `
+    I'm baby everyday carry kickstarter tilde retro yr shaman letterpress blog gentrify distillery asymmetrical gochujang skateboard bushwick. Mlkshk retro squid, deep v knausgaard pork belly gentrify tote bag health goth. Occupy small batch health goth, blue bottle vaporware master cleanse pok pok kickstarter.
   `,
   date: '01.07.2020',
   description: autop(`

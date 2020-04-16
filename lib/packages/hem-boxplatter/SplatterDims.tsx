@@ -49,7 +49,7 @@ function SplatterDims({
   if (!disabled) {
     style = {
       width: width + widthOffset + 'px',
-      height: height + heightOffset,
+      height: height === 0 ? 'auto' : height + heightOffset,
       marginTop: heightOffset,
       marginLeft: widthOffset,
     }

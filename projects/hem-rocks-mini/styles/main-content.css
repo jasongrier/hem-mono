@@ -121,17 +121,21 @@
 }
 
 .main-content-filters {
+  position: sticky;
+  top: 30px;
+  z-index: 99999;
   width: calc(var(--content-width-desk) - 20px);
   margin-top: 30px;
   margin-bottom: 30px;
   padding: 10px;
-  background: #eee;
+  background: #000;
 }
 
 .main-content-filters h3 {
   padding: 0;
   margin: 0 0 10px 0;
   font-size: 16px;
+  color: #fff;
 }
 
 .main-content-filter {
@@ -149,11 +153,16 @@
 }
 
 .main-content-box {
+  float: left;
   position: relative;
-  width: var(--content-width-desk);
+  width: 500px;
   height: 400px;
   margin: 0 0 30px 0;
   padding: 0;
+}
+
+.main-content-box.align-right {
+  float: right !important;
 }
 
 .main-content-box.coming-soon {
@@ -165,29 +174,39 @@
   pointer-events: none;
 }
 
-.main-content-box-coming-soon-badge {
+.main-content-box-badge {
   position: absolute;
   top: -5px;
   left: -5px;
-  z-index: 9999;
+  z-index: 2;
   padding: 5px 10px;
   background-color: var(--line-orange);
   color: #fff;
 }
 
 .main-content-box-key-art {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   cursor: pointer;
 }
 
 .main-content-box-text {
-  padding-top: 50px;
+  margin-top: -20px;
+  padding-bottom: 100px;
   cursor: pointer;
+}
+
+.has-badge .main-content-box-text {
+  margin-top: 50px;
 }
 
 .main-content-box-actions {
   position: absolute;
-  top: 0;
-  right: 0;
+  bottom: -30px;
+  right: -80px;
   width: 300px;
   height: 106px;
   margin: 70px 0 0 50px;
@@ -208,16 +227,19 @@
 }
 
 .main-content-box h3 {
-  height: 42px;
-  line-height: 42px;
+  line-height: 45px;
   margin: 0 0 20px 0;
   font-size: 64px;
   font-weight: 100;
   text-transform: uppercase;
 }
 
+.main-content-box.has-badge h3 {
+  margin: 0 0 10px 0;
+}
+
 .main-content-box p {
-  width: 450px;
+  width: 300px;
 }
 
 .main-content-box .planes {
@@ -227,7 +249,7 @@
   z-index: -1;
   width: 100%;
   height: 100%;
-  opacity: 0.9;
+  opacity: 0.6;
 }
 
 .main-content-box .planes::after {
