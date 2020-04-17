@@ -17,7 +17,7 @@ const frameDrumData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library', 'instruments', 'percussion'],
+  tags: ['sound-library', 'instruments', 'percussion', 'sounds-instruments'],
   name: 'Frame Drum',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',

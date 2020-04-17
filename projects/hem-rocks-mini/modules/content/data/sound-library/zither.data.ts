@@ -17,7 +17,7 @@ const zitherData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library', 'toy-instruments', 'instruments'],
+  tags: ['sound-library', 'toy-instruments', 'instruments', 'sounds-instruments'],
   name: 'Zither',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',

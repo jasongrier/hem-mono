@@ -17,7 +17,7 @@ const austinThunderstormData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library', 'field-recording'],
+  tags: ['sound-library', 'field-recording', 'sounds-instruments'],
   name: 'Austin Thunderstorm',
   published: false,
   soundCloudTrackId: 'soundCloudTrackId',

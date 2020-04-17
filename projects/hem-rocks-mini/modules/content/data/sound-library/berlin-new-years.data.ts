@@ -17,7 +17,7 @@ const berlinNewYearsData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library', 'field-recording'],
+  tags: ['sound-library', 'field-recording', 'sounds-instruments'],
   name: 'Berlin New Years',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',

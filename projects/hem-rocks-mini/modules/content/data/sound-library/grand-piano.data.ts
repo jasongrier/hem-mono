@@ -17,7 +17,7 @@ const grandPianoData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library', 'keys', 'extended-technique', 'instruments'],
+  tags: ['sound-library', 'keys', 'extended-technique', 'instruments', 'new-in-the-library', 'sounds-instruments'],
   name: 'Grand Piano',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',

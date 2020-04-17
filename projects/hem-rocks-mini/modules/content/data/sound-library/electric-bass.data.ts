@@ -17,7 +17,7 @@ const electricBassData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library', 'guitar-and-bass', 'instruments'],
+  tags: ['sound-library', 'guitar-and-bass', 'instruments', 'sounds-instruments'],
   name: 'Electric Bass',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',

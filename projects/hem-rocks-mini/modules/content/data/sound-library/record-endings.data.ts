@@ -17,7 +17,7 @@ const recordEndingsData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library', 'found-sound', 'sonic-detritus'],
+  tags: ['sound-library', 'found-sound', 'sonic-detritus', 'sounds-instruments'],
   name: 'Record Endings',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',

@@ -17,7 +17,7 @@ const oberheimExpanderData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library', 'synth', 'instruments'],
+  tags: ['sound-library', 'synth', 'instruments', 'sounds-instruments'],
   name: 'Oberheim Expander',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',

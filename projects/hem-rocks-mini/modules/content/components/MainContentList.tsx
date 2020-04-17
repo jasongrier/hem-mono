@@ -1,8 +1,9 @@
-import React, { ReactElement, useState } from 'react'
+import React, { ReactElement, useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Scrollbars from 'react-scrollbars-custom'
 import { slugify } from 'voca'
-import { compact } from 'lodash'
+import { compact, intersectionBy } from 'lodash'
+import $ from 'jquery'
 import moment from 'moment'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup } from '../../../../../lib/modules/popups'
@@ -20,6 +21,7 @@ interface IProps {
   title: string
 
   campaignMonitorId?: string
+  exclusiveFilters?: string[]
   filters?: string[]
   highlights?: string[]
   infoPopupText?: string
@@ -34,7 +36,8 @@ function MainContentList({
   title,
 
   campaignMonitorId,
-  filters,
+  exclusiveFilters = [],
+  filters = [],
   highlights,
   infoPopupText,
 }: IProps): ReactElement {
@@ -45,8 +48,9 @@ function MainContentList({
   const dispatch = useDispatch()
 
   const [filter, setFilter] = useState('all')
+  const [filtersOriginalTop, setFiltersOriginalTop] = useState(null)
 
-  filters = compact(['All'].concat(filters))
+  filters = compact(['All'].concat(exclusiveFilters).concat(filters))
 
   let contentItems = allContentItems.filter(item =>
     item.tags.includes(tag) && item.published && !item.sticky
@@ -56,12 +60,18 @@ function MainContentList({
     item => item.tags.includes(tag) && item.published && item.sticky
   )
 
-  if (filter !== 'all') {
+  if (filter === 'all') {
+    contentItems = contentItems.filter(item =>
+      intersectionBy(item.tags, exclusiveFilters.map(slugify)).length === 0
+    )
+  }
+
+  else {
     contentItems = contentItems.filter(item => item.tags.includes(filter))
     stickyContentItems = stickyContentItems.filter(item => item.tags.includes(filter))
   }
 
-  function sortFn(a, b) {
+  function sortFn(a: IContentItem, b: IContentItem) {
     // @ts-ignore
     return moment(b.date, 'DD-MM-YYYY') - moment(a.date, 'DD-MM-YYYY')
   }
@@ -71,13 +81,13 @@ function MainContentList({
 
   contentItems = stickyContentItems.concat(contentItems)
 
-  function launchDetailPopup(pack) {
+  function launchDetailPopup(pack: IContentItem) {
     dispatch(setCurrentContentItem(pack))
     dispatch(openPopup('detail-popup'))
   }
 
   return (
-    <header className="main-content-list clearfix">
+    <div className="main-content-list clearfix">
       <h1>
         { title }
         { infoPopupText && (
@@ -130,26 +140,50 @@ function MainContentList({
               className={`
                 main-content-filter
                 ${ filter === slugify(name) ? 'active' : '' }
+                ${ exclusiveFilters.includes(name) ? 'exclusive-filter' : '' }
               `}
               key={name}
-              onClick={() => setFilter(slugify(name))}
+              onClick={() => {
+                setFilter(slugify(name))
+
+                let top
+
+                if ($('html, body').scrollTop() > 0) {
+                  $('html, body').scrollTop(0)
+                }
+
+                if (filtersOriginalTop === null) {
+                  top = document.querySelector('.main-content-filters').getBoundingClientRect().top
+                  setFiltersOriginalTop(top)
+                }
+
+                else {
+                  top = filtersOriginalTop
+                }
+
+                if ($('html, body').scrollTop() !== top) {
+                  $('html, body').scrollTop(top)
+                }
+              }}
             >
                 {name}
             </div>
           )) }
         </div>
       )}
-      {contentItems.map((contentItem, index) => (
-        <MainContentBox
-          action={launchDetailPopup}
-          buttonText={buttonText}
-          contentItem={contentItem}
-          index={index}
-          key={contentItem.id}
-        >
-          { children(contentItem) }
-        </MainContentBox>
-      ))}
+      <div className="main-content-items">
+        {contentItems.map((contentItem, index) => (
+          <MainContentBox
+            action={launchDetailPopup}
+            buttonText={buttonText}
+            contentItem={contentItem}
+            index={index}
+            key={contentItem.id}
+          >
+            { children(contentItem) }
+          </MainContentBox>
+        ))}
+      </div>
       { infoPopupText && (
         <PopupContainer
           id="sound-library-info"
@@ -162,7 +196,7 @@ function MainContentList({
           </Scrollbars>
         </PopupContainer>
       )}
-    </header>
+    </div>
   )
 }
 
