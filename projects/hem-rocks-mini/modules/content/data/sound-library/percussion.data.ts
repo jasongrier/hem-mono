@@ -17,7 +17,7 @@ const percussionData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library', 'percussion', 'sonic-detritus'],
+  tags: ['sound-library', 'percussion', 'sonic-detritus', 'sounds-instruments'],
   name: 'Percussion',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',

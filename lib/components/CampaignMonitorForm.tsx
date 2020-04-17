@@ -5,7 +5,7 @@ interface IProps {
 
   hasNameField?: boolean
   labelForEmail?: string
-  labelForName?: string
+  labelForName?: string | null
   onFormSubmitted?: (evt: React.SyntheticEvent<HTMLFormElement>) => void
   placeholderText?: string
   submitButtonText?: string

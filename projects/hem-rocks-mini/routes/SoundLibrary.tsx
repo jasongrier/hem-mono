@@ -25,7 +25,6 @@ function SoundLibrary(): ReactElement {
           'Instruments',
           'Keys',
           'Labor Theory',
-          'Midi Devices',
           'Microtonality',
           'New in the Library',
           'Percussion',
@@ -38,6 +37,9 @@ function SoundLibrary(): ReactElement {
           'Toy Instruments',
           'Vocal',
           'Winds',
+        ]}
+        exclusiveFilters={[
+          'Midi Devices',
         ]}
         highlights={[
           'Works in <em>all</em> versions of Ableton Live (even Live Lite)',

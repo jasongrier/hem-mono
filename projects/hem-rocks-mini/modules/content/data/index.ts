@@ -3,6 +3,7 @@ import antiquePiano from './sound-library/antique-piano.data'
 import austinThunderstorm from './sound-library/austin-thunderstorm.data'
 import berlinNewYears from './sound-library/berlin-new-years.data'
 import breaths from './sound-library/breaths.data'
+import chordBrush from './sound-library/chord-brush.data'
 import choirVinyl from './sound-library/choir-vinyl.data'
 import clarinet from './sound-library/clarinet.data'
 import cymbals from './sound-library/cymbals.data'
@@ -27,8 +28,11 @@ import recordEndings from './sound-library/record-endings.data'
 import seuratIi from './sound-library/seurat-ii.data'
 import seurat from './sound-library/seurat.data'
 import sweetBeaVinyl from './sound-library/sweet-bea-vinyl.data'
+import throttle from './sound-library/throttle.data'
 import violaIi from './sound-library/viola-ii.data'
 import viola from './sound-library/viola.data'
+import window from './sound-library/window.data'
+import zero from './sound-library/zero.data'
 import zither from './sound-library/zither.data'
 
 import archive from './label/archive.data'
@@ -77,6 +81,7 @@ export default [
   austinThunderstorm,
   berlinNewYears,
   breaths,
+  chordBrush,
   choirVinyl,
   clarinet,
   cymbals,
@@ -101,8 +106,11 @@ export default [
   seuratIi,
   seurat,
   sweetBeaVinyl,
+  throttle,
   violaIi,
   viola,
+  window,
+  zero,
   zither,
 
   archive,

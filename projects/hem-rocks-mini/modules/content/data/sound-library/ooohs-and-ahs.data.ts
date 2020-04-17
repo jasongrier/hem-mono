@@ -17,7 +17,7 @@ const ooohsAndAhsData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library', 'choral', 'vocal'],
+  tags: ['sound-library', 'choral', 'vocal', 'sounds-instruments'],
   name: 'Ooohs and Ahs',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',

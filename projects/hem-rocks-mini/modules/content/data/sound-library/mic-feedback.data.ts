@@ -17,7 +17,7 @@ const micFeedbackData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library', 'post-studio', 'sonic-detritus'],
+  tags: ['sound-library', 'post-studio', 'sonic-detritus', 'sounds-instruments'],
   name: 'Mic Feedback',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',

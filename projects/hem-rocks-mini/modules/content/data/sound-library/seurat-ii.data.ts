@@ -22,7 +22,7 @@ const seuratIiData: IContentItem = {
   published: true,
   soundCloudTrackId: '778088458',
   slug: 'seurat-ii',
-  sticky: false,
+  sticky: true,
   type: 'Sample Pack for Ableton Live',
   userSuggestedPrice: null,
   videos: [],

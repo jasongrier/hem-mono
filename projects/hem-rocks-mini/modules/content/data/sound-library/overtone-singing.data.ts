@@ -17,7 +17,7 @@ const overtoneSingingData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library', 'vocal', 'extended-technique'],
+  tags: ['sound-library', 'vocal', 'extended-technique', 'sounds-instruments'],
   name: 'Overtone Singing',
   published: false,
   soundCloudTrackId: 'soundCloudTrackId',
