@@ -48,7 +48,7 @@ function MainContentList({
   const dispatch = useDispatch()
 
   const [filter, setFilter] = useState('all')
-  const [filtersOriginalTop, setFiltersOriginalTop] = useState(null)
+  const [filtersOriginalTop, setFiltersOriginalTop] = useState(null as number | null)
 
   filters = compact(['All'].concat(exclusiveFilters).concat(filters))
 
@@ -134,7 +134,7 @@ function MainContentList({
       </div>
       {filters.length > 1 && (
         <div className="main-content-filters clearfix">
-          <h3>Filter:</h3>
+          <h3>Select:</h3>
           { filters.map(name => (
             <div
               className={`
@@ -148,11 +148,13 @@ function MainContentList({
 
                 let top
 
+                // @ts-ignore
                 if ($('html, body').scrollTop() > 0) {
                   $('html, body').scrollTop(0)
                 }
 
                 if (filtersOriginalTop === null) {
+                  // @ts-ignore
                   top = document.querySelector('.main-content-filters').getBoundingClientRect().top
                   setFiltersOriginalTop(top)
                 }
@@ -168,7 +170,7 @@ function MainContentList({
             >
                 {name}
             </div>
-          )) }
+          ))}
         </div>
       )}
       <div className="main-content-items">

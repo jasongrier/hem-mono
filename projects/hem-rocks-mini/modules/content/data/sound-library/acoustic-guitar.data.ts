@@ -17,7 +17,7 @@ const acousticGuitarData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library', 'guitar-and-bass', 'instruments', 'sounds-instruments'],
+  tags: ['sound-library', 'guitar-and-bass', 'instruments'],
   name: 'Acoustic Guitar',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',

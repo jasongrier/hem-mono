@@ -3,7 +3,7 @@ import uuid from 'uuid/v1'
 // @ts-ignore
 import autop from 'lines-to-paragraphs'
 
-const ooohsAndAhsData: IContentItem = {
+const onePitchData: IContentItem = {
   blurb: `
     I'm baby everyday carry kickstarter tilde retro yr shaman letterpress blog gentrify distillery asymmetrical gochujang skateboard bushwick. Mlkshk retro squid, deep v knausgaard pork belly gentrify tote bag health goth. Occupy small batch health goth, blue bottle vaporware master cleanse pok pok kickstarter.
   `,
@@ -17,15 +17,15 @@ const ooohsAndAhsData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library', 'choral', 'vocal'],
-  name: 'Ooohs and Ahs',
+  tags: ['sound-library', 'synth', 'instruments', 'generative-tools', 'midi-devices'],
+  name: 'One Pitch',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
-  slug: 'ooohs-and-ahs',
+  slug: 'one-pitch',
   sticky: false,
   type: 'Sample Pack for Ableton Live',
   userSuggestedPrice: null,
   videos: [],
 }
 
-export default ooohsAndAhsData
+export default onePitchData

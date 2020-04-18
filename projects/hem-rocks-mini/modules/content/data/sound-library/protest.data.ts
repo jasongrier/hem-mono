@@ -17,7 +17,7 @@ const protestData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library', 'field-recording', 'performativity-activism', 'sounds-instruments'],
+  tags: ['sound-library', 'field-recording', 'performativity-activism'],
   name: 'Protest',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',

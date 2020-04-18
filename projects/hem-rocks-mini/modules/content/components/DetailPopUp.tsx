@@ -8,12 +8,15 @@ import { Planes } from '../../../../../lib/packages/hem-placemats'
 import { addProductToCart } from '../../cart'
 import { IContentItem } from '../../content'
 import { RootState } from '../../../index'
+import LaunchDetailPopupButton from './LaunchDetailPopupButton'
 
 interface IProps {
-  contentItem: IContentItem
+  contentItem: IContentItem | null
+
+  hidePurchaseFormInitially?: boolean
 }
 
-function DetailPopUp({ contentItem }: IProps): ReactElement {
+function DetailPopUp({ contentItem, hidePurchaseFormInitially = false }: IProps): ReactElement {
   const { cartProducts } = useSelector((state: RootState) => ({
     cartProducts: state.cart.products,
   }))
@@ -23,9 +26,15 @@ function DetailPopUp({ contentItem }: IProps): ReactElement {
   const [suggestedPrice, setSuggestedPrice] = useState((contentItem ? contentItem.flexPriceMinimum : 0) as any)
 
   const [valid, setValid] = useState(true)
+  const [showPurchaseForm, setShowPurchaseForm] = useState(!hidePurchaseFormInitially)
 
   function addToCart() {
     const price = parseFloat(suggestedPrice)
+
+    if (!contentItem) {
+      // TODO: Show "An unknown error has occurred..."
+      return false
+    }
 
     if (isNaN(price)) {
       setValid(false)
@@ -76,7 +85,10 @@ function DetailPopUp({ contentItem }: IProps): ReactElement {
 
   return (
     <section
-      className="detail-popup"
+      className={`
+        detail-popup
+        ${hidePurchaseFormInitially ? 'purchase-form-hidden' : ''}
+      `}
       onKeyDown={onKeyDown}
     >
       <Scrollbars noScrollX={true}>
@@ -88,52 +100,62 @@ function DetailPopUp({ contentItem }: IProps): ReactElement {
               <h2>{ contentItem.type }</h2>
             </div>
             <div className="detail-popup-actions">
-              <div className="detail-popup-form">
-                {contentItem.hasFixedPrice && (
-                  <p>{ contentItem.fixedPrice }</p>
-                )}
-                {!contentItem.hasFixedPrice && (
-                  <>
-                    <label htmlFor="suggested-price">Name your price!</label>
-                    {/* TODO: Use Intl.NumberFormat and type intent timeout to validate and format the state */}
-                    <span className="detail-popup-currency-symbol">€</span>
-                    <input
-                      name="suggested-price"
-                      onChange={suggestedPriceOnChange}
-                      type="text"
-                      value={suggestedPrice}
-                    />
-                    <small>Minimum price: { contentItem.flexPriceMinimum } €</small>
-                    {!valid && (
-                      <div className="invalid-message">
-                        Please enter a valid price.
-                      </div>
-                    )}
-                  </>
-                )}
-                <div className="detail-popup-buttons clearfix">
-                  <button
-                    className="action-button"
-                    onClick={buyNowOnClick}
-                  >
-                    Check out now
-                  </button>
-                  <button
-                    className="action-button"
-                    onClick={addToCartOnClick}
-                  >
-                    Add to Cart
-                  </button>
-                  <a
-                    className="detail-popup-cart-link"
-                    onClick={() => {
-                      dispatch(openPopup('cart-popup'))
-                    }}
-                  >
-                    View cart
-                  </a>
+              { !showPurchaseForm && (
+                <LaunchDetailPopupButton
+                  className="reveal-purchase-form-button"
+                  contentItem={contentItem}
+                >
+                  Download
+                </LaunchDetailPopupButton>
+              )}
+              { showPurchaseForm && (
+                <div className="detail-popup-form">
+                  {contentItem.hasFixedPrice && (
+                    <p>{ contentItem.fixedPrice }</p>
+                  )}
+                  {!contentItem.hasFixedPrice && (
+                    <>
+                      <label htmlFor="suggested-price">Name your price!</label>
+                      {/* TODO: Use Intl.NumberFormat and type intent timeout to validate and format the state */}
+                      <span className="detail-popup-currency-symbol">€</span>
+                      <input
+                        name="suggested-price"
+                        onChange={suggestedPriceOnChange}
+                        type="text"
+                        value={suggestedPrice}
+                      />
+                      <small>Minimum price: { contentItem.flexPriceMinimum } €</small>
+                      {!valid && (
+                        <div className="invalid-message">
+                          Please enter a valid price.
+                        </div>
+                      )}
+                    </>
+                  )}
+                  <div className="detail-popup-buttons clearfix">
+                    <button
+                      className="action-button"
+                      onClick={buyNowOnClick}
+                    >
+                      Check out now
+                    </button>
+                    <button
+                      className="action-button"
+                      onClick={addToCartOnClick}
+                    >
+                      Add to Cart
+                    </button>
+                    <a
+                      className="detail-popup-cart-link"
+                      onClick={() => {
+                        dispatch(openPopup('cart-popup'))
+                      }}
+                    >
+                      View cart
+                    </a>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
             <TrackPlayPauseButton
               track={{
@@ -145,8 +167,10 @@ function DetailPopUp({ contentItem }: IProps): ReactElement {
           </div>
         </header>
         <div className="detail-popup-details">
+          {showPurchaseForm && (
             <h2>Details</h2>
-            <div dangerouslySetInnerHTML={{__html: contentItem.description}} />
+          )}
+          <div dangerouslySetInnerHTML={{__html: contentItem.description}} />
         </div>
       </Scrollbars>
     </section>

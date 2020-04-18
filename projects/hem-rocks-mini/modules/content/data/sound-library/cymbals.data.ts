@@ -17,7 +17,7 @@ const cymbalsData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library', 'instruments', 'percussion', 'extended-technique', 'sounds-instruments'],
+  tags: ['sound-library', 'instruments', 'percussion', 'extended-technique'],
   name: 'Cymbals',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',

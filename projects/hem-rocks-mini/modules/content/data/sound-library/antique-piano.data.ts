@@ -17,7 +17,7 @@ const antiquePianoData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library', 'instruments', 'keys', 'donic-detritus', 'sounds-instruments'],
+  tags: ['sound-library', 'instruments', 'keys', 'donic-detritus'],
   name: 'Antique Piano',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',

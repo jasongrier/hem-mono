@@ -17,7 +17,7 @@ const humHissCrackleData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library', 'post-studio', 'sonic-detritus', 'sounds-instruments'],
+  tags: ['sound-library', 'post-studio', 'sonic-detritus'],
   name: 'Hum Hiss Crackle',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',

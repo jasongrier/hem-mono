@@ -3,7 +3,7 @@ import uuid from 'uuid/v1'
 // @ts-ignore
 import autop from 'lines-to-paragraphs'
 
-const zeroData: IContentItem = {
+const quarterToneSynthData: IContentItem = {
   blurb: `
     I'm baby everyday carry kickstarter tilde retro yr shaman letterpress blog gentrify distillery asymmetrical gochujang skateboard bushwick. Mlkshk retro squid, deep v knausgaard pork belly gentrify tote bag health goth. Occupy small batch health goth, blue bottle vaporware master cleanse pok pok kickstarter.
   `,
@@ -17,15 +17,15 @@ const zeroData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library', 'generative-tools', 'midi-devices'],
-  name: 'Zero',
+  tags: ['sound-library', 'synth', 'instruments', 'microtonality', 'coming-soon'],
+  name: 'Quarter Tone Synth',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
-  slug: 'zero',
+  slug: 'quarter-tone-synth',
   sticky: false,
   type: 'Sample Pack for Ableton Live',
   userSuggestedPrice: null,
   videos: [],
 }
 
-export default zeroData
+export default quarterToneSynthData

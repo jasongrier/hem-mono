@@ -17,6 +17,12 @@
   height: 358px;
 }
 
+.detail-popup.purchase-form-hidden header {
+  position: relative;
+  width: 800px;
+  height: 190px;
+}
+
 .detail-popup header .planes {
   position: absolute;
   top: 0;
@@ -138,9 +144,30 @@
   background-color: var(--line-orange);
 }
 
+.detail-popup.purchase-form-hidden header .hem-play-pause-button {
+  bottom: 50px;
+  right: 224px;
+  transform: none;
+}
+
+.reveal-purchase-form-button {
+  position: absolute;
+  bottom: 50px;
+  right: 54px;
+  width: 160px;
+  height: 60px;
+  margin-right: 0;
+  font-size: 20px;
+}
+
 .detail-popup-details {
   padding: 30px 0;
-  background-color: var(--line-orange);
+  /* background-color: var(--line-orange); */
+  background-color: #fff;
+}
+
+.detail-popup.purchase-form-hidden .detail-popup-details {
+  padding-top: 0;
 }
 
 .hem-popup-content .detail-popup-details h2 {

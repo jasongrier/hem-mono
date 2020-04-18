@@ -17,7 +17,7 @@ const germanFolkGuitarLessonVinylData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library', 'found-sound', 'thrift-store-vinyl', 'sounds-instruments'],
+  tags: ['sound-library', 'found-sound', 'thrift-store-vinyl'],
   name: 'Guitar Lesson Vinyl',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',

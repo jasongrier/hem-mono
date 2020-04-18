@@ -139,17 +139,18 @@
 }
 
 .main-content-filter {
-  float: left;
+  display: inline-block;
   padding: 3px 10px;
   margin: 0 5px 5px 0;
   background: #ddd;
   cursor: pointer;
+  vertical-align: bottom;
 }
 
 .main-content-filter.active {
-  float: left;
   background: var(--line-orange);
   color: #fff;
+  font-size: 24px;
 }
 
 .main-content-items {

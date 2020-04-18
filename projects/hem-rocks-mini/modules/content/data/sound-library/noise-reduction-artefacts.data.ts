@@ -17,7 +17,7 @@ const noiseReductionArtefactsData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library', 'post-studio', 'sonic-detritus', 'sounds-instruments'],
+  tags: ['sound-library', 'post-studio', 'sonic-detritus'],
   name: 'Noise Reduction Artefacts',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',

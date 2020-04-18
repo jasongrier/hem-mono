@@ -17,7 +17,7 @@ const breathsData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library', 'sonic-detritus', 'labor-theory', 'vocal', 'sounds-instruments'],
+  tags: ['sound-library', 'sonic-detritus', 'labor-theory', 'vocal'],
   name: 'Breaths',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',

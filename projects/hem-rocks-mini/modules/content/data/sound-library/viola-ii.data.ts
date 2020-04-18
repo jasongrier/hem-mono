@@ -17,7 +17,7 @@ const violaIiData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library', 'coming-soon', 'extended-technique', 'asmr', 'instruments', 'microtonality', 'strings', 'sounds-instruments'],
+  tags: ['sound-library', 'coming-soon', 'extended-technique', 'asmr', 'instruments', 'microtonality', 'strings'],
   name: 'Viola II',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
