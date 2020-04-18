@@ -1,8 +1,10 @@
 import { IContentItem } from '../../index'
 import uuid from 'uuid/v1'
+// @ts-ignore
 import autop from 'lines-to-paragraphs'
 
 const midstData: IContentItem = {
+  acceptingDonations: true,
   blurb: `
   `,
   date: '01.09.2017',
@@ -15,7 +17,7 @@ const midstData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['projects'],
+  tags: ['projects', 'desktop-mobile-apps', 'javascript', 'react', 'electron', 'poetry'],
   name: 'Midst',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',

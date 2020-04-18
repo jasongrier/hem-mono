@@ -62,20 +62,22 @@ function App(): ReactElement {
         </div>
       </main>
       <PopupContainer
-        id="detail-popup-hidden-purchase-form"
-        closeIcon={CloseButton}
-      >
-        <DetailPopUp
-          contentItem={currentContentItem}
-          hidePurchaseFormInitially={true}
-        />
-      </PopupContainer>
-      <PopupContainer
         id="detail-popup"
         closeIcon={CloseButton}
       >
         <DetailPopUp contentItem={currentContentItem} />
       </PopupContainer>
+
+      <PopupContainer
+        id="detail-popup-hidden-purchase-form"
+        closeIcon={CloseButton}
+      >
+        <DetailPopUp
+          contentItem={currentContentItem}
+          showPurchaseForm={false}
+        />
+      </PopupContainer>
+
       <PopupContainer
         id="cart-popup"
         closeIcon={CloseButton}

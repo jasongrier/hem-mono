@@ -1,8 +1,10 @@
 import { IContentItem } from '../../index'
 import uuid from 'uuid/v1'
+// @ts-ignore
 import autop from 'lines-to-paragraphs'
 
 const seuratStandaloneData: IContentItem = {
+  acceptingDonations: true,
   badgeText: 'Coming Soon',
   blurb: `
   `,
@@ -15,7 +17,7 @@ const seuratStandaloneData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['projects'],
+  tags: ['projects', 'desktop-mobile-apps', 'javascript', 'react', 'electron', 'sound', 'composition'],
   name: 'Seurat Standalone',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',

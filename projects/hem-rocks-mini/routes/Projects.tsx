@@ -1,35 +1,39 @@
 import React, { ReactElement } from 'react'
+// @ts-ignore
 import autop from 'lines-to-paragraphs'
-import { MainContentList } from '../modules/content'
-import { TrackPlayPauseButton } from '../../../lib/modules/player'
+import { LaunchDetailPopupButton, MainContentList } from '../modules/content'
 
 function Label(): ReactElement {
   return (
-    <div className="page page-label">
+    <div className="page page-projects">
       <MainContentList
         blurb={autop(`
-
         `)}
-        buttonText="Download"
+        buttonText="Donate"
         campaignMonitorId="5B5E7037DA78A748374AD499497E309E34883504EC972B188E4CB169FC87154EA44D7B3A50124374F2DEEFB33D7CE7A53C0566B978C890570F878E42C80AD756"
         filters={[
-          'New Media',
-          'Javascript',
-          'NPM Modules',
+          'Composition',
           'Desktop/Mobile Apps',
-          'Poetry',
-          'Audio',
+          'Electron',
+          'Javascript',
+          // 'New Media',
+          'NPM Modules',
+          'Expanded Poetics',
+          'React',
+          'Sound Studies',
         ]}
-        infoPopupTitle="About the Sound Library"
         tag="projects"
         title="Projects"
       >
-        {(pack) => (
-          <TrackPlayPauseButton track={{
-            id: pack.slug,
-            type: 'soundcloud',
-            resource: pack.soundCloudTrackId,
-          }}/>
+        {(project) => (
+          project.acceptingDonations && (
+            <LaunchDetailPopupButton
+              contentItem={project}
+              showPurchaseForm={false}
+            >
+              Learn more
+            </LaunchDetailPopupButton>
+          )
         )}
       </MainContentList>
     </div>

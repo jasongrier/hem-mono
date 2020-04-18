@@ -16,7 +16,6 @@ interface IProps {
   blurb: string
   buttonText: string
   children: (contentItem: IContentItem) => any
-  infoPopupTitle: string
   tag: string
   title: string
 
@@ -24,13 +23,15 @@ interface IProps {
   exclusiveFilters?: string[]
   filters?: string[]
   highlights?: string[]
+
+  // TODO: Deprecated; remove info popup
   infoPopupText?: string
+  infoPopupTitle?: string
 }
 
 function MainContentList({
   blurb,
   buttonText,
-  infoPopupTitle,
   children,
   tag,
   title,
@@ -40,6 +41,7 @@ function MainContentList({
   filters = [],
   highlights,
   infoPopupText,
+  infoPopupTitle,
 }: IProps): ReactElement {
   const { allContentItems } = useSelector((state: RootState) => ({
     allContentItems: state.content.contentItems,

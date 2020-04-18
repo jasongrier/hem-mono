@@ -6,8 +6,8 @@ import { setCurrentContentItem, IContentItem } from '../index'
 interface IProps {
   contentItem: IContentItem
 
-  className: string
-  hidePurchaseFormInitially?: boolean
+  className?: string
+  showPurchaseForm?: boolean
 }
 
 function LaunchDetailPopupButton({
@@ -15,14 +15,14 @@ function LaunchDetailPopupButton({
   contentItem,
 
   className = '',
-  hidePurchaseFormInitially = false
+  showPurchaseForm = true
 }: PropsWithChildren<IProps>): ReactElement {
   const dispatch = useDispatch()
 
   const onClick = useCallback(
     function onClickFn() {
       dispatch(setCurrentContentItem(contentItem))
-      dispatch(openPopup(hidePurchaseFormInitially ? 'detail-popup-hidden-purchase-form' : 'detail-popup'))
+      dispatch(openPopup(showPurchaseForm ? 'detail-popup' : 'detail-popup-hidden-purchase-form'))
     }, [],
   )
 

@@ -6,6 +6,7 @@ export interface IProductImage {
 }
 
 export interface IContentItem {
+  acceptingDonations: boolean
   badgeText: string | null
   blurb: string
   date: string

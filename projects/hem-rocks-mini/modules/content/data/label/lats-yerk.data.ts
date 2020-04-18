@@ -1,8 +1,10 @@
 import { IContentItem } from '../../index'
 import uuid from 'uuid/v1'
+// @ts-ignore
 import autop from 'lines-to-paragraphs'
 
 const latsYerkData: IContentItem = {
+  acceptingDonations: false,
   blurb: `
   `,
   date: '01.09.2017',

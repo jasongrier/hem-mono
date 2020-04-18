@@ -1,8 +1,10 @@
 import { IContentItem } from '../../index'
 import uuid from 'uuid/v1'
+// @ts-ignore
 import autop from 'lines-to-paragraphs'
 
 const relineatorData: IContentItem = {
+  acceptingDonations: false,
   blurb: `
   `,
   date: '01.09.2017',
@@ -15,7 +17,7 @@ const relineatorData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['projects'],
+  tags: ['projects', 'javascript', 'react', 'electron', 'poetry'],
   name: 'Relineator',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',

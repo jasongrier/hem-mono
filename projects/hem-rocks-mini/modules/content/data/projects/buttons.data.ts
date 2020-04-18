@@ -1,8 +1,10 @@
 import { IContentItem } from '../../index'
 import uuid from 'uuid/v1'
+// @ts-ignore
 import autop from 'lines-to-paragraphs'
 
 const buttonsData: IContentItem = {
+  acceptingDonations: false,
   blurb: `
   `,
   date: '01.09.2017',
@@ -15,7 +17,7 @@ const buttonsData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['projects'],
+  tags: ['projects', 'npm-modules', 'javascript', 'react'],
   name: 'Buttons',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
