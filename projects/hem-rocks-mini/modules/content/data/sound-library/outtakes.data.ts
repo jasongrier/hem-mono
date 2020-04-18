@@ -17,7 +17,7 @@ const outtakesData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library', 'sonic-detritus', 'labor-theory', 'sounds-instruments'],
+  tags: ['sound-library', 'sonic-detritus', 'labor-theory'],
   name: 'Outtakes',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',

@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { CartPopup } from '../../cart'
 import { DetailPopUp } from '../../content'
+import { ScrollToTop } from '../../../../../lib/components'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup } from '../../../../../lib/modules/popups'
 import { collapseTopBar, MainNavItem, TopBar } from '../index'
@@ -32,6 +33,8 @@ function App(): ReactElement {
 
   return (
     <div className="hem-application">
+      <ScrollToTop />
+
       <TopBar collapsed={topBarCollapsed} />
 
       <nav className="main-nav">
@@ -58,6 +61,15 @@ function App(): ReactElement {
           </Switch>
         </div>
       </main>
+      <PopupContainer
+        id="detail-popup-hidden-purchase-form"
+        closeIcon={CloseButton}
+      >
+        <DetailPopUp
+          contentItem={currentContentItem}
+          hidePurchaseFormInitially={true}
+        />
+      </PopupContainer>
       <PopupContainer
         id="detail-popup"
         closeIcon={CloseButton}

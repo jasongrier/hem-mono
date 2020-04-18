@@ -17,7 +17,7 @@ const drumKitData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library', 'instruments', 'percussion', 'sounds-instruments'],
+  tags: ['sound-library', 'instruments', 'percussion'],
   name: 'Drum Kit',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',

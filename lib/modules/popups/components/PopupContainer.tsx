@@ -1,11 +1,12 @@
-import React, { ReactElement, PropsWithChildren, SFC, useEffect, SyntheticEvent } from 'react'
+import React, { ReactElement, PropsWithChildren, useState, useEffect, SyntheticEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { disableBodyScroll, enableBodyScroll} from 'body-scroll-lock'
 import { closePopup } from '../index'
 
 interface IProps {
   id: string
 
-  closeIcon?: SFC | false
+  closeIcon?: any
 }
 
 function PopupContainer({ children, id, closeIcon: CloseIcon }: PropsWithChildren<IProps>): ReactElement {
@@ -15,7 +16,9 @@ function PopupContainer({ children, id, closeIcon: CloseIcon }: PropsWithChildre
 
   const dispatch = useDispatch()
 
-  useEffect(function addBodyClass() {
+  const [windowScrollY, setWindowScrollY] = useState(0)
+
+  useEffect(function init() {
     function bodyOnKeyDown(evt: any) {
       if (evt.keyCode === 27) {
         dispatch(closePopup())
@@ -38,6 +41,20 @@ function PopupContainer({ children, id, closeIcon: CloseIcon }: PropsWithChildre
       document.body.classList.remove('popup-open')
     }
   }, [currentlyOpenPopUp])
+
+  useEffect(function bodyScrollLock() {
+    const targetEl = document.getElementById(id)
+
+    if (!targetEl) return
+
+    if (currentlyOpenPopUp) {
+      disableBodyScroll(targetEl)
+    }
+
+    else {
+      enableBodyScroll(targetEl)
+    }
+  }, [currentlyOpenPopUp, windowScrollY])
 
   const isOpen = currentlyOpenPopUp === id
 

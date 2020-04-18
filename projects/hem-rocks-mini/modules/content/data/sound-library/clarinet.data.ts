@@ -17,7 +17,7 @@ const clarinetData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library', 'instruments', 'winds', 'sounds-instruments'],
+  tags: ['sound-library', 'instruments', 'winds'],
   name: 'Clarinet',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',

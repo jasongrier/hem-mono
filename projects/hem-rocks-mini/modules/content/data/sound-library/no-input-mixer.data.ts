@@ -17,7 +17,7 @@ const noInputMixerData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library', 'post-studio', 'sounds-instruments'],
+  tags: ['sound-library', 'post-studio'],
   name: 'No-Input Mixer',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
