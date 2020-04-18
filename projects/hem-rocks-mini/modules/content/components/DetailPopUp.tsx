@@ -13,10 +13,14 @@ import LaunchDetailPopupButton from './LaunchDetailPopupButton'
 interface IProps {
   contentItem: IContentItem | null
 
-  hidePurchaseFormInitially?: boolean
+  showPurchaseForm?: boolean
 }
 
-function DetailPopUp({ contentItem, hidePurchaseFormInitially = false }: IProps): ReactElement {
+function DetailPopUp({
+  contentItem,
+
+  showPurchaseForm = true,
+}: IProps): ReactElement {
   const { cartProducts } = useSelector((state: RootState) => ({
     cartProducts: state.cart.products,
   }))
@@ -26,7 +30,6 @@ function DetailPopUp({ contentItem, hidePurchaseFormInitially = false }: IProps)
   const [suggestedPrice, setSuggestedPrice] = useState((contentItem ? contentItem.flexPriceMinimum : 0) as any)
 
   const [valid, setValid] = useState(true)
-  const [showPurchaseForm, setShowPurchaseForm] = useState(!hidePurchaseFormInitially)
 
   function addToCart() {
     const price = parseFloat(suggestedPrice)
@@ -87,7 +90,7 @@ function DetailPopUp({ contentItem, hidePurchaseFormInitially = false }: IProps)
     <section
       className={`
         detail-popup
-        ${hidePurchaseFormInitially ? 'purchase-form-hidden' : ''}
+        ${showPurchaseForm ? '' : 'purchase-form-hidden'}
       `}
       onKeyDown={onKeyDown}
     >

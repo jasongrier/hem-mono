@@ -4,6 +4,7 @@ import uuid from 'uuid/v1'
 import autop from 'lines-to-paragraphs'
 
 const eBowPianoData: IContentItem = {
+  acceptingDonations: false,
   badgeText: 'Coming Soon',
   blurb: `
     I'm baby everyday carry kickstarter tilde retro yr shaman letterpress blog gentrify distillery asymmetrical gochujang skateboard bushwick. Mlkshk retro squid, deep v knausgaard pork belly gentrify tote bag health goth. Occupy small batch health goth, blue bottle vaporware master cleanse pok pok kickstarter.
