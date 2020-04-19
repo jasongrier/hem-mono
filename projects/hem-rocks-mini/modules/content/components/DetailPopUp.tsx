@@ -35,7 +35,13 @@ function DetailPopUp({
   const [valid, setValid] = useState(true)
 
   useEffect(function init() {
-    ReactGA.modalview('Detail Popup: ' + contentItem.name)
+    if (showPurchaseForm) {
+      ReactGA.modalview('Detail Popup with Purchase Form: ' + contentItem.name)
+    }
+
+    else {
+      ReactGA.modalview('Detail Popup without Purchase Form: ' + contentItem.name)
+    }
   }, [])
 
   function addToCart(validateOnly = false) {
@@ -130,7 +136,7 @@ function DetailPopUp({
     function instantDownloadButtonOnClickFn() {
       if (!addToCart(true)) return
       // Trigger download somehow
-      dispatch(openPopup('email-popup'))
+      dispatch(openPopup('post-download-popup'))
       ReactGA.event({
         category: 'User',
         action: 'Clicked "Instant Download" for: ' + contentItem.name,
@@ -184,17 +190,21 @@ function DetailPopUp({
                   )}
                   {!contentItem.hasFixedPrice && (
                     <>
-                      <label htmlFor="suggested-price">Name your price!</label>
+                      <label htmlFor="suggested-price">
+                        Choose your price!<br />
+                        <small>Type, or click in the box and use the arrow keys</small>
+                      </label>
                       {/* TODO: Use Intl.NumberFormat and type intent timeout to validate and format the state */}
                       <span className="detail-popup-currency-symbol">€</span>
                       <input
                         autoComplete="off"
+                        min={contentItem.flexPriceMinimum || 0}
                         name="suggested-price"
                         onChange={suggestedPriceOnChange}
-                        type="text"
+                        type="number"
                         value={suggestedPrice}
                       />
-                      <small>Minimum price: { contentItem.flexPriceMinimum } €, recommended price: { contentItem.flexPriceRecommended } €</small>
+                      <small>Minimum price: { contentItem.flexPriceMinimum } €</small>
                       {!valid && (
                         <div className="invalid-message">
                           Please enter a valid price.

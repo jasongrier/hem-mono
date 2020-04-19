@@ -15,7 +15,7 @@ const oberheimExpanderData: IContentItem = {
   featureList: [],
   fixedPrice: null,
   flexPriceMinimum: 0,
-  flexPriceRecommended: 0,
+  flexPriceRecommended: 15,
   hasFixedPrice: false,
   id: uuid(),
   images: [],

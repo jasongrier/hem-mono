@@ -20,7 +20,7 @@ const grandPianoData: IContentItem = {
   featureList: [],
   fixedPrice: null,
   flexPriceMinimum: 10,
-  flexPriceRecommended: 25,
+  flexPriceRecommended: 79,
   hasFixedPrice: false,
   id: uuid(),
   images: [

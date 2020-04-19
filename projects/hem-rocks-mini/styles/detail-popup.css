@@ -124,13 +124,13 @@
 
 .detail-popup-currency-symbol {
   position: absolute;
-  top: 47px;
-  left: 195px;
-  font-size: 24px;
+  top: 56px;
+  left: 230px;
+  font-size: 30px;
 }
 
 .detail-popup-buttons {
-  margin-top: 18px;
+  margin-top: 10px;
 }
 
 .detail-popup-buttons button {
