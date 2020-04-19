@@ -2,11 +2,13 @@ import React, { ReactElement, SyntheticEvent, useCallback, useState } from 'reac
 import { useDispatch, useSelector } from 'react-redux'
 import { find, isNaN } from 'lodash'
 import Scrollbars from 'react-scrollbars-custom'
+import { Spinner } from '../../../../../lib/components'
 import { closePopup, openPopup } from '../../../../../lib/modules/popups'
 import { TrackPlayPauseButton } from '../../../../../lib/modules/player'
 import { Planes } from '../../../../../lib/packages/hem-placemats'
 import { addProductToCart } from '../../cart'
 import { IContentItem } from '../../content'
+import { usePlacemats } from '../../../functions'
 import { RootState } from '../../../index'
 import LaunchDetailPopupButton from './LaunchDetailPopupButton'
 
@@ -27,11 +29,11 @@ function DetailPopUp({
 
   const dispatch = useDispatch()
 
-  const [suggestedPrice, setSuggestedPrice] = useState((contentItem ? contentItem.flexPriceMinimum : 0) as any)
+  const [suggestedPrice, setSuggestedPrice] = useState((contentItem ? contentItem.flexPriceRecommended : 0) as any)
 
   const [valid, setValid] = useState(true)
 
-  function addToCart() {
+  function addToCart(validateOnly = false) {
     const price = parseFloat(suggestedPrice)
 
     if (!contentItem) {
@@ -44,12 +46,23 @@ function DetailPopUp({
       return false
     }
 
+    if (
+      !contentItem.hasFixedPrice
+      && contentItem.flexPriceMinimum
+      && price < contentItem.flexPriceMinimum
+    ) {
+      alert(`Sorry, the minimum price is ${contentItem.flexPriceMinimum} €.`)
+      return false
+    }
+
     if (find(cartProducts, { slug: contentItem.slug })) {
       alert('That item is already in your cart.')
       return false
     }
 
-    dispatch(addProductToCart(contentItem, price))
+    if (!validateOnly) {
+      dispatch(addProductToCart(contentItem, price))
+    }
 
     return true
   }
@@ -100,6 +113,14 @@ function DetailPopUp({
     }, [suggestedPrice],
   )
 
+  const instantDownloadButtonOnClick = useCallback(
+    function instantDownloadButtonOnClickFn() {
+      if (!addToCart(true)) return
+      // Trigger download somehow
+      dispatch(openPopup('email-popup'))
+    }, [suggestedPrice],
+  )
+
   const onKeyDown = useCallback(
     function onKeyDownFn(evt: React.KeyboardEvent) {
       if (evt.keyCode !== 13) return
@@ -116,12 +137,25 @@ function DetailPopUp({
       className={`
         detail-popup
         ${showPurchaseForm ? '' : 'purchase-form-hidden'}
+        ${usePlacemats(contentItem) ? 'with-placemat' : 'with-photography'}
       `}
       onKeyDown={onKeyDown}
     >
       <Scrollbars noScrollX={true}>
         <header>
-          <Planes />
+          { usePlacemats(contentItem) && (
+            <Planes />
+          )}
+          { !usePlacemats(contentItem) && (
+            <div
+              className="detail-popup-key-art-image"
+              style={{
+                backgroundImage: `url(${contentItem.images[0].src})`
+              }}
+            >
+              { contentItem.images[0].alt }
+            </div>
+          )}
           <div className="detail-popup-header-content">
             <div className="detail-popup-title">
               <h1>{ contentItem.name }</h1>
@@ -147,12 +181,13 @@ function DetailPopUp({
                       {/* TODO: Use Intl.NumberFormat and type intent timeout to validate and format the state */}
                       <span className="detail-popup-currency-symbol">€</span>
                       <input
+                        autoComplete="off"
                         name="suggested-price"
                         onChange={suggestedPriceOnChange}
                         type="text"
                         value={suggestedPrice}
                       />
-                      <small>Minimum price: { contentItem.flexPriceMinimum } €</small>
+                      <small>Minimum price: { contentItem.flexPriceMinimum } €, recommended price: { contentItem.flexPriceRecommended } €</small>
                       {!valid && (
                         <div className="invalid-message">
                           Please enter a valid price.
@@ -161,26 +196,43 @@ function DetailPopUp({
                     </>
                   )}
                   <div className="detail-popup-buttons clearfix">
-                    <button
-                      className="action-button"
-                      onClick={buyNowOnClick}
-                    >
-                      Check out now
-                    </button>
-                    <button
-                      className="action-button"
-                      onClick={addToCartOnClick}
-                    >
-                      Add to Cart
-                    </button>
-                    <a
-                      className="detail-popup-cart-link"
-                      onClick={() => {
-                        dispatch(openPopup('cart-popup'))
-                      }}
-                    >
-                      View cart
-                    </a>
+                    { suggestedPrice > 0 && (
+                      <>
+                        <button
+                          className="action-button"
+                          onClick={buyNowOnClick}
+                        >
+                          Check out now
+                        </button>
+                        <button
+                          className="action-button"
+                          onClick={addToCartOnClick}
+                        >
+                          Add to Cart
+                        </button>
+                        <a
+                          className="detail-popup-cart-link"
+                          onClick={() => {
+                            dispatch(openPopup('cart-popup'))
+                          }}
+                        >
+                          View cart
+                        </a>
+                      </>
+                    )}
+                    { parseInt(suggestedPrice, 10) === 0 && (
+                      <button
+                        className="action-button"
+                        onClick={instantDownloadButtonOnClick}
+                      >
+                        Download
+                      </button>
+                    )}
+                    { suggestedPrice === '' && (
+                      <div className="purchase-form-spinner">
+                        <Spinner />
+                      </div>
+                    )}
                   </div>
                 </div>
               )}

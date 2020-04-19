@@ -14,6 +14,7 @@ const gillisGrierStudioAchtData: IContentItem = {
   featureList: [],
   fixedPrice: null,
   flexPriceMinimum: 0,
+  flexPriceRecommended: 0,
   hasFixedPrice: false,
   id: uuid(),
   images: [],
