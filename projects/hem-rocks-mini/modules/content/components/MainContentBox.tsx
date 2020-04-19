@@ -13,7 +13,7 @@ interface IProps {
   className?: string
 }
 
-const FORCE_PLACEMATS = true
+const FORCE_PLACEMATS = false
 
 function MainContentBox({
   action,
@@ -47,6 +47,7 @@ function MainContentBox({
         ${className}
         ${contentItem.badgeText ? 'has-badge' : ''}
         ${alignRight && index > 0 ? 'align-right' : ''}
+        ${usePlacemats(contentItem) ? 'with-placemat' : 'with-photography'}
       `}
       width={300}
       height={0}
@@ -80,10 +81,7 @@ function MainContentBox({
         )}
       </div>
       <div
-        className={`
-          main-content-box-text
-          ${usePlacemats(contentItem) ? 'with-placemat' : 'with-photography'}
-        `}
+        className="main-content-box-text"
         onClick={() => {
           action(contentItem)
         }}
