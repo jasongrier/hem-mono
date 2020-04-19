@@ -246,19 +246,21 @@
 }
 
 .main-content-box h3 {
+  width: 100%;
   line-height: 45px;
-  margin: 0 0 20px 0;
+  margin: 0 0 20px 15px;
   font-size: 64px;
   font-weight: 100;
   text-transform: uppercase;
 }
 
 .main-content-box.has-badge h3 {
-  margin: 0 0 10px 0;
+  margin: 0 0 10px 15px;
 }
 
 .main-content-box p {
   width: 300px;
+  margin-left: -15px;
 }
 
 .main-content-box.with-photography h3,

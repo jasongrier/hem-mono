@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react'
+import ReactGA from 'react-ga'
 // @ts-ignore
 import autop from 'lines-to-paragraphs'
 import { MainContentList } from '../modules/content'
@@ -50,11 +51,13 @@ function SoundLibrary(): ReactElement {
         title="Sound Library"
       >
         {(pack) => (
-          <TrackPlayPauseButton track={{
-            id: pack.slug,
-            type: 'soundcloud',
-            resource: pack.soundCloudTrackId,
-          }}/>
+          <TrackPlayPauseButton
+            track={{
+              id: pack.slug,
+              resource: pack.soundCloudTrackId,
+              type: 'soundcloud',
+            }}
+          />
         )}
       </MainContentList>
     </div>

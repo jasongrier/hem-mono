@@ -1,5 +1,6 @@
 import React, { ReactElement, useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import ReactGA from 'react-ga'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { IContentItem } from '../../content'
 import { RootState } from '../../../index'
@@ -15,25 +16,23 @@ function CartPopup(): ReactElement {
 
   const checkoutOnClick = useCallback(
     function checkoutOnClickFn() {
-      if (getGrandTotal() === 0) {
-
-      }
-
-      else {
-        // Shopify...
-      }
+      // Shopify stuff...
+      ReactGA.event({
+        category: 'User',
+        action: 'Clicked "Checkout" in shopping cart for',
+      })
     }, [],
   )
 
-  function getFinalPrice(product: IContentItem) {
-    let price
+  function getFinalPrice(product: IContentItem): number {
+    let price = 0
 
-    if (product.hasFixedPrice) {
+    if (product.hasFixedPrice && product.fixedPrice) {
       price = product.fixedPrice
     }
 
     else {
-      price = product.userSuggestedPrice
+      price = product.userSuggestedPrice || product.flexPriceMinimum || 0
     }
 
     return price
@@ -80,6 +79,10 @@ function CartPopup(): ReactElement {
                   <div className="cart-popup-item-remove">
                     <CloseButton
                       onClick={() => {
+                        ReactGA.event({
+                          category: 'User',
+                          action: 'Clicked "remove" in shopping cart for ' + product.name,
+                        })
                         dispatch(removeProductFromCart(product.id))
                       }}
                     />

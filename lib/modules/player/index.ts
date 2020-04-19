@@ -2,8 +2,8 @@ import { AnyAction } from 'redux'
 
 export interface ITrack {
   id: string
-  type: 'local' | 'soundcloud'
   resource: string
+  type: 'local' | 'soundcloud'
 }
 
 export interface IState {

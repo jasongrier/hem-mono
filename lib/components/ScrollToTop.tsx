@@ -8,7 +8,7 @@ function ScrollToTop(): ReactElement {
     window.scrollTo(0, 0)
   }, [pathname])
 
-  return null
+  return <span />
 }
 
 export default ScrollToTop
