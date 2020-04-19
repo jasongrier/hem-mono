@@ -1,9 +1,10 @@
 import React, { ReactElement, useEffect } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+import ReactGA from 'react-ga'
 import { CartPopup } from '../../cart'
 import { DetailPopUp } from '../../content'
-import { EmailPopup } from '../../app'
+import { EmailPopup } from './index'
 import { HamburgerMenu, ScrollToTop } from '../../../../../lib/components'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup } from '../../../../../lib/modules/popups'
@@ -18,6 +19,8 @@ import {
   SoundLibrary,
 } from '../../../routes'
 
+ReactGA.initialize('UA-163585797-1')
+
 function App(): ReactElement {
   const { currentContentItem, topBarCollapsed } = useSelector((state: RootState) => ({
     currentContentItem: state.content.currentContentItem,
@@ -28,9 +31,16 @@ function App(): ReactElement {
 
   useEffect(function init() {
     if (window.location.pathname !== '/') {
+      // TODO: collapseTopBar is deprecated
       dispatch(collapseTopBar())
     }
   }, [])
+
+  const { pathname } = useLocation()
+
+  useEffect(function trackPageView() {
+    ReactGA.pageview(pathname)
+  }, [pathname])
 
   return (
     <div className="hem-application">
@@ -70,22 +80,26 @@ function App(): ReactElement {
 
       </footer>
 
-      <PopupContainer
-        id="detail-popup"
-        closeIcon={CloseButton}
-      >
-        <DetailPopUp contentItem={currentContentItem} />
-      </PopupContainer>
+      { currentContentItem && (
+        <>
+          <PopupContainer
+            id="detail-popup"
+            closeIcon={CloseButton}
+          >
+            <DetailPopUp contentItem={currentContentItem} />
+          </PopupContainer>
 
-      <PopupContainer
-        id="detail-popup-hidden-purchase-form"
-        closeIcon={CloseButton}
-      >
-        <DetailPopUp
-          contentItem={currentContentItem}
-          showPurchaseForm={false}
-        />
-      </PopupContainer>
+          <PopupContainer
+            id="detail-popup-hidden-purchase-form"
+            closeIcon={CloseButton}
+          >
+            <DetailPopUp
+              contentItem={currentContentItem}
+              showPurchaseForm={false}
+            />
+          </PopupContainer>
+        </>
+      )}
 
       <PopupContainer
         id="cart-popup"

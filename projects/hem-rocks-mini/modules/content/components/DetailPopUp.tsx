@@ -1,7 +1,8 @@
-import React, { ReactElement, SyntheticEvent, useCallback, useState } from 'react'
+import React, { ReactElement, SyntheticEvent, useEffect, useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { find, isNaN } from 'lodash'
 import Scrollbars from 'react-scrollbars-custom'
+import ReactGA from 'react-ga'
 import { Spinner } from '../../../../../lib/components'
 import { closePopup, openPopup } from '../../../../../lib/modules/popups'
 import { TrackPlayPauseButton } from '../../../../../lib/modules/player'
@@ -13,7 +14,7 @@ import { RootState } from '../../../index'
 import LaunchDetailPopupButton from './LaunchDetailPopupButton'
 
 interface IProps {
-  contentItem: IContentItem | null
+  contentItem: IContentItem
 
   showPurchaseForm?: boolean
 }
@@ -32,6 +33,10 @@ function DetailPopUp({
   const [suggestedPrice, setSuggestedPrice] = useState((contentItem ? contentItem.flexPriceRecommended : 0) as any)
 
   const [valid, setValid] = useState(true)
+
+  useEffect(function init() {
+    ReactGA.modalview('Detail Popup: ' + contentItem.name)
+  }, [])
 
   function addToCart(validateOnly = false) {
     const price = parseFloat(suggestedPrice)
@@ -103,6 +108,10 @@ function DetailPopUp({
       if (!addToCart()) return
       dispatch(closePopup())
       dispatch(openPopup('cart-popup'))
+      ReactGA.event({
+        category: 'User',
+        action: 'Clicked "Checkout Now" for: ' + contentItem.name,
+      })
     }, [suggestedPrice],
   )
 
@@ -110,6 +119,10 @@ function DetailPopUp({
     function addToCartOnClickFn() {
       if (!addToCart()) return
       alert('Item was added to your cart!')
+      ReactGA.event({
+        category: 'User',
+        action: 'Clicked "Add to Cart" for: ' + contentItem.name,
+      })
     }, [suggestedPrice],
   )
 
@@ -118,15 +131,10 @@ function DetailPopUp({
       if (!addToCart(true)) return
       // Trigger download somehow
       dispatch(openPopup('email-popup'))
-    }, [suggestedPrice],
-  )
-
-  const onKeyDown = useCallback(
-    function onKeyDownFn(evt: React.KeyboardEvent) {
-      if (evt.keyCode !== 13) return
-      if (!addToCart()) return
-      dispatch(closePopup())
-      dispatch(openPopup('cart-popup'))
+      ReactGA.event({
+        category: 'User',
+        action: 'Clicked "Instant Download" for: ' + contentItem.name,
+      })
     }, [suggestedPrice],
   )
 
@@ -139,7 +147,6 @@ function DetailPopUp({
         ${showPurchaseForm ? '' : 'purchase-form-hidden'}
         ${usePlacemats(contentItem) ? 'with-placemat' : 'with-photography'}
       `}
-      onKeyDown={onKeyDown}
     >
       <Scrollbars noScrollX={true}>
         <header>
