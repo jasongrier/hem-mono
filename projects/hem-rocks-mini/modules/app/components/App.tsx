@@ -3,8 +3,8 @@ import { Route, Switch, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import ReactGA from 'react-ga'
 import { CartPopup } from '../../cart'
-import { DetailPopUp } from '../../content'
-import { EmailPopup } from './index'
+import { DetailPopUp, PostDownloadPopup } from '../../content'
+import { EmailForm } from './index'
 import { HamburgerMenu, ScrollToTop } from '../../../../../lib/components'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup } from '../../../../../lib/modules/popups'
@@ -112,7 +112,14 @@ function App(): ReactElement {
         id="email-popup"
         closeIcon={CloseButton}
       >
-        <EmailPopup />
+        <EmailForm />
+      </PopupContainer>
+
+      <PopupContainer
+        id="post-download-popup"
+        closeIcon={CloseButton}
+      >
+        <PostDownloadPopup />
       </PopupContainer>
     </div>
   )

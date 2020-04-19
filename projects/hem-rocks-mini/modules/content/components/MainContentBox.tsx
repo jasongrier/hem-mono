@@ -32,7 +32,9 @@ function MainContentBox({
   return (
     <SplatterDims
       bipolarX={false}
-      bipolarY={true}
+      bipolarY={false}
+      minMarginX={50}
+      minMarginY={30}
       className={`
         main-content-box
         ${className}
@@ -44,6 +46,8 @@ function MainContentBox({
       height={0}
       rangeX={100}
       rangeY={0}
+      marginRangeX={100}
+      marginRangeY={200}
       disabled={index < 1}
     >
       { contentItem.badgeText && (

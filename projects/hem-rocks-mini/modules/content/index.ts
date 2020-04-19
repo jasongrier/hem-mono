@@ -52,5 +52,5 @@ export {
   LaunchDetailPopupButton,
   MainContentBox,
   MainContentList,
-  ProductTile,
+  PostDownloadPopup,
 } from './components'

@@ -32,6 +32,9 @@ function GrandPianoHeroine(): ReactElement {
         </div>
         <div className="grand-piano-heroine-text">
           <h2>New in Sound Library: Grand Piano</h2>
+          <h5>
+            A gritty and elegant prepared piano, recorded in Berlin
+          </h5>
           <p>
             &bull; 6 Treatments: Vanilla, Rice Paper, Black Cinefoil, Steel Tinplate, Louis V Chain, Guitar Pick
           </p>
