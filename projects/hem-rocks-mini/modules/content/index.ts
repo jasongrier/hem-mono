@@ -14,6 +14,7 @@ export interface IContentItem {
   featureList: string[]
   fixedPrice: number | null
   flexPriceMinimum: number | null
+  flexPriceRecommended: number | null
   hasFixedPrice: boolean
   id: string
   images: IProductImage[]

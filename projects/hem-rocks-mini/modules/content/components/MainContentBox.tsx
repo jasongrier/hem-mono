@@ -1,6 +1,7 @@
 import React, { ReactElement, PropsWithChildren, useState, useEffect } from 'react'
 import { Planes } from '../../../../../lib/packages/hem-placemats'
 import { SplatterDims } from '../../../../../lib/packages/hem-boxplatter'
+import { usePlacemats } from '../../../functions'
 import { LaunchDetailPopupButton } from './index'
 import { IContentItem } from '../index'
 
@@ -12,8 +13,6 @@ interface IProps {
   buttonText?: string
   className?: string
 }
-
-const FORCE_PLACEMATS = false
 
 function MainContentBox({
   action,
@@ -29,14 +28,6 @@ function MainContentBox({
   useEffect(function init() {
     setAlignRight(Math.random() > 0.5)
   }, [])
-
-  function usePlacemats(contentItem: IContentItem) {
-    if (FORCE_PLACEMATS) {
-      return true
-    }
-
-    return !contentItem.images[0]
-  }
 
   return (
     <SplatterDims

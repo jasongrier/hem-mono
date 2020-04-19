@@ -259,13 +259,12 @@
 
 .main-content-box p {
   width: 300px;
-  display: none;
 }
 
 .main-content-box.with-photography h3,
 .main-content-box.with-photography p {
   color: #fff;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 1);
 }
 
 .main-content-box .planes {

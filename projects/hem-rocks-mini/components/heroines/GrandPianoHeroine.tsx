@@ -19,14 +19,16 @@ function GrandPianoHeroine(): ReactElement {
       <div className="grand-piano-heroine-image" />
       <div className="grand-piano-heroine-details">
         <div>
-          <MuteButton
-            canStartPlayback={true}
-            track={{
-              id: grandPianoProduct.slug,
-              type: 'soundcloud',
-              resource: grandPianoProduct.soundCloudTrackId,
-            }}
-          />
+          { grandPianoProduct.soundCloudTrackId && (
+            <MuteButton
+              canStartPlayback={true}
+              track={{
+                id: grandPianoProduct.slug,
+                type: 'soundcloud',
+                resource: grandPianoProduct.soundCloudTrackId,
+              }}
+            />
+          )}
         </div>
         <div className="grand-piano-heroine-text">
           <h2>New in Sound Library: Grand Piano</h2>
@@ -38,7 +40,7 @@ function GrandPianoHeroine(): ReactElement {
           </p>
           <LaunchDetailPopupButton
             contentItem={grandPianoProduct}
-            hidePurchaseFormInitially={true}
+            showPurchaseForm={false}
           >
             Learn more
           </LaunchDetailPopupButton>

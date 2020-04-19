@@ -6,7 +6,7 @@ import autop from 'lines-to-paragraphs'
 const choirVinylData: IContentItem = {
   acceptingDonations: false,
   blurb: `
-    I'm baby everyday carry kickstarter tilde retro yr shaman letterpress blog gentrify distillery asymmetrical gochujang skateboard bushwick. Mlkshk retro squid, deep v knausgaard pork belly gentrify tote bag health goth. Occupy small batch health goth, blue bottle vaporware master cleanse pok pok kickstarter.
+    Free for Live 10 users, Singularities makes use of single samples and finely tuned, expressive parameters to capture the sound and feel of classic synths and samplers. Included are 40 Instrument Racks, plus MIDI clips and drum kits – all the parts you need for a complete track.
   `,
   date: '01.09.2017',
   badgeText: null,
@@ -15,6 +15,7 @@ const choirVinylData: IContentItem = {
   featureList: [],
   fixedPrice: null,
   flexPriceMinimum: 0,
+  flexPriceRecommended: 0,
   hasFixedPrice: false,
   id: uuid(),
   images: [],

@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { CartPopup } from '../../cart'
 import { DetailPopUp } from '../../content'
+import { EmailPopup } from '../../app'
 import { HamburgerMenu, ScrollToTop } from '../../../../../lib/components'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup } from '../../../../../lib/modules/popups'
@@ -91,6 +92,13 @@ function App(): ReactElement {
         closeIcon={CloseButton}
       >
         <CartPopup />
+      </PopupContainer>
+
+      <PopupContainer
+        id="email-popup"
+        closeIcon={CloseButton}
+      >
+        <EmailPopup />
       </PopupContainer>
     </div>
   )
