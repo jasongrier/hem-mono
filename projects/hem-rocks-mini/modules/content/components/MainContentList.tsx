@@ -14,11 +14,11 @@ import { RootState } from '../../../index'
 
 interface IProps {
   blurb: string
-  buttonText: string
   children: (contentItem: IContentItem) => any
   tag: string
   title: string
 
+  buttonText?: string
   campaignMonitorId?: string
   exclusiveFilters?: string[]
   filters?: string[]
@@ -31,11 +31,11 @@ interface IProps {
 
 function MainContentList({
   blurb,
-  buttonText,
   children,
   tag,
   title,
 
+  buttonText,
   campaignMonitorId,
   exclusiveFilters = [],
   filters = [],

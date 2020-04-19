@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { CartPopup } from '../../cart'
 import { DetailPopUp } from '../../content'
-import { ScrollToTop } from '../../../../../lib/components'
+import { HamburgerMenu, ScrollToTop } from '../../../../../lib/components'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup } from '../../../../../lib/modules/popups'
 import { collapseTopBar, MainNavItem, TopBar } from '../index'
@@ -37,17 +37,21 @@ function App(): ReactElement {
 
       <TopBar collapsed={topBarCollapsed} />
 
-      <nav className="main-nav">
-        <ul>
+      <nav className="main-nav no-burger">
+        <ul className="main-nav-items">
           <MainNavItem name="Sound Library" />
           <MainNavItem name="Label" />
-          <MainNavItem name="Projects" />
+          <MainNavItem name="Info" />
+          {/* <MainNavItem name="Projects" /> */}
           <li className="main-nav-item">
             <a onClick={() => dispatch(openPopup('cart-popup'))}>
               Cart
             </a>
           </li>
         </ul>
+        {/* <HamburgerMenu>
+          <ul></ul>
+        </HamburgerMenu> */}
       </nav>
 
       <main className="main-content">
@@ -56,11 +60,15 @@ function App(): ReactElement {
             <Route exact path="/" component={Home} />
             <Route exact path="/info" component={Info} />
             <Route exact path="/label" component={Label} />
-            <Route exact path="/projects" component={Projects} />
+            {/* <Route exact path="/projects" component={Projects} /> */}
             <Route exact path="/sound-library" component={SoundLibrary} />
           </Switch>
         </div>
       </main>
+      <footer>
+
+      </footer>
+
       <PopupContainer
         id="detail-popup"
         closeIcon={CloseButton}

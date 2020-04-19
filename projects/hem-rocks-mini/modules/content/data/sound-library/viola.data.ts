@@ -18,7 +18,7 @@ const violaData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['sound-library', 'instruments', 'microtonality'],
+  tags: ['sound-library', 'instruments', 'microtonality', 'strings'],
   name: 'Viola',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',

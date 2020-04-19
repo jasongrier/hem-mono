@@ -19,7 +19,7 @@ const natureSoundsVinylData: IContentItem = {
   id: uuid(),
   images: [],
   tags: ['sound-library', 'found-sound', 'thrift-store-vinyl'],
-  name: 'Nature Sounds Vinyl',
+  name: 'Nature Sounds',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
   slug: 'nature-sounds-vinyl',

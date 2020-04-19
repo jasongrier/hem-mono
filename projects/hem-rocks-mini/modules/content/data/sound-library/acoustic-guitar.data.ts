@@ -17,7 +17,12 @@ const acousticGuitarData: IContentItem = {
   flexPriceMinimum: 0,
   hasFixedPrice: false,
   id: uuid(),
-  images: [],
+  images: [
+    {
+      alt: 'HEM Acoustic Guitar',
+      src: 'http://static.hem.rocks/hem-rocks/site/sound-library/UNADJUSTEDNONRAW_thumb_214d.jpg',
+    }
+  ],
   tags: ['sound-library', 'guitar-and-bass', 'instruments'],
   name: 'Acoustic Guitar',
   published: true,

@@ -20,7 +20,7 @@ const seuratStandaloneData: IContentItem = {
   tags: ['projects', 'desktop-mobile-apps', 'javascript', 'react', 'electron', 'sound', 'composition'],
   name: 'Seurat Standalone',
   published: true,
-  soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudTrackId: null,
   slug: 'seurat-standalone',
   sticky: true,
   type: 'Sample Pack for Ableton Live',

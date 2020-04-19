@@ -19,7 +19,7 @@ const choirVinylData: IContentItem = {
   id: uuid(),
   images: [],
   tags: ['sound-library', 'choral', 'vocal', 'found-sound', 'thrift-store-vinyl'],
-  name: 'Choir Vinyl',
+  name: 'Choir',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
   slug: 'choir-vinyl',

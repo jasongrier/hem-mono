@@ -20,7 +20,7 @@ const lucData: IContentItem = {
   tags: ['projects', 'desktop-mobile-apps', 'javascript', 'react', 'electron', 'sound', 'composition'],
   name: 'Luc',
   published: true,
-  soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudTrackId: null,
   slug: 'luc',
   sticky: true,
   type: 'Sample Pack for Ableton Live',
