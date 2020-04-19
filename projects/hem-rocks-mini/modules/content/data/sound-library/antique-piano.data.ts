@@ -17,7 +17,12 @@ const antiquePianoData: IContentItem = {
   flexPriceMinimum: 0,
   hasFixedPrice: false,
   id: uuid(),
-  images: [],
+  images: [
+    {
+      alt: 'HEM Antique Piano',
+      src: 'http://static.hem.rocks/hem-rocks/site/sound-library/IMG_8190.JPG',
+    }
+  ],
   tags: ['sound-library', 'instruments', 'keys', 'donic-detritus'],
   name: 'Antique Piano',
   published: true,

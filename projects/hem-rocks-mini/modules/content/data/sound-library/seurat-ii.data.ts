@@ -17,7 +17,12 @@ const seuratIiData: IContentItem = {
   flexPriceMinimum: 0,
   hasFixedPrice: false,
   id: uuid(),
-  images: [],
+  images: [
+    {
+      alt: 'HEM Seurat II',
+      src: 'http://static.hem.rocks/hem-rocks/site/sound-library/s.png',
+    }
+  ],
   tags: ['sound-library', 'generative-tools', 'midi-devices', 'coming-soon'],
   name: 'Seurat II',
   published: true,

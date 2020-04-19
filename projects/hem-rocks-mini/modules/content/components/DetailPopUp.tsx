@@ -54,6 +54,31 @@ function DetailPopUp({
     return true
   }
 
+  function buttonText(item: IContentItem) {
+    if (item.tags.includes('sound-library')) {
+      return 'Download'
+    }
+
+    else if (item.tags.includes('projects')) {
+      return 'Contribute'
+    }
+
+    else if (item.tags.includes('label')) {
+      return 'Artist\'s Website'
+    }
+  }
+
+  function isPurchaseable(item: IContentItem) {
+    if (
+      item.tags.includes('sound-library')
+      || item.tags.includes('merch')
+    ) {
+      return true
+    }
+
+    return false
+  }
+
   const suggestedPriceOnChange = useCallback(
     function suggestedPriceOnChange(evt: SyntheticEvent<HTMLInputElement>) {
       setSuggestedPrice(evt.currentTarget.value)
@@ -108,10 +133,10 @@ function DetailPopUp({
                   className="reveal-purchase-form-button"
                   contentItem={contentItem}
                 >
-                  Download
+                  { buttonText(contentItem) }
                 </LaunchDetailPopupButton>
               )}
-              { showPurchaseForm && (
+              { showPurchaseForm && isPurchaseable(contentItem) && (
                 <div className="detail-popup-form">
                   {contentItem.hasFixedPrice && (
                     <p>{ contentItem.fixedPrice }</p>
@@ -159,14 +184,21 @@ function DetailPopUp({
                   </div>
                 </div>
               )}
+              { showPurchaseForm && contentItem.acceptingDonations && (
+                <div>
+                  <h4>Contributing to this project</h4>
+                </div>
+              )}
             </div>
-            <TrackPlayPauseButton
-              track={{
-                id: contentItem.slug,
-                type: 'soundcloud',
-                resource: contentItem.soundCloudTrackId,
-              }}
-            />
+            { contentItem.soundCloudTrackId && (
+              <TrackPlayPauseButton
+                track={{
+                  id: contentItem.slug,
+                  type: 'soundcloud',
+                  resource: contentItem.soundCloudTrackId,
+                }}
+              />
+            )}
           </div>
         </header>
         <div className="detail-popup-details">

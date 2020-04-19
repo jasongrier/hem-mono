@@ -20,7 +20,7 @@ export interface IContentItem {
   tags: string[]
   name: string
   published: boolean
-  soundCloudTrackId: string
+  soundCloudTrackId: string | null
   slug: string
   sticky: boolean
   type: string

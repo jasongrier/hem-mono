@@ -1,13 +1,17 @@
 .main-nav {
   position: fixed;
   top: 0;
-  right: 5px;
+  right: 75px;
   width: 80vw;
   z-index: 9999;
   height: var(--top-bar-height);
 }
 
-.main-nav ul {
+.main-nav.no-burger {
+  right: 5px;
+}
+
+.main-nav .main-nav-items {
   width: 80vw;
   height: var(--top-bar-height);
   line-height: var(--top-bar-height);
@@ -17,14 +21,14 @@
   text-align: right;
 }
 
-.main-nav ul li {
+.main-nav .main-nav-items li {
   display: inline;
   margin: 0 0 0 40px;
   text-transform: uppercase;
   cursor: pointer;
 }
 
-.main-nav ul li a {
+.main-nav .main-nav-items li a {
   font-size: 30px;
   color: #fff;
   text-decoration: none;
@@ -32,8 +36,41 @@
   font-weight: 100;
 }
 
-.main-nav ul li a.active {
+.main-nav .main-nav-items li a.active {
   display: inline-block;
   height: 25px;
   border-bottom: 5px solid #fff;
+}
+
+.main-nav .hem-hamburger-menu-toggle {
+  top: 0;
+  right: 5px;
+  transform: scale(0.8);
+}
+
+.main-nav .hem-hamburger-menu-toggle span {
+  margin-bottom: 9px;
+  background-color: #fff;
+  transition: none;
+}
+
+
+.main-nav .hem-hamburger-menu-toggle-open {
+  transform: translateX(-5px) scale(0.8);
+}
+
+.main-nav .hem-hamburger-menu-toggle-open span:nth-child(1) {
+  left: -3.5px;
+}
+
+.main-nav .hem-hamburger-menu-toggle-open span:nth-child(1),
+.main-nav .hem-hamburger-menu-toggle-open span:nth-child(3) {
+  width: 35px;
+}
+
+.hem-hamburger-menu-content-open {
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
 }

@@ -20,7 +20,7 @@ const buttonsData: IContentItem = {
   tags: ['projects', 'npm-modules', 'javascript', 'react'],
   name: 'Buttons',
   published: true,
-  soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudTrackId: null,
   slug: 'buttons',
   sticky: false,
   type: 'Sample Pack for Ableton Live',

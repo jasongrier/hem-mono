@@ -20,7 +20,7 @@ const placematsData: IContentItem = {
   tags: ['projects', 'npm-modules', 'javascript', 'react'],
   name: 'Placemats',
   published: true,
-  soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudTrackId: null,
   slug: 'placemats',
   sticky: false,
   type: 'Sample Pack for Ableton Live',

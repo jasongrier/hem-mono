@@ -1,25 +1,27 @@
 import React, { ReactElement, PropsWithChildren, useState, useEffect } from 'react'
 import { Planes } from '../../../../../lib/packages/hem-placemats'
-import { SplatterDims, SplatterVertices } from '../../../../../lib/packages/hem-boxplatter'
+import { SplatterDims } from '../../../../../lib/packages/hem-boxplatter'
 import { LaunchDetailPopupButton } from './index'
 import { IContentItem } from '../index'
 
 interface IProps {
   action: (contentItem: any) => void
-  buttonText: string
   contentItem: IContentItem
   index: number
 
+  buttonText?: string
   className?: string
 }
 
+const FORCE_PLACEMATS = true
+
 function MainContentBox({
   action,
-  buttonText,
   children,
   contentItem,
   index,
 
+  buttonText,
   className,
 }: PropsWithChildren<IProps>): ReactElement {
   const [alignRight, setAlignRight] = useState(false)
@@ -27,6 +29,14 @@ function MainContentBox({
   useEffect(function init() {
     setAlignRight(Math.random() > 0.5)
   }, [])
+
+  function usePlacemats(contentItem: IContentItem) {
+    if (FORCE_PLACEMATS) {
+      return true
+    }
+
+    return !contentItem.images[0]
+  }
 
   return (
     <SplatterDims
@@ -55,10 +65,25 @@ function MainContentBox({
           action(contentItem)
         }}
       >
-        <Planes />
+        { !usePlacemats(contentItem) && (
+          <div
+            className="main-content-box-key-art-image"
+            style={{
+              backgroundImage: `url(${contentItem.images[0].src})`
+            }}
+          >
+            { contentItem.images[0].alt }
+          </div>
+        )}
+        { usePlacemats(contentItem) && (
+          <Planes />
+        )}
       </div>
       <div
-        className="main-content-box-text"
+        className={`
+          main-content-box-text
+          ${usePlacemats(contentItem) ? 'with-placemat' : 'with-photography'}
+        `}
         onClick={() => {
           action(contentItem)
         }}
@@ -70,9 +95,11 @@ function MainContentBox({
         <div className="main-content-box-custom-actions">
           { children }
         </div>
-        <LaunchDetailPopupButton contentItem={contentItem}>
-          { buttonText }
-        </LaunchDetailPopupButton>
+        { buttonText && (
+          <LaunchDetailPopupButton contentItem={contentItem}>
+            { buttonText }
+          </LaunchDetailPopupButton>
+        )}
       </div>
     </SplatterDims>
   )

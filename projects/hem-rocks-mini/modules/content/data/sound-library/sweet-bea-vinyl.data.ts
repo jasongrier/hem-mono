@@ -19,7 +19,7 @@ const sweetBeaVinylData: IContentItem = {
   id: uuid(),
   images: [],
   tags: ['sound-library', 'found-sound', 'thrift-store-vinyl'],
-  name: 'Sweet Bea Vinyl',
+  name: 'Sweet Bea',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
   slug: 'sweet-bea-vinyl',
