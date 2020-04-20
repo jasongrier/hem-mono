@@ -74,6 +74,7 @@ export {
 export {
   MuteButton,
   PauseButton,
+  PlayPauseButton,
   ProgressBar,
   StopButton,
   TrackPlayPauseButton,

@@ -34,7 +34,7 @@ function TrackPlayPauseButton({ track }: IProps): ReactElement {
   )
 
   return (
-    <div className="hem-player-play-pause-button">
+    <div className="hem-player-track-play-pause-button">
       <BasePlayPauseButton
         playing={playerPlaying && (track.id === currentTrackId)}
         onClick={playPauseButtonOnClick}

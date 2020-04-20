@@ -1,14 +1,13 @@
-import React, { ReactElement, useEffect } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
 import { Route, Switch, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import ReactGA from 'react-ga'
 import { CartPopup } from '../../cart'
 import { DetailPopUp, PostDownloadPopup } from '../../content'
-import { EmailForm } from './index'
-import { HamburgerMenu, ScrollToTop } from '../../../../../lib/components'
+import { ScrollToTop } from '../../../../../lib/components'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup } from '../../../../../lib/modules/popups'
-import { collapseTopBar, MainNavItem, TopBar } from '../index'
+import { collapseTopBar, MainNavItem, PlayerBar, TopBar } from '../index'
 import { RootState } from '../../../index'
 
 import {
@@ -18,6 +17,7 @@ import {
   Projects,
   SoundLibrary,
 } from '../../../routes'
+import EmailForm from './EmailForm'
 
 ReactGA.initialize('UA-163585797-1')
 
@@ -29,17 +29,22 @@ function App(): ReactElement {
 
   const dispatch = useDispatch()
 
-  useEffect(function init() {
-    if (window.location.pathname !== '/') {
-      // TODO: collapseTopBar is deprecated
-      dispatch(collapseTopBar())
-    }
-  }, [])
+  const [playerBarMinified, setPlayerBarMinified] = useState(true)
 
   const { pathname } = useLocation()
 
+  useEffect(function init() {
+    if (pathname !== '/') {
+      dispatch(collapseTopBar())
+    }
+  }, [pathname])
+
   useEffect(function trackPageView() {
     ReactGA.pageview(pathname)
+  }, [pathname])
+
+  useEffect(function playerBarMinifiedState() {
+    setPlayerBarMinified(pathname === '/')
   }, [pathname])
 
   return (
@@ -61,7 +66,12 @@ function App(): ReactElement {
           </li>
         </ul>
         {/* <HamburgerMenu>
-          <ul></ul>
+          <ul>
+            <MainNavItem name="Info" />
+            <MainNavItem name="Merch" />
+            <MainNavItem name="Mixes" />
+            <MainNavItem name="Mailing List" />
+          </ul>
         </HamburgerMenu> */}
       </nav>
 
@@ -119,8 +129,10 @@ function App(): ReactElement {
         id="post-download-popup"
         closeIcon={CloseButton}
       >
-        <PostDownloadPopup />
+        <PostDownloadPopup download={currentContentItem} />
       </PopupContainer>
+
+      <PlayerBar minified={playerBarMinified} />
     </div>
   )
 }
