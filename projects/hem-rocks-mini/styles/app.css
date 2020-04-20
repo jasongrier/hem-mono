@@ -1,9 +1,11 @@
 html,
 body {
+  display: contents;
   width: 100vw;
   margin: 0;
   padding: 0;
   font-family: Avenir, sans-serif;
+  overflow-x: hidden;
 }
 
 .clearfix::after {

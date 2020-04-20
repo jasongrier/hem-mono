@@ -180,6 +180,10 @@
   font-size: 20px;
 }
 
+.detail-popup-form .suggested-price em {
+  font-size: 28px;
+}
+
 .purchase-form-spinner .hem-spinner {
   width: 220px;
   height: 50px;

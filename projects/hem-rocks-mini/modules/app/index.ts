@@ -21,6 +21,6 @@ export type Action = ICollapseTopBar | IExpandTopBar
 
 export { collapseTopBar, expandTopBar } from './actions'
 
-export { App, EmailForm, MainNavItem, TopBar } from './components'
+export { App, EmailForm, MainNavItem, PlayerBar, TopBar } from './components'
 
 export { reducer as appReducer } from './reducer'

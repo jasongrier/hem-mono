@@ -190,9 +190,12 @@ function DetailPopUp({
                   )}
                   {!contentItem.hasFixedPrice && (
                     <>
-                      <label htmlFor="suggested-price">
-                        Choose your price!<br />
-                        <small>Type, or click in the box and use the arrow keys</small>
+                      <label
+                        className="suggested-price"
+                        htmlFor="suggested-price"
+                      >
+                        <em>Choose your price!</em><br />
+                        <small>Type, or click in the box and use the &uarr; &darr; arrow keys</small>
                       </label>
                       {/* TODO: Use Intl.NumberFormat and type intent timeout to validate and format the state */}
                       <span className="detail-popup-currency-symbol">€</span>
