@@ -11,7 +11,7 @@ function PlayPauseButton(): ReactElement {
   const dispatch = useDispatch()
 
   const playPauseButtonOnClick = useCallback(
-    function playPauseButtonOnClick() {
+    function playPauseButtonOnClickFn() {
       if (playerPlaying) {
         dispatch(pausePlayer())
       }

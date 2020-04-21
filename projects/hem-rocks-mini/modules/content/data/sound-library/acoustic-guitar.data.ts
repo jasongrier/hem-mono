@@ -27,7 +27,7 @@ const acousticGuitarData: IContentItem = {
   tags: ['sound-library', 'guitar-and-bass', 'instruments'],
   name: 'Acoustic Guitar',
   published: true,
-  soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudTrackId: '803629711',
   slug: 'acoustic-guitar',
   sticky: false,
   type: 'Sample Pack for Ableton Live',

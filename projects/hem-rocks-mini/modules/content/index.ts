@@ -54,3 +54,7 @@ export {
   MainContentList,
   PostDownloadPopup,
 } from './components'
+
+export {
+  getTracksFromContentItems,
+} from './functions'
