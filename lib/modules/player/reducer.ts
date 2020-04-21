@@ -6,6 +6,7 @@ import {
   NEXT_TRACK,
   PAUSE_PLAYER,
   PREVIOUS_TRACK,
+  SET_PLAYER_ACTUALLY_PLAYING,
   SET_PLAYER_PLAYLIST,
   TRACK_ENDED,
   UNMUTE_PLAYER,
@@ -15,6 +16,7 @@ import {
 } from './index'
 
 const initialState: IState = {
+  actuallyPlaying: false,
   currentTrackAttribution: null,
   currentTrackId: null,
   currentTrackResource: null,
@@ -53,6 +55,12 @@ const reducer = (
         draftState.currentTrackId = payload.track.id
         draftState.currentTrackType = payload.track.type
         draftState.currentTrackResource = payload.track.resource
+      })
+    }
+
+    case SET_PLAYER_ACTUALLY_PLAYING: {
+      return produce(state, draftState => {
+        draftState.actuallyPlaying = payload
       })
     }
 

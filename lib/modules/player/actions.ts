@@ -4,6 +4,7 @@ import {
   PAUSE_PLAYER,
   CUE_TRACK,
   PREVIOUS_TRACK,
+  SET_PLAYER_ACTUALLY_PLAYING,
   SET_PLAYER_PLAYLIST,
   TRACK_ENDED,
   UNMUTE_PLAYER,
@@ -39,6 +40,11 @@ const previousTrack = (): Action => ({
   payload: null,
 })
 
+const setPlayerActuallyPlaying = (actuallyPlaying: boolean): Action => ({
+  type: SET_PLAYER_ACTUALLY_PLAYING,
+  payload: actuallyPlaying,
+})
+
 const setPlayerPlaylist = (playlist: ITrack[]): Action => ({
   type: SET_PLAYER_PLAYLIST,
   payload: playlist,
@@ -65,6 +71,7 @@ export {
   nextTrack,
   pausePlayer,
   previousTrack,
+  setPlayerActuallyPlaying,
   setPlayerPlaylist,
   trackEnded,
   unmutePlayer,

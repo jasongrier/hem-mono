@@ -55,3 +55,18 @@
   line-height: 50px;
   color: #fff;
 }
+
+.hem-player-play-pause-button .hem-spinner {
+  position: relative;
+  float: left;
+  width: 50px;
+  height: 60px;
+}
+
+.hem-player-play-pause-button .hem-spinner svg {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 50px;
+  height: 50px;
+}
