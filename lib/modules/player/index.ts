@@ -12,6 +12,7 @@ export interface ITrack {
 }
 
 export interface IState {
+  actuallyPlaying: boolean
   currentTrackAttribution: string | null
   currentTrackId: string | null
   currentTrackResource: string | null
@@ -29,9 +30,15 @@ export const CUE_TRACK = 'CUE_TRACK'
 export const PREVIOUS_TRACK = 'PREVIOUS_TRACK'
 export const SET_PLAYER_INSTANCE = 'SET_PLAYER_INSTANCE'
 export const SET_PLAYER_PLAYLIST = 'SET_PLAYER_PLAYLIST'
+export const SET_PLAYER_ACTUALLY_PLAYING = 'SET_PLAYER_ACTUALLY_PLAYING'
 export const TRACK_ENDED = 'TRACK_ENDED'
 export const UNMUTE_PLAYER = 'UNMUTE_PLAYER'
 export const UNPAUSE_PLAYER = 'UNPAUSE_PLAYER'
+
+export interface ISetPlayerActuallyPlaying extends AnyAction {
+  type: typeof SET_PLAYER_ACTUALLY_PLAYING
+  payload: boolean
+}
 
 export interface ICueTrack extends AnyAction {
   type: typeof CUE_TRACK
@@ -84,6 +91,7 @@ export type Action =
   | IPausePlayer
   | ICueTrack
   | IPreviousTrack
+  | ISetPlayerActuallyPlaying
   | ISetPlayerPlaylist
   | ITrackEnded
   | IUnmutePlayer
@@ -95,6 +103,7 @@ export {
   nextTrack,
   pausePlayer,
   previousTrack,
+  setPlayerActuallyPlaying,
   setPlayerPlaylist,
   trackEnded,
   unmutePlayer,
