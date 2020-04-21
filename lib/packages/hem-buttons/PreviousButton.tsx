@@ -3,6 +3,8 @@ import NextButton from './NextButton'
 
 interface IProps {
   onClick: () => void
+
+  className?: string
 }
 
 const styleSheet = `
@@ -11,11 +13,11 @@ const styleSheet = `
   }
 `
 
-function PreviousButton({ onClick }: IProps): ReactElement {
+function PreviousButton({ onClick, className }: IProps): ReactElement {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: styleSheet }} />
-      <div className="hem-previous-button">
+      <div className={`hem-previous-button ${className}`}>
         <NextButton onClick={onClick} />
       </div>
     </>

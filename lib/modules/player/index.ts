@@ -26,6 +26,7 @@ export const MUTE_PLAYER = 'MUTE_PLAYER'
 export const NEXT_TRACK = 'NEXT_TRACK'
 export const PAUSE_PLAYER = 'PAUSE_PLAYER'
 export const PLAY_PLAYER = 'PLAY_PLAYER'
+export const PREVIOUS_TRACK = 'PREVIOUS_TRACK'
 export const SET_PLAYER_INSTANCE = 'SET_PLAYER_INSTANCE'
 export const SET_PLAYER_PLAYLIST = 'SET_PLAYER_PLAYLIST'
 export const TRACK_ENDED = 'TRACK_ENDED'
@@ -57,6 +58,11 @@ export interface ISetPlayerPlaylist extends AnyAction {
   payload: ITrack[]
 }
 
+export interface IPreviousTrack extends AnyAction {
+  type: typeof PREVIOUS_TRACK
+  payload: null
+}
+
 export interface ITrackEnded extends AnyAction {
   type: typeof TRACK_ENDED
   payload: null
@@ -77,6 +83,7 @@ export type Action =
   | INextTrack
   | IPausePlayer
   | IPlayPlayer
+  | IPreviousTrack
   | ISetPlayerPlaylist
   | ITrackEnded
   | IUnmutePlayer
@@ -87,6 +94,7 @@ export {
   nextTrack,
   pausePlayer,
   playPlayer,
+  previousTrack,
   setPlayerPlaylist,
   trackEnded,
   unmutePlayer,
@@ -99,6 +107,7 @@ export {
   NextButton,
   PauseButton,
   PlayPauseButton,
+  PreviousButton,
   ProgressBar,
   StopButton,
   TrackPlayPauseButton,
@@ -118,4 +127,5 @@ export {
 
 export {
   getNextTrack,
+  getPreviousTrack,
 } from './functions'

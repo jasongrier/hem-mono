@@ -3,6 +3,7 @@ import {
   NEXT_TRACK,
   PAUSE_PLAYER,
   PLAY_PLAYER,
+  PREVIOUS_TRACK,
   SET_PLAYER_PLAYLIST,
   TRACK_ENDED,
   UNMUTE_PLAYER,
@@ -33,6 +34,11 @@ const playPlayer = (track: ITrack): Action => ({
   payload: track,
 })
 
+const previousTrack = (): Action => ({
+  type: PREVIOUS_TRACK,
+  payload: null,
+})
+
 const setPlayerPlaylist = (playlist: ITrack[]): Action => ({
   type: SET_PLAYER_PLAYLIST,
   payload: playlist,
@@ -58,6 +64,7 @@ export {
   nextTrack,
   pausePlayer,
   playPlayer,
+  previousTrack,
   setPlayerPlaylist,
   trackEnded,
   unmutePlayer,
