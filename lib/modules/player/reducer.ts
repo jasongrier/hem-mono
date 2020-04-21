@@ -1,10 +1,10 @@
 import { AnyAction } from 'redux'
 import produce from 'immer'
 import {
+  CUE_TRACK,
   MUTE_PLAYER,
   NEXT_TRACK,
   PAUSE_PLAYER,
-  PLAY_PLAYER,
   PREVIOUS_TRACK,
   SET_PLAYER_PLAYLIST,
   TRACK_ENDED,
@@ -46,13 +46,13 @@ const reducer = (
       })
     }
 
-    case PLAY_PLAYER: {
+    case CUE_TRACK: {
       return produce(state, draftState => {
-        draftState.playing = true
-        draftState.currentTrackAttribution = payload.attribution
-        draftState.currentTrackId = payload.id
-        draftState.currentTrackType = payload.type
-        draftState.currentTrackResource = payload.resource
+        draftState.playing = payload.andPlay
+        draftState.currentTrackAttribution = payload.track.attribution
+        draftState.currentTrackId = payload.track.id
+        draftState.currentTrackType = payload.track.type
+        draftState.currentTrackResource = payload.track.resource
       })
     }
 

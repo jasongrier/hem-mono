@@ -25,13 +25,18 @@ export interface IState {
 export const MUTE_PLAYER = 'MUTE_PLAYER'
 export const NEXT_TRACK = 'NEXT_TRACK'
 export const PAUSE_PLAYER = 'PAUSE_PLAYER'
-export const PLAY_PLAYER = 'PLAY_PLAYER'
+export const CUE_TRACK = 'CUE_TRACK'
 export const PREVIOUS_TRACK = 'PREVIOUS_TRACK'
 export const SET_PLAYER_INSTANCE = 'SET_PLAYER_INSTANCE'
 export const SET_PLAYER_PLAYLIST = 'SET_PLAYER_PLAYLIST'
 export const TRACK_ENDED = 'TRACK_ENDED'
 export const UNMUTE_PLAYER = 'UNMUTE_PLAYER'
 export const UNPAUSE_PLAYER = 'UNPAUSE_PLAYER'
+
+export interface ICueTrack extends AnyAction {
+  type: typeof CUE_TRACK
+  payload: { track: ITrack, andPlay: boolean }
+}
 
 export interface IMutePlayer extends AnyAction {
   type: typeof MUTE_PLAYER
@@ -46,11 +51,6 @@ export interface INextTrack extends AnyAction {
 export interface IPausePlayer extends AnyAction {
   type: typeof PAUSE_PLAYER
   payload: null
-}
-
-export interface IPlayPlayer extends AnyAction {
-  type: typeof PLAY_PLAYER
-  payload: ITrack
 }
 
 export interface ISetPlayerPlaylist extends AnyAction {
@@ -82,7 +82,7 @@ export type Action =
   IMutePlayer
   | INextTrack
   | IPausePlayer
-  | IPlayPlayer
+  | ICueTrack
   | IPreviousTrack
   | ISetPlayerPlaylist
   | ITrackEnded
@@ -90,10 +90,10 @@ export type Action =
   | IUnpausePlayer
 
 export {
+  cueTrack,
   mutePlayer,
   nextTrack,
   pausePlayer,
-  playPlayer,
   previousTrack,
   setPlayerPlaylist,
   trackEnded,

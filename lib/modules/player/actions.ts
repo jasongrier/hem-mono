@@ -2,7 +2,7 @@ import {
   MUTE_PLAYER,
   NEXT_TRACK,
   PAUSE_PLAYER,
-  PLAY_PLAYER,
+  CUE_TRACK,
   PREVIOUS_TRACK,
   SET_PLAYER_PLAYLIST,
   TRACK_ENDED,
@@ -13,6 +13,11 @@ import {
 
   ITrack,
 } from './index'
+
+const cueTrack = (track: ITrack, andPlay: boolean): Action => ({
+  type: CUE_TRACK,
+  payload: { track, andPlay },
+})
 
 const mutePlayer = (): Action => ({
   type: MUTE_PLAYER,
@@ -27,11 +32,6 @@ const nextTrack = (): Action => ({
 const pausePlayer = (): Action => ({
   type: PAUSE_PLAYER,
   payload: null,
-})
-
-const playPlayer = (track: ITrack): Action => ({
-  type: PLAY_PLAYER,
-  payload: track,
 })
 
 const previousTrack = (): Action => ({
@@ -60,10 +60,10 @@ const unpausePlayer = (): Action => ({
 })
 
 export {
+  cueTrack,
   mutePlayer,
   nextTrack,
   pausePlayer,
-  playPlayer,
   previousTrack,
   setPlayerPlaylist,
   trackEnded,

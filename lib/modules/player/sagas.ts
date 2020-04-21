@@ -3,14 +3,15 @@ import {
   MUTE_PLAYER,
   NEXT_TRACK,
   PAUSE_PLAYER,
-  PLAY_PLAYER,
+  CUE_TRACK,
   PREVIOUS_TRACK,
   TRACK_ENDED,
   UNMUTE_PLAYER,
   UNPAUSE_PLAYER,
 
   nextTrack as nextTrackAc,
-  playPlayer as playPlayerAc,
+  cueTrack as cueTrackAc,
+  pausePlayer as pausePlayerAc,
   trackEnded as trackEndedAc,
   unmutePlayer as unmutePlayerAc,
 
@@ -34,7 +35,8 @@ function* mutePlayer() {
 function* nextTrack() {
   try {
     const state = yield select()
-    yield put(playPlayerAc(getNextTrack(state)))
+    const wasPlaying = window.HEM_PLAYER_SOUNDCLOUD_PLAYER_INSTANCE.isActuallyPlaying()
+    yield put(cueTrackAc(getNextTrack(state), wasPlaying))
   } catch (err) {
     console.log(err)
   }
@@ -50,8 +52,8 @@ function* pausePlayer() {
   }
 }
 
-function* playPlayer({ payload }: any) {
-  SC.stream('/tracks/' + payload.resource)
+function* cueTrack({ payload }: any) {
+  SC.stream('/tracks/' + payload.track.resource)
     .then(function(player: any) {
       player.on('finish', function() {
         window.STORE.dispatch(trackEndedAc())
@@ -59,14 +61,17 @@ function* playPlayer({ payload }: any) {
 
       window.HEM_PLAYER_SOUNDCLOUD_PLAYER_INSTANCE = player
 
-      player.play()
+      if (payload.andPlay) {
+        player.play()
+      }
     })
 }
 
 function* previousTrack() {
   try {
     const state = yield select()
-    yield put(playPlayerAc(getPreviousTrack(state)))
+    const wasPlaying = window.HEM_PLAYER_SOUNDCLOUD_PLAYER_INSTANCE.isActuallyPlaying()
+    yield put(cueTrackAc(getPreviousTrack(state), wasPlaying))
   } catch (err) {
     console.log(err)
   }
@@ -116,7 +121,7 @@ function* pausePlayerSaga() {
 }
 
 function* playPlayerSaga() {
-  yield takeLatest(PLAY_PLAYER, playPlayer)
+  yield takeLatest(CUE_TRACK, cueTrack)
 }
 
 function* previousTrackSaga() {
