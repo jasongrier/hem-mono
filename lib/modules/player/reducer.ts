@@ -2,6 +2,7 @@ import { AnyAction } from 'redux'
 import produce from 'immer'
 import {
   MUTE_PLAYER,
+  NEXT_TRACK,
   PAUSE_PLAYER,
   PLAY_PLAYER,
   SET_PLAYER_PLAYLIST,
@@ -13,6 +14,7 @@ import {
 } from './index'
 
 const initialState: IState = {
+  currentTrackAttribution: null,
   currentTrackId: null,
   currentTrackResource: null,
   currentTrackType: null,
@@ -31,6 +33,10 @@ const reducer = (
       return produce(state, draftState => {
         draftState.muted = true
       })
+    }
+
+    case NEXT_TRACK: {
+      return state
     }
 
     case PAUSE_PLAYER: {

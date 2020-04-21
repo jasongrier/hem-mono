@@ -1,5 +1,6 @@
 import {
   MUTE_PLAYER,
+  NEXT_TRACK,
   PAUSE_PLAYER,
   PLAY_PLAYER,
   SET_PLAYER_PLAYLIST,
@@ -14,6 +15,11 @@ import {
 
 const mutePlayer = (): Action => ({
   type: MUTE_PLAYER,
+  payload: null,
+})
+
+const nextTrack = (): Action => ({
+  type: NEXT_TRACK,
   payload: null,
 })
 
@@ -49,6 +55,7 @@ const unpausePlayer = (): Action => ({
 
 export {
   mutePlayer,
+  nextTrack,
   pausePlayer,
   playPlayer,
   setPlayerPlaylist,

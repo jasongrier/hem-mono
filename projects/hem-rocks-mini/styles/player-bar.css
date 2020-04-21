@@ -32,6 +32,15 @@
   transform: scale(.83333333);
 }
 
+.player-bar .hem-next-button {
+  position: absolute;
+  bottom: 0;
+  left: 50px;
+  transform-origin: bottom left;
+  background-color: #000;
+  transform: scale(.83333333);
+}
+
 .player-bar-playing .hem-headphones-button {
   background-color: var(--line-orange);
 }
@@ -42,7 +51,7 @@
 
 .player-bar .player-bar-now-playing {
   position: absolute;
-  left: 100px;
+  left: 110px;
   height: 50px;
   line-height: 50px;
   color: #fff;

@@ -1,17 +1,19 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects'
 import {
   MUTE_PLAYER,
+  NEXT_TRACK,
   PAUSE_PLAYER,
   PLAY_PLAYER,
   TRACK_ENDED,
   UNMUTE_PLAYER,
   UNPAUSE_PLAYER,
 
-  ITrack,
-
+  nextTrack as nextTrackAc,
   playPlayer as playPlayerAc,
   trackEnded as trackEndedAc,
   unmutePlayer as unmutePlayerAc,
+
+  getNextTrack,
 } from './index'
 
 declare const SC: any
@@ -22,6 +24,15 @@ function* mutePlayer() {
 
   try {
     playerInstance.setVolume(0)
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+function* nextTrack() {
+  try {
+    const state = yield select()
+    yield put(playPlayerAc(getNextTrack(state)))
   } catch (err) {
     console.log(err)
   }
@@ -52,14 +63,7 @@ function* playPlayer({ payload }: any) {
 
 function* trackEnded() {
   try {
-    const state = yield select()
-    const { currentTrackId, playlist }: { currentTrackId: string, playlist: ITrack[] } = state.player
-    const currentPlaylistIndex = playlist.findIndex(track => track.id === currentTrackId)
-    const nextPlaylistIndex = currentPlaylistIndex < playlist.length - 1
-      ? currentPlaylistIndex + 1
-      : 0
-
-    yield put(playPlayerAc(playlist[nextPlaylistIndex]))
+    yield put(nextTrackAc())
   } catch (err) {
     console.log(err)
   }
@@ -92,6 +96,10 @@ function* mutePlayerSaga() {
   yield takeLatest(MUTE_PLAYER, mutePlayer)
 }
 
+function* nextTrackSaga() {
+  yield takeLatest(NEXT_TRACK, nextTrack)
+}
+
 function* pausePlayerSaga() {
   yield takeLatest(PAUSE_PLAYER, pausePlayer)
 }
@@ -114,6 +122,7 @@ function* unpausePlayerSaga() {
 
 export {
   mutePlayerSaga,
+  nextTrackSaga,
   pausePlayerSaga,
   playPlayerSaga,
   trackEndedSaga,
