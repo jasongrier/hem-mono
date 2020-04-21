@@ -5,6 +5,7 @@ import {
   NEXT_TRACK,
   PAUSE_PLAYER,
   PLAY_PLAYER,
+  PREVIOUS_TRACK,
   SET_PLAYER_PLAYLIST,
   TRACK_ENDED,
   UNMUTE_PLAYER,
@@ -59,6 +60,10 @@ const reducer = (
       return produce(state, draftState => {
         draftState.playlist = payload
       })
+    }
+
+    case PREVIOUS_TRACK: {
+      return state
     }
 
     case TRACK_ENDED: {

@@ -5,8 +5,8 @@ function getPreviousTrack(state: any): ITrack {
   const currentPlaylistIndex = playlist.findIndex(track => track.id === currentTrackId)
   const nextPlaylistIndex = (
     currentPlaylistIndex > 0
-      ? playlist.length - 1
-      : 0
+      ? currentPlaylistIndex - 1
+      : playlist.length - 1
   )
 
   return playlist[nextPlaylistIndex]

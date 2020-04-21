@@ -4,6 +4,7 @@ import {
   NEXT_TRACK,
   PAUSE_PLAYER,
   PLAY_PLAYER,
+  PREVIOUS_TRACK,
   TRACK_ENDED,
   UNMUTE_PLAYER,
   UNPAUSE_PLAYER,
@@ -119,7 +120,7 @@ function* playPlayerSaga() {
 }
 
 function* previousTrackSaga() {
-  yield takeLatest(PLAY_PLAYER, previousTrack)
+  yield takeLatest(PREVIOUS_TRACK, previousTrack)
 }
 
 function* trackEndedSaga() {
@@ -139,6 +140,7 @@ export {
   nextTrackSaga,
   pausePlayerSaga,
   playPlayerSaga,
+  previousTrackSaga,
   trackEndedSaga,
   unmutePlayerSaga,
   unpausePlayerSaga,

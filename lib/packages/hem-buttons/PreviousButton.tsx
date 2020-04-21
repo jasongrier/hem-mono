@@ -10,6 +10,7 @@ interface IProps {
 const styleSheet = `
   .hem-previous-button .hem-next-button {
     transform: rotate(180deg);
+    transform-origin: center center;
   }
 `
 

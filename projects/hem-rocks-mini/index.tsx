@@ -43,6 +43,9 @@ sagaMiddleware.run(pausePlayerSaga)
 import { playPlayerSaga } from '../../lib/modules/player'
 sagaMiddleware.run(playPlayerSaga)
 
+import { previousTrackSaga } from '../../lib/modules/player'
+sagaMiddleware.run(previousTrackSaga)
+
 import { trackEndedSaga } from '../../lib/modules/player'
 sagaMiddleware.run(trackEndedSaga)
 
