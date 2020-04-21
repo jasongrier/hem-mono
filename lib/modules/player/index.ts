@@ -23,6 +23,7 @@ export interface IState {
 }
 
 export const MUTE_PLAYER = 'MUTE_PLAYER'
+export const NEXT_TRACK = 'NEXT_TRACK'
 export const PAUSE_PLAYER = 'PAUSE_PLAYER'
 export const PLAY_PLAYER = 'PLAY_PLAYER'
 export const SET_PLAYER_INSTANCE = 'SET_PLAYER_INSTANCE'
@@ -33,6 +34,11 @@ export const UNPAUSE_PLAYER = 'UNPAUSE_PLAYER'
 
 export interface IMutePlayer extends AnyAction {
   type: typeof MUTE_PLAYER
+  payload: null
+}
+
+export interface INextTrack extends AnyAction {
+  type: typeof NEXT_TRACK
   payload: null
 }
 
@@ -68,6 +74,7 @@ export interface IUnpausePlayer extends AnyAction {
 
 export type Action =
   IMutePlayer
+  | INextTrack
   | IPausePlayer
   | IPlayPlayer
   | ISetPlayerPlaylist
@@ -77,6 +84,7 @@ export type Action =
 
 export {
   mutePlayer,
+  nextTrack,
   pausePlayer,
   playPlayer,
   setPlayerPlaylist,
@@ -88,6 +96,7 @@ export {
 
 export {
   MuteButton,
+  NextButton,
   PauseButton,
   PlayPauseButton,
   ProgressBar,
@@ -99,9 +108,14 @@ export { reducer as playerReducer } from './reducer'
 
 export {
   mutePlayerSaga,
+  nextTrackSaga,
   pausePlayerSaga,
   playPlayerSaga,
   trackEndedSaga,
   unmutePlayerSaga,
   unpausePlayerSaga,
 } from './sagas'
+
+export {
+  getNextTrack,
+} from './functions'

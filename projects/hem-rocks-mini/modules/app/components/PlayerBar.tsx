@@ -1,7 +1,7 @@
 import React, { ReactElement, useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { HeadphonesButton } from '../../../../../lib/packages/hem-buttons'
-import { PlayPauseButton, TrackPlayPauseButton, setPlayerPlaylist } from '../../../../../lib/modules/player'
+import { NextButton, PlayPauseButton, TrackPlayPauseButton, setPlayerPlaylist } from '../../../../../lib/modules/player'
 import { getTracksFromContentItems } from '../../content'
 import { RootState } from '../../../index'
 
@@ -20,15 +20,7 @@ function PlayerBar(): ReactElement {
 
   useEffect(function loadPlayer() {
     const tracks = getTracksFromContentItems(allContentItems)
-
-    const fooContentItems = [
-      allContentItems.find(item => item.slug === 'acoustic-guitar'),
-      allContentItems.find(item => item.slug === 'antique-piano'),
-    ]
-
-    const fooTracks = getTracksFromContentItems(fooContentItems)
-
-    dispatch(setPlayerPlaylist(fooTracks))
+    dispatch(setPlayerPlaylist(tracks))
   }, [])
 
   const currentTrackContentItem = allContentItems.find(contentItem => contentItem.slug === currentTrackId)
@@ -40,7 +32,10 @@ function PlayerBar(): ReactElement {
       ${ expanded ? 'player-bar-expanded' : '' }
     `}>
       { currentTrackId && (
-        <PlayPauseButton />
+        <>
+          <PlayPauseButton />
+          <NextButton />
+        </>
       )}
       { playlist.length && !currentTrackId && (
         <TrackPlayPauseButton track={playlist[0]} />

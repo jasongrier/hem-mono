@@ -34,6 +34,9 @@ const store = window.STORE = createStore(
 import { mutePlayerSaga } from '../../lib/modules/player'
 sagaMiddleware.run(mutePlayerSaga)
 
+import { nextTrackSaga } from '../../lib/modules/player'
+sagaMiddleware.run(nextTrackSaga)
+
 import { pausePlayerSaga } from '../../lib/modules/player'
 sagaMiddleware.run(pausePlayerSaga)
 

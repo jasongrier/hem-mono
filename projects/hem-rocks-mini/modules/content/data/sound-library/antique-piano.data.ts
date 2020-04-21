@@ -30,6 +30,7 @@ const antiquePianoData: IContentItem = {
   soundCloudTrackId: '803629816',
   slug: 'antique-piano',
   sticky: false,
+  trackAttribution: 'HEM Sound Libraray',
   type: 'Sample Pack for Ableton Live',
   userSuggestedPrice: null,
   videos: [],
