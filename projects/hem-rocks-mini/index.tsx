@@ -12,6 +12,8 @@ import { cartReducer } from './modules/cart'
 import { contentReducer } from './modules/content'
 import './styles'
 
+declare const window: any
+
 const rootReducer = combineReducers({
   app: appReducer,
   cart: cartReducer,
@@ -22,7 +24,7 @@ const rootReducer = combineReducers({
 
 const sagaMiddleware = createSagaMiddleware()
 
-const store = createStore(
+const store = window.STORE = createStore(
   rootReducer,
   composeWithDevTools(
     applyMiddleware(sagaMiddleware),
@@ -37,6 +39,9 @@ sagaMiddleware.run(pausePlayerSaga)
 
 import { playPlayerSaga } from '../../lib/modules/player'
 sagaMiddleware.run(playPlayerSaga)
+
+import { trackEndedSaga } from '../../lib/modules/player'
+sagaMiddleware.run(trackEndedSaga)
 
 import { unmutePlayerSaga } from '../../lib/modules/player'
 sagaMiddleware.run(unmutePlayerSaga)

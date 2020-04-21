@@ -3,18 +3,22 @@ import {
   MUTE_PLAYER,
   PAUSE_PLAYER,
   PLAY_PLAYER,
+  TRACK_ENDED,
   UNMUTE_PLAYER,
   UNPAUSE_PLAYER,
 
-  setPlayerInstance as setPlayerInstanceAc,
+  ITrack,
+
+  playPlayer as playPlayerAc,
+  trackEnded as trackEndedAc,
   unmutePlayer as unmutePlayerAc,
 } from './index'
 
 declare const SC: any
+declare const window: any
 
 function* mutePlayer() {
-  const state = yield select()
-  const { playerInstance } = state.player
+  const playerInstance = window.HEM_PLAYER_SOUNDCLOUD_PLAYER_INSTANCE
 
   try {
     playerInstance.setVolume(0)
@@ -24,8 +28,7 @@ function* mutePlayer() {
 }
 
 function* pausePlayer() {
-  const state = yield select()
-  const { playerInstance } = state.player
+  const playerInstance = window.HEM_PLAYER_SOUNDCLOUD_PLAYER_INSTANCE
 
   try {
     playerInstance.pause()
@@ -35,22 +38,35 @@ function* pausePlayer() {
 }
 
 function* playPlayer({ payload }: any) {
+  SC.stream('/tracks/' + payload.resource)
+    .then(function(player: any) {
+      player.on('finish', function() {
+        window.STORE.dispatch(trackEndedAc())
+      })
+
+      window.HEM_PLAYER_SOUNDCLOUD_PLAYER_INSTANCE = player
+
+      player.play()
+    })
+}
+
+function* trackEnded() {
   try {
-    const player = yield call(SC.stream, '/tracks/' + payload.resource)
+    const state = yield select()
+    const { currentTrackId, playlist }: { currentTrackId: string, playlist: ITrack[] } = state.player
+    const currentPlaylistIndex = playlist.findIndex(track => track.id === currentTrackId)
+    const nextPlaylistIndex = currentPlaylistIndex < playlist.length - 1
+      ? currentPlaylistIndex + 1
+      : 0
 
-    yield put(setPlayerInstanceAc(player))
-    yield put(unmutePlayerAc())
-
-    player.play()
-
+    yield put(playPlayerAc(playlist[nextPlaylistIndex]))
   } catch (err) {
     console.log(err)
   }
 }
 
 function* unmutePlayer() {
-  const state = yield select()
-  const { playerInstance } = state.player
+  const playerInstance = window.HEM_PLAYER_SOUNDCLOUD_PLAYER_INSTANCE
 
   try {
     playerInstance.setVolume(1)
@@ -60,8 +76,7 @@ function* unmutePlayer() {
 }
 
 function* unpausePlayer() {
-  const state = yield select()
-  const { playerInstance } = state.player
+  const playerInstance = window.HEM_PLAYER_SOUNDCLOUD_PLAYER_INSTANCE
 
   try {
     playerInstance.play()
@@ -85,6 +100,10 @@ function* playPlayerSaga() {
   yield takeLatest(PLAY_PLAYER, playPlayer)
 }
 
+function* trackEndedSaga() {
+  yield takeLatest(TRACK_ENDED, trackEnded)
+}
+
 function* unmutePlayerSaga() {
   yield takeLatest(UNMUTE_PLAYER, unmutePlayer)
 }
@@ -97,6 +116,7 @@ export {
   mutePlayerSaga,
   pausePlayerSaga,
   playPlayerSaga,
+  trackEndedSaga,
   unmutePlayerSaga,
   unpausePlayerSaga,
 }

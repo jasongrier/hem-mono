@@ -4,21 +4,22 @@ import {
   MUTE_PLAYER,
   PAUSE_PLAYER,
   PLAY_PLAYER,
-  SET_PLAYER_INSTANCE,
+  SET_PLAYER_PLAYLIST,
+  TRACK_ENDED,
   UNMUTE_PLAYER,
+  UNPAUSE_PLAYER,
 
   IState,
-  UNPAUSE_PLAYER,
 } from './index'
 
 const initialState: IState = {
   currentTrackId: null,
-  currentTrackType: null,
   currentTrackResource: null,
+  currentTrackType: null,
   inited: false,
   muted: true,
   playing: false,
-  playerInstance: null,
+  playlist: [],
 }
 
 const reducer = (
@@ -47,10 +48,14 @@ const reducer = (
       })
     }
 
-    case SET_PLAYER_INSTANCE: {
+    case SET_PLAYER_PLAYLIST: {
       return produce(state, draftState => {
-        draftState.playerInstance = payload
+        draftState.playlist = payload
       })
+    }
+
+    case TRACK_ENDED: {
+      return state
     }
 
     case UNMUTE_PLAYER: {

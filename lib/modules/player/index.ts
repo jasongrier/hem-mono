@@ -1,5 +1,9 @@
 import { AnyAction } from 'redux'
 
+declare const window: any
+
+window.HEM_PLAYER_SOUNDCLOUD_PLAYER_INSTANCE = null
+
 export interface ITrack {
   id: string
   resource: string
@@ -8,18 +12,20 @@ export interface ITrack {
 
 export interface IState {
   currentTrackId: string | null
-  currentTrackType: string | null
   currentTrackResource: string | null
+  currentTrackType: string | null
   inited: boolean
   muted: boolean
   playing: boolean
-  playerInstance: any
+  playlist: ITrack[]
 }
 
 export const MUTE_PLAYER = 'MUTE_PLAYER'
 export const PAUSE_PLAYER = 'PAUSE_PLAYER'
 export const PLAY_PLAYER = 'PLAY_PLAYER'
 export const SET_PLAYER_INSTANCE = 'SET_PLAYER_INSTANCE'
+export const SET_PLAYER_PLAYLIST = 'SET_PLAYER_PLAYLIST'
+export const TRACK_ENDED = 'TRACK_ENDED'
 export const UNMUTE_PLAYER = 'UNMUTE_PLAYER'
 export const UNPAUSE_PLAYER = 'UNPAUSE_PLAYER'
 
@@ -38,8 +44,13 @@ export interface IPlayPlayer extends AnyAction {
   payload: ITrack
 }
 
-export interface ISetPlayerInstance extends AnyAction {
-  type: typeof SET_PLAYER_INSTANCE
+export interface ISetPlayerPlaylist extends AnyAction {
+  type: typeof SET_PLAYER_PLAYLIST
+  payload: ITrack[]
+}
+
+export interface ITrackEnded extends AnyAction {
+  type: typeof TRACK_ENDED
   payload: null
 }
 
@@ -57,7 +68,8 @@ export type Action =
   IMutePlayer
   | IPausePlayer
   | IPlayPlayer
-  | ISetPlayerInstance
+  | ISetPlayerPlaylist
+  | ITrackEnded
   | IUnmutePlayer
   | IUnpausePlayer
 
@@ -65,7 +77,8 @@ export {
   mutePlayer,
   pausePlayer,
   playPlayer,
-  setPlayerInstance,
+  setPlayerPlaylist,
+  trackEnded,
   unmutePlayer,
   unpausePlayer,
 } from './actions'
@@ -86,6 +99,7 @@ export {
   mutePlayerSaga,
   pausePlayerSaga,
   playPlayerSaga,
+  trackEndedSaga,
   unmutePlayerSaga,
   unpausePlayerSaga,
 } from './sagas'

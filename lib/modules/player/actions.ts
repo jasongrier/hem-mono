@@ -2,7 +2,8 @@ import {
   MUTE_PLAYER,
   PAUSE_PLAYER,
   PLAY_PLAYER,
-  SET_PLAYER_INSTANCE,
+  SET_PLAYER_PLAYLIST,
+  TRACK_ENDED,
   UNMUTE_PLAYER,
   UNPAUSE_PLAYER,
 
@@ -26,9 +27,14 @@ const playPlayer = (track: ITrack): Action => ({
   payload: track,
 })
 
-const setPlayerInstance = (player: any): Action => ({
-  type: SET_PLAYER_INSTANCE,
-  payload: player,
+const setPlayerPlaylist = (playlist: ITrack[]): Action => ({
+  type: SET_PLAYER_PLAYLIST,
+  payload: playlist,
+})
+
+const trackEnded = (): Action => ({
+  type: TRACK_ENDED,
+  payload: null,
 })
 
 const unmutePlayer = (): Action => ({
@@ -45,7 +51,8 @@ export {
   mutePlayer,
   pausePlayer,
   playPlayer,
-  setPlayerInstance,
+  setPlayerPlaylist,
+  trackEnded,
   unmutePlayer,
   unpausePlayer,
 }

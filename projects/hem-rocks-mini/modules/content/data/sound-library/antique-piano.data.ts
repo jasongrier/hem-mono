@@ -27,7 +27,7 @@ const antiquePianoData: IContentItem = {
   tags: ['sound-library', 'instruments', 'keys', 'donic-detritus'],
   name: 'Antique Piano',
   published: true,
-  soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudTrackId: '803629816',
   slug: 'antique-piano',
   sticky: false,
   type: 'Sample Pack for Ableton Live',

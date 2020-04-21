@@ -19,7 +19,7 @@ function MuteButton({ canStartPlayback, crossedState, track }: IProps): ReactEle
   const dispatch = useDispatch()
 
   const speakerButtonOnClick = useCallback(
-    function speakerButtonOnClick() {
+    function speakerButtonOnClickFn() {
       if (muted) {
         dispatch(unmutePlayer())
 
