@@ -120,6 +120,7 @@ export {
   nextTrackSaga,
   pausePlayerSaga,
   playPlayerSaga,
+  previousTrackSaga,
   trackEndedSaga,
   unmutePlayerSaga,
   unpausePlayerSaga,

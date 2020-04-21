@@ -32,23 +32,23 @@ function PlayerBar(): ReactElement {
       ${ expanded ? 'player-bar-expanded' : '' }
     `}>
       <div className="player-bar-playback-controls">
-        {/* { currentTrackId && (
-          <> */}
+        { currentTrackId && (
+          <>
             <PreviousButton />
             <PlayPauseButton />
             <NextButton />
-          {/* </>
-        )} */}
-        {/* { playlist.length && !currentTrackId && (
+          </>
+        )}
+        { playlist.length && !currentTrackId && (
           <TrackPlayPauseButton track={playlist[0]} />
-        )} */}
+        )}
       </div>
       <HeadphonesButton
         onClick={() => setExpanded(!expanded)}
       />
       { currentTrackContentItem && (
         <div className="player-bar-now-playing">
-          Now playing: { currentTrackAttribution }: { currentTrackContentItem.name }
+          Now playing: { currentTrackAttribution } – { currentTrackContentItem.name }
         </div>
       )}
     </div>
