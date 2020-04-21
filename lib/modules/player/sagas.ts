@@ -14,6 +14,7 @@ import {
   unmutePlayer as unmutePlayerAc,
 
   getNextTrack,
+  getPreviousTrack,
 } from './index'
 
 declare const SC: any
@@ -61,6 +62,15 @@ function* playPlayer({ payload }: any) {
     })
 }
 
+function* previousTrack() {
+  try {
+    const state = yield select()
+    yield put(playPlayerAc(getPreviousTrack(state)))
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 function* trackEnded() {
   try {
     yield put(nextTrackAc())
@@ -106,6 +116,10 @@ function* pausePlayerSaga() {
 
 function* playPlayerSaga() {
   yield takeLatest(PLAY_PLAYER, playPlayer)
+}
+
+function* previousTrackSaga() {
+  yield takeLatest(PLAY_PLAYER, previousTrack)
 }
 
 function* trackEndedSaga() {

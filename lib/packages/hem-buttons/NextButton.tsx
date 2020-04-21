@@ -2,6 +2,8 @@ import React, { ReactElement } from 'react'
 
 interface IProps {
   onClick: () => void
+
+  className?: string
 }
 
 const styleSheet = `
@@ -42,12 +44,12 @@ const styleSheet = `
   }
 `
 
-function NextButton({ onClick }: IProps): ReactElement {
+function NextButton({ onClick, className }: IProps): ReactElement {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: styleSheet }} />
       <div
-        className="hem-next-button"
+        className={`hem-next-button ${className}`}
         onClick={onClick}
       >
         <div className="hem-next-button-icon" />

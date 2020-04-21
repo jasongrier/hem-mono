@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { NextButton as BaseNextButton } from '../../../packages/hem-buttons'
 import { nextTrack } from '../index'
 
-function NextButton(): ReactElement {
+interface IProps {
+  className?: string
+}
+
+function NextButton({ className }: IProps): ReactElement {
   const dispatch = useDispatch()
 
   const nextButtonOnClick = useCallback(
@@ -14,7 +18,10 @@ function NextButton(): ReactElement {
 
   return (
     <div className="hem-player-next-button">
-      <BaseNextButton onClick={nextButtonOnClick} />
+      <BaseNextButton
+        className={className}
+        onClick={nextButtonOnClick}
+      />
     </div>
   )
 }
