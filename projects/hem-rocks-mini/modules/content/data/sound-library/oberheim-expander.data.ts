@@ -23,6 +23,7 @@ const oberheimExpanderData: IContentItem = {
   name: 'Oberheim Expander',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  trackAttribution: 'HEM Sound Library',
   slug: 'oberheim-expander',
   sticky: false,
   type: 'Sample Pack for Ableton Live',

@@ -24,6 +24,7 @@ const gillisGrierNtsMixData: IContentItem = {
   soundCloudTrackId: 'soundCloudTrackId',
   slug: 'gillis-grier-nts-mix',
   sticky: false,
+  trackAttribution: 'PLEASE FILL ME IN',
   type: 'Sample Pack for Ableton Live',
   userSuggestedPrice: null,
   videos: [],

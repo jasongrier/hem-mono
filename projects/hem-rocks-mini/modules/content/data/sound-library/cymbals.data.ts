@@ -23,6 +23,7 @@ const cymbalsData: IContentItem = {
   name: 'Cymbals',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  trackAttribution: 'HEM Sound Library',
   slug: 'cymbals',
   sticky: false,
   type: 'Sample Pack for Ableton Live',

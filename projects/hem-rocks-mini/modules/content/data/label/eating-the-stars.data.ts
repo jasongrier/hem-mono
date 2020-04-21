@@ -24,6 +24,7 @@ const eatingTheStarsData: IContentItem = {
   soundCloudTrackId: 'soundCloudTrackId',
   slug: 'eating-the-stars',
   sticky: false,
+  trackAttribution: 'PLEASE FILL ME IN',
   type: 'Sample Pack for Ableton Live',
   userSuggestedPrice: null,
   videos: [],

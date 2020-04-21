@@ -5,12 +5,14 @@ declare const window: any
 window.HEM_PLAYER_SOUNDCLOUD_PLAYER_INSTANCE = null
 
 export interface ITrack {
+  attribution: string
   id: string
   resource: string
   type: 'local' | 'soundcloud'
 }
 
 export interface IState {
+  currentTrackAttribution: string | null
   currentTrackId: string | null
   currentTrackResource: string | null
   currentTrackType: string | null

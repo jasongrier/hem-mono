@@ -23,6 +23,7 @@ const chordBrushData: IContentItem = {
   name: 'Chord Brush',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  trackAttribution: 'HEM Sound Library',
   slug: 'chord-brush',
   sticky: false,
   type: 'Sample Pack for Ableton Live',

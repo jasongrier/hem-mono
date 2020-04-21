@@ -23,6 +23,7 @@ const percussionData: IContentItem = {
   name: 'Percussion',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  trackAttribution: 'HEM Sound Library',
   slug: 'percussion',
   sticky: false,
   type: 'Sample Pack for Ableton Live',

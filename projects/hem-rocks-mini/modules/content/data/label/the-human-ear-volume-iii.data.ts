@@ -24,6 +24,7 @@ const theHumanEarVolumeIIIData: IContentItem = {
   soundCloudTrackId: 'soundCloudTrackId',
   slug: 'the-human-ear-volume-iii',
   sticky: false,
+  trackAttribution: 'PLEASE FILL ME IN',
   type: 'Sample Pack for Ableton Live',
   userSuggestedPrice: null,
   videos: [],

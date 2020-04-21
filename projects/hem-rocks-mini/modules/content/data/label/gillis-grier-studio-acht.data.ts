@@ -24,6 +24,7 @@ const gillisGrierStudioAchtData: IContentItem = {
   soundCloudTrackId: 'soundCloudTrackId',
   slug: 'gillis-grier-studio-acht',
   sticky: false,
+  trackAttribution: 'PLEASE FILL ME IN',
   type: 'Sample Pack for Ableton Live',
   userSuggestedPrice: null,
   videos: [],

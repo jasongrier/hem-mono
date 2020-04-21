@@ -24,6 +24,7 @@ const gillisGrierGaudemusData: IContentItem = {
   soundCloudTrackId: 'soundCloudTrackId',
   slug: 'gillis-grier-gaudemus',
   sticky: false,
+  trackAttribution: 'PLEASE FILL ME IN',
   type: 'Sample Pack for Ableton Live',
   userSuggestedPrice: null,
   videos: [],

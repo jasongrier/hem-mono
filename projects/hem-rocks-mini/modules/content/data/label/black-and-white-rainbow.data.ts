@@ -24,6 +24,7 @@ const blackAndWhiteRainbowData: IContentItem = {
   soundCloudTrackId: 'soundCloudTrackId',
   slug: 'black-and-white-rainbow',
   sticky: false,
+  trackAttribution: 'PLEASE FILL ME IN',
   type: 'Sample Pack for Ableton Live',
   userSuggestedPrice: null,
   videos: [],

@@ -23,6 +23,7 @@ const ooohsAndAhsData: IContentItem = {
   name: 'Ooohs and Ahs',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  trackAttribution: 'HEM Sound Library',
   slug: 'ooohs-and-ahs',
   sticky: false,
   type: 'Sample Pack for Ableton Live',

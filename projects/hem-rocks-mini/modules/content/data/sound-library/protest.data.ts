@@ -23,6 +23,7 @@ const protestData: IContentItem = {
   name: 'Protest',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  trackAttribution: 'HEM Sound Library',
   slug: 'protest',
   sticky: false,
   type: 'Sample Pack for Ableton Live',

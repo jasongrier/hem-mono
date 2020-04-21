@@ -23,6 +23,7 @@ const windowData: IContentItem = {
   name: 'Window',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  trackAttribution: 'HEM Sound Library',
   slug: 'window',
   sticky: false,
   type: 'Sample Pack for Ableton Live',

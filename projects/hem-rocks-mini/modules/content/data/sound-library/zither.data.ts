@@ -23,6 +23,7 @@ const zitherData: IContentItem = {
   name: 'Zither',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  trackAttribution: 'HEM Sound Library',
   slug: 'zither',
   sticky: false,
   type: 'Sample Pack for Ableton Live',

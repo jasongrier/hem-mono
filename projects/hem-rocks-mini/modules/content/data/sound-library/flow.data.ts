@@ -23,6 +23,7 @@ const flowData: IContentItem = {
   name: 'Flow',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  trackAttribution: 'HEM Sound Library',
   slug: 'flow',
   sticky: false,
   type: 'Sample Pack for Ableton Live',

@@ -30,6 +30,7 @@ function Label(): ReactElement {
       >
         {(pack) => (
           <TrackPlayPauseButton track={{
+            attribution: pack.trackAttribution,
             id: pack.slug,
             type: 'soundcloud',
             resource: pack.soundCloudTrackId,

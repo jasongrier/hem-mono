@@ -24,6 +24,7 @@ const trauermusikData: IContentItem = {
   soundCloudTrackId: 'soundCloudTrackId',
   slug: 'trauermusik',
   sticky: false,
+  trackAttribution: 'PLEASE FILL ME IN',
   type: 'Sample Pack for Ableton Live',
   userSuggestedPrice: null,
   videos: [],

@@ -23,6 +23,7 @@ const germanFolkGuitarLessonVinylData: IContentItem = {
   name: 'Guitar Lesson',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  trackAttribution: 'HEM Sound Library',
   slug: 'german-folk-guitar-lesson-vinyl',
   sticky: false,
   type: 'Sample Pack for Ableton Live',

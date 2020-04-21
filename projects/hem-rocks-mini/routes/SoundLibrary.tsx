@@ -53,6 +53,7 @@ function SoundLibrary(): ReactElement {
         {(pack) => (
           <TrackPlayPauseButton
             track={{
+              attribution: pack.trackAttribution,
               id: pack.slug,
               resource: pack.soundCloudTrackId,
               type: 'soundcloud',

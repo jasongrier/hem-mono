@@ -23,6 +23,7 @@ const seuratData: IContentItem = {
   name: 'Seurat',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  trackAttribution: 'HEM Sound Library',
   slug: 'slug',
   sticky: false,
   type: 'Sample Pack for Ableton Live',

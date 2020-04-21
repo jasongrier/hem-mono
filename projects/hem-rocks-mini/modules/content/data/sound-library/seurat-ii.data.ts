@@ -30,6 +30,7 @@ const seuratIiData: IContentItem = {
   soundCloudTrackId: '778088458',
   slug: 'seurat-ii',
   sticky: true,
+  trackAttribution: 'HEM Sound Library',
   type: 'Sample Pack for Ableton Live',
   userSuggestedPrice: null,
   videos: [],

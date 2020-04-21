@@ -23,6 +23,7 @@ const overtoneSingingData: IContentItem = {
   name: 'Overtone Singing',
   published: false,
   soundCloudTrackId: 'soundCloudTrackId',
+  trackAttribution: 'HEM Sound Library',
   slug: 'overtone-singing',
   sticky: false,
   type: 'Sample Pack for Ableton Live',

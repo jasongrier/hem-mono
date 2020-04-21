@@ -23,6 +23,7 @@ const humHissCrackleData: IContentItem = {
   name: 'Hum Hiss Crackle',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  trackAttribution: 'HEM Sound Library',
   slug: 'hum-hiss-crackle',
   sticky: false,
   type: 'Sample Pack for Ableton Live',

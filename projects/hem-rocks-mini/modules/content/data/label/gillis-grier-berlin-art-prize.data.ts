@@ -24,6 +24,7 @@ const gillisGrierBerlinArtPrizeData: IContentItem = {
   soundCloudTrackId: 'soundCloudTrackId',
   slug: 'gillis-grier-berlin-art-prize',
   sticky: false,
+  trackAttribution: 'PLEASE FILL ME IN',
   type: 'Sample Pack for Ableton Live',
   userSuggestedPrice: null,
   videos: [],

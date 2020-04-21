@@ -24,6 +24,7 @@ const buttonsData: IContentItem = {
   soundCloudTrackId: null,
   slug: 'buttons',
   sticky: false,
+  trackAttribution: 'PLEASE FILL ME IN',
   type: 'Sample Pack for Ableton Live',
   userSuggestedPrice: null,
   videos: [],

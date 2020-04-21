@@ -33,6 +33,7 @@ const grandPianoData: IContentItem = {
   name: 'Grand Piano',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  trackAttribution: 'HEM Sound Library',
   slug: 'grand-piano',
   sticky: true,
   type: 'Sample Pack for Ableton Live',
