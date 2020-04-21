@@ -1,7 +1,7 @@
 import React, { ReactElement, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { PlayPauseButton as BasePlayPauseButton } from '../../../packages/hem-buttons'
-import { ITrack, pausePlayer, playPlayer, unpausePlayer } from '../index'
+import { ITrack, pausePlayer, cueTrack, unpausePlayer } from '../index'
 
 interface IProps {
   track: ITrack
@@ -18,7 +18,7 @@ function TrackPlayPauseButton({ track }: IProps): ReactElement {
   const playPauseButtonOnClick = useCallback(
     function playPauseButtonOnClickFn() {
       if (track.id !== currentTrackId) {
-        dispatch(playPlayer(track))
+        dispatch(cueTrack(track, true))
       }
 
       else {
