@@ -23,6 +23,7 @@ const quarterToneSynthData: IContentItem = {
   name: 'Quarter Tone Synth',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  trackAttribution: 'HEM Sound Library',
   slug: 'quarter-tone-synth',
   sticky: false,
   type: 'Sample Pack for Ableton Live',

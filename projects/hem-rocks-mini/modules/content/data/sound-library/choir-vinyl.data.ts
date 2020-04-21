@@ -23,6 +23,7 @@ const choirVinylData: IContentItem = {
   name: 'Choir',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  trackAttribution: 'HEM Sound Library',
   slug: 'choir-vinyl',
   sticky: false,
   type: 'Sample Pack for Ableton Live',

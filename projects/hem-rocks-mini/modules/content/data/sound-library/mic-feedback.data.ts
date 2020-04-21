@@ -23,6 +23,7 @@ const micFeedbackData: IContentItem = {
   name: 'Mic Feedback',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  trackAttribution: 'HEM Sound Library',
   slug: 'mic-feedback',
   sticky: false,
   type: 'Sample Pack for Ableton Live',

@@ -23,6 +23,7 @@ const electricGuitarData: IContentItem = {
   name: 'Electric Guitar',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  trackAttribution: 'HEM Sound Library',
   slug: 'electric-guitar',
   sticky: false,
   type: 'Sample Pack for Ableton Live',

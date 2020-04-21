@@ -24,6 +24,7 @@ const lucData: IContentItem = {
   soundCloudTrackId: null,
   slug: 'luc',
   sticky: true,
+  trackAttribution: 'PLEASE FILL ME IN',
   type: 'Sample Pack for Ableton Live',
   userSuggestedPrice: null,
   videos: [],

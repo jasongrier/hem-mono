@@ -42,6 +42,7 @@ const reducer = (
     case PLAY_PLAYER: {
       return produce(state, draftState => {
         draftState.playing = true
+        draftState.currentTrackAttribution = payload.attribution
         draftState.currentTrackId = payload.id
         draftState.currentTrackType = payload.type
         draftState.currentTrackResource = payload.resource

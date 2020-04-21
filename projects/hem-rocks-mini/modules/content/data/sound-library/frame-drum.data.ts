@@ -23,6 +23,7 @@ const frameDrumData: IContentItem = {
   name: 'Frame Drum',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  trackAttribution: 'HEM Sound Library',
   slug: 'frame-drum',
   sticky: false,
   type: 'Sample Pack for Ableton Live',

@@ -6,8 +6,9 @@ import { getTracksFromContentItems } from '../../content'
 import { RootState } from '../../../index'
 
 function PlayerBar(): ReactElement {
-  const { allContentItems, currentTrackId, playing, playlist } = useSelector((state: RootState) => ({
+  const { allContentItems, currentTrackAttribution, currentTrackId, playing, playlist } = useSelector((state: RootState) => ({
     allContentItems: state.content.contentItems,
+    currentTrackAttribution: state.player.currentTrackAttribution,
     currentTrackId: state.player.currentTrackId,
     playing: state.player.playing,
     playlist: state.player.playlist,
@@ -30,6 +31,8 @@ function PlayerBar(): ReactElement {
     dispatch(setPlayerPlaylist(fooTracks))
   }, [])
 
+  const currentTrackContentItem = allContentItems.find(contentItem => contentItem.slug === currentTrackId)
+
   return (
     <div className={`
       player-bar
@@ -45,6 +48,11 @@ function PlayerBar(): ReactElement {
       <HeadphonesButton
         onClick={() => setExpanded(!expanded)}
       />
+      { currentTrackContentItem && (
+        <div className="player-bar-now-playing">
+          Now playing: { currentTrackAttribution }: { currentTrackContentItem.name }
+        </div>
+      )}
     </div>
   )
 }

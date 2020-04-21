@@ -23,6 +23,7 @@ const austinThunderstormData: IContentItem = {
   name: 'Austin Thunderstorm',
   published: false,
   soundCloudTrackId: 'soundCloudTrackId',
+  trackAttribution: 'HEM Sound Library',
   slug: 'austin-thunderstorm',
   sticky: false,
   type: 'Sample Pack for Ableton Live',

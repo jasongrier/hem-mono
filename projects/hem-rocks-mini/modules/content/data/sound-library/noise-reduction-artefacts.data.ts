@@ -23,6 +23,7 @@ const noiseReductionArtefactsData: IContentItem = {
   name: 'Noise Reduction Artefacts',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  trackAttribution: 'HEM Sound Library',
   slug: 'noise-reduction-artefacts',
   sticky: false,
   type: 'Sample Pack for Ableton Live',

@@ -24,6 +24,7 @@ const lindaPerhacsJuliaHolter: IContentItem = {
   soundCloudTrackId: 'soundCloudTrackId',
   slug: 'linda-perhacs-julia-holter',
   sticky: false,
+  trackAttribution: 'PLEASE FILL ME IN',
   type: 'Sample Pack for Ableton Live',
   userSuggestedPrice: null,
   videos: [],

@@ -24,6 +24,7 @@ const dogStarOrchestraData: IContentItem = {
   soundCloudTrackId: 'soundCloudTrackId',
   slug: 'dog-star-orchestra',
   sticky: false,
+  trackAttribution: 'PLEASE FILL ME IN',
   type: 'Sample Pack for Ableton Live',
   userSuggestedPrice: null,
   videos: [],

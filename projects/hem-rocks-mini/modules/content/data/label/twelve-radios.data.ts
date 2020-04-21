@@ -24,6 +24,7 @@ const twelveRadiosData: IContentItem = {
   soundCloudTrackId: 'soundCloudTrackId',
   slug: 'twelve-radios',
   sticky: false,
+  trackAttribution: 'PLEASE FILL ME IN',
   type: 'Sample Pack for Ableton Live',
   userSuggestedPrice: null,
   videos: [],

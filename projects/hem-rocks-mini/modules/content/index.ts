@@ -24,6 +24,7 @@ export interface IContentItem {
   soundCloudTrackId: string | null
   slug: string
   sticky: boolean
+  trackAttribution: string
   type: string
   userSuggestedPrice: number | null
   videos: string[]

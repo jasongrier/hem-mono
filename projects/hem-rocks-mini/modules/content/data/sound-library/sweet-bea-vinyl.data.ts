@@ -23,6 +23,7 @@ const sweetBeaVinylData: IContentItem = {
   name: 'Sweet Bea',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  trackAttribution: 'HEM Sound Library',
   slug: 'sweet-bea-vinyl',
   sticky: false,
   type: 'Sample Pack for Ableton Live',

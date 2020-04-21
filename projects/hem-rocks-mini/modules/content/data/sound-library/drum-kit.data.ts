@@ -23,6 +23,7 @@ const drumKitData: IContentItem = {
   name: 'Drum Kit',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  trackAttribution: 'HEM Sound Library',
   slug: 'drum-kit',
   sticky: false,
   type: 'Sample Pack for Ableton Live',

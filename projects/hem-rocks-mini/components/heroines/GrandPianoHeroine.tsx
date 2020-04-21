@@ -23,6 +23,7 @@ function GrandPianoHeroine(): ReactElement {
             <MuteButton
               canStartPlayback={true}
               track={{
+                attribution: grandPianoProduct.trackAttribution,
                 id: grandPianoProduct.slug,
                 type: 'soundcloud',
                 resource: grandPianoProduct.soundCloudTrackId,

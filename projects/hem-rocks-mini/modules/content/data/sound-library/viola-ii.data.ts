@@ -23,6 +23,7 @@ const violaIiData: IContentItem = {
   name: 'Viola II',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  trackAttribution: 'HEM Sound Library',
   slug: 'viola-ii',
   sticky: false,
   type: 'Sample Pack for Ableton Live',

@@ -24,6 +24,7 @@ const earlyLiveRecordingsData: IContentItem = {
   soundCloudTrackId: 'soundCloudTrackId',
   slug: 'early-live-recordings',
   sticky: false,
+  trackAttribution: 'PLEASE FILL ME IN',
   type: 'Sample Pack for Ableton Live',
   userSuggestedPrice: null,
   videos: [],

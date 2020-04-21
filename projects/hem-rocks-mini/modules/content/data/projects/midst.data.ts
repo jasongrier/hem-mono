@@ -24,6 +24,7 @@ const midstData: IContentItem = {
   soundCloudTrackId: null,
   slug: 'midst',
   sticky: false,
+  trackAttribution: 'PLEASE FILL ME IN',
   type: 'Sample Pack for Ableton Live',
   userSuggestedPrice: null,
   videos: [],

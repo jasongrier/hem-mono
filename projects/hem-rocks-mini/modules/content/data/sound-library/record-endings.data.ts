@@ -23,6 +23,7 @@ const recordEndingsData: IContentItem = {
   name: 'Record Endings',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  trackAttribution: 'HEM Sound Library',
   slug: 'record-endings',
   sticky: false,
   type: 'Sample Pack for Ableton Live',

@@ -24,6 +24,7 @@ const demonstrationDiscData: IContentItem = {
   soundCloudTrackId: 'soundCloudTrackId',
   slug: 'demonstration-disc',
   sticky: false,
+  trackAttribution: 'PLEASE FILL ME IN',
   type: 'Sample Pack for Ableton Live',
   userSuggestedPrice: null,
   videos: [],

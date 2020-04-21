@@ -24,6 +24,7 @@ const thrashAndBurnData: IContentItem = {
   soundCloudTrackId: 'soundCloudTrackId',
   slug: 'thrash-and-burn',
   sticky: false,
+  trackAttribution: 'PLEASE FILL ME IN',
   type: 'Sample Pack for Ableton Live',
   userSuggestedPrice: null,
   videos: [],

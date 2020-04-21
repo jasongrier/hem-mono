@@ -23,6 +23,7 @@ const eBowPianoData: IContentItem = {
   name: 'E-Bow Piano',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  trackAttribution: 'HEM Sound Library',
   slug: 'e-bow-piano',
   sticky: false,
   type: 'Sample Pack for Ableton Live',
