@@ -22,6 +22,7 @@ const hemAnniversaryOneData: IContentItem = {
   name: 'HEM Anniversary One',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   slug: 'hem-anniversary-one',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',

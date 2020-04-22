@@ -22,6 +22,7 @@ const gillisGrierBerlinArtPrizeData: IContentItem = {
   name: 'Gillis-Grier Berlin Art Prize',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   slug: 'gillis-grier-berlin-art-prize',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',

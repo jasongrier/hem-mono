@@ -22,6 +22,7 @@ const ascendingSeriesThreeData: IContentItem = {
   name: 'Ascending Series Three',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   slug: 'ascending-series-three',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',

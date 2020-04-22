@@ -1,7 +1,7 @@
 import React, { ReactElement, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { SpeakerButton as BaseSpeakerButton } from '../../../packages/hem-buttons'
-import { ITrack, playPlayer, mutePlayer, unmutePlayer, unpausePlayer } from '../index'
+import { ITrack, cueTrack, mutePlayer, unmutePlayer, unpausePlayer } from '../index'
 
 interface IProps {
   canStartPlayback?: boolean
@@ -29,7 +29,7 @@ function MuteButton({ canStartPlayback, crossedState, track }: IProps): ReactEle
         }
 
         else if (canStartPlayback && !playing && track) {
-          dispatch(playPlayer(track))
+          dispatch(cueTrack(track, true))
         }
       }
 

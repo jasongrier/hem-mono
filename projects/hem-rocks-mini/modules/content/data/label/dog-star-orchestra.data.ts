@@ -22,6 +22,7 @@ const dogStarOrchestraData: IContentItem = {
   name: 'Dog Star Orchestra',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   slug: 'dog-star-orchestra',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',

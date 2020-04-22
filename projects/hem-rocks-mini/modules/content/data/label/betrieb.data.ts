@@ -22,6 +22,7 @@ const betriebData: IContentItem = {
   name: 'Betrieb',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   slug: 'betrieb',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',

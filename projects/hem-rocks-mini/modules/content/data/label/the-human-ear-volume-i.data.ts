@@ -22,6 +22,7 @@ const theHumanEarVolumeIData: IContentItem = {
   name: 'The Human Ear Volume I',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   slug: 'the-human-ear-volume-i',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',

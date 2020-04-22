@@ -22,6 +22,7 @@ const placematsData: IContentItem = {
   name: 'Placemats',
   published: true,
   soundCloudTrackId: null,
+soundCloudSecretToken: null,
   slug: 'placemats',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',

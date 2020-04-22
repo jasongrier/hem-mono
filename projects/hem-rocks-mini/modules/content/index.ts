@@ -22,6 +22,7 @@ export interface IContentItem {
   name: string
   published: boolean
   soundCloudTrackId: string | null
+  soundCloudSecretToken: string | null
   slug: string
   sticky: boolean
   trackAttribution: string

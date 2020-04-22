@@ -22,6 +22,7 @@ const gillisGrierNtsMixData: IContentItem = {
   name: 'Gillis-Grier NTS Mix',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   slug: 'gillis-grier-nts-mix',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',

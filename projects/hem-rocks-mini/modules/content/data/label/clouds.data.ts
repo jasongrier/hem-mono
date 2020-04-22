@@ -22,6 +22,7 @@ const cloudsData: IContentItem = {
   name: 'Clouds',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   slug: 'clouds',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',

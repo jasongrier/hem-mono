@@ -22,6 +22,7 @@ const trauermusikData: IContentItem = {
   name: 'Trauermusik',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   slug: 'trauermusik',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',

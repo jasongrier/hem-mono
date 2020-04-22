@@ -22,6 +22,7 @@ const twelveRadiosData: IContentItem = {
   name: 'Twelve Radios',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   slug: 'twelve-radios',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',

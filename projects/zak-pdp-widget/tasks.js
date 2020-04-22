@@ -16,8 +16,8 @@ function zakPostBuild() {
   const mainJsFile = manifest['index.ts'].replace(/\.([a-z0-9]+)\./g, '.').replace(/^\//, '')
   const mainCssFile = manifest['index.css'].replace(/\.([a-z0-9]+)\./, '.').replace(/^\//, '')
 
-  execSync(`mv ${distDir}${manifest['index.ts']} ${zakDistDir}/zw-${mainJsFile}`, { stdio: 'inherit' })
-  execSync(`mv ${distDir}${manifest['index.css']} ${zakDistDir}/zw-${mainCssFile}`, { stdio: 'inherit' })
+  execSync(`mv ${distDir}/${manifest['index.ts']} ${zakDistDir}/zw-${mainJsFile}`, { stdio: 'inherit' })
+  execSync(`mv ${distDir}/${manifest['index.css']} ${zakDistDir}/zw-${mainCssFile}`, { stdio: 'inherit' })
 
   execSync(`rm -rf ${distDir}`, { stdio: 'inherit' })
   execSync(`mv ${zakDistDir} ${distDir}`, { stdio: 'inherit' })

@@ -22,6 +22,7 @@ const scaredFamousData: IContentItem = {
   name: 'Scared Famous',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   slug: 'scared-famous',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',

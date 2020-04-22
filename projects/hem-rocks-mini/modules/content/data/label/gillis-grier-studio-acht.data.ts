@@ -22,6 +22,7 @@ const gillisGrierStudioAchtData: IContentItem = {
   name: 'Gillis-Grier Studio Acht',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   slug: 'gillis-grier-studio-acht',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',

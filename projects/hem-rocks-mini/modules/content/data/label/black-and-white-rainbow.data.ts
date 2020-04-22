@@ -22,6 +22,7 @@ const blackAndWhiteRainbowData: IContentItem = {
   name: 'Black and White Rainbow',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   slug: 'black-and-white-rainbow',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',
