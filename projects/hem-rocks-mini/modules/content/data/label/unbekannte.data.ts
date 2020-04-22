@@ -22,6 +22,7 @@ const unbekannteData: IContentItem = {
   name: 'Unbekannte',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   slug: 'unbekannte',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',

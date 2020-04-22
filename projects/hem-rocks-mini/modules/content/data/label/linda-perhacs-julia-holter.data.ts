@@ -22,6 +22,7 @@ const lindaPerhacsJuliaHolter: IContentItem = {
   name: 'Linda Perhacs Julia Holter',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   slug: 'linda-perhacs-julia-holter',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',

@@ -22,6 +22,7 @@ const demonstrationDiscData: IContentItem = {
   name: 'Demonstration Disc',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   slug: 'demonstration-disc',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',

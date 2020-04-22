@@ -22,6 +22,7 @@ const gillisGrierGaudemusData: IContentItem = {
   name: 'Gillis-Grier Gaudemus',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   slug: 'gillis-grier-gaudemus',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',

@@ -22,6 +22,7 @@ const heartShapedRockData: IContentItem = {
   name: 'Heart Shaped Rock',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   slug: 'heart-shaped-rock',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',

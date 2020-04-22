@@ -22,6 +22,7 @@ const archiveData: IContentItem = {
   name: 'Archive',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   slug: 'archive',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',

@@ -22,6 +22,7 @@ const buttonsData: IContentItem = {
   name: 'Buttons',
   published: true,
   soundCloudTrackId: null,
+soundCloudSecretToken: null,
   slug: 'buttons',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',

@@ -22,6 +22,7 @@ const sysygyData: IContentItem = {
   name: 'Sysygy',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   slug: 'sysygy',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',

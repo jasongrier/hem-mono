@@ -8,6 +8,11 @@
   height: 50px;
   background-color: #000;
   overflow: hidden;
+  user-select: none;
+}
+
+.player-bar * {
+  user-select: none;
 }
 
 .player-bar-expanded {

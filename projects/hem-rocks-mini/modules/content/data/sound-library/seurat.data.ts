@@ -23,6 +23,7 @@ const seuratData: IContentItem = {
   name: 'Seurat',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   trackAttribution: 'HEM Sound Library',
   slug: 'slug',
   sticky: false,

@@ -22,6 +22,7 @@ const katahymieData: IContentItem = {
   name: 'Katahymie',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   slug: 'katahymie',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',

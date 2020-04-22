@@ -22,6 +22,7 @@ const earlyLiveRecordingsData: IContentItem = {
   name: 'Early Live Recordings',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   slug: 'early-live-recordings',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',

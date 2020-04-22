@@ -4,9 +4,13 @@ import { IProduct } from '../store/types'
 
 declare const PDP_WIDGET_HIGH_INDEX_ADD_ON_PRODUCT: string
 declare const PDP_WIDGET_LENS_TREATMENT_ADD_ON_PRODUCT: string
+declare const PDP_WIDGET_LENS_TREATMENT_ADD_ON_PRODUCT_NOT_TAXABLE: string
 declare const PDP_WIDGET_TINT_ADD_ON_PRODUCT: string
+declare const PDP_WIDGET_TINT_ADD_ON_PRODUCT_NOT_TAXABLE: string
 
 function allProductIds(mainProduct: IProduct) {
+  const isTaxable = mainProduct.prescription.includes('No Prescription')
+
   const productIds: string[] = []
 
   productIds.push(mainProduct.id)
@@ -24,7 +28,10 @@ function allProductIds(mainProduct: IProduct) {
   }
 
   if (mainProduct.lensTreatment !== 'Standard') {
-    const addOnProduct = JSON.parse(PDP_WIDGET_LENS_TREATMENT_ADD_ON_PRODUCT)
+    const addOnProduct = isTaxable
+      ? JSON.parse(PDP_WIDGET_LENS_TREATMENT_ADD_ON_PRODUCT)
+      : JSON.parse(PDP_WIDGET_LENS_TREATMENT_ADD_ON_PRODUCT_NOT_TAXABLE)
+
     const variantId = getVariantId(addOnProduct, removePrice(mainProduct.lensTreatment))
 
     if (variantId) {
@@ -33,7 +40,10 @@ function allProductIds(mainProduct: IProduct) {
   }
 
   if (mainProduct.tint !== 'None') {
-    const addOnProduct = JSON.parse(PDP_WIDGET_TINT_ADD_ON_PRODUCT)
+    const addOnProduct = isTaxable
+      ? JSON.parse(PDP_WIDGET_TINT_ADD_ON_PRODUCT)
+      : JSON.parse(PDP_WIDGET_TINT_ADD_ON_PRODUCT_NOT_TAXABLE)
+
     const variantId = getVariantId(addOnProduct, removePrice(mainProduct.tint))
 
     if (variantId) {

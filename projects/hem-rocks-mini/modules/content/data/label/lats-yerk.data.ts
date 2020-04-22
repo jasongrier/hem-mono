@@ -22,6 +22,7 @@ const latsYerkData: IContentItem = {
   name: 'Lats Yerk',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   slug: 'lats-yerk',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',

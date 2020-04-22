@@ -314,9 +314,10 @@ body {
 
 .zw-high-index-link {
   position: absolute;
-  top: 24px;
+  top: 44px;
   left: 7px;
   font-size: 11px;
+  line-height: 16px;
 }
 
 .zw-total-row .zw-add-on-button:focus,

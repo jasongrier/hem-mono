@@ -22,6 +22,7 @@ const relineatorData: IContentItem = {
   name: 'Relineator',
   published: true,
   soundCloudTrackId: null,
+soundCloudSecretToken: null,
   slug: 'relineator',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',

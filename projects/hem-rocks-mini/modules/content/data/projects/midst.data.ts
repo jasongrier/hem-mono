@@ -22,6 +22,7 @@ const midstData: IContentItem = {
   name: 'Midst',
   published: true,
   soundCloudTrackId: null,
+soundCloudSecretToken: null,
   slug: 'midst',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',

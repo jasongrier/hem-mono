@@ -23,6 +23,7 @@ const breathsData: IContentItem = {
   name: 'Breaths',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   trackAttribution: 'HEM Sound Library',
   slug: 'breaths',
   sticky: false,

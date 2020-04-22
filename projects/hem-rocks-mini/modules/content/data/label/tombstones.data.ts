@@ -22,6 +22,7 @@ const tombstonesData: IContentItem = {
   name: 'Tombstones',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   slug: 'tombstones',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',

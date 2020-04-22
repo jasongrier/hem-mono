@@ -22,6 +22,7 @@ const instantComaData: IContentItem = {
   name: 'Instant Coma',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   slug: 'instant-coma',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',

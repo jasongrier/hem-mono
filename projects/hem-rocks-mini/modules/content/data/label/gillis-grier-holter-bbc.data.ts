@@ -22,6 +22,7 @@ const gillisGrierHolterBbcData: IContentItem = {
   name: 'Gillis-Grier Holter BBC',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   slug: 'gillis-grier-holter-bbc',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',

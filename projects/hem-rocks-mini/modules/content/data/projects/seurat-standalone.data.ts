@@ -22,6 +22,8 @@ const seuratStandaloneData: IContentItem = {
   name: 'Seurat Standalone',
   published: true,
   soundCloudTrackId: null,
+  soundCloudSecretToken: null,
+  trackAttribution: '',
   slug: 'seurat-standalone',
   sticky: true,
   type: 'Sample Pack for Ableton Live',

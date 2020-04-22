@@ -22,6 +22,7 @@ const mariaData: IContentItem = {
   name: 'Maria',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   slug: 'maria',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',

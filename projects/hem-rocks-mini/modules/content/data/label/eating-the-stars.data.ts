@@ -22,6 +22,7 @@ const eatingTheStarsData: IContentItem = {
   name: 'Eating the Stars',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   slug: 'eating-the-stars',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',

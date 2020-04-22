@@ -22,6 +22,7 @@ const commotusData: IContentItem = {
   name: 'Commotus',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   slug: 'commotus',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',

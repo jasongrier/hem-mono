@@ -28,6 +28,7 @@ const antiquePianoData: IContentItem = {
   name: 'Antique Piano',
   published: true,
   soundCloudTrackId: '803629816',
+  soundCloudSecretToken: null,
   slug: 'antique-piano',
   sticky: false,
   trackAttribution: 'HEM Sound Libraray',
