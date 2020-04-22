@@ -6,6 +6,7 @@ import {
   NEXT_TRACK,
   PAUSE_PLAYER,
   PREVIOUS_TRACK,
+  SEEK_PLAYER,
   SET_PLAYER_ACTUALLY_PLAYING,
   SET_PLAYER_PLAYLIST,
   TRACK_ENDED,
@@ -56,6 +57,10 @@ const reducer = (
         draftState.currentTrackType = payload.track.type
         draftState.currentTrackResource = payload.track.resource
       })
+    }
+
+    case SEEK_PLAYER: {
+      return state
     }
 
     case SET_PLAYER_ACTUALLY_PLAYING: {

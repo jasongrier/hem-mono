@@ -4,6 +4,7 @@ import {
   PAUSE_PLAYER,
   CUE_TRACK,
   PREVIOUS_TRACK,
+  SEEK_PLAYER,
   SET_PLAYER_ACTUALLY_PLAYING,
   SET_PLAYER_PLAYLIST,
   TRACK_ENDED,
@@ -40,6 +41,11 @@ const previousTrack = (): Action => ({
   payload: null,
 })
 
+const seekPlayer = (percent: number): Action => ({
+  type: SEEK_PLAYER,
+  payload: percent,
+})
+
 const setPlayerActuallyPlaying = (actuallyPlaying: boolean): Action => ({
   type: SET_PLAYER_ACTUALLY_PLAYING,
   payload: actuallyPlaying,
@@ -71,6 +77,7 @@ export {
   nextTrack,
   pausePlayer,
   previousTrack,
+  seekPlayer,
   setPlayerActuallyPlaying,
   setPlayerPlaylist,
   trackEnded,
