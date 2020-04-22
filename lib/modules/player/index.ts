@@ -28,6 +28,7 @@ export const NEXT_TRACK = 'NEXT_TRACK'
 export const PAUSE_PLAYER = 'PAUSE_PLAYER'
 export const CUE_TRACK = 'CUE_TRACK'
 export const PREVIOUS_TRACK = 'PREVIOUS_TRACK'
+export const SEEK_PLAYER = 'SEEK_PLAYER'
 export const SET_PLAYER_INSTANCE = 'SET_PLAYER_INSTANCE'
 export const SET_PLAYER_PLAYLIST = 'SET_PLAYER_PLAYLIST'
 export const SET_PLAYER_ACTUALLY_PLAYING = 'SET_PLAYER_ACTUALLY_PLAYING'
@@ -58,6 +59,11 @@ export interface INextTrack extends AnyAction {
 export interface IPausePlayer extends AnyAction {
   type: typeof PAUSE_PLAYER
   payload: null
+}
+
+export interface ISeekPlayer extends AnyAction {
+  type: typeof SEEK_PLAYER
+  payload: number
 }
 
 export interface ISetPlayerPlaylist extends AnyAction {
@@ -91,6 +97,7 @@ export type Action =
   | IPausePlayer
   | ICueTrack
   | IPreviousTrack
+  | ISeekPlayer
   | ISetPlayerActuallyPlaying
   | ISetPlayerPlaylist
   | ITrackEnded
@@ -103,6 +110,7 @@ export {
   nextTrack,
   pausePlayer,
   previousTrack,
+  seekPlayer,
   setPlayerActuallyPlaying,
   setPlayerPlaylist,
   trackEnded,
@@ -130,6 +138,7 @@ export {
   pausePlayerSaga,
   playPlayerSaga,
   previousTrackSaga,
+  seekPlayerSaga,
   trackEndedSaga,
   unmutePlayerSaga,
   unpausePlayerSaga,

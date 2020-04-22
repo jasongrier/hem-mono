@@ -5,6 +5,7 @@ import {
   PAUSE_PLAYER,
   CUE_TRACK,
   PREVIOUS_TRACK,
+  SEEK_PLAYER,
   TRACK_ENDED,
   UNMUTE_PLAYER,
   UNPAUSE_PLAYER,
@@ -55,6 +56,7 @@ function* pausePlayer() {
 
 function* cueTrack({ payload }: any) {
   yield put(setPlayerActuallyPlayingAc(false))
+  delete window.HEM_PLAYER_SOUNDCLOUD_PLAYER_INSTANCE
 
   SC.stream('/tracks/' + payload.track.resource)
     .then(function(player: any) {
@@ -79,6 +81,19 @@ function* previousTrack() {
     const state = yield select()
     const { isActuallyPlaying: wasPlaying } = state.player
     yield put(cueTrackAc(getPreviousTrack(state), wasPlaying))
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+function* seekPlayer({ payload: percent }: any) {
+  try {
+    const player = window.HEM_PLAYER_SOUNDCLOUD_PLAYER_INSTANCE
+    const duration = player.getDuration()
+    const time = duration * percent
+
+    player.seek(time)
+
   } catch (err) {
     console.log(err)
   }
@@ -136,6 +151,10 @@ function* previousTrackSaga() {
   yield takeLatest(PREVIOUS_TRACK, previousTrack)
 }
 
+function* seekPlayerSaga() {
+  yield takeLatest(SEEK_PLAYER, seekPlayer)
+}
+
 function* trackEndedSaga() {
   yield takeLatest(TRACK_ENDED, trackEnded)
 }
@@ -154,6 +173,7 @@ export {
   pausePlayerSaga,
   playPlayerSaga,
   previousTrackSaga,
+  seekPlayerSaga,
   trackEndedSaga,
   unmutePlayerSaga,
   unpausePlayerSaga,

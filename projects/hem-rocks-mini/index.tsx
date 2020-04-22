@@ -46,6 +46,9 @@ sagaMiddleware.run(playPlayerSaga)
 import { previousTrackSaga } from '../../lib/modules/player'
 sagaMiddleware.run(previousTrackSaga)
 
+import { seekPlayerSaga } from '../../lib/modules/player'
+sagaMiddleware.run(seekPlayerSaga)
+
 import { trackEndedSaga } from '../../lib/modules/player'
 sagaMiddleware.run(trackEndedSaga)
 

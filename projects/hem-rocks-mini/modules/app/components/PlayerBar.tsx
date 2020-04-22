@@ -1,7 +1,7 @@
 import React, { ReactElement, useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { HeadphonesButton } from '../../../../../lib/packages/hem-buttons'
-import { NextButton, PlayPauseButton, PreviousButton, TrackPlayPauseButton, setPlayerPlaylist } from '../../../../../lib/modules/player'
+import { NextButton, PlayPauseButton, PreviousButton, ProgressBar, TrackPlayPauseButton, setPlayerPlaylist } from '../../../../../lib/modules/player'
 import { getTracksFromContentItems } from '../../content'
 import { RootState } from '../../../index'
 
@@ -32,6 +32,10 @@ function PlayerBar(): ReactElement {
       ${ expanded ? 'player-bar-expanded' : '' }
     `}>
       <div className="player-bar-playback-controls">
+        <div className="player-bar-progress-bar">
+          <ProgressBar id="player-bar-progress-bar" />
+        </div>
+
         { currentTrackId && (
           <>
             <PreviousButton />
