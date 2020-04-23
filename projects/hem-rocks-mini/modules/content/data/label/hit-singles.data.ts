@@ -3,11 +3,11 @@ import uuid from 'uuid/v1'
 // @ts-ignore
 import autop from 'lines-to-paragraphs'
 
-const archiveData: IContentItem = {
+const hitSinglesData: IContentItem = {
   acceptingDonations: false,
   blurb: `
   `,
-  date: '01.09.2017',
+  date: '01.09.2007',
   badgeText: null,
   description: autop(`
   `),
@@ -19,9 +19,9 @@ const archiveData: IContentItem = {
   id: uuid(),
   images: [],
   tags: ['label'],
-  name: 'Archive',
+  name: 'Hit Singles',
   nameWrapping: null,
-published: true,
+  published: true,
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'archive',
@@ -32,4 +32,4 @@ published: true,
   videos: [],
 }
 
-export default archiveData
+export default hitSinglesData

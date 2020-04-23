@@ -21,7 +21,7 @@ const archiveData: IContentItem = {
   tags: ['label'],
   name: 'Archive',
   nameWrapping: null,
-published: true,
+  published: true,
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'archive',

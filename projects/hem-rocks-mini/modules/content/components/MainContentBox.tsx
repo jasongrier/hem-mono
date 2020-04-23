@@ -37,7 +37,8 @@ function MainContentBox({
       minMarginY={30}
       className={`
         main-content-box
-        ${className}
+        main-content-box-date-${contentItem.date}
+        ${className ? className : ''}
         ${contentItem.badgeText ? 'has-badge' : ''}
         ${alignRight && index > 0 ? 'align-right' : ''}
         ${usePlacemats(contentItem) ? 'with-placemat' : 'with-photography'}

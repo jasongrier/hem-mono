@@ -2,7 +2,7 @@
   position: absolute;
   top: 430px;
   left: 10px;
-  z-index: -9999;
+  z-index: -1;
   width: 50px;
   border-left: 1px solid #000;
 }
@@ -22,11 +22,11 @@
 }
 
 #label-timeline-tick-2017 {
-  top: 200px;
+  top: 140px;
 }
 
 #label-timeline-tick-2013 {
-  top: 400px;
+  top: 660px;
 }
 
 #label-timeline-tick-2012 {
@@ -46,7 +46,6 @@
 }
 
 .label-timeline-tick img {
-  display: none;
 }
 
 .label-timeline-tick-label {

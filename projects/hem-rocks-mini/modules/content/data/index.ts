@@ -15,6 +15,7 @@ import flowData from './sound-library/flow.data'
 import frameDrumData from './sound-library/frame-drum.data'
 import germanFolkGuitarLessonVinylData from './sound-library/german-folk-guitar-lesson-vinyl.data'
 import grandPianoData from './sound-library/grand-piano.data'
+import hitSinglesData from './label/hit-singles.data'
 import humHissCrackleData from './sound-library/hum-hiss-crackle.data'
 import micFeedbackData from './sound-library/mic-feedback.data'
 import natureSoundsVinylData from './sound-library/nature-sounds-vinyl.data'
@@ -62,7 +63,6 @@ import tombstonesData from './label/tombstones.data'
 import trauermusikData from './label/trauermusik.data'
 import twelveRadiosData from './label/twelve-radios.data'
 import unbekannteData from './label/unbekannte.data'
-import vibeCentralData from './label/vibe-central.data'
 
 import buttonsData from './projects/buttons.data'
 import lucData from './projects/luc.data'
@@ -123,6 +123,7 @@ export default [
   heartShapedRockData,
   hemAnniversaryOneData,
   hemAnniversaryTwoData,
+  hitSinglesData,
   humanGeniusAtSoundwalkDataData,
   instantComaData,
   lindaPerhacsJuliaHolterData,
@@ -136,7 +137,6 @@ export default [
   trauermusikData,
   twelveRadiosData,
   unbekannteData,
-  vibeCentralData,
 
   buttonsData,
   lucData,
