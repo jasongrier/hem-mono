@@ -7,7 +7,7 @@ const hemAnniversaryOneData: IContentItem = {
   acceptingDonations: false,
   blurb: `
   `,
-  date: '01.09.2017',
+  date: '01.09.2007',
   badgeText: null,
   description: autop(`
   `),
@@ -20,6 +20,7 @@ const hemAnniversaryOneData: IContentItem = {
   images: [],
   tags: ['label'],
   name: 'HEM Anniversary One',
+  nameWrapping: 'HEM Anni&shy;versary One',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,

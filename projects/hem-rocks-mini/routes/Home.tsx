@@ -7,10 +7,6 @@ function Home(): ReactElement {
       <div className="main-heroine">
         <GrandPianoHeroine />
       </div>
-
-      <div className="pricing-banner" hidden>
-        Pay what you can. All devices run in Ableton Live Lite
-      </div>
     </div>
   )
 }

@@ -7,7 +7,7 @@ const tombstonesData: IContentItem = {
   acceptingDonations: false,
   blurb: `
   `,
-  date: '01.09.2017',
+  date: '01.09.2013',
   badgeText: null,
   description: autop(`
   `),
@@ -20,6 +20,7 @@ const tombstonesData: IContentItem = {
   images: [],
   tags: ['label'],
   name: 'Tombstones',
+  nameWrapping: 'Tomb&shy;stones',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,

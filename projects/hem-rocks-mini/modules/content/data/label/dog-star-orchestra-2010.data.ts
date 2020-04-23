@@ -3,11 +3,11 @@ import uuid from 'uuid/v1'
 // @ts-ignore
 import autop from 'lines-to-paragraphs'
 
-const gillisGrierStudioAchtData: IContentItem = {
+const dogStarOrchestra2010Data: IContentItem = {
   acceptingDonations: false,
   blurb: `
   `,
-  date: '01.09.2017',
+  date: '01.09.2010',
   badgeText: null,
   description: autop(`
   `),
@@ -19,11 +19,12 @@ const gillisGrierStudioAchtData: IContentItem = {
   id: uuid(),
   images: [],
   tags: ['label'],
-  name: 'Gillis-Grier Studio Acht',
-  published: true,
+  name: 'Dog Star Orchestra 2010',
+  nameWrapping: null,
+published: true,
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
-  slug: 'gillis-grier-studio-acht',
+  slug: 'dog-star-orchestra',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',
   type: 'Sample Pack for Ableton Live',
@@ -31,4 +32,4 @@ const gillisGrierStudioAchtData: IContentItem = {
   videos: [],
 }
 
-export default gillisGrierStudioAchtData
+export default dogStarOrchestra2010Data

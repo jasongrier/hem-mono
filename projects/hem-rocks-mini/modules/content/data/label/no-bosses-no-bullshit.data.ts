@@ -7,7 +7,7 @@ const noBossesNoBullshit: IContentItem = {
   acceptingDonations: false,
   blurb: `
   `,
-  date: '01.09.2017',
+  date: '01.09.2008',
   badgeText: null,
   description: autop(`
   `),
@@ -20,7 +20,8 @@ const noBossesNoBullshit: IContentItem = {
   images: [],
   tags: ['label'],
   name: 'No Bosses No Bullshit',
-  published: true,
+  nameWrapping: null,
+published: true,
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'no-bosses-no-bullshit',

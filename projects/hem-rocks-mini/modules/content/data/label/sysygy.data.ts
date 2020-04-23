@@ -7,7 +7,7 @@ const sysygyData: IContentItem = {
   acceptingDonations: false,
   blurb: `
   `,
-  date: '01.09.2017',
+  date: '01.09.2013',
   badgeText: null,
   description: autop(`
   `),
@@ -20,7 +20,8 @@ const sysygyData: IContentItem = {
   images: [],
   tags: ['label'],
   name: 'Sysygy',
-  published: true,
+  nameWrapping: null,
+published: true,
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'sysygy',

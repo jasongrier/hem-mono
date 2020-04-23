@@ -8,7 +8,7 @@ const grandPianoData: IContentItem = {
   blurb: `
     Free for Live 10 users, Singularities makes use of single samples and finely tuned, expressive parameters to capture the sound and feel of classic synths and samplers. Included are 40 Instrument Racks, plus MIDI clips and drum kits – all the parts you need for a complete track.
   `,
-  date: '01.06.2020',
+  date: '01.09.2020',
   badgeText: 'New in the Library',
   description: autop(`
     I'm baby beard fashion axe plaid gluten-free chia everyday carry kitsch mlkshk try-hard cliche mustache microdosing literally hoodie. Green juice activated charcoal cray deep v kogi, raw denim kickstarter vinyl. YOLO snackwave artisan chillwave kale chips poutine enamel pin activated charcoal brunch paleo franzen crucifix direct trade. Mixtape enamel pin godard, keytar next level pug air plant hot chicken brooklyn shaman PBR&B cold-pressed master cleanse. Pitchfork cred 3 wolf moon, adaptogen roof party you probably haven't heard of them shoreditch mixtape iPhone. Flannel neutra hexagon, pitchfork shoreditch +1 adaptogen hammock migas venmo helvetica. Banh mi tote bag la croix, fixie subway tile meggings thundercats biodiesel PBR&B hashtag tilde woke locavore.
@@ -31,8 +31,10 @@ const grandPianoData: IContentItem = {
   ],
   tags: ['sound-library', 'keys', 'extended-technique', 'instruments', 'new-in-the-library'],
   name: 'Grand Piano',
-  published: true,
+  nameWrapping: null,
+published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   trackAttribution: 'HEM Sound Library',
   slug: 'grand-piano',
   sticky: true,

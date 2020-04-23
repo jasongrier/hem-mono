@@ -246,12 +246,14 @@
 }
 
 .main-content-box h3 {
-  width: 100%;
+  width: calc(100% - 15px);
   line-height: 45px;
   margin: 0 0 20px 15px;
+  padding-right: 15px;
   font-size: 64px;
   font-weight: 100;
   text-transform: uppercase;
+  hyphens: manual;
 }
 
 .main-content-box.has-badge h3 {

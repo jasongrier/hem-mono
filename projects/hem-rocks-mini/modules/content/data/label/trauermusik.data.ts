@@ -7,7 +7,7 @@ const trauermusikData: IContentItem = {
   acceptingDonations: false,
   blurb: `
   `,
-  date: '01.09.2017',
+  date: '01.09.2009',
   badgeText: null,
   description: autop(`
   `),
@@ -20,6 +20,7 @@ const trauermusikData: IContentItem = {
   images: [],
   tags: ['label'],
   name: 'Trauermusik',
+  nameWrapping: 'Trauer&shy;musik',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,

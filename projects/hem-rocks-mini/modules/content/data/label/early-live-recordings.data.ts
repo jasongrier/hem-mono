@@ -7,7 +7,7 @@ const earlyLiveRecordingsData: IContentItem = {
   acceptingDonations: false,
   blurb: `
   `,
-  date: '01.09.2017',
+  date: '01.09.2014',
   badgeText: null,
   description: autop(`
   `),
@@ -20,6 +20,7 @@ const earlyLiveRecordingsData: IContentItem = {
   images: [],
   tags: ['label'],
   name: 'Early Live Recordings',
+  nameWrapping: 'Early Live Record&shy;ings',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,

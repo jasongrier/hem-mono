@@ -3,10 +3,12 @@ import React, { ReactElement } from 'react'
 import autop from 'lines-to-paragraphs'
 import { MainContentList } from '../modules/content'
 import { TrackPlayPauseButton } from '../../../lib/modules/player'
+import { LabelTimeline } from '../components/timeline'
 
 function Label(): ReactElement {
   return (
     <div className="page page-label">
+      <LabelTimeline />
       <MainContentList
         blurb={autop(`
           From 2006 to 2013, HEM operated primarily as a record label and events promoter, and was fortunate to count artists such as Ariel Pink, Julia Holter, Michael Pisaro, William Basinski, Lucrecia Dalt, Ekkehard Ehlers, Linda Perhacs, among many others, as participants in record releases and/or live events.

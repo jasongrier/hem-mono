@@ -7,7 +7,7 @@ const archiveData: IContentItem = {
   acceptingDonations: false,
   blurb: `
   `,
-  date: '01.09.2017',
+  date: '20.09.2020',
   badgeText: null,
   description: autop(`
   `),
@@ -20,7 +20,8 @@ const archiveData: IContentItem = {
   images: [],
   tags: ['label'],
   name: 'Archive',
-  published: true,
+  nameWrapping: null,
+published: true,
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'archive',

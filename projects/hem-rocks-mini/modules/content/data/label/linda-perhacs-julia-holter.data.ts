@@ -7,7 +7,7 @@ const lindaPerhacsJuliaHolter: IContentItem = {
   acceptingDonations: false,
   blurb: `
   `,
-  date: '01.09.2017',
+  date: '01.09.2011',
   badgeText: null,
   description: autop(`
   `),
@@ -20,7 +20,8 @@ const lindaPerhacsJuliaHolter: IContentItem = {
   images: [],
   tags: ['label'],
   name: 'Linda Perhacs Julia Holter',
-  published: true,
+  nameWrapping: null,
+published: true,
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'linda-perhacs-julia-holter',

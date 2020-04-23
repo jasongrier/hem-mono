@@ -81,7 +81,7 @@ function MainContentBox({
           action(contentItem)
         }}
       >
-        <h3>{ contentItem.name }</h3>
+        <h3 dangerouslySetInnerHTML={{__html: contentItem.nameWrapping || contentItem.name}} />
         <p>{ contentItem.blurb }</p>
       </div>
       <div className="main-content-box-actions">

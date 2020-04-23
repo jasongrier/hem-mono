@@ -7,7 +7,7 @@ const heartShapedRockData: IContentItem = {
   acceptingDonations: false,
   blurb: `
   `,
-  date: '01.09.2017',
+  date: '01.09.2011',
   badgeText: null,
   description: autop(`
   `),
@@ -20,7 +20,8 @@ const heartShapedRockData: IContentItem = {
   images: [],
   tags: ['label'],
   name: 'Heart Shaped Rock',
-  published: true,
+  nameWrapping: null,
+published: true,
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'heart-shaped-rock',

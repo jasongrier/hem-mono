@@ -7,7 +7,7 @@ const betriebData: IContentItem = {
   acceptingDonations: false,
   blurb: `
   `,
-  date: '01.09.2017',
+  date: '01.09.2013',
   badgeText: null,
   description: autop(`
   `),
@@ -20,7 +20,8 @@ const betriebData: IContentItem = {
   images: [],
   tags: ['label'],
   name: 'Betrieb',
-  published: true,
+  nameWrapping: null,
+published: true,
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'betrieb',

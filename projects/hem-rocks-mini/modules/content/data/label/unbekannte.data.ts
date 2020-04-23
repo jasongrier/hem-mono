@@ -7,7 +7,7 @@ const unbekannteData: IContentItem = {
   acceptingDonations: false,
   blurb: `
   `,
-  date: '01.09.2017',
+  date: '01.09.2013',
   badgeText: null,
   description: autop(`
   `),
@@ -20,6 +20,7 @@ const unbekannteData: IContentItem = {
   images: [],
   tags: ['label'],
   name: 'Unbekannte',
+  nameWrapping: 'Unbe&shy;kannte',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,

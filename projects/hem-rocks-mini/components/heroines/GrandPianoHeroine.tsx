@@ -32,7 +32,7 @@ function GrandPianoHeroine(): ReactElement {
           )}
         </div>
         <div className="grand-piano-heroine-text">
-          <h2>New in Sound Library: Grand Piano</h2>
+          <h2>New in Sound Library: <strong>Grand Piano</strong></h2>
           <h5>
             A gritty and elegant prepared piano, recorded in Berlin
           </h5>
