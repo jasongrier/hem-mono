@@ -24,6 +24,7 @@ const eBowPianoData: IContentItem = {
   nameWrapping: null,
 published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   trackAttribution: 'HEM Sound Library',
   slug: 'e-bow-piano',
   sticky: false,

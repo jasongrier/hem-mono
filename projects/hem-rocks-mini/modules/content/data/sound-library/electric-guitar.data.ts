@@ -24,6 +24,7 @@ const electricGuitarData: IContentItem = {
   nameWrapping: null,
 published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   trackAttribution: 'HEM Sound Library',
   slug: 'electric-guitar',
   sticky: false,
