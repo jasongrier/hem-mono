@@ -23,6 +23,7 @@ interface IProps {
   exclusiveFilters?: string[]
   filters?: string[]
   highlights?: string[]
+  onFiltersChanged?: () => void
 
   // TODO: Deprecated; remove info popup
   infoPopupText?: string
@@ -42,6 +43,7 @@ function MainContentList({
   highlights,
   infoPopupText,
   infoPopupTitle,
+  onFiltersChanged,
 }: IProps): ReactElement {
   const { allContentItems } = useSelector((state: RootState) => ({
     allContentItems: state.content.contentItems,
@@ -147,6 +149,7 @@ function MainContentList({
               key={name}
               onClick={() => {
                 setFilter(slugify(name))
+                onFiltersChanged && onFiltersChanged()
 
                 let top
 

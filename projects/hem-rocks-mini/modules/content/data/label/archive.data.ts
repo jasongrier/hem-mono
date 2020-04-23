@@ -18,7 +18,7 @@ const archiveData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['label'],
+  tags: ['label', 'record-releases'],
   name: 'Archive',
   nameWrapping: null,
   published: true,
