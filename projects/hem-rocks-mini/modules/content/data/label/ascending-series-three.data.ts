@@ -7,7 +7,7 @@ const ascendingSeriesThreeData: IContentItem = {
   acceptingDonations: false,
   blurb: `
   `,
-  date: '01.09.2017',
+  date: '01.09.2008',
   badgeText: null,
   description: autop(`
   `),
@@ -20,6 +20,7 @@ const ascendingSeriesThreeData: IContentItem = {
   images: [],
   tags: ['label'],
   name: 'Ascending Series Three',
+  nameWrapping: 'Ascend&shy;ing Series Three',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,

@@ -7,7 +7,7 @@ const commotusData: IContentItem = {
   acceptingDonations: false,
   blurb: `
   `,
-  date: '01.09.2017',
+  date: '01.09.2012',
   badgeText: null,
   description: autop(`
   `),
@@ -20,7 +20,8 @@ const commotusData: IContentItem = {
   images: [],
   tags: ['label'],
   name: 'Commotus',
-  published: true,
+  nameWrapping: null,
+published: true,
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'commotus',

@@ -20,6 +20,7 @@ const demonstrationDiscData: IContentItem = {
   images: [],
   tags: ['label'],
   name: 'Demonstration Disc',
+  nameWrapping: 'Demon&shy;stration Disc',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,

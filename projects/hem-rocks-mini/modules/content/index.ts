@@ -20,6 +20,7 @@ export interface IContentItem {
   images: IProductImage[]
   tags: string[]
   name: string
+  nameWrapping: string | null
   published: boolean
   soundCloudTrackId: string | null
   soundCloudSecretToken: string | null

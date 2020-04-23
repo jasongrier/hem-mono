@@ -7,7 +7,7 @@ const theHumanEarVolumeIData: IContentItem = {
   acceptingDonations: false,
   blurb: `
   `,
-  date: '01.09.2017',
+  date: '01.09.2007',
   badgeText: null,
   description: autop(`
   `),
@@ -20,7 +20,8 @@ const theHumanEarVolumeIData: IContentItem = {
   images: [],
   tags: ['label'],
   name: 'The Human Ear Volume I',
-  published: true,
+  nameWrapping: null,
+published: true,
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'the-human-ear-volume-i',

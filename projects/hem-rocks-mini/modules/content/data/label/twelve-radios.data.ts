@@ -7,7 +7,7 @@ const twelveRadiosData: IContentItem = {
   acceptingDonations: false,
   blurb: `
   `,
-  date: '01.09.2017',
+  date: '01.09.2008',
   badgeText: null,
   description: autop(`
   `),
@@ -20,7 +20,8 @@ const twelveRadiosData: IContentItem = {
   images: [],
   tags: ['label'],
   name: 'Twelve Radios',
-  published: true,
+  nameWrapping: null,
+published: true,
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'twelve-radios',

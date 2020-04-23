@@ -7,7 +7,7 @@ const instantComaData: IContentItem = {
   acceptingDonations: false,
   blurb: `
   `,
-  date: '01.09.2017',
+  date: '01.09.2007',
   badgeText: null,
   description: autop(`
   `),
@@ -20,7 +20,8 @@ const instantComaData: IContentItem = {
   images: [],
   tags: ['label'],
   name: 'Instant Coma',
-  published: true,
+  nameWrapping: null,
+published: true,
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'instant-coma',

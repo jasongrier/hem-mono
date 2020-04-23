@@ -7,7 +7,7 @@ const blackAndWhiteRainbowData: IContentItem = {
   acceptingDonations: false,
   blurb: `
   `,
-  date: '01.09.2017',
+  date: '01.09.2007',
   badgeText: null,
   description: autop(`
   `),
@@ -20,7 +20,8 @@ const blackAndWhiteRainbowData: IContentItem = {
   images: [],
   tags: ['label'],
   name: 'Black and White Rainbow',
-  published: true,
+  nameWrapping: null,
+published: true,
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'black-and-white-rainbow',

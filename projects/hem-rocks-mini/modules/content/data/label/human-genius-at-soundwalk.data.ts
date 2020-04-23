@@ -7,7 +7,7 @@ const humanGeniusAtSoundwalkData: IContentItem = {
   acceptingDonations: false,
   blurb: `
   `,
-  date: '01.09.2017',
+  date: '01.09.2009',
   badgeText: null,
   description: autop(`
   `),
@@ -20,6 +20,7 @@ const humanGeniusAtSoundwalkData: IContentItem = {
   images: [],
   tags: ['label'],
   name: 'Human Genius at Soundwalk',
+  nameWrapping: 'Human Genius at Sound&shy;walk',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,

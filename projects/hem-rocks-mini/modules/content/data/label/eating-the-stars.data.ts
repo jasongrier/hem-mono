@@ -7,7 +7,7 @@ const eatingTheStarsData: IContentItem = {
   acceptingDonations: false,
   blurb: `
   `,
-  date: '01.09.2017',
+  date: '01.09.2007',
   badgeText: null,
   description: autop(`
   `),
@@ -20,7 +20,8 @@ const eatingTheStarsData: IContentItem = {
   images: [],
   tags: ['label'],
   name: 'Eating the Stars',
-  published: true,
+  nameWrapping: null,
+published: true,
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'eating-the-stars',

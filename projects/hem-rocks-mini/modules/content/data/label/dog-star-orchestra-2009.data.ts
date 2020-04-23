@@ -3,11 +3,11 @@ import uuid from 'uuid/v1'
 // @ts-ignore
 import autop from 'lines-to-paragraphs'
 
-const gillisGrierNtsMixData: IContentItem = {
+const dogStarOrchestra2009Data: IContentItem = {
   acceptingDonations: false,
   blurb: `
   `,
-  date: '01.09.2017',
+  date: '01.09.2009',
   badgeText: null,
   description: autop(`
   `),
@@ -19,11 +19,12 @@ const gillisGrierNtsMixData: IContentItem = {
   id: uuid(),
   images: [],
   tags: ['label'],
-  name: 'Gillis-Grier NTS Mix',
-  published: true,
+  name: 'Dog Star Orchestra 2009',
+  nameWrapping: null,
+published: true,
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
-  slug: 'gillis-grier-nts-mix',
+  slug: 'dog-star-orchestra',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',
   type: 'Sample Pack for Ableton Live',
@@ -31,4 +32,4 @@ const gillisGrierNtsMixData: IContentItem = {
   videos: [],
 }
 
-export default gillisGrierNtsMixData
+export default dogStarOrchestra2009Data

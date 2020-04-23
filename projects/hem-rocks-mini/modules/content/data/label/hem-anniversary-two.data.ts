@@ -3,11 +3,12 @@ import uuid from 'uuid/v1'
 // @ts-ignore
 import autop from 'lines-to-paragraphs'
 
+// TODO: Is this the 12 radios show??
 const hemAnniversaryTwoData: IContentItem = {
   acceptingDonations: false,
   blurb: `
   `,
-  date: '01.09.2017',
+  date: '01.09.2008',
   badgeText: null,
   description: autop(`
   `),
@@ -20,6 +21,7 @@ const hemAnniversaryTwoData: IContentItem = {
   images: [],
   tags: ['label'],
   name: 'HEM Anniversary Two',
+  nameWrapping: 'HEM Anni&shy;versary Two',
   published: true,
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,

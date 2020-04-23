@@ -7,7 +7,7 @@ const scaredFamousData: IContentItem = {
   acceptingDonations: false,
   blurb: `
   `,
-  date: '01.09.2017',
+  date: '01.09.2007',
   badgeText: null,
   description: autop(`
   `),
@@ -20,7 +20,8 @@ const scaredFamousData: IContentItem = {
   images: [],
   tags: ['label'],
   name: 'Scared Famous',
-  published: true,
+  nameWrapping: null,
+published: true,
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'scared-famous',

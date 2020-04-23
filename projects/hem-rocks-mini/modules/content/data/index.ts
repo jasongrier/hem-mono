@@ -46,11 +46,6 @@ import commotusData from './label/commotus.data'
 import demonstrationDiscData from './label/demonstration-disc.data'
 import earlyLiveRecordingsData from './label/early-live-recordings.data'
 import eatingTheStarsData from './label/eating-the-stars.data'
-import gillisGrierBerlinArtPrizeData from './label/gillis-grier-berlin-art-prize.data'
-import gillisGrierGaudemusData from './label/gillis-grier-gaudemus.data'
-import gillisGrierHolterBbcData from './label/gillis-grier-holter-bbc.data'
-import gillisGrierNtsMixData from './label/gillis-grier-nts-mix.data'
-import gillisGrierStudioAchtData from './label/gillis-grier-studio-acht.data'
 import heartShapedRockData from './label/heart-shaped-rock.data'
 import hemAnniversaryOneData from './label/hem-anniversary-one.data'
 import hemAnniversaryTwoData from './label/hem-anniversary-two.data'
@@ -62,7 +57,6 @@ import scaredFamousData from './label/scared-famous.data'
 import sysygyData from './label/sysygy.data'
 import theHumanEarVolumeIData from './label/the-human-ear-volume-i.data'
 import theHumanEarVolumeIiData from './label/the-human-ear-volume-ii.data'
-import theHumanEarVolumeIiiData from './label/the-human-ear-volume-iii.data'
 import thrashAndBurnData from './label/thrash-and-burn.data'
 import tombstonesData from './label/tombstones.data'
 import trauermusikData from './label/trauermusik.data'
@@ -126,11 +120,6 @@ export default [
   demonstrationDiscData,
   earlyLiveRecordingsData,
   eatingTheStarsData,
-  gillisGrierBerlinArtPrizeData,
-  gillisGrierGaudemusData,
-  gillisGrierHolterBbcData,
-  gillisGrierNtsMixData,
-  gillisGrierStudioAchtData,
   heartShapedRockData,
   hemAnniversaryOneData,
   hemAnniversaryTwoData,
@@ -142,7 +131,6 @@ export default [
   sysygyData,
   theHumanEarVolumeIData,
   theHumanEarVolumeIiData,
-  theHumanEarVolumeIiiData,
   thrashAndBurnData,
   tombstonesData,
   trauermusikData,
