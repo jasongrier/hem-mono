@@ -24,6 +24,7 @@ const humHissCrackleData: IContentItem = {
   nameWrapping: null,
 published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   trackAttribution: 'HEM Sound Library',
   slug: 'hum-hiss-crackle',
   sticky: false,

@@ -24,6 +24,7 @@ const quarterToneSynthData: IContentItem = {
   nameWrapping: null,
 published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   trackAttribution: 'HEM Sound Library',
   slug: 'quarter-tone-synth',
   sticky: false,

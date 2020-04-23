@@ -24,6 +24,7 @@ const frameDrumData: IContentItem = {
   nameWrapping: null,
 published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   trackAttribution: 'HEM Sound Library',
   slug: 'frame-drum',
   sticky: false,

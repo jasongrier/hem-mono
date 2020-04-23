@@ -24,6 +24,7 @@ const ooohsAndAhsData: IContentItem = {
   nameWrapping: null,
 published: true,
   soundCloudTrackId: 'soundCloudTrackId',
+  soundCloudSecretToken: null,
   trackAttribution: 'HEM Sound Library',
   slug: 'ooohs-and-ahs',
   sticky: false,
