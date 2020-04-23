@@ -3,7 +3,11 @@ import { useSelector } from 'react-redux'
 import $ from 'jquery'
 import { RootState } from '../../index'
 
-function LabelTimeline(): ReactElement {
+interface IProps {
+  refresh: number
+}
+
+function LabelTimeline({ refresh }: IProps): ReactElement {
   const { allContentItems } = useSelector((state: RootState) => ({
     allContentItems: state.content.contentItems,
   }))
@@ -15,8 +19,13 @@ function LabelTimeline(): ReactElement {
       if (!el.current) return
 
       const $timelineContainer = $(el.current).hide()
+      const $timelineNav = $('.label-timeline-year-links')
+
+      $timelineContainer.html('')
+      $timelineNav.html('')
 
       let previousYear: string = ''
+      let previousOffset: number = 0
 
       $('.main-content-box').each(function() {
         const year = $(this).attr('class')
@@ -26,10 +35,18 @@ function LabelTimeline(): ReactElement {
           ?.pop()
 
         if (year && year !== previousYear) {
+          const offset = $(this).offset()?.top
+
           previousYear = year
 
           // @ts-ignore
-          console.log($(this).offset()?.top - 300)
+          if (offset - previousOffset < 100) {
+            // @ts-ignore
+            offset = offset + 100
+          }
+
+          // @ts-ignore
+          previousOffset = offset
 
           $timelineContainer.append(`
             <div
@@ -37,28 +54,44 @@ function LabelTimeline(): ReactElement {
               id="label-timeline-tick-${year}"
               style="top: ${
                 // @ts-ignore
-                year === '2020' ? '0' : $(this).offset()?.top - 500
+                year === '2020' ? 50 : offset - 500
               }px"
             >
-              <!-- <img
-                alt="HEM logo from ${year}"
-                src="http://static.hem.rocks/site/timeline-logos/HEM_logo_${year}.jpg"
-              /> -->
+              ${(year === '2020' || year === '2017' || year === '2014' || year === '2013' || year === '2012' || year === '2011' || year === '2009' || year === '2008' || year === '2007')
+                ?
+                  (`<img
+                    alt="HEM logo from ${year}"
+                    src="http://static.hem.rocks/hem-rocks/site/timeline-logos/HEM_logo_${year}.jpg"
+                  />`)
+                :
+                  ''
+              }
               <span className="label-timeline-tick-label">${year}</span>
             </div>
+          `)
+
+          $timelineNav.append(`
+            <a href="#label-timeline-tick-${year}">${year}</a>
           `)
         }
       })
 
       $timelineContainer.show()
     })
-  }, [allContentItems.length])
+  }, [allContentItems.length, refresh])
 
   return (
-    <div
-      className="label-timeline"
-      ref={el}
-    />
+    <div className="label-timeline">
+      <div className="label-timeline-year-nav clearfix" hidden>
+        <strong>Jump to year: </strong>
+        <span className="label-timeline-year-links" />
+      </div>
+      <div
+        className="label-timeline-ticks"
+        ref={el}
+      >
+      </div>
+    </div>
   )
 }
 

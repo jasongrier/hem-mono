@@ -18,7 +18,7 @@ const ascendingSeriesThreeData: IContentItem = {
   hasFixedPrice: false,
   id: uuid(),
   images: [],
-  tags: ['label'],
+  tags: ['label', 'events'],
   name: 'Ascending Series Three',
   nameWrapping: 'Ascend&shy;ing Series Three',
   published: true,
