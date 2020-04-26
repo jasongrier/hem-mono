@@ -7,7 +7,7 @@ const earlyLiveRecordingsData: IContentItem = {
   acceptingDonations: false,
   blurb: `
   `,
-  date: '01.09.2014',
+  date: '01.09.2013',
   badgeText: null,
   description: autop(`
   `),

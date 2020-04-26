@@ -49,7 +49,6 @@ import earlyLiveRecordingsData from './label/early-live-recordings.data'
 import eatingTheStarsData from './label/eating-the-stars.data'
 import heartShapedRockData from './label/heart-shaped-rock.data'
 import hemAnniversaryOneData from './label/hem-anniversary-one.data'
-import hemAnniversaryTwoData from './label/hem-anniversary-two.data'
 import humanGeniusAtSoundwalkDataData from './label/human-genius-at-soundwalk.data'
 import instantComaData from './label/instant-coma.data'
 import lindaPerhacsJuliaHolterData from './label/linda-perhacs-julia-holter.data'
@@ -122,7 +121,6 @@ export default [
   eatingTheStarsData,
   heartShapedRockData,
   hemAnniversaryOneData,
-  hemAnniversaryTwoData,
   hitSinglesData,
   humanGeniusAtSoundwalkDataData,
   instantComaData,

@@ -32,6 +32,7 @@ const acousticGuitarData: IContentItem = {
   soundCloudSecretToken: null,
   slug: 'acoustic-guitar',
   sticky: false,
+  trackAttribution: 'HEM Sound Library',
   type: 'Sample Pack for Ableton Live',
   userSuggestedPrice: null,
   videos: [],

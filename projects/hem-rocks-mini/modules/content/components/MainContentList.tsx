@@ -1,5 +1,6 @@
-import React, { ReactElement, useState, useEffect } from 'react'
+import React, { ReactElement, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { Link, useParams, useLocation } from 'react-router-dom'
 import Scrollbars from 'react-scrollbars-custom'
 import { slugify } from 'voca'
 import { compact, intersectionBy } from 'lodash'
@@ -11,6 +12,7 @@ import { MainContentBox } from './index'
 import { setCurrentContentItem, IContentItem } from '../index'
 import { CampaignMonitorForm } from '../../../../../lib/components'
 import { RootState } from '../../../index'
+import { LISTS_HAVE_BLURBS } from '../../../config'
 
 interface IProps {
   blurb: string
@@ -21,6 +23,7 @@ interface IProps {
   buttonText?: string
   campaignMonitorId?: string
   exclusiveFilters?: string[]
+  currentFilter?: string,
   filters?: string[]
   highlights?: string[]
   onFiltersChanged?: () => void
@@ -39,6 +42,7 @@ function MainContentList({
   buttonText,
   campaignMonitorId,
   exclusiveFilters = [],
+  currentFilter = 'all',
   filters = [],
   highlights,
   infoPopupText,
@@ -51,7 +55,6 @@ function MainContentList({
 
   const dispatch = useDispatch()
 
-  const [filter, setFilter] = useState('all')
   const [filtersOriginalTop, setFiltersOriginalTop] = useState(null as number | null)
 
   filters = compact(['All'].concat(exclusiveFilters).concat(filters))
@@ -64,15 +67,15 @@ function MainContentList({
     item => item.tags.includes(tag) && item.published && item.sticky
   )
 
-  if (filter === 'all') {
-    contentItems = contentItems.filter(item =>
-      intersectionBy(item.tags, exclusiveFilters.map(slugify)).length === 0
-    )
+  if (currentFilter && currentFilter !== 'all') {
+    contentItems = contentItems.filter(item => item.tags.includes(currentFilter))
+    stickyContentItems = stickyContentItems.filter(item => item.tags.includes(currentFilter))
   }
 
   else {
-    contentItems = contentItems.filter(item => item.tags.includes(filter))
-    stickyContentItems = stickyContentItems.filter(item => item.tags.includes(filter))
+    contentItems = contentItems.filter(item =>
+      intersectionBy(item.tags, exclusiveFilters.map(slugify)).length === 0
+    )
   }
 
   function sortFn(a: IContentItem, b: IContentItem) {
@@ -105,9 +108,11 @@ function MainContentList({
           </div>
         )}
       </h1>
-      <div className="main-content-blurb"
-        dangerouslySetInnerHTML={{__html: blurb}}
-      />
+      { LISTS_HAVE_BLURBS && (
+        <div className="main-content-blurb"
+          dangerouslySetInnerHTML={{__html: blurb}}
+        />
+      )}
       <div
         hidden
         className={`
@@ -140,15 +145,15 @@ function MainContentList({
         <div className="main-content-filters clearfix">
           <h3>Select:</h3>
           { filters.map(name => (
-            <div
+            <Link
               className={`
                 main-content-filter
-                ${ filter === slugify(name) ? 'active' : '' }
+                ${ currentFilter === slugify(name) ? 'active' : '' }
                 ${ exclusiveFilters.includes(name) ? 'exclusive-filter' : '' }
               `}
               key={name}
+              to={`/${tag}/${name !== 'All' ? slugify(name) : ''}`}
               onClick={() => {
-                setFilter(slugify(name))
                 onFiltersChanged && onFiltersChanged()
 
                 let top
@@ -174,7 +179,7 @@ function MainContentList({
               }}
             >
                 {name}
-            </div>
+            </Link>
           ))}
         </div>
       )}
