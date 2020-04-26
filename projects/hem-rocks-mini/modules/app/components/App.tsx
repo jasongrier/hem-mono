@@ -80,9 +80,9 @@ function App(): ReactElement {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/info" component={Info} />
-            <Route exact path="/label" component={Label} />
-            {/* <Route exact path="/projects" component={Projects} /> */}
-            <Route exact path="/sound-library" component={SoundLibrary} />
+            <Route exact path="/label/:filter?" component={Label} />
+            <Route exact path="/projects/:filter?" component={Projects} />
+            <Route exact path="/sound-library/:filter?" component={SoundLibrary} />
           </Switch>
         </div>
       </main>
@@ -125,14 +125,16 @@ function App(): ReactElement {
         <EmailForm />
       </PopupContainer>
 
-      <PopupContainer
-        id="post-download-popup"
-        closeIcon={CloseButton}
-      >
-        <PostDownloadPopup download={currentContentItem} />
-      </PopupContainer>
+      { currentContentItem && (
+        <PopupContainer
+          id="post-download-popup"
+          closeIcon={CloseButton}
+        >
+          <PostDownloadPopup download={currentContentItem} />
+        </PopupContainer>
+      )}
 
-      <PlayerBar minified={playerBarMinified} />
+      <PlayerBar />
     </div>
   )
 }

@@ -138,6 +138,11 @@
   color: #fff;
 }
 
+.main-content-filters a {
+  color: #000;
+  text-decoration: none;
+}
+
 .main-content-filter {
   display: inline-block;
   padding: 3px 10px;
