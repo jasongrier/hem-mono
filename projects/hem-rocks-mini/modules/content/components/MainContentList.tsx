@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react'
+import React, { ReactElement, useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link, useParams, useLocation } from 'react-router-dom'
 import Scrollbars from 'react-scrollbars-custom'
@@ -153,32 +153,8 @@ function MainContentList({
               `}
               key={name}
               to={`/${tag}/${name !== 'All' ? slugify(name) : ''}`}
-              onClick={() => {
-                onFiltersChanged && onFiltersChanged()
-
-                let top
-
-                // @ts-ignore
-                if ($('html, body').scrollTop() > 0) {
-                  $('html, body').scrollTop(0)
-                }
-
-                if (filtersOriginalTop === null) {
-                  // @ts-ignore
-                  top = document.querySelector('.main-content-filters').getBoundingClientRect().top
-                  setFiltersOriginalTop(top)
-                }
-
-                else {
-                  top = filtersOriginalTop
-                }
-
-                if ($('html, body').scrollTop() !== top) {
-                  $('html, body').scrollTop(top)
-                }
-              }}
             >
-                {name}
+              {name}
             </Link>
           ))}
         </div>

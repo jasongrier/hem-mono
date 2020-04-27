@@ -1,5 +1,6 @@
-import React, { ReactElement, useState } from 'react'
+import React, { ReactElement, useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet'
+import { useParams } from 'react-router-dom'
 // @ts-ignore
 import autop from 'lines-to-paragraphs'
 import { MainContentList } from '../modules/content'
@@ -9,6 +10,11 @@ import { BASE_SITE_TITLE } from '../config'
 
 function Label(): ReactElement {
   const [refresh, setRefresh] = useState(0)
+  const { filter: currentFilter } = useParams()
+
+  useEffect(function updateTimeline() {
+    setRefresh(refresh + 1)
+  }, [currentFilter])
 
   return (
     <>
@@ -28,6 +34,7 @@ function Label(): ReactElement {
           `)}
           buttonText="Download"
           campaignMonitorId="5B5E7037DA78A748374AD499497E309E34883504EC972B188E4CB169FC87154EA44D7B3A50124374F2DEEFB33D7CE7A53C0566B978C890570F878E42C80AD756"
+          currentFilter={currentFilter}
           filters={[
             'Record Releases',
             'Events',
@@ -37,7 +44,6 @@ function Label(): ReactElement {
             'Merch',
           ]}
           infoPopupTitle="About the Sound Library"
-          onFiltersChanged={() => setRefresh(refresh + 1)}
           tag="label"
           title="Label"
         >
