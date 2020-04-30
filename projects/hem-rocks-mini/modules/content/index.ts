@@ -22,6 +22,7 @@ export interface IContentItem {
   name: string
   nameWrapping: string | null
   published: boolean
+  shopifyHandle: string | null
   soundCloudTrackId: string | null
   soundCloudSecretToken: string | null
   slug: string

@@ -7,7 +7,7 @@ import { Spinner } from '../../../../../lib/components'
 import { closePopup, openPopup } from '../../../../../lib/modules/popups'
 import { TrackPlayPauseButton } from '../../../../../lib/modules/player'
 import { Planes } from '../../../../../lib/packages/hem-placemats'
-import { addProductToCart } from '../../cart'
+import { addProductToCart, shopifyCheckOut } from '../../cart'
 import { IContentItem } from '../../content'
 import { usePlacemats } from '../../../functions'
 import { RootState } from '../../../index'
@@ -116,7 +116,7 @@ function DetailPopUp({
       dispatch(openPopup('cart-popup'))
       ReactGA.event({
         category: 'User',
-        action: 'Clicked "Checkout Now" for: ' + contentItem.name,
+        action: 'Clicked "Check out Now" for: ' + contentItem.name,
       })
     }, [suggestedPrice],
   )
@@ -265,6 +265,7 @@ function DetailPopUp({
             { contentItem.soundCloudTrackId && (
               <TrackPlayPauseButton
                 track={{
+                  attribution: contentItem.trackAttribution,
                   id: contentItem.slug,
                   type: 'soundcloud',
                   resource: contentItem.soundCloudTrackId,

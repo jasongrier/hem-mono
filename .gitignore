@@ -1,4 +1,5 @@
 .cache
+.vscode
 dist
 zak-widget-dist
 node_modules
