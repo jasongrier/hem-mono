@@ -4,7 +4,7 @@ import ReactGA from 'react-ga'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { IContentItem } from '../../content'
 import { RootState } from '../../../index'
-import { removeProductFromCart } from '../actions'
+import { removeProductFromCart, shopifyCheckOut } from '../actions'
 import { closePopup } from '../../../../../lib/modules/popups'
 
 function CartPopup(): ReactElement {
@@ -16,10 +16,17 @@ function CartPopup(): ReactElement {
 
   const checkoutOnClick = useCallback(
     function checkoutOnClickFn() {
-      // Shopify stuff...
+
+      dispatch(shopifyCheckOut(
+        // @ts-ignore
+        cartProducts.map(p => p.shopifyHandle),
+        // @ts-ignore
+        cartProducts.map(p => getFinalPrice(p)),
+      ))
+
       ReactGA.event({
         category: 'User',
-        action: 'Clicked "Checkout" in shopping cart for',
+        action: 'Clicked "Check out" in shopping cart for',
       })
     }, [],
   )
@@ -98,7 +105,7 @@ function CartPopup(): ReactElement {
               Tax: { formatPrice(getTax()) }<br />
               <strong>TOTAL: { formatPrice(getGrandTotal()) }</strong>
             </div>
-            <div className="cart-popup-checkout">
+            <div className="cart-popup-check-out">
               <button
                 className="action-button continue-button"
                 onClick={() => {
@@ -111,7 +118,7 @@ function CartPopup(): ReactElement {
                 className="action-button"
                 onClick={checkoutOnClick}
               >
-                Checkout
+                Check out
               </button>
             </div>
           </>
