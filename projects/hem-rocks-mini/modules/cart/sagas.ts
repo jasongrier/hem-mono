@@ -8,9 +8,15 @@ function* shopifyCheckOut({ payload }: any) {
   const { productHandle, price } = payload
 
   try {
-    const res = yield call(fetch, `http://localhost:8888/pricing.php?product_handles=${productHandle.join()}&prices=${price.join()}`)
+    const data = yield call(() =>
+      fetch(`http://localhost:8888/pricing.php?product_handles=${productHandle}&prices=${price}`)
+        .then(res => res.json())
+        .then(myJson => myJson)
+    )
 
-    console.log(JSON.parse(res))
+    // POST to /cart/add.js like in Zak
+    // Show a popup? Or redirect to cart right away?
+    // If popup, then bring back the "checkout now" button
 
   } catch (err) {
     console.log(err)

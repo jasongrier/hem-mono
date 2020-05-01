@@ -24,15 +24,12 @@ function DetailPopUp({
 
   showPurchaseForm = true,
 }: IProps): ReactElement {
-  const { cartProducts } = useSelector((state: RootState) => ({
-    cartProducts: state.cart.products,
-  }))
-
   const dispatch = useDispatch()
 
   const [suggestedPrice, setSuggestedPrice] = useState((contentItem ? contentItem.flexPriceRecommended : 0) as any)
 
   const [valid, setValid] = useState(true)
+  const [adding, setAdding] = useState(false)
 
   useEffect(function init() {
     if (showPurchaseForm) {
@@ -47,7 +44,7 @@ function DetailPopUp({
   function validate() {
     const price = parseFloat(suggestedPrice)
 
-    if (!contentItem) {
+    if (!contentItem || !contentItem.shopifyHandle) {
       // TODO: Show "An unknown error has occurred..."
       return false
     }
@@ -114,32 +111,9 @@ function DetailPopUp({
     }, [],
   )
 
-  const buyNowOnClick = useCallback(
-    function buyNowOnClickFn() {
-      if (!addToCart()) return
-      dispatch(closePopup())
-      dispatch(openPopup('cart-popup'))
-      ReactGA.event({
-        category: 'User',
-        action: 'Clicked "Check out Now" for: ' + contentItem.name,
-      })
-    }, [suggestedPrice],
-  )
-
-  const addToCartOnClick = useCallback(
-    function addToCartOnClickFn() {
-      if (!addToCart()) return
-      alert('Item was added to your cart!')
-      ReactGA.event({
-        category: 'User',
-        action: 'Clicked "Add to Cart" for: ' + contentItem.name,
-      })
-    }, [suggestedPrice],
-  )
-
   const instantDownloadButtonOnClick = useCallback(
     function instantDownloadButtonOnClickFn() {
-      if (!addToCart(true)) return
+      if (!validate()) return
       // Trigger download somehow
       dispatch(openPopup('post-download-popup'))
       ReactGA.event({
@@ -149,9 +123,14 @@ function DetailPopUp({
     }, [suggestedPrice],
   )
 
-  const checkoutOnClick = useCallback(
-    function checkoutOnClickFn() {
+  const addToCartOnClick = useCallback(
+    function addToCartOnClickFn() {
+      if (!validate()) return
+
+      setAdding(true)
+
       dispatch(shopifyAddToCart(
+        // @ts-ignore
         contentItem.shopifyHandle,
         getFinalPrice(contentItem),
       ))
@@ -235,14 +214,23 @@ function DetailPopUp({
                     </>
                   )}
                   <div className="detail-popup-buttons clearfix">
-                    { suggestedPrice > 0 && (
+                    { suggestedPrice > 0 && adding && (
                       <>
-                        {/* <button
-                          className="action-button"
-                          onClick={buyNowOnClick}
+                        <button className="action-button adding">
+                          <Spinner />
+                        </button>
+                        <a
+                          className="detail-popup-cart-link"
+                          onClick={() => {
+                            dispatch(openPopup('cart-popup'))
+                          }}
                         >
-                          Check out now
-                        </button> */}
+                          View cart
+                        </a>
+                      </>
+                    )}
+                    { suggestedPrice > 0 && !adding && (
+                      <>
                         <button
                           className="action-button"
                           onClick={addToCartOnClick}
