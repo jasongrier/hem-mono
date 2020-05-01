@@ -184,12 +184,23 @@
   font-size: 28px;
 }
 
-.purchase-form-spinner .hem-spinner {
-  width: 220px;
+.detail-popup-buttons .action-button {
+  position: relative;
+}
+
+.detail-popup-buttons .action-button.adding {
+  background-color: #000;
+}
+
+.detail-popup-buttons .hem-spinner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
   height: 50px;
 }
 
-.purchase-form-spinner .hem-spinner svg {
+.detail-popup-buttons .hem-spinner svg {
   width: 50px;
   height: 50px;
 }
