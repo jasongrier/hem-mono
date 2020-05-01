@@ -23,6 +23,7 @@ const drumKitData: IContentItem = {
   name: 'Drum Kit',
   nameWrapping: null,
 published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   trackAttribution: 'HEM Sound Library',

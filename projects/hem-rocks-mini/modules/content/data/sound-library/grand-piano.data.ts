@@ -33,6 +33,7 @@ const grandPianoData: IContentItem = {
   name: 'Grand Piano',
   nameWrapping: null,
 published: true,
+  shopifyHandle: 'hem-sound-library-grand-piano-for-ableton-live',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   trackAttribution: 'HEM Sound Library',

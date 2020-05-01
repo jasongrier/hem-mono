@@ -22,6 +22,7 @@ const heartShapedRockData: IContentItem = {
   name: 'Heart Shaped Rock',
   nameWrapping: null,
 published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'heart-shaped-rock',

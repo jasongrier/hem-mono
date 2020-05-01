@@ -23,6 +23,7 @@ const choirVinylData: IContentItem = {
   name: 'Choir',
   nameWrapping: null,
 published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   trackAttribution: 'HEM Sound Library',

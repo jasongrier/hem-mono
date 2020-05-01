@@ -23,6 +23,7 @@ const windowData: IContentItem = {
   name: 'Window',
   nameWrapping: null,
 published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   trackAttribution: 'HEM Sound Library',

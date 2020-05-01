@@ -7,7 +7,7 @@ import { Spinner } from '../../../../../lib/components'
 import { closePopup, openPopup } from '../../../../../lib/modules/popups'
 import { TrackPlayPauseButton } from '../../../../../lib/modules/player'
 import { Planes } from '../../../../../lib/packages/hem-placemats'
-import { addProductToCart, shopifyCheckOut } from '../../cart'
+import { shopifyAddToCart } from '../../cart'
 import { IContentItem } from '../../content'
 import { usePlacemats } from '../../../functions'
 import { RootState } from '../../../index'
@@ -44,7 +44,7 @@ function DetailPopUp({
     }
   }, [])
 
-  function addToCart(validateOnly = false) {
+  function validate() {
     const price = parseFloat(suggestedPrice)
 
     if (!contentItem) {
@@ -64,15 +64,6 @@ function DetailPopUp({
     ) {
       alert(`Sorry, the minimum price is ${contentItem.flexPriceMinimum} €.`)
       return false
-    }
-
-    if (find(cartProducts, { slug: contentItem.slug })) {
-      alert('That item is already in your cart.')
-      return false
-    }
-
-    if (!validateOnly) {
-      dispatch(addProductToCart(contentItem, price))
     }
 
     return true
@@ -101,6 +92,20 @@ function DetailPopUp({
     }
 
     return false
+  }
+
+  function getFinalPrice(product: IContentItem): number {
+    let price = 0
+
+    if (product.hasFixedPrice && product.fixedPrice) {
+      price = product.fixedPrice
+    }
+
+    else {
+      price = product.userSuggestedPrice || product.flexPriceMinimum || 0
+    }
+
+    return price
   }
 
   const suggestedPriceOnChange = useCallback(
@@ -142,6 +147,20 @@ function DetailPopUp({
         action: 'Clicked "Instant Download" for: ' + contentItem.name,
       })
     }, [suggestedPrice],
+  )
+
+  const checkoutOnClick = useCallback(
+    function checkoutOnClickFn() {
+      dispatch(shopifyAddToCart(
+        contentItem.shopifyHandle,
+        getFinalPrice(contentItem),
+      ))
+
+      ReactGA.event({
+        category: 'User',
+        action: 'Clicked "Add to cart" in detail popup',
+      })
+    }, [],
   )
 
   if (!contentItem) return (<div />)
@@ -218,12 +237,12 @@ function DetailPopUp({
                   <div className="detail-popup-buttons clearfix">
                     { suggestedPrice > 0 && (
                       <>
-                        <button
+                        {/* <button
                           className="action-button"
                           onClick={buyNowOnClick}
                         >
                           Check out now
-                        </button>
+                        </button> */}
                         <button
                           className="action-button"
                           onClick={addToCartOnClick}

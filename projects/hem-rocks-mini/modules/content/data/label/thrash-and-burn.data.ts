@@ -22,6 +22,7 @@ const thrashAndBurnData: IContentItem = {
   name: 'Thrash And Burn',
   nameWrapping: null,
 published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'thrash-and-burn',

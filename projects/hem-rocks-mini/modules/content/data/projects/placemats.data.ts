@@ -22,6 +22,7 @@ const placematsData: IContentItem = {
   name: 'Placemats',
   nameWrapping: null,
 published: true,
+shopifyHandle: '',
   soundCloudTrackId: null,
 soundCloudSecretToken: null,
   slug: 'placemats',

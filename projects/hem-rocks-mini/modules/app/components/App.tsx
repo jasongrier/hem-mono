@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import ReactGA from 'react-ga'
 import { CartPopup } from '../../cart'
 import { DetailPopUp, PostDownloadPopup } from '../../content'
-import { ScrollToTop } from '../../../../../lib/components'
+import { HamburgerMenu, ScrollToTop } from '../../../../../lib/components'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup } from '../../../../../lib/modules/popups'
 import { collapseTopBar, MainNavItem, PlayerBar, TopBar } from '../index'
@@ -53,12 +53,13 @@ function App(): ReactElement {
 
       <TopBar collapsed={topBarCollapsed} />
 
-      <nav className="main-nav no-burger">
+      <nav className={`main-nav no-burger${pathname === '/' ? ' large-nav' : ''}`}>
         <ul className="main-nav-items">
           <MainNavItem name="Sound Library" />
           <MainNavItem name="Label" />
+          <MainNavItem name="Venue" />
+          <MainNavItem name="Software" />
           <MainNavItem name="Info" />
-          {/* <MainNavItem name="Projects" /> */}
           <li className="main-nav-item">
             <a onClick={() => dispatch(openPopup('cart-popup'))}>
               Cart

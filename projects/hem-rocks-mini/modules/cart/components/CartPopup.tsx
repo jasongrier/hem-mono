@@ -2,21 +2,22 @@ import React, { ReactElement, useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import ReactGA from 'react-ga'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
+import { closePopup } from '../../../../../lib/modules/popups'
+import { Spinner } from '../../../../../lib/components'
 import { IContentItem } from '../../content'
 import { RootState } from '../../../index'
 import { removeProductFromCart, shopifyCheckOut } from '../actions'
-import { closePopup } from '../../../../../lib/modules/popups'
 
 function CartPopup(): ReactElement {
-  const { cartProducts } = useSelector((state: RootState) => ({
+  const { cartProducts, redirecting } = useSelector((state: RootState) => ({
     cartProducts: state.cart.products,
+    redirecting: state.cart.redirecting,
   }))
 
   const dispatch = useDispatch()
 
   const checkoutOnClick = useCallback(
     function checkoutOnClickFn() {
-
       dispatch(shopifyCheckOut(
         // @ts-ignore
         cartProducts.map(p => p.shopifyHandle),
@@ -124,6 +125,23 @@ function CartPopup(): ReactElement {
           </>
         )}
       </div>
+
+      <form
+        action="https://hem-web-shop-dev-j.myshopify.com/cart"
+        id="checkout-form"
+        method="POST"
+      >
+      </form>
+
+      { redirecting && (
+        <div className="cart-popup-redirect-overlay">
+          <div>
+            <h2>Yay!</h2>
+            <p>We're completing your order!</p>
+            <Spinner />
+          </div>
+        </div>
+      )}
     </section>
   )
 }

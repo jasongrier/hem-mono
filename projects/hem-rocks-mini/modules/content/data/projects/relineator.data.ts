@@ -22,6 +22,7 @@ const relineatorData: IContentItem = {
   name: 'Relineator',
   nameWrapping: null,
 published: true,
+shopifyHandle: '',
   soundCloudTrackId: null,
 soundCloudSecretToken: null,
   slug: 'relineator',

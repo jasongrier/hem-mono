@@ -22,6 +22,7 @@ const scaredFamousData: IContentItem = {
   name: 'Scared Famous',
   nameWrapping: null,
 published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'scared-famous',

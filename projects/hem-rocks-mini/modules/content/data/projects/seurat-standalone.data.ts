@@ -22,6 +22,7 @@ const seuratStandaloneData: IContentItem = {
   name: 'Seurat Standalone',
   nameWrapping: null,
 published: true,
+shopifyHandle: '',
   soundCloudTrackId: null,
   soundCloudSecretToken: null,
   trackAttribution: '',

@@ -22,6 +22,7 @@ const blackAndWhiteRainbowData: IContentItem = {
   name: 'Black and White Rainbow',
   nameWrapping: null,
 published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'black-and-white-rainbow',

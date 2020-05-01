@@ -22,6 +22,7 @@ const demonstrationDiscData: IContentItem = {
   name: 'Demonstration Disc',
   nameWrapping: 'Demon&shy;stration Disc',
   published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'demonstration-disc',
