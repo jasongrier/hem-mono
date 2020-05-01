@@ -22,6 +22,7 @@ const mariaData: IContentItem = {
   name: 'Maria',
   nameWrapping: null,
 published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'maria',

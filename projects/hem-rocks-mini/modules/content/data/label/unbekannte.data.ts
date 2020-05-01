@@ -22,6 +22,7 @@ const unbekannteData: IContentItem = {
   name: 'Unbekannte',
   nameWrapping: 'Unbe&shy;kannte',
   published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'unbekannte',

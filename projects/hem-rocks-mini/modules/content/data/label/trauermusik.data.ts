@@ -22,6 +22,7 @@ const trauermusikData: IContentItem = {
   name: 'Trauermusik',
   nameWrapping: 'Trauer&shy;musik',
   published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'trauermusik',

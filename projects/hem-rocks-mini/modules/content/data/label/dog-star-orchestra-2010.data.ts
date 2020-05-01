@@ -22,6 +22,7 @@ const dogStarOrchestra2010Data: IContentItem = {
   name: 'Dog Star Orchestra 2010',
   nameWrapping: null,
 published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'dog-star-orchestra',

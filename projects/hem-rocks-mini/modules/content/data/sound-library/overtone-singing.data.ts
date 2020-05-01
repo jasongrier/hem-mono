@@ -22,6 +22,7 @@ const overtoneSingingData: IContentItem = {
   tags: ['sound-library', 'vocal', 'extended-technique'],
   name: 'Overtone Singing',
   published: false,
+  shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   trackAttribution: 'HEM Sound Library',
   slug: 'overtone-singing',

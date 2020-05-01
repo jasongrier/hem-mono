@@ -23,6 +23,7 @@ const oberheimExpanderData: IContentItem = {
   name: 'Oberheim Expander',
   nameWrapping: 'Ober&shy;heim Ex&shy;pander',
   published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   trackAttribution: 'HEM Sound Library',

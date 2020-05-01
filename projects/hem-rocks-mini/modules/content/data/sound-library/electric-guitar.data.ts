@@ -23,6 +23,7 @@ const electricGuitarData: IContentItem = {
   name: 'Electric Guitar',
   nameWrapping: null,
 published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   trackAttribution: 'HEM Sound Library',

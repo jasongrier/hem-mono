@@ -23,6 +23,7 @@ const seuratData: IContentItem = {
   name: 'Seurat',
   nameWrapping: null,
 published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   trackAttribution: 'HEM Sound Library',

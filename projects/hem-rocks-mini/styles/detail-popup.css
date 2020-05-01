@@ -146,8 +146,8 @@
 .detail-popup-buttons .detail-popup-cart-link {
   display: block;
   position: absolute;
-  bottom: 0px;
-  left: 425px;
+  bottom: 0;
+  left: 215px;
   width: 60px;
   font-size: 12px;
   white-space: nowrap;

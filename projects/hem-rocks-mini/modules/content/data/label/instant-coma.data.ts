@@ -22,6 +22,7 @@ const instantComaData: IContentItem = {
   name: 'Instant Coma',
   nameWrapping: null,
 published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'instant-coma',

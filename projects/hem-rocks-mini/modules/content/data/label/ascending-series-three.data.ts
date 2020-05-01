@@ -22,6 +22,7 @@ const ascendingSeriesThreeData: IContentItem = {
   name: 'Ascending Series Three',
   nameWrapping: 'Ascend&shy;ing Series Three',
   published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'ascending-series-three',

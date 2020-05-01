@@ -22,6 +22,7 @@ const humanGeniusAtSoundwalkData: IContentItem = {
   name: 'Human Genius at Soundwalk',
   nameWrapping: 'Human Genius at Sound&shy;walk',
   published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'human-genius-at-soundwalk',

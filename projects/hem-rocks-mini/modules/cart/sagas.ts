@@ -1,13 +1,17 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects'
+import $ from 'jquery'
 import {
-  SHOPIFY_CHECK_OUT,
+  SHOPIFY_ADD_TO_CART,
 } from './index'
 
 function* shopifyCheckOut({ payload }: any) {
-  const { productHandles, prices } = payload
+  const { productHandle, price } = payload
 
   try {
-    yield call(fetch, `http://localhost:8888/pricing.php?product_handles=${productHandles.join()}&prices=${prices.join()}`)
+    const res = yield call(fetch, `http://localhost:8888/pricing.php?product_handles=${productHandle.join()}&prices=${price.join()}`)
+
+    console.log(JSON.parse(res))
+
   } catch (err) {
     console.log(err)
   }
@@ -16,7 +20,7 @@ function* shopifyCheckOut({ payload }: any) {
 //--//
 
 function* shopifyCheckOutSaga() {
-  yield takeLatest(SHOPIFY_CHECK_OUT, shopifyCheckOut)
+  yield takeLatest(SHOPIFY_ADD_TO_CART, shopifyCheckOut)
 }
 
 export {

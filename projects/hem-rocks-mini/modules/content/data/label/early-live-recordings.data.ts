@@ -22,6 +22,7 @@ const earlyLiveRecordingsData: IContentItem = {
   name: 'Early Live Recordings',
   nameWrapping: 'Early Live Record&shy;ings',
   published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'early-live-recordings',

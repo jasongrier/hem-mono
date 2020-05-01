@@ -22,6 +22,7 @@ const lindaPerhacsJuliaHolter: IContentItem = {
   name: 'Linda Perhacs at SFAI',
   nameWrapping: null,
   published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'linda-perhacs-julia-holter',

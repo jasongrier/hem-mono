@@ -22,6 +22,7 @@ const archiveData: IContentItem = {
   name: 'Archive',
   nameWrapping: null,
   published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'archive',
