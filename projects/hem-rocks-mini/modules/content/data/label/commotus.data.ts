@@ -22,6 +22,7 @@ const commotusData: IContentItem = {
   name: 'Commotus',
   nameWrapping: null,
 published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'commotus',

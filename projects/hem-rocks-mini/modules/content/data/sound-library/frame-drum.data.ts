@@ -23,6 +23,7 @@ const frameDrumData: IContentItem = {
   name: 'Frame Drum',
   nameWrapping: null,
 published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   trackAttribution: 'HEM Sound Library',

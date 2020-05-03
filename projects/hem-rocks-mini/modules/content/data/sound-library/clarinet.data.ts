@@ -23,6 +23,7 @@ const clarinetData: IContentItem = {
   name: 'Clarinet',
   nameWrapping: null,
 published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   trackAttribution: 'HEM Sound Library',

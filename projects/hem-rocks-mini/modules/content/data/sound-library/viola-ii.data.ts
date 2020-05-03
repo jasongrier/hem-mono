@@ -23,6 +23,7 @@ const violaIiData: IContentItem = {
   name: 'Viola II',
   nameWrapping: null,
 published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   trackAttribution: 'HEM Sound Library',

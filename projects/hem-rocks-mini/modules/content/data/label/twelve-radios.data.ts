@@ -22,6 +22,7 @@ const twelveRadiosData: IContentItem = {
   name: 'Twelve Radios',
   nameWrapping: null,
 published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'twelve-radios',

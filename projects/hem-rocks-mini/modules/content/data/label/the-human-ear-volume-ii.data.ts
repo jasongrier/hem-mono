@@ -22,6 +22,7 @@ const theHumanEarVolumeIIData: IContentItem = {
   name: 'The Human Ear Volume II',
   nameWrapping: null,
 published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'the-human-ear-volume-ii',

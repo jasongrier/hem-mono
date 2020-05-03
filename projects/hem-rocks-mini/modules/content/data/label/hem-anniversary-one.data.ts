@@ -22,6 +22,7 @@ const hemAnniversaryOneData: IContentItem = {
   name: 'HEM Anniversary One',
   nameWrapping: 'HEM Anni&shy;versary One',
   published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'hem-anniversary-one',

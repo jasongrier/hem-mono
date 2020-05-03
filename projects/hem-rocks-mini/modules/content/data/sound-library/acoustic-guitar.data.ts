@@ -28,6 +28,7 @@ const acousticGuitarData: IContentItem = {
   name: 'Acoustic Guitar',
   nameWrapping: null,
   published: true,
+shopifyHandle: '',
   soundCloudTrackId: '803629711',
   soundCloudSecretToken: null,
   slug: 'acoustic-guitar',

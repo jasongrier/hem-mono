@@ -23,6 +23,7 @@ const noiseReductionArtefactsData: IContentItem = {
   name: 'Noise Reduction Artefacts',
   nameWrapping: 'Noise Re&shy;duction Arte&shy;facts',
   published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   trackAttribution: 'HEM Sound Library',

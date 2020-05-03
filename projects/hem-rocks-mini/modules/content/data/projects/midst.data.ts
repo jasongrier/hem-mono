@@ -22,6 +22,7 @@ const midstData: IContentItem = {
   name: 'Midst',
   nameWrapping: null,
 published: true,
+shopifyHandle: '',
   soundCloudTrackId: null,
 soundCloudSecretToken: null,
   slug: 'midst',

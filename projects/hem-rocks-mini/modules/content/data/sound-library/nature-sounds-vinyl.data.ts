@@ -23,6 +23,7 @@ const natureSoundsVinylData: IContentItem = {
   name: 'Nature Sounds',
   nameWrapping: null,
 published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   trackAttribution: 'HEM Sound Library',

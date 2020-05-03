@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback, useEffect } from 'react'
+import React, { ReactElement, useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import ReactGA from 'react-ga'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
@@ -6,6 +6,7 @@ import { IContentItem } from '../../content'
 import { RootState } from '../../../index'
 import { removeProductFromCart, shopifyCheckOut } from '../actions'
 import { closePopup } from '../../../../../lib/modules/popups'
+import { Spinner } from '../../../../../lib/components'
 
 function CartPopup(): ReactElement {
   const { cartProducts } = useSelector((state: RootState) => ({
@@ -14,15 +15,18 @@ function CartPopup(): ReactElement {
 
   const dispatch = useDispatch()
 
+  const [redirecting, setRedirecting] = useState(false)
+
   const checkoutOnClick = useCallback(
     function checkoutOnClickFn() {
-
       dispatch(shopifyCheckOut(
         // @ts-ignore
         cartProducts.map(p => p.shopifyHandle),
         // @ts-ignore
         cartProducts.map(p => getFinalPrice(p)),
       ))
+
+      setRedirecting(true)
 
       ReactGA.event({
         category: 'User',
@@ -122,6 +126,15 @@ function CartPopup(): ReactElement {
               </button>
             </div>
           </>
+        )}
+        {redirecting && (
+          <div className="cart-popup-redirecting-overlay">
+            <div className="cart-popup-redirecting-overlay-content">
+              <h2>Yay!</h2>
+              <p>Checkin' you out now...</p>
+              <Spinner />
+            </div>
+          </div>
         )}
       </div>
     </section>

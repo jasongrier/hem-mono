@@ -22,6 +22,7 @@ const katahymieData: IContentItem = {
   name: 'Katahymie',
   nameWrapping: null,
 published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'katahymie',

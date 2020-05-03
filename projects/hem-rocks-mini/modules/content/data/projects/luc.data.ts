@@ -22,6 +22,7 @@ const lucData: IContentItem = {
   name: 'Luc',
   nameWrapping: null,
 published: true,
+shopifyHandle: '',
   soundCloudTrackId: null,
 soundCloudSecretToken: null,
   slug: 'luc',

@@ -22,6 +22,7 @@ const betriebData: IContentItem = {
   name: 'Betrieb',
   nameWrapping: null,
 published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'betrieb',
