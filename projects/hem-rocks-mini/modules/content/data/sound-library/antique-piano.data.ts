@@ -28,6 +28,7 @@ const antiquePianoData: IContentItem = {
   name: 'Antique Piano',
   nameWrapping: null,
 published: true,
+shopifyHandle: '',
   soundCloudTrackId: '803629816',
   soundCloudSecretToken: null,
   slug: 'antique-piano',

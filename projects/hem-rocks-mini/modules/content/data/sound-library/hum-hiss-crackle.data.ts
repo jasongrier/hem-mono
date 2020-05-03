@@ -23,6 +23,7 @@ const humHissCrackleData: IContentItem = {
   name: 'Hum Hiss Crackle',
   nameWrapping: null,
 published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   trackAttribution: 'HEM Sound Library',

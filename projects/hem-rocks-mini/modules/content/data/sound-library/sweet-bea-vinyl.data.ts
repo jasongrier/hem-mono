@@ -23,6 +23,7 @@ const sweetBeaVinylData: IContentItem = {
   name: 'Sweet Bea',
   nameWrapping: null,
 published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   trackAttribution: 'HEM Sound Library',

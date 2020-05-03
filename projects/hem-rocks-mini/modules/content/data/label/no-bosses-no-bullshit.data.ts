@@ -22,6 +22,7 @@ const noBossesNoBullshit: IContentItem = {
   name: 'No Bosses No Bullshit',
   nameWrapping: null,
 published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'no-bosses-no-bullshit',

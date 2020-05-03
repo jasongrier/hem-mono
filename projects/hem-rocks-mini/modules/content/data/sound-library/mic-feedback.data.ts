@@ -23,6 +23,7 @@ const micFeedbackData: IContentItem = {
   name: 'Mic Feedback',
   nameWrapping: 'Mic<br>Feed&shy;back',
 published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   trackAttribution: 'HEM Sound Library',

@@ -22,6 +22,7 @@ const cloudsData: IContentItem = {
   name: 'Clouds',
   nameWrapping: null,
 published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'clouds',

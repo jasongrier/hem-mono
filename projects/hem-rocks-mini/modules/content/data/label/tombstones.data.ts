@@ -22,6 +22,7 @@ const tombstonesData: IContentItem = {
   name: 'Tombstones',
   nameWrapping: 'Tomb&shy;stones',
   published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   slug: 'tombstones',

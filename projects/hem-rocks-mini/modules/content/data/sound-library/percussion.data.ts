@@ -23,6 +23,7 @@ const percussionData: IContentItem = {
   name: 'Percussion',
   nameWrapping: 'Per&shy;cussion',
   published: true,
+shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
   trackAttribution: 'HEM Sound Library',
