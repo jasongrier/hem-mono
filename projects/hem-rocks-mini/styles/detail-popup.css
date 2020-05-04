@@ -124,7 +124,7 @@
 
 .detail-popup-currency-symbol {
   position: absolute;
-  top: 56px;
+  top: 68px;
   left: 230px;
   font-size: 30px;
 }
@@ -206,4 +206,9 @@
 .hem-popup-content .detail-popup-details h2 {
   margin-left: -4px;
   font-size: 30px;
+}
+
+.hem-popup-content .detail-popup-details p {
+  margin: 0 0 60px 0;
+  line-height: 32px;
 }
