@@ -4,7 +4,6 @@ import produce from 'immer'
 import {
   ADD_PRODUCT_TO_CART,
   REMOVE_PRODUCT_FROM_CART,
-  SHOPIFY_CHECK_OUT,
 
   IState,
 } from './index'
@@ -37,10 +36,6 @@ const reducer = (
           product.id !== payload
         )
       })
-    }
-
-    case SHOPIFY_CHECK_OUT: {
-      return state
     }
 
     default:
