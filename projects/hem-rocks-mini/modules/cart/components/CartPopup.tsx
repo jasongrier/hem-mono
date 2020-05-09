@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback, useState } from 'react'
+import React, { ReactElement, useCallback, useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import ReactGA from 'react-ga'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
@@ -8,6 +8,8 @@ import { removeProductFromCart, shopifyCheckOut } from '../actions'
 import { closePopup } from '../../../../../lib/modules/popups'
 import { Spinner } from '../../../../../lib/components'
 
+declare const paypal: any
+
 function CartPopup(): ReactElement {
   const { cartProducts } = useSelector((state: RootState) => ({
     cartProducts: state.cart.products,
@@ -16,6 +18,10 @@ function CartPopup(): ReactElement {
   const dispatch = useDispatch()
 
   const [redirecting, setRedirecting] = useState(false)
+
+  useEffect(function initPayPal() {
+    paypal.Buttons().render('#paypal-button-container')
+  }, [])
 
   const checkoutOnClick = useCallback(
     function checkoutOnClickFn() {
@@ -124,6 +130,7 @@ function CartPopup(): ReactElement {
               >
                 Check out
               </button>
+              <div id="paypal-button-container"></div>
             </div>
           </>
         )}

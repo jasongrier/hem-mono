@@ -1,0 +1,28 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    title HEM: Music, Art, Code
+
+    script.
+      var MTUserId='5811eaf1-0d9a-4fa0-9aaa-53a1763b65a2'
+      var MTFontIds = new Array()
+
+      MTFontIds.push('5194955') // Avenir® W05 35 Light
+      (function() {
+        var mtTracking = document.createElement('script')
+        mtTracking.type='text/javascript'
+        mtTracking.async='true'
+        mtTracking.src='/static/assets/fonts/avenir/mtiFontTrackingCode.js'
+        (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(mtTracking)
+      })()
+
+    script(src='https://kit.fontawesome.com/9d58b3b416.js', crossorigin='anonymous')
+    script(src='https://www.paypal.com/sdk/js?client-id=' + process.env.HEM_PAYPAL_CLIENT_ID_SANDBOX + '&currency=EUR&integration-date=2020-05-09&disable-funding=credit,venmo,sepa,giropay,sofort,bancontact,eps,ideal,mybank,p24&disable-card=amex,discover,jcb,elo,hiper&debug=' + process.env.DEBUG_PAYPAL)
+    script(src='https://connect.soundcloud.com/sdk/sdk-3.3.2.js')
+    script.
+      SC.initialize({ client_id: 'f8ade18d92913e8c069cdef753813762' })
+  body
+    div#root
+    script(src='./index.tsx')

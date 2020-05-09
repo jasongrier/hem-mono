@@ -28,6 +28,6 @@ export interface IShopifyCheckOut extends AnyAction {
 export type Action = IAddProductToCart | IRemoveProductFromCart | IShopifyCheckOut
 
 export { addProductToCart, removeProductFromCart, shopifyCheckOut } from './actions'
-export { CartPopup } from './components'
+export { CartPopup, PayPalButton } from './components'
 export { reducer as cartReducer } from './reducer'
 export { shopifyCheckOutSaga } from './sagas'
