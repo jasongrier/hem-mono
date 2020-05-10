@@ -115,7 +115,7 @@ function App(): ReactElement {
         id="cart-popup"
         closeIcon={CloseButton}
       >
-        <CartPopup />
+        {(props: any) => <CartPopup redirecting={props?.redirecting} />}
       </PopupContainer>
 
       <PopupContainer
