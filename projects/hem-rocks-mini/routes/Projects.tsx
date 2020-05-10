@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
+import { Link } from 'react-router-dom'
 // @ts-ignore
 import autop from 'lines-to-paragraphs'
 import { LaunchDetailPopupButton, MainContentList } from '../modules/content'
@@ -23,7 +24,7 @@ function Label(): ReactElement {
             'Desktop/Mobile Apps',
             'Electron',
             'Javascript',
-            // 'New Media',
+            'New Media',
             'NPM Modules',
             'Expanded Poetics',
             'React',
@@ -33,20 +34,9 @@ function Label(): ReactElement {
           title="Projects"
         >
           {(project) => (
-            <>
-              <LaunchDetailPopupButton
-                contentItem={project}
-                showPurchaseForm={false}
-              >
-                Learn more
-              </LaunchDetailPopupButton>
-
-              { project.acceptingDonations && (
-                <LaunchDetailPopupButton contentItem={project}>
-                  Contribute
-                </LaunchDetailPopupButton>
-              )}
-            </>
+            <Link to={`/projects/${project.slug}`}>
+              { project.acceptingDonations ? 'Contribute' : 'Learn more' }
+            </Link>
           )}
         </MainContentList>
       </div>

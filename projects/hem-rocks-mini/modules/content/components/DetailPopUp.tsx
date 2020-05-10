@@ -1,5 +1,6 @@
 import React, { ReactElement, SyntheticEvent, useEffect, useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router'
 import { find, isFinite, isNaN, isNumber } from 'lodash'
 import Scrollbars from 'react-scrollbars-custom'
 import ReactGA from 'react-ga'
@@ -9,22 +10,26 @@ import { TrackPlayPauseButton } from '../../../../../lib/modules/player'
 import { Planes } from '../../../../../lib/packages/hem-placemats'
 import { addProductToCart } from '../../cart'
 import { IContentItem } from '../../content'
-import { PayPalCartUpload } from '../../cart'
 import { usePlacemats } from '../../../functions'
 import { RootState } from '../../../index'
-import LaunchDetailPopupButton from './LaunchDetailPopupButton'
 
 interface IProps {
-  contentItem: IContentItem
+  contentItem: IContentItem | null
+  filter: string
+  tag: string
 
   showPurchaseForm?: boolean
 }
 
 function DetailPopUp({
   contentItem,
+  filter,
+  tag,
 
   showPurchaseForm = true,
 }: IProps): ReactElement {
+  if (!contentItem) return <div />
+
   const { cartProducts } = useSelector((state: RootState) => ({
     cartProducts: state.cart.products,
   }))
@@ -88,20 +93,6 @@ function DetailPopUp({
     return false
   }
 
-  function buttonText(item: IContentItem) {
-    if (item.tags.includes('sound-library')) {
-      return 'Download'
-    }
-
-    else if (item.tags.includes('projects')) {
-      return 'Contribute'
-    }
-
-    else if (item.tags.includes('label')) {
-      return 'Artist\'s Website'
-    }
-  }
-
   function isPurchaseable(item: IContentItem) {
     if (
       item.tags.includes('sound-library')
@@ -121,6 +112,8 @@ function DetailPopUp({
     }, [],
   )
 
+  const history = useHistory()
+
   const buyNowOnClick = useCallback(
     function buyNowOnClickFn() {
       if (!validate(suggestedPrice, true)) return
@@ -128,19 +121,29 @@ function DetailPopUp({
         dispatch(addProductToCart(contentItem, suggestedPrice))
       }
       dispatch(closePopup())
-      dispatch(openPopup('cart-popup', { redirecting: true }))
+      dispatch(openPopup('cart-popup', {
+        redirecting: true ,
+        returnUrl: `${tag}/${contentItem.slug}`,
+      }))
+      history.push(`/${tag}/cart/${filter ? filter : ''}`)
 
-      // @ts-ignore
-      const form = document.getElementById('pay-pal-cart-upload-form')
-      // @ts-ignore
-      form.submit()
+      setTimeout(() => {
+        // @ts-ignore
+        const form = document.getElementById('pay-pal-cart-upload-form')
+        // @ts-ignore
+        form.submit()
+      })
 
       ReactGA.event({
         category: 'User',
         action: 'Clicked "Check out Now" for: ' + contentItem.name,
       })
-    }, [suggestedPrice],
+    }, [filter, suggestedPrice, tag],
   )
+
+  useEffect(() => {
+    console.log(tag)
+  }, [tag])
 
   const addToCartOnClick = useCallback(
     function addToCartOnClickFn() {
@@ -149,13 +152,14 @@ function DetailPopUp({
 
       dispatch(addProductToCart(contentItem, suggestedPrice))
       dispatch(closePopup())
-      dispatch(openPopup('cart-popup'))
+      dispatch(openPopup('cart-popup', { returnUrl: `${tag}/${filter ? filter : ''}` }))
+      history.push(`/${tag}/cart/${filter ? filter : ''}`)
 
       ReactGA.event({
         category: 'User',
         action: 'Clicked "Add to Cart" for: ' + contentItem.name,
       })
-    }, [suggestedPrice],
+    }, [filter, suggestedPrice, tag],
   )
 
   const instantDownloadButtonOnClick = useCallback(
@@ -201,15 +205,7 @@ function DetailPopUp({
               <h2>{ contentItem.type }</h2>
             </div>
             <div className="detail-popup-actions">
-              { !showPurchaseForm && (
-                <LaunchDetailPopupButton
-                  className="reveal-purchase-form-button"
-                  contentItem={contentItem}
-                >
-                  { buttonText(contentItem) }
-                </LaunchDetailPopupButton>
-              )}
-              { showPurchaseForm && isPurchaseable(contentItem) && (
+              { isPurchaseable(contentItem) && (
                 <div className="detail-popup-form">
                   {contentItem.hasFixedPrice && (
                     <p>{ contentItem.fixedPrice }</p>
@@ -261,13 +257,6 @@ function DetailPopUp({
                         >
                           Check out now
                         </button>
-                        <PayPalCartUpload
-                          returnSlug={contentItem.slug}
-                          items={[{
-                            amount: suggestedPrice,
-                            name: contentItem.name,
-                          }]}
-                        />
                         <button
                           className="action-button"
                           onClick={addToCartOnClick}

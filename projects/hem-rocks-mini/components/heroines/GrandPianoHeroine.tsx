@@ -1,13 +1,14 @@
 import React, { ReactElement } from 'react'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { find } from 'lodash'
 import { MuteButton } from '../../../../lib/modules/player'
-import { LaunchDetailPopupButton } from '../../modules/content'
 import { RootState } from '../../index'
 
 function GrandPianoHeroine(): ReactElement {
-  const { allProducts } = useSelector((state: RootState) => ({
+  const { allProducts, currentContentItem } = useSelector((state: RootState) => ({
     allProducts: state.content.contentItems,
+    currentContentItem: state.content.currentContentItem,
   }))
 
   const grandPianoProduct = find(allProducts, { slug: 'grand-piano' })
@@ -42,12 +43,12 @@ function GrandPianoHeroine(): ReactElement {
           <p>
             &bull; 1400 One-shots: Bowing, Scraping, Hand Percussion, Cluster Chords, etc.
           </p>
-          <LaunchDetailPopupButton
-            contentItem={grandPianoProduct}
-            showPurchaseForm={false}
+          <Link
+            className="action-button"
+            to="/sound-library/grand-piano"
           >
             Learn more
-          </LaunchDetailPopupButton>
+          </Link>
         </div>
       </div>
     </div>

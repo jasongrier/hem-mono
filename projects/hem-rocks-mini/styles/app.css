@@ -14,11 +14,13 @@ body {
   display: table;
 }
 
-.action-button {
+.action-button,
+.action-button a {
   width: 120px;
   height: 36px;
+  line-height: 36px;
   margin: 0 30px 0 0;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: normal;
   background-color: var(--line-orange);
   cursor: pointer;

@@ -1,38 +1,39 @@
 import React, { PropsWithChildren, ReactElement, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
-import { openPopup } from '../../../../../lib/modules/popups'
+import { Link } from 'react-router-dom'
 import { setCurrentContentItem, IContentItem } from '../index'
 
 interface IProps {
   contentItem: IContentItem
+  tag: string
 
   className?: string
-  showPurchaseForm?: boolean
 }
 
 function LaunchDetailPopupButton({
   children,
   contentItem,
+  tag,
 
   className = '',
-  showPurchaseForm = true
 }: PropsWithChildren<IProps>): ReactElement {
   const dispatch = useDispatch()
 
   const onClick = useCallback(
     function onClickFn() {
-      dispatch(setCurrentContentItem(contentItem))
-      dispatch(openPopup(showPurchaseForm ? 'detail-popup' : 'detail-popup-hidden-purchase-form'))
+      // dispatch(setCurrentContentItem(contentItem))
     }, [],
   )
 
   return (
-    <button
+    <div
       className={`action-button ${className}`}
       onClick={onClick}
     >
-      { children }
-    </button>
+      <Link to={`/${tag}/${contentItem.slug}`}>
+        { children }
+      </Link>
+    </div>
   )
 }
 

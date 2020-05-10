@@ -1,7 +1,7 @@
-import React, { ReactElement, PropsWithChildren, useState, useEffect, SyntheticEvent } from 'react'
+import React, { ReactElement, PropsWithChildren, useEffect, SyntheticEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { disableBodyScroll, enableBodyScroll} from 'body-scroll-lock'
-import { closePopup } from '../index'
+import { closePopup } from '../actions'
 
 interface IProps {
   id: string
@@ -11,13 +11,11 @@ interface IProps {
 
 function PopupContainer({ children, id, closeIcon: CloseIcon }: PropsWithChildren<IProps>): ReactElement {
   const { currentlyOpenPopUp, propsToChildren } = useSelector((state: any) => ({
-    propsToChildren: state.popups.propsToChildren,
     currentlyOpenPopUp: state.popups.currentlyOpenPopUp,
+    propsToChildren: state.popups.propsToChildren,
   }))
 
   const dispatch = useDispatch()
-
-  const [windowScrollY, setWindowScrollY] = useState(0)
 
   useEffect(function init() {
     function bodyOnKeyDown(evt: any) {
@@ -55,7 +53,7 @@ function PopupContainer({ children, id, closeIcon: CloseIcon }: PropsWithChildre
     else {
       enableBodyScroll(targetEl)
     }
-  }, [currentlyOpenPopUp, windowScrollY])
+  }, [currentlyOpenPopUp])
 
   const isOpen = currentlyOpenPopUp === id
 
