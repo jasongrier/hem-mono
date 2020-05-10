@@ -22,5 +22,5 @@ export interface IRemoveProductFromCart extends AnyAction {
 export type Action = IAddProductToCart | IRemoveProductFromCart
 
 export { addProductToCart, removeProductFromCart } from './actions'
-export { CartPopup, PayPalCartUpload } from './components'
+export { CartPopup, PayPalCartUpload, ThankYouPopup } from './components'
 export { reducer as cartReducer } from './reducer'

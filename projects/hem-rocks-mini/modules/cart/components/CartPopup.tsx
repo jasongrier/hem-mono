@@ -13,9 +13,10 @@ import PayPalCartUpload from './PayPalCartUpload'
 
 interface IProps {
   redirecting: boolean
+  returnUrl: string
 }
 
-function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
+function CartPopup({ redirecting: alreadyRedirecting, returnUrl }: IProps): ReactElement {
   const { cartProducts } = useSelector((state: RootState) => ({
     cartProducts: state.cart.products,
   }))
@@ -137,7 +138,7 @@ function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
                   Check out
                 </button>
                 <PayPalCartUpload
-                  returnSlug="cart"
+                  returnUrl={returnUrl}
                   items={cartProducts.map(product => ({
                     amount: getFinalPrice(product),
                     name: product.name,

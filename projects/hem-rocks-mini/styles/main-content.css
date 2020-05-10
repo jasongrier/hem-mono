@@ -171,6 +171,11 @@
   padding: 0;
 }
 
+.main-content-box a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .main-content-box.align-right {
   float: right !important;
 }
@@ -244,12 +249,16 @@
   background-color: var(--line-orange);
 }
 
-.main-content-box-actions .action-button {
+.main-content-box-actions .action-button,
+.main-content-box-actions .action-button a {
   float: left;
   width: 160px;
   height: 60px;
-  font-size: 20px;
+  line-height: 60px;
+  font-size: 24px;
   font-weight: normal;
+  text-align: center;
+  color: #fff;
 }
 
 .main-content-box h3 {
