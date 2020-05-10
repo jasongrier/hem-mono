@@ -1,14 +1,21 @@
 import React, { ReactElement, useCallback, useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { noop } from 'lodash'
 import ReactGA from 'react-ga'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
+import { Spinner } from '../../../../../lib/components'
+import { closePopup } from '../../../../../lib/modules/popups'
 import Scrollbars from 'react-scrollbars-custom'
 import { IContentItem } from '../../content'
 import { RootState } from '../../../index'
 import { removeProductFromCart } from '../actions'
-import { closePopup } from '../../../../../lib/modules/popups'
+import PayPalCartUpload from './PayPalCartUpload'
 
-function CartPopup(): ReactElement {
+interface IProps {
+  redirecting: boolean
+}
+
+function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
   const { cartProducts } = useSelector((state: RootState) => ({
     cartProducts: state.cart.products,
   }))
@@ -17,9 +24,19 @@ function CartPopup(): ReactElement {
 
   const [redirecting, setRedirecting] = useState(false)
 
+  useEffect(function init() {
+    if (alreadyRedirecting) {
+      setRedirecting(true)
+    }
+  }, [alreadyRedirecting])
+
   const checkoutOnClick = useCallback(
     function checkoutOnClickFn() {
       setRedirecting(true)
+      // @ts-ignore
+      const form = document.getElementById('pay-pal-cart-upload-form')
+      // @ts-ignore
+      form.submit()
 
       ReactGA.event({
         category: 'User',
@@ -104,46 +121,37 @@ function CartPopup(): ReactElement {
                 <strong>TOTAL: { formatPrice(getGrandTotal()) }</strong>
               </div>
               <div className="cart-popup-check-out">
-                <form
-                  // action="https://www.sandbox.paypal.com/cgi-bin/webscr"
-                  action="https://www.paypal.com/cgi-bin/webscr"
-                  method="post"
-                  target="_blank"
+                <button
+                  className="action-button continue-button"
+                  onClick={() => {
+                    dispatch(closePopup())
+                  }}
                 >
-                  <button
-                    className="action-button continue-button"
-                    onClick={() => {
-                      dispatch(closePopup())
-                    }}
-                  >
-                    Continue shopping
-                  </button>
-                  <input type="hidden" name="cmd" value="_cart" />
-                  <input type="hidden" name="upload" value="1" />
-                  {/* <input type="hidden" name="business" value="sb-d7jtv1699928@business.example.com" /> */}
-                  <input type="hidden" name="business" value="paypal@hem.rocks" />
-                  <input type="hidden" name="item_name_1" value="Item Name 1" />
-                  <input type="hidden" name="amount_1" value="1.00" />
-                  <input type="hidden" name="shipping_1" value="1.75" />
-                  <input type="hidden" name="item_name_2" value="Item Name 2" />
-                  <input type="hidden" name="amount_2" value="2.00" />
-                  <input type="hidden" name="shipping_2" value="2.50" />
-                  <button
-                    className="action-button"
-                    onClick={checkoutOnClick}
-                    type="submit"
-                  >
-                    Check out
-                  </button>
-                </form>
+                  Continue shopping
+                </button>
+                <button
+                  className="action-button"
+                  onClick={checkoutOnClick}
+                  type="submit"
+                >
+                  Check out
+                </button>
+                <PayPalCartUpload
+                  returnSlug="cart"
+                  items={cartProducts.map(product => ({
+                    amount: getFinalPrice(product),
+                    name: product.name,
+                  }))}
+                />
               </div>
             </>
           )}
           {redirecting && (
             <div className="cart-popup-redirecting-overlay">
               <div className="cart-popup-redirecting-overlay-content">
-                <h2>Yay!</h2>
-                <p>Checkin' you out</p>
+                <h2>Checkin' you out!</h2>
+                <p>Please enjoy the spinners while we get you over to PayPal</p>
+                <Spinner />
               </div>
             </div>
           )}

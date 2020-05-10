@@ -10,7 +10,8 @@ interface IProps {
 }
 
 function PopupContainer({ children, id, closeIcon: CloseIcon }: PropsWithChildren<IProps>): ReactElement {
-  const { currentlyOpenPopUp } = useSelector((state: any) => ({
+  const { currentlyOpenPopUp, propsToChildren } = useSelector((state: any) => ({
+    propsToChildren: state.popups.propsToChildren,
     currentlyOpenPopUp: state.popups.currentlyOpenPopUp,
   }))
 
@@ -86,7 +87,11 @@ function PopupContainer({ children, id, closeIcon: CloseIcon }: PropsWithChildre
             { CloseIcon && <CloseIcon /> }
           </div>
         )}
-        { isOpen && children }
+        { isOpen && (
+          typeof children === 'function'
+          ? children(propsToChildren)
+          : children
+        )}
       </div>
     </div>
   )

@@ -9,6 +9,7 @@ import { TrackPlayPauseButton } from '../../../../../lib/modules/player'
 import { Planes } from '../../../../../lib/packages/hem-placemats'
 import { addProductToCart } from '../../cart'
 import { IContentItem } from '../../content'
+import { PayPalCartUpload } from '../../cart'
 import { usePlacemats } from '../../../functions'
 import { RootState } from '../../../index'
 import LaunchDetailPopupButton from './LaunchDetailPopupButton'
@@ -46,8 +47,6 @@ function DetailPopUp({
 
   function validate(price: any, showAlerts = false) {
     if (!contentItem) {
-      console.log(1)
-
       if (showAlerts) {
         alert('An unknown error has occurred, please reload the page')
       }
@@ -57,7 +56,6 @@ function DetailPopUp({
     }
 
     if (isNaN(parseFloat(price))) {
-      console.log(2)
       setValid(false)
       return false
     }
@@ -67,8 +65,6 @@ function DetailPopUp({
       && contentItem.flexPriceMinimum
       && price < contentItem.flexPriceMinimum
     ) {
-      console.log(3)
-
       if (showAlerts) {
         alert(`Sorry, the minimum price is ${contentItem.flexPriceMinimum} €.`)
       }
@@ -77,19 +73,19 @@ function DetailPopUp({
       return false
     }
 
-    if (find(cartProducts, { slug: contentItem.slug })) {
-      console.log(4)
+    setValid(true)
+    return true
+  }
 
+  function isInCart(contentItem: IContentItem, showAlerts = false) {
+    if (find(cartProducts, { slug: contentItem.slug })) {
       if (showAlerts) {
         alert('That item is already in your cart.')
       }
-
-      setValid(false)
-      return false
+      return true
     }
 
-    setValid(true)
-    return true
+    return false
   }
 
   function buttonText(item: IContentItem) {
@@ -127,10 +123,18 @@ function DetailPopUp({
 
   const buyNowOnClick = useCallback(
     function buyNowOnClickFn() {
-      if (!validate(suggestedPrice)) return
-      dispatch(addProductToCart(contentItem, suggestedPrice))
+      if (!validate(suggestedPrice, true)) return
+      if (!isInCart(contentItem)) {
+        dispatch(addProductToCart(contentItem, suggestedPrice))
+      }
       dispatch(closePopup())
-      dispatch(openPopup('cart-popup'))
+      dispatch(openPopup('cart-popup', { redirecting: true }))
+
+      // @ts-ignore
+      const form = document.getElementById('pay-pal-cart-upload-form')
+      // @ts-ignore
+      form.submit()
+
       ReactGA.event({
         category: 'User',
         action: 'Clicked "Check out Now" for: ' + contentItem.name,
@@ -140,9 +144,13 @@ function DetailPopUp({
 
   const addToCartOnClick = useCallback(
     function addToCartOnClickFn() {
-      if (!validate(suggestedPrice)) return
+      if (!validate(suggestedPrice, true)) return
+      if (isInCart(contentItem, true)) return
+
       dispatch(addProductToCart(contentItem, suggestedPrice))
-      alert('Item was added to your cart!')
+      dispatch(closePopup())
+      dispatch(openPopup('cart-popup'))
+
       ReactGA.event({
         category: 'User',
         action: 'Clicked "Add to Cart" for: ' + contentItem.name,
@@ -152,7 +160,7 @@ function DetailPopUp({
 
   const instantDownloadButtonOnClick = useCallback(
     function instantDownloadButtonOnClickFn() {
-      if (!validate(suggestedPrice)) return
+      if (!validate(suggestedPrice, true)) return
       // Trigger download somehow
       dispatch(openPopup('post-download-popup'))
       ReactGA.event({
@@ -253,20 +261,27 @@ function DetailPopUp({
                         >
                           Check out now
                         </button>
+                        <PayPalCartUpload
+                          returnSlug={contentItem.slug}
+                          items={[{
+                            amount: suggestedPrice,
+                            name: contentItem.name,
+                          }]}
+                        />
                         <button
                           className="action-button"
                           onClick={addToCartOnClick}
                         >
                           Add to Cart
                         </button>
-                        <a
+                        {/* <a
                           className="detail-popup-cart-link"
                           onClick={() => {
                             dispatch(openPopup('cart-popup'))
                           }}
                         >
                           View cart
-                        </a>
+                        </a> */}
                       </>
                     )}
                     { parseInt(suggestedPrice) === 0 && (
