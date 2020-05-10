@@ -8,8 +8,6 @@ import { RootState } from '../../../index'
 import { removeProductFromCart } from '../actions'
 import { closePopup } from '../../../../../lib/modules/popups'
 
-declare const paypal: any
-
 function CartPopup(): ReactElement {
   const { cartProducts } = useSelector((state: RootState) => ({
     cartProducts: state.cart.products,
@@ -18,30 +16,6 @@ function CartPopup(): ReactElement {
   const dispatch = useDispatch()
 
   const [redirecting, setRedirecting] = useState(false)
-
-  useEffect(function initPayPal() {
-    if (!redirecting) return
-    paypal.Buttons({
-      createOrder: function(data: any, actions: any) {
-        var itemsData = ({name: "Basic Class Fee", unit_amount: {currency_code: "EUR",value: "50.00"},quantity: "1"})
-        return actions.order.create({
-          purchase_units: [{
-            amount: {
-              currency_code: "EUR",
-              value: "50.00",
-              breakdown: {
-                item_total: {
-                  currency_code: "EUR",
-                  value: "50.00"
-                }
-              }
-            },
-            items: [(itemsData)]
-          }]
-        })
-      }
-    }).render('#paypal-button-container')
-  }, [redirecting])
 
   const checkoutOnClick = useCallback(
     function checkoutOnClickFn() {
@@ -130,28 +104,46 @@ function CartPopup(): ReactElement {
                 <strong>TOTAL: { formatPrice(getGrandTotal()) }</strong>
               </div>
               <div className="cart-popup-check-out">
-                <button
-                  className="action-button continue-button"
-                  onClick={() => {
-                    dispatch(closePopup())
-                  }}
+                <form
+                  // action="https://www.sandbox.paypal.com/cgi-bin/webscr"
+                  action="https://www.paypal.com/cgi-bin/webscr"
+                  method="post"
+                  target="_blank"
                 >
-                  Continue shopping
-                </button>
-                <button
-                  className="action-button"
-                  onClick={checkoutOnClick}
-                >
-                  Check out
-                </button>
+                  <button
+                    className="action-button continue-button"
+                    onClick={() => {
+                      dispatch(closePopup())
+                    }}
+                  >
+                    Continue shopping
+                  </button>
+                  <input type="hidden" name="cmd" value="_cart" />
+                  <input type="hidden" name="upload" value="1" />
+                  {/* <input type="hidden" name="business" value="sb-d7jtv1699928@business.example.com" /> */}
+                  <input type="hidden" name="business" value="paypal@hem.rocks" />
+                  <input type="hidden" name="item_name_1" value="Item Name 1" />
+                  <input type="hidden" name="amount_1" value="1.00" />
+                  <input type="hidden" name="shipping_1" value="1.75" />
+                  <input type="hidden" name="item_name_2" value="Item Name 2" />
+                  <input type="hidden" name="amount_2" value="2.00" />
+                  <input type="hidden" name="shipping_2" value="2.50" />
+                  <button
+                    className="action-button"
+                    onClick={checkoutOnClick}
+                    type="submit"
+                  >
+                    Check out
+                  </button>
+                </form>
               </div>
             </>
           )}
           {redirecting && (
             <div className="cart-popup-redirecting-overlay">
               <div className="cart-popup-redirecting-overlay-content">
-                <h2>Choose payment method</h2>
-                <div id="paypal-button-container"></div>
+                <h2>Yay!</h2>
+                <p>Checkin' you out</p>
               </div>
             </div>
           )}

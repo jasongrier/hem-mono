@@ -19,11 +19,23 @@ else if (a1 && !a2 && !a3) { // `npm start my-project`
 
 else if (a1 === 'task') { // TODO: Command not found error
   switch (a2) {
+    case 'start-pug': // `npm run task start-pug my-project`
+      start(a3, true)
+      break
+
     case 'build': // `npm run task build my-project`
       build(a3)
       break
 
+    case 'build-pug': // `npm run task build-pug my-project`
+      build(a3, false, false, true)
+      break
+
     case 'developer-build': // `npm run task build my-project`
+      build(a3, false, true)
+      break
+
+    case 'developer-build-pug': // `npm run task build my-project`
       build(a3, false, true)
       break
 

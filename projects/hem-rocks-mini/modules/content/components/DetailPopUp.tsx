@@ -1,6 +1,6 @@
 import React, { ReactElement, SyntheticEvent, useEffect, useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { find, isNaN } from 'lodash'
+import { find, isFinite, isNaN, isNumber } from 'lodash'
 import Scrollbars from 'react-scrollbars-custom'
 import ReactGA from 'react-ga'
 import { Spinner } from '../../../../../lib/components'
@@ -44,15 +44,20 @@ function DetailPopUp({
     }
   }, [])
 
-  function addToCart(validateOnly = false) {
-    const price = parseFloat(suggestedPrice)
-
+  function validate(price: any, showAlerts = false) {
     if (!contentItem) {
-      // TODO: Show "An unknown error has occurred..."
+      console.log(1)
+
+      if (showAlerts) {
+        alert('An unknown error has occurred, please reload the page')
+      }
+
+      setValid(false)
       return false
     }
 
-    if (isNaN(price)) {
+    if (isNaN(parseFloat(price))) {
+      console.log(2)
       setValid(false)
       return false
     }
@@ -62,19 +67,28 @@ function DetailPopUp({
       && contentItem.flexPriceMinimum
       && price < contentItem.flexPriceMinimum
     ) {
-      alert(`Sorry, the minimum price is ${contentItem.flexPriceMinimum} €.`)
+      console.log(3)
+
+      if (showAlerts) {
+        alert(`Sorry, the minimum price is ${contentItem.flexPriceMinimum} €.`)
+      }
+
+      setValid(false)
       return false
     }
 
     if (find(cartProducts, { slug: contentItem.slug })) {
-      alert('That item is already in your cart.')
+      console.log(4)
+
+      if (showAlerts) {
+        alert('That item is already in your cart.')
+      }
+
+      setValid(false)
       return false
     }
 
-    if (!validateOnly) {
-      dispatch(addProductToCart(contentItem, price))
-    }
-
+    setValid(true)
     return true
   }
 
@@ -104,14 +118,17 @@ function DetailPopUp({
   }
 
   const suggestedPriceOnChange = useCallback(
-    function suggestedPriceOnChange(evt: SyntheticEvent<HTMLInputElement>) {
-      setSuggestedPrice(evt.currentTarget.value)
+    function suggestedPriceOnChangeFn(evt: SyntheticEvent<HTMLInputElement>) {
+      const price = evt.currentTarget.value
+      validate(price)
+      setSuggestedPrice(price)
     }, [],
   )
 
   const buyNowOnClick = useCallback(
     function buyNowOnClickFn() {
-      if (!addToCart()) return
+      if (!validate(suggestedPrice)) return
+      dispatch(addProductToCart(contentItem, suggestedPrice))
       dispatch(closePopup())
       dispatch(openPopup('cart-popup'))
       ReactGA.event({
@@ -123,7 +140,8 @@ function DetailPopUp({
 
   const addToCartOnClick = useCallback(
     function addToCartOnClickFn() {
-      if (!addToCart()) return
+      if (!validate(suggestedPrice)) return
+      dispatch(addProductToCart(contentItem, suggestedPrice))
       alert('Item was added to your cart!')
       ReactGA.event({
         category: 'User',
@@ -134,7 +152,7 @@ function DetailPopUp({
 
   const instantDownloadButtonOnClick = useCallback(
     function instantDownloadButtonOnClickFn() {
-      if (!addToCart(true)) return
+      if (!validate(suggestedPrice)) return
       // Trigger download somehow
       dispatch(openPopup('post-download-popup'))
       ReactGA.event({
@@ -195,7 +213,7 @@ function DetailPopUp({
                         htmlFor="suggested-price"
                       >
                         <em>Choose your price!</em><br />
-                        <small>Type, or click in the box and use the &uarr; &darr; arrow keys</small>
+                        {/* <small>Type, or click in the box and use the &uarr; &darr; arrow keys</small> */}
                       </label>
                       {/* TODO: Use Intl.NumberFormat and type intent timeout to validate and format the state */}
                       <span className="detail-popup-currency-symbol">€</span>
@@ -204,10 +222,18 @@ function DetailPopUp({
                         min={contentItem.flexPriceMinimum || 0}
                         name="suggested-price"
                         onChange={suggestedPriceOnChange}
-                        type="number"
+                        type="text"
                         value={suggestedPrice}
                       />
-                      <small>Minimum price: { contentItem.flexPriceMinimum } €</small>
+                      { isNumber(contentItem.flexPriceMinimum) && (
+                        <small className={
+                          isFinite(parseFloat(suggestedPrice))
+                          && suggestedPrice < contentItem.flexPriceMinimum
+                          ? 'invalid-minimum' : ''
+                        }>
+                          Minimum price: { contentItem.flexPriceMinimum } €
+                        </small>
+                      )}
                       {!valid && (
                         <div className="invalid-message">
                           Please enter a valid price.
@@ -215,7 +241,10 @@ function DetailPopUp({
                       )}
                     </>
                   )}
-                  <div className="detail-popup-buttons clearfix">
+                  <div className={`
+                    detail-popup-buttons clearfix
+                    ${valid ? '' : 'invalid'}
+                  `}>
                     { suggestedPrice > 0 && (
                       <>
                         <button
@@ -240,7 +269,7 @@ function DetailPopUp({
                         </a>
                       </>
                     )}
-                    { parseInt(suggestedPrice, 10) === 0 && (
+                    { parseInt(suggestedPrice) === 0 && (
                       <button
                         className="action-button"
                         onClick={instantDownloadButtonOnClick}
@@ -248,7 +277,7 @@ function DetailPopUp({
                         Download
                       </button>
                     )}
-                    { suggestedPrice === '' && (
+                    { isNaN(parseFloat(suggestedPrice)) && (
                       <div className="purchase-form-spinner">
                         <Spinner />
                       </div>
