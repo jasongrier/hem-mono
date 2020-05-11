@@ -8,12 +8,13 @@ interface IProps {
 }
 
 function Title({ collectionTitle, currentThemeHandle, item }: IProps): ReactElement {
-
   const productOnClick = useCallback(
     function productOnClickFn() {
       productClicked(item, currentThemeHandle)
     }, [item, currentThemeHandle],
   )
+
+  const slogan = item.tags.find((tag: string) => !/^badge--/.test(tag))
 
   return (
     <div className="zw-item-title">
@@ -22,7 +23,7 @@ function Title({ collectionTitle, currentThemeHandle, item }: IProps): ReactElem
         onClick={productOnClick}
       >
         <h2>{item.title.replace(collectionTitle, '')}</h2>
-        <p>{ item.tags[0] }</p>
+        <p>{ slogan }</p>
         <div
           className="shop-now-button"
           onClick={productOnClick}

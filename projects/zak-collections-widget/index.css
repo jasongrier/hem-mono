@@ -9,6 +9,21 @@ body {
 }
 
 .zw-item-row {
+  position: relative;
+}
+
+.zw-item-badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 5px 10px;
+  font-size: 14px;
+  font-style: italic;
+  background-color: #eaaa47;
+  font-family: adobe-garamond-pro, serif;
+}
+
+.zw-item-row {
   width: 100%;
   padding: 60px 0;
   border-top: 1px solid #000;
