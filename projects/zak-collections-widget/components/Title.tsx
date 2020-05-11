@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useCallback } from 'react'
 import { productClicked } from '../functions'
 
 interface IProps {
@@ -8,16 +8,27 @@ interface IProps {
 }
 
 function Title({ collectionTitle, currentThemeHandle, item }: IProps): ReactElement {
+
+  const productOnClick = useCallback(
+    function productOnClickFn() {
+      productClicked(item, currentThemeHandle)
+    }, [item, currentThemeHandle],
+  )
+
   return (
     <div className="zw-item-title">
       <a
         href="#"
-        onClick={() => {
-          productClicked(item, currentThemeHandle)
-        }}
+        onClick={productOnClick}
       >
         <h2>{item.title.replace(collectionTitle, '')}</h2>
         <p>{ item.tags[0] }</p>
+        <div
+          className="shop-now-button"
+          onClick={productOnClick}
+        >
+          Shop Now
+        </div>
       </a>
     </div>
   )
