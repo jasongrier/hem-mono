@@ -20,6 +20,32 @@ body {
   width: calc(100% / 3);
 }
 
+.shop-now-button {
+  display: inline-block;
+  position: relative;
+  padding: 0;
+  border: 0;
+  text-transform: none;
+  font-weight: bold;
+  font-family: "proxima-nova", "Open Sans", "Gill Sans MT", "Gill Sans", Corbel, Arial, sans-serif;
+  transition: opacity 250ms;
+  cursor: pointer;
+}
+
+.shop-now-button::after {
+  display: block;
+  position: absolute;
+  top: 4px;
+  right: -35px;
+  width: 24px;
+  height: 15px;
+  background-image: url('./static/assets/images/right_arrow.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  content: " ";
+  transition: opacity 250ms;
+}
+
 .zw-item-title {
   margin-top: 20px;
   font-family: adobe-garamond-pro, serif;
@@ -37,31 +63,6 @@ body {
   font-size: 18px;
   font-style: italic;
   line-height:28px;
-}
-
-.zw-item-title .shop-now-button {
-  display: inline-block;
-  position: relative;
-  padding: 0;
-  border: 0;
-  text-transform: none;
-  font-weight: bold;
-  font-family: "proxima-nova", "Open Sans", "Gill Sans MT", "Gill Sans", Corbel, Arial, sans-serif;
-  transition: opacity 250ms;
-}
-
-.zw-item-title .shop-now-button::after {
-  display: block;
-  position: absolute;
-  top: 4px;
-  right: -35px;
-  width: 24px;
-  height: 15px;
-  background-image: url('./static/assets/images/right_arrow.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  content: " ";
-  transition: opacity 250ms;
 }
 
 .zw-item-title a:hover .shop-now-button {
@@ -97,6 +98,27 @@ body {
   right: 20px;
   width: 122px;
   transform: scale(1.5);
+}
+
+.zw-item-picker .shop-now-button {
+  display: none;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  font-size: 11px;
+}
+
+.zw-item-picker .shop-now-button::after {
+  top: 5px;
+  right: -30px;
+  width: 20px;
+}
+
+.zw-item-picker .shop-now-button:hover {
+  opacity: 0.6;
+}
+
+.zw-item-picker .shop-now-button:hover::after {
+  opacity: 0.6;
 }
 
 .zw-swatch-picker h5 {
@@ -215,6 +237,14 @@ body {
 
   .zw-item-title p {
     display: none;
+  }
+
+  .zw-item-title .shop-now-button {
+    display: none;
+  }
+
+  .zw-item-picker .shop-now-button {
+    display: inline-block;
   }
 
   .mobile-collection-title {

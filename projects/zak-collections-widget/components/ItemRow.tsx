@@ -11,7 +11,7 @@ interface IProps {
 
 function ItemRow({ collection, item, options }: IProps): ReactElement {
   const [currentVariantId, setCurrentVariantId] = useState(item.variants[0].id)
-  const [currentThemeHandle, setCurrentThemeHandle] = useState()
+  const [currentThemeHandle, setCurrentThemeHandle] = useState('')
 
   return (
     <div className="zw-item-row zw-clearfix">
@@ -40,6 +40,7 @@ function ItemRow({ collection, item, options }: IProps): ReactElement {
       <div className="zw-item-column zw-item-column-right">
         <Picker
           currentVariantId={currentVariantId}
+          currentThemeHandle={currentThemeHandle}
           item={item}
           onThemeSelected={(variantId, themeKebab) => {
             setCurrentVariantId(variantId)
