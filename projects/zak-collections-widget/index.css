@@ -33,9 +33,43 @@ body {
 }
 
 .zw-item-title p {
+  margin-bottom: 30px;
   font-size: 18px;
   font-style: italic;
   line-height:28px;
+}
+
+.zw-item-title .shop-now-button {
+  display: inline-block;
+  position: relative;
+  padding: 0;
+  border: 0;
+  text-transform: none;
+  font-weight: bold;
+  font-family: "proxima-nova", "Open Sans", "Gill Sans MT", "Gill Sans", Corbel, Arial, sans-serif;
+  transition: opacity 250ms;
+}
+
+.zw-item-title .shop-now-button::after {
+  display: block;
+  position: absolute;
+  top: 4px;
+  right: -35px;
+  width: 24px;
+  height: 15px;
+  background-image: url('./static/assets/images/right_arrow.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  content: " ";
+  transition: opacity 250ms;
+}
+
+.zw-item-title a:hover .shop-now-button {
+  opacity: 0.6;
+}
+
+.zw-item-title a:hover .shop-now-button::after {
+  opacity: 0.6;
 }
 
 .zw-item-image {
@@ -52,9 +86,9 @@ body {
 }
 
 @media only screen and (min-width: 801px) {
-.zw-item-image:hover img{
-  margin-top:-44%;
-}
+  .zw-item-image:hover img{
+    margin-top: -44%;
+  }
 }
 
 .zw-item-picker {
