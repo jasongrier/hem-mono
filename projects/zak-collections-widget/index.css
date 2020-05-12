@@ -261,6 +261,7 @@ body {
 
   .zw-item-picker .shop-now-button {
     display: inline-block;
+    margin-left: -25px;
   }
 
   .mobile-collection-title {
