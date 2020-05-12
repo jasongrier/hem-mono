@@ -32,6 +32,11 @@
   text-decoration: none;
 }
 
+.top-bar .logo a:focus,
+.top-bar .logo a:active {
+  outline: none;
+}
+
 .top-bar-collapsed .logo {
   margin: 0;
   font-size: 65px;

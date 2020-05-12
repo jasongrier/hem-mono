@@ -8,7 +8,7 @@ import $ from 'jquery'
 import moment from 'moment'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup } from '../../../../../lib/modules/popups'
-import { MainContentBox } from './index'
+import { DetailPopUp, MainContentBox } from './index'
 import { setCurrentContentItem, IContentItem } from '../index'
 import { CampaignMonitorForm } from '../../../../../lib/components'
 import { RootState } from '../../../index'
@@ -47,15 +47,13 @@ function MainContentList({
   highlights,
   infoPopupText,
   infoPopupTitle,
-  onFiltersChanged,
 }: IProps): ReactElement {
   const { allContentItems } = useSelector((state: RootState) => ({
     allContentItems: state.content.contentItems,
+    currentContentItem: state.content.currentContentItem,
   }))
 
   const dispatch = useDispatch()
-
-  const [filtersOriginalTop, setFiltersOriginalTop] = useState(null as number | null)
 
   filters = compact(['All'].concat(exclusiveFilters).concat(filters))
 
@@ -87,11 +85,6 @@ function MainContentList({
   stickyContentItems.sort(sortFn)
 
   contentItems = stickyContentItems.concat(contentItems)
-
-  function launchDetailPopup(pack: IContentItem) {
-    dispatch(setCurrentContentItem(pack))
-    dispatch(openPopup('detail-popup'))
-  }
 
   return (
     <div className="main-content-list clearfix">
@@ -152,7 +145,7 @@ function MainContentList({
                 ${ exclusiveFilters.includes(name) ? 'exclusive-filter' : '' }
               `}
               key={name}
-              to={`/${tag}/${name !== 'All' ? slugify(name) : ''}`}
+              to={`/${tag}${name !== 'All' ? '/filter/' + slugify(name) : ''}`}
             >
               {name}
             </Link>
@@ -162,11 +155,12 @@ function MainContentList({
       <div className="main-content-items">
         {contentItems.map((contentItem, index) => (
           <MainContentBox
-            action={launchDetailPopup}
             buttonText={buttonText}
             contentItem={contentItem}
             index={index}
+            filter={currentFilter}
             key={contentItem.id}
+            tag={tag}
           >
             { children(contentItem) }
           </MainContentBox>

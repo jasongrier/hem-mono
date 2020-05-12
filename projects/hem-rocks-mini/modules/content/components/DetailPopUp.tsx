@@ -1,29 +1,39 @@
 import React, { ReactElement, SyntheticEvent, useEffect, useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { find, isNaN } from 'lodash'
+import { useHistory } from 'react-router'
+import { find, isFinite, isNaN, isNumber } from 'lodash'
 import Scrollbars from 'react-scrollbars-custom'
 import ReactGA from 'react-ga'
 import { Spinner } from '../../../../../lib/components'
 import { closePopup, openPopup } from '../../../../../lib/modules/popups'
 import { TrackPlayPauseButton } from '../../../../../lib/modules/player'
 import { Planes } from '../../../../../lib/packages/hem-placemats'
-import { shopifyAddToCart } from '../../cart'
+import { addProductToCart } from '../../cart'
 import { IContentItem } from '../../content'
 import { usePlacemats } from '../../../functions'
 import { RootState } from '../../../index'
-import LaunchDetailPopupButton from './LaunchDetailPopupButton'
 
 interface IProps {
-  contentItem: IContentItem
+  contentItem: IContentItem | null
+  filter: string
+  tag: string
 
   showPurchaseForm?: boolean
 }
 
 function DetailPopUp({
   contentItem,
+  filter,
+  tag,
 
   showPurchaseForm = true,
 }: IProps): ReactElement {
+  if (!contentItem) return <div />
+
+  const { cartProducts } = useSelector((state: RootState) => ({
+    cartProducts: state.cart.products,
+  }))
+
   const dispatch = useDispatch()
 
   const [suggestedPrice, setSuggestedPrice] = useState((contentItem ? contentItem.flexPriceRecommended : 0) as any)
@@ -41,15 +51,17 @@ function DetailPopUp({
     }
   }, [])
 
-  function validate() {
-    const price = parseFloat(suggestedPrice)
+  function validate(price: any, showAlerts = false) {
+    if (!contentItem) {
+      if (showAlerts) {
+        alert('An unknown error has occurred, please reload the page')
+      }
 
-    if (!contentItem || !contentItem.shopifyHandle) {
-      // TODO: Show "An unknown error has occurred..."
+      setValid(false)
       return false
     }
 
-    if (isNaN(price)) {
+    if (isNaN(parseFloat(price))) {
       setValid(false)
       return false
     }
@@ -59,25 +71,27 @@ function DetailPopUp({
       && contentItem.flexPriceMinimum
       && price < contentItem.flexPriceMinimum
     ) {
-      alert(`Sorry, the minimum price is ${contentItem.flexPriceMinimum} €.`)
+      if (showAlerts) {
+        alert(`Sorry, the minimum price is ${contentItem.flexPriceMinimum} €.`)
+      }
+
+      setValid(false)
       return false
     }
 
+    setValid(true)
     return true
   }
 
-  function buttonText(item: IContentItem) {
-    if (item.tags.includes('sound-library')) {
-      return 'Download'
+  function isInCart(contentItem: IContentItem, showAlerts = false) {
+    if (find(cartProducts, { slug: contentItem.slug })) {
+      if (showAlerts) {
+        alert('That item is already in your cart.')
+      }
+      return true
     }
 
-    else if (item.tags.includes('projects')) {
-      return 'Contribute'
-    }
-
-    else if (item.tags.includes('label')) {
-      return 'Artist\'s Website'
-    }
+    return false
   }
 
   function isPurchaseable(item: IContentItem) {
@@ -106,34 +120,68 @@ function DetailPopUp({
   }
 
   const suggestedPriceOnChange = useCallback(
-    function suggestedPriceOnChange(evt: SyntheticEvent<HTMLInputElement>) {
-      setSuggestedPrice(evt.currentTarget.value)
+    function suggestedPriceOnChangeFn(evt: SyntheticEvent<HTMLInputElement>) {
+      const price = evt.currentTarget.value
+      validate(price)
+      setSuggestedPrice(price)
     }, [],
   )
 
-  const instantDownloadButtonOnClick = useCallback(
-    function instantDownloadButtonOnClickFn() {
-      if (!validate()) return
-      // Trigger download somehow
-      dispatch(openPopup('post-download-popup'))
+  const history = useHistory()
+
+  const buyNowOnClick = useCallback(
+    function buyNowOnClickFn() {
+      if (!validate(suggestedPrice, true)) return
+      if (!isInCart(contentItem)) {
+        dispatch(addProductToCart(contentItem, suggestedPrice))
+      }
+      dispatch(closePopup())
+      dispatch(openPopup('cart-popup', {
+        redirecting: true ,
+        returnUrl: `${tag}/${contentItem.slug}`,
+      }))
+      history.push(`/${tag}/cart/${filter ? filter : ''}`)
+
+      setTimeout(() => {
+        // @ts-ignore
+        const form = document.getElementById('pay-pal-cart-upload-form')
+        // @ts-ignore
+        form.submit()
+      })
+
       ReactGA.event({
         category: 'User',
         action: 'Clicked "Instant Download" for: ' + contentItem.name,
       })
-    }, [suggestedPrice],
+    }, [filter, suggestedPrice, tag],
   )
+
+  useEffect(() => {
+    console.log(tag)
+  }, [tag])
 
   const addToCartOnClick = useCallback(
     function addToCartOnClickFn() {
-      if (!validate()) return
+      if (!validate(suggestedPrice, true)) return
+      if (isInCart(contentItem, true)) return
 
-      setAdding(true)
+      dispatch(addProductToCart(contentItem, suggestedPrice))
+      dispatch(closePopup())
+      dispatch(openPopup('cart-popup', { returnUrl: `${tag}/${filter ? filter : ''}` }))
+      history.push(`/${tag}/cart/${filter ? filter : ''}`)
 
-      dispatch(shopifyAddToCart(
-        // @ts-ignore
-        contentItem.shopifyHandle,
-        getFinalPrice(contentItem),
-      ))
+      ReactGA.event({
+        category: 'User',
+        action: 'Clicked "Add to Cart" for: ' + contentItem.name,
+      })
+    }, [filter, suggestedPrice, tag],
+  )
+
+  const instantDownloadButtonOnClick = useCallback(
+    function instantDownloadButtonOnClickFn() {
+      if (!validate(suggestedPrice, true)) return
+      // Trigger download somehow
+      dispatch(openPopup('post-download-popup'))
 
       ReactGA.event({
         category: 'User',
@@ -173,15 +221,7 @@ function DetailPopUp({
               <h2>{ contentItem.type }</h2>
             </div>
             <div className="detail-popup-actions">
-              { !showPurchaseForm && (
-                <LaunchDetailPopupButton
-                  className="reveal-purchase-form-button"
-                  contentItem={contentItem}
-                >
-                  { buttonText(contentItem) }
-                </LaunchDetailPopupButton>
-              )}
-              { showPurchaseForm && isPurchaseable(contentItem) && (
+              { isPurchaseable(contentItem) && (
                 <div className="detail-popup-form">
                   {contentItem.hasFixedPrice && (
                     <p>{ contentItem.fixedPrice }</p>
@@ -193,7 +233,7 @@ function DetailPopUp({
                         htmlFor="suggested-price"
                       >
                         <em>Choose your price!</em><br />
-                        <small>Type, or click in the box and use the &uarr; &darr; arrow keys</small>
+                        {/* <small>Type, or click in the box and use the &uarr; &darr; arrow keys</small> */}
                       </label>
                       {/* TODO: Use Intl.NumberFormat and type intent timeout to validate and format the state */}
                       <span className="detail-popup-currency-symbol">€</span>
@@ -202,10 +242,18 @@ function DetailPopUp({
                         min={contentItem.flexPriceMinimum || 0}
                         name="suggested-price"
                         onChange={suggestedPriceOnChange}
-                        type="number"
+                        type="text"
                         value={suggestedPrice}
                       />
-                      <small>Minimum price: { contentItem.flexPriceMinimum } €</small>
+                      { isNumber(contentItem.flexPriceMinimum) && (
+                        <small className={
+                          isFinite(parseFloat(suggestedPrice))
+                          && suggestedPrice < contentItem.flexPriceMinimum
+                          ? 'invalid-minimum' : ''
+                        }>
+                          Minimum price: { contentItem.flexPriceMinimum } €
+                        </small>
+                      )}
                       {!valid && (
                         <div className="invalid-message">
                           Please enter a valid price.
@@ -213,8 +261,11 @@ function DetailPopUp({
                       )}
                     </>
                   )}
-                  <div className="detail-popup-buttons clearfix">
-                    { suggestedPrice > 0 && adding && (
+                  <div className={`
+                    detail-popup-buttons clearfix
+                    ${valid ? '' : 'invalid'}
+                  `}>
+                    { suggestedPrice > 0 && (
                       <>
                         <button className="action-button adding">
                           <Spinner />
@@ -237,17 +288,17 @@ function DetailPopUp({
                         >
                           Add to Cart
                         </button>
-                        <a
+                        {/* <a
                           className="detail-popup-cart-link"
                           onClick={() => {
                             dispatch(openPopup('cart-popup'))
                           }}
                         >
                           View cart
-                        </a>
+                        </a> */}
                       </>
                     )}
-                    { parseInt(suggestedPrice, 10) === 0 && (
+                    { parseInt(suggestedPrice) === 0 && (
                       <button
                         className="action-button"
                         onClick={instantDownloadButtonOnClick}
@@ -255,7 +306,7 @@ function DetailPopUp({
                         Download
                       </button>
                     )}
-                    { suggestedPrice === '' && (
+                    { isNaN(parseFloat(suggestedPrice)) && (
                       <div className="purchase-form-spinner">
                         <Spinner />
                       </div>

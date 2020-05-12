@@ -31,9 +31,6 @@ const store = window.STORE = createStore(
   )
 )
 
-import { shopifyCheckOutSaga } from './modules/cart'
-sagaMiddleware.run(shopifyCheckOutSaga)
-
 import { mutePlayerSaga } from '../../lib/modules/player'
 sagaMiddleware.run(mutePlayerSaga)
 

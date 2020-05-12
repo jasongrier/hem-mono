@@ -5,7 +5,7 @@ const { join } = require('path') // TODO: Group alphabetize all imports
 const { readdirSync, readFileSync, writeFileSync } = require('fs')
 const parseFrontMatter = require('front-matter')
 
-function build(projectName, andStart = false, developerBuild = false) {
+function build(projectName, andStart = false, developerBuild = false, pug = false) {
   execSync(`rm -rf dist`, { stdio: 'inherit' })
   execSync(`mkdir dist`, { stdio: 'inherit' })
   execSync(`cp -rf projects/${projectName}/static dist/static`, { stdio: 'inherit' })
@@ -17,7 +17,7 @@ function build(projectName, andStart = false, developerBuild = false) {
 
   if (andStart) {
     // The CLI way...
-    execSync(`parcel projects/${projectName}/index.html`, { stdio: 'inherit' })
+    execSync(`parcel projects/${projectName}/index.${pug ? 'pug' : 'html'}`, { stdio: 'inherit' })
 
     // TODO: Make programmatic bundler work with parcel-manifests
     // const bundler = new Bundler(`${__dirname}/../../projects/${projectName}/index.html`)
@@ -28,8 +28,7 @@ function build(projectName, andStart = false, developerBuild = false) {
   }
 
   else {
-    // execSync(`${developerBuild ? 'NODE_ENV=development ' : ''}parcel build projects/${projectName}/index.html --no-minify --public-url '.'`, { stdio: 'inherit' })
-    execSync(`${developerBuild ? 'NODE_ENV=development ' : ''}parcel build projects/${projectName}/index.html --public-url '.'`, { stdio: 'inherit' })
+    execSync(`${developerBuild ? 'NODE_ENV=development ' : ''}parcel build projects/${projectName}/index.html --no-minify --public-url '.'`, { stdio: 'inherit' })
   }
 
   runPostBuildTasks(projectName, andStart)

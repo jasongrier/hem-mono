@@ -11,10 +11,17 @@ interface IProps {
 
 function ItemRow({ collection, item, options }: IProps): ReactElement {
   const [currentVariantId, setCurrentVariantId] = useState(item.variants[0].id)
-  const [currentThemeHandle, setCurrentThemeHandle] = useState()
+  const [currentThemeHandle, setCurrentThemeHandle] = useState('')
+
+  const badge = item.tags.find((tag: string) => /^badge--/.test(tag))
 
   return (
     <div className="zw-item-row zw-clearfix">
+      {badge && (
+        <div className="zw-item-badge">
+          { badge.replace(/^badge--/, '') }
+        </div>
+      )}
       <div className="zw-item-column zw-item-column-left">
         <Title
           collectionTitle={collection.title}
@@ -40,6 +47,7 @@ function ItemRow({ collection, item, options }: IProps): ReactElement {
       <div className="zw-item-column zw-item-column-right">
         <Picker
           currentVariantId={currentVariantId}
+          currentThemeHandle={currentThemeHandle}
           item={item}
           onThemeSelected={(variantId, themeKebab) => {
             setCurrentVariantId(variantId)

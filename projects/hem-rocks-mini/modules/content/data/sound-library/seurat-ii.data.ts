@@ -28,7 +28,7 @@ const seuratIiData: IContentItem = {
   name: 'Seurat II',
   nameWrapping: null,
 published: true,
-shopifyHandle: 'hem-sound-library-seurat-ii-for-ableton-live',
+shopifyHandle: 'hem-sound-library-seurat-ii-midi-device-for-ableton-live',
   soundCloudTrackId: '778088458',
   soundCloudSecretToken: null,
   slug: 'seurat-ii',

@@ -7,6 +7,11 @@
   height: var(--top-bar-height);
 }
 
+.main-nav a:focus,
+.main-nav a:active {
+  outline: none;
+}
+
 .main-nav.no-burger {
   right: 5px;
 }
@@ -57,7 +62,6 @@
   background-color: #fff;
   transition: none;
 }
-
 
 .main-nav .hem-hamburger-menu-toggle-open {
   transform: translateX(-5px) scale(0.8);
