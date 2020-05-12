@@ -43,7 +43,7 @@
 
 .grand-piano-heroine-text {
   position: absolute;
-  top: 0;
+  top: 7px;
   left: 215px;
   width: 500px;
   height: 60px;
@@ -82,15 +82,11 @@
   background-color: var(--line-orange);
 }
 
-.grand-piano-heroine-text button {
+.grand-piano-heroine-text .action-button {
   position: absolute;
   top: 60px;
-  left: 365px;
-  border: 1px solid #ccc;
+  left: 380px;
   font-weight: normal;
-}
-
-.grand-piano-heroine-text button:focus,
-.grand-piano-heroine-text button:active {
-  outline: none;
+  text-align: center;
+  text-decoration: none;
 }

@@ -1,19 +1,18 @@
 import React, { ReactElement, useCallback } from 'react'
 import ReactGA from 'react-ga'
 import { EmailForm } from '../../app'
-import { IContentItem } from '..'
 
 interface IProps {
-  download: IContentItem
+  // download: IContentItem
 }
 
-function PostDownloadPopup({ download }: IProps): ReactElement {
+function PostDownloadPopup({ }: IProps): ReactElement {
 
   const onFormSubmitted = useCallback(
     function onFormSubmittedFn() {
       ReactGA.event({
         category: 'User',
-        action: 'Signed up for mailing list after free download of: ' + download.name,
+        action: 'Signed up for mailing list after purchase',
       })
     }, [],
   )

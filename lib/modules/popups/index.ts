@@ -2,6 +2,7 @@ import { AnyAction } from 'redux'
 
 export interface IState {
   currentlyOpenPopUp: string | null
+  propsToChildren: any
 }
 
 export const CLOSE_POPUP = 'CLOSE_POPUP'
@@ -14,7 +15,7 @@ export interface IClosePopup extends AnyAction {
 
 export interface IOpenPopup extends AnyAction {
   type: typeof OPEN_POPUP
-  payload: string,
+  payload: { id: string, propsToChildren: any },
 }
 
 export type Action = IClosePopup | IOpenPopup

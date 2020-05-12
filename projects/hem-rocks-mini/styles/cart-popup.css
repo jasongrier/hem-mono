@@ -1,5 +1,5 @@
 .cart-popup {
-
+  height: 100%;
 }
 
 .cart-popup header {
@@ -98,10 +98,10 @@
   background-color: var(--light-gray);
 }
 
-.cart-popup-redirect-overlay {
+.cart-popup-redirecting-overlay {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   position: absolute;
   top: 0;
   left: 0;
@@ -109,4 +109,14 @@
   right: 0;
   background-color: #fff;
   text-align: center;
+}
+
+.cart-popup-redirecting-overlay-content #paypal-button-container {
+  width: 450px;
+  margin: 0 auto;
+}
+
+.cart-popup-redirecting-overlay-content h2 {
+  margin: 30px auto !important;
+  font-size: 48px !important;
 }

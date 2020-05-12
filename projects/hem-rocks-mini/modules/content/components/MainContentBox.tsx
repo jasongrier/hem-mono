@@ -1,33 +1,46 @@
-import React, { ReactElement, PropsWithChildren, useState, useEffect } from 'react'
+import React, { ReactElement, PropsWithChildren, useCallback, useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { Planes } from '../../../../../lib/packages/hem-placemats'
 import { SplatterDims } from '../../../../../lib/packages/hem-boxplatter'
 import { usePlacemats } from '../../../functions'
 import { LaunchDetailPopupButton } from './index'
-import { IContentItem } from '../index'
+import { IContentItem, setCurrentContentItem } from '../index'
 
 interface IProps {
-  action: (contentItem: any) => void
   contentItem: IContentItem
+  filter: string
   index: number
+  tag: string
 
   buttonText?: string
   className?: string
 }
 
 function MainContentBox({
-  action,
   children,
   contentItem,
+  filter,
   index,
+  tag,
 
   buttonText,
   className,
 }: PropsWithChildren<IProps>): ReactElement {
+  const dispatch = useDispatch()
   const [alignRight, setAlignRight] = useState(false)
 
   useEffect(function init() {
     setAlignRight(Math.random() > 0.5)
   }, [])
+
+  const onClick = useCallback(
+    function onClickFn() {
+      dispatch(setCurrentContentItem(contentItem))
+    }, [],
+  )
+
+  const linkTo = `/${tag}/${contentItem.slug}${filter ? '/' + filter : ''}`
 
   return (
     <SplatterDims
@@ -58,41 +71,44 @@ function MainContentBox({
       )}
       <div
         className="main-content-box-key-art"
-        onClick={() => {
-          action(contentItem)
-        }}
+        onClick={onClick}
       >
-        { !usePlacemats(contentItem) && (
-          <div
-            className="main-content-box-key-art-image"
-            style={{
-              backgroundImage: `url(${contentItem.images[0].src})`
-            }}
-          >
-            { contentItem.images[0].alt }
-          </div>
-        )}
-        { usePlacemats(contentItem) && (
-          <Planes />
-        )}
+        <Link to={linkTo}>
+          { !usePlacemats(contentItem) && (
+            <div
+              className="main-content-box-key-art-image"
+              style={{
+                backgroundImage: `url(${contentItem.images[0].src})`
+              }}
+            >
+              { contentItem.images[0].alt }
+            </div>
+          )}
+          { usePlacemats(contentItem) && (
+            <Planes />
+          )}
+        </Link>
       </div>
       <div
         className="main-content-box-text"
-        onClick={() => {
-          action(contentItem)
-        }}
+        onClick={onClick}
       >
-        <h3 dangerouslySetInnerHTML={{__html: contentItem.nameWrapping || contentItem.name}} />
-        <p>{ contentItem.blurb }</p>
+        <Link to={linkTo}>
+          <h3 dangerouslySetInnerHTML={{__html: contentItem.nameWrapping || contentItem.name}} />
+          <p>{ contentItem.blurb }</p>
+        </Link>
       </div>
       <div className="main-content-box-actions">
         <div className="main-content-box-custom-actions">
           { children }
         </div>
         { buttonText && (
-          <LaunchDetailPopupButton contentItem={contentItem}>
+          <Link
+            className="action-button"
+            to={linkTo}
+          >
             { buttonText }
-          </LaunchDetailPopupButton>
+          </Link>
         )}
       </div>
     </SplatterDims>

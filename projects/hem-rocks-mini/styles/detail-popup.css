@@ -113,8 +113,8 @@
 
 .detail-popup .invalid-message {
   position: absolute;
-  top: 56px;
-  right: 15px;
+  top: 62px;
+  right: -15px;
   color: red;
 }
 
@@ -122,9 +122,13 @@
   font-size: 11px;
 }
 
+.detail-popup header small.invalid-minimum {
+  color: red;
+}
+
 .detail-popup-currency-symbol {
   position: absolute;
-  top: 56px;
+  top: 53px;
   left: 230px;
   font-size: 30px;
 }
@@ -141,6 +145,11 @@
   font-weight: normal;
   margin-right: 15px;
   cursor: pointer;
+}
+
+.invalid.detail-popup-buttons button {
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 .detail-popup-buttons .detail-popup-cart-link {
@@ -217,4 +226,9 @@
 .hem-popup-content .detail-popup-details h2 {
   margin-left: -4px;
   font-size: 30px;
+}
+
+.hem-popup-content .detail-popup-details p {
+  margin: 0 0 60px 0;
+  line-height: 32px;
 }

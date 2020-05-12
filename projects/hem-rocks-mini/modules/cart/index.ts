@@ -7,16 +7,21 @@ export interface IState {
   redirecting: boolean
 }
 
-export const SHOPIFY_ADD_TO_CART = 'SHOPIFY_ADD_TO_CART'
+export const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART'
+export const REMOVE_PRODUCT_FROM_CART = 'REMOVE_PRODUCT_FROM_CART'
 
 export interface IShopifyAddToCart extends AnyAction {
   type: typeof SHOPIFY_ADD_TO_CART
   payload: { productHandle: string, price: number }
 }
 
-export type Action = IShopifyAddToCart
+export interface IRemoveProductFromCart extends AnyAction {
+  type: typeof REMOVE_PRODUCT_FROM_CART
+  payload: string
+}
 
-export { shopifyAddToCart } from './actions'
-export { CartPopup } from './components'
+export type Action = IAddProductToCart | IRemoveProductFromCart
+
+export { addProductToCart, removeProductFromCart } from './actions'
+export { CartPopup, PayPalCartUpload, ThankYouPopup } from './components'
 export { reducer as cartReducer } from './reducer'
-export { shopifyCheckOutSaga } from './sagas'
