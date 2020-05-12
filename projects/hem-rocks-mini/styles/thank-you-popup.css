@@ -1,9 +1,10 @@
-.post-download-popup header {
+.thank-you-popup header {
   padding: 0 10px;
 }
 
 /* TODO: Global H1 className */
-.post-download-popup header h1 {
+.thank-you-popup header h1 {
+  height: 60px;
   margin: 0;
   font-size: 60px;
   font-weight: 100;
@@ -11,37 +12,41 @@
 }
 
 /* TODO: Globalize this className */
-.post-download-popup-content {
+.thank-you-popup-content {
   padding: 0 15px;
 }
 
-.post-download-popup-content a {
+.thank-you-popup-content a {
   color: var(--line-orange);
 }
 
-.post-download-popup-email-form {
+.thank-you-popup-content .download-items {
+  height: 120px;
+}
+
+.thank-you-popup-email-form {
   width: calc(100% + 30px);
-  height: 412px;
-  margin: 30px 0 0 -15px;
+  height: 375px;
+  margin: 20px 0 0 -15px;
   background-color: #000;
   color: #fff;
   text-align: center;
 }
 
-.post-download-popup-email-form h2 {
+.thank-you-popup-email-form h2 {
   width: 650px;
   margin: 0 auto;
   padding-top: 20px;
   font-size: 36px;
 }
 
-.post-download-popup-email-form p {
+.thank-you-popup-email-form p {
   width: calc(100% + 30px);
   margin-bottom: 30px;
   padding: 0;
 }
 
-.post-download-popup-email-form input {
+.thank-you-popup-email-form input {
   display: block;
   width: 260px;
   height: 20px;
@@ -50,7 +55,7 @@
   font-size: 14px;
 }
 
-.post-download-popup-email-form button {
+.thank-you-popup-email-form button {
   display: block;
   width: 280px;
   height: 40px;

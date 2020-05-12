@@ -9,9 +9,10 @@ interface IProps {
   name: string
 
   additive?: boolean
+  displayName?: string
 }
 
-function MainNavItem({ name, additive = false }: IProps): ReactElement {
+function MainNavItem({ name, additive = false, displayName }: IProps): ReactElement {
   const dispatch = useDispatch()
 
   const { pathname } = useLocation()
@@ -24,7 +25,7 @@ function MainNavItem({ name, additive = false }: IProps): ReactElement {
         to={`${additive ? pathname : ''}/${slug}`}
         onClick={() => dispatch(collapseTopBar())}
       >
-        { name }
+        { displayName || name }
       </NavLink>
     </li>
   )

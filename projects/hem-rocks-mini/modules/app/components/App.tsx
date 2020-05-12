@@ -7,13 +7,12 @@ import ReactGA from 'react-ga'
 import { CartPopup } from '../../cart'
 import { ThankYouPopup } from '../../cart'
 import { DetailPopUp, setCurrentContentItem } from '../../content'
-import { ScrollToTop } from '../../../../../lib/components'
+import { ScrollToTop, HamburgerMenu } from '../../../../../lib/components'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup, closePopup } from '../../../../../lib/modules/popups'
 import { usePrevious } from '../../../../../lib/hooks'
 import { collapseTopBar, expandTopBar, MainNavItem, PlayerBar, TopBar } from '../index'
 import { RootState } from '../../../index'
-import { RELEASE_PHASE } from '../../../config'
 import EmailForm from './EmailForm'
 
 import {
@@ -140,16 +139,12 @@ function App(): ReactElement {
 
       <TopBar collapsed={topBarCollapsed} />
 
-      <nav className={`main-nav no-burger${pathname === '/' ? ' large-nav' : ''}`}>
+      <nav className={`main-nav${pathname === '/' ? ' large-nav' : ''}`}>
         <ul className="main-nav-items">
           <MainNavItem name="Sound Library" />
           <MainNavItem name="Label" />
           <MainNavItem name="Venue" />
           <MainNavItem name="Software" />
-          <MainNavItem name="Info" />
-          { RELEASE_PHASE > 3 && (
-            <MainNavItem name="Projects" />
-          )}
           <li className="main-nav-item">
             <NavLink
               to={(() => {
@@ -167,14 +162,14 @@ function App(): ReactElement {
             </NavLink>
           </li>
         </ul>
-        {/* <HamburgerMenu>
+        <HamburgerMenu>
           <ul>
             <MainNavItem name="Info" />
             <MainNavItem name="Merch" />
             <MainNavItem name="Mixes" />
             <MainNavItem name="Mailing List" />
           </ul>
-        </HamburgerMenu> */}
+        </HamburgerMenu>
       </nav>
 
       <main className="main-content">
@@ -239,7 +234,9 @@ function App(): ReactElement {
         closeIcon={CloseButton}
         id="thank-you-popup"
       >
-        <ThankYouPopup />
+        {(props: any) => (
+          <ThankYouPopup itemSlugs={props?.itemSlugs} />
+        )}
       </PopupContainer>
 
       <PlayerBar />

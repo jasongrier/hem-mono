@@ -3,6 +3,7 @@ import React, { ReactElement } from 'react'
 interface IItem {
   amount: number
   name: string
+  slug: string
 }
 
 interface IProps {
@@ -28,7 +29,7 @@ function PayPalCartUpload({ returnUrl, items }: IProps): ReactElement {
         <input type="hidden" name="business" value="paypal@hem.rocks" />
         <input type="hidden" name="image_url" value="http://static.hem.rocks/hem-rocks/paypal/store_banner.jpg" />
         <input type="hidden" name="no_shipping" value="1" />
-        <input type="hidden" name="return" value={`${hostName}/thank-you`} />
+        <input type="hidden" name="return" value={`${hostName}/thank-you?items=${items.map(item => item.slug).join()}`} />
         <input type="hidden" name="cancel_return" value={`${hostName}${returnUrl}`} />
 
         {items.map((item, number) => (
