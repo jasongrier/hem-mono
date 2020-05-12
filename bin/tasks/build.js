@@ -28,8 +28,7 @@ function build(projectName, andStart = false, developerBuild = false, pug = fals
   }
 
   else {
-    // execSync(`${developerBuild ? 'NODE_ENV=development ' : ''}parcel build projects/${projectName}/index.html --no-minify --public-url '.'`, { stdio: 'inherit' })
-    execSync(`${developerBuild ? 'NODE_ENV=development ' : ''}parcel build projects/${projectName}/index.html --public-url '.'`, { stdio: 'inherit' })
+    execSync(`${developerBuild ? 'NODE_ENV=development ' : ''}parcel build projects/${projectName}/index.html --no-minify --public-url '.'`, { stdio: 'inherit' })
   }
 
   runPostBuildTasks(projectName, andStart)

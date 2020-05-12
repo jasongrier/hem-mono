@@ -1,6 +1,7 @@
 import React, { ReactElement, useEffect } from 'react'
 import { Route, Switch, useLocation, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 import { find } from 'lodash'
 import ReactGA from 'react-ga'
 import { CartPopup } from '../../cart'
@@ -12,6 +13,7 @@ import { PopupContainer, openPopup, closePopup } from '../../../../../lib/module
 import { usePrevious } from '../../../../../lib/hooks'
 import { collapseTopBar, expandTopBar, MainNavItem, PlayerBar, TopBar } from '../index'
 import { RootState } from '../../../index'
+import { RELEASE_PHASE } from '../../../config'
 import EmailForm from './EmailForm'
 
 import {
@@ -143,8 +145,25 @@ function App(): ReactElement {
           <MainNavItem name="Sound Library" />
           <MainNavItem name="Label" />
           <MainNavItem name="Info" />
-          {/* <MainNavItem name="Projects" /> */}
-          <MainNavItem name="Cart" additive={pathname !== '/'} />
+          { RELEASE_PHASE > 3 && (
+            <MainNavItem name="Projects" />
+          )}
+          <li className="main-nav-item">
+            <NavLink
+              to={(() => {
+                const [tag, filter, filterName] = pathname.replace(/^\//, '').split('/')
+
+                if (filter === 'filter') {
+                  return `/${tag}/cart/${filterName}`
+                }
+
+                return `${pathname !== '/' ? pathname : ''}/cart`
+              })()}
+              onClick={() => dispatch(collapseTopBar())}
+            >
+              Cart
+            </NavLink>
+          </li>
         </ul>
         {/* <HamburgerMenu>
           <ul>
