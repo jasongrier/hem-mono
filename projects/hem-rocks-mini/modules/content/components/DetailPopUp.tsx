@@ -39,6 +39,7 @@ function DetailPopUp({
   const [suggestedPrice, setSuggestedPrice] = useState((contentItem ? contentItem.flexPriceRecommended : 0) as any)
 
   const [valid, setValid] = useState(true)
+  const [adding, setAdding] = useState(false)
 
   useEffect(function init() {
     if (showPurchaseForm) {
@@ -104,6 +105,20 @@ function DetailPopUp({
     return false
   }
 
+  function getFinalPrice(product: IContentItem): number {
+    let price = 0
+
+    if (product.hasFixedPrice && product.fixedPrice) {
+      price = product.fixedPrice
+    }
+
+    else {
+      price = product.userSuggestedPrice || product.flexPriceMinimum || 0
+    }
+
+    return price
+  }
+
   const suggestedPriceOnChange = useCallback(
     function suggestedPriceOnChangeFn(evt: SyntheticEvent<HTMLInputElement>) {
       const price = evt.currentTarget.value
@@ -136,7 +151,7 @@ function DetailPopUp({
 
       ReactGA.event({
         category: 'User',
-        action: 'Clicked "Check out Now" for: ' + contentItem.name,
+        action: 'Clicked "Instant Download" for: ' + contentItem.name,
       })
     }, [filter, suggestedPrice, tag],
   )
@@ -167,11 +182,12 @@ function DetailPopUp({
       if (!validate(suggestedPrice, true)) return
       // Trigger download somehow
       dispatch(openPopup('post-download-popup'))
+
       ReactGA.event({
         category: 'User',
-        action: 'Clicked "Instant Download" for: ' + contentItem.name,
+        action: 'Clicked "Add to cart" in detail popup',
       })
-    }, [suggestedPrice],
+    }, [],
   )
 
   if (!contentItem) return (<div />)
@@ -251,12 +267,21 @@ function DetailPopUp({
                   `}>
                     { suggestedPrice > 0 && (
                       <>
-                        <button
-                          className="action-button"
-                          onClick={buyNowOnClick}
-                        >
-                          Check out now
+                        <button className="action-button adding">
+                          <Spinner />
                         </button>
+                        <a
+                          className="detail-popup-cart-link"
+                          onClick={() => {
+                            dispatch(openPopup('cart-popup'))
+                          }}
+                        >
+                          View cart
+                        </a>
+                      </>
+                    )}
+                    { suggestedPrice > 0 && !adding && (
+                      <>
                         <button
                           className="action-button"
                           onClick={addToCartOnClick}

@@ -19,6 +19,7 @@ interface IProps {
 function CartPopup({ redirecting: alreadyRedirecting, returnUrl }: IProps): ReactElement {
   const { cartProducts } = useSelector((state: RootState) => ({
     cartProducts: state.cart.products,
+    redirecting: state.cart.redirecting,
   }))
 
   const dispatch = useDispatch()

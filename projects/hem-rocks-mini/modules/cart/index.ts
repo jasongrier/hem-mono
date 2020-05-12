@@ -4,14 +4,15 @@ import { IContentItem } from '../content'
 
 export interface IState {
   products: IContentItem[]
+  redirecting: boolean
 }
 
 export const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART'
 export const REMOVE_PRODUCT_FROM_CART = 'REMOVE_PRODUCT_FROM_CART'
 
-export interface IAddProductToCart extends AnyAction {
-  type: typeof ADD_PRODUCT_TO_CART
-  payload: { product: IContentItem, suggestedPrice?: number }
+export interface IShopifyAddToCart extends AnyAction {
+  type: typeof SHOPIFY_ADD_TO_CART
+  payload: { productHandle: string, price: number }
 }
 
 export interface IRemoveProductFromCart extends AnyAction {
