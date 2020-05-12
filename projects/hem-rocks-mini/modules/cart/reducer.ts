@@ -1,6 +1,9 @@
 import { AnyAction } from 'redux'
+import produce from 'immer'
+import { clone } from 'lodash'
 import {
   ADD_PRODUCT_TO_CART,
+  CLEAR_CART,
   REMOVE_PRODUCT_FROM_CART,
 
   IState,
@@ -26,6 +29,12 @@ const reducer = (
         }
 
         draftState.products = draftState.products.concat([product])
+      })
+    }
+
+    case CLEAR_CART: {
+      return produce(state, draftState => {
+        draftState.products = []
       })
     }
 

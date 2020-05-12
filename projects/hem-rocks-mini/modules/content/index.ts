@@ -56,7 +56,6 @@ export {
   LaunchDetailPopupButton,
   MainContentBox,
   MainContentList,
-  PostDownloadPopup,
 } from './components'
 
 export {

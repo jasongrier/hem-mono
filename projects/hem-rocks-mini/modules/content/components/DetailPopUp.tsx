@@ -39,7 +39,6 @@ function DetailPopUp({
   const [suggestedPrice, setSuggestedPrice] = useState((contentItem ? contentItem.flexPriceRecommended : 0) as any)
 
   const [valid, setValid] = useState(true)
-  const [adding, setAdding] = useState(false)
 
   useEffect(function init() {
     if (showPurchaseForm) {
@@ -105,20 +104,6 @@ function DetailPopUp({
     return false
   }
 
-  function getFinalPrice(product: IContentItem): number {
-    let price = 0
-
-    if (product.hasFixedPrice && product.fixedPrice) {
-      price = product.fixedPrice
-    }
-
-    else {
-      price = product.userSuggestedPrice || product.flexPriceMinimum || 0
-    }
-
-    return price
-  }
-
   const suggestedPriceOnChange = useCallback(
     function suggestedPriceOnChangeFn(evt: SyntheticEvent<HTMLInputElement>) {
       const price = evt.currentTarget.value
@@ -129,17 +114,20 @@ function DetailPopUp({
 
   const history = useHistory()
 
-  const buyNowOnClick = useCallback(
-    function buyNowOnClickFn() {
+  const checkOutOnClick = useCallback(
+    function checkOutOnClickFn() {
       if (!validate(suggestedPrice, true)) return
       if (!isInCart(contentItem)) {
         dispatch(addProductToCart(contentItem, suggestedPrice))
       }
+
       dispatch(closePopup())
+
       dispatch(openPopup('cart-popup', {
         redirecting: true ,
         returnUrl: `${tag}/${contentItem.slug}`,
       }))
+
       history.push(`/${tag}/cart/${filter ? filter : ''}`)
 
       setTimeout(() => {
@@ -156,10 +144,6 @@ function DetailPopUp({
     }, [filter, suggestedPrice, tag],
   )
 
-  useEffect(() => {
-    console.log(tag)
-  }, [tag])
-
   const addToCartOnClick = useCallback(
     function addToCartOnClickFn() {
       if (!validate(suggestedPrice, true)) return
@@ -168,6 +152,7 @@ function DetailPopUp({
       dispatch(addProductToCart(contentItem, suggestedPrice))
       dispatch(closePopup())
       dispatch(openPopup('cart-popup', { returnUrl: `${tag}/${filter ? filter : ''}` }))
+
       history.push(`/${tag}/cart/${filter ? filter : ''}`)
 
       ReactGA.event({
@@ -177,11 +162,13 @@ function DetailPopUp({
     }, [filter, suggestedPrice, tag],
   )
 
-  const instantDownloadButtonOnClick = useCallback(
-    function instantDownloadButtonOnClickFn() {
+  const instantDownloadOnClick = useCallback(
+    function instantDownloadOnClickFn() {
       if (!validate(suggestedPrice, true)) return
-      // Trigger download somehow
-      dispatch(openPopup('post-download-popup'))
+
+      dispatch(openPopup('thank-you-popup', { itemSlugs: [contentItem.slug] }))
+
+      history.push('/thank-you')
 
       ReactGA.event({
         category: 'User',
@@ -266,46 +253,27 @@ function DetailPopUp({
                     ${valid ? '' : 'invalid'}
                   `}>
                     { suggestedPrice > 0 && (
-                      <>
-                        <button className="action-button adding">
-                          <Spinner />
-                        </button>
-                        <a
-                          className="detail-popup-cart-link"
-                          onClick={() => {
-                            dispatch(openPopup('cart-popup'))
-                          }}
-                        >
-                          View cart
-                        </a>
-                      </>
-                    )}
-                    { suggestedPrice > 0 && !adding && (
-                      <>
-                        <button
-                          className="action-button"
-                          onClick={addToCartOnClick}
-                        >
-                          Add to Cart
-                        </button>
-                        {/* <a
-                          className="detail-popup-cart-link"
-                          onClick={() => {
-                            dispatch(openPopup('cart-popup'))
-                          }}
-                        >
-                          View cart
-                        </a> */}
-                      </>
+                      <button
+                        className="action-button"
+                        onClick={checkOutOnClick}
+                      >
+                        Check out
+                      </button>
                     )}
                     { parseInt(suggestedPrice) === 0 && (
                       <button
                         className="action-button"
-                        onClick={instantDownloadButtonOnClick}
+                        onClick={instantDownloadOnClick}
                       >
                         Download
                       </button>
                     )}
+                    <button
+                      className="action-button"
+                      onClick={addToCartOnClick}
+                    >
+                      Add to Cart
+                    </button>
                     { isNaN(parseFloat(suggestedPrice)) && (
                       <div className="purchase-form-spinner">
                         <Spinner />
