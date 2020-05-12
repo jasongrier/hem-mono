@@ -22,6 +22,7 @@ const austinThunderstormData: IContentItem = {
   tags: ['sound-library', 'field-recording'],
   name: 'Austin Thunderstorm',
   published: false,
+  shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   trackAttribution: 'HEM Sound Library',
   slug: 'austin-thunderstorm',

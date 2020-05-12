@@ -1,6 +1,4 @@
 import { AnyAction } from 'redux'
-import { clone } from 'lodash'
-import produce from 'immer'
 import {
   ADD_PRODUCT_TO_CART,
   REMOVE_PRODUCT_FROM_CART,
@@ -11,6 +9,7 @@ import {
 
 const initialState: IState = {
   products: [],
+  redirecting: false,
 }
 
 const reducer = (

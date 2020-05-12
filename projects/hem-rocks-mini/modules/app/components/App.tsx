@@ -140,10 +140,12 @@ function App(): ReactElement {
 
       <TopBar collapsed={topBarCollapsed} />
 
-      <nav className="main-nav no-burger">
+      <nav className={`main-nav no-burger${pathname === '/' ? ' large-nav' : ''}`}>
         <ul className="main-nav-items">
           <MainNavItem name="Sound Library" />
           <MainNavItem name="Label" />
+          <MainNavItem name="Venue" />
+          <MainNavItem name="Software" />
           <MainNavItem name="Info" />
           { RELEASE_PHASE > 3 && (
             <MainNavItem name="Projects" />
