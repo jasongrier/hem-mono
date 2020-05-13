@@ -1,9 +1,13 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useEffect } from 'react'
+import { ElectronOnly } from '../../../../../lib/components'
 
 function AdminItem(): ReactElement {
   return (
-    <div className="admin-item">
-    </div>
+    <ElectronOnly showMessage={true}>
+      <div className="admin-item">
+        ADMIN ITEM
+      </div>
+    </ElectronOnly>
   )
 }
 

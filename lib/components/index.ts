@@ -1,6 +1,7 @@
 export { default as CampaignMonitorForm } from './CampaignMonitorForm'
 export { default as DynamicImport } from './DynamicImport'
 export { default as Dial } from './Dial'
+export { default as ElectronOnly } from './ElectronOnly'
 export { default as FileUploader } from './FileUploader'
 export { default as HamburgerMenu } from './HamburgerMenu'
 export { default as Hide } from './Hide'
