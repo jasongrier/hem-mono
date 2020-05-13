@@ -22,6 +22,9 @@
 
 .thank-you-popup-content .download-items {
   height: 120px;
+  list-style-type: none;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
 }
 
 .thank-you-popup-email-form {

@@ -21,6 +21,7 @@ import {
   Label,
   Projects,
   SoundLibrary,
+  Venue,
 } from '../../../routes'
 
 ReactGA.initialize('UA-163585797-1')
@@ -100,6 +101,13 @@ function App(): ReactElement {
         && pathnameSplit[1] === 'cart'
       ) {
         path += 'info'
+      }
+
+      if (
+        pathnameSplit[0] === 'venue'
+        && pathnameSplit[1] === 'cart'
+      ) {
+        path += 'venue'
       }
 
       else if (
@@ -193,6 +201,9 @@ function App(): ReactElement {
             <Route exact path="/sound-library/:contentItemSlug?/:filter?" component={SoundLibrary} />
             <Route exact path="/sound-library/filter/:filter" component={SoundLibrary} />
             <Route exact path="/sound-library/cart/:filter?" component={SoundLibrary} />
+
+            <Route exact path="/venue" component={Venue} />
+            <Route exact path="/venue/cart" component={Venue} />
           </Switch>
         </div>
       </main>
@@ -213,6 +224,7 @@ function App(): ReactElement {
 
       <PopupContainer
         closeIcon={CloseButton}
+        escapeKeyCloses={false}
         id="cart-popup"
       >
         {(props: any) => (
