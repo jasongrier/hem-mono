@@ -52,6 +52,8 @@ export { setCurrentContentItem } from './actions'
 export { reducer as contentReducer } from './reducer'
 
 export {
+  AdminItem,
+  AdminList,
   DetailPopUp,
   LaunchDetailPopupButton,
   MainContentBox,

@@ -1,10 +1,13 @@
 import React, { ReactElement } from 'react'
+import { ElectronOnly } from '../../../../../lib/components'
 
 function AdminList(): ReactElement {
   return (
-    <div className="admin-list">
-
-    </div>
+    <ElectronOnly showMessage={true}>
+      <div className="admin-list">
+        ADMIN LIST
+      </div>
+    </ElectronOnly>
   )
 }
 
