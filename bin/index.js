@@ -3,6 +3,7 @@ const { test, testAll } = require('./tasks/test')
 const { todo, todoAll } = require('./tasks/todo')
 const build = require('./tasks/build')
 const start = require('./tasks/start')
+const startElectron = require('./tasks/start-electron')
 
 const a1 = process.argv[2]
 const a2 = process.argv[3]
@@ -21,6 +22,10 @@ else if (a1 === 'task') { // TODO: Command not found error
   switch (a2) {
     case 'start-pug': // `npm run task start-pug my-project`
       start(a3, true)
+      break
+
+    case 'start-electron': // `npm run task start-electron my-project`
+      startElectron(a3)
       break
 
     case 'build': // `npm run task build my-project`

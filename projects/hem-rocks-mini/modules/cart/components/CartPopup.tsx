@@ -2,6 +2,7 @@ import React, { ReactElement, useCallback, useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import ReactGA from 'react-ga'
+import $ from 'jquery'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { Spinner } from '../../../../../lib/components'
 import { closePopup, openPopup } from '../../../../../lib/modules/popups'
@@ -31,6 +32,12 @@ function CartPopup({ redirecting: alreadyRedirecting, returnUrl }: IProps): Reac
       setRedirecting(true)
     }
   }, [alreadyRedirecting])
+
+  useEffect(function disablePopupClosingWhileRedirecting() {
+    if (redirecting) {
+      $('.hem-close-button').remove()
+    }
+  }, [redirecting])
 
   const history = useHistory()
 

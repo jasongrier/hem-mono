@@ -7,6 +7,7 @@ interface IProps {
   id: string
 
   closeIcon?: any
+  escapeKeyCloses?: boolean
 }
 
 function PopupContainer({ children, id, closeIcon: CloseIcon }: PropsWithChildren<IProps>): ReactElement {

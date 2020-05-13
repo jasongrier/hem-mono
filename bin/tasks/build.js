@@ -1,6 +1,6 @@
 // const Bundler = require('parcel-bundler')
 const lazyRequire = require('lazy-require')
-const { execSync } = require('child_process')
+const { execSync, spawn } = require('child_process')
 const { join } = require('path') // TODO: Group alphabetize all imports
 const { readdirSync, readFileSync, writeFileSync } = require('fs')
 const parseFrontMatter = require('front-matter')
@@ -16,6 +16,17 @@ function build(projectName, andStart = false, developerBuild = false, pug = fals
   runPreBuildTasks(projectName, andStart)
 
   if (andStart) {
+    if (andStart === 'electron') {
+      const env = Object.create(process.env)
+      env.ELECTRON_MONO_DEV = true
+
+      const electronProcess = spawn('electron', ['bin/electron/main.js'], {
+        shell: true,
+        detached: true,
+        env,
+      })
+    }
+
     // The CLI way...
     execSync(`parcel projects/${projectName}/index.${pug ? 'pug' : 'html'}`, { stdio: 'inherit' })
 
