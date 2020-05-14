@@ -1,6 +1,7 @@
 import './app.css'
 import './variables.css'
 
+import './admin.css'
 import './detail-popup.css'
 import './email-form.css'
 import './cart-popup.css'

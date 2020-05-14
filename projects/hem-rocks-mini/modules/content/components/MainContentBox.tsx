@@ -5,7 +5,7 @@ import { Planes } from '../../../../../lib/packages/hem-placemats'
 import { SplatterDims } from '../../../../../lib/packages/hem-boxplatter'
 import { usePlacemats } from '../../../functions'
 import { LaunchDetailPopupButton } from './index'
-import { IContentItem, setCurrentContentItem } from '../index'
+import { IContentItem, setCurrentItem } from '../index'
 
 interface IProps {
   contentItem: IContentItem
@@ -36,7 +36,7 @@ function MainContentBox({
 
   const onClick = useCallback(
     function onClickFn() {
-      dispatch(setCurrentContentItem(contentItem))
+      dispatch(setCurrentItem(contentItem))
     }, [],
   )
 

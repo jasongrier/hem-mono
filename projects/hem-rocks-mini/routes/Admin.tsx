@@ -13,22 +13,22 @@ function Admin(): ReactElement {
       </Helmet>
       <div className="page page-admin">
         <h1>CMS</h1>
-        <nav className="page-subnav">
+        <nav className="main-content-subnav">
           <ul>
             <li>
-              <NavLink to="/admin/create">Create New</NavLink>
+              <NavLink to="/admin/list">List</NavLink>
             </li>
             <li>
-              <NavLink to="/admin">List</NavLink>
+              <NavLink to="/admin/create">Create New</NavLink>
             </li>
           </ul>
         </nav>
         <Switch>
+          <Route exact path="/admin/list">
+            <AdminList />
+          </Route>
           <Route exact path="/admin/create">
             Create
-          </Route>
-          <Route exact path="/admin">
-            <AdminList />
           </Route>
           <Route exact path="/admin/edit/:itemSlug">
             Edit

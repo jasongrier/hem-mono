@@ -6,7 +6,7 @@ import { find } from 'lodash'
 import ReactGA from 'react-ga'
 import { CartPopup } from '../../cart'
 import { ThankYouPopup } from '../../cart'
-import { DetailPopUp, setCurrentContentItem } from '../../content'
+import { DetailPopUp, setCurrentItem } from '../../content'
 import { ElectronOnly, ScrollToTop, HamburgerMenu } from '../../../../../lib/components'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup, closePopup } from '../../../../../lib/modules/popups'
@@ -83,7 +83,7 @@ function App(): ReactElement {
       dispatch(closePopup())
 
       if (requestedContentItem) {
-        dispatch(setCurrentContentItem(requestedContentItem))
+        dispatch(setCurrentItem(requestedContentItem))
       }
 
       dispatch(openPopup(popupId))
@@ -178,7 +178,7 @@ function App(): ReactElement {
             <MainNavItem name="Mixes" />
             <MainNavItem name="Mailing List" />
             <ElectronOnly>
-              <MainNavItem name="Admin" />
+              <MainNavItem name="Admin" to="admin/list" />
             </ElectronOnly>
           </ul>
         </HamburgerMenu>
@@ -208,7 +208,7 @@ function App(): ReactElement {
             <Route exact path="/venue" component={Venue} />
             <Route exact path="/venue/cart" component={Venue} />
 
-            <Route exact path="/admin" component={Admin} />
+            <Route exact path="/admin/list" component={Admin} />
             <Route exact path="/admin/create" component={Admin} />
             <Route exact path="/admin/edit/:itemSlug" component={Admin} />
           </Switch>

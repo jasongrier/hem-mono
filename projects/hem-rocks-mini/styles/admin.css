@@ -1,0 +1,71 @@
+.admin-list {
+
+}
+
+.admin-list-controls {
+  padding: 20px;
+  background: #efefef;
+}
+
+.admin-list-controls-select-all,
+.admin-list-controls-select,
+.admin-list-controls-search {
+  float: left;
+  margin-right: 20px;
+}
+
+.admin-list-controls-select {
+
+}
+
+.admin-list-controls-search {
+
+}
+
+.admin-list-content-item-title {
+
+}
+
+.admin-list-content-item-actions {
+
+}
+
+.admin-list table {
+  width: 100%;
+}
+
+.admin-list th,
+.admin-list td {
+  height: 50px;
+  text-align: left;
+}
+
+.admin-list th:first-child,
+.admin-list td:first-child {
+  width: 50px;
+  padding-left: 10px;
+}
+
+.admin-list thead {
+
+}
+
+.admin-list thead tr {
+
+}
+
+.admin-list th {
+
+}
+
+.admin-list tbody {
+
+}
+
+.admin-list tbody tr {
+
+}
+
+.admin-list td {
+
+}
