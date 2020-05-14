@@ -91,7 +91,7 @@ export interface IRequestReadItems extends AnyAction {
 
 export interface IRequestUpdateItems extends AnyAction {
   type: typeof REQUEST_UPDATE_ITEMS
-  payload: IContentItem[]
+  payload: Array<{ slug: string, update: Partial<IContentItem> }>
 }
 
 export interface ISetCurrentItem extends AnyAction {

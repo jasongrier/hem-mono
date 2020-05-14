@@ -9,7 +9,7 @@ import moment from 'moment'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup } from '../../../../../lib/modules/popups'
 import { DetailPopUp, MainContentBox } from './index'
-import { setCurrentContentItem, IContentItem } from '../index'
+import { setCurrentItem, IContentItem } from '../index'
 import { CampaignMonitorForm } from '../../../../../lib/components'
 import { RootState } from '../../../index'
 import { LISTS_HAVE_BLURBS } from '../../../config'
@@ -159,7 +159,7 @@ function MainContentList({
             contentItem={contentItem}
             index={index}
             filter={currentFilter}
-            key={contentItem.id}
+            key={contentItem.slug}
             tag={tag}
           >
             { children(contentItem) }

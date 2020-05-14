@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { ElectronOnly } from '../../../../../lib/components'
-import { deleteItem, updateItem } from '../index'
+import { requestDeleteItems, requestUpdateItems } from '../index'
 import { RootState } from '../../../index'
 
 function AdminList(): ReactElement {
@@ -15,18 +15,10 @@ function AdminList(): ReactElement {
   return (
     <ElectronOnly showMessage={true}>
       <div className="admin-list">
-        <div className="admin-list-controls">
-          <div className="admin-list-controls-select-all">
-            <label htmlFor="select-all">
-              Select all
-              <input
-                name="select-all"
-                type="checkbox"
-              />
-            </label>
-          </div>
+        <div className="admin-list-controls clearfix">
           <div className="admin-list-controls-select">
             <label htmlFor="select">
+              Category:&nbsp;
               <select name="select">
                 <option value="">Sound Library</option>
                 <option value="">Label</option>
@@ -67,17 +59,23 @@ function AdminList(): ReactElement {
                 <td className="admin-list-content-item-title">
                   <Link to={item.slug}>{item.name}</Link>
                 </td>
+                <td className="admin-list-content-item-date">
+                  { item.date }
+                </td>
                 <td className="admin-list-content-item-actions">
                   <Link to={item.slug}>Edit</Link>
                   <button onClick={() => {
-                    dispatch(updateItem(item.slug, { published: !item.published }))
+                    dispatch(requestUpdateItems([{
+                      slug: item.slug,
+                      update: { published: !item.published },
+                    }]))
                   }}>
                     { item.published ? 'Unpublish' : 'Publish' }
                   </button>
                   <button onClick={() => {
                     const confirmation = confirm('Are you sure?')
                     if (!confirmation) return
-                    dispatch(deleteItem(item.slug))
+                    dispatch(requestDeleteItems([item.slug]))
                   }}>
                     Delete
                   </button>

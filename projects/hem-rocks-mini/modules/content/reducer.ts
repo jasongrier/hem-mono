@@ -55,7 +55,9 @@ const reducer = (
     case REQUEST_CREATE_ITEMS:
     case REQUEST_DELETE_ITEMS:
     case REQUEST_READ_ITEMS:
-    case REQUEST_UPDATE_ITEMS:
+    case REQUEST_UPDATE_ITEMS: {
+      return state
+    }
 
     case SET_CURRENT_ITEM: {
       return produce(state, draftState => {
