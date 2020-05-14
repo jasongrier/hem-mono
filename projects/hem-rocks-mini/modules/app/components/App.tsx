@@ -149,43 +149,39 @@ function App(): ReactElement {
       <TopBar collapsed={topBarCollapsed} />
 
       <nav className={`main-nav${pathname === '/' ? ' large-nav' : ''}`}>
-        { pathname !== '/admin' && (
-          <>
-            <ul className="main-nav-items">
-              <MainNavItem name="Sound Library" />
-              <MainNavItem name="Label" />
-              <MainNavItem name="Venue" />
-              <MainNavItem name="Software" />
-              <li className="main-nav-item">
-                <NavLink
-                  to={(() => {
-                    const [tag, filter, filterName] = pathname.replace(/^\//, '').split('/')
+        <ul className="main-nav-items">
+          <MainNavItem name="Sound Library" />
+          <MainNavItem name="Label" />
+          <MainNavItem name="Venue" />
+          <MainNavItem name="Software" />
+          <li className="main-nav-item">
+            <NavLink
+              to={(() => {
+                const [tag, filter, filterName] = pathname.replace(/^\//, '').split('/')
 
-                    if (filter === 'filter') {
-                      return `/${tag}/cart/${filterName}`
-                    }
+                if (filter === 'filter') {
+                  return `/${tag}/cart/${filterName}`
+                }
 
-                    return `${pathname !== '/' ? pathname : ''}/cart`
-                  })()}
-                  onClick={() => dispatch(collapseTopBar())}
-                >
-                  Cart
-                </NavLink>
-              </li>
-            </ul>
-            <HamburgerMenu>
-              <ul>
-                <MainNavItem name="Info" />
-                <MainNavItem name="Merch" />
-                <MainNavItem name="Mixes" />
-                <MainNavItem name="Mailing List" />
-                <ElectronOnly>
-                  <MainNavItem name="Admin" />
-                </ElectronOnly>
-              </ul>
-            </HamburgerMenu>
-          </>
-        )}
+                return `${pathname !== '/' ? pathname : ''}/cart`
+              })()}
+              onClick={() => dispatch(collapseTopBar())}
+            >
+              Cart
+            </NavLink>
+          </li>
+        </ul>
+        <HamburgerMenu>
+          <ul>
+            <MainNavItem name="Info" />
+            <MainNavItem name="Merch" />
+            <MainNavItem name="Mixes" />
+            <MainNavItem name="Mailing List" />
+            <ElectronOnly>
+              <MainNavItem name="Admin" />
+            </ElectronOnly>
+          </ul>
+        </HamburgerMenu>
       </nav>
       <main className="main-content">
         <div className="tabs-content">
@@ -213,6 +209,8 @@ function App(): ReactElement {
             <Route exact path="/venue/cart" component={Venue} />
 
             <Route exact path="/admin" component={Admin} />
+            <Route exact path="/admin/create" component={Admin} />
+            <Route exact path="/admin/edit/:itemSlug" component={Admin} />
           </Switch>
         </div>
       </main>
