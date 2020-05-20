@@ -58,6 +58,8 @@ sagaMiddleware.run(unmutePlayerSaga)
 import { unpausePlayerSaga } from '../../lib/modules/player'
 sagaMiddleware.run(unpausePlayerSaga)
 
+import { readItemsSaga } from './modules/content'
+sagaMiddleware.run(readItemsSaga)
 
 const Root = (
   <Provider store={store}>

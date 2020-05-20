@@ -1,49 +1,106 @@
-.admin-list {
+.page-admin .main-content-subnav {
+  margin-bottom: 0;
+}
 
+.page-admin .main-content-subnav li a.active {
+  border-bottom: 4px solid #efefef;
 }
 
 .admin-list-controls {
+  margin-bottom: 30px;
   padding: 20px;
+  height: 30px;
+  line-height: 30px;
   background: #efefef;
+}
+
+.admin-list-controls label {
+  float: left;
+  margin-right: 10px;
+  font-size: 14px;
 }
 
 .admin-list-controls-select-all,
 .admin-list-controls-select,
 .admin-list-controls-search {
   float: left;
+  height: 30px;
+  line-height: 30px;
   margin-right: 20px;
 }
 
-.admin-list-controls-select {
-
-}
-
 .admin-list-controls-search {
-
+  margin-right: 0;
 }
 
-.admin-list-content-item-title {
-
+.admin-list-controls-select {
+  position: relative;
 }
 
-.admin-list-content-item-actions {
+.admin-list-controls-select select {
+  float: left;
+  width: 200px;
+  height: 30px;
+  padding: 0 10px;
+  margin: 0 20px 0 0;
+  line-height: 30px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
 
+.admin-list-controls-select select:active,
+.admin-list-controls-select select:focus {
+  outline: none;
+}
+
+.admin-list-controls-select .hem-play-pause-button {
+  position: absolute;
+  top: -14px;
+  right: 4px;
+  background-color: transparent;
+  transform: rotate(90deg) scale(0.3);
+  filter: invert(1);
+  pointer-events: none;
+}
+
+.admin-list-controls-search input {
+  float: left;
+  width: 670px;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 0 0 10px;
+  margin: 0;
+  border: 0;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: none !important;
+  border: 1px solid #ccc;
+}
+
+.admin-list-controls-search input:active,
+.admin-list-controls-search input:focus {
+  outline: none;
 }
 
 .admin-list table {
   width: 100%;
 }
 
+.admin-list table a {
+  color: inherit;
+}
+
 .admin-list th,
 .admin-list td {
   height: 50px;
   text-align: left;
-}
-
-.admin-list th:first-child,
-.admin-list td:first-child {
-  width: 50px;
-  padding-left: 10px;
 }
 
 .admin-list thead {
@@ -67,5 +124,98 @@
 }
 
 .admin-list td {
+  border-bottom: 1px solid #ddd;
+}
 
+.admin-list tr:first-child td {
+  border-top: 1px solid #ddd;
+}
+
+.admin-list td a {
+  text-decoration: none;
+}
+
+.admin-list-column-check {
+  width: 50px;
+  padding-left: 10px;
+}
+
+.admin-list-column-title {
+
+}
+
+.admin-list-column-date {
+  width: 150px;
+}
+
+.admin-list-column-actions {
+  width: 220px;
+}
+
+.admin-list-column-actions button {
+  float: left;
+  width: 100px;
+  height: 30px;
+  line-height: 30px;
+  margin-right: 20px;
+  transform: translateX(3px);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.admin-list-column-actions button:last-child {
+  margin-right: 0;
+}
+
+.admin-item {
+  width: 100%;
+  margin-top: 30px;
+}
+
+.admin-item-header {
+  padding-top: 30px;
+  text-align: right;
+}
+
+.admin-item-header button {
+  margin-right: 0;
+}
+
+.admin-item td {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  background: #efefef;
+}
+
+.admin-item label {
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  margin-right: 50px;
+  font-weight: bold;
+}
+
+.admin-item input,
+.admin-item textarea {
+  display: inline-block;
+  width: 610px;
+  height: 40px;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  font-size: 18px;
+}
+
+.admin-item input:focus,
+.admin-item textarea:focus {
+  outline: none;
+}
+
+.admin-item input {
+  line-height: 40px;
+}
+
+.admin-item textarea {
+  width: calc(100vw - 120px);
+  resize: none;
 }

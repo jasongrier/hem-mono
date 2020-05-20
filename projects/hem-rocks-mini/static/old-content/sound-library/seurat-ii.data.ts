@@ -3,13 +3,13 @@ import uuid from 'uuid/v1'
 // @ts-ignore
 import autop from 'lines-to-paragraphs'
 
-const antiquePianoData: IContentItem = {
+const seuratIiData: IContentItem = {
   acceptingDonations: false,
+  badgeText: 'Coming Soon',
   blurb: `
     Free for Live 10 users, Singularities makes use of single samples and finely tuned, expressive parameters to capture the sound and feel of classic synths and samplers. Included are 40 Instrument Racks, plus MIDI clips and drum kits – all the parts you need for a complete track.
   `,
-  date: '01.09.2017',
-  badgeText: null,
+  date: '01.05.2020',
   description: autop(`
   `),
   featureList: [],
@@ -18,25 +18,20 @@ const antiquePianoData: IContentItem = {
   flexPriceRecommended: 15,
   hasFixedPrice: false,
   id: uuid(),
-  images: [
-    {
-      alt: 'HEM Antique Piano',
-      src: 'http://static.hem.rocks/hem-rocks/site/sound-library/IMG_8190.JPG',
-    }
-  ],
-  tags: ['sound-library', 'instruments', 'keys', 'donic-detritus'],
-  name: 'Antique Piano',
+  images: [],
+  tags: ['sound-library', 'generative-tools', 'midi-devices', 'coming-soon'],
+  name: 'Seurat II',
   nameWrapping: null,
 published: true,
-shopifyHandle: '',
-  soundCloudTrackId: '803629816',
+shopifyHandle: 'hem-sound-library-seurat-ii-midi-device-for-ableton-live',
+  soundCloudTrackId: '778088458',
   soundCloudSecretToken: null,
-  slug: 'antique-piano',
-  sticky: false,
-  trackAttribution: 'HEM Sound Libraray',
+  slug: 'seurat-ii',
+  sticky: true,
+  trackAttribution: 'HEM Sound Library',
   type: 'Sample Pack for Ableton Live',
   userSuggestedPrice: null,
   videos: [],
 }
 
-export default antiquePianoData
+export default seuratIiData
