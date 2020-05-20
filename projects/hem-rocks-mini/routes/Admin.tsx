@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { NavLink, Switch, Route } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
-import { AdminItem, AdminList } from '../modules/content'
+import { AdminConvert, AdminItem, AdminList } from '../modules/content'
 import { BASE_SITE_TITLE } from '../config'
 
 function Admin(): ReactElement {
@@ -21,6 +21,9 @@ function Admin(): ReactElement {
             <li>
               <NavLink to="/admin/create">Create New</NavLink>
             </li>
+            <li>
+              <NavLink to="/admin/convert">Convert</NavLink>
+            </li>
           </ul>
         </nav>
         <Switch>
@@ -28,14 +31,15 @@ function Admin(): ReactElement {
             <AdminList />
           </Route>
           <Route exact path="/admin/create">
-            Create
+            <AdminItem create={true} />
+          </Route>
+          <Route exact path="/admin/convert">
+            <AdminConvert />
           </Route>
           <Route exact path="/admin/edit/:itemSlug">
             Edit
           </Route>
         </Switch>
-        {/* <AdminList />
-        <AdminItem /> */}
       </div>
     </>
   )

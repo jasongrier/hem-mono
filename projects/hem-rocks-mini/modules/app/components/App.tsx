@@ -6,7 +6,7 @@ import { find } from 'lodash'
 import ReactGA from 'react-ga'
 import { CartPopup } from '../../cart'
 import { ThankYouPopup } from '../../cart'
-import { DetailPopUp, setCurrentItem } from '../../content'
+import { DetailPopUp, requestReadItems, setCurrentItem } from '../../content'
 import { ElectronOnly, ScrollToTop, HamburgerMenu } from '../../../../../lib/components'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup, closePopup } from '../../../../../lib/modules/popups'
@@ -46,6 +46,11 @@ function App(): ReactElement {
     { basePath: 'projects', id: 'detail-popup' },
     { basePath: 'sound-library', id: 'detail-popup' },
   ]
+
+  useEffect(function fetchContent() {
+    dispatch(requestReadItems({ page: 1, size: 10000 }))
+  }, [])
+
 
   useEffect(function routedPopup() {
     const [basePath, slug] = pathname.replace(/^\//, '').split('/')
@@ -210,6 +215,7 @@ function App(): ReactElement {
 
             <Route exact path="/admin/list" component={Admin} />
             <Route exact path="/admin/create" component={Admin} />
+            <Route exact path="/admin/convert" component={Admin} />
             <Route exact path="/admin/edit/:itemSlug" component={Admin} />
           </Switch>
         </div>

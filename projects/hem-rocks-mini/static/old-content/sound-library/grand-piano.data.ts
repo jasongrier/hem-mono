@@ -23,12 +23,7 @@ const grandPianoData: IContentItem = {
   flexPriceRecommended: 79,
   hasFixedPrice: false,
   id: uuid(),
-  images: [
-    {
-      alt: 'HEM Grand Piano',
-      src: 'http://static.hem.rocks/hem-rocks/site/sound-library/ex-piano.jpg',
-    }
-  ],
+  images: [],
   tags: ['sound-library', 'keys', 'extended-technique', 'instruments', 'new-in-the-library'],
   name: 'Grand Piano',
   nameWrapping: null,

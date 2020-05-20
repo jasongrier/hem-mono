@@ -14,12 +14,12 @@ import {
   SET_CURRENT_ITEM,
 
   IState,
+  IContentItem,
 } from './index'
-import contentItems from '../../static/content'
 
 const initialState: IState = {
   currentContentItem: null,
-  contentItems,
+  contentItems: [],
 }
 
 const reducer = (
@@ -35,13 +35,15 @@ const reducer = (
 
     case DO_CREATE_ITEMS: {
       return produce(state, draftState => {
+        // @ts-ignore
         draftState.contentItems = uniqBy([].concat(state.contentItems).concat(payload), 'slug')
       })
     }
 
     case DO_DELETE_ITEMS: {
       return produce(state, draftState => {
-        draftState.contentItems = [].concat(state.contentItems).filter(i => !payload.includes(i.slug))
+        // @ts-ignore
+        draftState.contentItems = [].concat(state.contentItems).filter((item: IContentItem) => !payload.includes(item.slug))
       })
     }
 

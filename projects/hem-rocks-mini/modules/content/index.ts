@@ -7,7 +7,7 @@ export interface IImage {
 
 export interface ITrack {
   attribution: string
-  type: 'local', 'mixcloud', 'soundcloud'
+  type: 'local' | 'mixcloud' | 'soundcloud'
   soundCloudTrackId: string | null
   soundCloudSecretToken: string | null
 }
@@ -21,14 +21,14 @@ export interface IContentItem {
   fixedPrice: number | null
   flexPriceMinimum: number | null
   flexPriceRecommended: number | null
-  images: IImage[]
+  keyArt: string
   name: string
   nameWrapping: string | null
   published: boolean
   slug: string
   sticky: boolean
   tags: string[]
-  tracks: ITrack[]
+  tracks: string[]
   type: string
   userSuggestedPrice: number | null
 }
@@ -36,6 +36,27 @@ export interface IContentItem {
 export interface IState {
   currentContentItem: IContentItem | null
   contentItems: IContentItem[]
+}
+
+export const fieldTypes: any = {
+  acceptingDonations: 'checkbox',
+  badgeText: 'text',
+  blurb: 'textarea',
+  date: 'text',
+  description: 'textarea',
+  fixedPrice: 'text',
+  flexPriceMinimum: 'text',
+  flexPriceRecommended: 'text',
+  keyArt: 'text',
+  name: 'text',
+  nameWrapping: 'text',
+  published: 'checkbox',
+  slug: 'text',
+  sticky: 'checkbox',
+  tags: 'text',
+  tracks: 'textarea',
+  type: 'text',
+  userSuggestedPrice: 'text',
 }
 
 export const CLEAR_ITEMS = 'CLEAR_ITEMS'
@@ -127,6 +148,7 @@ export {
 export { reducer as contentReducer } from './reducer'
 
 export {
+  AdminConvert,
   AdminItem,
   AdminList,
   DetailPopUp,
@@ -137,4 +159,9 @@ export {
 
 export {
   getTracksFromContentItems,
+  modelize,
 } from './functions'
+
+export {
+  readItemsSaga,
+} from './sagas'

@@ -3,13 +3,13 @@ import uuid from 'uuid/v1'
 // @ts-ignore
 import autop from 'lines-to-paragraphs'
 
-const seuratIiData: IContentItem = {
+const acousticGuitarData: IContentItem = {
   acceptingDonations: false,
-  badgeText: 'Coming Soon',
   blurb: `
     Free for Live 10 users, Singularities makes use of single samples and finely tuned, expressive parameters to capture the sound and feel of classic synths and samplers. Included are 40 Instrument Racks, plus MIDI clips and drum kits – all the parts you need for a complete track.
   `,
-  date: '01.05.2020',
+  date: '01.09.2017',
+  badgeText: null,
   description: autop(`
   `),
   featureList: [],
@@ -18,25 +18,20 @@ const seuratIiData: IContentItem = {
   flexPriceRecommended: 15,
   hasFixedPrice: false,
   id: uuid(),
-  images: [
-    {
-      alt: 'HEM Seurat II',
-      src: 'http://static.hem.rocks/hem-rocks/site/sound-library/s.png',
-    }
-  ],
-  tags: ['sound-library', 'generative-tools', 'midi-devices', 'coming-soon'],
-  name: 'Seurat II',
+  images: [],
+  tags: ['sound-library', 'guitar-and-bass', 'instruments'],
+  name: 'Acoustic Guitar',
   nameWrapping: null,
-published: true,
-shopifyHandle: 'hem-sound-library-seurat-ii-midi-device-for-ableton-live',
-  soundCloudTrackId: '778088458',
+  published: true,
+shopifyHandle: '',
+  soundCloudTrackId: '803629711',
   soundCloudSecretToken: null,
-  slug: 'seurat-ii',
-  sticky: true,
+  slug: 'acoustic-guitar',
+  sticky: false,
   trackAttribution: 'HEM Sound Library',
   type: 'Sample Pack for Ableton Live',
   userSuggestedPrice: null,
   videos: [],
 }
 
-export default seuratIiData
+export default acousticGuitarData
