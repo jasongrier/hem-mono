@@ -1,1 +1,25 @@
-{"acceptingDonations":false,"blurb":"","date":"01.09.2013","badgeText":null,"description":"  ","featureList":[],"fixedPrice":null,"flexPriceMinimum":0,"flexPriceRecommended":15,"hasFixedPrice":false,"id":"ccb85b40-9adf-11ea-bceb-b7d784ea8071","images":[],"tags":["label"],"name":"Betrieb","nameWrapping":null,"published":true,"shopifyHandle":"","soundCloudTrackId":"soundCloudTrackId","soundCloudSecretToken":null,"slug":"betrieb","sticky":false,"trackAttribution":"PLEASE FILL ME IN","type":"Sample Pack for Ableton Live","userSuggestedPrice":null,"videos":[]}
+{
+  "acceptingDonations": false,
+  "attribution": "",
+  "badgeText": "",
+  "blurb": "",
+  "date": "01.09.2013",
+  "description": "  ",
+  "fixedPrice": "",
+  "flexPriceMinimum": "",
+  "flexPriceRecommended": 15,
+  "keyArt": "",
+  "name": "Betrieb",
+  "nameWrapping": "",
+  "published": true,
+  "slug": "betrieb",
+  "sticky": false,
+  "tags": [
+    "label"
+  ],
+  "tracks": [
+    "label"
+  ],
+  "type": "Sample Pack for Ableton Live",
+  "userSuggestedPrice": ""
+}

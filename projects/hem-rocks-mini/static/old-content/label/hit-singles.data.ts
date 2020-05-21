@@ -25,7 +25,7 @@ const hitSinglesData: IContentItem = {
 shopifyHandle: '',
   soundCloudTrackId: 'soundCloudTrackId',
   soundCloudSecretToken: null,
-  slug: 'archive',
+  slug: 'hit-singles',
   sticky: false,
   trackAttribution: 'PLEASE FILL ME IN',
   type: 'Sample Pack for Ableton Live',

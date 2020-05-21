@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { NavLink, Switch, Route } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
-import { AdminConvert, AdminItem, AdminList } from '../modules/content'
+import { AdminManualTaskRunner, AdminItem, AdminList } from '../modules/content'
 import { BASE_SITE_TITLE } from '../config'
 
 function Admin(): ReactElement {
@@ -22,7 +22,7 @@ function Admin(): ReactElement {
               <NavLink to="/admin/create">Create New</NavLink>
             </li>
             <li>
-              <NavLink to="/admin/convert">Convert</NavLink>
+              <NavLink to="/admin/manual-task-runner">Run Task</NavLink>
             </li>
           </ul>
         </nav>
@@ -33,8 +33,8 @@ function Admin(): ReactElement {
           <Route exact path="/admin/create">
             <AdminItem create={true} />
           </Route>
-          <Route exact path="/admin/convert">
-            <AdminConvert />
+          <Route exact path="/admin/manual-task-runner">
+            <AdminManualTaskRunner />
           </Route>
           <Route exact path="/admin/edit/:itemSlug">
             Edit

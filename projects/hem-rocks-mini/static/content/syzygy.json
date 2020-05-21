@@ -3,26 +3,22 @@
   "attribution": "",
   "badgeText": "",
   "blurb": "",
-  "date": "01.09.2017",
+  "date": "01.09.2013",
   "description": "  ",
   "fixedPrice": "",
   "flexPriceMinimum": "",
   "flexPriceRecommended": 15,
   "keyArt": "",
-  "name": "Outtakes",
+  "name": "Syzygy",
   "nameWrapping": "",
   "published": true,
-  "slug": "outtakes",
+  "slug": "syzygy",
   "sticky": false,
   "tags": [
-    "sound-library",
-    "sonic-detritus",
-    "labor-theory"
+    "label"
   ],
   "tracks": [
-    "sound-library",
-    "sonic-detritus",
-    "labor-theory"
+    "label"
   ],
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""

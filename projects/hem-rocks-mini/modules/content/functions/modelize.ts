@@ -19,6 +19,7 @@ function trackize(rawTrack: any): ITrack {
 function modelize(rawContentItem: any): IContentItem {
   return {
     acceptingDonations: rawContentItem.acceptingDonations || false,
+    attribution: rawContentItem.attribution || '',
     badgeText: rawContentItem.badgeText || '',
     blurb: rawContentItem.blurb || '',
     date: rawContentItem.date || '',

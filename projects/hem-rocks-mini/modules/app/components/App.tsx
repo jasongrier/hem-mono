@@ -213,10 +213,7 @@ function App(): ReactElement {
             <Route exact path="/venue" component={Venue} />
             <Route exact path="/venue/cart" component={Venue} />
 
-            <Route exact path="/admin/list" component={Admin} />
-            <Route exact path="/admin/create" component={Admin} />
-            <Route exact path="/admin/convert" component={Admin} />
-            <Route exact path="/admin/edit/:itemSlug" component={Admin} />
+            <Route path="/admin" component={Admin} />
           </Switch>
         </div>
       </main>

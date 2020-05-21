@@ -14,6 +14,7 @@ export interface ITrack {
 
 export interface IContentItem {
   acceptingDonations: boolean
+  attribution: string
   badgeText: string | null
   blurb: string
   date: string
@@ -148,7 +149,7 @@ export {
 export { reducer as contentReducer } from './reducer'
 
 export {
-  AdminConvert,
+  AdminManualTaskRunner,
   AdminItem,
   AdminList,
   DetailPopUp,
