@@ -219,3 +219,27 @@
   width: calc(100vw - 120px);
   resize: none;
 }
+
+.admin-manual-task-runner {
+  width: 960px;
+  margin: 40px auto 0 auto;
+}
+
+.admin-manual-task-runner ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.admin-manual-task-runner li {
+  margin-bottom: 20px;
+}
+
+.admin-manual-task-runner a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.admin-manual-task-runner div {
+  margin-bottom: 20px;
+}

@@ -1,1 +1,25 @@
-{"acceptingDonations":false,"blurb":"","date":"01.09.2007","badgeText":null,"description":"  ","featureList":[],"fixedPrice":null,"flexPriceMinimum":0,"flexPriceRecommended":15,"hasFixedPrice":false,"id":"ccb8a960-9adf-11ea-bceb-b7d784ea8071","images":[],"tags":["label"],"name":"Black and White Rainbow","nameWrapping":null,"published":true,"shopifyHandle":"","soundCloudTrackId":"soundCloudTrackId","soundCloudSecretToken":null,"slug":"black-and-white-rainbow","sticky":false,"trackAttribution":"PLEASE FILL ME IN","type":"Sample Pack for Ableton Live","userSuggestedPrice":null,"videos":[]}
+{
+  "acceptingDonations": false,
+  "attribution": "",
+  "badgeText": "",
+  "blurb": "",
+  "date": "01.09.2007",
+  "description": "  ",
+  "fixedPrice": "",
+  "flexPriceMinimum": "",
+  "flexPriceRecommended": 15,
+  "keyArt": "",
+  "name": "Black and White Rainbow",
+  "nameWrapping": "",
+  "published": true,
+  "slug": "black-and-white-rainbow",
+  "sticky": false,
+  "tags": [
+    "label"
+  ],
+  "tracks": [
+    "label"
+  ],
+  "type": "Sample Pack for Ableton Live",
+  "userSuggestedPrice": ""
+}

@@ -1,1 +1,31 @@
-{"acceptingDonations":false,"badgeText":"Coming Soon","blurb":"","date":"01.05.2020","description":"  ","featureList":[],"fixedPrice":null,"flexPriceMinimum":0,"flexPriceRecommended":15,"hasFixedPrice":false,"id":"ccc79d80-9adf-11ea-bceb-b7d784ea8071","images":[],"tags":["sound-library","generative-tools","midi-devices","coming-soon"],"name":"Seurat II","nameWrapping":null,"published":true,"shopifyHandle":"hem-sound-library-seurat-ii-midi-device-for-ableton-live","soundCloudTrackId":"778088458","soundCloudSecretToken":null,"slug":"seurat-ii","sticky":true,"trackAttribution":"HEM Sound Library","type":"Sample Pack for Ableton Live","userSuggestedPrice":null,"videos":[]}
+{
+  "acceptingDonations": false,
+  "attribution": "",
+  "badgeText": "Coming Soon",
+  "blurb": "",
+  "date": "01.05.2020",
+  "description": "  ",
+  "fixedPrice": "",
+  "flexPriceMinimum": "",
+  "flexPriceRecommended": 15,
+  "keyArt": "",
+  "name": "Seurat II",
+  "nameWrapping": "",
+  "published": true,
+  "slug": "seurat-ii",
+  "sticky": true,
+  "tags": [
+    "sound-library",
+    "generative-tools",
+    "midi-devices",
+    "coming-soon"
+  ],
+  "tracks": [
+    "sound-library",
+    "generative-tools",
+    "midi-devices",
+    "coming-soon"
+  ],
+  "type": "Sample Pack for Ableton Live",
+  "userSuggestedPrice": ""
+}

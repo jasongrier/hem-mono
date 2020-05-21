@@ -1,1 +1,25 @@
-{"acceptingDonations":false,"blurb":"","date":"01.09.2011","badgeText":null,"description":"  ","featureList":[],"fixedPrice":null,"flexPriceMinimum":0,"flexPriceRecommended":15,"hasFixedPrice":false,"id":"ccbbb6a0-9adf-11ea-bceb-b7d784ea8071","images":[],"tags":["label"],"name":"Lats Yerk","nameWrapping":null,"published":true,"shopifyHandle":"","soundCloudTrackId":"soundCloudTrackId","soundCloudSecretToken":null,"slug":"lats-yerk","sticky":false,"trackAttribution":"PLEASE FILL ME IN","type":"Sample Pack for Ableton Live","userSuggestedPrice":null,"videos":[]}
+{
+  "acceptingDonations": false,
+  "attribution": "",
+  "badgeText": "",
+  "blurb": "",
+  "date": "01.09.2011",
+  "description": "  ",
+  "fixedPrice": "",
+  "flexPriceMinimum": "",
+  "flexPriceRecommended": 15,
+  "keyArt": "",
+  "name": "Lats Yerk",
+  "nameWrapping": "",
+  "published": true,
+  "slug": "lats-yerk",
+  "sticky": false,
+  "tags": [
+    "label"
+  ],
+  "tracks": [
+    "label"
+  ],
+  "type": "Sample Pack for Ableton Live",
+  "userSuggestedPrice": ""
+}

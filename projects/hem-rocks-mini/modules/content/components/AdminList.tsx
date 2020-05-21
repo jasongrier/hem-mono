@@ -1,15 +1,15 @@
-import React, { ReactElement, useEffect } from 'react'
+import React, { ReactElement, useEffect, useCallback, useState, SyntheticEvent } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { noop } from 'lodash'
+import { isEmpty, noop } from 'lodash'
 import { ElectronOnly } from '../../../../../lib/components'
 import { PlayPauseButton } from '../../../../../lib/packages/hem-buttons'
 import { requestDeleteItems, requestReadItems, requestUpdateItems } from '../index'
 import { RootState } from '../../../index'
 
 function AdminList(): ReactElement {
-  const { contentItems } = useSelector((state: RootState) => ({
-    contentItems: state.content.contentItems,
+  const { allContentItems } = useSelector((state: RootState) => ({
+    allContentItems: state.content.contentItems,
   }))
 
   const dispatch = useDispatch()
@@ -17,6 +17,35 @@ function AdminList(): ReactElement {
   useEffect(function fetchItems() {
     dispatch(requestReadItems({ page: 1, size: 10000 }))
   }, [])
+
+  const [tag, setTag] = useState('all')
+  const [search, setSearch] = useState('')
+
+  const categoryFilterOnChange = useCallback(
+    function categoryFilterOnChangeFn(evt: SyntheticEvent<HTMLSelectElement>) {
+      setTag(evt.currentTarget.value)
+    }, [],
+  )
+
+  const searchOnChange = useCallback(
+    function categoryFilterOnChangeFn(evt: SyntheticEvent<HTMLInputElement>) {
+      setSearch(evt.currentTarget.value)
+    }, [],
+  )
+
+  let contentItems = tag === 'all' ? allContentItems : allContentItems.filter(item =>
+    item.tags.includes(tag)
+    || item.tags.includes(tag.toLowerCase())
+  )
+
+  if (!isEmpty(search)) {
+    contentItems = allContentItems.filter(item =>
+      item.name.toLowerCase().includes(search.toLowerCase())
+      || item.tags.includes(search)
+      || item.tags.includes(search.toLowerCase())
+      || item.attribution.toLowerCase().includes(search.toLowerCase())
+    )
+  }
 
   return (
     <ElectronOnly showMessage={true}>
@@ -27,21 +56,28 @@ function AdminList(): ReactElement {
               Category:&nbsp;
               <PlayPauseButton playing={false} onClick={noop} />
             </label>
-            <select name="select">
-              <option value="">All</option>
-              <option value="">Sound Library</option>
-              <option value="">Label</option>
-              <option value="">Mixes</option>
-              <option value="">Venue</option>
-              <option value="">Software</option>
-              <option value="">Merch</option>
+            <select
+              name="select"
+              onChange={categoryFilterOnChange}
+            >
+              <option value="all">All</option>
+              <option value="sound-library">Sound Library</option>
+              <option value="label">Label</option>
+              <option value="mixes">Mixes</option>
+              <option value="venue">Venue</option>
+              <option value="software">Software</option>
+              <option value="merch">Merch</option>
             </select>
           </div>
           <div className="admin-list-controls-search">
             <label htmlFor="search">
               Search:&nbsp;
             </label>
-            <input type="text" name="search" placeholder="Tag, title, attribution..." />
+            <input
+              onChange={searchOnChange}
+              placeholder="Tag, title, attribution..."
+              type="text"
+            />
           </div>
         </div>
         <table>
@@ -63,7 +99,7 @@ function AdminList(): ReactElement {
           </thead>
           <tbody>
             { contentItems.map(item => (
-              <tr>
+              <tr key={item.slug}>
                 {/* <td className="admin-list-column-check">
                   <input type="checkbox"/>
                 </td> */}

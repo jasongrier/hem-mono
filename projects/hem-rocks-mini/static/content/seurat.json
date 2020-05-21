@@ -9,20 +9,20 @@
   "flexPriceMinimum": "",
   "flexPriceRecommended": 15,
   "keyArt": "",
-  "name": "Outtakes",
+  "name": "Seurat",
   "nameWrapping": "",
   "published": true,
-  "slug": "outtakes",
+  "slug": "seurat",
   "sticky": false,
   "tags": [
     "sound-library",
-    "sonic-detritus",
-    "labor-theory"
+    "generative-tools",
+    "midi-devices"
   ],
   "tracks": [
     "sound-library",
-    "sonic-detritus",
-    "labor-theory"
+    "generative-tools",
+    "midi-devices"
   ],
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""

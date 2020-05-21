@@ -9,20 +9,22 @@
   "flexPriceMinimum": "",
   "flexPriceRecommended": 15,
   "keyArt": "",
-  "name": "Outtakes",
+  "name": "Viola",
   "nameWrapping": "",
   "published": true,
-  "slug": "outtakes",
+  "slug": "viola",
   "sticky": false,
   "tags": [
     "sound-library",
-    "sonic-detritus",
-    "labor-theory"
+    "instruments",
+    "microtonality",
+    "strings"
   ],
   "tracks": [
     "sound-library",
-    "sonic-detritus",
-    "labor-theory"
+    "instruments",
+    "microtonality",
+    "strings"
   ],
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""

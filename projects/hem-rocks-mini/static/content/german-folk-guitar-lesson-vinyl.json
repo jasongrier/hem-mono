@@ -1,1 +1,29 @@
-{"acceptingDonations":false,"badgeText":null,"blurb":"","date":"01.09.2017","description":"  ","featureList":[],"fixedPrice":null,"flexPriceMinimum":0,"flexPriceRecommended":15,"hasFixedPrice":false,"id":"ccc44220-9adf-11ea-bceb-b7d784ea8071","images":[],"tags":["sound-library","found-sound","thrift-store-vinyl"],"name":"Guitar Lesson","nameWrapping":null,"published":true,"shopifyHandle":"","soundCloudTrackId":"soundCloudTrackId","soundCloudSecretToken":null,"trackAttribution":"HEM Sound Library","slug":"german-folk-guitar-lesson-vinyl","sticky":false,"type":"Sample Pack for Ableton Live","userSuggestedPrice":null,"videos":[]}
+{
+  "acceptingDonations": false,
+  "attribution": "",
+  "badgeText": "",
+  "blurb": "",
+  "date": "01.09.2017",
+  "description": "  ",
+  "fixedPrice": "",
+  "flexPriceMinimum": "",
+  "flexPriceRecommended": 15,
+  "keyArt": "",
+  "name": "Guitar Lesson",
+  "nameWrapping": "",
+  "published": true,
+  "slug": "german-folk-guitar-lesson-vinyl",
+  "sticky": false,
+  "tags": [
+    "sound-library",
+    "found-sound",
+    "thrift-store-vinyl"
+  ],
+  "tracks": [
+    "sound-library",
+    "found-sound",
+    "thrift-store-vinyl"
+  ],
+  "type": "Sample Pack for Ableton Live",
+  "userSuggestedPrice": ""
+}

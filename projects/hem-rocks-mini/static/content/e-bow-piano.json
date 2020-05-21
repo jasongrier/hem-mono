@@ -1,1 +1,33 @@
-{"acceptingDonations":false,"badgeText":"Coming Soon","blurb":"","date":"01.07.2020","description":"  ","featureList":[],"fixedPrice":null,"flexPriceMinimum":0,"flexPriceRecommended":15,"hasFixedPrice":false,"id":"ccc29470-9adf-11ea-bceb-b7d784ea8071","images":[],"tags":["sound-library","keys","instruments","extended-technique","coming-soon"],"name":"E-Bow Piano","nameWrapping":null,"published":true,"shopifyHandle":"","soundCloudTrackId":"soundCloudTrackId","soundCloudSecretToken":null,"trackAttribution":"HEM Sound Library","slug":"e-bow-piano","sticky":false,"type":"Sample Pack for Ableton Live","userSuggestedPrice":null,"videos":[]}
+{
+  "acceptingDonations": false,
+  "attribution": "",
+  "badgeText": "Coming Soon",
+  "blurb": "",
+  "date": "01.07.2020",
+  "description": "  ",
+  "fixedPrice": "",
+  "flexPriceMinimum": "",
+  "flexPriceRecommended": 15,
+  "keyArt": "",
+  "name": "E-Bow Piano",
+  "nameWrapping": "",
+  "published": true,
+  "slug": "e-bow-piano",
+  "sticky": false,
+  "tags": [
+    "sound-library",
+    "keys",
+    "instruments",
+    "extended-technique",
+    "coming-soon"
+  ],
+  "tracks": [
+    "sound-library",
+    "keys",
+    "instruments",
+    "extended-technique",
+    "coming-soon"
+  ],
+  "type": "Sample Pack for Ableton Live",
+  "userSuggestedPrice": ""
+}
