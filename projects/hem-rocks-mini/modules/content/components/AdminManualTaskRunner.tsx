@@ -1,5 +1,6 @@
 import React, { ReactElement, useEffect, useState, useCallback } from 'react'
 import uuid from 'uuid/v1'
+import moment from 'moment'
 import { autoParagraph } from '../../../../../lib/functions'
 import { modelize } from '../functions'
 
@@ -52,7 +53,7 @@ function convertOldTypescriptModelsToJson() {
           let item = eval('({' + fieldBlock + '})')
           item.blurb = ''
           item = modelize(item)
-          index.push(item.slug)
+          index.push({ slug: item.slug, date: item.date })
 
           const jsonItem = JSON.stringify(item, null, 2)
           writeFileSync(join(destDir, item.slug + '.json'), jsonItem)
@@ -102,7 +103,7 @@ function migrate() {
 
     try {
       const item = modelize(data)
-      index.push(item.slug)
+      index.push({ slug: item.slug, date: item.date })
 
       const jsonItem = JSON.stringify(item, null, 2)
       writeFileSync(join(workingDir, item.slug + '.json'), jsonItem)

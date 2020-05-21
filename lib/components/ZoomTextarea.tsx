@@ -49,9 +49,13 @@ const styleSheet = `
   }
 `
 
+function getDisplayText(text: string) {
+  return text.substr(0, 150) + '...'
+}
+
 function ZoomTextarea({ name, onChange, value }: IProps): ReactElement {
   const [expanded, setExpanded] = useState<boolean>(false)
-  const [displayText, setDisplayText] = useState<string>()
+  const [displayText, setDisplayText] = useState<string>(getDisplayText(value))
 
   const inputOnClick = useCallback(
     function inputOnClickFn() {
@@ -68,7 +72,7 @@ function ZoomTextarea({ name, onChange, value }: IProps): ReactElement {
   const textareaOnChange = useCallback(
     function textareaOnChangeFn(evt: SyntheticEvent<HTMLTextAreaElement>) {
       onChange(evt.currentTarget.value)
-      setDisplayText(evt.currentTarget.value.substr(0, 150) + '...')
+      setDisplayText(getDisplayText(evt.currentTarget.value))
     }, [],
   )
 
@@ -93,8 +97,9 @@ function ZoomTextarea({ name, onChange, value }: IProps): ReactElement {
         )}
         { !expanded && (
           <input
-            value={displayText}
             onClick={inputOnClick}
+            readOnly={true}
+            value={displayText}
           />
         )}
       </div>

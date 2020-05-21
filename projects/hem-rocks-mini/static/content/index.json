@@ -1,76 +1,298 @@
 [
-  "archive",
-  "ascending-series-three",
-  "betrieb",
-  "black-and-white-rainbow",
-  "clouds",
-  "commotus",
-  "demonstration-disc",
-  "dog-star-orchestra-2009",
-  "dog-star-orchestra-2010",
-  "early-live-recordings",
-  "eating-the-stars",
-  "heart-shaped-rock",
-  "hem-anniversary-one",
-  "hit-singles",
-  "human-genius-at-soundwalk",
-  "instant-coma",
-  "katahymie",
-  "lats-yerk",
-  "linda-perhacs-julia-holter",
-  "maria",
-  "no-bosses-no-bullshit",
-  "scared-famous",
-  "syzygy",
-  "the-human-ear-volume-i",
-  "the-human-ear-volume-ii",
-  "thrash-and-burn",
-  "tombstones",
-  "trauermusik",
-  "twelve-radios",
-  "unbekannte",
-  "buttons",
-  "luc",
-  "midst",
-  "placemats",
-  "relineator",
-  "seurat-standalone",
-  "acoustic-guitar",
-  "antique-piano",
-  "austin-thunderstorm",
-  "berlin-new-years",
-  "breaths",
-  "choir-vinyl",
-  "chord-brush",
-  "clarinet",
-  "cymbals",
-  "drum-kit",
-  "e-bow-piano",
-  "electric-bass",
-  "electric-guitar",
-  "flow",
-  "frame-drum",
-  "german-folk-guitar-lesson-vinyl",
-  "grand-piano",
-  "hum-hiss-crackle",
-  "mic-feedback",
-  "nature-sounds-vinyl",
-  "no-input-mixer",
-  "noise-reduction-artefacts",
-  "oberheim-expander",
-  "one-pitch",
-  "ooohs-and-ahs",
-  "outtakes",
-  "overtone-singing",
-  "percussion",
-  "protest",
-  "quarter-tone-synth",
-  "record-endings",
-  "seurat-ii",
-  "seurat",
-  "sweet-bea-vinyl",
-  "viola-ii",
-  "viola",
-  "window",
-  "zither"
+  {
+    "slug": "acoustic-guitar",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "antique-piano",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "archive",
+    "date": "20.09.2020"
+  },
+  {
+    "slug": "ascending-series-three",
+    "date": "01.09.2008"
+  },
+  {
+    "slug": "austin-thunderstorm",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "berlin-new-years",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "betrieb",
+    "date": "01.09.2013"
+  },
+  {
+    "slug": "black-and-white-rainbow",
+    "date": "01.09.2007"
+  },
+  {
+    "slug": "breaths",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "buttons",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "choir-vinyl",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "chord-brush",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "clarinet",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "clouds",
+    "date": "01.09.2012"
+  },
+  {
+    "slug": "commotus",
+    "date": "01.09.2012"
+  },
+  {
+    "slug": "cymbals",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "demonstration-disc",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "dog-star-orchestra-2009",
+    "date": "01.09.2009"
+  },
+  {
+    "slug": "dog-star-orchestra-2010",
+    "date": "01.09.2010"
+  },
+  {
+    "slug": "drum-kit",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "e-bow-piano",
+    "date": "01.07.2020"
+  },
+  {
+    "slug": "early-live-recordings",
+    "date": "01.09.2013"
+  },
+  {
+    "slug": "eating-the-stars",
+    "date": "01.09.2007"
+  },
+  {
+    "slug": "electric-bass",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "electric-guitar",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "flow",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "frame-drum",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "german-folk-guitar-lesson-vinyl",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "grand-piano",
+    "date": "01.09.2020"
+  },
+  {
+    "slug": "heart-shaped-rock",
+    "date": "01.09.2011"
+  },
+  {
+    "slug": "hem-anniversary-one",
+    "date": "01.09.2007"
+  },
+  {
+    "slug": "hit-singles",
+    "date": "01.09.2007"
+  },
+  {
+    "slug": "hum-hiss-crackle",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "human-genius-at-soundwalk",
+    "date": "01.09.2009"
+  },
+  {
+    "slug": "instant-coma",
+    "date": "01.09.2007"
+  },
+  {
+    "slug": "katahymie",
+    "date": "01.09.2012"
+  },
+  {
+    "slug": "lats-yerk",
+    "date": "01.09.2011"
+  },
+  {
+    "slug": "linda-perhacs-julia-holter",
+    "date": "01.09.2011"
+  },
+  {
+    "slug": "luc",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "maria",
+    "date": "01.09.2011"
+  },
+  {
+    "slug": "mic-feedback",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "midst",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "nature-sounds-vinyl",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "no-bosses-no-bullshit",
+    "date": "01.09.2008"
+  },
+  {
+    "slug": "no-input-mixer",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "noise-reduction-artefacts",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "oberheim-expander",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "one-pitch",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "ooohs-and-ahs",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "outtakes",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "overtone-singing",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "percussion",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "placemats",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "protest",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "quarter-tone-synth",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "record-endings",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "relineator",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "scared-famous",
+    "date": "01.09.2007"
+  },
+  {
+    "slug": "seurat-ii",
+    "date": "01.05.2020"
+  },
+  {
+    "slug": "seurat-standalone",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "seurat",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "sweet-bea-vinyl",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "syzygy",
+    "date": "01.09.2013"
+  },
+  {
+    "slug": "the-human-ear-volume-i",
+    "date": "01.09.2007"
+  },
+  {
+    "slug": "the-human-ear-volume-ii",
+    "date": "01.09.2011"
+  },
+  {
+    "slug": "thrash-and-burn",
+    "date": "01.09.2013"
+  },
+  {
+    "slug": "tombstones",
+    "date": "01.09.2013"
+  },
+  {
+    "slug": "trauermusik",
+    "date": "01.09.2009"
+  },
+  {
+    "slug": "twelve-radios",
+    "date": "01.09.2008"
+  },
+  {
+    "slug": "unbekannte",
+    "date": "01.09.2013"
+  },
+  {
+    "slug": "viola-ii",
+    "date": "01.07.2020"
+  },
+  {
+    "slug": "viola",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "window",
+    "date": "01.09.2017"
+  },
+  {
+    "slug": "zither",
+    "date": "01.09.2017"
+  }
 ]

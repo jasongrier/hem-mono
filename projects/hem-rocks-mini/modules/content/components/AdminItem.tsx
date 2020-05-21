@@ -79,10 +79,7 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
     }
 
     else {
-      dispatch(requestUpdateItems([{
-        slug: itemSlug,
-        update: workingItem,
-      }]))
+      dispatch(requestUpdateItems([workingItem]))
     }
 
     setOriginalItem(workingItem)

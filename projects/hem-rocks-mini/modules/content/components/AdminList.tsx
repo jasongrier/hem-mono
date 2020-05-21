@@ -2,6 +2,7 @@ import React, { ReactElement, useEffect, useCallback, useState, SyntheticEvent }
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { isEmpty, noop } from 'lodash'
+import moment from 'moment'
 import { ElectronOnly } from '../../../../../lib/components'
 import { PlayPauseButton } from '../../../../../lib/packages/hem-buttons'
 import { requestDeleteItems, requestReadItems, requestUpdateItems } from '../index'
@@ -33,10 +34,10 @@ function AdminList(): ReactElement {
     }, [],
   )
 
-  let contentItems = tag === 'all' ? allContentItems : allContentItems.filter(item =>
+  let contentItems = [].concat(tag === 'all' ? allContentItems : allContentItems.filter(item =>
     item.tags.includes(tag)
     || item.tags.includes(tag.toLowerCase())
-  )
+  ))
 
   if (!isEmpty(search)) {
     contentItems = allContentItems.filter(item =>
@@ -46,6 +47,11 @@ function AdminList(): ReactElement {
       || item.attribution.toLowerCase().includes(search.toLowerCase())
     )
   }
+
+  contentItems.sort((a, b) => {
+    // @ts-ignore
+    return moment(b.date, 'DD.MM.YYYY') - moment(a.date, 'DD.MM.YYYY')
+  })
 
   return (
     <ElectronOnly showMessage={true}>
@@ -112,12 +118,7 @@ function AdminList(): ReactElement {
                 <td className="admin-list-column-actions">
                   <button
                     className="action-button"
-                    onClick={() => {
-                      dispatch(requestUpdateItems([{
-                        slug: item.slug,
-                        update: { published: !item.published },
-                      }]))
-                    }}
+                    onClick={() => {}}
                   >
                     { item.published ? 'Unpublish' : 'Publish' }
                   </button>

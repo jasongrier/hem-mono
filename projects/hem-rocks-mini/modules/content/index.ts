@@ -1,17 +1,5 @@
 import { AnyAction } from 'redux'
 
-export interface IImage {
-  alt: string
-  src: string
-}
-
-export interface ITrack {
-  attribution: string
-  type: 'local' | 'mixcloud' | 'soundcloud'
-  soundCloudTrackId: string | null
-  soundCloudSecretToken: string | null
-}
-
 export interface IContentItem {
   acceptingDonations: boolean
   attribution: string
@@ -22,7 +10,6 @@ export interface IContentItem {
   fixedPrice: number | null
   flexPriceMinimum: number | null
   flexPriceRecommended: number | null
-  keyArt: string
   name: string
   nameWrapping: string | null
   published: boolean
@@ -49,7 +36,6 @@ export const fieldTypes: any = {
   fixedPrice: 'text',
   flexPriceMinimum: 'text',
   flexPriceRecommended: 'text',
-  keyArt: 'text',
   name: 'text',
   nameWrapping: 'text',
   published: 'checkbox',
@@ -114,7 +100,7 @@ export interface IRequestReadItems extends AnyAction {
 
 export interface IRequestUpdateItems extends AnyAction {
   type: typeof REQUEST_UPDATE_ITEMS
-  payload: Array<{ slug: string, update: Partial<IContentItem> }>
+  payload: IContentItem[]
 }
 
 export interface ISetCurrentItem extends AnyAction {
@@ -166,4 +152,5 @@ export {
 
 export {
   readItemsSaga,
+  updateItemsSaga,
 } from './sagas'
