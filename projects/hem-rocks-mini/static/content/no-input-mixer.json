@@ -13,14 +13,8 @@
   "published": true,
   "slug": "no-input-mixer",
   "sticky": false,
-  "tags": [
-    "sound-library",
-    "post-studio"
-  ],
-  "tracks": [
-    "sound-library",
-    "post-studio"
-  ],
+  "tags": "sound-library, post-studio",
+  "tracks": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

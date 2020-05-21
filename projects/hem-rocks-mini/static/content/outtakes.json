@@ -13,16 +13,8 @@
   "published": true,
   "slug": "outtakes",
   "sticky": false,
-  "tags": [
-    "sound-library",
-    "sonic-detritus",
-    "labor-theory"
-  ],
-  "tracks": [
-    "sound-library",
-    "sonic-detritus",
-    "labor-theory"
-  ],
+  "tags": "sound-library, sonic-detritus, labor-theory",
+  "tracks": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

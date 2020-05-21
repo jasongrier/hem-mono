@@ -13,20 +13,8 @@
   "published": true,
   "slug": "grand-piano",
   "sticky": true,
-  "tags": [
-    "sound-library",
-    "keys",
-    "extended-technique",
-    "instruments",
-    "new-in-the-library"
-  ],
-  "tracks": [
-    "sound-library",
-    "keys",
-    "extended-technique",
-    "instruments",
-    "new-in-the-library"
-  ],
+  "tags": "sound-library, keys, extended-technique, instruments, new-in-the-library",
+  "tracks": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

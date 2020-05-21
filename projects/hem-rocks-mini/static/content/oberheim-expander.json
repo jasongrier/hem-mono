@@ -13,16 +13,8 @@
   "published": true,
   "slug": "oberheim-expander",
   "sticky": false,
-  "tags": [
-    "sound-library",
-    "synth",
-    "instruments"
-  ],
-  "tracks": [
-    "sound-library",
-    "synth",
-    "instruments"
-  ],
+  "tags": "sound-library, synth, instruments",
+  "tracks": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

@@ -13,16 +13,8 @@
   "published": true,
   "slug": "hum-hiss-crackle",
   "sticky": false,
-  "tags": [
-    "sound-library",
-    "post-studio",
-    "sonic-detritus"
-  ],
-  "tracks": [
-    "sound-library",
-    "post-studio",
-    "sonic-detritus"
-  ],
+  "tags": "sound-library, post-studio, sonic-detritus",
+  "tracks": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

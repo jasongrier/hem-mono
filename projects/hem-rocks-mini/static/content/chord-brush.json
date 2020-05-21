@@ -13,16 +13,8 @@
   "published": true,
   "slug": "chord-brush",
   "sticky": false,
-  "tags": [
-    "sound-library",
-    "generative-tools",
-    "midi-devices"
-  ],
-  "tracks": [
-    "sound-library",
-    "generative-tools",
-    "midi-devices"
-  ],
+  "tags": "sound-library, generative-tools, midi-devices",
+  "tracks": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

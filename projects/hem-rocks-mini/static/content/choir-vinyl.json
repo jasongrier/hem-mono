@@ -13,20 +13,8 @@
   "published": true,
   "slug": "choir-vinyl",
   "sticky": false,
-  "tags": [
-    "sound-library",
-    "choral",
-    "vocal",
-    "found-sound",
-    "thrift-store-vinyl"
-  ],
-  "tracks": [
-    "sound-library",
-    "choral",
-    "vocal",
-    "found-sound",
-    "thrift-store-vinyl"
-  ],
+  "tags": "sound-library, choral, vocal, found-sound, thrift-store-vinyl",
+  "tracks": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

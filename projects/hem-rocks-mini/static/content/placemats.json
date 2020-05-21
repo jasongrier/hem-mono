@@ -13,18 +13,8 @@
   "published": true,
   "slug": "placemats",
   "sticky": false,
-  "tags": [
-    "projects",
-    "npm-modules",
-    "javascript",
-    "react"
-  ],
-  "tracks": [
-    "projects",
-    "npm-modules",
-    "javascript",
-    "react"
-  ],
+  "tags": "projects, npm-modules, javascript, react",
+  "tracks": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

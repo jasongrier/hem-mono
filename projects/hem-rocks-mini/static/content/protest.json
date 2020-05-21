@@ -13,16 +13,8 @@
   "published": true,
   "slug": "protest",
   "sticky": false,
-  "tags": [
-    "sound-library",
-    "field-recording",
-    "performativity-activism"
-  ],
-  "tracks": [
-    "sound-library",
-    "field-recording",
-    "performativity-activism"
-  ],
+  "tags": "sound-library, field-recording, performativity-activism",
+  "tracks": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

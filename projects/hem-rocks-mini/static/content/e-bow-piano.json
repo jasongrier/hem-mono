@@ -13,20 +13,8 @@
   "published": true,
   "slug": "e-bow-piano",
   "sticky": false,
-  "tags": [
-    "sound-library",
-    "keys",
-    "instruments",
-    "extended-technique",
-    "coming-soon"
-  ],
-  "tracks": [
-    "sound-library",
-    "keys",
-    "instruments",
-    "extended-technique",
-    "coming-soon"
-  ],
+  "tags": "sound-library, keys, instruments, extended-technique, coming-soon",
+  "tracks": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

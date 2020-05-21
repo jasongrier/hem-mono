@@ -13,18 +13,8 @@
   "published": true,
   "slug": "viola",
   "sticky": false,
-  "tags": [
-    "sound-library",
-    "instruments",
-    "microtonality",
-    "strings"
-  ],
-  "tracks": [
-    "sound-library",
-    "instruments",
-    "microtonality",
-    "strings"
-  ],
+  "tags": "sound-library, instruments, microtonality, strings",
+  "tracks": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

@@ -13,18 +13,8 @@
   "published": true,
   "slug": "cymbals",
   "sticky": false,
-  "tags": [
-    "sound-library",
-    "instruments",
-    "percussion",
-    "extended-technique"
-  ],
-  "tracks": [
-    "sound-library",
-    "instruments",
-    "percussion",
-    "extended-technique"
-  ],
+  "tags": "sound-library, instruments, percussion, extended-technique",
+  "tracks": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

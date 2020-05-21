@@ -13,18 +13,8 @@
   "published": true,
   "slug": "seurat-ii",
   "sticky": true,
-  "tags": [
-    "sound-library",
-    "generative-tools",
-    "midi-devices",
-    "coming-soon"
-  ],
-  "tracks": [
-    "sound-library",
-    "generative-tools",
-    "midi-devices",
-    "coming-soon"
-  ],
+  "tags": "sound-library, generative-tools, midi-devices, coming-soon",
+  "tracks": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }
