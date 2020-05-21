@@ -1,4 +1,5 @@
 import React, { ReactElement, useState, useCallback, PropsWithChildren, Children, SyntheticEvent } from 'react'
+import { isArray } from 'lodash'
 import { CloseButton } from '../packages/hem-buttons'
 
 interface IProps {
@@ -49,8 +50,33 @@ const styleSheet = `
   }
 `
 
-function getDisplayText(text: string) {
-  return text.substr(0, 150) + '...'
+function getDisplayText(subject: string) {
+  let longText
+
+  if (isArray(subject)) {
+    longText = subject.join(', ')
+  }
+
+  else if (typeof subject === 'string') {
+    longText = subject
+  }
+
+  else if (typeof subject === 'number') {
+    longText = parseFloat(subject)
+  }
+
+  else if (
+    subject === null
+    || subject === undefined
+  ) {
+    longText = ''
+  }
+
+  else {
+    console.log(longText, subject)
+  }
+
+  return longText.length > 150 ? longText.substr(0, 150) + '...' : longText
 }
 
 function ZoomTextarea({ name, onChange, value }: IProps): ReactElement {

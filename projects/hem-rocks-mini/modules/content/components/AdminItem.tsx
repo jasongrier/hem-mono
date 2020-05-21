@@ -103,7 +103,7 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
 
     if (keyIndex > -1) {
       orderedKeys.push(preferredKey)
-      keys.splice(keyIndex)
+      keys.splice(keyIndex, 1)
     }
   }
 
@@ -124,6 +124,9 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
       <table className="admin-item">
         <tbody>
           { orderedKeys.map(fieldName => {
+            if (fieldName === 'slug') return
+            if (fieldName === 'userSuggestedPrice') return
+
             if (fieldTypes[fieldName] === 'textarea') {
               return (
                 <tr key={fieldName}>

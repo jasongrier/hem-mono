@@ -8,19 +8,13 @@
   "fixedPrice": "",
   "flexPriceMinimum": "",
   "flexPriceRecommended": 15,
-  "name": "Archives",
+  "name": "Archive",
   "nameWrapping": "",
   "published": true,
   "slug": "archive",
   "sticky": false,
-  "tags": [
-    "label",
-    "record-releases"
-  ],
-  "tracks": [
-    "label",
-    "record-releases"
-  ],
+  "tags": "label, record-releases",
+  "tracks": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }
