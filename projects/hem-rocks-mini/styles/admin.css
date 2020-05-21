@@ -149,11 +149,11 @@
 }
 
 .admin-list-column-actions {
-  width: 220px;
+  width: 100px;
 }
 
 .admin-list-column-actions button {
-  float: left;
+  float: right;
   width: 100px;
   height: 30px;
   line-height: 30px;
@@ -216,7 +216,7 @@
 .admin-item input,
 .admin-item textarea {
   display: inline-block;
-  width: 610px;
+  width: 770px;
   height: 40px;
   padding: 10px 20px;
   border: 1px solid #ccc;

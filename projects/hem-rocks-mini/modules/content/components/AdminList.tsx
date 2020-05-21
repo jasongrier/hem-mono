@@ -122,7 +122,7 @@ function AdminList(): ReactElement {
                   >
                     { item.published ? 'Unpublish' : 'Publish' }
                   </button>
-                  <button
+                  {/* <button
                     className="action-button"
                     onClick={() => {
                       const confirmation = confirm('Are you sure?')
@@ -131,7 +131,7 @@ function AdminList(): ReactElement {
                     }}
                   >
                     Delete
-                  </button>
+                  </button> */}
                 </td>
               </tr>
             ))}
