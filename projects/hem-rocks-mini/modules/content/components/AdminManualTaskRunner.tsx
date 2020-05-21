@@ -127,6 +127,8 @@ function AdminManualTaskRunner(): ReactElement {
 
   const resetModelsOnClick = useCallback(
     function resetOnClickFn() {
+      const confirmation = confirm('This will RUIN everything. make sure you have content backed up someplace, or committed to source control.')
+      if (!confirmation) return
       runTask(convertOldTypescriptModelsToJson)
     }, [],
   )

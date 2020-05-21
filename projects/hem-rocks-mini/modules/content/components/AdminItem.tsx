@@ -1,40 +1,132 @@
 import React, { ReactElement, useState, SyntheticEvent, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import produce from 'immer'
-import { identity, startCase } from 'lodash'
+import { isEqual, startCase } from 'lodash'
 import { ElectronOnly, ZoomTextarea } from '../../../../../lib/components'
-import { IContentItem, fieldTypes, modelize, requestCreateItems } from '../index'
+import { IContentItem, fieldTypes, modelize, requestCreateItems, requestUpdateItems } from '../index'
+import { RootState } from '../../../index'
 
 interface IProps {
-  create?: boolean
-  item?: IContentItem
+  create: boolean
+  itemSlug?: string
 }
 
-function AdminItem({ create, item }: IProps): ReactElement {
-  const [workingItem, setWorkingItem] = useState<IContentItem>(
-    produce(create ? modelize({}) : item, identity)
-  )
+function AdminItem({ create, itemSlug }: IProps): ReactElement {
+  const { allContentItems } = useSelector((state: RootState) => ({
+    allContentItems: state.content.contentItems,
+  }))
 
   const dispatch = useDispatch()
+
+  const [originalItem, setOriginalItem] = useState<IContentItem>()
+  const [workingItem, setWorkingItem] = useState<IContentItem>()
+  const [canSave, setCanSave] = useState<boolean>(false)
+
+  useEffect(function initItem() {
+    if (!allContentItems.length) return
+    if (originalItem) return
+    if (workingItem) return
+
+    let errorMessage
+
+    if (!create && !itemSlug) {
+      errorMessage = 'Sorry, something went wrong, there is no item slug given.'
+    }
+
+    let item
+
+    if (!create && itemSlug) {
+      item = allContentItems.find(item => item.slug === itemSlug)
+
+      if (!item) {
+        errorMessage = `Sorry, something went wrong, theres no item with the slug "${itemSlug}".`
+      }
+    }
+
+    else if (create) {
+      item = modelize({})
+      setCanSave(true)
+    }
+
+    else {
+      errorMessage = 'Sorry, something truly weird happened.'
+    }
+
+    if (errorMessage) {
+      console.error(errorMessage)
+      return
+    }
+
+    if (!item) {
+      console.error('An unknown error has occurred.')
+      return
+    }
+
+    setOriginalItem(item)
+    setWorkingItem(item)
+  }, [allContentItems])
 
   function onChange(fieldName, value) {
     setWorkingItem(produce(workingItem, (draftItem) => {
       draftItem[fieldName] = value
+      setCanSave(!isEqual(draftItem, originalItem))
     }))
   }
 
-  useEffect(() => {
-    dispatch(requestCreateItems([workingItem]))
-  }, [workingItem])
+  function onSaveClicked() {
+    if (create) {
+      dispatch(requestCreateItems([workingItem]))
+    }
+
+    else {
+      dispatch(requestUpdateItems([{
+        slug: itemSlug,
+        update: workingItem,
+      }]))
+    }
+
+    setOriginalItem(workingItem)
+    setCanSave(false)
+  }
+
+  if (!workingItem) return (
+    <header className="admin-item-header">
+      <h2>Loading...</h2>
+    </header>
+  )
+
+  const keys = Object.keys(workingItem)
+  const preferredOrder = [
+    'name',
+  ]
+
+  let orderedKeys = []
+  for (const preferredKey of preferredOrder) {
+    const keyIndex = keys.indexOf(preferredKey)
+
+    if (keyIndex > -1) {
+      orderedKeys.push(preferredKey)
+      keys.splice(keyIndex)
+    }
+  }
+
+  orderedKeys = orderedKeys.concat(keys)
 
   return (
     <ElectronOnly showMessage={true}>
       <header className="admin-item-header">
-        <button className="action-button">Save</button>
+        <h2>{ originalItem.name }</h2>
+        <button
+          className="action-button save-item-button"
+          disabled={!canSave}
+          onClick={onSaveClicked}
+        >
+          Save
+        </button>
       </header>
       <table className="admin-item">
         <tbody>
-          { Object.keys(workingItem).map(fieldName => {
+          { orderedKeys.map(fieldName => {
             if (fieldTypes[fieldName] === 'textarea') {
               return (
                 <tr key={fieldName}>

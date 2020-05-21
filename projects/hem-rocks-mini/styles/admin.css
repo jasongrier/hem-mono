@@ -169,16 +169,33 @@
 
 .admin-item {
   width: 100%;
-  margin-top: 30px;
 }
 
 .admin-item-header {
-  padding-top: 30px;
-  text-align: right;
+  position: relative;
+  height: 100px;
+  line-height: 100px;
+}
+
+.admin-item-header h2 {
+  display: inline-block;
+  margin: 3px 0 0 0;
+  padding: 0;
+  font-size: 40px;
+  font-weight: normal;
+  vertical-align: middle;
 }
 
 .admin-item-header button {
+  position: absolute;
+  top: 33px;
+  right: 0;
   margin-right: 0;
+}
+
+.admin-item-header button:disabled {
+  background-color: #ccc;
+  pointer-events: none;
 }
 
 .admin-item td {

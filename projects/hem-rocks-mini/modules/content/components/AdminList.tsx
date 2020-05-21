@@ -104,7 +104,7 @@ function AdminList(): ReactElement {
                   <input type="checkbox"/>
                 </td> */}
                 <td className="admin-list-column-title">
-                  <Link to={item.slug}>{item.name}</Link>
+                  <Link to={`/admin/edit/${item.slug}`}>{item.name}</Link>
                 </td>
                 <td className="admin-list-column-date">
                   { item.date }

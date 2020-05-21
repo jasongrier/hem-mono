@@ -36,9 +36,18 @@ function Admin(): ReactElement {
           <Route exact path="/admin/manual-task-runner">
             <AdminManualTaskRunner />
           </Route>
-          <Route exact path="/admin/edit/:itemSlug">
-            Edit
-          </Route>
+          <Route
+            exact
+            path="/admin/edit/:itemSlug"
+            render={props => {
+              return (
+                <AdminItem
+                  create={false}
+                  itemSlug={props.match.params.itemSlug}
+                />
+              )
+            }}
+          />
         </Switch>
       </div>
     </>
