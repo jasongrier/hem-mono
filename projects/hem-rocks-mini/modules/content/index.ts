@@ -41,6 +41,7 @@ export interface IState {
 
 export const fieldTypes: any = {
   acceptingDonations: 'checkbox',
+  attribution: 'text',
   badgeText: 'text',
   blurb: 'textarea',
   date: 'text',
