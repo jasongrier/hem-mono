@@ -1,20 +1,4 @@
-import { IContentItem, IImage, ITrack } from '../index'
-
-function imageize(rawImage: any): IImage {
-  return {
-    alt: rawImage.alt,
-    src: rawImage.src,
-  }
-}
-
-function trackize(rawTrack: any): ITrack {
-  return {
-    attribution: rawTrack.attribution,
-    type: rawTrack.type,
-    soundCloudTrackId: rawTrack.soundCloudTrackId,
-    soundCloudSecretToken: rawTrack.soundCloudSecretToken,
-  }
-}
+import { IContentItem } from '../index'
 
 function modelize(rawContentItem: any): IContentItem {
   return {
@@ -27,7 +11,6 @@ function modelize(rawContentItem: any): IContentItem {
     fixedPrice: rawContentItem.fixedPrice || '',
     flexPriceMinimum: rawContentItem.flexPriceMinimum || '',
     flexPriceRecommended: rawContentItem.flexPriceRecommended || '',
-    keyArt: rawContentItem.keyArt || '',
     name: rawContentItem.name || '',
     nameWrapping: rawContentItem.nameWrapping || '',
     published: rawContentItem.published || false,

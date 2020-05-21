@@ -61,6 +61,9 @@ sagaMiddleware.run(unpausePlayerSaga)
 import { readItemsSaga } from './modules/content'
 sagaMiddleware.run(readItemsSaga)
 
+import { updateItemsSaga } from './modules/content'
+sagaMiddleware.run(updateItemsSaga)
+
 const Root = (
   <Provider store={store}>
     <BrowserRouter>

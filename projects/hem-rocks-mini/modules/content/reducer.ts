@@ -53,7 +53,21 @@ const reducer = (
       })
     }
 
-    case DO_UPDATE_ITEMS:
+    case DO_UPDATE_ITEMS: {
+      return produce(state, draftState => {
+        for (const updatedItem of payload) {
+
+          const itemIndex = draftState.contentItems.findIndex(
+            item => item.slug === updatedItem.slug
+          )
+
+          if (itemIndex < 0) throw new Error(`Cannot update item with slug "${updatedItem.slug}" because the original could not be found.`)
+
+          draftState[itemIndex] = updatedItem
+        }
+      })
+    }
+
     case REQUEST_CREATE_ITEMS:
     case REQUEST_DELETE_ITEMS:
     case REQUEST_READ_ITEMS:

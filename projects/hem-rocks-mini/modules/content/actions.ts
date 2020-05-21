@@ -54,9 +54,9 @@ const requestReadItems = (page: { page: number, size: number }): Action => ({
   payload: page,
 })
 
-const requestUpdateItems = (updates: Array<{ slug: string, update: Partial<IContentItem>}>): Action => ({
+const requestUpdateItems = (items: IContentItem[]): Action => ({
   type: REQUEST_UPDATE_ITEMS,
-  payload: updates,
+  payload: items,
 })
 
 const setCurrentItem = (item: IContentItem): Action => ({
