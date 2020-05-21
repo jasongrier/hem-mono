@@ -13,16 +13,8 @@
   "published": true,
   "slug": "percussion",
   "sticky": false,
-  "tags": [
-    "sound-library",
-    "percussion",
-    "sonic-detritus"
-  ],
-  "tracks": [
-    "sound-library",
-    "percussion",
-    "sonic-detritus"
-  ],
+  "tags": "sound-library, percussion, sonic-detritus",
+  "tracks": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

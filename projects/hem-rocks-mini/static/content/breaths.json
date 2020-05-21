@@ -13,18 +13,8 @@
   "published": true,
   "slug": "breaths",
   "sticky": false,
-  "tags": [
-    "sound-library",
-    "sonic-detritus",
-    "labor-theory",
-    "vocal"
-  ],
-  "tracks": [
-    "sound-library",
-    "sonic-detritus",
-    "labor-theory",
-    "vocal"
-  ],
+  "tags": "sound-library, sonic-detritus, labor-theory, vocal",
+  "tracks": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

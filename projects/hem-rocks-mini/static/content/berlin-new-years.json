@@ -13,14 +13,8 @@
   "published": true,
   "slug": "berlin-new-years",
   "sticky": false,
-  "tags": [
-    "sound-library",
-    "field-recording"
-  ],
-  "tracks": [
-    "sound-library",
-    "field-recording"
-  ],
+  "tags": "sound-library, field-recording",
+  "tracks": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

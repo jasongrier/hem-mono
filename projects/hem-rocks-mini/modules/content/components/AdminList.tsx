@@ -1,11 +1,12 @@
 import React, { ReactElement, useEffect, useCallback, useState, SyntheticEvent } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import produce from 'immer'
 import { isEmpty, noop } from 'lodash'
 import moment from 'moment'
 import { ElectronOnly } from '../../../../../lib/components'
 import { PlayPauseButton } from '../../../../../lib/packages/hem-buttons'
-import { requestDeleteItems, requestReadItems, requestUpdateItems } from '../index'
+import { requestDeleteItems, requestReadItems, requestUpdateItems, IContentItem } from '../index'
 import { RootState } from '../../../index'
 
 function AdminList(): ReactElement {
@@ -104,7 +105,7 @@ function AdminList(): ReactElement {
             </tr>
           </thead>
           <tbody>
-            { contentItems.map(item => (
+            { contentItems.map((item: IContentItem) => (
               <tr key={item.slug}>
                 {/* <td className="admin-list-column-check">
                   <input type="checkbox"/>
@@ -118,7 +119,12 @@ function AdminList(): ReactElement {
                 <td className="admin-list-column-actions">
                   <button
                     className="action-button"
-                    onClick={() => {}}
+                    onClick={() => {
+                      const updatedItem: IContentItem = produce(item, (draftItem) => {
+                        draftItem.published = !draftItem.published
+                      })
+                      dispatch(requestUpdateItems([updatedItem]))
+                    }}
                   >
                     { item.published ? 'Unpublish' : 'Publish' }
                   </button>

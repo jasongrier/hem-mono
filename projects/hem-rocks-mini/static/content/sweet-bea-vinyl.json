@@ -13,16 +13,8 @@
   "published": true,
   "slug": "sweet-bea-vinyl",
   "sticky": false,
-  "tags": [
-    "sound-library",
-    "found-sound",
-    "thrift-store-vinyl"
-  ],
-  "tracks": [
-    "sound-library",
-    "found-sound",
-    "thrift-store-vinyl"
-  ],
+  "tags": "sound-library, found-sound, thrift-store-vinyl",
+  "tracks": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Planes } from '../../../../../lib/packages/hem-placemats'
 import { SplatterDims } from '../../../../../lib/packages/hem-boxplatter'
-import { usePlacemats } from '../../../functions'
 import { LaunchDetailPopupButton } from './index'
 import { IContentItem, setCurrentItem } from '../index'
 
@@ -50,11 +49,11 @@ function MainContentBox({
       minMarginY={30}
       className={`
         main-content-box
+        with-photography
         main-content-box-date-${contentItem.date}
         ${className ? className : ''}
         ${contentItem.badgeText ? 'has-badge' : ''}
         ${alignRight && index > 0 ? 'align-right' : ''}
-        ${usePlacemats(contentItem) ? 'with-placemat' : 'with-photography'}
       `}
       width={300}
       height={0}
@@ -74,19 +73,12 @@ function MainContentBox({
         onClick={onClick}
       >
         <Link to={linkTo}>
-          { !usePlacemats(contentItem) && (
-            <div
-              className="main-content-box-key-art-image"
-              style={{
-                backgroundImage: `url(${contentItem.images[0].src})`
-              }}
-            >
-              { contentItem.images[0].alt }
-            </div>
-          )}
-          { usePlacemats(contentItem) && (
-            <Planes />
-          )}
+          <div
+            className="main-content-box-key-art-image"
+            style={{
+              backgroundImage: `url(http://static.hem.rocks/hem-rocks/content/images/${contentItem.slug}.jpg)`
+            }}
+          />
         </Link>
       </div>
       <div

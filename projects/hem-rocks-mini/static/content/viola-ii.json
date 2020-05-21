@@ -13,24 +13,8 @@
   "published": true,
   "slug": "viola-ii",
   "sticky": false,
-  "tags": [
-    "sound-library",
-    "coming-soon",
-    "extended-technique",
-    "asmr",
-    "instruments",
-    "microtonality",
-    "strings"
-  ],
-  "tracks": [
-    "sound-library",
-    "coming-soon",
-    "extended-technique",
-    "asmr",
-    "instruments",
-    "microtonality",
-    "strings"
-  ],
+  "tags": "sound-library, coming-soon, extended-technique, asmr, instruments, microtonality, strings",
+  "tracks": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

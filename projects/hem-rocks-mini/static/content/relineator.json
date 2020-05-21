@@ -13,18 +13,8 @@
   "published": true,
   "slug": "relineator",
   "sticky": false,
-  "tags": [
-    "projects",
-    "javascript",
-    "react",
-    "expanded-poetics"
-  ],
-  "tracks": [
-    "projects",
-    "javascript",
-    "react",
-    "expanded-poetics"
-  ],
+  "tags": "projects, javascript, react, expanded-poetics",
+  "tracks": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

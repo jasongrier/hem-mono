@@ -13,20 +13,8 @@
   "published": true,
   "slug": "quarter-tone-synth",
   "sticky": false,
-  "tags": [
-    "sound-library",
-    "synth",
-    "instruments",
-    "microtonality",
-    "coming-soon"
-  ],
-  "tracks": [
-    "sound-library",
-    "synth",
-    "instruments",
-    "microtonality",
-    "coming-soon"
-  ],
+  "tags": "sound-library, synth, instruments, microtonality, coming-soon",
+  "tracks": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

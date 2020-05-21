@@ -13,16 +13,8 @@
   "published": false,
   "slug": "overtone-singing",
   "sticky": false,
-  "tags": [
-    "sound-library",
-    "vocal",
-    "extended-technique"
-  ],
-  "tracks": [
-    "sound-library",
-    "vocal",
-    "extended-technique"
-  ],
+  "tags": "sound-library, vocal, extended-technique",
+  "tracks": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

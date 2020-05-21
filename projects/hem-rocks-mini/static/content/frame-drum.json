@@ -13,16 +13,8 @@
   "published": true,
   "slug": "frame-drum",
   "sticky": false,
-  "tags": [
-    "sound-library",
-    "instruments",
-    "percussion"
-  ],
-  "tracks": [
-    "sound-library",
-    "instruments",
-    "percussion"
-  ],
+  "tags": "sound-library, instruments, percussion",
+  "tracks": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

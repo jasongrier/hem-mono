@@ -17,7 +17,7 @@ function modelize(rawContentItem: any): IContentItem {
     slug: rawContentItem.slug || '',
     sticky: rawContentItem.sticky || false,
     tags: rawContentItem.tags || '',
-    tracks: rawContentItem.tags || '',
+    tracks: rawContentItem.tracks || '',
     type: rawContentItem.type || '',
     userSuggestedPrice: rawContentItem.userSuggestedPrice || '',
   }

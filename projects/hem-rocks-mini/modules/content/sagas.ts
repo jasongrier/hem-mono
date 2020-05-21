@@ -5,6 +5,7 @@ import {
 
   doReadItems as doReadItemsAc,
   doUpdateItems as doUpdateItemsAc,
+  requestReadItems as requestReadItemsAc,
 
   modelize,
 } from './index'
@@ -54,6 +55,7 @@ function* updateItems({ payload }: any) {
     execSync(`cp ${file} ${distFile}`, { stdio: 'inherit' })
 
     yield put(doUpdateItemsAc([updatedItem]))
+    yield put(requestReadItemsAc({ page: 1, size: 10000 }))
   }
 
   catch (err) {

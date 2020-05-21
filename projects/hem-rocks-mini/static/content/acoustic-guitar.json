@@ -13,16 +13,8 @@
   "published": true,
   "slug": "acoustic-guitar",
   "sticky": false,
-  "tags": [
-    "sound-library",
-    "guitar-and-bass",
-    "instruments"
-  ],
-  "tracks": [
-    "sound-library",
-    "guitar-and-bass",
-    "instruments"
-  ],
+  "tags": "sound-library, guitar-and-bass, instruments",
+  "tracks": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

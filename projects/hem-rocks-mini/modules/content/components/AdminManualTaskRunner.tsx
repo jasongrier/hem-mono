@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState, useCallback } from 'react'
 import uuid from 'uuid/v1'
-import moment from 'moment'
+import { isArray } from 'lodash'
 import { autoParagraph } from '../../../../../lib/functions'
 import { modelize } from '../functions'
 
@@ -102,6 +102,12 @@ function migrate() {
     const data = JSON.parse(readFileSync(`${contentDir}/${file}`, 'utf8'))
 
     try {
+      if (isArray(data.tags)) {
+        data.tags = data.tags.join(', ')
+      }
+
+      data.tracks = ''
+
       const item = modelize(data)
       index.push({ slug: item.slug, date: item.date })
 

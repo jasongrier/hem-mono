@@ -13,18 +13,8 @@
   "published": true,
   "slug": "antique-piano",
   "sticky": false,
-  "tags": [
-    "sound-library",
-    "instruments",
-    "keys",
-    "donic-detritus"
-  ],
-  "tracks": [
-    "sound-library",
-    "instruments",
-    "keys",
-    "donic-detritus"
-  ],
+  "tags": "sound-library, instruments, keys, donic-detritus",
+  "tracks": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

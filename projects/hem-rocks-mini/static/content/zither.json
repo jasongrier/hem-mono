@@ -13,16 +13,8 @@
   "published": true,
   "slug": "zither",
   "sticky": false,
-  "tags": [
-    "sound-library",
-    "toy-instruments",
-    "instruments"
-  ],
-  "tracks": [
-    "sound-library",
-    "toy-instruments",
-    "instruments"
-  ],
+  "tags": "sound-library, toy-instruments, instruments",
+  "tracks": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }
