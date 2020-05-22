@@ -7,7 +7,7 @@
   "description": "  ",
   "fixedPrice": "",
   "flexPriceMinimum": "",
-  "flexPriceRecommended": 15,
+  "flexPriceRecommended": "15",
   "hasFixedPrice": false,
   "name": "Noise Reduction Artefacts",
   "nameWrapping": "Noise Re&shy;duction Arte&shy;facts",

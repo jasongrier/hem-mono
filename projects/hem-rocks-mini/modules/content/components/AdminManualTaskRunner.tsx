@@ -106,8 +106,6 @@ function migrate() {
         data.tags = data.tags.join(', ')
       }
 
-      delete data.userSuggestedPrice
-
       const item = modelize(data)
 
       index.push({ slug: item.slug, date: item.date })

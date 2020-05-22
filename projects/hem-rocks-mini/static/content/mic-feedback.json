@@ -7,7 +7,7 @@
   "description": "  ",
   "fixedPrice": "",
   "flexPriceMinimum": "",
-  "flexPriceRecommended": 15,
+  "flexPriceRecommended": "15",
   "hasFixedPrice": false,
   "name": "Mic Feedback",
   "nameWrapping": "Mic<br>Feed&shy;back",

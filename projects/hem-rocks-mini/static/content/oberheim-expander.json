@@ -7,7 +7,7 @@
   "description": "  ",
   "fixedPrice": "",
   "flexPriceMinimum": "",
-  "flexPriceRecommended": 15,
+  "flexPriceRecommended": "15",
   "hasFixedPrice": false,
   "name": "Oberheim Expander",
   "nameWrapping": "Ober&shy;heim Ex&shy;pander",
