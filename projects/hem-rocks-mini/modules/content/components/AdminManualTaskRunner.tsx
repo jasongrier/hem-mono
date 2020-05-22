@@ -129,6 +129,45 @@ function migrate() {
   execSync(`cp -rf ${contentDir} ${contentDistDir}`, { stdio: 'inherit' })
 }
 
+function assignImages() {
+  const { remote } = window.require('electron')
+  const { readdirSync, readFileSync } = remote.require('fs')
+  const { extname, join } = remote.require('path')
+  const { execSync } = remote.require('child_process')
+
+  const contentDir = join(__dirname, '..', '..', '..', 'static', 'content')
+  const imagesDir = join(__dirname, '..', '..', '..', 'static', 'assets', 'images', 'key-art')
+  const imagesDistDir = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'assets', 'images', 'key-art')
+  const contentFiles = readdirSync(contentDir)
+  const images = readdirSync(imagesDir)
+
+  const soundLibraryFileNames = contentFiles.reduce((acc, fileName) => {
+    if (fileName === 'index.json') return acc
+    if (extname(fileName) !== '.json') return acc
+
+    const filePath = `${contentDir}/${fileName}`
+    const data = JSON.parse(readFileSync(filePath, 'utf8'))
+
+    if (data.tags && data.tags.includes('sound-library')) {
+      acc.push(fileName)
+    }
+
+    return acc
+  }, [])
+
+  for (var i = 0; i < soundLibraryFileNames.length; i ++) {
+    const fileName = soundLibraryFileNames[i]
+
+    if (fileName === 'index.json') continue
+    if (extname(fileName) !== '.json') continue
+
+    execSync(`mv ${imagesDir}/${images[i]} ${imagesDir}/${fileName.replace('.json', '.jpg')}`)
+  }
+
+  execSync(`rm -rf ${imagesDistDir}`, { stdio: 'inherit' })
+  execSync(`cp -rf ${imagesDir} ${imagesDistDir}`, { stdio: 'inherit' })
+}
+
 function AdminManualTaskRunner(): ReactElement {
   const [running, setRunning] = useState(0)
 
@@ -152,7 +191,13 @@ function AdminManualTaskRunner(): ReactElement {
     }, [],
   )
 
-  function runTask(taskFn) {
+  const assignImagesOnClick = useCallback(
+    function assignImagesOnClickFn() {
+      runTask(assignImages)
+    }, [],
+  )
+
+  function runTask(taskFn: Function) {
     setRunning(1)
     setTimeout(() => {
       taskFn()
@@ -178,6 +223,14 @@ function AdminManualTaskRunner(): ReactElement {
               onClick={migrateOnClick}
             >
               Migrate
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onClick={assignImagesOnClick}
+            >
+              Assign Images
             </a>
           </li>
         </ul>
