@@ -33,12 +33,6 @@ function CartPopup({ redirecting: alreadyRedirecting, returnUrl }: IProps): Reac
     }
   }, [alreadyRedirecting])
 
-  useEffect(function disablePopupClosingWhileRedirecting() {
-    if (redirecting) {
-      $('.hem-close-button').remove()
-    }
-  }, [redirecting])
-
   const history = useHistory()
 
   const checkoutOnClick = useCallback(
@@ -73,11 +67,12 @@ function CartPopup({ redirecting: alreadyRedirecting, returnUrl }: IProps): Reac
     let price = 0
 
     if (product.hasFixedPrice && product.fixedPrice) {
-      price = product.fixedPrice
+      price = parseFloat(product.fixedPrice)
     }
 
     else {
-      price = product.userSuggestedPrice || product.flexPriceMinimum || 0
+      const productPrice = product.userSuggestedPrice || product.flexPriceMinimum
+      price = productPrice ? parseFloat(productPrice) : 0
     }
 
     return typeof price === 'string' ? parseFloat(price) : price
@@ -110,7 +105,17 @@ function CartPopup({ redirecting: alreadyRedirecting, returnUrl }: IProps): Reac
       <div className="cart-popup-content">
         {!!!cartProducts.length && (
           <div className="cart-popup-empty">
-            Your cart is empty.
+            <p>
+              Your cart is empty.
+            </p>
+            <p>
+              <button
+                className="action-button action-button-wide"
+                onClick={() => dispatch(closePopup())}
+              >
+                Close and go back
+              </button>
+            </p>
           </div>
         )}
         {!!cartProducts.length && (
@@ -120,7 +125,7 @@ function CartPopup({ redirecting: alreadyRedirecting, returnUrl }: IProps): Reac
                 {cartProducts.map(product => (
                   <div
                     className="cart-popup-item"
-                    key={product.id}
+                    key={product.slug}
                   >
                     <div className="cart-popup-item-remove">
                       <CloseButton
@@ -129,7 +134,7 @@ function CartPopup({ redirecting: alreadyRedirecting, returnUrl }: IProps): Reac
                             category: 'User',
                             action: 'Clicked "remove" in shopping cart for ' + product.name,
                           })
-                          dispatch(removeProductFromCart(product.id))
+                          dispatch(removeProductFromCart(product.slug))
                         }}
                       />
                     </div>

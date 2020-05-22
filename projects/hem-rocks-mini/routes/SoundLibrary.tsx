@@ -62,12 +62,12 @@ function SoundLibrary(): ReactElement {
           title="Sound Library"
         >
           {(pack) => (
-            pack.soundCloudTrackId ?
+            pack.trackId ?
               <TrackPlayPauseButton
                 track={{
-                  attribution: pack.trackAttribution,
+                  attribution: pack.attribution,
                   id: pack.slug,
-                  resource: pack.soundCloudTrackId,
+                  resource: pack.trackId,
                   type: 'soundcloud',
                 }}
               />

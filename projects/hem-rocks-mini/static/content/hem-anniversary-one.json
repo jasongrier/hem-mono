@@ -8,13 +8,14 @@
   "fixedPrice": "",
   "flexPriceMinimum": "",
   "flexPriceRecommended": 15,
+  "hasFixedPrice": false,
   "name": "HEM Anniversary One",
   "nameWrapping": "HEM Anni&shy;versary One",
   "published": true,
   "slug": "hem-anniversary-one",
   "sticky": false,
   "tags": "label",
-  "tracks": "",
+  "trackId": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

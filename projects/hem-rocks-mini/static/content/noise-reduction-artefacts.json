@@ -8,13 +8,14 @@
   "fixedPrice": "",
   "flexPriceMinimum": "",
   "flexPriceRecommended": 15,
+  "hasFixedPrice": false,
   "name": "Noise Reduction Artefacts",
   "nameWrapping": "Noise Re&shy;duction Arte&shy;facts",
   "published": true,
   "slug": "noise-reduction-artefacts",
   "sticky": false,
   "tags": "sound-library, post-studio, sonic-detritus",
-  "tracks": "",
+  "trackId": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

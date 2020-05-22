@@ -106,12 +106,16 @@ function migrate() {
         data.tags = data.tags.join(', ')
       }
 
-      data.tracks = ''
+      delete data.trackId
+
+      data.trackId = ''
 
       const item = modelize(data)
+
       index.push({ slug: item.slug, date: item.date })
 
       const jsonItem = JSON.stringify(item, null, 2)
+
       writeFileSync(join(workingDir, item.slug + '.json'), jsonItem)
     }
 

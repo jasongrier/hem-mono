@@ -8,13 +8,14 @@
   "fixedPrice": "",
   "flexPriceMinimum": "",
   "flexPriceRecommended": 15,
+  "hasFixedPrice": false,
   "name": "No-Input Mixer",
   "nameWrapping": "",
   "published": true,
   "slug": "no-input-mixer",
   "sticky": false,
   "tags": "sound-library, post-studio",
-  "tracks": "",
+  "trackId": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

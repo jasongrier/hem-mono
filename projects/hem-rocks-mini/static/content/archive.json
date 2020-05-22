@@ -8,13 +8,14 @@
   "fixedPrice": "1",
   "flexPriceMinimum": "2",
   "flexPriceRecommended": 15,
+  "hasFixedPrice": false,
   "name": "Archive",
-  "nameWrapping": "asdfasdf",
+  "nameWrapping": "Archive",
   "published": true,
   "slug": "archive",
   "sticky": true,
   "tags": "label, record-releases, foo, bar, baz",
-  "tracks": "asdfasdfadf",
+  "trackId": "",
   "type": "Sample Pack for Ableton Lives",
   "userSuggestedPrice": ""
 }

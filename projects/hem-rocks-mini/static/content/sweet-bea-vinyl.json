@@ -8,13 +8,14 @@
   "fixedPrice": "",
   "flexPriceMinimum": "",
   "flexPriceRecommended": 15,
+  "hasFixedPrice": false,
   "name": "Sweet Bea",
   "nameWrapping": "",
   "published": true,
   "slug": "sweet-bea-vinyl",
   "sticky": false,
   "tags": "sound-library, found-sound, thrift-store-vinyl",
-  "tracks": "",
+  "trackId": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

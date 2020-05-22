@@ -8,13 +8,14 @@
   "fixedPrice": "",
   "flexPriceMinimum": "",
   "flexPriceRecommended": 15,
+  "hasFixedPrice": false,
   "name": "E-Bow Piano",
   "nameWrapping": "",
   "published": true,
   "slug": "e-bow-piano",
   "sticky": false,
   "tags": "sound-library, keys, instruments, extended-technique, coming-soon",
-  "tracks": "",
+  "trackId": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

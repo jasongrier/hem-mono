@@ -8,13 +8,14 @@
   "fixedPrice": "",
   "flexPriceMinimum": "",
   "flexPriceRecommended": 15,
+  "hasFixedPrice": false,
   "name": "Outtakes",
   "nameWrapping": "",
   "published": true,
   "slug": "outtakes",
   "sticky": false,
   "tags": "sound-library, sonic-detritus, labor-theory",
-  "tracks": "",
+  "trackId": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

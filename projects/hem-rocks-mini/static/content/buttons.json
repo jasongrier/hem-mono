@@ -8,13 +8,14 @@
   "fixedPrice": "",
   "flexPriceMinimum": "",
   "flexPriceRecommended": 15,
+  "hasFixedPrice": false,
   "name": "Buttons",
   "nameWrapping": "",
   "published": true,
   "slug": "buttons",
   "sticky": false,
   "tags": "projects, npm-modules, javascript, react",
-  "tracks": "",
+  "trackId": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

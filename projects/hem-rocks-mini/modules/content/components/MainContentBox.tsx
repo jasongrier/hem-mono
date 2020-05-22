@@ -49,7 +49,7 @@ function MainContentBox({
       minMarginY={30}
       className={`
         main-content-box
-        with-photography
+        with-photography-x
         main-content-box-date-${contentItem.date}
         ${className ? className : ''}
         ${contentItem.badgeText ? 'has-badge' : ''}
@@ -73,12 +73,15 @@ function MainContentBox({
         onClick={onClick}
       >
         <Link to={linkTo}>
-          <div
+          {/* <div
             className="main-content-box-key-art-image"
             style={{
               backgroundImage: `url(http://static.hem.rocks/hem-rocks/content/images/${contentItem.slug}.jpg)`
             }}
-          />
+          /> */}
+          <div className="main-content-box-key-art-image">
+            <Planes />
+          </div>
         </Link>
       </div>
       <div

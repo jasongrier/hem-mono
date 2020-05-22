@@ -17,9 +17,9 @@ const clearCart = (): Action => ({
   payload: null,
 })
 
-const removeProductFromCart = (productId: string): Action => ({
+const removeProductFromCart = (productSlug: string): Action => ({
   type: REMOVE_PRODUCT_FROM_CART,
-  payload: productId,
+  payload: productSlug,
 })
 
 export {

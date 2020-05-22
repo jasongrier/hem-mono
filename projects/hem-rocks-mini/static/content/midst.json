@@ -8,13 +8,14 @@
   "fixedPrice": "",
   "flexPriceMinimum": "",
   "flexPriceRecommended": 15,
+  "hasFixedPrice": false,
   "name": "Midst",
   "nameWrapping": "",
   "published": true,
   "slug": "midst",
   "sticky": false,
   "tags": "projects, desktop-mobile-apps, javascript, react, electron, expanded-poetics",
-  "tracks": "",
+  "trackId": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

@@ -12,9 +12,9 @@ interface IProps {
 }
 
 function PayPalCartUpload({ returnUrl, items }: IProps): ReactElement {
-  const hostName = process.env.NODE_ENV === 'development'
+  const hostName = window.location.hostname === 'localhost'
     ? 'http://localhost:1234/'
-    : ''
+    : 'http://hem.rocks'
 
   return (
     <div className="pay-pal-cart-upload">

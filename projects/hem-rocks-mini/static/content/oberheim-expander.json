@@ -8,13 +8,14 @@
   "fixedPrice": "",
   "flexPriceMinimum": "",
   "flexPriceRecommended": 15,
+  "hasFixedPrice": false,
   "name": "Oberheim Expander",
   "nameWrapping": "Ober&shy;heim Ex&shy;pander",
   "published": true,
   "slug": "oberheim-expander",
   "sticky": false,
   "tags": "sound-library, synth, instruments",
-  "tracks": "",
+  "trackId": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

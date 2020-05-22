@@ -8,13 +8,14 @@
   "fixedPrice": "",
   "flexPriceMinimum": "",
   "flexPriceRecommended": 15,
+  "hasFixedPrice": false,
   "name": "Seurat II",
   "nameWrapping": "",
   "published": true,
   "slug": "seurat-ii",
   "sticky": true,
   "tags": "sound-library, generative-tools, midi-devices, coming-soon",
-  "tracks": "",
+  "trackId": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }
