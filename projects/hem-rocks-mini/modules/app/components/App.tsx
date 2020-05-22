@@ -1,13 +1,12 @@
 import React, { ReactElement, useEffect } from 'react'
-import { Route, Switch, useLocation, useHistory } from 'react-router-dom'
+import { NavLink, Route, Switch, useLocation, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { NavLink } from 'react-router-dom'
 import { find } from 'lodash'
 import ReactGA from 'react-ga'
 import { CartPopup } from '../../cart'
 import { ThankYouPopup } from '../../cart'
 import { DetailPopUp, requestReadItems, setCurrentItem } from '../../content'
-import { ElectronOnly, ScrollToTop, HamburgerMenu } from '../../../../../lib/components'
+import { ElectronOnly, ScrollToTop, HamburgerMenu, Spinner } from '../../../../../lib/components'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup, closePopup } from '../../../../../lib/modules/popups'
 import { usePrevious } from '../../../../../lib/hooks'
@@ -93,7 +92,7 @@ function App(): ReactElement {
 
       dispatch(openPopup(popupId))
     }
-  }, [pathname])
+  }, [contentItems, pathname])
 
   const previouslyOpenPopup = usePrevious(currentlyOpenPopUp)
 
@@ -147,6 +146,15 @@ function App(): ReactElement {
     ReactGA.pageview(pathname)
   }, [pathname])
 
+  if (!contentItems || !contentItems.length) return (
+    <div className="app-loading">
+      <h1>
+        <div>HEM</div>
+        <Spinner />
+      </h1>
+    </div>
+  )
+
   return (
     <div className="hem-application">
       <ScrollToTop />
@@ -158,7 +166,7 @@ function App(): ReactElement {
           <MainNavItem name="Sound Library" />
           <MainNavItem name="Label" />
           <MainNavItem name="Venue" />
-          <MainNavItem name="Software" />
+          <MainNavItem name="Apps" />
           <li className="main-nav-item">
             <NavLink
               to={(() => {
@@ -202,9 +210,9 @@ function App(): ReactElement {
             <Route exact path="/label/filter/:filter" component={Label} />
             <Route exact path="/label/cart/:filter?" component={Label} />
 
-            <Route exact path="/projects/:contentItemSlug?/:filter?" component={Projects} />
-            <Route exact path="/projects/filter/:filter" component={Projects} />
-            <Route exact path="/projects/cart/:filter?" component={Projects} />
+            <Route exact path="/apps/:contentItemSlug?/:filter?" component={Projects} />
+            <Route exact path="/apps/filter/:filter" component={Projects} />
+            <Route exact path="/apps/cart/:filter?" component={Projects} />
 
             <Route exact path="/sound-library/:contentItemSlug?/:filter?" component={SoundLibrary} />
             <Route exact path="/sound-library/filter/:filter" component={SoundLibrary} />
@@ -233,8 +241,9 @@ function App(): ReactElement {
       </PopupContainer>
 
       <PopupContainer
-        closeIcon={CloseButton}
+        closeIcon={false}
         escapeKeyCloses={false}
+        overlayCloses={false}
         id="cart-popup"
       >
         {(props: any) => (

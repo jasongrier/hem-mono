@@ -8,13 +8,14 @@
   "fixedPrice": "",
   "flexPriceMinimum": "",
   "flexPriceRecommended": 15,
+  "hasFixedPrice": false,
   "name": "Ooohs and Ahs",
   "nameWrapping": "",
   "published": true,
   "slug": "ooohs-and-ahs",
   "sticky": false,
   "tags": "sound-library, choral, vocal",
-  "tracks": "",
+  "trackId": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

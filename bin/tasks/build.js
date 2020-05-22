@@ -29,8 +29,8 @@ function build(projectName, andStart = false, developerBuild = false, pug = fals
 
     // The CLI way...
     if (projectName.includes('zak')) {
-      // TODO: Make this a task parameter, eg: `npm run task start-with-manifest zak-pdp-widget`
-      execSync(`parcel projects/${projectName}/index.${pug ? 'pug' : 'html'}`, { stdio: 'inherit' })
+      // TODO: Make this a task parameter, eg: `npm run task start-cli zak-pdp-widget`
+      execSync(`NODE_ENV=development parcel projects/${projectName}/index.${pug ? 'pug' : 'html'}`, { stdio: 'inherit' })
     }
 
     else {

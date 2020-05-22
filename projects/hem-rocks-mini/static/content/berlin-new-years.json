@@ -8,13 +8,14 @@
   "fixedPrice": "",
   "flexPriceMinimum": "",
   "flexPriceRecommended": 15,
+  "hasFixedPrice": false,
   "name": "Berlin New Years",
   "nameWrapping": "",
   "published": true,
   "slug": "berlin-new-years",
   "sticky": false,
   "tags": "sound-library, field-recording",
-  "tracks": "",
+  "trackId": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

@@ -8,13 +8,14 @@
   "fixedPrice": "",
   "flexPriceMinimum": 10,
   "flexPriceRecommended": 79,
+  "hasFixedPrice": false,
   "name": "Grand Piano",
   "nameWrapping": "",
   "published": true,
   "slug": "grand-piano",
   "sticky": true,
   "tags": "sound-library, keys, extended-technique, instruments, new-in-the-library",
-  "tracks": "",
+  "trackId": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

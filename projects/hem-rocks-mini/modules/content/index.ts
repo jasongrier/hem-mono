@@ -3,22 +3,23 @@ import { AnyAction } from 'redux'
 export interface IContentItem {
   acceptingDonations: boolean
   attribution: string
-  badgeText: string | null
+  badgeText: string
   blurb: string
   date: string
   description: string
-  fixedPrice: number | null
-  flexPriceMinimum: number | null
-  flexPriceRecommended: number | null
+  fixedPrice: string
+  flexPriceMinimum: string
+  flexPriceRecommended: string
+  hasFixedPrice: boolean
   name: string
-  nameWrapping: string | null
+  nameWrapping: string
   published: boolean
   slug: string
   sticky: boolean
-  tags: string[]
-  tracks: string[]
+  tags: string
+  trackId: string
   type: string
-  userSuggestedPrice: number | null
+  userSuggestedPrice: string
 }
 
 export interface IState {
@@ -26,8 +27,8 @@ export interface IState {
   contentItems: IContentItem[]
 }
 
-export const fieldTypes: any = {
-  acceptingDonations: 'checkbox',
+export const fieldTypes: IContentItem = {
+  acceptingDonations: false,
   attribution: 'text',
   badgeText: 'text',
   blurb: 'textarea',
@@ -36,13 +37,14 @@ export const fieldTypes: any = {
   fixedPrice: 'text',
   flexPriceMinimum: 'text',
   flexPriceRecommended: 'text',
+  hasFixedPrice: false,
   name: 'text',
   nameWrapping: 'text',
-  published: 'checkbox',
+  published: false,
   slug: 'text',
-  sticky: 'checkbox',
+  sticky: false,
   tags: 'text',
-  tracks: 'textarea',
+  trackId: 'text',
   type: 'text',
   userSuggestedPrice: 'text',
 }

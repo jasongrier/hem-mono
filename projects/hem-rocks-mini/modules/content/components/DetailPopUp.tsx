@@ -146,19 +146,14 @@ function DetailPopUp({
 
   const addToCartOnClick = useCallback(
     function addToCartOnClickFn() {
-      if (!validate(suggestedPrice, true)) return
-      if (isInCart(contentItem, true)) return
+      addToCart()
+    }, [filter, suggestedPrice, tag],
+  )
 
-      dispatch(addProductToCart(contentItem, suggestedPrice))
-      dispatch(closePopup())
-      dispatch(openPopup('cart-popup', { returnUrl: `${tag}/${filter ? filter : ''}` }))
-
-      history.push(`/${tag}/cart/${filter ? filter : ''}`)
-
-      ReactGA.event({
-        category: 'User',
-        action: 'Clicked "Add to Cart" for: ' + contentItem.name,
-      })
+  const formOnSubmit = useCallback(
+    function formOnSubmitFn(evt: SyntheticEvent<HTMLFormElement>) {
+      evt.preventDefault()
+      addToCart()
     }, [filter, suggestedPrice, tag],
   )
 
@@ -177,6 +172,22 @@ function DetailPopUp({
     }, [],
   )
 
+  function addToCart() {
+    if (!validate(suggestedPrice, true)) return
+    if (isInCart(contentItem, true)) return
+
+    dispatch(addProductToCart(contentItem, suggestedPrice))
+    dispatch(closePopup())
+    dispatch(openPopup('cart-popup', { returnUrl: `${tag}/${filter ? filter : ''}` }))
+
+    history.push(`/${tag}/cart/${filter ? filter : ''}`)
+
+    ReactGA.event({
+      category: 'User',
+      action: 'Clicked "Add to Cart" for: ' + contentItem.name,
+    })
+  }
+
   if (!contentItem) return (<div />)
 
   return (
@@ -184,24 +195,19 @@ function DetailPopUp({
       className={`
         detail-popup
         ${showPurchaseForm ? '' : 'purchase-form-hidden'}
-        ${usePlacemats(contentItem) ? 'with-placemat' : 'with-photography'}
+        with-placemat
+        with-photography-x
       `}
     >
       <Scrollbars noScrollX={true}>
         <header>
-          { usePlacemats(contentItem) && (
-            <Planes />
-          )}
-          { !usePlacemats(contentItem) && (
-            <div
-              className="detail-popup-key-art-image"
-              style={{
-                backgroundImage: `url(${contentItem.images[0].src})`
-              }}
-            >
-              { contentItem.images[0].alt }
-            </div>
-          )}
+          <Planes />
+          {/* <div
+            className="detail-popup-key-art-image"
+            style={{
+              backgroundImage: `url(http://static.hem.rocks/hem-rocks/content/images/${contentItem.slug}.jpg)`
+            }}
+          /> */}
           <div className="detail-popup-header-content">
             <div className="detail-popup-title">
               <h1>{ contentItem.name }</h1>
@@ -224,14 +230,16 @@ function DetailPopUp({
                       </label>
                       {/* TODO: Use Intl.NumberFormat and type intent timeout to validate and format the state */}
                       <span className="detail-popup-currency-symbol">€</span>
-                      <input
-                        autoComplete="off"
-                        min={contentItem.flexPriceMinimum || 0}
-                        name="suggested-price"
-                        onChange={suggestedPriceOnChange}
-                        type="text"
-                        value={suggestedPrice}
-                      />
+                      <form onSubmit={formOnSubmit}>
+                        <input
+                          autoComplete="off"
+                          min={contentItem.flexPriceMinimum || 0}
+                          name="suggested-price"
+                          onChange={suggestedPriceOnChange}
+                          type="text"
+                          value={suggestedPrice}
+                        />
+                      </form>
                       { isNumber(contentItem.flexPriceMinimum) && (
                         <small className={
                           isFinite(parseFloat(suggestedPrice))
@@ -288,13 +296,13 @@ function DetailPopUp({
                 </div>
               )}
             </div>
-            { contentItem.soundCloudTrackId && (
+            { contentItem.trackId && (
               <TrackPlayPauseButton
                 track={{
-                  attribution: contentItem.trackAttribution,
+                  attribution: contentItem.attribution,
                   id: contentItem.slug,
                   type: 'soundcloud',
-                  resource: contentItem.soundCloudTrackId,
+                  resource: contentItem.trackId,
                 }}
               />
             )}

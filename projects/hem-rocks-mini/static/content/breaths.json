@@ -8,13 +8,14 @@
   "fixedPrice": "",
   "flexPriceMinimum": "",
   "flexPriceRecommended": 15,
+  "hasFixedPrice": false,
   "name": "Breaths",
   "nameWrapping": "",
   "published": true,
   "slug": "breaths",
   "sticky": false,
   "tags": "sound-library, sonic-detritus, labor-theory, vocal",
-  "tracks": "",
+  "trackId": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

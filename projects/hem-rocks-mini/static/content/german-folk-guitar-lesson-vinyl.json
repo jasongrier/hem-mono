@@ -8,13 +8,14 @@
   "fixedPrice": "",
   "flexPriceMinimum": "",
   "flexPriceRecommended": 15,
+  "hasFixedPrice": false,
   "name": "Guitar Lesson",
   "nameWrapping": "",
   "published": true,
   "slug": "german-folk-guitar-lesson-vinyl",
   "sticky": false,
   "tags": "sound-library, found-sound, thrift-store-vinyl",
-  "tracks": "",
+  "trackId": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

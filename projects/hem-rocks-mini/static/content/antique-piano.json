@@ -8,13 +8,14 @@
   "fixedPrice": "",
   "flexPriceMinimum": "",
   "flexPriceRecommended": 15,
+  "hasFixedPrice": false,
   "name": "Antique Piano",
   "nameWrapping": "",
   "published": true,
   "slug": "antique-piano",
   "sticky": false,
   "tags": "sound-library, instruments, keys, donic-detritus",
-  "tracks": "",
+  "trackId": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

@@ -8,13 +8,14 @@
   "fixedPrice": "",
   "flexPriceMinimum": "",
   "flexPriceRecommended": 15,
+  "hasFixedPrice": false,
   "name": "Chord Brush",
   "nameWrapping": "",
   "published": true,
   "slug": "chord-brush",
   "sticky": false,
   "tags": "sound-library, generative-tools, midi-devices",
-  "tracks": "",
+  "trackId": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

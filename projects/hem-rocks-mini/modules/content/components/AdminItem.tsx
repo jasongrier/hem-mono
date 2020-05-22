@@ -165,9 +165,7 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
               )
             }
 
-            else if (
-              fieldTypes[fieldName] === 'checkbox'
-            ) {
+            else if (fieldTypes[fieldName] === false) {
               return (
                 <tr key={fieldName}>
                   <td>
@@ -177,7 +175,7 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
                     <input
                       name={fieldName}
                       onChange={(evt: SyntheticEvent<HTMLInputElement>) => onChange(fieldName, !workingItem[fieldName])}
-                      type={fieldTypes[fieldName]}
+                      type={fieldTypes[fieldName] === false ? 'checkbox' : 'text'}
                       checked={workingItem[fieldName]}
                     />
                   </td>

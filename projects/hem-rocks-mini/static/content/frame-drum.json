@@ -8,13 +8,14 @@
   "fixedPrice": "",
   "flexPriceMinimum": "",
   "flexPriceRecommended": 15,
+  "hasFixedPrice": false,
   "name": "Frame Drum",
   "nameWrapping": "",
   "published": true,
   "slug": "frame-drum",
   "sticky": false,
   "tags": "sound-library, instruments, percussion",
-  "tracks": "",
+  "trackId": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

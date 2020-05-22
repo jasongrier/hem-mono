@@ -8,13 +8,14 @@
   "fixedPrice": "",
   "flexPriceMinimum": "",
   "flexPriceRecommended": 15,
+  "hasFixedPrice": false,
   "name": "Electric Guitar",
   "nameWrapping": "",
   "published": true,
   "slug": "electric-guitar",
   "sticky": false,
   "tags": "sound-library, guitar-and-bass, instruments",
-  "tracks": "",
+  "trackId": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

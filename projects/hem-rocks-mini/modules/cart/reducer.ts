@@ -41,7 +41,7 @@ const reducer = (
     case REMOVE_PRODUCT_FROM_CART: {
       return produce(state, draftState => {
         draftState.products = draftState.products.filter(product =>
-          product.id !== payload
+          product.slug !== payload
         )
       })
     }

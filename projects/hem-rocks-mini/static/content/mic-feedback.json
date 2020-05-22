@@ -8,13 +8,14 @@
   "fixedPrice": "",
   "flexPriceMinimum": "",
   "flexPriceRecommended": 15,
+  "hasFixedPrice": false,
   "name": "Mic Feedback",
   "nameWrapping": "Mic<br>Feed&shy;back",
   "published": true,
   "slug": "mic-feedback",
   "sticky": false,
   "tags": "sound-library, post-studio, sonic-detritus",
-  "tracks": "",
+  "trackId": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

@@ -8,13 +8,14 @@
   "fixedPrice": "",
   "flexPriceMinimum": "",
   "flexPriceRecommended": 15,
+  "hasFixedPrice": false,
   "name": "One Pitch",
   "nameWrapping": "",
   "published": true,
   "slug": "one-pitch",
   "sticky": false,
   "tags": "sound-library, synth, instruments, generative-tools, midi-devices",
-  "tracks": "",
+  "trackId": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

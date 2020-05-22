@@ -8,13 +8,14 @@
   "fixedPrice": "",
   "flexPriceMinimum": "",
   "flexPriceRecommended": 15,
+  "hasFixedPrice": false,
   "name": "Hum Hiss Crackle",
   "nameWrapping": "",
   "published": true,
   "slug": "hum-hiss-crackle",
   "sticky": false,
   "tags": "sound-library, post-studio, sonic-detritus",
-  "tracks": "",
+  "trackId": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

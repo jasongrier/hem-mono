@@ -8,13 +8,14 @@
   "fixedPrice": "",
   "flexPriceMinimum": "",
   "flexPriceRecommended": 15,
+  "hasFixedPrice": false,
   "name": "Seurat Standalone",
   "nameWrapping": "",
   "published": true,
   "slug": "seurat-standalone",
   "sticky": true,
   "tags": "projects, desktop-mobile-apps, javascript, react, electron, sound, composition",
-  "tracks": "",
+  "trackId": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

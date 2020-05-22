@@ -8,13 +8,14 @@
   "fixedPrice": "",
   "flexPriceMinimum": "",
   "flexPriceRecommended": 15,
+  "hasFixedPrice": false,
   "name": "Tombstones",
   "nameWrapping": "Tomb&shy;stones",
   "published": true,
   "slug": "tombstones",
   "sticky": false,
   "tags": "label",
-  "tracks": "",
+  "trackId": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

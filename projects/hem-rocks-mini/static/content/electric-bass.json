@@ -8,13 +8,14 @@
   "fixedPrice": "",
   "flexPriceMinimum": "",
   "flexPriceRecommended": 15,
+  "hasFixedPrice": false,
   "name": "Electric Bass",
   "nameWrapping": "",
   "published": true,
   "slug": "electric-bass",
   "sticky": false,
   "tags": "sound-library, guitar-and-bass, instruments",
-  "tracks": "",
+  "trackId": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }

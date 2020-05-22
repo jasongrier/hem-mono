@@ -8,13 +8,14 @@
   "fixedPrice": "",
   "flexPriceMinimum": "",
   "flexPriceRecommended": 15,
+  "hasFixedPrice": false,
   "name": "Cymbals",
   "nameWrapping": "",
   "published": true,
   "slug": "cymbals",
   "sticky": false,
   "tags": "sound-library, instruments, percussion, extended-technique",
-  "tracks": "",
+  "trackId": "",
   "type": "Sample Pack for Ableton Live",
   "userSuggestedPrice": ""
 }
