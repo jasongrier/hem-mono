@@ -64,6 +64,15 @@ sagaMiddleware.run(readItemsSaga)
 import { updateItemsSaga } from './modules/content'
 sagaMiddleware.run(updateItemsSaga)
 
+import { addProductToCartSaga } from './modules/cart'
+sagaMiddleware.run(addProductToCartSaga)
+
+import { clearCartSaga } from './modules/cart'
+sagaMiddleware.run(clearCartSaga)
+
+import { removeProductFromCartSaga } from './modules/cart'
+sagaMiddleware.run(removeProductFromCartSaga)
+
 const Root = (
   <Provider store={store}>
     <BrowserRouter>

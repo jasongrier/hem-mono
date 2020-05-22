@@ -1,9 +1,10 @@
 import React, { ReactElement, useEffect } from 'react'
 import { NavLink, Route, Switch, useLocation, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { find } from 'lodash'
-import ReactGA from 'react-ga'
-import { CartPopup } from '../../cart'
+import { find, isArray } from 'lodash'
+import ReactGA, { set } from 'react-ga'
+import Cookies from 'js-cookie'
+import { CartPopup, setCartProducts } from '../../cart'
 import { ThankYouPopup } from '../../cart'
 import { DetailPopUp, requestReadItems, setCurrentItem } from '../../content'
 import { ElectronOnly, ScrollToTop, HamburgerMenu, Spinner } from '../../../../../lib/components'
@@ -50,6 +51,23 @@ function App(): ReactElement {
     dispatch(requestReadItems({ page: 1, size: 10000 }))
   }, [])
 
+  useEffect(function getCartFromCookies() {
+    const cartCookie = Cookies.get('hem-rocks-cart')
+    if (!cartCookie) return
+
+    try {
+      const cartProducts = JSON.parse(cartCookie)
+      if (!cartProducts) return
+      if (!isArray(cartProducts)) return
+      if (!cartProducts.length) return
+
+      dispatch(setCartProducts(cartProducts))
+    }
+
+    catch(err) {
+      console.error('Could not get cart cookie: ' + err)
+    }
+  }, [])
 
   useEffect(function routedPopup() {
     const [basePath, slug] = pathname.replace(/^\//, '').split('/')

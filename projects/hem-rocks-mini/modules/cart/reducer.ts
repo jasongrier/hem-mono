@@ -5,6 +5,7 @@ import {
   ADD_PRODUCT_TO_CART,
   CLEAR_CART,
   REMOVE_PRODUCT_FROM_CART,
+  SET_CART_PRODUCTS,
 
   IState,
 } from './index'
@@ -22,13 +23,7 @@ const reducer = (
   switch (type) {
     case ADD_PRODUCT_TO_CART: {
       return produce(state, draftState => {
-        const product = clone(payload.product)
-
-        if (!product.hasFixedPrice) {
-          product.userSuggestedPrice = payload.suggestedPrice
-        }
-
-        draftState.products = draftState.products.concat([product])
+        draftState.products = draftState.products.concat([payload])
       })
     }
 
@@ -43,6 +38,12 @@ const reducer = (
         draftState.products = draftState.products.filter(product =>
           product.slug !== payload
         )
+      })
+    }
+
+    case SET_CART_PRODUCTS: {
+      return produce(state, draftState => {
+        draftState.products = payload
       })
     }
 

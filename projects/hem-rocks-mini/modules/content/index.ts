@@ -19,7 +19,6 @@ export interface IContentItem {
   tags: string
   trackId: string
   type: string
-  userSuggestedPrice: string
 }
 
 export interface IState {
@@ -46,7 +45,6 @@ export const fieldTypes: IContentItem = {
   tags: 'text',
   trackId: 'text',
   type: 'text',
-  userSuggestedPrice: 'text',
 }
 
 export const CLEAR_ITEMS = 'CLEAR_ITEMS'

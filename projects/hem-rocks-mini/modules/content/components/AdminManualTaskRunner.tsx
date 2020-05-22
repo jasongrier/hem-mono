@@ -106,9 +106,7 @@ function migrate() {
         data.tags = data.tags.join(', ')
       }
 
-      delete data.trackId
-
-      data.trackId = ''
+      delete data.userSuggestedPrice
 
       const item = modelize(data)
 

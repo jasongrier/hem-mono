@@ -20,7 +20,6 @@ function modelize(rawContentItem: any): IContentItem {
     tags: rawContentItem.tags || '',
     trackId: rawContentItem.trackId || '',
     type: rawContentItem.type || '',
-    userSuggestedPrice: rawContentItem.userSuggestedPrice || '',
   }
 }
 
