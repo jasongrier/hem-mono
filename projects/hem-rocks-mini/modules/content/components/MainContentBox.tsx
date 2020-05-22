@@ -41,6 +41,10 @@ function MainContentBox({
 
   const linkTo = `/${tag}/${contentItem.slug}${filter ? '/' + filter : ''}`
 
+  const assetHost = window.location.hostname === 'localhost'
+    ? 'http://localhost:8888'
+    : 'http://static.hem.rocks'
+
   return (
     <SplatterDims
       bipolarX={false}
@@ -59,15 +63,15 @@ function MainContentBox({
       height={0}
       rangeX={100}
       rangeY={0}
-      marginRangeX={100}
-      marginRangeY={200}
-      disabled={index < 1}
+      marginRangeX={index < 0 ? 100 : 0}
+      marginRangeY={index < 0 ? 200 : 0}
     >
       { contentItem.badgeText && (
         <div className="main-content-box-badge">
           <strong>{  contentItem.badgeText }</strong>
         </div>
       )}
+      <h3 dangerouslySetInnerHTML={{__html: contentItem.nameWrapping || contentItem.name}} />
       <div
         className="main-content-box-key-art"
         onClick={onClick}
@@ -76,12 +80,9 @@ function MainContentBox({
           <div
             className="main-content-box-key-art-image"
             style={{
-              backgroundImage: `url(/static/assets/images/key-art/${contentItem.slug}.jpg)`
+              backgroundImage: `url(${assetHost}/hem-rocks/content/images/key-art/${contentItem.slug}.jpg)`
             }}
           />
-          {/* <div className="main-content-box-key-art-image">
-            <Planes />
-          </div> */}
         </Link>
       </div>
       <div
@@ -89,8 +90,8 @@ function MainContentBox({
         onClick={onClick}
       >
         <Link to={linkTo}>
-          <h3 dangerouslySetInnerHTML={{__html: contentItem.nameWrapping || contentItem.name}} />
-          <p>{ contentItem.blurb }</p>
+          {/* <p>{ contentItem.blurb }</p> */}
+          <p>I'm baby locavore sartorial pinterest pickled swag, lumbersexual shabby chic poke ramps hot chicken kinfolk unicorn paleo hella. Organic man braid chambray church-key four loko vice hella butcher dreamcatcher kombucha farm-to-table. Everyday carry vaporware coloring book stumptown, ramps actually offal fam. Gastropub squid pour-over skateboard taiyaki VHS asymmetrical jean shorts tacos tattooed vegan. Fixie vinyl ramps pabst aesthetic skateboard hammock biodiesel.</p>
         </Link>
       </div>
       <div className="main-content-box-actions">

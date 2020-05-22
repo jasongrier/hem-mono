@@ -260,6 +260,10 @@ function DetailPopUp({
     return correctedPrice
   }
 
+  const assetHost = window.location.hostname === 'localhost'
+    ? 'http://localhost:8888'
+    : 'http://static.hem.rocks'
+
   if (!contentItem) return (<div />)
 
   return (
@@ -267,24 +271,22 @@ function DetailPopUp({
       className={`
         detail-popup
         ${showPurchaseForm ? '' : 'purchase-form-hidden'}
-        with-placemat
-        with-photography-x
+        with-photography
       `}
     >
       <Scrollbars noScrollX={true}>
         <header>
-          <Planes />
-          {/* <div
+          <div className="detail-popup-title">
+            <h1>{ contentItem.name }</h1>
+            <h2>{ contentItem.type }</h2>
+          </div>
+          <div
             className="detail-popup-key-art-image"
             style={{
-              backgroundImage: `url(http://static.hem.rocks/hem-rocks/content/images/${contentItem.slug}.jpg)`
+              backgroundImage: `url(${assetHost}/hem-rocks/content/images/key-art/${contentItem.slug}.jpg)`
             }}
-          /> */}
+          />
           <div className="detail-popup-header-content">
-            <div className="detail-popup-title">
-              <h1>{ contentItem.name }</h1>
-              <h2>{ contentItem.type }</h2>
-            </div>
             <div className="detail-popup-actions">
               { isPurchaseable(contentItem) && (
                 <div className="detail-popup-form">
