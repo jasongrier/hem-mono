@@ -50,6 +50,79 @@ function DetailPopUp({
     }
   }, [])
 
+  const suggestedPriceOnChange = useCallback(
+    function suggestedPriceOnChangeFn(evt: SyntheticEvent<HTMLInputElement>) {
+      const price = evt.currentTarget.value
+      validate(price)
+      setSuggestedPrice(price)
+    }, [],
+  )
+
+  const history = useHistory()
+
+  const checkOutOnClick = useCallback(
+    function checkOutOnClickFn() {
+      if (!validate(suggestedPrice, true)) return
+      if (!isInCart(contentItem)) {
+        dispatch(addProductToCart({
+          finalPrice: suggestedPrice,
+          name: contentItem.name,
+          slug: contentItem.slug,
+          type: contentItem.type,
+        }))
+      }
+
+      dispatch(closePopup())
+
+      dispatch(openPopup('cart-popup', {
+        redirecting: true ,
+        returnUrl: `${tag}/${contentItem.slug}`,
+      }))
+
+      history.push(`/${tag}/cart/${filter ? filter : ''}`)
+
+      setTimeout(() => {
+        // @ts-ignore
+        const form = document.getElementById('pay-pal-cart-upload-form')
+        // @ts-ignore
+        form.submit()
+      })
+
+      ReactGA.event({
+        category: 'User',
+        action: 'Clicked "Instant Download" for: ' + contentItem.name,
+      })
+    }, [filter, suggestedPrice, tag],
+  )
+
+  const addToCartOnClick = useCallback(
+    function addToCartOnClickFn() {
+      addToCart()
+    }, [filter, suggestedPrice, tag],
+  )
+
+  const formOnSubmit = useCallback(
+    function formOnSubmitFn(evt: SyntheticEvent<HTMLFormElement>) {
+      evt.preventDefault()
+      addToCart()
+    }, [filter, suggestedPrice, tag],
+  )
+
+  const instantDownloadOnClick = useCallback(
+    function instantDownloadOnClickFn() {
+      if (!validate(suggestedPrice, true)) return
+
+      dispatch(openPopup('thank-you-popup', { itemSlugs: [contentItem.slug] }))
+
+      history.push('/thank-you')
+
+      ReactGA.event({
+        category: 'User',
+        action: 'Clicked "Add to cart" in detail popup',
+      })
+    }, [],
+  )
+
   function validate(price: any, showAlerts = false) {
     if (!contentItem) {
       if (showAlerts) {
@@ -104,79 +177,18 @@ function DetailPopUp({
     return false
   }
 
-  const suggestedPriceOnChange = useCallback(
-    function suggestedPriceOnChangeFn(evt: SyntheticEvent<HTMLInputElement>) {
-      const price = evt.currentTarget.value
-      validate(price)
-      setSuggestedPrice(price)
-    }, [],
-  )
-
-  const history = useHistory()
-
-  const checkOutOnClick = useCallback(
-    function checkOutOnClickFn() {
-      if (!validate(suggestedPrice, true)) return
-      if (!isInCart(contentItem)) {
-        dispatch(addProductToCart(contentItem, suggestedPrice))
-      }
-
-      dispatch(closePopup())
-
-      dispatch(openPopup('cart-popup', {
-        redirecting: true ,
-        returnUrl: `${tag}/${contentItem.slug}`,
-      }))
-
-      history.push(`/${tag}/cart/${filter ? filter : ''}`)
-
-      setTimeout(() => {
-        // @ts-ignore
-        const form = document.getElementById('pay-pal-cart-upload-form')
-        // @ts-ignore
-        form.submit()
-      })
-
-      ReactGA.event({
-        category: 'User',
-        action: 'Clicked "Instant Download" for: ' + contentItem.name,
-      })
-    }, [filter, suggestedPrice, tag],
-  )
-
-  const addToCartOnClick = useCallback(
-    function addToCartOnClickFn() {
-      addToCart()
-    }, [filter, suggestedPrice, tag],
-  )
-
-  const formOnSubmit = useCallback(
-    function formOnSubmitFn(evt: SyntheticEvent<HTMLFormElement>) {
-      evt.preventDefault()
-      addToCart()
-    }, [filter, suggestedPrice, tag],
-  )
-
-  const instantDownloadOnClick = useCallback(
-    function instantDownloadOnClickFn() {
-      if (!validate(suggestedPrice, true)) return
-
-      dispatch(openPopup('thank-you-popup', { itemSlugs: [contentItem.slug] }))
-
-      history.push('/thank-you')
-
-      ReactGA.event({
-        category: 'User',
-        action: 'Clicked "Add to cart" in detail popup',
-      })
-    }, [],
-  )
-
   function addToCart() {
+    if (!contentItem) return
     if (!validate(suggestedPrice, true)) return
     if (isInCart(contentItem, true)) return
 
-    dispatch(addProductToCart(contentItem, suggestedPrice))
+    dispatch(addProductToCart({
+      finalPrice: suggestedPrice,
+      name: contentItem.name,
+      slug: contentItem.slug,
+      type: contentItem.type,
+    }))
+
     dispatch(closePopup())
     dispatch(openPopup('cart-popup', { returnUrl: `${tag}/${filter ? filter : ''}` }))
 
