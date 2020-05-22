@@ -265,10 +265,7 @@ function App(): ReactElement {
         id="cart-popup"
       >
         {(props: any) => (
-          <CartPopup
-            redirecting={props?.redirecting}
-            returnUrl={props?.returnUrl}
-          />
+          <CartPopup redirecting={props?.redirecting} />
         )}
       </PopupContainer>
 

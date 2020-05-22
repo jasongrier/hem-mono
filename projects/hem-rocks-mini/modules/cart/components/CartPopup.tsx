@@ -12,10 +12,9 @@ import PayPalCartUpload from './PayPalCartUpload'
 
 interface IProps {
   redirecting: boolean
-  returnUrl: string
 }
 
-function CartPopup({ redirecting: alreadyRedirecting, returnUrl }: IProps): ReactElement {
+function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
   const { cartProducts } = useSelector((state: RootState) => ({
     cartProducts: state.cart.products,
     redirecting: state.cart.redirecting,
@@ -142,7 +141,7 @@ function CartPopup({ redirecting: alreadyRedirecting, returnUrl }: IProps): Reac
               >
                 Continue shopping
               </button>
-              { getGrandTotal() === 0 &&(
+              { getGrandTotal() === 0 && (
                 <button
                   className="action-button"
                   onClick={downloadOnClick}
@@ -161,7 +160,6 @@ function CartPopup({ redirecting: alreadyRedirecting, returnUrl }: IProps): Reac
                 </button>
               )}
               <PayPalCartUpload
-                returnUrl={returnUrl}
                 items={cartProducts.map(product => ({
                   amount: parseFloat(product.finalPrice),
                   name: product.name,

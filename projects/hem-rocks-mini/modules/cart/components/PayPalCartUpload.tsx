@@ -7,11 +7,10 @@ interface IItem {
 }
 
 interface IProps {
-  returnUrl: string
   items: IItem[]
 }
 
-function PayPalCartUpload({ returnUrl, items }: IProps): ReactElement {
+function PayPalCartUpload({ items }: IProps): ReactElement {
   const hostName = window.location.hostname === 'localhost'
     ? 'http://localhost:1234/'
     : 'http://hem.rocks'
@@ -32,7 +31,7 @@ function PayPalCartUpload({ returnUrl, items }: IProps): ReactElement {
         <input type="hidden" name="image_url" value="http://static.hem.rocks/hem-rocks/paypal/store_banner.jpg" />
         <input type="hidden" name="no_shipping" value="1" />
         <input type="hidden" name="return" value={`${hostName}thank-you?items=${items.map(item => item.slug).join()}`} />
-        <input type="hidden" name="cancel_return" value={`${hostName}${returnUrl}`} />
+        <input type="hidden" name="cancel_return" value={window.location.href} />
 
         {items.map((item, number) => (
           <React.Fragment key={number}>

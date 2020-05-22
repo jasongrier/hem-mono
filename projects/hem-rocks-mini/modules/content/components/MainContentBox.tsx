@@ -73,15 +73,15 @@ function MainContentBox({
         onClick={onClick}
       >
         <Link to={linkTo}>
-          {/* <div
+          <div
             className="main-content-box-key-art-image"
             style={{
-              backgroundImage: `url(http://static.hem.rocks/hem-rocks/content/images/${contentItem.slug}.jpg)`
+              backgroundImage: `url(/static/assets/images/key-art/${contentItem.slug}.jpg)`
             }}
-          /> */}
-          <div className="main-content-box-key-art-image">
+          />
+          {/* <div className="main-content-box-key-art-image">
             <Planes />
-          </div>
+          </div> */}
         </Link>
       </div>
       <div
