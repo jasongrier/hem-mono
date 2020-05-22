@@ -7,7 +7,7 @@
   "description": "  asdfasdf",
   "fixedPrice": "1",
   "flexPriceMinimum": "2",
-  "flexPriceRecommended": 15,
+  "flexPriceRecommended": "15",
   "hasFixedPrice": false,
   "name": "Archive",
   "nameWrapping": "Archive",

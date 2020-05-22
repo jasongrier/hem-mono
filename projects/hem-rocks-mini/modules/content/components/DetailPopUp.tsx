@@ -10,7 +10,6 @@ import { TrackPlayPauseButton } from '../../../../../lib/modules/player'
 import { Planes } from '../../../../../lib/packages/hem-placemats'
 import { addProductToCart } from '../../cart'
 import { IContentItem } from '../../content'
-import { usePlacemats } from '../../../functions'
 import { RootState } from '../../../index'
 
 interface IProps {
@@ -36,7 +35,7 @@ function DetailPopUp({
 
   const dispatch = useDispatch()
 
-  const [suggestedPrice, setSuggestedPrice] = useState((contentItem ? contentItem.flexPriceRecommended : 0) as any)
+  const [suggestedPrice, setSuggestedPrice] = useState<string>((contentItem ? contentItem.flexPriceRecommended : '0'))
 
   const [valid, setValid] = useState(true)
 
@@ -56,6 +55,12 @@ function DetailPopUp({
       validate(price)
       setSuggestedPrice(price)
     }, [],
+  )
+
+  const suggestedPriceOnBlur = useCallback(
+    function suggestedPriceOnBlurFn(evt: SyntheticEvent<HTMLInputElement>) {
+      setSuggestedPrice(correctPrice(suggestedPrice))
+    }, [suggestedPrice],
   )
 
   const history = useHistory()
@@ -200,6 +205,61 @@ function DetailPopUp({
     })
   }
 
+  function correctPrice(price: string) {
+    const chars = price.split('')
+
+    if (isNaN(parseInt(chars[0], 10))) return price
+
+    let correctedPrice = ''
+    let decimalPlace = 0
+    for (const char of chars) {
+      if (char === ',') {
+        if (decimalPlace > 0) {
+          break
+        }
+        correctedPrice = correctedPrice + '.'
+        decimalPlace ++
+        continue
+      }
+
+      if (char === '.') {
+        if (decimalPlace > 0) {
+          break
+        }
+        correctedPrice = correctedPrice + char
+        decimalPlace ++
+        continue
+      }
+
+      if (isNaN(parseInt(char))) {
+        break
+      }
+
+      if (decimalPlace > 2) {
+        break
+      }
+
+      if (decimalPlace > 0) {
+        decimalPlace ++
+      }
+
+      correctedPrice = correctedPrice + char
+    }
+
+    correctedPrice = correctedPrice.replace(/\.$/, '')
+
+    const correctedPriceSplit = correctedPrice.split('.')
+
+    if (
+      correctedPriceSplit.length > 0
+      && parseInt(correctedPriceSplit[1], 10) === 0
+    ) {
+      correctedPrice = correctedPriceSplit[0]
+    }
+
+    return correctedPrice
+  }
+
   if (!contentItem) return (<div />)
 
   return (
@@ -247,6 +307,7 @@ function DetailPopUp({
                           autoComplete="off"
                           min={contentItem.flexPriceMinimum || 0}
                           name="suggested-price"
+                          onBlur={suggestedPriceOnBlur}
                           onChange={suggestedPriceOnChange}
                           type="text"
                           value={suggestedPrice}
@@ -272,7 +333,7 @@ function DetailPopUp({
                     detail-popup-buttons clearfix
                     ${valid ? '' : 'invalid'}
                   `}>
-                    { suggestedPrice > 0 && (
+                    { parseFloat(suggestedPrice) > 0 && (
                       <button
                         className="action-button"
                         onClick={checkOutOnClick}

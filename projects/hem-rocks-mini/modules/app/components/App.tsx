@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect } from 'react'
 import { NavLink, Route, Switch, useLocation, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { find, isArray } from 'lodash'
+import { find, isArray, map } from 'lodash'
 import ReactGA, { set } from 'react-ga'
 import Cookies from 'js-cookie'
 import { CartPopup, setCartProducts } from '../../cart'
