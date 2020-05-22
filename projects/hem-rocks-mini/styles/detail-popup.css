@@ -17,8 +17,9 @@
 .detail-popup header {
   position: relative;
   width: 100%;
-  height: 358px;
-  background: #eee;
+  height: 450px;
+  margin-top: 15px;
+  overflow: hidden;
 }
 
 .detail-popup.purchase-form-hidden header {
@@ -26,30 +27,17 @@
   height: 190px;
 }
 
-.detail-popup header .planes {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  opacity: 0.4;
-}
-
 .detail-popup header .detail-popup-key-art-image {
-  position: absolute;
+  /* position: absolute;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 1; */
   width: 100%;
-  height: 100%;
-  width: 100%;
-  height: 100%;
+  height: 360px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   font-size: 0;
-  display: none;
 }
 
 .detail-popup header .detail-popup-header-content {
@@ -65,7 +53,7 @@
 .detail-popup header h1 {
   width: 760px;
   line-height: 57px;
-  margin: 15px 0 5px -10px;
+  margin: 5px 0 15px 10px;
   padding: 0;
   font-weight: normal;
   font-size: 80px;
@@ -74,7 +62,7 @@
 
 .detail-popup header h2 {
   width: 760px;
-  margin: 0 0 26px 0;
+  margin: 0 0 10px 20px;
   padding: 0;
   font-size: 12px;
   color: #666;
@@ -94,8 +82,10 @@
 
 .detail-popup-form {
   position: relative;
-  width: 430px;
+  width: 415px;
   margin-top: -7px;
+  padding: 5px;
+  overflow: hidden;
 }
 
 .detail-popup header input,
@@ -106,22 +96,29 @@
 }
 
 .detail-popup header label {
+  display: inline-block;
+  padding: 0 10px;
   font-size: 20px;
+  background-color: #fff;
+  transform: translateY(-5px);
 }
 
 .detail-popup header input {
   width: 200px;
   height: 60px;
-  padding: 0 10px;
-  border: 0;
+  padding: 0 30px 0 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
   font-size: 24px;
 }
 
 .detail-popup .invalid-message {
   position: absolute;
-  top: 62px;
-  right: -15px;
+  top: 68px;
+  right: 20px;
+  padding: 0 5px;
   color: red;
+  background-color: #fff;
 }
 
 .detail-popup header small {
@@ -134,8 +131,9 @@
 
 .detail-popup-currency-symbol {
   position: absolute;
-  top: 53px;
-  left: 230px;
+  top: 59px;
+  left: 180px;
+  z-index: 9999;
   font-size: 30px;
 }
 
@@ -151,6 +149,10 @@
   font-weight: normal;
   margin-right: 15px;
   cursor: pointer;
+}
+
+.detail-popup-buttons button:nth-child(2) {
+  margin-right: 0;
 }
 
 .invalid.detail-popup-buttons button {
@@ -221,7 +223,7 @@
 }
 
 .detail-popup-details {
-  padding: 30px 0;
+  padding: 30px 20px;
   background-color: #fff;
 }
 
@@ -230,7 +232,8 @@
 }
 
 .hem-popup-content .detail-popup-details h2 {
-  margin-left: -4px;
+  margin: 0 0 20px 0;
+  padding: 0;
   font-size: 30px;
 }
 
