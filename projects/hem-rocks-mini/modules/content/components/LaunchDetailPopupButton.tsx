@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, ReactElement, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { setCurrentContentItem, IContentItem } from '../index'
+import { setCurrentItem, IContentItem } from '../index'
 
 interface IProps {
   contentItem: IContentItem
@@ -21,7 +21,7 @@ function LaunchDetailPopupButton({
 
   const onClick = useCallback(
     function onClickFn() {
-      // dispatch(setCurrentContentItem(contentItem))
+      // dispatch(setCurrentItem(contentItem))
     }, [],
   )
 

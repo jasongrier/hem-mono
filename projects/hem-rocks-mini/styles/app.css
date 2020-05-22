@@ -28,6 +28,10 @@ body {
   color: #fff;
 }
 
+.action-button-wide {
+  width: 240px;
+}
+
 .action-button:focus,
 .action-button:active {
   outline: none;
@@ -35,4 +39,17 @@ body {
 
 .hem-application.popup-open {
   width: 100vw;
+}
+
+.app-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.app-loading h1 {
+  font-size: 100px;
+  font-weight: normal;
 }

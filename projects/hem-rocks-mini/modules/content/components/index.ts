@@ -1,3 +1,4 @@
+export { default as AdminManualTaskRunner } from './AdminManualTaskRunner'
 export { default as AdminItem } from './AdminItem'
 export { default as AdminList } from './AdminList'
 export { default as DetailPopUp } from './DetailPopUp'
