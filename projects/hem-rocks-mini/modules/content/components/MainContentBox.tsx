@@ -3,9 +3,8 @@ import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Planes } from '../../../../../lib/packages/hem-placemats'
 import { SplatterDims } from '../../../../../lib/packages/hem-boxplatter'
-import { usePlacemats } from '../../../functions'
 import { LaunchDetailPopupButton } from './index'
-import { IContentItem, setCurrentContentItem } from '../index'
+import { IContentItem, setCurrentItem } from '../index'
 
 interface IProps {
   contentItem: IContentItem
@@ -36,11 +35,15 @@ function MainContentBox({
 
   const onClick = useCallback(
     function onClickFn() {
-      dispatch(setCurrentContentItem(contentItem))
+      dispatch(setCurrentItem(contentItem))
     }, [],
   )
 
   const linkTo = `/${tag}/${contentItem.slug}${filter ? '/' + filter : ''}`
+
+  const assetHost = window.location.hostname === 'localhost'
+    ? 'http://localhost:8888'
+    : 'http://static.hem.rocks'
 
   return (
     <SplatterDims
@@ -50,43 +53,36 @@ function MainContentBox({
       minMarginY={30}
       className={`
         main-content-box
+        with-photography-x
         main-content-box-date-${contentItem.date}
         ${className ? className : ''}
         ${contentItem.badgeText ? 'has-badge' : ''}
         ${alignRight && index > 0 ? 'align-right' : ''}
-        ${usePlacemats(contentItem) ? 'with-placemat' : 'with-photography'}
       `}
       width={300}
       height={0}
       rangeX={100}
       rangeY={0}
-      marginRangeX={100}
-      marginRangeY={200}
-      disabled={index < 1}
+      marginRangeX={index < 0 ? 100 : 0}
+      marginRangeY={index < 0 ? 200 : 0}
     >
       { contentItem.badgeText && (
         <div className="main-content-box-badge">
           <strong>{  contentItem.badgeText }</strong>
         </div>
       )}
+      <h3 dangerouslySetInnerHTML={{__html: contentItem.nameWrapping || contentItem.name}} />
       <div
         className="main-content-box-key-art"
         onClick={onClick}
       >
         <Link to={linkTo}>
-          { !usePlacemats(contentItem) && (
-            <div
-              className="main-content-box-key-art-image"
-              style={{
-                backgroundImage: `url(${contentItem.images[0].src})`
-              }}
-            >
-              { contentItem.images[0].alt }
-            </div>
-          )}
-          { usePlacemats(contentItem) && (
-            <Planes />
-          )}
+          <div
+            className="main-content-box-key-art-image"
+            style={{
+              backgroundImage: `url(${assetHost}/hem-rocks/content/images/key-art/${contentItem.slug}.jpg)`
+            }}
+          />
         </Link>
       </div>
       <div
@@ -94,8 +90,8 @@ function MainContentBox({
         onClick={onClick}
       >
         <Link to={linkTo}>
-          <h3 dangerouslySetInnerHTML={{__html: contentItem.nameWrapping || contentItem.name}} />
-          <p>{ contentItem.blurb }</p>
+          {/* <p>{ contentItem.blurb }</p> */}
+          <p>I'm baby locavore sartorial pinterest pickled swag, lumbersexual shabby chic poke ramps hot chicken kinfolk unicorn paleo hella. Organic man braid chambray church-key four loko vice hella butcher dreamcatcher kombucha farm-to-table. Everyday carry vaporware coloring book stumptown, ramps actually offal fam. Gastropub squid pour-over skateboard taiyaki VHS asymmetrical jean shorts tacos tattooed vegan. Fixie vinyl ramps pabst aesthetic skateboard hammock biodiesel.</p>
         </Link>
       </div>
       <div className="main-content-box-actions">

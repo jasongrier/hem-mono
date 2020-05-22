@@ -8,9 +8,17 @@ interface IProps {
 
   closeIcon?: any
   escapeKeyCloses?: boolean
+  overlayCloses?: boolean
 }
 
-function PopupContainer({ children, id, closeIcon: CloseIcon }: PropsWithChildren<IProps>): ReactElement {
+function PopupContainer({
+  children,
+  id,
+
+  closeIcon: CloseIcon,
+  escapeKeyCloses = true,
+  overlayCloses = true,
+}: PropsWithChildren<IProps>): ReactElement {
   const { currentlyOpenPopUp, propsToChildren } = useSelector((state: any) => ({
     currentlyOpenPopUp: state.popups.currentlyOpenPopUp,
     propsToChildren: state.popups.propsToChildren,
@@ -18,9 +26,13 @@ function PopupContainer({ children, id, closeIcon: CloseIcon }: PropsWithChildre
 
   const dispatch = useDispatch()
 
-  useEffect(function init() {
+  useEffect(function captureEscapeKey() {
     function bodyOnKeyDown(evt: any) {
-      if (evt.keyCode === 27) {
+      if (
+        escapeKeyCloses
+        && evt.keyCode === 27
+        && currentlyOpenPopUp === id
+      ) {
         dispatch(closePopup())
       }
     }
@@ -30,7 +42,7 @@ function PopupContainer({ children, id, closeIcon: CloseIcon }: PropsWithChildre
     return function cleanup() {
       document.body.removeEventListener('keydown', bodyOnKeyDown)
     }
-  }, [])
+  }, [currentlyOpenPopUp])
 
   useEffect(function addBodyClass() {
     if (currentlyOpenPopUp) {
@@ -66,6 +78,7 @@ function PopupContainer({ children, id, closeIcon: CloseIcon }: PropsWithChildre
       `}
       id={id}
       onClick={(evt: SyntheticEvent<HTMLDivElement>) => {
+        if (!overlayCloses) return
         dispatch(closePopup())
       }}
     >

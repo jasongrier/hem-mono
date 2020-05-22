@@ -10,7 +10,6 @@ import { TrackPlayPauseButton } from '../../../../../lib/modules/player'
 import { Planes } from '../../../../../lib/packages/hem-placemats'
 import { addProductToCart } from '../../cart'
 import { IContentItem } from '../../content'
-import { usePlacemats } from '../../../functions'
 import { RootState } from '../../../index'
 
 interface IProps {
@@ -36,7 +35,7 @@ function DetailPopUp({
 
   const dispatch = useDispatch()
 
-  const [suggestedPrice, setSuggestedPrice] = useState((contentItem ? contentItem.flexPriceRecommended : 0) as any)
+  const [suggestedPrice, setSuggestedPrice] = useState<string>((contentItem ? contentItem.flexPriceRecommended : '0'))
 
   const [valid, setValid] = useState(true)
 
@@ -49,6 +48,85 @@ function DetailPopUp({
       ReactGA.modalview('Detail Popup without Purchase Form: ' + contentItem.name)
     }
   }, [])
+
+  const suggestedPriceOnChange = useCallback(
+    function suggestedPriceOnChangeFn(evt: SyntheticEvent<HTMLInputElement>) {
+      const price = evt.currentTarget.value
+      validate(price)
+      setSuggestedPrice(price)
+    }, [],
+  )
+
+  const suggestedPriceOnBlur = useCallback(
+    function suggestedPriceOnBlurFn(evt: SyntheticEvent<HTMLInputElement>) {
+      setSuggestedPrice(correctPrice(suggestedPrice))
+    }, [suggestedPrice],
+  )
+
+  const history = useHistory()
+
+  const checkOutOnClick = useCallback(
+    function checkOutOnClickFn() {
+      if (!validate(suggestedPrice, true)) return
+      if (!isInCart(contentItem)) {
+        dispatch(addProductToCart({
+          finalPrice: suggestedPrice,
+          name: contentItem.name,
+          slug: contentItem.slug,
+          type: contentItem.type,
+        }))
+      }
+
+      dispatch(closePopup())
+
+      dispatch(openPopup('cart-popup', {
+        redirecting: true ,
+        returnUrl: `${tag}/${contentItem.slug}`,
+      }))
+
+      history.push(`/${tag}/cart/${filter ? filter : ''}`)
+
+      setTimeout(() => {
+        // @ts-ignore
+        const form = document.getElementById('pay-pal-cart-upload-form')
+        // @ts-ignore
+        form.submit()
+      })
+
+      ReactGA.event({
+        category: 'User',
+        action: 'Clicked "Instant Download" for: ' + contentItem.name,
+      })
+    }, [filter, suggestedPrice, tag],
+  )
+
+  const addToCartOnClick = useCallback(
+    function addToCartOnClickFn() {
+      addToCart()
+    }, [filter, suggestedPrice, tag],
+  )
+
+  const formOnSubmit = useCallback(
+    function formOnSubmitFn(evt: SyntheticEvent<HTMLFormElement>) {
+      evt.preventDefault()
+      addToCart()
+    }, [filter, suggestedPrice, tag],
+  )
+
+  const instantDownloadOnClick = useCallback(
+    function instantDownloadOnClickFn() {
+      if (!validate(suggestedPrice, true)) return
+
+      dispatch(openPopup('thank-you-popup', { itemSlugs: [contentItem.slug] }))
+
+      history.push('/thank-you')
+
+      ReactGA.event({
+        category: 'User',
+        action: 'Clicked "Add to cart" in detail popup',
+      })
+    }, [],
+  )
 
   function validate(price: any, showAlerts = false) {
     if (!contentItem) {
@@ -104,78 +182,87 @@ function DetailPopUp({
     return false
   }
 
-  const suggestedPriceOnChange = useCallback(
-    function suggestedPriceOnChangeFn(evt: SyntheticEvent<HTMLInputElement>) {
-      const price = evt.currentTarget.value
-      validate(price)
-      setSuggestedPrice(price)
-    }, [],
-  )
+  function addToCart() {
+    if (!contentItem) return
+    if (!validate(suggestedPrice, true)) return
+    if (isInCart(contentItem, true)) return
 
-  const history = useHistory()
+    dispatch(addProductToCart({
+      finalPrice: suggestedPrice,
+      name: contentItem.name,
+      slug: contentItem.slug,
+      type: contentItem.type,
+    }))
 
-  const checkOutOnClick = useCallback(
-    function checkOutOnClickFn() {
-      if (!validate(suggestedPrice, true)) return
-      if (!isInCart(contentItem)) {
-        dispatch(addProductToCart(contentItem, suggestedPrice))
+    dispatch(closePopup())
+    dispatch(openPopup('cart-popup', { returnUrl: `${tag}/${filter ? filter : ''}` }))
+
+    history.push(`/${tag}/cart/${filter ? filter : ''}`)
+
+    ReactGA.event({
+      category: 'User',
+      action: 'Clicked "Add to Cart" for: ' + contentItem.name,
+    })
+  }
+
+  function correctPrice(price: string) {
+    const chars = price.split('')
+
+    if (isNaN(parseInt(chars[0], 10))) return price
+
+    let correctedPrice = ''
+    let decimalPlace = 0
+    for (const char of chars) {
+      if (char === ',') {
+        if (decimalPlace > 0) {
+          break
+        }
+        correctedPrice = correctedPrice + '.'
+        decimalPlace ++
+        continue
       }
 
-      dispatch(closePopup())
+      if (char === '.') {
+        if (decimalPlace > 0) {
+          break
+        }
+        correctedPrice = correctedPrice + char
+        decimalPlace ++
+        continue
+      }
 
-      dispatch(openPopup('cart-popup', {
-        redirecting: true ,
-        returnUrl: `${tag}/${contentItem.slug}`,
-      }))
+      if (isNaN(parseInt(char))) {
+        break
+      }
 
-      history.push(`/${tag}/cart/${filter ? filter : ''}`)
+      if (decimalPlace > 2) {
+        break
+      }
 
-      setTimeout(() => {
-        // @ts-ignore
-        const form = document.getElementById('pay-pal-cart-upload-form')
-        // @ts-ignore
-        form.submit()
-      })
+      if (decimalPlace > 0) {
+        decimalPlace ++
+      }
 
-      ReactGA.event({
-        category: 'User',
-        action: 'Clicked "Instant Download" for: ' + contentItem.name,
-      })
-    }, [filter, suggestedPrice, tag],
-  )
+      correctedPrice = correctedPrice + char
+    }
 
-  const addToCartOnClick = useCallback(
-    function addToCartOnClickFn() {
-      if (!validate(suggestedPrice, true)) return
-      if (isInCart(contentItem, true)) return
+    correctedPrice = correctedPrice.replace(/\.$/, '')
 
-      dispatch(addProductToCart(contentItem, suggestedPrice))
-      dispatch(closePopup())
-      dispatch(openPopup('cart-popup', { returnUrl: `${tag}/${filter ? filter : ''}` }))
+    const correctedPriceSplit = correctedPrice.split('.')
 
-      history.push(`/${tag}/cart/${filter ? filter : ''}`)
+    if (
+      correctedPriceSplit.length > 0
+      && parseInt(correctedPriceSplit[1], 10) === 0
+    ) {
+      correctedPrice = correctedPriceSplit[0]
+    }
 
-      ReactGA.event({
-        category: 'User',
-        action: 'Clicked "Add to Cart" for: ' + contentItem.name,
-      })
-    }, [filter, suggestedPrice, tag],
-  )
+    return correctedPrice
+  }
 
-  const instantDownloadOnClick = useCallback(
-    function instantDownloadOnClickFn() {
-      if (!validate(suggestedPrice, true)) return
-
-      dispatch(openPopup('thank-you-popup', { itemSlugs: [contentItem.slug] }))
-
-      history.push('/thank-you')
-
-      ReactGA.event({
-        category: 'User',
-        action: 'Clicked "Add to cart" in detail popup',
-      })
-    }, [],
-  )
+  const assetHost = window.location.hostname === 'localhost'
+    ? 'http://localhost:8888'
+    : 'http://static.hem.rocks'
 
   if (!contentItem) return (<div />)
 
@@ -184,29 +271,22 @@ function DetailPopUp({
       className={`
         detail-popup
         ${showPurchaseForm ? '' : 'purchase-form-hidden'}
-        ${usePlacemats(contentItem) ? 'with-placemat' : 'with-photography'}
+        with-photography
       `}
     >
       <Scrollbars noScrollX={true}>
         <header>
-          { usePlacemats(contentItem) && (
-            <Planes />
-          )}
-          { !usePlacemats(contentItem) && (
-            <div
-              className="detail-popup-key-art-image"
-              style={{
-                backgroundImage: `url(${contentItem.images[0].src})`
-              }}
-            >
-              { contentItem.images[0].alt }
-            </div>
-          )}
+          <div className="detail-popup-title">
+            <h1>{ contentItem.name }</h1>
+            <h2>{ contentItem.type }</h2>
+          </div>
+          <div
+            className="detail-popup-key-art-image"
+            style={{
+              backgroundImage: `url(${assetHost}/hem-rocks/content/images/key-art/${contentItem.slug}.jpg)`
+            }}
+          />
           <div className="detail-popup-header-content">
-            <div className="detail-popup-title">
-              <h1>{ contentItem.name }</h1>
-              <h2>{ contentItem.type }</h2>
-            </div>
             <div className="detail-popup-actions">
               { isPurchaseable(contentItem) && (
                 <div className="detail-popup-form">
@@ -224,14 +304,17 @@ function DetailPopUp({
                       </label>
                       {/* TODO: Use Intl.NumberFormat and type intent timeout to validate and format the state */}
                       <span className="detail-popup-currency-symbol">€</span>
-                      <input
-                        autoComplete="off"
-                        min={contentItem.flexPriceMinimum || 0}
-                        name="suggested-price"
-                        onChange={suggestedPriceOnChange}
-                        type="text"
-                        value={suggestedPrice}
-                      />
+                      <form onSubmit={formOnSubmit}>
+                        <input
+                          autoComplete="off"
+                          min={contentItem.flexPriceMinimum || 0}
+                          name="suggested-price"
+                          onBlur={suggestedPriceOnBlur}
+                          onChange={suggestedPriceOnChange}
+                          type="text"
+                          value={suggestedPrice}
+                        />
+                      </form>
                       { isNumber(contentItem.flexPriceMinimum) && (
                         <small className={
                           isFinite(parseFloat(suggestedPrice))
@@ -252,7 +335,7 @@ function DetailPopUp({
                     detail-popup-buttons clearfix
                     ${valid ? '' : 'invalid'}
                   `}>
-                    { suggestedPrice > 0 && (
+                    { parseFloat(suggestedPrice) > 0 && (
                       <button
                         className="action-button"
                         onClick={checkOutOnClick}
@@ -288,13 +371,13 @@ function DetailPopUp({
                 </div>
               )}
             </div>
-            { contentItem.soundCloudTrackId && (
+            { contentItem.trackId && (
               <TrackPlayPauseButton
                 track={{
-                  attribution: contentItem.trackAttribution,
+                  attribution: contentItem.attribution,
                   id: contentItem.slug,
                   type: 'soundcloud',
-                  resource: contentItem.soundCloudTrackId,
+                  resource: contentItem.trackId,
                 }}
               />
             )}

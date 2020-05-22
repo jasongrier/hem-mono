@@ -1,0 +1,20 @@
+{
+  "acceptingDonations": true,
+  "attribution": "",
+  "badgeText": "",
+  "blurb": "",
+  "date": "01.09.2017",
+  "description": "  ",
+  "fixedPrice": "",
+  "flexPriceMinimum": "",
+  "flexPriceRecommended": "15",
+  "hasFixedPrice": false,
+  "name": "Midst",
+  "nameWrapping": "",
+  "published": true,
+  "slug": "midst",
+  "sticky": false,
+  "tags": "projects, desktop-mobile-apps, javascript, react, electron, expanded-poetics",
+  "trackId": "",
+  "type": "Sample Pack for Ableton Live"
+}

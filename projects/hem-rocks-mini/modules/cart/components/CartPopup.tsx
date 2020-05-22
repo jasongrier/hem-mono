@@ -2,22 +2,19 @@ import React, { ReactElement, useCallback, useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import ReactGA from 'react-ga'
-import $ from 'jquery'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { Spinner } from '../../../../../lib/components'
 import { closePopup, openPopup } from '../../../../../lib/modules/popups'
 import Scrollbars from 'react-scrollbars-custom'
-import { IContentItem } from '../../content'
 import { RootState } from '../../../index'
 import { removeProductFromCart } from '../actions'
 import PayPalCartUpload from './PayPalCartUpload'
 
 interface IProps {
   redirecting: boolean
-  returnUrl: string
 }
 
-function CartPopup({ redirecting: alreadyRedirecting, returnUrl }: IProps): ReactElement {
+function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
   const { cartProducts } = useSelector((state: RootState) => ({
     cartProducts: state.cart.products,
     redirecting: state.cart.redirecting,
@@ -32,12 +29,6 @@ function CartPopup({ redirecting: alreadyRedirecting, returnUrl }: IProps): Reac
       setRedirecting(true)
     }
   }, [alreadyRedirecting])
-
-  useEffect(function disablePopupClosingWhileRedirecting() {
-    if (redirecting) {
-      $('.hem-close-button').remove()
-    }
-  }, [redirecting])
 
   const history = useHistory()
 
@@ -69,24 +60,10 @@ function CartPopup({ redirecting: alreadyRedirecting, returnUrl }: IProps): Reac
     }, [],
   )
 
-  function getFinalPrice(product: IContentItem): number {
-    let price = 0
-
-    if (product.hasFixedPrice && product.fixedPrice) {
-      price = product.fixedPrice
-    }
-
-    else {
-      price = product.userSuggestedPrice || product.flexPriceMinimum || 0
-    }
-
-    return typeof price === 'string' ? parseFloat(price) : price
-  }
-
   function getSubotal() {
     // @ts-ignore
     return cartProducts.reduce((acc: number, product: IProduct) => {
-      return acc + getFinalPrice(product)
+      return acc + parseFloat(product.finalPrice)
     }, 0)
   }
 
@@ -110,7 +87,17 @@ function CartPopup({ redirecting: alreadyRedirecting, returnUrl }: IProps): Reac
       <div className="cart-popup-content">
         {!!!cartProducts.length && (
           <div className="cart-popup-empty">
-            Your cart is empty.
+            <p>
+              Your cart is empty.
+            </p>
+            <p>
+              <button
+                className="action-button action-button-wide"
+                onClick={() => dispatch(closePopup())}
+              >
+                Close and go back
+              </button>
+            </p>
           </div>
         )}
         {!!cartProducts.length && (
@@ -120,7 +107,7 @@ function CartPopup({ redirecting: alreadyRedirecting, returnUrl }: IProps): Reac
                 {cartProducts.map(product => (
                   <div
                     className="cart-popup-item"
-                    key={product.id}
+                    key={product.slug}
                   >
                     <div className="cart-popup-item-remove">
                       <CloseButton
@@ -129,20 +116,20 @@ function CartPopup({ redirecting: alreadyRedirecting, returnUrl }: IProps): Reac
                             category: 'User',
                             action: 'Clicked "remove" in shopping cart for ' + product.name,
                           })
-                          dispatch(removeProductFromCart(product.id))
+                          dispatch(removeProductFromCart(product.slug))
                         }}
                       />
                     </div>
                     <h2>{product.name}</h2>
                     <p>{ product.type }</p>
-                    <div className="cart-popup-item-price">{ formatPrice(getFinalPrice(product)) }</div>
+                    <div className="cart-popup-item-price">{ product.finalPrice } €</div>
                   </div>
                 ))}
               </Scrollbars>
             </div>
             <div className="cart-popup-totals">
               Subtotal: { formatPrice(getSubotal()) }<br />
-              Tax: { formatPrice(getTax()) }<br />
+              {/* Tax: { formatPrice(getTax()) }<br /> */}
               <strong>TOTAL: { formatPrice(getGrandTotal()) }</strong>
             </div>
             <div className="cart-popup-check-out">
@@ -154,7 +141,7 @@ function CartPopup({ redirecting: alreadyRedirecting, returnUrl }: IProps): Reac
               >
                 Continue shopping
               </button>
-              { getGrandTotal() === 0 &&(
+              { getGrandTotal() === 0 && (
                 <button
                   className="action-button"
                   onClick={downloadOnClick}
@@ -173,9 +160,8 @@ function CartPopup({ redirecting: alreadyRedirecting, returnUrl }: IProps): Reac
                 </button>
               )}
               <PayPalCartUpload
-                returnUrl={returnUrl}
                 items={cartProducts.map(product => ({
-                  amount: getFinalPrice(product),
+                  amount: parseFloat(product.finalPrice),
                   name: product.name,
                   slug: product.slug,
                 }))}
