@@ -50,35 +50,3 @@
   height: 25px;
   border-bottom: 5px solid #fff;
 }
-
-.main-nav .hem-hamburger-menu-toggle {
-  top: 0;
-  right: 5px;
-  transform: scale(0.8);
-}
-
-.main-nav .hem-hamburger-menu-toggle span {
-  margin-bottom: 9px;
-  background-color: #fff;
-  transition: none;
-}
-
-.main-nav .hem-hamburger-menu-toggle-open {
-  transform: translateX(-5px) scale(0.8);
-}
-
-.main-nav .hem-hamburger-menu-toggle-open span:nth-child(1) {
-  left: -3.5px;
-}
-
-.main-nav .hem-hamburger-menu-toggle-open span:nth-child(1),
-.main-nav .hem-hamburger-menu-toggle-open span:nth-child(3) {
-  width: 35px;
-}
-
-.hem-hamburger-menu-content-open {
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-}

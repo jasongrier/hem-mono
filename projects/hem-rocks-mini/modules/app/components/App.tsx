@@ -23,6 +23,7 @@ import {
   Projects,
   SoundLibrary,
   Venue,
+  VenueStage,
 } from '../../../routes'
 
 ReactGA.initialize('UA-163585797-1')
@@ -202,6 +203,8 @@ function App(): ReactElement {
             </NavLink>
           </li>
         </ul>
+      </nav>
+      <nav className="hamburger-nav">
         <HamburgerMenu>
           <ul>
             <MainNavItem name="Info" />
@@ -238,6 +241,9 @@ function App(): ReactElement {
 
             <Route exact path="/venue" component={Venue} />
             <Route exact path="/venue/cart" component={Venue} />
+
+            <Route exact path="/venue/main-stage" component={VenueStage} />
+            <Route exact path="/venue/main-stage/cart" component={VenueStage} />
 
             <Route path="/admin" component={Admin} />
           </Switch>

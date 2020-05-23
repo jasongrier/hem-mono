@@ -59,7 +59,7 @@ function MainContentBox({
         ${contentItem.badgeText ? 'has-badge' : ''}
         ${alignRight && index > 0 ? 'align-right' : ''}
       `}
-      width={300}
+      width={400}
       height={0}
       rangeX={100}
       rangeY={0}
@@ -71,7 +71,9 @@ function MainContentBox({
           <strong>{  contentItem.badgeText }</strong>
         </div>
       )}
-      <h3 dangerouslySetInnerHTML={{__html: contentItem.nameWrapping || contentItem.name}} />
+      <Link to={linkTo}>
+        <h3 dangerouslySetInnerHTML={{__html: contentItem.nameWrapping || contentItem.name}} />
+      </Link>
       <div
         className="main-content-box-key-art"
         onClick={onClick}
