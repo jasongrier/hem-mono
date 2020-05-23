@@ -11,7 +11,7 @@
   "hasFixedPrice": false,
   "name": "Hit Singles",
   "nameWrapping": "",
-  "published": true,
+  "published": false,
   "slug": "hit-singles",
   "sticky": false,
   "tags": "label",
