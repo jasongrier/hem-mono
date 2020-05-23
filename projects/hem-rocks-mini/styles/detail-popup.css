@@ -122,7 +122,10 @@
 }
 
 .detail-popup header small {
+  display: inline-block;
+  padding: 0 5px;
   font-size: 11px;
+  background-color: #fff;
 }
 
 .detail-popup header small.invalid-minimum {
@@ -138,13 +141,14 @@
 }
 
 .detail-popup-buttons {
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .detail-popup-buttons button {
   float: left;
   width: 200px;
   height: 50px;
+  margin-right: 5px;
   font-size: 24px;
   font-weight: normal;
   margin-right: 15px;
