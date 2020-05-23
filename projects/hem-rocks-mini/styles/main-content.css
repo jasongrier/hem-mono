@@ -1,6 +1,5 @@
 .main-content {
   width: var(--content-width-desk);
-  min-height: 1000px;
   margin: 100px auto;
 }
 
@@ -65,6 +64,11 @@
 
 .page {
   position: relative;
+}
+
+.splash-image img {
+  width: 100%;
+  height: auto;
 }
 
 .header-info-badge {
