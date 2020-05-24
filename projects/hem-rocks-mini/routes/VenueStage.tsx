@@ -17,7 +17,7 @@ function VenueStage(): ReactElement {
       width: 854,
       height: 480,
       channel: 'hemrocks',
-      layout: 'video',
+      layout: 'video-with-chat',
       autoplay: false,
     })
 
@@ -43,8 +43,10 @@ function VenueStage(): ReactElement {
       </Helmet>
       <div className="page page-venue">
         <h1>Venue</h1>
+
         <VenueSubnav />
-        <div id="twitch-embed"></div>
+
+        <div id="twitch-embed" />
       </div>
     </>
   )
