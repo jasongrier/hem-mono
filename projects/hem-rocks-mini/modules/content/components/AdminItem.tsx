@@ -66,14 +66,16 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
     setWorkingItem(item)
   }, [allContentItems])
 
-  function onChange(fieldName, value) {
-    setWorkingItem(produce(workingItem, (draftItem) => {
+  function onChange(fieldName: string, value: string) {
+    setWorkingItem(produce(workingItem, (draftItem: any) => {
       draftItem[fieldName] = value
       setCanSave(!isEqual(draftItem, originalItem))
     }))
   }
 
   function onSaveClicked() {
+    if (!workingItem) return
+
     if (create) {
       dispatch(requestCreateItems([workingItem]))
     }
@@ -112,7 +114,7 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
   return (
     <ElectronOnly showMessage={true}>
       <header className="admin-item-header">
-        <h2>{ originalItem.name }</h2>
+        <h2>{ originalItem?.name }</h2>
         <button
           className="action-button save-item-button"
           disabled={!canSave}
@@ -127,7 +129,7 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
             if (fieldName === 'slug') return
             if (fieldName === 'userSuggestedPrice') return
 
-            if (fieldTypes[fieldName] === 'textarea') {
+            if ((fieldTypes as any)[fieldName] === 'textarea') {
               return (
                 <tr key={fieldName}>
                   <td>
@@ -137,7 +139,7 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
                     <ZoomTextarea
                       name={fieldName}
                       onChange={(value) => onChange(fieldName, value)}
-                      value={workingItem[fieldName]}
+                      value={(workingItem as any)[fieldName]}
                     />
                   </td>
                 </tr>
@@ -145,8 +147,8 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
             }
 
             else if (
-              fieldTypes[fieldName] === 'text'
-              || fieldTypes[fieldName] === 'number'
+              (fieldTypes as any)[fieldName] === 'text'
+              || (fieldTypes as any)[fieldName] === 'number'
             ) {
               return (
                 <tr key={fieldName}>
@@ -157,15 +159,15 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
                     <input
                       name={fieldName}
                       onChange={(evt: SyntheticEvent<HTMLInputElement>) => onChange(fieldName, evt.currentTarget.value)}
-                      type={fieldTypes[fieldName]}
-                      value={workingItem[fieldName]}
+                      type={(fieldTypes as any)[fieldName]}
+                      value={(workingItem as any)[fieldName]}
                     />
                   </td>
                 </tr>
               )
             }
 
-            else if (fieldTypes[fieldName] === false) {
+            else if ((fieldTypes as any)[fieldName] === false) {
               return (
                 <tr key={fieldName}>
                   <td>
@@ -174,9 +176,10 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
                   <td>
                     <input
                       name={fieldName}
+                      // @ts-ignore
                       onChange={(evt: SyntheticEvent<HTMLInputElement>) => onChange(fieldName, !workingItem[fieldName])}
-                      type={fieldTypes[fieldName] === false ? 'checkbox' : 'text'}
-                      checked={workingItem[fieldName]}
+                      type={(fieldTypes as any)[fieldName] === false ? 'checkbox' : 'text'}
+                      checked={(workingItem as any)[fieldName]}
                     />
                   </td>
                 </tr>

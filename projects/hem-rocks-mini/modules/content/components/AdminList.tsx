@@ -35,7 +35,7 @@ function AdminList(): ReactElement {
     }, [],
   )
 
-  let contentItems = [].concat(tag === 'all' ? allContentItems : allContentItems.filter(item =>
+  let contentItems = ([] as IContentItem[]).concat(tag === 'all' ? allContentItems : allContentItems.filter(item =>
     item.tags.includes(tag)
     || item.tags.includes(tag.toLowerCase())
   ))
@@ -111,7 +111,7 @@ function AdminList(): ReactElement {
                   <input type="checkbox"/>
                 </td> */}
                 <td className="admin-list-column-title">
-                  <Link to={`/admin/edit/${item.slug}`}>{item.slug}</Link>
+                  <Link to={`/admin/edit/${item.slug}`}>{item.name}</Link>
                 </td>
                 <td className="admin-list-column-date">
                   { item.date }
