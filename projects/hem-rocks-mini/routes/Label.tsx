@@ -47,20 +47,20 @@ function Label(): ReactElement {
                   resource: item.trackId,
                 }}/>
               )}
-              { !(item.labelExternalLinkUrl && item.trackId) && (
+              { !(item.externalLinkUrl && item.trackId) && (
                 <Link
                   className="action-button"
                   to={`/label/${item.slug}/${currentFilter || 'all'}`}
                 >
-                  { item.labelIsDigitalProduct ? 'Download' : 'Info' }
+                  { item.isDigitalProduct ? 'Download' : 'Info' }
                 </Link>
               )}
-              { item.labelExternalLinkUrl && item.labelExternalLinkText && (
+              { item.externalLinkUrl && item.externalLinkText && (
                 <a
                   className="action-button action-button-wide"
-                  href={item.labelExternalLinkUrl}
+                  href={item.externalLinkUrl}
                 >
-                  { item.labelExternalLinkText }
+                  { item.externalLinkText }
                 </a>
               )}
             </>
