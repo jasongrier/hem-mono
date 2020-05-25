@@ -9,15 +9,27 @@
   },
   {
     "slug": "archive",
-    "date": "20.09.2021"
+    "date": "20.09.2020"
   },
   {
     "slug": "ascending-series-three",
     "date": "01.09.2008"
   },
   {
+    "slug": "asdfasdf",
+    "date": "01.07.2020"
+  },
+  {
     "slug": "austin-thunderstorm",
     "date": "01.09.2017"
+  },
+  {
+    "slug": "bar",
+    "date": "01.07.2020"
+  },
+  {
+    "slug": "baz",
+    "date": "01.07.2020"
   },
   {
     "slug": "berlin-new-years",
@@ -104,6 +116,10 @@
     "date": "01.09.2017"
   },
   {
+    "slug": "foo",
+    "date": "01.07.2020"
+  },
+  {
     "slug": "frame-drum",
     "date": "01.09.2017"
   },
@@ -140,6 +156,10 @@
     "date": "01.09.2007"
   },
   {
+    "slug": "jason-gillis-grier",
+    "date": "01.07.2020"
+  },
+  {
     "slug": "katahymie",
     "date": "01.09.2012"
   },
@@ -152,8 +172,16 @@
     "date": "01.09.2011"
   },
   {
+    "slug": "line-gottsche-residency",
+    "date": "01.07.2020"
+  },
+  {
     "slug": "luc",
     "date": "01.09.2017"
+  },
+  {
+    "slug": "lucrecia-dalt",
+    "date": "01.07.2020"
   },
   {
     "slug": "maria",
@@ -294,33 +322,5 @@
   {
     "slug": "zither",
     "date": "01.09.2017"
-  },
-  {
-    "date": "01.07.2020",
-    "slug": "line-gottsche-residency"
-  },
-  {
-    "date": "01.07.2020",
-    "slug": "asdfasdf"
-  },
-  {
-    "date": "01.07.2020",
-    "slug": "foo"
-  },
-  {
-    "date": "01.07.2020",
-    "slug": "bar"
-  },
-  {
-    "date": "01.07.2020",
-    "slug": "baz"
-  },
-  {
-    "date": "01.07.2020",
-    "slug": "lucrecia-dalt"
-  },
-  {
-    "date": "01.07.2020",
-    "slug": "jason-gillis-grier"
   }
 ]

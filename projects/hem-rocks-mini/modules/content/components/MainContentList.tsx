@@ -25,6 +25,7 @@ interface IProps {
   currentFilter?: string,
   filters?: string[]
   highlights?: string[]
+  linkTo?: (contentItem: IContentItem) => string
   onFiltersChanged?: () => void
   title?: string
 
@@ -46,6 +47,7 @@ function MainContentList({
   highlights,
   infoPopupText,
   infoPopupTitle,
+  linkTo,
   title,
 }: IProps): ReactElement {
   const { allContentItems } = useSelector((state: RootState) => ({
@@ -115,7 +117,7 @@ function MainContentList({
           ${highlights ? 'has-highlights' : ''}
         `}
       >
-        {highlights && (
+        { highlights && (
           highlights.map(highlight => (
             <div
               className="main-content-highlight"
@@ -124,7 +126,7 @@ function MainContentList({
             />
           ))
         )}
-        {campaignMonitorId && (
+        { campaignMonitorId && (
           <div className="main-content-highlights-mailing-list-form">
             <CampaignMonitorForm
               id={campaignMonitorId}
@@ -136,7 +138,7 @@ function MainContentList({
           </div>
         )}
       </div>
-      {filters.length > 1 && (
+      { filters.length > 1 && (
         <div className="main-content-filters clearfix">
           <h3>Select:</h3>
           { filters.map(name => (
@@ -155,13 +157,14 @@ function MainContentList({
         </div>
       )}
       <div className="main-content-items">
-        {contentItems.map((contentItem, index) => (
+        { contentItems.map((contentItem, index) => (
           <MainContentBox
             buttonText={buttonText}
             contentItem={contentItem}
             index={index}
             filter={currentFilter}
             key={contentItem.slug}
+            linkTo={linkTo}
             tag={tag}
           >
             { children(contentItem) }

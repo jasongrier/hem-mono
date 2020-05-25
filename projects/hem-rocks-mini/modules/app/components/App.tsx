@@ -2,6 +2,7 @@ import React, { ReactElement, useEffect } from 'react'
 import { NavLink, Route, Switch, useLocation, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { find, isArray, map } from 'lodash'
+// TODO: Why isn't set used in this component??
 import ReactGA, { set } from 'react-ga'
 import Cookies from 'js-cookie'
 import { CartPopup, setCartProducts } from '../../cart'
@@ -12,8 +13,9 @@ import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup, closePopup } from '../../../../../lib/modules/popups'
 import { usePrevious } from '../../../../../lib/hooks'
 import { collapseTopBar, expandTopBar, MainNavItem, PlayerBar, TopBar } from '../index'
-import { RootState } from '../../../index'
 import EmailForm from './EmailForm'
+import { requestActiveLiveStream } from '../actions'
+import { RootState } from '../../../index'
 
 import {
   Admin,
@@ -46,10 +48,25 @@ function App(): ReactElement {
     { basePath: 'label', id: 'detail-popup' },
     { basePath: 'projects', id: 'detail-popup' },
     { basePath: 'sound-library', id: 'detail-popup' },
+    { basePath: 'venue-calendar', id: 'detail-popup' },
+    { basePath: 'venue-archive', id: 'detail-popup' },
   ]
 
   useEffect(function fetchContent() {
     dispatch(requestReadItems({ page: 1, size: 10000 }))
+  }, [])
+
+  useEffect(function setActiveLiveStream() {
+    dispatch(requestActiveLiveStream())
+
+    const liveStreamStatePoll = window.setInterval(function pollForLiveStreamState() {
+      console.log('??')
+      dispatch(requestActiveLiveStream())
+    }, 30000)
+
+    return function cleanup() {
+      window.clearInterval(liveStreamStatePoll)
+    }
   }, [])
 
   useEffect(function getCartFromCookies() {
@@ -58,6 +75,7 @@ function App(): ReactElement {
 
     try {
       const cartProducts = JSON.parse(cartCookie)
+
       if (!cartProducts) return
       if (!isArray(cartProducts)) return
       if (!cartProducts.length) return
@@ -138,6 +156,8 @@ function App(): ReactElement {
         pathnameSplit[0] === 'label'
         || pathnameSplit[0] === 'projects'
         || pathnameSplit[0] === 'sound-library'
+        || pathnameSplit[0] === 'venue-calendar'
+        || pathnameSplit[0] === 'venue-archive'
       ) {
 
         path += pathnameSplit[0]
@@ -184,7 +204,7 @@ function App(): ReactElement {
         <ul className="main-nav-items">
           <MainNavItem name="Sound Library" />
           <MainNavItem name="Label" />
-          <MainNavItem name="Venue" />
+          <MainNavItem name="Venue" to="venue-calendar" />
           <MainNavItem name="Apps" />
           <li className="main-nav-item">
             <NavLink
@@ -239,11 +259,15 @@ function App(): ReactElement {
             <Route exact path="/sound-library/filter/:filter" component={SoundLibrary} />
             <Route exact path="/sound-library/cart/:filter?" component={SoundLibrary} />
 
-            <Route exact path="/venue" component={Venue} />
-            <Route exact path="/venue/cart" component={Venue} />
+            <Route exact path="/venue-calendar/:contentItemSlug?/:filter?" component={Venue} />
+            <Route exact path="/venue-calendar/filter/:filter" component={Venue} />
+            <Route exact path="/venue-calendar/cart/:filter?" component={Venue} />
 
+            <Route exact path="/venue/cart" component={Venue} />
             <Route exact path="/venue/main-stage" component={VenueStage} />
             <Route exact path="/venue/main-stage/cart" component={VenueStage} />
+            {/* <Route exact path="/venue/archive" component={VenueArchive} />
+            <Route exact path="/venue/archive/cart" component={VenueArchive} /> */}
 
             <Route path="/admin" component={Admin} />
           </Switch>

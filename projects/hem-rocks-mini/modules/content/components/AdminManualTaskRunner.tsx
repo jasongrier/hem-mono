@@ -101,6 +101,8 @@ function migrate() {
 
     const data = JSON.parse(readFileSync(`${contentDir}/${file}`, 'utf8'))
 
+    data.secondaryTitle = ''
+
     try {
       if (isArray(data.tags)) {
         data.tags = data.tags.join(', ')

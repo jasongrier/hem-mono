@@ -3,11 +3,14 @@ import produce from 'immer'
 import {
   COLLAPSE_TOP_BAR,
   EXPAND_TOP_BAR,
+  REQUEST_ACTIVE_LIVE_STREAM,
+  SET_ACTIVE_LIVE_STREAM,
 
   IState,
 } from './index'
 
 const initialState: IState = {
+  activeLiveStream: null,
   topBarCollapsed: false,
 }
 
@@ -26,6 +29,16 @@ const reducer = (
     case EXPAND_TOP_BAR: {
       return produce(state, draftState => {
         draftState.topBarCollapsed = false
+      })
+    }
+
+    case REQUEST_ACTIVE_LIVE_STREAM: {
+      return state
+    }
+
+    case SET_ACTIVE_LIVE_STREAM: {
+      return produce(state, draftState => {
+        draftState.activeLiveStream = payload
       })
     }
 
