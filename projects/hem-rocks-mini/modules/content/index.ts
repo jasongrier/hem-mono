@@ -7,10 +7,13 @@ export interface IContentItem {
   blurb: string
   date: string
   description: string
+  externalLinkText: string
+  externalLinkUrl: string
   fixedPrice: string
   flexPriceMinimum: string
   flexPriceRecommended: string
   hasFixedPrice: boolean
+  isDigitalProduct: boolean
   secondaryTitle: string
   title: string
   titleWrapping: string
@@ -34,17 +37,20 @@ export const fieldTypes: IContentItem = {
   blurb: 'textarea',
   date: 'text',
   description: 'textarea',
+  externalLinkText: 'text',
+  externalLinkUrl: 'text',
   fixedPrice: 'text',
   flexPriceMinimum: 'text',
   flexPriceRecommended: 'text',
   hasFixedPrice: false,
-  secondaryTitle: 'text',
-  title: 'text',
-  titleWrapping: 'text',
+  isDigitalProduct: false,
   published: false,
+  secondaryTitle: 'text',
   slug: 'text',
   sticky: false,
   tags: 'text',
+  title: 'text',
+  titleWrapping: 'text',
   trackId: 'text',
   type: 'text',
 }

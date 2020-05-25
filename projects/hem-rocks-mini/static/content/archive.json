@@ -1,7 +1,7 @@
 {
   "acceptingDonations": false,
   "attribution": "fafadf",
-  "badgeText": "asdfasdf",
+  "badgeText": "",
   "blurb": "asdfasdfasdf",
   "date": "20.09.2020",
   "description": "  asdfasdf",
@@ -9,13 +9,13 @@
   "flexPriceMinimum": "2",
   "flexPriceRecommended": "15",
   "hasFixedPrice": false,
-  "secondaryTitle": "",
+  "secondaryTitle": "Various Artists",
   "title": "Archive",
   "titleWrapping": "Archive",
   "published": true,
   "slug": "archive",
   "sticky": true,
-  "tags": "label, record-release",
+  "tags": "label, record-releases",
   "trackId": "",
-  "type": "Sample Pack for Ableton Lives"
+  "type": "Sample Pack for Ableton Live"
 }

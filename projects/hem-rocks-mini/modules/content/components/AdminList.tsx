@@ -20,7 +20,7 @@ function AdminList(): ReactElement {
     dispatch(requestReadItems({ page: 1, size: 10000 }))
   }, [])
 
-  const [tag, setTag] = useState('all')
+  const [tag, setTag] = useState('label')
   const [search, setSearch] = useState('')
 
   const categoryFilterOnChange = useCallback(
