@@ -16,20 +16,8 @@
     "date": "01.09.2008"
   },
   {
-    "slug": "asdfasdf",
-    "date": "01.07.2020"
-  },
-  {
     "slug": "austin-thunderstorm",
     "date": "01.09.2017"
-  },
-  {
-    "slug": "bar",
-    "date": "01.07.2020"
-  },
-  {
-    "slug": "baz",
-    "date": "01.07.2020"
   },
   {
     "slug": "berlin-new-years",
@@ -114,10 +102,6 @@
   {
     "slug": "flow",
     "date": "01.09.2017"
-  },
-  {
-    "slug": "foo",
-    "date": "01.07.2020"
   },
   {
     "slug": "frame-drum",
