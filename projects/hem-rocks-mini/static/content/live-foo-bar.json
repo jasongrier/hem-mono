@@ -9,13 +9,13 @@
   "flexPriceMinimum": "",
   "flexPriceRecommended": "",
   "hasFixedPrice": false,
-  "secondaryTitle": "Saturday, August 16 @ 8pm ",
+  "secondaryTitle": "Originally aired: Saturday, August 16 @ 8pm ",
   "title": "Foo Bar",
   "titleWrapping": "",
   "published": true,
   "slug": "live-foo-bar",
   "sticky": false,
-  "tags": "venue, venue-archive",
+  "tags": "venue-archive",
   "trackId": "",
   "type": ""
 }

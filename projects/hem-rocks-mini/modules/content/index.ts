@@ -154,6 +154,7 @@ export {
 
 export {
   createItemsSaga,
+  deleteItemsSaga,
   readItemsSaga,
   updateItemsSaga,
 } from './sagas'

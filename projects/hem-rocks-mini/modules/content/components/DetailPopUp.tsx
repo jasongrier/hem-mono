@@ -10,6 +10,7 @@ import { closePopup, openPopup } from '../../../../../lib/modules/popups'
 import { TrackPlayPauseButton } from '../../../../../lib/modules/player'
 import { addProductToCart } from '../../cart'
 import { IContentItem } from '../../content'
+import { assetHostHostname } from '../../../functions'
 import { RootState } from '../../../index'
 
 interface IProps {
@@ -262,9 +263,7 @@ function DetailPopUp({
     return correctedPrice
   }
 
-  const assetHost = window.location.hostname === 'localhost'
-    ? 'http://localhost:8888'
-    : 'http://static.hem.rocks'
+  const assetHost = assetHostHostname()
 
   const buyNowText = tag === 'venue-calendar'
     ? 'Buy Ticket'

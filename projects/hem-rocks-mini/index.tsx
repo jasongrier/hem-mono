@@ -70,6 +70,9 @@ sagaMiddleware.run(readItemsSaga)
 import { updateItemsSaga } from './modules/content'
 sagaMiddleware.run(updateItemsSaga)
 
+import { deleteItemsSaga } from './modules/content'
+sagaMiddleware.run(deleteItemsSaga)
+
 import { addProductToCartSaga } from './modules/cart'
 sagaMiddleware.run(addProductToCartSaga)
 
