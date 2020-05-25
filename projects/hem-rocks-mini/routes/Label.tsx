@@ -1,6 +1,6 @@
 import React, { ReactElement, useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { MainContentList } from '../modules/content'
 import { TrackPlayPauseButton } from '../../../lib/modules/player'
 import { LabelTimeline } from '../components/timeline'
@@ -24,7 +24,6 @@ function Label(): ReactElement {
         <LabelTimeline refresh={refresh} />
         <MainContentList
           blurb=""
-          buttonText="Info"
           campaignMonitorId="5B5E7037DA78A748374AD499497E309E34883504EC972B188E4CB169FC87154EA44D7B3A50124374F2DEEFB33D7CE7A53C0566B978C890570F878E42C80AD756"
           currentFilter={currentFilter}
           filters={[
@@ -35,17 +34,36 @@ function Label(): ReactElement {
             'Rarities',
             'Merch',
           ]}
-          infoPopupTitle="About the Sound Library"
           tag="label"
           title="Label"
         >
-          {(item) => (item.trackId &&
-            <TrackPlayPauseButton track={{
-              attribution: item.attribution,
-              id: item.slug,
-              type: 'soundcloud',
-              resource: item.trackId,
-            }}/>
+          {(item) => (
+            <>
+              { item.trackId && (
+                <TrackPlayPauseButton track={{
+                  attribution: item.attribution,
+                  id: item.slug,
+                  type: 'soundcloud',
+                  resource: item.trackId,
+                }}/>
+              )}
+              { !(item.labelExternalLinkUrl && item.trackId) && (
+                <Link
+                  className="action-button"
+                  to={`/label/${item.slug}/${currentFilter || 'all'}`}
+                >
+                  { item.labelIsDigitalProduct ? 'Download' : 'Info' }
+                </Link>
+              )}
+              { item.labelExternalLinkUrl && item.labelExternalLinkText && (
+                <a
+                  className="action-button action-button-wide"
+                  href={item.labelExternalLinkUrl}
+                >
+                  { item.labelExternalLinkText }
+                </a>
+              )}
+            </>
           )}
         </MainContentList>
       </div>

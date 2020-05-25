@@ -29,7 +29,11 @@ body {
 }
 
 .action-button-wide {
-  width: 240px;
+  width: 240px !important;
+}
+
+.action-button-super-wide {
+  width: 440px !important;
 }
 
 .action-button:focus,
