@@ -104,9 +104,13 @@ function migrate() {
     try {
       // DO STUFF HERE
 
-      data.labelExternalLinkUrl = ''
-      data.labelExternalLinkText = ''
-      data.labelIsDigitalProduct = data.tags.includes('sound-library')
+      data.externalLinkUrl = data.labelExternalLinkUrl
+      data.externalLinkText = data.labelExternalLinkText
+      data.isDigitalProduct = data.labelIsDigitalProduct
+
+      delete data.labelExternalLinkUrl
+      delete data.labelExternalLinkText
+      delete data.labelIsDigitalProduct
 
       // END DO STUFF HERE
 
