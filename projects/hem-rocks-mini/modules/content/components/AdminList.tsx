@@ -42,7 +42,7 @@ function AdminList(): ReactElement {
 
   if (!isEmpty(search)) {
     contentItems = allContentItems.filter(item =>
-      item.name.toLowerCase().includes(search.toLowerCase())
+      item.title.toLowerCase().includes(search.toLowerCase())
       || item.tags.includes(search)
       || item.tags.includes(search.toLowerCase())
       || item.attribution.toLowerCase().includes(search.toLowerCase())
@@ -111,7 +111,7 @@ function AdminList(): ReactElement {
                   <input type="checkbox"/>
                 </td> */}
                 <td className="admin-list-column-title">
-                  <Link to={`/admin/edit/${item.slug}`}>{item.name}</Link>
+                  <Link to={`/admin/edit/${item.slug}`}>{item.title}</Link>
                 </td>
                 <td className="admin-list-column-date">
                   { item.date }

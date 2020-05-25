@@ -14,6 +14,7 @@ interface IProps {
 
   buttonText?: string
   className?: string
+  linkTo?: (contentItem: IContentItem) => string
 }
 
 function MainContentBox({
@@ -25,6 +26,7 @@ function MainContentBox({
 
   buttonText,
   className,
+  linkTo: customLinkTo,
 }: PropsWithChildren<IProps>): ReactElement {
   const dispatch = useDispatch()
   const [alignRight, setAlignRight] = useState(false)
@@ -39,7 +41,9 @@ function MainContentBox({
     }, [],
   )
 
-  const linkTo = `/${tag}/${contentItem.slug}${filter ? '/' + filter : ''}`
+  const linkTo = customLinkTo
+    ? customLinkTo(contentItem)
+    : `/${tag}/${contentItem.slug}${filter ? '/' + filter : ''}`
 
   const assetHost = window.location.hostname === 'localhost'
     ? 'http://localhost:8888'
@@ -72,7 +76,10 @@ function MainContentBox({
         </div>
       )}
       <Link to={linkTo}>
-        <h3 dangerouslySetInnerHTML={{__html: contentItem.nameWrapping || contentItem.name}} />
+        <h3 dangerouslySetInnerHTML={{ __html: contentItem.titleWrapping || contentItem.title }} />
+        { contentItem.secondaryTitle && (
+          <h4 dangerouslySetInnerHTML={{ __html: contentItem.secondaryTitle }} />
+        )}
       </Link>
       <div
         className="main-content-box-key-art"
@@ -95,19 +102,19 @@ function MainContentBox({
           {/* <p>{ contentItem.blurb }</p> */}
           <p>I'm baby locavore sartorial pinterest pickled swag, lumbersexual shabby chic poke ramps hot chicken kinfolk unicorn paleo hella. Organic man braid chambray church-key four loko vice hella butcher dreamcatcher kombucha farm-to-table. Everyday carry vaporware coloring book stumptown, ramps actually offal fam. Gastropub squid pour-over skateboard taiyaki VHS asymmetrical jean shorts tacos tattooed vegan. Fixie vinyl ramps pabst aesthetic skateboard hammock biodiesel.</p>
         </Link>
-      </div>
-      <div className="main-content-box-actions">
-        <div className="main-content-box-custom-actions">
-          { children }
+        <div className="main-content-box-actions">
+          <div className="main-content-box-custom-actions">
+            { children }
+          </div>
+          { buttonText && (
+            <Link
+              className="action-button"
+              to={linkTo}
+            >
+              { buttonText }
+            </Link>
+          )}
         </div>
-        { buttonText && (
-          <Link
-            className="action-button"
-            to={linkTo}
-          >
-            { buttonText }
-          </Link>
-        )}
       </div>
     </SplatterDims>
   )

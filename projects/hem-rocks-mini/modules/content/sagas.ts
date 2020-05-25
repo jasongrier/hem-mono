@@ -23,10 +23,10 @@ function* createItems({ payload }: any) {
     const item = Object.assign({}, payload[0]) // TODO: Handle multiples
 
     if (
-      !item.name
-      || item.name.length === 0
+      !item.title
+      || item.title.length === 0
     ) {
-      console.error(`Item has no name!!`)
+      console.error(`Item has no title!!`)
       return
     }
 

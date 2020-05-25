@@ -41,11 +41,11 @@ function DetailPopUp({
 
   useEffect(function init() {
     if (showPurchaseForm) {
-      ReactGA.modalview('Detail Popup with Purchase Form: ' + contentItem.name)
+      ReactGA.modalview('Detail Popup with Purchase Form: ' + contentItem.title)
     }
 
     else {
-      ReactGA.modalview('Detail Popup without Purchase Form: ' + contentItem.name)
+      ReactGA.modalview('Detail Popup without Purchase Form: ' + contentItem.title)
     }
   }, [])
 
@@ -71,7 +71,7 @@ function DetailPopUp({
       if (!isInCart(contentItem)) {
         dispatch(addProductToCart({
           finalPrice: suggestedPrice,
-          name: contentItem.name,
+          name: contentItem.title,
           slug: contentItem.slug,
           type: contentItem.type,
         }))
@@ -95,7 +95,7 @@ function DetailPopUp({
 
       ReactGA.event({
         category: 'User',
-        action: 'Clicked "Instant Download" for: ' + contentItem.name,
+        action: 'Clicked "Instant Download" for: ' + contentItem.title,
       })
     }, [filter, suggestedPrice, tag],
   )
@@ -189,7 +189,7 @@ function DetailPopUp({
 
     dispatch(addProductToCart({
       finalPrice: suggestedPrice,
-      name: contentItem.name,
+      name: contentItem.title,
       slug: contentItem.slug,
       type: contentItem.type,
     }))
@@ -201,7 +201,7 @@ function DetailPopUp({
 
     ReactGA.event({
       category: 'User',
-      action: 'Clicked "Add to Cart" for: ' + contentItem.name,
+      action: 'Clicked "Add to Cart" for: ' + contentItem.title,
     })
   }
 
@@ -277,7 +277,7 @@ function DetailPopUp({
       <Scrollbars noScrollX={true}>
         <header>
           <div className="detail-popup-title">
-            <h1>{ contentItem.name }</h1>
+            <h1>{ contentItem.title }</h1>
             <h2>{ contentItem.type }</h2>
           </div>
           <div

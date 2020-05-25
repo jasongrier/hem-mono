@@ -18,7 +18,7 @@ function VenueStage(): ReactElement {
       height: 480,
       channel: 'hemrocks',
       layout: 'video-with-chat',
-      autoplay: false,
+      autoplay: true,
     })
 
     embedInstance.addEventListener(Twitch.Embed.VIDEO_READY, function () {

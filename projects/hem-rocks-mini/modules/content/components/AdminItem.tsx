@@ -85,7 +85,7 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
       if (!workingItem) return
 
       const payloadItem = Object.assign({}, workingItem)
-      payloadItem.slug = slugify(payloadItem.name)
+      payloadItem.slug = slugify(payloadItem.title)
 
       if (create) {
         dispatch(requestCreateItems([payloadItem]))
@@ -109,7 +109,9 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
 
   const keys = Object.keys(workingItem)
   const preferredOrder = [
-    'name',
+    'title',
+    'titleWrapping',
+    'secondaryTitle',
   ]
 
   let orderedKeys = []
@@ -128,7 +130,7 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
     <ElectronOnly showMessage={true}>
       <form onSubmit={onSubmit}>
         <header className="admin-item-header">
-          <h2>{ originalItem?.name }</h2>
+          <h2>{ originalItem?.title }</h2>
           <button
             className="action-button save-item-button"
             disabled={!canSave}

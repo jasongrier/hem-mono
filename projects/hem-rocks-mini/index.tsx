@@ -31,6 +31,9 @@ const store = window.STORE = createStore(
   )
 )
 
+import { requestActiveLiveStreamSaga } from './modules/app'
+sagaMiddleware.run(requestActiveLiveStreamSaga)
+
 import { mutePlayerSaga } from '../../lib/modules/player'
 sagaMiddleware.run(mutePlayerSaga)
 
