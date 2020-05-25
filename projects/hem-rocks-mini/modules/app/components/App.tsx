@@ -8,7 +8,7 @@ import Cookies from 'js-cookie'
 import { CartPopup, setCartProducts } from '../../cart'
 import { ThankYouPopup } from '../../cart'
 import { DetailPopUp, requestReadItems, setCurrentItem } from '../../content'
-import { ProtectedContent } from '../../login'
+import { ProtectedContent, logInCheckRequest } from '../../login'
 import { ElectronOnly, ScrollToTop, HamburgerMenu, Spinner } from '../../../../../lib/components'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup, closePopup } from '../../../../../lib/modules/popups'
@@ -53,6 +53,10 @@ function App(): ReactElement {
     { basePath: 'venue-calendar', id: 'detail-popup' },
     { basePath: 'venue-archive', id: 'detail-popup' },
   ]
+
+  useEffect(function logInCheck() {
+    dispatch(logInCheckRequest())
+  }, [])
 
   useEffect(function fetchContent() {
     dispatch(requestReadItems({ page: 1, size: 10000 }))
