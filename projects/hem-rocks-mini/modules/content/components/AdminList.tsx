@@ -35,10 +35,18 @@ function AdminList(): ReactElement {
     }, [],
   )
 
-  let contentItems = ([] as IContentItem[]).concat(tag === 'all' ? allContentItems : allContentItems.filter(item =>
-    item.tags.includes(tag)
-    || item.tags.includes(tag.toLowerCase())
-  ))
+  let contentItems = ([] as IContentItem[]).concat(tag === 'all' ? allContentItems : allContentItems.filter(item => {
+    if (isEmpty(item.tags)) return false
+
+    let tagsArr = item.tags.split(',')
+
+    if (!tagsArr.length) return false
+
+    tagsArr = tagsArr.map((tag) => tag.trim())
+
+    return tagsArr.includes(tag)
+      || tagsArr.includes(tag)
+  }))
 
   if (!isEmpty(search)) {
     contentItems = allContentItems.filter(item =>
@@ -71,7 +79,8 @@ function AdminList(): ReactElement {
               <option value="sound-library">Sound Library</option>
               <option value="label">Label</option>
               <option value="mixes">Mixes</option>
-              <option value="venue">Venue</option>
+              <option value="venue-calendar">Venue Calendar</option>
+              <option value="venue-archive">Venue Archive</option>
               <option value="software">Software</option>
               <option value="merch">Merch</option>
             </select>
@@ -120,6 +129,16 @@ function AdminList(): ReactElement {
                   <button
                     className="action-button"
                     onClick={() => {
+                      const confirmation = confirm('Are you sure?')
+                      if (!confirmation) return
+                      dispatch(requestDeleteItems([item.slug]))
+                    }}
+                  >
+                    Delete
+                  </button>
+                  <button
+                    className="action-button"
+                    onClick={() => {
                       const updatedItem: IContentItem = produce(item, (draftItem) => {
                         draftItem.published = !draftItem.published
                       })
@@ -128,16 +147,6 @@ function AdminList(): ReactElement {
                   >
                     { item.published ? 'Unpublish' : 'Publish' }
                   </button>
-                  {/* <button
-                    className="action-button"
-                    onClick={() => {
-                      const confirmation = confirm('Are you sure?')
-                      if (!confirmation) return
-                      dispatch(requestDeleteItems([item.slug]))
-                    }}
-                  >
-                    Delete
-                  </button> */}
                 </td>
               </tr>
             ))}

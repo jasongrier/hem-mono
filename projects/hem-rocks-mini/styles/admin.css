@@ -149,7 +149,7 @@
 }
 
 .admin-list-column-actions {
-  width: 100px;
+  width: 210px;
 }
 
 .admin-list-column-actions button {
@@ -157,14 +157,14 @@
   width: 100px;
   height: 30px;
   line-height: 30px;
-  margin-right: 20px;
+  margin: 0 0 0 10px;
   transform: translateX(3px);
   font-size: 14px;
   font-weight: 600;
 }
 
 .admin-list-column-actions button:last-child {
-  margin-right: 0;
+  margin-left: 0;
 }
 
 .admin-item {

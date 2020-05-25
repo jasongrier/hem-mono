@@ -1,9 +1,8 @@
 import React, { ReactElement, PropsWithChildren, useCallback, useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Planes } from '../../../../../lib/packages/hem-placemats'
 import { SplatterDims } from '../../../../../lib/packages/hem-boxplatter'
-import { LaunchDetailPopupButton } from './index'
+import { assetHostHostname } from '../../../functions'
 import { IContentItem, setCurrentItem } from '../index'
 
 interface IProps {
@@ -45,9 +44,7 @@ function MainContentBox({
     ? customLinkTo(contentItem)
     : `/${tag}/${contentItem.slug}${filter ? '/' + filter : ''}`
 
-  const assetHost = window.location.hostname === 'localhost'
-    ? 'http://localhost:8888'
-    : 'http://static.hem.rocks'
+  const assetHost = assetHostHostname()
 
   return (
     <SplatterDims

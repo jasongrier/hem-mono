@@ -12,10 +12,10 @@
   "secondaryTitle": "With invited guests<br>Every Sunday in August @ 8pm (CET)",
   "title": "Line Gøttsche Residency",
   "titleWrapping": "",
-  "published": true,
+  "published": false,
   "slug": "line-gottsche-residency",
   "sticky": false,
-  "tags": "venue, venue-calendar, venue-residency",
+  "tags": "venue-calendar, venue-residency",
   "trackId": "",
   "type": ""
 }
