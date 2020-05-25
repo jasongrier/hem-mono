@@ -8,6 +8,7 @@ import Cookies from 'js-cookie'
 import { CartPopup, setCartProducts } from '../../cart'
 import { ThankYouPopup } from '../../cart'
 import { DetailPopUp, requestReadItems, setCurrentItem } from '../../content'
+import { ProtectedContent } from '../../login'
 import { ElectronOnly, ScrollToTop, HamburgerMenu, Spinner } from '../../../../../lib/components'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup, closePopup } from '../../../../../lib/modules/popups'
@@ -195,127 +196,129 @@ function App(): ReactElement {
   )
 
   return (
-    <div className="hem-application">
-      <ScrollToTop />
+    <div className="hem-application hem-rocks-mini">
+      <ProtectedContent>
+        <ScrollToTop />
 
-      <TopBar collapsed={topBarCollapsed} />
+        <TopBar collapsed={topBarCollapsed} />
 
-      <nav className={`main-nav${pathname === '/' ? ' large-nav' : ''}`}>
-        <ul className="main-nav-items">
-          <MainNavItem name="Sound Library" />
-          <MainNavItem name="Label" />
-          <MainNavItem name="Venue" to="venue-calendar" />
-          <MainNavItem name="Apps" />
-          <li className="main-nav-item">
-            <NavLink
-              to={(() => {
-                const [tag, filter, filterName] = pathname.replace(/^\//, '').split('/')
+        <nav className={`main-nav${pathname === '/' ? ' large-nav' : ''}`}>
+          <ul className="main-nav-items">
+            <MainNavItem name="Sound Library" />
+            <MainNavItem name="Label" />
+            <MainNavItem name="Venue" to="venue-calendar" />
+            <MainNavItem name="Apps" />
+            <li className="main-nav-item">
+              <NavLink
+                to={(() => {
+                  const [tag, filter, filterName] = pathname.replace(/^\//, '').split('/')
 
-                if (filter === 'filter') {
-                  return `/${tag}/cart/${filterName}`
-                }
+                  if (filter === 'filter') {
+                    return `/${tag}/cart/${filterName}`
+                  }
 
-                return `${pathname !== '/' ? pathname : ''}/cart`
-              })()}
-              onClick={() => dispatch(collapseTopBar())}
-            >
-              Cart
-            </NavLink>
-          </li>
-        </ul>
-      </nav>
-      <nav className="hamburger-nav">
-        <HamburgerMenu>
-          <ul>
-            <MainNavItem name="Info" />
-            <MainNavItem name="Merch" />
-            <MainNavItem name="Mixes" />
-            <MainNavItem name="Mailing List" />
-            <ElectronOnly>
-              <MainNavItem name="Admin" to="admin/list" />
-            </ElectronOnly>
+                  return `${pathname !== '/' ? pathname : ''}/cart`
+                })()}
+                onClick={() => dispatch(collapseTopBar())}
+              >
+                Cart
+              </NavLink>
+            </li>
           </ul>
-        </HamburgerMenu>
-      </nav>
-      <main className="main-content">
-        <div className="tabs-content">
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/cart" component={Home} />
-            <Route exact path="/thank-you" component={Home} />
+        </nav>
+        <nav className="hamburger-nav">
+          <HamburgerMenu>
+            <ul>
+              <MainNavItem name="Info" />
+              <MainNavItem name="Merch" />
+              <MainNavItem name="Mixes" />
+              <MainNavItem name="Mailing List" />
+              <ElectronOnly>
+                <MainNavItem name="Admin" to="admin/list" />
+              </ElectronOnly>
+            </ul>
+          </HamburgerMenu>
+        </nav>
+        <main className="main-content">
+          <div className="tabs-content">
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/cart" component={Home} />
+              <Route exact path="/thank-you" component={Home} />
 
-            <Route exact path="/info" component={Info} />
-            <Route exact path="/info/cart" component={Info} />
+              <Route exact path="/info" component={Info} />
+              <Route exact path="/info/cart" component={Info} />
 
-            <Route exact path="/label/:contentItemSlug?/:filter?" component={Label} />
-            <Route exact path="/label/filter/:filter" component={Label} />
-            <Route exact path="/label/cart/:filter?" component={Label} />
+              <Route exact path="/label/:contentItemSlug?/:filter?" component={Label} />
+              <Route exact path="/label/filter/:filter" component={Label} />
+              <Route exact path="/label/cart/:filter?" component={Label} />
 
-            <Route exact path="/apps/:contentItemSlug?/:filter?" component={Projects} />
-            <Route exact path="/apps/filter/:filter" component={Projects} />
-            <Route exact path="/apps/cart/:filter?" component={Projects} />
+              <Route exact path="/apps/:contentItemSlug?/:filter?" component={Projects} />
+              <Route exact path="/apps/filter/:filter" component={Projects} />
+              <Route exact path="/apps/cart/:filter?" component={Projects} />
 
-            <Route exact path="/sound-library/:contentItemSlug?/:filter?" component={SoundLibrary} />
-            <Route exact path="/sound-library/filter/:filter" component={SoundLibrary} />
-            <Route exact path="/sound-library/cart/:filter?" component={SoundLibrary} />
+              <Route exact path="/sound-library/:contentItemSlug?/:filter?" component={SoundLibrary} />
+              <Route exact path="/sound-library/filter/:filter" component={SoundLibrary} />
+              <Route exact path="/sound-library/cart/:filter?" component={SoundLibrary} />
 
-            <Route exact path="/venue-calendar/:contentItemSlug?/:filter?" component={Venue} />
-            <Route exact path="/venue-calendar/filter/:filter" component={Venue} />
-            <Route exact path="/venue-calendar/cart/:filter?" component={Venue} />
+              <Route exact path="/venue-calendar/:contentItemSlug?/:filter?" component={Venue} />
+              <Route exact path="/venue-calendar/filter/:filter" component={Venue} />
+              <Route exact path="/venue-calendar/cart/:filter?" component={Venue} />
 
-            <Route exact path="/venue/cart" component={Venue} />
-            <Route exact path="/venue/main-stage" component={VenueStage} />
-            <Route exact path="/venue/main-stage/cart" component={VenueStage} />
-            <Route exact path="/venue/archive" component={VenueArchive} />
-            <Route exact path="/venue/archive/cart" component={VenueArchive} />
+              <Route exact path="/venue/cart" component={Venue} />
+              <Route exact path="/venue/main-stage" component={VenueStage} />
+              <Route exact path="/venue/main-stage/cart" component={VenueStage} />
+              <Route exact path="/venue/archive" component={VenueArchive} />
+              <Route exact path="/venue/archive/cart" component={VenueArchive} />
 
-            <Route path="/admin" component={Admin} />
-          </Switch>
-        </div>
-      </main>
-      <footer>
+              <Route path="/admin" component={Admin} />
+            </Switch>
+          </div>
+        </main>
+        <footer>
 
-      </footer>
+        </footer>
 
-      <PopupContainer
-        closeIcon={CloseButton}
-        id="detail-popup"
-      >
-        <DetailPopUp
-          contentItem={currentContentItem}
-          filter={pathname.split('/')[3]}
-          tag={pathname.split('/')[1]}
-        />
-      </PopupContainer>
+        <PopupContainer
+          closeIcon={CloseButton}
+          id="detail-popup"
+        >
+          <DetailPopUp
+            contentItem={currentContentItem}
+            filter={pathname.split('/')[3]}
+            tag={pathname.split('/')[1]}
+          />
+        </PopupContainer>
 
-      <PopupContainer
-        closeIcon={false}
-        escapeKeyCloses={false}
-        overlayCloses={false}
-        id="cart-popup"
-      >
-        {(props: any) => (
-          <CartPopup redirecting={props?.redirecting} />
-        )}
-      </PopupContainer>
+        <PopupContainer
+          closeIcon={false}
+          escapeKeyCloses={false}
+          overlayCloses={false}
+          id="cart-popup"
+        >
+          {(props: any) => (
+            <CartPopup redirecting={props?.redirecting} />
+          )}
+        </PopupContainer>
 
-      <PopupContainer
-        closeIcon={CloseButton}
-        id="email-popup"
-      >
-        <EmailForm />
-      </PopupContainer>
+        <PopupContainer
+          closeIcon={CloseButton}
+          id="email-popup"
+        >
+          <EmailForm />
+        </PopupContainer>
 
-      <PopupContainer
-        closeIcon={CloseButton}
-        id="thank-you-popup"
-      >
-        {(props: any) => (
-          <ThankYouPopup itemSlugs={props?.itemSlugs} />
-        )}
-      </PopupContainer>
+        <PopupContainer
+          closeIcon={CloseButton}
+          id="thank-you-popup"
+        >
+          {(props: any) => (
+            <ThankYouPopup itemSlugs={props?.itemSlugs} />
+          )}
+        </PopupContainer>
 
-      <PlayerBar />
+        <PlayerBar />
+      </ProtectedContent>
     </div>
   )
 }
