@@ -63,7 +63,7 @@ const reducer = (
 
           if (itemIndex < 0) throw new Error(`Cannot update item with slug "${updatedItem.slug}" because the original could not be found.`)
 
-          draftState[itemIndex] = updatedItem
+          draftState.contentItems[itemIndex] = updatedItem
         }
       })
     }

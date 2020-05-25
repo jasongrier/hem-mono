@@ -4,6 +4,7 @@ import {
   REQUEST_READ_ITEMS,
   REQUEST_UPDATE_ITEMS,
 
+  doCreateItems as doCreateItemsAc,
   doReadItems as doReadItemsAc,
   doUpdateItems as doUpdateItemsAc,
   requestReadItems as requestReadItemsAc,
@@ -19,27 +20,63 @@ function* createItems({ payload }: any) {
     const { extname, join } = remote.require('path')
     const { execSync } = remote.require('child_process')
 
-    const item = payload[0] // TODO: Handle multiples
+    const item = Object.assign({}, payload[0]) // TODO: Handle multiples
 
-    item.slug = slugify(item.name)
+    if (
+      !item.name
+      || item.name.length === 0
+    ) {
+      console.error(`Item has no name!!`)
+      return
+    }
+
+    if (
+      !item.date
+      || item.date.length === 0
+    ) {
+      console.error(`Item has no date!!`)
+      return
+    }
 
     const file = join(__dirname, '..', '..', 'static', 'content', item.slug + '.json')
+    const indexFile = join(__dirname, '..', '..', 'static', 'content', 'index.json')
     const distFile = join(__dirname, '..', '..', '..', '..', 'dist', 'static', 'content', item.slug + '.json')
+    const distIndexFile = join(__dirname, '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
 
     if (existsSync(file)) {
       console.error(`Src file already exists: ${file}`)
+      return
     }
 
-    if (!existsSync(distFile)) {
-      console.error(`Dist file not found: ${distFile}`)
+    if (existsSync(distFile)) {
+      console.error(`Dist file already exists: ${distFile}`)
+      return
+    }
+
+    if (!existsSync(indexFile)) {
+      console.error('Src index does not exist.')
+      return
+    }
+
+    if (!existsSync(distIndexFile)) {
+      console.error('Dist index does not exist.')
+      return
     }
 
     writeFileSync(file, JSON.stringify(item, null, 2))
-
-    execSync(`rm ${distFile}`, { stdio: 'inherit' })
     execSync(`cp ${file} ${distFile}`, { stdio: 'inherit' })
 
-    yield put(doUpdateItemsAc([item]))
+    const index = JSON.parse(readFileSync(indexFile, 'utf8'))
+
+    index.push({
+      date: item.date,
+      slug: item.slug,
+    })
+
+    writeFileSync(indexFile, JSON.stringify(index, null, 2))
+    execSync(`cp ${indexFile} ${distIndexFile}`, { stdio: 'inherit' })
+
+    yield put(doCreateItemsAc([item]))
     yield put(requestReadItemsAc({ page: 1, size: 10000 }))
   }
 
@@ -118,6 +155,7 @@ function* updateItemsSaga() {
 }
 
 export {
+  createItemsSaga,
   readItemsSaga,
   updateItemsSaga,
 }
