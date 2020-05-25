@@ -8,6 +8,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import { popupsReducer } from '../../lib/modules/popups'
 import { playerReducer } from '../../lib/modules/player'
 import { App, appReducer } from './modules/app'
+import { loginReducer } from './modules/login'
 import { cartReducer } from './modules/cart'
 import { contentReducer } from './modules/content'
 import './styles'
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   app: appReducer,
   cart: cartReducer,
   content: contentReducer,
+  login: loginReducer,
   player: playerReducer,
   popups: popupsReducer,
 })
@@ -81,6 +83,15 @@ sagaMiddleware.run(clearCartSaga)
 
 import { removeProductFromCartSaga } from './modules/cart'
 sagaMiddleware.run(removeProductFromCartSaga)
+
+import { loginCheckSaga } from './modules/login'
+sagaMiddleware.run(loginCheckSaga)
+
+import { loginSaga } from './modules/login'
+sagaMiddleware.run(loginSaga)
+
+import { logoutSaga } from './modules/login'
+sagaMiddleware.run(logoutSaga)
 
 const Root = (
   <Provider store={store}>
