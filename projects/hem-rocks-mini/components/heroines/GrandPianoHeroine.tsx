@@ -17,40 +17,39 @@ function GrandPianoHeroine(): ReactElement {
 
   return (
     <div className="grand-piano-heroine">
-      <div className="grand-piano-heroine-image" />
-      <div className="grand-piano-heroine-details">
-        <div>
-          { grandPianoProduct.soundCloudTrackId && (
-            <MuteButton
-              canStartPlayback={true}
-              track={{
-                attribution: grandPianoProduct.trackAttribution,
-                id: grandPianoProduct.slug,
-                type: 'soundcloud',
-                resource: grandPianoProduct.soundCloudTrackId,
-              }}
-            />
-          )}
+      <Link to="/sound-library/grand-piano">
+        <div className="grand-piano-heroine-image" />
+        <div className="grand-piano-heroine-details">
+          <div>
+            { grandPianoProduct.trackId && (
+              <MuteButton
+                canStartPlayback={true}
+                track={{
+                  attribution: grandPianoProduct.attribution,
+                  id: grandPianoProduct.slug,
+                  type: 'soundcloud',
+                  resource: grandPianoProduct.trackId,
+                }}
+              />
+            )}
+          </div>
+          <div className="grand-piano-heroine-text">
+            <h2>New in Sound Library: <strong>Grand Piano</strong></h2>
+            <h5>
+              A gritty and elegant prepared piano, recorded in Berlin
+            </h5>
+            <p>
+              &bull; 6 Treatments: Vanilla, Rice Paper, Black Cinefoil, Steel Tinplate, Louis V Chain, Guitar Pick
+            </p>
+            <p>
+              &bull; 1400 One-shots: Bowing, Scraping, Hand Percussion, Cluster Chords, etc.
+            </p>
+            <button className="action-button">
+              Learn more
+            </button>
+          </div>
         </div>
-        <div className="grand-piano-heroine-text">
-          <h2>New in Sound Library: <strong>Grand Piano</strong></h2>
-          <h5>
-            A gritty and elegant prepared piano, recorded in Berlin
-          </h5>
-          <p>
-            &bull; 6 Treatments: Vanilla, Rice Paper, Black Cinefoil, Steel Tinplate, Louis V Chain, Guitar Pick
-          </p>
-          <p>
-            &bull; 1400 One-shots: Bowing, Scraping, Hand Percussion, Cluster Chords, etc.
-          </p>
-          <Link
-            className="action-button"
-            to="/sound-library/grand-piano"
-          >
-            Learn more
-          </Link>
-        </div>
-      </div>
+      </Link>
     </div>
   )
 }

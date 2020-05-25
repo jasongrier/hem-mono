@@ -101,12 +101,14 @@ function migrate() {
 
     const data = JSON.parse(readFileSync(`${contentDir}/${file}`, 'utf8'))
 
-    data.secondaryTitle = ''
-
     try {
-      if (isArray(data.tags)) {
-        data.tags = data.tags.join(', ')
-      }
+      // DO STUFF HERE
+
+      data.externalLinkUrl = ''
+      data.externalLinkText = ''
+      data.isDigitalProduct = data.tags.includes('sound-library')
+
+      // END DO STUFF HERE
 
       const item = modelize(data)
 
@@ -143,7 +145,7 @@ function assignImages() {
   const contentFiles = readdirSync(contentDir)
   const images = readdirSync(imagesDir)
 
-  const soundLibraryFileNames = contentFiles.reduce((acc, fileName) => {
+  const soundLibraryFileNames = contentFiles.reduce((acc: string[], fileName: string) => {
     if (fileName === 'index.json') return acc
     if (extname(fileName) !== '.json') return acc
 

@@ -92,7 +92,6 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
 
       if (create) {
         dispatch(requestCreateItems([payloadItem]))
-        history.push('/admin/list')
       }
 
       else {
@@ -101,6 +100,8 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
 
       setOriginalItem(workingItem)
       setCanSave(false)
+
+      history.push('/admin/list')
     }, [workingItem],
   )
 
@@ -115,6 +116,7 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
     'title',
     'titleWrapping',
     'secondaryTitle',
+    'tags',
   ]
 
   let orderedKeys = []

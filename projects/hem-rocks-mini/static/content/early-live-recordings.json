@@ -9,13 +9,13 @@
   "flexPriceMinimum": "",
   "flexPriceRecommended": "15",
   "hasFixedPrice": false,
-  "secondaryTitle": "",
+  "secondaryTitle": "Ariel Pink",
   "title": "Early Live Recordings",
   "titleWrapping": "Early Live Record&shy;ings",
   "published": true,
   "slug": "early-live-recordings",
   "sticky": false,
-  "tags": "label",
+  "tags": "label, record-releases",
   "trackId": "",
   "type": "Sample Pack for Ableton Live"
 }
