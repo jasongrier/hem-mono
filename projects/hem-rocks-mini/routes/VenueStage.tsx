@@ -42,7 +42,7 @@ function VenueStage(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
       <div className="page page-venue">
-        <h1>Venue</h1>
+        <h1>Main Stage</h1>
 
         <VenueSubnav />
 

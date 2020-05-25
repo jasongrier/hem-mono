@@ -25,6 +25,7 @@ import {
   Projects,
   SoundLibrary,
   Venue,
+  VenueArchive,
   VenueStage,
 } from '../../../routes'
 
@@ -60,7 +61,6 @@ function App(): ReactElement {
     dispatch(requestActiveLiveStream())
 
     const liveStreamStatePoll = window.setInterval(function pollForLiveStreamState() {
-      console.log('??')
       dispatch(requestActiveLiveStream())
     }, 30000)
 
@@ -266,8 +266,8 @@ function App(): ReactElement {
             <Route exact path="/venue/cart" component={Venue} />
             <Route exact path="/venue/main-stage" component={VenueStage} />
             <Route exact path="/venue/main-stage/cart" component={VenueStage} />
-            {/* <Route exact path="/venue/archive" component={VenueArchive} />
-            <Route exact path="/venue/archive/cart" component={VenueArchive} /> */}
+            <Route exact path="/venue/archive" component={VenueArchive} />
+            <Route exact path="/venue/archive/cart" component={VenueArchive} />
 
             <Route path="/admin" component={Admin} />
           </Switch>

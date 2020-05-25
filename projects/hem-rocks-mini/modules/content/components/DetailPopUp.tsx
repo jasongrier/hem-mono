@@ -5,9 +5,9 @@ import { find, isFinite, isNaN, isNumber } from 'lodash'
 import Scrollbars from 'react-scrollbars-custom'
 import ReactGA from 'react-ga'
 import { Spinner } from '../../../../../lib/components'
+import { PlayPauseButton } from '../../../../../lib/packages/hem-buttons'
 import { closePopup, openPopup } from '../../../../../lib/modules/popups'
 import { TrackPlayPauseButton } from '../../../../../lib/modules/player'
-import { Planes } from '../../../../../lib/packages/hem-placemats'
 import { addProductToCart } from '../../cart'
 import { IContentItem } from '../../content'
 import { RootState } from '../../../index'
@@ -29,7 +29,8 @@ function DetailPopUp({
 }: IProps): ReactElement {
   if (!contentItem) return <div />
 
-  const { cartProducts } = useSelector((state: RootState) => ({
+  const { activeLiveStream, cartProducts } = useSelector((state: RootState) => ({
+    activeLiveStream: state.app.activeLiveStream,
     cartProducts: state.cart.products,
   }))
 
@@ -175,6 +176,7 @@ function DetailPopUp({
     if (
       item.tags.includes('sound-library')
       || item.tags.includes('merch')
+      || item.tags.includes('venue-calendar')
     ) {
       return true
     }
@@ -264,6 +266,18 @@ function DetailPopUp({
     ? 'http://localhost:8888'
     : 'http://static.hem.rocks'
 
+  const buyNowText = tag === 'venue-calendar'
+    ? 'Buy Ticket'
+    : 'Check out'
+
+  const addToCartText = tag === 'venue-calendar'
+    ? 'Add to Cart'
+    : 'Add to Cart'
+
+  const chooseYourPriceText = tag === 'venue-calendar'
+    ? 'Choose your ticket price!'
+    : 'Choose your price!'
+
   if (!contentItem) return (<div />)
 
   return (
@@ -278,7 +292,7 @@ function DetailPopUp({
         <header>
           <div className="detail-popup-title">
             <h1>{ contentItem.title }</h1>
-            <h2>{ contentItem.type }</h2>
+            <h2 dangerouslySetInnerHTML={{ __html: contentItem.secondaryTitle }} />
           </div>
           <div
             className="detail-popup-key-art-image"
@@ -299,10 +313,8 @@ function DetailPopUp({
                         className="suggested-price"
                         htmlFor="suggested-price"
                       >
-                        <em>Choose your price!</em><br />
-                        {/* <small>Type, or click in the box and use the &uarr; &darr; arrow keys</small> */}
+                        <em>{ chooseYourPriceText }</em><br />
                       </label>
-                      {/* TODO: Use Intl.NumberFormat and type intent timeout to validate and format the state */}
                       <span className="detail-popup-currency-symbol">€</span>
                       <form onSubmit={formOnSubmit}>
                         <input
@@ -315,15 +327,13 @@ function DetailPopUp({
                           value={suggestedPrice}
                         />
                       </form>
-                      { isNumber(contentItem.flexPriceMinimum) && (
-                        <small className={
-                          isFinite(parseFloat(suggestedPrice))
-                          && suggestedPrice < contentItem.flexPriceMinimum
-                          ? 'invalid-minimum' : ''
-                        }>
-                          Minimum price: { contentItem.flexPriceMinimum } €
-                        </small>
-                      )}
+                      <small className={
+                        isFinite(parseFloat(suggestedPrice))
+                        && suggestedPrice < contentItem.flexPriceMinimum
+                        ? 'invalid-minimum' : ''
+                      }>
+                        Minimum price: { contentItem.flexPriceMinimum } €
+                      </small>
                       {!valid && (
                         <div className="invalid-message">
                           Please enter a valid price.
@@ -340,7 +350,7 @@ function DetailPopUp({
                         className="action-button"
                         onClick={checkOutOnClick}
                       >
-                        Check out
+                        { buyNowText }
                       </button>
                     )}
                     { parseInt(suggestedPrice) === 0 && (
@@ -355,7 +365,7 @@ function DetailPopUp({
                       className="action-button"
                       onClick={addToCartOnClick}
                     >
-                      Add to Cart
+                      { addToCartText }
                     </button>
                     { isNaN(parseFloat(suggestedPrice)) && (
                       <div className="purchase-form-spinner">
@@ -379,6 +389,17 @@ function DetailPopUp({
                   type: 'soundcloud',
                   resource: contentItem.trackId,
                 }}
+              />
+            )}
+            { tag === 'venue-calendar' && activeLiveStream === contentItem.slug && (
+              <PlayPauseButton
+                onClick={() => {
+                  dispatch(closePopup())
+                  setTimeout(() => {
+                    history.push("/venue/main-stage")
+                  })
+                }}
+                playing={false}
               />
             )}
           </div>

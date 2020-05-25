@@ -2,7 +2,7 @@ import React, { ReactElement, useState, SyntheticEvent, useEffect, useCallback }
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation } from 'react-router'
 import produce from 'immer'
-import { isEqual, startCase } from 'lodash'
+import { isEmpty, isEqual, startCase } from 'lodash'
 import { slugify } from 'voca'
 import { ElectronOnly, ZoomTextarea } from '../../../../../lib/components'
 import { IContentItem, fieldTypes, modelize, requestCreateItems, requestUpdateItems } from '../index'
@@ -85,7 +85,10 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
       if (!workingItem) return
 
       const payloadItem = Object.assign({}, workingItem)
-      payloadItem.slug = slugify(payloadItem.title)
+
+      if (isEmpty(payloadItem.slug)) {
+        payloadItem.slug = slugify(payloadItem.title)
+      }
 
       if (create) {
         dispatch(requestCreateItems([payloadItem]))
