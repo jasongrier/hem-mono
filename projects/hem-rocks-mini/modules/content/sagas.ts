@@ -6,6 +6,7 @@ import {
   REQUEST_UPDATE_ITEMS,
 
   doCreateItems as doCreateItemsAc,
+  doDeleteItems as doDeleteItemsAc,
   doReadItems as doReadItemsAc,
   doUpdateItems as doUpdateItemsAc,
   requestReadItems as requestReadItemsAc,
@@ -93,10 +94,10 @@ function* deleteItems({ payload }: any) {
     const { extname, join } = remote.require('path')
     const { execSync } = remote.require('child_process')
 
-    const item = Object.assign({}, payload[0]) // TODO: Handle multiples
-    const file = join(__dirname, '..', '..', 'static', 'content', item.slug + '.json')
+    const itemSlug = payload[0] // TODO: Handle multiples
+    const file = join(__dirname, '..', '..', 'static', 'content', itemSlug + '.json')
     const indexFile = join(__dirname, '..', '..', 'static', 'content', 'index.json')
-    const distFile = join(__dirname, '..', '..', '..', '..', 'dist', 'static', 'content', item.slug + '.json')
+    const distFile = join(__dirname, '..', '..', '..', '..', 'dist', 'static', 'content', itemSlug + '.json')
     const distIndexFile = join(__dirname, '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
 
     if (!existsSync(file)) {
@@ -124,12 +125,12 @@ function* deleteItems({ payload }: any) {
 
     let index = JSON.parse(readFileSync(indexFile, 'utf8'))
 
-    index = compact(index.map((entry: any) => entry.slug !== item.slug))
+    index = compact(index.map((entry: any) => entry.slug !== itemSlug ? entry : undefined))
 
     writeFileSync(indexFile, JSON.stringify(index, null, 2))
     execSync(`cp ${indexFile} ${distIndexFile}`, { stdio: 'inherit' })
 
-    yield put(doCreateItemsAc([item]))
+    yield put(doDeleteItemsAc([itemSlug]))
     yield put(requestReadItemsAc({ page: 1, size: 10000 }))
   }
 
