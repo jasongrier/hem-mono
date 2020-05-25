@@ -18,7 +18,6 @@ interface IProps {
   blurb: string
   children: (contentItem: IContentItem) => any
   tag: string
-  title: string
 
   buttonText?: string
   campaignMonitorId?: string
@@ -27,8 +26,9 @@ interface IProps {
   filters?: string[]
   highlights?: string[]
   onFiltersChanged?: () => void
+  title?: string
 
-  // TODO: Deprecated; remove info popup
+  // TODO: Remove info popup??
   infoPopupText?: string
   infoPopupTitle?: string
 }
@@ -37,7 +37,6 @@ function MainContentList({
   blurb,
   children,
   tag,
-  title,
 
   buttonText,
   campaignMonitorId,
@@ -47,6 +46,7 @@ function MainContentList({
   highlights,
   infoPopupText,
   infoPopupTitle,
+  title,
 }: IProps): ReactElement {
   const { allContentItems } = useSelector((state: RootState) => ({
     allContentItems: state.content.contentItems,
@@ -88,19 +88,21 @@ function MainContentList({
 
   return (
     <div className="main-content-list clearfix">
-      <h1>
-        { title }
-        { infoPopupText && (
-          <div
-            className="header-info-badge"
-            onClick={() => {
-              dispatch(openPopup(tag + '-info'))
-            }}
-          >
-            i
-          </div>
-        )}
-      </h1>
+      { title && (
+        <h1>
+          { title }
+          { infoPopupText && (
+            <div
+              className="header-info-badge"
+              onClick={() => {
+                dispatch(openPopup(tag + '-info'))
+              }}
+            >
+              i
+            </div>
+          )}
+        </h1>
+      )}
       { LISTS_HAVE_BLURBS && (
         <div className="main-content-blurb"
           dangerouslySetInnerHTML={{__html: blurb}}

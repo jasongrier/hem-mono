@@ -11,8 +11,9 @@ export interface IContentItem {
   flexPriceMinimum: string
   flexPriceRecommended: string
   hasFixedPrice: boolean
-  name: string
-  nameWrapping: string
+  secondaryTitle: string
+  title: string
+  titleWrapping: string
   published: boolean
   slug: string
   sticky: boolean
@@ -37,8 +38,9 @@ export const fieldTypes: IContentItem = {
   flexPriceMinimum: 'text',
   flexPriceRecommended: 'text',
   hasFixedPrice: false,
-  name: 'text',
-  nameWrapping: 'text',
+  secondaryTitle: 'text',
+  title: 'text',
+  titleWrapping: 'text',
   published: false,
   slug: 'text',
   sticky: false,
@@ -151,6 +153,7 @@ export {
 } from './functions'
 
 export {
+  createItemsSaga,
   readItemsSaga,
   updateItemsSaga,
 } from './sagas'

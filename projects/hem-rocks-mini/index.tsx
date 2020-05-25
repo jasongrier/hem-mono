@@ -58,6 +58,9 @@ sagaMiddleware.run(unmutePlayerSaga)
 import { unpausePlayerSaga } from '../../lib/modules/player'
 sagaMiddleware.run(unpausePlayerSaga)
 
+import { createItemsSaga } from './modules/content'
+sagaMiddleware.run(createItemsSaga)
+
 import { readItemsSaga } from './modules/content'
 sagaMiddleware.run(readItemsSaga)
 
