@@ -2,6 +2,9 @@ import { AnyAction } from 'redux'
 
 export interface IState {
   activeLiveStream: string | null
+  cookiesAnalyticsApproved: boolean | null
+  cookiesHemApproved: boolean | null
+  cookiesMarketingApproved: boolean | null
   topBarCollapsed: boolean
 }
 
@@ -9,6 +12,7 @@ export const COLLAPSE_TOP_BAR = 'COLLAPSE_TOP_BAR'
 export const EXPAND_TOP_BAR = 'EXPAND_TOP_BAR'
 export const REQUEST_ACTIVE_LIVE_STREAM = 'REQUEST_ACTIVE_LIVE_STREAM'
 export const SET_ACTIVE_LIVE_STREAM = 'SET_ACTIVE_LIVE_STREAM'
+export const SET_COOKIE_APPROVAL = 'SET_COOKIE_APPROVAL'
 
 export interface ICollapseTopBar extends AnyAction {
   type: typeof COLLAPSE_TOP_BAR
@@ -30,13 +34,19 @@ export interface ISetActiveLiveStream extends AnyAction {
   payload: string
 }
 
+export interface ISetCookieApproval extends AnyAction {
+  type: typeof SET_COOKIE_APPROVAL
+  payload: { cookieName: string, approval: boolean, write: boolean }
+}
+
 export type Action =
   ICollapseTopBar
   | IExpandTopBar
   | IRequestActiveLiveStream
   | ISetActiveLiveStream
+  | ISetCookieApproval
 
-export { collapseTopBar, expandTopBar, requestActiveLiveStream, setActiveLiveStream } from './actions'
+export { collapseTopBar, expandTopBar, requestActiveLiveStream, setActiveLiveStream, setCookieApproval } from './actions'
 
 export { App, EmailForm, MainNavItem, PlayerBar, TopBar } from './components'
 
