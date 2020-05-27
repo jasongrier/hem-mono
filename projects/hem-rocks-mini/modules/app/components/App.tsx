@@ -14,7 +14,7 @@ import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup, closePopup } from '../../../../../lib/modules/popups'
 import { usePrevious } from '../../../../../lib/hooks'
 import { collapseTopBar, expandTopBar, MainNavItem, PlayerBar, TopBar } from '../index'
-import { requestActiveLiveStream } from '../actions'
+import { requestActiveLiveStream, setCookieApproval } from '../actions'
 import { CAMPAIGN_MONITOR_FORM_ID } from '../../../config'
 import { RootState } from '../../../index'
 
@@ -30,10 +30,19 @@ import {
   VenueStage,
 } from '../../../routes'
 
-ReactGA.initialize('UA-163585797-1')
-
 function App(): ReactElement {
-  const { contentItems, currentContentItem, currentlyOpenPopUp, topBarCollapsed } = useSelector((state: RootState) => ({
+  const {
+    contentItems,
+    cookiesAnalyticsApproved,
+    cookiesMarketingApproved,
+    cookiesHemApproved,
+    currentContentItem,
+    currentlyOpenPopUp,
+    topBarCollapsed,
+  } = useSelector((state: RootState) => ({
+    cookiesAnalyticsApproved: state.app.cookiesAnalyticsApproved,
+    cookiesMarketingApproved: state.app.cookiesMarketingApproved,
+    cookiesHemApproved: state.app.cookiesHemApproved,
     contentItems: state.content.contentItems,
     currentContentItem: state.content.currentContentItem,
     currentlyOpenPopUp: state.popups.currentlyOpenPopUp,
@@ -53,6 +62,26 @@ function App(): ReactElement {
     { basePath: 'venue-calendar', id: 'detail-popup' },
     { basePath: 'venue-archive', id: 'detail-popup' },
   ]
+
+  useEffect(function getCookieApprovals() {
+    const cookieApprovals = [
+      'Analytics',
+      'Hem',
+      'Marketing',
+    ]
+
+    for (const name of cookieApprovals) {
+      if (Cookies.get(`hem-rocks-${name.toLowerCase()}-cookie-approved`)) {
+        dispatch(setCookieApproval(name, true, false))
+      }
+    }
+  }, [])
+
+  useEffect(function checkAnalyticsCookieApproval() {
+    if (cookiesAnalyticsApproved) {
+      ReactGA.initialize('UA-163585797-1')
+    }
+  }, [cookiesAnalyticsApproved])
 
   useEffect(function fetchContent() {
     dispatch(requestReadItems({ page: 1, size: 10000 }))
@@ -315,31 +344,50 @@ function App(): ReactElement {
       </ProtectedContent>
 
       <ElectronNot>
-        <NagToaster
-          closeIcon={CloseButton}
-          id="hem-rocks-website-email-nag"
-          delay={1}
-          onDismiss={() => {
-            ReactGA.event({
-              category: 'User',
-              action: 'Closed the mailing list nag popup without joining.',
-            })
-          }}
-        >
-          {({ success }: any) => (
-            <CampaignMonitorForm
-              id={CAMPAIGN_MONITOR_FORM_ID}
-              onFormSubmitted={() => {
+        <>
+          { console.log(cookiesMarketingApproved) }
+          { cookiesMarketingApproved && (
+            <NagToaster
+              closeIcon={CloseButton}
+              id="hem-rocks-website-email-nag"
+              delay={1}
+              onDismiss={() => {
                 ReactGA.event({
                   category: 'User',
-                  action: 'Joined the mailing list from the nag popup.',
+                  action: 'Closed the mailing list nag popup without joining.',
                 })
-                success()
               }}
-              submitButtonText="Sign me up!"
-            />
+            >
+              {({ success }: any) => (
+                <CampaignMonitorForm
+                  id={CAMPAIGN_MONITOR_FORM_ID}
+                  onFormSubmitted={() => {
+                    ReactGA.event({
+                      category: 'User',
+                      action: 'Joined the mailing list from the nag popup.',
+                    })
+                    success()
+                  }}
+                  submitButtonText="Sign me up!"
+                />
+              )}
+            </NagToaster>
           )}
-        </NagToaster>
+          <NagToaster
+            closeIcon={CloseButton}
+            id="hem-rocks-website-cookie-approval-nag"
+            delay={1}
+          >
+            {({ success }: any) => (
+              <button onClick={() => {
+                dispatch(setCookieApproval('Marketing', true))
+                success()
+              }}>
+                TEST
+              </button>
+            )}
+          </NagToaster>
+        </>
       </ElectronNot>
     </div>
   )

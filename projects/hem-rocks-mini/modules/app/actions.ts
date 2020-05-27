@@ -4,6 +4,7 @@ import {
   EXPAND_TOP_BAR,
   REQUEST_ACTIVE_LIVE_STREAM,
   SET_ACTIVE_LIVE_STREAM,
+  SET_COOKIE_APPROVAL,
 } from './index'
 
 const collapseTopBar = (): AnyAction => ({
@@ -26,9 +27,15 @@ const setActiveLiveStream = (contentItemSlug: string): AnyAction => ({
   payload: contentItemSlug,
 })
 
+const setCookieApproval = (cookieName: string, approval: boolean, write: boolean = false): AnyAction => ({
+  type: SET_COOKIE_APPROVAL,
+  payload: { cookieName, approval, write },
+})
+
 export {
   collapseTopBar,
   expandTopBar,
   requestActiveLiveStream,
   setActiveLiveStream,
+  setCookieApproval,
 }

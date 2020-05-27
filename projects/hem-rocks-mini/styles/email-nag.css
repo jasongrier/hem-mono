@@ -1,4 +1,4 @@
-.hem-nag-toaster {
+#hem-rocks-website-email-nag {
   display: none;
   position: fixed;
   bottom: 10px;
@@ -9,11 +9,11 @@
   background-color: #000;
 }
 
-.hem-nag-toaster-open {
+#hem-rocks-website-email-nag.hem-nag-toaster-open {
   display: block;
 }
 
-.hem-nag-toaster-close-button {
+#hem-rocks-website-email-nag .hem-nag-toaster-close-button {
   position: absolute;
   top: 2px;
   right: 2px;
@@ -22,16 +22,16 @@
   font-size: 0;
 }
 
-.hem-nag-toaster-close-button .hem-close-button {
+#hem-rocks-website-email-nag .hem-nag-toaster-close-button .hem-close-button {
   transform: scale(0.3);
   transform-origin: top left;
 }
 
-.hem-nag-toaster-close-button .hem-close-button span {
+#hem-rocks-website-email-nag .hem-nag-toaster-close-button .hem-close-button span {
   height: 10px;
 }
 
-.hem-nag-toaster button {
+#hem-rocks-website-email-nag button {
   width: 120px;
   height: 36px;
   margin: 0 30px 0 0;
