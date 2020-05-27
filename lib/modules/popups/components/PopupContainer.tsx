@@ -101,8 +101,8 @@ function PopupContainer({
         )}
         { isOpen && (
           typeof children === 'function'
-          ? children(propsToChildren)
-          : children
+            ? children(propsToChildren)
+            : children
         )}
       </div>
     </div>
