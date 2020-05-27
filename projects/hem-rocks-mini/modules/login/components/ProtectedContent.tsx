@@ -1,6 +1,7 @@
-import React, { PropsWithChildren, ReactElement } from 'react'
-import { useSelector } from 'react-redux'
+import React, { PropsWithChildren, ReactElement, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import LogInForm from './LogInForm'
+import { logInCheckRequest } from '../index'
 import { RootState } from '../../../index'
 
 interface IProps {
@@ -15,6 +16,12 @@ function ProtectedContent({
   const { loggedIn } = useSelector((state: RootState) => ({
     loggedIn: state.login.loggedIn,
   }))
+
+  const dispatch = useDispatch()
+
+  useEffect(function logInCheck() {
+    dispatch(logInCheckRequest())
+  }, [])
 
   return (
     <div className={`

@@ -11,6 +11,7 @@ import { App, appReducer } from './modules/app'
 import { loginReducer } from './modules/login'
 import { cartReducer } from './modules/cart'
 import { contentReducer } from './modules/content'
+import { ProtectedContent } from './modules/login'
 import './styles'
 
 declare const window: any
@@ -96,7 +97,9 @@ sagaMiddleware.run(logoutSaga)
 const Root = (
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <ProtectedContent header="Super secret preview">
+        <App />
+      </ProtectedContent>
     </BrowserRouter>
   </Provider>
 )

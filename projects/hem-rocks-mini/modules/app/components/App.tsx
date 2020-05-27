@@ -8,14 +8,14 @@ import Cookies from 'js-cookie'
 import { CartPopup, setCartProducts } from '../../cart'
 import { ThankYouPopup } from '../../cart'
 import { DetailPopUp, requestReadItems, setCurrentItem } from '../../content'
-import { ProtectedContent, logInCheckRequest } from '../../login'
-import { ElectronOnly, ScrollToTop, HamburgerMenu, Spinner } from '../../../../../lib/components'
+import { ProtectedContent } from '../../login'
+import { CampaignMonitorForm, ElectronNot, ElectronOnly, ScrollToTop, HamburgerMenu, NagToaster, Spinner } from '../../../../../lib/components'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup, closePopup } from '../../../../../lib/modules/popups'
 import { usePrevious } from '../../../../../lib/hooks'
 import { collapseTopBar, expandTopBar, MainNavItem, PlayerBar, TopBar } from '../index'
-import EmailForm from './EmailForm'
 import { requestActiveLiveStream } from '../actions'
+import { CAMPAIGN_MONITOR_FORM_ID } from '../../../config'
 import { RootState } from '../../../index'
 
 import {
@@ -53,10 +53,6 @@ function App(): ReactElement {
     { basePath: 'venue-calendar', id: 'detail-popup' },
     { basePath: 'venue-archive', id: 'detail-popup' },
   ]
-
-  useEffect(function logInCheck() {
-    dispatch(logInCheckRequest())
-  }, [])
 
   useEffect(function fetchContent() {
     dispatch(requestReadItems({ page: 1, size: 10000 }))
@@ -201,7 +197,7 @@ function App(): ReactElement {
 
   return (
     <div className="hem-application hem-rocks-mini">
-      <ProtectedContent>
+      <ProtectedContent header="Super secret preview">
         <ScrollToTop />
 
         <TopBar collapsed={topBarCollapsed} />
@@ -209,9 +205,9 @@ function App(): ReactElement {
         <nav className={`main-nav${pathname === '/' ? ' large-nav' : ''}`}>
           <ul className="main-nav-items">
             <MainNavItem name="Sound Library" />
-            <MainNavItem name="Label" />
             <MainNavItem name="Venue" to="venue-calendar" />
-            <MainNavItem name="Apps" />
+            <MainNavItem name="Code" />
+            <MainNavItem name="Label" />
             <li className="main-nav-item">
               <NavLink
                 to={(() => {
@@ -257,9 +253,9 @@ function App(): ReactElement {
               <Route exact path="/label/filter/:filter" component={Label} />
               <Route exact path="/label/cart/:filter?" component={Label} />
 
-              <Route exact path="/apps/:contentItemSlug?/:filter?" component={Projects} />
-              <Route exact path="/apps/filter/:filter" component={Projects} />
-              <Route exact path="/apps/cart/:filter?" component={Projects} />
+              <Route exact path="/code/:contentItemSlug?/:filter?" component={Projects} />
+              <Route exact path="/code/filter/:filter" component={Projects} />
+              <Route exact path="/code/cart/:filter?" component={Projects} />
 
               <Route exact path="/sound-library/:contentItemSlug?/:filter?" component={SoundLibrary} />
               <Route exact path="/sound-library/filter/:filter" component={SoundLibrary} />
@@ -305,12 +301,6 @@ function App(): ReactElement {
           )}
         </PopupContainer>
 
-        <PopupContainer
-          closeIcon={CloseButton}
-          id="email-popup"
-        >
-          <EmailForm />
-        </PopupContainer>
 
         <PopupContainer
           closeIcon={CloseButton}
@@ -323,6 +313,34 @@ function App(): ReactElement {
 
         <PlayerBar />
       </ProtectedContent>
+
+      <ElectronNot>
+        <NagToaster
+          closeIcon={CloseButton}
+          id="hem-rocks-website-email-nag"
+          delay={1}
+          onDismiss={() => {
+            ReactGA.event({
+              category: 'User',
+              action: 'Closed the mailing list nag popup without joining.',
+            })
+          }}
+        >
+          {({ success }: any) => (
+            <CampaignMonitorForm
+              id={CAMPAIGN_MONITOR_FORM_ID}
+              onFormSubmitted={() => {
+                ReactGA.event({
+                  category: 'User',
+                  action: 'Joined the mailing list from the nag popup.',
+                })
+                success()
+              }}
+              submitButtonText="Sign me up!"
+            />
+          )}
+        </NagToaster>
+      </ElectronNot>
     </div>
   )
 }
