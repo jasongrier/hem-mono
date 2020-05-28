@@ -3,7 +3,6 @@ import { AnyAction } from 'redux'
 export interface IState {
   activeLiveStream: string | null
   cookiesAnalyticsApproved: boolean | null
-  cookiesHemApproved: boolean | null
   cookiesMarketingApproved: boolean | null
   topBarCollapsed: boolean
 }
@@ -48,6 +47,7 @@ export type Action =
 
 export { collapseTopBar, expandTopBar, requestActiveLiveStream, setActiveLiveStream, setCookieApproval } from './actions'
 
+// TODO: Export all components here. Write a linter for it
 export { App, EmailForm, MainNavItem, PlayerBar, TopBar } from './components'
 
 export { reducer as appReducer } from './reducer'

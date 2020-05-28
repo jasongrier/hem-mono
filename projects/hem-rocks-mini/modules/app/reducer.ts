@@ -13,7 +13,6 @@ import {
 const initialState: IState = {
   activeLiveStream: null,
   cookiesAnalyticsApproved: false,
-  cookiesHemApproved: false,
   cookiesMarketingApproved: false,
   topBarCollapsed: false,
 }

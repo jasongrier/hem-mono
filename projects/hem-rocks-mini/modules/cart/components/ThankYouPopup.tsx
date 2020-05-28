@@ -75,8 +75,8 @@ function ThankYouPopup({ itemSlugs }: IProps): ReactElement {
             <div className="download-items">
               <Scrollbars noScrollX={true}>
                 { items.map(item => (
-                  <li key={item.slug}>
-                    <a href="#">{ item.name }</a>
+                  <li key={item?.slug}>
+                    <a href="#">{ item?.title }</a>
                   </li>
                 ))}
               </Scrollbars>

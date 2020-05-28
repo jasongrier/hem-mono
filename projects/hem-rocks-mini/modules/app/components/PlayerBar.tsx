@@ -1,6 +1,6 @@
 import React, { ReactElement, useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { HeadphonesButton } from '../../../../../lib/packages/hem-buttons'
+import { PlayPauseButton as BasePlayPauseButton } from '../../../../../lib/packages/hem-buttons'
 import { NextButton, PlayPauseButton, PreviousButton, ProgressBar, TrackPlayPauseButton, setPlayerPlaylist } from '../../../../../lib/modules/player'
 import { getTracksFromContentItems } from '../../content'
 import { RootState } from '../../../index'
@@ -47,12 +47,15 @@ function PlayerBar(): ReactElement {
           <TrackPlayPauseButton track={playlist[0]} />
         )}
       </div>
-      <HeadphonesButton
-        onClick={() => setExpanded(!expanded)}
-      />
+      <div className="player-bar-toggle">
+        <BasePlayPauseButton
+          playing={false}
+          onClick={() => setExpanded(!expanded)}
+        />
+      </div>
       { currentTrackContentItem && (
         <div className="player-bar-now-playing">
-          Now playing: { currentTrackAttribution } – { currentTrackContentItem.name }
+          Now playing: { currentTrackAttribution } – { currentTrackContentItem.title }
         </div>
       )}
     </div>
