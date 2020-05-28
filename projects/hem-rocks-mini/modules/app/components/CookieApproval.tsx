@@ -1,30 +1,36 @@
 import React, { ReactElement, useCallback, useState, SyntheticEvent } from 'react'
-import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { setCookieApproval, setCookiePreferencesSet } from '../index'
+import { RootState } from '../../../index'
 
-interface IProps {
-  onApprovalSubmitted: () => void
-}
+function CookieApproval(): ReactElement {
+  const { cookiePreferencesSet } = useSelector((state: RootState) => ({
+    cookiePreferencesSet: state.app.cookiePreferencesSet,
+  }))
 
-function CookieApproval({ onApprovalSubmitted }: IProps): ReactElement {
+  const dispatch = useDispatch()
+
   const [popupOpen, setPopupOpen] = useState(false)
   const [analytics, setAnalytics] = useState(false)
   const [marketing, setMarketing] = useState(false)
 
   const setAnalyticsCookieApprovalOnClick = useCallback(
     function setAnalyticsCookieApprovalOnClickFn(evt: SyntheticEvent<HTMLInputElement>) {
-      setAnalytics(evt.currentTarget.value === 'on')
-    }, [],
+      setAnalytics(!analytics)
+    }, [analytics],
   )
 
   const setMarketingCookieApprovalOnClick = useCallback(
     function setMarketingCookieApprovalOnClickFn(evt: SyntheticEvent<HTMLInputElement>) {
-      setMarketing(evt.currentTarget.value === 'on')
-    }, [],
+      setMarketing(!marketing)
+    }, [marketing],
   )
 
   const acceptAllCookiesOnClick = useCallback(
     function acceptAllCookiesOnClickFn(evt: SyntheticEvent<HTMLButtonElement>) {
-      // setMarketing()
+      dispatch(setCookieApproval('Analytics', true, true))
+      dispatch(setCookieApproval('Marketing', true, true))
+      dispatch(setCookiePreferencesSet())
     }, [],
   )
 
@@ -34,10 +40,13 @@ function CookieApproval({ onApprovalSubmitted }: IProps): ReactElement {
     }, [],
   )
 
-  const acceptSelectedCookiesOnClick = useCallback(
-    function acceptSelectedCookiesOnClickFn(evt: SyntheticEvent<HTMLButtonElement>) {
-
-    }, [],
+  const setCookiesPreferencesOnClick = useCallback(
+    function setCookiesPreferencesOnClickFn(evt: SyntheticEvent<HTMLButtonElement>) {
+      dispatch(setCookieApproval('Analytics', analytics, true))
+      dispatch(setCookieApproval('Marketing', marketing, true))
+      dispatch(setCookiePreferencesSet())
+      setPopupOpen(false)
+    }, [analytics, marketing],
   )
 
   const cancelAndCloseOnClick = useCallback(
@@ -45,6 +54,8 @@ function CookieApproval({ onApprovalSubmitted }: IProps): ReactElement {
       setPopupOpen(false)
     }, [],
   )
+
+  if (cookiePreferencesSet) return <div />
 
   return (
     <>
@@ -99,9 +110,9 @@ function CookieApproval({ onApprovalSubmitted }: IProps): ReactElement {
           <p className="buttons">
             <button
               className="action-button"
-              onClick={acceptSelectedCookiesOnClick}
+              onClick={setCookiesPreferencesOnClick}
             >
-              Accept selected cookies
+              Set cookie preferences
             </button>
             <a
               href="#"
