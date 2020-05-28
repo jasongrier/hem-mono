@@ -5,6 +5,7 @@ import {
   REQUEST_ACTIVE_LIVE_STREAM,
   SET_ACTIVE_LIVE_STREAM,
   SET_COOKIE_APPROVAL,
+  SET_COOKIE_PREFERENCES_SET,
 } from './index'
 
 const collapseTopBar = (): AnyAction => ({
@@ -32,10 +33,16 @@ const setCookieApproval = (cookieName: string, approval: boolean, write: boolean
   payload: { cookieName, approval, write },
 })
 
+const setCookiePreferencesSet = (): AnyAction => ({
+  type: SET_COOKIE_PREFERENCES_SET,
+  payload: null,
+})
+
 export {
   collapseTopBar,
   expandTopBar,
   requestActiveLiveStream,
   setActiveLiveStream,
   setCookieApproval,
+  setCookiePreferencesSet,
 }

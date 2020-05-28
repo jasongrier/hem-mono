@@ -261,6 +261,7 @@ function App(): ReactElement {
               <MainNavItem name="Merch" />
               <MainNavItem name="Mixes" />
               <MainNavItem name="Mailing List" />
+              <MainNavItem name="Set cookie preferences" to="set-cookie-preferences" />
               <ElectronOnly>
                 <MainNavItem name="Admin" to="admin/list" />
               </ElectronOnly>
@@ -343,7 +344,7 @@ function App(): ReactElement {
       </ProtectedContent>
 
       <ElectronNot>
-        <CookieApproval onApprovalSubmitted={close} />
+        <CookieApproval />
       </ElectronNot>
 
       { cookiesMarketingApproved && (

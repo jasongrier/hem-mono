@@ -6,6 +6,7 @@ import {
   REQUEST_ACTIVE_LIVE_STREAM,
   SET_ACTIVE_LIVE_STREAM,
   SET_COOKIE_APPROVAL,
+  SET_COOKIE_PREFERENCES_SET,
 
   IState,
 } from './index'
@@ -14,6 +15,7 @@ const initialState: IState = {
   activeLiveStream: null,
   cookiesAnalyticsApproved: false,
   cookiesMarketingApproved: false,
+  cookiePreferencesSet: false,
   topBarCollapsed: false,
 }
 
@@ -48,9 +50,14 @@ const reducer = (
     case SET_COOKIE_APPROVAL: {
       return produce(state, draftState => {
         const { cookieName, approval } = payload
-        console.log(`cookies${cookieName}Approved`, approval)
         // @ts-ignore
         draftState[`cookies${cookieName}Approved`] = approval
+      })
+    }
+
+    case SET_COOKIE_PREFERENCES_SET: {
+      return produce(state, draftState => {
+        draftState.cookiePreferencesSet = true
       })
     }
 
