@@ -95,7 +95,7 @@ function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
                 className="action-button action-button-wide"
                 onClick={() => dispatch(closePopup())}
               >
-                Close and go back
+                Close this window and go back
               </button>
             </p>
           </div>

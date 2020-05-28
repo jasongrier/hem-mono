@@ -15,6 +15,7 @@ import { PopupContainer, openPopup, closePopup } from '../../../../../lib/module
 import { usePrevious } from '../../../../../lib/hooks'
 import { collapseTopBar, expandTopBar, MainNavItem, PlayerBar, TopBar } from '../index'
 import { requestActiveLiveStream, setCookieApproval } from '../actions'
+import CookieApproval from './CookieApproval'
 import { CAMPAIGN_MONITOR_FORM_ID } from '../../../config'
 import { RootState } from '../../../index'
 
@@ -35,14 +36,12 @@ function App(): ReactElement {
     contentItems,
     cookiesAnalyticsApproved,
     cookiesMarketingApproved,
-    cookiesHemApproved,
     currentContentItem,
     currentlyOpenPopUp,
     topBarCollapsed,
   } = useSelector((state: RootState) => ({
     cookiesAnalyticsApproved: state.app.cookiesAnalyticsApproved,
     cookiesMarketingApproved: state.app.cookiesMarketingApproved,
-    cookiesHemApproved: state.app.cookiesHemApproved,
     contentItems: state.content.contentItems,
     currentContentItem: state.content.currentContentItem,
     currentlyOpenPopUp: state.popups.currentlyOpenPopUp,
@@ -344,51 +343,38 @@ function App(): ReactElement {
       </ProtectedContent>
 
       <ElectronNot>
-        <>
-          { console.log(cookiesMarketingApproved) }
-          { cookiesMarketingApproved && (
-            <NagToaster
-              closeIcon={CloseButton}
-              id="hem-rocks-website-email-nag"
-              delay={1}
-              onDismiss={() => {
-                ReactGA.event({
-                  category: 'User',
-                  action: 'Closed the mailing list nag popup without joining.',
-                })
-              }}
-            >
-              {({ success }: any) => (
-                <CampaignMonitorForm
-                  id={CAMPAIGN_MONITOR_FORM_ID}
-                  onFormSubmitted={() => {
-                    ReactGA.event({
-                      category: 'User',
-                      action: 'Joined the mailing list from the nag popup.',
-                    })
-                    success()
-                  }}
-                  submitButtonText="Sign me up!"
-                />
-              )}
-            </NagToaster>
-          )}
+        <CookieApproval onApprovalSubmitted={close} />
+      </ElectronNot>
+
+      { cookiesMarketingApproved && (
+        <ElectronNot>
           <NagToaster
             closeIcon={CloseButton}
-            id="hem-rocks-website-cookie-approval-nag"
+            id="hem-rocks-website-email-nag"
             delay={1}
+            onDismiss={() => {
+              ReactGA.event({
+                category: 'User',
+                action: 'Closed the mailing list nag popup without joining.',
+              })
+            }}
           >
             {({ success }: any) => (
-              <button onClick={() => {
-                dispatch(setCookieApproval('Marketing', true))
-                success()
-              }}>
-                TEST
-              </button>
+              <CampaignMonitorForm
+                id={CAMPAIGN_MONITOR_FORM_ID}
+                onFormSubmitted={() => {
+                  ReactGA.event({
+                    category: 'User',
+                    action: 'Joined the mailing list from the nag popup.',
+                  })
+                  success()
+                }}
+                submitButtonText="Sign me up!"
+              />
             )}
           </NagToaster>
-        </>
-      </ElectronNot>
+        </ElectronNot>
+      )}
     </div>
   )
 }

@@ -1,4 +1,5 @@
 export { default as App } from './App'
+export { default as CookieApproval } from './CookieApproval'
 export { default as EmailForm } from './EmailForm'
 export { default as MainNavItem } from './MainNavItem'
 export { default as PlayerBar } from './PlayerBar'

@@ -2,7 +2,7 @@ import './app.css'
 import './variables.css'
 
 import './admin.css'
-import './cookies-nag.css'
+import './cookie-approval.css'
 import './detail-popup.css'
 import './email-form.css'
 import './email-nag.css'

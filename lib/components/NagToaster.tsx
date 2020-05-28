@@ -17,11 +17,7 @@ function NagToaster({ children, id, closeIcon: CloseIcon, delay = 1000, onDismis
     }, delay)
   }, [])
 
-  function dismissMethod() {
-    setOpen(false)
-  }
-
-  function successMethod() {
+  function closeMethod() {
     setOpen(false)
   }
 
@@ -47,10 +43,7 @@ function NagToaster({ children, id, closeIcon: CloseIcon, delay = 1000, onDismis
       )}
       { open && (
         typeof children === 'function'
-          ? children({
-            dismiss: dismissMethod,
-            success: successMethod,
-          })
+          ? children({ close: closeMethod })
           : children
       )}
     </div>
