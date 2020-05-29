@@ -1,6 +1,7 @@
 {
   "acceptingDonations": false,
   "attribution": "",
+  "attributionLink": "",
   "badgeText": "",
   "blurb": "",
   "date": "03.07.2020",
@@ -13,6 +14,8 @@
   "hasFixedPrice": false,
   "isDigitalProduct": false,
   "published": true,
+  "relatedContent": "",
+  "relatedContentLink": "",
   "secondaryTitle": "12-hour Live Stream<br>Saturday, August 16, 8am–8pm (CET)",
   "slug": "jason-gillis-grier",
   "sticky": false,

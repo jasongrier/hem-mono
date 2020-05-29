@@ -1,6 +1,7 @@
 {
   "acceptingDonations": false,
   "attribution": "",
+  "attributionLink": "",
   "badgeText": "",
   "blurb": "",
   "date": "01.09.2008",
@@ -13,6 +14,8 @@
   "hasFixedPrice": false,
   "isDigitalProduct": false,
   "published": true,
+  "relatedContent": "",
+  "relatedContentLink": "",
   "secondaryTitle": "Gary Wilson, John Cage, Michael Pisaro, The Jason Grier Revolution, Crooked Cowboy",
   "slug": "twelve-radios",
   "sticky": false,

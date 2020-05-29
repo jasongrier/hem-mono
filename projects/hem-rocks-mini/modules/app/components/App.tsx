@@ -1,13 +1,13 @@
 import React, { ReactElement, useEffect } from 'react'
 import { NavLink, Route, Switch, useLocation, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { find, isArray, isEmpty } from 'lodash'
+import { find, isArray, compact } from 'lodash'
 // TODO: Why isn't set used in this component??
 import ReactGA, { set } from 'react-ga'
 import Cookies from 'js-cookie'
 import { CartPopup, setCartProducts } from '../../cart'
 import { ThankYouPopup } from '../../cart'
-import { DetailPopUp, requestReadItems, setCurrentItem, getContentItemsByTag } from '../../content'
+import { DetailPopUp, requestReadItems, setCurrentItem, hasTag, getContentItemsByTag, getContentItemBySlug } from '../../content'
 import { ProtectedContent } from '../../login'
 import { CampaignMonitorForm, ElectronNot, ElectronOnly, ScrollToTop, HamburgerMenu, NagToaster, Spinner } from '../../../../../lib/components'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
@@ -128,11 +128,21 @@ function App(): ReactElement {
   useEffect(function setSitePlaylist() {
     if (sitePlaylist.length > 0) return
 
-    const sitePlaylistItems = getContentItemsByTag(contentItems, 'site-playlist')
+    const sitePlaylistItem = getContentItemBySlug(contentItems, 'site-playlist')
 
-    if (sitePlaylistItems.length < 1) return
+    if (!sitePlaylistItem) return
 
-    const sitePlaylistTracks: ITrack[] = sitePlaylistItems.map(item => {
+    let sitePlaylistItemSlugs = sitePlaylistItem.description.split('\n')
+    sitePlaylistItemSlugs = compact(sitePlaylistItemSlugs.map(item => item.trim()))
+
+    if (sitePlaylistItemSlugs.length === 0) return
+
+    const sitePlaylistTracks: ITrack[] = compact(sitePlaylistItemSlugs.map(slug => {
+      const item = getContentItemBySlug(contentItems, slug)
+
+      if (!item) return
+      if (!hasTag(item, 'track')) return
+
       return {
         attribution: item.attribution,
         attributionLink: item.attributionLink,
@@ -140,9 +150,11 @@ function App(): ReactElement {
         relatedContentLink: item.relatedContentLink,
         id: item.slug,
         resource: item.trackId,
+        title: item.title,
+        titleLink: hasTag(item, 'attachment') ? item.relatedContentLink : `/tracks/${item.slug}`,
         type: 'soundcloud',
       }
-    })
+    }))
 
     dispatch(setPlayerPlaylist(sitePlaylistTracks))
   }, [contentItems, sitePlaylist])
@@ -370,7 +382,7 @@ function App(): ReactElement {
           )}
         </PopupContainer>
 
-        {/* <PlayerBar /> */}
+        <PlayerBar />
       </ProtectedContent>
 
       <ElectronNot>

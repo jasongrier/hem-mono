@@ -1,6 +1,7 @@
 {
   "acceptingDonations": false,
   "attribution": "",
+  "attributionLink": "",
   "badgeText": "",
   "blurb": "",
   "date": "01.09.2011",
@@ -13,6 +14,8 @@
   "hasFixedPrice": false,
   "isDigitalProduct": true,
   "published": true,
+  "relatedContent": "",
+  "relatedContentLink": "",
   "secondaryTitle": "Jason Aaron Gillis-Grier (feat. Nite Jewel)",
   "slug": "heart-shaped-rock",
   "sticky": false,

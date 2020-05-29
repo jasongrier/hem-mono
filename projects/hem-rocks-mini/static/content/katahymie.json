@@ -1,6 +1,7 @@
 {
   "acceptingDonations": false,
   "attribution": "",
+  "attributionLink": "",
   "badgeText": "",
   "blurb": "",
   "date": "01.09.2012",
@@ -13,6 +14,8 @@
   "hasFixedPrice": false,
   "isDigitalProduct": true,
   "published": true,
+  "relatedContent": "",
+  "relatedContentLink": "",
   "secondaryTitle": "Bruegel",
   "slug": "katahymie",
   "sticky": false,

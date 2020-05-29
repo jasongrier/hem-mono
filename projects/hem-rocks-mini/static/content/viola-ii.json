@@ -1,6 +1,7 @@
 {
   "acceptingDonations": false,
   "attribution": "",
+  "attributionLink": "",
   "badgeText": "Coming Soon",
   "blurb": "",
   "date": "01.07.2020",
@@ -13,6 +14,8 @@
   "hasFixedPrice": false,
   "isDigitalProduct": true,
   "published": true,
+  "relatedContent": "",
+  "relatedContentLink": "",
   "secondaryTitle": "Test<br>Test<br>Test<br>Test<br>Test<br>Test",
   "slug": "viola-ii",
   "sticky": false,

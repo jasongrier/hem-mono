@@ -1,6 +1,7 @@
 {
   "acceptingDonations": false,
   "attribution": "",
+  "attributionLink": "",
   "badgeText": "New in the Library",
   "blurb": "",
   "date": "01.09.2020",
@@ -13,6 +14,8 @@
   "hasFixedPrice": false,
   "isDigitalProduct": true,
   "published": true,
+  "relatedContent": "",
+  "relatedContentLink": "",
   "secondaryTitle": "",
   "slug": "grand-piano",
   "sticky": true,

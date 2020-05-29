@@ -1,10 +1,12 @@
 import React, { ReactElement, useState, useEffect, useCallback } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { isEmpty } from 'lodash'
 import { PlayPauseButton as BasePlayPauseButton, CloseButton, HamburgerButton } from '../../../packages/hem-buttons'
-import { NextButton, PreviousButton, ProgressBar, PlayerBarPlayPauseButton } from '../index'
+import { NextButton, PreviousButton, ProgressBar, PlayerBarPlayPauseButton, Playlist, ITrack } from '../index'
 
 function PlayerBar(): ReactElement {
-  const { currentTrack, playing, playlist } = useSelector((state: any) => ({
+  const { currentTrack, playing, playlist }: { currentTrack: ITrack, playing: boolean, playlist: ITrack[] } = useSelector((state: any) => ({
     currentTrack: state.player.currentTrack,
     playing: state.player.playing,
     playlist: state.player.playlist,
@@ -35,7 +37,7 @@ function PlayerBar(): ReactElement {
       <PreviousButton />
 
       <PlayerBarPlayPauseButton
-        currentTrackId={currentTrack.id}
+        currentTrackId={currentTrack?.id}
         playlist={playlist}
       />
 
@@ -48,15 +50,18 @@ function PlayerBar(): ReactElement {
           <HamburgerButton onClick={togglePlaylistExpandedOnClick} />
         )}
         { playlistExpanded && (
-          <BasePlayPauseButton
-            playing={false}
-            onClick={togglePlaylistExpandedOnClick}
-          />
+          <div className="playlist-toggle-close">
+            <BasePlayPauseButton
+              playing={false}
+              onClick={togglePlaylistExpandedOnClick}
+            />
+          </div>
         )}
       </div>
 
       { playlistExpanded && (
         <div className="player-bar-playlist">
+          <Playlist />
         </div>
       )}
 
@@ -71,9 +76,19 @@ function PlayerBar(): ReactElement {
           />
         )}
       </div>
-      <div className="player-bar-now-playing">
-        { currentTrack.attribution }
-      </div>
+      {currentTrack && (
+        <div className="player-bar-now-playing">
+          <span onClick={() => setExpanded(false)}>
+            <Link to={currentTrack.titleLink}>
+              { currentTrack.title }
+            </Link>
+            &nbsp;–&nbsp;
+            <Link to={currentTrack.attributionLink}>
+              { currentTrack.attribution }
+            </Link>
+          </span>
+        </div>
+      )}
     </div>
   )
 }

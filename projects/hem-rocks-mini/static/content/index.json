@@ -141,7 +141,7 @@
   },
   {
     "slug": "jason-gillis-grier",
-    "date": "01.07.2020"
+    "date": "03.07.2020"
   },
   {
     "slug": "katahymie",
@@ -169,7 +169,7 @@
   },
   {
     "slug": "lucrecia-dalt",
-    "date": "01.07.2020"
+    "date": "02.07.2020"
   },
   {
     "slug": "maria",
@@ -310,5 +310,17 @@
   {
     "slug": "zither",
     "date": "01.09.2017"
+  },
+  {
+    "date": "29.05.2020",
+    "slug": "site-playlist"
+  },
+  {
+    "date": "29.05.2020",
+    "slug": "jason-aaron-gillis-grier-live-at-studio-acht"
+  },
+  {
+    "date": "29.05.2020",
+    "slug": "grand-piano-sample-track-1"
   }
 ]
