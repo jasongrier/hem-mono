@@ -6,6 +6,9 @@ window.HEM_PLAYER_SOUNDCLOUD_PLAYER_INSTANCE = null
 
 export interface ITrack {
   attribution: string
+  attributionLink: string
+  relatedContent: string
+  relatedContentLink: string
   id: string
   resource: string
   type: 'local' | 'soundcloud'
@@ -123,6 +126,8 @@ export {
   MuteButton,
   NextButton,
   PauseButton,
+  PlayerBar,
+  PlayerBarPlayPauseButton,
   PlayPauseButton,
   PreviousButton,
   ProgressBar,

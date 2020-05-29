@@ -1,20 +1,21 @@
 import React, { ReactElement, useEffect } from 'react'
 import { NavLink, Route, Switch, useLocation, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { find, isArray, map } from 'lodash'
+import { find, isArray, isEmpty } from 'lodash'
 // TODO: Why isn't set used in this component??
 import ReactGA, { set } from 'react-ga'
 import Cookies from 'js-cookie'
 import { CartPopup, setCartProducts } from '../../cart'
 import { ThankYouPopup } from '../../cart'
-import { DetailPopUp, requestReadItems, setCurrentItem } from '../../content'
+import { DetailPopUp, requestReadItems, setCurrentItem, getContentItemsByTag } from '../../content'
 import { ProtectedContent } from '../../login'
 import { CampaignMonitorForm, ElectronNot, ElectronOnly, ScrollToTop, HamburgerMenu, NagToaster, Spinner } from '../../../../../lib/components'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup, closePopup } from '../../../../../lib/modules/popups'
+import { PlayerBar, setPlayerPlaylist, ITrack } from '../../../../../lib/modules/player'
 import { usePrevious } from '../../../../../lib/hooks'
-import { collapseTopBar, expandTopBar, MainNavItem, PlayerBar, TopBar } from '../index'
-import { requestActiveLiveStream, setCookieApproval } from '../actions'
+import { collapseTopBar, expandTopBar, getCookieName, MainNavItem, TopBar } from '../index'
+import { requestActiveLiveStream, setCookieApproval, setCookiePreferencesSet } from '../actions'
 import CookieApproval from './CookieApproval'
 import { CAMPAIGN_MONITOR_FORM_ID } from '../../../config'
 import { RootState } from '../../../index'
@@ -38,6 +39,7 @@ function App(): ReactElement {
     cookiesMarketingApproved,
     currentContentItem,
     currentlyOpenPopUp,
+    sitePlaylist,
     topBarCollapsed,
   } = useSelector((state: RootState) => ({
     cookiesAnalyticsApproved: state.app.cookiesAnalyticsApproved,
@@ -45,6 +47,7 @@ function App(): ReactElement {
     contentItems: state.content.contentItems,
     currentContentItem: state.content.currentContentItem,
     currentlyOpenPopUp: state.popups.currentlyOpenPopUp,
+    sitePlaylist: state.player.playlist,
     topBarCollapsed: state.app.topBarCollapsed,
   }))
 
@@ -63,15 +66,20 @@ function App(): ReactElement {
   ]
 
   useEffect(function getCookieApprovals() {
+    const cookiePreferencesSet = !!Cookies.get(getCookieName(`cookie-preferences-set`))
+
+    if (cookiePreferencesSet) {
+      dispatch(setCookiePreferencesSet(true, false))
+    }
+
     const cookieApprovals = [
-      'Analytics',
-      'Hem',
-      'Marketing',
+      'analytics',
+      'marketing',
     ]
 
     for (const name of cookieApprovals) {
-      if (Cookies.get(`hem-rocks-${name.toLowerCase()}-cookie-approved`)) {
-        dispatch(setCookieApproval(name, true, false))
+      if (Cookies.get(getCookieName(`${name}-cookie-approved`))) {
+        dispatch(setCookieApproval(name, cookiePreferencesSet, false))
       }
     }
   }, [])
@@ -99,7 +107,7 @@ function App(): ReactElement {
   }, [])
 
   useEffect(function getCartFromCookies() {
-    const cartCookie = Cookies.get('hem-rocks-cart')
+    const cartCookie = Cookies.get(getCookieName('cart'))
     if (!cartCookie) return
 
     try {
@@ -116,6 +124,28 @@ function App(): ReactElement {
       console.error('Could not get cart cookie: ' + err)
     }
   }, [])
+
+  useEffect(function setSitePlaylist() {
+    if (sitePlaylist.length > 0) return
+
+    const sitePlaylistItems = getContentItemsByTag(contentItems, 'site-playlist')
+
+    if (sitePlaylistItems.length < 1) return
+
+    const sitePlaylistTracks: ITrack[] = sitePlaylistItems.map(item => {
+      return {
+        attribution: item.attribution,
+        attributionLink: item.attributionLink,
+        relatedContent: item.relatedContent,
+        relatedContentLink: item.relatedContentLink,
+        id: item.slug,
+        resource: item.trackId,
+        type: 'soundcloud',
+      }
+    })
+
+    dispatch(setPlayerPlaylist(sitePlaylistTracks))
+  }, [contentItems, sitePlaylist])
 
   useEffect(function routedPopup() {
     const [basePath, slug] = pathname.replace(/^\//, '').split('/')
@@ -340,14 +370,14 @@ function App(): ReactElement {
           )}
         </PopupContainer>
 
-        <PlayerBar />
+        {/* <PlayerBar /> */}
       </ProtectedContent>
 
       <ElectronNot>
         <CookieApproval />
       </ElectronNot>
 
-      { cookiesMarketingApproved && (
+      { cookiesMarketingApproved && !Cookies.get(getCookieName('cannot-show-email-nag')) && (
         <ElectronNot>
           <NagToaster
             closeIcon={CloseButton}
@@ -358,9 +388,10 @@ function App(): ReactElement {
                 category: 'User',
                 action: 'Closed the mailing list nag popup without joining.',
               })
+              Cookies.set(getCookieName('cannot-show-email-nag'), 'true')
             }}
           >
-            {({ success }: any) => (
+            {({ dismissNag }: any) => (
               <CampaignMonitorForm
                 id={CAMPAIGN_MONITOR_FORM_ID}
                 onFormSubmitted={() => {
@@ -368,7 +399,7 @@ function App(): ReactElement {
                     category: 'User',
                     action: 'Joined the mailing list from the nag popup.',
                   })
-                  success()
+                  dismissNag()
                 }}
                 submitButtonText="Sign me up!"
               />

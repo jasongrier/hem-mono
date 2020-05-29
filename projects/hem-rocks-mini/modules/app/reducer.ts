@@ -1,5 +1,6 @@
 import { AnyAction } from 'redux'
 import produce from 'immer'
+import { capitalize } from 'voca'
 import {
   COLLAPSE_TOP_BAR,
   EXPAND_TOP_BAR,
@@ -51,13 +52,13 @@ const reducer = (
       return produce(state, draftState => {
         const { cookieName, approval } = payload
         // @ts-ignore
-        draftState[`cookies${cookieName}Approved`] = approval
+        draftState[`cookies${capitalize(cookieName)}Approved`] = approval
       })
     }
 
     case SET_COOKIE_PREFERENCES_SET: {
       return produce(state, draftState => {
-        draftState.cookiePreferencesSet = true
+        draftState.cookiePreferencesSet = payload.value
       })
     }
 

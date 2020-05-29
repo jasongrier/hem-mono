@@ -104,13 +104,9 @@ function migrate() {
     try {
       // DO STUFF HERE
 
-      data.externalLinkUrl = data.labelExternalLinkUrl
-      data.externalLinkText = data.labelExternalLinkText
-      data.isDigitalProduct = data.labelIsDigitalProduct
-
-      delete data.labelExternalLinkUrl
-      delete data.labelExternalLinkText
-      delete data.labelIsDigitalProduct
+      data.attributionLink = ''
+      data.relatedContent = ''
+      data.relatedContentLink = ''
 
       // END DO STUFF HERE
 

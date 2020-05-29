@@ -1,5 +1,6 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects'
 import Cookies from 'js-cookie'
+import { getCookieName } from '../app'
 import {
   ADD_PRODUCT_TO_CART,
   CLEAR_CART,
@@ -9,7 +10,7 @@ import {
 function* saveCart() {
   try {
     const state = yield select()
-    Cookies.set('hem-rocks-cart', JSON.stringify(state.cart.products))
+    Cookies.set(getCookieName('cart'), JSON.stringify(state.cart.products))
   }
 
   catch (err) {

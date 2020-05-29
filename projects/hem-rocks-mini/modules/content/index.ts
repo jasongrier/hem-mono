@@ -3,6 +3,7 @@ import { AnyAction } from 'redux'
 export interface IContentItem {
   acceptingDonations: boolean
   attribution: string
+  attributionLink: string
   badgeText: string
   blurb: string
   date: string
@@ -15,6 +16,8 @@ export interface IContentItem {
   hasFixedPrice: boolean
   isDigitalProduct: boolean
   published: boolean
+  relatedContent: string
+  relatedContentLink: string
   secondaryTitle: string
   slug: string
   sticky: boolean
@@ -33,6 +36,7 @@ export interface IState {
 export const fieldTypes: IContentItem = {
   acceptingDonations: false,
   attribution: 'text',
+  attributionLink: 'text',
   badgeText: 'text',
   blurb: 'textarea',
   date: 'text',
@@ -45,6 +49,8 @@ export const fieldTypes: IContentItem = {
   hasFixedPrice: false,
   isDigitalProduct: false,
   published: false,
+  relatedContent: 'text',
+  relatedContentLink: 'text',
   secondaryTitle: 'text',
   slug: 'text',
   sticky: false,
@@ -154,7 +160,9 @@ export {
 } from './components'
 
 export {
-  getTracksFromContentItems,
+  getContentItemByField,
+  getContentItemBySlug,
+  getContentItemsByTag,
   modelize,
 } from './functions'
 
