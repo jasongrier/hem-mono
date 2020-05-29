@@ -28,14 +28,14 @@ const setActiveLiveStream = (contentItemSlug: string): AnyAction => ({
   payload: contentItemSlug,
 })
 
-const setCookieApproval = (cookieName: string, approval: boolean, write: boolean = false): AnyAction => ({
+const setCookieApproval = (cookieName: string, approval: boolean, write: boolean): AnyAction => ({
   type: SET_COOKIE_APPROVAL,
   payload: { cookieName, approval, write },
 })
 
-const setCookiePreferencesSet = (): AnyAction => ({
+const setCookiePreferencesSet = (value: boolean, write: boolean): AnyAction => ({
   type: SET_COOKIE_PREFERENCES_SET,
-  payload: null,
+  payload: { value, write },
 })
 
 export {

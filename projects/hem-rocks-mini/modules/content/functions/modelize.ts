@@ -4,6 +4,7 @@ function modelize(rawContentItem: any): IContentItem {
   return {
     acceptingDonations: rawContentItem.acceptingDonations || false,
     attribution: rawContentItem.attribution || '',
+    attributionLink: rawContentItem.attributionLink || '',
     badgeText: rawContentItem.badgeText || '',
     blurb: rawContentItem.blurb || '',
     date: rawContentItem.date || '',
@@ -16,6 +17,8 @@ function modelize(rawContentItem: any): IContentItem {
     hasFixedPrice: rawContentItem.hasFixedPrice || false,
     isDigitalProduct: rawContentItem.isDigitalProduct || false,
     published: rawContentItem.published || false,
+    relatedContent: rawContentItem.relatedContent || '',
+    relatedContentLink: rawContentItem.relatedContentLink || '',
     secondaryTitle: rawContentItem.secondaryTitle || '',
     slug: rawContentItem.slug || '',
     sticky: rawContentItem.sticky || false,

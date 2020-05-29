@@ -28,9 +28,9 @@ function CookieApproval(): ReactElement {
 
   const acceptAllCookiesOnClick = useCallback(
     function acceptAllCookiesOnClickFn(evt: SyntheticEvent<HTMLButtonElement>) {
-      dispatch(setCookieApproval('Analytics', true, true))
-      dispatch(setCookieApproval('Marketing', true, true))
-      dispatch(setCookiePreferencesSet())
+      dispatch(setCookieApproval('analytics', true, true))
+      dispatch(setCookieApproval('marketing', true, true))
+      dispatch(setCookiePreferencesSet(true, true))
     }, [],
   )
 
@@ -42,9 +42,9 @@ function CookieApproval(): ReactElement {
 
   const setCookiesPreferencesOnClick = useCallback(
     function setCookiesPreferencesOnClickFn(evt: SyntheticEvent<HTMLButtonElement>) {
-      dispatch(setCookieApproval('Analytics', analytics, true))
-      dispatch(setCookieApproval('Marketing', marketing, true))
-      dispatch(setCookiePreferencesSet())
+      dispatch(setCookieApproval('analytics', analytics, true))
+      dispatch(setCookieApproval('marketing', marketing, true))
+      dispatch(setCookiePreferencesSet(true, true))
       setPopupOpen(false)
     }, [analytics, marketing],
   )

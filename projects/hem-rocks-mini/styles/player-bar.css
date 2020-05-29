@@ -2,7 +2,7 @@
   position: fixed;
   bottom: 0;
   right: 0;
-  z-index: 99999;
+  z-index: 9999999;
   width: 100vw;
   width: 60px;
   height: 60px;
@@ -17,6 +17,7 @@
 
 .player-bar-expanded {
   width: 100vw;
+  overflow: visible;
 }
 
 .player-bar-playback-controls {
@@ -26,34 +27,22 @@
   width: 140px;
 }
 
-.player-bar .hem-headphones-button {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  transform-origin: bottom right;
-  background-color: #000;
-}
-
 .player-bar .hem-previous-button,
 .player-bar .hem-next-button,
 .player-bar .hem-play-pause-button {
   float: left;
-  margin-left: -10px;
-  transform-origin: bottom right;
   background-color: #000;
+}
+
+.player-bar-toggle {
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 .player-bar-toggle .hem-play-pause-button {
   margin-left: 0;
-  background-color: var(--line-orange);
-}
-
-.player-bar-playing .hem-headphones-button {
-  background-color: var(--line-orange);
-}
-
-.player-bar .hem-headphones-button-icon {
-  margin-left: 1px;
+  background-color: #000;
 }
 
 .player-bar .player-bar-now-playing {
@@ -82,11 +71,9 @@
 }
 
 .hem-player-progress-bar {
-  position: absolute;
-  top: 0;
-  left: 140px;
-  width: calc(100vw - 190px);
-  height: 50px;
+  float: left;
+  width: calc(100vw - 240px);
+  height: 60px;
 }
 
 .hem-player-progress-bar-bar {
@@ -96,4 +83,28 @@
   height: 60px;
   background-color: #333;
   cursor: pointer;
+}
+
+.playlist-toggle {
+  position: absolute;
+  right: 60px;
+  top: 0;
+}
+
+.playlist-toggle .hem-play-pause-button {
+  transform: rotate(90deg) scaleY(1.1) scaleX(0.9);
+}
+
+.playlist-toggle .hem-hamburger-button-icon {
+  transform: scale(1.5) translateY(1px);
+}
+
+.player-bar-playlist {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  width: 100vw;
+  height: 400px;
+  background: #222;
+  border-top: 1px solid var(--line-orange);
 }
