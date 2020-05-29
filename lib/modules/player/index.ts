@@ -11,15 +11,14 @@ export interface ITrack {
   relatedContentLink: string
   id: string
   resource: string
+  title: string
+  titleLink: string
   type: 'local' | 'soundcloud'
 }
 
 export interface IState {
   actuallyPlaying: boolean
-  currentTrackAttribution: string | null
-  currentTrackId: string | null
-  currentTrackResource: string | null
-  currentTrackType: string | null
+  currentTrack: ITrack
   inited: boolean
   muted: boolean
   playing: boolean
@@ -128,6 +127,7 @@ export {
   PauseButton,
   PlayerBar,
   PlayerBarPlayPauseButton,
+  Playlist,
   PlayPauseButton,
   PreviousButton,
   ProgressBar,

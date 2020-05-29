@@ -1,32 +1,27 @@
 import { isEmpty } from 'lodash'
 import { IContentItem } from '../index'
 
-function getContentItemByField(contentItems: IContentItem[], fieldName: string, fieldValue: string, fieldIsArray) {
-  return contentItems.filter(item => {
-    if (isEmpty(item[fieldName])) return false
-
-    if (fieldIsArray) {
+function getContentItemByField(contentItems: IContentItem[], fieldName: string, fieldValue: string, fieldIsArray: boolean) {
+  if (fieldIsArray) {
+    return contentItems.filter(item => {
+      if (isEmpty(item[fieldName])) return false
       let fieldItems = item[fieldName].split(',')
       fieldItems = fieldItems.map(fieldItem => fieldItem.trim())
       return fieldItems.includes(fieldValue)
-    }
+    })
+  }
 
-    else {
-      return item[fieldName] === fieldValue
-    }
-  })
+  else {
+    return contentItems.find(item => item[fieldName] === fieldValue)
+  }
 }
 
 function getContentItemBySlug(contentItems: IContentItem[], slug: string) {
-  const items = getContentItemByField(contentItems, 'slug', slug, false)
-
-  if (items.length > 1) console.error(`Uh oh! There is more than one item having the slug ${slug}.`)
-
-  return contentItems[0]
+  return getContentItemByField(contentItems, 'slug', slug, false) as IContentItem
 }
 
 function getContentItemsByTag(contentItems: IContentItem[], tag: string) {
-  return getContentItemByField(contentItems, 'tag', tag, true)
+  return getContentItemByField(contentItems, 'tag', tag, true) as IContentItem[]
 }
 
 export {

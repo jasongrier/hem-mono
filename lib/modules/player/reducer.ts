@@ -18,10 +18,7 @@ import {
 
 const initialState: IState = {
   actuallyPlaying: false,
-  currentTrackAttribution: null,
-  currentTrackId: null,
-  currentTrackResource: null,
-  currentTrackType: null,
+  currentTrack: null,
   inited: false,
   muted: true,
   playing: false,
@@ -52,10 +49,7 @@ const reducer = (
     case CUE_TRACK: {
       return produce(state, draftState => {
         draftState.playing = payload.andPlay
-        draftState.currentTrackAttribution = payload.track.attribution
-        draftState.currentTrackId = payload.track.id
-        draftState.currentTrackType = payload.track.type
-        draftState.currentTrackResource = payload.track.resource
+        draftState.currentTrack = payload.track
       })
     }
 
@@ -72,6 +66,7 @@ const reducer = (
     case SET_PLAYER_PLAYLIST: {
       return produce(state, draftState => {
         draftState.playlist = payload
+        draftState.currentTrack = payload[0]
       })
     }
 

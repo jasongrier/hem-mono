@@ -1,6 +1,7 @@
 {
   "acceptingDonations": false,
   "attribution": "fafadf",
+  "attributionLink": "",
   "badgeText": "",
   "blurb": "asdfasdfasdf",
   "date": "20.09.2020",
@@ -13,6 +14,8 @@
   "hasFixedPrice": false,
   "isDigitalProduct": true,
   "published": true,
+  "relatedContent": "",
+  "relatedContentLink": "",
   "secondaryTitle": "Various Artists",
   "slug": "archive",
   "sticky": true,

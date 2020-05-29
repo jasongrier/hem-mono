@@ -160,6 +160,7 @@ export {
 } from './components'
 
 export {
+  hasTag,
   getContentItemByField,
   getContentItemBySlug,
   getContentItemsByTag,

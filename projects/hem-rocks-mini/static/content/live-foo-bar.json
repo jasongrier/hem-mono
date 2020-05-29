@@ -1,6 +1,7 @@
 {
   "acceptingDonations": false,
   "attribution": "",
+  "attributionLink": "",
   "badgeText": "",
   "blurb": "",
   "date": "20.05.2020",
@@ -13,6 +14,8 @@
   "hasFixedPrice": false,
   "isDigitalProduct": false,
   "published": true,
+  "relatedContent": "",
+  "relatedContentLink": "",
   "secondaryTitle": "Originally aired: Saturday, August 16 @ 8pm ",
   "slug": "live-foo-bar",
   "sticky": false,
