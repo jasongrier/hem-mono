@@ -30,6 +30,7 @@ export interface IContentItem {
 }
 
 export interface IState {
+  adminFilterApplied: string
   currentContentItem: IContentItem | null
   contentItems: IContentItem[]
 }
@@ -63,6 +64,7 @@ export const fieldTypes: IContentItem = {
   type: 'text',
 }
 
+export const ADMIN_APPLY_FILTER = 'ADMIN_APPLY_FILTER'
 export const CLEAR_ITEMS = 'CLEAR_ITEMS'
 export const DO_CREATE_ITEMS = 'DO_CREATE_ITEMS'
 export const DO_DELETE_ITEMS = 'DO_DELETE_ITEMS'
@@ -73,6 +75,11 @@ export const REQUEST_DELETE_ITEMS = 'REQUEST_DELETE_ITEMS'
 export const REQUEST_READ_ITEMS = 'REQUEST_READ_ITEMS'
 export const REQUEST_UPDATE_ITEMS = 'REQUEST_UPDATE_ITEMS'
 export const SET_CURRENT_ITEM = 'SET_CURRENT_ITEM'
+
+export interface IAdminApplyFilter extends AnyAction {
+  type: typeof ADMIN_APPLY_FILTER
+  payload: string
+}
 
 export interface IClearItems extends AnyAction {
   type: typeof CLEAR_ITEMS
@@ -125,7 +132,8 @@ export interface ISetCurrentItem extends AnyAction {
 }
 
 export type Action =
-  IClearItems
+  IAdminApplyFilter
+  | IClearItems
   | IDoCreateItems
   | IDoDeleteItems
   | IDoReadItems
@@ -137,6 +145,7 @@ export type Action =
   | ISetCurrentItem
 
 export {
+  adminApplyFilter,
   clearItems,
   doCreateItems,
   doDeleteItems,

@@ -7,16 +7,17 @@ import ReactGA, { set } from 'react-ga'
 import Cookies from 'js-cookie'
 import { CartPopup, setCartProducts } from '../../cart'
 import { ThankYouPopup } from '../../cart'
-import { DetailPopUp, requestReadItems, setCurrentItem, hasTag, getContentItemsByTag, getContentItemBySlug, contentItemToTrack } from '../../content'
+import { DetailPopUp, requestReadItems, setCurrentItem, hasTag, getContentItemBySlug, contentItemToTrack } from '../../content'
 import { ProtectedContent } from '../../login'
-import { CampaignMonitorForm, ElectronNot, ElectronOnly, ScrollToTop, HamburgerMenu, NagToaster, Spinner } from '../../../../../lib/components'
+import { CampaignMonitorForm, ElectronNot, ScrollToTop, NagToaster, Spinner } from '../../../../../lib/components'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup, closePopup } from '../../../../../lib/modules/popups'
 import { PlayerBar, setPlayerPlaylist, ITrack } from '../../../../../lib/modules/player'
 import { usePrevious } from '../../../../../lib/hooks'
-import { collapseTopBar, expandTopBar, getCookieName, MainNavItem, TopBar } from '../index'
+import { collapseTopBar, expandTopBar, getCookieName } from '../index'
 import { requestActiveLiveStream, setCookieApproval, setCookiePreferencesSet } from '../actions'
 import CookieApproval from './CookieApproval'
+import { MainNavItem, MegaNav, TopBar } from '../../../components/layout'
 import { CAMPAIGN_MONITOR_FORM_ID } from '../../../config'
 import { RootState } from '../../../index'
 
@@ -291,22 +292,7 @@ function App(): ReactElement {
             </li>
           </ul>
         </nav>
-        <nav className="hamburger-nav">
-          <HamburgerMenu>
-            <ul>
-              <MainNavItem name="Info" />
-              <MainNavItem name="Merch" />
-              <MainNavItem name="Mixes" />
-              <MainNavItem name="Code" />
-              <MainNavItem name="Tracks" />
-              <MainNavItem name="Mailing List" />
-              <MainNavItem name="Set cookie preferences" to="set-cookie-preferences" />
-              <ElectronOnly>
-                <MainNavItem name="Admin" to="admin/list" />
-              </ElectronOnly>
-            </ul>
-          </HamburgerMenu>
-        </nav>
+        <MegaNav />
         <main className="main-content">
           <div className="tabs-content">
             <Switch>

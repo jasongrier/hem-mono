@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useLocation } from 'react-router'
 import { NavLink } from 'react-router-dom'
 import { slugify } from 'voca'
-import { collapseTopBar } from '../index'
+import { collapseTopBar } from '../../modules/app'
 
 interface IProps {
   name: string

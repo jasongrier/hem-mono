@@ -1,1 +1,5 @@
+export { default as Logo } from './Logo'
+export { default as MainNavItem } from './MainNavItem'
+export { default as MegaNav } from './MegaNav'
+export { default as TopBar } from './TopBar'
 export { default as VenueSubnav } from './VenueSubnav'

@@ -21,7 +21,6 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
   const dispatch = useDispatch()
 
   const history = useHistory()
-  const location = useLocation()
 
   const [originalItem, setOriginalItem] = useState<IContentItem>()
   const [workingItem, setWorkingItem] = useState<IContentItem>()

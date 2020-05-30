@@ -6,11 +6,13 @@ import { isEmpty, noop } from 'lodash'
 import moment from 'moment'
 import { ElectronOnly } from '../../../../../lib/components'
 import { PlayPauseButton } from '../../../../../lib/packages/hem-buttons'
-import { requestDeleteItems, requestReadItems, requestUpdateItems, IContentItem } from '../index'
+import { adminApplyFilter, requestDeleteItems, requestReadItems, requestUpdateItems, IContentItem } from '../index'
 import { RootState } from '../../../index'
+import { hasTag } from '../functions'
 
 function AdminList(): ReactElement {
-  const { allContentItems } = useSelector((state: RootState) => ({
+  const { adminFilterApplied, allContentItems } = useSelector((state: RootState) => ({
+    adminFilterApplied: state.content.adminFilterApplied,
     allContentItems: state.content.contentItems,
   }))
 
@@ -20,12 +22,11 @@ function AdminList(): ReactElement {
     dispatch(requestReadItems({ page: 1, size: 10000 }))
   }, [])
 
-  const [tag, setTag] = useState('label')
   const [search, setSearch] = useState('')
 
   const categoryFilterOnChange = useCallback(
     function categoryFilterOnChangeFn(evt: SyntheticEvent<HTMLSelectElement>) {
-      setTag(evt.currentTarget.value)
+      dispatch(adminApplyFilter(evt.currentTarget.value))
     }, [],
   )
 
@@ -35,21 +36,12 @@ function AdminList(): ReactElement {
     }, [],
   )
 
-  let contentItems = ([] as IContentItem[]).concat(tag === 'all' ? allContentItems : allContentItems.filter(item => {
-    if (isEmpty(item.tags)) return false
-
-    let tagsArr = item.tags.split(',')
-
-    if (!tagsArr.length) return false
-
-    tagsArr = tagsArr.map((tag) => tag.trim())
-
-    return tagsArr.includes(tag)
-      || tagsArr.includes(tag)
+  let contentItems = ([] as IContentItem[]).concat(adminFilterApplied === 'all' ? allContentItems : allContentItems.filter(item => {
+    return hasTag(item, adminFilterApplied)
   }))
 
   if (!isEmpty(search)) {
-    contentItems = allContentItems.filter(item =>
+    contentItems = contentItems.filter(item =>
       item.title.toLowerCase().includes(search.toLowerCase())
       || item.tags.includes(search)
       || item.tags.includes(search.toLowerCase())
@@ -74,18 +66,23 @@ function AdminList(): ReactElement {
             <select
               name="select"
               onChange={categoryFilterOnChange}
+              value={adminFilterApplied}
             >
               <option value="all">All</option>
               <option value="apps">Apps</option>
+              <option value="blog">Blog</option>
               <option value="code">Code</option>
               <option value="label">Label</option>
               <option value="merch">Merch</option>
               <option value="mixes">Mixes</option>
               <option value="playlist">Playlist</option>
+              <option value="press">Press</option>
               <option value="sound-library">Sound Library</option>
               <option value="track">Track</option>
+              <option value="tutorials">Tutorials</option>
               <option value="venue-archive">Venue Archive</option>
               <option value="venue-calendar">Venue Calendar</option>
+              <option value="videos">Videos</option>
             </select>
           </div>
           <div className="admin-list-controls-search">

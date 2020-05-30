@@ -1,4 +1,5 @@
 import {
+  ADMIN_APPLY_FILTER,
   CLEAR_ITEMS,
   DO_CREATE_ITEMS,
   DO_DELETE_ITEMS,
@@ -13,6 +14,11 @@ import {
   Action,
   IContentItem,
 } from './index'
+
+const adminApplyFilter = (filter: string): Action => ({
+  type: ADMIN_APPLY_FILTER,
+  payload: filter,
+})
 
 const clearItems = (): Action => ({
   type: CLEAR_ITEMS,
@@ -65,6 +71,7 @@ const setCurrentItem = (item: IContentItem): Action => ({
 })
 
 export {
+  adminApplyFilter,
   clearItems,
   doCreateItems,
   doDeleteItems,
