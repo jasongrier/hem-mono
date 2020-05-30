@@ -56,7 +56,7 @@ export type Action =
 export { collapseTopBar, expandTopBar, requestActiveLiveStream, setActiveLiveStream, setCookieApproval, setCookiePreferencesSet } from './actions'
 
 // TODO: Export all components here. Write a linter for it
-export { App, EmailForm, MainNavItem, PlayerBar, TopBar } from './components'
+export { App, EmailForm } from './components'
 export { getCookieBaseName, getCookieName } from './functions'
 export { reducer as appReducer } from './reducer'
 export { requestActiveLiveStreamSaga } from './sagas'

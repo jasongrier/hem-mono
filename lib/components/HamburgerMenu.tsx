@@ -1,7 +1,9 @@
 import React, { PropsWithChildren, ReactElement, useRef, useState, useEffect } from 'react'
 import $ from 'jquery'
 
-interface IProps {}
+interface IProps {
+  openByDefault?: boolean
+}
 
 const contentSel = '.hem-hamburger-menu-content'
 
@@ -58,8 +60,8 @@ const styleSheet = `
   }
 `
 
-function HamburgerMenu({ children }: PropsWithChildren<IProps>): ReactElement {
-  const [open, setOpen] = useState(false)
+function HamburgerMenu({ children, openByDefault = false }: PropsWithChildren<IProps>): ReactElement {
+  const [open, setOpen] = useState(openByDefault)
 
   useEffect(() => {
     const $menuLink = $(contentSel).find('a')

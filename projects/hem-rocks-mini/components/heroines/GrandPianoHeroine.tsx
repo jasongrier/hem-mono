@@ -20,8 +20,8 @@ function GrandPianoHeroine(): ReactElement {
 
   return (
     <div className="grand-piano-heroine">
+      <div className="grand-piano-heroine-image" />
       <Link to={productUrl}>
-        <div className="grand-piano-heroine-image" />
         <div className="grand-piano-heroine-details">
           <div>
             <MuteButton

@@ -2,6 +2,7 @@ import { AnyAction } from 'redux'
 import produce from 'immer'
 import { uniqBy } from 'lodash'
 import {
+  ADMIN_APPLY_FILTER,
   CLEAR_ITEMS,
   DO_CREATE_ITEMS,
   DO_DELETE_ITEMS,
@@ -18,6 +19,7 @@ import {
 } from './index'
 
 const initialState: IState = {
+  adminFilterApplied: 'all',
   currentContentItem: null,
   contentItems: [],
 }
@@ -27,6 +29,12 @@ const reducer = (
   { payload, type }: AnyAction,
 ): IState => {
   switch (type) {
+    case ADMIN_APPLY_FILTER: {
+      return produce(state, draftState => {
+        draftState.adminFilterApplied = payload
+      })
+    }
+
     case CLEAR_ITEMS: {
       return produce(state, draftState => {
         draftState.contentItems = []

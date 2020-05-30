@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { expandTopBar } from '../index'
+import { expandTopBar } from '../../modules/app'
 
 interface IProps {
   collapsed: boolean

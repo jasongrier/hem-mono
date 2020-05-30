@@ -188,9 +188,9 @@
   font-size: 24px;
 }
 
-/* .main-content-items {
-  padding-top: 60px;
-} */
+.main-content-items {
+  transform: translateX(-10px);
+}
 
 .main-content-box {
   float: left;
