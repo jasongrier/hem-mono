@@ -146,9 +146,9 @@ function App(): ReactElement {
       return {
         attribution: item.attribution,
         attributionLink: item.attributionLink,
+        id: item.slug,
         relatedContent: item.relatedContent,
         relatedContentLink: item.relatedContentLink,
-        id: item.slug,
         resource: item.trackId,
         title: item.title,
         titleLink: hasTag(item, 'attachment') ? item.relatedContentLink : `/tracks/${item.slug}`,
@@ -199,6 +199,10 @@ function App(): ReactElement {
       }
 
       dispatch(openPopup(popupId))
+    }
+
+    else {
+      dispatch(closePopup())
     }
   }, [contentItems, pathname])
 

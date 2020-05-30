@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ITrack } from '../index'
+import TrackPlayPauseButton from './TrackPlayPauseButton'
 
 function Playlist(): ReactElement {
   const { currentTrack, playing, playlist } = useSelector((state: any) => ({
@@ -18,6 +19,7 @@ function Playlist(): ReactElement {
           <li
             key={track.id}
           >
+            <TrackPlayPauseButton track={track} />
             { track.title }
           </li>
         ))}

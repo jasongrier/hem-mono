@@ -9,7 +9,7 @@ function* checkLoginCookie() {
 }
 
 function* setLoginCookie() {
-  Cookies.set(getCookieName('logged-in'), 'true')
+  Cookies.set(getCookieName('logged-in'), 'true', { expires: 0.5 })
 }
 
 function* unsetLoginCookie() {
