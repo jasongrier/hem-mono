@@ -19,9 +19,10 @@
   "secondaryTitle": "",
   "slug": "relineator",
   "sticky": false,
-  "tags": "projects, javascript, react, expanded-poetics",
+  "tags": "apps, code, javascript, react, expanded-poetics, pedagogy",
   "title": "Relineator",
   "titleWrapping": "",
-  "trackId": "",
+  "trackSlug": "",
+  "trackResourceId": "",
   "type": "Sample Pack for Ableton Live"
 }

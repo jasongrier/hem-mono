@@ -19,9 +19,10 @@
   "secondaryTitle": "",
   "slug": "buttons",
   "sticky": false,
-  "tags": "projects, npm-modules, javascript, react",
+  "tags": "code, npm-modules, javascript, react",
   "title": "Buttons",
   "titleWrapping": "",
-  "trackId": "",
+  "trackSlug": "",
+  "trackResourceId": "",
   "type": "Sample Pack for Ableton Live"
 }
