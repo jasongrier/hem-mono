@@ -69,20 +69,20 @@ function AdminList(): ReactElement {
               value={adminFilterApplied}
             >
               <option value="all">All</option>
-              <option value="apps">Apps</option>
-              <option value="blog">Blog</option>
+              <option value="app">Apps</option>
+              <option value="article">Articles</option>
               <option value="code">Code</option>
               <option value="label">Label</option>
               <option value="merch">Merch</option>
-              <option value="mixes">Mixes</option>
+              <option value="mix">Mixes</option>
               <option value="playlist">Playlist</option>
               <option value="press">Press</option>
               <option value="sound-library">Sound Library</option>
               <option value="track">Track</option>
-              <option value="tutorials">Tutorials</option>
+              <option value="tutorial">Tutorials</option>
               <option value="venue-archive">Venue Archive</option>
               <option value="venue-calendar">Venue Calendar</option>
-              <option value="videos">Videos</option>
+              <option value="video">Videos</option>
             </select>
           </div>
           <div className="admin-list-controls-search">
