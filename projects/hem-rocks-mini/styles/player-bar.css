@@ -45,6 +45,13 @@
   position: absolute;
   right: 0;
   top: 0;
+}
+
+.player-bar-toggle .hem-play-pause-button {
+  border: 0;
+}
+
+.player-bar-expanded .player-bar-toggle {
   border-left: 1px solid #666;
   border-top: 1px solid #666;
 }
@@ -145,4 +152,39 @@
   height: 400px;
   background: #222;
   border-top: 1px solid var(--line-orange);
+}
+
+.player-bar-playlist ul {
+  margin: 0;
+  padding: 0;
+}
+
+.player-bar-playlist li {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  margin: 0;
+  list-style-type: none;
+  border-bottom: 1px solid #666;
+  color: #aaa;
+  font-size: 13px;
+  cursor: pointer;
+  padding-left: 40px;
+}
+
+.player-bar-playlist li .hem-play-pause-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: scale(0.67);
+  transform-origin: top left;
+  border: 0;
+  background: transparent;
+}
+
+.player-bar-playlist li .hem-play-pause-button-icon {
+  transform: scale(0.7) translateY(-1px);
+  transform-origin: center;
 }

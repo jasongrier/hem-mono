@@ -104,9 +104,9 @@ function migrate() {
     try {
       // DO STUFF HERE
 
-      data.attributionLink = ''
-      data.relatedContent = ''
-      data.relatedContentLink = ''
+      data.trackSlug = ''
+      data.trackResourceId = ''
+      delete data.trackId
 
       // END DO STUFF HERE
 

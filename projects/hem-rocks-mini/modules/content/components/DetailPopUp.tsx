@@ -43,6 +43,7 @@ function DetailPopUp({
 
   useEffect(function init() {
     if (showPurchaseForm) {
+      console.log('??')
       ReactGA.modalview('Detail Popup with Purchase Form: ' + contentItem.title)
     }
 
@@ -384,9 +385,14 @@ function DetailPopUp({
               <TrackPlayPauseButton
                 track={{
                   attribution: contentItem.attribution,
+                  attributionLink: contentItem.attributionLink,
                   id: contentItem.slug,
-                  type: 'soundcloud',
+                  relatedContent: contentItem.relatedContent,
+                  relatedContentLink: contentItem.relatedContentLink,
                   resource: contentItem.trackId,
+                  title: contentItem.title,
+                  titleLink: `/tracks/${contentItem.slug}`,
+                  type: 'soundcloud',
                 }}
               />
             )}
