@@ -19,9 +19,10 @@
   "secondaryTitle": "",
   "slug": "luc",
   "sticky": true,
-  "tags": "projects, desktop-mobile-apps, javascript, react, electron, sound, composition",
+  "tags": "apps, code, desktop-mobile-apps, javascript, react, electron, sound, composition",
   "title": "Luc",
   "titleWrapping": "",
-  "trackId": "",
+  "trackSlug": "",
+  "trackResourceId": "",
   "type": "Sample Pack for Ableton Live"
 }

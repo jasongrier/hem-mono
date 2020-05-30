@@ -162,6 +162,7 @@ export {
 } from './components'
 
 export {
+  contentItemToTrack,
   hasTag,
   getContentItemByField,
   getContentItemBySlug,

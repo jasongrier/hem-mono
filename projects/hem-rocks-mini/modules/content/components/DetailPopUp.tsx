@@ -7,11 +7,12 @@ import ReactGA from 'react-ga'
 import { Spinner } from '../../../../../lib/components'
 import { PlayPauseButton } from '../../../../../lib/packages/hem-buttons'
 import { closePopup, openPopup } from '../../../../../lib/modules/popups'
-import { TrackPlayPauseButton } from '../../../../../lib/modules/player'
+import { TrackPlayPauseButton, ITrack } from '../../../../../lib/modules/player'
 import { addProductToCart } from '../../cart'
 import { IContentItem } from '../../content'
 import { assetHostHostname } from '../../../functions'
 import { RootState } from '../../../index'
+import { hasTag, contentItemToTrack } from '../functions'
 
 interface IProps {
   contentItem: IContentItem | null
@@ -30,20 +31,21 @@ function DetailPopUp({
 }: IProps): ReactElement {
   if (!contentItem) return <div />
 
-  const { activeLiveStream, cartProducts } = useSelector((state: RootState) => ({
+  const { activeLiveStream, allContentItems, cartProducts } = useSelector((state: RootState) => ({
     activeLiveStream: state.app.activeLiveStream,
+    allContentItems: state.content.contentItems,
     cartProducts: state.cart.products,
   }))
 
   const dispatch = useDispatch()
 
   const [suggestedPrice, setSuggestedPrice] = useState<string>((contentItem ? contentItem.flexPriceRecommended : '0'))
+  const [track, setTrack] = useState<ITrack>()
 
   const [valid, setValid] = useState(true)
 
   useEffect(function init() {
     if (showPurchaseForm) {
-      console.log('??')
       ReactGA.modalview('Detail Popup with Purchase Form: ' + contentItem.title)
     }
 
@@ -51,6 +53,22 @@ function DetailPopUp({
       ReactGA.modalview('Detail Popup without Purchase Form: ' + contentItem.title)
     }
   }, [])
+
+  useEffect(function findTrack() {
+    let trackItem: IContentItem
+
+    if (hasTag(contentItem, 'track')) {
+      trackItem = contentItem
+    }
+
+    else if (contentItem.trackSlug) {
+      trackItem = allContentItems.find(item => item.slug === contentItem.trackSlug)
+    }
+
+    if (!trackItem) return
+
+    setTrack(contentItemToTrack(trackItem, `/tracks/${contentItem.slug}`))
+  }, [allContentItems])
 
   const suggestedPriceOnChange = useCallback(
     function suggestedPriceOnChangeFn(evt: SyntheticEvent<HTMLInputElement>) {
@@ -381,20 +399,8 @@ function DetailPopUp({
                 </div>
               )}
             </div>
-            { contentItem.trackId && (
-              <TrackPlayPauseButton
-                track={{
-                  attribution: contentItem.attribution,
-                  attributionLink: contentItem.attributionLink,
-                  id: contentItem.slug,
-                  relatedContent: contentItem.relatedContent,
-                  relatedContentLink: contentItem.relatedContentLink,
-                  resource: contentItem.trackId,
-                  title: contentItem.title,
-                  titleLink: `/tracks/${contentItem.slug}`,
-                  type: 'soundcloud',
-                }}
-              />
+            { track && (
+              <TrackPlayPauseButton track={track} />
             )}
             { tag === 'venue-calendar' && activeLiveStream === contentItem.slug && (
               <PlayPauseButton

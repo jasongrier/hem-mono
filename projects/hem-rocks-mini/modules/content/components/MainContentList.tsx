@@ -4,7 +4,6 @@ import { Link, useParams, useLocation } from 'react-router-dom'
 import Scrollbars from 'react-scrollbars-custom'
 import { slugify } from 'voca'
 import { compact, intersectionBy } from 'lodash'
-import $ from 'jquery'
 import moment from 'moment'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup } from '../../../../../lib/modules/popups'
@@ -13,6 +12,7 @@ import { setCurrentItem, IContentItem } from '../index'
 import { CampaignMonitorForm } from '../../../../../lib/components'
 import { RootState } from '../../../index'
 import { LISTS_HAVE_BLURBS } from '../../../config'
+import { hasTag } from '../functions'
 
 interface IProps {
   blurb: string
@@ -60,7 +60,7 @@ function MainContentList({
   filters = compact(['All'].concat(exclusiveFilters).concat(filters))
 
   let contentItems = allContentItems.filter(item =>
-    item.tags.includes(tag) && item.published && !item.sticky
+    hasTag(item, tag) && item.published && !item.sticky
   )
 
   let stickyContentItems = allContentItems.filter(

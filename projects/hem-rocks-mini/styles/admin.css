@@ -232,6 +232,10 @@
   line-height: 40px;
 }
 
+.admin-item input[disabled] {
+  background-color: #ccc;
+}
+
 .admin-item textarea {
   width: calc(100vw - 120px);
   resize: none;

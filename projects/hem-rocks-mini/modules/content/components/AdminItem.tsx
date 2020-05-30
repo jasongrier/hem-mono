@@ -146,6 +146,19 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
         </header>
         <table className="admin-item">
           <tbody>
+            <tr>
+              <td>
+                <label htmlFor="slug">Slug</label>
+              </td>
+              <td>
+                <input
+                  disabled
+                  name="slug"
+                  type="text"
+                  value={workingItem.slug}
+                />
+              </td>
+            </tr>
             { orderedKeys.map(fieldName => {
               if (fieldName === 'slug') return
               if (fieldName === 'userSuggestedPrice') return

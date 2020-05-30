@@ -76,14 +76,16 @@ function AdminList(): ReactElement {
               onChange={categoryFilterOnChange}
             >
               <option value="all">All</option>
-              <option value="sound-library">Sound Library</option>
+              <option value="apps">Apps</option>
+              <option value="code">Code</option>
               <option value="label">Label</option>
-              <option value="mixes">Mixes</option>
-              <option value="venue-calendar">Venue Calendar</option>
-              <option value="venue-archive">Venue Archive</option>
-              <option value="software">Software</option>
               <option value="merch">Merch</option>
+              <option value="mixes">Mixes</option>
+              <option value="playlist">Playlist</option>
+              <option value="sound-library">Sound Library</option>
               <option value="track">Track</option>
+              <option value="venue-archive">Venue Archive</option>
+              <option value="venue-calendar">Venue Calendar</option>
             </select>
           </div>
           <div className="admin-list-controls-search">

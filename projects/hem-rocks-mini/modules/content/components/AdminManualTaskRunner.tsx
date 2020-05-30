@@ -104,9 +104,7 @@ function migrate() {
     try {
       // DO STUFF HERE
 
-      data.trackSlug = ''
-      data.trackResourceId = ''
-      delete data.trackId
+      data.tags = data.tags.replace('projects,', 'code,')
 
       // END DO STUFF HERE
 

@@ -1,15 +1,22 @@
 import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { find } from 'lodash'
 // @ts-ignore
 import autop from 'lines-to-paragraphs'
-import { MainContentList } from '../modules/content'
+import { MainContentList, contentItemToTrack } from '../modules/content'
 import { TrackPlayPauseButton } from '../../../lib/modules/player'
 import { BASE_SITE_TITLE } from '../config'
+import { RootState } from '../index'
 
 function SoundLibrary(): ReactElement {
 
   const { filter: currentFilter } = useParams()
+
+  const { allContentItems } = useSelector((state: RootState) => ({
+    allContentItems: state.content.contentItems,
+  }))
 
   return (
     <>
@@ -61,19 +68,15 @@ function SoundLibrary(): ReactElement {
           tag="sound-library"
           title="Sound Library"
         >
-          {(pack) => (
-            pack.trackId ?
-              <TrackPlayPauseButton
-                track={{
-                  attribution: pack.attribution,
-                  id: pack.slug,
-                  resource: pack.trackId,
-                  type: 'soundcloud',
-                }}
-              />
-              :
-              <div />
-          )}
+          {(pack) => {
+            const trackItem = find(allContentItems, { slug: pack.trackSlug })
+
+            if (!trackItem) return <div />
+
+            const track = contentItemToTrack(trackItem, `tracks/${pack.slug}`)
+
+            return <TrackPlayPauseButton track={track} />
+          }}
         </MainContentList>
       </div>
     </>

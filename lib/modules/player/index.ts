@@ -13,7 +13,7 @@ export interface ITrack {
   resource: string
   title: string
   titleLink: string
-  type: 'local' | 'soundcloud'
+  type: string // 'local' | 'soundcloud'
 }
 
 export interface IState {

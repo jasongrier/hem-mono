@@ -19,9 +19,10 @@
   "secondaryTitle": "",
   "slug": "site-playlist",
   "sticky": false,
-  "tags": "",
+  "tags": "playlist",
   "title": "Site Playlist",
   "titleWrapping": "",
-  "trackId": "",
+  "trackSlug": "",
+  "trackResourceId": "",
   "type": ""
 }

@@ -7,7 +7,7 @@ import ReactGA, { set } from 'react-ga'
 import Cookies from 'js-cookie'
 import { CartPopup, setCartProducts } from '../../cart'
 import { ThankYouPopup } from '../../cart'
-import { DetailPopUp, requestReadItems, setCurrentItem, hasTag, getContentItemsByTag, getContentItemBySlug } from '../../content'
+import { DetailPopUp, requestReadItems, setCurrentItem, hasTag, getContentItemsByTag, getContentItemBySlug, contentItemToTrack } from '../../content'
 import { ProtectedContent } from '../../login'
 import { CampaignMonitorForm, ElectronNot, ElectronOnly, ScrollToTop, HamburgerMenu, NagToaster, Spinner } from '../../../../../lib/components'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
@@ -21,11 +21,12 @@ import { CAMPAIGN_MONITOR_FORM_ID } from '../../../config'
 import { RootState } from '../../../index'
 
 import {
+  Apps,
   Admin,
   Home,
   Info,
   Label,
-  Projects,
+  Code,
   SoundLibrary,
   Venue,
   VenueArchive,
@@ -59,7 +60,7 @@ function App(): ReactElement {
 
   const genericRoutedPopups = [
     { basePath: 'label', id: 'detail-popup' },
-    { basePath: 'projects', id: 'detail-popup' },
+    { basePath: 'code', id: 'detail-popup' },
     { basePath: 'sound-library', id: 'detail-popup' },
     { basePath: 'venue-calendar', id: 'detail-popup' },
     { basePath: 'venue-archive', id: 'detail-popup' },
@@ -143,17 +144,7 @@ function App(): ReactElement {
       if (!item) return
       if (!hasTag(item, 'track')) return
 
-      return {
-        attribution: item.attribution,
-        attributionLink: item.attributionLink,
-        id: item.slug,
-        relatedContent: item.relatedContent,
-        relatedContentLink: item.relatedContentLink,
-        resource: item.trackId,
-        title: item.title,
-        titleLink: hasTag(item, 'attachment') ? item.relatedContentLink : `/tracks/${item.slug}`,
-        type: 'soundcloud',
-      }
+      return contentItemToTrack(item, hasTag(item, 'attachment') ? item.relatedContentLink : `/tracks/${item.slug}`)
     }))
 
     dispatch(setPlayerPlaylist(sitePlaylistTracks))
@@ -280,7 +271,7 @@ function App(): ReactElement {
           <ul className="main-nav-items">
             <MainNavItem name="Sound Library" />
             <MainNavItem name="Venue" to="venue-calendar" />
-            <MainNavItem name="Code" />
+            <MainNavItem name="Apps" />
             <MainNavItem name="Label" />
             <li className="main-nav-item">
               <NavLink
@@ -306,6 +297,8 @@ function App(): ReactElement {
               <MainNavItem name="Info" />
               <MainNavItem name="Merch" />
               <MainNavItem name="Mixes" />
+              <MainNavItem name="Code" />
+              <MainNavItem name="Tracks" />
               <MainNavItem name="Mailing List" />
               <MainNavItem name="Set cookie preferences" to="set-cookie-preferences" />
               <ElectronOnly>
@@ -324,13 +317,18 @@ function App(): ReactElement {
               <Route exact path="/info" component={Info} />
               <Route exact path="/info/cart" component={Info} />
 
+              <Route exact path="/code/:contentItemSlug?/:filter?" component={Code} />
+              <Route exact path="/code/filter/:filter" component={Code} />
+              <Route exact path="/code/cart/:filter?" component={Code} />
+
+              <Route exact path="/apps/:contentItemSlug?/:filter?" component={Apps} />
+              <Route exact path="/apps/filter/:filter" component={Apps} />
+              <Route exact path="/apps/cart/:filter?" component={Apps} />
+
               <Route exact path="/label/:contentItemSlug?/:filter?" component={Label} />
               <Route exact path="/label/filter/:filter" component={Label} />
               <Route exact path="/label/cart/:filter?" component={Label} />
 
-              <Route exact path="/code/:contentItemSlug?/:filter?" component={Projects} />
-              <Route exact path="/code/filter/:filter" component={Projects} />
-              <Route exact path="/code/cart/:filter?" component={Projects} />
 
               <Route exact path="/sound-library/:contentItemSlug?/:filter?" component={SoundLibrary} />
               <Route exact path="/sound-library/filter/:filter" component={SoundLibrary} />

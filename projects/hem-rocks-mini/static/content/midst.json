@@ -19,9 +19,10 @@
   "secondaryTitle": "",
   "slug": "midst",
   "sticky": false,
-  "tags": "projects, desktop-mobile-apps, javascript, react, electron, expanded-poetics",
+  "tags": "apps, code, desktop-mobile-apps, javascript, react, electron, expanded-poetics, pedagogy",
   "title": "Midst",
   "titleWrapping": "",
-  "trackId": "",
+  "trackSlug": "",
+  "trackResourceId": "",
   "type": "Sample Pack for Ableton Live"
 }

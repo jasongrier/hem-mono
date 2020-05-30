@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { find } from 'lodash'
 import { MuteButton } from '../../../../lib/modules/player'
 import { RootState } from '../../index'
+import { contentItemToTrack } from '../../modules/content'
 
 function GrandPianoHeroine(): ReactElement {
   const { allProducts, currentContentItem } = useSelector((state: RootState) => ({
@@ -12,26 +13,21 @@ function GrandPianoHeroine(): ReactElement {
   }))
 
   const grandPianoProduct = find(allProducts, { slug: 'grand-piano' })
+  const grandPianoTrackItem = find(allProducts, { slug: grandPianoProduct.trackSlug })
+  const productUrl = '/sound-library/grand-piano'
 
   if (!grandPianoProduct) return (<div />)
 
   return (
     <div className="grand-piano-heroine">
-      <Link to="/sound-library/grand-piano">
+      <Link to={productUrl}>
         <div className="grand-piano-heroine-image" />
         <div className="grand-piano-heroine-details">
           <div>
-            { grandPianoProduct.trackId && (
-              <MuteButton
-                canStartPlayback={true}
-                track={{
-                  attribution: grandPianoProduct.attribution,
-                  id: grandPianoProduct.slug,
-                  type: 'soundcloud',
-                  resource: grandPianoProduct.trackId,
-                }}
-              />
-            )}
+            <MuteButton
+              canStartPlayback={true}
+              track={contentItemToTrack(grandPianoTrackItem, productUrl)}
+            />
           </div>
           <div className="grand-piano-heroine-text">
             <h2>New in Sound Library: <strong>Grand Piano</strong></h2>

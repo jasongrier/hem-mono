@@ -19,9 +19,10 @@
   "secondaryTitle": "",
   "slug": "seurat-standalone",
   "sticky": true,
-  "tags": "projects, desktop-mobile-apps, javascript, react, electron, sound, composition",
+  "tags": "apps, code, desktop-mobile-apps, javascript, react, electron, sound, composition, performance",
   "title": "Seurat Standalone",
   "titleWrapping": "",
-  "trackId": "",
+  "trackSlug": "",
+  "trackResourceId": "",
   "type": "Sample Pack for Ableton Live"
 }
