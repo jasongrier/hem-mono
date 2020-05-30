@@ -1,6 +1,8 @@
 import React, { ReactElement } from 'react'
-import { ElectronOnly, HamburgerMenu } from '../../../../lib/components'
+import { CampaignMonitorForm, ElectronOnly, HamburgerMenu } from '../../../../lib/components'
 import { Logo, MainNavItem } from './index'
+import ReactGA from 'react-ga'
+import { CAMPAIGN_MONITOR_FORM_ID } from '../../config'
 
 function MegaNav(): ReactElement {
   return (
@@ -8,7 +10,6 @@ function MegaNav(): ReactElement {
       <HamburgerMenu openByDefault={true}>
         <Logo />
         <div className="mega-nav-sections clearfix">
-          {/* Products */}
           <div className="mega-nav-section">
             <h3>Products</h3>
             <ul>
@@ -19,7 +20,6 @@ function MegaNav(): ReactElement {
             </ul>
           </div>
 
-          {/* Venue */}
           <div className="mega-nav-section">
             <h3>Venue</h3>
             <ul>
@@ -28,33 +28,29 @@ function MegaNav(): ReactElement {
             </ul>
           </div>
 
-          {/* Media */}
           <div className="mega-nav-section">
             <h3>Media</h3>
             <ul>
+              <MainNavItem name="Articles" />
               <MainNavItem name="Mixes" />
               <MainNavItem name="Tracks" />
               <MainNavItem name="Videos" />
             </ul>
           </div>
 
-          {/* Info */}
           <div className="mega-nav-section">
             <h3>Info</h3>
             <ul>
-              <MainNavItem name="Info" />
+              <MainNavItem name="About" />
               <MainNavItem name="Press" />
-              <MainNavItem name="Blog" />
               <MainNavItem name="Code" />
               <MainNavItem name="Mailing List" />
             </ul>
           </div>
 
-          {/* Support */}
           <div className="mega-nav-section">
             <h3>Support</h3>
             <ul>
-              <MainNavItem name="Support" />
               <MainNavItem name="FAQ's" />
               <MainNavItem name="Tutorials" />
               <MainNavItem name="User Guides" />
@@ -62,20 +58,33 @@ function MegaNav(): ReactElement {
             </ul>
           </div>
 
-          {/* Admin */}
           <div className="mega-nav-section">
             <h3>Etc.</h3>
             <ul>
-              <MainNavItem name="Privacy Policy" />
-              <MainNavItem name="Cookie Policy" />
-              <MainNavItem name="Impressum" />
-              <MainNavItem name="Cookie preferences" to="set-cookie-preferences" />
+              <MainNavItem name="Cookie Settings" to="set-cookie-preferences" />
               <ElectronOnly>
                 <MainNavItem name="Admin" to="admin/list" />
               </ElectronOnly>
             </ul>
           </div>
         </div>
+        <div className="mega-nav-mailing-list">
+          <h3>Mailing List</h3>
+          <CampaignMonitorForm
+            id={CAMPAIGN_MONITOR_FORM_ID}
+            onFormSubmitted={() => {
+              ReactGA.event({
+                category: 'User',
+                action: 'Joined the mailing list from the mega nav.',
+              })
+            }}
+            submitButtonText="Join"
+          />
+        </div>
+        <footer className="mega-nav-footer">
+          <a href="">Privacy Policy</a> | <a href="">Cookie Policy</a> | <a href="">Impressum</a><br />
+          &copy; 2020, Hot Extramusicality, Inc. | 400 W. 35th Street, Austin Texas 78705, USA | info@hem.rocks
+        </footer>
       </HamburgerMenu>
     </nav>
   )
