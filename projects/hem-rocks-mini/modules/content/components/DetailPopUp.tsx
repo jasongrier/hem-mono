@@ -17,7 +17,7 @@ import { hasTag, contentItemToTrack } from '../functions'
 interface IProps {
   contentItem: IContentItem | null
   filter: string
-  tag: string
+  category: string
 
   showPurchaseForm?: boolean
 }
@@ -25,7 +25,7 @@ interface IProps {
 function DetailPopUp({
   contentItem,
   filter,
-  tag,
+  category,
 
   showPurchaseForm = true,
 }: IProps): ReactElement {
@@ -102,10 +102,10 @@ function DetailPopUp({
 
       dispatch(openPopup('cart-popup', {
         redirecting: true ,
-        returnUrl: `${tag}/${contentItem.slug}`,
+        returnUrl: `${category}/${contentItem.slug}`,
       }))
 
-      history.push(`/${tag}/cart/${filter ? filter : ''}`)
+      history.push(`/${category}/cart/${filter ? filter : ''}`)
 
       setTimeout(() => {
         // @ts-ignore
@@ -118,20 +118,20 @@ function DetailPopUp({
         category: 'User',
         action: 'Clicked "Instant Download" for: ' + contentItem.title,
       })
-    }, [filter, suggestedPrice, tag],
+    }, [filter, suggestedPrice, category],
   )
 
   const addToCartOnClick = useCallback(
     function addToCartOnClickFn() {
       addToCart()
-    }, [filter, suggestedPrice, tag],
+    }, [filter, suggestedPrice, category],
   )
 
   const formOnSubmit = useCallback(
     function formOnSubmitFn(evt: SyntheticEvent<HTMLFormElement>) {
       evt.preventDefault()
       addToCart()
-    }, [filter, suggestedPrice, tag],
+    }, [filter, suggestedPrice, category],
   )
 
   const instantDownloadOnClick = useCallback(
@@ -217,9 +217,9 @@ function DetailPopUp({
     }))
 
     dispatch(closePopup())
-    dispatch(openPopup('cart-popup', { returnUrl: `${tag}/${filter ? filter : ''}` }))
+    dispatch(openPopup('cart-popup', { returnUrl: `${category}/${filter ? filter : ''}` }))
 
-    history.push(`/${tag}/cart/${filter ? filter : ''}`)
+    history.push(`/${category}/cart/${filter ? filter : ''}`)
 
     ReactGA.event({
       category: 'User',
@@ -284,15 +284,15 @@ function DetailPopUp({
 
   const assetHost = assetHostHostname()
 
-  const buyNowText = tag === 'venue-calendar'
+  const buyNowText = category === 'venue-calendar'
     ? 'Buy Ticket'
     : 'Check out'
 
-  const addToCartText = tag === 'venue-calendar'
+  const addToCartText = category === 'venue-calendar'
     ? 'Add to Cart'
     : 'Add to Cart'
 
-  const chooseYourPriceText = tag === 'venue-calendar'
+  const chooseYourPriceText = category === 'venue-calendar'
     ? 'Choose your ticket price!'
     : 'Choose your price!'
 
@@ -402,7 +402,7 @@ function DetailPopUp({
             { track && (
               <TrackPlayPauseButton track={track} />
             )}
-            { tag === 'venue-calendar' && activeLiveStream === contentItem.slug && (
+            { category === 'venue-calendar' && activeLiveStream === contentItem.slug && (
               <PlayPauseButton
                 onClick={() => {
                   dispatch(closePopup())

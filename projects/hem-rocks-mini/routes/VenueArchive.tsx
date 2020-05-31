@@ -17,7 +17,7 @@ function VenueArchive(): ReactElement {
       <div className="page page-venue">
         <h1>Venue Archive</h1>
         <VenueSubnav />
-        <MainContentList tag="venue-archive">
+        <MainContentList category="venue-archive">
           {(event) => (
             <Link to={`/venue-archive/${event.slug}`}>
               <PlayPauseButton

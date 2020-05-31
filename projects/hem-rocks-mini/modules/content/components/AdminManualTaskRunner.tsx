@@ -104,25 +104,12 @@ function migrate() {
       // DO STUFF HERE
 
       const categoryTags = [
-        'apps',
-        'article',
-        'code',
-        'label',
-        'merch',
-        'mix',
-        'playlist',
-        'press',
-        'sound',
-        'track',
-        'tutorial',
-        'venue-archive',
-        'venue-calendar',
-        'video',
+        'sound-library',
       ]
 
       for (const tag of categoryTags) {
         if (hasTag(data, tag)) {
-          data.category = tag
+          data.tags = data.tags.replace(tag + ', ', '')
         }
       }
 

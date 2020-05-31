@@ -30,7 +30,7 @@ function Code(): ReactElement {
             'React',
             'Sound Studies',
           ]}
-          tag="code"
+          category="code"
           title="Code"
         >
           {(project) => (

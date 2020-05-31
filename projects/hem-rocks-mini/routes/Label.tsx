@@ -40,7 +40,7 @@ function Label(): ReactElement {
             'Rarities',
             'Merch',
           ]}
-          tag="label"
+          category="label"
           title="Label"
         >
           {(item) => {
