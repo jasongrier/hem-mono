@@ -261,7 +261,7 @@ function App(): ReactElement {
   )
 
   return (
-    <div className="hem-application hem-rocks-mini">
+    <div className={`hem-application hem-rocks-mini${pathname === '/' ? ' app-is-home' : ''}`}>
       <ProtectedContent header="Super secret preview">
         <ScrollToTop />
 

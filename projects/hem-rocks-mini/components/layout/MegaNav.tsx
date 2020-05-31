@@ -1,14 +1,39 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useCallback } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { CampaignMonitorForm, ElectronOnly, HamburgerMenu } from '../../../../lib/components'
+import { setMegaNavOpen } from '../../modules/app'
 import { Logo, MainNavItem } from './index'
 import ReactGA from 'react-ga'
 import { CAMPAIGN_MONITOR_FORM_ID } from '../../config'
+import { RootState } from '../../index'
 
 function MegaNav(): ReactElement {
+  const { megaNavOpen } = useSelector((state: RootState) => ({
+    megaNavOpen: state.app.megaNavOpen,
+  }))
+
+  const dispatch = useDispatch()
+
+  const megaNavOnChange = useCallback(
+    function megaNavOnChange(open) {
+      dispatch(setMegaNavOpen(open))
+    }, [],
+  )
+
   return (
     <nav className="mega-nav">
-      <HamburgerMenu openByDefault={true}>
+      <HamburgerMenu
+        controlled={true}
+        open={megaNavOpen}
+        onChange={megaNavOnChange}
+      >
         <Logo />
+
+        <div className="mega-nav-home-link">
+          <Link to="/">Home <span>&rarr;</span></Link>
+        </div>
+
         <div className="mega-nav-sections clearfix">
           <div className="mega-nav-section">
             <h3>Products</h3>
@@ -25,6 +50,7 @@ function MegaNav(): ReactElement {
             <ul>
               <MainNavItem name="Calendar" />
               <MainNavItem name="Archive" />
+              <MainNavItem name="Merch Table" />
             </ul>
           </div>
 
@@ -35,6 +61,7 @@ function MegaNav(): ReactElement {
               <MainNavItem name="Mixes" />
               <MainNavItem name="Tracks" />
               <MainNavItem name="Videos" />
+              <MainNavItem name="Made with SL" />
             </ul>
           </div>
 
@@ -83,7 +110,7 @@ function MegaNav(): ReactElement {
         </div>
         <footer className="mega-nav-footer">
           <a href="">Privacy Policy</a> | <a href="">Cookie Policy</a> | <a href="">Impressum</a><br />
-          &copy; 2020, Hot Extramusicality, Inc. | 400 W. 35th Street, Austin Texas 78705, USA | info@hem.rocks
+          &copy; 2020, Hot Extramusicality, Inc. | Reichenberger Straße 176, 10999 Berlin, Deutschland | info@hem.rocks
         </footer>
       </HamburgerMenu>
     </nav>

@@ -86,3 +86,14 @@ body {
   color: #fff;
   font-size: 18px;
 }
+
+.app-is-home .main-content {
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+
+.app-is-home .main-content-list {
+  width: var(--content-width-desk);
+  margin: 0 auto;
+}

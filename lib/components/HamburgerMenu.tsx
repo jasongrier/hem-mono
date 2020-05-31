@@ -1,8 +1,10 @@
-import React, { PropsWithChildren, ReactElement, useRef, useState, useEffect } from 'react'
+import React, { Dispatch, PropsWithChildren, ReactElement, SetStateAction, useRef, useState, useEffect } from 'react'
 import $ from 'jquery'
 
 interface IProps {
-  openByDefault?: boolean
+  controlled?: boolean
+  onChange?: (open: boolean) => void
+  open?: boolean
 }
 
 const contentSel = '.hem-hamburger-menu-content'
@@ -60,18 +62,28 @@ const styleSheet = `
   }
 `
 
-function HamburgerMenu({ children, openByDefault = false }: PropsWithChildren<IProps>): ReactElement {
-  const [open, setOpen] = useState(openByDefault)
+function HamburgerMenu({ controlled, children, open: controlledOpen, onChange }: PropsWithChildren<IProps>): ReactElement {
+  const [uncontrolledOpen, setUncontrolledOpen] = useState(false)
 
-  useEffect(() => {
+  useEffect(function allowLinksToClose() {
     const $menuLink = $(contentSel).find('a')
 
-    $menuLink.on('click', () => setOpen(false))
+    $menuLink.on('click', () => {
+      if (controlled) {
+        onChange(false)
+      }
+
+      else {
+        setUncontrolledOpen(false)
+      }
+    })
 
     return function cleanup() {
       $menuLink.off('click')
     }
   }, [])
+
+  const open = controlled ? controlledOpen : uncontrolledOpen
 
   return (
     <>
@@ -81,7 +93,15 @@ function HamburgerMenu({ children, openByDefault = false }: PropsWithChildren<IP
           hem-hamburger-menu-toggle
           ${open ? 'hem-hamburger-menu-toggle-open' : ''}
         `}
-        onClick={() => setOpen(!open)}
+        onClick={() => {
+          if (controlled) {
+            onChange(!open)
+          }
+
+          else {
+            setUncontrolledOpen(!open)
+          }
+        }}
       >
         <span></span>
         <span></span>

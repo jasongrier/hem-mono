@@ -1,9 +1,6 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
-import { noop } from 'lodash'
-import { PlayPauseButton } from '../../../lib/packages/hem-buttons'
 import { VenueSubnav } from '../components/layout'
-import { MainContentList } from '../modules/content'
 import { BASE_SITE_TITLE } from '../config'
 
 declare const Twitch: any

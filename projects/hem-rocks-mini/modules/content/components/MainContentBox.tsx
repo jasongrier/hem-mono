@@ -11,6 +11,7 @@ interface IProps {
   index: number
   tag: string
 
+  badgeText?: string
   buttonText?: string
   className?: string
   linkTo?: (contentItem: IContentItem) => string
@@ -23,6 +24,7 @@ function MainContentBox({
   index,
   tag,
 
+  badgeText,
   buttonText,
   className,
   linkTo: customLinkTo,
@@ -67,9 +69,9 @@ function MainContentBox({
       marginRangeX={index < 0 ? 100 : 0}
       marginRangeY={index < 0 ? 200 : 0}
     >
-      { contentItem.badgeText && (
+      { (badgeText || contentItem.badgeText) && (
         <div className="main-content-box-badge">
-          <strong>{  contentItem.badgeText }</strong>
+          <strong>{ badgeText || contentItem.badgeText }</strong>
         </div>
       )}
       <Link to={linkTo}>

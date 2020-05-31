@@ -5,6 +5,7 @@ export interface IState {
   cookiesAnalyticsApproved: boolean | null
   cookiesMarketingApproved: boolean | null
   cookiePreferencesSet: boolean | null
+  megaNavOpen: boolean
   topBarCollapsed: boolean
 }
 
@@ -14,6 +15,7 @@ export const REQUEST_ACTIVE_LIVE_STREAM = 'REQUEST_ACTIVE_LIVE_STREAM'
 export const SET_ACTIVE_LIVE_STREAM = 'SET_ACTIVE_LIVE_STREAM'
 export const SET_COOKIE_APPROVAL = 'SET_COOKIE_APPROVAL'
 export const SET_COOKIE_PREFERENCES_SET = 'SET_COOKIE_PREFERENCES_SET'
+export const SET_MEGA_NAV_OPEN = 'SET_MEGA_NAV_OPEN'
 
 export interface ICollapseTopBar extends AnyAction {
   type: typeof COLLAPSE_TOP_BAR
@@ -45,6 +47,11 @@ export interface ISetCookiePreferencesSet extends AnyAction {
   payload: { value: boolean, write: boolean }
 }
 
+export interface ISetMegaNavOpen extends AnyAction {
+  type: typeof SET_MEGA_NAV_OPEN
+  payload: boolean
+}
+
 export type Action =
   ICollapseTopBar
   | IExpandTopBar
@@ -52,8 +59,17 @@ export type Action =
   | ISetActiveLiveStream
   | ISetCookieApproval
   | ISetCookiePreferencesSet
+  | ISetMegaNavOpen
 
-export { collapseTopBar, expandTopBar, requestActiveLiveStream, setActiveLiveStream, setCookieApproval, setCookiePreferencesSet } from './actions'
+export {
+  collapseTopBar,
+  expandTopBar,
+  requestActiveLiveStream,
+  setActiveLiveStream,
+  setCookieApproval,
+  setCookiePreferencesSet,
+  setMegaNavOpen,
+} from './actions'
 
 // TODO: Export all components here. Write a linter for it
 export { App, EmailForm } from './components'
