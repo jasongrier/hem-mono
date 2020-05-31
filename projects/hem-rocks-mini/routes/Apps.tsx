@@ -24,7 +24,7 @@ function Apps(): ReactElement {
             'Performance',
             'Sound Studies',
           ]}
-          tag="apps"
+          category="apps"
           title="Apps"
         >
           {(project) => (

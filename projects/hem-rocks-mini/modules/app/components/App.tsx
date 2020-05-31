@@ -6,7 +6,7 @@ import ReactGA from 'react-ga'
 import Cookies from 'js-cookie'
 import { CartPopup, setCartProducts } from '../../cart'
 import { ThankYouPopup } from '../../cart'
-import { DetailPopUp, requestReadItems, setCurrentItem, hasTag, getContentItemBySlug, contentItemToTrack } from '../../content'
+import { DetailPopUp, requestReadItems, setCurrentItem, hasTag, hasCategory, getContentItemBySlug, contentItemToTrack } from '../../content'
 import { ProtectedContent } from '../../login'
 import { CampaignMonitorForm, ElectronNot, ScrollToTop, NagToaster, Spinner } from '../../../../../lib/components'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
@@ -127,8 +127,6 @@ function App(): ReactElement {
   }, [])
 
   useEffect(function setSitePlaylist() {
-    if (sitePlaylist.length > 0) return
-
     const sitePlaylistItem = getContentItemBySlug(contentItems, 'site-playlist')
 
     if (!sitePlaylistItem) return
@@ -142,13 +140,13 @@ function App(): ReactElement {
       const item = getContentItemBySlug(contentItems, slug)
 
       if (!item) return
-      if (!hasTag(item, 'track')) return
+      if (!hasCategory(item, 'track')) return
 
       return contentItemToTrack(item, hasTag(item, 'attachment') ? item.relatedContentLink : `/tracks/${item.slug}`)
     }))
 
     dispatch(setPlayerPlaylist(sitePlaylistTracks))
-  }, [contentItems, sitePlaylist])
+  }, [contentItems])
 
   useEffect(function routedPopup() {
     const [basePath, slug] = pathname.replace(/^\//, '').split('/')
@@ -276,10 +274,10 @@ function App(): ReactElement {
             <li className="main-nav-item">
               <NavLink
                 to={(() => {
-                  const [tag, filter, filterName] = pathname.replace(/^\//, '').split('/')
+                  const [category, filter, filterName] = pathname.replace(/^\//, '').split('/')
 
                   if (filter === 'filter') {
-                    return `/${tag}/cart/${filterName}`
+                    return `/${category}/cart/${filterName}`
                   }
 
                   return `${pathname !== '/' ? pathname : ''}/cart`
@@ -291,7 +289,9 @@ function App(): ReactElement {
             </li>
           </ul>
         </nav>
+
         <MegaNav />
+
         <main className="main-content">
           <div className="tabs-content">
             <Switch>
@@ -344,7 +344,7 @@ function App(): ReactElement {
           <DetailPopUp
             contentItem={currentContentItem}
             filter={pathname.split('/')[3]}
-            tag={pathname.split('/')[1]}
+            category={pathname.split('/')[1]}
           />
         </PopupContainer>
 

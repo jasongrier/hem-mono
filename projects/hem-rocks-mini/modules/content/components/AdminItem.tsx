@@ -115,6 +115,7 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
     'title',
     'titleWrapping',
     'secondaryTitle',
+    'category',
     'tags',
   ]
 

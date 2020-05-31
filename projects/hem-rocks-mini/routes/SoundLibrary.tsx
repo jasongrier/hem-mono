@@ -53,7 +53,7 @@ function SoundLibrary(): ReactElement {
             'Coming Soon',
             'Midi Devices',
           ]}
-          tag="sound-library"
+          category="sound-library"
           title="Sound Library"
         >
           {(pack) => {

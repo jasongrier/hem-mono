@@ -16,8 +16,8 @@ function Home(): ReactElement {
           <GrandPianoHeroine />
         </div>
         <MainContentList
-          showTagsOnContentBoxes={true}
-          tag="home-feature"
+          showCategoryOnContentBoxes={true}
+          category="home-feature"
         />
       </div>
     </>

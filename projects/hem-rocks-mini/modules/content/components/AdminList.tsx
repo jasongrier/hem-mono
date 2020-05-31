@@ -8,7 +8,7 @@ import { ElectronOnly } from '../../../../../lib/components'
 import { PlayPauseButton } from '../../../../../lib/packages/hem-buttons'
 import { adminApplyFilter, requestDeleteItems, requestReadItems, requestUpdateItems, IContentItem } from '../index'
 import { RootState } from '../../../index'
-import { hasTag } from '../functions'
+import { hasCategory, hasTag } from '../functions'
 
 function AdminList(): ReactElement {
   const { adminFilterApplied, allContentItems } = useSelector((state: RootState) => ({
@@ -37,7 +37,11 @@ function AdminList(): ReactElement {
   )
 
   let contentItems = ([] as IContentItem[]).concat(adminFilterApplied === 'all' ? allContentItems : allContentItems.filter(item => {
-    return hasTag(item, adminFilterApplied)
+    if (adminFilterApplied === 'home-feature') {
+      return hasTag(item, adminFilterApplied)
+    }
+
+    return hasCategory(item, adminFilterApplied)
   }))
 
   if (!isEmpty(search)) {

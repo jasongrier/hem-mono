@@ -174,6 +174,7 @@ export {
 
 export {
   contentItemToTrack,
+  hasCategory,
   hasTag,
   getContentItemByField,
   getContentItemBySlug,

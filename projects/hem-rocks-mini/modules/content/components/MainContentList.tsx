@@ -12,10 +12,10 @@ import { setCurrentItem, IContentItem } from '../index'
 import { CampaignMonitorForm } from '../../../../../lib/components'
 import { RootState } from '../../../index'
 import { LISTS_HAVE_BLURBS } from '../../../config'
-import { hasTag } from '../functions'
+import { hasTag, hasCategory } from '../functions'
 
 interface IProps {
-  tag: string
+  category: string
 
   blurb?: string
   buttonText?: string
@@ -28,12 +28,12 @@ interface IProps {
   infoPopupTitle?: string
   linkTo?: (contentItem: IContentItem) => string
   onFiltersChanged?: () => void
-  showTagsOnContentBoxes?: boolean
+  showCategoryOnContentBoxes?: boolean
   title?: string
 }
 
 function MainContentList({
-  tag,
+  category,
 
   blurb,
   buttonText,
@@ -45,7 +45,7 @@ function MainContentList({
   infoPopupText,
   infoPopupTitle,
   linkTo,
-  showTagsOnContentBoxes = false,
+  showCategoryOnContentBoxes = false,
   title,
 }: IProps): ReactElement {
   const { allContentItems } = useSelector((state: RootState) => ({
@@ -58,11 +58,11 @@ function MainContentList({
   filters = compact(['All'].concat(exclusiveFilters).concat(filters))
 
   let contentItems = allContentItems.filter(item =>
-    hasTag(item, tag) && item.published && !item.sticky
+    hasCategory(item, category) && item.published && !item.sticky
   )
 
   let stickyContentItems = allContentItems.filter(
-    item => item.tags.includes(tag) && item.published && item.sticky
+    item => hasCategory(item, category) && item.published && item.sticky
   )
 
   if (currentFilter && currentFilter !== 'all') {
@@ -95,7 +95,7 @@ function MainContentList({
             <div
               className="header-info-badge"
               onClick={() => {
-                dispatch(openPopup(tag + '-info'))
+                dispatch(openPopup(category + '-info'))
               }}
             >
               i
@@ -136,7 +136,7 @@ function MainContentList({
                 ${ exclusiveFilters.includes(name) ? 'exclusive-filter' : '' }
               `}
               key={name}
-              to={`/${tag}${name !== 'All' ? '/filter/' + slugify(name) : ''}`}
+              to={`/${category}${name !== 'All' ? '/filter/' + slugify(name) : ''}`}
             >
               {name}
             </Link>
@@ -146,14 +146,14 @@ function MainContentList({
       <div className="main-content-items">
         { contentItems.map((contentItem, index) => (
           <MainContentBox
-            badgeText={showTagsOnContentBoxes ? tag : undefined}
+            badgeText={showCategoryOnContentBoxes ? category : undefined}
             buttonText={buttonText}
             contentItem={contentItem}
             index={index}
             filter={currentFilter}
             key={contentItem.slug}
             linkTo={linkTo}
-            tag={tag}
+            tag={category}
           >
             { children && children(contentItem) }
           </MainContentBox>

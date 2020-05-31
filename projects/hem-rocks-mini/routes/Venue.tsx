@@ -25,7 +25,7 @@ function Venue(): ReactElement {
         <VenueSubnav />
         <MainContentList
           linkTo={(event) => event.slug === activeLiveStream ? '/venue/main-stage' : `/venue-calendar/${event.slug}`}
-          tag="venue-calendar"
+          category="venue-calendar"
         >
           {(event) => {
             if (event.slug === activeLiveStream) {
