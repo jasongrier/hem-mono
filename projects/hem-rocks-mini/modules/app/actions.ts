@@ -6,6 +6,7 @@ import {
   SET_ACTIVE_LIVE_STREAM,
   SET_COOKIE_APPROVAL,
   SET_COOKIE_PREFERENCES_SET,
+  SET_MEGA_NAV_OPEN,
 } from './index'
 
 const collapseTopBar = (): AnyAction => ({
@@ -38,6 +39,11 @@ const setCookiePreferencesSet = (value: boolean, write: boolean): AnyAction => (
   payload: { value, write },
 })
 
+const setMegaNavOpen = (open: boolean): AnyAction => ({
+  type: SET_MEGA_NAV_OPEN,
+  payload: open,
+})
+
 export {
   collapseTopBar,
   expandTopBar,
@@ -45,4 +51,5 @@ export {
   setActiveLiveStream,
   setCookieApproval,
   setCookiePreferencesSet,
+  setMegaNavOpen,
 }

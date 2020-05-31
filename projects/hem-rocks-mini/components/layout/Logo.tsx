@@ -1,17 +1,24 @@
 import React, { ReactElement } from 'react'
-import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { expandTopBar } from '../../modules/app'
+import { useDispatch, useSelector } from 'react-redux'
+import { setMegaNavOpen } from '../../modules/app'
+import { RootState } from '../../index'
 
 function Logo(): ReactElement {
+  const { megaNavOpen } = useSelector((state: RootState) => ({
+    megaNavOpen: state.app.megaNavOpen,
+  }))
+
   const dispatch = useDispatch()
 
   return (
     <h1
       className="logo"
-      onClick={() => dispatch(expandTopBar())}
+      onClick={() => {
+        if (megaNavOpen) return
+        dispatch(setMegaNavOpen(true))
+      }}
     >
-      <Link to="/">HEM</Link>
+      HEM
     </h1>
   )
 }

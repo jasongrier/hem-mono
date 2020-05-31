@@ -14,8 +14,6 @@ function Venue(): ReactElement {
     activeLiveStream: state.app.activeLiveStream,
   }))
 
-  const currentFilter = 'all'
-
   return (
     <>
       <Helmet>
@@ -26,16 +24,8 @@ function Venue(): ReactElement {
         <h1>Venue</h1>
         <VenueSubnav />
         <MainContentList
-          blurb=""
-          campaignMonitorId="5B5E7037DA78A748374AD499497E309E34883504EC972B188E4CB169FC87154EA44D7B3A50124374F2DEEFB33D7CE7A53C0566B978C890570F878E42C80AD756"
-          currentFilter={currentFilter}
-          filters={[]}
-          exclusiveFilters={[]}
-          highlights={[]}
-          infoPopupTitle=""
           linkTo={(event) => event.slug === activeLiveStream ? '/venue/main-stage' : `/venue-calendar/${event.slug}`}
           tag="venue-calendar"
-          title=""
         >
           {(event) => {
             if (event.slug === activeLiveStream) {

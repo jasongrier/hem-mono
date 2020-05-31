@@ -8,6 +8,7 @@ import {
   SET_ACTIVE_LIVE_STREAM,
   SET_COOKIE_APPROVAL,
   SET_COOKIE_PREFERENCES_SET,
+  SET_MEGA_NAV_OPEN,
 
   IState,
 } from './index'
@@ -17,6 +18,7 @@ const initialState: IState = {
   cookiesAnalyticsApproved: false,
   cookiesMarketingApproved: false,
   cookiePreferencesSet: false,
+  megaNavOpen: false,
   topBarCollapsed: false,
 }
 
@@ -59,6 +61,12 @@ const reducer = (
     case SET_COOKIE_PREFERENCES_SET: {
       return produce(state, draftState => {
         draftState.cookiePreferencesSet = payload.value
+      })
+    }
+
+    case SET_MEGA_NAV_OPEN: {
+      return produce(state, draftState => {
+        draftState.megaNavOpen = payload
       })
     }
 

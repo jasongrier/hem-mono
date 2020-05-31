@@ -1,8 +1,7 @@
 import React, { ReactElement, useEffect, useState, useCallback } from 'react'
 import uuid from 'uuid/v1'
-import { isArray } from 'lodash'
 import { autoParagraph } from '../../../../../lib/functions'
-import { modelize } from '../functions'
+import { modelize, hasTag } from '../functions'
 
 function convertOldTypescriptModelsToJson() {
   const { remote } = window.require('electron')
@@ -104,7 +103,28 @@ function migrate() {
     try {
       // DO STUFF HERE
 
-      data.tags = data.tags.replace('projects,', 'code,')
+      const categoryTags = [
+        'apps',
+        'article',
+        'code',
+        'label',
+        'merch',
+        'mix',
+        'playlist',
+        'press',
+        'sound',
+        'track',
+        'tutorial',
+        'venue-archive',
+        'venue-calendar',
+        'video',
+      ]
+
+      for (const tag of categoryTags) {
+        if (hasTag(data, tag)) {
+          data.category = tag
+        }
+      }
 
       // END DO STUFF HERE
 

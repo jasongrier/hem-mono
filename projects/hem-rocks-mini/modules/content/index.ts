@@ -6,6 +6,7 @@ export interface IContentItem {
   attributionLink: string
   badgeText: string
   blurb: string
+  category: string
   date: string
   description: string
   externalLinkText: string
@@ -41,6 +42,7 @@ export const fieldTypes: IContentItem = {
   attributionLink: 'text',
   badgeText: 'text',
   blurb: 'textarea',
+  category: 'text',
   date: 'text',
   description: 'textarea',
   externalLinkText: 'text',

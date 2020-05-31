@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react'
 import { GrandPianoHeroine } from '../components/heroines'
 import { Helmet } from 'react-helmet'
+import { MainContentList } from '../modules/content'
 import { BASE_SITE_TITLE } from '../config'
 
 function Home(): ReactElement {
@@ -14,6 +15,10 @@ function Home(): ReactElement {
         <div className="main-heroine">
           <GrandPianoHeroine />
         </div>
+        <MainContentList
+          showTagsOnContentBoxes={true}
+          tag="home-feature"
+        />
       </div>
     </>
   )

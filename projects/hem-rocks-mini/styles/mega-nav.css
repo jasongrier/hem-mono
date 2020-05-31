@@ -46,11 +46,30 @@
 
 .mega-nav h3 {
   margin-bottom: 10px;
+  font-size: 18px;
   color: var(--line-orange);
 }
 
-.mega-nav-sections {
+.mega-nav-home-link {
   margin: 40px 0 0 60px;
+  text-decoration: none;
+  color: var(--line-orange);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.mega-nav-home-link a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.mega-nav-home-link span {
+  display: inline-block;
+  transform: translateY(2px);
+}
+
+.mega-nav-sections {
+  margin: 10px 0 0 60px;
 }
 
 .mega-nav-section {
@@ -102,7 +121,7 @@
   float: left;
   width: 200px;
   height: 30px;
-  line-height: 30px;
+  line-height: 31px;
   margin-right: 10px;
   padding: 0 10px;
   font-family: Avenir, sans-serif;

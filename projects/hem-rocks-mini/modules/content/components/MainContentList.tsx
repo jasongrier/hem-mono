@@ -15,32 +15,29 @@ import { LISTS_HAVE_BLURBS } from '../../../config'
 import { hasTag } from '../functions'
 
 interface IProps {
-  blurb: string
-  children: (contentItem: IContentItem) => any
   tag: string
 
+  blurb?: string
   buttonText?: string
-  campaignMonitorId?: string
-  exclusiveFilters?: string[]
+  children?: (contentItem: IContentItem) => any
   currentFilter?: string,
+  exclusiveFilters?: string[]
   filters?: string[]
   highlights?: string[]
-  linkTo?: (contentItem: IContentItem) => string
-  onFiltersChanged?: () => void
-  title?: string
-
-  // TODO: Remove info popup??
   infoPopupText?: string
   infoPopupTitle?: string
+  linkTo?: (contentItem: IContentItem) => string
+  onFiltersChanged?: () => void
+  showTagsOnContentBoxes?: boolean
+  title?: string
 }
 
 function MainContentList({
-  blurb,
-  children,
   tag,
 
+  blurb,
   buttonText,
-  campaignMonitorId,
+  children,
   exclusiveFilters = [],
   currentFilter = 'all',
   filters = [],
@@ -48,6 +45,7 @@ function MainContentList({
   infoPopupText,
   infoPopupTitle,
   linkTo,
+  showTagsOnContentBoxes = false,
   title,
 }: IProps): ReactElement {
   const { allContentItems } = useSelector((state: RootState) => ({
@@ -126,17 +124,6 @@ function MainContentList({
             />
           ))
         )}
-        { campaignMonitorId && (
-          <div className="main-content-highlights-mailing-list-form">
-            <CampaignMonitorForm
-              id={campaignMonitorId}
-              hasNameField={false}
-              labelForName={null}
-              labelForEmail="Sign up to receive updates"
-              submitButtonText="Sign up"
-            />
-          </div>
-        )}
       </div>
       { filters.length > 1 && (
         <div className="main-content-filters clearfix">
@@ -159,6 +146,7 @@ function MainContentList({
       <div className="main-content-items">
         { contentItems.map((contentItem, index) => (
           <MainContentBox
+            badgeText={showTagsOnContentBoxes ? tag : undefined}
             buttonText={buttonText}
             contentItem={contentItem}
             index={index}
@@ -167,7 +155,7 @@ function MainContentList({
             linkTo={linkTo}
             tag={tag}
           >
-            { children(contentItem) }
+            { children && children(contentItem) }
           </MainContentBox>
         ))}
       </div>
