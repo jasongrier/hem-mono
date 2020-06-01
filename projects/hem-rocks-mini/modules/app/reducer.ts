@@ -22,7 +22,6 @@ const initialState: IState = {
   topBarCollapsed: false,
 }
 
-// TODO: This should be the duck template in projects/template!!
 const reducer = (
   state: IState = initialState,
   { type, payload }: AnyAction,

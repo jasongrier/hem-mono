@@ -69,7 +69,7 @@ function MainContentBox({
       marginRangeX={index < 0 ? 100 : 0}
       marginRangeY={index < 0 ? 200 : 0}
     >
-      { (badgeText || contentItem.badgeText) && (
+      {(badgeText || contentItem.badgeText) && (
         <div className="main-content-box-badge">
           <strong>{ badgeText || contentItem.badgeText }</strong>
         </div>

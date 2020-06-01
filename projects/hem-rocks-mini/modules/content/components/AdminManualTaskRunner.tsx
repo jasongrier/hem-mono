@@ -94,6 +94,7 @@ function migrate() {
 
   const files = readdirSync(contentDir)
 
+  let count = 1
   for (const file of files) {
     if (file === 'index.json') continue
     if (extname(file) !== '.json') continue
@@ -103,15 +104,8 @@ function migrate() {
     try {
       // DO STUFF HERE
 
-      const categoryTags = [
-        'sound-library',
-      ]
-
-      for (const tag of categoryTags) {
-        if (hasTag(data, tag)) {
-          data.tags = data.tags.replace(tag + ', ', '')
-        }
-      }
+      data.id = count
+      count = count + 1
 
       // END DO STUFF HERE
 

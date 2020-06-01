@@ -4,6 +4,7 @@
   "attributionLink": "",
   "badgeText": "Coming Soon",
   "blurb": "",
+  "category": "sound-library",
   "date": "01.07.2020",
   "description": "  ",
   "externalLinkText": "",
@@ -19,10 +20,10 @@
   "secondaryTitle": "Test<br>Test<br>Test<br>Test<br>Test<br>Test",
   "slug": "viola-ii",
   "sticky": false,
-  "tags": "sound-library, coming-soon, extended-technique, asmr, instruments, microtonality, strings",
+  "tags": "coming-soon, extended-technique, asmr, instruments, microtonality, strings",
   "title": "Viola II",
   "titleWrapping": "",
-  "trackSlug": "",
+  "trackSlug": "viola-sample-track-1",
   "trackResourceId": "",
   "type": "Sample Pack for Ableton Live"
 }

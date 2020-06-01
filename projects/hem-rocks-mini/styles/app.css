@@ -97,3 +97,7 @@ body {
   width: var(--content-width-desk);
   margin: 0 auto;
 }
+
+.app-is-home .main-content-box-badge {
+  top: -40px !important;
+}

@@ -1,10 +1,18 @@
 import React, { ReactElement } from 'react'
+import { useSelector } from 'react-redux'
 import { GrandPianoHeroine } from '../components/heroines'
 import { Helmet } from 'react-helmet'
-import { MainContentList } from '../modules/content'
+import { MainContentList, hasTag } from '../modules/content'
 import { BASE_SITE_TITLE } from '../config'
+import { RootState } from '../index'
 
 function Home(): ReactElement {
+  const { contentItems } = useSelector((state: RootState) => ({
+    contentItems: state.content.contentItems,
+  }))
+
+  const featuredItems = contentItems.filter(item => hasTag(item, 'home-feature'))
+
   return (
     <>
       <Helmet>
@@ -16,8 +24,9 @@ function Home(): ReactElement {
           <GrandPianoHeroine />
         </div>
         <MainContentList
-          showCategoryOnContentBoxes={true}
           category="home-feature"
+          items={featuredItems}
+          showCategoryOnContentBoxes={true}
         />
       </div>
     </>

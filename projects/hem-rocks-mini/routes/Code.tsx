@@ -16,6 +16,7 @@ function Code(): ReactElement {
       </Helmet>
       <div className="page page-code">
         <MainContentList
+          additionalCategory="apps"
           currentFilter={currentFilter}
           filters={[
             'Composition',
