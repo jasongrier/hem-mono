@@ -16,7 +16,7 @@
   "hasFixedPrice": false,
   "id": 41,
   "isDigitalProduct": false,
-  "published": false,
+  "published": true,
   "relatedContent": "",
   "relatedContentLink": "",
   "secondaryTitle": "With invited guests<br>Every Sunday in August @ 8pm (CET)",
@@ -27,5 +27,6 @@
   "titleWrapping": "",
   "trackSlug": "",
   "trackResourceId": "",
+  "trackResourceSecret": "",
   "type": ""
 }
