@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect } from 'react'
-import { NavLink, Route, Switch, useLocation, useHistory } from 'react-router-dom'
+import { Route, Switch, useLocation, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { find, isArray, compact } from 'lodash'
 import ReactGA from 'react-ga'
@@ -14,9 +14,9 @@ import { PopupContainer, openPopup, closePopup } from '../../../../../lib/module
 import { PlayerBar, setPlayerPlaylist, ITrack } from '../../../../../lib/modules/player'
 import { usePrevious } from '../../../../../lib/hooks'
 import { collapseTopBar, expandTopBar, getCookieName } from '../index'
+import { TopBar } from '../../../components/layout'
 import { requestActiveLiveStream, setCookieApproval, setCookiePreferencesSet } from '../actions'
 import CookieApproval from './CookieApproval'
-import { MainNavItem, MegaNav, TopBar } from '../../../components/layout'
 import { CAMPAIGN_MONITOR_FORM_ID } from '../../../config'
 import { RootState } from '../../../index'
 
@@ -96,6 +96,8 @@ function App(): ReactElement {
   }, [])
 
   useEffect(function setActiveLiveStream() {
+    if (window.process?.env.ELECTRON_MONO_DEV) return
+
     dispatch(requestActiveLiveStream())
 
     const liveStreamStatePoll = window.setInterval(function pollForLiveStreamState() {
@@ -264,33 +266,6 @@ function App(): ReactElement {
         <ScrollToTop />
 
         <TopBar collapsed={topBarCollapsed} />
-
-        <nav className={`main-nav${pathname === '/' ? ' large-nav' : ''}`}>
-          <ul className="main-nav-items">
-            <MainNavItem name="Sound Library" />
-            <MainNavItem name="Venue" to="venue-calendar" />
-            <MainNavItem name="Apps" />
-            <MainNavItem name="Label" />
-            <li className="main-nav-item">
-              <NavLink
-                to={(() => {
-                  const [category, filter, filterName] = pathname.replace(/^\//, '').split('/')
-
-                  if (filter === 'filter') {
-                    return `/${category}/cart/${filterName}`
-                  }
-
-                  return `${pathname !== '/' ? pathname : ''}/cart`
-                })()}
-                onClick={() => dispatch(collapseTopBar())}
-              >
-                Cart
-              </NavLink>
-            </li>
-          </ul>
-        </nav>
-
-        <MegaNav />
 
         <main className="main-content">
           <div className="tabs-content">

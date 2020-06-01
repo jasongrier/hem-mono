@@ -30,10 +30,6 @@ function MegaNav(): ReactElement {
       >
         <Logo />
 
-        <div className="mega-nav-home-link">
-          <Link to="/">Home <span>&rarr;</span></Link>
-        </div>
-
         <div className="mega-nav-sections clearfix">
           <div className="mega-nav-section">
             <h3>Products</h3>
@@ -61,7 +57,6 @@ function MegaNav(): ReactElement {
               <MainNavItem name="Mixes" />
               <MainNavItem name="Tracks" />
               <MainNavItem name="Videos" />
-              <MainNavItem name="Made with SL" />
             </ul>
           </div>
 

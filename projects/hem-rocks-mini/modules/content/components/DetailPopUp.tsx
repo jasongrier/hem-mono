@@ -12,7 +12,7 @@ import { addProductToCart } from '../../cart'
 import { IContentItem } from '../../content'
 import { assetHostHostname } from '../../../functions'
 import { RootState } from '../../../index'
-import { hasTag, contentItemToTrack } from '../functions'
+import { hasTag, contentItemToTrack, hasCategory } from '../functions'
 
 interface IProps {
   contentItem: IContentItem | null
@@ -194,9 +194,9 @@ function DetailPopUp({
 
   function isPurchaseable(item: IContentItem) {
     if (
-      item.tags.includes('sound-library')
-      || item.tags.includes('merch')
-      || item.tags.includes('venue-calendar')
+      hasCategory(item, 'sound-library')
+      || hasCategory(item, 'merch')
+      || hasCategory(item, 'venue-calendar')
     ) {
       return true
     }

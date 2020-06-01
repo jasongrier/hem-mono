@@ -65,6 +65,28 @@ const styleSheet = `
 function HamburgerMenu({ controlled, children, open: controlledOpen, onChange }: PropsWithChildren<IProps>): ReactElement {
   const [uncontrolledOpen, setUncontrolledOpen] = useState(false)
 
+  useEffect(function escCloses() {
+    const open = controlled ? controlledOpen : uncontrolledOpen
+
+    function documentOnKeyDown(evt: any) {
+      if (evt.keyCode === 27 && open) {
+        if (controlled) {
+          onChange(false)
+        }
+
+        else {
+          setUncontrolledOpen(false)
+        }
+      }
+    }
+
+    document.addEventListener('keydown', documentOnKeyDown)
+
+    return function cleanup() {
+      document.removeEventListener('keydown', documentOnKeyDown)
+    }
+  }, [controlledOpen, uncontrolledOpen])
+
   useEffect(function allowLinksToClose() {
     const $menuLink = $(contentSel).find('a')
 
