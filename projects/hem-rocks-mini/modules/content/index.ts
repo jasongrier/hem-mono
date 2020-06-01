@@ -15,6 +15,7 @@ export interface IContentItem {
   flexPriceMinimum: string
   flexPriceRecommended: string
   hasFixedPrice: boolean
+  id: string
   isDigitalProduct: boolean
   published: boolean
   relatedContent: string
@@ -51,6 +52,7 @@ export const fieldTypes: IContentItem = {
   flexPriceMinimum: 'text',
   flexPriceRecommended: 'text',
   hasFixedPrice: false,
+  id: 'text',
   isDigitalProduct: false,
   published: false,
   relatedContent: 'text',

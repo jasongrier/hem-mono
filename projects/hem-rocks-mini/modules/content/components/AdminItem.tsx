@@ -2,6 +2,7 @@ import React, { ReactElement, useState, SyntheticEvent, useEffect, useCallback }
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation } from 'react-router'
 import produce from 'immer'
+import { map } from 'lodash'
 import { isEmpty, isEqual, startCase } from 'lodash'
 import { slugify } from 'voca'
 import { ElectronOnly, ZoomTextarea } from '../../../../../lib/components'
@@ -48,7 +49,8 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
     }
 
     else if (create) {
-      item = modelize({})
+      const nextHighestId = parseInt(map(allContentItems, 'id').sort().pop(), 10) + 1
+      item = modelize({ id: nextHighestId})
       setCanSave(true)
     }
 
@@ -83,6 +85,13 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
 
       if (!workingItem) return
 
+      // for (const item of allContentItems) {
+      //   if (item.slug === value) {
+      //     alert('Duplicate slug: ' + workingItem.slug)
+      //     return
+      //   }
+      // }
+
       const payloadItem = Object.assign({}, workingItem)
 
       if (isEmpty(payloadItem.slug)) {
@@ -115,6 +124,7 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
     'title',
     'titleWrapping',
     'secondaryTitle',
+    'slug',
     'category',
     'tags',
   ]
@@ -148,19 +158,18 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
           <tbody>
             <tr>
               <td>
-                <label htmlFor="slug">Slug</label>
+                <label htmlFor="id">Id</label>
               </td>
               <td>
                 <input
                   disabled
-                  name="slug"
                   type="text"
-                  value={workingItem.slug}
+                  value={workingItem.id}
                 />
               </td>
             </tr>
             { orderedKeys.map(fieldName => {
-              if (fieldName === 'slug') return
+              if (fieldName === 'id') return
               if (fieldName === 'userSuggestedPrice') return
 
               if ((fieldTypes as any)[fieldName] === 'textarea') {
@@ -196,8 +205,9 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
                         type={(fieldTypes as any)[fieldName]}
                         value={(workingItem as any)[fieldName]}
                         required={(
-                          fieldName === 'name'
+                          fieldName === 'category'
                           || fieldName === 'date'
+                          || fieldName === 'name'
                         )}
                       />
                     </td>

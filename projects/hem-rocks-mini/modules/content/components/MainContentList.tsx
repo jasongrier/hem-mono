@@ -1,15 +1,14 @@
-import React, { ReactElement, useState, useEffect } from 'react'
+import React, { ReactElement } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Link, useParams, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Scrollbars from 'react-scrollbars-custom'
-import { slugify } from 'voca'
+import { slugify, titleCase } from 'voca'
 import { compact, intersectionBy } from 'lodash'
 import moment from 'moment'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup } from '../../../../../lib/modules/popups'
-import { DetailPopUp, MainContentBox } from './index'
-import { setCurrentItem, IContentItem } from '../index'
-import { CampaignMonitorForm } from '../../../../../lib/components'
+import { MainContentBox } from './index'
+import { IContentItem } from '../index'
 import { RootState } from '../../../index'
 import { LISTS_HAVE_BLURBS } from '../../../config'
 import { hasTag, hasCategory } from '../functions'
@@ -17,6 +16,7 @@ import { hasTag, hasCategory } from '../functions'
 interface IProps {
   category: string
 
+  additionalCategory?: string
   blurb?: string
   buttonText?: string
   children?: (contentItem: IContentItem) => any
@@ -26,6 +26,7 @@ interface IProps {
   highlights?: string[]
   infoPopupText?: string
   infoPopupTitle?: string
+  items?: IContentItem[]
   linkTo?: (contentItem: IContentItem) => string
   onFiltersChanged?: () => void
   showCategoryOnContentBoxes?: boolean
@@ -35,6 +36,7 @@ interface IProps {
 function MainContentList({
   category,
 
+  additionalCategory,
   blurb,
   buttonText,
   children,
@@ -44,47 +46,63 @@ function MainContentList({
   highlights,
   infoPopupText,
   infoPopupTitle,
+  items: propsContentItems,
   linkTo,
   showCategoryOnContentBoxes = false,
   title,
 }: IProps): ReactElement {
-  const { allContentItems } = useSelector((state: RootState) => ({
-    allContentItems: state.content.contentItems,
+  const { storeContentItems } = useSelector((state: RootState) => ({
+    storeContentItems: state.content.contentItems,
     currentContentItem: state.content.currentContentItem,
   }))
 
   const dispatch = useDispatch()
 
-  filters = compact(['All'].concat(exclusiveFilters).concat(filters))
+  let contentItems
 
-  let contentItems = allContentItems.filter(item =>
-    hasCategory(item, category) && item.published && !item.sticky
-  )
-
-  let stickyContentItems = allContentItems.filter(
-    item => hasCategory(item, category) && item.published && item.sticky
-  )
-
-  if (currentFilter && currentFilter !== 'all') {
-    contentItems = contentItems.filter(item => item.tags.includes(currentFilter))
-    stickyContentItems = stickyContentItems.filter(item => item.tags.includes(currentFilter))
+  if (propsContentItems) {
+    contentItems = propsContentItems
   }
 
   else {
-    contentItems = contentItems.filter(item =>
-      intersectionBy(item.tags, exclusiveFilters.map(slugify)).length === 0
+
+    filters = compact(['All'].concat(exclusiveFilters).concat(filters))
+
+    contentItems = storeContentItems.filter(item => {
+      if (additionalCategory) {
+        return (hasCategory(item, category) || hasCategory(item, additionalCategory)) && item.published && !item.sticky
+      }
+
+      else {
+        return hasCategory(item, category) && item.published && !item.sticky
+      }
+    })
+
+    let stickyContentItems = storeContentItems.filter(
+      item => hasCategory(item, category) && item.published && item.sticky
     )
+
+    if (currentFilter && currentFilter !== 'all') {
+      contentItems = contentItems.filter(item => hasTag(item, currentFilter))
+      stickyContentItems = stickyContentItems.filter(item => hasTag(item, currentFilter))
+    }
+
+    else {
+      contentItems = contentItems.filter(item =>
+        intersectionBy(item.tags, exclusiveFilters.map(slugify)).length === 0
+      )
+    }
+
+    function sortFn(a: IContentItem, b: IContentItem) {
+      // @ts-ignore
+      return moment(b.date, 'DD-MM-YYYY') - moment(a.date, 'DD-MM-YYYY')
+    }
+
+    contentItems.sort(sortFn)
+    stickyContentItems.sort(sortFn)
+
+    contentItems = stickyContentItems.concat(contentItems)
   }
-
-  function sortFn(a: IContentItem, b: IContentItem) {
-    // @ts-ignore
-    return moment(b.date, 'DD-MM-YYYY') - moment(a.date, 'DD-MM-YYYY')
-  }
-
-  contentItems.sort(sortFn)
-  stickyContentItems.sort(sortFn)
-
-  contentItems = stickyContentItems.concat(contentItems)
 
   return (
     <div className="main-content-list clearfix">
@@ -128,17 +146,17 @@ function MainContentList({
       { filters.length > 1 && (
         <div className="main-content-filters clearfix">
           <h3>Select:</h3>
-          { filters.map(name => (
+          { filters.map(tag => (
             <Link
               className={`
                 main-content-filter
-                ${ currentFilter === slugify(name) ? 'active' : '' }
-                ${ exclusiveFilters.includes(name) ? 'exclusive-filter' : '' }
+                ${ currentFilter === slugify(tag) ? 'active' : '' }
+                ${ exclusiveFilters.includes(tag) ? 'exclusive-filter' : '' }
               `}
-              key={name}
-              to={`/${category}${name !== 'All' ? '/filter/' + slugify(name) : ''}`}
+              key={tag}
+              to={`/${category}${tag !== 'All' ? '/filter/' + slugify(tag) : ''}`}
             >
-              {name}
+              {tag}
             </Link>
           ))}
         </div>
@@ -146,7 +164,7 @@ function MainContentList({
       <div className="main-content-items">
         { contentItems.map((contentItem, index) => (
           <MainContentBox
-            badgeText={showCategoryOnContentBoxes ? category : undefined}
+            badgeText={showCategoryOnContentBoxes ? titleCase(contentItem.category.replace(/-/g, ' ')) : undefined}
             buttonText={buttonText}
             contentItem={contentItem}
             index={index}

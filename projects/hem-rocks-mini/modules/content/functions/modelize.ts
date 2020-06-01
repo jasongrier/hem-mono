@@ -16,6 +16,7 @@ function modelize(rawContentItem: any): IContentItem {
     flexPriceMinimum: rawContentItem.flexPriceMinimum || '',
     flexPriceRecommended: rawContentItem.flexPriceRecommended || '',
     hasFixedPrice: rawContentItem.hasFixedPrice || false,
+    id: rawContentItem.id || '',
     isDigitalProduct: rawContentItem.isDigitalProduct || false,
     published: rawContentItem.published || false,
     relatedContent: rawContentItem.relatedContent || '',
