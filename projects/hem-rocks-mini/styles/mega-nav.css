@@ -1,4 +1,5 @@
 .mega-nav .hem-hamburger-menu-toggle {
+  display: none;
   top: 0;
   right: 5px;
   z-index: 999999;
@@ -12,11 +13,13 @@
 }
 
 .mega-nav .hem-hamburger-menu-toggle-open {
+  display: block;
   top: 5px;
-  transform: translateX(-5px) scale(0.8);
+  transform: translateX(-40px) translateY(40px) scale(3);
 }
 
 .mega-nav .hem-hamburger-menu-toggle-open span {
+  height: 1px !important;
   background-color: #000;
 }
 
@@ -40,7 +43,7 @@
 }
 
 .mega-nav .logo {
-  margin: 80px 0 0 50px;
+  margin: 80px 0 30px 50px;
   color: var(--line-orange);
 }
 

@@ -17,20 +17,22 @@ function Apps(): ReactElement {
       <div className="page page-apps">
         <MainContentList
           currentFilter={currentFilter}
-          filters={[
-            'Composition',
-            'Expanded Poetics',
-            'Pedagogy',
-            'Performance',
-            'Sound Studies',
-          ]}
+          // filters={[
+          //   'Composition',
+          //   'Expanded Poetics',
+          //   'Pedagogy',
+          //   'Performance',
+          //   'Sound Studies',
+          // ]}
           category="apps"
           title="Apps"
         >
           {(project) => (
-            <Link to={`/apps/${project.slug}`}>
-              { project.acceptingDonations ? 'Contribute' : 'Learn more' }
-            </Link>
+            <div className="action-button">
+              <Link to={`/apps/${project.slug}`}>
+                { project.acceptingDonations ? 'Contribute' : 'Learn more' }
+              </Link>
+            </div>
           )}
         </MainContentList>
       </div>
