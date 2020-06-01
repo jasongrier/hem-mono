@@ -104,8 +104,8 @@ function migrate() {
     try {
       // DO STUFF HERE
 
-      data.id = count
-      count = count + 1
+      // data.id = count
+      // count = count + 1
 
       // END DO STUFF HERE
 

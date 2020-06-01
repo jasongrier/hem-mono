@@ -2,11 +2,10 @@ import React, { ReactElement, useState, SyntheticEvent, useEffect, useCallback }
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation } from 'react-router'
 import produce from 'immer'
-import { map } from 'lodash'
 import { isEmpty, isEqual, startCase } from 'lodash'
 import { slugify } from 'voca'
 import { ElectronOnly, ZoomTextarea } from '../../../../../lib/components'
-import { IContentItem, fieldTypes, modelize, requestCreateItems, requestUpdateItems } from '../index'
+import { IContentItem, fieldTypes, modelize, requestCreateItems, requestDeleteItems, requestUpdateItems } from '../index'
 import { RootState } from '../../../index'
 
 interface IProps {
@@ -49,8 +48,8 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
     }
 
     else if (create) {
-      const nextHighestId = parseInt(map(allContentItems, 'id').sort().pop(), 10) + 1
-      item = modelize({ id: nextHighestId})
+      const nextHighestId = allContentItems.map(item => parseInt(item.id, 10)).sort((a, b) => a - b).pop() + 1
+      item = modelize({ id: nextHighestId })
       setCanSave(true)
     }
 
@@ -85,12 +84,13 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
 
       if (!workingItem) return
 
-      // for (const item of allContentItems) {
-      //   if (item.slug === value) {
-      //     alert('Duplicate slug: ' + workingItem.slug)
-      //     return
-      //   }
-      // }
+      for (const item of allContentItems) {
+        if (item.id === workingItem.id) continue
+        if (item.slug === workingItem.slug) {
+          alert('Duplicate slug: ' + workingItem.slug)
+          return
+        }
+      }
 
       const payloadItem = Object.assign({}, workingItem)
 
@@ -98,7 +98,12 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
         payloadItem.slug = slugify(payloadItem.title)
       }
 
-      if (create) {
+      if (payloadItem.slug !== originalItem.slug) {
+        dispatch(requestDeleteItems([originalItem.slug]))
+        dispatch(requestCreateItems([payloadItem]))
+      }
+
+      else if (create) {
         dispatch(requestCreateItems([payloadItem]))
       }
 

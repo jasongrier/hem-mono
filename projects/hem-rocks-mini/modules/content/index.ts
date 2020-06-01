@@ -151,10 +151,12 @@ export type Action =
 export {
   adminApplyFilter,
   clearItems,
+  doCleanUpFiles,
   doCreateItems,
   doDeleteItems,
   doReadItems,
   doUpdateItems,
+  requestCleanUpFiles,
   requestCreateItems,
   requestDeleteItems,
   requestReadItems,
