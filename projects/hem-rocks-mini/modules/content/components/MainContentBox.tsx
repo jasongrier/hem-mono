@@ -44,7 +44,7 @@ function MainContentBox({
 
   const linkTo = customLinkTo
     ? customLinkTo(contentItem)
-    : `/${tag}/${contentItem.slug}${filter ? '/' + filter : ''}`
+    : `/${contentItem.category}/${contentItem.slug}${filter ? '/' + filter : ''}`
 
   const assetHost = assetHostHostname()
 
@@ -99,7 +99,7 @@ function MainContentBox({
       >
         <Link to={linkTo}>
           {/* <p>{ contentItem.blurb }</p> */}
-          <p>I'm baby locavore sartorial pinterest pickled swag, lumbersexual shabby chic poke ramps hot chicken kinfolk unicorn paleo hella. Organic man braid chambray church-key four loko vice hella butcher dreamcatcher kombucha farm-to-table. Everyday carry vaporware coloring book stumptown, ramps actually offal fam. Gastropub squid pour-over skateboard taiyaki VHS asymmetrical jean shorts tacos tattooed vegan. Fixie vinyl ramps pabst aesthetic skateboard hammock biodiesel.</p>
+          <p>I'm baby locavore sartorial pinterest pickled swag, lumbersexual shabby chic poke ramps hot chicken kinfolk unicorn paleo hella. Organic man braid chambray church-key four loko vice hella butcher dreamcatcher kombucha farm-to-table.</p>
         </Link>
         <div className="main-content-box-actions">
           <div className="main-content-box-custom-actions">

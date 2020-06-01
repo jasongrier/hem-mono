@@ -20,8 +20,8 @@ function GrandPianoHeroine(): ReactElement {
 
   return (
     <div className="grand-piano-heroine">
-      <div className="grand-piano-heroine-image" />
       <Link to={productUrl}>
+        <div className="grand-piano-heroine-image" />
         <div className="grand-piano-heroine-details">
           <div>
             <MuteButton
@@ -34,12 +34,12 @@ function GrandPianoHeroine(): ReactElement {
             <h5>
               A gritty and elegant prepared piano, recorded in Berlin
             </h5>
-            <p>
+            {/* <p>
               &bull; 6 Treatments: Vanilla, Rice Paper, Black Cinefoil, Steel Tinplate, Louis V Chain, Guitar Pick
             </p>
             <p>
               &bull; 1400 One-shots: Bowing, Scraping, Hand Percussion, Cluster Chords, etc.
-            </p>
+            </p> */}
             <button className="action-button">
               Learn more
             </button>

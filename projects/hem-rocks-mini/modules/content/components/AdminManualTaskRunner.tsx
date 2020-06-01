@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useState, useCallback } from 'react'
 import uuid from 'uuid/v1'
 import { autoParagraph } from '../../../../../lib/functions'
-import { modelize, hasTag } from '../functions'
+import { modelize } from '../functions'
 
 function convertOldTypescriptModelsToJson() {
   const { remote } = window.require('electron')
@@ -104,8 +104,7 @@ function migrate() {
     try {
       // DO STUFF HERE
 
-      // data.id = count
-      // count = count + 1
+      // data.displayCategory = ''
 
       // END DO STUFF HERE
 

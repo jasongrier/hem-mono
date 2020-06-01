@@ -6,15 +6,15 @@ import ReactGA from 'react-ga'
 import Cookies from 'js-cookie'
 import { CartPopup, setCartProducts } from '../../cart'
 import { ThankYouPopup } from '../../cart'
-import { DetailPopUp, requestReadItems, setCurrentItem, hasTag, hasCategory, getContentItemBySlug, contentItemToTrack } from '../../content'
+import { DetailPopUp, requestReadItems, setCurrentItem, hasTag, getContentItemsFromList, contentItemToTrack } from '../../content'
 import { ProtectedContent } from '../../login'
 import { CampaignMonitorForm, ElectronNot, ScrollToTop, NagToaster, Spinner } from '../../../../../lib/components'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup, closePopup } from '../../../../../lib/modules/popups'
-import { PlayerBar, setPlayerPlaylist, ITrack } from '../../../../../lib/modules/player'
+import { PlayerBar, setPlayerPlaylist } from '../../../../../lib/modules/player'
 import { usePrevious } from '../../../../../lib/hooks'
 import { collapseTopBar, expandTopBar, getCookieName } from '../index'
-import { TopBar } from '../../../components/layout'
+import { SiteFooter, TopBar } from '../../../components/layout'
 import { requestActiveLiveStream, setCookieApproval, setCookiePreferencesSet } from '../actions'
 import CookieApproval from './CookieApproval'
 import { CAMPAIGN_MONITOR_FORM_ID } from '../../../config'
@@ -60,7 +60,7 @@ function App(): ReactElement {
 
   const genericRoutedPopups = [
     { basePath: 'label', id: 'detail-popup' },
-    { basePath: 'code', id: 'detail-popup' },
+    { basePath: 'apps', id: 'detail-popup' },
     { basePath: 'sound-library', id: 'detail-popup' },
     { basePath: 'venue-calendar', id: 'detail-popup' },
     { basePath: 'venue-archive', id: 'detail-popup' },
@@ -129,23 +129,10 @@ function App(): ReactElement {
   }, [])
 
   useEffect(function setSitePlaylist() {
-    const sitePlaylistItem = getContentItemBySlug(contentItems, 'site-playlist')
-
-    if (!sitePlaylistItem) return
-
-    let sitePlaylistItemSlugs = sitePlaylistItem.description.split('\n')
-    sitePlaylistItemSlugs = compact(sitePlaylistItemSlugs.map(item => item.trim()))
-
-    if (sitePlaylistItemSlugs.length === 0) return
-
-    const sitePlaylistTracks: ITrack[] = compact(sitePlaylistItemSlugs.map(slug => {
-      const item = getContentItemBySlug(contentItems, slug)
-
-      if (!item) return
-      if (!hasCategory(item, 'track')) return
-
-      return contentItemToTrack(item, hasTag(item, 'attachment') ? item.relatedContentLink : `/tracks/${item.slug}`)
-    }))
+    const sitePlaylistTrackItems = getContentItemsFromList(contentItems, 'site-playlist')
+    const sitePlaylistTracks = sitePlaylistTrackItems.map(item =>
+      contentItemToTrack(item, hasTag(item, 'attachment') ? item.relatedContentLink : `/tracks/${item.slug}`)
+    )
 
     dispatch(setPlayerPlaylist(sitePlaylistTracks))
   }, [contentItems])
@@ -265,7 +252,7 @@ function App(): ReactElement {
       <ProtectedContent header="Super secret preview">
         <ScrollToTop />
 
-        <TopBar collapsed={topBarCollapsed} />
+        <TopBar />
 
         <main className="main-content">
           <div className="tabs-content">
@@ -308,8 +295,8 @@ function App(): ReactElement {
             </Switch>
           </div>
         </main>
-        <footer>
-
+        <footer className="main-footer">
+          <SiteFooter />
         </footer>
 
         <PopupContainer

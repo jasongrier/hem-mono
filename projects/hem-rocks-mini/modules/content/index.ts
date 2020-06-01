@@ -7,6 +7,7 @@ export interface IContentItem {
   badgeText: string
   blurb: string
   category: string
+  displayCategory: string
   date: string
   description: string
   externalLinkText: string
@@ -44,6 +45,7 @@ export const fieldTypes: IContentItem = {
   badgeText: 'text',
   blurb: 'textarea',
   category: 'text',
+  displayCategory: 'text',
   date: 'text',
   description: 'textarea',
   externalLinkText: 'text',
@@ -181,6 +183,7 @@ export {
   getContentItemByField,
   getContentItemBySlug,
   getContentItemsByTag,
+  getContentItemsFromList,
   modelize,
 } from './functions'
 

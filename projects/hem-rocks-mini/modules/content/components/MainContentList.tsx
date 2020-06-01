@@ -162,9 +162,9 @@ function MainContentList({
         </div>
       )}
       <div className="main-content-items">
-        { contentItems.map((contentItem, index) => (
+        { contentItems.map((contentItem: IContentItem, index: number) => (
           <MainContentBox
-            badgeText={showCategoryOnContentBoxes ? titleCase(contentItem.category.replace(/-/g, ' ')) : undefined}
+            badgeText={showCategoryOnContentBoxes ? titleCase(contentItem.displayCategory || contentItem.category.replace(/-/g, ' ')) : undefined}
             buttonText={buttonText}
             contentItem={contentItem}
             index={index}

@@ -8,6 +8,7 @@ function modelize(rawContentItem: any): IContentItem {
     badgeText: rawContentItem.badgeText || '',
     blurb: rawContentItem.blurb || '',
     category: rawContentItem.category || '',
+    displayCategory: rawContentItem.displayCategory || '',
     date: rawContentItem.date || '',
     description: rawContentItem.description || '',
     externalLinkText: rawContentItem.externalLinkText || '',
