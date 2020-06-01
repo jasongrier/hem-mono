@@ -104,9 +104,6 @@ function AdminList(): ReactElement {
         <table>
           <thead>
             <tr>
-              {/* <th className="admin-list-column-check">
-                <input type="checkbox"/>
-              </th> */}
               <th className="admin-list-column-title">
                 Item
               </th>
@@ -121,9 +118,6 @@ function AdminList(): ReactElement {
           <tbody>
             { contentItems.map((item: IContentItem) => (
               <tr key={item.slug}>
-                {/* <td className="admin-list-column-check">
-                  <input type="checkbox"/>
-                </td> */}
                 <td className="admin-list-column-title">
                   <Link to={`/admin/edit/${item.slug}`}>{item.title}</Link>
                 </td>

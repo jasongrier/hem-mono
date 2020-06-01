@@ -1,6 +1,7 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects'
 import { compact } from 'lodash'
 import {
+  REQUEST_CREATE_ITEMS,
   REQUEST_DELETE_ITEMS,
   REQUEST_READ_ITEMS,
   REQUEST_UPDATE_ITEMS,
@@ -9,10 +10,10 @@ import {
   doDeleteItems as doDeleteItemsAc,
   doReadItems as doReadItemsAc,
   doUpdateItems as doUpdateItemsAc,
+  requestCreateItems as requestCreateItemsAc,
   requestReadItems as requestReadItemsAc,
 
   modelize,
-  REQUEST_CREATE_ITEMS,
 } from './index'
 
 function* createItems({ payload }: any) {
@@ -83,7 +84,7 @@ function* createItems({ payload }: any) {
   }
 
   catch (err) {
-    console.log(err)
+    console.error(err)
   }
 }
 
@@ -135,7 +136,7 @@ function* deleteItems({ payload }: any) {
   }
 
   catch (err) {
-    console.log(err)
+    console.error(err)
   }
 }
 
@@ -155,7 +156,7 @@ function* readItems() {
   }
 
   catch (err) {
-    console.log(err)
+    console.error(err)
   }
 }
 
@@ -171,7 +172,7 @@ function* updateItems({ payload }: any) {
     const distFile = join(__dirname, '..', '..', '..', '..', 'dist', 'static', 'content', updatedItem.slug + '.json')
 
     if (!existsSync(file)) {
-      console.error(`Src file not found: ${file}`)
+      yield put(requestCreateItemsAc(payload))
       return
     }
 
@@ -190,7 +191,7 @@ function* updateItems({ payload }: any) {
   }
 
   catch (err) {
-    console.log(err)
+    console.error(err)
   }
 }
 
