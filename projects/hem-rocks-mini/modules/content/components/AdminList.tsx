@@ -79,6 +79,7 @@ function AdminList(): ReactElement {
               <option value="article">Articles</option>
               <option value="code">Code</option>
               <option value="label">Label</option>
+              <option value="list">List</option>
               <option value="merch">Merch</option>
               <option value="mix">Mixes</option>
               <option value="playlist">Playlist</option>

@@ -98,6 +98,18 @@ body {
   margin: 0 auto;
 }
 
-.app-is-home .main-content-box-badge {
+.app-is-home .main-content-box:first-child .main-content-box-badge,
+.app-is-home .main-content-box:nth-child(2) .main-content-box-badge {
   top: -40px !important;
+}
+
+.main-footer {
+  width: var(--content-width-desk);
+  margin: 100px auto 40px auto;
+  font-size: 14px;
+  line-height: 32px;
+}
+
+.main-footer a {
+  color: inherit;
 }

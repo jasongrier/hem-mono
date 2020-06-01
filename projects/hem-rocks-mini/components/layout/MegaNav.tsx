@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { CampaignMonitorForm, ElectronOnly, HamburgerMenu } from '../../../../lib/components'
 import { setMegaNavOpen } from '../../modules/app'
-import { Logo, MainNavItem } from './index'
+import { Logo, MainNavItem, SiteFooter } from './index'
 import ReactGA from 'react-ga'
 import { CAMPAIGN_MONITOR_FORM_ID } from '../../config'
 import { RootState } from '../../index'
@@ -104,8 +104,7 @@ function MegaNav(): ReactElement {
           />
         </div>
         <footer className="mega-nav-footer">
-          <a href="">Privacy Policy</a> | <a href="">Cookie Policy</a> | <a href="">Impressum</a><br />
-          &copy; 2020, Hot Extramusicality, Inc. | Reichenberger Straße 176, 10999 Berlin, Deutschland | info@hem.rocks
+          <SiteFooter />
         </footer>
       </HamburgerMenu>
     </nav>
