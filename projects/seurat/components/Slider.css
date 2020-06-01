@@ -1,0 +1,62 @@
+/*!
+ * Styles for the Slider component.
+ */
+.pro-slider {
+  position: relative;
+  box-sizing: border-box;
+  border: 1px solid #000;
+}
+
+.pro-slider.vertical {
+  width: 50px;
+  height: 200px;
+}
+
+.pro-slider.horizontal {
+  width: 200px;
+  height: 50px;
+}
+
+.pro-slider__amount {
+  position: absolute;
+  left: 0;
+  background-color: #666;
+  pointer-events: none;
+}
+
+.pro-slider.vertical .pro-slider__amount {
+  bottom: 0;
+  width: 100%;
+  min-height: 10px;
+}
+
+.pro-slider.horizontal .pro-slider__amount {
+  top: 0;
+  height: 100%;
+  min-width: 10px;
+}
+
+.pro-slider__handle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #000;
+}
+
+.pro-slider.vertical .pro-slider__handle {
+  width: 100%;
+  height: 10px;
+}
+
+.pro-slider.horizontal .pro-slider__handle {
+  width: 10px;
+  height: 100%;
+}
+
+body.pro-slider-unselectable {
+  user-select: none;
+
+  * {
+    user-select: none;
+  }
+}

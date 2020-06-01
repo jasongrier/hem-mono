@@ -1,0 +1,53 @@
+@import 'themes/index';
+
+.seurat {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: calc(100vw - 40px);
+  height: calc(100vh - 40px);
+  min-height: 370px;
+  padding: 20px;
+  -webkit-app-region: drag;
+}
+
+.sliders {
+  position: absolute;
+  top: 20px;
+  right: 390px;
+  width: 80px;
+  height: 350px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.pro-slider.vertical {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  border: none;
+  -webkit-app-region: no-drag;
+}
+
+.pro-slider.vertical .pro-slider__amount {
+  min-height: 0;
+  opacity: 1;
+}
+
+.pro-slider.vertical .pro-slider__handle {
+  display: none;
+}
+
+body.pro-slider-unselectable,
+.pro-slider.pressed {
+  cursor: none;
+}
+
+#seurat-slider-0 {
+  left: -.5px;
+}
+
+#seurat-slider-1 {
+  right: -.5px;
+}

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import produce from 'immer'
 import { isEmpty, noop } from 'lodash'
+import { titleCase } from 'voca'
 import moment from 'moment'
 import { ElectronOnly } from '../../../../../lib/components'
 import { PlayPauseButton } from '../../../../../lib/packages/hem-buttons'
@@ -107,6 +108,9 @@ function AdminList(): ReactElement {
               <th className="admin-list-column-title">
                 Item
               </th>
+              <th className="admin-list-column-category">
+                Category
+              </th>
               <th className="admin-list-column-date">
                 Date
               </th>
@@ -120,6 +124,9 @@ function AdminList(): ReactElement {
               <tr key={item.slug}>
                 <td className="admin-list-column-title">
                   <Link to={`/admin/edit/${item.slug}`}>{item.title}</Link>
+                </td>
+                <td className="admin-list-column-category">
+                  { titleCase(item.category.replace(/-/g, ' ')) }
                 </td>
                 <td className="admin-list-column-date">
                   { item.date }

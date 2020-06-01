@@ -1,81 +1,135 @@
-import React, { ReactElement } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { RootState } from '../store'
-import { uiLocked as uiLockedSel } from '../store/selectors'
-// TODO: Barrelise actions
-import { updateDot, setDragging, setCursorMode } from '../store/actions'
+/**
+ * The Dot component.
+ */
 
-// TODO: Move handlers to a helper file
-// TODO: Bug when releasing outside a dot including outside the window; should be the same as releasing on a dot
+// ================================================================================
+// External
+// ================================================================================
+import * as React from 'react'
+import * as classnames from 'classnames'
 
-interface IProps {
-  dotNumber: number
+// ================================================================================
+// Framework
+// ================================================================================
+import {IDefaultProps} from '../interfaces'
+import {diffComponent} from '../helpers/browser'
+
+// ================================================================================
+// Project
+// ================================================================================
+// N/A
+
+// ================================================================================
+// Component
+// ================================================================================
+// N/A
+
+// ================================================================================
+// Style
+// ================================================================================
+import '../styles/dot.scss'
+
+// ================================================================================
+// Model
+// ================================================================================
+interface IProps extends IDefaultProps {
+  flashSpeed: number
+  armed: boolean
 }
 
-function Dot({ dotNumber }: IProps): ReactElement {
-  const { cursorGroup, dragging, cursorMode, myCursorGroup, mySound, uiLocked } = useSelector((state: RootState) => ({
-    cursorGroup: state.app.cursorGroup,
-    dragging: state.app.dragging,
-    cursorMode: state.app.cursorMode,
-    myCursorGroup: state.app.canvases[state.app.currentCanvasIndex].dots[dotNumber].cursorGroup,
-    mySound: state.app.canvases[state.app.currentCanvasIndex].dots[dotNumber].sound,
-    uiLocked: uiLockedSel(state),
-  }))
-
-  const dispatch = useDispatch()
-
-  function onMouseDown() {
-    if (uiLocked) return
-
-    dispatch(setDragging(true))
-
-    if (cursorMode === 'draw') {
-      if (cursorGroup === myCursorGroup) {
-        dispatch(updateDot({ dotNumber, cursorGroup: 'none', sound: mySound }))
-        dispatch(setCursorMode('erase'))
-      }
-
-      else {
-        dispatch(updateDot({ dotNumber, cursorGroup: cursorGroup, sound: mySound }))
-      }
-    }
-
-    else {
-      if (cursorGroup === myCursorGroup || cursorGroup === 'none') {
-        dispatch(updateDot({ dotNumber, cursorGroup: 'none', sound: mySound }))
-      }
-    }
-  }
-
-  function onMouseOver() {
-    if (uiLocked) return
-    if (!dragging) return
-
-    if (cursorMode === 'draw' && cursorGroup !== myCursorGroup) {
-      dispatch(updateDot({ dotNumber, cursorGroup: cursorGroup, sound: mySound }))
-    }
-
-    else if (cursorMode === 'erase' && (cursorGroup === myCursorGroup || cursorGroup === 'none')) {
-      dispatch(updateDot({ dotNumber, cursorGroup: 'none', sound: mySound }))
-    }
-  }
-
-  function onMouseUp() {
-    if (uiLocked) return
-    dispatch(setDragging(false))
-    if (cursorGroup !== 'none') {
-      dispatch(setCursorMode('draw'))
-    }
-  }
-
-  return (
-    <div
-      className={`dot dot--group-${myCursorGroup}`}
-      onMouseDown={onMouseDown}
-      onMouseOver={onMouseOver}
-      onMouseUp={onMouseUp}
-    />
-  )
+interface IState {
+  flashing: boolean,
 }
 
-export default Dot
+const defaultProps: Partial<IProps> = {
+  flashSpeed: 200,
+  armed: false,
+}
+
+const initialState: IState = {
+  flashing: false,
+}
+
+// ================================================================================
+// Decorate
+// ================================================================================
+// N/A
+
+// ================================================================================
+// Init
+// ================================================================================
+class Dot extends React.Component<IProps, IState> {
+
+  public static defaultProps: Partial<IProps> = defaultProps
+
+  public state: IState = initialState
+
+// ================================================================================
+// Lifecycle
+// ================================================================================
+  public componentDidMount() {
+
+  }
+
+  public shouldComponentUpdate(nextProps: IProps, nextState: IState) {
+    return diffComponent(['flashing', 'armed'], this, nextProps, nextState)
+  }
+
+  public componentDidUpdate() {
+
+  }
+
+  public componentWillUnmount() {
+
+  }
+
+// ================================================================================
+// Render
+// ================================================================================
+  public render() {
+    const {armed, flashSpeed, children, id} = this.props
+    const {flashing} = this.state
+
+    return (
+      // @ts-ignore
+      <div className={`
+          dot
+          ${armed ? 'armed' : null}
+          ${flashing ? 'flashing' : null}
+        `}
+        style={{
+          transition: `all ${flashSpeed / 2} ease-in`
+        }}
+      >
+        {children}
+      </div>
+    )
+  }
+
+// ================================================================================
+// Handlers
+// ================================================================================
+  public flash = () => {
+    const {armed, flashSpeed, id} = this.props
+    if (armed) {
+      this.setState({flashing: true})
+      // @ts-ignore
+      document.querySelector(`div[data-uid="c--${id}"]`).classList.add('flashing')
+      setTimeout(() => {
+        this.setState({flashing: false})
+        // @ts-ignore
+        document.querySelector(`div[data-uid="c--${id}"]`).classList.remove('flashing')
+      }, flashSpeed)
+    }
+  }
+
+// ================================================================================
+// Helpers
+// ================================================================================
+// N/A
+}
+
+// ================================================================================
+// Export
+// ================================================================================
+export {Dot}

@@ -1,0 +1,18 @@
+.button-menu-item {
+  position: relative;
+  display: block;
+  padding: 1px;
+  height: 11px;
+  line-height: 11px;
+  font-size: 9px;
+}
+
+.button-menu-item svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  top: 50%;
+  margin-top: -7px;
+}
