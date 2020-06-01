@@ -4,6 +4,10 @@ function createWindow () {
   let win = new BrowserWindow({
     width: 1400,
     height: 780,
+    // width: 490,
+    // height: 390,
+    // frame: false,
+    // resizable: false,
     webPreferences: {
       nodeIntegration: true,
     }

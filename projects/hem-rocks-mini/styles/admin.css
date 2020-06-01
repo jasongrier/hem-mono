@@ -144,7 +144,8 @@
 
 }
 
-.admin-list-column-date {
+.admin-list-column-date,
+.admin-list-column-category {
   width: 150px;
 }
 

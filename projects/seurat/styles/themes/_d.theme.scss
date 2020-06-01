@@ -1,0 +1,17 @@
+.body-theme-d {
+  background: #212121;
+}
+
+.theme-d {
+  @include theme(
+    #004D40, // $app-background, 900
+    #00695C, // $tray-background, 800
+    #4DB6AC, // $text, 300
+    #26A69A, // $deactivated-text, 400
+    #E0F2F1, // $highlighted-text, 50
+    #00897B, // $popup-background, 600
+    #00695C, // $control-off, 800
+    #00897B, // $control-on, 600
+    #B2DFDB, // $control-alerting, 100
+  )
+}

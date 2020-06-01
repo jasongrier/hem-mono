@@ -1,0 +1,18 @@
+.body-theme-a {
+  background: #263238;
+}
+
+.theme-a {
+  @include theme(
+    #263238, // $app-background, 900
+    #263238, // $tray-background, 800
+    #90A4AE, // $text, 300
+    #78909C, // $deactivated-text, 400
+    #ECEFF1, // $highlighted-text, 50
+    #546E7A, // $popup-background, 600
+    #37474F, // $control-off, 800
+    #546E7A, // $control-on, 600
+    #CFD8DC, // $control-alerting, 100
+    #2a373d, // $app-active-background, 800
+  )
+}
