@@ -4,7 +4,7 @@
   "attributionLink": "",
   "badgeText": "",
   "blurb": "",
-  "category": "track, rarity",
+  "category": "track",
   "displayCategory": "",
   "date": "01.07.2020",
   "description": "",
@@ -22,10 +22,11 @@
   "secondaryTitle": "",
   "slug": "some-kind-of-emergency",
   "sticky": false,
-  "tags": "",
+  "tags": "rarity",
   "title": "Some Kind of Emergency",
   "titleWrapping": "",
   "trackSlug": "",
-  "trackResourceId": "",
+  "trackResourceId": "832287952",
+  "trackResourceSecret": "s-6LQy5C0nfBC",
   "type": ""
 }

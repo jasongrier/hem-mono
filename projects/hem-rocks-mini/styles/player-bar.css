@@ -87,14 +87,16 @@
 .hem-player-play-pause-button .hem-spinner {
   position: relative;
   float: left;
-  width: 50px;
+  border-top: 1px solid #666;
+  border-right: 1px solid #666;
+  width: 59px;
   height: 60px;
 }
 
 .hem-player-play-pause-button .hem-spinner svg {
   position: absolute;
-  top: 10px;
-  left: 0;
+  top: 5px;
+  left: 4px;
   width: 50px;
   height: 50px;
 }

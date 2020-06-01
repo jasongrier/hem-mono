@@ -30,6 +30,7 @@ function modelize(rawContentItem: any): IContentItem {
     titleWrapping: rawContentItem.titleWrapping || '',
     trackSlug: rawContentItem.trackSlug || '',
     trackResourceId: rawContentItem.trackResourceId || '',
+    trackResourceSecret: rawContentItem.trackResourceSecret || '',
     type: rawContentItem.type || '',
   }
 }

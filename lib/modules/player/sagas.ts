@@ -56,11 +56,12 @@ function* pausePlayer() {
 
 function* cueTrack({ payload }: any) {
   yield put(setPlayerActuallyPlayingAc(false))
+
   delete window.HEM_PLAYER_SOUNDCLOUD_PLAYER_INSTANCE
 
   SC.stream(
     '/tracks/' + payload.track.resource,
-    payload.track.soundCloudSecretToken,
+    payload.track.secret,
   )
     .then(function(player: any) {
       player.on('finish', function() {

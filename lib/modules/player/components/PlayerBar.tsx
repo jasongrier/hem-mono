@@ -1,4 +1,4 @@
-import React, { ReactElement, useState, useCallback } from 'react'
+import React, { ReactElement, useState, useCallback, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { PlayPauseButton as BasePlayPauseButton, CloseButton, HamburgerButton } from '../../../packages/hem-buttons'
@@ -13,6 +13,12 @@ function PlayerBar(): ReactElement {
 
   const [expanded, setExpanded] = useState(false)
   const [playlistExpanded, setPlaylistExpanded] = useState(false)
+
+  useEffect(function openOnPlay() {
+    if (playing && !expanded) {
+      setExpanded(true)
+    }
+  }, [playing])
 
   const toggleExpandedOnClick = useCallback(
     function toggleExpandedOnClickFn() {
