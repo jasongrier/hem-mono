@@ -11,14 +11,6 @@ function GrandPianoHeroine(): ReactElement {
     allProducts: state.content.contentItems,
   }))
 
-  const dispatch = useDispatch()
-
-  useEffect(function fetchContent() {
-    dispatch(requestReadItems({ requestFilters: {
-      slug: 'grand-piano',
-    }, page: 1, size: 10000 }))
-  }, [])
-
   const grandPianoProduct = find(allProducts, { slug: 'grand-piano' })
 
   if (!grandPianoProduct) return (<div />)

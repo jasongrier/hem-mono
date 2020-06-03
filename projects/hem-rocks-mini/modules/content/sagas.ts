@@ -7,7 +7,6 @@ import {
   REQUEST_UPDATE_ITEMS,
 
   IIndexEntry,
-  IRequestFilters,
 
   doCreateItems as doCreateItemsAc,
   doDeleteItems as doDeleteItemsAc,
@@ -73,20 +72,14 @@ function* createItems({ payload }: any) {
     execSync(`cp ${file} ${distFile}`, { stdio: 'inherit' })
 
     const index = JSON.parse(readFileSync(indexFile, 'utf8'))
-    const indexEntry: IIndexEntry = {
-      category: item.category,
-      date: item.date,
-      slug: item.slug,
-      tags: item.tags.split(','),
-    }
 
-    index.push(indexEntry)
+    index.push(item)
 
     writeFileSync(indexFile, JSON.stringify(index, null, 2))
     execSync(`cp ${indexFile} ${distIndexFile}`, { stdio: 'inherit' })
 
     yield put(doCreateItemsAc([item]))
-    yield put(requestReadItemsAc({ requestFilters: {}, page: 1, size: 10000 }))
+    yield put(requestReadItemsAc({ page: 1, size: 10000 }))
   }
 
   catch (err) {
@@ -138,7 +131,7 @@ function* deleteItems({ payload }: any) {
     execSync(`cp ${indexFile} ${distIndexFile}`, { stdio: 'inherit' })
 
     yield put(doDeleteItemsAc([itemSlug]))
-    yield put(requestReadItemsAc({ requestFilters: {}, page: 1, size: 10000 }))
+    yield put(requestReadItemsAc({ page: 1, size: 10000 }))
   }
 
   catch (err) {
@@ -146,26 +139,11 @@ function* deleteItems({ payload }: any) {
   }
 }
 
-function* readItems({ payload }: any) {
+function* readItems() {
   try {
-    const { requestFilters }: { requestFilters: IRequestFilters } = payload
     const res = yield call(fetch, '/static/content/index.json')
-    const allEntries = yield res.json()
-    const filteredEntries = allEntries
-    // const filteredEntries = allEntries.filter((entry: IIndexEntry) => {
-    //   if (requestFilters.category && entry.category !== requestFilters.category) return
-    //   if (requestFilters.slug && entry.slug !== requestFilters.slug) return
-    //   if (requestFilters.tag && entry.tags.indexOf(requestFilters.tag) < 0) return
-    //   return entry
-    // })
-
-    const items = []
-
-    for (const entry of filteredEntries) {
-      const res = yield call(fetch, `/static/content/${entry.slug}.json`)
-      const rawItem = yield res.json()
-      items.push(modelize(rawItem))
-    }
+    const entries = yield res.json()
+    const items = entries.map(modelize)
 
     yield put(doReadItemsAc(items))
   }
@@ -214,20 +192,14 @@ function* updateItems({ payload }: any) {
     execSync(`cp ${file} ${distFile}`, { stdio: 'inherit' })
 
     let index = JSON.parse(readFileSync(indexFile, 'utf8'))
-    const indexEntry: IIndexEntry = {
-      category: updatedItem.category,
-      date: updatedItem.date,
-      slug: updatedItem.slug,
-      tags: updatedItem.tags.split(','),
-    }
 
-    index.push(indexEntry)
+    index.push(updatedItem)
 
     writeFileSync(indexFile, JSON.stringify(index, null, 2))
     execSync(`cp ${indexFile} ${distIndexFile}`, { stdio: 'inherit' })
 
     yield put(doUpdateItemsAc([updatedItem]))
-    yield put(requestReadItemsAc({ requestFilters: {}, page: 1, size: 10000 }))
+    yield put(requestReadItemsAc({ page: 1, size: 10000 }))
   }
 
   catch (err) {

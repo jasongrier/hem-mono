@@ -105,14 +105,17 @@ function migrate() {
     try {
       // DO STUFF HERE
 
-      index.push({
-        category: data.category,
-        date: data.date,
-        slug: data.slug,
-        tags: data.tags.split(','),
-      })
+      // data.displayCategory = ''
 
-      writeFileSync(join(workingDir, 'index.json'), index)
+      // END DO STUFF HERE
+
+      const item = modelize(data)
+
+      index.push(item)
+
+      const jsonItem = JSON.stringify(item, null, 2)
+
+      writeFileSync(join(workingDir, item.slug + '.json'), jsonItem)
     }
 
     catch(err) {
