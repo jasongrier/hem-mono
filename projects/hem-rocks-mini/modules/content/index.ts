@@ -33,17 +33,9 @@ export interface IContentItem {
   type: string
 }
 
-export interface IRequestFilters {
-  category?: string
-  slug?: string
-  tag?: string
-}
-
 export interface IIndexEntry {
-  category: string
   date: string
   slug: string
-  tags: string[]
 }
 
 export interface IState {
@@ -139,7 +131,7 @@ export interface IRequestDeleteItems extends AnyAction {
 
 export interface IRequestReadItems extends AnyAction {
   type: typeof REQUEST_READ_ITEMS
-  payload: { requestFilters: IRequestFilters, page: number, size: number }
+  payload: { page: number, size: number }
 }
 
 export interface IRequestUpdateItems extends AnyAction {

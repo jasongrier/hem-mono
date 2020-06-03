@@ -92,9 +92,7 @@ function App(): ReactElement {
   }, [cookiesAnalyticsApproved])
 
   useEffect(function fetchContent() {
-    dispatch(requestReadItems({ requestFilters: {
-      tag: 'site-playlist'
-    }, page: 1, size: 10000 }))
+    dispatch(requestReadItems({ page: 1, size: 10000 }))
   }, [])
 
   useEffect(function setActiveLiveStream() {
