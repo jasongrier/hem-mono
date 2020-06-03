@@ -73,11 +73,14 @@ function* createItems({ payload }: any) {
     execSync(`cp ${file} ${distFile}`, { stdio: 'inherit' })
 
     const index = JSON.parse(readFileSync(indexFile, 'utf8'))
-
-    index.push({
+    const indexEntry: IIndexEntry = {
+      category: item.category,
       date: item.date,
       slug: item.slug,
-    } as IIndexEntry)
+      tags: item.tags.split(','),
+    }
+
+    index.push(indexEntry)
 
     writeFileSync(indexFile, JSON.stringify(index, null, 2))
     execSync(`cp ${indexFile} ${distIndexFile}`, { stdio: 'inherit' })
@@ -100,8 +103,8 @@ function* deleteItems({ payload }: any) {
 
     const itemSlug = payload[0] // TODO: Handle multiples
     const file = join(__dirname, '..', '..', 'static', 'content', itemSlug + '.json')
-    const indexFile = join(__dirname, '..', '..', 'static', 'content', 'index.json')
     const distFile = join(__dirname, '..', '..', '..', '..', 'dist', 'static', 'content', itemSlug + '.json')
+    const indexFile = join(__dirname, '..', '..', 'static', 'content', 'index.json')
     const distIndexFile = join(__dirname, '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
 
     if (!existsSync(file)) {
@@ -129,7 +132,7 @@ function* deleteItems({ payload }: any) {
 
     let index = JSON.parse(readFileSync(indexFile, 'utf8'))
 
-    index = compact(index.map((entry: any) => entry.slug !== itemSlug ? entry : undefined))
+    index = compact(index.map((entry: IIndexEntry) => entry.slug !== itemSlug ? entry : undefined))
 
     writeFileSync(indexFile, JSON.stringify(index, null, 2))
     execSync(`cp ${indexFile} ${distIndexFile}`, { stdio: 'inherit' })
@@ -148,12 +151,13 @@ function* readItems({ payload }: any) {
     const { requestFilters }: { requestFilters: IRequestFilters } = payload
     const res = yield call(fetch, '/static/content/index.json')
     const allEntries = yield res.json()
-    const filteredEntries = allEntries.filter((entry: IIndexEntry) => {
-      if (requestFilters.category && entry.category !== requestFilters.category) return
-      if (requestFilters.slug && entry.slug !== requestFilters.slug) return
-      if (requestFilters.tag && entry.tags.indexOf(requestFilters.tag) < 0) return
-      return entry
-    })
+    const filteredEntries = allEntries
+    // const filteredEntries = allEntries.filter((entry: IIndexEntry) => {
+    //   if (requestFilters.category && entry.category !== requestFilters.category) return
+    //   if (requestFilters.slug && entry.slug !== requestFilters.slug) return
+    //   if (requestFilters.tag && entry.tags.indexOf(requestFilters.tag) < 0) return
+    //   return entry
+    // })
 
     const items = []
 
@@ -181,6 +185,8 @@ function* updateItems({ payload }: any) {
     const updatedItem = payload[0] // TODO: Handle multiples
     const file = join(__dirname, '..', '..', 'static', 'content', updatedItem.slug + '.json')
     const distFile = join(__dirname, '..', '..', '..', '..', 'dist', 'static', 'content', updatedItem.slug + '.json')
+    const indexFile = join(__dirname, '..', '..', 'static', 'content', 'index.json')
+    const distIndexFile = join(__dirname, '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
 
     if (!existsSync(file)) {
       yield put(requestCreateItemsAc(payload))
@@ -192,10 +198,33 @@ function* updateItems({ payload }: any) {
       return
     }
 
+    if (!existsSync(indexFile)) {
+      console.error('Src index does not exist.')
+      return
+    }
+
+    if (!existsSync(distIndexFile)) {
+      console.error('Dist index does not exist.')
+      return
+    }
+
     writeFileSync(file, JSON.stringify(updatedItem, null, 2))
 
     execSync(`rm ${distFile}`, { stdio: 'inherit' })
     execSync(`cp ${file} ${distFile}`, { stdio: 'inherit' })
+
+    let index = JSON.parse(readFileSync(indexFile, 'utf8'))
+    const indexEntry: IIndexEntry = {
+      category: updatedItem.category,
+      date: updatedItem.date,
+      slug: updatedItem.slug,
+      tags: updatedItem.tags.split(','),
+    }
+
+    index.push(indexEntry)
+
+    writeFileSync(indexFile, JSON.stringify(index, null, 2))
+    execSync(`cp ${indexFile} ${distIndexFile}`, { stdio: 'inherit' })
 
     yield put(doUpdateItemsAc([updatedItem]))
     yield put(requestReadItemsAc({ requestFilters: {}, page: 1, size: 10000 }))
