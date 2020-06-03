@@ -1,10 +1,13 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects'
-import { compact } from 'lodash'
+import { compact, isEmpty } from 'lodash'
 import {
   REQUEST_CREATE_ITEMS,
   REQUEST_DELETE_ITEMS,
   REQUEST_READ_ITEMS,
   REQUEST_UPDATE_ITEMS,
+
+  IIndexEntry,
+  IRequestFilters,
 
   doCreateItems as doCreateItemsAc,
   doDeleteItems as doDeleteItemsAc,
@@ -74,13 +77,13 @@ function* createItems({ payload }: any) {
     index.push({
       date: item.date,
       slug: item.slug,
-    })
+    } as IIndexEntry)
 
     writeFileSync(indexFile, JSON.stringify(index, null, 2))
     execSync(`cp ${indexFile} ${distIndexFile}`, { stdio: 'inherit' })
 
     yield put(doCreateItemsAc([item]))
-    yield put(requestReadItemsAc({ page: 1, size: 10000 }))
+    yield put(requestReadItemsAc({ requestFilters: {}, page: 1, size: 10000 }))
   }
 
   catch (err) {
@@ -132,7 +135,7 @@ function* deleteItems({ payload }: any) {
     execSync(`cp ${indexFile} ${distIndexFile}`, { stdio: 'inherit' })
 
     yield put(doDeleteItemsAc([itemSlug]))
-    yield put(requestReadItemsAc({ page: 1, size: 10000 }))
+    yield put(requestReadItemsAc({ requestFilters: {}, page: 1, size: 10000 }))
   }
 
   catch (err) {
@@ -140,13 +143,21 @@ function* deleteItems({ payload }: any) {
   }
 }
 
-function* readItems() {
+function* readItems({ payload }: any) {
   try {
+    const { requestFilters }: { requestFilters: IRequestFilters } = payload
     const res = yield call(fetch, '/static/content/index.json')
-    const entries = yield res.json()
+    const allEntries = yield res.json()
+    const filteredEntries = allEntries.filter((entry: IIndexEntry) => {
+      if (requestFilters.category && entry.category !== requestFilters.category) return
+      if (requestFilters.slug && entry.slug !== requestFilters.slug) return
+      if (requestFilters.tag && entry.tags.indexOf(requestFilters.tag) < 0) return
+      return entry
+    })
+
     const items = []
 
-    for (const entry of entries) {
+    for (const entry of filteredEntries) {
       const res = yield call(fetch, `/static/content/${entry.slug}.json`)
       const rawItem = yield res.json()
       items.push(modelize(rawItem))
@@ -187,7 +198,7 @@ function* updateItems({ payload }: any) {
     execSync(`cp ${file} ${distFile}`, { stdio: 'inherit' })
 
     yield put(doUpdateItemsAc([updatedItem]))
-    yield put(requestReadItemsAc({ page: 1, size: 10000 }))
+    yield put(requestReadItemsAc({ requestFilters: {}, page: 1, size: 10000 }))
   }
 
   catch (err) {

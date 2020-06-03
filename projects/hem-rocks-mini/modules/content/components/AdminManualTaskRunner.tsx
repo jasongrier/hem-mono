@@ -2,6 +2,7 @@ import React, { ReactElement, useEffect, useState, useCallback } from 'react'
 import uuid from 'uuid/v1'
 import { autoParagraph } from '../../../../../lib/functions'
 import { modelize } from '../functions'
+import { IIndexEntry } from '..'
 
 function convertOldTypescriptModelsToJson() {
   const { remote } = window.require('electron')
@@ -104,17 +105,14 @@ function migrate() {
     try {
       // DO STUFF HERE
 
-      // data.displayCategory = ''
+      index.push({
+        category: data.category,
+        date: data.date,
+        slug: data.slug,
+        tags: data.tags.split(','),
+      })
 
-      // END DO STUFF HERE
-
-      const item = modelize(data)
-
-      index.push({ slug: item.slug, date: item.date })
-
-      const jsonItem = JSON.stringify(item, null, 2)
-
-      writeFileSync(join(workingDir, item.slug + '.json'), jsonItem)
+      writeFileSync(join(workingDir, 'index.json'), index)
     }
 
     catch(err) {
