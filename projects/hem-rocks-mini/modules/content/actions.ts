@@ -13,6 +13,7 @@ import {
 
   Action,
   IContentItem,
+  IRequestFilters,
 } from './index'
 
 const adminApplyFilter = (filter: string): Action => ({
@@ -55,9 +56,9 @@ const requestDeleteItems = (itemIds: string[]): Action => ({
   payload: itemIds,
 })
 
-const requestReadItems = (page: { page: number, size: number }): Action => ({
+const requestReadItems = (payload: { requestFilters: IRequestFilters, page: number, size: number }): Action => ({
   type: REQUEST_READ_ITEMS,
-  payload: page,
+  payload,
 })
 
 const requestUpdateItems = (items: IContentItem[]): Action => ({
