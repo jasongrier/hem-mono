@@ -1,22 +1,30 @@
-import React, { ReactElement } from 'react'
-import { useSelector } from 'react-redux'
+import React, { ReactElement, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { find } from 'lodash'
 import { MuteButton } from '../../../../lib/modules/player'
 import { RootState } from '../../index'
-import { contentItemToTrack } from '../../modules/content'
+import { contentItemToTrack, requestReadItems } from '../../modules/content'
 
 function GrandPianoHeroine(): ReactElement {
-  const { allProducts, currentContentItem } = useSelector((state: RootState) => ({
+  const { allProducts } = useSelector((state: RootState) => ({
     allProducts: state.content.contentItems,
-    currentContentItem: state.content.currentContentItem,
   }))
 
+  const dispatch = useDispatch()
+
+  useEffect(function fetchContent() {
+    dispatch(requestReadItems({ requestFilters: {
+      slug: 'grand-piano',
+    }, page: 1, size: 10000 }))
+  }, [])
+
   const grandPianoProduct = find(allProducts, { slug: 'grand-piano' })
-  const grandPianoTrackItem = find(allProducts, { slug: grandPianoProduct.trackSlug })
-  const productUrl = '/sound-library/grand-piano'
 
   if (!grandPianoProduct) return (<div />)
+
+  const grandPianoTrackItem = find(allProducts, { slug: grandPianoProduct.trackSlug })
+  const productUrl = '/sound-library/grand-piano'
 
   return (
     <div className="grand-piano-heroine">
@@ -24,10 +32,12 @@ function GrandPianoHeroine(): ReactElement {
         <div className="grand-piano-heroine-image" />
         <div className="grand-piano-heroine-details">
           <div>
-            <MuteButton
-              canStartPlayback={true}
-              track={contentItemToTrack(grandPianoTrackItem, productUrl)}
-            />
+            { grandPianoTrackItem && (
+              <MuteButton
+                canStartPlayback={true}
+                track={contentItemToTrack(grandPianoTrackItem, productUrl)}
+              />
+            )}
           </div>
           <div className="grand-piano-heroine-text">
             <h2>New in Sound Library: <strong>Grand Piano</strong></h2>
