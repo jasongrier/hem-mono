@@ -10,14 +10,18 @@ function InternalHome(): ReactElement {
         <title>{ BASE_SITE_TITLE }</title>
         <meta name="description" content="" />
       </Helmet>
-      <div className="page page-internal-home">
+      <div className="page page-internal page-internal-home clearfix">
         <h1>Internal Pages</h1>
 
-        <div className="page-internal-home-link-group">
+        <div className="page-internal-link-group">
           <h2>All Content Types</h2>
           <ul>
             <li>
               <Link to="apps">Apps</Link>
+              <p>Lorem ipsum dolor sit amet</p>
+            </li>
+            <li>
+              <Link to="articles">Articles</Link>
               <p>Lorem ipsum dolor sit amet</p>
             </li>
             <li>
@@ -48,10 +52,42 @@ function InternalHome(): ReactElement {
               <Link to="tracks">Tracks</Link>
               <p>Lorem ipsum dolor sit amet</p>
             </li>
+            <li>
+              <Link to="tutorials">Tutorials</Link>
+              <p>Lorem ipsum dolor sit amet</p>
+            </li>
+            <li>
+              <Link to="video">Videos</Link>
+              <p>Lorem ipsum dolor sit amet</p>
+            </li>
+            <li>
+              <Link to="venue-archive">Venue Archive</Link>
+              <p>Lorem ipsum dolor sit amet</p>
+            </li>
+            <li>
+              <Link to="venue-calendar">Venue Calendar</Link>
+              <p>Lorem ipsum dolor sit amet</p>
+            </li>
+            <li>
+              <Link to="venue-merch">Venue Merch Table</Link>
+              <p>Lorem ipsum dolor sit amet</p>
+            </li>
+          </ul>
+
+          <h3>Utility Types</h3>
+          <ul>
+            <li>
+              List
+              <p>Lorem ipsum dolor sit amet</p>
+            </li>
+            <li>
+              Playlist
+              <p>Lorem ipsum dolor sit amet</p>
+            </li>
           </ul>
         </div>
 
-        <div className="page-internal-home-link-group">
+        <div className="page-internal-link-group">
           <h2>Midst 2020</h2>
           <ul>
             <li>

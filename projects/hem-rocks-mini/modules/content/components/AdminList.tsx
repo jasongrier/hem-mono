@@ -88,6 +88,7 @@ function AdminList(): ReactElement {
               <option value="tutorial">Tutorials</option>
               <option value="venue-archive">Venue Archive</option>
               <option value="venue-calendar">Venue Calendar</option>
+              <option value="venue-merch">Venue Merch</option>
               <option value="video">Videos</option>
             </select>
           </div>

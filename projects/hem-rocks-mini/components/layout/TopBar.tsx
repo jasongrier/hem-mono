@@ -11,6 +11,17 @@ function TopBar(): ReactElement {
 
   const { pathname } = useLocation()
 
+  const noCartPaths = [
+    '/admin/create',
+    '/admin/list',
+    '/admin/manual-task-runner',
+    '/compilation-iv-artist-info',
+    '/checklists',
+    '/internal',
+  ]
+
+  const showCart = noCartPaths.indexOf(pathname) === -1
+
   const openMegaNavOnClick = useCallback(
     function openMegaNavOnClickFn() {
       dispatch(setMegaNavOpen(true))
@@ -32,21 +43,23 @@ function TopBar(): ReactElement {
           <MainNavItem name="Venue" to="venue-calendar" />
           <MainNavItem name="Apps" />
           <MainNavItem name="Label" />
-          <li className="main-nav-item">
-            <NavLink
-              to={(() => {
-                const [category, filter, filterName] = pathname.replace(/^\//, '').split('/')
+          { showCart && (
+            <li className="main-nav-item">
+              <NavLink
+                to={(() => {
+                  const [category, filter, filterName] = pathname.replace(/^\//, '').split('/')
 
-                if (filter === 'filter') {
-                  return `/${category}/cart/${filterName}`
-                }
+                  if (filter === 'filter') {
+                    return `/${category}/cart/${filterName}`
+                  }
 
-                return `${pathname !== '/' ? pathname : ''}/cart`
-              })()}
-            >
-              Cart
-            </NavLink>
-          </li>
+                  return `${pathname !== '/' ? pathname : ''}/cart`
+                })()}
+              >
+                Cart
+              </NavLink>
+            </li>
+          )}
           <li
             className="main-nav-item"
             onClick={openMegaNavOnClick}
