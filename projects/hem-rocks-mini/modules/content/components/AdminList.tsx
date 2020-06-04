@@ -74,7 +74,6 @@ function AdminList(): ReactElement {
               value={adminFilterApplied}
             >
               <option value="all">All</option>
-              <option value="home-feature">Featured on Home Page</option>
               <option value="apps">Apps</option>
               <option value="article">Articles</option>
               <option value="code">Code</option>

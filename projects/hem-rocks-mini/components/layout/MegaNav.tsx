@@ -85,6 +85,7 @@ function MegaNav(): ReactElement {
             <h3>Etc.</h3>
             <ul>
               <MainNavItem name="Cookie Settings" to="set-cookie-preferences" />
+              <MainNavItem name="Press Kits" />
               <ElectronOnly>
                 <MainNavItem name="Admin" to="admin/list" />
               </ElectronOnly>

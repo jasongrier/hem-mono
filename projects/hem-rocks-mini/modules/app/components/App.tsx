@@ -25,6 +25,7 @@ import {
   Code,
   Label,
   Mixes,
+  PressKits,
   SoundLibrary,
   Tracks,
 } from '../../../routes/content'
@@ -32,6 +33,7 @@ import {
 import {
   Admin,
   DailyChecklist,
+  InternalHome,
 } from '../../../routes/internal'
 
 import {
@@ -293,6 +295,10 @@ function App(): ReactElement {
               <Route exact path="/mixes/filter/:filter" component={Mixes} />
               <Route exact path="/mixes/cart/:filter?" component={Mixes} />
 
+              <Route exact path="/press-kits/:contentItemSlug?/:filter?" component={PressKits} />
+              <Route exact path="/press-kits/filter/:filter" component={PressKits} />
+              <Route exact path="/press-kits/cart/:filter?" component={PressKits} />
+
               <Route exact path="/sound-library/:contentItemSlug?/:filter?" component={SoundLibrary} />
               <Route exact path="/sound-library/filter/:filter" component={SoundLibrary} />
               <Route exact path="/sound-library/cart/:filter?" component={SoundLibrary} />
@@ -312,6 +318,7 @@ function App(): ReactElement {
               <Route exact path="/venue/archive/cart" component={VenueArchive} />
 
               <Route path="/admin" component={Admin} />
+              <Route exact path="/internal" component={InternalHome} />
 
               <Route path="/compilation-iv-artist-info" component={CompilationIVArtistInfo} />
             </Switch>
