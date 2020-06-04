@@ -16,6 +16,7 @@ import {
   requestReadItems as requestReadItemsAc,
 
   modelize,
+  IContentItem,
 } from './index'
 
 function* createItems({ payload }: any) {
@@ -191,9 +192,10 @@ function* updateItems({ payload }: any) {
     execSync(`rm ${distFile}`, { stdio: 'inherit' })
     execSync(`cp ${file} ${distFile}`, { stdio: 'inherit' })
 
-    let index = JSON.parse(readFileSync(indexFile, 'utf8'))
+    const index: IContentItem[] = JSON.parse(readFileSync(indexFile, 'utf8'))
+    const entryIndex = index.findIndex(item => item.slug === updatedItem.slug)
 
-    index.push(updatedItem)
+    index[entryIndex] = updatedItem
 
     writeFileSync(indexFile, JSON.stringify(index, null, 2))
     execSync(`cp ${indexFile} ${distIndexFile}`, { stdio: 'inherit' })

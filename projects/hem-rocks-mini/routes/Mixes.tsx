@@ -1,11 +1,13 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { find } from 'lodash'
 import { MainContentList, contentItemToTrack } from '../modules/content'
-import { TrackPlayPauseButton } from '../../../lib/modules/player'
+import { TrackPlayPauseButton, ITrack } from '../../../lib/modules/player'
 import { BASE_SITE_TITLE } from '../config'
 
-function Tracks(): ReactElement {
+function Mixes(): ReactElement {
   const { filter: currentFilter } = useParams()
 
   return (
@@ -17,16 +19,8 @@ function Tracks(): ReactElement {
       <div className="page page-tracks">
         <MainContentList
           currentFilter={currentFilter}
-          filters={[
-            'Album Tracks',
-            'Exclusives',
-            'Live',
-            'Made with SL',
-            'Rarities',
-            'Sound Library',
-          ]}
-          category="tracks"
-          title="Tracks"
+          category="mixes"
+          title="Mixes"
         >
           {(item) => {
             const track = contentItemToTrack(item, '')
@@ -40,4 +34,4 @@ function Tracks(): ReactElement {
   )
 }
 
-export default Tracks
+export default Mixes
