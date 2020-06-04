@@ -22,7 +22,7 @@
   "secondaryTitle": "Stylish standalone version of the Seurat MIDI device<br>Integrates with every DAW",
   "slug": "seurat-standalone",
   "sticky": true,
-  "tags": "desktop-mobile-apps, javascript, react, electron, sound, composition, performance, home-feature",
+  "tags": "desktop-mobile-apps, javascript, react, electron, sound, composition, performance",
   "title": "Seurat",
   "titleWrapping": "",
   "trackSlug": "",
