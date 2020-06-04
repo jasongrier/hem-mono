@@ -21,20 +21,30 @@ import { CAMPAIGN_MONITOR_FORM_ID } from '../../../config'
 import { RootState } from '../../../index'
 
 import {
-  Admin,
   Apps,
   Code,
-  CompilationIVArtistInfo,
-  Home,
-  Info,
   Label,
   Mixes,
   SoundLibrary,
   Tracks,
+} from '../../../routes/content'
+
+import {
+  Admin,
+  DailyChecklist,
+} from '../../../routes/internal'
+
+import {
+  CompilationIVArtistInfo,
+  Home,
+  Info,
+} from '../../../routes/static'
+
+import {
   Venue,
   VenueArchive,
   VenueStage,
-} from '../../../routes'
+} from '../../../routes/venue'
 
 function App(): ReactElement {
   const {

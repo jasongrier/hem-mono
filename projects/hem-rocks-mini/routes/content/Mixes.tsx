@@ -1,11 +1,9 @@
-import React, { ReactElement, useState, useEffect } from 'react'
+import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
-import { Link, useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { find } from 'lodash'
-import { MainContentList, contentItemToTrack } from '../modules/content'
-import { TrackPlayPauseButton, ITrack } from '../../../lib/modules/player'
-import { BASE_SITE_TITLE } from '../config'
+import { useParams } from 'react-router-dom'
+import { MainContentList, contentItemToTrack } from '../../modules/content'
+import { TrackPlayPauseButton } from '../../../../lib/modules/player'
+import { BASE_SITE_TITLE } from '../../config'
 
 function Mixes(): ReactElement {
   const { filter: currentFilter } = useParams()

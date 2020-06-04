@@ -3,10 +3,10 @@ import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { find } from 'lodash'
-import { MainContentList, contentItemToTrack } from '../modules/content'
-import { TrackPlayPauseButton } from '../../../lib/modules/player'
-import { BASE_SITE_TITLE } from '../config'
-import { RootState } from '../index'
+import { MainContentList, contentItemToTrack } from '../../modules/content'
+import { TrackPlayPauseButton } from '../../../../lib/modules/player'
+import { BASE_SITE_TITLE } from '../../config'
+import { RootState } from '../../index'
 
 function SoundLibrary(): ReactElement {
 

@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
 import { Link, useParams } from 'react-router-dom'
-import { MainContentList } from '../modules/content'
-import { BASE_SITE_TITLE } from '../config'
+import { MainContentList } from '../../modules/content'
+import { BASE_SITE_TITLE } from '../../config'
 
 function Apps(): ReactElement {
 
@@ -17,13 +17,6 @@ function Apps(): ReactElement {
       <div className="page page-apps">
         <MainContentList
           currentFilter={currentFilter}
-          // filters={[
-          //   'Composition',
-          //   'Expanded Poetics',
-          //   'Pedagogy',
-          //   'Performance',
-          //   'Sound Studies',
-          // ]}
           category="apps"
           title="Apps"
         >
