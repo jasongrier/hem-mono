@@ -24,6 +24,7 @@ import {
   Apps,
   Code,
   Label,
+  Merch,
   Mixes,
   PressKits,
   SoundLibrary,
@@ -32,7 +33,7 @@ import {
 
 import {
   Admin,
-  DailyChecklist,
+  Checklists,
   InternalHome,
 } from '../../../routes/internal'
 
@@ -45,6 +46,7 @@ import {
 import {
   Venue,
   VenueArchive,
+  VenueMerch,
   VenueStage,
 } from '../../../routes/venue'
 
@@ -291,6 +293,10 @@ function App(): ReactElement {
               <Route exact path="/label/filter/:filter" component={Label} />
               <Route exact path="/label/cart/:filter?" component={Label} />
 
+              <Route exact path="/merch/:contentItemSlug?/:filter?" component={Merch} />
+              <Route exact path="/merch/filter/:filter" component={Merch} />
+              <Route exact path="/merch/cart/:filter?" component={Merch} />
+
               <Route exact path="/mixes/:contentItemSlug?/:filter?" component={Mixes} />
               <Route exact path="/mixes/filter/:filter" component={Mixes} />
               <Route exact path="/mixes/cart/:filter?" component={Mixes} />
@@ -311,16 +317,22 @@ function App(): ReactElement {
               <Route exact path="/venue-calendar/filter/:filter" component={Venue} />
               <Route exact path="/venue-calendar/cart/:filter?" component={Venue} />
 
-              <Route exact path="/venue/cart" component={Venue} />
-              <Route exact path="/venue/main-stage" component={VenueStage} />
-              <Route exact path="/venue/main-stage/cart" component={VenueStage} />
-              <Route exact path="/venue/archive" component={VenueArchive} />
-              <Route exact path="/venue/archive/cart" component={VenueArchive} />
+              <Route exact path="/venue-main-stage" component={VenueStage} />
+              <Route exact path="/venue-main-stage/cart" component={VenueStage} />
+
+              <Route exact path="/venue-merch/:contentItemSlug?/:filter?" component={VenueMerch} />
+              <Route exact path="/venue-merch/filter/:filter" component={VenueMerch} />
+              <Route exact path="/venue-merch/cart/:filter?" component={VenueMerch} />
+
+              <Route exact path="/venue-archive/:contentItemSlug?/:filter?" component={VenueArchive} />
+              <Route exact path="/venue-archive/filter/:filter" component={VenueArchive} />
+              <Route exact path="/venue-archive/cart/:filter?" component={VenueArchive} />
+
+              <Route path="/compilation-iv-artist-info" component={CompilationIVArtistInfo} />
 
               <Route path="/admin" component={Admin} />
               <Route exact path="/internal" component={InternalHome} />
-
-              <Route path="/compilation-iv-artist-info" component={CompilationIVArtistInfo} />
+              <Route exact path="/checklists" component={Checklists} />
             </Switch>
           </div>
         </main>

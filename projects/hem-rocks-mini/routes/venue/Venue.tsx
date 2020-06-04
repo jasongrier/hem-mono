@@ -24,13 +24,13 @@ function Venue(): ReactElement {
         <h1>Venue</h1>
         <VenueSubnav />
         <MainContentList
-          linkTo={(event) => event.slug === activeLiveStream ? '/venue/main-stage' : `/venue-calendar/${event.slug}`}
+          linkTo={(event) => event.slug === activeLiveStream ? '/venue-main-stage' : `/venue-calendar/${event.slug}`}
           category="venue-calendar"
         >
           {(event) => {
             if (event.slug === activeLiveStream) {
               return (
-                <Link to="/venue/main-stage">
+                <Link to="/venue-main-stage">
                   <PlayPauseButton
                     playing={false}
                     onClick={noop}

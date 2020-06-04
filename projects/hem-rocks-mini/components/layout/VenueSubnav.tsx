@@ -9,13 +9,13 @@ function VenueSubnav(): ReactElement {
           <NavLink exact to="/venue-calendar">Calendar</NavLink>
         </li>
         <li>
-          <NavLink to="/venue/main-stage">Main Stage</NavLink>
+          <NavLink to="/venue-main-stage">Main Stage</NavLink>
         </li>
         <li>
-          <NavLink to="/venue/merch-table">Merch Table</NavLink>
+          <NavLink to="/venue-merch">Merch Table</NavLink>
         </li>
         <li>
-          <NavLink to="/venue/archive">Archive</NavLink>
+          <NavLink to="/venue-archive">Archive</NavLink>
         </li>
       </ul>
     </nav>

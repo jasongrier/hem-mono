@@ -1,6 +1,7 @@
 export { default as Apps } from './Apps'
 export { default as Code } from './Code'
 export { default as Label } from './Label'
+export { default as Merch } from './Merch'
 export { default as Mixes } from './Mixes'
 export { default as PressKits } from './PressKits'
 export { default as Tracks } from './Tracks'
