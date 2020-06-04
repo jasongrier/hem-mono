@@ -2,10 +2,10 @@ import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
 import { noop } from 'lodash'
-import { PlayPauseButton } from '../../../lib/packages/hem-buttons'
-import { VenueSubnav } from '../components/layout'
-import { MainContentList } from '../modules/content'
-import { BASE_SITE_TITLE } from '../config'
+import { PlayPauseButton } from '../../../../lib/packages/hem-buttons'
+import { VenueSubnav } from '../../components/layout'
+import { MainContentList } from '../../modules/content'
+import { BASE_SITE_TITLE } from '../../config'
 
 function VenueArchive(): ReactElement {
   return (

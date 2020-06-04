@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
-import { VenueSubnav } from '../components/layout'
-import { BASE_SITE_TITLE } from '../config'
+import { VenueSubnav } from '../../components/layout'
+import { BASE_SITE_TITLE } from '../../config'
 
 declare const Twitch: any
 

@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
-import { assetHostHostname } from '../functions'
-import { BASE_SITE_TITLE } from '../config'
+import { assetHostHostname } from '../../functions'
+import { BASE_SITE_TITLE } from '../../config'
 
 function Info(): ReactElement {
   return (

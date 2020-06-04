@@ -3,11 +3,11 @@ import { Helmet } from 'react-helmet'
 import { Link, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { find } from 'lodash'
-import { MainContentList, contentItemToTrack } from '../modules/content'
-import { TrackPlayPauseButton } from '../../../lib/modules/player'
-import { LabelTimeline } from '../components/timeline'
-import { BASE_SITE_TITLE } from '../config'
-import { RootState } from '../index'
+import { MainContentList, contentItemToTrack } from '../../modules/content'
+import { TrackPlayPauseButton } from '../../../../lib/modules/player'
+import { LabelTimeline } from '../../components/timeline'
+import { BASE_SITE_TITLE } from '../../config'
+import { RootState } from '../../index'
 
 function Label(): ReactElement {
   const { allContentItems } = useSelector((state: RootState) => ({

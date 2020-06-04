@@ -1,10 +1,10 @@
 import React, { ReactElement } from 'react'
 import { useSelector } from 'react-redux'
-import { GrandPianoHeroine } from '../components/heroines'
+import { GrandPianoHeroine } from '../../components/heroines'
 import { Helmet } from 'react-helmet'
-import { MainContentList, getContentItemsFromList } from '../modules/content'
-import { BASE_SITE_TITLE } from '../config'
-import { RootState } from '../index'
+import { MainContentList, getContentItemsFromList } from '../../modules/content'
+import { BASE_SITE_TITLE } from '../../config'
+import { RootState } from '../../index'
 
 function Home(): ReactElement {
   const { contentItems } = useSelector((state: RootState) => ({

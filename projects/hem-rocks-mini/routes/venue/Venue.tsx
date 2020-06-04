@@ -3,11 +3,11 @@ import { Helmet } from 'react-helmet'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { noop } from 'lodash'
-import { PlayPauseButton } from '../../../lib/packages/hem-buttons'
-import { VenueSubnav } from '../components/layout'
-import { MainContentList } from '../modules/content'
-import { BASE_SITE_TITLE } from '../config'
-import { RootState } from '../index'
+import { PlayPauseButton } from '../../../../lib/packages/hem-buttons'
+import { VenueSubnav } from '../../components/layout'
+import { MainContentList } from '../../modules/content'
+import { BASE_SITE_TITLE } from '../../config'
+import { RootState } from '../../index'
 
 function Venue(): ReactElement {
   const { activeLiveStream } = useSelector((state: RootState) => ({
