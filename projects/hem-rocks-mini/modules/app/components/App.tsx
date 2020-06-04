@@ -24,10 +24,11 @@ import {
   Admin,
   Apps,
   Code,
+  CompilationIVArtistInfo,
   Home,
   Info,
   Label,
-  CompilationIVArtistInfo,
+  Mixes,
   SoundLibrary,
   Tracks,
   Venue,
@@ -278,6 +279,9 @@ function App(): ReactElement {
               <Route exact path="/label/filter/:filter" component={Label} />
               <Route exact path="/label/cart/:filter?" component={Label} />
 
+              <Route exact path="/mixes/:contentItemSlug?/:filter?" component={Mixes} />
+              <Route exact path="/mixes/filter/:filter" component={Mixes} />
+              <Route exact path="/mixes/cart/:filter?" component={Mixes} />
 
               <Route exact path="/sound-library/:contentItemSlug?/:filter?" component={SoundLibrary} />
               <Route exact path="/sound-library/filter/:filter" component={SoundLibrary} />

@@ -85,7 +85,7 @@ function AdminList(): ReactElement {
               <option value="playlist">Playlist</option>
               <option value="press">Press</option>
               <option value="sound-library">Sound Library</option>
-              <option value="track">Track</option>
+              <option value="tracks">Tracks</option>
               <option value="tutorial">Tutorials</option>
               <option value="venue-archive">Venue Archive</option>
               <option value="venue-calendar">Venue Calendar</option>
