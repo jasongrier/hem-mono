@@ -21,13 +21,15 @@ import { CAMPAIGN_MONITOR_FORM_ID } from '../../../config'
 import { RootState } from '../../../index'
 
 import {
-  Apps,
   Admin,
+  Apps,
+  Code,
   Home,
   Info,
   Label,
-  Code,
+  CompilationIVArtistInfo,
   SoundLibrary,
+  Tracks,
   Venue,
   VenueArchive,
   VenueStage,
@@ -281,6 +283,10 @@ function App(): ReactElement {
               <Route exact path="/sound-library/filter/:filter" component={SoundLibrary} />
               <Route exact path="/sound-library/cart/:filter?" component={SoundLibrary} />
 
+              <Route exact path="/tracks/:contentItemSlug?/:filter?" component={Tracks} />
+              <Route exact path="/tracks/filter/:filter" component={Tracks} />
+              <Route exact path="/tracks/cart/:filter?" component={Tracks} />
+
               <Route exact path="/venue-calendar/:contentItemSlug?/:filter?" component={Venue} />
               <Route exact path="/venue-calendar/filter/:filter" component={Venue} />
               <Route exact path="/venue-calendar/cart/:filter?" component={Venue} />
@@ -292,6 +298,8 @@ function App(): ReactElement {
               <Route exact path="/venue/archive/cart" component={VenueArchive} />
 
               <Route path="/admin" component={Admin} />
+
+              <Route path="/compilation-iv-artist-info" component={CompilationIVArtistInfo} />
             </Switch>
           </div>
         </main>

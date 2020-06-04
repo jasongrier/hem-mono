@@ -22,6 +22,9 @@ function PlayerBar(): ReactElement {
 
   const toggleExpandedOnClick = useCallback(
     function toggleExpandedOnClickFn() {
+      if (expanded) {
+        setPlaylistExpanded(false)
+      }
       setExpanded(!expanded)
     }, [expanded],
   )

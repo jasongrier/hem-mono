@@ -105,7 +105,9 @@ function migrate() {
     try {
       // DO STUFF HERE
 
-      // data.displayCategory = ''
+      if (data.category === 'track') {
+        data.category = 'tracks'
+      }
 
       // END DO STUFF HERE
 
