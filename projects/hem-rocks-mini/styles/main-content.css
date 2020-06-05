@@ -268,10 +268,29 @@
   margin: 0;
 }
 
-.main-content-box-actions .hem-play-pause-button {
+.main-content-box-actions .hem-player-track-play-pause-button {
+  position: relative;
   float: right;
+  width: 60px;
+  height: 60px;
   margin: 0 0 0 10px;
   background-color: var(--line-orange);
+}
+
+.main-content-box-actions .hem-play-pause-button {
+  background-color: var(--line-orange);
+}
+
+.main-content-box-actions .hem-player-track-play-pause-button .hem-spinner svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 60px;
+}
+
+.main-content-box-actions .hem-player-track-play-pause-button .hem-spinner svg rect {
+  fill: #fff !important;
 }
 
 .main-content-box-actions .action-button,
