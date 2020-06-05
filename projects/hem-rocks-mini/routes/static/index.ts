@@ -1,3 +1,6 @@
+export { default as About } from './About'
 export { default as CompilationIVArtistInfo } from './CompilationIVArtistInfo'
+export { default as Contact } from './Contact'
+export { default as CookieSettings } from './CookieSettings'
 export { default as Home } from './Home'
-export { default as Info } from './Info'
+export { default as MailingList } from './MailingList'

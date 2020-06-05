@@ -31,6 +31,36 @@
   height: 10px;
 }
 
+#hem-rocks-website-email-nag {
+  padding: 10px;
+  color: #fff;
+  font-family: Avenir, sans-serif;
+}
+
+#hem-rocks-website-email-nag h3 {
+  margin: 0 0 10px 0;
+  font-weight: normal;
+  font-size: 24px;
+}
+
+#hem-rocks-website-email-nag p {
+  margin: 0 0 10px 0;
+  font-weight: normal;
+  font-size: 11px;
+}
+
+#hem-rocks-website-email-nag input {
+  display: block;
+  width: 300px;
+  height: 36px;
+  margin: 0 0 10px 0;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+  background: #fff;
+  font-family: Avenir, sans-serif;
+  font-size: 14px;
+}
+
 #hem-rocks-website-email-nag button {
   width: 120px;
   height: 36px;

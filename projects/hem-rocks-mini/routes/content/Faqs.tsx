@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router-dom'
-import { MainContentList } from '../../modules/content'
+import { MainContentList, contentItemToTrack } from '../../modules/content'
+import { TrackPlayPauseButton } from '../../../../lib/modules/player'
 import { BASE_SITE_TITLE } from '../../config'
 
-function Press(): ReactElement {
-
+function Faqs(): ReactElement {
   const { filter: currentFilter } = useParams()
 
   return (
@@ -14,21 +14,22 @@ function Press(): ReactElement {
         <title>{ BASE_SITE_TITLE }</title>
         <meta name="description" content="" />
       </Helmet>
-      <div className="page page-press">
+      <div className="page page-faqs">
         <MainContentList
           currentFilter={currentFilter}
           filters={[
-            'Label',
             'Sound Library',
-            'Technology',
-            'Events',
+            'General',
+            'Shop',
+            'HEM Organisation',
+            'Label',
           ]}
-          category="press"
-          title="Press"
+          category="faqs"
+          title="FAQ's"
         />
       </div>
     </>
   )
 }
 
-export default Press
+export default Faqs
