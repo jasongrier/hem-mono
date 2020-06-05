@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect } from 'react'
-import { Route, Switch, useLocation, useHistory } from 'react-router-dom'
+import { useLocation, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { find, isArray, compact } from 'lodash'
+import { find, isArray } from 'lodash'
 import ReactGA from 'react-ga'
 import Cookies from 'js-cookie'
 import { CartPopup, setCartProducts } from '../../cart'
@@ -16,39 +16,9 @@ import { usePrevious } from '../../../../../lib/hooks'
 import { collapseTopBar, expandTopBar, getCookieName } from '../index'
 import { SiteFooter, TopBar } from '../../../components/layout'
 import { requestActiveLiveStream, setCookieApproval, setCookiePreferencesSet } from '../actions'
-import CookieApproval from './CookieApproval'
+import { CookieApproval, RoutingHub } from './index'
 import { CAMPAIGN_MONITOR_FORM_ID } from '../../../config'
 import { RootState } from '../../../index'
-
-import {
-  Apps,
-  Code,
-  Label,
-  Merch,
-  Mixes,
-  PressKits,
-  SoundLibrary,
-  Tracks,
-} from '../../../routes/content'
-
-import {
-  Admin,
-  Checklists,
-  InternalHome,
-} from '../../../routes/internal'
-
-import {
-  CompilationIVArtistInfo,
-  Home,
-  Info,
-} from '../../../routes/static'
-
-import {
-  Venue,
-  VenueArchive,
-  VenueMerch,
-  VenueStage,
-} from '../../../routes/venue'
 
 function App(): ReactElement {
   const {
@@ -57,16 +27,12 @@ function App(): ReactElement {
     cookiesMarketingApproved,
     currentContentItem,
     currentlyOpenPopUp,
-    sitePlaylist,
-    topBarCollapsed,
   } = useSelector((state: RootState) => ({
     cookiesAnalyticsApproved: state.app.cookiesAnalyticsApproved,
     cookiesMarketingApproved: state.app.cookiesMarketingApproved,
     contentItems: state.content.contentItems,
     currentContentItem: state.content.currentContentItem,
     currentlyOpenPopUp: state.popups.currentlyOpenPopUp,
-    sitePlaylist: state.player.playlist,
-    topBarCollapsed: state.app.topBarCollapsed,
   }))
 
   const dispatch = useDispatch()
@@ -273,67 +239,7 @@ function App(): ReactElement {
 
         <main className="main-content">
           <div className="tabs-content">
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/cart" component={Home} />
-              <Route exact path="/thank-you" component={Home} />
-
-              <Route exact path="/info" component={Info} />
-              <Route exact path="/info/cart" component={Info} />
-
-              <Route exact path="/code/:contentItemSlug?/:filter?" component={Code} />
-              <Route exact path="/code/filter/:filter" component={Code} />
-              <Route exact path="/code/cart/:filter?" component={Code} />
-
-              <Route exact path="/apps/:contentItemSlug?/:filter?" component={Apps} />
-              <Route exact path="/apps/filter/:filter" component={Apps} />
-              <Route exact path="/apps/cart/:filter?" component={Apps} />
-
-              <Route exact path="/label/:contentItemSlug?/:filter?" component={Label} />
-              <Route exact path="/label/filter/:filter" component={Label} />
-              <Route exact path="/label/cart/:filter?" component={Label} />
-
-              <Route exact path="/merch/:contentItemSlug?/:filter?" component={Merch} />
-              <Route exact path="/merch/filter/:filter" component={Merch} />
-              <Route exact path="/merch/cart/:filter?" component={Merch} />
-
-              <Route exact path="/mixes/:contentItemSlug?/:filter?" component={Mixes} />
-              <Route exact path="/mixes/filter/:filter" component={Mixes} />
-              <Route exact path="/mixes/cart/:filter?" component={Mixes} />
-
-              <Route exact path="/press-kits/:contentItemSlug?/:filter?" component={PressKits} />
-              <Route exact path="/press-kits/filter/:filter" component={PressKits} />
-              <Route exact path="/press-kits/cart/:filter?" component={PressKits} />
-
-              <Route exact path="/sound-library/:contentItemSlug?/:filter?" component={SoundLibrary} />
-              <Route exact path="/sound-library/filter/:filter" component={SoundLibrary} />
-              <Route exact path="/sound-library/cart/:filter?" component={SoundLibrary} />
-
-              <Route exact path="/tracks/:contentItemSlug?/:filter?" component={Tracks} />
-              <Route exact path="/tracks/filter/:filter" component={Tracks} />
-              <Route exact path="/tracks/cart/:filter?" component={Tracks} />
-
-              <Route exact path="/venue-calendar/:contentItemSlug?/:filter?" component={Venue} />
-              <Route exact path="/venue-calendar/filter/:filter" component={Venue} />
-              <Route exact path="/venue-calendar/cart/:filter?" component={Venue} />
-
-              <Route exact path="/venue-main-stage" component={VenueStage} />
-              <Route exact path="/venue-main-stage/cart" component={VenueStage} />
-
-              <Route exact path="/venue-merch/:contentItemSlug?/:filter?" component={VenueMerch} />
-              <Route exact path="/venue-merch/filter/:filter" component={VenueMerch} />
-              <Route exact path="/venue-merch/cart/:filter?" component={VenueMerch} />
-
-              <Route exact path="/venue-archive/:contentItemSlug?/:filter?" component={VenueArchive} />
-              <Route exact path="/venue-archive/filter/:filter" component={VenueArchive} />
-              <Route exact path="/venue-archive/cart/:filter?" component={VenueArchive} />
-
-              <Route path="/compilation-iv-artist-info" component={CompilationIVArtistInfo} />
-
-              <Route path="/admin" component={Admin} />
-              <Route exact path="/internal" component={InternalHome} />
-              <Route exact path="/checklists" component={Checklists} />
-            </Switch>
+            <RoutingHub />
           </div>
         </main>
         <footer className="main-footer">
@@ -394,17 +300,21 @@ function App(): ReactElement {
             }}
           >
             {({ dismissNag }: any) => (
-              <CampaignMonitorForm
-                id={CAMPAIGN_MONITOR_FORM_ID}
-                onFormSubmitted={() => {
-                  ReactGA.event({
-                    category: 'User',
-                    action: 'Joined the mailing list from the nag popup.',
-                  })
-                  dismissNag()
-                }}
-                submitButtonText="Sign me up!"
-              />
+              <>
+                <h3>HEM Newsletter</h3>
+                <p>Subscribe to HEM to receive updates on projects and happenings; sound and software.</p>
+                <CampaignMonitorForm
+                  id={CAMPAIGN_MONITOR_FORM_ID}
+                  onFormSubmitted={() => {
+                    ReactGA.event({
+                      category: 'User',
+                      action: 'Joined the mailing list from the nag popup.',
+                    })
+                    dismissNag()
+                  }}
+                  submitButtonText="Sign me up!"
+                />
+              </>
             )}
           </NagToaster>
         </ElectronNot>

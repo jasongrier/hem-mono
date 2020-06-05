@@ -27,6 +27,10 @@ function Checklists(): ReactElement {
         <ul>
           <li><input type="checkbox" />paypal@hem.rocks</li>
         </ul>
+        <h3>Perform these tasks</h3>
+        <ul>
+          <li><input type="checkbox" />Run the Selenium tests</li>
+        </ul>
       </div>
       <div className="page-internal-link-group">
         <h2>Weekly</h2>

@@ -74,7 +74,7 @@ function MegaNav(): ReactElement {
           <div className="mega-nav-section">
             <h3>Support</h3>
             <ul>
-              <MainNavItem name="FAQ's" />
+              <MainNavItem name="FAQ's" to="faqs" />
               <MainNavItem name="Tutorials" />
               <MainNavItem name="User Guides" />
               <MainNavItem name="Contact" />
@@ -84,7 +84,7 @@ function MegaNav(): ReactElement {
           <div className="mega-nav-section">
             <h3>Etc.</h3>
             <ul>
-              <MainNavItem name="Cookie Settings" to="set-cookie-preferences" />
+              <MainNavItem name="Cookie Settings" />
               <MainNavItem name="Press Kits" />
               <ElectronOnly>
                 <MainNavItem name="Admin" to="admin/list" />

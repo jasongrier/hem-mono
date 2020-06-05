@@ -1,10 +1,12 @@
 import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
 import { Link, useParams } from 'react-router-dom'
+import { noop } from 'lodash'
 import { MainContentList } from '../../modules/content'
 import { BASE_SITE_TITLE } from '../../config'
+import { PlayPauseButton } from '../../../../lib/packages/hem-buttons'
 
-function Code(): ReactElement {
+function Videos(): ReactElement {
   const { filter: currentFilter } = useParams()
 
   return (
@@ -13,29 +15,26 @@ function Code(): ReactElement {
         <title>{ BASE_SITE_TITLE }</title>
         <meta name="description" content="" />
       </Helmet>
-      <div className="page page-code">
+      <div className="page page-videos">
         <MainContentList
-          additionalCategory="apps"
+          additionalCategory="tutorials"
           currentFilter={currentFilter}
           filters={[
-            'Composition',
-            'Desktop/Mobile Apps',
-            'Electron',
-            'Expanded Poetics',
-            'Javascript',
-            'New Media',
-            'NPM Modules',
-            'Pedagogy',
-            'Performance',
-            'React',
-            'Sound Studies',
+            'Live',
+            'Music',
+            'Original',
+            'Random',
+            'Tutorials',
           ]}
-          category="code"
-          title="Code"
+          category="videos"
+          title="Videos"
         >
           {(project) => (
-            <Link to={`/code/${project.slug}`}>
-              { project.acceptingDonations ? 'Contribute' : 'Learn more' }
+            <Link to={`/videos/${project.slug}`}>
+              <PlayPauseButton
+                playing={false}
+                onClick={noop}
+              />
             </Link>
           )}
         </MainContentList>
@@ -44,4 +43,4 @@ function Code(): ReactElement {
   )
 }
 
-export default Code
+export default Videos
