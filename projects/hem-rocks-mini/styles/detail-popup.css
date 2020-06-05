@@ -28,10 +28,6 @@
 }
 
 .detail-popup header .detail-popup-key-art-image {
-  /* position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1; */
   width: 100%;
   height: 360px;
   background-position: center;
@@ -177,12 +173,18 @@
   text-align: center;
 }
 
-.detail-popup header .hem-play-pause-button {
+.detail-popup header .hem-player-track-play-pause-button {
   position: absolute;
   bottom: 50px;
   right: 60px;
+  width: 60px;
+  height: 60px;
   transform: scale(2);
   transform-origin: bottom right;
+  background-color: var(--line-orange);
+}
+
+.detail-popup header .hem-play-pause-button {
   background-color: var(--line-orange);
 }
 
@@ -190,6 +192,18 @@
   bottom: 50px;
   left: 10px;
   transform: none;
+}
+
+.detail-popup header .hem-player-track-play-pause-button .hem-spinner svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 60px;
+}
+
+.detail-popup header .hem-player-track-play-pause-button .hem-spinner svg rect {
+  fill: #fff !important;
 }
 
 .reveal-purchase-form-button {

@@ -66,7 +66,6 @@ const reducer = (
     case SET_PLAYER_PLAYLIST: {
       return produce(state, draftState => {
         draftState.playlist = payload
-        draftState.currentTrack = payload[0]
       })
     }
 
