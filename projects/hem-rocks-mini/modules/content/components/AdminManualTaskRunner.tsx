@@ -1,5 +1,6 @@
 import React, { ReactElement, useEffect, useState, useCallback } from 'react'
 import uuid from 'uuid/v1'
+import { slugify } from 'voca'
 import { autoParagraph } from '../../../../../lib/functions'
 import { modelize } from '../functions'
 import { IIndexEntry } from '..'
@@ -76,8 +77,10 @@ function convertOldTypescriptModelsToJson() {
 }
 
 function soundLibrarySampleTrack(soundTitle: string, soundSlug: string, number: number, date: string = '09.01.2017') {
+  const title = soundTitle + ' Sample Track ' + number
   return {
-    title: soundTitle + ' Sample Track ' + number,
+    title,
+    slug: slugify(title),
     category: 'tracks',
     tags: 'attachment',
     attribution: 'HEM Sound Library',
@@ -114,16 +117,28 @@ function migrate() {
     if (extname(file) !== '.json') continue
 
     const data = JSON.parse(readFileSync(`${contentDir}/${file}`, 'utf8'))
+    const parentItem = modelize(data)
+
+    if (!parentItem.trackSlug) {
+      parentItem.trackSlug = slugify(soundLibrarySampleTrack(parentItem.title, parentItem.slug, 1, parentItem.date).slug)
+    }
+
+    index.push(parentItem)
+
+    if (data.slug === 'grand-piano') continue
 
     try {
       // DO STUFF HERE
 
-      if (data.category === 'sound-library') {
+      if (parentItem.category === 'sound-library') {
         for (let i = 1; i <= 5; i ++) {
-          const item = modelize(soundLibrarySampleTrack(data.title, data.slug, i, data.date))
+          const item = modelize(soundLibrarySampleTrack(parentItem.title, parentItem.slug, i, parentItem.date))
+
           index.push(item)
+
           const jsonItem = JSON.stringify(item, null, 2)
-          writeFileSync(join(workingDir, item.slug + '.json'), jsonItem)
+
+          writeFileSync(join(workingDir, slugify(item.title) + '.json'), jsonItem)
         }
       }
 
