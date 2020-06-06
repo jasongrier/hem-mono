@@ -76,22 +76,6 @@ function convertOldTypescriptModelsToJson() {
   execSync(`cp -rf ${staticSrcDir} ${staticDestDir}`, { stdio: 'inherit' })
 }
 
-function soundLibrarySampleTrack(soundTitle: string, soundSlug: string, number: number, date: string = '09.01.2017') {
-  const title = soundTitle + ' Sample Track ' + number
-  return {
-    title,
-    slug: slugify(title),
-    category: 'tracks',
-    tags: 'attachment, sound-library',
-    attribution: 'HEM Sound Library',
-    attributionLink: '/sound-library',
-    date,
-    relatedContent: soundSlug,
-    relatedContentLink: '/sound-library/' + soundSlug,
-    published: true,
-  }
-}
-
 function migrate() {
   const { remote } = window.require('electron')
   const { existsSync, readdirSync, readFileSync, writeFileSync } = remote.require('fs')
@@ -118,30 +102,20 @@ function migrate() {
     if (extname(file) !== '.json') continue
 
     const data = JSON.parse(readFileSync(`${contentDir}/${file}`, 'utf8'))
-    const parentItem = modelize(data)
 
-    if (!parentItem.trackSlug) {
-      parentItem.trackSlug = slugify(soundLibrarySampleTrack(parentItem.title, parentItem.slug, 1, parentItem.date).slug)
-    }
-
-    index.push(parentItem)
-
-    if (data.slug === 'grand-piano') continue
 
     try {
       // DO STUFF HERE
 
-      if (parentItem.category === 'sound-library') {
-        for (let i = 1; i <= 5; i ++) {
-          const item = modelize(soundLibrarySampleTrack(parentItem.title, parentItem.slug, i, parentItem.date))
+      const item = modelize(data)
 
-          index.push(item)
+      item.keyArt = item.slug + '.jpg'
 
-          const jsonItem = JSON.stringify(item, null, 2)
+      index.push(item)
 
-          writeFileSync(join(workingDir, slugify(item.title) + '.json'), jsonItem)
-        }
-      }
+      const jsonItem = JSON.stringify(item, null, 2)
+
+      writeFileSync(join(workingDir, slugify(item.title) + '.json'), jsonItem)
 
       // END DO STUFF HERE
     }

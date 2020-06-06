@@ -19,6 +19,7 @@ function modelize(rawContentItem: any): IContentItem {
     hasFixedPrice: rawContentItem.hasFixedPrice || false,
     id: rawContentItem.id || '',
     isDigitalProduct: rawContentItem.isDigitalProduct || false,
+    keyArt: rawContentItem.keyArt || '',
     published: rawContentItem.published || false,
     relatedContent: rawContentItem.relatedContent || '',
     relatedContentLink: rawContentItem.relatedContentLink || '',

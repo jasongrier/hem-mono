@@ -18,6 +18,7 @@ export interface IContentItem {
   hasFixedPrice: boolean
   id: string
   isDigitalProduct: boolean
+  keyArt: string
   published: boolean
   relatedContent: string
   relatedContentLink: string
@@ -62,6 +63,7 @@ export const fieldTypes: IContentItem = {
   hasFixedPrice: false,
   id: 'text',
   isDigitalProduct: false,
+  keyArt: 'text',
   published: false,
   relatedContent: 'text',
   relatedContentLink: 'text',
