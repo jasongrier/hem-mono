@@ -82,12 +82,13 @@ function soundLibrarySampleTrack(soundTitle: string, soundSlug: string, number: 
     title,
     slug: slugify(title),
     category: 'tracks',
-    tags: 'attachment',
+    tags: 'attachment, sound-library',
     attribution: 'HEM Sound Library',
     attributionLink: '/sound-library',
     date,
     relatedContent: soundSlug,
     relatedContentLink: '/sound-library/' + soundSlug,
+    published: true,
   }
 }
 

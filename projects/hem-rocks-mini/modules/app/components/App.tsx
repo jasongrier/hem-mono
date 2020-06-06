@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect } from 'react'
 import { useLocation, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { find, isArray } from 'lodash'
+import { find, isArray, map } from 'lodash'
 import ReactGA from 'react-ga'
 import Cookies from 'js-cookie'
 import { CartPopup, setCartProducts } from '../../cart'
@@ -42,11 +42,23 @@ function App(): ReactElement {
   const history = useHistory()
 
   const genericRoutedPopups = [
-    { basePath: 'label', id: 'detail-popup' },
     { basePath: 'apps', id: 'detail-popup' },
+    { basePath: 'code', id: 'detail-popup' },
+    { basePath: 'faqs', id: 'detail-popup' },
+    { basePath: 'faqs', id: 'detail-popup' },
+    { basePath: 'label', id: 'detail-popup' },
+    { basePath: 'merch', id: 'detail-popup' },
+    { basePath: 'mixes', id: 'detail-popup' },
+    { basePath: 'press', id: 'detail-popup' },
+    { basePath: 'press-kits', id: 'detail-popup' },
     { basePath: 'sound-library', id: 'detail-popup' },
-    { basePath: 'venue-calendar', id: 'detail-popup' },
+    { basePath: 'tracks', id: 'detail-popup' },
+    { basePath: 'tutorials', id: 'detail-popup' },
+    { basePath: 'user-guides', id: 'detail-popup' },
     { basePath: 'venue-archive', id: 'detail-popup' },
+    { basePath: 'venue-calendar', id: 'detail-popup' },
+    { basePath: 'venue-merch', id: 'detail-popup' },
+    { basePath: 'videos', id: 'detail-popup' },
   ]
 
   useEffect(function getCookieApprovals() {
@@ -188,13 +200,13 @@ function App(): ReactElement {
         path += 'venue'
       }
 
-      else if (
-        pathnameSplit[0] === 'label'
-        || pathnameSplit[0] === 'projects'
-        || pathnameSplit[0] === 'sound-library'
-        || pathnameSplit[0] === 'venue-calendar'
-        || pathnameSplit[0] === 'venue-archive'
-      ) {
+      // pathnameSplit[0] === 'label'
+      // || pathnameSplit[0] === 'projects'
+      // || pathnameSplit[0] === 'sound-library'
+      // || pathnameSplit[0] === 'venue-calendar'
+      // || pathnameSplit[0] === 'venue-archive'
+
+      else if (map(genericRoutedPopups, 'basePath').includes(pathnameSplit[0])) {
 
         path += pathnameSplit[0]
 
