@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Scrollbars from 'react-scrollbars-custom'
 import { slugify, titleCase } from 'voca'
-import { compact, intersectionBy } from 'lodash'
+import { compact } from 'lodash'
 import moment from 'moment'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup } from '../../../../../lib/modules/popups'
@@ -89,9 +89,6 @@ function MainContentList({
 
     else if (excludeFromAll) {
       contentItems = contentItems.filter(item => {
-        if (item.slug === 'flow') {
-          console.log(hasTag(item, slugify(excludeFromAll)))
-        }
         return !hasTag(item, slugify(excludeFromAll))
       })
     }

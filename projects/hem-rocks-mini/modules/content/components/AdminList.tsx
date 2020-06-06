@@ -59,8 +59,6 @@ function AdminList(): ReactElement {
     return moment(b.date, 'DD.MM.YYYY') - moment(a.date, 'DD.MM.YYYY')
   })
 
-  console.log(map(contentItems, 'title').join('\n'))
-
   return (
     <ElectronOnly showMessage={true}>
       <div className="admin-list">

@@ -96,13 +96,11 @@ function migrate() {
 
   const files = readdirSync(contentDir)
 
-  let count = 1
   for (const file of files) {
     if (file === 'index.json') continue
     if (extname(file) !== '.json') continue
 
     const data = JSON.parse(readFileSync(`${contentDir}/${file}`, 'utf8'))
-
 
     try {
       // DO STUFF HERE
