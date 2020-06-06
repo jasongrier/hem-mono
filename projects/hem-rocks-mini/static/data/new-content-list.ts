@@ -37,7 +37,7 @@ const newContent = [
     date: '25.09.2017',
   },
   {
-    title: 'Grand Piano',
+    title: 'Grand Piano', // *** UNIQUE SLUG!!! ***
     category: 'tutorials',
     tags: '',
     date: '01.07.2020',
