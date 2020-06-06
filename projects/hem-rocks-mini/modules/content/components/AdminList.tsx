@@ -105,6 +105,10 @@ function AdminList(): ReactElement {
             />
           </div>
         </div>
+        <div className="admin-list-stats">
+          Selected Items: <strong>{ contentItems.length }</strong>&nbsp;&nbsp;|&nbsp;&nbsp;
+          Total Items: <strong>{ allContentItems.length }</strong>
+        </div>
         <table>
           <thead>
             <tr>
