@@ -25,6 +25,7 @@ function Tracks(): ReactElement {
             'Rarities',
             'Sound Library',
           ]}
+          excludeFromAll="Sound Library"
           category="tracks"
           title="Tracks"
         >

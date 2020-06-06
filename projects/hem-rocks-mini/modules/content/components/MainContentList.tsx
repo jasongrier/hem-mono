@@ -21,7 +21,7 @@ interface IProps {
   buttonText?: string
   children?: (contentItem: IContentItem) => any
   currentFilter?: string,
-  exclusiveFilters?: string[]
+  excludeFromAll?: string
   filters?: string[]
   highlights?: string[]
   infoPopupText?: string
@@ -40,7 +40,7 @@ function MainContentList({
   blurb,
   buttonText,
   children,
-  exclusiveFilters = [],
+  excludeFromAll,
   currentFilter = 'all',
   filters = [],
   highlights,
@@ -66,7 +66,7 @@ function MainContentList({
 
   else {
 
-    filters = compact(['All'].concat(exclusiveFilters).concat(filters))
+    filters = compact(['All'].concat(filters))
 
     contentItems = storeContentItems.filter(item => {
       if (additionalCategory) {
@@ -87,10 +87,13 @@ function MainContentList({
       stickyContentItems = stickyContentItems.filter(item => hasTag(item, currentFilter))
     }
 
-    else {
-      contentItems = contentItems.filter(item =>
-        intersectionBy(item.tags, exclusiveFilters.map(slugify)).length === 0
-      )
+    else if (excludeFromAll) {
+      contentItems = contentItems.filter(item => {
+        if (item.slug === 'flow') {
+          console.log(hasTag(item, slugify(excludeFromAll)))
+        }
+        return !hasTag(item, slugify(excludeFromAll))
+      })
     }
 
     function sortFn(a: IContentItem, b: IContentItem) {
@@ -151,7 +154,7 @@ function MainContentList({
               className={`
                 main-content-filter
                 ${ currentFilter === slugify(tag) ? 'active' : '' }
-                ${ exclusiveFilters.includes(tag) ? 'exclusive-filter' : '' }
+                ${ currentFilter === slugify(excludeFromAll) ? 'exclusive-filter' : '' }
               `}
               key={tag}
               to={`/${category}${tag !== 'All' ? '/filter/' + slugify(tag) : ''}`}

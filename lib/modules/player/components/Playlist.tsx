@@ -10,8 +10,6 @@ function Playlist(): ReactElement {
     playlist: state.player.playlist,
   }))
 
-  const dispatch = useDispatch()
-
   return (
     <div className="hem-player-playlist">
       <ul>

@@ -70,13 +70,13 @@ function RoutingHub(): ReactElement {
         <Route exact path="/compilation-iv-artist-info/cart" component={CompilationIVArtistInfo} />
 
         {/* List Pages */}
-        <Route exact path="/code/:contentItemSlug?/:filter?" component={Code} />
-        <Route exact path="/code/filter/:filter" component={Code} />
-        <Route exact path="/code/cart/:filter?" component={Code} />
-
         <Route exact path="/apps/:contentItemSlug?/:filter?" component={Apps} />
         <Route exact path="/apps/filter/:filter" component={Apps} />
         <Route exact path="/apps/cart/:filter?" component={Apps} />
+
+        <Route exact path="/code/:contentItemSlug?/:filter?" component={Code} />
+        <Route exact path="/code/filter/:filter" component={Code} />
+        <Route exact path="/code/cart/:filter?" component={Code} />
 
         <Route exact path="/faqs/:contentItemSlug?/:filter?" component={Faqs} />
         <Route exact path="/faqs/filter/:filter" component={Faqs} />
@@ -118,6 +118,10 @@ function RoutingHub(): ReactElement {
         <Route exact path="/user-guides/filter/:filter" component={UserGuides} />
         <Route exact path="/user-guides/cart/:filter?" component={UserGuides} />
 
+        <Route exact path="/venue-archive/:contentItemSlug?/:filter?" component={VenueArchive} />
+        <Route exact path="/venue-archive/filter/:filter" component={VenueArchive} />
+        <Route exact path="/venue-archive/cart/:filter?" component={VenueArchive} />
+
         <Route exact path="/venue-calendar/:contentItemSlug?/:filter?" component={Venue} />
         <Route exact path="/venue-calendar/filter/:filter" component={Venue} />
         <Route exact path="/venue-calendar/cart/:filter?" component={Venue} />
@@ -125,10 +129,6 @@ function RoutingHub(): ReactElement {
         <Route exact path="/venue-merch/:contentItemSlug?/:filter?" component={VenueMerch} />
         <Route exact path="/venue-merch/filter/:filter" component={VenueMerch} />
         <Route exact path="/venue-merch/cart/:filter?" component={VenueMerch} />
-
-        <Route exact path="/venue-archive/:contentItemSlug?/:filter?" component={VenueArchive} />
-        <Route exact path="/venue-archive/filter/:filter" component={VenueArchive} />
-        <Route exact path="/venue-archive/cart/:filter?" component={VenueArchive} />
 
         <Route exact path="/videos/:contentItemSlug?/:filter?" component={Videos} />
         <Route exact path="/videos/filter/:filter" component={Videos} />

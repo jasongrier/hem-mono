@@ -37,6 +37,7 @@ function SoundLibrary(): ReactElement {
             'Keys',
             'Labor Theory',
             'Microtonality',
+            'Midi Devices',
             'New in the Library',
             'Percussion',
             'Performativity / Activism',
@@ -49,10 +50,7 @@ function SoundLibrary(): ReactElement {
             'Vocal',
             'Winds',
           ]}
-          exclusiveFilters={[
-            'Coming Soon',
-            'Midi Devices',
-          ]}
+          excludeFromAll="Midi Devices"
           category="sound-library"
           title="Sound Library"
         >
