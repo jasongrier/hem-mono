@@ -5,7 +5,6 @@ import { ITrack, pausePlayer, cueTrack, unpausePlayer } from '../index'
 import { Spinner } from '../../../components'
 
 interface IProps {
-  id: string
   track: ITrack
 }
 
