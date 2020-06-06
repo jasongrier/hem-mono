@@ -60,5 +60,4 @@ const newContent = [
     tags: '',
     date: '01.07.2020',
   },
-  ...soundLibrarySampleTracks('Viola II')
 ]
