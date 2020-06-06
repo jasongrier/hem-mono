@@ -210,9 +210,9 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
                         type={(fieldTypes as any)[fieldName]}
                         value={(workingItem as any)[fieldName]}
                         required={(
-                          fieldName === 'category'
+                          fieldName === 'title'
+                          || fieldName === 'category'
                           || fieldName === 'date'
-                          || fieldName === 'name'
                         )}
                       />
                     </td>

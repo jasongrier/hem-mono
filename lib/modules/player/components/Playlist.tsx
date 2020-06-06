@@ -19,7 +19,7 @@ function Playlist(): ReactElement {
           <li
             key={track.id}
           >
-            <TrackPlayPauseButton track={track} id="foo" />
+            <TrackPlayPauseButton track={track} />
             { track.title }
           </li>
         ))}

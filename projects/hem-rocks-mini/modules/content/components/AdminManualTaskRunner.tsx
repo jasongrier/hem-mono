@@ -75,6 +75,15 @@ function convertOldTypescriptModelsToJson() {
   execSync(`cp -rf ${staticSrcDir} ${staticDestDir}`, { stdio: 'inherit' })
 }
 
+function soundLibrarySampleTrack(soundTitle: string, number: number, date: string = '09.01.2017'): INewContentListItem {
+  return {
+    title: soundTitle + ' Sample Track ' + number,
+    category: 'tracks',
+    tags: 'attachment',
+    date,
+  }
+}
+
 function migrate() {
   const { remote } = window.require('electron')
   const { existsSync, readdirSync, readFileSync, writeFileSync } = remote.require('fs')
@@ -105,19 +114,16 @@ function migrate() {
     try {
       // DO STUFF HERE
 
-      if (data.category === 'track') {
-        data.category = 'tracks'
+      if (data.category === 'sound-library') {
+        for (let i = 1; i <= 5; i ++) {
+          const item = modelize(soundLibrarySampleTrack(data.title, i, data.date))
+          index.push(item)
+          const jsonItem = JSON.stringify(item, null, 2)
+          writeFileSync(join(workingDir, item.slug + '.json'), jsonItem)
+        }
       }
 
       // END DO STUFF HERE
-
-      const item = modelize(data)
-
-      index.push(item)
-
-      const jsonItem = JSON.stringify(item, null, 2)
-
-      writeFileSync(join(workingDir, item.slug + '.json'), jsonItem)
     }
 
     catch(err) {

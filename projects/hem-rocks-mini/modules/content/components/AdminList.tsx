@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useCallback, useState, SyntheticEvent }
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import produce from 'immer'
-import { isEmpty, noop } from 'lodash'
+import { isEmpty, noop, map } from 'lodash'
 import { titleCase } from 'voca'
 import moment from 'moment'
 import { ElectronOnly } from '../../../../../lib/components'
@@ -58,6 +58,8 @@ function AdminList(): ReactElement {
     // @ts-ignore
     return moment(b.date, 'DD.MM.YYYY') - moment(a.date, 'DD.MM.YYYY')
   })
+
+  console.log(map(contentItems, 'title').join('\n'))
 
   return (
     <ElectronOnly showMessage={true}>
