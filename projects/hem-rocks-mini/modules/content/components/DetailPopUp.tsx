@@ -315,7 +315,7 @@ function DetailPopUp({
           <div
             className="detail-popup-key-art-image"
             style={{
-              backgroundImage: `url(${assetHost}/hem-rocks/content/images/key-art/${contentItem.slug}.jpg)`
+              backgroundImage: `url(${assetHost}/hem-rocks/content/images/key-art/${contentItem.keyArt})`
             }}
           />
           <div className="detail-popup-header-content">
@@ -407,7 +407,7 @@ function DetailPopUp({
                 onClick={() => {
                   dispatch(closePopup())
                   setTimeout(() => {
-                    history.push("/venue/main-stage")
+                    history.push('/venue/main-stage')
                   })
                 }}
                 playing={false}
