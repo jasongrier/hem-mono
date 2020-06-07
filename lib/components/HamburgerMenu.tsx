@@ -90,7 +90,9 @@ function HamburgerMenu({ controlled, children, open: controlledOpen, onChange }:
   useEffect(function allowLinksToClose() {
     const $menuLink = $(contentSel).find('a')
 
-    $menuLink.on('click', () => {
+    $menuLink.on('click', (evt) => {
+      if (evt.metaKey) return
+
       if (controlled) {
         onChange(false)
       }

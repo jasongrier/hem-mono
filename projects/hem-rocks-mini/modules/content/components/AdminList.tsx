@@ -75,21 +75,25 @@ function AdminList(): ReactElement {
             >
               <option value="all">All</option>
               <option value="apps">Apps</option>
-              <option value="article">Articles</option>
+              <option value="articles">Articles</option>
               <option value="code">Code</option>
+              <option value="faqs">FAQ's</option>
               <option value="label">Label</option>
-              <option value="list">List</option>
               <option value="merch">Merch</option>
               <option value="mix">Mixes</option>
-              <option value="playlist">Playlist</option>
               <option value="press">Press</option>
+              <option value="press-kits">Press Kits</option>
               <option value="sound-library">Sound Library</option>
               <option value="tracks">Tracks</option>
               <option value="tutorial">Tutorials</option>
+              <option value="user-guides">User Guides</option>
               <option value="venue-archive">Venue Archive</option>
               <option value="venue-calendar">Venue Calendar</option>
               <option value="venue-merch">Venue Merch</option>
               <option value="video">Videos</option>
+              <option value="all">---</option>
+              <option value="list">List</option>
+              <option value="playlist">Playlist</option>
             </select>
           </div>
           <div className="admin-list-controls-search">

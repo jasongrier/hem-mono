@@ -44,9 +44,9 @@ function MegaNav(): ReactElement {
           <div className="mega-nav-section">
             <h3>Venue</h3>
             <ul>
-              <MainNavItem name="Calendar" />
-              <MainNavItem name="Main Stage" />
-              <MainNavItem name="Archive" />
+              <MainNavItem name="Calendar" to="venue" />
+              <MainNavItem name="Main Stage" to="venue-main-stage" />
+              <MainNavItem name="Archive" to="venue-archive" />
               <MainNavItem name="Merch Table" to="venue-merch" />
             </ul>
           </div>

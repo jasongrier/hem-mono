@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { MainContentList } from '../../modules/content'
 import { BASE_SITE_TITLE } from '../../config'
 
-function UserGuides(): ReactElement {
+function Articles(): ReactElement {
   const { filter: currentFilter } = useParams()
 
   return (
@@ -13,21 +13,15 @@ function UserGuides(): ReactElement {
         <title>{ BASE_SITE_TITLE }</title>
         <meta name="description" content="" />
       </Helmet>
-      <div className="page page-user-guides">
+      <div className="page page-articles">
         <MainContentList
           currentFilter={currentFilter}
-          filters={[
-            'Apps',
-            'Code',
-            'MIDI Devices',
-            'Sound Library',
-          ]}
-          category="user-guides"
-          title="User Guides"
+          category="articles"
+          title="Articles"
         />
       </div>
     </>
   )
 }
 
-export default UserGuides
+export default Articles
