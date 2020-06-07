@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 
 import {
   Apps,
+  Articles,
   Code,
   Faqs,
   Label,
@@ -73,6 +74,10 @@ function RoutingHub(): ReactElement {
         <Route exact path="/apps/:contentItemSlug?/:filter?" component={Apps} />
         <Route exact path="/apps/filter/:filter" component={Apps} />
         <Route exact path="/apps/cart/:filter?" component={Apps} />
+
+        <Route exact path="/articles/:contentItemSlug?/:filter?" component={Articles} />
+        <Route exact path="/articles/filter/:filter" component={Articles} />
+        <Route exact path="/articles/cart/:filter?" component={Articles} />
 
         <Route exact path="/code/:contentItemSlug?/:filter?" component={Code} />
         <Route exact path="/code/filter/:filter" component={Code} />

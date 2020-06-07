@@ -1,4 +1,5 @@
 export { default as Apps } from './Apps'
+export { default as Articles } from './Articles'
 export { default as Code } from './Code'
 export { default as Faqs } from './Faqs'
 export { default as Label } from './Label'

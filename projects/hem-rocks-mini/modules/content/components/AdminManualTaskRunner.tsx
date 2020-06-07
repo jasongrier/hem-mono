@@ -105,9 +105,23 @@ function migrate() {
     try {
       // DO STUFF HERE
 
-      const item = modelize(data)
+      delete data.trackSlug
 
-      item.keyArt = item.slug + '.jpg'
+      if (data.category === 'sound-library') {
+        let trackSlugs = ''
+
+        for (let i = 1; i <= 5; i ++) {
+          trackSlugs += `${data.slug}-sample-track-${i}.jpg\n`
+        }
+
+        data.trackSlugs = trackSlugs
+      }
+
+      else {
+        data.trackSlugs = ''
+      }
+
+      const item = modelize(data)
 
       index.push(item)
 
