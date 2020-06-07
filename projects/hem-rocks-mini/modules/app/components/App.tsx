@@ -4,14 +4,15 @@ import { useSelector, useDispatch } from 'react-redux'
 import { find, isArray, map } from 'lodash'
 import ReactGA from 'react-ga'
 import Cookies from 'js-cookie'
+import { slugify } from 'voca'
 import { CartPopup, setCartProducts } from '../../cart'
 import { ThankYouPopup } from '../../cart'
-import { DetailPopUp, requestReadItems, setCurrentItem, hasTag, getContentItemsFromList, contentItemToTrack } from '../../content'
+import { DetailPopUp, requestReadItems, setCurrentItem, hasTag, getContentItemsFromList, contentItemToTrack, hasCategory } from '../../content'
 import { ProtectedContent } from '../../login'
 import { CampaignMonitorForm, ElectronNot, ScrollToTop, NagToaster, Spinner } from '../../../../../lib/components'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup, closePopup } from '../../../../../lib/modules/popups'
-import { PlayerBar, setPlayerPlaylist } from '../../../../../lib/modules/player'
+import { PlayerBar, setPlayerPlaylist, replacePlaylist } from '../../../../../lib/modules/player'
 import { usePrevious } from '../../../../../lib/hooks'
 import { collapseTopBar, expandTopBar, getCookieName } from '../index'
 import { SiteFooter, TopBar } from '../../../components/layout'
@@ -123,13 +124,30 @@ function App(): ReactElement {
     }
   }, [])
 
-  useEffect(function setSitePlaylist() {
-    const sitePlaylistTrackItems = getContentItemsFromList(contentItems, 'site-playlist')
-    const sitePlaylistTracks = sitePlaylistTrackItems.map(item =>
+  useEffect(function setSitePlaylists() {
+    const featuredTracksPlaylistTrackItems = getContentItemsFromList(contentItems, 'featured-tracks')
+    const featuredTracksTracks = featuredTracksPlaylistTrackItems.map(item =>
       contentItemToTrack(item, hasTag(item, 'attachment') ? item.relatedContentLink : `/tracks/${item.slug}`)
     )
 
-    dispatch(setPlayerPlaylist(sitePlaylistTracks))
+    dispatch(replacePlaylist(0, { name: 'Featured Tracks', tracks: featuredTracksTracks }))
+    dispatch(setPlayerPlaylist(0))
+
+    const trackTags = [
+      'Album Tracks',
+      'Exclusives',
+      'Live',
+      'Made with SL',
+      'Rarities',
+      'Sound Library',
+    ]
+
+    trackTags.forEach((tag, i) => {
+      const tracks = contentItems.filter(item => hasCategory(item, 'tracks') && hasTag(item, slugify(tag))).map(item =>
+        contentItemToTrack(item, hasTag(item, 'attachment') ? item.relatedContentLink : `tracks#${item.slug}`)
+      )
+      dispatch(replacePlaylist(i + 2, { name: tag, tracks }))
+    })
   }, [contentItems])
 
   useEffect(function routedPopup() {
@@ -199,12 +217,6 @@ function App(): ReactElement {
       ) {
         path += 'venue'
       }
-
-      // pathnameSplit[0] === 'label'
-      // || pathnameSplit[0] === 'projects'
-      // || pathnameSplit[0] === 'sound-library'
-      // || pathnameSplit[0] === 'venue-calendar'
-      // || pathnameSplit[0] === 'venue-archive'
 
       else if (map(genericRoutedPopups, 'basePath').includes(pathnameSplit[0])) {
 

@@ -26,7 +26,7 @@
   "tags": "instruments, percussion",
   "title": "Frame Drum",
   "titleWrapping": "",
-  "trackSlug": "frame-drum-sample-track-1",
+  "trackSlugs": "frame-drum-sample-track-1\nframe-drum-sample-track-2\nframe-drum-sample-track-3\nframe-drum-sample-track-4\nframe-drum-sample-track-5\n",
   "trackResourceId": "",
   "trackResourceSecret": "",
   "type": "Sample Pack for Ableton Live"

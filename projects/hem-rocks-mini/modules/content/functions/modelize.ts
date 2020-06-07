@@ -29,7 +29,7 @@ function modelize(rawContentItem: any): IContentItem {
     tags: rawContentItem.tags || '',
     title: rawContentItem.title || '',
     titleWrapping: rawContentItem.titleWrapping || '',
-    trackSlug: rawContentItem.trackSlug || '',
+    trackSlugs: rawContentItem.trackSlugs || '',
     trackResourceId: rawContentItem.trackResourceId || '',
     trackResourceSecret: rawContentItem.trackResourceSecret || '',
     type: rawContentItem.type || '',

@@ -92,8 +92,7 @@ function AdminList(): ReactElement {
               <option value="venue-merch">Venue Merch</option>
               <option value="video">Videos</option>
               <option value="all">---</option>
-              <option value="list">List</option>
-              <option value="playlist">Playlist</option>
+              <option value="list">Lists</option>
             </select>
           </div>
           <div className="admin-list-controls-search">

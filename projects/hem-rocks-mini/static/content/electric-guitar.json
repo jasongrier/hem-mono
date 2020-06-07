@@ -26,7 +26,7 @@
   "tags": "guitar-and-bass, instruments",
   "title": "Electric Guitar",
   "titleWrapping": "",
-  "trackSlug": "electric-guitar-sample-track-1",
+  "trackSlugs": "electric-guitar-sample-track-1\nelectric-guitar-sample-track-2\nelectric-guitar-sample-track-3\nelectric-guitar-sample-track-4\nelectric-guitar-sample-track-5\n",
   "trackResourceId": "",
   "trackResourceSecret": "",
   "type": "Sample Pack for Ableton Live"

@@ -26,7 +26,7 @@
   "tags": "post-studio, sonic-detritus",
   "title": "Mic Feedback",
   "titleWrapping": "Mic<br>Feed&shy;back",
-  "trackSlug": "mic-feedback-sample-track-1",
+  "trackSlugs": "mic-feedback-sample-track-1\nmic-feedback-sample-track-2\nmic-feedback-sample-track-3\nmic-feedback-sample-track-4\nmic-feedback-sample-track-5\n",
   "trackResourceId": "",
   "trackResourceSecret": "",
   "type": "Sample Pack for Ableton Live"

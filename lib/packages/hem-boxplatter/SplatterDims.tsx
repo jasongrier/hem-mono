@@ -10,6 +10,7 @@ interface IProps {
   bipolarY?: boolean
   className?: string
   disabled?: boolean
+  id?: string
   marginRangeX?: number
   marginRangeY?: number
   minMarginX?: number
@@ -27,6 +28,7 @@ function SplatterDims({
   bipolarX = false,
   bipolarY = false,
   disabled = false,
+  id,
   marginRangeX,
   marginRangeY,
   minMarginX = 0,
@@ -75,6 +77,7 @@ function SplatterDims({
   return (
     <div
       className={`hem-boxplatter hem-boxplatter-splatter-dims ${className}`}
+      id={id}
       style={style}
     >
       { children }

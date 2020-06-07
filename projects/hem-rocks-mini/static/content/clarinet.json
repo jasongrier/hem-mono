@@ -26,7 +26,7 @@
   "tags": "instruments, winds",
   "title": "Clarinet",
   "titleWrapping": "",
-  "trackSlug": "clarinet-sample-track-1",
+  "trackSlugs": "clarinet-sample-track-1\nclarinet-sample-track-2\nclarinet-sample-track-3\nclarinet-sample-track-4\nclarinet-sample-track-5\n",
   "trackResourceId": "",
   "trackResourceSecret": "",
   "type": "Sample Pack for Ableton Live"

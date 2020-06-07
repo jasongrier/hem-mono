@@ -7,9 +7,12 @@ function getContentItemsFromList(contentItems: IContentItem[], listSlug: string)
 
   if (!listItem) return []
 
+  return getContentItemsFromRawList(contentItems, listItem.description)
+}
+
+function getContentItemsFromRawList(contentItems: IContentItem[], list: string) {
   const listItemSlugs = compact(
-    listItem.description.split('\n')
-      .map(item => item.trim())
+    list.split('\n').map(item => item.trim())
   )
 
   return compact(
@@ -17,4 +20,4 @@ function getContentItemsFromList(contentItems: IContentItem[], listSlug: string)
   )
 }
 
-export default getContentItemsFromList
+export { getContentItemsFromList, getContentItemsFromRawList }

@@ -17,20 +17,29 @@ export interface ITrack {
   type: string // 'local' | 'soundcloud'
 }
 
+export interface IPlaylist {
+  id: string
+  name: string
+  tracks: ITrack[]
+}
+
 export interface IState {
   actuallyPlaying: boolean
   currentTrack: ITrack
+  currentPlaylist: IPlaylist
   inited: boolean
   muted: boolean
   playing: boolean
-  playlist: ITrack[]
+  playlists: IPlaylist[]
 }
 
+export const ADD_PLAYLIST = 'ADD_PLAYLIST'
 export const MUTE_PLAYER = 'MUTE_PLAYER'
 export const NEXT_TRACK = 'NEXT_TRACK'
 export const PAUSE_PLAYER = 'PAUSE_PLAYER'
 export const CUE_TRACK = 'CUE_TRACK'
 export const PREVIOUS_TRACK = 'PREVIOUS_TRACK'
+export const REPLACE_PLAYLIST = 'REPLACE_PLAYLIST'
 export const SEEK_PLAYER = 'SEEK_PLAYER'
 export const SET_PLAYER_INSTANCE = 'SET_PLAYER_INSTANCE'
 export const SET_PLAYER_PLAYLIST = 'SET_PLAYER_PLAYLIST'
@@ -38,6 +47,12 @@ export const SET_PLAYER_ACTUALLY_PLAYING = 'SET_PLAYER_ACTUALLY_PLAYING'
 export const TRACK_ENDED = 'TRACK_ENDED'
 export const UNMUTE_PLAYER = 'UNMUTE_PLAYER'
 export const UNPAUSE_PLAYER = 'UNPAUSE_PLAYER'
+
+/* TODO: These are not alphabetised, make a linter for this */
+export interface IAddPlaylist extends AnyAction {
+  type: typeof ADD_PLAYLIST
+  payload: Partial<IPlaylist>
+}
 
 export interface ISetPlayerActuallyPlaying extends AnyAction {
   type: typeof SET_PLAYER_ACTUALLY_PLAYING
@@ -64,6 +79,11 @@ export interface IPausePlayer extends AnyAction {
   payload: null
 }
 
+export interface IReplacePlaylist extends AnyAction {
+  type: typeof REPLACE_PLAYLIST
+  payload: { number: number, playlist: Partial<IPlaylist> }
+}
+
 export interface ISeekPlayer extends AnyAction {
   type: typeof SEEK_PLAYER
   payload: number
@@ -71,7 +91,7 @@ export interface ISeekPlayer extends AnyAction {
 
 export interface ISetPlayerPlaylist extends AnyAction {
   type: typeof SET_PLAYER_PLAYLIST
-  payload: ITrack[]
+  payload: number
 }
 
 export interface IPreviousTrack extends AnyAction {
@@ -95,9 +115,11 @@ export interface IUnpausePlayer extends AnyAction {
 }
 
 export type Action =
-  IMutePlayer
+  IAddPlaylist
+  | IMutePlayer
   | INextTrack
   | IPausePlayer
+  | IReplacePlaylist
   | ICueTrack
   | IPreviousTrack
   | ISeekPlayer
@@ -108,11 +130,13 @@ export type Action =
   | IUnpausePlayer
 
 export {
+  addPlaylist,
   cueTrack,
   mutePlayer,
   nextTrack,
   pausePlayer,
   previousTrack,
+  replacePlaylist,
   seekPlayer,
   setPlayerActuallyPlaying,
   setPlayerPlaylist,

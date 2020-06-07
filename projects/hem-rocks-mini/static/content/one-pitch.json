@@ -26,7 +26,7 @@
   "tags": "synth, instruments, generative-tools, midi-devices",
   "title": "One Pitch",
   "titleWrapping": "",
-  "trackSlug": "one-pitch-sample-track-1",
+  "trackSlugs": "one-pitch-sample-track-1\none-pitch-sample-track-2\none-pitch-sample-track-3\none-pitch-sample-track-4\none-pitch-sample-track-5\n",
   "trackResourceId": "",
   "trackResourceSecret": "",
   "type": "Sample Pack for Ableton Live"

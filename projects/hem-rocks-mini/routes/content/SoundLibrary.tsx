@@ -25,7 +25,9 @@ function SoundLibrary(): ReactElement {
       <div className="page page-sound-library">
         <MainContentList
           buttonText="Download"
+          category="sound-library"
           currentFilter={currentFilter}
+          excludeFromAll="Midi Devices"
           filters={[
             'ASMR',
             'Extended Technique',
@@ -50,12 +52,11 @@ function SoundLibrary(): ReactElement {
             'Vocal',
             'Winds',
           ]}
-          excludeFromAll="Midi Devices"
-          category="sound-library"
+          shouldCreatePlaylist={true}
           title="Sound Library"
         >
           {(pack) => {
-            const trackItem = find(allContentItems, { slug: pack.trackSlug })
+            const trackItem = find(allContentItems, { slug: pack.trackSlugs[0] })
 
             if (!trackItem) return <div />
 

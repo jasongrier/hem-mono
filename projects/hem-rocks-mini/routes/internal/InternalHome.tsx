@@ -80,10 +80,6 @@ function InternalHome(): ReactElement {
               List
               <p>Lorem ipsum dolor sit amet</p>
             </li>
-            <li>
-              Playlist
-              <p>Lorem ipsum dolor sit amet</p>
-            </li>
           </ul>
         </div>
 

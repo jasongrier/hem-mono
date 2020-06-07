@@ -26,7 +26,7 @@
   "tags": "toy-instruments, instruments",
   "title": "Zither",
   "titleWrapping": "",
-  "trackSlug": "zither-sample-track-1",
+  "trackSlugs": "zither-sample-track-1\nzither-sample-track-2\nzither-sample-track-3\nzither-sample-track-4\nzither-sample-track-5\n",
   "trackResourceId": "",
   "trackResourceSecret": "",
   "type": "Sample Pack for Ableton Live"

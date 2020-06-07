@@ -2,17 +2,17 @@ import React, { ReactElement, useState, useCallback, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { PlayPauseButton as BasePlayPauseButton, CloseButton, HamburgerButton } from '../../../packages/hem-buttons'
-import { NextButton, PreviousButton, ProgressBar, PlayerBarPlayPauseButton, Playlist, ITrack } from '../index'
+import { NextButton, PreviousButton, ProgressBar, PlayerBarPlayPauseButton, Playlist, ITrack, IPlaylist } from '../index'
 
 function PlayerBar(): ReactElement {
-  const { currentTrack, playing, playlist }: { currentTrack: ITrack, playing: boolean, playlist: ITrack[] } = useSelector((state: any) => ({
+  const { currentTrack, playing, currentPlaylist }: { currentTrack: ITrack, playing: boolean, currentPlaylist: IPlaylist } = useSelector((state: any) => ({
     currentTrack: state.player.currentTrack,
     playing: state.player.playing,
-    playlist: state.player.playlist,
+    currentPlaylist: state.player.currentPlaylist,
   }))
 
   const [expanded, setExpanded] = useState(false)
-  const [playlistExpanded, setPlaylistExpanded] = useState(false)
+  const [playlistExpanded, setPlaylistExpanded] = useState(true)
 
   useEffect(function openOnPlay() {
     if (playing && !expanded) {
@@ -35,6 +35,8 @@ function PlayerBar(): ReactElement {
     }, [playlistExpanded],
   )
 
+  if (!currentPlaylist) return <div />
+
   return (
     <div className={`
       player-bar
@@ -46,7 +48,7 @@ function PlayerBar(): ReactElement {
 
       <PlayerBarPlayPauseButton
         currentTrackId={currentTrack?.id}
-        playlist={playlist}
+        playlist={currentPlaylist}
       />
 
       <NextButton />
@@ -78,9 +80,9 @@ function PlayerBar(): ReactElement {
           <CloseButton onClick={toggleExpandedOnClick} />
         )}
         { !expanded && (
-          <BasePlayPauseButton
-            playing={playing}
-            onClick={toggleExpandedOnClick}
+          <PlayerBarPlayPauseButton
+            currentTrackId={currentTrack?.id}
+            playlist={currentPlaylist}
           />
         )}
       </div>
