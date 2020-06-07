@@ -193,6 +193,7 @@ export {
   getContentItemBySlug,
   getContentItemsByTag,
   getContentItemsFromList,
+  getContentItemsFromRawList,
   modelize,
 } from './functions'
 

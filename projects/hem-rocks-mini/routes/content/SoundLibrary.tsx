@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { find } from 'lodash'
-import { MainContentList, contentItemToTrack } from '../../modules/content'
+import { MainContentList, contentItemToTrack, getContentItemsFromRawList } from '../../modules/content'
 import { TrackPlayPauseButton } from '../../../../lib/modules/player'
 import { BASE_SITE_TITLE } from '../../config'
 import { RootState } from '../../index'
@@ -52,17 +52,16 @@ function SoundLibrary(): ReactElement {
             'Vocal',
             'Winds',
           ]}
-          shouldCreatePlaylist={true}
           title="Sound Library"
         >
           {(pack) => {
-            const trackItem = find(allContentItems, { slug: pack.trackSlugs[0] })
+            const attachedTracks = getContentItemsFromRawList(allContentItems, pack.trackSlugs).map(track =>
+              contentItemToTrack(track, `sound-library/${pack.slug}`)
+            )
 
-            if (!trackItem) return <div />
+            if (!attachedTracks || !attachedTracks.length) return
 
-            const track = contentItemToTrack(trackItem, `tracks/${pack.slug}`)
-
-            return <TrackPlayPauseButton track={track} />
+            return <TrackPlayPauseButton track={attachedTracks[0]} />
           }}
         </MainContentList>
       </div>
