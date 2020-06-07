@@ -26,7 +26,7 @@
   "tags": "found-sound, sonic-detritus",
   "title": "Record Endings",
   "titleWrapping": "",
-  "trackSlug": "record-endings-sample-track-1",
+  "trackSlugs": "record-endings-sample-track-1\nrecord-endings-sample-track-2\nrecord-endings-sample-track-3\nrecord-endings-sample-track-4\nrecord-endings-sample-track-5\n",
   "trackResourceId": "",
   "trackResourceSecret": "",
   "type": "Sample Pack for Ableton Live"

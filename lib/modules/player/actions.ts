@@ -1,9 +1,11 @@
 import {
+  ADD_PLAYLIST,
   MUTE_PLAYER,
   NEXT_TRACK,
   PAUSE_PLAYER,
   CUE_TRACK,
   PREVIOUS_TRACK,
+  REPLACE_PLAYLIST,
   SEEK_PLAYER,
   SET_PLAYER_ACTUALLY_PLAYING,
   SET_PLAYER_PLAYLIST,
@@ -13,8 +15,14 @@ import {
 
   Action,
 
+  IPlaylist,
   ITrack,
 } from './index'
+
+const addPlaylist = (playlist: Partial<IPlaylist>): Action => ({
+  type: ADD_PLAYLIST,
+  payload: playlist,
+})
 
 const cueTrack = (track: ITrack, andPlay: boolean): Action => ({
   type: CUE_TRACK,
@@ -41,6 +49,11 @@ const previousTrack = (): Action => ({
   payload: null,
 })
 
+const replacePlaylist = (number: number, playlist: Partial<IPlaylist>): Action => ({
+  type: REPLACE_PLAYLIST,
+  payload: { number, playlist },
+})
+
 const seekPlayer = (percent: number): Action => ({
   type: SEEK_PLAYER,
   payload: percent,
@@ -51,9 +64,9 @@ const setPlayerActuallyPlaying = (actuallyPlaying: boolean): Action => ({
   payload: actuallyPlaying,
 })
 
-const setPlayerPlaylist = (playlist: ITrack[]): Action => ({
+const setPlayerPlaylist = (number: number): Action => ({
   type: SET_PLAYER_PLAYLIST,
-  payload: playlist,
+  payload: number,
 })
 
 const trackEnded = (): Action => ({
@@ -72,11 +85,13 @@ const unpausePlayer = (): Action => ({
 })
 
 export {
+  addPlaylist,
   cueTrack,
   mutePlayer,
   nextTrack,
   pausePlayer,
   previousTrack,
+  replacePlaylist,
   seekPlayer,
   setPlayerActuallyPlaying,
   setPlayerPlaylist,

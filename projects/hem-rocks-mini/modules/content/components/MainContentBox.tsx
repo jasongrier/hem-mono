@@ -56,12 +56,12 @@ function MainContentBox({
       minMarginY={30}
       className={`
         main-content-box
-        with-photography-x
         main-content-box-date-${contentItem.date}
         ${className ? className : ''}
         ${contentItem.badgeText ? 'has-badge' : ''}
         ${alignRight && index > 0 ? 'align-right' : ''}
       `}
+      id={contentItem.slug}
       width={400}
       height={0}
       rangeX={100}

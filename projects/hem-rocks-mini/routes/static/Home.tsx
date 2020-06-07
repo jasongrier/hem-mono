@@ -24,6 +24,7 @@ function Home(): ReactElement {
         <MainContentList
           category="home-feature"
           items={getContentItemsFromList(contentItems, 'home-page-features')}
+          shouldSetCurrentPlaylist={false}
           showCategoryOnContentBoxes={true}
         />
       </div>

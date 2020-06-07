@@ -26,7 +26,7 @@
   "tags": "found-sound, found-vinyl",
   "title": "Sweet Bea",
   "titleWrapping": "",
-  "trackSlug": "sweet-bea-sample-track-1",
+  "trackSlugs": "sweet-bea-vinyl-sample-track-1\nsweet-bea-vinyl-sample-track-2\nsweet-bea-vinyl-sample-track-3\nsweet-bea-vinyl-sample-track-4\nsweet-bea-vinyl-sample-track-5\n",
   "trackResourceId": "",
   "trackResourceSecret": "",
   "type": "Sample Pack for Ableton Live"

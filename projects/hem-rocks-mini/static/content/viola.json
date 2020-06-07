@@ -26,7 +26,7 @@
   "tags": "instruments, microtonality, strings",
   "title": "Viola",
   "titleWrapping": "",
-  "trackSlug": "viola-sample-track-1",
+  "trackSlugs": "viola-sample-track-1\nviola-sample-track-2\nviola-sample-track-3\nviola-sample-track-4\nviola-sample-track-5\n",
   "trackResourceId": "",
   "trackResourceSecret": "",
   "type": "Sample Pack for Ableton Live"

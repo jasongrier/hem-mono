@@ -26,7 +26,7 @@
   "tags": "guitar-and-bass, instruments",
   "title": "Acoustic Guitar",
   "titleWrapping": "",
-  "trackSlug": "acoustic-guitar-sample-track-1",
+  "trackSlugs": "acoustic-guitar-sample-track-1\nacoustic-guitar-sample-track-2\nacoustic-guitar-sample-track-3\nacoustic-guitar-sample-track-4\nacoustic-guitar-sample-track-5\n",
   "trackResourceId": "",
   "trackResourceSecret": "",
   "type": "Sample Pack for Ableton Live"

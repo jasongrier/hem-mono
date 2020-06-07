@@ -26,7 +26,7 @@
   "tags": "instruments, percussion",
   "title": "Drum Kit",
   "titleWrapping": "",
-  "trackSlug": "drum-kit-sample-track-1",
+  "trackSlugs": "drum-kit-sample-track-1\ndrum-kit-sample-track-2\ndrum-kit-sample-track-3\ndrum-kit-sample-track-4\ndrum-kit-sample-track-5\n",
   "trackResourceId": "",
   "trackResourceSecret": "",
   "type": "Sample Pack for Ableton Live"

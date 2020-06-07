@@ -26,7 +26,7 @@
   "tags": "found-sound, found-vinyl",
   "title": "Environments Sampler Album",
   "titleWrapping": "",
-  "trackSlug": "environments-sampler-album-sample-track-1",
+  "trackSlugs": "environments-sampler-album-sample-track-1\nenvironments-sampler-album-sample-track-2\nenvironments-sampler-album-sample-track-3\nenvironments-sampler-album-sample-track-4\nenvironments-sampler-album-sample-track-5\n",
   "trackResourceId": "",
   "trackResourceSecret": "",
   "type": "Sample Pack for Ableton Live"

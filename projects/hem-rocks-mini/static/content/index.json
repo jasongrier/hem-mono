@@ -27,7 +27,7 @@
     "tags": "attachment, sound-library",
     "title": "Acoustic Guitar Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -60,7 +60,7 @@
     "tags": "attachment, sound-library",
     "title": "Acoustic Guitar Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -93,7 +93,7 @@
     "tags": "attachment, sound-library",
     "title": "Acoustic Guitar Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -126,7 +126,7 @@
     "tags": "attachment, sound-library",
     "title": "Acoustic Guitar Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -159,7 +159,7 @@
     "tags": "attachment, sound-library",
     "title": "Acoustic Guitar Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -192,7 +192,7 @@
     "tags": "guitar-and-bass, instruments",
     "title": "Acoustic Guitar",
     "titleWrapping": "",
-    "trackSlug": "acoustic-guitar-sample-track-1",
+    "trackSlugs": "acoustic-guitar-sample-track-1\nacoustic-guitar-sample-track-2\nacoustic-guitar-sample-track-3\nacoustic-guitar-sample-track-4\nacoustic-guitar-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -225,7 +225,7 @@
     "tags": "attachment, sound-library",
     "title": "Antique Piano Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -258,7 +258,7 @@
     "tags": "attachment, sound-library",
     "title": "Antique Piano Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -291,7 +291,7 @@
     "tags": "attachment, sound-library",
     "title": "Antique Piano Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -324,7 +324,7 @@
     "tags": "attachment, sound-library",
     "title": "Antique Piano Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -357,7 +357,7 @@
     "tags": "attachment, sound-library",
     "title": "Antique Piano Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -390,7 +390,7 @@
     "tags": "instruments, keys, donic-detritus",
     "title": "Antique Piano",
     "titleWrapping": "",
-    "trackSlug": "antique-piano-sample-track-1",
+    "trackSlugs": "antique-piano-sample-track-1\nantique-piano-sample-track-2\nantique-piano-sample-track-3\nantique-piano-sample-track-4\nantique-piano-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -423,7 +423,7 @@
     "tags": "events",
     "title": "Ascending Series Three",
     "titleWrapping": "Ascend&shy;ing Series Three",
-    "trackSlug": "ascending-series-three-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -456,7 +456,7 @@
     "tags": "attachment, sound-library",
     "title": "Austin Thunderstorm Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -489,7 +489,7 @@
     "tags": "attachment, sound-library",
     "title": "Austin Thunderstorm Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -522,7 +522,7 @@
     "tags": "attachment, sound-library",
     "title": "Austin Thunderstorm Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -555,7 +555,7 @@
     "tags": "attachment, sound-library",
     "title": "Austin Thunderstorm Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -588,7 +588,7 @@
     "tags": "attachment, sound-library",
     "title": "Austin Thunderstorm Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -621,7 +621,7 @@
     "tags": "field-recording",
     "title": "Austin Thunderstorm",
     "titleWrapping": "",
-    "trackSlug": "austin-thunderstorm-sample-track-1",
+    "trackSlugs": "austin-thunderstorm-sample-track-1\naustin-thunderstorm-sample-track-2\naustin-thunderstorm-sample-track-3\naustin-thunderstorm-sample-track-4\naustin-thunderstorm-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -654,7 +654,7 @@
     "tags": "attachment, sound-library",
     "title": "Berlin New Years Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -687,7 +687,7 @@
     "tags": "attachment, sound-library",
     "title": "Berlin New Years Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -720,7 +720,7 @@
     "tags": "attachment, sound-library",
     "title": "Berlin New Years Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -753,7 +753,7 @@
     "tags": "attachment, sound-library",
     "title": "Berlin New Years Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -786,7 +786,7 @@
     "tags": "attachment, sound-library",
     "title": "Berlin New Years Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -819,7 +819,7 @@
     "tags": "field-recording",
     "title": "Berlin New Years",
     "titleWrapping": "",
-    "trackSlug": "berlin-new-years-sample-track-1",
+    "trackSlugs": "berlin-new-years-sample-track-1\nberlin-new-years-sample-track-2\nberlin-new-years-sample-track-3\nberlin-new-years-sample-track-4\nberlin-new-years-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -852,7 +852,7 @@
     "tags": "record-releases",
     "title": "Betrieb",
     "titleWrapping": "",
-    "trackSlug": "betrieb-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -885,7 +885,7 @@
     "tags": "record-releases",
     "title": "Black and White Rainbow",
     "titleWrapping": "",
-    "trackSlug": "black-and-white-rainbow-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -918,7 +918,7 @@
     "tags": "attachment, sound-library",
     "title": "Breaths Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -951,7 +951,7 @@
     "tags": "attachment, sound-library",
     "title": "Breaths Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -984,7 +984,7 @@
     "tags": "attachment, sound-library",
     "title": "Breaths Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -1017,7 +1017,7 @@
     "tags": "attachment, sound-library",
     "title": "Breaths Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -1050,7 +1050,7 @@
     "tags": "attachment, sound-library",
     "title": "Breaths Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -1083,7 +1083,7 @@
     "tags": "sonic-detritus, labor-theory, vocal",
     "title": "Breaths",
     "titleWrapping": "",
-    "trackSlug": "breaths-sample-track-1",
+    "trackSlugs": "breaths-sample-track-1\nbreaths-sample-track-2\nbreaths-sample-track-3\nbreaths-sample-track-4\nbreaths-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -1116,7 +1116,7 @@
     "tags": "desktop-mobile-apps, javascript, react, electron, sound, composition",
     "title": "Breto: Structured Audio",
     "titleWrapping": "",
-    "trackSlug": "breto-structured-audio-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -1149,7 +1149,7 @@
     "tags": "npm-modules, javascript, react",
     "title": "Buttons",
     "titleWrapping": "",
-    "trackSlug": "buttons-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -1182,7 +1182,7 @@
     "tags": "attachment, sound-library",
     "title": "Choir Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -1215,7 +1215,7 @@
     "tags": "attachment, sound-library",
     "title": "Choir Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -1248,7 +1248,7 @@
     "tags": "attachment, sound-library",
     "title": "Choir Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -1281,7 +1281,7 @@
     "tags": "attachment, sound-library",
     "title": "Choir Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -1314,7 +1314,7 @@
     "tags": "attachment, sound-library",
     "title": "Choir Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -1347,7 +1347,7 @@
     "tags": "choral, vocal, found-sound, found-vinyl",
     "title": "Choir",
     "titleWrapping": "",
-    "trackSlug": "choir-sample-track-1",
+    "trackSlugs": "choir-vinyl-sample-track-1\nchoir-vinyl-sample-track-2\nchoir-vinyl-sample-track-3\nchoir-vinyl-sample-track-4\nchoir-vinyl-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -1380,7 +1380,7 @@
     "tags": "attachment, sound-library",
     "title": "Chord Brush Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -1413,7 +1413,7 @@
     "tags": "attachment, sound-library",
     "title": "Chord Brush Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -1446,7 +1446,7 @@
     "tags": "attachment, sound-library",
     "title": "Chord Brush Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -1479,7 +1479,7 @@
     "tags": "attachment, sound-library",
     "title": "Chord Brush Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -1512,7 +1512,7 @@
     "tags": "attachment, sound-library",
     "title": "Chord Brush Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -1545,7 +1545,7 @@
     "tags": "generative-tools, midi-devices",
     "title": "Chord Brush",
     "titleWrapping": "",
-    "trackSlug": "chord-brush-sample-track-1",
+    "trackSlugs": "chord-brush-sample-track-1\nchord-brush-sample-track-2\nchord-brush-sample-track-3\nchord-brush-sample-track-4\nchord-brush-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -1578,7 +1578,7 @@
     "tags": "attachment, sound-library",
     "title": "Clarinet Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -1611,7 +1611,7 @@
     "tags": "attachment, sound-library",
     "title": "Clarinet Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -1644,7 +1644,7 @@
     "tags": "attachment, sound-library",
     "title": "Clarinet Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -1677,7 +1677,7 @@
     "tags": "attachment, sound-library",
     "title": "Clarinet Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -1710,7 +1710,7 @@
     "tags": "attachment, sound-library",
     "title": "Clarinet Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -1743,7 +1743,7 @@
     "tags": "instruments, winds",
     "title": "Clarinet",
     "titleWrapping": "",
-    "trackSlug": "clarinet-sample-track-1",
+    "trackSlugs": "clarinet-sample-track-1\nclarinet-sample-track-2\nclarinet-sample-track-3\nclarinet-sample-track-4\nclarinet-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -1776,7 +1776,7 @@
     "tags": "record-releases",
     "title": "Clouds",
     "titleWrapping": "",
-    "trackSlug": "clouds-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -1809,7 +1809,7 @@
     "tags": "record-releases",
     "title": "Commotus",
     "titleWrapping": "",
-    "trackSlug": "commotus-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -1842,7 +1842,7 @@
     "tags": "record-releases",
     "title": "Compilation IV",
     "titleWrapping": "",
-    "trackSlug": "some-kind-of-emergency",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -1875,7 +1875,7 @@
     "tags": "attachment, sound-library",
     "title": "Cymbals Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -1908,7 +1908,7 @@
     "tags": "attachment, sound-library",
     "title": "Cymbals Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -1941,7 +1941,7 @@
     "tags": "attachment, sound-library",
     "title": "Cymbals Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -1974,7 +1974,7 @@
     "tags": "attachment, sound-library",
     "title": "Cymbals Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -2007,7 +2007,7 @@
     "tags": "attachment, sound-library",
     "title": "Cymbals Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -2040,7 +2040,7 @@
     "tags": "instruments, percussion, extended-technique",
     "title": "Cymbals",
     "titleWrapping": "",
-    "trackSlug": "cymbals-sample-track-1",
+    "trackSlugs": "cymbals-sample-track-1\ncymbals-sample-track-2\ncymbals-sample-track-3\ncymbals-sample-track-4\ncymbals-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -2073,7 +2073,7 @@
     "tags": "record-releases",
     "title": "Demonstration Disc",
     "titleWrapping": "Demon&shy;stration Disc",
-    "trackSlug": "demonstration-disc-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -2106,7 +2106,7 @@
     "tags": "events",
     "title": "Dog Star Orchestra 2009",
     "titleWrapping": "",
-    "trackSlug": "dog-star-orchestra-2009-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -2139,7 +2139,7 @@
     "tags": "events",
     "title": "Dog Star Orchestra 2010",
     "titleWrapping": "",
-    "trackSlug": "dog-star-orchestra-2010-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -2172,7 +2172,7 @@
     "tags": "attachment, sound-library",
     "title": "Drum Kit Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -2205,7 +2205,7 @@
     "tags": "attachment, sound-library",
     "title": "Drum Kit Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -2238,7 +2238,7 @@
     "tags": "attachment, sound-library",
     "title": "Drum Kit Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -2271,7 +2271,7 @@
     "tags": "attachment, sound-library",
     "title": "Drum Kit Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -2304,7 +2304,7 @@
     "tags": "attachment, sound-library",
     "title": "Drum Kit Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -2337,7 +2337,7 @@
     "tags": "instruments, percussion",
     "title": "Drum Kit",
     "titleWrapping": "",
-    "trackSlug": "drum-kit-sample-track-1",
+    "trackSlugs": "drum-kit-sample-track-1\ndrum-kit-sample-track-2\ndrum-kit-sample-track-3\ndrum-kit-sample-track-4\ndrum-kit-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -2370,7 +2370,7 @@
     "tags": "record-releases",
     "title": "Early Live Recordings",
     "titleWrapping": "Early Live Record&shy;ings",
-    "trackSlug": "early-live-recordings-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -2403,7 +2403,7 @@
     "tags": "record-releases",
     "title": "Eating the Stars",
     "titleWrapping": "",
-    "trackSlug": "eating-the-stars-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -2436,7 +2436,7 @@
     "tags": "attachment, sound-library",
     "title": "Electric Bass Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -2469,7 +2469,7 @@
     "tags": "attachment, sound-library",
     "title": "Electric Bass Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -2502,7 +2502,7 @@
     "tags": "attachment, sound-library",
     "title": "Electric Bass Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -2535,7 +2535,7 @@
     "tags": "attachment, sound-library",
     "title": "Electric Bass Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -2568,7 +2568,7 @@
     "tags": "attachment, sound-library",
     "title": "Electric Bass Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -2601,7 +2601,7 @@
     "tags": "guitar-and-bass, instruments",
     "title": "Electric Bass",
     "titleWrapping": "",
-    "trackSlug": "electric-bass-sample-track-1",
+    "trackSlugs": "electric-bass-sample-track-1\nelectric-bass-sample-track-2\nelectric-bass-sample-track-3\nelectric-bass-sample-track-4\nelectric-bass-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -2634,7 +2634,7 @@
     "tags": "attachment, sound-library",
     "title": "Electric Guitar Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -2667,7 +2667,7 @@
     "tags": "attachment, sound-library",
     "title": "Electric Guitar Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -2700,7 +2700,7 @@
     "tags": "attachment, sound-library",
     "title": "Electric Guitar Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -2733,7 +2733,7 @@
     "tags": "attachment, sound-library",
     "title": "Electric Guitar Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -2766,7 +2766,7 @@
     "tags": "attachment, sound-library",
     "title": "Electric Guitar Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -2799,7 +2799,7 @@
     "tags": "guitar-and-bass, instruments",
     "title": "Electric Guitar",
     "titleWrapping": "",
-    "trackSlug": "electric-guitar-sample-track-1",
+    "trackSlugs": "electric-guitar-sample-track-1\nelectric-guitar-sample-track-2\nelectric-guitar-sample-track-3\nelectric-guitar-sample-track-4\nelectric-guitar-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -2832,7 +2832,7 @@
     "tags": "attachment, sound-library",
     "title": "Environments Sampler Album Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -2865,7 +2865,7 @@
     "tags": "attachment, sound-library",
     "title": "Environments Sampler Album Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -2898,7 +2898,7 @@
     "tags": "attachment, sound-library",
     "title": "Environments Sampler Album Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -2931,7 +2931,7 @@
     "tags": "attachment, sound-library",
     "title": "Environments Sampler Album Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -2964,7 +2964,7 @@
     "tags": "attachment, sound-library",
     "title": "Environments Sampler Album Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -2997,7 +2997,7 @@
     "tags": "found-sound, found-vinyl",
     "title": "Environments Sampler Album",
     "titleWrapping": "",
-    "trackSlug": "environments-sampler-album-sample-track-1",
+    "trackSlugs": "environments-sampler-album-sample-track-1\nenvironments-sampler-album-sample-track-2\nenvironments-sampler-album-sample-track-3\nenvironments-sampler-album-sample-track-4\nenvironments-sampler-album-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -3030,7 +3030,7 @@
     "tags": "attachment, sound-library",
     "title": "Flow Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -3063,7 +3063,7 @@
     "tags": "attachment, sound-library",
     "title": "Flow Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -3096,7 +3096,7 @@
     "tags": "attachment, sound-library",
     "title": "Flow Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -3129,7 +3129,7 @@
     "tags": "attachment, sound-library",
     "title": "Flow Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -3162,7 +3162,7 @@
     "tags": "attachment, sound-library",
     "title": "Flow Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -3195,7 +3195,7 @@
     "tags": "generative-tools, midi-devices",
     "title": "Flow",
     "titleWrapping": "",
-    "trackSlug": "flow-sample-track-1",
+    "trackSlugs": "flow-sample-track-1\nflow-sample-track-2\nflow-sample-track-3\nflow-sample-track-4\nflow-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -3228,7 +3228,7 @@
     "tags": "attachment, sound-library",
     "title": "Frame Drum Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -3261,7 +3261,7 @@
     "tags": "attachment, sound-library",
     "title": "Frame Drum Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -3294,7 +3294,7 @@
     "tags": "attachment, sound-library",
     "title": "Frame Drum Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -3327,7 +3327,7 @@
     "tags": "attachment, sound-library",
     "title": "Frame Drum Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -3360,7 +3360,7 @@
     "tags": "attachment, sound-library",
     "title": "Frame Drum Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -3393,40 +3393,7 @@
     "tags": "instruments, percussion",
     "title": "Frame Drum",
     "titleWrapping": "",
-    "trackSlug": "frame-drum-sample-track-1",
-    "trackResourceId": "",
-    "trackResourceSecret": "",
-    "type": "Sample Pack for Ableton Live"
-  },
-  {
-    "acceptingDonations": false,
-    "attribution": "",
-    "attributionLink": "",
-    "badgeText": "",
-    "blurb": "",
-    "category": "sound-library",
-    "displayCategory": "",
-    "date": "01.09.2017",
-    "description": "  ",
-    "externalLinkText": "",
-    "externalLinkUrl": "",
-    "fixedPrice": "",
-    "flexPriceMinimum": "",
-    "flexPriceRecommended": "15",
-    "hasFixedPrice": false,
-    "id": 27,
-    "isDigitalProduct": true,
-    "keyArt": "german-folk-guitar-lesson-vinyl.jpg",
-    "published": true,
-    "relatedContent": "",
-    "relatedContentLink": "",
-    "secondaryTitle": "",
-    "slug": "german-folk-guitar-lesson-vinyl",
-    "sticky": false,
-    "tags": "found-sound, found-vinyl",
-    "title": "Guitar Lesson",
-    "titleWrapping": "",
-    "trackSlug": "guitar-lesson-sample-track-1",
+    "trackSlugs": "frame-drum-sample-track-1\nframe-drum-sample-track-2\nframe-drum-sample-track-3\nframe-drum-sample-track-4\nframe-drum-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -3459,7 +3426,7 @@
     "tags": "attachment",
     "title": "Grand Piano Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "grand-piano-sample-track-1-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "778088458",
     "trackResourceSecret": "s-su4d4",
     "type": ""
@@ -3492,7 +3459,7 @@
     "tags": "attachment",
     "title": "Grand Piano Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "grand-piano-sample-track-1-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "778088458",
     "trackResourceSecret": "s-su4d4",
     "type": ""
@@ -3525,7 +3492,7 @@
     "tags": "attachment",
     "title": "Grand Piano Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "grand-piano-sample-track-1-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "778088458",
     "trackResourceSecret": "s-su4d4",
     "type": ""
@@ -3558,7 +3525,7 @@
     "tags": "attachment",
     "title": "Grand Piano Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "grand-piano-sample-track-1-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "778088458",
     "trackResourceSecret": "s-su4d4",
     "type": ""
@@ -3591,7 +3558,7 @@
     "tags": "attachment",
     "title": "Grand Piano Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "grand-piano-sample-track-1-sample-track-5",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -3624,7 +3591,7 @@
     "tags": "keys, extended-technique, instruments, new-in-the-library",
     "title": "Grand Piano",
     "titleWrapping": "",
-    "trackSlug": "grand-piano-sample-track-1",
+    "trackSlugs": "grand-piano-sample-track-1\ngrand-piano-sample-track-2\ngrand-piano-sample-track-3\ngrand-piano-sample-track-4\ngrand-piano-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -3657,7 +3624,7 @@
     "tags": "attachment, sound-library",
     "title": "Guitar Lesson Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -3690,7 +3657,7 @@
     "tags": "attachment, sound-library",
     "title": "Guitar Lesson Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -3723,7 +3690,7 @@
     "tags": "attachment, sound-library",
     "title": "Guitar Lesson Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -3756,7 +3723,7 @@
     "tags": "attachment, sound-library",
     "title": "Guitar Lesson Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -3789,10 +3756,43 @@
     "tags": "attachment, sound-library",
     "title": "Guitar Lesson Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
+  },
+  {
+    "acceptingDonations": false,
+    "attribution": "",
+    "attributionLink": "",
+    "badgeText": "",
+    "blurb": "",
+    "category": "sound-library",
+    "displayCategory": "",
+    "date": "01.09.2017",
+    "description": "  ",
+    "externalLinkText": "",
+    "externalLinkUrl": "",
+    "fixedPrice": "",
+    "flexPriceMinimum": "",
+    "flexPriceRecommended": "15",
+    "hasFixedPrice": false,
+    "id": 27,
+    "isDigitalProduct": true,
+    "keyArt": "german-folk-guitar-lesson-vinyl.jpg",
+    "published": true,
+    "relatedContent": "",
+    "relatedContentLink": "",
+    "secondaryTitle": "",
+    "slug": "german-folk-guitar-lesson-vinyl",
+    "sticky": false,
+    "tags": "found-sound, found-vinyl",
+    "title": "Guitar Lesson",
+    "titleWrapping": "",
+    "trackSlugs": "german-folk-guitar-lesson-vinyl-sample-track-1\ngerman-folk-guitar-lesson-vinyl-sample-track-2\ngerman-folk-guitar-lesson-vinyl-sample-track-3\ngerman-folk-guitar-lesson-vinyl-sample-track-4\ngerman-folk-guitar-lesson-vinyl-sample-track-5\n",
+    "trackResourceId": "",
+    "trackResourceSecret": "",
+    "type": "Sample Pack for Ableton Live"
   },
   {
     "acceptingDonations": false,
@@ -3822,7 +3822,7 @@
     "tags": "record-releases",
     "title": "Heart Shaped Rock",
     "titleWrapping": "",
-    "trackSlug": "heart-shaped-rock-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -3855,7 +3855,7 @@
     "tags": "events",
     "title": "HEM Anniversary One",
     "titleWrapping": "HEM Anni&shy;versary One",
-    "trackSlug": "hem-anniversary-one-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -3888,7 +3888,7 @@
     "tags": "record-releases",
     "title": "Hit Singles",
     "titleWrapping": "",
-    "trackSlug": "hit-singles-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -3902,7 +3902,7 @@
     "category": "list",
     "displayCategory": "",
     "date": "01.06.2020",
-    "description": "compilation-iv\njason-gillis-grier\nseurat-standalone\nbreto",
+    "description": "compilation-iv\nseurat-standalone\nbreto\njason-gillis-grier",
     "externalLinkText": "",
     "externalLinkUrl": "",
     "fixedPrice": "",
@@ -3921,7 +3921,7 @@
     "tags": "",
     "title": "Home Page Features",
     "titleWrapping": "",
-    "trackSlug": "home-page-features-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -3954,7 +3954,7 @@
     "tags": "attachment, sound-library",
     "title": "Hum Hiss Crackle Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -3987,7 +3987,7 @@
     "tags": "attachment, sound-library",
     "title": "Hum Hiss Crackle Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -4020,7 +4020,7 @@
     "tags": "attachment, sound-library",
     "title": "Hum Hiss Crackle Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -4053,7 +4053,7 @@
     "tags": "attachment, sound-library",
     "title": "Hum Hiss Crackle Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -4086,7 +4086,7 @@
     "tags": "attachment, sound-library",
     "title": "Hum Hiss Crackle Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -4119,7 +4119,7 @@
     "tags": "post-studio, sonic-detritus",
     "title": "Hum Hiss Crackle",
     "titleWrapping": "",
-    "trackSlug": "hum-hiss-crackle-sample-track-1",
+    "trackSlugs": "hum-hiss-crackle-sample-track-1\nhum-hiss-crackle-sample-track-2\nhum-hiss-crackle-sample-track-3\nhum-hiss-crackle-sample-track-4\nhum-hiss-crackle-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -4152,7 +4152,7 @@
     "tags": "hem, human-ear-music",
     "title": "\"Human Ear Music\" 2006 Logo Tee",
     "titleWrapping": "",
-    "trackSlug": "human-ear-music-2006-logo-tee-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -4185,7 +4185,7 @@
     "tags": "events",
     "title": "Human Genius at Soundwalk",
     "titleWrapping": "Human Genius at Sound&shy;walk",
-    "trackSlug": "human-genius-at-soundwalk-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -4218,7 +4218,7 @@
     "tags": "record-releases",
     "title": "Instant Coma",
     "titleWrapping": "",
-    "trackSlug": "instant-coma-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -4251,7 +4251,7 @@
     "tags": "live-recording",
     "title": "Jason Aaron Gillis-Grier Live at Studio Acht",
     "titleWrapping": "",
-    "trackSlug": "jason-aaron-gillis-grier-live-at-studio-acht-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "832279624",
     "trackResourceSecret": "s-zm6tCFfEQ6D",
     "type": ""
@@ -4284,7 +4284,7 @@
     "tags": "",
     "title": "Jason Aaron Gillis-Grier",
     "titleWrapping": "",
-    "trackSlug": "jason-aaron-gillis-grier-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -4317,7 +4317,7 @@
     "tags": "record-releases",
     "title": "Katahymie",
     "titleWrapping": "",
-    "trackSlug": "katahymie-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -4350,7 +4350,7 @@
     "tags": "record-releases",
     "title": "Lats Yerk",
     "titleWrapping": "",
-    "trackSlug": "lats-yerk-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -4383,7 +4383,7 @@
     "tags": "events",
     "title": "Linda Perhacs at SFAI",
     "titleWrapping": "",
-    "trackSlug": "linda-perhacs-at-sfai-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -4416,40 +4416,7 @@
     "tags": "venue-residency",
     "title": "Line Gøttsche Residency",
     "titleWrapping": "",
-    "trackSlug": "line-gottsche-residency-sample-track-1",
-    "trackResourceId": "",
-    "trackResourceSecret": "",
-    "type": ""
-  },
-  {
-    "acceptingDonations": false,
-    "attribution": "",
-    "attributionLink": "",
-    "badgeText": "",
-    "blurb": "",
-    "category": "venue-archive",
-    "displayCategory": "",
-    "date": "20.05.2020",
-    "description": "",
-    "externalLinkText": "",
-    "externalLinkUrl": "",
-    "fixedPrice": "",
-    "flexPriceMinimum": "",
-    "flexPriceRecommended": "",
-    "hasFixedPrice": false,
-    "id": 42,
-    "isDigitalProduct": false,
-    "keyArt": "live-foo-bar.jpg",
-    "published": true,
-    "relatedContent": "",
-    "relatedContentLink": "",
-    "secondaryTitle": "Originally aired: Saturday, August 16 @ 8pm ",
-    "slug": "live-foo-bar",
-    "sticky": false,
-    "tags": "venue-archive",
-    "title": "Placeholder Venue Archive Event",
-    "titleWrapping": "",
-    "trackSlug": "placeholder-venue-archive-event-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -4482,7 +4449,7 @@
     "tags": "record-releases",
     "title": "Maria",
     "titleWrapping": "",
-    "trackSlug": "maria-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -4515,7 +4482,7 @@
     "tags": "attachment, sound-library",
     "title": "Mic Feedback Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -4548,7 +4515,7 @@
     "tags": "attachment, sound-library",
     "title": "Mic Feedback Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -4581,7 +4548,7 @@
     "tags": "attachment, sound-library",
     "title": "Mic Feedback Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -4614,7 +4581,7 @@
     "tags": "attachment, sound-library",
     "title": "Mic Feedback Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -4647,7 +4614,7 @@
     "tags": "attachment, sound-library",
     "title": "Mic Feedback Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -4680,7 +4647,7 @@
     "tags": "post-studio, sonic-detritus",
     "title": "Mic Feedback",
     "titleWrapping": "Mic<br>Feed&shy;back",
-    "trackSlug": "mic-feedback-sample-track-1",
+    "trackSlugs": "mic-feedback-sample-track-1\nmic-feedback-sample-track-2\nmic-feedback-sample-track-3\nmic-feedback-sample-track-4\nmic-feedback-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -4713,7 +4680,7 @@
     "tags": "desktop-mobile-apps, javascript, react, electron, expanded-poetics, pedagogy",
     "title": "Midst",
     "titleWrapping": "",
-    "trackSlug": "midst-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -4746,7 +4713,7 @@
     "tags": "record-releases",
     "title": "No Bosses No Bullshit",
     "titleWrapping": "",
-    "trackSlug": "no-bosses-no-bullshit-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -4779,7 +4746,7 @@
     "tags": "attachment, sound-library",
     "title": "No-Input Mixer Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -4812,7 +4779,7 @@
     "tags": "attachment, sound-library",
     "title": "No-Input Mixer Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -4845,7 +4812,7 @@
     "tags": "attachment, sound-library",
     "title": "No-Input Mixer Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -4878,7 +4845,7 @@
     "tags": "attachment, sound-library",
     "title": "No-Input Mixer Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -4911,7 +4878,7 @@
     "tags": "attachment, sound-library",
     "title": "No-Input Mixer Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -4944,7 +4911,7 @@
     "tags": "post-studio",
     "title": "No-Input Mixer",
     "titleWrapping": "",
-    "trackSlug": "no-input-mixer-sample-track-1",
+    "trackSlugs": "no-input-mixer-sample-track-1\nno-input-mixer-sample-track-2\nno-input-mixer-sample-track-3\nno-input-mixer-sample-track-4\nno-input-mixer-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -4977,7 +4944,7 @@
     "tags": "attachment, sound-library",
     "title": "Noise Reduction Artefacts Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -5010,7 +4977,7 @@
     "tags": "attachment, sound-library",
     "title": "Noise Reduction Artefacts Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -5043,7 +5010,7 @@
     "tags": "attachment, sound-library",
     "title": "Noise Reduction Artefacts Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -5076,7 +5043,7 @@
     "tags": "attachment, sound-library",
     "title": "Noise Reduction Artefacts Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -5109,7 +5076,7 @@
     "tags": "attachment, sound-library",
     "title": "Noise Reduction Artefacts Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -5142,7 +5109,7 @@
     "tags": "post-studio, sonic-detritus",
     "title": "Noise Reduction Artefacts",
     "titleWrapping": "Noise Re&shy;duction Arte&shy;facts",
-    "trackSlug": "noise-reduction-artefacts-sample-track-1",
+    "trackSlugs": "noise-reduction-artefacts-sample-track-1\nnoise-reduction-artefacts-sample-track-2\nnoise-reduction-artefacts-sample-track-3\nnoise-reduction-artefacts-sample-track-4\nnoise-reduction-artefacts-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -5175,7 +5142,7 @@
     "tags": "attachment, sound-library",
     "title": "Oberheim Expander Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -5208,7 +5175,7 @@
     "tags": "attachment, sound-library",
     "title": "Oberheim Expander Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -5241,7 +5208,7 @@
     "tags": "attachment, sound-library",
     "title": "Oberheim Expander Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -5274,7 +5241,7 @@
     "tags": "attachment, sound-library",
     "title": "Oberheim Expander Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -5307,7 +5274,7 @@
     "tags": "attachment, sound-library",
     "title": "Oberheim Expander Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -5340,7 +5307,7 @@
     "tags": "synth, instruments",
     "title": "Oberheim Expander",
     "titleWrapping": "Ober&shy;heim Ex&shy;pander",
-    "trackSlug": "oberheim-expander-sample-track-1",
+    "trackSlugs": "oberheim-expander-sample-track-1\noberheim-expander-sample-track-2\noberheim-expander-sample-track-3\noberheim-expander-sample-track-4\noberheim-expander-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -5373,7 +5340,7 @@
     "tags": "attachment, sound-library",
     "title": "One Pitch Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -5406,7 +5373,7 @@
     "tags": "attachment, sound-library",
     "title": "One Pitch Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -5439,7 +5406,7 @@
     "tags": "attachment, sound-library",
     "title": "One Pitch Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -5472,7 +5439,7 @@
     "tags": "attachment, sound-library",
     "title": "One Pitch Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -5505,7 +5472,7 @@
     "tags": "attachment, sound-library",
     "title": "One Pitch Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -5538,7 +5505,7 @@
     "tags": "synth, instruments, generative-tools, midi-devices",
     "title": "One Pitch",
     "titleWrapping": "",
-    "trackSlug": "one-pitch-sample-track-1",
+    "trackSlugs": "one-pitch-sample-track-1\none-pitch-sample-track-2\none-pitch-sample-track-3\none-pitch-sample-track-4\none-pitch-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -5571,7 +5538,7 @@
     "tags": "attachment, sound-library",
     "title": "Ooohs and Ahs Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -5604,7 +5571,7 @@
     "tags": "attachment, sound-library",
     "title": "Ooohs and Ahs Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -5637,7 +5604,7 @@
     "tags": "attachment, sound-library",
     "title": "Ooohs and Ahs Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -5670,7 +5637,7 @@
     "tags": "attachment, sound-library",
     "title": "Ooohs and Ahs Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -5703,7 +5670,7 @@
     "tags": "attachment, sound-library",
     "title": "Ooohs and Ahs Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -5736,7 +5703,7 @@
     "tags": "choral, vocal",
     "title": "Ooohs and Ahs",
     "titleWrapping": "",
-    "trackSlug": "ooohs-and-ahs-sample-track-1",
+    "trackSlugs": "ooohs-and-ahs-sample-track-1\nooohs-and-ahs-sample-track-2\nooohs-and-ahs-sample-track-3\nooohs-and-ahs-sample-track-4\nooohs-and-ahs-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -5769,7 +5736,7 @@
     "tags": "attachment, sound-library",
     "title": "Outtakes Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -5802,7 +5769,7 @@
     "tags": "attachment, sound-library",
     "title": "Outtakes Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -5835,7 +5802,7 @@
     "tags": "attachment, sound-library",
     "title": "Outtakes Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -5868,7 +5835,7 @@
     "tags": "attachment, sound-library",
     "title": "Outtakes Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -5901,7 +5868,7 @@
     "tags": "attachment, sound-library",
     "title": "Outtakes Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -5934,7 +5901,7 @@
     "tags": "sonic-detritus, labor-theory",
     "title": "Outtakes",
     "titleWrapping": "",
-    "trackSlug": "outtakes-sample-track-1",
+    "trackSlugs": "outtakes-sample-track-1\nouttakes-sample-track-2\nouttakes-sample-track-3\nouttakes-sample-track-4\nouttakes-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -5967,7 +5934,7 @@
     "tags": "attachment, sound-library",
     "title": "Overtone Singing Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -6000,7 +5967,7 @@
     "tags": "attachment, sound-library",
     "title": "Overtone Singing Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -6033,7 +6000,7 @@
     "tags": "attachment, sound-library",
     "title": "Overtone Singing Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -6066,7 +6033,7 @@
     "tags": "attachment, sound-library",
     "title": "Overtone Singing Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -6099,7 +6066,7 @@
     "tags": "attachment, sound-library",
     "title": "Overtone Singing Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -6132,7 +6099,7 @@
     "tags": "vocal, extended-technique",
     "title": "Overtone Singing",
     "titleWrapping": "",
-    "trackSlug": "overtone-singing-sample-track-1",
+    "trackSlugs": "overtone-singing-sample-track-1\novertone-singing-sample-track-2\novertone-singing-sample-track-3\novertone-singing-sample-track-4\novertone-singing-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -6165,7 +6132,7 @@
     "tags": "attachment, sound-library",
     "title": "Percussion Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -6198,7 +6165,7 @@
     "tags": "attachment, sound-library",
     "title": "Percussion Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -6231,7 +6198,7 @@
     "tags": "attachment, sound-library",
     "title": "Percussion Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -6264,7 +6231,7 @@
     "tags": "attachment, sound-library",
     "title": "Percussion Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -6297,7 +6264,7 @@
     "tags": "attachment, sound-library",
     "title": "Percussion Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -6330,10 +6297,43 @@
     "tags": "percussion, sonic-detritus",
     "title": "Percussion",
     "titleWrapping": "Per&shy;cussion",
-    "trackSlug": "percussion-sample-track-1",
+    "trackSlugs": "percussion-sample-track-1\npercussion-sample-track-2\npercussion-sample-track-3\npercussion-sample-track-4\npercussion-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
+  },
+  {
+    "acceptingDonations": false,
+    "attribution": "",
+    "attributionLink": "",
+    "badgeText": "",
+    "blurb": "",
+    "category": "venue-archive",
+    "displayCategory": "",
+    "date": "20.05.2020",
+    "description": "",
+    "externalLinkText": "",
+    "externalLinkUrl": "",
+    "fixedPrice": "",
+    "flexPriceMinimum": "",
+    "flexPriceRecommended": "",
+    "hasFixedPrice": false,
+    "id": 42,
+    "isDigitalProduct": false,
+    "keyArt": "live-foo-bar.jpg",
+    "published": true,
+    "relatedContent": "",
+    "relatedContentLink": "",
+    "secondaryTitle": "Originally aired: Saturday, August 16 @ 8pm ",
+    "slug": "live-foo-bar",
+    "sticky": false,
+    "tags": "venue-archive",
+    "title": "Placeholder Venue Archive Event",
+    "titleWrapping": "",
+    "trackSlugs": "",
+    "trackResourceId": "",
+    "trackResourceSecret": "",
+    "type": ""
   },
   {
     "acceptingDonations": false,
@@ -6363,7 +6363,7 @@
     "tags": "",
     "title": "Placeholder Venue Merch Item",
     "titleWrapping": "",
-    "trackSlug": "placeholder-venue-merch-item-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -6396,7 +6396,7 @@
     "tags": "npm-modules, javascript, react",
     "title": "Placemats",
     "titleWrapping": "",
-    "trackSlug": "placemats-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -6429,7 +6429,7 @@
     "tags": "attachment, sound-library",
     "title": "Protest Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -6462,7 +6462,7 @@
     "tags": "attachment, sound-library",
     "title": "Protest Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -6495,7 +6495,7 @@
     "tags": "attachment, sound-library",
     "title": "Protest Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -6528,7 +6528,7 @@
     "tags": "attachment, sound-library",
     "title": "Protest Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -6561,7 +6561,7 @@
     "tags": "attachment, sound-library",
     "title": "Protest Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -6594,7 +6594,7 @@
     "tags": "field-recording, performativity-activism",
     "title": "Protest",
     "titleWrapping": "",
-    "trackSlug": "protest-sample-track-1",
+    "trackSlugs": "protest-sample-track-1\nprotest-sample-track-2\nprotest-sample-track-3\nprotest-sample-track-4\nprotest-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -6627,7 +6627,7 @@
     "tags": "attachment, sound-library",
     "title": "Quarter Tone Synth Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -6660,7 +6660,7 @@
     "tags": "attachment, sound-library",
     "title": "Quarter Tone Synth Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -6693,7 +6693,7 @@
     "tags": "attachment, sound-library",
     "title": "Quarter Tone Synth Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -6726,7 +6726,7 @@
     "tags": "attachment, sound-library",
     "title": "Quarter Tone Synth Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -6759,7 +6759,7 @@
     "tags": "attachment, sound-library",
     "title": "Quarter Tone Synth Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -6792,7 +6792,7 @@
     "tags": "synth, instruments, microtonality, coming-soon",
     "title": "Quarter Tone Synth",
     "titleWrapping": "",
-    "trackSlug": "quarter-tone-synth-sample-track-1",
+    "trackSlugs": "quarter-tone-synth-sample-track-1\nquarter-tone-synth-sample-track-2\nquarter-tone-synth-sample-track-3\nquarter-tone-synth-sample-track-4\nquarter-tone-synth-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -6825,7 +6825,7 @@
     "tags": "attachment, sound-library",
     "title": "Record Endings Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -6858,7 +6858,7 @@
     "tags": "attachment, sound-library",
     "title": "Record Endings Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -6891,7 +6891,7 @@
     "tags": "attachment, sound-library",
     "title": "Record Endings Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -6924,7 +6924,7 @@
     "tags": "attachment, sound-library",
     "title": "Record Endings Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -6957,7 +6957,7 @@
     "tags": "attachment, sound-library",
     "title": "Record Endings Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -6990,7 +6990,7 @@
     "tags": "found-sound, sonic-detritus",
     "title": "Record Endings",
     "titleWrapping": "",
-    "trackSlug": "record-endings-sample-track-1",
+    "trackSlugs": "record-endings-sample-track-1\nrecord-endings-sample-track-2\nrecord-endings-sample-track-3\nrecord-endings-sample-track-4\nrecord-endings-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -7023,7 +7023,7 @@
     "tags": "desktop-mobile-apps, javascript, react, expanded-poetics, pedagogy",
     "title": "Relineator",
     "titleWrapping": "",
-    "trackSlug": "relineator-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -7056,7 +7056,7 @@
     "tags": "attachment, sound-library",
     "title": "Saxophone Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -7089,7 +7089,7 @@
     "tags": "attachment, sound-library",
     "title": "Saxophone Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -7122,7 +7122,7 @@
     "tags": "attachment, sound-library",
     "title": "Saxophone Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -7155,7 +7155,7 @@
     "tags": "attachment, sound-library",
     "title": "Saxophone Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -7188,7 +7188,7 @@
     "tags": "attachment, sound-library",
     "title": "Saxophone Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -7221,7 +7221,7 @@
     "tags": "instruments, extended-technique",
     "title": "Saxophone",
     "titleWrapping": "",
-    "trackSlug": "saxophone-sample-track-1",
+    "trackSlugs": "saxophone-sample-track-1\nsaxophone-sample-track-2\nsaxophone-sample-track-3\nsaxophone-sample-track-4\nsaxophone-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -7254,40 +7254,7 @@
     "tags": "record-releases",
     "title": "Scared Famous",
     "titleWrapping": "",
-    "trackSlug": "scared-famous-sample-track-1",
-    "trackResourceId": "",
-    "trackResourceSecret": "",
-    "type": "Sample Pack for Ableton Live"
-  },
-  {
-    "acceptingDonations": false,
-    "attribution": "",
-    "attributionLink": "",
-    "badgeText": "Coming Soon",
-    "blurb": "",
-    "category": "sound-library",
-    "displayCategory": "",
-    "date": "01.05.2020",
-    "description": "  ",
-    "externalLinkText": "",
-    "externalLinkUrl": "",
-    "fixedPrice": "",
-    "flexPriceMinimum": "",
-    "flexPriceRecommended": "15",
-    "hasFixedPrice": false,
-    "id": 64,
-    "isDigitalProduct": true,
-    "keyArt": "seurat-ii.jpg",
-    "published": true,
-    "relatedContent": "",
-    "relatedContentLink": "",
-    "secondaryTitle": "",
-    "slug": "seurat-ii",
-    "sticky": true,
-    "tags": "generative-tools, midi-devices, coming-soon",
-    "title": "Seurat MIDI II",
-    "titleWrapping": "",
-    "trackSlug": "seurat-midi-ii-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -7320,7 +7287,7 @@
     "tags": "attachment, sound-library",
     "title": "Seurat MIDI II Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -7353,7 +7320,7 @@
     "tags": "attachment, sound-library",
     "title": "Seurat MIDI II Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -7386,7 +7353,7 @@
     "tags": "attachment, sound-library",
     "title": "Seurat MIDI II Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -7419,7 +7386,7 @@
     "tags": "attachment, sound-library",
     "title": "Seurat MIDI II Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -7452,10 +7419,43 @@
     "tags": "attachment, sound-library",
     "title": "Seurat MIDI II Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
+  },
+  {
+    "acceptingDonations": false,
+    "attribution": "",
+    "attributionLink": "",
+    "badgeText": "Coming Soon",
+    "blurb": "",
+    "category": "sound-library",
+    "displayCategory": "",
+    "date": "01.05.2020",
+    "description": "  ",
+    "externalLinkText": "",
+    "externalLinkUrl": "",
+    "fixedPrice": "",
+    "flexPriceMinimum": "",
+    "flexPriceRecommended": "15",
+    "hasFixedPrice": false,
+    "id": 64,
+    "isDigitalProduct": true,
+    "keyArt": "seurat-ii.jpg",
+    "published": true,
+    "relatedContent": "",
+    "relatedContentLink": "",
+    "secondaryTitle": "",
+    "slug": "seurat-ii",
+    "sticky": true,
+    "tags": "generative-tools, midi-devices, coming-soon",
+    "title": "Seurat MIDI II",
+    "titleWrapping": "",
+    "trackSlugs": "seurat-ii-sample-track-1\nseurat-ii-sample-track-2\nseurat-ii-sample-track-3\nseurat-ii-sample-track-4\nseurat-ii-sample-track-5\n",
+    "trackResourceId": "",
+    "trackResourceSecret": "",
+    "type": "Sample Pack for Ableton Live"
   },
   {
     "acceptingDonations": false,
@@ -7485,7 +7485,7 @@
     "tags": "attachment, sound-library",
     "title": "Seurat MIDI Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -7518,7 +7518,7 @@
     "tags": "attachment, sound-library",
     "title": "Seurat MIDI Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -7551,7 +7551,7 @@
     "tags": "attachment, sound-library",
     "title": "Seurat MIDI Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -7584,7 +7584,7 @@
     "tags": "attachment, sound-library",
     "title": "Seurat MIDI Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -7617,43 +7617,10 @@
     "tags": "attachment, sound-library",
     "title": "Seurat MIDI Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
-  },
-  {
-    "acceptingDonations": false,
-    "attribution": "",
-    "attributionLink": "",
-    "badgeText": "Private beta available",
-    "blurb": "",
-    "category": "apps",
-    "displayCategory": "",
-    "date": "01.09.2017",
-    "description": "  ",
-    "externalLinkText": "",
-    "externalLinkUrl": "",
-    "fixedPrice": "",
-    "flexPriceMinimum": "",
-    "flexPriceRecommended": "15",
-    "hasFixedPrice": false,
-    "id": 65,
-    "isDigitalProduct": false,
-    "keyArt": "seurat-standalone.jpg",
-    "published": true,
-    "relatedContent": "",
-    "relatedContentLink": "",
-    "secondaryTitle": "Stylish standalone version of the Seurat MIDI device<br>Integrates with every DAW",
-    "slug": "seurat-standalone",
-    "sticky": true,
-    "tags": "desktop-mobile-apps, javascript, react, electron, sound, composition, performance",
-    "title": "Seurat",
-    "titleWrapping": "",
-    "trackSlug": "seurat-sample-track-1",
-    "trackResourceId": "",
-    "trackResourceSecret": "",
-    "type": "Sample Pack for Ableton Live"
   },
   {
     "acceptingDonations": false,
@@ -7683,7 +7650,7 @@
     "tags": "generative-tools, midi-devices",
     "title": "Seurat MIDI",
     "titleWrapping": "",
-    "trackSlug": "seurat-midi-sample-track-1",
+    "trackSlugs": "seurat-sample-track-1\nseurat-sample-track-2\nseurat-sample-track-3\nseurat-sample-track-4\nseurat-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -7692,34 +7659,34 @@
     "acceptingDonations": false,
     "attribution": "",
     "attributionLink": "",
-    "badgeText": "",
+    "badgeText": "Private beta available",
     "blurb": "",
-    "category": "playlist",
+    "category": "apps",
     "displayCategory": "",
-    "date": "29.05.2020",
-    "description": "grand-piano-sample-track-1\njason-aaron-gillis-grier-live-at-studio-acht\nsome-kind-of-emergency",
+    "date": "01.09.2017",
+    "description": "  ",
     "externalLinkText": "",
     "externalLinkUrl": "",
     "fixedPrice": "",
     "flexPriceMinimum": "",
-    "flexPriceRecommended": "",
+    "flexPriceRecommended": "15",
     "hasFixedPrice": false,
-    "id": 67,
+    "id": 65,
     "isDigitalProduct": false,
-    "keyArt": "site-playlist.jpg",
-    "published": false,
+    "keyArt": "seurat-standalone.jpg",
+    "published": true,
     "relatedContent": "",
     "relatedContentLink": "",
-    "secondaryTitle": "",
-    "slug": "site-playlist",
-    "sticky": false,
-    "tags": "playlist",
-    "title": "Site Playlist",
+    "secondaryTitle": "Stylish standalone version of the Seurat MIDI device<br>Integrates with every DAW",
+    "slug": "seurat-standalone",
+    "sticky": true,
+    "tags": "desktop-mobile-apps, javascript, react, electron, sound, composition, performance",
+    "title": "Seurat",
     "titleWrapping": "",
-    "trackSlug": "site-playlist-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
-    "type": ""
+    "type": "Sample Pack for Ableton Live"
   },
   {
     "acceptingDonations": false,
@@ -7749,7 +7716,7 @@
     "tags": "rarities, album-tracks",
     "title": "Some Kind of Emergency",
     "titleWrapping": "",
-    "trackSlug": "some-kind-of-emergency-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "832287952",
     "trackResourceSecret": "s-6LQy5C0nfBC",
     "type": ""
@@ -7782,7 +7749,7 @@
     "tags": "attachment, sound-library",
     "title": "Sweet Bea Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -7815,7 +7782,7 @@
     "tags": "attachment, sound-library",
     "title": "Sweet Bea Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -7848,7 +7815,7 @@
     "tags": "attachment, sound-library",
     "title": "Sweet Bea Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -7881,7 +7848,7 @@
     "tags": "attachment, sound-library",
     "title": "Sweet Bea Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -7914,7 +7881,7 @@
     "tags": "attachment, sound-library",
     "title": "Sweet Bea Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -7947,7 +7914,7 @@
     "tags": "found-sound, found-vinyl",
     "title": "Sweet Bea",
     "titleWrapping": "",
-    "trackSlug": "sweet-bea-sample-track-1",
+    "trackSlugs": "sweet-bea-vinyl-sample-track-1\nsweet-bea-vinyl-sample-track-2\nsweet-bea-vinyl-sample-track-3\nsweet-bea-vinyl-sample-track-4\nsweet-bea-vinyl-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -7980,7 +7947,7 @@
     "tags": "record-releases",
     "title": "Syzygy",
     "titleWrapping": "",
-    "trackSlug": "syzygy-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -8013,7 +7980,7 @@
     "tags": "record-releases",
     "title": "The Human Ear Volume I",
     "titleWrapping": "",
-    "trackSlug": "the-human-ear-volume-i-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -8046,7 +8013,7 @@
     "tags": "record-releases",
     "title": "The Human Ear Volume II",
     "titleWrapping": "",
-    "trackSlug": "the-human-ear-volume-ii-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -8079,7 +8046,7 @@
     "tags": "record-releases",
     "title": "Thrash And Burn",
     "titleWrapping": "",
-    "trackSlug": "thrash-and-burn-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -8112,7 +8079,7 @@
     "tags": "record-releases",
     "title": "Tombstones",
     "titleWrapping": "Tomb&shy;stones",
-    "trackSlug": "tombstones-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -8145,7 +8112,7 @@
     "tags": "events",
     "title": "Trauermusik",
     "titleWrapping": "Trauer&shy;musik",
-    "trackSlug": "trauermusik-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -8178,7 +8145,7 @@
     "tags": "events",
     "title": "Twelve Radios",
     "titleWrapping": "",
-    "trackSlug": "twelve-radios-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -8211,7 +8178,7 @@
     "tags": "record-releases",
     "title": "Unbekannte",
     "titleWrapping": "Unbe&shy;kannte",
-    "trackSlug": "unbekannte-sample-track-1",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -8244,7 +8211,7 @@
     "tags": "attachment, sound-library",
     "title": "Viola II Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -8277,7 +8244,7 @@
     "tags": "attachment, sound-library",
     "title": "Viola II Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -8310,7 +8277,7 @@
     "tags": "attachment, sound-library",
     "title": "Viola II Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -8343,7 +8310,7 @@
     "tags": "attachment, sound-library",
     "title": "Viola II Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -8376,7 +8343,7 @@
     "tags": "attachment, sound-library",
     "title": "Viola II Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -8409,7 +8376,7 @@
     "tags": "coming-soon, extended-technique, asmr, instruments, microtonality, strings",
     "title": "Viola II",
     "titleWrapping": "",
-    "trackSlug": "viola-sample-track-1",
+    "trackSlugs": "viola-ii-sample-track-1\nviola-ii-sample-track-2\nviola-ii-sample-track-3\nviola-ii-sample-track-4\nviola-ii-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -8442,7 +8409,7 @@
     "tags": "attachment, sound-library",
     "title": "Viola Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -8475,7 +8442,7 @@
     "tags": "attachment, sound-library",
     "title": "Viola Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -8508,7 +8475,7 @@
     "tags": "attachment, sound-library",
     "title": "Viola Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -8541,7 +8508,7 @@
     "tags": "attachment, sound-library",
     "title": "Viola Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -8574,7 +8541,7 @@
     "tags": "attachment, sound-library",
     "title": "Viola Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -8607,7 +8574,7 @@
     "tags": "instruments, microtonality, strings",
     "title": "Viola",
     "titleWrapping": "",
-    "trackSlug": "viola-sample-track-1",
+    "trackSlugs": "viola-sample-track-1\nviola-sample-track-2\nviola-sample-track-3\nviola-sample-track-4\nviola-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -8640,7 +8607,7 @@
     "tags": "attachment, sound-library",
     "title": "Window Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -8673,7 +8640,7 @@
     "tags": "attachment, sound-library",
     "title": "Window Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -8706,7 +8673,7 @@
     "tags": "attachment, sound-library",
     "title": "Window Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -8739,7 +8706,7 @@
     "tags": "attachment, sound-library",
     "title": "Window Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -8772,7 +8739,7 @@
     "tags": "attachment, sound-library",
     "title": "Window Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -8805,7 +8772,7 @@
     "tags": "generative-tools, midi-devices",
     "title": "Window",
     "titleWrapping": "",
-    "trackSlug": "window-sample-track-1",
+    "trackSlugs": "window-sample-track-1\nwindow-sample-track-2\nwindow-sample-track-3\nwindow-sample-track-4\nwindow-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
@@ -8838,7 +8805,7 @@
     "tags": "attachment, sound-library",
     "title": "Zither Sample Track 1",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -8871,7 +8838,7 @@
     "tags": "attachment, sound-library",
     "title": "Zither Sample Track 2",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -8904,7 +8871,7 @@
     "tags": "attachment, sound-library",
     "title": "Zither Sample Track 3",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -8937,7 +8904,7 @@
     "tags": "attachment, sound-library",
     "title": "Zither Sample Track 4",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -8970,7 +8937,7 @@
     "tags": "attachment, sound-library",
     "title": "Zither Sample Track 5",
     "titleWrapping": "",
-    "trackSlug": "",
+    "trackSlugs": "",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": ""
@@ -9003,9 +8970,75 @@
     "tags": "toy-instruments, instruments",
     "title": "Zither",
     "titleWrapping": "",
-    "trackSlug": "zither-sample-track-1",
+    "trackSlugs": "zither-sample-track-1\nzither-sample-track-2\nzither-sample-track-3\nzither-sample-track-4\nzither-sample-track-5\n",
     "trackResourceId": "",
     "trackResourceSecret": "",
     "type": "Sample Pack for Ableton Live"
+  },
+  {
+    "acceptingDonations": false,
+    "attribution": "",
+    "attributionLink": "",
+    "badgeText": "",
+    "blurb": "",
+    "category": "list",
+    "displayCategory": "",
+    "date": "29.05.2020",
+    "description": "grand-piano-sample-track-1\njason-aaron-gillis-grier-live-at-studio-acht\nsome-kind-of-emergency",
+    "externalLinkText": "",
+    "externalLinkUrl": "",
+    "fixedPrice": "",
+    "flexPriceMinimum": "",
+    "flexPriceRecommended": "",
+    "hasFixedPrice": false,
+    "id": 67,
+    "isDigitalProduct": false,
+    "keyArt": "site-playlist.jpg",
+    "published": false,
+    "relatedContent": "",
+    "relatedContentLink": "",
+    "secondaryTitle": "",
+    "slug": "featured-tracks",
+    "sticky": false,
+    "tags": "playlist",
+    "title": "Site Playlist",
+    "titleWrapping": "",
+    "trackSlugs": "",
+    "trackResourceId": "",
+    "trackResourceSecret": "",
+    "type": ""
+  },
+  {
+    "acceptingDonations": false,
+    "attribution": "",
+    "attributionLink": "",
+    "badgeText": "",
+    "blurb": "",
+    "category": "newsletters",
+    "displayCategory": "",
+    "date": "09.01.2020",
+    "description": "## Have you made something with SL?",
+    "externalLinkText": "",
+    "externalLinkUrl": "",
+    "fixedPrice": "",
+    "flexPriceMinimum": "",
+    "flexPriceRecommended": "",
+    "hasFixedPrice": false,
+    "id": 86,
+    "isDigitalProduct": false,
+    "keyArt": "",
+    "published": false,
+    "relatedContent": "",
+    "relatedContentLink": "",
+    "secondaryTitle": "",
+    "slug": "hem-september-2020-newsletter",
+    "sticky": false,
+    "tags": "",
+    "title": "HEM: September 2020 Newsletter",
+    "titleWrapping": "",
+    "trackSlugs": "",
+    "trackResourceId": "",
+    "trackResourceSecret": "",
+    "type": ""
   }
 ]

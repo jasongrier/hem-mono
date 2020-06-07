@@ -1,7 +1,7 @@
 import React, { ReactElement, SyntheticEvent, useEffect, useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
-import { find, isFinite, isNaN, isNumber } from 'lodash'
+import { find, isFinite, isNaN } from 'lodash'
 import Scrollbars from 'react-scrollbars-custom'
 import ReactGA from 'react-ga'
 import { Spinner } from '../../../../../lib/components'

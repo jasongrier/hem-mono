@@ -26,7 +26,7 @@
   "tags": "instruments, extended-technique",
   "title": "Saxophone",
   "titleWrapping": "",
-  "trackSlug": "saxophone-sample-track-1",
+  "trackSlugs": "saxophone-sample-track-1\nsaxophone-sample-track-2\nsaxophone-sample-track-3\nsaxophone-sample-track-4\nsaxophone-sample-track-5\n",
   "trackResourceId": "",
   "trackResourceSecret": "",
   "type": ""

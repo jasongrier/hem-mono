@@ -26,7 +26,7 @@
   "tags": "instruments, keys, donic-detritus",
   "title": "Antique Piano",
   "titleWrapping": "",
-  "trackSlug": "antique-piano-sample-track-1",
+  "trackSlugs": "antique-piano-sample-track-1\nantique-piano-sample-track-2\nantique-piano-sample-track-3\nantique-piano-sample-track-4\nantique-piano-sample-track-5\n",
   "trackResourceId": "",
   "trackResourceSecret": "",
   "type": "Sample Pack for Ableton Live"

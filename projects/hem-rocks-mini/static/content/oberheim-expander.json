@@ -26,7 +26,7 @@
   "tags": "synth, instruments",
   "title": "Oberheim Expander",
   "titleWrapping": "Ober&shy;heim Ex&shy;pander",
-  "trackSlug": "oberheim-expander-sample-track-1",
+  "trackSlugs": "oberheim-expander-sample-track-1\noberheim-expander-sample-track-2\noberheim-expander-sample-track-3\noberheim-expander-sample-track-4\noberheim-expander-sample-track-5\n",
   "trackResourceId": "",
   "trackResourceSecret": "",
   "type": "Sample Pack for Ableton Live"

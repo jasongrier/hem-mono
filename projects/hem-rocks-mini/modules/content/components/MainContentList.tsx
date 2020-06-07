@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Scrollbars from 'react-scrollbars-custom'
@@ -7,16 +7,18 @@ import { compact } from 'lodash'
 import moment from 'moment'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup } from '../../../../../lib/modules/popups'
+import { replacePlaylist, setPlayerPlaylist } from '../../../../../lib/modules/player'
 import { MainContentBox } from './index'
 import { IContentItem } from '../index'
 import { RootState } from '../../../index'
 import { LISTS_HAVE_BLURBS } from '../../../config'
-import { hasTag, hasCategory } from '../functions'
+import { hasTag, hasCategory, contentItemToTrack, getContentItemsFromRawList } from '../functions'
 
 interface IProps {
   category: string
 
   additionalCategory?: string
+  shouldSetCurrentPlaylist?: boolean
   blurb?: string
   buttonText?: string
   children?: (contentItem: IContentItem) => any
@@ -37,12 +39,13 @@ function MainContentList({
   category,
 
   additionalCategory,
+  shouldSetCurrentPlaylist = true,
   blurb,
   buttonText,
   children,
   excludeFromAll,
   currentFilter = 'all',
-  filters = [],
+  filters: propsFilters = [],
   highlights,
   infoPopupText,
   infoPopupTitle,
@@ -58,51 +61,79 @@ function MainContentList({
 
   const dispatch = useDispatch()
 
-  let contentItems
+  const [finalContentItems, setFinalContentItems] = useState<IContentItem[]>([])
 
-  if (propsContentItems) {
-    contentItems = propsContentItems
-  }
+  const filters = compact(['All'].concat(propsFilters))
 
-  else {
+  useEffect(function itemsAndPlaylist() {
+    let contentItems
 
-    filters = compact(['All'].concat(filters))
+    if (propsContentItems) {
+      contentItems = propsContentItems
+    }
 
-    contentItems = storeContentItems.filter(item => {
-      if (additionalCategory) {
-        return (hasCategory(item, category) || hasCategory(item, additionalCategory)) && item.published && !item.sticky
+    else {
+      contentItems = storeContentItems.filter(item => {
+        if (additionalCategory) {
+          return (hasCategory(item, category) || hasCategory(item, additionalCategory)) && item.published && !item.sticky
+        }
+
+        else {
+          return hasCategory(item, category) && item.published && !item.sticky
+        }
+      })
+
+      let stickyContentItems = storeContentItems.filter(
+        item => hasCategory(item, category) && item.published && item.sticky
+      )
+
+      if (currentFilter && currentFilter !== 'all') {
+        contentItems = contentItems.filter(item => hasTag(item, currentFilter))
+        stickyContentItems = stickyContentItems.filter(item => hasTag(item, currentFilter))
       }
 
-      else {
-        return hasCategory(item, category) && item.published && !item.sticky
+      else if (excludeFromAll) {
+        contentItems = contentItems.filter(item => {
+          return !hasTag(item, slugify(excludeFromAll))
+        })
+      }
+
+      function sortFn(a: IContentItem, b: IContentItem) {
+        // @ts-ignore
+        return moment(b.date, 'DD-MM-YYYY') - moment(a.date, 'DD-MM-YYYY')
+      }
+
+      contentItems.sort(sortFn)
+      stickyContentItems.sort(sortFn)
+
+      contentItems = stickyContentItems.concat(contentItems)
+    }
+
+    setFinalContentItems(contentItems)
+
+    setTimeout(() => {
+      let tracks = []
+
+      for (const item of contentItems) {
+        if (hasCategory(item, 'tracks')) {
+          tracks.push(contentItemToTrack(item, `tracks/#${item.slug}`))
+        }
+
+        else {
+          const attachedTracks = getContentItemsFromRawList(storeContentItems, item.trackSlugs).map(track =>
+            contentItemToTrack(track, `${category}/${item.slug}`)
+          )
+          tracks = tracks.concat(attachedTracks)
+        }
+      }
+
+      dispatch(replacePlaylist(1, { name: 'Current Page', tracks }))
+
+      if (tracks.length && shouldSetCurrentPlaylist) {
+        dispatch(setPlayerPlaylist(1))
       }
     })
-
-    let stickyContentItems = storeContentItems.filter(
-      item => hasCategory(item, category) && item.published && item.sticky
-    )
-
-    if (currentFilter && currentFilter !== 'all') {
-      contentItems = contentItems.filter(item => hasTag(item, currentFilter))
-      stickyContentItems = stickyContentItems.filter(item => hasTag(item, currentFilter))
-    }
-
-    else if (excludeFromAll) {
-      contentItems = contentItems.filter(item => {
-        return !hasTag(item, slugify(excludeFromAll))
-      })
-    }
-
-    function sortFn(a: IContentItem, b: IContentItem) {
-      // @ts-ignore
-      return moment(b.date, 'DD-MM-YYYY') - moment(a.date, 'DD-MM-YYYY')
-    }
-
-    contentItems.sort(sortFn)
-    stickyContentItems.sort(sortFn)
-
-    contentItems = stickyContentItems.concat(contentItems)
-  }
+  }, [currentFilter, storeContentItems])
 
   return (
     <div className="main-content-list clearfix">
@@ -162,7 +193,7 @@ function MainContentList({
         </div>
       )}
       <div className="main-content-items">
-        { contentItems.map((contentItem: IContentItem, index: number) => (
+        { finalContentItems.map((contentItem: IContentItem, index: number) => (
           <MainContentBox
             badgeText={showCategoryOnContentBoxes ? titleCase(contentItem.displayCategory || contentItem.category.replace(/-/g, ' ')) : undefined}
             buttonText={buttonText}

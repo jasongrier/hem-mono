@@ -26,7 +26,7 @@
   "tags": "synth, instruments, microtonality, coming-soon",
   "title": "Quarter Tone Synth",
   "titleWrapping": "",
-  "trackSlug": "quarter-tone-synth-sample-track-1",
+  "trackSlugs": "quarter-tone-synth-sample-track-1\nquarter-tone-synth-sample-track-2\nquarter-tone-synth-sample-track-3\nquarter-tone-synth-sample-track-4\nquarter-tone-synth-sample-track-5\n",
   "trackResourceId": "",
   "trackResourceSecret": "",
   "type": "Sample Pack for Ableton Live"

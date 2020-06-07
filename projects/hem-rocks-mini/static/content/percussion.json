@@ -26,7 +26,7 @@
   "tags": "percussion, sonic-detritus",
   "title": "Percussion",
   "titleWrapping": "Per&shy;cussion",
-  "trackSlug": "percussion-sample-track-1",
+  "trackSlugs": "percussion-sample-track-1\npercussion-sample-track-2\npercussion-sample-track-3\npercussion-sample-track-4\npercussion-sample-track-5\n",
   "trackResourceId": "",
   "trackResourceSecret": "",
   "type": "Sample Pack for Ableton Live"

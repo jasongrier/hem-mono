@@ -1,11 +1,14 @@
 import { AnyAction } from 'redux'
 import produce from 'immer'
+import uuid from 'uuid/v1'
 import {
+  ADD_PLAYLIST,
   CUE_TRACK,
   MUTE_PLAYER,
   NEXT_TRACK,
   PAUSE_PLAYER,
   PREVIOUS_TRACK,
+  REPLACE_PLAYLIST,
   SEEK_PLAYER,
   SET_PLAYER_ACTUALLY_PLAYING,
   SET_PLAYER_PLAYLIST,
@@ -14,15 +17,18 @@ import {
   UNPAUSE_PLAYER,
 
   IState,
+
+  IPlaylist,
 } from './index'
 
 const initialState: IState = {
   actuallyPlaying: false,
   currentTrack: null,
+  currentPlaylist: null,
   inited: false,
   muted: true,
   playing: false,
-  playlist: [],
+  playlists: [],
 }
 
 const reducer = (
@@ -30,6 +36,24 @@ const reducer = (
   { type, payload }: AnyAction,
 ): IState => {
   switch (type) {
+    case ADD_PLAYLIST: {
+      return produce(state, draftState => {
+        draftState.playlists.push({
+          id: uuid(),
+          ...payload.playlist
+        })
+      })
+    }
+
+    case REPLACE_PLAYLIST: {
+      return produce(state, draftState => {
+        draftState.playlists[payload.number] = {
+          id: uuid(),
+          ...payload.playlist
+        }
+      })
+    }
+
     case MUTE_PLAYER: {
       return produce(state, draftState => {
         draftState.muted = true
@@ -65,7 +89,9 @@ const reducer = (
 
     case SET_PLAYER_PLAYLIST: {
       return produce(state, draftState => {
-        draftState.playlist = payload
+        if (draftState.playlists[payload]) {
+          draftState.currentPlaylist = draftState.playlists[payload]
+        }
       })
     }
 

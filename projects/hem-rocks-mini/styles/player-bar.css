@@ -157,6 +157,8 @@
 }
 
 .player-bar-playlist ul {
+  width: 100vw;
+  height: 349px;
   margin: 0;
   padding: 0;
 }
@@ -197,4 +199,37 @@
 .player-bar-playlist li .hem-play-pause-button-icon {
   transform: scale(0.7) translateY(-1px);
   transform-origin: center;
+}
+
+.hem-player-playlist-tabs {
+  position: relative;
+  height: 50px;
+  line-height: 50px;
+  font-size: 12px;
+  text-align: center;
+  color: #eee;
+  background-color: #111;
+  border-bottom: 1px solid #666;
+}
+
+.hem-player-playlist-tab {
+  float: left;
+  padding: 0 20px;
+  cursor: pointer;
+}
+
+.hem-player-playlist-active-tab {
+  padding: 0 20px;
+  background-color: #666;
+}
+
+.hem-player-playlist-tab-empty {
+  position: absolute;
+  top: 51px;
+  left: 0;
+  width: 100vw;
+  height: 298px;
+  line-height: 298px;
+  text-align: center;
+  color: #777;
 }
