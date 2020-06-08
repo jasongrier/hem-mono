@@ -11,8 +11,8 @@ function PlayerBar(): ReactElement {
     currentPlaylist: state.player.currentPlaylist,
   }))
 
-  const [expanded, setExpanded] = useState(false)
-  const [playlistExpanded, setPlaylistExpanded] = useState(false)
+  const [expanded, setExpanded] = useState(true)
+  const [playlistExpanded, setPlaylistExpanded] = useState(true)
 
   useEffect(function openOnPlay() {
     if (playing && !expanded) {

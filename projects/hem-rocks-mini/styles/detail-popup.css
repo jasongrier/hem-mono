@@ -242,8 +242,12 @@
 }
 
 .detail-popup-details {
-  padding: 30px 20px;
+  padding: 30px 400px 20px 30px;
   background-color: #fff;
+}
+
+.detail-popup-details-sidebar {
+
 }
 
 .detail-popup.purchase-form-hidden .detail-popup-details {

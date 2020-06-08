@@ -7,7 +7,7 @@ import ReactGA from 'react-ga'
 import { Spinner } from '../../../../../lib/components'
 import { PlayPauseButton } from '../../../../../lib/packages/hem-buttons'
 import { closePopup, openPopup } from '../../../../../lib/modules/popups'
-import { TrackPlayPauseButton, ITrack, replacePlaylist, setPlayerPlaylist } from '../../../../../lib/modules/player'
+import { TrackPlayPauseButton, ITrack, replacePlaylist, setPlayerPlaylist, IPlaylist } from '../../../../../lib/modules/player'
 import { addProductToCart } from '../../cart'
 import { IContentItem, getContentItemsFromRawList } from '../index'
 import { assetHostHostname } from '../../../functions'
@@ -41,6 +41,7 @@ function DetailPopUp({
 
   const [suggestedPrice, setSuggestedPrice] = useState<string>((contentItem ? contentItem.flexPriceRecommended : '0'))
   const [track, setTrack] = useState<ITrack>()
+  const [attachedPlaylist, setAttachedPlaylist] = useState<Partial<IPlaylist>>()
 
   const [valid, setValid] = useState(true)
 
@@ -58,8 +59,15 @@ function DetailPopUp({
         contentItemToTrack(track, `${category}/${contentItem.slug}`)
       )
 
-      dispatch(replacePlaylist(1, { name: 'Current Page', tracks: attachedTracks }))
+      const playlist = {
+        name: 'Current Page',
+        tracks: attachedTracks,
+      }
+
+      dispatch(replacePlaylist(1, playlist))
       dispatch(setPlayerPlaylist(1))
+
+      setAttachedPlaylist(playlist)
     })
   }, [])
 
@@ -429,6 +437,20 @@ function DetailPopUp({
             <h2>Details</h2>
           )}
           <div dangerouslySetInnerHTML={{__html: contentItem.description}} />
+        </div>
+        <div className="detail-popup-details-sidebar">
+          { attachedPlaylist && attachedPlaylist.tracks.length > 1 && (
+            <div className="detail-popup-details-sidebar-section">
+              <ul className="detail-popup-details-playlist">
+                { attachedPlaylist.tracks.map(track => (
+                  <li key={track.id}>
+                    <TrackPlayPauseButton track={track} />
+                    { track.title }
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </Scrollbars>
     </section>

@@ -23,6 +23,8 @@ export interface IContentItem {
   relatedContent: string
   relatedContentLink: string
   secondaryTitle: string
+  secondaryAttribution: string
+  secondaryAttributionLink: string
   slug: string
   sticky: boolean
   tags: string
@@ -68,6 +70,8 @@ export const fieldTypes: IContentItem = {
   relatedContent: 'text',
   relatedContentLink: 'text',
   secondaryTitle: 'text',
+  secondaryAttribution: 'text',
+  secondaryAttributionLink: 'text',
   slug: 'text',
   sticky: false,
   tags: 'text',
