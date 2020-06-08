@@ -40,9 +40,10 @@ function TopBar(): ReactElement {
       <nav className="main-nav">
         <ul className="main-nav-items">
           <MainNavItem name="Sound Library" />
-          <MainNavItem name="Venue" to="venue-calendar" />
           <MainNavItem name="Apps" />
+          <MainNavItem name="Venue" to="venue-calendar" />
           <MainNavItem name="Label" />
+          <MainNavItem name="Tracks" />
           { showCart && (
             <li className="main-nav-item">
               <NavLink

@@ -22,6 +22,7 @@ function MainContentBox({
   contentItem,
   filter,
   index,
+  // TODO: Unused var
   tag,
 
   badgeText,

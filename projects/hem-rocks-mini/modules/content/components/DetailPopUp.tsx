@@ -7,9 +7,9 @@ import ReactGA from 'react-ga'
 import { Spinner } from '../../../../../lib/components'
 import { PlayPauseButton } from '../../../../../lib/packages/hem-buttons'
 import { closePopup, openPopup } from '../../../../../lib/modules/popups'
-import { TrackPlayPauseButton, ITrack } from '../../../../../lib/modules/player'
+import { TrackPlayPauseButton, ITrack, replacePlaylist, setPlayerPlaylist } from '../../../../../lib/modules/player'
 import { addProductToCart } from '../../cart'
-import { IContentItem } from '../../content'
+import { IContentItem, getContentItemsFromRawList } from '../index'
 import { assetHostHostname } from '../../../functions'
 import { RootState } from '../../../index'
 import { hasTag, contentItemToTrack, hasCategory } from '../functions'
@@ -52,23 +52,32 @@ function DetailPopUp({
     else {
       ReactGA.modalview('Detail Popup without Purchase Form: ' + contentItem.title)
     }
+
+    setTimeout(() => {
+      const attachedTracks = getContentItemsFromRawList(allContentItems, contentItem.trackSlugs).map(track =>
+        contentItemToTrack(track, `${category}/${contentItem.slug}`)
+      )
+
+      dispatch(replacePlaylist(1, { name: 'Current Page', tracks: attachedTracks }))
+      dispatch(setPlayerPlaylist(1))
+    })
   }, [])
 
-  useEffect(function findTrack() {
-    let trackItem: IContentItem
+  // useEffect(function findTrack() {
+  //   let trackItem: IContentItem
 
-    if (hasTag(contentItem, 'track')) {
-      trackItem = contentItem
-    }
+  //   if (hasTag(contentItem, 'track')) {
+  //     trackItem = contentItem
+  //   }
 
-    else if (contentItem.trackSlug) {
-      trackItem = allContentItems.find(item => item.slug === contentItem.trackSlug)
-    }
+  //   else if (contentItem.trackSlug) {
+  //     trackItem = allContentItems.find(item => item.slug === contentItem.trackSlug)
+  //   }
 
-    if (!trackItem) return
+  //   if (!trackItem) return
 
-    setTrack(contentItemToTrack(trackItem, `/tracks/${contentItem.slug}`))
-  }, [allContentItems])
+  //   setTrack(contentItemToTrack(trackItem, `/tracks/${contentItem.slug}`))
+  // }, [allContentItems])
 
   const suggestedPriceOnChange = useCallback(
     function suggestedPriceOnChangeFn(evt: SyntheticEvent<HTMLInputElement>) {

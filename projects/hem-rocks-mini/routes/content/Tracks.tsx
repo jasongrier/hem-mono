@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
-import { useParams } from 'react-router-dom'
-import { MainContentList, contentItemToTrack } from '../../modules/content'
+import { Link, useParams } from 'react-router-dom'
+import { MainContentList, contentItemToTrack, hasCategory, hasTag } from '../../modules/content'
 import { TrackPlayPauseButton } from '../../../../lib/modules/player'
 import { BASE_SITE_TITLE } from '../../config'
 
@@ -28,11 +28,22 @@ function Tracks(): ReactElement {
           excludeFromAll="Sound Library"
           category="tracks"
           title="Tracks"
+          linkTo={item => hasTag(item, 'attachment') ?  item.relatedContentLink : '#'}
         >
-          {(item) => {
+          {item => {
             const track = contentItemToTrack(item, '')
             return (
-              <TrackPlayPauseButton track={track} />
+              <>
+                <TrackPlayPauseButton track={track} />
+                { hasTag(item, 'attachment') && (
+                  <Link
+                    className="action-button"
+                    to={item.relatedContentLink}
+                  >
+                    Learn more
+                  </Link>
+                )}
+              </>
             )
           }}
         </MainContentList>
