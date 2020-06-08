@@ -233,3 +233,26 @@
   text-align: center;
   color: #777;
 }
+
+.hem-player-playlist-window-controls {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+}
+
+.hem-player-playlist-window-controls .playlist-toggle-close {
+  transform: scale(0.5) translate(5px, 25px);
+  transform-origin: center;
+}
+
+.hem-player-playlist-window-controls .hem-play-pause-button {
+  float: left;
+  width: 50px;
+  height: 50px;
+  background: transparent;
+  transform: rotate(90deg) scaleY(1.1) scaleX(0.9) translateY(1.5px);
+  transform-origin: center;
+  border: 0;
+}

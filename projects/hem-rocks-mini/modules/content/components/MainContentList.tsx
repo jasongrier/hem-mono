@@ -54,9 +54,9 @@ function MainContentList({
   showCategoryOnContentBoxes = false,
   title,
 }: IProps): ReactElement {
-  const { storeContentItems } = useSelector((state: RootState) => ({
+  const { storeContentItems, currentlyOpenPopUp } = useSelector((state: RootState) => ({
     storeContentItems: state.content.contentItems,
-    currentContentItem: state.content.currentContentItem,
+    currentlyOpenPopUp: state.popups.currentlyOpenPopUp,
   }))
 
   const dispatch = useDispatch()
@@ -111,7 +111,9 @@ function MainContentList({
 
     setFinalContentItems(contentItems)
 
-    setTimeout(() => {
+    setTimeout(function () {
+      if (currentlyOpenPopUp) return
+
       let tracks = []
 
       for (const item of contentItems) {
@@ -133,7 +135,7 @@ function MainContentList({
         dispatch(setPlayerPlaylist(1))
       }
     })
-  }, [currentFilter, storeContentItems])
+  }, [currentFilter, storeContentItems, currentlyOpenPopUp])
 
   return (
     <div className="main-content-list clearfix">

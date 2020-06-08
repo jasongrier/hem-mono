@@ -12,22 +12,13 @@ function PlayerBar(): ReactElement {
   }))
 
   const [expanded, setExpanded] = useState(false)
-  const [playlistExpanded, setPlaylistExpanded] = useState(true)
+  const [playlistExpanded, setPlaylistExpanded] = useState(false)
 
   useEffect(function openOnPlay() {
     if (playing && !expanded) {
       setExpanded(true)
     }
   }, [playing])
-
-  const toggleExpandedOnClick = useCallback(
-    function toggleExpandedOnClickFn() {
-      if (expanded) {
-        setPlaylistExpanded(false)
-      }
-      setExpanded(!expanded)
-    }, [expanded],
-  )
 
   const togglePlaylistExpandedOnClick = useCallback(
     function togglePlaylistExpandedOnClickFn() {
@@ -71,19 +62,31 @@ function PlayerBar(): ReactElement {
 
       { playlistExpanded && (
         <div className="player-bar-playlist">
-          <Playlist />
+          <Playlist
+            onClose={() => setExpanded(false)}
+            onCollapse={() => setPlaylistExpanded(false)}
+          />
         </div>
       )}
 
       <div className="player-bar-toggle">
         { expanded && (
-          <CloseButton onClick={toggleExpandedOnClick} />
+          <CloseButton onClick={() => {
+            setExpanded(false)
+          }} />
         )}
         { !expanded && (
-          <PlayerBarPlayPauseButton
-            currentTrackId={currentTrack?.id}
-            playlist={currentPlaylist}
-          />
+          <div onClick={() => {
+            if (!playing) {
+              setExpanded(true)
+              setPlaylistExpanded(true)
+            }
+          }}>
+            <PlayerBarPlayPauseButton
+              currentTrackId={currentTrack?.id}
+              playlist={currentPlaylist}
+            />
+          </div>
         )}
       </div>
       {currentTrack && (
