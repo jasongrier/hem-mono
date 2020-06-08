@@ -12,6 +12,8 @@ export interface ITrack {
   id: string
   resource: string
   secret: string
+  secondaryAttribution: string
+  secondaryAttributionLink: string
   title: string
   titleLink: string
   type: string // 'local' | 'soundcloud'

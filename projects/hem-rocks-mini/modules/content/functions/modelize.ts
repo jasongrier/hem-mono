@@ -24,6 +24,8 @@ function modelize(rawContentItem: any): IContentItem {
     relatedContent: rawContentItem.relatedContent || '',
     relatedContentLink: rawContentItem.relatedContentLink || '',
     secondaryTitle: rawContentItem.secondaryTitle || '',
+    secondaryAttribution: rawContentItem.secondaryAttribution || '',
+    secondaryAttributionLink: rawContentItem.secondaryAttributionLink || '',
     slug: rawContentItem.slug || '',
     sticky: rawContentItem.sticky || false,
     tags: rawContentItem.tags || '',

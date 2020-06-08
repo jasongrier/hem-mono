@@ -178,6 +178,10 @@
   padding-left: 40px;
 }
 
+.hem-player-playlist-line-active {
+  background-color: #666;
+}
+
 .player-bar-playlist li .hem-play-pause-button {
   position: absolute;
   top: 0;
@@ -199,6 +203,16 @@
 .player-bar-playlist li .hem-play-pause-button-icon {
   transform: scale(0.7) translateY(-1px);
   transform-origin: center;
+}
+
+.hem-player-playlist-line-title {
+  float: left;
+  width: 400px;
+}
+
+.hem-player-playlist-line-attribution {
+  float: left;
+  width: 300px;
 }
 
 .hem-player-playlist-tabs {
@@ -243,7 +257,12 @@
 }
 
 .hem-player-playlist-window-controls .playlist-toggle-close {
-  transform: scale(0.5) translate(5px, 25px);
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  transform: scale(0.4);
   transform-origin: center;
 }
 

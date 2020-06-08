@@ -127,7 +127,7 @@ function App(): ReactElement {
   useEffect(function setSitePlaylists() {
     const featuredTracksPlaylistTrackItems = getContentItemsFromList(contentItems, 'featured-tracks')
     const featuredTracksTracks = featuredTracksPlaylistTrackItems.map(item =>
-      contentItemToTrack(item, hasTag(item, 'attachment') ? item.relatedContentLink : `/tracks/${item.slug}`)
+      contentItemToTrack(item)
     )
 
     dispatch(replacePlaylist(0, { name: 'Featured Tracks', tracks: featuredTracksTracks }))
@@ -144,7 +144,7 @@ function App(): ReactElement {
 
     trackTags.forEach((tag, i) => {
       const tracks = contentItems.filter(item => hasCategory(item, 'tracks') && hasTag(item, slugify(tag))).map(item =>
-        contentItemToTrack(item, hasTag(item, 'attachment') ? item.relatedContentLink : `tracks#${item.slug}`)
+        contentItemToTrack(item)
       )
       dispatch(replacePlaylist(i + 2, { name: tag, tracks }))
     })
@@ -182,7 +182,6 @@ function App(): ReactElement {
     if (popupId === currentlyOpenPopUp) return
 
     if (popupId) {
-
       dispatch(closePopup())
 
       if (requestedContentItem) {

@@ -54,19 +54,30 @@ function Playlist({ onClose, onCollapse }: IProps): ReactElement {
           />
         </div>
       </div>
-      { currentPlaylist && currentPlaylist.tracks.length && (
+      { currentPlaylist && currentPlaylist.tracks.length > 0 && (
         <ul>
           <Scrollbars noScrollX={true}>
             { currentPlaylist.tracks.map((track: ITrack) => (
-              <li key={track.id}>
+              <li
+                key={track.id}
+                className={`
+                  clearfix
+                  ${(currentTrack && track.id === currentTrack.id) ? 'hem-player-playlist-line-active' : ''}
+                `}
+              >
                 <TrackPlayPauseButton track={track} />
-                { track.title }
+                <div className="hem-player-playlist-line-title">
+                  { track.title }
+                </div>
+                <div className="hem-player-playlist-line-attribution">
+                  { track.attribution }
+                </div>
               </li>
             ))}
           </Scrollbars>
         </ul>
       )}
-      { currentPlaylist && !currentPlaylist.tracks.length && (
+      { currentPlaylist && currentPlaylist.tracks.length < 1 && (
         <div className="hem-player-playlist-tab-empty">
           Hmpf! None on this page
         </div>

@@ -182,9 +182,8 @@ function migrate() {
     try {
       // DO STUFF HERE
 
-      if (!actuallyExistingImages.includes(data.keyArt)) {
-        data.keyArt = ''
-      }
+      data.secondaryAttribution = ''
+      data.secondaryAttributionLink = ''
 
       // END DO STUFF HERE
       const item = modelize(data)
