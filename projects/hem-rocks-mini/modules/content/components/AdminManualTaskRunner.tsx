@@ -3,7 +3,7 @@ import uuid from 'uuid/v1'
 import { slugify } from 'voca'
 import { autoParagraph } from '../../../../../lib/functions'
 import { modelize } from '../functions'
-import { IIndexEntry } from '..'
+import { IIndexEntry, IContentItem } from '..'
 
 function convertOldTypescriptModelsToJson() {
   const { remote } = window.require('electron')
@@ -96,17 +96,97 @@ function migrate() {
 
   const files = readdirSync(contentDir)
 
+  const actuallyExistingImages = [
+    'acoustic-guitar.jpg',
+    'antique-piano.jpg',
+    'ascending-series-three.jpg',
+    'austin-thunderstorm.jpg',
+    'berlin-new-years.jpg',
+    'betrieb.jpg',
+    'black-and-white-rainbow.jpg',
+    'breaths.jpg',
+    'breto.jpg',
+    'choir.jpg',
+    'chord-brush.jpg',
+    'clarinet.jpg',
+    'clouds.jpg',
+    'commotus.jpg',
+    'compilation-iv.jpg',
+    'cymbals.jpg',
+    'demonstration-disc.jpg',
+    'dog-star-orchestra-2009.jpg',
+    'dog-star-orchestra-2010.jpg',
+    'drum-kit.jpg',
+    'e-bow-piano.jpg',
+    'early-live-recordings.jpg',
+    'eating-the-stars.jpg',
+    'electric-bass.jpg',
+    'electric-guitar.jpg',
+    'flow.jpg',
+    'frame-drum.jpg',
+    'german-folk-guitar-lesson-vinyl.jpg',
+    'grand-piano.jpg',
+    'heart-shaped-rock.jpg',
+    'hem-anniversary-one.jpg',
+    'hum-hiss-crackle.jpg',
+    'human-genius-at-soundwalk.jpg',
+    'info-page.jpg',
+    'instant-coma.jpg',
+    'jason-gillis-grier.jpg',
+    'katahymie.jpg',
+    'lats-yerk.jpg',
+    'linda-perhacs-julia-holter.jpg',
+    'line-gottsche-residency.jpg',
+    'lucrecia-dalt.jpg',
+    'maria.jpg',
+    'mic-feedback.jpg',
+    'nature-sounds-vinyl.jpg',
+    'no-bosses-no-bullshit.jpg',
+    'no-input-mixer.jpg',
+    'noise-reduction-artefacts.jpg',
+    'oberheim-expander.jpg',
+    'one-pitch.jpg',
+    'ooohs-and-ahs.jpg',
+    'outtakes.jpg',
+    'overtone-singing.jpg',
+    'percussion.jpg',
+    'protest.jpg',
+    'quarter-tone-synth.jpg',
+    'record-endings.jpg',
+    'RUBBLE.jpg',
+    'scared-famous.jpg',
+    'seurat-midi-ii.jpg',
+    'seurat-standalone.jpg',
+    'seurat.jpg',
+    'sweet-bea-vinyl.jpg',
+    'syzygy.jpg',
+    'the-human-ear-volume-i.jpg',
+    'the-human-ear-volume-ii.jpg',
+    'thrash-and-burn.jpg',
+    'tombstones.jpg',
+    'trauermusik.jpg',
+    'twelve-radios.jpg',
+    'unbekannte.jpg',
+    'viola-ii.jpg',
+    'viola.jpg',
+    'window.jpg',
+    'zither.jpg',
+  ]
+
   for (const file of files) {
     if (file === 'index.json') continue
     if (extname(file) !== '.json') continue
 
-    const data = JSON.parse(readFileSync(`${contentDir}/${file}`, 'utf8'))
+    const data: IContentItem = JSON.parse(readFileSync(`${contentDir}/${file}`, 'utf8'))
 
     try {
       // DO STUFF HERE
 
-      data.trackSlugs = data.trackSlugs.replace(/\.jpg/g, '')
+      if (!actuallyExistingImages.includes(data.keyArt)) {
+        data.keyArt = ''
+      }
 
+      // END DO STUFF HERE
       const item = modelize(data)
 
       index.push(item)
@@ -114,8 +194,6 @@ function migrate() {
       const jsonItem = JSON.stringify(item, null, 2)
 
       writeFileSync(join(workingDir, slugify(item.title) + '.json'), jsonItem)
-
-      // END DO STUFF HERE
     }
 
     catch(err) {
