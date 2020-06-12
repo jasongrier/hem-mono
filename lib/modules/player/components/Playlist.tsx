@@ -62,15 +62,17 @@ function Playlist({ onClose, onCollapse }: IProps): ReactElement {
                 key={track.id}
                 className={`
                   clearfix
-                  ${(currentTrack && track.id === currentTrack.id) ? 'hem-player-playlist-line-active' : ''}
+                  ${(playing && currentTrack && track.id === currentTrack.id) ? 'hem-player-playlist-line-active' : ''}
                 `}
               >
                 <TrackPlayPauseButton track={track} />
-                <div className="hem-player-playlist-line-title">
-                  { track.title }
-                </div>
-                <div className="hem-player-playlist-line-attribution">
-                  { track.attribution }
+                <div className="hem-player-playlist-line-text">
+                  <div className="hem-player-playlist-line-title">
+                    { track.title }
+                  </div>
+                  <div className="hem-player-playlist-line-attribution">
+                    { track.attribution }
+                  </div>
                 </div>
               </li>
             ))}

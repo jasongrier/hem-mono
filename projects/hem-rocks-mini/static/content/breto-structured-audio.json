@@ -21,6 +21,8 @@
   "relatedContent": "",
   "relatedContentLink": "",
   "secondaryTitle": "Real-time audio outliner for podcasts, documentary, montage<br>Full DAW integration",
+  "secondaryAttribution": "",
+  "secondaryAttributionLink": "",
   "slug": "breto",
   "sticky": true,
   "tags": "desktop-mobile-apps, javascript, react, electron, sound, composition",

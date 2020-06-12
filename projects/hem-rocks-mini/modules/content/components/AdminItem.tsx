@@ -48,6 +48,7 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
     }
 
     else if (create) {
+      // @ts-ignore
       const nextHighestId = allContentItems.map(item => parseInt(item.id, 10)).sort((a, b) => a - b).pop() + 1
       item = modelize({ id: nextHighestId })
       setCanSave(true)
@@ -98,7 +99,9 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
         payloadItem.slug = slugify(payloadItem.title)
       }
 
+      // @ts-ignore
       if (payloadItem.slug !== originalItem.slug) {
+        // @ts-ignore
         dispatch(requestDeleteItems([originalItem.slug]))
         dispatch(requestCreateItems([payloadItem]))
       }
@@ -176,6 +179,9 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
             { orderedKeys.map(fieldName => {
               if (fieldName === 'id') return
               if (fieldName === 'userSuggestedPrice') return
+              if (fieldName === 'trackSlugs' && workingItem.category === 'tracks') return
+              if (fieldName === 'trackResourceId' && workingItem.category !== 'tracks') return
+              if (fieldName === 'trackResourceSecret' && workingItem.category !== 'tracks') return
 
               if ((fieldTypes as any)[fieldName] === 'textarea') {
                 return (

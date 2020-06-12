@@ -205,6 +205,14 @@
   transform-origin: center;
 }
 
+.hem-player-playlist-line-text {
+  position: absolute;
+  top: 0;
+  left: 40px;
+  width: 100vw;
+  height: 40px;
+}
+
 .hem-player-playlist-line-title {
   float: left;
   width: 400px;
