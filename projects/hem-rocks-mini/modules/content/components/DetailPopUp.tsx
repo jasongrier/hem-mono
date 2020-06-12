@@ -31,10 +31,12 @@ function DetailPopUp({
 }: IProps): ReactElement {
   if (!contentItem) return <div />
 
-  const { activeLiveStream, allContentItems, cartProducts } = useSelector((state: RootState) => ({
+  const { activeLiveStream, allContentItems, cartProducts, currentTrackId, playing } = useSelector((state: RootState) => ({
     activeLiveStream: state.app.activeLiveStream,
     allContentItems: state.content.contentItems,
     cartProducts: state.cart.products,
+    currentTrackId: state.player.currentTrack?.id,
+    playing: state.player.playing,
   }))
 
   const dispatch = useDispatch()
@@ -56,7 +58,7 @@ function DetailPopUp({
 
     setTimeout(() => {
       const attachedTracks = getContentItemsFromRawList(allContentItems, contentItem.trackSlugs).map(track =>
-        contentItemToTrack(track, `${category}/${contentItem.slug}`)
+        contentItemToTrack(track)
       )
 
       const playlist = {
@@ -416,8 +418,8 @@ function DetailPopUp({
                 </div>
               )}
             </div>
-            { track && (
-              <TrackPlayPauseButton track={track} />
+            { attachedPlaylist && attachedPlaylist.tracks && attachedPlaylist.tracks.length > 1 && (
+              <TrackPlayPauseButton track={attachedPlaylist.tracks[0]} />
             )}
             { category === 'venue-calendar' && activeLiveStream === contentItem.slug && (
               <PlayPauseButton
@@ -437,20 +439,23 @@ function DetailPopUp({
             <h2>Details</h2>
           )}
           <div dangerouslySetInnerHTML={{__html: contentItem.description}} />
-        </div>
-        <div className="detail-popup-details-sidebar">
-          { attachedPlaylist && attachedPlaylist.tracks.length > 1 && (
-            <div className="detail-popup-details-sidebar-section">
-              <ul className="detail-popup-details-playlist">
-                { attachedPlaylist.tracks.map(track => (
-                  <li key={track.id}>
-                    <TrackPlayPauseButton track={track} />
-                    { track.title }
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+          <div className="detail-popup-details-sidebar">
+            { attachedPlaylist && attachedPlaylist.tracks && attachedPlaylist.tracks.length > 1 && (
+              <div className="detail-popup-details-sidebar-section">
+                <ul className="detail-popup-details-playlist">
+                  { attachedPlaylist.tracks.map(track => (
+                    <li
+                      className={ playing && currentTrackId === track.id ? 'active' : ''}
+                      key={track.id}
+                    >
+                      <TrackPlayPauseButton track={track} />
+                      <span className="detail-popup-details-playlist-text">{ track.title }</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
         </div>
       </Scrollbars>
     </section>
