@@ -27,8 +27,8 @@ export interface IPlaylist {
 
 export interface IState {
   actuallyPlaying: boolean
-  currentTrack: ITrack
-  currentPlaylist: IPlaylist
+  currentTrack: ITrack | null
+  currentPlaylist: IPlaylist | null
   inited: boolean
   muted: boolean
   playing: boolean

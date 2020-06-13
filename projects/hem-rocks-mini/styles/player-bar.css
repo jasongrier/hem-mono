@@ -70,18 +70,20 @@
   left: 180px;
   top: 0;
   width: calc(100vw - 301px);
-  height: 50px;
-  line-height: 50px;
+  height: 60px;
+  line-height: 60px;
   box-sizing: border-box;
   border-top: 1px solid #666;
   text-indent: 20px;
   color: #eee;
+  pointer-events: none;
 }
 
 .player-bar .player-bar-now-playing a {
   color: inherit;
   font-size: 13px;
   text-decoration: none;
+  pointer-events: all;
 }
 
 .hem-player-play-pause-button .hem-spinner {
@@ -104,19 +106,20 @@
 .hem-player-progress-bar {
   position: absolute;
   left: 181px;
-  bottom: 0;
+  top: 0;
   width: calc(100vw - 301px);
-  height: 6px;
+  height: 60px;
   box-sizing: border-box;
   background: #222;
+  cursor: pointer;
 }
 
-.hem-player-progress-bar-bar {
+.hem-player-progress-bar-meter {
   position: absolute;
   top: 0;
   left: 0;
   height: 60px;
-  background-color: #333;
+  background-color: #444;
   cursor: pointer;
 }
 
@@ -186,10 +189,27 @@
   position: absolute;
   top: 0;
   left: 0;
-  transform: scale(0.67);
+  width: 100vw;
+  height: 40px;
   transform-origin: top left;
   border: 0;
   background: transparent;
+}
+
+.player-bar-playlist li .hem-play-pause-button-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  transform: scale(0.7) translateX(-2px) translateY(-1px);
+  transform-origin: center;
+}
+
+.player-bar-playlist li .hem-play-pause-button-icon::after {
+  border-top: 11px solid transparent;
+  border-bottom: 11px solid transparent;
+  border-left: 11px solid #fff;
 }
 
 .hem-player-track-play-pause-button .hem-spinner svg {
@@ -200,9 +220,8 @@
   height: 40px;
 }
 
-.player-bar-playlist li .hem-play-pause-button-icon {
-  transform: scale(0.7) translateY(-1px);
-  transform-origin: center;
+.player-bar-playlist li .hem-play-pause-button-playing .hem-play-pause-button-icon {
+  transform: scale(.5);
 }
 
 .hem-player-playlist-line-text {
@@ -211,6 +230,7 @@
   left: 40px;
   width: 100vw;
   height: 40px;
+  pointer-events: none;
 }
 
 .hem-player-playlist-line-title {
@@ -221,6 +241,9 @@
 .hem-player-playlist-line-attribution {
   float: left;
   width: 300px;
+  text-decoration: none;
+  color: inherit;
+  pointer-events: all;
 }
 
 .hem-player-playlist-tabs {

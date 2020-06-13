@@ -11,12 +11,14 @@ function PlayerBar(): ReactElement {
     currentPlaylist: state.player.currentPlaylist,
   }))
 
-  const [expanded, setExpanded] = useState(true)
-  const [playlistExpanded, setPlaylistExpanded] = useState(true)
+  const [expanded, setExpanded] = useState(false)
+  const [playlistExpanded, setPlaylistExpanded] = useState(false)
+  const [alreadyOpened, setAlreadyOpened] = useState(false)
 
   useEffect(function openOnPlay() {
     if (playing && !expanded) {
       setExpanded(true)
+      setPlaylistExpanded(false)
     }
   }, [playing])
 
@@ -39,7 +41,9 @@ function PlayerBar(): ReactElement {
 
       <PlayerBarPlayPauseButton
         currentTrackId={currentTrack?.id}
+        playing={playing}
         playlist={currentPlaylist}
+        trigger={true}
       />
 
       <NextButton />
@@ -78,30 +82,33 @@ function PlayerBar(): ReactElement {
         { !expanded && (
           <div onClick={() => {
             if (!playing) {
+              setAlreadyOpened(true)
               setExpanded(true)
               setPlaylistExpanded(true)
             }
           }}>
             <PlayerBarPlayPauseButton
               currentTrackId={currentTrack?.id}
+              playing={playing}
               playlist={currentPlaylist}
+              trigger={!alreadyOpened}
             />
           </div>
         )}
       </div>
-      {currentTrack && (
         <div className="player-bar-now-playing">
-          <span onClick={() => setExpanded(false)}>
-            <Link to={currentTrack.titleLink}>
-              { currentTrack.title }
-            </Link>
-            &nbsp;–&nbsp;
-            <Link to={currentTrack.attributionLink}>
-              { currentTrack.attribution }
-            </Link>
-          </span>
+          { currentTrack && (
+            <span>
+              <Link to={currentTrack.titleLink}>
+                { currentTrack.title }
+              </Link>
+              &nbsp;–&nbsp;
+              <Link to={currentTrack.attributionLink}>
+                { currentTrack.attribution }
+              </Link>
+            </span>
+          )}
         </div>
-      )}
     </div>
   )
 }
