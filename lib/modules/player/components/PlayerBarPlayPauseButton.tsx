@@ -5,17 +5,20 @@ import { PlayPauseButton as PlayerPlayPauseButton, TrackPlayPauseButton, ITrack,
 
 interface IProps {
   currentTrackId: string | null
+  playing: boolean
   playlist: IPlaylist
+
+  trigger?: boolean
 }
 
-function whichPlayButton(currentTrackId: string | null, playlist: IPlaylist) {
-  if (currentTrackId) {
+function whichPlayButton(currentTrackId: string | null, playing: boolean, playlist: IPlaylist, trigger?: boolean) {
+  if ((trigger || playing) && currentTrackId) {
     return (
       <PlayerPlayPauseButton />
     )
   }
 
-  else if (playlist && playlist.tracks[0]) {
+  else if (trigger && playlist && playlist.tracks[0]) {
     return (
       <TrackPlayPauseButton track={playlist.tracks[0]} />
     )
@@ -31,8 +34,8 @@ function whichPlayButton(currentTrackId: string | null, playlist: IPlaylist) {
   }
 }
 
-function PlayerBarPlayPauseButton({ currentTrackId, playlist }: IProps): ReactElement {
-  return whichPlayButton(currentTrackId, playlist)
+function PlayerBarPlayPauseButton({ currentTrackId, playing, playlist, trigger }: IProps): ReactElement {
+  return whichPlayButton(currentTrackId, playing, playlist, trigger)
 }
 
 export default PlayerBarPlayPauseButton

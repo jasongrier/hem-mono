@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { findIndex } from 'lodash'
 import { PlayPauseButton as BasePlayPauseButton, CloseButton } from '../../../packages/hem-buttons'
 import { ITrack, IPlaylist, setPlayerPlaylist } from '../index'
@@ -70,9 +71,18 @@ function Playlist({ onClose, onCollapse }: IProps): ReactElement {
                   <div className="hem-player-playlist-line-title">
                     { track.title }
                   </div>
-                  <div className="hem-player-playlist-line-attribution">
+                  <Link
+                    className="hem-player-playlist-line-attribution"
+                    to={ track.attributionLink }
+                  >
                     { track.attribution }
-                  </div>
+                  </Link>
+                  <Link
+                    className="hem-player-playlist-line-secondary-attribution"
+                    to={ track.secondaryAttributionLink }
+                  >
+                    { track.secondaryAttribution }
+                  </Link>
                 </div>
               </li>
             ))}
