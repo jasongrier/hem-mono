@@ -6,9 +6,11 @@ import { Spinner } from '../../../components'
 
 interface IProps {
   track: ITrack
+
+  onClick?: (playing: boolean) => void
 }
 
-function TrackPlayPauseButton({ children, track }: PropsWithChildren<IProps>): ReactElement {
+function TrackPlayPauseButton({ track, onClick }: PropsWithChildren<IProps>): ReactElement {
   const { actuallyPlaying, currentTrackId, playerPlaying } = useSelector((state: any) => ({
     actuallyPlaying: state.player.actuallyPlaying,
     currentTrackId: state.player.currentTrack?.id,
@@ -19,6 +21,8 @@ function TrackPlayPauseButton({ children, track }: PropsWithChildren<IProps>): R
 
   const playPauseButtonOnClick = useCallback(
     function playPauseButtonOnClickFn() {
+      onClick && onClick(playerPlaying)
+
       if (track.id !== currentTrackId) {
         dispatch(cueTrack(track, true))
       }

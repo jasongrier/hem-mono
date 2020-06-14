@@ -12,6 +12,7 @@ import {
 
   nextTrack as nextTrackAc,
   cueTrack as cueTrackAc,
+  pausePlayer as pausePlayerAc,
   setPlayerActuallyPlaying as setPlayerActuallyPlayingAc,
   trackEnded as trackEndedAc,
   unmutePlayer as unmutePlayerAc,
@@ -23,13 +24,21 @@ import {
 declare const SC: any
 declare const window: any
 
+function killPlayerInstance() {
+  const playerInstance = window.HEM_PLAYER_SOUNDCLOUD_PLAYER_INSTANCE
+
+  if (!playerInstance) return
+  playerInstance.pause()
+  window.HEM_PLAYER_SOUNDCLOUD_PLAYER_INSTANCE = undefined
+}
+
 function* mutePlayer() {
   const playerInstance = window.HEM_PLAYER_SOUNDCLOUD_PLAYER_INSTANCE
 
   try {
     playerInstance.setVolume(0)
   } catch (err) {
-    console.log(err)
+    // console.log(err)
   }
 }
 
@@ -39,7 +48,7 @@ function* nextTrack() {
     const { actuallyPlaying: wasPlaying } = state.player
     yield put(cueTrackAc(getNextTrack(state), wasPlaying))
   } catch (err) {
-    console.log(err)
+    // console.log(err)
   }
 }
 
@@ -50,14 +59,14 @@ function* pausePlayer() {
     playerInstance.pause()
     yield put(setPlayerActuallyPlayingAc(false))
   } catch (err) {
-    console.log(err)
+    // console.log(err)
   }
 }
 
 function* cueTrack({ payload }: any) {
   yield put(setPlayerActuallyPlayingAc(false))
 
-  delete window.HEM_PLAYER_SOUNDCLOUD_PLAYER_INSTANCE
+  killPlayerInstance()
 
   SC.stream(
     '/tracks/' + payload.track.resource,
@@ -78,6 +87,9 @@ function* cueTrack({ payload }: any) {
         player.play()
       }
     })
+    .catch(function() {
+      window.STORE.dispatch(pausePlayerAc())
+    })
 }
 
 function* previousTrack() {
@@ -86,7 +98,7 @@ function* previousTrack() {
     const { isActuallyPlaying: wasPlaying } = state.player
     yield put(cueTrackAc(getPreviousTrack(state), wasPlaying))
   } catch (err) {
-    console.log(err)
+    // console.log(err)
   }
 }
 
@@ -99,7 +111,7 @@ function* seekPlayer({ payload: percent }: any) {
     player.seek(time)
 
   } catch (err) {
-    console.log(err)
+    // console.log(err)
   }
 }
 
@@ -107,7 +119,7 @@ function* trackEnded() {
   try {
     yield put(nextTrackAc())
   } catch (err) {
-    console.log(err)
+    // console.log(err)
   }
 }
 
@@ -117,7 +129,7 @@ function* unmutePlayer() {
   try {
     playerInstance.setVolume(1)
   } catch (err) {
-    console.log(err)
+    // console.log(err)
   }
 }
 
@@ -129,7 +141,7 @@ function* unpausePlayer() {
     yield put(unmutePlayerAc())
     yield put(setPlayerActuallyPlayingAc(true))
   } catch (err) {
-    console.log(err)
+    // console.log(err)
   }
 }
 

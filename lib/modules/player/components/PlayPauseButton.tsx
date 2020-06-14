@@ -4,7 +4,11 @@ import { PlayPauseButton as BasePlayPauseButton } from '../../../packages/hem-bu
 import { pausePlayer, unpausePlayer } from '../index'
 import { Spinner } from '../../../components'
 
-function PlayPauseButton(): ReactElement {
+interface IProps {
+  onClick?: (wasPlaying: boolean) => void
+}
+
+function PlayPauseButton({ onClick }: IProps): ReactElement {
   const { actuallyPlaying, playerPlaying } = useSelector((state: any) => ({
     actuallyPlaying: state.player.actuallyPlaying,
     playerPlaying: state.player.playing,
@@ -14,6 +18,8 @@ function PlayPauseButton(): ReactElement {
 
   const playPauseButtonOnClick = useCallback(
     function playPauseButtonOnClickFn() {
+      onClick && onClick(playerPlaying)
+
       if (playerPlaying) {
         dispatch(pausePlayer())
       }
@@ -24,12 +30,23 @@ function PlayPauseButton(): ReactElement {
     }, [playerPlaying],
   )
 
+  const spinnerOnClick = useCallback(
+    function spinnerOnClickFn() {
+      dispatch(pausePlayer())
+    }, [playerPlaying],
+  )
+
   const showSpinner = playerPlaying && !actuallyPlaying
 
   return (
     <div className="hem-player-play-pause-button">
       { showSpinner && (
-        <Spinner />
+        <div
+          className="hem-player-play-pause-button-spinner"
+          onClick={spinnerOnClick}
+        >
+          <Spinner />
+        </div>
       )}
       { !showSpinner && (
         <BasePlayPauseButton

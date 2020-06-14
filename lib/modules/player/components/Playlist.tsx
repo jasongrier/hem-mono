@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import ReactGA from 'react-ga'
 import { findIndex } from 'lodash'
 import { PlayPauseButton as BasePlayPauseButton, CloseButton } from '../../../packages/hem-buttons'
 import { ITrack, IPlaylist, setPlayerPlaylist } from '../index'
@@ -8,11 +9,10 @@ import TrackPlayPauseButton from './TrackPlayPauseButton'
 import Scrollbars from 'react-scrollbars-custom'
 
 interface IProps {
-  onClose: () => void
   onCollapse: () => void
 }
 
-function Playlist({ onClose, onCollapse }: IProps): ReactElement {
+function Playlist({ onCollapse }: IProps): ReactElement {
   const { currentPlaylist, currentTrack, playing, playlists }: { currentPlaylist: IPlaylist, currentTrack: ITrack, playing: boolean, playlists: IPlaylist[] } = useSelector((state: any) => ({
     currentPlaylist: state.player.currentPlaylist,
     currentTrack: state.player.currentTrack,
@@ -47,7 +47,6 @@ function Playlist({ onClose, onCollapse }: IProps): ReactElement {
         ))}
       </div>
       <div className="hem-player-playlist-window-controls">
-        {/* <CloseButton onClick={onCollapse} /> */}
         <div className="playlist-toggle-close">
           <BasePlayPauseButton
             playing={false}
@@ -66,23 +65,46 @@ function Playlist({ onClose, onCollapse }: IProps): ReactElement {
                   ${(playing && currentTrack && track.id === currentTrack.id) ? 'hem-player-playlist-line-active' : ''}
                 `}
               >
-                <TrackPlayPauseButton track={track} />
+                <TrackPlayPauseButton
+                  onClick={(playing) => {
+                    if (playing) return
+                    ReactGA.event({
+                      category: 'User',
+                      action: 'Started track from playlist: ' + track.title + '.',
+                    })
+                  }}
+                  track={track}
+                />
                 <div className="hem-player-playlist-line-text">
                   <div className="hem-player-playlist-line-title">
                     { track.title }
                   </div>
-                  <Link
-                    className="hem-player-playlist-line-attribution"
-                    to={ track.attributionLink }
-                  >
-                    { track.attribution }
-                  </Link>
-                  <Link
-                    className="hem-player-playlist-line-secondary-attribution"
-                    to={ track.secondaryAttributionLink }
-                  >
-                    { track.secondaryAttribution }
-                  </Link>
+                  <span onClick={() => {
+                    ReactGA.event({
+                      category: 'User',
+                      action: 'Clicked on track attribution in playlist: ' + track.title + ', ' + track.attribution + '.',
+                    })
+                  }}>
+                    <Link
+                      className="hem-player-playlist-line-attribution"
+                      to={ track.attributionLink }
+                    >
+                      { track.attribution }
+                    </Link>
+                  </span>
+                  <span onClick={() => {
+                    ReactGA.event({
+                      category: 'User',
+                      action: 'Clicked on track secondary attribution in playlist: ' + track.title + ', ' + track.secondaryAttribution + '.',
+                    })
+                  }}>
+                    <Link
+                      className="hem-player-playlist-line-secondary-attribution"
+                      to={ track.secondaryAttributionLink }
+                    >
+                      { track.secondaryAttribution }
+                    </Link>
+                  </span>
                 </div>
               </li>
             ))}

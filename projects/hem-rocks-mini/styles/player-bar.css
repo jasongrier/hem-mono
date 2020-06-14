@@ -29,12 +29,17 @@
 
 .player-bar .hem-previous-button,
 .player-bar .hem-next-button,
-.player-bar .hem-play-pause-button {
+.player-bar .hem-play-pause-button,
+.player-bar-main-play-button {
   float: left;
   background-color: #000;
   box-sizing: border-box;
   border-right: 1px solid #666;
   border-top: 1px solid #666;
+}
+
+.player-bar-main-play-button {
+  border: 0;
 }
 
 .player-bar .hem-previous-button .hem-next-button {
@@ -86,6 +91,11 @@
   pointer-events: all;
 }
 
+.hem-player-play-pause-button-spinner {
+  width: 60px;
+  height: 60px;
+}
+
 .hem-player-play-pause-button .hem-spinner {
   position: relative;
   float: left;
@@ -93,6 +103,8 @@
   border-right: 1px solid #666;
   width: 59px;
   height: 60px;
+  background-color: #000;
+  cursor: pointer;
 }
 
 .hem-player-play-pause-button .hem-spinner svg {
@@ -238,7 +250,8 @@
   width: 400px;
 }
 
-.hem-player-playlist-line-attribution {
+.hem-player-playlist-line-attribution,
+.hem-player-playlist-line-secondary-attribution {
   float: left;
   width: 300px;
   text-decoration: none;
