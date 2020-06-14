@@ -17,8 +17,6 @@ import {
   UNPAUSE_PLAYER,
 
   IState,
-
-  IPlaylist,
 } from './index'
 
 const initialState: IState = {

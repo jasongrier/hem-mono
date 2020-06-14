@@ -46,7 +46,11 @@ function* nextTrack() {
   try {
     const state = yield select()
     const { actuallyPlaying: wasPlaying } = state.player
-    yield put(cueTrackAc(getNextTrack(state), wasPlaying))
+    const nextTrack = getNextTrack(state)
+
+    if (!nextTrack) return
+
+    yield put(cueTrackAc(nextTrack, wasPlaying))
   } catch (err) {
     // console.log(err)
   }
@@ -95,8 +99,12 @@ function* cueTrack({ payload }: any) {
 function* previousTrack() {
   try {
     const state = yield select()
-    const { isActuallyPlaying: wasPlaying } = state.player
-    yield put(cueTrackAc(getPreviousTrack(state), wasPlaying))
+    const { actuallyPlaying: wasPlaying } = state.player
+    const previousTrack = getPreviousTrack(state)
+
+    if (!previousTrack) return
+
+    yield put(cueTrackAc(previousTrack, wasPlaying))
   } catch (err) {
     // console.log(err)
   }
