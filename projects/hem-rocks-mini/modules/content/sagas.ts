@@ -211,6 +211,7 @@ function* updateItems({ payload }: any) {
 
 //--//
 
+// TODO: These can all be in one saga! (All projects)
 function* createItemsSaga() {
   yield takeLatest(REQUEST_CREATE_ITEMS, createItems)
 }

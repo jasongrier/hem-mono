@@ -1,0 +1,116 @@
+html,
+body {
+  display: contents;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  font-family: Avenir, sans-serif;
+  overflow-x: hidden;
+}
+
+.clearfix::after {
+  content: " ";
+  clear: both;
+  display: table;
+}
+
+.campaign-monitor-form button,
+.action-button,
+.action-button a {
+  width: 120px;
+  height: 36px;
+  line-height: 36px;
+  margin: 0 30px 0 0;
+  font-size: 18px;
+  font-weight: normal;
+  background-color: var(--line-orange);
+  cursor: pointer;
+  border: 0;
+  color: #fff;
+  user-select: none;
+}
+
+.action-button-wide {
+  width: 240px !important;
+}
+
+.action-button-super-wide {
+  width: 440px !important;
+}
+
+.action-button:focus,
+.action-button:active {
+  outline: none;
+}
+
+.hem-application.popup-open {
+  width: 100vw;
+}
+
+.app-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.app-loading h1 {
+  font-size: 100px;
+  font-weight: normal;
+}
+
+.login-form {
+  width: 100%;
+  text-align: center;
+}
+
+.login-form input {
+  display: block;
+  margin: 0 auto;
+  width: 400px;
+  height: 40px;
+  line-height: 40px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.login-form button {
+  display: block;
+  margin: 0 auto;
+  width: 100px;
+  height: 40px;
+  border: 0;
+  background: var(--line-orange);
+  font-family: Avenir, sans-serif;
+  color: #fff;
+  font-size: 18px;
+}
+
+.app-is-home .main-content {
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+
+.app-is-home .main-content-list {
+  width: var(--content-width-desk);
+  margin: 0 auto;
+}
+
+.app-is-home .main-content-box:first-child .main-content-box-badge,
+.app-is-home .main-content-box:nth-child(2) .main-content-box-badge {
+  top: -40px !important;
+}
+
+.main-footer {
+  width: var(--content-width-desk);
+  margin: 100px auto 40px auto;
+  font-size: 14px;
+  line-height: 32px;
+}
+
+.main-footer a {
+  color: inherit;
+}

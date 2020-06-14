@@ -20,10 +20,14 @@ function build(projectName, andStart = false, developerBuild = false, pug = fals
       const env = Object.create(process.env)
       env.ELECTRON_MONO_DEV = true
 
-      const electronProcess = spawn('electron', ['bin/electron/main.js'], {
+      const electronProcess = spawn('electron', ['lib/electron/main.js'], {
         shell: true,
         detached: true,
         env,
+      })
+
+      process.on('SIGINT', function() {
+        electronProcess.kill()
       })
     }
 
@@ -36,10 +40,12 @@ function build(projectName, andStart = false, developerBuild = false, pug = fals
     else {
       // TODO: Make programmatic bundler work with parcel-manifests
       const bundler = new Bundler(`${__dirname}/../../projects/${projectName}/index.${pug ? 'pug' : 'html'}`)
+
       bundler.on('buildEnd', () => {
         copyStatic(projectName)
         runPostBuildTasks(projectName, false)
       })
+
       bundler.serve()
     }
   }
