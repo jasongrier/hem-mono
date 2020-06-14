@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useState, useCallback } from 'react'
 import uuid from 'uuid/v1'
 import { slugify } from 'voca'
 import { autoParagraph } from '../../../../../lib/functions'
-import { modelize } from '../functions'
+import { modelize, hasTag } from '../functions'
 import { IIndexEntry, IContentItem } from '..'
 
 function convertOldTypescriptModelsToJson() {
@@ -181,11 +181,14 @@ function migrate() {
 
     try {
       // DO STUFF HERE
-
-      data.secondaryAttribution = ''
-      data.secondaryAttributionLink = ''
+      // if (data.category === 'tracks' && hasTag(data, 'sound-library') && hasTag(data, 'attachment')) {
+      //   const secondaryAttributionTitle = data.title.replace(/ Sample Track [1-5]$/, '')
+      //   data.secondaryAttribution = secondaryAttributionTitle
+      //   data.secondaryAttributionLink = `sound-library/${slugify(secondaryAttributionTitle)}`
+      // }
 
       // END DO STUFF HERE
+
       const item = modelize(data)
 
       index.push(item)

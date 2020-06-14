@@ -1,6 +1,7 @@
 import React, { ReactElement, useState, useCallback, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import ReactGA from 'react-ga'
 import { PlayPauseButton as BasePlayPauseButton, CloseButton, HamburgerButton } from '../../../packages/hem-buttons'
 import { NextButton, PreviousButton, ProgressBar, PlayerBarPlayPauseButton, Playlist, ITrack, IPlaylist } from '../index'
 
@@ -24,6 +25,10 @@ function PlayerBar(): ReactElement {
 
   const togglePlaylistExpandedOnClick = useCallback(
     function togglePlaylistExpandedOnClickFn() {
+      ReactGA.event({
+        category: 'User',
+        action: 'Toggled the playlist: ' + !playlistExpanded + '.',
+      })
       setPlaylistExpanded(!playlistExpanded)
     }, [playlistExpanded],
   )
@@ -39,12 +44,14 @@ function PlayerBar(): ReactElement {
     `}>
       <PreviousButton />
 
-      <PlayerBarPlayPauseButton
-        currentTrackId={currentTrack?.id}
-        playing={playing}
-        playlist={currentPlaylist}
-        trigger={true}
-      />
+      <div className="player-bar-main-play-button">
+        <PlayerBarPlayPauseButton
+          currentTrackId={currentTrack?.id}
+          playing={playing}
+          playlist={currentPlaylist}
+          trigger={true}
+        />
+      </div>
 
       <NextButton />
 
@@ -66,26 +73,30 @@ function PlayerBar(): ReactElement {
 
       { playlistExpanded && (
         <div className="player-bar-playlist">
-          <Playlist
-            onClose={() => setExpanded(false)}
-            onCollapse={() => setPlaylistExpanded(false)}
-          />
+          <Playlist onCollapse={() => setPlaylistExpanded(false)} />
         </div>
       )}
 
       <div className="player-bar-toggle">
         { expanded && (
           <CloseButton onClick={() => {
+            ReactGA.event({
+              category: 'User',
+              action: 'Closed the player bar.',
+            })
             setExpanded(false)
           }} />
         )}
         { !expanded && (
           <div onClick={() => {
-            if (!playing) {
-              setAlreadyOpened(true)
-              setExpanded(true)
-              setPlaylistExpanded(true)
-            }
+            if (playing) return
+            setAlreadyOpened(true)
+            setExpanded(true)
+            setPlaylistExpanded(true)
+            ReactGA.event({
+              category: 'User',
+              action: 'Opened the player bar.',
+            })
           }}>
             <PlayerBarPlayPauseButton
               currentTrackId={currentTrack?.id}
@@ -99,13 +110,29 @@ function PlayerBar(): ReactElement {
         <div className="player-bar-now-playing">
           { currentTrack && (
             <span>
-              <Link to={currentTrack.titleLink}>
-                { currentTrack.title }
-              </Link>
+              <span onClick={() => {
+                ReactGA.event({
+                  category: 'User',
+                  action: 'Clicked on "now playing" title: ' + currentTrack.title + '.',
+                })
+              }}>
+                <Link to={currentTrack.titleLink}>
+                  { currentTrack.title }
+                </Link>
+              </span>
+
               &nbsp;–&nbsp;
-              <Link to={currentTrack.attributionLink}>
-                { currentTrack.attribution }
-              </Link>
+
+              <span onClick={() => {
+                ReactGA.event({
+                  category: 'User',
+                  action: 'Clicked on "now playing" attribution: ' + currentTrack.title + ', ' + currentTrack.attribution + '.',
+                })
+              }}>
+                <Link to={currentTrack.attributionLink}>
+                  { currentTrack.attribution }
+                </Link>
+              </span>
             </span>
           )}
         </div>

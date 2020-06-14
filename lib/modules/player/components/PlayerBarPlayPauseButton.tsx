@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
 import { noop } from 'lodash'
+import ReactGA from 'react-ga'
 import { PlayPauseButton as BasePlayPauseButton } from '../../../packages/hem-buttons'
 import { PlayPauseButton as PlayerPlayPauseButton, TrackPlayPauseButton, ITrack, IPlaylist } from '../index'
 
@@ -14,7 +15,14 @@ interface IProps {
 function whichPlayButton(currentTrackId: string | null, playing: boolean, playlist: IPlaylist, trigger?: boolean) {
   if ((trigger || playing) && currentTrackId) {
     return (
-      <PlayerPlayPauseButton />
+      <PlayerPlayPauseButton onClick={(wasPlaying) => {
+        if (wasPlaying) {
+          ReactGA.event({
+            category: 'User',
+            action: 'Stopped playback from the minified player bar.',
+          })
+        }
+      }}/>
     )
   }
 
