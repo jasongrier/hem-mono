@@ -1,15 +1,8 @@
 import { ITrack } from '../index'
+import getNextTrack from './get-next-track'
 
-function getPreviousTrack(state: any): ITrack {
-  const { currentTrackId, playlist }: { currentTrackId: string, playlist: ITrack[] } = state.player
-  const currentPlaylistIndex = playlist.findIndex(track => track.id === currentTrackId)
-  const nextPlaylistIndex = (
-    currentPlaylistIndex > 0
-      ? currentPlaylistIndex - 1
-      : playlist.length - 1
-  )
-
-  return playlist[nextPlaylistIndex]
+function getPreviousTrack(state: any): ITrack | undefined {
+  return getNextTrack(state, true)
 }
 
 export default getPreviousTrack
