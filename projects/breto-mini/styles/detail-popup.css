@@ -1,0 +1,343 @@
+.detail-popup {
+  height: 100%;
+}
+
+.detail-popup .ScrollbarsCustom-Wrapper[style] {
+  right: 0 !important;
+}
+
+#detail-popup .hem-popup-content,
+#detail-popup-hidden-purchase-form .hem-popup-content {
+  top: 20px;
+  width: 1000px;
+  margin-left: -500px;
+  height: calc(100vh - 40px);
+}
+
+.detail-popup header {
+  position: relative;
+  width: 100%;
+  height: 450px;
+  margin-top: 15px;
+  overflow: hidden;
+}
+
+.detail-popup.purchase-form-hidden header {
+  position: relative;
+  height: 190px;
+}
+
+.detail-popup header .detail-popup-key-art-image {
+  width: 100%;
+  height: 360px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-size: 0;
+}
+
+.detail-popup header .detail-popup-header-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  padding: 0 20px 40px 20px;
+}
+
+.detail-popup header h1 {
+  width: 760px;
+  line-height: 57px;
+  margin: 5px 0 15px 10px;
+  padding: 0;
+  font-weight: normal;
+  font-size: 80px;
+  text-transform: uppercase;
+}
+
+.detail-popup header h2 {
+  width: 760px;
+  min-height: 24px;
+  margin: 0 0 10px 20px;
+  padding: 0;
+  font-size: 12px;
+  color: #666;
+}
+
+.detail-popup-actions {
+  position: absolute;
+  bottom: 50px;
+  width: 760px;
+}
+
+.purchase-form-spinner {
+  position: relative;
+  width: 200px;
+  height: 50px;
+}
+
+.detail-popup-form {
+  position: relative;
+  width: 415px;
+  margin-top: -7px;
+  padding: 5px;
+  overflow: hidden;
+}
+
+.detail-popup header input,
+.detail-popup header label,
+.detail-popup header small {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.detail-popup header label {
+  display: inline-block;
+  padding: 0 10px;
+  font-size: 20px;
+  background-color: #fff;
+  transform: translateY(-5px);
+}
+
+.detail-popup header input {
+  width: 200px;
+  height: 60px;
+  padding: 0 30px 0 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 24px;
+}
+
+.detail-popup .invalid-message {
+  position: absolute;
+  top: 68px;
+  right: 20px;
+  padding: 0 5px;
+  color: red;
+  background-color: #fff;
+}
+
+.detail-popup header small {
+  display: inline-block;
+  padding: 0 5px;
+  font-size: 11px;
+  background-color: #fff;
+}
+
+.detail-popup header small.invalid-minimum {
+  color: red;
+}
+
+.detail-popup-currency-symbol {
+  position: absolute;
+  top: 59px;
+  left: 180px;
+  z-index: 9999;
+  font-size: 30px;
+}
+
+.detail-popup-buttons {
+  margin-top: 5px;
+}
+
+.detail-popup-buttons button {
+  float: left;
+  width: 200px;
+  height: 50px;
+  margin-right: 5px;
+  font-size: 24px;
+  font-weight: normal;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.detail-popup-buttons button:nth-child(2) {
+  margin-right: 0;
+}
+
+.invalid.detail-popup-buttons button {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.detail-popup-buttons .detail-popup-cart-link {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 215px;
+  width: 60px;
+  font-size: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+  text-align: center;
+}
+
+.detail-popup header .hem-player-track-play-pause-button {
+  position: absolute;
+  bottom: 50px;
+  right: 60px;
+  width: 60px;
+  height: 60px;
+  transform: scale(2);
+  transform-origin: bottom right;
+  background-color: var(--line-orange);
+}
+
+.detail-popup header .hem-play-pause-button {
+  background-color: var(--line-orange);
+}
+
+.detail-popup.purchase-form-hidden header .hem-play-pause-button {
+  bottom: 50px;
+  left: 10px;
+  transform: none;
+}
+
+.detail-popup header .hem-player-track-play-pause-button .hem-spinner svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 60px;
+}
+
+.detail-popup header .hem-player-track-play-pause-button .hem-spinner svg rect {
+  fill: #fff !important;
+}
+
+.reveal-purchase-form-button {
+  position: absolute;
+  bottom: 0;
+  left: 60px;
+  width: 160px;
+  height: 60px;
+  margin-right: 0;
+  font-size: 20px;
+}
+
+.detail-popup-form .suggested-price em {
+  font-size: 28px;
+}
+
+.detail-popup-buttons .action-button {
+  position: relative;
+}
+
+.detail-popup-buttons .action-button.adding {
+  background-color: #000;
+}
+
+.detail-popup-buttons .hem-spinner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 50px;
+}
+
+.detail-popup-buttons .hem-spinner svg {
+  width: 50px;
+  height: 50px;
+}
+
+.detail-popup-details {
+  position: relative;
+  padding: 30px 400px 20px 30px;
+  background-color: #fff;
+}
+
+.detail-popup.purchase-form-hidden .detail-popup-details {
+  padding-top: 0;
+}
+
+.hem-popup-content .detail-popup-details h2 {
+  margin: 0 0 20px 0;
+  padding: 0;
+  font-size: 30px;
+}
+
+.hem-popup-content .detail-popup-details p {
+  margin: 0 0 60px 0;
+  line-height: 42px;
+}
+
+.detail-popup-details-sidebar {
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  width: 300px;
+}
+
+.detail-popup-details-sidebar-section {
+
+}
+
+.detail-popup-details-playlist {
+  width: 330px;
+  margin: 0 0 0 -30px;
+  padding: 0;
+  background-color: #333;
+  list-style-type: none;
+}
+
+.detail-popup-details-playlist li {
+  position: relative;
+  height: 30px;
+  line-height: 30px;
+  border-bottom: 1px solid #666;
+  color: #fff;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.detail-popup-details-playlist li.active {
+  background-color: #666;
+}
+
+.detail-popup-details-playlist li .hem-play-pause-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  background-color: transparent;
+}
+
+.detail-popup-details-playlist li .hem-play-pause-button-icon {
+  width: 30px;
+  height: 30px;
+  transform: translateY(-1px);
+}
+
+.detail-popup-details-playlist li .hem-play-pause-button-icon::after {
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid #fff;
+}
+
+.detail-popup-details-playlist li .hem-spinner {
+  width: 30px;
+  height: 30px;
+}
+
+.detail-popup-details-playlist li .hem-spinner svg {
+  width: 30px;
+  height: 30px;
+}
+
+.detail-popup-details-playlist li .hem-play-pause-button-playing .hem-play-pause-button-icon {
+  transform: scale(.3) translateX(2px);
+}
+
+.detail-popup-details-playlist-text {
+  position: absolute;
+  top: 0;
+  left: 40px;
+  width: 300px;
+  height: 30px;
+  pointer-events: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

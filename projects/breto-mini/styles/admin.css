@@ -1,0 +1,272 @@
+.page-admin .main-content-subnav {
+  margin-bottom: 0;
+}
+
+.page-admin .main-content-subnav li a.active {
+  border-bottom: 4px solid #efefef;
+}
+
+.admin-list-controls {
+  padding: 20px;
+  height: 30px;
+  line-height: 30px;
+  background: #efefef;
+}
+
+.admin-list-stats {
+  padding: 20px 25px;
+  font-size: 12px;
+  border-bottom: 1px solid #ccc;
+}
+
+.admin-list-controls label {
+  float: left;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.admin-list-controls-select-all,
+.admin-list-controls-select,
+.admin-list-controls-search {
+  float: left;
+  height: 30px;
+  line-height: 30px;
+  margin-right: 20px;
+}
+
+.admin-list-controls-search {
+  margin-right: 0;
+}
+
+.admin-list-controls-select {
+  position: relative;
+}
+
+.admin-list-controls-select select {
+  float: left;
+  width: 200px;
+  height: 30px;
+  padding: 0 10px;
+  margin: 0 20px 0 0;
+  line-height: 30px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.admin-list-controls-select select:active,
+.admin-list-controls-select select:focus {
+  outline: none;
+}
+
+.admin-list-controls-select .hem-play-pause-button {
+  position: absolute;
+  top: -14px;
+  right: 4px;
+  background-color: transparent;
+  transform: rotate(90deg) scale(0.3);
+  filter: invert(1);
+  pointer-events: none;
+}
+
+.admin-list-controls-search input {
+  float: left;
+  width: 670px;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 0 0 10px;
+  margin: 0;
+  border: 0;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: none !important;
+  border: 1px solid #ccc;
+}
+
+.admin-list-controls-search input:active,
+.admin-list-controls-search input:focus {
+  outline: none;
+}
+
+.admin-list table {
+  width: 100%;
+}
+
+.admin-list table a {
+  color: inherit;
+}
+
+.admin-list th,
+.admin-list td {
+  height: 50px;
+  text-align: left;
+}
+
+.admin-list thead {
+
+}
+
+.admin-list thead tr {
+
+}
+
+.admin-list th {
+
+}
+
+.admin-list tbody {
+
+}
+
+.admin-list tbody tr {
+
+}
+
+.admin-list td {
+  border-bottom: 1px solid #ddd;
+}
+
+.admin-list tr:first-child td {
+  border-top: 1px solid #ddd;
+}
+
+.admin-list td a {
+  text-decoration: none;
+}
+
+.admin-list-column-check {
+  width: 50px;
+  padding-left: 10px;
+}
+
+.admin-list-column-title {
+
+}
+
+.admin-list-column-date,
+.admin-list-column-category {
+  width: 150px;
+}
+
+.admin-list-column-actions {
+  width: 210px;
+}
+
+.admin-list-column-actions button {
+  float: right;
+  width: 100px;
+  height: 30px;
+  line-height: 30px;
+  margin: 0 0 0 10px;
+  transform: translateX(3px);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.admin-list-column-actions button:last-child {
+  margin-left: 0;
+}
+
+.admin-item {
+  width: 100%;
+}
+
+.admin-item-header {
+  position: relative;
+  height: 100px;
+  line-height: 100px;
+}
+
+.admin-item-header h2 {
+  display: inline-block;
+  margin: 3px 0 0 0;
+  padding: 0;
+  font-size: 40px;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+.admin-item-header button {
+  position: absolute;
+  top: 33px;
+  right: 0;
+  margin-right: 0;
+}
+
+.admin-item-header button:disabled {
+  background-color: #ccc;
+  pointer-events: none;
+}
+
+.admin-item td {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  background: #efefef;
+}
+
+.admin-item label {
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  margin-right: 50px;
+  font-weight: bold;
+}
+
+.admin-item input,
+.admin-item textarea {
+  display: inline-block;
+  width: 750px;
+  height: 30px;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  font-size: 18px;
+}
+
+.admin-item input:focus,
+.admin-item textarea:focus {
+  outline: none;
+}
+
+.admin-item input {
+  line-height: 40px;
+}
+
+.admin-item input[disabled] {
+  background-color: #ccc;
+}
+
+.admin-item textarea {
+  width: calc(100vw - 120px);
+  resize: none;
+}
+
+.admin-manual-task-runner {
+  width: 960px;
+  margin: 40px auto 0 auto;
+}
+
+.admin-manual-task-runner ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.admin-manual-task-runner li {
+  margin-bottom: 20px;
+}
+
+.admin-manual-task-runner a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.admin-manual-task-runner div {
+  margin-bottom: 20px;
+}
