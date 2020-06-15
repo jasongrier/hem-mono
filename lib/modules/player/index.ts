@@ -29,6 +29,7 @@ export interface IState {
   actuallyPlaying: boolean
   currentTrack: ITrack | null
   currentPlaylist: IPlaylist | null
+  error: string | null
   inited: boolean
   muted: boolean
   playing: boolean
@@ -43,6 +44,7 @@ export const CUE_TRACK = 'CUE_TRACK'
 export const PREVIOUS_TRACK = 'PREVIOUS_TRACK'
 export const REPLACE_PLAYLIST = 'REPLACE_PLAYLIST'
 export const SEEK_PLAYER = 'SEEK_PLAYER'
+export const SET_PLAYER_ERROR = 'SET_PLAYER_ERROR'
 export const SET_PLAYER_INSTANCE = 'SET_PLAYER_INSTANCE'
 export const SET_PLAYER_PLAYLIST = 'SET_PLAYER_PLAYLIST'
 export const SET_PLAYER_ACTUALLY_PLAYING = 'SET_PLAYER_ACTUALLY_PLAYING'
@@ -91,6 +93,11 @@ export interface ISeekPlayer extends AnyAction {
   payload: number
 }
 
+export interface ISetPlayerError extends AnyAction {
+  type: typeof SET_PLAYER_ERROR
+  payload: string | null
+}
+
 export interface ISetPlayerPlaylist extends AnyAction {
   type: typeof SET_PLAYER_PLAYLIST
   payload: number
@@ -125,6 +132,7 @@ export type Action =
   | ICueTrack
   | IPreviousTrack
   | ISeekPlayer
+  | ISetPlayerError
   | ISetPlayerActuallyPlaying
   | ISetPlayerPlaylist
   | ITrackEnded
@@ -140,6 +148,7 @@ export {
   previousTrack,
   replacePlaylist,
   seekPlayer,
+  setPlayerError,
   setPlayerActuallyPlaying,
   setPlayerPlaylist,
   trackEnded,

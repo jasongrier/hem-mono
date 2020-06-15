@@ -1,8 +1,6 @@
 import './app.css'
 import './variables.css'
 
-import '../static/assets/fonts/okojo/okojo.css'
-
 import './admin.css'
 import './cookie-approval.css'
 import './detail-popup.css'
@@ -22,5 +20,6 @@ import './page-projects.css'
 import './player-bar.css'
 import './popups.css'
 import './thank-you-popup.css'
+import './toaster.css'
 import './top-bar.css'
 import './venue.css'

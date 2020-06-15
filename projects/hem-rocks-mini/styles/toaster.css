@@ -1,0 +1,25 @@
+.hem-toaster {
+  display: none;
+}
+
+.hem-toaster-open {
+  display: flex;
+  position: fixed;
+  top: 200px;
+  left: 50%;
+  margin-left: -250px;
+  z-index: 9999999999;
+  width: 300px;
+  min-height: 100px;
+  font-family: Avenir, sans-serif;
+  font-size: 18px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--line-orange);
+}
+
+.hem-toaster-open p {
+  margin: 0;
+  padding: 0;
+}

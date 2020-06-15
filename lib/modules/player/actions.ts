@@ -7,6 +7,7 @@ import {
   PREVIOUS_TRACK,
   REPLACE_PLAYLIST,
   SEEK_PLAYER,
+  SET_PLAYER_ERROR,
   SET_PLAYER_ACTUALLY_PLAYING,
   SET_PLAYER_PLAYLIST,
   TRACK_ENDED,
@@ -59,6 +60,11 @@ const seekPlayer = (percent: number): Action => ({
   payload: percent,
 })
 
+const setPlayerError = (error: string | null): Action => ({
+  type: SET_PLAYER_ERROR,
+  payload: error,
+})
+
 const setPlayerActuallyPlaying = (actuallyPlaying: boolean): Action => ({
   type: SET_PLAYER_ACTUALLY_PLAYING,
   payload: actuallyPlaying,
@@ -93,6 +99,7 @@ export {
   previousTrack,
   replacePlaylist,
   seekPlayer,
+  setPlayerError,
   setPlayerActuallyPlaying,
   setPlayerPlaylist,
   trackEnded,
