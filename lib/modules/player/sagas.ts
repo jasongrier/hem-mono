@@ -13,6 +13,7 @@ import {
   nextTrack as nextTrackAc,
   cueTrack as cueTrackAc,
   pausePlayer as pausePlayerAc,
+  setPlayerError as setPlayerErrorAc,
   setPlayerActuallyPlaying as setPlayerActuallyPlayingAc,
   trackEnded as trackEndedAc,
   unmutePlayer as unmutePlayerAc,
@@ -23,6 +24,8 @@ import {
 
 declare const SC: any
 declare const window: any
+
+const playerErrorMessage = 'Sorry we could not play that track right now.'
 
 function killPlayerInstance() {
   const playerInstance = window.HEM_PLAYER_SOUNDCLOUD_PLAYER_INSTANCE
@@ -69,6 +72,7 @@ function* pausePlayer() {
 
 function* cueTrack({ payload }: any) {
   yield put(setPlayerActuallyPlayingAc(false))
+  yield put(setPlayerErrorAc(null))
 
   killPlayerInstance()
 
@@ -92,6 +96,7 @@ function* cueTrack({ payload }: any) {
       }
     })
     .catch(function() {
+      window.STORE.dispatch(setPlayerErrorAc(playerErrorMessage))
       window.STORE.dispatch(pausePlayerAc())
     })
 }

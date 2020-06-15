@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
 import { useLocation, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { find, isArray, map } from 'lodash'
@@ -9,7 +9,7 @@ import { CartPopup, setCartProducts } from '../../cart'
 import { ThankYouPopup } from '../../cart'
 import { DetailPopUp, requestReadItems, setCurrentItem, hasTag, getContentItemsFromList, contentItemToTrack, hasCategory } from '../../content'
 import { ProtectedContent } from '../../login'
-import { CampaignMonitorForm, ElectronNot, ScrollToTop, NagToaster, Spinner } from '../../../../../lib/components'
+import { CampaignMonitorForm, ElectronNot, ScrollToTop, NagToaster, Spinner, Toaster } from '../../../../../lib/components'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup, closePopup } from '../../../../../lib/modules/popups'
 import { PlayerBar, setPlayerPlaylist, replacePlaylist } from '../../../../../lib/modules/player'
@@ -28,15 +28,19 @@ function App(): ReactElement {
     cookiesMarketingApproved,
     currentContentItem,
     currentlyOpenPopUp,
+    playerError,
   } = useSelector((state: RootState) => ({
     cookiesAnalyticsApproved: state.app.cookiesAnalyticsApproved,
     cookiesMarketingApproved: state.app.cookiesMarketingApproved,
     contentItems: state.content.contentItems,
     currentContentItem: state.content.currentContentItem,
     currentlyOpenPopUp: state.popups.currentlyOpenPopUp,
+    playerError: state.player.error,
   }))
 
   const dispatch = useDispatch()
+
+  const [ openPlayerErrorToaster, setOpenPlayerErrorToaster ] = useState<(error: string) => void>()
 
   const { pathname } = useLocation()
 
@@ -148,7 +152,19 @@ function App(): ReactElement {
       )
       dispatch(replacePlaylist(i + 2, { name: tag, tracks }))
     })
+
+    dispatch(setPlayerPlaylist(7))
   }, [contentItems])
+
+  useEffect(function handlePlayerErrors() {
+    console.log(1)
+    if (!openPlayerErrorToaster) return
+    console.log(2)
+    if (!playerError) return
+    console.log(3)
+
+    openPlayerErrorToaster(playerError)
+  }, [openPlayerErrorToaster, playerError])
 
   useEffect(function routedPopup() {
     const [basePath, slug] = pathname.replace(/^\//, '').split('/')
@@ -342,6 +358,11 @@ function App(): ReactElement {
           </NagToaster>
         </ElectronNot>
       )}
+
+      <Toaster
+        getApi={ (openToaster) => setOpenPlayerErrorToaster(undefined) }
+        message={ playerError || '' }
+      />
     </div>
   )
 }

@@ -10,6 +10,7 @@ import {
   PREVIOUS_TRACK,
   REPLACE_PLAYLIST,
   SEEK_PLAYER,
+  SET_PLAYER_ERROR,
   SET_PLAYER_ACTUALLY_PLAYING,
   SET_PLAYER_PLAYLIST,
   TRACK_ENDED,
@@ -23,6 +24,7 @@ const initialState: IState = {
   actuallyPlaying: false,
   currentTrack: null,
   currentPlaylist: null,
+  error: null,
   inited: false,
   muted: true,
   playing: false,
@@ -77,6 +79,12 @@ const reducer = (
 
     case SEEK_PLAYER: {
       return state
+    }
+
+    case SET_PLAYER_ERROR: {
+      return produce(state, draftState => {
+        draftState.error = payload
+      })
     }
 
     case SET_PLAYER_ACTUALLY_PLAYING: {
