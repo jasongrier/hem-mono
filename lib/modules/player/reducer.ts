@@ -84,6 +84,10 @@ const reducer = (
     case SET_PLAYER_ERROR: {
       return produce(state, draftState => {
         draftState.error = payload
+
+        if (draftState.error) {
+          draftState.currentTrack = null
+        }
       })
     }
 

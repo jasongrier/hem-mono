@@ -1,40 +1,38 @@
 import React, { ReactElement, useEffect, useState, PropsWithChildren, useCallback } from 'react'
 
 interface IProps {
-  getApi: (openToaster: () => void) => void
   message: string
 
   delay?: number
 }
 
-function Toaster({ getApi, message, delay = 1000 }: IProps): ReactElement {
+function Toaster({ message, delay = 3000 }: IProps): ReactElement {
   const [open, setOpen] = useState<boolean>(false)
   const [timeoutId, setTimeoutId] = useState<number>()
 
-  useEffect(function init() {
-    getApi(openToaster)
+  useEffect(openToaster, [])
 
+  useEffect(function doCleanup() {
     return function cleanup() {
-      if (!timeoutId) return
       window.clearTimeout(timeoutId)
     }
   }, [timeoutId])
 
   const toasterOnClick = useCallback(
     function toasterOnClickFn() {
-      setOpen(false)
       window.clearTimeout(timeoutId)
+
+      setOpen(false)
       setTimeoutId(undefined)
     }, [],
   )
 
   function openToaster() {
-    console.log(5)
     const newTimeoutId = window.setTimeout(function closeAfterDelay() {
-      console.log(6)
       setOpen(false)
     }, delay)
 
+    setOpen(true)
     setTimeoutId(newTimeoutId)
   }
 
@@ -46,7 +44,9 @@ function Toaster({ getApi, message, delay = 1000 }: IProps): ReactElement {
       `}
       onClick={toasterOnClick}
     >
-      <p dangerouslySetInnerHTML={{ __html: message }} />
+      <div className="hem-toaster-box">
+        <p dangerouslySetInnerHTML={{ __html: message }} />
+      </div>
     </div>
   )
 }
