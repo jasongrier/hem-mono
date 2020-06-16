@@ -1,4 +1,5 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects'
+import ReactGA from 'react-ga'
 import {
   MUTE_PLAYER,
   NEXT_TRACK,
@@ -25,7 +26,7 @@ import {
 declare const SC: any
 declare const window: any
 
-const playerErrorMessage = 'Sorry we could not play that track right now.'
+const playerErrorMessage = 'Sorry, we could not play that track right now.'
 
 function killPlayerInstance() {
   const playerInstance = window.HEM_PLAYER_SOUNDCLOUD_PLAYER_INSTANCE
@@ -96,6 +97,11 @@ function* cueTrack({ payload }: any) {
       }
     })
     .catch(function() {
+      ReactGA.event({
+        category: 'Errors',
+        action: 'Failed to stream: ' + payload.track.slug + '.',
+      })
+
       window.STORE.dispatch(setPlayerErrorAc(playerErrorMessage))
       window.STORE.dispatch(pausePlayerAc())
     })

@@ -157,11 +157,8 @@ function App(): ReactElement {
   }, [contentItems])
 
   useEffect(function handlePlayerErrors() {
-    console.log(1)
     if (!openPlayerErrorToaster) return
-    console.log(2)
     if (!playerError) return
-    console.log(3)
 
     openPlayerErrorToaster(playerError)
   }, [openPlayerErrorToaster, playerError])
@@ -359,10 +356,9 @@ function App(): ReactElement {
         </ElectronNot>
       )}
 
-      <Toaster
-        getApi={ (openToaster) => setOpenPlayerErrorToaster(undefined) }
-        message={ playerError || '' }
-      />
+      { playerError && (
+        <Toaster message={ playerError } />
+      )}
     </div>
   )
 }
