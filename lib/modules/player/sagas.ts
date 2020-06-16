@@ -28,6 +28,8 @@ declare const window: any
 
 const playerErrorMessage = 'Sorry, we could not play that track right now.'
 
+let timeoutId: number
+
 function killPlayerInstance() {
   const playerInstance = window.HEM_PLAYER_SOUNDCLOUD_PLAYER_INSTANCE
 
@@ -74,14 +76,34 @@ function* pausePlayer() {
 function* cueTrack({ payload }: any) {
   yield put(setPlayerActuallyPlayingAc(false))
   yield put(setPlayerErrorAc(null))
+  yield put(setPlayerErrorAc(null))
 
   killPlayerInstance()
+
+  window.clearTimeout(timeoutId)
+
+  timeoutId = window.setTimeout(function() {
+    const actuallyPlaying = window?.STORE.getState()?.player.actuallyPlaying
+    const playing = window?.STORE.getState()?.player.playing
+
+    if (playing && !actuallyPlaying) {
+      ReactGA.event({
+        category: 'Errors',
+        action: 'Failed to stream: ' + payload.track.slug + '. Timeout.',
+      })
+
+      window.STORE.dispatch(setPlayerErrorAc(playerErrorMessage))
+      window.STORE.dispatch(pausePlayerAc())
+    }
+  }, 10000)
 
   SC.stream(
     '/tracks/' + payload.track.resource,
     payload.track.secret,
   )
     .then(function(player: any) {
+      window.clearTimeout(timeoutId)
+
       player.on('finish', function() {
         window.STORE.dispatch(trackEndedAc())
       })
@@ -97,9 +119,11 @@ function* cueTrack({ payload }: any) {
       }
     })
     .catch(function() {
+      window.clearTimeout(timeoutId)
+
       ReactGA.event({
         category: 'Errors',
-        action: 'Failed to stream: ' + payload.track.slug + '.',
+        action: 'Failed to stream: ' + payload.track.slug + '. HTTP error.',
       })
 
       window.STORE.dispatch(setPlayerErrorAc(playerErrorMessage))
