@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Scrollbars from 'react-scrollbars-custom'
 import { slugify, titleCase } from 'voca'
-import { compact } from 'lodash'
+import { compact, flatten, map } from 'lodash'
 import moment from 'moment'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup } from '../../../../../lib/modules/popups'
@@ -11,7 +11,7 @@ import { replacePlaylist, setPlayerPlaylist } from '../../../../../lib/modules/p
 import { MainContentBox } from './index'
 import { IContentItem } from '../index'
 import { RootState } from '../../../index'
-import { LISTS_HAVE_BLURBS } from '../../../config'
+import { LISTS_HAVE_BLURBS, RELEASE_PHASE } from '../../../config'
 import { hasTag, hasCategory, contentItemToTrack, getContentItemsFromRawList } from '../functions'
 
 interface IProps {
@@ -62,8 +62,31 @@ function MainContentList({
   const dispatch = useDispatch()
 
   const [finalContentItems, setFinalContentItems] = useState<IContentItem[]>([])
+  const [finalFilters, setFinalFilters] = useState<Array<{ tag: string, empty: boolean }>>([])
 
-  const filters = compact(['All'].concat(propsFilters))
+  useEffect(function filters() {
+    const contentItems = (propsContentItems || storeContentItems).filter(item =>
+      item.published && parseInt(item.releasePhase, 10) <= RELEASE_PHASE
+    )
+
+    if (!contentItems) return
+    if (!contentItems.length) return
+
+    let existingTags = contentItems.map(item => item.tags.split(',').map(tag => tag.trim()))
+    // @ts-ignore
+    existingTags = existingTags.flat()
+
+    let filters = propsFilters.map(tag => ({
+      tag,
+      // @ts-ignore
+      empty: !existingTags.includes(slugify(tag))
+    }))
+
+    filters = [{ tag: 'All', empty: false }].concat(filters)
+
+    setFinalFilters(filters)
+
+  }, [storeContentItems])
 
   useEffect(function itemsAndPlaylist() {
     let contentItems
@@ -109,6 +132,10 @@ function MainContentList({
       contentItems = stickyContentItems.concat(contentItems)
     }
 
+    contentItems = contentItems.filter((item: IContentItem) =>
+      parseInt(item.releasePhase, 10) <= RELEASE_PHASE
+    )
+
     setFinalContentItems(contentItems)
 
     setTimeout(function () {
@@ -118,12 +145,12 @@ function MainContentList({
 
       for (const item of contentItems) {
         if (hasCategory(item, 'tracks')) {
-          tracks.push(contentItemToTrack(item, `tracks/#${item.slug}`))
+          tracks.push(contentItemToTrack(item))
         }
 
         else {
           const attachedTracks = getContentItemsFromRawList(storeContentItems, item.trackSlugs).map(track =>
-            contentItemToTrack(track, `${category}/${item.slug}`)
+            contentItemToTrack(track)
           )
           tracks = tracks.concat(attachedTracks)
         }
@@ -176,15 +203,16 @@ function MainContentList({
           ))
         )}
       </div>
-      { filters.length > 1 && (
+      { finalFilters.length > 1 && (
         <div className="main-content-filters clearfix">
           <h3>Select:</h3>
-          { filters.map(tag => (
+          { finalFilters.map(({ tag, empty }) => (
             <Link
               className={`
                 main-content-filter
                 ${ currentFilter === slugify(tag) ? 'active' : '' }
                 ${ currentFilter === slugify(excludeFromAll) ? 'exclusive-filter' : '' }
+                ${ empty ? 'empty-filter' : '' }
               `}
               key={tag}
               to={`/${category}${tag !== 'All' ? '/filter/' + slugify(tag) : ''}`}

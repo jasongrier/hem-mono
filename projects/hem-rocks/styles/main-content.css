@@ -188,6 +188,14 @@
   font-size: 24px;
 }
 
+.main-content-filter.empty-filter {
+  background: magenta;
+}
+
+.node-env-production .main-content-filter.empty-filter {
+  display: none;
+}
+
 .main-content-items {
   /* transform: translateX(-10px); */
 }

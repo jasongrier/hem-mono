@@ -56,10 +56,10 @@ function SoundLibrary(): ReactElement {
         >
           {(pack) => {
             const attachedTracks = getContentItemsFromRawList(allContentItems, pack.trackSlugs).map(track =>
-              contentItemToTrack(track, `sound-library/${pack.slug}`)
+              contentItemToTrack(track)
             )
 
-            if (!attachedTracks || !attachedTracks.length) return
+            if (!attachedTracks || !attachedTracks.length) return <div />
 
             return <TrackPlayPauseButton track={attachedTracks[0]} />
           }}
