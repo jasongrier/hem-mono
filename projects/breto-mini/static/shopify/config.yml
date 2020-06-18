@@ -1,8 +1,0 @@
-development:
-  password: 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
-  theme_id: "81343610961"
-  store: hem-web-shop-dev-j.myshopify.com
-
-ignore_files:
-  - config/settings_data.json
-  - config/settings_schema.json

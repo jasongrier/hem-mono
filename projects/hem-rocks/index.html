@@ -1,34 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HEM: Music, Art, Code</title>
+<head>
+  <meta charset="utf-8" />
+  <title>HEM</title>
 
-    <script type="text/javascript">
-      var MTUserId='5811eaf1-0d9a-4fa0-9aaa-53a1763b65a2';
-      var MTFontIds = new Array();
+  <script type="text/javascript">
+    var MTUserId='5811eaf1-0d9a-4fa0-9aaa-53a1763b65a2'
+    var MTFontIds = new Array()
 
-      MTFontIds.push('5194955'); // Avenir® W05 35 Light
-      (function() {
-        var mtTracking = document.createElement('script');
-        mtTracking.type='text/javascript';
-        mtTracking.async='true';
-        mtTracking.src='/static/assets/fonts/avenir/mtiFontTrackingCode.js';
-        (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(mtTracking);
-      })();
-    </script>
+    MTFontIds.push('5194955') // Avenir® W05 35 Light
+    // (function() {
+    //   var mtTracking = document.createElement('script')
+    //   mtTracking.type='text/javascript'
+    //   mtTracking.async='true'
+    //   mtTracking.src='/static/assets/fonts/avenir/mtiFontTrackingCode.js'
+    //   (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(mtTracking)
+    // })()
+  </script>
 
-    <style type="text/css">
-      @font-face{
-        font-family:"Avenir LT W05_35 Light";
-        src:url("/static/assets/fonts/avenir/962e0d9d-7610-4b34-a16b-254ff1e3bcad.eot?#iefix");
-        src:url("/static/assets/fonts/avenir/962e0d9d-7610-4b34-a16b-254ff1e3bcad.eot?#iefix") format("eot"),url("/static/assets/fonts/avenir/f5354f80-92cf-4f4b-b36f-8c045d5c8426.woff2") format("woff2"),url("/static/assets/fonts/avenir/8677474f-cbca-4e71-a08e-1f86baaba210.woff") format("woff"),url("/static/assets/fonts/avenir/dae72e0a-0185-45cd-818d-41627b670f78.ttf") format("truetype");
-      }
-    </style>
-  </head>
+  <script src="https://kit.fontawesome.com/9d58b3b416.js" crossorigin="anonymous"></script>
+  <script src="https://embed.twitch.tv/embed/v1.js"></script>
+  <script src="https://connect.soundcloud.com/sdk/sdk-3.3.2.js"></script>
+  <script>
+    SC.initialize({ client_id: 'f8ade18d92913e8c069cdef753813762' })
+  </script>
+</head>
 <body>
-  <div id="react-root"></div>
-  <script src="./index.ts"></script>
+  <div id="root"></div>
+  <script src="./index.tsx"></script>
 </body>
 </html>

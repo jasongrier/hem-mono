@@ -8,15 +8,15 @@ function copyStatic(projectName) {
   execSync(`cp projects/${projectName}/.htaccess dist/.htaccess`, { stdio: 'inherit' })
 }
 
-function build(projectName, andStart = false, developerBuild = false, pug = false) {
+function build(projectName, devSession = false, developerBuild = false, pug = false) {
   execSync(`rm -rf dist`, { stdio: 'inherit' })
   execSync(`mkdir dist`, { stdio: 'inherit' })
   copyStatic(projectName)
 
-  runPreBuildTasks(projectName, andStart)
+  runPreBuildTasks(projectName, devSession)
 
-  if (andStart) {
-    if (andStart === 'electron') {
+  if (devSession) {
+    if (devSession === 'electron') {
       const env = Object.create(process.env)
       env.ELECTRON_MONO_DEV = true
 
@@ -43,7 +43,7 @@ function build(projectName, andStart = false, developerBuild = false, pug = fals
 
       bundler.on('buildEnd', () => {
         copyStatic(projectName)
-        runPostBuildTasks(projectName, false)
+        runPostBuildTasks(projectName, devSession, false)
       })
 
       bundler.serve()
@@ -54,10 +54,10 @@ function build(projectName, andStart = false, developerBuild = false, pug = fals
     execSync(`${developerBuild ? 'NODE_ENV=development ' : ''}parcel build projects/${projectName}/index.html --no-minify --public-url '.'`, { stdio: 'inherit' })
   }
 
-  runPostBuildTasks(projectName, andStart)
+  runPostBuildTasks(projectName, devSession, true)
 }
 
-function runTasks(projectName, isStartup, taskType) {
+function runTasks(projectName, devSession, taskType, isStartup) {
   const tasksFile = join(__dirname, '..', '..', 'projects', projectName, 'tasks.js')
   const allTasks = lazyRequire(tasksFile)
   const tasks = allTasks[taskType]
@@ -65,16 +65,16 @@ function runTasks(projectName, isStartup, taskType) {
   if (!tasks || !tasks.length) return
 
   for (let i = 0; i < tasks.length; i ++) {
-    tasks[i](isStartup)
+    tasks[i](devSession, isStartup)
   }
 }
 
-function runPreBuildTasks(...args) {
-  runTasks(...args, 'preBuild')
+function runPreBuildTasks(projectName, devSession) {
+  runTasks(projectName, devSession, 'preBuild')
 }
 
-function runPostBuildTasks(...args) {
-  runTasks(...args, 'postBuild')
+function runPostBuildTasks(projectName, devSession, isStartup) {
+  runTasks(projectName, devSession, 'postBuild', isStartup)
 }
 
 module.exports = build

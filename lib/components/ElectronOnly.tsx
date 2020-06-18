@@ -7,7 +7,10 @@ interface IProps {
 function ElectronOnly({ children, showMessage = false }: PropsWithChildren<IProps>): ReactElement {
   if (window.process?.env.ELECTRON_MONO_DEV) {
     return (
-      <div className="electron-only">
+      <div
+        className="electron-only"
+        style={{ display: 'inline' }}
+      >
         { children }
       </div>
     )
@@ -15,7 +18,10 @@ function ElectronOnly({ children, showMessage = false }: PropsWithChildren<IProp
 
   if (showMessage) {
     return (
-      <div className="electron-only electron-only-not-electron">
+      <div
+        className="electron-only electron-only-not-electron"
+        style={{ display: 'inline' }}
+      >
         <h1>Sorry</h1>
         <p>You are seeing this message because this project (or this particular part of this project) is only meant to run in app mode.</p>
         <p>You'd probably want to go to your local copy and enter the following command:</p>

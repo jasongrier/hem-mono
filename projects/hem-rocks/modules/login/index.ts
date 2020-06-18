@@ -44,5 +44,6 @@ export type Action =
   | ILogOut
 
 export { logIn, logInCheckRequest, logInResetError, logOut } from './actions'
+export { LogInForm, ProtectedContent } from './components'
+export { reducer as loginReducer } from './reducer'
 export { loginCheckSaga, loginSaga, logoutSaga } from './sagas'
-export { reducer } from './reducer'
