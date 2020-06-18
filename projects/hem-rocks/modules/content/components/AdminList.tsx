@@ -20,7 +20,7 @@ function AdminList(): ReactElement {
   const dispatch = useDispatch()
 
   useEffect(function fetchItems() {
-    dispatch(requestReadItems({ page: 1, size: 10000 }))
+    dispatch(requestReadItems())
   }, [])
 
   const [search, setSearch] = useState('')

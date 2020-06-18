@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Scrollbars from 'react-scrollbars-custom'
 import { slugify, titleCase } from 'voca'
-import { compact, flatten, map } from 'lodash'
+import { get } from 'lodash'
 import moment from 'moment'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup } from '../../../../../lib/modules/popups'
@@ -225,7 +225,16 @@ function MainContentList({
       <div className="main-content-items">
         { finalContentItems.map((contentItem: IContentItem, index: number) => (
           <MainContentBox
-            badgeText={showCategoryOnContentBoxes ? titleCase(contentItem.displayCategory || contentItem.category.replace(/-/g, ' ')) : undefined}
+            badgeText={
+              showCategoryOnContentBoxes
+                ? titleCase(
+                  contentItem.displayCategory
+                    ? contentItem.displayCategory
+                    : hasCategory(contentItem, 'articles')
+                      ? get(contentItem.tags.split(','), 0)
+                      : contentItem.category.replace(/-/g, ' '))
+                : undefined
+            }
             buttonText={buttonText}
             contentItem={contentItem}
             index={index}

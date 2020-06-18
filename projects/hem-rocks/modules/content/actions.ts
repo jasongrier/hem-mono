@@ -55,9 +55,9 @@ const requestDeleteItems = (itemIds: string[]): Action => ({
   payload: itemIds,
 })
 
-const requestReadItems = (payload: { page: number, size: number }): Action => ({
+const requestReadItems = (): Action => ({
   type: REQUEST_READ_ITEMS,
-  payload,
+  payload: null,
 })
 
 const requestUpdateItems = (items: IContentItem[]): Action => ({

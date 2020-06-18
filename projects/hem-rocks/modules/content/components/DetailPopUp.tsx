@@ -1,6 +1,7 @@
 import React, { ReactElement, SyntheticEvent, useEffect, useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
+import { Link } from 'react-router-dom'
 import { find, isFinite, isNaN } from 'lodash'
 import Scrollbars from 'react-scrollbars-custom'
 import ReactGA from 'react-ga'
@@ -12,7 +13,7 @@ import { addProductToCart } from '../../cart'
 import { IContentItem, getContentItemsFromRawList } from '../index'
 import { assetHostHostname } from '../../../functions'
 import { RootState } from '../../../index'
-import { hasTag, contentItemToTrack, hasCategory } from '../functions'
+import { hasTag, contentItemToTrack, hasCategory, getContentItemBySlug } from '../functions'
 
 interface IProps {
   contentItem: IContentItem | null
@@ -41,11 +42,9 @@ function DetailPopUp({
 
   const dispatch = useDispatch()
 
-  const [suggestedPrice, setSuggestedPrice] = useState<string>((contentItem ? contentItem.flexPriceRecommended : '0'))
-  const [track, setTrack] = useState<ITrack>()
   const [attachedPlaylist, setAttachedPlaylist] = useState<Partial<IPlaylist>>()
-
-  const [valid, setValid] = useState(true)
+  const [suggestedPrice, setSuggestedPrice] = useState<string>((contentItem ? contentItem.flexPriceRecommended : '0'))
+  const [valid, setValid] = useState<boolean>(true)
 
   useEffect(function init() {
     if (showPurchaseForm) {
@@ -78,8 +77,9 @@ function DetailPopUp({
       dispatch(setPlayerPlaylist(1))
 
       setAttachedPlaylist(playlist)
+      setSuggestedPrice(contentItem.flexPriceRecommended)
     })
-  }, [])
+  }, [contentItem.slug])
 
   const suggestedPriceOnChange = useCallback(
     function suggestedPriceOnChangeFn(evt: SyntheticEvent<HTMLInputElement>) {
@@ -178,7 +178,7 @@ function DetailPopUp({
     if (
       !contentItem.hasFixedPrice
       && contentItem.flexPriceMinimum
-      && price < contentItem.flexPriceMinimum
+      && parseFloat(price) < parseFloat(contentItem.flexPriceMinimum)
     ) {
       if (showAlerts) {
         alert(`Sorry, the minimum price is ${contentItem.flexPriceMinimum} €.`)
@@ -208,6 +208,8 @@ function DetailPopUp({
       hasCategory(item, 'sound-library')
       || hasCategory(item, 'merch')
       || hasCategory(item, 'venue-calendar')
+      // TODO: Get rid of these flags and just use tags
+      || (hasCategory(item, 'label') && (item.isDigitalProduct || item.isPhysicalProduct))
     ) {
       return true
     }
@@ -358,8 +360,9 @@ function DetailPopUp({
                       </form>
                       <small className={
                         isFinite(parseFloat(suggestedPrice))
-                        && suggestedPrice < contentItem.flexPriceMinimum
-                        ? 'invalid-minimum' : ''
+                        && parseFloat(suggestedPrice) < parseFloat(contentItem.flexPriceMinimum)
+                          ? 'invalid-minimum'
+                          : ''
                       }>
                         Minimum price: { contentItem.flexPriceMinimum } €
                       </small>
@@ -402,6 +405,24 @@ function DetailPopUp({
                       </div>
                     )}
                   </div>
+                  { contentItem.physicalFormats.length > 1 && (
+                    <div className="purchase-form-alternate-formats">
+                      <h3>Other Formats</h3>
+                      { contentItem.physicalFormats.split('\n').map(slug => {
+                        const item = getContentItemBySlug(allContentItems, slug)
+                        if (item) {
+                          return (
+                            <Link
+                              key={item.slug}
+                              to={`/label/${item.slug}`}
+                            >
+                              { item.title }
+                            </Link>
+                          )
+                        }
+                      })}
+                    </div>
+                  )}
                 </div>
               )}
               { showPurchaseForm && contentItem.acceptingDonations && (

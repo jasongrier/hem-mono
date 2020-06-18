@@ -15,7 +15,7 @@ function GrandPianoHeroine(): ReactElement {
 
   if (!grandPianoProduct) return (<div />)
 
-  const grandPianoTrackItem = find(allProducts, { slug: grandPianoProduct.trackSlug })
+  const grandPianoTrackItem = find(allProducts, { slug: 'grand-piano-sample-track-1' })
   const productUrl = '/sound-library/grand-piano'
 
   return (
@@ -27,7 +27,7 @@ function GrandPianoHeroine(): ReactElement {
             { grandPianoTrackItem && (
               <MuteButton
                 canStartPlayback={true}
-                track={contentItemToTrack(grandPianoTrackItem, productUrl)}
+                track={contentItemToTrack(grandPianoTrackItem)}
               />
             )}
           </div>
