@@ -100,7 +100,8 @@ body {
 }
 
 .app-is-home .main-content-box:first-child .main-content-box-badge,
-.app-is-home .main-content-box:nth-child(2) .main-content-box-badge {
+.app-is-home .main-content-box:nth-child(2) .main-content-box-badge,
+.app-is-home .main-content-box-badge {
   top: -40px !important;
 }
 

@@ -48,6 +48,7 @@ function App(): ReactElement {
 
   const genericRoutedPopups = [
     { basePath: 'apps', id: 'detail-popup' },
+    { basePath: 'articles', id: 'detail-popup' },
     { basePath: 'code', id: 'detail-popup' },
     { basePath: 'faqs', id: 'detail-popup' },
     { basePath: 'faqs', id: 'detail-popup' },
@@ -92,7 +93,7 @@ function App(): ReactElement {
   }, [cookiesAnalyticsApproved])
 
   useEffect(function fetchContent() {
-    dispatch(requestReadItems({ page: 1, size: 10000 }))
+    dispatch(requestReadItems())
   }, [])
 
   useEffect(function setActiveLiveStream() {
@@ -192,7 +193,10 @@ function App(): ReactElement {
       }
     }
 
-    if (popupId === currentlyOpenPopUp) return
+    if (
+      popupId === currentlyOpenPopUp
+      && popupId !== 'detail-popup'
+    ) return
 
     if (popupId) {
       dispatch(closePopup())

@@ -169,6 +169,8 @@ BRETO LAND
 Release phase filter in admin
 Mass action checkbox in admin list
 Allow showing unpublished content in preview mode
+"Internal calendar" should be a content type
+Admin category should be a select
 
 ***
 RELEASE PHASE 1
@@ -224,24 +226,30 @@ RELEASE PHASE 1
 – Quarter-tone synth
 
 Needed to begin:
-- Fix whatever's wrong with the admin
+- Mixcloud account
+√ Fix whatever's wrong with the admin
 – Videos
-– Internal page for release phases, with the expectations listed above, then for other phases too
+√ Internal page for release phases, with the expectations listed above, then for other phases too
 – PHP One-time download script
+- Thank you email
 – Test mailing list form issue and fix
 – Reset Google Analytics (or just go in there and see what it looks like)
 – Optimise images
 – Test if index chunking is needed already (initial load time)
 – News article about this being a new website
-– Articles badge on home page is first tag, not "Articles"
-– Welcome to our new website heroine
+√ Articles badge on home page is first tag, not "Articles"
+√ Welcome to our new website heroine
 – Image captions
-– Check all SL, some stuff should be put in RF10
-– Comp should be in RF10
+√ Check all SL, some stuff should be put in RF10
+√ Comp should be in RF10
 – MegaFooter
 – Choir photo is missing
-– Unpublish/unpreview sweet bea
-– Hide empty tags in prod, make them pink in dev
+√ Unpublish/unpreview sweet bea
+√ Hide empty tags in prod, make them pink in dev
+- Donation page (does PPL have some kind of subscription system for this??)
+–– One-time donation
+–– Recurring
+–– Benefit levels
 
 – Release phase architecture for content
   √ Migration to add "release phase" field to content items
@@ -262,13 +270,20 @@ Needed to begin:
     √ About page in main nav
     √ Hide all routes not included in the above
 
-– Order physical products (Unbekannte, Clouds, Archive)
+- Require shipping address in PayPal for physical
+- Does physical need shipping address form in checkout?
+√ Order physical products (Unbekannte, Clouds, Archive)
 - Get the types right
+- 404 page
+– Scroll freeze bug
 – Analytics for cookie nag (only upon approval)
 – Impressum
 - Cart from about closes and goes home
 - Can cart have a close "x" and bg click and esc key??
 – About page
+– Transparent knockout logo
+– Archive image
+– Rename physical formats to alternate formats
 – About SL page
 – Made something with SL page with upload form
 – DD description
@@ -287,7 +302,6 @@ Needed to begin:
 – Link press content from about page
 – Email aliases (verify all work): press@hem.rocks, info@hem.rocks, support@hem.rocks
 – Legal filings
-– Made something with SL link in About and About SL pages
 – Made something with SL link in About and About SL pages
 – Responsive layout
 – "Beta. Report a problem" fixed-position banner

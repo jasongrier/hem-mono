@@ -84,6 +84,13 @@ function InternalHome(): ReactElement {
         </div>
 
         <div className="page-internal-link-group">
+          <h2>Admin</h2>
+          <ul>
+            <Link to="/internal/calendar">Internal Calendar</Link>
+          </ul>
+        </div>
+
+        <div className="page-internal-link-group">
           <h2>Midst 2020</h2>
           <ul>
             <li>

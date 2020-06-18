@@ -32,9 +32,11 @@ function Label(): ReactElement {
         <LabelTimeline refresh={refreshTimeline} />
         <MainContentList
           currentFilter={currentFilter}
+          excludeFromAll="Physical Formats"
           filters={[
-            'Record Releases',
             'Events',
+            'Record Releases',
+            'Physical Formats',
           ]}
           category="label"
           title="Label"
@@ -48,7 +50,7 @@ function Label(): ReactElement {
 
             return (
               <>
-                { attachedTracks && attachedTracks.length && (
+                { attachedTracks && attachedTracks.length > 0 && (
                   <TrackPlayPauseButton track={attachedTracks[0]}/>
                 )}
                 { directFromArtist && (
@@ -64,7 +66,13 @@ function Label(): ReactElement {
                     className="action-button"
                     to={`/label/${item.slug}/${currentFilter || 'all'}`}
                   >
-                    { item.isDigitalProduct ? 'Download' : 'Info' }
+                    {
+                      item.isDigitalProduct
+                        ? item.physicalFormats
+                          ? 'Order'
+                          : 'Download'
+                        : 'Info'
+                    }
                   </Link>
                 )}
               </>

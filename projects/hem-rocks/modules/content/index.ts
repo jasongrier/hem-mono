@@ -18,7 +18,9 @@ export interface IContentItem {
   hasFixedPrice: boolean
   id: string
   isDigitalProduct: boolean
+  isPhysicalProduct: boolean
   keyArt: string
+  physicalFormats: string
   preview: boolean
   published: boolean
   relatedContent: string
@@ -66,8 +68,10 @@ export const fieldTypes: IContentItem = {
   flexPriceRecommended: 'text',
   hasFixedPrice: false,
   id: 'text',
+  isPhysicalProduct: false,
   isDigitalProduct: false,
   keyArt: 'text',
+  physicalFormats: 'textarea',
   preview: false,
   published: false,
   relatedContent: 'text',
@@ -141,7 +145,7 @@ export interface IRequestDeleteItems extends AnyAction {
 
 export interface IRequestReadItems extends AnyAction {
   type: typeof REQUEST_READ_ITEMS
-  payload: { page: number, size: number }
+  payload: null
 }
 
 export interface IRequestUpdateItems extends AnyAction {
@@ -187,6 +191,7 @@ export {
   AdminManualTaskRunner,
   AdminItem,
   AdminList,
+  AdminSettings,
   DetailPopUp,
   LaunchDetailPopupButton,
   MainContentBox,

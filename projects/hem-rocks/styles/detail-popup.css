@@ -173,6 +173,30 @@
   text-align: center;
 }
 
+.purchase-form-alternate-formats {
+  margin-top: 10px;
+  margin-bottom: 0;
+  padding: 5px;
+  background: #fff;
+}
+
+.purchase-form-alternate-formats h3 {
+  margin: 0 0 5px 0;
+  font-size: 12px;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+.purchase-form-alternate-formats a {
+  font-size: 15px;
+  color: #000;
+  text-decoration: none;
+}
+
+.purchase-form-alternate-formats a:hover {
+  text-decoration: underline;
+}
+
 .detail-popup header .hem-player-track-play-pause-button {
   position: absolute;
   bottom: 50px;

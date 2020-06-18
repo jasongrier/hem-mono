@@ -184,12 +184,7 @@ function migrate(allContentItems: IContentItem[]) {
     try {
       // DO STUFF HERE
       if (
-        data.slug.includes('quarter-tone-synth')
-        || data.slug.includes('viola-ii')
-        || data.slug.includes('chord-brush')
-        || data.slug.includes('window')
-        || data.slug.includes('one-pitch')
-        || data.slug.includes('flow')
+        data.slug.includes('sweet-bea')
       ) {
         data.releasePhase = '10'
       }
