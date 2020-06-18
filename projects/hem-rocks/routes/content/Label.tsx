@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet'
 import { Link, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { find } from 'lodash'
-import { MainContentList, contentItemToTrack } from '../../modules/content'
+import { MainContentList, contentItemToTrack, getContentItemsFromRawList } from '../../modules/content'
 import { TrackPlayPauseButton } from '../../../../lib/modules/player'
 import { LabelTimeline } from '../../components/timeline'
 import { BASE_SITE_TITLE } from '../../config'
@@ -35,23 +35,21 @@ function Label(): ReactElement {
           filters={[
             'Record Releases',
             'Events',
-            'Mixes',
-            'Tracks',
-            'Rarities',
-            'Merch',
           ]}
           category="label"
           title="Label"
         >
           {(item) => {
-            const trackItem = find(allContentItems, { slug: item.trackSlug })
-            const track = trackItem && contentItemToTrack(trackItem, `tracks/${item.slug}`)
+            const attachedTracks = getContentItemsFromRawList(allContentItems, item.trackSlugs).map(track =>
+              contentItemToTrack(track)
+            )
+
             const directFromArtist = item.externalLinkUrl && item.externalLinkText
 
             return (
               <>
-                { track && (
-                  <TrackPlayPauseButton track={track}/>
+                { attachedTracks && attachedTracks.length && (
+                  <TrackPlayPauseButton track={attachedTracks[0]}/>
                 )}
                 { directFromArtist && (
                   <a

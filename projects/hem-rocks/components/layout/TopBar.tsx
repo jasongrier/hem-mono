@@ -51,6 +51,10 @@ function TopBar(): ReactElement {
           <MainNavItem name="Label" />
           <MainNavItem name="Tracks" />
 
+          <ReleasePhase exact phase={1}>
+            <MainNavItem name="About" />
+          </ReleasePhase>
+
           { showCart && (
             <li className="main-nav-item">
               <NavLink

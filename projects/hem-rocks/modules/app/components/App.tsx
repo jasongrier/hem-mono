@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useState } from 'react'
-import { useLocation, useHistory } from 'react-router-dom'
+import { useLocation, useHistory, Redirect } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { find, isArray, map } from 'lodash'
 import ReactGA from 'react-ga'
@@ -9,7 +9,7 @@ import { CartPopup, setCartProducts } from '../../cart'
 import { ThankYouPopup } from '../../cart'
 import { DetailPopUp, requestReadItems, setCurrentItem, hasTag, getContentItemsFromList, contentItemToTrack, hasCategory } from '../../content'
 import { ProtectedContent } from '../../login'
-import { CampaignMonitorForm, ElectronNot, ScrollToTop, NagToaster, Spinner, Toaster } from '../../../../../lib/components'
+import { CampaignMonitorForm, ElectronNot, ScrollToTop, NagToaster, Spinner, Toaster, ElectronOnly } from '../../../../../lib/components'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup, closePopup } from '../../../../../lib/modules/popups'
 import { PlayerBar, setPlayerPlaylist, replacePlaylist } from '../../../../../lib/modules/player'
@@ -153,7 +153,7 @@ function App(): ReactElement {
       dispatch(replacePlaylist(i + 2, { name: tag, tracks }))
     })
 
-    dispatch(setPlayerPlaylist(7))
+    dispatch(setPlayerPlaylist(0))
   }, [contentItems])
 
   useEffect(function handlePlayerErrors() {
@@ -267,7 +267,12 @@ function App(): ReactElement {
   )
 
   return (
-    <div className={`hem-application hem-rocks${pathname === '/' ? ' app-is-home' : ''}`}>
+    <div className={`
+      hem-application
+      hem-rocks
+      ${pathname === '/' ? ' app-is-home' : ''}
+      ${process.env.NODE_ENV === 'production' ? 'node-env-production' : ''}
+    `}>
       <ProtectedContent header="Super secret preview">
         <ScrollToTop />
 

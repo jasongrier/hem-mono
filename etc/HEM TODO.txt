@@ -167,6 +167,8 @@ BRETO LAND
 ******************************************************
 
 Release phase filter in admin
+Mass action checkbox in admin list
+Allow showing unpublished content in preview mode
 
 ***
 RELEASE PHASE 1
@@ -180,22 +182,34 @@ RELEASE PHASE 1
 – Google analytics
 – Mailing list nag
 – Cookie nag
+- Press
 – Website player
-– MIDI Articles
 
 ## Phase 2 (August)
+- Press Releases
+- User Guides
+- Tutorials
+- Videos
 - Grand Piano
+- Seurat MIDI II
 – Piano Mixes
 - Venue testing
-– MIDI Articles Promo
+– MIDI Articles
+– TODO:
+–– Grand Piano edits
+–– Grand Piano promo video
+–– Grand Piano tutorial video
+–– Grand Piano user guide
+–– Grand Piano press kit
 
 ## Phase 3 (September)
-– Breto & Seurat
-- Noise Reduction Artefacts
+– Breto & Dot
 - New Mixes
 - New Tracks
+–– Holter/Pisaro
 
 ## Phase 4 (October)
+- Noise Reduction Artefacts
 - Venue
 – WIRE ad
 - Viola
@@ -210,6 +224,8 @@ RELEASE PHASE 1
 – Quarter-tone synth
 
 Needed to begin:
+- Fix whatever's wrong with the admin
+– Videos
 – Internal page for release phases, with the expectations listed above, then for other phases too
 – PHP One-time download script
 – Test mailing list form issue and fix
@@ -222,29 +238,36 @@ Needed to begin:
 – Image captions
 – Check all SL, some stuff should be put in RF10
 – Comp should be in RF10
+– MegaFooter
+– Choir photo is missing
+– Unpublish/unpreview sweet bea
+– Hide empty tags in prod, make them pink in dev
 
 – Release phase architecture for content
   √ Migration to add "release phase" field to content items
   √ Migration to set "release phase" field to 1 for all sl and label and tracks, all others to 10
   √ Build index.json with the published release phase content only
   √ Release phase flag in config.ts
-  - Release phase component for hiding website elements
+  √ Release phase component for hiding website elements
   √ Why is checkbox in fieldTypes === false and not 'checkbox'??
   √ Unpublish grand piano and grand piano tracks
-  – Mass action checkbox in admin list
+  √ Hide content from lists
   √ Add preview field to content
   √ Add preview mode to config
-  - Allow showing unpublished content in preview mode
-  - Release phase: "pilot"
-    - Hide Code
-    - Hide Apps
-    - Hide Mega Nav
-    - Hide Venue
-    - About page in main nav
-    - Hide all routes not included in the above
+  √ Release phase: "pilot"
+    √ Hide Code
+    √ Hide Apps
+    √ Hide Mega Nav
+    √ Hide Venue
+    √ About page in main nav
+    √ Hide all routes not included in the above
 
+– Order physical products (Unbekannte, Clouds, Archive)
+- Get the types right
 – Analytics for cookie nag (only upon approval)
 – Impressum
+- Cart from about closes and goes home
+- Can cart have a close "x" and bg click and esc key??
 – About page
 – About SL page
 – Made something with SL page with upload form
