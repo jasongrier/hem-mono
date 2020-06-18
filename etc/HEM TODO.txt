@@ -1,0 +1,801 @@
+###
+
+Sound Libraries as Artworks
+– Better title
+– Those Australian guys
+– HEM (link to the other "thesis" article on SL)
+– Anyone else?
+
+###
+
+COMP INVITEES
+
+Korhan Erel
+Jez Riley French
+Lucrecia Dalt
+Roger Reeves
+Alex Zhang-Hungtai
+Adam Overton
+Tashi Wada
+Ramona Gonzales
+Experimental Housewife
+Johnny Chang
+Charles Gaines
+Lucrecia Dalt
+Delroy Edwards
+Line Gøttsche
+Julia Holter
+Julia Holter & Michael Pisaro
+Michael Pisaro
+Gary Schultz
+Annelyse Gelman
+Stefan Matthieu
+Klein
+UCC Harlo
+Laurel Halo
+Nite Jewel
+Felicity Mangan
+Ariel Pink
+Jason Aaron Gillis-Grier
+Charlotte Adigery
+Lera Sapega
+Jelena Glazova
+Koen Nutters
+Heather Frasch
+William Basinksi
+David Lynch
+Ekkehard Ehlers
+Zoë Mc Pherson
+
+# About HEM
+
+HEM (Human Ear Music) was once a record label founded in 2006 in Los Angeles, then moved to San Francisco, Berlin, Copenhagen, and Austin Texas. In 2020 HEM passed on the mantle to HEM (Hot Extra-musicality) and is currently world-based and focussing on extended practices in sound and software politics. Part utilitarian and part communitarian. Persistently weird.
+
+# About the Comp
+
+As inclusive as imaginable. No limit on track length.
+
+# Parallel Activities
+
+Software releases, sample packs, articles, a live streaming venue. Check the preview website here.
+
+# Terms
+
+###
+
+Admin "not:" search filter
+Admin delete not working
+
+###
+
+– Tag all dummy content with "dummy" so it can be hidden dynamically
+– Five dummy articles
+– Ten dummy FAQ's
+– Three dummy merch
+– Five dummy mixes (including the two "real" mixes)
+– Five dummy press
+– Five dummy press kits
+– Five dummy non-SL tracks (including the two "real" tracks)
+– Five dummy tutorials (including the two "real" tutorials)
+– Five dummy user guides (including the two "real" user guides)
+– Five dummy venue archive (delete the existing one)
+– Three dummy venue calendar
+– Four dummy venue merch
+– Four dummy videos (is there a "video" field??)
+
+###
+
+Review mode allows viewing of unpublished content which has the "reviewable" attribute
+
+Stop building individual JSON files; rename index.json to content.json
+
+Exclude unpublished content from the content.json unless in dev mode
+
+Lazy-loaded, chunked content.json (maybe one for tracks and then one per page)
+
+Audit for missing stuff and fill it in below
+
+Missing SL tracks:
+– Almost all of them
+
+Entire playlist item should start playback and change bg color. This should be done with CSS or with a functionality upgrade to the TrackPlayPauseButton component
+
+Missing images:
+
+Missing content:
+>> Flow sample tracks
+>> Flow video
+– FAQ's
+– Mixes
+- Tutorials
+- User Guides
+- Contact (should this be a contact form, and then have the DBA and email on the impresses only?? Look at other sites...
+- About
+- Press
+- Mailing List (add text from the nag)
+- Videos
+- Cookie Settings (improve styling)
+
+√ Missing pages:
+
+** Thoroughly test cookie settings page and cookie bar and cookie popup
+
+Support markdown in the description field
+
+Migrate all min prices to zero
+
+Deploy checklist page
+– Text: "Upload images and PHP scripts"
+
+ESC closes Zoom textarea, and saves
+
+A hippo for the FAQ page
+
+*** I need a drawing of a hippopotamus standing on two feet and pointing to the upper-right. Is this something you can quickly provide? ***
+
+Admin: Migration should automatically backup content folder to the desktop
+
+Playlist does not advance to the next track
+
+Meganav should go over the playlist
+
+>> Badge in playlist on the Made with SL tab that says "made something with SL? Click here to share it" then opens upload form
+
+>> Show waveforms in the player progress
+
+Newsletters content type; output should look the same in CM, or else view in browser link should redirect to .rocks
+
+BUG: Back up the content folder. Edit an item, there will be huge data corruption. (A duplicate?? The original not deleted??)
+
+******************************************************
+******************************************************
+******************************************************
+
+BRETO LAND
+
+– Make the tooling stop when the Electron app is closed
+√ Close the Electron app when the tooling is stopped
+– Hoist content module out of rocks mini for use in other projects
+– Basic set a marker and annotate it functionality
+– Annotations module should be separate from app module
+– Read markers from live
+– Reconcile markers. This will be a reconciliation UI similar to diff in VSCode
+– Make electron main window configurable from within the project
+
+******************************************************
+******************************************************
+******************************************************
+
+Release phase filter in admin
+
+***
+RELEASE PHASE 1
+
+# Release Phases
+
+## Phase 1 (July)
+– Checkout flow
+– File download
+– Elastic pricing
+– Google analytics
+– Mailing list nag
+– Cookie nag
+– Website player
+– MIDI Articles
+
+## Phase 2 (August)
+- Grand Piano
+– Piano Mixes
+- Venue testing
+– MIDI Articles Promo
+
+## Phase 3 (September)
+– Breto & Seurat
+- Noise Reduction Artefacts
+- New Mixes
+- New Tracks
+
+## Phase 4 (October)
+- Venue
+– WIRE ad
+- Viola
+– Viola Concert
+– Comp in-progress
+- New Tracks
+
+## Phase 5 (November)
+– Antalya in-progress
+
+### Which Phase??
+– Quarter-tone synth
+
+Needed to begin:
+– Internal page for release phases, with the expectations listed above, then for other phases too
+– PHP One-time download script
+– Test mailing list form issue and fix
+– Reset Google Analytics (or just go in there and see what it looks like)
+– Optimise images
+– Test if index chunking is needed already (initial load time)
+– News article about this being a new website
+– Articles badge on home page is first tag, not "Articles"
+– Welcome to our new website heroine
+– Image captions
+– Check all SL, some stuff should be put in RF10
+– Comp should be in RF10
+
+– Release phase architecture for content
+  √ Migration to add "release phase" field to content items
+  √ Migration to set "release phase" field to 1 for all sl and label and tracks, all others to 10
+  √ Build index.json with the published release phase content only
+  √ Release phase flag in config.ts
+  - Release phase component for hiding website elements
+  √ Why is checkbox in fieldTypes === false and not 'checkbox'??
+  √ Unpublish grand piano and grand piano tracks
+  – Mass action checkbox in admin list
+  √ Add preview field to content
+  √ Add preview mode to config
+  - Allow showing unpublished content in preview mode
+  - Release phase: "pilot"
+    - Hide Code
+    - Hide Apps
+    - Hide Mega Nav
+    - Hide Venue
+    - About page in main nav
+    - Hide all routes not included in the above
+
+– Analytics for cookie nag (only upon approval)
+– Impressum
+– About page
+– About SL page
+– Made something with SL page with upload form
+– DD description
+– DD essay??
+– Use HTML5 instead of Soundcloud for playback
+– Downgrade Soundcloud pro plan
+– Upload sounds
+– Take more photos
+– Photo credit/captioning
+– Resequence photos
+– Final assignment of photos
+– Link cookie settings from about page
+– Terms and conditions
+– Cookie terms
+– Press content
+– Link press content from about page
+– Email aliases (verify all work): press@hem.rocks, info@hem.rocks, support@hem.rocks
+– Legal filings
+– Made something with SL link in About and About SL pages
+– Made something with SL link in About and About SL pages
+– Responsive layout
+– "Beta. Report a problem" fixed-position banner
+– Contact form
+
+– Deployment
+–– Too many little manual steps
+–– Ansible? Shell script? Node?
+–– 1) Website
+–– 2) PHP venue status script
+–– 3) Images
+–– 4) Audio files
+–– 5) Something else??
+
+– Deploy to staging and ask Anneq to QA
+– Deploy to staging and ask Emily to QA
+– Ask Emily about SEO
+
+***
+
+- Fix whatever's wrong with editing in the admin
+– Add articles for DD essay and DD description
+– Sound Libraries as Artworks
+– Add articles for a couple of web dev topics
+– Remove individual content files and stop writing/reading them
+
+***
+FOR ANNEQ
+
+√ Remove "Aaron Gillis-"
+– Letter explaining stuff
+
+Ok here's the super secret preview: http://staging.hem.rocks
+
+Email: info@hem.rocks / Password: easyeasy
+
+The two sections that are most complete are "Sound Library" and "Label". Here, all the items are in place, but the text is still filler. The site will "soft-launch" with these two sections and the other sections will be filled in during the coming months.
+
+The site isn't optimised yet, sorry if it's slow.
+
+Let me know what you think!
+
+***
+
+Clicking and active filter should set filter to all
+
+√ Remove puppeteer
+
+Spacebar for player??
+
+– Photos:
+–– Liebesinsel
+–– Insel der Jugend
+–– View from Excelsior
+–– Indian Imbiss
+–– Stolen rock sign in Tiergarten
+–– Weird area by canal
+
+– Admin: A filter for published/unpublished
+– Admin: Add a "needs-work" tag for texts that got made in a hurry
+– Live at studio Acht cuts off early
+– Nag toaster needs to destroy timeout
+
+>> Upgrade mailing list so that there is a choice of lists to be a part of
+
+Mega nav close x is getting cropped on the bottom
+Input old SL texts
+Write SL about thesis (adapt from the old essay)
+Write SL about text
+
+√ Can't playlist just be a tag of list??
+
+√ ARTICLES PAGE IS MISSING
+
+>> Rename tabs-content cause it's not tabs anymore
+
+>> Routed popup architecture is atrocious
+
+Images on about, contact, etc. should be much shorter
+
+Generic "inline" newsletter form style
+
+Contact page image
+
+Mailing list page image
+
+HTML for jags site
+
+Check all links in the mega nav
+
+>> A/B test email nag with a centred popup, and random delay (send delay through GA event=
+
+Sound library article linked from SL list page blurb "read more about SL"
+
+Validation for email form
+
+Compilation invitation page
+
+Flat-file service for checklists; Maybe just unite all the flat-file services into one PHP script and give access to it from the Electron admin, maybe via some kind of token, and maybe also move the Electron app to a generic CMS app, with a configurable model (with migrations) and
+
+>> MD5 password, or use a flat-file service, or something
+
+Merch images
+
+Just HEM not HEM, Music, Art...
+
+Grand piano samples should be INTENSE
+
+Extend short notes on grand piano somehow
+
+Inf. fake should be the demo for chord brush and there should be five of them
+
+Grand piano press kit
+– Samples
+– Exclusive Preview link
+–
+
+If a track does not load after x seconds, then stop and set the play button icons back
+
+All play buttons should have a spinner
+
+√ All action buttons should be unselectable
+
+Tracks cannot be played from list page play buttons unless started from the player bar playlist
+
+Clicking anything outside the playlist should close the playlist (even document body)
+
+√ Closing the player bar should set the playlist to closed
+
+√ Hack to include HEM merch in venue merch
+
+Articles page
+
+Remember that "attachment" tracks need to be tagged with "attachment"
+
+Item types!!
+
+Slug uniqueness needs to be checked in index as well
+
+√ Publish and delete buttons are broken, maybe all editing is broken??
+
+Load more Berlin images
+
+Internal Midst pages (home, budget, proposal)
+
+Code images
+
+Press kits detail popups, stubbed kits, custom fields, PDF generator
+
+Midst home should be like: https://igetrvng.com/epks/rvngnl65/
+
+Generic press page like: https://igetrvng.com/epks/rvngnl65/ (optional, content-specific fields)
+
+√ Press release list page
+
+√ Route subfolders (lists, admin, static, internal, misc)
+
+Automatically hide empty filters on production, make them red on dev, use a body class called "dev" or "prod"
+
+√ Migrate category "track" to "tracks"
+
+√ LOAD TIME SLOW
+
+>> Better data fetching... GraphQL??
+
+>> Exclude unpublished items from index
+
+Buy jasonaarongillisgrier.com domain
+
+
+
+√ Tracks 404??
+
+Brief blurb text for every list page
+
+
+
+Style the email nag
+
+Pressing play anywhere opens the playbar
+
+PlaybarOpen state should be part of the player module!
+
+Track category should be Tracks
+
+Placeholder movies (flip books) for when there is no stream
+
+Migration to add sample track items for all label and SL posts
+
+Made something with SL? Badge in SL list somehow
+
+Playbar toggle open also starts playback of first global playlist track
+
+Pressing enter in zoom text field saves the post
+
+Persist admin search in store
+
+Read more link in playlist
+
+Read more link in playbar
+
+Playlist play icon should show spinner when loading and pause when playing
+
+Hire a React consultant / developer (random) banner on "Code" page
+
+Bypass cookie warning/checks for non-EU users
+
+ReactGA warnings in Electron
+
+Analytics for when playback was started from post, post on home page, post on list page, or post on detail page
+
+Analytics for amount of time previous track played before next, prev, or stop was pressed
+
+What happens if non-playlist track is played and end is reached? There needs to be a playlistIndex in the state to return to
+
+Checkbox to filter sticky posts in admin
+
+Made with SL badge on SL page
+
+Mailing list form broken?? Broken for "+1" emails???
+
+Re-name Info page to About
+
+infoPopupTitle="" everywhere
+
+About the Sound Library blurb or link to article about the sound library
+
+Label blurb or link to article about the label
+
+Logo should be in the same place as on the home page when meganav is open, adjust content margins to match
+
+Add copyright and some kind of formal-looking footer to mega nav
+
+Add mailing list form to mega nav (with separate analytics event)
+
+Separate analytics event for all mailing list forms
+
+Social links in mega nav footer
+
+Short screens adjustment / media queries
+
+###
+How to handle physical products? How to handle products what are both physical and digital? How to handle product variants?
+
+Add productVariantSlugs field to IContentItem
+Write some code to automatically cross-link variants when saving this field
+Figure out how to best display product variants in the detail popup
+Add a primaryFormat checkbox so that variants can be hidden from the product list
+
+###
+
+Admin create new button should unmount and remount the admin item component if clicked while editing an item
+
+Admin back arrow link retains list filter
+
+Mobile cookies flow
+
+Multiple playlists
+
+Admin text search should be confined to selected tag
+
+Set cookie preferences page (from hamburger nav)
+
+Cookies should probably be a separate module
+
+Contact Regina art doing some marketing
+
+FB/Twitter marketing integration
+
+Get a fully licensed version of Avenir to include in the bundle
+
+Template (one app, one website) should always be start-able
+
+Why is campaignMonitorId passed to MainContentList??
+
+US business filings
+
+Chord brush shows under sound library "all", should only show under "MIDI devices"
+
+Content admin should be a separate project and deploy JSON files to CDN, not the bundle
+
+When cookie prefs are set from the cookie prefs page the entire web app must be reloaded (warn them that this will happen)
+
+NPM module publish task for Mono
+
+Email popup (like Warp)
+
+There are yet more label items, see "Label Images"
+
+Image gallery for content items (or... how to include images/captions in the detail text)
+
+Make sure there is at least one item in every filter in every list page
+
+How to do SEO properly on filtered pages so they appear to be landing pages??
+
+Image credit/caption for key art linking somewhere (JAGG portfolio)
+
+What do label buttons say?
+
+Detail popup header should not scroll
+
+Hero image should preload (include in the initial "HEM" spinner, and get cached, even from deep bookmarks)
+
+How do label detail popups work? (See detail popup refactoring)
+
+Venue archive detail popup should just show the video on top and detail text below, no key art
+
+Nvm Whole GP hero should not be clickable
+
+Detail popup play button does not turn to pause button when an item's track is playing
+
+Attribution and secondary title need to match for label items
+
+Make slugs editable (check for duplicates on save)
+
+Should HSR "feat" Nite Jewel or "Ramona Gonzales"?? (Email her...)
+
+Minimum suggested price for the old SL stuff should be 5
+
+PlayPauseButton is being used as a static link with noop action in various places
+
+CORS cache busting?? (For live stream state)
+
+CMD+S saves in admin
+
+Should label events have artist name as secondary title?
+
+Until field is interacted with, a small box should say "recommended price"
+
+For comps, various artists vs long list of names??
+
+Detail popup has hardcoded tag values, button text values, etc... needs better architecture overall
+
+Migrate defaults for minimum and suggested prices (then manually edit GP, etc...)
+
+Increment slugs to guarantee unique slugs
+
+Wilson/Cage pic should be poster image split with stage pic
+
+Pop close button should navigate to '/tag' not '/tag/filter/all' when filter is "all"
+
+A proper venue module
+
+Delete bow Pia and give its image away
+
+Unpublish viola
+
+Migrate min prices for all digital products to 0
+
+Single-track samples for "Buy direct from artist" titles
+
+Digital rights handover of all pre-2020 stuff
+
+Jason Aaron Gillis Grier website and Bandcamp and social pages
+
+Buy direct from artist links (might have to email some of them...)
+
+Migration to unsticky all items
+
+Migration to remove type from all non-SL items
+
+Venue main stage shows item detail below the iframe
+
+Venue main stage has donate and merch buttons
+
+Venue detail popup has donate/add reminder/live, watch now buttons
+
+// TODO: Why isn't set used in this component??
+
+No mixes, tracks, rarities, merch under Label
+
+Sticky items in label go above the timeline
+
+All label items show date in secondary title
+
+Site footer??
+
+Venue merch table subnav link??
+
+There should be an "about Sound Library" text somewhere
+
+SL audio samples
+
+Cart main nav item should be an icon and show the count
+
+Re-order pics
+
+Toaster for "already in cart" should contain a link to the cart
+
+Type "1a" for grand piano. Validation error should appear
+
+Type "1a" for grand piano and blur. Validation error should appear
+
+What's the twitch login process with the everything embed?
+
+A full test of downloading a file from static (migrate models to have dl url)
+
+Key art can't be in source control, has to be on the static server
+
+Folder structures have diverged again. Time to freshen up the linter
+
+Thank you email
+
+It should be ok to close the cart if not redirecting (separate redirecting popup)
+
+Autop not working in detail popup??? It's all one big paragraph...
+
+Toastr not alert() in detail/cart popups, etc
+
+disableBodyScroll stopped working
+
+HEM banner in PayPal checkout page
+
+Fake currency symbol inside the field
+
+Piano: Less hammers (by slight adjustment to attack)
+
+Piano: Fix all the endings (no hammer up sounds, some endings too short)
+
+Piano: It should be easier to play ppp on a semi-weighted KB
+
+Clean up "your downloads" links box
+
+Clean up spacing around PWYW box in detail popup
+
+Cart items in cookies and cookie permission popup
+
+When item is already added to cart, then "Checkout now" should just go straight to the cart,
+not add a new product
+
+Scrollbar possible on home page even with fixed heroine
+
+Entire heroine text should be clickable
+
+Add Ebow piano to extended, make it not a separate product
+
+Fade ends of samples in Grand (even ones that don't seem to have hammer noises at the end)
+
+When item is already in cart, change the buttons to one button + message saying "Item is already in your cart: [View your cart]"
+
+Optimize images
+
+How to leverage the architecture for JAGG site?
+
+Create Shopify products for all SL (variable pricing?? empty description)
+
+Create Shopify products for fundable projects (or link to Patreon??)
+
+Info page
+
+Helmets content
+
+Made with SL promo
+
+Pay what you can badge/banner in SL page and maybe in heroine
+
+Social links
+
+Multiple tracks for website player
+
+Label page audio samples, links to buy direct from artist, images
+
+Label page text
+
+SL page text
+
+Support Mixcloud
+
+Migration to seed press pages
+
+Flipbook movie in mega nav
+
+***
+
+Blog list page
+
+Press list page
+
+Tutorials list page
+
+Videos list page
+
+***
+
+Order t-shirts
+
+"We haven't done any shows yet" message for venue archive; MainContentList should have a prop for "empty message" with some default message and some nice layout and maybe an image
+
+404 PAGE!!!
+
+All layout components should probably be in the app module
+
+Don't fetch list items until you hit that list page, then don't fetch them again, maybe even keep them in local storage (add local storage to cookies policy)
+
+Hero does not go all the way down to the bottom so there can be a scroll down arrow and/or hint of content below
+
+Make admin the default route when in electron
+
+Quit electron stops the dev session
+
+Quit dev session quits electron
+
+Tutorial videos
+
+Tutorial video popup
+
+Link to tutorial videos from detail popup
+
+Mobile styles
+
+Check the "type" field in all content makes sense
+
+Legal entity: Austin and/or Copenhagen
+
+*********
+*********
+*********
+*********
+*********
+*********
+*********
+*********
+
+### FOR FUTURE
+
+Harden the PPL form with IPN
+
+Get items back from PPL in a more secure way (IPN? POSTback?)
+
+User accounts
+
+One-time download links via a user profile page
+
+### !!!!!!!!!!
