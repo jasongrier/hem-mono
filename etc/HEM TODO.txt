@@ -270,9 +270,32 @@ Needed to begin:
     √ About page in main nav
     √ Hide all routes not included in the above
 
-- Require shipping address in PayPal for physical
-- Does physical need shipping address form in checkout?
+- Checkout flow
+  √ Generate payment UUID
+  √ Add UUID to the PayPal form as invoice id
+  √ Persist the cart to PHP
+  - Confirm the purchase using IPN
+  If shipping is required, show a shipping address form
+  If shipping is required, add shipping cost
+  Does thank you page still need the "Hmmm...."?
+  Repo for services
+
+  Store banner not working
+  Better store banner
+  Require shipping address in PayPal for physical
+  Physical products that have no associated download product should not appear in the thank you screen
+  Order details should appear in the thank you screen
+  Improve checkout language
+    "Checkin' you out... spinners" >> "Please wait"
+    "While you're waiting..." shorter, simpler, smaller font
+    Payment ID's (UUID + Unix timestamp) need to be stored as the PPL invoice ID and saved as a paymentRecord type in PHP
+      id
+      cartContents
+    Payment email from IPN needs to be added to the paymentRecord
+
 √ Order physical products (Unbekannte, Clouds, Archive)
+- Label items in list need to show their formats (type field)
+- Label items in admin list need to show their formats in parens (type field)
 - Get the types right
 - 404 page
 – Scroll freeze bug
@@ -283,6 +306,7 @@ Needed to begin:
 – About page
 – Transparent knockout logo
 – Archive image
+- Migration to make all SL types "Ableton Live Pack"
 – Rename physical formats to alternate formats
 – About SL page
 – Made something with SL page with upload form

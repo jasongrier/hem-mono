@@ -85,6 +85,12 @@ sagaMiddleware.run(clearCartSaga)
 import { removeProductFromCartSaga } from './modules/cart'
 sagaMiddleware.run(removeProductFromCartSaga)
 
+import { requestSaleSaga } from './modules/cart'
+sagaMiddleware.run(requestSaleSaga)
+
+import { submitSaleSaga } from './modules/cart'
+sagaMiddleware.run(submitSaleSaga)
+
 import { loginCheckSaga } from './modules/login'
 sagaMiddleware.run(loginCheckSaga)
 

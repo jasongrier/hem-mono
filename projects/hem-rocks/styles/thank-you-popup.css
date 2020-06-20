@@ -1,3 +1,7 @@
+#thank-you-popup .hem-popup-content {
+  transform: translateY(-30px);
+}
+
 .thank-you-popup header {
   padding: 0 10px;
 }
@@ -16,21 +20,29 @@
   padding: 0 15px;
 }
 
+.thank-you-popup-content p {
+  padding: 0;
+}
+
 .thank-you-popup-content a {
   color: var(--line-orange);
 }
 
 .thank-you-popup-content .download-items {
-  height: 120px;
+  height: 130px;
+  padding-top: 15px;
   list-style-type: none;
   border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
+}
+
+.thank-you-popup-content .download-items li {
+  margin-bottom: 5px;
 }
 
 .thank-you-popup-email-form {
   width: calc(100% + 30px);
-  height: 375px;
-  margin: 20px 0 0 -15px;
+  height: 390px;
+  margin: 0 0 0 -15px;
   background-color: #000;
   color: #fff;
   text-align: center;
@@ -45,7 +57,7 @@
 
 .thank-you-popup-email-form p {
   width: calc(100% + 30px);
-  margin-bottom: 30px;
+  margin-bottom: 35px;
   padding: 0;
 }
 

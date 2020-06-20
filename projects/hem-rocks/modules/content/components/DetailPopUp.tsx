@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { Link } from 'react-router-dom'
 import { find, isFinite, isNaN } from 'lodash'
+import uuid from 'uuid/v1'
 import Scrollbars from 'react-scrollbars-custom'
 import ReactGA from 'react-ga'
 import { Spinner } from '../../../../../lib/components'
 import { PlayPauseButton } from '../../../../../lib/packages/hem-buttons'
 import { closePopup, openPopup } from '../../../../../lib/modules/popups'
 import { TrackPlayPauseButton, ITrack, replacePlaylist, setPlayerPlaylist, IPlaylist } from '../../../../../lib/modules/player'
-import { addProductToCart } from '../../cart'
+import { addProductToCart, submitSale } from '../../cart'
 import { IContentItem, getContentItemsFromRawList } from '../index'
 import { assetHostHostname } from '../../../functions'
 import { RootState } from '../../../index'
@@ -45,6 +46,7 @@ function DetailPopUp({
   const [attachedPlaylist, setAttachedPlaylist] = useState<Partial<IPlaylist>>()
   const [suggestedPrice, setSuggestedPrice] = useState<string>((contentItem ? contentItem.flexPriceRecommended : '0'))
   const [valid, setValid] = useState<boolean>(true)
+  const [saleId, setSaleId] = useState<string>()
 
   useEffect(function init() {
     if (showPurchaseForm) {
@@ -54,6 +56,8 @@ function DetailPopUp({
     else {
       ReactGA.modalview('Detail Popup without Purchase Form: ' + contentItem.title)
     }
+
+    setSaleId(uuid())
 
     setTimeout(() => {
       let attachedTracks
@@ -101,9 +105,11 @@ function DetailPopUp({
     function checkOutOnClickFn() {
       if (!validate(suggestedPrice, true)) return
       if (!isInCart(contentItem)) {
+        // TODO: contentItemToCartProduct
         dispatch(addProductToCart({
           finalPrice: suggestedPrice,
-          name: contentItem.title,
+          isDigitalProduct: contentItem.isDigitalProduct,
+          title: contentItem.title,
           slug: contentItem.slug,
           type: contentItem.type,
         }))
@@ -119,17 +125,14 @@ function DetailPopUp({
       history.push(`/${category}/cart/${filter ? filter : ''}`)
 
       setTimeout(() => {
-        // @ts-ignore
-        const form = document.getElementById('pay-pal-cart-upload-form')
-        // @ts-ignore
-        form.submit()
+        dispatch(submitSale(saleId))
       })
 
       ReactGA.event({
         category: 'User',
         action: 'Clicked "Instant Download" for: ' + contentItem.title,
       })
-    }, [filter, suggestedPrice, category],
+    }, [filter, suggestedPrice, category, saleId],
   )
 
   const addToCartOnClick = useCallback(
@@ -224,7 +227,8 @@ function DetailPopUp({
 
     dispatch(addProductToCart({
       finalPrice: suggestedPrice,
-      name: contentItem.title,
+      isDigitalProduct: contentItem.isDigitalProduct,
+      title: contentItem.title,
       slug: contentItem.slug,
       type: contentItem.type,
     }))

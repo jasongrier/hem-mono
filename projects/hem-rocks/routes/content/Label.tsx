@@ -37,6 +37,7 @@ function Label(): ReactElement {
             'Events',
             'Record Releases',
             'Physical Formats',
+            'Physical Formats',
           ]}
           category="label"
           title="Label"

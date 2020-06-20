@@ -15,7 +15,7 @@ function* requestActiveLiveStream() {
       ? 'http://localhost:8888'
       : 'http://static.hem.rocks'
 
-    const res = yield call(fetch, `${assetHost}/hem-rocks/state/state.json`)
+    const res = yield call(fetch, `${assetHost}/hem-rocks/api/?key=activeLiveStream`)
     const state = yield res.json()
 
     yield put(setActiveLiveStreamAc(state.activeLiveStream))

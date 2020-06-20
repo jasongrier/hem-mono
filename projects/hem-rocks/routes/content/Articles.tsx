@@ -18,6 +18,12 @@ function Articles(): ReactElement {
           currentFilter={currentFilter}
           category="articles"
           title="Articles"
+          filters={[
+            'Events',
+            'Record Releases',
+            'Physical Formats',
+            'Physical Formats',
+          ]}
         />
       </div>
     </>

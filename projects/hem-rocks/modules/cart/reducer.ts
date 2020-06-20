@@ -1,17 +1,19 @@
 import { AnyAction } from 'redux'
 import produce from 'immer'
-import { clone } from 'lodash'
 import {
   ADD_PRODUCT_TO_CART,
   CLEAR_CART,
   REMOVE_PRODUCT_FROM_CART,
+  REQUEST_SALE,
   SET_CART_PRODUCTS,
+  SET_CURRENT_SALE,
+  SUBMIT_SALE,
 
   IState,
 } from './index'
 
-
 const initialState: IState = {
+  currentSale: null,
   products: [],
   redirecting: false,
 }
@@ -41,10 +43,24 @@ const reducer = (
       })
     }
 
+    case REQUEST_SALE: {
+      return state
+    }
+
     case SET_CART_PRODUCTS: {
       return produce(state, draftState => {
         draftState.products = payload
       })
+    }
+
+    case SET_CURRENT_SALE: {
+      return produce(state, draftState => {
+        draftState.currentSale = payload
+      })
+    }
+
+    case SUBMIT_SALE: {
+      return state
     }
 
     default:
