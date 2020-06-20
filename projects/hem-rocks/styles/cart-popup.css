@@ -18,10 +18,21 @@
   padding: 0 15px;
 }
 
+.cart-popup-empty {
+  text-align: center;
+}
+
 .cart-popup-empty p:first-child {
-  margin-top: 80px;
-  margin-bottom: 100px;
+  margin-top: 100px;
+  margin-bottom:80px;
   font-size: 32px;
+}
+
+.cart-popup-empty .action-button {
+  display: block;
+  margin: 0 auto;
+  height: 60px;
+  line-height: 60px;
 }
 
 .cart-popup-items {

@@ -2,12 +2,13 @@ import React, { ReactElement, useCallback, useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import ReactGA from 'react-ga'
+import uuid from 'uuid/v1'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { Spinner } from '../../../../../lib/components'
 import { closePopup, openPopup } from '../../../../../lib/modules/popups'
 import Scrollbars from 'react-scrollbars-custom'
 import { RootState } from '../../../index'
-import { removeProductFromCart } from '../actions'
+import { removeProductFromCart, submitSale } from '../actions'
 import PayPalCartUpload from './PayPalCartUpload'
 
 interface IProps {
@@ -22,12 +23,15 @@ function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
 
   const dispatch = useDispatch()
 
-  const [redirecting, setRedirecting] = useState(false)
+  const [redirecting, setRedirecting] = useState<boolean>(false)
+  const [saleId, setSaleId] = useState<string>()
 
   useEffect(function init() {
     if (alreadyRedirecting) {
       setRedirecting(true)
     }
+
+    setSaleId(uuid())
   }, [alreadyRedirecting])
 
   const history = useHistory()
@@ -35,10 +39,7 @@ function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
   const checkoutOnClick = useCallback(
     function checkoutOnClickFn() {
       setRedirecting(true)
-      // @ts-ignore
-      const form = document.getElementById('pay-pal-cart-upload-form')
-      // @ts-ignore
-      form.submit()
+      dispatch(submitSale(saleId))
 
       ReactGA.event({
         category: 'User',
@@ -114,13 +115,13 @@ function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
                         onClick={() => {
                           ReactGA.event({
                             category: 'User',
-                            action: 'Clicked "remove" in shopping cart for ' + product.name,
+                            action: 'Clicked "remove" in shopping cart for ' + product.title,
                           })
                           dispatch(removeProductFromCart(product.slug))
                         }}
                       />
                     </div>
-                    <h2>{product.name}</h2>
+                    <h2>{ product.title }</h2>
                     <p>{ product.type }</p>
                     <div className="cart-popup-item-price">{ product.finalPrice } €</div>
                   </div>
@@ -129,7 +130,6 @@ function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
             </div>
             <div className="cart-popup-totals">
               Subtotal: { formatPrice(getSubotal()) }<br />
-              {/* Tax: { formatPrice(getTax()) }<br /> */}
               <strong>TOTAL: { formatPrice(getGrandTotal()) }</strong>
             </div>
             <div className="cart-popup-check-out">
@@ -159,13 +159,6 @@ function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
                   Check out
                 </button>
               )}
-              <PayPalCartUpload
-                items={cartProducts.map(product => ({
-                  amount: parseFloat(product.finalPrice),
-                  name: product.name,
-                  slug: product.slug,
-                }))}
-              />
             </div>
           </>
         )}
@@ -178,6 +171,13 @@ function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
             </div>
           </div>
         )}
+        <PayPalCartUpload
+          items={cartProducts.map(product => ({
+            amount: parseFloat(product.finalPrice),
+            name: product.title,
+            slug: product.slug,
+          }))}
+        />
       </div>
     </section>
   )

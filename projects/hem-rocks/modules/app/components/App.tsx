@@ -274,7 +274,15 @@ function App(): ReactElement {
     <div className={`
       hem-application
       hem-rocks
-      ${pathname === '/' ? ' app-is-home' : ''}
+      ${
+        pathname === '/'
+        || pathname === '/cart'
+        || pathname === '/cart/'
+        || pathname === '/thank-you'
+        || pathname === '/thank-you/'
+          ? ' app-is-home'
+          : ''
+      }
       ${process.env.NODE_ENV === 'production' ? 'node-env-production' : ''}
     `}>
       <ProtectedContent header="Super secret preview">
@@ -318,9 +326,7 @@ function App(): ReactElement {
           closeIcon={CloseButton}
           id="thank-you-popup"
         >
-          {(props: any) => (
-            <ThankYouPopup itemSlugs={props?.itemSlugs} />
-          )}
+          <ThankYouPopup />
         </PopupContainer>
 
         <PlayerBar />

@@ -7,21 +7,19 @@ import { getQueryVar } from '../../../../../lib/functions'
 import { EmailForm } from '../../app'
 import { RootState } from '../../../index'
 import { closePopup } from '../../../../../lib/modules/popups'
-import { clearCart } from '../index'
+import { clearCart, requestSale, IProduct } from '../index'
 
-interface IProps {
-  itemSlugs: string[]
-}
-
-function ThankYouPopup({ itemSlugs }: IProps): ReactElement {
-  const { contentItems } = useSelector((state: RootState) => ({
+function ThankYouPopup(): ReactElement {
+  const { contentItems, currentSale } = useSelector((state: RootState) => ({
     contentItems: state.content.contentItems,
+    currentSale: state.cart.currentSale,
   }))
 
   const dispatch = useDispatch()
 
   useEffect(function init() {
     dispatch(clearCart())
+    dispatch(requestSale(getQueryVar('sid')))
   }, [])
 
   const history = useHistory()
@@ -42,23 +40,8 @@ function ThankYouPopup({ itemSlugs }: IProps): ReactElement {
     }, [],
   )
 
-  if (!itemSlugs) {
-    const queryItems = getQueryVar('items')
-
-    if (queryItems) {
-      itemSlugs = queryItems.split(',')
-    }
-  }
-
-  const items = itemSlugs && itemSlugs.map(slug => contentItems.find(item => item.slug === slug)).filter(Boolean)
-
-  const valid = (
-    itemSlugs
-    && itemSlugs.length
-    && items
-    && items.length
-    && items.length === itemSlugs.length
-  )
+  const valid = true
+  const items = currentSale?.products.filter((product: IProduct) => product.isDigitalProduct)
 
   return (
     <div className="thank-you-popup">
@@ -70,11 +53,11 @@ function ThankYouPopup({ itemSlugs }: IProps): ReactElement {
       <div className="thank-you-popup-content">
         { valid && (
           <>
-            <p>Here are links to your files. Right-click to download.</p>
+            <p>Here are links to your files. Click to download.</p>
 
             <div className="download-items">
               <Scrollbars noScrollX={true}>
-                { items.map(item => (
+                { items && items.map(item => (
                   <li key={item?.slug}>
                     <a href="#">{ item?.title }</a>
                   </li>
