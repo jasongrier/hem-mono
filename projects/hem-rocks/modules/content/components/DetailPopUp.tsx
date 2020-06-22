@@ -107,6 +107,7 @@ function DetailPopUp({
       if (!isInCart(contentItem)) {
         // TODO: contentItemToCartProduct
         dispatch(addProductToCart({
+          downloadFile: contentItem.downloadFile,
           finalPrice: suggestedPrice,
           isDigitalProduct: contentItem.isDigitalProduct,
           title: contentItem.title,
@@ -226,6 +227,7 @@ function DetailPopUp({
     if (isInCart(contentItem, true)) return
 
     dispatch(addProductToCart({
+      downloadFile: contentItem.downloadFile,
       finalPrice: suggestedPrice,
       isDigitalProduct: contentItem.isDigitalProduct,
       title: contentItem.title,

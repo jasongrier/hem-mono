@@ -45,7 +45,7 @@ function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
         category: 'User',
         action: 'Clicked "Check out" in shopping cart form',
       })
-    }, [],
+    }, [saleId],
   )
 
   const downloadOnClick = useCallback(
@@ -174,8 +174,9 @@ function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
         <PayPalCartUpload
           items={cartProducts.map(product => ({
             amount: parseFloat(product.finalPrice),
-            name: product.title,
             slug: product.slug,
+            title: product.title,
+            type: product.type,
           }))}
         />
       </div>

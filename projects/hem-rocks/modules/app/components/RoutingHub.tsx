@@ -32,6 +32,7 @@ import {
   CookieSettings,
   Home,
   MailingList,
+  Support,
 } from '../../../routes/static'
 
 import {
@@ -63,6 +64,9 @@ function RoutingHub(): ReactElement {
 
         <Route exact path="/mailing-list" component={MailingList} />
         <Route exact path="/mailing-list/cart" component={MailingList} />
+
+        <Route exact path="/support" component={Support} />
+        <Route exact path="/support/cart" component={Support} />
 
         <Route exact path="/venue-main-stage" component={VenueStage} />
         <Route exact path="/venue-main-stage/cart" component={VenueStage} />

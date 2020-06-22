@@ -21,7 +21,6 @@ function Toaster({ message, delay = 3000 }: IProps): ReactElement {
   const toasterOnClick = useCallback(
     function toasterOnClickFn() {
       window.clearTimeout(timeoutId)
-
       setOpen(false)
       setTimeoutId(undefined)
     }, [],

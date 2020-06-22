@@ -43,7 +43,7 @@ function* submitSale({ payload: saleId }: any) {
 
     // TODO: websiteHostName() helper fn...
     const websiteHostName = window.location.hostname === 'localhost'
-      ? 'http://localhost:1234/'
+      ? 'http://localhost:1234'
       : 'http://hem.rocks'
 
     if (!form) throw new Error('Form not found')
@@ -61,12 +61,19 @@ function* submitSale({ payload: saleId }: any) {
     )
 
     const saleIdField = document.createElement('input')
+    const invoiceField = document.createElement('input')
 
     saleIdField.type = 'hidden'
     saleIdField.name = 'return'
     saleIdField.value = `${websiteHostName}/thank-you?sid=${saleId}`
 
+    invoiceField.type = 'hidden'
+    invoiceField.name = 'invoice'
+    invoiceField.value = saleId
+
     form.appendChild(saleIdField)
+    form.appendChild(invoiceField)
+
     // @ts-ignore
     form.submit()
   }

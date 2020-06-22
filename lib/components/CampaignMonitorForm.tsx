@@ -1,7 +1,9 @@
 import React, { ReactElement } from 'react'
 
 interface IProps {
+  action: string
   id: string
+  emailFieldName: string
 
   hasNameField?: boolean
   labelForEmail?: string
@@ -12,7 +14,9 @@ interface IProps {
 }
 
 function CampaignMonitorForm({
+  action,
   id,
+  emailFieldName,
 
   hasNameField = true,
   labelForEmail,
@@ -26,33 +30,40 @@ function CampaignMonitorForm({
       <form
         id="subForm"
         className="js-cm-form"
-        action="https://www.createsend.com/t/subscribeerror?description="
+        action={action}
         method="post"
         data-id={id}
         onSubmit={onFormSubmitted}
       >
-        {hasNameField && labelForName &&
-          <label>{labelForName}</label>
+        { hasNameField && labelForName &&
+          <label>{ labelForName }</label>
         }
 
-        {hasNameField &&
-          <input id="fieldName" name="cm-name" type="text" placeholder="Name" />
+        { hasNameField &&
+          <input
+            id="fieldName"
+            name="cm-name"
+            placeholder="Name"
+            type="text"
+          />
         }
 
-        {labelForEmail &&
+        { labelForEmail &&
           <label>{labelForEmail}</label>
         }
 
         <input
           id="fieldEmail"
-          name="cm-ojyuyjy-ojyuyjy"
+          name={emailFieldName}
           type="email"
           className="js-cm-email-input"
           required
           placeholder={placeholderText}
         />
 
-        <button type="submit">{submitButtonText}</button>
+        <button type="submit">
+          { submitButtonText }
+        </button>
       </form>
     </div>
   )

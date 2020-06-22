@@ -1,10 +1,11 @@
 import { AnyAction } from 'redux'
 
 export interface IProduct {
+  downloadFile: string
   finalPrice: string
   isDigitalProduct: boolean
-  title: string
   slug: string
+  title: string
   type: string
 }
 
@@ -12,7 +13,7 @@ export interface ISale {
   products: IProduct[]
   completed: boolean
   email: string
-  saleId: string
+  id: string
   shippingAddress: string
 }
 
