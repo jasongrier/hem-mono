@@ -2,8 +2,9 @@ import React, { ReactElement } from 'react'
 
 interface IItem {
   amount: number
-  name: string
   slug: string
+  title: string
+  type: string
 }
 
 interface IProps {
@@ -44,7 +45,7 @@ function PayPalCartUpload({ items }: IProps): ReactElement {
 
         { items.map((item, number) => (
           <React.Fragment key={number}>
-            <input type="hidden" name={`item_name_${number + 1}`} value={item.name} />
+            <input type="hidden" name={`item_name_${number + 1}`} value={`${item.title} (${item.type})`} />
             <input type="hidden" name={`amount_${number + 1}`} value={item.amount} />
           </React.Fragment>
         ))}

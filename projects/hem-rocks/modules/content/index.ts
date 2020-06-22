@@ -7,9 +7,10 @@ export interface IContentItem {
   badgeText: string
   blurb: string
   category: string
-  displayCategory: string
   date: string
   description: string
+  displayCategory: string
+  downloadFile: string
   externalLinkText: string
   externalLinkUrl: string
   fixedPrice: string
@@ -26,17 +27,17 @@ export interface IContentItem {
   relatedContent: string
   relatedContentLink: string
   releasePhase: string
-  secondaryTitle: string
   secondaryAttribution: string
   secondaryAttributionLink: string
+  secondaryTitle: string
   slug: string
   sticky: boolean
   tags: string
   title: string
   titleWrapping: string
-  trackSlugs: string
   trackResourceId: string
   trackResourceSecret: string
+  trackSlugs: string
   type: string
 }
 
@@ -58,9 +59,10 @@ export const fieldTypes: IContentItem = {
   badgeText: 'text',
   blurb: 'textarea',
   category: 'text',
-  displayCategory: 'text',
   date: 'text',
   description: 'textarea',
+  displayCategory: 'text',
+  downloadFile: 'text',
   externalLinkText: 'text',
   externalLinkUrl: 'text',
   fixedPrice: 'text',
@@ -68,8 +70,8 @@ export const fieldTypes: IContentItem = {
   flexPriceRecommended: 'text',
   hasFixedPrice: false,
   id: 'text',
-  isPhysicalProduct: false,
   isDigitalProduct: false,
+  isPhysicalProduct: false,
   keyArt: 'text',
   physicalFormats: 'textarea',
   preview: false,
@@ -77,17 +79,17 @@ export const fieldTypes: IContentItem = {
   relatedContent: 'text',
   relatedContentLink: 'text',
   releasePhase: 'text',
-  secondaryTitle: 'text',
   secondaryAttribution: 'text',
   secondaryAttributionLink: 'text',
+  secondaryTitle: 'text',
   slug: 'text',
   sticky: false,
   tags: 'text',
   title: 'text',
   titleWrapping: 'text',
-  trackSlugs: 'textarea',
   trackResourceId: 'text',
   trackResourceSecret: 'text',
+  trackSlugs: 'textarea',
   type: 'text',
 }
 

@@ -224,13 +224,17 @@ RELEASE PHASE 1
 
 ### Which Phase??
 – Quarter-tone synth
+- Editions (Risobooks with digital downloads)
 
 Needed to begin:
-- Mixcloud account
+> Mixcloud account
 √ Fix whatever's wrong with the admin
 – Videos
+- Outlines on email nag form elements
+- Email nag cookie not set when user signs up
+- Activate mailing list page in router and link to it from About
 √ Internal page for release phases, with the expectations listed above, then for other phases too
-– PHP One-time download script
+√ PHP One-time download script
 - Thank you email
 – Test mailing list form issue and fix
 – Reset Google Analytics (or just go in there and see what it looks like)
@@ -274,13 +278,33 @@ Needed to begin:
   √ Generate payment UUID
   √ Add UUID to the PayPal form as invoice id
   √ Persist the cart to PHP
-  - Confirm the purchase using IPN
-  If shipping is required, show a shipping address form
-  If shipping is required, add shipping cost
-  Does thank you page still need the "Hmmm...."?
-  Repo for services
+  √ One-time download link
+  √ Support message
+  - Write all errors to log: error_code, sale, error_timestamp
 
-  Store banner not working
+  √ Already-downloaded popup (support link, order number, order date, date link was used)
+  – Is PPL handling shipping? If so, how?
+  - Address form in cart when there are physical items
+  - Warning that we will use this address, not the one in PayPal
+  - Comment field in address form
+  - Calculate and add shipping in cart for physical items
+  - Save address and comment to PHP
+  - Do I need to collect shipping address on my own?
+  - If so, show a shipping address form
+  - If so, add shipping cost
+  √ Does thank you page still need the "Hmmm...."?
+  √ Repo for services
+  √ The "thank you" popup keeps generating fresh download URL's. Cancel sid's in PHP
+  - Change the download link style when clicked, and disable DL
+
+  √ Support page with contact form and multiple choice
+  ^ Hide Impressum and address info if that's not figured out
+  - Create support@hem.rocks email
+  - Site by HEM... need a React developer? in footer and about page and maybe a banner
+  - Need a React developer page with contact form
+  - Pro github and move repos to HEM
+
+  Store banner not working (CORS on the PNG?)
   Better store banner
   Require shipping address in PayPal for physical
   Physical products that have no associated download product should not appear in the thank you screen
@@ -293,9 +317,11 @@ Needed to begin:
       cartContents
     Payment email from IPN needs to be added to the paymentRecord
 
+^ Activate auto-return on the production PPL acct
 √ Order physical products (Unbekannte, Clouds, Archive)
-- Label items in list need to show their formats (type field)
-- Label items in admin list need to show their formats in parens (type field)
+- Hide physical product features for now
+> Label items in list need to show their formats (type field)
+> Label items in admin list need to show their formats in parents (type field)
 - Get the types right
 - 404 page
 – Scroll freeze bug
@@ -330,6 +356,14 @@ Needed to begin:
 – Responsive layout
 – "Beta. Report a problem" fixed-position banner
 – Contact form
+
+- HTTPS
+  - All uses of assetHostName and websiteHostname should come from helper functions
+  - There should be a separate apiHostname function, even though it's under /static
+  - The functions should return full paths, not just hostnames
+  - Implement https on Bluehost
+  - Implement https on localhost
+  - Change redirect urls in PHP
 
 – Deployment
 –– Too many little manual steps

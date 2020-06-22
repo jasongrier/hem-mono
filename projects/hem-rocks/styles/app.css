@@ -88,21 +88,9 @@ body {
   font-size: 18px;
 }
 
-.app-is-home .main-content {
-  width: 100vw;
-  margin: 0;
-  padding: 0;
-}
-
-.app-is-home .main-content-list {
-  width: var(--content-width-desk);
-  margin: 0 auto;
-}
-
-.app-is-home .main-content-box:first-child .main-content-box-badge,
-.app-is-home .main-content-box:nth-child(2) .main-content-box-badge,
-.app-is-home .main-content-box-badge {
-  top: -40px !important;
+.login-form button:active,
+.login-form button:focus {
+  outline: none;
 }
 
 .main-footer {
@@ -114,4 +102,8 @@ body {
 
 .main-footer a {
   color: inherit;
+}
+
+.page-support form {
+  margin-top: 40px;
 }

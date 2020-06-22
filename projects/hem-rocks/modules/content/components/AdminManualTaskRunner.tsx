@@ -79,25 +79,6 @@ function convertOldTypescriptModelsToJson() {
 }
 
 function migrate(allContentItems: IContentItem[]) {
-  const { remote } = window.require('electron')
-  const { existsSync, readdirSync, readFileSync, writeFileSync } = remote.require('fs')
-  const { extname, join } = remote.require('path')
-  const { execSync } = remote.require('child_process')
-
-  const contentDir = join(__dirname, '..', '..', '..', 'static', 'content')
-  const workingDir = join(__dirname, '..', '..', '..', 'static', 'content-working')
-  const contentDistDir = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content')
-
-  if (existsSync(workingDir)) {
-    execSync(`rm -rf ${workingDir}`)
-  }
-
-  execSync(`mkdir ${workingDir}`)
-
-  const index = []
-
-  const files = readdirSync(contentDir)
-
   const actuallyExistingImages = [
     'acoustic-guitar.jpg',
     'antique-piano.jpg',
@@ -175,44 +156,37 @@ function migrate(allContentItems: IContentItem[]) {
     'zither.jpg',
   ]
 
-  for (const file of files) {
-    if (file === 'index.json') continue
-    if (extname(file) !== '.json') continue
+  const { remote } = window.require('electron')
+  const { writeFileSync } = remote.require('fs')
+  const { join } = remote.require('path')
 
-    const data: IContentItem = JSON.parse(readFileSync(`${contentDir}/${file}`, 'utf8'))
+  const newItems = []
 
-    try {
-      // DO STUFF HERE
-      if (
-        data.slug.includes('sweet-bea')
-      ) {
-        data.releasePhase = '10'
-      }
+  for (const item of allContentItems) {
+    const newItem = Object.assign({}, item)
 
-      data.releasePhase = data.releasePhase.toString()
-      // END DO STUFF HERE
-
-      const item = modelize(data)
-
-      index.push(item)
-
-      const jsonItem = JSON.stringify(item, null, 2)
-
-      writeFileSync(join(workingDir, slugify(item.title) + '.json'), jsonItem)
+    // DO STUFF HERE
+    if (
+      hasCategory(newItem, 'sound-library')
+    ) {
+      newItem.downloadFile = newItem.slug + '.alp'
     }
 
-    catch(err) {
-      console.error('Could not convert ' + file + '.', err)
+    else {
+      newItem.downloadFile = ''
     }
+    // END DO STUFF HERE
+
+    newItems.push(newItem)
   }
 
-  writeFileSync(join(workingDir, 'index.json'), JSON.stringify(index, null, 2))
+  console.log(getContentItemBySlug(newItems, 'grand-piano'))
 
-  execSync(`rm -rf ${contentDir}`, { stdio: 'inherit' })
-  execSync(`mv ${workingDir} ${contentDir}`, { stdio: 'inherit' })
+  const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
+  const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
 
-  execSync(`rm -rf ${contentDistDir}`, { stdio: 'inherit' })
-  execSync(`cp -rf ${contentDir} ${contentDistDir}`, { stdio: 'inherit' })
+  writeFileSync(srcIndex, JSON.stringify(newItems, null, 2))
+  writeFileSync(distIndex, JSON.stringify(newItems, null, 2))
 }
 
 function assignImages() {

@@ -2,6 +2,7 @@ import './app.css'
 import './variables.css'
 
 import './admin.css'
+import './contact-form.css'
 import './cookie-approval.css'
 import './detail-popup.css'
 import './email-form.css'

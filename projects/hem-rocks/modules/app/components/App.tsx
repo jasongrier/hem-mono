@@ -18,7 +18,7 @@ import { collapseTopBar, expandTopBar, getCookieName } from '../index'
 import { SiteFooter, TopBar } from '../../../components/layout'
 import { requestActiveLiveStream, setCookieApproval, setCookiePreferencesSet } from '../actions'
 import { CookieApproval, RoutingHub } from './index'
-import { CAMPAIGN_MONITOR_FORM_ID } from '../../../config'
+import { CAMPAIGN_MONITOR_FORM_ACTION, CAMPAIGN_MONITOR_FORM_ID, CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME } from '../../../config'
 import { RootState } from '../../../index'
 
 function App(): ReactElement {
@@ -218,7 +218,15 @@ function App(): ReactElement {
   useEffect(function closePopup() {
     if (!currentlyOpenPopUp && previouslyOpenPopup) {
       const pathnameSplit = pathname.replace(/^\//, '').split('/')
+
       let path = '/'
+
+      if (
+        pathname === '/support'
+        && previouslyOpenPopup === 'thank-you-popup'
+      ) {
+        path += 'support'
+      }
 
       if (
         pathnameSplit[0] === 'info'
@@ -235,7 +243,6 @@ function App(): ReactElement {
       }
 
       else if (map(genericRoutedPopups, 'basePath').includes(pathnameSplit[0])) {
-
         path += pathnameSplit[0]
 
         if (pathnameSplit[2]) {
@@ -353,15 +360,17 @@ function App(): ReactElement {
             {({ dismissNag }: any) => (
               <>
                 <h3>HEM Newsletter</h3>
+                { console.log(CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME) }
                 <p>Subscribe to HEM to receive updates on projects and happenings; sound and software.</p>
                 <CampaignMonitorForm
+                  action={CAMPAIGN_MONITOR_FORM_ACTION}
                   id={CAMPAIGN_MONITOR_FORM_ID}
+                  emailFieldName={CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME}
                   onFormSubmitted={() => {
                     ReactGA.event({
                       category: 'User',
                       action: 'Joined the mailing list from the nag popup.',
                     })
-                    dismissNag()
                   }}
                   submitButtonText="Sign me up!"
                 />

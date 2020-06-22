@@ -29,6 +29,7 @@
 }
 
 .thank-you-popup-content .download-items {
+  position: relative;
   height: 130px;
   padding-top: 15px;
   list-style-type: none;
@@ -77,4 +78,30 @@
   margin: 25px auto 10px auto;
   font-size: 18px;
   font-weight: normal;
+}
+
+.support-link {
+  position: absolute;
+  bottom: 5px;
+  right: 0;
+  font-size: 12px;
+  text-decoration: underline;
+}
+
+.support-link::after {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -10px;
+  width: 8px;
+  height: 8px;
+  line-height: 8px;
+  border-radius: 30px;
+  background: var(--line-orange);
+  font-size: 11px;
+  text-decoration: underline;
+  content: " ";
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
 }
