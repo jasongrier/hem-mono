@@ -72,3 +72,8 @@
   border: 0;
   color: #fff;
 }
+
+#hem-rocks-website-email-nag input:focus,
+#hem-rocks-website-email-nag button:focus {
+  outline: none;
+}

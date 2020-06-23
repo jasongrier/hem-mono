@@ -347,8 +347,8 @@ function App(): ReactElement {
         <ElectronNot>
           <NagToaster
             closeIcon={CloseButton}
+            delay={3000}
             id="hem-rocks-website-email-nag"
-            delay={1}
             onDismiss={() => {
               ReactGA.event({
                 category: 'User',
@@ -357,20 +357,20 @@ function App(): ReactElement {
               Cookies.set(getCookieName('cannot-show-email-nag'), 'true')
             }}
           >
-            {({ dismissNag }: any) => (
+            {() => (
               <>
                 <h3>HEM Newsletter</h3>
-                { console.log(CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME) }
                 <p>Subscribe to HEM to receive updates on projects and happenings; sound and software.</p>
                 <CampaignMonitorForm
                   action={CAMPAIGN_MONITOR_FORM_ACTION}
-                  id={CAMPAIGN_MONITOR_FORM_ID}
                   emailFieldName={CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME}
+                  id={CAMPAIGN_MONITOR_FORM_ID}
                   onFormSubmitted={() => {
                     ReactGA.event({
                       category: 'User',
                       action: 'Joined the mailing list from the nag popup.',
                     })
+                    Cookies.set(getCookieName('cannot-show-email-nag'), 'true')
                   }}
                   submitButtonText="Sign me up!"
                 />

@@ -231,6 +231,7 @@ Needed to begin:
 √ Fix whatever's wrong with the admin
 – Videos
 - Outlines on email nag form elements
+- Nag delay same as Warp
 - Email nag cookie not set when user signs up
 - Activate mailing list page in router and link to it from About
 √ Internal page for release phases, with the expectations listed above, then for other phases too
