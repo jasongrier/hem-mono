@@ -1,0 +1,13 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Okojo, sans-serif;
+  overflow-x: hidden;
+}
+
+.clearfix::after {
+  content: " ";
+  clear: both;
+  display: table;
+}
