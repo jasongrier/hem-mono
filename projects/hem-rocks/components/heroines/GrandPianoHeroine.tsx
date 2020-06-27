@@ -41,6 +41,9 @@ function GrandPianoHeroine(): ReactElement {
             </p>
             <p>
               &bull; 1400 One-shots: Bowing, Scraping, Hand Percussion, Cluster Chords, etc.
+            </p>
+            <p>
+              &bull; E-bow piano
             </p> */}
             <button className="action-button">
               Learn more

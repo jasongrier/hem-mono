@@ -13,6 +13,7 @@ import {
   REQUEST_READ_ITEMS,
   REQUEST_UPDATE_ITEMS,
   SET_CURRENT_ITEM,
+  TOGGLE_NEEDS_KEY_ART_FILTER,
 
   IState,
   IContentItem,
@@ -22,6 +23,7 @@ const initialState: IState = {
   adminFilterApplied: 'all',
   currentContentItem: null,
   contentItems: [],
+  needsKeyArtFilter: false,
 }
 
 const reducer = (
@@ -86,6 +88,12 @@ const reducer = (
     case SET_CURRENT_ITEM: {
       return produce(state, draftState => {
         draftState.currentContentItem = payload
+      })
+    }
+
+    case TOGGLE_NEEDS_KEY_ART_FILTER: {
+      return produce(state, draftState => {
+        draftState.needsKeyArtFilter = !draftState.needsKeyArtFilter
       })
     }
 

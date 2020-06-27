@@ -18,29 +18,37 @@ import { collapseTopBar, expandTopBar, getCookieName } from '../index'
 import { SiteFooter, TopBar } from '../../../components/layout'
 import { requestActiveLiveStream, setCookieApproval, setCookiePreferencesSet } from '../actions'
 import { CookieApproval, RoutingHub } from './index'
-import { CAMPAIGN_MONITOR_FORM_ACTION, CAMPAIGN_MONITOR_FORM_ID, CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME } from '../../../config'
+import { CAMPAIGN_MONITOR_FORM_ACTION, CAMPAIGN_MONITOR_FORM_ID, CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME, MAILING_LIST_TEXT } from '../../../config'
 import { RootState } from '../../../index'
+import NewWebsitePopup from '../../../components/popups/NewWebsitePopup'
 
 function App(): ReactElement {
   const {
-    contentItems,
     cookiesAnalyticsApproved,
     cookiesMarketingApproved,
+
+    contentItems,
     currentContentItem,
-    currentlyOpenPopUp,
+
     playerError,
+
+    currentlyOpenPopUp,
   } = useSelector((state: RootState) => ({
     cookiesAnalyticsApproved: state.app.cookiesAnalyticsApproved,
     cookiesMarketingApproved: state.app.cookiesMarketingApproved,
+
     contentItems: state.content.contentItems,
     currentContentItem: state.content.currentContentItem,
-    currentlyOpenPopUp: state.popups.currentlyOpenPopUp,
+
     playerError: state.player.error,
+
+    currentlyOpenPopUp: state.popups.currentlyOpenPopUp,
   }))
 
   const dispatch = useDispatch()
 
   const [ openPlayerErrorToaster, setOpenPlayerErrorToaster ] = useState<(error: string) => void>()
+  const [ initialPathname, setInitialPathname ] = useState<string>()
 
   const { pathname } = useLocation()
 
@@ -181,6 +189,10 @@ function App(): ReactElement {
       popupId = 'thank-you-popup'
     }
 
+    if (basePath === 'new-website') {
+      popupId = 'new-website-popup'
+    }
+
     if (!popupId) {
       for (const routedPopup of genericRoutedPopups) {
         if (
@@ -287,6 +299,8 @@ function App(): ReactElement {
         || pathname === '/cart/'
         || pathname === '/thank-you'
         || pathname === '/thank-you/'
+        || pathname === '/new-website'
+        || pathname === '/new-website/'
           ? ' app-is-home'
           : ''
       }
@@ -336,6 +350,13 @@ function App(): ReactElement {
           <ThankYouPopup />
         </PopupContainer>
 
+        <PopupContainer
+          closeIcon={CloseButton}
+          id="new-website-popup"
+        >
+          <NewWebsitePopup />
+        </PopupContainer>
+
         <PlayerBar />
       </ProtectedContent>
 
@@ -343,24 +364,33 @@ function App(): ReactElement {
         <CookieApproval />
       </ElectronNot>
 
-      { cookiesMarketingApproved && !Cookies.get(getCookieName('cannot-show-email-nag')) && (
+      { cookiesMarketingApproved
+        && !Cookies.get(getCookieName('cannot-show-email-nag'))
+        && (
         <ElectronNot>
           <NagToaster
             closeIcon={CloseButton}
-            delay={3000}
+            delay={5000}
             id="hem-rocks-website-email-nag"
             onDismiss={() => {
               ReactGA.event({
                 category: 'User',
                 action: 'Closed the mailing list nag popup without joining.',
               })
+            }}
+            onLaunch={() => {
+              ReactGA.event({
+                category: 'System',
+                action: 'The mailing list nag popped up.',
+              })
+
               Cookies.set(getCookieName('cannot-show-email-nag'), 'true')
             }}
           >
             {() => (
               <>
                 <h3>HEM Newsletter</h3>
-                <p>Subscribe to HEM to receive updates on projects and happenings; sound and software.</p>
+                <p>{ MAILING_LIST_TEXT }</p>
                 <CampaignMonitorForm
                   action={CAMPAIGN_MONITOR_FORM_ACTION}
                   emailFieldName={CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME}
@@ -370,7 +400,6 @@ function App(): ReactElement {
                       category: 'User',
                       action: 'Joined the mailing list from the nag popup.',
                     })
-                    Cookies.set(getCookieName('cannot-show-email-nag'), 'true')
                   }}
                   submitButtonText="Sign me up!"
                 />

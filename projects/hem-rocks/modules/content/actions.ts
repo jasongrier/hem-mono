@@ -10,6 +10,7 @@ import {
   REQUEST_READ_ITEMS,
   REQUEST_UPDATE_ITEMS,
   SET_CURRENT_ITEM,
+  TOGGLE_NEEDS_KEY_ART_FILTER,
 
   Action,
   IContentItem,
@@ -70,6 +71,11 @@ const setCurrentItem = (item: IContentItem): Action => ({
   payload: item,
 })
 
+const toggleNeedsKeyArtFilter = (): Action => ({
+  type: TOGGLE_NEEDS_KEY_ART_FILTER,
+  payload: null,
+})
+
 export {
   adminApplyFilter,
   clearItems,
@@ -82,4 +88,5 @@ export {
   requestReadItems,
   requestUpdateItems,
   setCurrentItem,
+  toggleNeedsKeyArtFilter,
 }

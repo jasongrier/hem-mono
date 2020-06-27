@@ -1,10 +1,9 @@
 import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
 import ReactGA from 'react-ga'
-import { assetHostHostname } from '../../functions'
 import { BASE_SITE_TITLE } from '../../config'
 import { CampaignMonitorForm } from '../../../../lib/components'
-import { CAMPAIGN_MONITOR_FORM_ID } from '../../config'
+import { CAMPAIGN_MONITOR_FORM_ACTION, CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME, CAMPAIGN_MONITOR_FORM_ID, MAILING_LIST_TEXT } from '../../config'
 
 function MailingList(): ReactElement {
   return (
@@ -15,11 +14,11 @@ function MailingList(): ReactElement {
       </Helmet>
       <div className="page page-mailing-list">
         <h1>Mailing List</h1>
-        <div className="splash-image">
-          <img src={`${assetHostHostname()}/hem-rocks/content/images/key-art/info-page.jpg`} alt="About HEM"/>
-        </div>
         <div className="inline-newsletter-form">
+          <p>{ MAILING_LIST_TEXT }</p>
           <CampaignMonitorForm
+            action={CAMPAIGN_MONITOR_FORM_ACTION}
+            emailFieldName={CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME}
             id={CAMPAIGN_MONITOR_FORM_ID}
             onFormSubmitted={() => {
               ReactGA.event({

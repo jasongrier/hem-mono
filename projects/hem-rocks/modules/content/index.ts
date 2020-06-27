@@ -50,6 +50,7 @@ export interface IState {
   adminFilterApplied: string
   currentContentItem: IContentItem | null
   contentItems: IContentItem[]
+  needsKeyArtFilter: boolean
 }
 
 export const fieldTypes: IContentItem = {
@@ -104,6 +105,7 @@ export const REQUEST_DELETE_ITEMS = 'REQUEST_DELETE_ITEMS'
 export const REQUEST_READ_ITEMS = 'REQUEST_READ_ITEMS'
 export const REQUEST_UPDATE_ITEMS = 'REQUEST_UPDATE_ITEMS'
 export const SET_CURRENT_ITEM = 'SET_CURRENT_ITEM'
+export const TOGGLE_NEEDS_KEY_ART_FILTER = 'TOGGLE_NEEDS_KEY_ART_FILTER'
 
 export interface IAdminApplyFilter extends AnyAction {
   type: typeof ADMIN_APPLY_FILTER
@@ -160,6 +162,11 @@ export interface ISetCurrentItem extends AnyAction {
   payload: IContentItem
 }
 
+export interface IToggleNeedsKeyArtFilter extends AnyAction {
+  type: typeof TOGGLE_NEEDS_KEY_ART_FILTER
+  payload: null
+}
+
 export type Action =
   IAdminApplyFilter
   | IClearItems
@@ -172,6 +179,7 @@ export type Action =
   | IRequestReadItems
   | IRequestUpdateItems
   | ISetCurrentItem
+  | IToggleNeedsKeyArtFilter
 
 export {
   adminApplyFilter,
@@ -185,6 +193,7 @@ export {
   requestReadItems,
   requestUpdateItems,
   setCurrentItem,
+  toggleNeedsKeyArtFilter,
 } from './actions'
 
 export { reducer as contentReducer } from './reducer'

@@ -151,6 +151,53 @@ BUG: Back up the content folder. Edit an item, there will be huge data corruptio
 ******************************************************
 ******************************************************
 
+BERLINSTOCKPHOTOS LAND
+
+- Helmet: Cheap arty stock photos from the German capitol city: Architecture. Grit. Green.
+- Assign domains (de/com)
+- Staging domains
+– Set up in Mono
+- Add a mailing list in CM
+- Mailing list UI
+– About page with contact form (Support/Problems Downloading/Contributing/Licensing/Other)
+- Favicon and mobile icons
+- Okojo font
+√ What data is needed? Is a CMS even necessary, or can it be file-name--date--location--copyright.jpg
+– Tags
+- Offer raw format as well
+- Cart/checkout (can be libified from HEM??)
+- "All shots taken with a..." on about page
+- "Grit. Weirdness. Plants." floating words hero h2
+- One-time download PHP + hash the file name before downloading
+- Products grid
+- Search
+- Filter
+- Random heroine
+- SEO text
+- Add to Google analytics
+- React GA events
+- Register berlinstockphotos.com
+- Privacy Policy
+- Cookies policy
+- Cookies nag and prefs (libify HEM's cookie stuff)
+–
+> Lightbox
+> User accounts
+
+******************************************************
+******************************************************
+******************************************************
+
+GRIER LAND
+
+– Script to automatically post to the gram every day
+- Favicon and mobile icons
+
+
+******************************************************
+******************************************************
+******************************************************
+
 BRETO LAND
 
 – Make the tooling stop when the Electron app is closed
@@ -178,16 +225,21 @@ RELEASE PHASE 1
 # Release Phases
 
 ## Phase 1 (July)
-– Checkout flow
-– File download
-– Elastic pricing
-– Google analytics
-– Mailing list nag
-– Cookie nag
+√ Checkout flow
+√ File download
+√ Elastic pricing
+√ Google analytics
+√ Mailing list nag
+√ Cookie nag
 - Press
 – Website player
+- Label
+- Sound Library
+- About
+- New website popup with arrows pointing to stuff
 
 ## Phase 2 (August)
+- DD essay
 - Press Releases
 - User Guides
 - Tutorials
@@ -205,9 +257,14 @@ RELEASE PHASE 1
 –– Grand Piano press kit
 
 ## Phase 3 (September)
+- Donation page (does PPL have some kind of subscription system for this??)
+  – One-time donation
+  – Recurring
+  – Benefit levels
 – Breto & Dot
 - New Mixes
 - New Tracks
+- Editions
 –– Holter/Pisaro
 
 ## Phase 4 (October)
@@ -226,20 +283,73 @@ RELEASE PHASE 1
 – Quarter-tone synth
 - Editions (Risobooks with digital downloads)
 
-Needed to begin:
+Just after soft launch, add without announcement
+^ Grand piano proofing
+^ Is there a room mic channel for ebow piano?
+^ Blog post about ReleasePhase links to consulting page, releasephase on github and npm, video
+    Video
+      Live code it
+      Write a test
+      Props (extoll the virtues of Typescript)
+      I always alphabetise in groups (required/optional)
+      I always have an optional id prop with super generic components like this
+      It screws up the layout, so let's add this inline style
+      Now let's try it on the heroine (I call these "heroine", not "hero")
+      Add exact attr
+      Something's wrong (show double heroine)
+      We need a let...
+      This is clunkier, like not elegant like algebra, but more expressive
+      Better than leaving code comments
+      Fix the naivety and mention why "canRender" and not "isVisible"
+      I like one-line guards
+      But you have to return null...
+      Show React dev tool
+      Where to actually store the phase? Config file simple example
+      More complex example stored in Redux/Saga, but don't go into it
+      Publish to NPM
+      Please donate to NAACP legal defense fund / PoC & Women developers at the link below
+      If you want to hire me for some consulting, shameless...
+
+Move to future
+> Beating and Signalling essay
+> If pianos are going to be in three packs, then then hero needs to link to a landing page
+> Impressum
 > Mixcloud account
+> Videos
+> Thank you email (need to get their email via IPN)
+> Smarter nag launch (scroll position, navigation)
+> Split test different nag pop scenarios. (Do they cause ppl to leave? When's the best time to open them?)
+> Custom select
+> Toasters for all occurrences of alert() (Single Toaster in App with own Redux module, not imperative Toaster randomly anywhere needed)
+> MegaFooter
+> Label items in list need to show their formats (type field)
+> Label items in admin list need to show their formats in parents (type field)
+> Do all pages have the right page-blabla className?
+> Is PPL handling shipping? If so, how?
+  > Address form in cart when there are physical items
+  > Warning that we will use this address, not the one in PayPal
+  > Comment field in address form
+  > Calculate and add shipping in cart for physical items
+  > Save address and comment to PHP
+
+Needed to begin:
+R Still using AnyAction in some action.ts files
+R cookiePrefix should be part of config.js (all projects)
+R Action not AnyAction in reducer.ts (all projects)
+R README.md
+R Move API to the actual api.hem.rocks/staging-api.hem-rocks
 √ Fix whatever's wrong with the admin
-– Videos
-- Outlines on email nag form elements
-- Nag delay same as Warp
-- Email nag cookie not set when user signs up
-- Activate mailing list page in router and link to it from About
+√ Outlines on email nag form elements
+√ Email nag cookie not set when user signs up
+√ Activate mailing list page in router and link to it from About
 √ Internal page for release phases, with the expectations listed above, then for other phases too
 √ PHP One-time download script
-- Thank you email
-– Test mailing list form issue and fix
+- All pages: Orange header is 10px indented; give it -10px left margin. (Un-indent inline-contact-form)
+√ Test mailing list form issue and fix
 – Reset Google Analytics (or just go in there and see what it looks like)
 – Optimise images
+- Migration to set null flex price minimum to 0
+- Favicon and mobile icons
 – Test if index chunking is needed already (initial load time)
 – News article about this being a new website
 √ Articles badge on home page is first tag, not "Articles"
@@ -247,14 +357,17 @@ Needed to begin:
 – Image captions
 √ Check all SL, some stuff should be put in RF10
 √ Comp should be in RF10
-– MegaFooter
+- Sale not found error (can be alert)
 – Choir photo is missing
+- "Beta, report a bug" corner, with analytics, page, and contact form
 √ Unpublish/unpreview sweet bea
 √ Hide empty tags in prod, make them pink in dev
-- Donation page (does PPL have some kind of subscription system for this??)
-–– One-time donation
-–– Recurring
-–– Benefit levels
+
+- Cookie Policy page
+- Privacy Policy page
+- Contact form on contact page not email form
+- Remove address from contact page
+- Really good SEO text in React page
 
 – Release phase architecture for content
   √ Migration to add "release phase" field to content items
@@ -284,31 +397,22 @@ Needed to begin:
   - Write all errors to log: error_code, sale, error_timestamp
 
   √ Already-downloaded popup (support link, order number, order date, date link was used)
-  – Is PPL handling shipping? If so, how?
-  - Address form in cart when there are physical items
-  - Warning that we will use this address, not the one in PayPal
-  - Comment field in address form
-  - Calculate and add shipping in cart for physical items
-  - Save address and comment to PHP
-  - Do I need to collect shipping address on my own?
-  - If so, show a shipping address form
-  - If so, add shipping cost
   √ Does thank you page still need the "Hmmm...."?
   √ Repo for services
   √ The "thank you" popup keeps generating fresh download URL's. Cancel sid's in PHP
   - Change the download link style when clicked, and disable DL
 
   √ Support page with contact form and multiple choice
-  ^ Hide Impressum and address info if that's not figured out
-  - Create support@hem.rocks email
-  - Site by HEM... need a React developer? in footer and about page and maybe a banner
-  - Need a React developer page with contact form
+  √ Hide Impressum and address info if that's not figured out
+  √ React development link in footer
+  - Remove emails from everywhere except email form failure
+  - Contact form component
+  - Need a React developer page with contact form, analytics, and good SEO
+  - Does analytics fire for bookmarked deeplinks?? If not, make a hook for that: usePageView()
   - Pro github and move repos to HEM
 
   Store banner not working (CORS on the PNG?)
   Better store banner
-  Require shipping address in PayPal for physical
-  Physical products that have no associated download product should not appear in the thank you screen
   Order details should appear in the thank you screen
   Improve checkout language
     "Checkin' you out... spinners" >> "Please wait"
@@ -318,16 +422,16 @@ Needed to begin:
       cartContents
     Payment email from IPN needs to be added to the paymentRecord
 
-^ Activate auto-return on the production PPL acct
+- Activate auto-return on the production PPL acct
 √ Order physical products (Unbekannte, Clouds, Archive)
-- Hide physical product features for now
-> Label items in list need to show their formats (type field)
-> Label items in admin list need to show their formats in parents (type field)
-- Get the types right
-- 404 page
+√ Hide physical product features for now
+√ Get the types right
+√ Manually enter label types
+R All category names use the plural
+√ 404 page
+- Funny art for 404 page (hippo??)
 – Scroll freeze bug
 – Analytics for cookie nag (only upon approval)
-– Impressum
 - Cart from about closes and goes home
 - Can cart have a close "x" and bg click and esc key??
 – About page
@@ -339,19 +443,30 @@ Needed to begin:
 – Made something with SL page with upload form
 – DD description
 – DD essay??
+
+*****
+√ "Needs photos" filter in admin
+- Gather all photos, re-select best ones now that there are new ones
+- Optimise all photos and organize them in local static
+- Gather all tracks and organize them in local static
 – Use HTML5 instead of Soundcloud for playback
 – Downgrade Soundcloud pro plan
 – Upload sounds
-– Take more photos
 – Photo credit/captioning
 – Resequence photos
+*****
+
+*****
+– Press content
+– Link press content from about page
+*****
+
+– Take more photos
 – Final assignment of photos
 – Link cookie settings from about page
 – Terms and conditions
 – Cookie terms
-– Press content
-– Link press content from about page
-– Email aliases (verify all work): press@hem.rocks, info@hem.rocks, support@hem.rocks
+– Email aliases (verify all work): press@hem.rocks, info@hem.rocks, support@hem.rocks, dev@hem.rocks
 – Legal filings
 – Made something with SL link in About and About SL pages
 – Responsive layout

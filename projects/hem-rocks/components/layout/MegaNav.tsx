@@ -4,7 +4,7 @@ import { CampaignMonitorForm, ElectronOnly, HamburgerMenu } from '../../../../li
 import { setMegaNavOpen } from '../../modules/app'
 import { Logo, MainNavItem, SiteFooter } from './index'
 import ReactGA from 'react-ga'
-import { CAMPAIGN_MONITOR_FORM_ID } from '../../config'
+import { CAMPAIGN_MONITOR_FORM_ACTION, CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME, CAMPAIGN_MONITOR_FORM_ID } from '../../config'
 import { RootState } from '../../index'
 
 function MegaNav(): ReactElement {
@@ -94,6 +94,8 @@ function MegaNav(): ReactElement {
         <div className="mega-nav-mailing-list">
           <h3>Mailing List</h3>
           <CampaignMonitorForm
+            action={CAMPAIGN_MONITOR_FORM_ACTION}
+            emailFieldName={CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME}
             id={CAMPAIGN_MONITOR_FORM_ID}
             onFormSubmitted={() => {
               ReactGA.event({

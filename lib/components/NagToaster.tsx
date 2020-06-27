@@ -6,14 +6,16 @@ interface IProps {
   closeIcon?: any
   delay?: number
   onDismiss?: () => void
+  onLaunch?: () => void
 }
 
-function NagToaster({ children, id, closeIcon: CloseIcon, delay = 1000, onDismiss }: PropsWithChildren<IProps>): ReactElement {
+function NagToaster({ children, id, closeIcon: CloseIcon, delay = 1000, onDismiss, onLaunch }: PropsWithChildren<IProps>): ReactElement {
   const [open, setOpen] = useState<boolean>(false)
 
   useEffect(function init() {
     window.setTimeout(function launchNag() {
       setOpen(true)
+      onLaunch && onLaunch()
     }, delay)
   }, [])
 

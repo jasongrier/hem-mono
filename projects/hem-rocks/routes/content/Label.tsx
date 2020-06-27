@@ -32,12 +32,11 @@ function Label(): ReactElement {
         <LabelTimeline refresh={refreshTimeline} />
         <MainContentList
           currentFilter={currentFilter}
-          excludeFromAll="Physical Formats"
+          // excludeFromAll="Physical Formats"
           filters={[
             'Events',
             'Record Releases',
-            'Physical Formats',
-            'Physical Formats',
+            // 'Physical Formats',
           ]}
           category="label"
           title="Label"
@@ -69,9 +68,9 @@ function Label(): ReactElement {
                   >
                     {
                       item.isDigitalProduct
-                        ? item.physicalFormats
-                          ? 'Order'
-                          : 'Download'
+                        // ? item.physicalFormats
+                        //   ? 'Order'
+                        ? 'Download'
                         : 'Info'
                     }
                   </Link>
