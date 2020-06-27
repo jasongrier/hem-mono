@@ -107,3 +107,12 @@ body {
 .page-support form {
   margin-top: 40px;
 }
+
+input:focus::placeholder,
+textarea:focus::placeholder {
+  color: transparent;
+}
+
+p a {
+  color: var(--line-orange);
+}

@@ -56,7 +56,7 @@ function ThankYouPopup(): ReactElement {
     <div className="thank-you-popup">
       <header>
         <h1>
-          { (valid || alreadyDownloaded) ? 'Thank you!' : 'Hmmmmm...' }
+          { (valid && !alreadyDownloaded) ? 'Thank you!' : 'Hmmmmm...' }
         </h1>
       </header>
       <div className="thank-you-popup-content">

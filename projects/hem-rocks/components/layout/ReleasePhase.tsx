@@ -5,19 +5,29 @@ interface IProps {
   phase: number
 
   exact?: boolean
+  id?: string
 }
 
-function ReleasePhase({ children, phase, exact }: PropsWithChildren<IProps>): ReactElement {
+function ReleasePhase({ children, exact, id, phase }: PropsWithChildren<IProps>): ReactElement {
+  let canRender
+
+  if (exact) {
+    canRender = phase === RELEASE_PHASE
+  }
+
+  else {
+    canRender = phase <= RELEASE_PHASE
+  }
+
+  if (!canRender) return null
+
   return (
     <div
       className="release-phase"
+      id={id}
       style={{ display: 'inline' }}
     >
-      {
-        ((exact && phase === RELEASE_PHASE)
-        || (phase <= RELEASE_PHASE))
-        && children
-      }
+      { children }
     </div>
   )
 }

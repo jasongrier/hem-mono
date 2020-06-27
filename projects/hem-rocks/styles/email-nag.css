@@ -44,7 +44,7 @@
 }
 
 #hem-rocks-website-email-nag p {
-  margin: 0 0 10px 0;
+  margin: 0 0 15px 0;
   font-weight: normal;
   font-size: 11px;
 }
@@ -53,7 +53,7 @@
   display: block;
   width: 300px;
   height: 36px;
-  margin: 0 0 10px 0;
+  margin: 0 0 12px 0;
   padding: 0 10px;
   border: 1px solid #ccc;
   background: #fff;
@@ -64,7 +64,7 @@
 #hem-rocks-website-email-nag button {
   width: 120px;
   height: 36px;
-  margin: 0 30px 0 0;
+  margin: 10px 30px 0 0;
   font-size: 14px;
   font-weight: normal;
   background-color: var(--line-orange);

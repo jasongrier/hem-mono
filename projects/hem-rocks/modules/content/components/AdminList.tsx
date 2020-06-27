@@ -7,14 +7,15 @@ import { titleCase } from 'voca'
 import moment from 'moment'
 import { ElectronOnly } from '../../../../../lib/components'
 import { PlayPauseButton } from '../../../../../lib/packages/hem-buttons'
-import { adminApplyFilter, requestDeleteItems, requestReadItems, requestUpdateItems, IContentItem } from '../index'
+import { adminApplyFilter, toggleNeedsKeyArtFilter, requestDeleteItems, requestReadItems, requestUpdateItems, IContentItem } from '../index'
 import { RootState } from '../../../index'
 import { hasCategory, hasTag } from '../functions'
 
 function AdminList(): ReactElement {
-  const { adminFilterApplied, allContentItems } = useSelector((state: RootState) => ({
+  const { adminFilterApplied, allContentItems, needsKeyArtFilter } = useSelector((state: RootState) => ({
     adminFilterApplied: state.content.adminFilterApplied,
     allContentItems: state.content.contentItems,
+    needsKeyArtFilter: state.content.needsKeyArtFilter,
   }))
 
   const dispatch = useDispatch()
@@ -37,6 +38,12 @@ function AdminList(): ReactElement {
     }, [],
   )
 
+  const needsPhotosOnChange = useCallback(
+    function needsPhotosOnChangeFn(evt: SyntheticEvent<HTMLInputElement>) {
+      dispatch(toggleNeedsKeyArtFilter())
+    }, [],
+  )
+
   let contentItems = ([] as IContentItem[]).concat(adminFilterApplied === 'all' ? allContentItems : allContentItems.filter(item => {
     if (adminFilterApplied === 'home-feature') {
       return hasTag(item, adminFilterApplied)
@@ -52,6 +59,10 @@ function AdminList(): ReactElement {
       || item.tags.includes(search.toLowerCase())
       || item.attribution.toLowerCase().includes(search.toLowerCase())
     )
+  }
+
+  if (needsKeyArtFilter) {
+    contentItems = contentItems.filter(item => isEmpty(item.keyArt))
   }
 
   contentItems.sort((a, b) => {
@@ -105,6 +116,17 @@ function AdminList(): ReactElement {
               type="text"
             />
           </div>
+        </div>
+        <div className="admin-list-controls clearfix">
+          <label htmlFor="search">
+            Needs key art:&nbsp;
+            <input
+              onChange={needsPhotosOnChange}
+              name="needs-photos"
+              type="checkbox"
+              value={needsKeyArtFilter ? 'on' : 'off'}
+            />
+          </label>
         </div>
         <div className="admin-list-stats">
           Selected Items: <strong>{ contentItems.length }</strong>&nbsp;&nbsp;|&nbsp;&nbsp;

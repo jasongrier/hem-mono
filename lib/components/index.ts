@@ -1,4 +1,5 @@
 export { default as CampaignMonitorForm } from './CampaignMonitorForm'
+export { default as ContactForm } from './ContactForm'
 export { default as DynamicImport } from './DynamicImport'
 export { default as Dial } from './Dial'
 export { default as ElectronOnly } from './ElectronOnly'

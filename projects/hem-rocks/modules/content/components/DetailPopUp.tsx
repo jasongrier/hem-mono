@@ -411,7 +411,7 @@ function DetailPopUp({
                       </div>
                     )}
                   </div>
-                  { contentItem.physicalFormats.length > 1 && (
+                  {/* { contentItem.physicalFormats.length > 1 && (
                     <div className="purchase-form-alternate-formats">
                       <h3>Other Formats</h3>
                       { contentItem.physicalFormats.split('\n').map(slug => {
@@ -428,7 +428,7 @@ function DetailPopUp({
                         }
                       })}
                     </div>
-                  )}
+                  )} */}
                 </div>
               )}
               { showPurchaseForm && contentItem.acceptingDonations && (
