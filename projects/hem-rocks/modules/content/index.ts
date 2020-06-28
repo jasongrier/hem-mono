@@ -4,6 +4,7 @@ export interface IContentItem {
   acceptingDonations: boolean
   attribution: string
   attributionLink: string
+  audioFilename: string
   badgeText: string
   blurb: string
   category: string
@@ -57,6 +58,7 @@ export const fieldTypes: IContentItem = {
   acceptingDonations: false,
   attribution: 'text',
   attributionLink: 'text',
+  audioFilename: 'text',
   badgeText: 'text',
   blurb: 'textarea',
   category: 'text',

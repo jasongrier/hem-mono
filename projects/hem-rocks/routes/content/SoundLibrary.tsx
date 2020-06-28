@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { find } from 'lodash'
 import { MainContentList, contentItemToTrack, getContentItemsFromRawList } from '../../modules/content'
-import { TrackPlayPauseButton } from '../../../../lib/modules/player'
+import { TrackPlayPauseButton } from '../../../../lib/modules/website-player'
 import { BASE_SITE_TITLE } from '../../config'
 import { RootState } from '../../index'
 

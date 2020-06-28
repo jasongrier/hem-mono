@@ -166,46 +166,17 @@ function migrate(allContentItems: IContentItem[]) {
     const newItem = Object.assign({}, item)
 
     // DO STUFF HERE
-    const map = {
-      'Archive': 'Album Release',
-      'Compilation IV': 'Album Release',
-      'Demonstration Disc': 'Album Release',
-      'Betrieb': 'Album Release',
-      'Early Live Recordings': 'Album Release',
-      'Syzygy': 'Album Release',
-      'Thrash And Burn': 'Album Release',
-      'Tombstones': 'Album Release',
-      'Unbekannte': 'Album Release',
-      'Clouds': 'Album Release',
-      'Commotus': 'Album Release',
-      'Katahymie': 'Album Release',
-      'Heart Shaped Rock': 'Album Release',
-      'Lats Yerk': 'Album Release',
-      'Linda Perhacs at SFAI': 'Concert',
-      'Maria': 'Album Release',
-      'The Human Ear Volume II': 'Album Release',
-      'Dog Star Orchestra 2010': 'Live Recording',
-      'Dog Star Orchestra 2009': 'Live Recording',
-      'Human Genius at Soundwalk': 'Live Event',
-      'Trauermusik': 'Festival',
-      'Ascending Series Three': 'Concert',
-      'No Bosses No Bullshit': 'Album Release',
-      'Twelve Radios': 'Concert',
-      'Black and White Rainbow': 'Album Release',
-      'Eating the Stars': 'Album Release',
-      'HEM Anniversary One': 'Festival',
-      'Hit Singles': 'Album Release',
-      'Instant Coma': 'Album Release',
-      'Scared Famous': 'Album Release',
-      'The Human Ear Volume I': 'Album Release',
+    if (newItem.trackResourceId) {
+      newItem.audioFilename = newItem.trackResourceId
     }
 
-    if (hasCategory(newItem, 'label')) {
-      newItem.type = map[newItem.title]
+    else {
+      newItem.audioFilename = ''
     }
+
+    delete newItem.trackResourceId
+    delete newItem.trackResourceSecret
     // END DO STUFF HERE
-
-    console.log(newItem.type)
 
     newItems.push(newItem)
   }
