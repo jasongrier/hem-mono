@@ -6,7 +6,7 @@ import { combineReducers, createStore, applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { popupsReducer } from '../../lib/modules/popups'
-import { playerReducer } from '../../lib/modules/player'
+import { playerReducer } from '../../lib/modules/website-player'
 
 /**
  * API for Seurat.

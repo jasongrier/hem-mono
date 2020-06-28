@@ -5,6 +5,7 @@ function modelize(rawContentItem: any): IContentItem {
     acceptingDonations: rawContentItem.acceptingDonations || false,
     attribution: rawContentItem.attribution || '',
     attributionLink: rawContentItem.attributionLink || '',
+    audioFilename: rawContentItem.audioFilename || '',
     badgeText: rawContentItem.badgeText || '',
     blurb: rawContentItem.blurb || '',
     category: rawContentItem.category || '',

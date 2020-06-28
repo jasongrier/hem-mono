@@ -449,11 +449,13 @@ R All category names use the plural
 - Gather all photos, re-select best ones now that there are new ones
 - Optimise all photos and organize them in local static
 - Gather all tracks and organize them in local static
-– Use HTML5 instead of Soundcloud for playback
+√ Use HTML5 instead of Soundcloud for playback
 – Downgrade Soundcloud pro plan
+– Migration to make trackResourceId blank and change name to "audioFilename" and to remove secret
 – Upload sounds
 – Photo credit/captioning
 – Resequence photos
+– Heroine images should be set in React, so as to use the assetHostUrl helper
 *****
 
 *****

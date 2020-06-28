@@ -2,7 +2,6 @@ import React, { ReactElement, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { find } from 'lodash'
-import { MuteButton } from '../../../../lib/modules/player'
 import { RootState } from '../../index'
 import { contentItemToTrack, requestReadItems } from '../../modules/content'
 
@@ -23,14 +22,6 @@ function GrandPianoHeroine(): ReactElement {
       <Link to={productUrl}>
         <div className="grand-piano-heroine-image" />
         <div className="grand-piano-heroine-details">
-          <div>
-            { grandPianoTrackItem && (
-              <MuteButton
-                canStartPlayback={true}
-                track={contentItemToTrack(grandPianoTrackItem)}
-              />
-            )}
-          </div>
           <div className="grand-piano-heroine-text">
             <h2>New in Sound Library: <strong>Grand Piano</strong></h2>
             <h5>
