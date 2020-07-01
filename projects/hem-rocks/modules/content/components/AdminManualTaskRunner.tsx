@@ -166,16 +166,13 @@ function migrate(allContentItems: IContentItem[]) {
     const newItem = Object.assign({}, item)
 
     // DO STUFF HERE
-    if (newItem.trackResourceId) {
-      newItem.audioFilename = newItem.trackResourceId
+    if (hasCategory(newItem, 'tracks')) {
+      newItem.audioFilename = newItem.slug + '.mp3'
     }
 
     else {
       newItem.audioFilename = ''
     }
-
-    delete newItem.trackResourceId
-    delete newItem.trackResourceSecret
     // END DO STUFF HERE
 
     newItems.push(newItem)

@@ -40,6 +40,13 @@ function About(): ReactElement {
             submitButtonText="Sign me up!"
           />
         </div>
+
+        <h2>Cookie Settings</h2>
+        <p>
+          <strong>
+            <Link to="cookie-settings">Adsjust my cookie settings</Link>
+          </strong>
+        </p>
       </div>
     </>
   )

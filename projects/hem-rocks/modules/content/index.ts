@@ -36,8 +36,6 @@ export interface IContentItem {
   tags: string
   title: string
   titleWrapping: string
-  trackResourceId: string
-  trackResourceSecret: string
   trackSlugs: string
   type: string
 }
@@ -90,8 +88,6 @@ export const fieldTypes: IContentItem = {
   tags: 'text',
   title: 'text',
   titleWrapping: 'text',
-  trackResourceId: 'text',
-  trackResourceSecret: 'text',
   trackSlugs: 'textarea',
   type: 'text',
 }
