@@ -1,6 +1,7 @@
 import React, { ReactElement, useCallback, useState, SyntheticEvent } from 'react'
 import { useDispatch } from 'react-redux'
-import { setCookieApproval, setCookiePreferencesSet } from '../index'
+import Cookies from 'js-cookie'
+import { getCookieName, setCookieApproval, setCookiePreferencesSet } from '../index'
 
 interface IProps {
   onSubmit?: () => void
@@ -8,8 +9,8 @@ interface IProps {
 }
 
 function CookieSettings({ onSubmit, onCancel }: IProps): ReactElement {
-  const [analytics, setAnalytics] = useState(false)
-  const [marketing, setMarketing] = useState(false)
+  const [analytics, setAnalytics] = useState(!!Cookies.get(getCookieName('analytics-cookie-approved')))
+  const [marketing, setMarketing] = useState(!!Cookies.get(getCookieName('marketing-cookie-approved')))
 
   const dispatch = useDispatch()
 
@@ -51,7 +52,7 @@ function CookieSettings({ onSubmit, onCancel }: IProps): ReactElement {
         <input
           onChange={setAnalyticsCookieApprovalOnClick}
           type="checkbox"
-          value={analytics ? 'on' : 'off'}
+          checked={analytics}
         />
       </p>
 
@@ -63,7 +64,7 @@ function CookieSettings({ onSubmit, onCancel }: IProps): ReactElement {
         <input
           onChange={setMarketingCookieApprovalOnClick}
           type="checkbox"
-          value={marketing ? 'on' : 'off'}
+          checked={marketing}
         />
       </p>
 

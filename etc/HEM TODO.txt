@@ -444,22 +444,72 @@ R All category names use the plural
 – DD description
 – DD essay??
 
-*****
+
 √ "Needs photos" filter in admin
 - Gather all photos, re-select best ones now that there are new ones
 - Optimise all photos and organize them in local static
 - Gather all tracks and organize them in local static
 √ Use HTML5 instead of Soundcloud for playback
-– Downgrade Soundcloud pro plan
-– Migration to make trackResourceId blank and change name to "audioFilename" and to remove secret
-– Upload sounds
+√ Migration to make trackResourceId blank and change name to "audioFilename" and to remove secret
+
+*****
+– Migration to make all audioFilename's = slug.mp3
+– Do we really need OGG as well?!
+– Gather sounds locally and then add to the index
+  √ All existing SL samples
+  – Final edits to Trauermusik files. (Break songs into individual files)
+  – All archive comp tracks
+  – Rare tracks
+  – ERASE ALL METADATA FROM ALL TRACKS
+  – Request text: "I'm making a new site... I'd like to include this track... It will appear on the new site, YouTube, and Soundcloud. It will first be promoted via SEO. It may later be included in email blasts. If there is a license or fee, let me know. Here is a link to preview the new site..."
+  – One track from each album
+  – All Dog Star Orchestry
+  – Perhacs/Basinski/etc tracks are double-referenced from comp and event (how does this work with metadata?)
+  - Rare tracks (search Kepner)
+  – Jason Grier tracks (gathered on laptop hard drive, look for more on Kepner)
+  – Jason Grier press tracks from ZDF and Nice Strangers should link to press item same way sl samples do and add tags "press" and "radio"
+  – Include NFOP with Julia Holter under radio tag
+  – Add Spider Babies to tracks
+  – Add Holter/Pisaro to tracks
+  - Are there audio samples for Seurat I??
+  - Include tutorial videos from Youtube in Seurat I details
+  – Put rare trcks up as Youtube/Soundcloud linking back to site
+  – Process dog star images (tiffs) for attachment to dog start tracks (random??) + IMG_0718.MOV!!
+  – Human Genius tracks
+  – Human Genius photos
+  – Perhacs tracks might be duplicated
+  – Nite jewel Berlin rehearsal video as audio and content item (include video in detail)
+  – Anna's article (on home page, bring back articles content type??)
+  – Add TRTAS to label (Mailini)
+  – Eating the stars missing from deploy
+  – Should egg soldiers be included??
+  – Scared famous
+*****
+
+*****
+Email permissions
+  – Email Julia and Michael
+  – Email Gary
+  – Email Anna re: Album track
+  – Email Ekkie re: Album track & new mix
+  – Email Billy re: Trauer
+  – Email Sister Mantos re: Trauer
+  – Email Julia and Ramona re: Trauer
+  – Email Tall Paul (re: Spider Babies)
+  – Email Matt (re: Holy Shit)
+  – Email Ariel (if you can reach out to Trip as well)
+  – Email Janet (re: Spider Babies)
+  – Email Nic (re: Spider Babies)
+  – Email Luc (including silent bodies)
+*****
+
 – Photo credit/captioning
 – Resequence photos
 – Heroine images should be set in React, so as to use the assetHostUrl helper
 *****
 
 *****
-– Press content
+– Gather press attachments locally and add to the index
 – Link press content from about page
 *****
 
@@ -473,7 +523,7 @@ R All category names use the plural
 – Made something with SL link in About and About SL pages
 – Responsive layout
 – "Beta. Report a problem" fixed-position banner
-– Contact form
+√ Contact form
 
 - HTTPS
   - All uses of assetHostName and websiteHostname should come from helper functions

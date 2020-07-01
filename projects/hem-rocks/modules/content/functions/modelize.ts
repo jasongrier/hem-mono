@@ -37,8 +37,6 @@ function modelize(rawContentItem: any): IContentItem {
     tags: rawContentItem.tags || '',
     title: rawContentItem.title || '',
     titleWrapping: rawContentItem.titleWrapping || '',
-    trackResourceId: rawContentItem.trackResourceId || '',
-    trackResourceSecret: rawContentItem.trackResourceSecret || '',
     trackSlugs: rawContentItem.trackSlugs || '',
     type: rawContentItem.type || '',
   }
