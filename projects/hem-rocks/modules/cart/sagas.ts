@@ -11,17 +11,18 @@ import {
   REQUEST_SALE,
 
   setCurrentSale as setCurrentSaleAc,
+  setSaleRetrievalError as setSaleRetrievalErrorAc,
 } from './index'
 
 function* requestSale({ payload: saleId }: any) {
   try {
     const res = yield call(fetch, assetHostHostname() + '/hem-rocks/api/?hem-cmd=get-sale&sid=' + saleId)
     const sale = yield res.json()
-
     yield put(setCurrentSaleAc(sale))
   }
 
   catch (err) {
+    yield put(setSaleRetrievalErrorAc(true))
     console.log(err)
   }
 }

@@ -332,9 +332,7 @@ function App(): ReactElement {
         </PopupContainer>
 
         <PopupContainer
-          closeIcon={false}
-          escapeKeyCloses={false}
-          overlayCloses={false}
+          closeIcon={CloseButton}
           id="cart-popup"
         >
           {(props: any) => (

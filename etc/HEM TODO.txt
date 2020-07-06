@@ -333,6 +333,9 @@ Move to future
   > Save address and comment to PHP
 
 Needed to begin:
+- "Second Hand Store Vinyl" tag
+- "-vinyl" back on slugs
+- "Vinyl" back on titles
 R Still using AnyAction in some action.ts files
 R cookiePrefix should be part of config.js (all projects)
 R Action not AnyAction in reducer.ts (all projects)
@@ -344,12 +347,13 @@ R Move API to the actual api.hem.rocks/staging-api.hem-rocks
 √ Activate mailing list page in router and link to it from About
 √ Internal page for release phases, with the expectations listed above, then for other phases too
 √ PHP One-time download script
-- All pages: Orange header is 10px indented; give it -10px left margin. (Un-indent inline-contact-form)
+√ All pages: Orange header is 10px indented; give it -10px left margin. (Un-indent inline-contact-form)
 √ Test mailing list form issue and fix
-– Reset Google Analytics (or just go in there and see what it looks like)
+x Reset Google Analytics (or just go in there and see what it looks like)
 – Optimise images
-- Migration to set null flex price minimum to 0
+√ Migration to set null flex price minimum to 0
 - Favicon and mobile icons
+– New website video
 – Test if index chunking is needed already (initial load time)
 – News article about this being a new website
 √ Articles badge on home page is first tag, not "Articles"
@@ -357,7 +361,7 @@ R Move API to the actual api.hem.rocks/staging-api.hem-rocks
 – Image captions
 √ Check all SL, some stuff should be put in RF10
 √ Comp should be in RF10
-- Sale not found error (can be alert)
+√ Sale not found error (can be alert)
 – Choir photo is missing
 - "Beta, report a bug" corner, with analytics, page, and contact form
 √ Unpublish/unpreview sweet bea
@@ -368,6 +372,8 @@ R Move API to the actual api.hem.rocks/staging-api.hem-rocks
 - Contact form on contact page not email form
 - Remove address from contact page
 - Really good SEO text in React page
+
+*** NEW BANDCAMP COMP ***
 
 – Release phase architecture for content
   √ Migration to add "release phase" field to content items
@@ -394,33 +400,60 @@ R Move API to the actual api.hem.rocks/staging-api.hem-rocks
   √ Persist the cart to PHP
   √ One-time download link
   √ Support message
-  - Write all errors to log: error_code, sale, error_timestamp
+  R Write all errors to log: error_code, sale, error_timestamp
 
   √ Already-downloaded popup (support link, order number, order date, date link was used)
   √ Does thank you page still need the "Hmmm...."?
   √ Repo for services
   √ The "thank you" popup keeps generating fresh download URL's. Cancel sid's in PHP
-  - Change the download link style when clicked, and disable DL
+  √ Spinner until download links appear
+  √ Change the download link style when clicked, and disable DL
+  R AD check should occur when the thanks pop first opens, and gray out the downloaded links, and also have hoverable question marks next to them
+  
+  *** INCLUDE DALT REMIX BY JG ***
 
   √ Support page with contact form and multiple choice
   √ Hide Impressum and address info if that's not figured out
   √ React development link in footer
-  - Remove emails from everywhere except email form failure
-  - Contact form component
-  - Need a React developer page with contact form, analytics, and good SEO
-  - Does analytics fire for bookmarked deeplinks?? If not, make a hook for that: usePageView()
-  - Pro github and move repos to HEM
+  √ Remove emails from everywhere except email form failure
+  √ Contact form component
+  √ Need a React developer page with contact form, analytics, and good SEO
+  - Improve "Need a React developer?" page design
+  x Does analytics fire for bookmarked deeplinks?? If not, make a hook for that: usePageView()
+  
+  - Switch to Matomo
+    - Cancel Soundcloud Pro
+    - Sign up for Matomo 1 year
+    - Install Matomo script (https://www.npmjs.com/package/react-piwik)
+    – Replace ReactGA events with Matomo events
+    - How to allow opt-out
+  
+  > Pro github and move repos to HEM
+  
+  > Proposals Feature
+    > Proposal category (actually a list that holds slugs for short desc, long desc, budget, appendices)
+    > Proposal short desc category
+    > Proposal long desc category
+    > Proposal appendix category
+    > Budget list category
+    > Budget line item category
+    > Proposal admin tab automates/eases the creation of a proposal
+    > Only the "proposals" category shows in the admin dropdown
+    > Enter the MB and Dystopie proposals
+    > Tags for "funded", "rejected", "draft", "not-presented"
+    > List page (linked from meganav)
+    > Package proposal (weazyprint)
 
-  Store banner not working (CORS on the PNG?)
-  Better store banner
-  Order details should appear in the thank you screen
-  Improve checkout language
-    "Checkin' you out... spinners" >> "Please wait"
-    "While you're waiting..." shorter, simpler, smaller font
-    Payment ID's (UUID + Unix timestamp) need to be stored as the PPL invoice ID and saved as a paymentRecord type in PHP
-      id
-      cartContents
-    Payment email from IPN needs to be added to the paymentRecord
+  - Store banner not working (CORS on the PNG?)
+  - Better store banner
+  > Order details should appear in the thank you screen
+  √ Improve checkout language
+    √ "Checkin' you out... spinners" >> "Please wait"
+    √ "While you're waiting..." shorter, simpler, smaller font
+    √ Payment ID's (UUID + Unix timestamp) need to be stored as the PPL invoice ID and saved as a paymentRecord type in PHP
+      √ id
+      √ cartContents
+    x Payment email from IPN needs to be added to the paymentRecord
 
 - Activate auto-return on the production PPL acct
 √ Order physical products (Unbekannte, Clouds, Archive)
@@ -431,16 +464,16 @@ R All category names use the plural
 √ 404 page
 - Funny art for 404 page (hippo??)
 – Scroll freeze bug
-– Analytics for cookie nag (only upon approval)
-- Cart from about closes and goes home
-- Can cart have a close "x" and bg click and esc key??
+– PHP analytics for cookie nag
+?? Cart from about closes and goes home
+√ Can cart have a close "x" and bg click and esc key??
 – About page
-– Transparent knockout logo
-– Archive image
-- Migration to make all SL types "Ableton Live Pack"
-– Rename physical formats to alternate formats
+> Transparent knockout logo
+x Archive image
+√ Migration to make all SL types "Ableton Live Pack"
+> Rename physical formats to alternate formats
 – About SL page
-– Made something with SL page with upload form
+√ Made something with SL page with upload form
 – DD description
 – DD essay??
 
@@ -449,7 +482,7 @@ R All category names use the plural
 - Gather all photos, re-select best ones now that there are new ones
 - Optimise all photos and organize them in local static
 - Gather all tracks and organize them in local static
-– Use HTML5 instead of Soundcloud for playback
+√ Use HTML5 instead of Soundcloud for playback
 – Downgrade Soundcloud pro plan
 – Upload sounds
 – Photo credit/captioning
@@ -458,9 +491,16 @@ R All category names use the plural
 
 *****
 – Press content
+– Don't forget:
+  – ZDF
+  – Nice Strangers
 – Link press content from about page
+– Old press releases as EPK items; linked from the albums
 *****
 
+?? Acconci Essays
+
+– Page jumps back to top when filter is applied
 – Take more photos
 – Final assignment of photos
 – Link cookie settings from about page
