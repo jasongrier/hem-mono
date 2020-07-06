@@ -31,13 +31,29 @@
 .thank-you-popup-content .download-items {
   position: relative;
   height: 130px;
-  padding-top: 15px;
+  margin-bottom: 15px;
   list-style-type: none;
   border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.thank-you-popup-content .download-items .hem-spinner {
+  width: 100px;
+  height: 100px;
+  margin: 20px auto 0 auto;
+}
+
+.thank-you-popup-content .download-items .hem-spinner svg {
+  width: 100px;
+  height: 100px;
 }
 
 .thank-you-popup-content .download-items li {
   margin-bottom: 5px;
+}
+
+.thank-you-popup-content .download-items-used-link {
+  color: #666;
 }
 
 .thank-you-popup-email-form {
@@ -83,13 +99,13 @@
 .support-link {
   position: absolute;
   bottom: 5px;
-  right: 0;
+  right: 15px;
   font-size: 12px;
   text-decoration: underline;
 }
 
 .support-link::after {
-  display: block;
+  /* display: block;
   position: absolute;
   top: 0;
   left: -10px;
@@ -103,5 +119,5 @@
   content: " ";
   color: #fff;
   text-align: center;
-  text-decoration: none;
+  text-decoration: none; */
 }

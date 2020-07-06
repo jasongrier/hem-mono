@@ -2,6 +2,7 @@ import { AnyAction } from 'redux'
 import {
   CLOSE_POPUP,
   OPEN_POPUP,
+  SET_POPUPS_FROZEN,
 } from './index'
 
 const closePopup = (): AnyAction => ({
@@ -14,7 +15,13 @@ const openPopup = (id: string, propsToChildren?: any): AnyAction => ({
   payload: { id, propsToChildren },
 })
 
+const setPopupsFrozen = (popupsFrozen: boolean): AnyAction => ({
+  type: SET_POPUPS_FROZEN,
+  payload: popupsFrozen
+})
+
 export {
   closePopup,
   openPopup,
+  setPopupsFrozen,
 }

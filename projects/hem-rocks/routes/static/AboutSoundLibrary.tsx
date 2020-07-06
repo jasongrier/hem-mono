@@ -6,15 +6,15 @@ import { CampaignMonitorForm } from '../../../../lib/components'
 import { assetHostHostname } from '../../functions'
 import { BASE_SITE_TITLE, CAMPAIGN_MONITOR_FORM_ACTION, CAMPAIGN_MONITOR_FORM_ID, CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME } from '../../config'
 
-function About(): ReactElement {
+function AboutSoundLibrary(): ReactElement {
   return (
     <>
       <Helmet>
         <title>{ BASE_SITE_TITLE }</title>
         <meta name="description" content="" />
       </Helmet>
-      <div className="page page-about">
-        <h1>HEM</h1>
+      <div className="page page-about-sound-library">
+        <h1>About Sound Library</h1>
         <div className="main-content-section">
           <h2>HEM is a sound art and software company.</h2>
           <p>We make <Link to="sound-library">Sound Library</Link>, <Link to="apps/seurat">Seurat</Link>, <Link to="apps/midst">Midst</Link>, and <Link to="apps/breto">Breto</Link>.</p>
@@ -39,8 +39,8 @@ function About(): ReactElement {
         </div>
 
         <div className="main-content-section">
+          <h2>Sign up to stay updated about new sounds and plugins in Library</h2>
           <div className="inline-newsletter-form">
-            <h2>Mailing List</h2>
             <CampaignMonitorForm
               action={CAMPAIGN_MONITOR_FORM_ACTION}
               emailFieldName={CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME}
@@ -48,7 +48,7 @@ function About(): ReactElement {
               onFormSubmitted={() => {
                 ReactGA.event({
                   category: 'User',
-                  action: 'Joined the mailing list from the mailing list page.',
+                  action: 'Joined the mailing list from the about sound library page.',
                 })
               }}
               submitButtonText="Sign me up!"
@@ -60,4 +60,4 @@ function About(): ReactElement {
   )
 }
 
-export default About
+export default AboutSoundLibrary

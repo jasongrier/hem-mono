@@ -3,10 +3,12 @@ import { AnyAction } from 'redux'
 export interface IState {
   currentlyOpenPopUp: string | null
   propsToChildren: any
+  frozen: boolean
 }
 
 export const CLOSE_POPUP = 'CLOSE_POPUP'
 export const OPEN_POPUP = 'OPEN_POPUP'
+export const SET_POPUPS_FROZEN = 'SET_POPUPS_FROZEN'
 
 export interface IClosePopup extends AnyAction {
   type: typeof CLOSE_POPUP
@@ -18,8 +20,13 @@ export interface IOpenPopup extends AnyAction {
   payload: { id: string, propsToChildren: any },
 }
 
-export type Action = IClosePopup | IOpenPopup
+export interface ISetPopupsFrozen extends AnyAction {
+  type: typeof SET_POPUPS_FROZEN
+  payload: boolean
+}
 
-export { closePopup, openPopup } from './actions'
+export type Action = IClosePopup | IOpenPopup | ISetPopupsFrozen
+
+export { closePopup, openPopup, setPopupsFrozen } from './actions'
 export { reducer as popupsReducer } from './reducer'
 export { PopupContainer } from './components'

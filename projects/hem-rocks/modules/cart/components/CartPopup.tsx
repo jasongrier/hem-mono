@@ -5,7 +5,7 @@ import ReactGA from 'react-ga'
 import uuid from 'uuid/v1'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { Spinner } from '../../../../../lib/components'
-import { closePopup, openPopup } from '../../../../../lib/modules/popups'
+import { closePopup, openPopup, setPopupsFrozen } from '../../../../../lib/modules/popups'
 import Scrollbars from 'react-scrollbars-custom'
 import { RootState } from '../../../index'
 import { removeProductFromCart, submitSale } from '../actions'
@@ -38,7 +38,10 @@ function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
 
   const checkoutOnClick = useCallback(
     function checkoutOnClickFn() {
+      if (!saleId) return
+      
       setRedirecting(true)
+      dispatch(setPopupsFrozen(true))
       dispatch(submitSale(saleId))
 
       ReactGA.event({
@@ -135,9 +138,7 @@ function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
             <div className="cart-popup-check-out">
               <button
                 className="action-button continue-button"
-                onClick={() => {
-                  dispatch(closePopup())
-                }}
+                onClick={() => dispatch(closePopup())}
               >
                 Continue shopping
               </button>
@@ -165,8 +166,9 @@ function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
         {redirecting && (
           <div className="cart-popup-redirecting-overlay">
             <div className="cart-popup-redirecting-overlay-content">
-              <h2>Checkin' you out!</h2>
-              <p>Please enjoy the spinners while we get you over to PayPal</p>
+              <h2>Great!</h2>
+              <p>We are redirecting you to PayPal to complete your purchase.</p>
+              <p><strong>Please do not close this window!</strong></p>
               <Spinner />
             </div>
           </div>

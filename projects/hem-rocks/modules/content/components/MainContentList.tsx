@@ -19,7 +19,7 @@ interface IProps {
 
   additionalCategory?: string
   shouldSetCurrentPlaylist?: boolean
-  blurb?: string
+  blurb?: string | Function
   buttonText?: string
   children?: (contentItem: IContentItem) => any
   currentFilter?: string,
@@ -181,10 +181,16 @@ function MainContentList({
           )}
         </h1>
       )}
-      { LISTS_HAVE_BLURBS && (
-        <div className="main-content-blurb"
-          dangerouslySetInnerHTML={{__html: blurb}}
-        />
+      { LISTS_HAVE_BLURBS && blurb && (
+        typeof blurb === 'string'
+          ?
+          <div className="main-content-blurb"
+            dangerouslySetInnerHTML={{ __html: blurb }}
+          />
+          :
+          <div className="main-content-blurb">
+            { blurb() }
+          </div>
       )}
       <div
         hidden
@@ -205,7 +211,7 @@ function MainContentList({
       </div>
       { finalFilters.length > 1 && (
         <div className="main-content-filters clearfix">
-          <h3>Select:</h3>
+          <h3>Filter:</h3>
           { finalFilters.map(({ tag, empty }) => (
             <Link
               className={`

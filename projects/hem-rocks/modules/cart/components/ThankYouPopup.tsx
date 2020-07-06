@@ -6,25 +6,33 @@ import ReactGA from 'react-ga'
 import Scrollbars from 'react-scrollbars-custom'
 import uuid from 'uuid/v1'
 import { getQueryVar } from '../../../../../lib/functions'
+import { Spinner } from '../../../../../lib/components'
 import { EmailForm } from '../../app'
 import { assetHostHostname } from '../../../functions'
 import { RootState } from '../../../index'
 import { closePopup } from '../../../../../lib/modules/popups'
 import { clearCart, requestSale, IProduct } from '../index'
+import { loginCheckSaga } from '../../login'
 
 function ThankYouPopup(): ReactElement {
-  const { contentItems, currentSale } = useSelector((state: RootState) => ({
+  const { currentSale, saleRetrievalError } = useSelector((state: RootState) => ({
     contentItems: state.content.contentItems,
     currentSale: state.cart.currentSale,
+    saleRetrievalError: state.cart.saleRetrievalError,
   }))
 
   const dispatch = useDispatch()
 
   const [alreadyDownloaded, setAlreadyDownloaded] = useState<boolean>()
+  const [linksUsed, setLinksUsed] = useState<string[]>([])
 
   useEffect(function init() {
+    const saleId = getQueryVar('sid')
+    
+    if (!saleId) return
+    
     dispatch(clearCart())
-    dispatch(requestSale(getQueryVar('sid')))
+    dispatch(requestSale(saleId))
 
     if (getQueryVar('ad') === 'true') {
       setAlreadyDownloaded(true)
@@ -42,13 +50,6 @@ function ThankYouPopup(): ReactElement {
     }, [],
   )
 
-  const goHomeOnClick = useCallback(
-    function goHomeOnClickFn() {
-      history.push('/')
-      dispatch(closePopup())
-    }, [],
-  )
-
   const valid = getQueryVar('sid')
   const items = currentSale?.products.filter((product: IProduct) => product.isDigitalProduct)
 
@@ -60,15 +61,34 @@ function ThankYouPopup(): ReactElement {
         </h1>
       </header>
       <div className="thank-you-popup-content">
-        { valid && !alreadyDownloaded && (
+        { valid && !alreadyDownloaded && !saleRetrievalError && (
           <>
-            <p>Here are links to your files. Click to download.</p>
-
+            { !items && (
+              <p>Locating your files...</p>
+            )}
+            { items && items.length > 0 && (
+              <p>Here are links to your files. Click to download.</p>
+            )}
             <div className="download-items">
               <Scrollbars noScrollX={true}>
-                { items && items.map((item, index) => (
+                { !items && (
+                  <Spinner />
+                )}
+                { items && items.length < 1 && (
+                  <>
+                    <p>That's odd, we can't find your downloads.</p>
+                    <p>Please <Link to="/support">contact us</Link> right away and we'll get this sorted!</p>
+                  </>
+                )}
+                { items && items.length > 0 && items.map((item, index) => (
                   <li key={item?.slug}>
-                    <a href={`${assetHostHostname()}/hem-rocks/api?hem-cmd=download&did=${currentSale.id}:${index}&sid=${currentSale.id}&ii=${index}`}>
+                    <a 
+                      className={linksUsed.includes(item?.slug) ? 'download-items-used-link' : ''}
+                      href={`${assetHostHostname()}/hem-rocks/api?hem-cmd=download&did=${currentSale?.id}:${index}&sid=${currentSale?.id}&ii=${index}`}
+                      onClick={() => {
+                        setLinksUsed(([] as string[]).concat(linksUsed).concat([item?.slug]))
+                      }}
+                    >
                       { item?.title }
                     </a>
                   </li>
@@ -94,11 +114,25 @@ function ThankYouPopup(): ReactElement {
             <p>If you didn't just complete an order or click a "Download" button, then simply <Link to="/">go home</Link>.</p>
           </>
         )}
+        { saleRetrievalError && (
+          <>
+            <p>Sorry but we could not retrieve your items.</p>
+            <p>Please <Link to="/support">contact support right away</Link>.</p>
+          </>
+        )}
         { alreadyDownloaded && (
           <>
             <p>Sorry, it looks like that download link has already been used.</p>
             <p>Unfortunately we can't offer re-usable download links just yet.</p>
             <p>If you need to re-download something, <Link to="/support">just contact us</Link>.</p>
+            <p>
+              <button 
+                className="action-button"
+                onClick={() => {}}
+              >
+                Back
+              </button>
+            </p>
           </>
         )}
       </div>

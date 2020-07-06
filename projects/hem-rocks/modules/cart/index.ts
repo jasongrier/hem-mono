@@ -21,6 +21,7 @@ export interface IState {
   currentSale: ISale | null
   products: IProduct[]
   redirecting: boolean
+  saleRetrievalError: boolean
 }
 
 export const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART'
@@ -29,6 +30,7 @@ export const REMOVE_PRODUCT_FROM_CART = 'REMOVE_PRODUCT_FROM_CART'
 export const REQUEST_SALE = 'REQUEST_SALE'
 export const SET_CART_PRODUCTS = 'SET_CART_PRODUCTS'
 export const SET_CURRENT_SALE = 'SET_CURRENT_SALE'
+export const SET_SALE_RETRIEVAL_ERROR = 'SET_SALE_RETRIEVAL_ERROR'
 export const SUBMIT_SALE = 'SUBMIT_SALE'
 
 export interface IAddProductToCart extends AnyAction {
@@ -61,6 +63,11 @@ export interface ISetCurrentSale extends AnyAction {
   payload: ISale
 }
 
+export interface ISetSaleRetrievalError extends AnyAction {
+  type: typeof SET_SALE_RETRIEVAL_ERROR
+  payload: boolean
+}
+
 export interface ISubmitSale extends AnyAction {
   type: typeof SUBMIT_SALE
   payload: string
@@ -73,6 +80,7 @@ export type Action =
   | IRequestSale
   | ISetCartProducts
   | ISetCurrentSale
+  | ISetSaleRetrievalError
   | ISubmitSale
 
 export {
@@ -82,6 +90,7 @@ export {
   requestSale,
   setCurrentSale,
   setCartProducts,
+  setSaleRetrievalError,
   submitSale
 } from './actions'
 

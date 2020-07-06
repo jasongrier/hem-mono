@@ -71,7 +71,7 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
     setOriginalItem(item)
     setWorkingItem(item)
   }, [allContentItems])
-
+  
   function onChange(fieldName: string, value: string) {
     setWorkingItem(produce(workingItem, (draftItem: any) => {
       draftItem[fieldName] = value
