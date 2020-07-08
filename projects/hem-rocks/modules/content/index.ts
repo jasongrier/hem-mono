@@ -48,6 +48,7 @@ export interface IIndexEntry {
 
 export interface IState {
   adminFilterApplied: string
+  adminSearchApplied: string
   currentContentItem: IContentItem | null
   contentItems: IContentItem[]
   needsKeyArtFilter: boolean
@@ -95,6 +96,7 @@ export const fieldTypes: IContentItem = {
 }
 
 export const ADMIN_APPLY_FILTER = 'ADMIN_APPLY_FILTER'
+export const ADMIN_APPLY_SEARCH = 'ADMIN_APPLY_SEARCH'
 export const CLEAR_ITEMS = 'CLEAR_ITEMS'
 export const DO_CREATE_ITEMS = 'DO_CREATE_ITEMS'
 export const DO_DELETE_ITEMS = 'DO_DELETE_ITEMS'
@@ -109,6 +111,11 @@ export const TOGGLE_NEEDS_KEY_ART_FILTER = 'TOGGLE_NEEDS_KEY_ART_FILTER'
 
 export interface IAdminApplyFilter extends AnyAction {
   type: typeof ADMIN_APPLY_FILTER
+  payload: string
+}
+
+export interface IAdminApplySearch extends AnyAction {
+  type: typeof ADMIN_APPLY_SEARCH
   payload: string
 }
 
@@ -169,6 +176,7 @@ export interface IToggleNeedsKeyArtFilter extends AnyAction {
 
 export type Action =
   IAdminApplyFilter
+  | IAdminApplySearch
   | IClearItems
   | IDoCreateItems
   | IDoDeleteItems
@@ -183,6 +191,7 @@ export type Action =
 
 export {
   adminApplyFilter,
+  adminApplySearch,
   clearItems,
   doCreateItems,
   doDeleteItems,

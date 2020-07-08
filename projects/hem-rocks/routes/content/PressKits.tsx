@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router-dom'
 import { MainContentList } from '../../modules/content'
+import { AboutSubnav } from '../../components/layout'
 import { BASE_SITE_TITLE } from '../../config'
 
 function PressKits(): ReactElement {
@@ -13,7 +14,9 @@ function PressKits(): ReactElement {
         <title>{ BASE_SITE_TITLE }</title>
         <meta name="description" content="" />
       </Helmet>
-      <div className="page page-tracks">
+      <div className="page page-press-kitd page-with-subnav">
+        <h1>Press Kits</h1>
+        <AboutSubnav />
         <MainContentList
           currentFilter={currentFilter}
           filters={[
@@ -23,7 +26,6 @@ function PressKits(): ReactElement {
             'Technology',
           ]}
           category="press-kits"
-          title="Press Kits"
         />
       </div>
     </>

@@ -7,13 +7,14 @@ import { titleCase } from 'voca'
 import moment from 'moment'
 import { ElectronOnly } from '../../../../../lib/components'
 import { PlayPauseButton } from '../../../../../lib/packages/hem-buttons'
-import { adminApplyFilter, toggleNeedsKeyArtFilter, requestDeleteItems, requestReadItems, requestUpdateItems, IContentItem } from '../index'
+import { adminApplyFilter, adminApplySearch, toggleNeedsKeyArtFilter, requestDeleteItems, requestReadItems, requestUpdateItems, IContentItem } from '../index'
 import { RootState } from '../../../index'
 import { hasCategory, hasTag } from '../functions'
 
 function AdminList(): ReactElement {
-  const { adminFilterApplied, allContentItems, needsKeyArtFilter } = useSelector((state: RootState) => ({
+  const { adminFilterApplied, adminSearchApplied, allContentItems, needsKeyArtFilter } = useSelector((state: RootState) => ({
     adminFilterApplied: state.content.adminFilterApplied,
+    adminSearchApplied: state.content.adminSearchApplied,
     allContentItems: state.content.contentItems,
     needsKeyArtFilter: state.content.needsKeyArtFilter,
   }))
@@ -24,8 +25,6 @@ function AdminList(): ReactElement {
     dispatch(requestReadItems())
   }, [])
 
-  const [search, setSearch] = useState('')
-
   const categoryFilterOnChange = useCallback(
     function categoryFilterOnChangeFn(evt: SyntheticEvent<HTMLSelectElement>) {
       dispatch(adminApplyFilter(evt.currentTarget.value))
@@ -34,7 +33,7 @@ function AdminList(): ReactElement {
 
   const searchOnChange = useCallback(
     function categoryFilterOnChangeFn(evt: SyntheticEvent<HTMLInputElement>) {
-      setSearch(evt.currentTarget.value)
+      dispatch(adminApplySearch(evt.currentTarget.value))
     }, [],
   )
 
@@ -52,12 +51,12 @@ function AdminList(): ReactElement {
     return hasCategory(item, adminFilterApplied)
   }))
 
-  if (!isEmpty(search)) {
+  if (!isEmpty(adminSearchApplied)) {
     contentItems = contentItems.filter(item =>
-      item.title.toLowerCase().includes(search.toLowerCase())
-      || item.tags.includes(search)
-      || item.tags.includes(search.toLowerCase())
-      || item.attribution.toLowerCase().includes(search.toLowerCase())
+      item.title.toLowerCase().includes(adminSearchApplied.toLowerCase())
+      || item.tags.includes(adminSearchApplied)
+      || item.tags.includes(adminSearchApplied.toLowerCase())
+      || item.attribution.toLowerCase().includes(adminSearchApplied.toLowerCase())
     )
   }
 

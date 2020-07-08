@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import ReactGA from 'react-ga'
 import { ContactForm } from '../../../../lib/components'
+import { SoundLibrarySubnav } from '../../components/layout'
 import { assetHostHostname } from '../../functions'
 import { BASE_SITE_TITLE, CAMPAIGN_MONITOR_FORM_ACTION, CAMPAIGN_MONITOR_FORM_ID, CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME } from '../../config'
 
@@ -15,7 +16,8 @@ function MadeWithSoundLibrary(): ReactElement {
       </Helmet>
       <div className="page page-made-with-sl">
         <h1>Made with SL</h1>
-        <div className="main-content-section">
+        <SoundLibrarySubnav />
+        <div className="main-content-section first-main-content-section">
           <h2>Have you used SL in a project?</h2>
           <p>Send your project info here, along with a link where we can hear it.</p>
           <p>If you like, we would love to feature your work here on hem.rocks!</p>

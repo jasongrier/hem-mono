@@ -1,11 +1,38 @@
 import React, { ReactElement, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
+import $ from 'jquery'
 
-function ScrollToTop(): ReactElement {
+interface IProps {
+  scrollPaneSelector: string
+}
+
+function ScrollToTop({ scrollPaneSelector }: IProps): ReactElement {
   const { pathname } = useLocation()
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+    const forPaths = [
+      '/sound-library',
+      '/sound-library/about',
+      '/sound-library/made-with-sl',
+      '/label',
+      '/tracks',
+      '/press',
+      '/mailing-list',
+      '/contact',
+      '/support',
+      '/press-kits',
+      '/privacy-policy',
+      '/cookies-policy',
+      '/react-consulting',
+    ]
+
+    if (forPaths.includes(pathname)) {
+      $(scrollPaneSelector).scrollTop(0)
+    }
+
+    else {
+      console.log('*** Did NOT scroll to the top! >> ' + pathname)
+    }
   }, [pathname])
 
   return <span />

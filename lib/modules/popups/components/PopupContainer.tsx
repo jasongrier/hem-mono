@@ -1,6 +1,6 @@
-import React, { ReactElement, PropsWithChildren, useEffect, SyntheticEvent } from 'react'
+import React, { ReactElement, PropsWithChildren, useEffect, SyntheticEvent, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { disableBodyScroll, enableBodyScroll} from 'body-scroll-lock'
+import $ from 'jquery'
 import { closePopup } from '../actions'
 
 interface IProps {
@@ -27,6 +27,20 @@ function PopupContainer({
 
   const dispatch = useDispatch()
 
+  const [locked, setLocked] = useState<boolean>(false)
+  const [previousScrollY, setPreviousScrollY] = useState<number>()
+
+  useEffect(function initBodyLock() {
+    $('.scroll-lock-container').css({
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      overflow: 'scroll',
+      width: '100vw',
+      height: '100vh',
+    })
+  }, [])
+  
   useEffect(function captureEscapeKey() {
     function bodyOnKeyDown(evt: any) {
       if (
@@ -45,29 +59,38 @@ function PopupContainer({
     }
   }, [currentlyOpenPopUp])
 
-  useEffect(function addBodyClass() {
-    if (currentlyOpenPopUp) {
-      document.body.classList.add('popup-open')
+  useEffect(function lockBody() {
+    if (currentlyOpenPopUp === id && !locked) {
+      document.body.classList.add('with-popup-open')
+
+      const scrollY = $('.scroll-lock-content').scrollTop()
+
+      setPreviousScrollY(scrollY)
+      setLocked(true)
+      
+      $('.scroll-lock-container').css({
+        overflow: 'hidden',
+      })
+
+      $('.scroll-lock-content').css({
+        marginTop: `-${scrollY}px`,
+      })
     }
 
-    else {
+    else if (!currentlyOpenPopUp && locked) {
       document.body.classList.remove('popup-open')
+
+      setLocked(false)
+      
+      $('.scroll-lock-container').css({
+        overflow: 'scroll',
+      })
+      
+      $('.scroll-lock-content').css({
+        marginTop: 0,
+      })
     }
-  }, [currentlyOpenPopUp])
-
-  useEffect(function bodyScrollLock() {
-    const targetEl = document.getElementById(id)
-
-    if (!targetEl) return
-
-    if (currentlyOpenPopUp) {
-      disableBodyScroll(targetEl)
-    }
-
-    else {
-      enableBodyScroll(targetEl)
-    }
-  }, [currentlyOpenPopUp])
+  }, [currentlyOpenPopUp, locked])
 
   const isOpen = currentlyOpenPopUp === id
 

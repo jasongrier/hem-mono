@@ -2,6 +2,7 @@ import React, { ReactElement, useEffect, useState } from 'react'
 import { useLocation, useHistory, Redirect } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { find, isArray, map } from 'lodash'
+import ScrollLock from 'react-scrolllock'
 import ReactGA from 'react-ga'
 import Cookies from 'js-cookie'
 import { slugify } from 'voca'
@@ -307,18 +308,22 @@ function App(): ReactElement {
       ${process.env.NODE_ENV === 'production' ? 'node-env-production' : ''}
     `}>
       <ProtectedContent header="Super secret preview">
-        <ScrollToTop />
+        <ScrollToTop scrollPaneSelector=".scroll-lock-content" />
 
         <TopBar />
 
-        <main className="main-content">
-          <div className="tabs-content">
-            <RoutingHub />
+        <div className="scroll-lock-container">
+          <div className="scroll-lock-content">
+            <main className="main-content">
+              <div className="tabs-content">
+                <RoutingHub />
+              </div>
+            </main>
+            <footer className="main-footer">
+              <SiteFooter />
+            </footer>
           </div>
-        </main>
-        <footer className="main-footer">
-          <SiteFooter />
-        </footer>
+        </div>
 
         <PopupContainer
           closeIcon={CloseButton}

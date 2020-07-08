@@ -3,6 +3,7 @@ import produce from 'immer'
 import { uniqBy } from 'lodash'
 import {
   ADMIN_APPLY_FILTER,
+  ADMIN_APPLY_SEARCH,
   CLEAR_ITEMS,
   DO_CREATE_ITEMS,
   DO_DELETE_ITEMS,
@@ -21,6 +22,7 @@ import {
 
 const initialState: IState = {
   adminFilterApplied: 'all',
+  adminSearchApplied: '',
   currentContentItem: null,
   contentItems: [],
   needsKeyArtFilter: false,
@@ -34,6 +36,12 @@ const reducer = (
     case ADMIN_APPLY_FILTER: {
       return produce(state, draftState => {
         draftState.adminFilterApplied = payload
+      })
+    }
+    
+    case ADMIN_APPLY_SEARCH: {
+      return produce(state, draftState => {
+        draftState.adminSearchApplied = payload
       })
     }
 
