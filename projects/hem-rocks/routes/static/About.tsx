@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import ReactGA from 'react-ga'
 import { CampaignMonitorForm } from '../../../../lib/components'
+import { AboutSubnav } from '../../components/layout'
 import { assetHostHostname } from '../../functions'
 import { BASE_SITE_TITLE, CAMPAIGN_MONITOR_FORM_ACTION, CAMPAIGN_MONITOR_FORM_ID, CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME } from '../../config'
 
@@ -13,9 +14,10 @@ function About(): ReactElement {
         <title>{ BASE_SITE_TITLE }</title>
         <meta name="description" content="" />
       </Helmet>
-      <div className="page page-about">
-        <h1>HEM</h1>
-        <div className="main-content-section">
+      <div className="page page-about page-with-subnav">
+        <h1>About HEM</h1>
+        <AboutSubnav />
+        <div className="main-content-section first-main-content-section">
           <h2>HEM is a sound art and software company.</h2>
           <p>We make <Link to="sound-library">Sound Library</Link>, <Link to="apps/seurat">Seurat</Link>, <Link to="apps/midst">Midst</Link>, and <Link to="apps/breto">Breto</Link>.</p>
 
@@ -37,6 +39,16 @@ function About(): ReactElement {
           <p>Please note that it is more about that than producing and releasing stuff, in the traditional sense.</p>
           <p>Please do send us a link to your work via the <Link to="contact">contact form</Link>.</p>
         </div>
+        
+        <div className="main-content-section">
+          <h2>Find HEM online</h2>
+          <p>Facebook</p>
+          <p>Twitter</p>
+          {/* <p>GitHub</p> */}
+          {/* <p>MixCloud</p> */}
+          <p>Soundcloud</p>
+          {/* <p>NPM</p> */}
+        </div>
 
         <div className="main-content-section">
           <div className="inline-newsletter-form">
@@ -54,6 +66,13 @@ function About(): ReactElement {
               submitButtonText="Sign me up!"
             />
           </div>
+        </div>
+
+        <div className="main-content-section">
+          <h2>Cookies &amp; Privacy</h2>
+          <p>You can update your cookies settings at any time <Link to="/cookie-settings">here</Link>.</p>
+          <p>Read the cookies policy <Link to="/cookies-policy">here</Link></p>
+          <p>Read the privacy policy <Link to="/privacy-policy">here</Link></p>
         </div>
       </div>
     </>

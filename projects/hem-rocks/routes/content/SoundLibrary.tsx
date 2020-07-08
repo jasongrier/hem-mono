@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { MainContentList, contentItemToTrack, getContentItemsFromRawList } from '../../modules/content'
 import { TrackPlayPauseButton } from '../../../../lib/modules/player'
 import { BASE_SITE_TITLE } from '../../config'
-import { VenueSubnav } from '../../components/layout'
+import { SoundLibrarySubnav } from '../../components/layout'
 import { RootState } from '../../index'
 
 function SoundLibrary(): ReactElement {
@@ -22,21 +22,9 @@ function SoundLibrary(): ReactElement {
         <title>{ BASE_SITE_TITLE }</title>
         <meta name="description" content="" />
       </Helmet>
-      <div className="page page-sound-library">
+      <div className="page page-sound-library page-with-subnav">
         <h1>Sound Library</h1>
-        <nav className="main-content-subnav">
-          <ul>
-            <li>
-              <NavLink exact to="/sound-library">Packs</NavLink>
-            </li>
-            <li>
-              <NavLink to="/about-sound-library">About SL</NavLink>
-            </li>
-            <li>
-              <NavLink to="/made-with-sl">Made something with SL?</NavLink>
-            </li>
-          </ul>
-        </nav>
+        <SoundLibrarySubnav />
         <MainContentList
           buttonText="Download"
           // blurb={() => (
@@ -49,7 +37,7 @@ function SoundLibrary(): ReactElement {
           currentFilter={currentFilter}
           excludeFromAll="Midi Devices"
           filters={[
-            // 'ASMR',
+            'ASMR',
             'Extended Technique',
             'Field Recording',
             'Found Sound',
@@ -60,14 +48,14 @@ function SoundLibrary(): ReactElement {
             'Labor Theory',
             'Microtonality',
             'Midi Devices',
-            // 'New in the Library',
+            'New in the Library',
             'Percussion',
             'Performativity / Activism',
             'Post Studio',
             'Sonic Detritus',
             'Strings',
             'Synth',
-            // 'Thrift Store Vinyl',
+            'Secondhand Store Vinyl',
             'Toy Instruments',
             'Vocal',
             'Winds',

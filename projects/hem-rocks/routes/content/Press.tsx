@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router-dom'
 import { MainContentList } from '../../modules/content'
+import { AboutSubnav } from '../../components/layout'
 import { BASE_SITE_TITLE } from '../../config'
 
 function Press(): ReactElement {
@@ -14,7 +15,9 @@ function Press(): ReactElement {
         <title>{ BASE_SITE_TITLE }</title>
         <meta name="description" content="" />
       </Helmet>
-      <div className="page page-press">
+      <div className="page page-press page-with-subnav">
+        <h1>Press Clippings</h1>
+        <AboutSubnav />
         <MainContentList
           currentFilter={currentFilter}
           filters={[
@@ -24,7 +27,6 @@ function Press(): ReactElement {
             'Events',
           ]}
           category="press"
-          title="Press"
         />
       </div>
     </>

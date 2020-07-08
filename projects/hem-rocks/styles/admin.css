@@ -3,7 +3,7 @@
 }
 
 .page-admin .main-content-subnav li a.active {
-  border-bottom: 4px solid #efefef;
+  border-bottom: 4px solid #000;
 }
 
 .admin-list-controls {

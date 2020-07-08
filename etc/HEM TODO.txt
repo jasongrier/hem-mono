@@ -1,152 +1,3 @@
-###
-
-Sound Libraries as Artworks
-– Better title
-– Those Australian guys
-– HEM (link to the other "thesis" article on SL)
-– Anyone else?
-
-###
-
-COMP INVITEES
-
-Korhan Erel
-Jez Riley French
-Lucrecia Dalt
-Roger Reeves
-Alex Zhang-Hungtai
-Adam Overton
-Tashi Wada
-Ramona Gonzales
-Experimental Housewife
-Johnny Chang
-Charles Gaines
-Lucrecia Dalt
-Delroy Edwards
-Line Gøttsche
-Julia Holter
-Julia Holter & Michael Pisaro
-Michael Pisaro
-Gary Schultz
-Annelyse Gelman
-Stefan Matthieu
-Klein
-UCC Harlo
-Laurel Halo
-Nite Jewel
-Felicity Mangan
-Ariel Pink
-Jason Aaron Gillis-Grier
-Charlotte Adigery
-Lera Sapega
-Jelena Glazova
-Koen Nutters
-Heather Frasch
-William Basinksi
-David Lynch
-Ekkehard Ehlers
-Zoë Mc Pherson
-
-# About HEM
-
-HEM (Human Ear Music) was once a record label founded in 2006 in Los Angeles, then moved to San Francisco, Berlin, Copenhagen, and Austin Texas. In 2020 HEM passed on the mantle to HEM (Hot Extra-musicality) and is currently world-based and focussing on extended practices in sound and software politics. Part utilitarian and part communitarian. Persistently weird.
-
-# About the Comp
-
-As inclusive as imaginable. No limit on track length.
-
-# Parallel Activities
-
-Software releases, sample packs, articles, a live streaming venue. Check the preview website here.
-
-# Terms
-
-###
-
-Admin "not:" search filter
-Admin delete not working
-
-###
-
-– Tag all dummy content with "dummy" so it can be hidden dynamically
-– Five dummy articles
-– Ten dummy FAQ's
-– Three dummy merch
-– Five dummy mixes (including the two "real" mixes)
-– Five dummy press
-– Five dummy press kits
-– Five dummy non-SL tracks (including the two "real" tracks)
-– Five dummy tutorials (including the two "real" tutorials)
-– Five dummy user guides (including the two "real" user guides)
-– Five dummy venue archive (delete the existing one)
-– Three dummy venue calendar
-– Four dummy venue merch
-– Four dummy videos (is there a "video" field??)
-
-###
-
-Review mode allows viewing of unpublished content which has the "reviewable" attribute
-
-Stop building individual JSON files; rename index.json to content.json
-
-Exclude unpublished content from the content.json unless in dev mode
-
-Lazy-loaded, chunked content.json (maybe one for tracks and then one per page)
-
-Audit for missing stuff and fill it in below
-
-Missing SL tracks:
-– Almost all of them
-
-Entire playlist item should start playback and change bg color. This should be done with CSS or with a functionality upgrade to the TrackPlayPauseButton component
-
-Missing images:
-
-Missing content:
->> Flow sample tracks
->> Flow video
-– FAQ's
-– Mixes
-- Tutorials
-- User Guides
-- Contact (should this be a contact form, and then have the DBA and email on the impresses only?? Look at other sites...
-- About
-- Press
-- Mailing List (add text from the nag)
-- Videos
-- Cookie Settings (improve styling)
-
-√ Missing pages:
-
-** Thoroughly test cookie settings page and cookie bar and cookie popup
-
-Support markdown in the description field
-
-Migrate all min prices to zero
-
-Deploy checklist page
-– Text: "Upload images and PHP scripts"
-
-ESC closes Zoom textarea, and saves
-
-A hippo for the FAQ page
-
-*** I need a drawing of a hippopotamus standing on two feet and pointing to the upper-right. Is this something you can quickly provide? ***
-
-Admin: Migration should automatically backup content folder to the desktop
-
-Playlist does not advance to the next track
-
-Meganav should go over the playlist
-
->> Badge in playlist on the Made with SL tab that says "made something with SL? Click here to share it" then opens upload form
-
->> Show waveforms in the player progress
-
-Newsletters content type; output should look the same in CM, or else view in browser link should redirect to .rocks
-
-BUG: Back up the content folder. Edit an item, there will be huge data corruption. (A duplicate?? The original not deleted??)
-
 ******************************************************
 ******************************************************
 ******************************************************
@@ -213,11 +64,82 @@ BRETO LAND
 ******************************************************
 ******************************************************
 
-Release phase filter in admin
-Mass action checkbox in admin list
-Allow showing unpublished content in preview mode
-"Internal calendar" should be a content type
-Admin category should be a select
+HEM LAND
+###
+
+Sound Libraries as Artworks
+– Better title
+– Those Australian guys
+– HEM (link to the other "thesis" article on SL)
+– Anyone else?
+
+###
+
+> Admin "not:" search filter
+- Admin delete not working
+
+Review mode allows viewing of unpublished content which has the "reviewable" attribute
+
+√ Stop building individual JSON files
+
+- Rename index.json to content.json
+
+√ Exclude unpublished content from the content.json unless in dev mode
+
+- Lazy-loaded, chunked content.json (maybe one for tracks and then one per page)
+
+- Audit for missing stuff and fill it in below
+
+- Entire playlist item should start playback and change bg color. This should be done with CSS or with a functionality upgrade to the TrackPlayPauseButton component
+
+Missing content:
+- Flow sample tracks
+- Flow video
+– FAQ's
+– Mixes
+- Tutorials
+- User Guides
+- Contact (should this be a contact form, and then have the DBA and email on the impresses only?? Look at other sites...
+- About
+- Press
+- Mailing List (add text from the nag)
+- Videos
+- Cookie Settings (improve styling)
+
+√ Missing pages:
+
+** Thoroughly test cookie settings page and cookie bar and cookie popup
+
+- Support markdown in the description field
+
+√ Migrate all min prices to zero
+
+- Deploy checklist page
+  – Text: "Upload images and PHP scripts"
+
+- ESC closes Zoom textarea, and saves
+
+- A hippo for the FAQ page
+
+- Admin: Migration should automatically backup content folder to the desktop
+
+Playlist does not advance to the next track
+
+> Meganav should go over the playlist
+
+> Badge in playlist on the Made with SL tab that says "made something with SL? Click here to share it" then opens upload form
+
+> Show waveforms in the player progress
+
+- Newsletters content type; output should look the same in CM, or else view in browser link should redirect to .rocks
+
+√ BUG: Back up the content folder. Edit an item, there will be huge data corruption. (A duplicate?? The original not deleted??)
+
+- Release phase filter in admin
+> Mass action checkbox in admin list
+- Allow showing unpublished content in preview mode
+> "Internal calendar" should be a content type
+√ Admin category should be a select
 
 ***
 RELEASE PHASE 1
@@ -283,37 +205,37 @@ RELEASE PHASE 1
 – Quarter-tone synth
 - Editions (Risobooks with digital downloads)
 
-Just after soft launch, add without announcement
-^ Grand piano proofing
-^ Is there a room mic channel for ebow piano?
-^ Blog post about ReleasePhase links to consulting page, releasephase on github and npm, video
-    Video
-      Live code it
-      Write a test
-      Props (extoll the virtues of Typescript)
-      I always alphabetise in groups (required/optional)
-      I always have an optional id prop with super generic components like this
-      It screws up the layout, so let's add this inline style
-      Now let's try it on the heroine (I call these "heroine", not "hero")
-      Add exact attr
-      Something's wrong (show double heroine)
-      We need a let...
-      This is clunkier, like not elegant like algebra, but more expressive
-      Better than leaving code comments
-      Fix the naivety and mention why "canRender" and not "isVisible"
-      I like one-line guards
-      But you have to return null...
-      Show React dev tool
-      Where to actually store the phase? Config file simple example
-      More complex example stored in Redux/Saga, but don't go into it
-      Publish to NPM
-      Please donate to NAACP legal defense fund / PoC & Women developers at the link below
-      If you want to hire me for some consulting, shameless...
+- Grand piano proofing
+- Ebow piano
+- Pianos pack, including Antique Piano
+- Video for each piano
+- Is there a room mic channel for ebow piano?
+> Blog post about ReleasePhase links to consulting page, releasephase on github and npm, video
+    > Video
+      > Live code it
+      > Write a test
+      > Props (extoll the virtues of Typescript)
+      > I always alphabetise in groups (required/optional)
+      > I always have an optional id prop with super generic components like this
+      > It screws up the layout, so let's add this inline style
+      > Now let's try it on the heroine (I call these "heroine", not "hero")
+      > Add exact attr
+      > Something's wrong (show double heroine)
+      > We need a let...
+      > This is clunkier, like not elegant like algebra, but more expressive
+      > Better than leaving code comments
+      > Fix the naivety and mention why "canRender" and not "isVisible"
+      > I like one-line guards
+      > But you have to return null...
+      > Show React dev tool
+      > Where to actually store the phase? Config file simple example
+      > More complex example stored in Redux/Saga, but don't go into it
+      > Publish to NPM
+      > Please donate to NAACP legal defense fund / PoC & Women developers at the link below
+      > If you want to hire me for some consulting, shameless...
 
-Move to future
-> Beating and Signalling essay
-> If pianos are going to be in three packs, then then hero needs to link to a landing page
-> Impressum
+- If pianos are going to be in three packs, then then hero needs to link to a landing page
+?? Impressum
 > Mixcloud account
 > Videos
 > Thank you email (need to get their email via IPN)
@@ -332,15 +254,39 @@ Move to future
   > Calculate and add shipping in cart for physical items
   > Save address and comment to PHP
 
-Needed to begin:
-- "Second Hand Store Vinyl" tag
-- "-vinyl" back on slugs
-- "Vinyl" back on titles
-R Still using AnyAction in some action.ts files
-R cookiePrefix should be part of config.js (all projects)
-R Action not AnyAction in reducer.ts (all projects)
-R README.md
-R Move API to the actual api.hem.rocks/staging-api.hem-rocks
+- Social icons in About page
+
+> Autoposting API
+  > Cron job for posting
+  > Email admin with a go ahead and post button
+  > Content admin extracted for use as a separate app
+  > Content JSON is served from the API not from the build
+  > Content JSON is deployed from the admin via a deploy button
+  > PHP API needs to be able to retrieve a current copy of content.json
+  > Randomly choose a content item, bias toward "social-post"
+  > Retrieve the image for said content item
+  > Post templates for IG, FB, and TW
+  > Generate a post for IG, FB, and TW
+  > Migrate "socialPost" text field 
+  > Add a social-post content category
+
+> "Code" Section
+  > Add NPM to social links
+  > Add Github to social links
+
+- Copy SL blurbs from old site
+
+√ Admin subnav looks weird
+- Bug in home heroine
+- Test all contact forms
+√ "Second Hand Store Vinyl" tag
+√ "-vinyl" back on slugs
+√ "Vinyl" back on titles
+> Still using AnyAction in some action.ts files
+> cookiePrefix should be part of config.js (all projects)
+> Action not AnyAction in reducer.ts (all projects)
+> README.md
+> Move API to the actual api.hem.rocks/staging-api.hem-rocks
 √ Fix whatever's wrong with the admin
 √ Outlines on email nag form elements
 √ Email nag cookie not set when user signs up
@@ -358,24 +304,27 @@ x Reset Google Analytics (or just go in there and see what it looks like)
 – News article about this being a new website
 √ Articles badge on home page is first tag, not "Articles"
 √ Welcome to our new website heroine
-– Image captions
+> Image captions
+  > Images need to be a content category
+  > Migration to change "keyArt" to slug
 √ Check all SL, some stuff should be put in RF10
 √ Comp should be in RF10
 √ Sale not found error (can be alert)
-– Choir photo is missing
 - "Beta, report a bug" corner, with analytics, page, and contact form
 √ Unpublish/unpreview sweet bea
 √ Hide empty tags in prod, make them pink in dev
 
 - Cookie Policy page
 - Privacy Policy page
-- Contact form on contact page not email form
-- Remove address from contact page
+√ Contact form on contact page not email form
+√ Remove address from contact page
 - Really good SEO text in React page
+- Entire list item should be clickable; sometimes it isn't. This is an intermittent BUG
+- Scroll lock probably doesn't work on mobile
 
 *** NEW BANDCAMP COMP ***
 
-– Release phase architecture for content
+√ Release phase architecture for content
   √ Migration to add "release phase" field to content items
   √ Migration to set "release phase" field to 1 for all sl and label and tracks, all others to 10
   √ Build index.json with the published release phase content only
@@ -400,7 +349,7 @@ x Reset Google Analytics (or just go in there and see what it looks like)
   √ Persist the cart to PHP
   √ One-time download link
   √ Support message
-  R Write all errors to log: error_code, sale, error_timestamp
+  > Write all errors to log: error_code, sale, error_timestamp
 
   √ Already-downloaded popup (support link, order number, order date, date link was used)
   √ Does thank you page still need the "Hmmm...."?
@@ -408,7 +357,7 @@ x Reset Google Analytics (or just go in there and see what it looks like)
   √ The "thank you" popup keeps generating fresh download URL's. Cancel sid's in PHP
   √ Spinner until download links appear
   √ Change the download link style when clicked, and disable DL
-  R AD check should occur when the thanks pop first opens, and gray out the downloaded links, and also have hoverable question marks next to them
+  > Already downloaded check should occur when the thanks pop first opens, and gray out the downloaded links, and also have hoverable question marks next to them
   
   *** INCLUDE DALT REMIX BY JG ***
 
@@ -455,12 +404,14 @@ x Reset Google Analytics (or just go in there and see what it looks like)
       √ cartContents
     x Payment email from IPN needs to be added to the paymentRecord
 
+- Publish MIDI devices with videos and an article
+- Label logos do not come from localhost when in local dev
 - Activate auto-return on the production PPL acct
 √ Order physical products (Unbekannte, Clouds, Archive)
 √ Hide physical product features for now
 √ Get the types right
 √ Manually enter label types
-R All category names use the plural
+> All category names use the plural
 √ 404 page
 - Funny art for 404 page (hippo??)
 – Scroll freeze bug
@@ -476,6 +427,7 @@ x Archive image
 √ Made something with SL page with upload form
 – DD description
 – DD essay??
+> Move this todo list into admin; todo's feature
 
 *****
 √ "Needs photos" filter in admin
@@ -489,6 +441,8 @@ x Archive image
 – Resequence photos
 *****
 
+*** CANCEL SHOPIFY ***
+
 *****
 – Press content
 – Don't forget:
@@ -499,27 +453,32 @@ x Archive image
 *****
 
 ?? Acconci Essays
+> New Anna Essay
+- Cookies settings page does not reflect the current setting.
+- Test if changing cookies settings actually works (it should add/erase the cookie and reload the page)
 
+!! "apps/seurat" links to Seurat MIDI
+!! Click on "Seurat" from "About", press the back button, goes to home not "About"
 – Page jumps back to top when filter is applied
 – Take more photos
 – Final assignment of photos
-– Link cookie settings from about page
-– Terms and conditions
-– Cookie terms
+√ Link cookie settings from about page
+– Privacy policy as a real static page
+– Cookie policy as a real static page
 – Email aliases (verify all work): press@hem.rocks, info@hem.rocks, support@hem.rocks, dev@hem.rocks
-– Legal filings
-– Made something with SL link in About and About SL pages
+– Legal filings (XOLO)
+√ Made something with SL link in About and About SL pages
 – Responsive layout
 – "Beta. Report a problem" fixed-position banner
-– Contact form
+√ Contact form
 
-- HTTPS
-  - All uses of assetHostName and websiteHostname should come from helper functions
-  - There should be a separate apiHostname function, even though it's under /static
-  - The functions should return full paths, not just hostnames
-  - Implement https on Bluehost
-  - Implement https on localhost
-  - Change redirect urls in PHP
+> HTTPS
+  > All uses of assetHostName and websiteHostname should come from helper functions
+  > There should be a separate apiHostname function, even though it's under /static
+  > The functions should return full paths, not just hostnames
+  > Implement https on Bluehost
+  > Implement https on localhost
+  > Change redirect urls in PHP
 
 – Deployment
 –– Too many little manual steps

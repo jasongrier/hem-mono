@@ -1,5 +1,6 @@
 import {
   ADMIN_APPLY_FILTER,
+  ADMIN_APPLY_SEARCH,
   CLEAR_ITEMS,
   DO_CREATE_ITEMS,
   DO_DELETE_ITEMS,
@@ -19,6 +20,11 @@ import {
 const adminApplyFilter = (filter: string): Action => ({
   type: ADMIN_APPLY_FILTER,
   payload: filter,
+})
+
+const adminApplySearch = (search: string): Action => ({
+  type: ADMIN_APPLY_SEARCH,
+  payload: search,
 })
 
 const clearItems = (): Action => ({
@@ -78,6 +84,7 @@ const toggleNeedsKeyArtFilter = (): Action => ({
 
 export {
   adminApplyFilter,
+  adminApplySearch,
   clearItems,
   doCreateItems,
   doDeleteItems,

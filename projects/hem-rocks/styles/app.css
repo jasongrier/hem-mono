@@ -43,7 +43,7 @@ body {
   outline: none;
 }
 
-.hem-application.popup-open {
+.hem-application.with-popup-open {
   width: 100vw;
 }
 

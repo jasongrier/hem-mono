@@ -6,6 +6,7 @@ import { find } from 'lodash'
 import { MainContentList, contentItemToTrack, getContentItemsFromRawList } from '../../modules/content'
 import { TrackPlayPauseButton } from '../../../../lib/modules/player'
 import { LabelTimeline } from '../../components/timeline'
+import { LabelSubnav } from '../../components/layout'
 import { BASE_SITE_TITLE } from '../../config'
 import { RootState } from '../../index'
 
@@ -28,8 +29,10 @@ function Label(): ReactElement {
         <title>{ BASE_SITE_TITLE }</title>
         <meta name="description" content="" />
       </Helmet>
-      <div className="page page-label">
+      <div className="page page-label page-with-subnav">
         <LabelTimeline refresh={refreshTimeline} />
+        <h1>Label</h1>
+        <LabelSubnav />
         <MainContentList
           currentFilter={currentFilter}
           // excludeFromAll="Physical Formats"
@@ -39,7 +42,6 @@ function Label(): ReactElement {
             // 'Physical Formats',
           ]}
           category="label"
-          title="Label"
         >
           {(item) => {
             const attachedTracks = getContentItemsFromRawList(allContentItems, item.trackSlugs).map(track =>

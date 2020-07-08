@@ -69,11 +69,11 @@ function RoutingHub(): ReactElement {
         <Route exact path="/about" component={About} />
         <Route exact path="/about/cart" component={About} />
         
-        <Route exact path="/about-sl" component={AboutSoundLibrary} />
-        <Route exact path="/about-sl/cart" component={AboutSoundLibrary} />
+        <Route exact path="/sound-library/about" component={AboutSoundLibrary} />
+        <Route exact path="/sound-library/about/cart" component={AboutSoundLibrary} />
         
-        <Route exact path="/made-with-sl" component={MadeWithSoundLibrary} />
-        <Route exact path="/made-with-sl/cart" component={MadeWithSoundLibrary} />
+        <Route exact path="/sound-library/made-with-sl" component={MadeWithSoundLibrary} />
+        <Route exact path="/sound-library/made-with-sl/cart" component={MadeWithSoundLibrary} />
 
         <Route exact path="/contact" component={Contact} />
         <Route exact path="/contact/cart" component={Contact} />
