@@ -36,6 +36,7 @@ function SoundLibrary(): ReactElement {
           category="sound-library"
           currentFilter={currentFilter}
           excludeFromAll="Midi Devices"
+          orderByOrder={true}
         >
           {(pack) => {
             const attachedTracks = getContentItemsFromRawList(allContentItems, pack.trackSlugs).map(track =>
