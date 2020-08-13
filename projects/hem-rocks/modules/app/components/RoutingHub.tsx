@@ -27,12 +27,14 @@ import {
 
 import {
   About,
+  AboutSoundLibrary,
   CompilationIVArtistInfo,
   Contact,
   CookieSettings,
   Home,
   MailingList,
   NotFound,
+  MadeWithSoundLibrary,
   ReactConsulting,
   Support,
 } from '../../../routes/static'
@@ -66,6 +68,12 @@ function RoutingHub(): ReactElement {
         {/* Static Pages */}
         <Route exact path="/about" component={About} />
         <Route exact path="/about/cart" component={About} />
+        
+        <Route exact path="/about-sl" component={AboutSoundLibrary} />
+        <Route exact path="/about-sl/cart" component={AboutSoundLibrary} />
+        
+        <Route exact path="/made-with-sl" component={MadeWithSoundLibrary} />
+        <Route exact path="/made-with-sl/cart" component={MadeWithSoundLibrary} />
 
         <Route exact path="/contact" component={Contact} />
         <Route exact path="/contact/cart" component={Contact} />
@@ -90,9 +98,9 @@ function RoutingHub(): ReactElement {
         <Route exact path="/compilation-iv-artist-info/cart" component={CompilationIVArtistInfo} /> */}
 
         {/* List Pages */}
-        {/* <Route exact path="/apps/:contentItemSlug?/:filter?" component={Apps} />
+        <Route exact path="/apps/:contentItemSlug?/:filter?" component={Apps} />
         <Route exact path="/apps/filter/:filter" component={Apps} />
-        <Route exact path="/apps/cart/:filter?" component={Apps} /> */}
+        <Route exact path="/apps/cart/:filter?" component={Apps} />
 
         {/* <Route exact path="/articles/:contentItemSlug?/:filter?" component={Articles} />
         <Route exact path="/articles/filter/:filter" component={Articles} />

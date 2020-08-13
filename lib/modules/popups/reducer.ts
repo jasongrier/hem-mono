@@ -3,6 +3,7 @@ import produce from 'immer'
 import {
   CLOSE_POPUP,
   OPEN_POPUP,
+  SET_POPUPS_FROZEN,
 
   IState,
 } from './index'
@@ -10,6 +11,7 @@ import {
 const initialState: IState = {
   currentlyOpenPopUp: null,
   propsToChildren: null,
+  frozen: false,
 }
 
 const reducer = (
@@ -19,6 +21,7 @@ const reducer = (
   switch (type) {
     case OPEN_POPUP: {
       return produce(state, draftState => {
+        if (state.frozen) return draftState
         draftState.currentlyOpenPopUp = payload.id
         draftState.propsToChildren = payload.propsToChildren
       })
@@ -26,7 +29,14 @@ const reducer = (
 
     case CLOSE_POPUP: {
       return produce(state, draftState => {
+        if (state.frozen) return draftState
         draftState.currentlyOpenPopUp = null
+      })
+    }
+    
+    case SET_POPUPS_FROZEN: {
+      return produce(state, draftState => {
+        draftState.frozen = payload
       })
     }
 

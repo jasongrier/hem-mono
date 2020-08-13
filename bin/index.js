@@ -1,9 +1,9 @@
 const { lint, lintAll } = require('./tasks/lint')
-const { test, testAll } = require('./tasks/test')
 const { todo, todoAll } = require('./tasks/todo')
 const build = require('./tasks/build')
 const start = require('./tasks/start')
 const startElectron = require('./tasks/start-electron')
+const startPhp = require('./tasks/start-php')
 
 const a1 = process.argv[2]
 const a2 = process.argv[3]
@@ -28,6 +28,10 @@ else if (a1 === 'task') { // TODO: Command not found error
       startElectron(a3)
       break
 
+    case 'start-php': // `npm run task start-php my-project`
+      startPhp(a3)
+      break
+
     case 'build': // `npm run task build my-project`
       build(a3)
       break
@@ -50,10 +54,6 @@ else if (a1 === 'task') { // TODO: Command not found error
 
     case 'lint-all': // `npm run task lint-all`
       lintAll()
-      break
-
-    case 'test-all': // `npm run task test-all`
-      testAll()
       break
 
     case 'todo': // `npm run task todo my-project`
