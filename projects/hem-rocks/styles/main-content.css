@@ -418,3 +418,19 @@
 .app-is-home .main-content-box-badge {
   top: -40px !important;
 }
+
+.main-content-deva {
+  position: fixed;
+  bottom: 60px;
+  left: 350px;
+  z-index: 99999;
+  width: 300px;
+  height: 300px;
+}
+
+.deva-clever-knight {
+  background-image: url(http://localhost:8888/hem-rocks/site/devas/clever_knight.png);
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  background-size: contain;
+}

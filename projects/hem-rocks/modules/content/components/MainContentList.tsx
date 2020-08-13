@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Scrollbars from 'react-scrollbars-custom'
 import { slugify, titleCase } from 'voca'
-import { get } from 'lodash'
+import { get, uniq } from 'lodash'
 import moment from 'moment'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup } from '../../../../../lib/modules/popups'
-import { replacePlaylist, setPlayerPlaylist } from '../../../../../lib/modules/player'
+import { replacePlaylist, setPlayerPlaylist, ITrack } from '../../../../../lib/modules/player'
 import { MainContentBox } from './index'
 import { IContentItem } from '../index'
 import { RootState } from '../../../index'
@@ -24,7 +24,6 @@ interface IProps {
   children?: (contentItem: IContentItem) => any
   currentFilter?: string,
   excludeFromAll?: string
-  filters?: string[]
   highlights?: string[]
   infoPopupText?: string
   infoPopupTitle?: string
@@ -45,7 +44,6 @@ function MainContentList({
   children,
   excludeFromAll,
   currentFilter = 'all',
-  filters: propsFilters = [],
   highlights,
   infoPopupText,
   infoPopupTitle,
@@ -62,34 +60,26 @@ function MainContentList({
   const dispatch = useDispatch()
 
   const [finalContentItems, setFinalContentItems] = useState<IContentItem[]>([])
-  const [finalFilters, setFinalFilters] = useState<Array<{ tag: string, empty: boolean }>>([])
+  const [finalFilters, setFinalFilters] = useState<string[]>([])
 
   useEffect(function filters() {
     const contentItems = (propsContentItems || storeContentItems).filter(item =>
-      item.published && parseInt(item.releasePhase, 10) <= RELEASE_PHASE
+      item.published && parseInt(item.releasePhase, 10) <= RELEASE_PHASE && hasCategory(item, category) 
     )
 
     if (!contentItems) return
     if (!contentItems.length) return
 
-    let existingTags = contentItems.map(item => item.tags.split(',').map(tag => tag.trim()))
-    // @ts-ignore
-    existingTags = existingTags.flat()
-
-    let filters = propsFilters.map(tag => ({
-      tag,
-      // @ts-ignore
-      empty: !existingTags.includes(slugify(tag))
-    }))
-
-    filters = [{ tag: 'All', empty: false }].concat(filters)
+    let allFilters = contentItems.map(item => item.tags.split(',').map(tag => tag.trim()))
+    let filters: string[] = uniq(allFilters.flat().map(tag => titleCase(tag).replace(/-/g, ' ')))
+    filters = ['All'].concat(filters)
 
     setFinalFilters(filters)
 
   }, [storeContentItems])
 
   useEffect(function itemsAndPlaylist() {
-    let contentItems
+    let contentItems: IContentItem[]
 
     if (propsContentItems) {
       contentItems = propsContentItems
@@ -121,11 +111,6 @@ function MainContentList({
         })
       }
 
-      function sortFn(a: IContentItem, b: IContentItem) {
-        // @ts-ignore
-        return moment(b.date, 'DD-MM-YYYY') - moment(a.date, 'DD-MM-YYYY')
-      }
-
       contentItems.sort(sortFn)
       stickyContentItems.sort(sortFn)
 
@@ -141,7 +126,7 @@ function MainContentList({
     setTimeout(function () {
       if (currentlyOpenPopUp) return
 
-      let tracks = []
+      let tracks: ITrack[] = []
 
       for (const item of contentItems) {
         if (hasCategory(item, 'tracks')) {
@@ -163,6 +148,11 @@ function MainContentList({
       }
     })
   }, [currentFilter, storeContentItems, currentlyOpenPopUp])
+
+  function sortFn(a: IContentItem, b: IContentItem) {
+    // @ts-ignore
+    return moment(b.date, 'DD-MM-YYYY') - moment(a.date, 'DD-MM-YYYY')
+  }
 
   return (
     <div className="main-content-list clearfix">
@@ -212,16 +202,19 @@ function MainContentList({
       { finalFilters.length > 1 && (
         <div className="main-content-filters clearfix">
           <h3>Filter:</h3>
-          { finalFilters.map(({ tag, empty }) => (
+          { finalFilters.map(tag => (
             <Link
               className={`
                 main-content-filter
                 ${ currentFilter === slugify(tag) ? 'active' : '' }
                 ${ currentFilter === slugify(excludeFromAll) ? 'exclusive-filter' : '' }
-                ${ empty ? 'empty-filter' : '' }
               `}
               key={tag}
-              to={`/${category}${tag !== 'All' ? '/filter/' + slugify(tag) : ''}`}
+              to={
+                currentFilter === slugify(tag)
+                  ? `/${category}`
+                  : `/${category}${tag !== 'All' ? '/filter/' + slugify(tag) : ''}`
+              }
             >
               {tag}
             </Link>

@@ -30,6 +30,7 @@ import {
   AboutSoundLibrary,
   CompilationIVArtistInfo,
   Contact,
+  CookiePolicy,
   CookieSettings,
   Home,
   MailingList,
@@ -80,6 +81,9 @@ function RoutingHub(): ReactElement {
 
         <Route exact path="/cookie-settings" component={CookieSettings} />
         <Route exact path="/cookie-settings/cart" component={CookieSettings} />
+        
+        <Route exact path="/cookie-policy" component={CookiePolicy} />
+        <Route exact path="/cookie-policy/cart" component={CookiePolicy} />
 
         <Route exact path="/mailing-list" component={MailingList} />
         <Route exact path="/mailing-list/cart" component={MailingList} />

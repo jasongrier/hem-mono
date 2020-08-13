@@ -42,12 +42,20 @@ function About(): ReactElement {
         
         <div className="main-content-section">
           <h2>Find HEM online</h2>
-          <p>Facebook</p>
-          <p>Twitter</p>
+          <p>
+            <a href="https://web.facebook.com/humanearmusic/">Facebook</a>
+          </p>
+          <p>
+            <a href=""></a>
+            Twitter
+          </p>
           {/* <p>GitHub</p> */}
           {/* <p>MixCloud</p> */}
           <p>Soundcloud</p>
           {/* <p>NPM</p> */}
+          {/* <p>Patreon</p>
+          <p>Kickstarter</p>
+          <p>Indie Gogo</p> */}
         </div>
 
         <div className="main-content-section">
@@ -71,9 +79,11 @@ function About(): ReactElement {
         <div className="main-content-section">
           <h2>Cookies &amp; Privacy</h2>
           <p>You can update your cookies settings at any time <Link to="/cookie-settings">here</Link>.</p>
-          <p>Read the cookies policy <Link to="/cookies-policy">here</Link></p>
+          <p>Read the cookies policy <Link to="/cookie-policy">here</Link></p>
           <p>Read the privacy policy <Link to="/privacy-policy">here</Link></p>
         </div>
+
+        <div className="main-content-deva deva-clever-knight" />
       </div>
     </>
   )

@@ -45,6 +45,7 @@ function Contact(): ReactElement {
             )}
           />
         </div>
+        <div className="main-content-deva deva-clever-knight" />
       </div>
     </>
   )

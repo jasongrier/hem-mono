@@ -99,8 +99,7 @@ function MainContentBox({
         onClick={onClick}
       >
         <Link to={linkTo}>
-          {/* <p>{ contentItem.blurb }</p> */}
-          <p>I'm baby locavore sartorial pinterest pickled swag, lumbersexual shabby chic poke ramps hot chicken kinfolk unicorn paleo hella. Organic man braid chambray church-key four loko vice hella butcher dreamcatcher kombucha farm-to-table.</p>
+          <p dangerouslySetInnerHTML={{ __html: contentItem.blurb }} />
         </Link>
         <div className="main-content-box-actions">
           <div className="main-content-box-custom-actions">

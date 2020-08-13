@@ -3,8 +3,39 @@
     "sales": [],
     "dids": [],
     "supportTickets": [],
-    "contacts": [
-    ],
-    "reactInquiries": [
+    "contacts": [],
+    "reactInquiries": [],
+    "cookieApprovals": [
+        null,
+        {
+            "date": "2020-07-08",
+            "approval": null,
+            "cookieName": null
+        },
+        {
+            "date": "2020-07-08",
+            "approval": null,
+            "cookieName": null
+        },
+        {
+            "date": "2020-07-08",
+            "approval": null,
+            "cookieName": null
+        },
+        {
+            "date": "2020-07-08",
+            "approval": null,
+            "cookieName": null
+        },
+        {
+            "date": "2020-07-08",
+            "approval": null,
+            "cookieName": null
+        },
+        {
+            "date": "2020-07-08",
+            "approval": false,
+            "cookieName": "foo"
+        }
     ]
 }
