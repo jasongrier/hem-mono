@@ -1,5 +1,6 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects'
 import Cookies from 'js-cookie'
+import { assetHostHostname } from '../../functions'
 import {
   REQUEST_ACTIVE_LIVE_STREAM,
   SET_COOKIE_APPROVAL,
@@ -11,11 +12,7 @@ import { getCookieName } from './functions'
 
 function* requestActiveLiveStream() {
   try {
-    const assetHost = window.location.hostname === 'localhost'
-      ? 'http://localhost:8888'
-      : 'http://static.hem.rocks'
-
-    const res = yield call(fetch, `${assetHost}/hem-rocks/api/?key=activeLiveStream`)
+    const res = yield call(fetch, `${assetHostHostname()}/hem-rocks/api/?key=activeLiveStream`)
     const state = yield res.json()
 
     yield put(setActiveLiveStreamAc(state.activeLiveStream))
@@ -27,11 +24,27 @@ function* requestActiveLiveStream() {
 }
 
 function* writeCookieApprovalCookie({ payload }: any) {
+  const { approval, cookieName, write } = payload
+  
   try {
-    const { approval, cookieName, write } = payload
     if (approval && write) {
       Cookies.set(getCookieName(`${cookieName}-cookie-approved`), 'true')
     }
+  }
+
+  catch (err) {
+    console.log(err)
+  }
+  
+  try {
+    yield call(
+      fetch, 
+      `${assetHostHostname()}/hem-rocks/api/?hem-cmd=cookie-approval`,
+      {
+        body: JSON.stringify({ approval, cookieName }),
+        method: 'post',
+      }
+    )
   }
 
   catch (err) {

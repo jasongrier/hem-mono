@@ -2,7 +2,7 @@ import React, { ReactElement, SyntheticEvent, useEffect, useCallback, useState }
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { Link } from 'react-router-dom'
-import { find, isFinite, isNaN } from 'lodash'
+import { find, isFinite, isNaN, isEmpty } from 'lodash'
 import uuid from 'uuid/v1'
 import Scrollbars from 'react-scrollbars-custom'
 import ReactGA from 'react-ga'
@@ -126,6 +126,7 @@ function DetailPopUp({
       history.push(`/${category}/cart/${filter ? filter : ''}`)
 
       setTimeout(() => {
+        if (!saleId) return
         dispatch(submitSale(saleId))
       })
 
@@ -457,7 +458,9 @@ function DetailPopUp({
           {showPurchaseForm && (
             <h2>Details</h2>
           )}
-          <div dangerouslySetInnerHTML={{__html: contentItem.description}} />
+          <div dangerouslySetInnerHTML={{
+            __html: contentItem.description.replace(/ /g, '').length === 0 ?  contentItem.blurb : contentItem.description,
+          }} />
           <div className="detail-popup-details-sidebar">
             { attachedPlaylist && attachedPlaylist.tracks && attachedPlaylist.tracks.length > 1 && (
               <div className="detail-popup-details-sidebar-section">

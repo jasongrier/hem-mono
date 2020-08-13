@@ -190,5 +190,21 @@ else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
       echo 'OK';
     }
+    
+    else if ($_GET['hem-cmd'] === 'cookie-approval') {
+      $data = json_decode(file_get_contents('php://input'));
+
+      $cookieApproval = array(
+        'date' => date('Y-m-d', time()),
+        'approval' => $data->approval,
+        'cookieName' => $data->cookieName,
+      );
+
+      array_push($store['cookieApprovals'], $cookieApproval);
+
+      file_put_contents('store.json', json_encode($store, JSON_PRETTY_PRINT));
+
+      echo 'OK';
+    }
   }
 }

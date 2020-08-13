@@ -166,19 +166,29 @@ function migrate(allContentItems: IContentItem[]) {
     const newItem = Object.assign({}, item)
 
     // DO STUFF HERE
-    if (isEmpty(newItem.flexPriceMinimum)) {
-      newItem.flexPriceMinimum = '0'
-    }
     // END DO STUFF HERE
 
     newItems.push(newItem)
   }
 
-  const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
-  const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
+  console.log('fetching...')
 
-  writeFileSync(srcIndex, JSON.stringify(newItems, null, 2))
-  writeFileSync(distIndex, JSON.stringify(newItems, null, 2))
+  fetch('http://hem.rocks')
+    .then(function(res) {
+      return res.text()
+    })
+    .then(function(res) {
+      console.log(res)
+    })
+    .catch(function(err) {
+      console.log(err)
+    })
+
+  // const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
+  // const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
+
+  // writeFileSync(srcIndex, JSON.stringify(newItems, null, 2))
+  // writeFileSync(distIndex, JSON.stringify(newItems, null, 2))
 }
 
 function assignImages() {

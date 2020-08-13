@@ -205,11 +205,13 @@ RELEASE PHASE 1
 – Quarter-tone synth
 - Editions (Risobooks with digital downloads)
 
-- Grand piano proofing
-- Ebow piano
-- Pianos pack, including Antique Piano
-- Video for each piano
-- Is there a room mic channel for ebow piano?
+- Pianos Pack (Grand Piano, Grand Piano Extended, Ebow Piano, Antique Piano)
+  - Grand piano proofing
+  - Ebow piano
+  - Pianos pack, including Antique Piano
+  - Video for each piano
+  - Video for the pack
+
 > Blog post about ReleasePhase links to consulting page, releasephase on github and npm, video
     > Video
       > Live code it
@@ -254,7 +256,7 @@ RELEASE PHASE 1
   > Calculate and add shipping in cart for physical items
   > Save address and comment to PHP
 
-- Social icons in About page
+- Social links in About page
 
 > Autoposting API
   > Cron job for posting
@@ -269,6 +271,9 @@ RELEASE PHASE 1
   > Generate a post for IG, FB, and TW
   > Migrate "socialPost" text field 
   > Add a social-post content category
+  > Patreon drive integration
+  > Kickstarter integration (Seurat)
+  > IndieGogo integration (Breto)
 
 > "Code" Section
   > Add NPM to social links
@@ -277,7 +282,7 @@ RELEASE PHASE 1
 - Copy SL blurbs from old site
 
 √ Admin subnav looks weird
-- Bug in home heroine
+√ Bug in home heroine
 - Test all contact forms
 √ "Second Hand Store Vinyl" tag
 √ "-vinyl" back on slugs
@@ -313,7 +318,8 @@ x Reset Google Analytics (or just go in there and see what it looks like)
 - "Beta, report a bug" corner, with analytics, page, and contact form
 √ Unpublish/unpreview sweet bea
 √ Hide empty tags in prod, make them pink in dev
-
+- Combine Berlin NYE packs into one
+- Add SL performer credits to attribution field
 - Cookie Policy page
 - Privacy Policy page
 √ Contact form on contact page not email form
@@ -414,8 +420,9 @@ x Reset Google Analytics (or just go in there and see what it looks like)
 > All category names use the plural
 √ 404 page
 - Funny art for 404 page (hippo??)
-– Scroll freeze bug
-– PHP analytics for cookie nag
+√ Scroll freeze bug
+√ PHP analytics for cookie nag
+- Cookie refusal does not send request to PHP
 ?? Cart from about closes and goes home
 √ Can cart have a close "x" and bg click and esc key??
 – About page
@@ -443,16 +450,42 @@ x Archive image
 
 *** CANCEL SHOPIFY ***
 
+√ Tag "empty" not needed anymore
+
 *****
 – Press content
+  - Throw out random shit and shit images can't be found for
+  - Crop originals and re-PDF them when needed
+  - Rename all originals: artist--context--where--dd-mm-yyyy.pdf|txt|jpg
+  - Take screenshots and rename each screenshot artist--context--release--dd-mm-yyyy.png
+  - Convert all the screenshots to JPG
+  - Copy or type all the text and save as artist--context--release--dd-mm-yyyy.txt
+  - Copy out some nice text and save as artist--context--release--dd-mm-yyyy.blurb.txt
+  - Create PDF's for those originals which are not PDF
+  - Create migration to generate items from the original files
+    - Generate the title: [artist] in [where], [dd-mm-yyyy]
+    - Generate the subtitle: [context]
+    - Get the blurb from the .blurb.txt file
+    - Get the text from the .txt file
+    - Tags: [artist] [context] [where]
+      > Tag groups with multi-tier filters (tag-group:tag-name, eg: artists:jason-grier)
+- Rename the press audio tracks as artist--context--release--dd-mm-yyyy.mp3
+- Create tracks for audio press, tag with "press", "interview", "radio"
+- Attach tracks to their press items
+- A radio tab in the player??
+- PDF icon in the detail popup sidebar with "Download" for this category only, not hacky
+√ Tags are auto-populated in main content filters
+- Maybe smaller tiles here?
 – Don't forget:
-  – ZDF
-  – Nice Strangers
+  √ ZDF
+  √ Nice Strangers
 – Link press content from about page
 – Old press releases as EPK items; linked from the albums
 *****
 
+- ADD SMALLSONGS TO LABEL timeline
 ?? Acconci Essays
+- Old Anna Essay
 > New Anna Essay
 - Cookies settings page does not reflect the current setting.
 - Test if changing cookies settings actually works (it should add/erase the cookie and reload the page)
@@ -466,7 +499,7 @@ x Archive image
 – Privacy policy as a real static page
 – Cookie policy as a real static page
 – Email aliases (verify all work): press@hem.rocks, info@hem.rocks, support@hem.rocks, dev@hem.rocks
-– Legal filings (XOLO)
+– Legal filings (XOLO/Virk)
 √ Made something with SL link in About and About SL pages
 – Responsive layout
 – "Beta. Report a problem" fixed-position banner
@@ -495,132 +528,103 @@ x Archive image
 
 ***
 
-- Fix whatever's wrong with editing in the admin
+√ Fix whatever's wrong with editing in the admin
 – Add articles for DD essay and DD description
 – Sound Libraries as Artworks
-– Add articles for a couple of web dev topics
-– Remove individual content files and stop writing/reading them
+> Add articles for a couple of web dev topics
+√ Remove individual content files and stop writing/reading them
 
-***
-FOR ANNEQ
+###
 
-√ Remove "Aaron Gillis-"
-– Letter explaining stuff
-
-Ok here's the super secret preview: http://staging.hem.rocks
-
-Email: info@hem.rocks / Password: easyeasy
-
-The two sections that are most complete are "Sound Library" and "Label". Here, all the items are in place, but the text is still filler. The site will "soft-launch" with these two sections and the other sections will be filled in during the coming months.
-
-The site isn't optimised yet, sorry if it's slow.
-
-Let me know what you think!
-
-***
-
-Clicking and active filter should set filter to all
+√ Clicking and active filter should set filter to all
 
 √ Remove puppeteer
 
 Spacebar for player??
-
-– Photos:
-–– Liebesinsel
-–– Insel der Jugend
-–– View from Excelsior
-–– Indian Imbiss
-–– Stolen rock sign in Tiergarten
-–– Weird area by canal
 
 – Admin: A filter for published/unpublished
 – Admin: Add a "needs-work" tag for texts that got made in a hurry
 – Live at studio Acht cuts off early
 – Nag toaster needs to destroy timeout
 
->> Upgrade mailing list so that there is a choice of lists to be a part of
+> Upgrade mailing list so that there is a choice of lists to be a part of
 
-Mega nav close x is getting cropped on the bottom
-Input old SL texts
-Write SL about thesis (adapt from the old essay)
-Write SL about text
+> Mega nav close x is getting cropped on the bottom
+– Input old SL texts
+– Write SL about thesis (adapt from the old essay)
+– Write SL about text
 
 √ Can't playlist just be a tag of list??
 
 √ ARTICLES PAGE IS MISSING
 
->> Rename tabs-content cause it's not tabs anymore
+> Rename tabs-content cause it's not tabs anymore
 
->> Routed popup architecture is atrocious
+> Routed popup architecture is atrocious
 
-Images on about, contact, etc. should be much shorter
+- Images on about, contact, etc. should be much shorter
 
-Generic "inline" newsletter form style
+√ Generic "inline" newsletter form style
 
-Contact page image
+- Contact page image
 
-Mailing list page image
+x Mailing list page image
 
-HTML for jags site
+> Check all links in the mega nav
 
-Check all links in the mega nav
+> A/B test email nag with a centred popup, and random delay (send delay through GA event=
 
->> A/B test email nag with a centred popup, and random delay (send delay through GA event=
+- Sound library article linked from SL list page blurb "read more about SL"
 
-Sound library article linked from SL list page blurb "read more about SL"
+- Validation for email form
 
-Validation for email form
+> Compilation invitation page
 
-Compilation invitation page
+> Flat-file service for checklists; Maybe just unite all the flat-file services into one PHP script and give access to it from the Electron admin, maybe via some kind of token, and maybe also move the Electron app to a generic CMS app, with a configurable model (with migrations) and
 
-Flat-file service for checklists; Maybe just unite all the flat-file services into one PHP script and give access to it from the Electron admin, maybe via some kind of token, and maybe also move the Electron app to a generic CMS app, with a configurable model (with migrations) and
+> MD5 password, or use a flat-file service, or something
 
->> MD5 password, or use a flat-file service, or something
+- Merch images
 
-Merch images
+- Just HEM not HEM, Music, Art...
 
-Just HEM not HEM, Music, Art...
+- Grand piano samples should be INTENSE
 
-Grand piano samples should be INTENSE
+x Extend short notes on grand piano somehow
 
-Extend short notes on grand piano somehow
+- Inf. fake should be the demo for chord brush and there should be five of them
 
-Inf. fake should be the demo for chord brush and there should be five of them
+- Grand piano press kit
 
-Grand piano press kit
-– Samples
-– Exclusive Preview link
-–
+√ If a track does not load after x seconds, then stop and set the play button icons back
 
-If a track does not load after x seconds, then stop and set the play button icons back
-
-All play buttons should have a spinner
+- All play buttons should have a spinner
 
 √ All action buttons should be unselectable
 
-Tracks cannot be played from list page play buttons unless started from the player bar playlist
+- Tracks cannot be played from list page play buttons unless started from the player bar playlist
 
-Clicking anything outside the playlist should close the playlist (even document body)
+- Clicking anything outside the playlist should close the playlist (even document body)
 
 √ Closing the player bar should set the playlist to closed
 
 √ Hack to include HEM merch in venue merch
 
-Articles page
+√ Articles page
 
-Remember that "attachment" tracks need to be tagged with "attachment"
+√ Remember that "attachment" tracks need to be tagged with "attachment"
 
-Item types!!
+√ Item types!!
 
-Slug uniqueness needs to be checked in index as well
+- Slug uniqueness needs to be checked in index as well
 
 √ Publish and delete buttons are broken, maybe all editing is broken??
 
-Load more Berlin images
+- Load more Berlin images
 
-Internal Midst pages (home, budget, proposal)
+- Internal Midst pages (home, budget, proposal)
 
-Code images
+> Code images
 
 Press kits detail popups, stubbed kits, custom fields, PDF generator
 
@@ -638,21 +642,21 @@ Automatically hide empty filters on production, make them red on dev, use a body
 
 √ LOAD TIME SLOW
 
->> Better data fetching... GraphQL??
+> Better data fetching... GraphQL??
 
->> Exclude unpublished items from index
+> Exclude unpublished items from index
 
-Buy jasonaarongillisgrier.com domain
+x Buy jasonaarongillisgrier.com domain
 
 
 
 √ Tracks 404??
 
-Brief blurb text for every list page
+x Brief blurb text for every list page
 
 
 
-Style the email nag
+√ Style the email nag
 
 Pressing play anywhere opens the playbar
 
