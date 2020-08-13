@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Scrollbars from 'react-scrollbars-custom'
 import { slugify, titleCase } from 'voca'
-import { get, uniq } from 'lodash'
+import { get, uniq, flatten } from 'lodash'
 import moment from 'moment'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup } from '../../../../../lib/modules/popups'
-import { replacePlaylist, setPlayerPlaylist } from '../../../../../lib/modules/website-player'
+import { replacePlaylist, setPlayerPlaylist, ITrack } from '../../../../../lib/modules/website-player'
 import { MainContentBox } from './index'
 import { IContentItem } from '../index'
 import { RootState } from '../../../index'
@@ -70,8 +70,9 @@ function MainContentList({
     if (!contentItems) return
     if (!contentItems.length) return
 
-    let allFilters = contentItems.map(item => item.tags.split(',').map(tag => tag.trim()))
-    let filters: string[] = uniq(allFilters.flat().map(tag => titleCase(tag).replace(/-/g, ' ')))
+    const allFilters = contentItems.map(item => item.tags.split(',').map(tag => tag.trim()))
+    const allFiltersFlat = flatten(allFilters)
+    let filters: string[] = uniq(allFiltersFlat.map(tag => titleCase(tag).replace(/-/g, ' ')))
     filters = ['All'].concat(filters)
 
     setFinalFilters(filters)
