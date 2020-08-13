@@ -6,7 +6,7 @@ import { combineReducers, createStore, applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { popupsReducer } from '../../lib/modules/popups'
-import { playerReducer } from '../../lib/modules/player'
+import { playerReducer } from '../../lib/modules/website-player'
 import { App, appReducer } from './modules/app'
 import { loginReducer } from './modules/login'
 import { cartReducer } from './modules/cart'
@@ -37,31 +37,28 @@ const store = window.STORE = createStore(
 import { requestActiveLiveStreamSaga } from './modules/app'
 sagaMiddleware.run(requestActiveLiveStreamSaga)
 
-import { mutePlayerSaga } from '../../lib/modules/player'
-sagaMiddleware.run(mutePlayerSaga)
-
-import { nextTrackSaga } from '../../lib/modules/player'
+import { nextTrackSaga } from '../../lib/modules/website-player'
 sagaMiddleware.run(nextTrackSaga)
 
-import { pausePlayerSaga } from '../../lib/modules/player'
+import { pausePlayerSaga } from '../../lib/modules/website-player'
 sagaMiddleware.run(pausePlayerSaga)
 
-import { playPlayerSaga } from '../../lib/modules/player'
+import { playPlayerSaga } from '../../lib/modules/website-player'
 sagaMiddleware.run(playPlayerSaga)
 
-import { previousTrackSaga } from '../../lib/modules/player'
+import { previousTrackSaga } from '../../lib/modules/website-player'
 sagaMiddleware.run(previousTrackSaga)
 
-import { seekPlayerSaga } from '../../lib/modules/player'
+import { seekPlayerSaga } from '../../lib/modules/website-player'
 sagaMiddleware.run(seekPlayerSaga)
 
-import { trackEndedSaga } from '../../lib/modules/player'
+import { setPlayerInstanceSaga } from '../../lib/modules/website-player'
+sagaMiddleware.run(setPlayerInstanceSaga)
+
+import { trackEndedSaga } from '../../lib/modules/website-player'
 sagaMiddleware.run(trackEndedSaga)
 
-import { unmutePlayerSaga } from '../../lib/modules/player'
-sagaMiddleware.run(unmutePlayerSaga)
-
-import { unpausePlayerSaga } from '../../lib/modules/player'
+import { unpausePlayerSaga } from '../../lib/modules/website-player'
 sagaMiddleware.run(unpausePlayerSaga)
 
 import { createItemsSaga } from './modules/content'

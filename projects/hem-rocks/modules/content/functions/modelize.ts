@@ -5,6 +5,7 @@ function modelize(rawContentItem: any): IContentItem {
     acceptingDonations: rawContentItem.acceptingDonations || false,
     attribution: rawContentItem.attribution || '',
     attributionLink: rawContentItem.attributionLink || '',
+    audioFilename: rawContentItem.audioFilename || '',
     badgeText: rawContentItem.badgeText || '',
     blurb: rawContentItem.blurb || '',
     category: rawContentItem.category || '',
@@ -36,8 +37,6 @@ function modelize(rawContentItem: any): IContentItem {
     tags: rawContentItem.tags || '',
     title: rawContentItem.title || '',
     titleWrapping: rawContentItem.titleWrapping || '',
-    trackResourceId: rawContentItem.trackResourceId || '',
-    trackResourceSecret: rawContentItem.trackResourceSecret || '',
     trackSlugs: rawContentItem.trackSlugs || '',
     type: rawContentItem.type || '',
   }

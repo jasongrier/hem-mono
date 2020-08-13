@@ -13,7 +13,7 @@ import { ProtectedContent } from '../../login'
 import { CampaignMonitorForm, ElectronNot, ScrollToTop, NagToaster, Spinner, Toaster, ElectronOnly } from '../../../../../lib/components'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup, closePopup } from '../../../../../lib/modules/popups'
-import { PlayerBar, setPlayerPlaylist, replacePlaylist } from '../../../../../lib/modules/player'
+import { PlayerBar, setPlayerPlaylist, replacePlaylist, setPlayerInstance } from '../../../../../lib/modules/website-player'
 import { usePrevious } from '../../../../../lib/hooks'
 import { collapseTopBar, expandTopBar, getCookieName } from '../index'
 import { SiteFooter, TopBar } from '../../../components/layout'
@@ -103,6 +103,10 @@ function App(): ReactElement {
 
   useEffect(function fetchContent() {
     dispatch(requestReadItems())
+  }, [])
+
+  useEffect(function initPlayer() {
+    dispatch(setPlayerInstance())
   }, [])
 
   useEffect(function setActiveLiveStream() {
