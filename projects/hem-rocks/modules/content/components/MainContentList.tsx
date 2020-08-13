@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Scrollbars from 'react-scrollbars-custom'
 import { slugify, titleCase } from 'voca'
-import { get, uniq, flatten } from 'lodash'
+import { get, uniq, flatten, orderBy } from 'lodash'
 import moment from 'moment'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup } from '../../../../../lib/modules/popups'
@@ -30,6 +30,7 @@ interface IProps {
   items?: IContentItem[]
   linkTo?: (contentItem: IContentItem) => string
   onFiltersChanged?: () => void
+  orderByOrder?: boolean
   showCategoryOnContentBoxes?: boolean
   title?: string
 }
@@ -49,6 +50,7 @@ function MainContentList({
   infoPopupTitle,
   items: propsContentItems,
   linkTo,
+  orderByOrder,
   showCategoryOnContentBoxes = false,
   title,
 }: IProps): ReactElement {
@@ -112,8 +114,15 @@ function MainContentList({
         })
       }
 
-      contentItems.sort(sortFn)
-      stickyContentItems.sort(sortFn)
+      if (orderByOrder) {
+        contentItems.sort(orderSortFn)
+        stickyContentItems.sort(orderSortFn)
+      }
+
+      else {
+        contentItems.sort(dateSortFn)
+        stickyContentItems.sort(dateSortFn)
+      }
 
       contentItems = stickyContentItems.concat(contentItems)
     }
@@ -150,9 +159,13 @@ function MainContentList({
     })
   }, [currentFilter, storeContentItems, currentlyOpenPopUp])
 
-  function sortFn(a: IContentItem, b: IContentItem) {
+  function dateSortFn(a: IContentItem, b: IContentItem) {
     // @ts-ignore
     return moment(b.date, 'DD-MM-YYYY') - moment(a.date, 'DD-MM-YYYY')
+  }
+  
+  function orderSortFn(a: IContentItem, b: IContentItem) {
+    return parseInt(a.order, 10) - parseInt(b.order, 10)
   }
 
   return (
