@@ -19,8 +19,9 @@ function PopupContainer({
   escapeKeyCloses = true,
   overlayCloses = true,
 }: PropsWithChildren<IProps>): ReactElement {
-  const { currentlyOpenPopUp, propsToChildren } = useSelector((state: any) => ({
+  const { currentlyOpenPopUp, frozen, propsToChildren } = useSelector((state: any) => ({
     currentlyOpenPopUp: state.popups.currentlyOpenPopUp,
+    frozen: state.popups.frozen,
     propsToChildren: state.popups.propsToChildren,
   }))
 
@@ -88,7 +89,7 @@ function PopupContainer({
           evt.stopPropagation()
         }}
       >
-        { CloseIcon !== false && (
+        { frozen === false && CloseIcon !== false && (
           <div
             className="hem-popup-close"
             onClick={() => {

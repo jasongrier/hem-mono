@@ -10,12 +10,14 @@ import {
   SUBMIT_SALE,
 
   IState,
+  SET_SALE_RETRIEVAL_ERROR,
 } from './index'
 
 const initialState: IState = {
   currentSale: null,
   products: [],
   redirecting: false,
+  saleRetrievalError: false,
 }
 
 const reducer = (
@@ -56,6 +58,12 @@ const reducer = (
     case SET_CURRENT_SALE: {
       return produce(state, draftState => {
         draftState.currentSale = payload
+      })
+    }
+
+    case SET_SALE_RETRIEVAL_ERROR: {
+      return produce(state, draftState => {
+        draftState.saleRetrievalError = payload
       })
     }
 

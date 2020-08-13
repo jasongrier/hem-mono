@@ -5,6 +5,7 @@ import {
   REQUEST_SALE,
   SET_CART_PRODUCTS,
   SET_CURRENT_SALE,
+  SET_SALE_RETRIEVAL_ERROR,
   SUBMIT_SALE,
 
   Action,
@@ -43,6 +44,11 @@ const setCurrentSale = (sale: ISale): Action => ({
   payload: sale,
 })
 
+const setSaleRetrievalError = (error: boolean): Action => ({
+  type: SET_SALE_RETRIEVAL_ERROR,
+  payload: error,
+})
+
 const submitSale = (saleId: string): Action => ({
   type: SUBMIT_SALE,
   payload: saleId,
@@ -55,5 +61,6 @@ export {
   requestSale,
   setCartProducts,
   setCurrentSale,
+  setSaleRetrievalError,
   submitSale,
 }

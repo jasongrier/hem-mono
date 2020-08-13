@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useState, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import uuid from 'uuid/v1'
-import { slugify } from 'voca'
+import { isEmpty } from 'lodash'
 import { autoParagraph } from '../../../../../lib/functions'
 import { modelize, hasTag, getContentItemBySlug, hasCategory } from '../functions'
 import { IIndexEntry, IContentItem } from '..'
@@ -166,13 +166,6 @@ function migrate(allContentItems: IContentItem[]) {
     const newItem = Object.assign({}, item)
 
     // DO STUFF HERE
-    if (hasCategory(newItem, 'tracks')) {
-      newItem.audioFilename = newItem.slug + '.mp3'
-    }
-
-    else {
-      newItem.audioFilename = ''
-    }
     // END DO STUFF HERE
 
     newItems.push(newItem)
