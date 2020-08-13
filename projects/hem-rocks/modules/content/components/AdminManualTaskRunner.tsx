@@ -1,11 +1,14 @@
 import React, { ReactElement, useEffect, useState, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import uuid from 'uuid/v1'
-import { isEmpty } from 'lodash'
+import { noop } from 'lodash'
 import { autoParagraph } from '../../../../../lib/functions'
 import { modelize, hasTag, getContentItemBySlug, hasCategory } from '../functions'
 import { IIndexEntry, IContentItem } from '..'
 import { RootState } from '../../../index'
+import { readdirSync } from 'fs'
+import { slugify } from 'voca'
+import { execSync } from 'child_process'
 
 function convertOldTypescriptModelsToJson() {
   const { remote } = window.require('electron')
@@ -157,8 +160,18 @@ function migrate(allContentItems: IContentItem[]) {
   ]
 
   const { remote } = window.require('electron')
-  const { writeFileSync } = remote.require('fs')
+  const { execSync } = remote.require('child_process')
+  const { writeFileSync, readdirSync, rename } = remote.require('fs')
   const { join } = remote.require('path')
+
+  // const slPreviewsDir = join(process.env.HOME, 'Desktop', 'hem-static', 'hem-rocks', 'content', 'tracks', 'sound-library-previews')
+  // const slPreviews = readdirSync(slPreviewsDir)
+  
+  // for (const slPreview of slPreviews) {
+  //   const newFilename = slugify(slPreview).replace('-mp-3', '.mp3')
+  //   rename(`${slPreviewsDir}/${slPreview}`, `${slPreviewsDir}/${newFilename}`, noop)
+  // }
+
 
   const newItems = []
 
@@ -166,29 +179,20 @@ function migrate(allContentItems: IContentItem[]) {
     const newItem = Object.assign({}, item)
 
     // DO STUFF HERE
+    if (hasTag(newItem, 'sound-library')) {
+      newItem.audioFilename = newItem.audioFilename + '.mp3'
+    }
+
     // END DO STUFF HERE
 
     newItems.push(newItem)
   }
 
-  console.log('fetching...')
+  const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
+  const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
 
-  fetch('http://hem.rocks')
-    .then(function(res) {
-      return res.text()
-    })
-    .then(function(res) {
-      console.log(res)
-    })
-    .catch(function(err) {
-      console.log(err)
-    })
-
-  // const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
-  // const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
-
-  // writeFileSync(srcIndex, JSON.stringify(newItems, null, 2))
-  // writeFileSync(distIndex, JSON.stringify(newItems, null, 2))
+  writeFileSync(srcIndex, JSON.stringify(newItems, null, 2))
+  writeFileSync(distIndex, JSON.stringify(newItems, null, 2))
 }
 
 function assignImages() {

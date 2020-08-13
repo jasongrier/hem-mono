@@ -36,30 +36,6 @@ function SoundLibrary(): ReactElement {
           category="sound-library"
           currentFilter={currentFilter}
           excludeFromAll="Midi Devices"
-          filters={[
-            'ASMR',
-            'Extended Technique',
-            'Field Recording',
-            'Found Sound',
-            'Generative Tools',
-            'Guitar and Bass',
-            'Instruments',
-            'Keys',
-            'Labor Theory',
-            'Microtonality',
-            'Midi Devices',
-            'New in the Library',
-            'Percussion',
-            'Performativity / Activism',
-            'Post Studio',
-            'Sonic Detritus',
-            'Strings',
-            'Synth',
-            'Secondhand Store Vinyl',
-            'Toy Instruments',
-            'Vocal',
-            'Winds',
-          ]}
         >
           {(pack) => {
             const attachedTracks = getContentItemsFromRawList(allContentItems, pack.trackSlugs).map(track =>
