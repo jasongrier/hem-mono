@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Helmet } from 'react-helmet'
-import { setPlayerPlaylist } from '../../../../lib/modules/player'
+import { setPlayerPlaylist } from '../../../../lib/modules/website-player'
 import { NewWebsiteHeroine, GrandPianoHeroine } from '../../components/heroines'
 import { MainContentList, getContentItemsFromList } from '../../modules/content'
 import { ReleasePhase } from '../../components/layout'

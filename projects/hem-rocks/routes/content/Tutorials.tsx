@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router-dom'
 import { MainContentList, contentItemToTrack } from '../../modules/content'
-import { TrackPlayPauseButton } from '../../../../lib/modules/player'
+import { TrackPlayPauseButton } from '../../../../lib/modules/website-player'
 import { BASE_SITE_TITLE } from '../../config'
 
 function Tutorials(): ReactElement {
