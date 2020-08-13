@@ -132,9 +132,9 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
     'title',
     'titleWrapping',
     'secondaryTitle',
-    'slug',
     'category',
     'tags',
+    'order',
   ]
 
   let orderedKeys = []
