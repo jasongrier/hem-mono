@@ -154,6 +154,14 @@
   width: 150px;
 }
 
+.admin-list-column-order input {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #eee;
+  text-align: center;
+}
+
 .admin-list-column-actions {
   width: 210px;
 }
@@ -243,7 +251,8 @@
 }
 
 .admin-item textarea {
-  width: calc(100vw - 120px);
+  width: calc(100vw - 280px);
+  padding: 100px;
   resize: none;
 }
 

@@ -1,13 +1,23 @@
 import React, { ReactElement } from 'react'
-import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import ReactGA from 'react-ga'
+import marked from 'marked'
 import { CampaignMonitorForm } from '../../../../lib/components'
 import { SoundLibrarySubnav } from '../../components/layout'
 import { assetHostHostname } from '../../functions'
 import { BASE_SITE_TITLE, CAMPAIGN_MONITOR_FORM_ACTION, CAMPAIGN_MONITOR_FORM_ID, CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME } from '../../config'
+import { RootState } from '../../index'
+import { getContentItemBySlug } from '../../modules/content'
+import { autoParagraph } from '../../../../lib/functions'
 
 function AboutSoundLibrary(): ReactElement {
+  const { contentItems } = useSelector((state: RootState) => ({
+    contentItems: state.content.contentItems,
+  }))
+
+  const aboutSLArticle = getContentItemBySlug(contentItems, 'about-sound-library')
+
   return (
     <>
       <Helmet>
@@ -18,28 +28,10 @@ function AboutSoundLibrary(): ReactElement {
         <h1>About SL</h1>
         <SoundLibrarySubnav />
         <div className="main-content-section first-main-content-section">
-          <h2>HEM is a sound art and software company.</h2>
-          <p>We make <Link to="sound-library">Sound Library</Link>, <Link to="apps/seurat">Seurat</Link>, <Link to="apps/midst">Midst</Link>, and <Link to="apps/breto">Breto</Link>.</p>
-
-          <p className="splash-image">
-            <img src={`${assetHostHostname()}/hem-rocks/content/images/key-art/info-page.jpg`} alt="About HEM" />
-          </p>
+          <div dangerouslySetInnerHTML={{
+            __html: marked(aboutSLArticle.description),
+          }} />
         </div>
-
-        <div className="main-content-section">
-          <h2>Label</h2>
-          <p>HEM started as a music label called Human Ear Music. It was at first run collectively in Los Angeles in 2006. You may have heard of a few of Human Ear Music's founding members and participants: Ariel Pink, Michael Pisaro, Geneva Jacuzzi, Julia Holter, and Jason Grier.</p>
-          <p>The entire history of Human Ear Music is hosted <Link to="label">here</Link>, including tons of rare tracks that cannot be heard elsewhere.</p>
-        </div>
-
-        <div className="main-content-section">
-          <h2>Demo Policy</h2>
-          <p>By "demo" we mean: Sound, text, visual art, new media, code, apps, proposals, websites, events, actions, anything you've got going on.</p>
-          <p>We're happy to experience your work and offer you feedback, mentorship, and advice!</p>
-          <p>Please note that it is more about that than producing and releasing stuff, in the traditional sense.</p>
-          <p>Please do send us a link to your work via the <Link to="contact">contact form</Link>.</p>
-        </div>
-
         <div className="main-content-section">
           <h2>Sign up to stay updated about new sounds and plugins in Library</h2>
           <div className="inline-newsletter-form">

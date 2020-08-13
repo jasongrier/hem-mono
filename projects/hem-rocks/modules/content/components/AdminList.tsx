@@ -65,8 +65,14 @@ function AdminList(): ReactElement {
   }
 
   contentItems.sort((a, b) => {
-    // @ts-ignore
-    return moment(b.date, 'DD.MM.YYYY') - moment(a.date, 'DD.MM.YYYY')
+    if (adminFilterApplied === 'sound-library') {
+      return parseInt(b.order, 10) - parseInt(a.order, 10)
+    }
+    
+    else {
+      // @ts-ignore
+      return moment(b.date, 'DD.MM.YYYY') - moment(a.date, 'DD.MM.YYYY')
+    }
   })
 
   return (
@@ -140,6 +146,9 @@ function AdminList(): ReactElement {
               <th className="admin-list-column-category">
                 Category
               </th>
+              <th className="admin-list-column-order">
+                Order
+              </th>
               <th className="admin-list-column-date">
                 Date
               </th>
@@ -149,6 +158,7 @@ function AdminList(): ReactElement {
             </tr>
           </thead>
           <tbody>
+            { console.log(map(contentItems, 'title')) }
             { contentItems.map((item: IContentItem) => (
               <tr key={item.slug}>
                 <td className="admin-list-column-title">
@@ -156,6 +166,9 @@ function AdminList(): ReactElement {
                 </td>
                 <td className="admin-list-column-category">
                   { titleCase(item.category.replace(/-/g, ' ')) }
+                </td>
+                <td className="admin-list-column-order">
+                  { item.order || '-' }
                 </td>
                 <td className="admin-list-column-date">
                   { item.date }

@@ -179,10 +179,7 @@ function migrate(allContentItems: IContentItem[]) {
     const newItem = Object.assign({}, item)
 
     // DO STUFF HERE
-    if (hasTag(newItem, 'sound-library')) {
-      newItem.audioFilename = newItem.audioFilename + '.mp3'
-    }
-
+    newItem.order = ''
     // END DO STUFF HERE
 
     newItems.push(newItem)

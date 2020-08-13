@@ -70,8 +70,8 @@ function RoutingHub(): ReactElement {
         <Route exact path="/about" component={About} />
         <Route exact path="/about/cart" component={About} />
         
-        <Route exact path="/sound-library/about" component={AboutSoundLibrary} />
-        <Route exact path="/sound-library/about/cart" component={AboutSoundLibrary} />
+        <Route exact path="/sound-library/about-sl" component={AboutSoundLibrary} />
+        <Route exact path="/sound-library/about-sl/cart" component={AboutSoundLibrary} />
         
         <Route exact path="/sound-library/made-with-sl" component={MadeWithSoundLibrary} />
         <Route exact path="/sound-library/made-with-sl/cart" component={MadeWithSoundLibrary} />

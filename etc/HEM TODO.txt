@@ -435,6 +435,7 @@ x Archive image
 – DD description
 – DD essay??
 > Move this todo list into admin; todo's feature
+- Migrate Frame drum to bendir drum
 
 
 √ "Needs photos" filter in admin

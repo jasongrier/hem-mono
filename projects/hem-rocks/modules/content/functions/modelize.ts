@@ -23,6 +23,7 @@ function modelize(rawContentItem: any): IContentItem {
     isDigitalProduct: rawContentItem.isDigitalProduct || false,
     isPhysicalProduct: rawContentItem.isPhysicalProduct || false,
     keyArt: rawContentItem.keyArt || '',
+    order: rawContentItem.order || '',
     physicalFormats: rawContentItem.physicalFormats || '',
     preview: rawContentItem.preview || false,
     published: rawContentItem.published || false,
