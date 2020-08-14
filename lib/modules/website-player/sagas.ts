@@ -111,6 +111,10 @@ function* setPlayerInstance() {
     playerEl.addEventListener('play', function() {
       win.STORE.dispatch(setPlayerActuallyPlayingAc(true))
     })
+    
+    playerEl.addEventListener('ended', function() {
+      win.STORE.dispatch(nextTrackAc())
+    })
 
     document.body.appendChild(playerEl)
   } catch (err) {
