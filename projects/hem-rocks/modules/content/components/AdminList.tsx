@@ -10,13 +10,15 @@ import { PlayPauseButton } from '../../../../../lib/packages/hem-buttons'
 import { adminApplyFilter, adminApplySearch, toggleNeedsKeyArtFilter, requestDeleteItems, requestReadItems, requestUpdateItems, IContentItem } from '../index'
 import { RootState } from '../../../index'
 import { hasCategory, hasTag } from '../functions'
+import { toggleHideUnpublishedFilter } from '../actions'
 
 function AdminList(): ReactElement {
-  const { adminFilterApplied, adminSearchApplied, allContentItems, needsKeyArtFilter } = useSelector((state: RootState) => ({
+  const { adminFilterApplied, adminSearchApplied, allContentItems, needsKeyArtFilter, hideUnpublishedFilter } = useSelector((state: RootState) => ({
     adminFilterApplied: state.content.adminFilterApplied,
     adminSearchApplied: state.content.adminSearchApplied,
     allContentItems: state.content.contentItems,
     needsKeyArtFilter: state.content.needsKeyArtFilter,
+    hideUnpublishedFilter: state.content.hideUnpublishedFilter,
   }))
 
   const dispatch = useDispatch()
@@ -42,6 +44,12 @@ function AdminList(): ReactElement {
       dispatch(toggleNeedsKeyArtFilter())
     }, [],
   )
+  
+  const hideUnpublishedOnChange = useCallback(
+    function hideUnpublishedOnChangeFn(evt: SyntheticEvent<HTMLInputElement>) {
+      dispatch(toggleHideUnpublishedFilter())
+    }, [],
+  )
 
   let contentItems = ([] as IContentItem[]).concat(adminFilterApplied === 'all' ? allContentItems : allContentItems.filter(item => {
     if (adminFilterApplied === 'home-feature') {
@@ -63,10 +71,14 @@ function AdminList(): ReactElement {
   if (needsKeyArtFilter) {
     contentItems = contentItems.filter(item => isEmpty(item.keyArt))
   }
+  
+  if (hideUnpublishedFilter) {
+    contentItems = contentItems.filter(item => item.published)
+  }
 
   contentItems.sort((a, b) => {
     if (adminFilterApplied === 'sound-library') {
-      return parseInt(b.order, 10) - parseInt(a.order, 10)
+      return parseInt(a.order, 10) - parseInt(b.order, 10)
     }
     
     else {
@@ -123,7 +135,16 @@ function AdminList(): ReactElement {
           </div>
         </div>
         <div className="admin-list-controls clearfix">
-          <label htmlFor="search">
+          <label htmlFor="hide-unpublished">
+            Hide unpublished:&nbsp;
+            <input
+              onChange={hideUnpublishedOnChange}
+              name="hide-unpublished"
+              type="checkbox"
+              value={hideUnpublishedFilter ? 'on' : 'off'}
+            />
+          </label>
+          <label htmlFor="needs-photos">
             Needs key art:&nbsp;
             <input
               onChange={needsPhotosOnChange}

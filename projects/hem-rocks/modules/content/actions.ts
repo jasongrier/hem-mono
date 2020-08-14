@@ -12,6 +12,7 @@ import {
   REQUEST_UPDATE_ITEMS,
   SET_CURRENT_ITEM,
   TOGGLE_NEEDS_KEY_ART_FILTER,
+  TOGGLE_HIDE_UNPUBLISHED_FILTER,
 
   Action,
   IContentItem,
@@ -82,6 +83,11 @@ const toggleNeedsKeyArtFilter = (): Action => ({
   payload: null,
 })
 
+const toggleHideUnpublishedFilter = (): Action => ({
+  type: TOGGLE_HIDE_UNPUBLISHED_FILTER,
+  payload: null,
+})
+
 export {
   adminApplyFilter,
   adminApplySearch,
@@ -96,4 +102,5 @@ export {
   requestUpdateItems,
   setCurrentItem,
   toggleNeedsKeyArtFilter,
+  toggleHideUnpublishedFilter,
 }

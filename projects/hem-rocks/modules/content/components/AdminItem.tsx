@@ -71,9 +71,26 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
     setOriginalItem(item)
     setWorkingItem(item)
   }, [allContentItems])
+
+  useEffect(function saveShortcut() {
+    document.body.addEventListener('keydown', function (evt) {
+      if (
+        evt.keyCode === 83
+        && evt.metaKey === true
+        && canSave
+      ) {
+        const payloadItem = Object.assign({}, workingItem)
+        const textarea = document.getElementsByTagName('textarea')[0]
+        payloadItem.description = textarea.innerHTML
+        dispatch(requestUpdateItems([payloadItem]))
+        setCanSave(false)
+      }
+    })
+  }, [canSave])
   
   function onChange(fieldName: string, value: string) {
     setWorkingItem(produce(workingItem, (draftItem: any) => {
+      console.log(value)
       draftItem[fieldName] = value
       setCanSave(!isEqual(draftItem, originalItem))
     }))
@@ -131,6 +148,7 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
   const preferredOrder = [
     'title',
     'titleWrapping',
+    'description',
     'secondaryTitle',
     'category',
     'tags',
@@ -258,6 +276,16 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
           </tbody>
         </table>
       </form>
+      <div style={{
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        width: '20px',
+        height: '20px',
+        zIndex: 99999999,
+        backgroundColor: 'red',
+        display: canSave ? 'block' : 'none',
+      }}/>
     </ElectronOnly>
   )
 }
