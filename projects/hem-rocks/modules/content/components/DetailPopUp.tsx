@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { Link } from 'react-router-dom'
 import { find, isFinite, isNaN, isEmpty } from 'lodash'
+import marked from 'marked'
 import uuid from 'uuid/v1'
 import Scrollbars from 'react-scrollbars-custom'
 import ReactGA from 'react-ga'
@@ -455,12 +456,23 @@ function DetailPopUp({
           </div>
         </header>
         <div className="detail-popup-details">
-          {showPurchaseForm && (
-            <h2>Details</h2>
+          {/* { showPurchaseForm && (
+            <h2 className="main-subheading">Details</h2>
+          )} */}
+          { contentItem.description.replace(/ /g, '').length > 0 && (
+            <div
+              className="mega-blurb"
+              dangerouslySetInnerHTML={{
+                __html: marked(contentItem.blurb),
+              }}
+            />
           )}
-          <div dangerouslySetInnerHTML={{
-            __html: contentItem.description.replace(/ /g, '').length === 0 ?  contentItem.blurb : contentItem.description,
-          }} />
+          <div 
+            className="detail-cms-text"
+            dangerouslySetInnerHTML={{
+            __html: marked(contentItem.description.replace(/ /g, '').length === 0 ?  contentItem.blurb : contentItem.description),
+            }} 
+          />
           <div className="detail-popup-details-sidebar">
             { attachedPlaylist && attachedPlaylist.tracks && attachedPlaylist.tracks.length > 1 && (
               <div className="detail-popup-details-sidebar-section">
@@ -476,6 +488,14 @@ function DetailPopUp({
                   ))}
                 </ul>
               </div>
+            )}
+            { contentItem.aside && ( 
+              <div 
+                className="detail-popup-details-sidebar-info"
+                dangerouslySetInnerHTML={{
+                  __html: marked(contentItem.aside),
+                }}
+              />
             )}
           </div>
         </div>

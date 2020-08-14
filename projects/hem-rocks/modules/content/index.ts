@@ -2,6 +2,7 @@ import { AnyAction } from 'redux'
 
 export interface IContentItem {
   acceptingDonations: boolean
+  aside: string
   attribution: string
   attributionLink: string
   audioFilename: string
@@ -57,6 +58,7 @@ export interface IState {
 
 export const fieldTypes: IContentItem = {
   acceptingDonations: false,
+  aside: 'textarea',
   attribution: 'text',
   attributionLink: 'text',
   audioFilename: 'text',
