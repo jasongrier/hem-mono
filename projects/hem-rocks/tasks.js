@@ -31,7 +31,7 @@ function removeHiddenContentFromBuild() {
 
 function hemPostBuild(devSession) {
   if (!devSession) {
-    removeHiddenContentFromBuild()
+    // removeHiddenContentFromBuild()
   }
 }
 

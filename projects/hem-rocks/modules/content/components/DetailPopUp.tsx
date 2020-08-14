@@ -1,4 +1,4 @@
-import React, { ReactElement, SyntheticEvent, useEffect, useCallback, useState } from 'react'
+import React, { ReactElement, SyntheticEvent, useEffect, useCallback, useContext, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { Link } from 'react-router-dom'
@@ -327,7 +327,10 @@ function DetailPopUp({
         with-photography
       `}
     >
-      <Scrollbars noScrollX={true}>
+      <Scrollbars 
+        createContext={true}
+        noScrollX={true}
+      >
         <header>
           <div className="detail-popup-title">
             <h1>{ contentItem.title }</h1>

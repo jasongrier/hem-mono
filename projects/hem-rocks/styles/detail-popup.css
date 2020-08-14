@@ -11,7 +11,7 @@
   top: 20px;
   width: 1100px;
   margin-left: -550px;
-  height: calc(100vh - 40px);
+  height: calc(100vh - 20px);
 }
 
 .detail-popup header {
@@ -281,6 +281,11 @@
   font-size: 30px;
 }
 
+.hem-popup-content .detail-popup-details hr {
+  border: none;
+  border-top: 1px solid #999;
+}
+
 .hem-popup-content .detail-popup-details h2.main-subheading {
   margin-top: 0;
 }
@@ -400,6 +405,7 @@
 }
 
 .hem-popup-content .detail-popup-details .detail-popup-details-sidebar-info h2 {
+  margin-top: 45px;
   margin-bottom: 10px;
   font-size: 14px;
   font-weight: 600;

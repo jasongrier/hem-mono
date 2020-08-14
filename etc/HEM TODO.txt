@@ -420,6 +420,11 @@ x Reset Google Analytics (or just go in there and see what it looks like)
 > All category names use the plural
 √ 404 page
 - Funny art for 404 page (hippo??)
+
+- Remove hidden content from build is BROKEN ****
+- Mailing list disappears when you scroll, INTENTIONAL?? ****
+- When playbutton is active for a sister playlist track, it should stop playback NOT play track 1 ****
+
 √ Scroll freeze bug
 √ PHP analytics for cookie nag
 - Cookie refusal does not send request to PHP
