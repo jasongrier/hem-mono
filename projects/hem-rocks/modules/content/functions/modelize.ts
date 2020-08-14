@@ -3,6 +3,7 @@ import { IContentItem } from '../index'
 function modelize(rawContentItem: any): IContentItem {
   return {
     acceptingDonations: rawContentItem.acceptingDonations || false,
+    aside: rawContentItem.aside || '',
     attribution: rawContentItem.attribution || '',
     attributionLink: rawContentItem.attributionLink || '',
     audioFilename: rawContentItem.audioFilename || '',

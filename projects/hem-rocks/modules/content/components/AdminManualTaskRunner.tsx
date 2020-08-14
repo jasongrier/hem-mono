@@ -179,7 +179,7 @@ function migrate(allContentItems: IContentItem[]) {
     const newItem = Object.assign({}, item)
 
     // DO STUFF HERE
-    newItem.order = ''
+    newItem.aside = ''
     // END DO STUFF HERE
 
     newItems.push(newItem)
