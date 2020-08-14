@@ -440,7 +440,10 @@ function DetailPopUp({
               )}
             </div>
             { category !== 'venue-calendar' && attachedPlaylist && attachedPlaylist.tracks && attachedPlaylist.tracks.length > 0 && (
-              <TrackPlayPauseButton track={attachedPlaylist.tracks[0]} />
+              <TrackPlayPauseButton 
+                track={attachedPlaylist.tracks[0]}
+                activeFor={attachedPlaylist.tracks}
+              />
             )}
             { category === 'venue-calendar' && activeLiveStream === contentItem.slug && (
               <PlayPauseButton

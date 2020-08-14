@@ -311,7 +311,7 @@ function App(): ReactElement {
       }
       ${process.env.NODE_ENV === 'production' ? 'node-env-production' : ''}
     `}>
-      <ProtectedContent header="Super secret preview">
+      <>
         <ScrollToTop scrollPaneSelector=".scroll-lock-content" />
 
         <TopBar />
@@ -365,7 +365,7 @@ function App(): ReactElement {
         </PopupContainer>
 
         <PlayerBar />
-      </ProtectedContent>
+      </>
 
       <ElectronNot>
         <CookieApproval />

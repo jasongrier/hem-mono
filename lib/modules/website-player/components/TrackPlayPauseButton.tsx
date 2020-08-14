@@ -7,10 +7,11 @@ import { Spinner } from '../../../components'
 interface IProps {
   track: ITrack
 
+  activeFor?: ITrack[]
   onClick?: (playing: boolean) => void
 }
 
-function TrackPlayPauseButton({ track, onClick }: PropsWithChildren<IProps>): ReactElement {
+function TrackPlayPauseButton({ track, activeFor = [], onClick }: PropsWithChildren<IProps>): ReactElement {
   const { actuallyPlaying, currentTrackId, playerPlaying } = useSelector((state: any) => ({
     actuallyPlaying: state.player.actuallyPlaying,
     currentTrackId: state.player.currentTrack?.id,
@@ -41,6 +42,19 @@ function TrackPlayPauseButton({ track, onClick }: PropsWithChildren<IProps>): Re
 
   const showSpinner = currentTrackId === track.id && playerPlaying && !actuallyPlaying
 
+  const activeForIds = activeFor.map(track => track.id)
+  let playing = false
+
+  if (
+    playerPlaying 
+    && (
+      (track.id === currentTrackId)
+      || activeForIds.includes(currentTrackId)
+    )
+  ) {
+    playing = true
+  }
+
   return (
     <div className="hem-player-track-play-pause-button">
       { showSpinner && (
@@ -48,7 +62,7 @@ function TrackPlayPauseButton({ track, onClick }: PropsWithChildren<IProps>): Re
       )}
       { !showSpinner && (
         <BasePlayPauseButton
-          playing={playerPlaying && (track.id === currentTrackId)}
+          playing={playing}
           onClick={playPauseButtonOnClick}
         />
       )}
