@@ -100,9 +100,7 @@ sagaMiddleware.run(logoutSaga)
 const Root = (
   <Provider store={store}>
     <BrowserRouter>
-      <ProtectedContent header="Super secret preview">
-        <App />
-      </ProtectedContent>
+      <App />
     </BrowserRouter>
   </Provider>
 )
