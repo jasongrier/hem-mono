@@ -421,3 +421,18 @@
 .detail-popup-details-sidebar-info ul li {
   margin-bottom: 10px;
 }
+
+.scroll-down-pointer {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  width: 60px;
+  height: 30px;
+  margin-left: -30px;
+  background-color: black;
+}
+
+.scroll-down-pointer .hem-chevron-button-icon {
+  display: block;
+  transform: rotate(90deg);
+}
