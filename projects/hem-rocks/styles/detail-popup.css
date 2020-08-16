@@ -432,7 +432,7 @@
   background-color: black;
 }
 
-.scroll-down-pointer .hem-chevron-button-icon {
+.scroll-down-pointer .hem-chevron-button {
   display: block;
   transform: rotate(90deg);
 }
