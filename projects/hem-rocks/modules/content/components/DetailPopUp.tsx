@@ -2,13 +2,13 @@ import React, { ReactElement, SyntheticEvent, useEffect, useCallback, useContext
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { Link } from 'react-router-dom'
-import { find, isFinite, isNaN, isEmpty } from 'lodash'
+import { find, isFinite, isNaN, noop } from 'lodash'
 import marked from 'marked'
 import uuid from 'uuid/v1'
 import Scrollbars from 'react-scrollbars-custom'
 import ReactGA from 'react-ga'
 import { Spinner } from '../../../../../lib/components'
-import { PlayPauseButton } from '../../../../../lib/packages/hem-buttons'
+import { PlayPauseButton, ChevronButton } from '../../../../../lib/packages/hem-buttons'
 import { closePopup, openPopup } from '../../../../../lib/modules/popups'
 import { TrackPlayPauseButton, ITrack, replacePlaylist, setPlayerPlaylist, IPlaylist } from '../../../../../lib/modules/website-player'
 import { addProductToCart, submitSale } from '../../cart'
@@ -506,6 +506,9 @@ function DetailPopUp({
           </div>
         </div>
       </Scrollbars>
+      <div className="scroll-down-pointer">
+        <ChevronButton onClick={noop} />
+      </div>
     </section>
   )
 }
