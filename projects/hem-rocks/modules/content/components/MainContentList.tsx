@@ -29,6 +29,7 @@ interface IProps {
   infoPopupTitle?: string
   items?: IContentItem[]
   linkTo?: (contentItem: IContentItem) => string
+  onlyTag?: string
   onFiltersChanged?: () => void
   orderByOrder?: boolean
   showCategoryOnContentBoxes?: boolean
@@ -50,6 +51,7 @@ function MainContentList({
   infoPopupTitle,
   items: propsContentItems,
   linkTo,
+  onlyTag,
   orderByOrder,
   showCategoryOnContentBoxes = false,
   title,
@@ -102,8 +104,13 @@ function MainContentList({
       let stickyContentItems = storeContentItems.filter(
         item => hasCategory(item, category) && item.published && item.sticky
       )
-
-      if (currentFilter && currentFilter !== 'all') {
+      
+      if (onlyTag) {
+        contentItems = contentItems.filter(item => hasTag(item, onlyTag))
+        stickyContentItems = stickyContentItems.filter(item => hasTag(item, onlyTag))
+      }
+      
+      else if (currentFilter && currentFilter !== 'all') {
         contentItems = contentItems.filter(item => hasTag(item, currentFilter))
         stickyContentItems = stickyContentItems.filter(item => hasTag(item, currentFilter))
       }
