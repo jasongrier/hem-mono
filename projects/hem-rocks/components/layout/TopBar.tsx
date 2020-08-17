@@ -50,6 +50,7 @@ function TopBar(): ReactElement {
 
           <MainNavItem name="Label" />
           <MainNavItem name="Tracks" />
+          <MainNavItem name="Blog" />
 
           <ReleasePhase exact phase={1}>
             <MainNavItem name="About" />
