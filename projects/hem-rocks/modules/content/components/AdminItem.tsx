@@ -73,19 +73,19 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
   }, [allContentItems])
 
   useEffect(function saveShortcut() {
-    document.body.addEventListener('keydown', function (evt) {
-      if (
-        evt.keyCode === 83
-        && evt.metaKey === true
-        && canSave
-      ) {
-        const payloadItem = Object.assign({}, workingItem)
-        const textarea = document.getElementsByTagName('textarea')[0]
-        payloadItem.description = textarea.innerHTML
-        dispatch(requestUpdateItems([payloadItem]))
-        setCanSave(false)
-      }
-    })
+    // document.body.addEventListener('keydown', function (evt) {
+    //   if (
+    //     evt.keyCode === 83
+    //     && evt.metaKey === true
+    //     && canSave
+    //   ) {
+    //     const payloadItem = Object.assign({}, workingItem)
+    //     const textarea = document.getElementsByTagName('textarea')[0]
+    //     payloadItem.description = textarea.innerHTML
+    //     dispatch(requestUpdateItems([payloadItem]))
+    //     setCanSave(false)
+    //   }
+    // })
   }, [canSave])
   
   function onChange(fieldName: string, value: string) {
