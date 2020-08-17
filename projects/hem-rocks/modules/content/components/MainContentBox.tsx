@@ -1,6 +1,7 @@
 import React, { ReactElement, PropsWithChildren, useCallback, useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import marked from 'marked'
 import { SplatterDims } from '../../../../../lib/packages/hem-boxplatter'
 import { assetHostHostname } from '../../../functions'
 import { IContentItem, setCurrentItem } from '../index'
@@ -99,7 +100,7 @@ function MainContentBox({
         onClick={onClick}
       >
         <Link to={linkTo}>
-          <p dangerouslySetInnerHTML={{ __html: contentItem.blurb }} />
+          <p dangerouslySetInnerHTML={{ __html: marked(contentItem.blurb) }} />
         </Link>
         <div className="main-content-box-actions">
           <div className="main-content-box-custom-actions">
