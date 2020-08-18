@@ -1,0 +1,31 @@
+- NR filter needs to turn off at 22
+- Script to rename the source files "Antique Piano" >> "Destroyed Piano", then re-find in Live
+- Project files sidebar docs
+- How not to have the samplers internals open when unpacking the .alp (convert to Simpler??)
+- Midway Audit of packs project files
+  - Destroyed Piano
+  - Noise Re­duction Arti­facts
+  - New Year's Eve, Berlin Kreuzberg
+  - Ducking Artifacts
+  - Runout Grooves
+
+- Midway creation of demos
+  - Destroyed Piano
+  - Noise Re­duction Arti­facts
+  - New Year's Eve, Berlin Kreuzberg
+  - Ducking Artifacts
+  - Runout Grooves
+
+- Min prices are too high
+- Remove .DS_Store files
+- Specs for web page
+- User guides
+  - Key ranges
+  - Copy of web text
+  - Macro controls
+  - Tips
+  - Screenshot
+
+- Migrations to make example tracks, related content/fields match the new titles
+- Sample tracks key art should use the pack's key art
+- End to end test purchase and free download
