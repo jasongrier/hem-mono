@@ -1,3 +1,5 @@
+- WAV files need to match the new titles
+- The actual sampler devices don't need to be named "sampler" 
 - NR filter needs to turn off at 22
 - Script to rename the source files "Antique Piano" >> "Destroyed Piano", then re-find in Live
 - Project files sidebar docs
