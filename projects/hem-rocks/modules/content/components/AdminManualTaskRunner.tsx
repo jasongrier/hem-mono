@@ -164,31 +164,33 @@ function migrate(allContentItems: IContentItem[]) {
   const { writeFileSync, readdirSync, rename } = remote.require('fs')
   const { join } = remote.require('path')
 
-  // const slPreviewsDir = join(process.env.HOME, 'Desktop', 'hem-static', 'hem-rocks', 'content', 'tracks', 'sound-library-previews')
-  // const slPreviews = readdirSync(slPreviewsDir)
+  const dir = join(process.env.HOME, 'Desktop', 'hem-mono', 'etc', 'Consolidate')
+  const files = readdirSync(dir)
   
-  // for (const slPreview of slPreviews) {
-  //   const newFilename = slugify(slPreview).replace('-mp-3', '.mp3')
-  //   rename(`${slPreviewsDir}/${slPreview}`, `${slPreviewsDir}/${newFilename}`, noop)
-  // }
+  for (const file of files) {
+    const newFile = file.replace('–', '-').replace(/\[[0-9\- ]+\]/, '').replace(' .aif', '.aif')
+    rename(`${dir}/${file}`, `${dir}/${newFile}`, (res) => {
+      console.log(res)
+    })
+  }
 
 
-  const newItems = []
+  // const newItems = []
 
-  for (const item of allContentItems) {
-    const newItem = Object.assign({}, item)
+  // for (const item of allContentItems) {
+  //   const newItem = Object.assign({}, item)
 
     // DO STUFF HERE
     // END DO STUFF HERE
 
-    newItems.push(newItem)
-  }
+  //   newItems.push(newItem)
+  // }
 
-  const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
-  const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
+  // const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
+  // const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
 
-  writeFileSync(srcIndex, JSON.stringify(newItems, null, 2))
-  writeFileSync(distIndex, JSON.stringify(newItems, null, 2))
+  // writeFileSync(srcIndex, JSON.stringify(newItems, null, 2))
+  // writeFileSync(distIndex, JSON.stringify(newItems, null, 2))
 }
 
 function assignImages() {
