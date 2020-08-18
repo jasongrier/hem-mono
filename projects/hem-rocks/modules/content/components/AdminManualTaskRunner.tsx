@@ -179,14 +179,6 @@ function migrate(allContentItems: IContentItem[]) {
     const newItem = Object.assign({}, item)
 
     // DO STUFF HERE
-    newItem.title = newItem.title.replace('Antique Piano', 'Destroyed Piano')
-    newItem.slug = newItem.slug.replace('antique-piano', 'destroyed-piano')
-    newItem.trackSlugs = newItem.slug.replace(/antique-piano/g, 'destroyed-piano')
-    newItem.keyArt = newItem.slug.replace(/antique-piano/g, 'destroyed-piano')
-    newItem.downloadFile = newItem.slug.replace(/antique-piano/g, 'destroyed-piano')
-    newItem.audioFilename = newItem.slug.replace(/antique-piano/g, 'destroyed-piano')
-    newItem.relatedContent = newItem.slug.replace(/antique-piano/g, 'destroyed-piano')
-    newItem.secondaryAttributionLink = newItem.slug.replace(/antique-piano/g, 'destroyed-piano')
     // END DO STUFF HERE
 
     newItems.push(newItem)

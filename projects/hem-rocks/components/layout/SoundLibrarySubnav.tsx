@@ -23,6 +23,9 @@ function SoundLibrarySubnav(): ReactElement {
         <li>
           <NavLink to="/sound-library/made-with-sl">Made something with SL?</NavLink>
         </li>
+        <li>
+          <NavLink to="/sound-library/new-in-sl-2020">What's new in SL 2020?</NavLink>
+        </li>
       </ul>
     </nav>
   )
