@@ -1,4 +1,6 @@
 - WAV files need to match the new titles
+  - Cymbal scratchies and phase stuff files need to be renamed
+  - Cymbal rools need to be renumbered
 - The actual sampler devices don't need to be named "sampler" 
 - NR filter needs to turn off at 22
 - Script to rename the source files "Antique Piano" >> "Destroyed Piano", then re-find in Live
