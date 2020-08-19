@@ -16,9 +16,8 @@ function Blog(): ReactElement {
       <div className="page page-blog">
         <MainContentList
           currentFilter={currentFilter}
-          category="articles"
+          category="blog"
           title="Blog"
-          onlyTag="blog"
         />
       </div>
     </>

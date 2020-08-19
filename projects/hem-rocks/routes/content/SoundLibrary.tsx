@@ -27,12 +27,6 @@ function SoundLibrary(): ReactElement {
         <SoundLibrarySubnav />
         <MainContentList
           buttonText="Download"
-          // blurb={() => (
-          //   <>
-          //     <p>HEM Sound Library is a unique collection of sounds chosen for their social, political, and extramusical resonances. <Link to="/about-sl">more...</Link></p>
-          //     <p><Link to="/made-with-sl">Made something with SL?</Link></p>
-          //   </>
-          // )}
           category="sound-library"
           currentFilter={currentFilter}
           excludeFromAll="Midi Devices"

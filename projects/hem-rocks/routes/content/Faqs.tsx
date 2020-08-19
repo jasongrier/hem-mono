@@ -17,13 +17,6 @@ function Faqs(): ReactElement {
       <div className="page page-faqs">
         <MainContentList
           currentFilter={currentFilter}
-          filters={[
-            'Sound Library',
-            'General',
-            'Shop',
-            'HEM Organisation',
-            'Label',
-          ]}
           category="faqs"
           title="FAQ's"
         />
