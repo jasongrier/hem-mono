@@ -104,6 +104,8 @@ function* updateItems({ payload }: any) {
     writeFileSync(indexFile, JSON.stringify(index, null, 2))
     execSync(`cp ${indexFile} ${distIndexFile}`, { stdio: 'inherit' })
 
+    console.log(`cp ${indexFile} ${distIndexFile}`)
+
     yield put(doUpdateItemsAc([updatedItem]))
     yield put(requestReadItemsAc())
   }

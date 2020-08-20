@@ -179,7 +179,6 @@ function AdminList(): ReactElement {
             </tr>
           </thead>
           <tbody>
-            { console.log(map(contentItems, 'title')) }
             { contentItems.map((item: IContentItem) => (
               <tr key={item.slug}>
                 <td className="admin-list-column-title">

@@ -9,7 +9,7 @@ function NewWebsiteHeroine(): ReactElement {
         <div className="new-website-heroine-details">
           <div className="new-website-heroine-text">
             <h2>SL 2020</h2>
-            <h5>Sound Library re-thought as a selection of highly playable virtual instruments</h5>
+            <h5>Sound Library re-thought as a selection of highly playable virtual instruments.</h5>
           </div>
         </div>
       </Link>

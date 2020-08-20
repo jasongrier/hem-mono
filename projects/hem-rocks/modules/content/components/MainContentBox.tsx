@@ -100,7 +100,7 @@ function MainContentBox({
         onClick={onClick}
       >
         <Link to={linkTo}>
-          <p dangerouslySetInnerHTML={{ __html: marked(contentItem.blurb) }} />
+          <div dangerouslySetInnerHTML={{ __html: marked(contentItem.blurb) }} />
         </Link>
         <div className="main-content-box-actions">
           <div className="main-content-box-custom-actions">

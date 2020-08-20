@@ -77,6 +77,8 @@ function MainContentList({
     const allFilters = contentItems.map(item => item.tags.split(',').map(tag => tag.trim()))
     const allFiltersFlat = flatten(allFilters)
     let filters: string[] = uniq(allFiltersFlat.map(tag => titleCase(tag).replace(/-/g, ' ')))
+    filters.sort()
+    
     filters = ['All'].concat(filters)
 
     setFinalFilters(filters)
