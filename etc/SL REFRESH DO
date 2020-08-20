@@ -1,3 +1,4 @@
+- Migration to fix all slugs and attachment names
 - WAV files need to match the new titles
   - Cymbal scratchies and phase stuff files need to be renamed
   - Cymbal rools need to be renumbered
