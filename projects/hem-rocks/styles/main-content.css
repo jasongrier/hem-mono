@@ -305,6 +305,15 @@
   cursor: pointer;
 }
 
+.main-content-box-text small {
+  display: inline-block;
+  margin-top: 15px;
+  padding-right: 50px;
+  font-size: 12px;
+  line-height: 18px;
+  color: #222;
+}
+
 .main-content-box-actions {
   position: absolute;
   top: -85px;
@@ -372,7 +381,7 @@
 }
 
 .main-content-box p {
-  width: 300px;
+  width: 400px;
   margin-left: -15px;
 }
 
