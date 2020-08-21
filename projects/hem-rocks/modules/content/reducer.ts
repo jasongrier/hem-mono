@@ -22,7 +22,7 @@ import {
 } from './index'
 
 const initialState: IState = {
-  adminFilterApplied: 'all',
+  adminFilterApplied: 'sound-library',
   adminSearchApplied: '',
   currentContentItem: null,
   contentItems: [],
