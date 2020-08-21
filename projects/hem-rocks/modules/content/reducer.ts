@@ -22,8 +22,8 @@ import {
 } from './index'
 
 const initialState: IState = {
-  adminFilterApplied: 'sound-library',
-  adminSearchApplied: '',
+  adminFilterApplied: 'tracks',
+  adminSearchApplied: 'attachment',
   currentContentItem: null,
   contentItems: [],
   needsKeyArtFilter: false,

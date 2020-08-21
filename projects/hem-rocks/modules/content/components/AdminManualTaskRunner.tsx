@@ -182,11 +182,18 @@ function migrate(allContentItems: IContentItem[]) {
 
     // DO STUFF HERE
 
-    
+    if (
+      hasTag(newItem, 'attachment')
+      && hasCategory(newItem, 'track')
+    ) {
+
+    }
+
+    else {
+      newItems.push(newItem)
+    }
 
     // END DO STUFF HERE
-
-    newItems.push(newItem)
   }
 
   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
