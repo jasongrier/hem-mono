@@ -17,14 +17,6 @@ function Tracks(): ReactElement {
       <div className="page page-tracks">
         <MainContentList
           currentFilter={currentFilter}
-          filters={[
-            'Album Tracks',
-            'Exclusives',
-            'Live',
-            'Made with SL',
-            'Rarities',
-            'Sound Library',
-          ]}
           excludeFromAll="Sound Library"
           category="tracks"
           title="Tracks"
