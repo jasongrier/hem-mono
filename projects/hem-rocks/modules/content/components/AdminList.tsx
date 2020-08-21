@@ -191,7 +191,7 @@ function AdminList(): ReactElement {
                   { item.order || '-' }
                 </td>
                 <td className="admin-list-column-date">
-                  { item.date }
+                  { item.type }
                 </td>
                 <td className="admin-list-column-actions">
                   <button
