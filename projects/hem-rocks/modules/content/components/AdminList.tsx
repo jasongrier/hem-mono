@@ -10,15 +10,15 @@ import { PlayPauseButton } from '../../../../../lib/packages/hem-buttons'
 import { adminApplyFilter, adminApplySearch, toggleNeedsKeyArtFilter, requestDeleteItems, requestReadItems, requestUpdateItems, IContentItem } from '../index'
 import { RootState } from '../../../index'
 import { hasCategory, hasTag } from '../functions'
-import { toggleHideUnpublishedFilter } from '../actions'
+import { toggleShowUnpublishedFilter } from '../actions'
 
 function AdminList(): ReactElement {
-  const { adminFilterApplied, adminSearchApplied, allContentItems, needsKeyArtFilter, hideUnpublishedFilter } = useSelector((state: RootState) => ({
+  const { adminFilterApplied, adminSearchApplied, allContentItems, needsKeyArtFilter, showUnpublishedFilter } = useSelector((state: RootState) => ({
     adminFilterApplied: state.content.adminFilterApplied,
     adminSearchApplied: state.content.adminSearchApplied,
     allContentItems: state.content.contentItems,
     needsKeyArtFilter: state.content.needsKeyArtFilter,
-    hideUnpublishedFilter: state.content.hideUnpublishedFilter,
+    showUnpublishedFilter: state.content.showUnpublishedFilter,
   }))
 
   const dispatch = useDispatch()
@@ -47,7 +47,7 @@ function AdminList(): ReactElement {
   
   const hideUnpublishedOnChange = useCallback(
     function hideUnpublishedOnChangeFn(evt: SyntheticEvent<HTMLInputElement>) {
-      dispatch(toggleHideUnpublishedFilter())
+      dispatch(toggleShowUnpublishedFilter())
     }, [],
   )
 
@@ -72,7 +72,7 @@ function AdminList(): ReactElement {
     contentItems = contentItems.filter(item => isEmpty(item.keyArt))
   }
   
-  if (hideUnpublishedFilter) {
+  if (!showUnpublishedFilter) {
     contentItems = contentItems.filter(item => item.published)
   }
 
@@ -136,12 +136,12 @@ function AdminList(): ReactElement {
         </div>
         <div className="admin-list-controls clearfix">
           <label htmlFor="hide-unpublished">
-            Hide unpublished:&nbsp;
+            Show unpublished:&nbsp;
             <input
               onChange={hideUnpublishedOnChange}
               name="hide-unpublished"
               type="checkbox"
-              value={hideUnpublishedFilter ? 'on' : 'off'}
+              value={showUnpublishedFilter ? 'on' : 'off'}
             />
           </label>
           <label htmlFor="needs-photos">

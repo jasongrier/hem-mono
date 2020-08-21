@@ -53,7 +53,7 @@ export interface IState {
   currentContentItem: IContentItem | null
   contentItems: IContentItem[]
   needsKeyArtFilter: boolean
-  hideUnpublishedFilter: boolean
+  showUnpublishedFilter: boolean
 }
 
 export const fieldTypes: IContentItem = {
@@ -111,7 +111,7 @@ export const REQUEST_READ_ITEMS = 'REQUEST_READ_ITEMS'
 export const REQUEST_UPDATE_ITEMS = 'REQUEST_UPDATE_ITEMS'
 export const SET_CURRENT_ITEM = 'SET_CURRENT_ITEM'
 export const TOGGLE_NEEDS_KEY_ART_FILTER = 'TOGGLE_NEEDS_KEY_ART_FILTER'
-export const TOGGLE_HIDE_UNPUBLISHED_FILTER = 'TOGGLE_HIDE_UNPUBLISHED_FILTER'
+export const TOGGLE_SHOW_UNPUBLISHED_FILTER = 'TOGGLE_SHOW_UNPUBLISHED_FILTER'
 
 export interface IAdminApplyFilter extends AnyAction {
   type: typeof ADMIN_APPLY_FILTER
@@ -178,8 +178,8 @@ export interface IToggleNeedsKeyArtFilter extends AnyAction {
   payload: null
 }
 
-export interface IToggleHideUnpublishedFilter extends AnyAction {
-  type: typeof TOGGLE_HIDE_UNPUBLISHED_FILTER
+export interface IToggleShowUnpublishedFilter extends AnyAction {
+  type: typeof TOGGLE_SHOW_UNPUBLISHED_FILTER
   payload: null
 }
 
@@ -197,7 +197,7 @@ export type Action =
   | IRequestUpdateItems
   | ISetCurrentItem
   | IToggleNeedsKeyArtFilter
-  | IToggleHideUnpublishedFilter
+  | IToggleShowUnpublishedFilter
 
 export {
   adminApplyFilter,
@@ -213,7 +213,7 @@ export {
   requestUpdateItems,
   setCurrentItem,
   toggleNeedsKeyArtFilter,
-  toggleHideUnpublishedFilter,
+  toggleShowUnpublishedFilter,
 } from './actions'
 
 export { reducer as contentReducer } from './reducer'

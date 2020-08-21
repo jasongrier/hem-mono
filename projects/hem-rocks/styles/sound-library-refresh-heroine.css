@@ -1,43 +1,44 @@
-.new-website-heroine {
+.sound-library-refresh-heroine {
   position: relative;
   width: 100vw;
   height: calc(100vh - 180px);
   background-color: #000;
   user-select: none;
+  cursor: pointer;
 }
 
-.new-website-heroine * {
+.sound-library-refresh-heroine * {
   user-select: none;
+  cursor: pointer;
 }
 
-.new-website-heroine-image {
+.sound-library-refresh-heroine-image {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: 1;
-  /* background-image: url(http://static.hem.rocks/hem-rocks/site/heroines/ex-piano.jpg);
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover; */
-  background-color: black;
+  background-size: cover;
 }
 
-.new-website-heroine-details {
+.sound-library-refresh-heroine-details {
   position: absolute;
-  top: 210px;
-  left: 50%;
+  top: 60px;
+  right: 6%;
   z-index: 2;
-  width: 700px;
+  width: 330px;
   height: 180px;
   margin-left: -350px;
   color: #ffffff;
   font-size: 12px;
-  text-align: center;
+  text-align: right;
+  cursor: pointer;
 }
 
-.new-website-heroine .hem-speaker-button {
+.sound-library-refresh-heroine .hem-speaker-button {
   display: none;
   width: 60px;
   height: 60px;
@@ -45,39 +46,32 @@
   transform: scale(1.5) translate(10px, 5px);
 }
 
-.new-website-heroine-text {
-  /* position: absolute;
-  top: 10px;
-  left: 260px;
-  height: 60px;
-  transform: scale(1.5) translate(10px, 0); */
-}
-
-.new-website-heroine-text h2 {
+.sound-library-refresh-heroine-text h2 {
   position: relative;
-  width: 700px;
+  width: 100%;
   height: auto;
-  margin: 0 0 40px 0;
-  padding: 5px;
-  font-size: 90px;
+  margin: 0 0 20px 0;
+  padding: 30px 15px;
+  font-size: 100px;
+  line-height: 120px;
   font-weight: 100;
   letter-spacing: 15px;
   background-color: var(--line-orange);
+  text-align: left;
 }
 
-.new-website-heroine-text h5 {
+.sound-library-refresh-heroine-text h5 {
   float: left;
   width: 100%;
   margin: 0 30px 15px 0;
-  padding: 5px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding: 20px 15px;
   font-size: 20px;
   font-weight: 100;
   background-color: var(--line-orange);
+  text-align: left;
 }
 
-.new-website-heroine-text p {
+.sound-library-refresh-heroine-text p {
   float: left;
   width: 350px;
   margin: 0 30px 0 0;
@@ -87,7 +81,7 @@
   background-color: var(--line-orange);
 }
 
-.new-website-heroine-text .action-button {
+.sound-library-refresh-heroine-text .action-button {
   position: absolute;
   top: 60px;
   right: -40px;
