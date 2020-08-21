@@ -1,13 +1,13 @@
 import React, { ReactElement, useEffect, useState, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import uuid from 'uuid/v1'
-import { noop, last } from 'lodash'
+import { noop, last, compact } from 'lodash'
 import { autoParagraph } from '../../../../../lib/functions'
 import { modelize, hasTag, getContentItemBySlug, hasCategory } from '../functions'
 import { IIndexEntry, IContentItem } from '..'
 import { RootState } from '../../../index'
 import { readdirSync } from 'fs'
-import { slugify } from 'voca'
+import { slugify, titleCase } from 'voca'
 import { execSync } from 'child_process'
 
 function convertOldTypescriptModelsToJson() {
@@ -182,60 +182,64 @@ function migrate(allContentItems: IContentItem[]) {
 
     // DO STUFF HERE
 
+    const ids = compact(allContentItems.map((item) => parseInt(item.id, 10)))
+
+    ids.sort((a, b) => {
+      return a - b
+    })
+
+    let highestId = last(ids) || 0
+
     if (
       hasCategory(newItem, 'sound-library')
+      && newItem.published
     ) {
       for (let i = 1; i <= 5; i ++) {
-        const ids = allContentItems.map((item) => item.id)
+        highestId = highestId + 1
+        const slug = newItem.slug + '-' + i
+        const createdItem: IContentItem = {
+          acceptingDonations: false,
+          aside: '',
+          attribution: 'HEM Sound Library',
+          attributionLink: '/sound-library',
+          audioFilename: slug + '.mp3',
+          badgeText: '',
+          blurb: newItem.blurb,
+          category: 'tracks',
+          date: '17.09.2020',
+          description: newItem.description,
+          displayCategory: '',
+          downloadFile: '',
+          externalLinkText: '',
+          externalLinkUrl: '',
+          fixedPrice: '',
+          flexPriceMinimum: '',
+          flexPriceRecommended: '',
+          hasFixedPrice: false,
+          id: highestId.toString(),
+          isDigitalProduct: false,
+          isPhysicalProduct: false,
+          keyArt: newItem.keyArt,
+          order: '',
+          physicalFormats: '',
+          preview: true,
+          published: true,
+          relatedContent: newItem.slug,
+          relatedContentLink: '/' + newItem.slug,
+          releasePhase: '1',
+          secondaryAttribution: '',
+          secondaryAttributionLink: '',
+          secondaryTitle: '',
+          slug,
+          sticky: false,
+          tags: 'attachment, sound-library',
+          title: newItem.title + ' Sample Track ' + i,
+          titleWrapping: '',
+          trackSlugs: '',
+          type: 'Track',
+        }
 
-        ids.sort()
-
-        console.log(last(ids))
-
-        // const slug = newItem.slug + '-' + i
-        // const createdItem: IContentItem = {
-        //   acceptingDonations: false,
-        //   aside: '',
-        //   attribution: 'HEM Sound Library',
-        //   attributionLink: '/sound-library',
-        //   audioFilename: slug + '.mp3',
-        //   badgeText: '',
-        //   blurb: newItem.blurb,
-        //   category: 'tracks',
-        //   date: '17.09.2020',
-        //   description: newItem.description,
-        //   displayCategory: '',
-        //   downloadFile: '',
-        //   externalLinkText: '',
-        //   externalLinkUrl: '',
-        //   fixedPrice: '',
-        //   flexPriceMinimum: '',
-        //   flexPriceRecommended: '',
-        //   hasFixedPrice: false,
-        //   id: string,
-        //   isDigitalProduct: boolean,
-        //   isPhysicalProduct: boolean,
-        //   keyArt: string,
-        //   order: string,
-        //   physicalFormats: string,
-        //   preview: boolean,
-        //   published: boolean,
-        //   relatedContent: string,
-        //   relatedContentLink: string,
-        //   releasePhase: string,
-        //   secondaryAttribution: string,
-        //   secondaryAttributionLink: string,
-        //   secondaryTitle: string,
-        //   slug: string,
-        //   sticky: boolean,
-        //   tags: string,
-        //   title: string,
-        //   titleWrapping: string,
-        //   trackSlugs: string,
-        //   type: string,
-        // }
-        
-        // newItems.push(createdItem)
+        newItems.push(createdItem)
       }
     }
 
@@ -245,8 +249,8 @@ function migrate(allContentItems: IContentItem[]) {
   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
   const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
 
-  // writeFileSync(srcIndex, JSON.stringify(newItems, null, 2))
-  // writeFileSync(distIndex, JSON.stringify(newItems, null, 2))
+  writeFileSync(srcIndex, JSON.stringify(newItems, null, 2))
+  writeFileSync(distIndex, JSON.stringify(newItems, null, 2))
 }
 
 function assignImages() {
