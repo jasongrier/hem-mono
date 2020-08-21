@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useState, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import uuid from 'uuid/v1'
-import { noop } from 'lodash'
+import { noop, last } from 'lodash'
 import { autoParagraph } from '../../../../../lib/functions'
 import { modelize, hasTag, getContentItemBySlug, hasCategory } from '../functions'
 import { IIndexEntry, IContentItem } from '..'
@@ -183,14 +183,60 @@ function migrate(allContentItems: IContentItem[]) {
     // DO STUFF HERE
 
     if (
-      hasTag(newItem, 'attachment')
-      && hasCategory(newItem, 'track')
+      hasCategory(newItem, 'sound-library')
     ) {
+      for (let i = 1; i <= 5; i ++) {
+        const ids = allContentItems.map((item) => item.id)
 
-    }
+        ids.sort()
 
-    else {
-      newItems.push(newItem)
+        console.log(last(ids))
+
+        // const slug = newItem.slug + '-' + i
+        // const createdItem: IContentItem = {
+        //   acceptingDonations: false,
+        //   aside: '',
+        //   attribution: 'HEM Sound Library',
+        //   attributionLink: '/sound-library',
+        //   audioFilename: slug + '.mp3',
+        //   badgeText: '',
+        //   blurb: newItem.blurb,
+        //   category: 'tracks',
+        //   date: '17.09.2020',
+        //   description: newItem.description,
+        //   displayCategory: '',
+        //   downloadFile: '',
+        //   externalLinkText: '',
+        //   externalLinkUrl: '',
+        //   fixedPrice: '',
+        //   flexPriceMinimum: '',
+        //   flexPriceRecommended: '',
+        //   hasFixedPrice: false,
+        //   id: string,
+        //   isDigitalProduct: boolean,
+        //   isPhysicalProduct: boolean,
+        //   keyArt: string,
+        //   order: string,
+        //   physicalFormats: string,
+        //   preview: boolean,
+        //   published: boolean,
+        //   relatedContent: string,
+        //   relatedContentLink: string,
+        //   releasePhase: string,
+        //   secondaryAttribution: string,
+        //   secondaryAttributionLink: string,
+        //   secondaryTitle: string,
+        //   slug: string,
+        //   sticky: boolean,
+        //   tags: string,
+        //   title: string,
+        //   titleWrapping: string,
+        //   trackSlugs: string,
+        //   type: string,
+        // }
+        
+        // newItems.push(createdItem)
+      }
     }
 
     // END DO STUFF HERE
@@ -199,8 +245,8 @@ function migrate(allContentItems: IContentItem[]) {
   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
   const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
 
-  writeFileSync(srcIndex, JSON.stringify(newItems, null, 2))
-  writeFileSync(distIndex, JSON.stringify(newItems, null, 2))
+  // writeFileSync(srcIndex, JSON.stringify(newItems, null, 2))
+  // writeFileSync(distIndex, JSON.stringify(newItems, null, 2))
 }
 
 function assignImages() {
