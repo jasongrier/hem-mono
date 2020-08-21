@@ -15,7 +15,7 @@ import {
   REQUEST_UPDATE_ITEMS,
   SET_CURRENT_ITEM,
   TOGGLE_NEEDS_KEY_ART_FILTER,
-  TOGGLE_HIDE_UNPUBLISHED_FILTER,
+  TOGGLE_SHOW_UNPUBLISHED_FILTER,
 
   IState,
   IContentItem,
@@ -27,7 +27,7 @@ const initialState: IState = {
   currentContentItem: null,
   contentItems: [],
   needsKeyArtFilter: false,
-  hideUnpublishedFilter: false,
+  showUnpublishedFilter: false,
 }
 
 const reducer = (
@@ -107,9 +107,9 @@ const reducer = (
       })
     }
     
-    case TOGGLE_HIDE_UNPUBLISHED_FILTER: {
+    case TOGGLE_SHOW_UNPUBLISHED_FILTER: {
       return produce(state, draftState => {
-        draftState.hideUnpublishedFilter = !draftState.hideUnpublishedFilter
+        draftState.showUnpublishedFilter = !draftState.showUnpublishedFilter
       })
     }
 

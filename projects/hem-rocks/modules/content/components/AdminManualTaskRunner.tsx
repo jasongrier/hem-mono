@@ -164,33 +164,36 @@ function migrate(allContentItems: IContentItem[]) {
   const { writeFileSync, readdirSync, rename } = remote.require('fs')
   const { join } = remote.require('path')
 
-  const dir = join(process.env.HOME, 'Desktop', 'hem-mono', 'etc', 'Consolidate')
-  const files = readdirSync(dir)
+  // const dir = join(process.env.HOME, 'Desktop', 'hem-mono', 'etc', 'Consolidate')
+  // const files = readdirSync(dir)
   
-  for (const file of files) {
-    const newFile = file.replace('–', '-').replace(/\[[0-9\- ]+\]/, '').replace(' .aif', '.aif')
-    rename(`${dir}/${file}`, `${dir}/${newFile}`, (res) => {
-      console.log(res)
-    })
-  }
-
-
-  // const newItems = []
-
-  // for (const item of allContentItems) {
-  //   const newItem = Object.assign({}, item)
-
-    // DO STUFF HERE
-    // END DO STUFF HERE
-
-  //   newItems.push(newItem)
+  // for (const file of files) {
+  //   const newFile = file.replace('–', '-').replace(/\[[0-9\- ]+\]/, '').replace(' .aif', '.aif')
+  //   rename(`${dir}/${file}`, `${dir}/${newFile}`, (res) => {
+  //     console.log(res)
+  //   })
   // }
 
-  // const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
-  // const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
 
-  // writeFileSync(srcIndex, JSON.stringify(newItems, null, 2))
-  // writeFileSync(distIndex, JSON.stringify(newItems, null, 2))
+  const newItems = []
+
+  for (const item of allContentItems) {
+    const newItem = Object.assign({}, item)
+
+    // DO STUFF HERE
+
+    
+
+    // END DO STUFF HERE
+
+    newItems.push(newItem)
+  }
+
+  const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
+  const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
+
+  writeFileSync(srcIndex, JSON.stringify(newItems, null, 2))
+  writeFileSync(distIndex, JSON.stringify(newItems, null, 2))
 }
 
 function assignImages() {

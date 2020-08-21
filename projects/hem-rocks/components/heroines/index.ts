@@ -1,2 +1,2 @@
 export { default as GrandPianoHeroine } from './GrandPianoHeroine'
-export { default as NewWebsiteHeroine } from './NewWebsiteHeroine'
+export { default as SoundLibraryRefreshHeroine } from './SoundLibraryRefreshHeroine'
