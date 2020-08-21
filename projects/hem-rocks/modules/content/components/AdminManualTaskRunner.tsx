@@ -164,16 +164,15 @@ function migrate(allContentItems: IContentItem[]) {
   const { writeFileSync, readdirSync, rename } = remote.require('fs')
   const { join } = remote.require('path')
 
-  // const dir = join(process.env.HOME, 'Desktop', 'hem-mono', 'etc', 'Consolidate')
-  // const files = readdirSync(dir)
+  const dir = join(process.env.HOME, 'Desktop', 'Drum')
+  const files = readdirSync(dir)
   
-  // for (const file of files) {
-  //   const newFile = file.replace('–', '-').replace(/\[[0-9\- ]+\]/, '').replace(' .aif', '.aif')
-  //   rename(`${dir}/${file}`, `${dir}/${newFile}`, (res) => {
-  //     console.log(res)
-  //   })
-  // }
-
+  for (const i in files) {
+    const num = parseInt(i, 10) + 1
+    rename(`${dir}/${files[i]}`, `${dir}/${files[i]}.wav`, (res: any) => {
+      console.log(res)
+    })
+  }
 
   const newItems = []
 
@@ -181,14 +180,6 @@ function migrate(allContentItems: IContentItem[]) {
     const newItem = Object.assign({}, item)
 
     // DO STUFF HERE
-
-    if (
-      hasCategory(newItem, 'tracks')
-      && hasTag(newItem, 'attachment')
-    ) {
-      newItem.audioFilename = 'sound-library/' + newItem.audioFilename
-    }
-  
     newItems.push(newItem)
     // END DO STUFF HERE
   }
@@ -196,8 +187,8 @@ function migrate(allContentItems: IContentItem[]) {
   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
   const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
 
-  writeFileSync(srcIndex, JSON.stringify(newItems, null, 2))
-  writeFileSync(distIndex, JSON.stringify(newItems, null, 2))
+  // writeFileSync(srcIndex, JSON.stringify(newItems, null, 2))
+  // writeFileSync(distIndex, JSON.stringify(newItems, null, 2))
 }
 
 function assignImages() {
