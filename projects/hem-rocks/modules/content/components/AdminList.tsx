@@ -103,7 +103,7 @@ function AdminList(): ReactElement {
             >
               <option value="all">All</option>
               <option value="apps">Apps</option>
-              <option value="articles">Articles</option>
+              <option value="blog">Blog</option>
               <option value="code">Code</option>
               <option value="faqs">FAQ's</option>
               <option value="label">Label</option>
@@ -120,7 +120,7 @@ function AdminList(): ReactElement {
               <option value="venue-merch">Venue Merch</option>
               <option value="video">Videos</option>
               <option value="all">---</option>
-              <option value="list">Lists</option>
+              <option value="lists">Lists</option>
             </select>
           </div>
           <div className="admin-list-controls-search">

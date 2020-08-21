@@ -22,8 +22,8 @@ import {
 } from './index'
 
 const initialState: IState = {
-  adminFilterApplied: 'tracks',
-  adminSearchApplied: 'attachment',
+  adminFilterApplied: 'all',
+  adminSearchApplied: '',
   currentContentItem: null,
   contentItems: [],
   needsKeyArtFilter: false,

@@ -10,7 +10,7 @@ function contentItemToTrack(contentItem: IContentItem): ITrack {
     relatedContent: contentItem.relatedContent,
     relatedContentLink: contentItem.relatedContentLink,
     resource: assetHostHostname() + '/hem-rocks/content/tracks/' + contentItem.audioFilename,
-    secret: null,
+    secret: '',
     secondaryAttribution: contentItem.secondaryAttribution,
     secondaryAttributionLink: contentItem.secondaryAttributionLink,
     title: contentItem.title,
