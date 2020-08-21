@@ -167,12 +167,12 @@ function migrate(allContentItems: IContentItem[]) {
   const dir = join(process.env.HOME, 'Desktop', 'Drum')
   const files = readdirSync(dir)
   
-  for (const i in files) {
-    const num = parseInt(i, 10) + 1
-    rename(`${dir}/${files[i]}`, `${dir}/${files[i]}.wav`, (res: any) => {
-      console.log(res)
-    })
-  }
+  // for (const i in files) {
+  //   const num = parseInt(i, 10) + 1
+  //   rename(`${dir}/${files[i]}`, `${dir}/${files[i]}.wav`, (res: any) => {
+  //     console.log(res)
+  //   })
+  // }
 
   const newItems = []
 
@@ -180,6 +180,11 @@ function migrate(allContentItems: IContentItem[]) {
     const newItem = Object.assign({}, item)
 
     // DO STUFF HERE
+    if (hasCategory(newItem, 'label')) {
+      newItem.keyArt = newItem.keyArt + '.jpg'
+    }
+
+
     newItems.push(newItem)
     // END DO STUFF HERE
   }
@@ -187,8 +192,8 @@ function migrate(allContentItems: IContentItem[]) {
   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
   const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
 
-  // writeFileSync(srcIndex, JSON.stringify(newItems, null, 2))
-  // writeFileSync(distIndex, JSON.stringify(newItems, null, 2))
+  writeFileSync(srcIndex, JSON.stringify(newItems, null, 2))
+  writeFileSync(distIndex, JSON.stringify(newItems, null, 2))
 }
 
 function assignImages() {

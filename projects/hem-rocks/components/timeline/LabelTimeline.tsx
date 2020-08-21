@@ -1,6 +1,7 @@
 import React, { ReactElement, useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import $ from 'jquery'
+import { assetHostHostname } from '../../functions'
 import { RootState } from '../../index'
 
 interface IProps {
@@ -62,7 +63,7 @@ function LabelTimeline({ refresh }: IProps): ReactElement {
                 ?
                   (`<img
                     alt="HEM logo from ${year}"
-                    src="http://static.hem.rocks/hem-rocks/site/timeline-logos/HEM_logo_${year}.jpg"
+                    src="${assetHost}/hem-rocks/site/timeline-logos/HEM_logo_${year}.jpg"
                   />`)
                 :
                   ''
@@ -80,6 +81,8 @@ function LabelTimeline({ refresh }: IProps): ReactElement {
       $timelineContainer.show()
     })
   }, [allContentItems.length, refresh])
+
+  const assetHost = assetHostHostname()
 
   return (
     <div className="label-timeline">
