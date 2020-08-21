@@ -94,6 +94,10 @@
   outline: none;
 }
 
+.admin-list * {
+  user-select: none;
+}
+
 .admin-list table {
   width: 100%;
 }
