@@ -29,6 +29,7 @@ interface IProps {
   infoPopupTitle?: string
   items?: IContentItem[]
   linkTo?: (contentItem: IContentItem) => string
+  noSplatter?: boolean
   onlyTag?: string
   onFiltersChanged?: () => void
   orderByOrder?: boolean
@@ -51,6 +52,7 @@ function MainContentList({
   infoPopupTitle,
   items: propsContentItems,
   linkTo,
+  noSplatter,
   onlyTag,
   orderByOrder,
   showCategoryOnContentBoxes = false,
@@ -263,6 +265,7 @@ function MainContentList({
             filter={currentFilter}
             key={contentItem.slug}
             linkTo={linkTo}
+            noSplatter={noSplatter}
             tag={category}
           >
             { children && children(contentItem) }

@@ -149,8 +149,15 @@
   padding-left: 10px;
 }
 
-.admin-list-column-title {
+.admin-list-column-thumbnail {
+  width: 100px;
+  height: 100px;
+}
 
+.admin-list-column-thumbnail img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
 }
 
 .admin-list-column-date,
@@ -172,10 +179,10 @@
 
 .admin-list-column-actions button {
   float: right;
-  width: 100px;
+  width: 90px;
   height: 30px;
   line-height: 30px;
-  margin: 0 0 0 10px;
+  margin: 0 0 10px 10px;
   transform: translateX(3px);
   font-size: 14px;
   font-weight: 600;

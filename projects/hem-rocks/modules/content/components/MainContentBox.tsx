@@ -16,6 +16,7 @@ interface IProps {
   buttonText?: string
   className?: string
   linkTo?: (contentItem: IContentItem) => string
+  noSplatter?: boolean
 }
 
 function MainContentBox({
@@ -30,6 +31,7 @@ function MainContentBox({
   buttonText,
   className,
   linkTo: customLinkTo,
+  noSplatter,
 }: PropsWithChildren<IProps>): ReactElement {
   const dispatch = useDispatch()
   const [alignRight, setAlignRight] = useState(false)
@@ -52,6 +54,7 @@ function MainContentBox({
 
   return (
     <SplatterDims
+      disabled={noSplatter}
       bipolarX={false}
       bipolarY={false}
       minMarginX={50}
