@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import marked from 'marked'
 import { SplatterDims } from '../../../../../lib/packages/hem-boxplatter'
 import { assetHostHostname } from '../../../functions'
+import { BERLIN_STOCK_PHOTOS } from '../../../config'
 import { IContentItem, setCurrentItem } from '../index'
 
 interface IProps {
@@ -90,12 +91,22 @@ function MainContentBox({
         onClick={onClick}
       >
         <Link to={linkTo}>
-          <div
-            className="main-content-box-key-art-image"
-            style={{
-              backgroundImage: `url(${assetHost}/hem-rocks/content/images/key-art/${contentItem.keyArt})`
-            }}
-          />
+          { !BERLIN_STOCK_PHOTOS && (
+            <div
+              className="main-content-box-key-art-image"
+              style={{
+                backgroundImage: `url(${assetHost}/hem-rocks/content/images/key-art/${contentItem.keyArt})`
+              }}
+            />
+          )}
+          { BERLIN_STOCK_PHOTOS && (
+            <div
+              className="main-content-box-key-art-image"
+              style={{
+                backgroundImage: `url(${assetHost}/berlin-stock-photos/content/images/jpg-web/${contentItem.keyArt})`
+              }}
+            />
+          )}
         </Link>
       </div>
       <div

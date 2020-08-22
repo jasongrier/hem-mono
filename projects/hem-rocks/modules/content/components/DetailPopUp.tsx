@@ -343,7 +343,7 @@ function DetailPopUp({
             <>
               <div className="bsp-lightbox-image">
                 <img 
-                  src={`${assetHost}/hem-rocks/content/images/key-art/${contentItem.keyArt}`}
+                  src={`${assetHost}/berlin-stock-photos/content/images/jpg-web/${contentItem.keyArt}`}
                   alt={contentItem.secondaryTitle}
                 />
               </div>
