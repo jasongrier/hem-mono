@@ -85,6 +85,11 @@
 .bsp-content .main-content-filters {
   padding-top: 35px;
   top: var(--bsp-top-bar-height);
+  user-select: none;
+}
+
+.main-content-filter.active {
+  background: rgb(0, 201, 252);
 }
 
 .bsp-content .main-content-items {
@@ -107,10 +112,157 @@
 }
 
 .bsp-content .main-content-box h3,
+.bsp-content .main-content-box h4,
 .bsp-content .main-content-box .main-content-box-text {
   display: none;
 }
 
 .bsp-content .main-content-box .main-content-box-key-art {
   background-color: transparent;
+}
+
+.berlin-stock-photos footer {
+  margin-top: 200px;
+  padding: 0 10px;
+  color: #fff;
+}
+
+.berlin-stock-photos footer ul {
+  margin: 0 0 5px 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.berlin-stock-photos footer li {
+  display: inline-block;
+  margin: 0 10px 0 0;
+  padding: 0;
+}
+
+.berlin-stock-photos footer a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.berlin-stock-photos footer p {
+  margin: 0;
+  padding: 0;
+  font-size: 10px;
+}
+
+.berlin-stock-photos .hem-popup-content {
+  height: calc(100vh - 40px) !important;
+}
+
+.berlin-stock-photos .detail-popup header {
+  height: calc(100vh - 40px) !important;
+  margin-top: 0;
+  padding: 0;
+}
+
+.berlin-stock-photos .detail-popup-title {
+  height: 30px;
+  margin-bottom: 5px;
+}
+
+.berlin-stock-photos .detail-popup h1 {
+  height: 30px;
+  line-height: 30px;
+  width: 100%;
+  margin: 0;
+  padding: 0 10px;
+  font-size: 20px;
+}
+
+.berlin-stock-photos .detail-popup h1::before {
+  display: inline;
+  content: "Photo #"
+}
+
+.berlin-stock-photos .detail-popup h2 {
+  display: none;
+}
+
+.berlin-stock-photos .detail-popup-actions {
+  width: 100%;
+}
+
+.berlin-stock-photos .hem-close-button {
+  transform: scale(.5) translate(10px, -10px);
+  transform-origin: center;
+}
+
+.berlin-stock-photos .scroll-down-pointer {
+  display: none;
+}
+
+.berlin-stock-photos .detail-popup-form {
+  position: absolute;
+  bottom: 0;
+  left: -20px;
+  width: 100%;
+}
+
+.berlin-stock-photos .detail-popup-form label,
+.berlin-stock-photos .detail-popup-form input,
+.berlin-stock-photos .detail-popup-form small {
+  float: left;
+}
+
+.berlin-stock-photos .detail-popup-form label {
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+.berlin-stock-photos .detail-popup-form input {
+  height: 38px;
+  margin-top: 15px;
+}
+
+.berlin-stock-photos .detail-popup-form small {
+  margin-top: 27px;
+  margin-left: 35px;
+}
+
+.berlin-stock-photos .detail-popup-form small::before {
+  display: inline;
+  content: "(";
+}
+
+.berlin-stock-photos .detail-popup-form small::after {
+  display: inline;
+  content: ")";
+}
+
+.berlin-stock-photos .detail-popup-currency-symbol {
+  top: 19px;
+  left: 488px;
+}
+
+.berlin-stock-photos .detail-popup-buttons {
+  position: absolute;
+  right: 60px;
+  bottom: 10px;
+  margin: 0;
+}
+
+.berlin-stock-photos .detail-popup-buttons button {
+  margin-top: 0;
+}
+
+.bsp-lightbox-image {
+  width: 80%;
+  height: 80%;
+  margin: 0 auto;
+}
+
+.bsp-lightbox-caption {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.bsp-lightbox-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }

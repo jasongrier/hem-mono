@@ -15,6 +15,7 @@ import { addProductToCart, submitSale } from '../../cart'
 import { IContentItem, getContentItemsFromRawList } from '../index'
 import { assetHostHostname } from '../../../functions'
 import { RootState } from '../../../index'
+import { BERLIN_STOCK_PHOTOS } from '../../../config'
 import { hasTag, contentItemToTrack, hasCategory, getContentItemBySlug } from '../functions'
 
 interface IProps {
@@ -214,6 +215,7 @@ function DetailPopUp({
       hasCategory(item, 'sound-library')
       || hasCategory(item, 'merch')
       || hasCategory(item, 'venue-calendar')
+      || hasCategory(item, 'stock-photos')
       // TODO: Get rid of these flags and just use tags
       || (hasCategory(item, 'label') && (item.isDigitalProduct || item.isPhysicalProduct))
     ) {
@@ -328,6 +330,7 @@ function DetailPopUp({
       `}
     >
       <Scrollbars 
+        noScroll={BERLIN_STOCK_PHOTOS}
         createContext={true}
         noScrollX={true}
       >
@@ -336,12 +339,25 @@ function DetailPopUp({
             <h1>{ contentItem.title }</h1>
             <h2 dangerouslySetInnerHTML={{ __html: contentItem.secondaryTitle }} />
           </div>
-          <div
-            className="detail-popup-key-art-image"
-            style={{
-              backgroundImage: `url(${assetHost}/hem-rocks/content/images/key-art/${contentItem.keyArt})`
-            }}
-          />
+          { BERLIN_STOCK_PHOTOS && (
+            <>
+              <div className="bsp-lightbox-image">
+                <img 
+                  src={`${assetHost}/hem-rocks/content/images/key-art/${contentItem.keyArt}`}
+                  alt={contentItem.secondaryTitle}
+                />
+              </div>
+              <div className="bsp-lightbox-caption">{ contentItem.secondaryTitle }</div>
+            </>
+          )}
+          { !BERLIN_STOCK_PHOTOS && (
+            <div
+              className="detail-popup-key-art-image"
+              style={{
+                backgroundImage: `url(${assetHost}/hem-rocks/content/images/key-art/${contentItem.keyArt})`
+              }}
+            />
+          )}
           <div className="detail-popup-header-content">
             <div className="detail-popup-actions">
               { isPurchaseable(contentItem) && (
