@@ -28,3 +28,5 @@ import './thank-you-popup.css'
 import './toaster.css'
 import './top-bar.css'
 import './venue.css'
+
+import './berlin-stock-photos.css'

@@ -1,0 +1,116 @@
+:root {
+  --bsp-top-bar-height: 60px;
+}
+
+.berlin-stock-photos {
+  background-color: #000;
+}
+
+.app-loading.berlin-stock-photos {
+  color: #fff;
+  text-align: center;
+}
+
+.berlin-stock-photos .main-header {
+  position: fixed;
+  top: 0;
+  z-index: 9999;
+  width: 100vw;
+  height: var(--bsp-top-bar-height);
+  line-height: var(--bsp-top-bar-height);
+  user-select: none;
+}
+
+.berlin-stock-photos .main-header h1 {
+  margin: 0 0 0 5px;
+  font-size: calc(var(--bsp-top-bar-height) - 10px);
+  line-height: var(--bsp-top-bar-height);
+  color: #fff;
+}
+
+.berlin-stock-photos .main-header nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: var(--bsp-top-bar-height);
+  
+}
+
+.berlin-stock-photos .main-header nav ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.berlin-stock-photos .main-header nav li {
+  display: inline-block;
+  height: var(--bsp-top-bar-height);
+  margin: 0;
+  padding: 0 20px;
+  line-height: var(--bsp-top-bar-height);
+}
+
+.berlin-stock-photos .main-header nav li:last-of-type {
+  padding-right: 10px;
+}
+
+.berlin-stock-photos .main-header nav a {
+  display: inline-block;
+  height: var(--bsp-top-bar-height);
+  line-height: var(--bsp-top-bar-height);
+  color: #fff;
+  text-decoration: none;
+}
+
+.bsp-heroine {
+  position: sticky;
+  top: calc(-1 * (80vh - var(--bsp-top-bar-height)));
+  z-index: 9998;
+  width: 100vw;
+  height: 80vh;
+  background-color: #000;
+}
+
+.bsp-heroine .slick-slide {
+  width: 100vw;
+  height: 80vh;
+}
+
+.bsp-heroine img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bsp-content .main-content-filters {
+  padding-top: 35px;
+  top: var(--bsp-top-bar-height);
+}
+
+.bsp-content .main-content-items {
+  margin-top: 40px;
+}
+
+.bsp-content .main-content-box {
+  float: left;
+  width: 33%;
+  height: auto;
+  margin: 0;
+  border: none;
+  color: #fff;
+  border: 2.5px solid #000;
+  box-sizing: border-box
+}
+
+.bsp-content .main-content-box.align-right {
+  float: left !important
+}
+
+.bsp-content .main-content-box h3,
+.bsp-content .main-content-box .main-content-box-text {
+  display: none;
+}
+
+.bsp-content .main-content-box .main-content-box-key-art {
+  background-color: transparent;
+}

@@ -9,12 +9,11 @@ import { SoundLibrarySubnav } from '../../components/layout'
 import { RootState } from '../../index'
 
 function SoundLibrary(): ReactElement {
-
-  const { filter: currentFilter } = useParams()
-
   const { allContentItems } = useSelector((state: RootState) => ({
     allContentItems: state.content.contentItems,
   }))
+
+  const { filter: currentFilter } = useParams()
 
   return (
     <>

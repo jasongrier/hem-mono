@@ -10,6 +10,7 @@ import { PlayPauseButton } from '../../../../../lib/packages/hem-buttons'
 import { adminApplyFilter, adminApplySearch, toggleNeedsKeyArtFilter, requestDeleteItems, requestReadItems, requestUpdateItems, IContentItem } from '../index'
 import { RootState } from '../../../index'
 import { hasCategory, hasTag } from '../functions'
+import { assetHostHostname } from '../../../functions'
 import { toggleShowUnpublishedFilter } from '../actions'
 
 function AdminList(): ReactElement {
@@ -87,6 +88,8 @@ function AdminList(): ReactElement {
     }
   })
 
+  const assetHost = assetHostHostname()
+
   return (
     <ElectronOnly showMessage={true}>
       <div className="admin-list">
@@ -121,6 +124,7 @@ function AdminList(): ReactElement {
               <option value="video">Videos</option>
               <option value="all">---</option>
               <option value="lists">Lists</option>
+              <option value="berlin-stock-photos">Berlin Stock Photos</option>
             </select>
           </div>
           <div className="admin-list-controls-search">
@@ -161,8 +165,10 @@ function AdminList(): ReactElement {
         <table>
           <thead>
             <tr>
-              <th className="admin-list-column-title">
+              <th className="admin-list-column-thumbnail">
                 Item
+              </th>
+              <th className="admin-list-column-title">
               </th>
               <th className="admin-list-column-category">
                 Category
@@ -181,6 +187,16 @@ function AdminList(): ReactElement {
           <tbody>
             { contentItems.map((item: IContentItem) => (
               <tr key={item.slug}>
+                <td className="admin-list-column-thumbnail">
+                  <Link to={`/admin/edit/${item.slug}`}>
+                    { hasCategory(item, 'berlin-stock-photos') && (
+                      <img src={`${assetHost}/berlin-stock-photos/content/images/web-jpg/${item.keyArt}`} />
+                    )}
+                    { !hasCategory(item, 'berlin-stock-photos') && (
+                      <img src={`${assetHost}/hem-rocks/content/images/key-art/${item.keyArt}`} />
+                    )}
+                  </Link>
+                </td>
                 <td className="admin-list-column-title">
                   <Link to={`/admin/edit/${item.slug}`}>{item.title}</Link>
                 </td>
@@ -214,6 +230,17 @@ function AdminList(): ReactElement {
                     }}
                   >
                     { item.published ? 'Unpublish' : 'Publish' }
+                  </button>
+                  <button
+                    className="action-button"
+                    onClick={() => {
+                      const updatedItem: IContentItem = produce(item, (draftItem) => {
+                        draftItem.sticky = !draftItem.sticky
+                      })
+                      dispatch(requestUpdateItems([updatedItem]))
+                    }}
+                  >
+                    { item.sticky ? 'Unsticky' : 'Sticky' }
                   </button>
                 </td>
               </tr>

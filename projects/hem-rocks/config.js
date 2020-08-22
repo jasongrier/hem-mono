@@ -7,3 +7,4 @@ module.exports.LISTS_HAVE_BLURBS = true
 module.exports.MAILING_LIST_TEXT = 'Subscribe to HEM to receive updates on projects and happenings; sound and software.'
 module.exports.PREVIEW_MODE = false
 module.exports.RELEASE_PHASE = 1
+module.exports.BERLIN_STOCK_PHOTOS = true

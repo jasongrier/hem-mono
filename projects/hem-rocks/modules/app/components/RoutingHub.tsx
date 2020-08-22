@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
 import { Route, Switch } from 'react-router-dom'
+import { BERLIN_STOCK_PHOTOS } from '../../../config'
 
 import {
   Apps,
@@ -47,13 +48,17 @@ import {
   VenueStage,
 } from '../../../routes/venue'
 
+import {
+  BerlinStockPhotos,
+} from '../../../routes/berlin-stock-photos'
+
 function RoutingHub(): ReactElement {
 
   return (
     <div className="routing-hub">
       <Switch>
         {/* Home */}
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotos : Home} />
         <Route exact path="/cart" component={Home} />
         <Route exact path="/thank-you" component={Home} />
 

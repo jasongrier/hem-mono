@@ -19,7 +19,7 @@ import { collapseTopBar, expandTopBar, getCookieName } from '../index'
 import { SiteFooter, TopBar } from '../../../components/layout'
 import { requestActiveLiveStream, setCookieApproval, setCookiePreferencesSet } from '../actions'
 import { CookieApproval, RoutingHub } from './index'
-import { CAMPAIGN_MONITOR_FORM_ACTION, CAMPAIGN_MONITOR_FORM_ID, CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME, MAILING_LIST_TEXT } from '../../../config'
+import { CAMPAIGN_MONITOR_FORM_ACTION, CAMPAIGN_MONITOR_FORM_ID, CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME, MAILING_LIST_TEXT, BERLIN_STOCK_PHOTOS } from '../../../config'
 import { RootState } from '../../../index'
 import NewWebsitePopup from '../../../components/popups/NewWebsitePopup'
 
@@ -286,9 +286,12 @@ function App(): ReactElement {
   }, [pathname])
 
   if (!contentItems || !contentItems.length) return (
-    <div className="app-loading">
+    <div className={`
+        app-loading
+        ${ BERLIN_STOCK_PHOTOS ? 'berlin-stock-photos' : '' }
+    `}>
       <h1>
-        <div>HEM</div>
+        <div>{ BERLIN_STOCK_PHOTOS ? 'BERLIN STOCK PHOTOS' : 'HEM' }</div>
         <Spinner />
       </h1>
     </div>
@@ -310,11 +313,14 @@ function App(): ReactElement {
           : ''
       }
       ${process.env.NODE_ENV === 'production' ? 'node-env-production' : ''}
+      ${ BERLIN_STOCK_PHOTOS ? 'berlin-stock-photos' : '' }
     `}>
       <>
         <ScrollToTop scrollPaneSelector=".scroll-lock-content" />
 
-        <TopBar />
+        { !BERLIN_STOCK_PHOTOS && (
+          <TopBar />
+        )}
 
         <div className="scroll-lock-container">
           <div className="scroll-lock-content">
@@ -323,9 +329,11 @@ function App(): ReactElement {
                 <RoutingHub />
               </div>
             </main>
-            <footer className="main-footer">
-              <SiteFooter />
-            </footer>
+            { !BERLIN_STOCK_PHOTOS && (
+              <footer className="main-footer">
+                <SiteFooter />
+              </footer>
+            )}
           </div>
         </div>
 
@@ -363,8 +371,10 @@ function App(): ReactElement {
         >
           <NewWebsitePopup />
         </PopupContainer>
-
-        <PlayerBar />
+        
+        { !BERLIN_STOCK_PHOTOS && (
+          <PlayerBar />
+        )}
       </>
 
       <ElectronNot>
