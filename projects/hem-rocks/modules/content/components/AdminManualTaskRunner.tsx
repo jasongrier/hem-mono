@@ -2,6 +2,7 @@ import React, { ReactElement, useEffect, useState, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import uuid from 'uuid/v1'
 import { noop, last, compact, has } from 'lodash'
+import pad from 'pad'
 import { autoParagraph } from '../../../../../lib/functions'
 import { modelize, hasTag, getContentItemBySlug, hasCategory } from '../functions'
 import { IIndexEntry, IContentItem } from '..'
@@ -164,30 +165,70 @@ function migrate(allContentItems: IContentItem[]) {
   const { writeFileSync, readdirSync, rename } = remote.require('fs')
   const { join } = remote.require('path')
 
-  const dir = join(process.env.HOME, 'Desktop', 'Drum')
+  const dir = join(process.env.HOME, 'Desktop', 'Workingkong', 'HEM', 'Website', 'hem-static', 'berlin-stock-photos', 'flat')
   const files = readdirSync(dir)
-  
-  // for (const i in files) {
-  //   const num = parseInt(i, 10) + 1
-  //   rename(`${dir}/${files[i]}`, `${dir}/${files[i]}.wav`, (res: any) => {
-  //     console.log(res)
-  //   })
-  // }
 
   const newItems = []
-
-  for (const item of allContentItems) {
-    const newItem = Object.assign({}, item)
-
-    // DO STUFF HERE
-    if (hasCategory(newItem, 'label')) {
-      newItem.keyArt = newItem.keyArt + '.jpg'
+  
+  for (const i in files) {
+    const createItem: IContentItem = {
+      acceptingDonations: false,
+      aside: '',
+      attribution: '',
+      attributionLink: '',
+      audioFilename: '',
+      badgeText: '',
+      blurb: '',
+      category: 'stock-photos',
+      date: '17.09.2020',
+      description: '',
+      displayCategory: '',
+      downloadFile: '',
+      externalLinkText: '',
+      externalLinkUrl: '',
+      fixedPrice: '',
+      flexPriceMinimum: '15',
+      flexPriceRecommended: '25',
+      hasFixedPrice: false,
+      id: 'bsm-' + files[i].replace('.jpg', ''),
+      isDigitalProduct: true,
+      isPhysicalProduct: false,
+      keyArt: files[i],
+      order: '',
+      physicalFormats: '',
+      preview: true,
+      published: true,
+      relatedContent: '',
+      relatedContentLink: '',
+      releasePhase: '1',
+      secondaryAttribution: '',
+      secondaryAttributionLink: '',
+      secondaryTitle: '',
+      slug: 'bsm-' + files[i].replace('.jpg', ''),
+      sticky: false,
+      tags: '',
+      title: files[i].replace('.jpg', ''),
+      titleWrapping: '',
+      trackSlugs: '',
+      type: 'Stock Photo',
     }
 
-
-    newItems.push(newItem)
-    // END DO STUFF HERE
+    newItems.push(createItem)
   }
+
+
+  // for (const item of allContentItems) {
+  //   const newItem = Object.assign({}, item)
+
+  //   // DO STUFF HERE
+  //   if (hasCategory(newItem, 'label')) {
+  //     newItem.keyArt = newItem.keyArt + '.jpg'
+  //   }
+
+
+  //   newItems.push(newItem)
+  //   // END DO STUFF HERE
+  // }
 
   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
   const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
