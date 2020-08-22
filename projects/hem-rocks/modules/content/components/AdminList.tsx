@@ -189,10 +189,10 @@ function AdminList(): ReactElement {
               <tr key={item.slug}>
                 <td className="admin-list-column-thumbnail">
                   <Link to={`/admin/edit/${item.slug}`}>
-                    { hasCategory(item, 'berlin-stock-photos') && (
-                      <img src={`${assetHost}/berlin-stock-photos/content/images/web-jpg/${item.keyArt}`} />
+                    { hasCategory(item, 'stock-photos') && (
+                      <img src={`${assetHost}/berlin-stock-photos/content/images/jpg-web/${item.keyArt}`} />
                     )}
-                    { !hasCategory(item, 'berlin-stock-photos') && (
+                    { !hasCategory(item, 'stock-photos') && (
                       <img src={`${assetHost}/hem-rocks/content/images/key-art/${item.keyArt}`} />
                     )}
                   </Link>

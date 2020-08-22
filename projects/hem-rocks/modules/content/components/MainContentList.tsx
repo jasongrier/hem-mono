@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Scrollbars from 'react-scrollbars-custom'
 import { slugify, titleCase } from 'voca'
-import { get, uniq, flatten, orderBy } from 'lodash'
+import { get, uniq, flatten, compact } from 'lodash'
 import moment from 'moment'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup } from '../../../../../lib/modules/popups'
@@ -83,7 +83,7 @@ function MainContentList({
     
     filters = ['All'].concat(filters)
 
-    setFinalFilters(filters)
+    setFinalFilters(compact(filters))
 
   }, [storeContentItems])
 

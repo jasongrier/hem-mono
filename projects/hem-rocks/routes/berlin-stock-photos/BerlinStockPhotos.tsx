@@ -3,6 +3,7 @@ import { NavLink, useParams } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import { useSelector, useDispatch } from 'react-redux'
 import ReactGA from 'react-ga'
+import { sample, compact } from 'lodash'
 import $ from 'jquery'
 import 'slick-carousel'
 import 'slick-carousel/slick/slick.css'
@@ -18,27 +19,39 @@ function BerlinStockPhotos(): ReactElement {
   }))
 
   useEffect(() => {
-    const sel = '.bsp-heroine'
+    if (!contentItems.length) return
+    
+    setTimeout(() => {
+      const sel = '.bsp-heroine'
 
-    // @ts-ignore
-    $(sel).slick({
-      autoplay: true,
-      fade: true,
-      pauseOnHover: false,
-      nextArrow: 'adfasdf',
-      prevArrow: 'adfasdf',
-    })
+      // @ts-ignore
+      $(sel).slick({
+        autoplay: true,
+        fade: true,
+        pauseOnHover: false,
+        nextArrow: 'adfasdf',
+        prevArrow: 'adfasdf',
+      })
+    }, 500)
 
     return function cleanup() {
       // @ts-ignore
       $(sel).slick('unslick')
     }
-  }, [])
+  }, [contentItems])
 
   const { filter: currentFilter } = useParams()
 
-  const bspItems = contentItems.filter(item => hasCategory(item, 'berlin-stock-photos'))
-  const bspHeroines = bspItems.filter(item => hasTag(item, 'bsp-heroine'))
+  const bspItems = contentItems.filter(item => hasCategory(item, 'stock-photos'))
+  const bspHeroines = compact([
+    sample(bspItems),
+    sample(bspItems),
+    sample(bspItems),
+    sample(bspItems),
+    sample(bspItems),
+  ])
+
+  const assetHost = assetHostHostname()
 
   return (
     <>
@@ -71,10 +84,12 @@ function BerlinStockPhotos(): ReactElement {
 
         <main>
           <div className="bsp-heroine">
-            <img src="http://placekitten.com/1440/957" alt=""/>
-            <img src="http://placekitten.com/1440/957" alt=""/>
-            <img src="http://placekitten.com/1440/957" alt=""/>
-            <img src="http://placekitten.com/1440/957" alt=""/>
+            { bspHeroines.map(contentItem => (
+              <img 
+                src={`${assetHost}/berlin-stock-photos/content/images/jpg-web/${contentItem.keyArt}`}
+                alt=""
+              />
+            ))}
           </div>
 
           <div className="bsp-content">
