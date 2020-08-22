@@ -124,7 +124,7 @@ function AdminList(): ReactElement {
               <option value="video">Videos</option>
               <option value="all">---</option>
               <option value="lists">Lists</option>
-              <option value="berlin-stock-photos">Berlin Stock Photos</option>
+              <option value="stock-photos">Berlin Stock Photos</option>
             </select>
           </div>
           <div className="admin-list-controls-search">

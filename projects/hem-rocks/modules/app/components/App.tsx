@@ -67,6 +67,7 @@ function App(): ReactElement {
     { basePath: 'press', id: 'detail-popup' },
     { basePath: 'press-kits', id: 'detail-popup' },
     { basePath: 'sound-library', id: 'detail-popup' },
+    { basePath: 'stock-photos', id: 'detail-popup' },
     { basePath: 'tracks', id: 'detail-popup' },
     { basePath: 'tutorials', id: 'detail-popup' },
     { basePath: 'user-guides', id: 'detail-popup' },
@@ -309,6 +310,7 @@ function App(): ReactElement {
         || pathname === '/thank-you/'
         || pathname === '/new-website'
         || pathname === '/new-website/'
+        || BERLIN_STOCK_PHOTOS && !pathname.includes('admin')
           ? ' app-is-home'
           : ''
       }

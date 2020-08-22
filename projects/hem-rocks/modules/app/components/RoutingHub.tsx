@@ -50,6 +50,7 @@ import {
 
 import {
   BerlinStockPhotos,
+  BerlinStockPhotosNotFound,
 } from '../../../routes/berlin-stock-photos'
 
 function RoutingHub(): ReactElement {
@@ -183,8 +184,13 @@ function RoutingHub(): ReactElement {
         {/* Desktop Admin Application */}
         <Route path="/admin" component={Admin} />
 
+        {/* Berlin Stock Photos */}
+        <Route exact path="/stock-photos/:contentItemSlug?/:filter?" component={BerlinStockPhotos} />
+        <Route exact path="/stock-photos/filter/:filter" component={BerlinStockPhotos} />
+        <Route exact path="/stock-photos/cart/:filter?" component={BerlinStockPhotos} />
+
         {/* Catch-all */}
-        <Route path="*" component={NotFound} />
+        <Route path="*" component={ BERLIN_STOCK_PHOTOS ? BerlinStockPhotosNotFound : NotFound} />
       </Switch>
     </div>
   )

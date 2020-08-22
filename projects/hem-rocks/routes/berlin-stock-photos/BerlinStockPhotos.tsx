@@ -79,7 +79,7 @@ function BerlinStockPhotos(): ReactElement {
 
           <div className="bsp-content">
             <MainContentList
-              category="sound-library"
+              category="stock-photos"
               currentFilter={currentFilter}
               noSplatter={true}
             />
@@ -91,14 +91,18 @@ function BerlinStockPhotos(): ReactElement {
           <ul>
             <li>
               <NavLink to="">Instagram</NavLink>
+            </li>
+            <li>
               <NavLink to="">Facebook</NavLink>
+            </li>
+            <li>
               <NavLink to="">Twitter</NavLink>
             </li>
           </ul>
           </nav>
-          <div>
+          <p>
             &copy; 2020—2021 Berlin Stock Photos, OÜ
-          </div>
+          </p>
         </footer>
       </div>
     </>
