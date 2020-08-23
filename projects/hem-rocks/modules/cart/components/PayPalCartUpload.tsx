@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react'
+import { BERLIN_STOCK_PHOTOS } from '../../../config'
 
 interface IItem {
   amount: number
@@ -28,6 +29,16 @@ function PayPalCartUpload({ items }: IProps): ReactElement {
     paypalAction = 'https://www.paypal.com/cgi-bin/webscr'
   }
 
+  let banner
+
+  if (BERLIN_STOCK_PHOTOS) {
+    banner = 'http://static.hem.rocks/berlin-stock-photos/paypal/store_banner.jpg'
+  }
+  
+  else {
+    banner = 'http://static.hem.rocks/hem-rocks/paypal/store_banner.jpg'
+  }
+
   return (
     <div className="pay-pal-cart-upload">
       <form
@@ -39,7 +50,7 @@ function PayPalCartUpload({ items }: IProps): ReactElement {
         <input type="hidden" name="currency_code" value="EUR" />
         <input type="hidden" name="upload" value="1" />
         <input type="hidden" name="business" value={business} />
-        <input type="hidden" name="image_url" value="http://static.hem.rocks/hem-rocks/paypal/store_banner.jpg" />
+        <input type="hidden" name="image_url" value={banner} />
         <input type="hidden" name="no_shipping" value="1" />
         <input type="hidden" name="cancel_return" value={window.location.href} />
 

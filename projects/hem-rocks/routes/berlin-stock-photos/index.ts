@@ -1,2 +1,3 @@
 export { default as BerlinStockPhotos } from './BerlinStockPhotos'
-export { default as BerlinStockPhotosNotFound } from './BerlinStockPhotosNotFound'
+export { default as NotFound } from './NotFound'
+export { default as Support } from './Support'
