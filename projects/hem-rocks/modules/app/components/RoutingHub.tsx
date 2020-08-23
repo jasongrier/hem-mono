@@ -50,7 +50,8 @@ import {
 
 import {
   BerlinStockPhotos,
-  BerlinStockPhotosNotFound,
+  NotFound as BerlinStockPhotosNotFound,
+  Support as BerlinStockPhotosSupport,
 } from '../../../routes/berlin-stock-photos'
 
 function RoutingHub(): ReactElement {
@@ -60,8 +61,8 @@ function RoutingHub(): ReactElement {
       <Switch>
         {/* Home */}
         <Route exact path="/" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotos : Home} />
-        <Route exact path="/cart" component={Home} />
-        <Route exact path="/thank-you" component={Home} />
+        <Route exact path="/cart" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotos : Home} />
+        <Route exact path="/thank-you" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotos : Home} />
 
         {/* New Website Overlay */}
         <Route exact path="/new-website" component={Home} />
@@ -97,8 +98,8 @@ function RoutingHub(): ReactElement {
         <Route exact path="/react-consulting" component={ReactConsulting} />
         <Route exact path="/react-consulting/cart" component={ReactConsulting} />
 
-        <Route exact path="/support" component={Support} />
-        <Route exact path="/support/cart" component={Support} />
+        <Route exact path="/support" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotosSupport : Support} />
+        <Route exact path="/support/cart" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotosSupport : Support} />
 
         {/* <Route exact path="/venue-main-stage" component={VenueStage} />
         <Route exact path="/venue-main-stage/cart" component={VenueStage} /> */}
@@ -188,6 +189,9 @@ function RoutingHub(): ReactElement {
         <Route exact path="/stock-photos/:contentItemSlug?/:filter?" component={BerlinStockPhotos} />
         <Route exact path="/stock-photos/filter/:filter" component={BerlinStockPhotos} />
         <Route exact path="/stock-photos/cart/:filter?" component={BerlinStockPhotos} />
+
+        <Route exact path="/stock-photos/support" component={BerlinStockPhotosSupport} />
+        <Route exact path="/stock-photos/support/cart" component={BerlinStockPhotosSupport} />
 
         {/* Catch-all */}
         <Route path="*" component={ BERLIN_STOCK_PHOTOS ? BerlinStockPhotosNotFound : NotFound} />

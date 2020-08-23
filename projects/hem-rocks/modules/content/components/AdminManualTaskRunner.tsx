@@ -228,6 +228,7 @@ function migrate(allContentItems: IContentItem[]) {
     }
 
     newItem.id = newItem.id.replace('bsm-', 'bsp-')
+    newItem.slug = newItem.slug.replace('bsm-', 'bsp-')
     newItems.push(newItem)
     // END DO STUFF HERE
   }

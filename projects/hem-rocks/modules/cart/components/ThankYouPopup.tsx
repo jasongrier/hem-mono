@@ -97,7 +97,7 @@ function ThankYouPopup(): ReactElement {
               </Scrollbars>
               <Link
                 className="support-link"
-                to={ BERLIN_STOCK_PHOTOS ? '/stock-photos/support' : '/support'}
+                to="/support"
               >
                 Problems downloading?
               </Link>

@@ -13,6 +13,7 @@ import {
   setCurrentSale as setCurrentSaleAc,
   setSaleRetrievalError as setSaleRetrievalErrorAc,
 } from './index'
+import { BERLIN_STOCK_PHOTOS } from '../../config'
 
 function* requestSale({ payload: saleId }: any) {
   try {
@@ -45,7 +46,7 @@ function* submitSale({ payload: saleId }: any) {
     // TODO: websiteHostName() helper fn...
     const websiteHostName = window.location.hostname === 'localhost'
       ? 'http://localhost:1234'
-      : 'http://hem.rocks'
+      : BERLIN_STOCK_PHOTOS ? 'http://berlinstockphotos.com/stock-photos' : 'http://hem.rocks'
 
     if (!form) throw new Error('Form not found')
 
