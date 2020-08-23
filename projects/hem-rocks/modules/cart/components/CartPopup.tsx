@@ -114,7 +114,7 @@ function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
                     key={product.slug}
                   >
                     <div className="cart-popup-item-remove">
-                      <CloseButton
+                      <a
                         onClick={() => {
                           ReactGA.event({
                             category: 'User',
@@ -122,7 +122,9 @@ function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
                           })
                           dispatch(removeProductFromCart(product.slug))
                         }}
-                      />
+                      >
+                        remove
+                      </a>
                     </div>
                     <h2>{ product.title }</h2>
                     <p>{ product.type }</p>

@@ -158,13 +158,31 @@
   height: calc(100vh - 40px) !important;
 }
 
+.berlin-stock-photos #thank-you-popup .hem-popup-content,
+.berlin-stock-photos #cart-popup .hem-popup-content {
+  height: calc(100vh - 230px) !important;
+}
+
+.berlin-stock-photos .thank-you-popup-email-form {
+  display: none;
+}
+
+.berlin-stock-photos .download-items {
+  height: 410px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
 .berlin-stock-photos .detail-popup header {
+  position: relative;
   height: calc(100vh - 40px) !important;
   margin-top: 0;
   padding: 0;
 }
 
 .berlin-stock-photos .detail-popup-title {
+  margin-left: 15px;
+  margin-top: 10px;
   height: 30px;
   margin-bottom: 5px;
 }
@@ -188,7 +206,11 @@
 }
 
 .berlin-stock-photos .detail-popup-actions {
-  width: 100%;
+  left: auto;
+  right: -110px;
+  top: 350px;
+  width: 405px;
+  bottom: auto;
 }
 
 .berlin-stock-photos .hem-close-button {
@@ -207,17 +229,18 @@
   width: 100%;
 }
 
-.berlin-stock-photos .detail-popup-form label,
+/* .berlin-stock-photos .detail-popup-form label,
 .berlin-stock-photos .detail-popup-form input,
 .berlin-stock-photos .detail-popup-form small {
   float: left;
 }
+*/
 
 .berlin-stock-photos .detail-popup-form label {
-  margin-top: 20px;
-  margin-right: 20px;
+  padding: 0;
 }
 
+/*
 .berlin-stock-photos .detail-popup-form input {
   height: 38px;
   margin-top: 15px;
@@ -226,7 +249,7 @@
 .berlin-stock-photos .detail-popup-form small {
   margin-top: 27px;
   margin-left: 35px;
-}
+} */
 
 .berlin-stock-photos .detail-popup-form small::before {
   display: inline;
@@ -238,7 +261,7 @@
   content: ")";
 }
 
-.berlin-stock-photos .detail-popup-currency-symbol {
+/* .berlin-stock-photos .detail-popup-currency-symbol {
   top: 19px;
   left: 488px;
 }
@@ -249,20 +272,30 @@
   bottom: 10px;
   margin: 0;
 }
+ */
 
 .berlin-stock-photos .detail-popup-buttons button {
-  margin-top: 0;
+  margin-bottom: 10px;
 }
 
 .bsp-lightbox-image {
-  width: 80%;
-  height: 80%;
-  margin: 0 auto;
+  margin-left: 20px;
+  width: 70%;
+  height: 70%;
 }
 
 .bsp-lightbox-caption {
-  width: 80%;
-  margin: 0 auto;
+  width: 60%;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.bsp-lightbox-caption h3 {
+  margin: 0 0 5px 0;
+}
+
+.bsp-lightbox-caption p {
+  margin: 0 0 10px 0;
 }
 
 .bsp-lightbox-image img {

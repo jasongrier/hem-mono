@@ -5,7 +5,8 @@ import produce from 'immer'
 import { isEmpty, isEqual, startCase } from 'lodash'
 import { slugify } from 'voca'
 import { ElectronOnly, ZoomTextarea } from '../../../../../lib/components'
-import { IContentItem, fieldTypes, modelize, requestCreateItems, requestDeleteItems, requestUpdateItems } from '../index'
+import { assetHostHostname } from '../../../functions'
+import { IContentItem, fieldTypes, modelize, requestCreateItems, requestDeleteItems, requestUpdateItems, hasCategory } from '../index'
 import { RootState } from '../../../index'
 
 interface IProps {
@@ -167,11 +168,21 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
 
   orderedKeys = orderedKeys.concat(keys)
 
+  const assetHost = assetHostHostname()
+
   return (
     <ElectronOnly showMessage={true}>
       <form onSubmit={onSubmit}>
         <header className="admin-item-header">
           <h2>{ originalItem?.title }</h2>
+          <div className="admin-item-key-art clearfix">
+            { hasCategory(originalItem, 'stock-photos') && (
+              <img src={`${assetHost}/berlin-stock-photos/content/images/jpg-web/${originalItem.keyArt}`} />
+            )}
+            { !hasCategory(originalItem, 'stock-photos') && (
+              <img src={`${assetHost}/hem-rocks/content/images/key-art/${originalItem.keyArt}`} />
+            )}
+          </div>
           <button
             className="action-button save-item-button"
             disabled={!canSave}

@@ -211,6 +211,15 @@
   vertical-align: middle;
 }
 
+.admin-item-key-art {
+  float: left;
+}
+
+.admin-item-key-art img {
+  width: 400px;
+  height: auto;
+}
+
 .admin-item-header button {
   position: absolute;
   top: 33px;
