@@ -165,7 +165,7 @@ function migrate(allContentItems: IContentItem[]) {
   const { writeFileSync, readdirSync, rename } = remote.require('fs')
   const { join } = remote.require('path')
 
-  const dir = join(process.env.HOME, 'Desktop', 'Workingkong', 'HEM', 'Website', 'hem-static', 'berlin-stock-photos', 'flat')
+  const dir = join(process.env.HOME, 'Desktop', 'Workingkong', 'HEM', 'Website', 'hem-static', 'berlin-stock-photos', 'missing')
   const files = readdirSync(dir)
 
   const newItems = []
