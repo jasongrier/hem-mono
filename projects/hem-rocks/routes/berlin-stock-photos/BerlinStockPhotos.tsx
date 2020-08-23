@@ -21,8 +21,9 @@ function BerlinStockPhotos(): ReactElement {
   useEffect(() => {
     if (!contentItems.length) return
     
+    const sel = '.bsp-heroine'
+    
     setTimeout(() => {
-      const sel = '.bsp-heroine'
 
       // @ts-ignore
       $(sel).slick({
