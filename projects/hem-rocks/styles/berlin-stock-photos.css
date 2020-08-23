@@ -88,6 +88,10 @@
   user-select: none;
 }
 
+.bsp-content .main-content-filters h3 {
+  display: none;
+}
+
 .main-content-filter.active {
   background: rgb(0, 201, 252);
 }
