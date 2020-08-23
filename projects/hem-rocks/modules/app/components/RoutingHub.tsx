@@ -49,7 +49,9 @@ import {
 } from '../../../routes/venue'
 
 import {
+  About as BerlinStockPhotosAbout,
   BerlinStockPhotos,
+  Contact as BerlinStockPhotosContact,
   NotFound as BerlinStockPhotosNotFound,
   Support as BerlinStockPhotosSupport,
 } from '../../../routes/berlin-stock-photos'
@@ -74,8 +76,8 @@ function RoutingHub(): ReactElement {
         <Route exact path="/tracks/new-website/:filter?" component={Tracks} />
 
         {/* Static Pages */}
-        <Route exact path="/about" component={About} />
-        <Route exact path="/about/cart" component={About} />
+        <Route exact path="/about" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotosAbout : About} />
+        <Route exact path="/about/cart" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotosAbout : About} />
         
         <Route exact path="/sound-library/about-sl" component={AboutSoundLibrary} />
         <Route exact path="/sound-library/about-sl/cart" component={AboutSoundLibrary} />
@@ -83,8 +85,8 @@ function RoutingHub(): ReactElement {
         <Route exact path="/sound-library/made-with-sl" component={MadeWithSoundLibrary} />
         <Route exact path="/sound-library/made-with-sl/cart" component={MadeWithSoundLibrary} />
 
-        <Route exact path="/contact" component={Contact} />
-        <Route exact path="/contact/cart" component={Contact} />
+        <Route exact path="/contact" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotosContact : Contact} />
+        <Route exact path="/contact/cart" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotosContact : Contact} />
 
         <Route exact path="/cookie-settings" component={CookieSettings} />
         <Route exact path="/cookie-settings/cart" component={CookieSettings} />

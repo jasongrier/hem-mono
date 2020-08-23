@@ -106,7 +106,7 @@ const reducer = (
         draftState.needsKeyArtFilter = !draftState.needsKeyArtFilter
       })
     }
-    
+
     case TOGGLE_SHOW_UNPUBLISHED_FILTER: {
       return produce(state, draftState => {
         draftState.showUnpublishedFilter = !draftState.showUnpublishedFilter
