@@ -1,5 +1,5 @@
-import React, { ReactElement, useEffect } from 'react'
-import { NavLink, useParams } from 'react-router-dom'
+import React, { ReactElement, useEffect, useState } from 'react'
+import { NavLink, Link, useParams } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import { useSelector, useDispatch } from 'react-redux'
 import ReactGA from 'react-ga'
@@ -22,6 +22,8 @@ function BerlinStockPhotos(): ReactElement {
     if (!contentItems.length) return
     
     const sel = '.bsp-heroine'
+
+    console.log('i inited')
     
     setTimeout(() => {
 
@@ -86,10 +88,12 @@ function BerlinStockPhotos(): ReactElement {
         <main>
           <div className="bsp-heroine">
             { bspHeroines.map(contentItem => (
-              <img 
-                src={`${assetHost}/berlin-stock-photos/content/images/jpg-web/${contentItem.keyArt}`}
-                alt=""
-              />
+              <Link to={`/${contentItem.category}/${contentItem.slug}${currentFilter ? '/' + currentFilter : ''}`}>
+                <img 
+                  src={`${assetHost}/berlin-stock-photos/content/images/jpg-web/${contentItem.keyArt}`}
+                  alt=""
+                />
+              </Link>
             ))}
           </div>
 

@@ -9,6 +9,7 @@ import { getQueryVar } from '../../../../../lib/functions'
 import { Spinner } from '../../../../../lib/components'
 import { EmailForm } from '../../app'
 import { assetHostHostname } from '../../../functions'
+import { BERLIN_STOCK_PHOTOS } from '../../../config'
 import { RootState } from '../../../index'
 import { closePopup } from '../../../../../lib/modules/popups'
 import { clearCart, requestSale, IProduct } from '../index'
@@ -96,7 +97,7 @@ function ThankYouPopup(): ReactElement {
               </Scrollbars>
               <Link
                 className="support-link"
-                to="/support"
+                to={ BERLIN_STOCK_PHOTOS ? '/stock-photos/support' : '/support'}
               >
                 Problems downloading?
               </Link>

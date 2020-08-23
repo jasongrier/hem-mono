@@ -165,62 +165,69 @@ function migrate(allContentItems: IContentItem[]) {
   const { writeFileSync, readdirSync, rename } = remote.require('fs')
   const { join } = remote.require('path')
 
-  const dir = join(process.env.HOME, 'Desktop', 'Workingkong', 'HEM', 'Website', 'hem-static', 'berlin-stock-photos', 'content', 'images', 'jpg-web')
-  const files = readdirSync(dir)
-
   const newItems = []
   
-  for (const i in files) {
-    const createItem: IContentItem = {
-      acceptingDonations: false,
-      aside: '',
-      attribution: '',
-      attributionLink: '',
-      audioFilename: '',
-      badgeText: '',
-      blurb: '',
-      category: 'stock-photos',
-      date: '17.09.2020',
-      description: '',
-      displayCategory: '',
-      downloadFile: '',
-      externalLinkText: '',
-      externalLinkUrl: '',
-      fixedPrice: '',
-      flexPriceMinimum: '15',
-      flexPriceRecommended: '25',
-      hasFixedPrice: false,
-      id: 'bsm-' + files[i].replace('.jpg', ''),
-      isDigitalProduct: true,
-      isPhysicalProduct: false,
-      keyArt: files[i],
-      order: '',
-      physicalFormats: '',
-      preview: true,
-      published: true,
-      relatedContent: '',
-      relatedContentLink: '',
-      releasePhase: '1',
-      secondaryAttribution: '',
-      secondaryAttributionLink: '',
-      secondaryTitle: '',
-      slug: 'bsm-' + files[i].replace('.jpg', ''),
-      sticky: false,
-      tags: '',
-      title: files[i].replace('.jpg', ''),
-      titleWrapping: '',
-      trackSlugs: '',
-      type: 'Stock Photo',
-    }
+  // const dir = join(process.env.HOME, 'Desktop', 'Workingkong', 'HEM', 'Website', 'hem-static', 'berlin-stock-photos', 'content', 'images', 'jpg-web')
+  // const files = readdirSync(dir)
 
-    newItems.push(createItem)
-  }
+  
+  // for (const i in files) {
+  //   const createItem: IContentItem = {
+  //     acceptingDonations: false,
+  //     aside: '',
+  //     attribution: '',
+  //     attributionLink: '',
+  //     audioFilename: '',
+  //     badgeText: '',
+  //     blurb: '',
+  //     category: 'stock-photos',
+  //     date: '17.09.2020',
+  //     description: '',
+  //     displayCategory: '',
+  //     downloadFile: '',
+  //     externalLinkText: '',
+  //     externalLinkUrl: '',
+  //     fixedPrice: '',
+  //     flexPriceMinimum: '15',
+  //     flexPriceRecommended: '25',
+  //     hasFixedPrice: false,
+  //     id: 'bsm-' + files[i].replace('.jpg', ''),
+  //     isDigitalProduct: true,
+  //     isPhysicalProduct: false,
+  //     keyArt: files[i],
+  //     order: '',
+  //     physicalFormats: '',
+  //     preview: true,
+  //     published: true,
+  //     relatedContent: '',
+  //     relatedContentLink: '',
+  //     releasePhase: '1',
+  //     secondaryAttribution: '',
+  //     secondaryAttributionLink: '',
+  //     secondaryTitle: '',
+  //     slug: 'bsm-' + files[i].replace('.jpg', ''),
+  //     sticky: false,
+  //     tags: '',
+  //     title: files[i].replace('.jpg', ''),
+  //     titleWrapping: '',
+  //     trackSlugs: '',
+  //     type: 'Stock Photo',
+  //   }
+
+  //   newItems.push(createItem)
+  // }
 
 
   for (const item of allContentItems) {
     const newItem = Object.assign({}, item)
 
     // DO STUFF HERE
+    if (typeof newItem.id === 'number') {
+      // @ts-ignore
+      newItem.id = newItem.id.toString()
+    }
+
+    newItem.id = newItem.id.replace('bsm-', 'bsp-')
     newItems.push(newItem)
     // END DO STUFF HERE
   }

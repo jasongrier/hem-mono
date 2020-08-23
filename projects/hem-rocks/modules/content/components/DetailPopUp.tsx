@@ -347,7 +347,10 @@ function DetailPopUp({
                   alt={contentItem.secondaryTitle}
                 />
               </div>
-              <div className="bsp-lightbox-caption">{ contentItem.secondaryTitle }</div>
+              <div 
+                className="bsp-lightbox-caption"
+                dangerouslySetInnerHTML={{ __html: marked(contentItem.blurb) }}
+              />
             </>
           )}
           { !BERLIN_STOCK_PHOTOS && (
