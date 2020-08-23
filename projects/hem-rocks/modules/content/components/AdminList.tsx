@@ -45,7 +45,7 @@ function AdminList(): ReactElement {
       dispatch(toggleNeedsKeyArtFilter())
     }, [],
   )
-  
+
   const hideUnpublishedOnChange = useCallback(
     function hideUnpublishedOnChangeFn(evt: SyntheticEvent<HTMLInputElement>) {
       dispatch(toggleShowUnpublishedFilter())
@@ -171,7 +171,7 @@ function AdminList(): ReactElement {
               <th className="admin-list-column-title">
               </th>
               <th className="admin-list-column-category">
-                Category
+                Tags
               </th>
               <th className="admin-list-column-order">
                 Order
@@ -201,7 +201,7 @@ function AdminList(): ReactElement {
                   <Link to={`/admin/edit/${item.slug}`}>{item.title}</Link>
                 </td>
                 <td className="admin-list-column-category">
-                  { titleCase(item.category.replace(/-/g, ' ')) }
+                  { titleCase(item.tags.replace(/-/g, ' ')) }
                 </td>
                 <td className="admin-list-column-order">
                   { item.order || '-' }

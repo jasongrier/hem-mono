@@ -1,8 +1,12 @@
 :root {
-  --bsp-top-bar-height: 60px;
+  --bsp-top-bar-height: 73px;
 }
 
 .berlin-stock-photos {
+  background-color: #000;
+}
+
+.berlin-stock-photos .scroll-lock-container {
   background-color: #000;
 }
 
@@ -19,6 +23,7 @@
   height: var(--bsp-top-bar-height);
   line-height: var(--bsp-top-bar-height);
   user-select: none;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .berlin-stock-photos .main-header h1 {
@@ -28,10 +33,26 @@
   color: #fff;
 }
 
+.berlin-stock-photos .main-header h2 {
+  width: 250px;
+  margin: -16px 0 0 0;
+  padding-left: 5px;
+  padding-bottom: 7px;
+  font-size: 14px;
+  line-height: 14px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.berlin-stock-photos .main-header h1 a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .berlin-stock-photos .main-header nav {
   position: absolute;
   top: 0;
-  right: 0;
+  right: 20px;
   height: var(--bsp-top-bar-height);
   
 }
@@ -56,10 +77,13 @@
 
 .berlin-stock-photos .main-header nav a {
   display: inline-block;
-  height: var(--bsp-top-bar-height);
-  line-height: var(--bsp-top-bar-height);
+  height: 45px;
   color: #fff;
   text-decoration: none;
+}
+
+.berlin-stock-photos .main-header nav a.active {
+  border-bottom: 3px solid #fff;
 }
 
 .bsp-heroine {
@@ -80,6 +104,22 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.bsp-next-heroine {
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  margin-left: -30px;
+  border-radius: 60px;
+  background-color: rgba(0, 0, 0, 0.5);
+  transform: scale(.7);
+  transform-origin: center;
+}
+
+.bsp-next-heroine .hem-next-button-icon {
+  transform: scale(.7);
+  transform-origin: center;
 }
 
 .bsp-content .main-content-filters {
@@ -302,4 +342,36 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+.bsp-page {
+  padding-top: 60px;
+}
+
+.bsp-page .first-main-content-section {
+  margin-top: 20px;
+}
+      
+.bsp-page h1,
+.bsp-page p,
+.bsp-page .first-main-content-section {
+  margin-left: 20px;
+}
+
+.bsp-page p {
+  color: #fff;
+}
+
+.bsp-about-page {
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  overflow: hidden;
+}
+
+.bsp-about-image {
+  display: block;
+  width: 800px;
+  height: auto;
+  margin: 120px auto 0 auto;
 }

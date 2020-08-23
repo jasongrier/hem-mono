@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { ReactElement, useEffect, useState, useCallback } from 'react'
 import { NavLink, Link, useParams } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import { useSelector, useDispatch } from 'react-redux'
@@ -7,52 +7,31 @@ import { sample, compact } from 'lodash'
 import $ from 'jquery'
 import 'slick-carousel'
 import 'slick-carousel/slick/slick.css'
-import { ElectronOnly } from '../../../../lib/components'
-import { MainContentList } from '../../modules/content'
+import { NextButton } from '../../../../lib/packages/hem-buttons'
+import { MainContentList, IContentItem } from '../../modules/content'
+import { Header } from '../../components/berlin-stock-photos'
 import { assetHostHostname } from '../../functions'
 import { RootState } from '../../index'
 import { hasCategory, hasTag } from '../../modules/content'
 
 function BerlinStockPhotos(): ReactElement {
   const { contentItems } = useSelector((state: RootState) => ({
-    contentItems: state.content.contentItems,
+    contentItems: state.content.contentItems.filter(item => hasCategory(item, 'stock-photos')),
   }))
 
-  useEffect(() => {
-    if (!contentItems.length) return
-    
-    const sel = '.bsp-heroine'
+  const [heroine, setHeroine] = useState<IContentItem>(null)
 
-    console.log('i inited')
-    
-    setTimeout(() => {
-
-      // @ts-ignore
-      $(sel).slick({
-        autoplay: true,
-        fade: true,
-        pauseOnHover: false,
-        nextArrow: 'adfasdf',
-        prevArrow: 'adfasdf',
-      })
-    }, 500)
-
-    return function cleanup() {
-      // @ts-ignore
-      $(sel).slick('unslick')
-    }
-  }, [contentItems])
+  useEffect(function initHeroine() {
+    setHeroine(sample(contentItems))
+  }, [])
 
   const { filter: currentFilter } = useParams()
 
-  const bspItems = contentItems.filter(item => hasCategory(item, 'stock-photos'))
-  const bspHeroines = compact([
-    sample(bspItems),
-    sample(bspItems),
-    sample(bspItems),
-    sample(bspItems),
-    sample(bspItems),
-  ])
+  const onRandomPhotoClick = useCallback(
+    function onRandomPhotoClickFn() {
+      setHeroine(sample(contentItems))
+    }, [contentItems],
+  )
 
   const assetHost = assetHostHostname()
 
@@ -63,39 +42,18 @@ function BerlinStockPhotos(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
       <div className="page berlin-stock-photos">
-        <header className="main-header">
-          <h1>Berlin Stock Photos</h1>
-          <nav>
-            <ul>
-              <li>
-                <NavLink to="about">About</NavLink>
-              </li>
-              <li>
-                <NavLink to="contact">Contact</NavLink>
-              </li>
-              <li>
-                <NavLink to="random">Random Pic</NavLink>
-              </li>
-              <ElectronOnly>
-                <li>
-                  <NavLink to="admin/list">Admin</NavLink>
-                </li>
-              </ElectronOnly>
-            </ul>
-          </nav>
-        </header>
-
+        <Header onRandomPhotoClick={onRandomPhotoClick} />
         <main>
-          <div className="bsp-heroine">
-            { bspHeroines.map(contentItem => (
-              <Link to={`/${contentItem.category}/${contentItem.slug}${currentFilter ? '/' + currentFilter : ''}`}>
+          { heroine && (
+            <div className="bsp-heroine">
+              <Link to={`/${heroine.category}/${heroine.slug}${currentFilter ? '/' + currentFilter : ''}`}>
                 <img 
-                  src={`${assetHost}/berlin-stock-photos/content/images/jpg-web/${contentItem.keyArt}`}
+                  src={`${assetHost}/berlin-stock-photos/content/images/jpg-web/${heroine.keyArt}`}
                   alt=""
                 />
               </Link>
-            ))}
-          </div>
+            </div>
+          )}
 
           <div className="bsp-content">
             <MainContentList

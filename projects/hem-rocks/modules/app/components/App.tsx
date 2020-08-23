@@ -315,7 +315,7 @@ function App(): ReactElement {
           : ''
       }
       ${process.env.NODE_ENV === 'production' ? 'node-env-production' : ''}
-      ${ BERLIN_STOCK_PHOTOS ? 'berlin-stock-photos' : '' }
+      ${ BERLIN_STOCK_PHOTOS && !pathname.includes('admin') ? 'berlin-stock-photos' : '' }
     `}>
       <>
         <ScrollToTop scrollPaneSelector=".scroll-lock-content" />
