@@ -165,7 +165,7 @@ function migrate(allContentItems: IContentItem[]) {
   const { writeFileSync, readdirSync, rename } = remote.require('fs')
   const { join } = remote.require('path')
 
-  const dir = join(process.env.HOME, 'Desktop', 'Workingkong', 'HEM', 'Website', 'hem-static', 'berlin-stock-photos', 'missing')
+  const dir = join(process.env.HOME, 'Desktop', 'Workingkong', 'HEM', 'Website', 'hem-static', 'berlin-stock-photos', 'content', 'images', 'jpg-web')
   const files = readdirSync(dir)
 
   const newItems = []
@@ -217,18 +217,13 @@ function migrate(allContentItems: IContentItem[]) {
   }
 
 
-  // for (const item of allContentItems) {
-  //   const newItem = Object.assign({}, item)
+  for (const item of allContentItems) {
+    const newItem = Object.assign({}, item)
 
-  //   // DO STUFF HERE
-  //   if (hasCategory(newItem, 'label')) {
-  //     newItem.keyArt = newItem.keyArt + '.jpg'
-  //   }
-
-
-  //   newItems.push(newItem)
-  //   // END DO STUFF HERE
-  // }
+    // DO STUFF HERE
+    newItems.push(newItem)
+    // END DO STUFF HERE
+  }
 
   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
   const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
