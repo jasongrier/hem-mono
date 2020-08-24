@@ -91,7 +91,7 @@ export const fieldTypes: IContentItem = {
   secondaryTitle: 'text',
   slug: 'text',
   sticky: false,
-  tags: 'textarea',
+  tags: 'text',
   title: 'text',
   titleWrapping: 'text',
   trackSlugs: 'textarea',

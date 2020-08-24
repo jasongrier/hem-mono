@@ -35,7 +35,7 @@ function Header({ onRandomPhotoClick }: IProps): ReactElement {
           </li> */}
           <ElectronOnly>
             <li>
-              <NavLink to="admin/list">Admin</NavLink>
+              <NavLink to="/admin/list">Admin</NavLink>
             </li>
           </ElectronOnly>
         </ul>

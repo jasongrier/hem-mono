@@ -147,12 +147,12 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
 
   const keys = Object.keys(workingItem)
   const preferredOrder = [
+    'tags',
     'title',
     'titleWrapping',
     'description',
     'secondaryTitle',
     'category',
-    'tags',
     'order',
   ]
 
@@ -190,6 +190,14 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
           >
             Save
           </button>
+          <div style={{
+            paddingLeft: '20px',
+          }}>
+            <input type="text" value="flyers-stickers-posters" /><br />
+            <input type="text" value="architecture" /><br />
+            <input type="text" value="green-depth" /><br />
+            <input type="text" value="pretty-skies" /><br />
+          </div>
         </header>
         <table className="admin-item">
           <tbody>
