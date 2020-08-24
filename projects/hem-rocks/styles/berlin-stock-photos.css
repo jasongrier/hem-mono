@@ -18,6 +18,7 @@
 .berlin-stock-photos .main-header {
   position: fixed;
   top: 0;
+  padding-bottom: 13px;
   z-index: 9999;
   width: 100vw;
   height: var(--bsp-top-bar-height);
@@ -35,13 +36,13 @@
 
 .berlin-stock-photos .main-header h2 {
   width: 250px;
-  margin: -16px 0 0 0;
-  padding-left: 5px;
+  margin: -10px 0 0 0;
+  padding-left: 10px;
   padding-bottom: 7px;
   font-size: 14px;
   line-height: 14px;
   color: #fff;
-  background-color: rgba(0, 0, 0, 0.5);
+  font-weight: 100;
 }
 
 .berlin-stock-photos .main-header h1 a {

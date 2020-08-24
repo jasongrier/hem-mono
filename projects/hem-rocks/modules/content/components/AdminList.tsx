@@ -1,8 +1,8 @@
 import React, { ReactElement, useEffect, useCallback, useState, SyntheticEvent } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import produce from 'immer'
-import { isEmpty, noop, map } from 'lodash'
+import { isEmpty, noop, first } from 'lodash'
 import { titleCase } from 'voca'
 import moment from 'moment'
 import { ElectronOnly } from '../../../../../lib/components'
@@ -72,6 +72,8 @@ function AdminList(): ReactElement {
   if (needsKeyArtFilter) {
     contentItems = contentItems.filter(item => isEmpty(item.keyArt))
   }
+
+  contentItems = contentItems.filter(item => isEmpty(item.tags))
   
   if (!showUnpublishedFilter) {
     contentItems = contentItems.filter(item => item.published)
@@ -90,8 +92,11 @@ function AdminList(): ReactElement {
 
   const assetHost = assetHostHostname()
 
+  const firstItem = first(contentItems)
+
   return (
     <ElectronOnly showMessage={true}>
+      <Redirect to={`/admin/edit/${firstItem.slug}`} />
       <div className="admin-list">
         <div className="admin-list-controls clearfix">
           <div className="admin-list-controls-select">
