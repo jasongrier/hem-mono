@@ -73,7 +73,7 @@ function AdminList(): ReactElement {
     contentItems = contentItems.filter(item => isEmpty(item.keyArt))
   }
 
-  contentItems = contentItems.filter(item => isEmpty(item.tags))
+  // contentItems = contentItems.filter(item => isEmpty(item.tags))
   
   if (!showUnpublishedFilter) {
     contentItems = contentItems.filter(item => item.published)
@@ -96,7 +96,7 @@ function AdminList(): ReactElement {
 
   return (
     <ElectronOnly showMessage={true}>
-      <Redirect to={`/admin/edit/${firstItem.slug}`} />
+      {/* <Redirect to={`/admin/edit/${firstItem.slug}`} /> */}
       <div className="admin-list">
         <div className="admin-list-controls clearfix">
           <div className="admin-list-controls-select">
