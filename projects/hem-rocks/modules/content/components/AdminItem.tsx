@@ -176,10 +176,10 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
         <header className="admin-item-header">
           <h2>{ originalItem?.title }</h2>
           <div className="admin-item-key-art clearfix">
-            { hasCategory(originalItem, 'stock-photos') && (
+            { originalItem && hasCategory(originalItem, 'stock-photos') && (
               <img src={`${assetHost}/berlin-stock-photos/content/images/jpg-web/${originalItem.keyArt}`} />
             )}
-            { !hasCategory(originalItem, 'stock-photos') && (
+            { originalItem && !hasCategory(originalItem, 'stock-photos') && (
               <img src={`${assetHost}/hem-rocks/content/images/key-art/${originalItem.keyArt}`} />
             )}
           </div>
@@ -191,12 +191,12 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
             Save
           </button>
           <div style={{
-            paddingLeft: '20px',
+            paddingLeft: '420px',
           }}>
-            <input type="text" value="flyers-stickers-posters" /><br />
-            <input type="text" value="architecture" /><br />
-            <input type="text" value="green-depth" /><br />
-            <input type="text" value="pretty-skies" /><br />
+            <input value="flyers-stickers-posters" onClick={(evt) => {document.getElementById('tags').value = (document.getElementById('tags').value + ', ' + evt.currentTarget.value).replace(/^, /, '') }} style={{ display: 'block', marginBottom: '10px', border: '1px solid #000', padding: '5px', width: '150px' }} type="text" />
+            <input value="architecture" onClick={(evt) => {document.getElementById('tags').value = (document.getElementById('tags').value + ', ' + evt.currentTarget.value).replace(/^, /, '') }} style={{ display: 'block', marginBottom: '10px', border: '1px solid #000', padding: '5px', width: '150px' }} type="text" />
+            <input value="green-depth" onClick={(evt) => {document.getElementById('tags').value = (document.getElementById('tags').value + ', ' + evt.currentTarget.value).replace(/^, /, '') }} style={{ display: 'block', marginBottom: '10px', border: '1px solid #000', padding: '5px', width: '150px' }} type="text" />
+            <input value="pretty-skies" onClick={(evt) => {document.getElementById('tags').value = (document.getElementById('tags').value + ', ' + evt.currentTarget.value).replace(/^, /, '') }} style={{ display: 'block', marginBottom: '10px', border: '1px solid #000', padding: '5px', width: '150px' }} type="text" />
           </div>
         </header>
         <table className="admin-item">
@@ -248,6 +248,7 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
                     </td>
                     <td>
                       <input
+                        id={fieldName}
                         name={fieldName}
                         onChange={(evt: SyntheticEvent<HTMLInputElement>) => onChange(fieldName, evt.currentTarget.value)}
                         type={(fieldTypes as any)[fieldName]}
