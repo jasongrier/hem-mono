@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useState, useCallback } from 'react'
-import { NavLink, Link, useParams } from 'react-router-dom'
+import { NavLink, Link, useParams, useLocation } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import { useSelector, useDispatch } from 'react-redux'
 import ReactGA from 'react-ga'
@@ -19,21 +19,26 @@ function BerlinStockPhotos(): ReactElement {
     contentItems: state.content.contentItems.filter(item => hasCategory(item, 'stock-photos')),
   }))
 
-  const [heroine, setHeroine] = useState<IContentItem>(null)
+  const [heroine, setHeroine] = useState<IContentItem>()
 
   useEffect(function initHeroine() {
-    setHeroine(sample(contentItems))
-  }, [])
+    if (heroine) return
+    if (!contentItems) return
+    if (!contentItems.length) return
+    
+    const contentItem = sample(contentItems)
+    
+    if (!contentItem) return
+    
+    setHeroine(contentItem)
+  }, [contentItems, heroine])
 
   const { filter: currentFilter } = useParams()
-
-  const onRandomPhotoClick = useCallback(
-    function onRandomPhotoClickFn() {
-      setHeroine(sample(contentItems))
-    }, [contentItems],
-  )
+  
+  const { pathname } = useLocation()
 
   const assetHost = assetHostHostname()
+  const isAllTagsPage = pathname === '/all-tags'
 
   return (
     <>
@@ -41,10 +46,19 @@ function BerlinStockPhotos(): ReactElement {
         <title>Berlin Stock Photos</title>
         <meta name="description" content="" />
       </Helmet>
-      <div className="page berlin-stock-photos">
-        <Header onRandomPhotoClick={onRandomPhotoClick} />
+      <div className={`
+        page 
+        berlin-stock-photos
+        ${ isAllTagsPage ? 'bsp-page' : '' }
+      `}>
+        <Header />
+        
+        { isAllTagsPage && (
+          <h1>All Tags</h1>
+        )}
+        
         <main>
-          { heroine && (
+          { heroine && !isAllTagsPage && (
             <div className="bsp-heroine">
               <Link to={`/${heroine.category}/${heroine.slug}${currentFilter ? '/' + currentFilter : ''}`}>
                 <img 
@@ -54,12 +68,44 @@ function BerlinStockPhotos(): ReactElement {
               </Link>
             </div>
           )}
-
+          
           <div className="bsp-content">
             <MainContentList
               category="stock-photos"
               currentFilter={currentFilter}
               noSplatter={true}
+              moreTagsLink={ isAllTagsPage ? null : '/all-tags' }
+              fixedFilters={ isAllTagsPage ? null : [
+                'Architecture',
+                'Condom And Needle Vending Machines',
+                'Elon Musk',
+                'Free Shit',
+                'Fucked Up Phone Booths',
+                'Glitter',
+                'Graffiti',
+                'Green Depth',
+                'Grit',
+                'Guerilla Gardening',
+                'High Up',
+                'Old Shit',
+                'Pappelfuzz',
+                'Patterns',
+                'Poingancy',
+                'Pretty Skies',
+                'Purple Pipe',
+                'Rain',
+                'Sandy Soil',
+                'Signage',
+                'Soviet Stuff',
+                'Statues',
+                'Stucco',
+                'Summer Vibes',
+                'Swans',
+                'Taped Up Boxes And Poles',
+                'The Canal',
+                'Trash Configurations',
+                'Weirdness',
+              ]}
             />
           </div>
         </main>

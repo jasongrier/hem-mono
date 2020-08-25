@@ -78,7 +78,7 @@ function PopupContainer({
     }
 
     else if (!currentlyOpenPopUp && locked) {
-      document.body.classList.remove('popup-open')
+      document.body.classList.remove('with-popup-open')
 
       setLocked(false)
       

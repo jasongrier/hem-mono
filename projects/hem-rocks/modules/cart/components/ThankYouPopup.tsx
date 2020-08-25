@@ -85,13 +85,27 @@ function ThankYouPopup(): ReactElement {
                   <li key={item?.slug}>
                     <a 
                       className={linksUsed.includes(item?.slug) ? 'download-items-used-link' : ''}
-                      href={`${assetHostHostname()}/hem-rocks/api?hem-cmd=download&did=${currentSale?.id}:${index}&sid=${currentSale?.id}&ii=${index}`}
+                      href={`${assetHostHostname()}/hem-rocks/api?hem-cmd=download&did=${currentSale?.id}:${index}&sid=${currentSale?.id}&ii=${index}${BERLIN_STOCK_PHOTOS ? '&site=bsp' : ''}`}
                       onClick={() => {
                         setLinksUsed(([] as string[]).concat(linksUsed).concat([item?.slug]))
                       }}
                     >
                       { item?.title }
                     </a>
+                    { BERLIN_STOCK_PHOTOS && (
+                      <>
+                        &nbsp;|&nbsp;
+                        <a 
+                          className={linksUsed.includes(item?.slug) ? 'download-items-used-link' : ''}
+                          href={`${assetHostHostname()}/hem-rocks/api?hem-cmd=download&did=${currentSale?.id}:${index}-raw&sid=${currentSale?.id}&ii=${index}${BERLIN_STOCK_PHOTOS ? '&site=bsp&format=raw' : ''}`}
+                          onClick={() => {
+                            setLinksUsed(([] as string[]).concat(linksUsed).concat([item?.slug]))
+                          }}
+                        >
+                          { item?.title } (RAW)
+                        </a>
+                      </>
+                    )}
                   </li>
                 ))}
               </Scrollbars>

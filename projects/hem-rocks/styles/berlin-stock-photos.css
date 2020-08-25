@@ -1,5 +1,5 @@
 :root {
-  --bsp-top-bar-height: 73px;
+  --bsp-top-bar-height: 70px;
 }
 
 .berlin-stock-photos {
@@ -35,7 +35,7 @@
 }
 
 .berlin-stock-photos .main-header h2 {
-  width: 250px;
+  width: 350px;
   margin: -10px 0 0 0;
   padding-left: 10px;
   padding-bottom: 7px;
@@ -89,7 +89,7 @@
 
 .bsp-heroine {
   position: sticky;
-  top: calc(-1 * (80vh - var(--bsp-top-bar-height)));
+  top: calc(-1 * (80vh - var(--bsp-top-bar-height) - 10px));
   z-index: 9998;
   width: 100vw;
   height: 80vh;
@@ -125,7 +125,7 @@
 
 .bsp-content .main-content-filters {
   padding-top: 35px;
-  top: var(--bsp-top-bar-height);
+  top: 80px;
   user-select: none;
 }
 
@@ -346,7 +346,7 @@
 }
 
 .bsp-page {
-  padding-top: 60px;
+  padding-top: 80px;
 }
 
 .bsp-page .first-main-content-section {
