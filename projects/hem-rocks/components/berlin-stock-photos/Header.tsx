@@ -2,11 +2,7 @@ import React, { ReactElement } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { ElectronOnly } from '../../../../lib/components'
 
-interface IProps {
-  onRandomPhotoClick: () => void
-}
-
-function Header({ onRandomPhotoClick }: IProps): ReactElement {
+function Header(): ReactElement {
   return (
     <header className="main-header">
       <h1>
@@ -15,7 +11,7 @@ function Header({ onRandomPhotoClick }: IProps): ReactElement {
         </Link>
       </h1>
       <h2>
-        Lushness. Weirdness. Greenery. Grit.
+        Lushness. Weirdness. Greenery. Grit. Updated daily.
       </h2>
       <nav>
         <ul>
@@ -25,14 +21,6 @@ function Header({ onRandomPhotoClick }: IProps): ReactElement {
           <li>
             <NavLink to="/contact">Contact</NavLink>
           </li>
-          {/* <li>
-            <a 
-              href="#"
-              onClick={onRandomPhotoClick}
-            >
-              Random Photo
-            </a>
-          </li> */}
           <ElectronOnly>
             <li>
               <NavLink to="/admin/list">Admin</NavLink>

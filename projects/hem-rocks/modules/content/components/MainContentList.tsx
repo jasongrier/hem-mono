@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { ReactElement, useEffect, useState, useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Scrollbars from 'react-scrollbars-custom'
@@ -24,11 +24,13 @@ interface IProps {
   children?: (contentItem: IContentItem) => any
   currentFilter?: string,
   excludeFromAll?: string
+  fixedFilters?: string[] | null
   highlights?: string[]
   infoPopupText?: string
   infoPopupTitle?: string
   items?: IContentItem[]
   linkTo?: (contentItem: IContentItem) => string
+  moreTagsLink?: string | null
   noSplatter?: boolean
   onlyTag?: string
   onFiltersChanged?: () => void
@@ -46,12 +48,14 @@ function MainContentList({
   buttonText,
   children,
   excludeFromAll,
+  fixedFilters,
   currentFilter = 'all',
   highlights,
   infoPopupText,
   infoPopupTitle,
   items: propsContentItems,
   linkTo,
+  moreTagsLink,
   noSplatter,
   onlyTag,
   orderByOrder,
@@ -69,24 +73,29 @@ function MainContentList({
   const [finalFilters, setFinalFilters] = useState<string[]>([])
 
   useEffect(function filters() {
-    const contentItems = (propsContentItems || storeContentItems).filter(item =>
-      item.published && parseInt(item.releasePhase, 10) <= RELEASE_PHASE && hasCategory(item, category) 
-    )
+    if (fixedFilters) {
+      setFinalFilters(['All'].concat(fixedFilters))
+    }
 
-    if (!contentItems) return
-    if (!contentItems.length) return
+    else {
+      const contentItems = (propsContentItems || storeContentItems).filter(item =>
+        item.published && parseInt(item.releasePhase, 10) <= RELEASE_PHASE && hasCategory(item, category) 
+      )
 
-    const allFilters = contentItems.map(item => item.tags.split(',').map(tag => tag.trim()))
-    const allFiltersFlat = flatten(allFilters)
-    let filters: string[] = uniq(allFiltersFlat.map(tag => titleCase(tag).replace(/-/g, ' ')))
-    filters.sort()
-    
-    filters = ['All'].concat(filters)
+      if (!contentItems) return
+      if (!contentItems.length) return
 
-    setFinalFilters(compact(filters))
+      const allFilters = contentItems.map(item => item.tags.split(',').map(tag => tag.trim()))
+      const allFiltersFlat = flatten(allFilters)
+      let filters: string[] = uniq(allFiltersFlat.map(tag => titleCase(tag).replace(/-/g, ' ')))
+      filters.sort()
+      
+      filters = ['All'].concat(filters)
 
+      setFinalFilters(compact(filters))
+    }
   }, [storeContentItems])
-
+  
   useEffect(function itemsAndPlaylist() {
     let contentItems: IContentItem[]
 
@@ -170,6 +179,12 @@ function MainContentList({
     })
   }, [currentFilter, storeContentItems, currentlyOpenPopUp])
 
+  const onFilterClick = useCallback(() => {
+    const filterBox = document.querySelector('.main-content-filters')
+    if (!filterBox) return
+    filterBox.scrollIntoView(true)
+  }, [])
+
   function dateSortFn(a: IContentItem, b: IContentItem) {
     // @ts-ignore
     return moment(b.date, 'DD-MM-YYYY') - moment(a.date, 'DD-MM-YYYY')
@@ -241,9 +256,17 @@ function MainContentList({
                   : `/${category}${tag !== 'All' ? '/filter/' + slugify(tag) : ''}`
               }
             >
-              {tag}
+              <span onClick={onFilterClick}>{tag}</span>
             </Link>
           ))}
+          { moreTagsLink && (
+            <Link 
+              className="main-content-filter"
+              to={moreTagsLink}
+            >
+              More Tags...
+            </Link>
+          )}
         </div>
       )}
       <div className="main-content-items">
