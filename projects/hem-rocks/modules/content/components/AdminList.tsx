@@ -190,7 +190,7 @@ function AdminList(): ReactElement {
             </tr>
           </thead>
           <tbody>
-            { contentItems.map((item: IContentItem) => ( parseInt(item.title, 10) > 1697 && (
+            { contentItems.map((item: IContentItem) => ( parseInt(item.title, 10) > 2000 && (
               <tr key={item.slug}>
                 <td className="admin-list-column-thumbnail">
                   {item.title}<br />

@@ -228,8 +228,8 @@ function migrate(allContentItems: IContentItem[]) {
     // DO STUFF HERE
     if (
       hasCategory(item, 'stock-photos') 
-      && parseInt(item.title, 10) > 852
-      && parseInt(item.title, 10) < 1124
+      && parseInt(item.title, 10) > 2075
+      && parseInt(item.title, 10) < 2172
     ) {
     
     }
