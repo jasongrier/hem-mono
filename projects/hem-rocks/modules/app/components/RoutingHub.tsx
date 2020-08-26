@@ -192,9 +192,9 @@ function RoutingHub(): ReactElement {
         <Route exact path="/stock-photos/filter/:filter" component={BerlinStockPhotos} />
         <Route exact path="/stock-photos/cart/:filter?" component={BerlinStockPhotos} />
         
-        <Route exact path="/all-tags/:contentItemSlug?/:filter?" component={BerlinStockPhotos} />
-        <Route exact path="/all-tags/filter/:filter" component={BerlinStockPhotos} />
-        <Route exact path="/all-tags/cart/:filter?" component={BerlinStockPhotos} />
+        <Route exact path="/more-tags/:contentItemSlug?/:filter?" component={BerlinStockPhotos} />
+        <Route exact path="/more-tags/filter/:filter" component={BerlinStockPhotos} />
+        <Route exact path="/more-tags/cart/:filter?" component={BerlinStockPhotos} />
 
         <Route exact path="/stock-photos/support" component={BerlinStockPhotosSupport} />
         <Route exact path="/stock-photos/support/cart" component={BerlinStockPhotosSupport} />

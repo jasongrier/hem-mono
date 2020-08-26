@@ -170,6 +170,55 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
 
   const assetHost = assetHostHostname()
 
+  const presetTags = [
+    'Architecture',
+    'Condom And Needle Vending Machines',
+    'Elon Musk',
+    'Free Shit',
+    'Fucked Up Phone Booths',
+    'Glitter',
+    'Flowers',
+    'Trees',
+    'Walls',
+    'Sidewalks',
+    'Shop Windows',
+    'Birdhouses',
+    'Graffiti',
+    'Grass',
+    'Green Depth',
+    'Grit',
+    'Guerilla Gardening',
+    'High Up',
+    'Night Time',
+    'Old Shit',
+    'Pappelfuzz',
+    'Paths',
+    'Patterns',
+    'Poingancy',
+    'Pretty Skies',
+    'Purple Pipe',
+    'Rain',
+    'Sandy Soil',
+    'Signage',
+    'Soviet Stuff',
+    'Statues',
+    'Stucco',
+    'Summer Vibes',
+    'Swans',
+    'Taped Up Boxes And Poles',
+    'The Canal',
+    'Trash Configurations',
+    'Weirdness',
+    'Ruins',
+    'German Words',
+    'Kids',
+    'Rainbows',
+    'Poignancy',
+    'The Baloon',
+    'Storage Spaces',
+    'Things in Windows',
+  ]
+
   return (
     <ElectronOnly showMessage={true}>
       <form onSubmit={onSubmit}>
@@ -184,6 +233,25 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
             )}
           </div>
           <button
+            className="action-button publish-item-button"
+            onClick={(evt) => {
+              evt.preventDefault()
+              
+              if (originalItem) {
+                const updatedItem: IContentItem = produce(originalItem, (draftItem) => {
+                  draftItem.published = !draftItem.published
+                })
+                dispatch(requestUpdateItems([updatedItem]))
+              }
+              
+              setWorkingItem(produce(workingItem, (draftItem: any) => {
+                draftItem.published = !draftItem.published
+              }))
+            }}
+          >
+            { workingItem.published ? 'Unpublish' : 'Publish' }
+          </button>
+          <button
             className="action-button save-item-button"
             disabled={!canSave}
             type="submit"
@@ -193,24 +261,26 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
           <div style={{
             paddingLeft: '420px',
           }}>
-            <input value="flyers-stickers-posters" onClick={(evt) => {document.getElementById('tags').value = (document.getElementById('tags').value + ', ' + evt.currentTarget.value).replace(/^, /, ''); setCanSave(true) }} style={{ float: 'left', margin: '0 10px 10px 0', border: '1px solid #000', padding: '5px', width: '150px' }} type="text" />
-            <input value="architecture" onClick={(evt) => {document.getElementById('tags').value = (document.getElementById('tags').value + ', ' + evt.currentTarget.value).replace(/^, /, ''); setCanSave(true) }} style={{ float: 'left', margin: '0 10px 10px 0', border: '1px solid #000', padding: '5px', width: '150px' }} type="text" />
-            <input value="green-depth" onClick={(evt) => {document.getElementById('tags').value = (document.getElementById('tags').value + ', ' + evt.currentTarget.value).replace(/^, /, ''); setCanSave(true) }} style={{ float: 'left', margin: '0 10px 10px 0', border: '1px solid #000', padding: '5px', width: '150px' }} type="text" />
-            <input value="pretty-skies" onClick={(evt) => {document.getElementById('tags').value = (document.getElementById('tags').value + ', ' + evt.currentTarget.value).replace(/^, /, ''); setCanSave(true) }} style={{ float: 'left', margin: '0 10px 10px 0', border: '1px solid #000', padding: '5px', width: '150px' }} type="text" />
-            <input value="graffiti" onClick={(evt) => {document.getElementById('tags').value = (document.getElementById('tags').value + ', ' + evt.currentTarget.value).replace(/^, /, ''); setCanSave(true) }} style={{ float: 'left', margin: '0 10px 10px 0', border: '1px solid #000', padding: '5px', width: '150px' }} type="text" />
-            <input value="sidewalks" onClick={(evt) => {document.getElementById('tags').value = (document.getElementById('tags').value + ', ' + evt.currentTarget.value).replace(/^, /, ''); setCanSave(true) }} style={{ float: 'left', margin: '0 10px 10px 0', border: '1px solid #000', padding: '5px', width: '150px' }} type="text" />
-            <input value="joie-de-vivre" onClick={(evt) => {document.getElementById('tags').value = (document.getElementById('tags').value + ', ' + evt.currentTarget.value).replace(/^, /, ''); setCanSave(true) }} style={{ float: 'left', margin: '0 10px 10px 0', border: '1px solid #000', padding: '5px', width: '150px' }} type="text" />
-            <input value="trash-configurations" onClick={(evt) => {document.getElementById('tags').value = (document.getElementById('tags').value + ', ' + evt.currentTarget.value).replace(/^, /, ''); setCanSave(true) }} style={{ float: 'left', margin: '0 10px 10px 0', border: '1px solid #000', padding: '5px', width: '150px' }} type="text" />
-            <input value="poingancy" onClick={(evt) => {document.getElementById('tags').value = (document.getElementById('tags').value + ', ' + evt.currentTarget.value).replace(/^, /, ''); setCanSave(true) }} style={{ float: 'left', margin: '0 10px 10px 0', border: '1px solid #000', padding: '5px', width: '150px' }} type="text" />
-            <input value="imbiss" onClick={(evt) => {document.getElementById('tags').value = (document.getElementById('tags').value + ', ' + evt.currentTarget.value).replace(/^, /, ''); setCanSave(true) }} style={{ float: 'left', margin: '0 10px 10px 0', border: '1px solid #000', padding: '5px', width: '150px' }} type="text" />
-            <input value="signage" onClick={(evt) => {document.getElementById('tags').value = (document.getElementById('tags').value + ', ' + evt.currentTarget.value).replace(/^, /, ''); setCanSave(true) }} style={{ float: 'left', margin: '0 10px 10px 0', border: '1px solid #000', padding: '5px', width: '150px' }} type="text" />
-            <input value="spätis" onClick={(evt) => {document.getElementById('tags').value = (document.getElementById('tags').value + ', ' + evt.currentTarget.value).replace(/^, /, ''); setCanSave(true) }} style={{ float: 'left', margin: '0 10px 10px 0', border: '1px solid #000', padding: '5px', width: '150px' }} type="text" />
-            <input value="weirdness" onClick={(evt) => {document.getElementById('tags').value = (document.getElementById('tags').value + ', ' + evt.currentTarget.value).replace(/^, /, ''); setCanSave(true) }} style={{ float: 'left', margin: '0 10px 10px 0', border: '1px solid #000', padding: '5px', width: '150px' }} type="text" />
-            <input value="construction" onClick={(evt) => {document.getElementById('tags').value = (document.getElementById('tags').value + ', ' + evt.currentTarget.value).replace(/^, /, ''); setCanSave(true) }} style={{ float: 'left', margin: '0 10px 10px 0', border: '1px solid #000', padding: '5px', width: '150px' }} type="text" />
-            <input value="piles-of-stuff" onClick={(evt) => {document.getElementById('tags').value = (document.getElementById('tags').value + ', ' + evt.currentTarget.value).replace(/^, /, ''); setCanSave(true) }} style={{ float: 'left', margin: '0 10px 10px 0', border: '1px solid #000', padding: '5px', width: '150px' }} type="text" />
-            <input value="german-words" onClick={(evt) => {document.getElementById('tags').value = (document.getElementById('tags').value + ', ' + evt.currentTarget.value).replace(/^, /, ''); setCanSave(true) }} style={{ float: 'left', margin: '0 10px 10px 0', border: '1px solid #000', padding: '5px', width: '150px' }} type="text" />
-            <input value="grit" onClick={(evt) => {document.getElementById('tags').value = (document.getElementById('tags').value + ', ' + evt.currentTarget.value).replace(/^, /, ''); setCanSave(true) }} style={{ float: 'left', margin: '0 10px 10px 0', border: '1px solid #000', padding: '5px', width: '150px' }} type="text" />
-            <input value="fill-flash" onClick={(evt) => {document.getElementById('tags').value = (document.getElementById('tags').value + ', ' + evt.currentTarget.value).replace(/^, /, ''); setCanSave(true) }} style={{ float: 'left', margin: '0 10px 10px 0', border: '1px solid #000', padding: '5px', width: '150px' }} type="text" />
+            { presetTags.map(tag => (
+              <div 
+                onClick={() => {
+                  setWorkingItem(produce(workingItem, (draftItem: any) => {
+                    draftItem.tags = (draftItem.tags + ', ' + slugify(tag)).replace(/^, /, '')
+                    setCanSave(!isEqual(draftItem, originalItem))
+                  }))
+                }} 
+                style={{ 
+                  float: 'left', 
+                  margin: '0 10px 10px 0', 
+                  border: '1px solid #000', 
+                  padding: '5px', 
+                  cursor: 'pointer',
+                  lineHeight: '20px',
+                }}
+              >
+                { tag }
+              </div>
+            ))}
           </div>
         </header>
         <table className="admin-item">

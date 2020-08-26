@@ -38,7 +38,7 @@ function BerlinStockPhotos(): ReactElement {
   const { pathname } = useLocation()
 
   const assetHost = assetHostHostname()
-  const isAllTagsPage = pathname === '/all-tags'
+  const isMoreTagsPage = pathname === '/more-tags'
 
   return (
     <>
@@ -49,16 +49,16 @@ function BerlinStockPhotos(): ReactElement {
       <div className={`
         page 
         berlin-stock-photos
-        ${ isAllTagsPage ? 'bsp-page' : '' }
+        ${ isMoreTagsPage ? 'bsp-page' : '' }
       `}>
         <Header />
         
-        { isAllTagsPage && (
+        { isMoreTagsPage && (
           <h1>All Tags</h1>
         )}
         
         <main>
-          { heroine && !isAllTagsPage && (
+          { heroine && !isMoreTagsPage && (
             <div className="bsp-heroine">
               <Link to={`/${heroine.category}/${heroine.slug}${currentFilter ? '/' + currentFilter : ''}`}>
                 <img 
@@ -74,8 +74,8 @@ function BerlinStockPhotos(): ReactElement {
               category="stock-photos"
               currentFilter={currentFilter}
               noSplatter={true}
-              moreTagsLink={ isAllTagsPage ? null : '/all-tags' }
-              fixedFilters={ isAllTagsPage ? null : [
+              moreTagsLink={ isMoreTagsPage ? null : '/more-tags' }
+              fixedFilters={ isMoreTagsPage ? null : [
                 'Architecture',
                 'Condom And Needle Vending Machines',
                 'Elon Musk',
