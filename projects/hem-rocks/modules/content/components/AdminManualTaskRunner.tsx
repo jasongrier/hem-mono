@@ -165,7 +165,7 @@ function migrate(allContentItems: IContentItem[]) {
   const { writeFileSync, readdirSync, renameSync, lstatSync, copyFileSync } = remote.require('fs')
   const { join, extname } = remote.require('path')
 
-  const newItems = []
+  // const newItems = []
   
   // const src = '/Users/admin/Desktop/Workingkong/HEM/Website/hem-static/berlin-stock-photos/content/images/jpg-full'
 
@@ -221,13 +221,18 @@ function migrate(allContentItems: IContentItem[]) {
   //   newItems.push(createItem)
   // }
 
-
   for (const item of allContentItems) {
     const newItem = Object.assign({}, item)
-    
+
     // DO STUFF HERE
-    if (item.published) {
-      newItems.push(newItem)
+    if (!newItem.published && hasCategory(newItem, 'stock-photos')) {
+      console.log('Moving: ' + item.slug)
+      const src = '/Users/admin/Desktop/Workingkong/HEM/Website/hem-static/berlin-stock-photos/content/images'
+      const dest = '/Users/admin/Desktop/unpublished'
+      renameSync(src + '/jpg-full/' + item.slug + '.jpg', dest  + '/jpg-full/' + item.slug + '.jpg', noop)
+      renameSync(src + '/jpg-thumbs/' + item.slug + '.jpg', dest  + '/jpg-thumbs/' + item.slug + '.jpg', noop)
+      renameSync(src + '/jpg-web/' + item.slug + '.jpg', dest  + '/jpg-web/' + item.slug + '.jpg', noop)
+      renameSync(src + '/raw/' + item.slug + '.nef', dest  + '/raw/' + item.slug + '.nef', noop)
     }
     // END DO STUFF HERE
   }
@@ -235,8 +240,8 @@ function migrate(allContentItems: IContentItem[]) {
   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
   const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
 
-  writeFileSync(srcIndex, JSON.stringify(newItems, null, 2))
-  writeFileSync(distIndex, JSON.stringify(newItems, null, 2))
+  // writeFileSync(srcIndex, JSON.stringify(newItems, null, 2))
+  // writeFileSync(distIndex, JSON.stringify(newItems, null, 2))
 }
 
 function assignImages() {
