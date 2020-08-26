@@ -94,6 +94,7 @@ function MainContentBox({
           { !BERLIN_STOCK_PHOTOS && (
             <div
               className="main-content-box-key-art-image"
+              draggable={false}
               style={{
                 backgroundImage: `url(${assetHost}/hem-rocks/content/images/key-art/${contentItem.keyArt})`
               }}

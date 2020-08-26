@@ -323,6 +323,8 @@
   margin-left: 20px;
   width: 70%;
   height: 70%;
+  max-width: 800px;
+  max-height: 800px;
 }
 
 .bsp-lightbox-caption {

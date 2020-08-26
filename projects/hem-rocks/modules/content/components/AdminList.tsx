@@ -173,26 +173,27 @@ function AdminList(): ReactElement {
               <th className="admin-list-column-thumbnail">
                 Item
               </th>
-              <th className="admin-list-column-title">
-              </th>
+              {/* <th className="admin-list-column-title">
+              </th> */}
               <th className="admin-list-column-category">
                 Tags
               </th>
-              <th className="admin-list-column-order">
+              {/* <th className="admin-list-column-order">
                 Order
-              </th>
-              <th className="admin-list-column-date">
+              </th> */}
+              {/* <th className="admin-list-column-date">
                 Date
-              </th>
+              </th> */}
               <th className="admin-list-column-check">
                 Actions
               </th>
             </tr>
           </thead>
           <tbody>
-            { contentItems.map((item: IContentItem) => (
+            { contentItems.map((item: IContentItem) => ( parseInt(item.title, 10) > 1697 && (
               <tr key={item.slug}>
                 <td className="admin-list-column-thumbnail">
+                  {item.title}<br />
                   <Link to={`/admin/edit/${item.slug}`}>
                     { hasCategory(item, 'stock-photos') && (
                       <img src={`${assetHost}/berlin-stock-photos/content/images/jpg-web/${item.keyArt}`} />
@@ -202,18 +203,18 @@ function AdminList(): ReactElement {
                     )}
                   </Link>
                 </td>
-                <td className="admin-list-column-title">
+                {/* <td className="admin-list-column-title">
                   <Link to={`/admin/edit/${item.slug}`}>{item.title}</Link>
-                </td>
+                </td> */}
                 <td className="admin-list-column-category">
                   { titleCase(item.tags.replace(/-/g, ' ')) }
                 </td>
-                <td className="admin-list-column-order">
+                {/* <td className="admin-list-column-order">
                   { item.order || '-' }
-                </td>
-                <td className="admin-list-column-date">
+                </td> */}
+                {/* <td className="admin-list-column-date">
                   { item.date }
-                </td>
+                </td> */}
                 <td className="admin-list-column-actions">
                   <button
                     className="action-button"
@@ -249,7 +250,7 @@ function AdminList(): ReactElement {
                   </button>
                 </td>
               </tr>
-            ))}
+            )))}
           </tbody>
         </table>
       </div>

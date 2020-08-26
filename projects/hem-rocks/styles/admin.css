@@ -155,8 +155,8 @@
 }
 
 .admin-list-column-thumbnail img {
-  width: 90px;
-  height: 90px;
+  width: 400px;
+  height: 400px;
   object-fit: contain;
 }
 
@@ -224,6 +224,13 @@
   position: absolute;
   top: 33px;
   right: 0;
+  margin-right: 0;
+}
+
+.admin-item-header .publish-item-button {
+  position: absolute;
+  top: 33px;
+  right: 140px;
   margin-right: 0;
 }
 

@@ -162,93 +162,89 @@ function migrate(allContentItems: IContentItem[]) {
 
   const { remote } = window.require('electron')
   const { execSync } = remote.require('child_process')
-  const { writeFileSync, readdirSync, renameSync } = remote.require('fs')
+  const { writeFileSync, readdirSync, renameSync, lstatSync, copyFileSync } = remote.require('fs')
   const { join, extname } = remote.require('path')
 
   const newItems = []
   
-  const dir = '/Users/admin/Desktop/Workingkong/Berlin_Stock_Photos/BSP/01.07.2020'
-  const files = readdirSync(dir)
+  // const src = '/Users/admin/Desktop/Workingkong/HEM/Website/hem-static/berlin-stock-photos/content/images/jpg-full'
 
+  // const files = readdirSync(src)
   
-  for (const i in files) {
-    const highestNum = 1
-    const originalName = files[i]
-    const ext = extname(originalName).toLowerCase()
-    const number = highestNum + parseInt(i, 10)
-    const slug = 'bsp-' + number
-    const newName = slug + '.' + ext
+  // for (const file of files) {
+  //   if (extname(file) !== '.jpg') continue
 
-    console.log(newName)
-    
-    // renameSync(`${dir}/${files[i]}`, `${dir}/${slug}`)
-    
-    const createItem: IContentItem = {
-      acceptingDonations: false,
-      aside: '',
-      attribution: '',
-      attributionLink: '',
-      audioFilename: '',
-      badgeText: '',
-      blurb: '',
-      category: 'stock-photos',
-      date: '17.09.2020',
-      description: '',
-      displayCategory: '',
-      downloadFile: '',
-      externalLinkText: '',
-      externalLinkUrl: '',
-      fixedPrice: '',
-      flexPriceMinimum: '5',
-      flexPriceRecommended: '10',
-      hasFixedPrice: false,
-      id: slug,
-      isDigitalProduct: true,
-      isPhysicalProduct: false,
-      keyArt: newName,
-      order: '',
-      physicalFormats: '',
-      preview: true,
-      published: true,
-      relatedContent: '',
-      relatedContentLink: '',
-      releasePhase: '1',
-      secondaryAttribution: '',
-      secondaryAttributionLink: '',
-      secondaryTitle: '',
-      slug,
-      sticky: false,
-      tags: '',
-      title: number.toString(),
-      titleWrapping: '',
-      trackSlugs: '',
-      type: 'Stock Photo',
-    }
+  //   const slug = file.replace('.jpg', '')
+  //   const title = file.replace('.jpg', '').replace('bsp-', '')
+  //   const createItem: IContentItem = {
+  //     acceptingDonations: false,
+  //     aside: '',
+  //     attribution: '',
+  //     attributionLink: '',
+  //     audioFilename: '',
+  //     badgeText: '',
+  //     blurb: '',
+  //     category: 'stock-photos',
+  //     date: '17.09.2020',
+  //     description: '',
+  //     displayCategory: '',
+  //     downloadFile: '',
+  //     externalLinkText: '',
+  //     externalLinkUrl: '',
+  //     fixedPrice: '',
+  //     flexPriceMinimum: '5',
+  //     flexPriceRecommended: '10',
+  //     hasFixedPrice: false,
+  //     id: slug,
+  //     isDigitalProduct: true,
+  //     isPhysicalProduct: false,
+  //     keyArt: file,
+  //     order: '',
+  //     physicalFormats: '',
+  //     preview: true,
+  //     published: true,
+  //     relatedContent: '',
+  //     relatedContentLink: '',
+  //     releasePhase: '1',
+  //     secondaryAttribution: '',
+  //     secondaryAttributionLink: '',
+  //     secondaryTitle: '',
+  //     slug,
+  //     sticky: false,
+  //     tags: '',
+  //     title,
+  //     titleWrapping: '',
+  //     trackSlugs: '',
+  //     type: 'Stock Photo',
+  //   }
 
-    newItems.push(createItem)
-  }
+  //   newItems.push(createItem)
+  // }
 
 
   for (const item of allContentItems) {
     const newItem = Object.assign({}, item)
-
+    
     // DO STUFF HERE
-    if (typeof newItem.id === 'number') {
-      // @ts-ignore
-      // newItem.id = newItem.id.toString()
+    if (
+      hasCategory(item, 'stock-photos') 
+      && parseInt(item.title, 10) > 852
+      && parseInt(item.title, 10) < 1124
+    ) {
+    
     }
-
-    // newItem.id = newItem.id.replace('bsm-', 'bsp-')
-    // newItem.slug = newItem.slug.replace('bsm-', 'bsp-')
-    newItems.push(newItem)
+    
+    else {
+      newItems.push(newItem)
+    }
     // END DO STUFF HERE
   }
 
   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
   const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
 
-  // writeFileSync(srcIndex, JSON.stringify(newItems, null, 2))
-  // writeFileSync(distIndex, JSON.stringify(newItems, null, 2))
+  writeFileSync(srcIndex, JSON.stringify(newItems, null, 2))
+  writeFileSync(distIndex, JSON.stringify(newItems, null, 2))
 }
 
 function assignImages() {

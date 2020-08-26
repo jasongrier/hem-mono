@@ -93,6 +93,7 @@ function MainContentList({
       filters = ['All'].concat(filters)
 
       setFinalFilters(compact(filters))
+      console.log(compact(filters))
     }
   }, [storeContentItems])
   
