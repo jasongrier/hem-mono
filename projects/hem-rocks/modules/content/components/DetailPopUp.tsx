@@ -317,7 +317,7 @@ function DetailPopUp({
 
   const chooseYourPriceText = category === 'venue-calendar'
     ? 'Choose your ticket price!'
-    : 'Choose your price!'
+    : ( BERLIN_STOCK_PHOTOS ? 'Name your price!' : 'Choose your price!')
 
   if (!contentItem) return (<div />)
 

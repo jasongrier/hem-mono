@@ -226,15 +226,7 @@ function migrate(allContentItems: IContentItem[]) {
     const newItem = Object.assign({}, item)
     
     // DO STUFF HERE
-    if (
-      hasCategory(item, 'stock-photos') 
-      && parseInt(item.title, 10) > 2075
-      && parseInt(item.title, 10) < 2172
-    ) {
-    
-    }
-    
-    else {
+    if (item.published) {
       newItems.push(newItem)
     }
     // END DO STUFF HERE

@@ -92,11 +92,11 @@ function AdminList(): ReactElement {
 
   const assetHost = assetHostHostname()
 
-  const firstItem = first(contentItems)
+  // const firstItem = first(contentItems)
 
   return (
     <ElectronOnly showMessage={true}>
-      {/* <Redirect to={`/admin/edit/${firstItem.slug}`} /> */}
+      {/* <Redirect to={`/admin/edit/${firstItem?.slug}`} /> */}
       <div className="admin-list">
         <div className="admin-list-controls clearfix">
           <div className="admin-list-controls-select">
@@ -190,7 +190,7 @@ function AdminList(): ReactElement {
             </tr>
           </thead>
           <tbody>
-            { contentItems.map((item: IContentItem) => ( parseInt(item.title, 10) > 2000 && (
+            { contentItems.map((item: IContentItem) => ( parseInt(item.title, 10) > 511 && (
               <tr key={item.slug}>
                 <td className="admin-list-column-thumbnail">
                   {item.title}<br />
@@ -247,6 +247,23 @@ function AdminList(): ReactElement {
                     }}
                   >
                     { item.sticky ? 'Unsticky' : 'Sticky' }
+                  </button>
+                  <button
+                    className="action-button"
+                    onClick={() => {
+                      const updatedItem: IContentItem = produce(item, (draftItem) => {
+                        if (hasTag(item, 'best-of')) {
+                          draftItem.tags = draftItem.tags.replace(', best-of', '')
+                        }
+
+                        else {
+                          draftItem.tags = draftItem.tags + ', best-of'
+                        }
+                      })
+                      dispatch(requestUpdateItems([updatedItem]))
+                    }}
+                  >
+                    { hasTag(item, 'best-of') ? 'Un-best' : 'Best' }
                   </button>
                 </td>
               </tr>
