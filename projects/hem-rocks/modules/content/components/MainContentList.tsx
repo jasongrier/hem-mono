@@ -31,6 +31,7 @@ interface IProps {
   items?: IContentItem[]
   linkTo?: (contentItem: IContentItem) => string
   moreTagsLink?: string | null
+  noAll?: boolean
   noSplatter?: boolean
   onlyTag?: string
   onFiltersChanged?: () => void
@@ -56,6 +57,7 @@ function MainContentList({
   items: propsContentItems,
   linkTo,
   moreTagsLink,
+  noAll,
   noSplatter,
   onlyTag,
   orderByOrder,
@@ -73,8 +75,10 @@ function MainContentList({
   const [finalFilters, setFinalFilters] = useState<string[]>([])
 
   useEffect(function filters() {
+    let semifinalFilters
+    
     if (fixedFilters) {
-      setFinalFilters(['All'].concat(fixedFilters))
+      semifinalFilters = fixedFilters
     }
 
     else {
@@ -90,10 +94,15 @@ function MainContentList({
       let filters: string[] = uniq(allFiltersFlat.map(tag => titleCase(tag).replace(/-/g, ' ')))
       filters.sort()
       
-      filters = ['All'].concat(filters)
+      semifinalFilters = filters
+    }
 
-      setFinalFilters(compact(filters))
-      console.log(compact(filters))
+    if (noAll === true) {
+      setFinalFilters(compact(semifinalFilters))
+    }
+
+    else {
+      setFinalFilters(['All'].concat(compact(semifinalFilters)))
     }
   }, [storeContentItems])
   
@@ -271,6 +280,7 @@ function MainContentList({
         </div>
       )}
       <div className="main-content-items">
+        { console.log(finalContentItems.length) }
         { finalContentItems.map((contentItem: IContentItem, index: number) => (
           <MainContentBox
             badgeText={

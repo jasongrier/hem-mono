@@ -75,7 +75,9 @@ function BerlinStockPhotos(): ReactElement {
               currentFilter={currentFilter}
               noSplatter={true}
               moreTagsLink={ isMoreTagsPage ? null : '/more-tags' }
+              noAll={ true }
               fixedFilters={ isMoreTagsPage ? null : [
+                'Best Of',
                 'Architecture',
                 'Condom And Needle Vending Machines',
                 'Elon Musk',
