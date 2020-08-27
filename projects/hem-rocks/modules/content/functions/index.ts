@@ -1,3 +1,4 @@
+export { default as compressIndex } from './compress-index'
 export { default as contentItemToTrack } from './content-item-to-track'
 export { getContentItemByField, getContentItemBySlug, getContentItemsByTag } from './get-content-item-by-field'
 export { getContentItemsFromList, getContentItemsFromRawList } from './get-content-items-from-list'

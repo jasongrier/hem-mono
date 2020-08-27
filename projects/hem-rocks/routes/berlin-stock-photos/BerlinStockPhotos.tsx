@@ -34,11 +34,9 @@ function BerlinStockPhotos(): ReactElement {
   }, [contentItems, heroine])
 
   const { filter: currentFilter } = useParams()
-  
   const { pathname } = useLocation()
-
   const assetHost = assetHostHostname()
-  const isMoreTagsPage = pathname === '/more-tags'
+  const isMoreTagsPage = pathname.includes('more-tags')
 
   return (
     <>
@@ -72,42 +70,49 @@ function BerlinStockPhotos(): ReactElement {
           <div className="bsp-content">
             <MainContentList
               category="stock-photos"
-              currentFilter={currentFilter}
+              currentFilter={ currentFilter || 'best-of' }
               noSplatter={true}
-              moreTagsLink={ isMoreTagsPage ? null : '/more-tags' }
+              moreTagsLink={ isMoreTagsPage ? null : '/more-tags/filter/best-of' }
               noAll={ true }
               fixedFilters={ isMoreTagsPage ? null : [
                 'Best Of',
                 'Architecture',
                 'Condom And Needle Vending Machines',
+                'Cool Cars',
+                'Coronatimes',
+                'Currywurst',
                 'Elon Musk',
+                'Food Photography',
                 'Free Shit',
+                'Fucked Up Cars',
                 'Fucked Up Phone Booths',
-                'Glitter',
-                'Graffiti',
+                'Furtive Dumpsters',
+                'German Words',
                 'Green Depth',
                 'Grit',
                 'Guerilla Gardening',
-                'High Up',
+                'Knitting',
                 'Old Shit',
                 'Pappelfuzz',
-                'Patterns',
-                'Poingancy',
-                'Pretty Skies',
-                'Purple Pipe',
-                'Rain',
+                'Parks',
+                'Poignancy',
                 'Sandy Soil',
-                'Signage',
+                'Satellite Dishes',
+                'Silver Paint',
+                'Skyline',
                 'Soviet Stuff',
-                'Statues',
-                'Stucco',
-                'Summer Vibes',
+                'Spaetis',
                 'Swans',
                 'Taped Up Boxes And Poles',
-                'The Canal',
+                'Tourist Traps',
                 'Trash Configurations',
+                'Weeping Willow Trees',
                 'Weirdness',
               ]}
+              tagSpellingCorrections={{
+                'Nkz': 'NKZ',
+                'Spaetis': 'Spätis',
+              }}
             />
           </div>
         </main>

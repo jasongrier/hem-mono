@@ -316,6 +316,7 @@ function App(): ReactElement {
       }
       ${process.env.NODE_ENV === 'production' ? 'node-env-production' : ''}
       ${ BERLIN_STOCK_PHOTOS && !pathname.includes('admin') ? 'berlin-stock-photos' : '' }
+      ${ pathname.includes('admin') ? 'is-admin' : '' }
     `}>
       <>
         <ScrollToTop scrollPaneSelector=".scroll-lock-content" />
@@ -378,12 +379,13 @@ function App(): ReactElement {
           <PlayerBar />
         )}
       </>
-
+      
       <ElectronNot>
         <CookieApproval />
       </ElectronNot>
 
-      { cookiesMarketingApproved
+      { cookiesMarketingApproved 
+        && !BERLIN_STOCK_PHOTOS
         && !Cookies.get(getCookieName('cannot-show-email-nag'))
         && (
         <ElectronNot>

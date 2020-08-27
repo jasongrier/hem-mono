@@ -230,6 +230,7 @@ export {
 } from './components'
 
 export {
+  compressIndex,
   contentItemToTrack,
   hasCategory,
   hasTag,
