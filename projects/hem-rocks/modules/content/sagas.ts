@@ -13,6 +13,7 @@ import {
   requestReadItems as requestReadItemsAc,
 
   modelize,
+  compressIndex,
 
   IIndexEntry,
 } from './index'
@@ -28,10 +29,10 @@ function* createItems({ payload }: any) {
     const indexFile = join(__dirname, '..', '..', 'static', 'content', 'index.json')
     const distIndexFile = join(__dirname, '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
     const index = JSON.parse(readFileSync(indexFile, 'utf8'))
-
+    
     index.push(item)
 
-    writeFileSync(indexFile, JSON.stringify(index, null, 2))
+    writeFileSync(indexFile, JSON.stringify(compressIndex(index)))
 
     execSync(`cp ${indexFile} ${distIndexFile}`, { stdio: 'inherit' })
 
@@ -59,7 +60,7 @@ function* deleteItems({ payload }: any) {
 
     index = index.filter(entry => entry.slug !== itemSlug)
 
-    writeFileSync(indexFile, JSON.stringify(index, null, 2))
+    writeFileSync(indexFile, JSON.stringify(compressIndex(index)))
 
     execSync(`cp ${indexFile} ${distIndexFile}`, { stdio: 'inherit' })
 
@@ -101,10 +102,8 @@ function* updateItems({ payload }: any) {
 
     index[entryIndex] = updatedItem
 
-    writeFileSync(indexFile, JSON.stringify(index, null, 2))
+    writeFileSync(indexFile, JSON.stringify(compressIndex(index), null, 2))
     execSync(`cp ${indexFile} ${distIndexFile}`, { stdio: 'inherit' })
-
-    console.log(`cp ${indexFile} ${distIndexFile}`)
 
     yield put(doUpdateItemsAc([updatedItem]))
     yield put(requestReadItemsAc())

@@ -1,8 +1,9 @@
-import React, { ReactElement, useCallback, useState, SyntheticEvent } from 'react'
+import React, { ReactElement, useCallback, useState, SyntheticEvent, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { CookieSettings } from './index'
 import { setCookieApproval, setCookiePreferencesSet } from '../index'
 import { RootState } from '../../../index'
+import { BERLIN_STOCK_PHOTOS } from '../../../config'
 
 function CookieApproval(): ReactElement {
   const { cookiePreferencesSet } = useSelector((state: RootState) => ({
@@ -12,6 +13,14 @@ function CookieApproval(): ReactElement {
   const dispatch = useDispatch()
 
   const [popupOpen, setPopupOpen] = useState(false)
+
+  useEffect(() => {
+    if (BERLIN_STOCK_PHOTOS) {
+      dispatch(setCookieApproval('analytics', true, true))
+      dispatch(setCookieApproval('marketing', true, true))
+      dispatch(setCookiePreferencesSet(true, true))
+    }
+  }, [])
 
   const acceptAllCookiesOnClick = useCallback(
     function acceptAllCookiesOnClickFn(evt: SyntheticEvent<HTMLButtonElement>) {
@@ -27,7 +36,7 @@ function CookieApproval(): ReactElement {
     }, [],
   )
 
-  if (cookiePreferencesSet) return <div />
+  if (cookiePreferencesSet || BERLIN_STOCK_PHOTOS) return <div />
 
   return (
     <>

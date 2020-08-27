@@ -37,6 +37,7 @@ interface IProps {
   onFiltersChanged?: () => void
   orderByOrder?: boolean
   showCategoryOnContentBoxes?: boolean
+  tagSpellingCorrections?: any
   title?: string
 }
 
@@ -62,6 +63,7 @@ function MainContentList({
   onlyTag,
   orderByOrder,
   showCategoryOnContentBoxes = false,
+  tagSpellingCorrections,
   title,
 }: IProps): ReactElement {
   const { storeContentItems, currentlyOpenPopUp } = useSelector((state: RootState) => ({
@@ -266,7 +268,12 @@ function MainContentList({
                   : `/${category}${tag !== 'All' ? '/filter/' + slugify(tag) : ''}`
               }
             >
-              <span onClick={onFilterClick}>{tag}</span>
+              <span onClick={onFilterClick}>
+                { tagSpellingCorrections && tagSpellingCorrections[tag]
+                    ? tagSpellingCorrections[tag] 
+                    : tag
+                }
+              </span>
             </Link>
           ))}
           { moreTagsLink && (

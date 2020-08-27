@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import uuid from 'uuid/v1'
 import { noop, last, compact, has } from 'lodash'
 import pad from 'pad'
+import $ from 'jquery'
 import { autoParagraph } from '../../../../../lib/functions'
 import { modelize, hasTag, getContentItemBySlug, hasCategory } from '../functions'
 import { IIndexEntry, IContentItem } from '..'
@@ -83,83 +84,6 @@ function convertOldTypescriptModelsToJson() {
 }
 
 function migrate(allContentItems: IContentItem[]) {
-  const actuallyExistingImages = [
-    'acoustic-guitar.jpg',
-    'antique-piano.jpg',
-    'ascending-series-three.jpg',
-    'austin-thunderstorm.jpg',
-    'berlin-new-years.jpg',
-    'betrieb.jpg',
-    'black-and-white-rainbow.jpg',
-    'breaths.jpg',
-    'breto.jpg',
-    'choir.jpg',
-    'chord-brush.jpg',
-    'clarinet.jpg',
-    'clouds.jpg',
-    'commotus.jpg',
-    'compilation-iv.jpg',
-    'cymbals.jpg',
-    'demonstration-disc.jpg',
-    'dog-star-orchestra-2009.jpg',
-    'dog-star-orchestra-2010.jpg',
-    'drum-kit.jpg',
-    'e-bow-piano.jpg',
-    'early-live-recordings.jpg',
-    'eating-the-stars.jpg',
-    'electric-bass.jpg',
-    'electric-guitar.jpg',
-    'flow.jpg',
-    'frame-drum.jpg',
-    'german-folk-guitar-lesson-vinyl.jpg',
-    'grand-piano.jpg',
-    'heart-shaped-rock.jpg',
-    'hem-anniversary-one.jpg',
-    'hum-hiss-crackle.jpg',
-    'human-genius-at-soundwalk.jpg',
-    'info-page.jpg',
-    'instant-coma.jpg',
-    'jason-gillis-grier.jpg',
-    'katahymie.jpg',
-    'lats-yerk.jpg',
-    'linda-perhacs-julia-holter.jpg',
-    'line-gottsche-residency.jpg',
-    'lucrecia-dalt.jpg',
-    'maria.jpg',
-    'mic-feedback.jpg',
-    'nature-sounds-vinyl.jpg',
-    'no-bosses-no-bullshit.jpg',
-    'no-input-mixer.jpg',
-    'noise-reduction-artefacts.jpg',
-    'oberheim-expander.jpg',
-    'one-pitch.jpg',
-    'ooohs-and-ahs.jpg',
-    'outtakes.jpg',
-    'overtone-singing.jpg',
-    'percussion.jpg',
-    'protest.jpg',
-    'quarter-tone-synth.jpg',
-    'record-endings.jpg',
-    'RUBBLE.jpg',
-    'scared-famous.jpg',
-    'seurat-midi-ii.jpg',
-    'seurat-standalone.jpg',
-    'seurat.jpg',
-    'sweet-bea-vinyl.jpg',
-    'syzygy.jpg',
-    'the-human-ear-volume-i.jpg',
-    'the-human-ear-volume-ii.jpg',
-    'thrash-and-burn.jpg',
-    'tombstones.jpg',
-    'trauermusik.jpg',
-    'twelve-radios.jpg',
-    'unbekannte.jpg',
-    'viola-ii.jpg',
-    'viola.jpg',
-    'window.jpg',
-    'zither.jpg',
-  ]
-
   const { remote } = window.require('electron')
   const { execSync } = remote.require('child_process')
   const { writeFileSync, readdirSync, renameSync, lstatSync, copyFileSync } = remote.require('fs')
@@ -221,24 +145,40 @@ function migrate(allContentItems: IContentItem[]) {
   //   newItems.push(createItem)
   // }
 
-  for (const item of allContentItems) {
-    const newItem = Object.assign({}, item)
+  // for (const item of allContentItems) {
+  //   const newItem = Object.assign({}, item)
 
-    // DO STUFF HERE
-    if (!newItem.published && hasCategory(newItem, 'stock-photos')) {
-      console.log('Moving: ' + item.slug)
-      const src = '/Users/admin/Desktop/Workingkong/HEM/Website/hem-static/berlin-stock-photos/content/images'
-      const dest = '/Users/admin/Desktop/unpublished'
-      renameSync(src + '/jpg-full/' + item.slug + '.jpg', dest  + '/jpg-full/' + item.slug + '.jpg', noop)
-      renameSync(src + '/jpg-thumbs/' + item.slug + '.jpg', dest  + '/jpg-thumbs/' + item.slug + '.jpg', noop)
-      renameSync(src + '/jpg-web/' + item.slug + '.jpg', dest  + '/jpg-web/' + item.slug + '.jpg', noop)
-      renameSync(src + '/raw/' + item.slug + '.nef', dest  + '/raw/' + item.slug + '.nef', noop)
-    }
+  //   // DO STUFF HERE
+  //   if (hasCategory(newItem, 'stock-photos')) {
+  //     const compressedItem = {
+  //       category: 'stock-photos',
+  //       flexPriceMinimum: '5',
+  //       flexPriceRecommended: '10',
+  //       id: newItem.id,
+  //       isDigitalProduct: true,
+  //       isPhysicalProduct: false,
+  //       keyArt: newItem.keyArt,
+  //       published: true,
+  //       releasePhase: '1',
+  //       slug: newItem.slug,
+  //       sticky: newItem.sticky,
+  //       tags: newItem.tags,
+  //       title: newItem.title,
+  //       type: 'Stock Photo',
+  //     }
+      
+  //     newItems.push(compressedItem)
+  //   }
+
+  //   else {
+  //     newItems.push(newItem)
+  //   }
+
     // END DO STUFF HERE
-  }
+  // }
 
-  const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
-  const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
+  // const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
+  // const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
 
   // writeFileSync(srcIndex, JSON.stringify(newItems, null, 2))
   // writeFileSync(distIndex, JSON.stringify(newItems, null, 2))
