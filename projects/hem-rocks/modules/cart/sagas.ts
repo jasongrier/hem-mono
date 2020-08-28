@@ -12,6 +12,8 @@ import {
 
   setCurrentSale as setCurrentSaleAc,
   setSaleRetrievalError as setSaleRetrievalErrorAc,
+
+  IProduct,
 } from './index'
 import { BERLIN_STOCK_PHOTOS } from '../../config'
 
@@ -41,17 +43,13 @@ function* saveCart() {
 
 function* submitSale({ payload: saleId }: any) {
   try {
-    const form = document.getElementById('pay-pal-cart-upload-form')
-
     // TODO: websiteHostName() helper fn...
     const websiteHostName = window.location.hostname === 'localhost'
       ? 'http://localhost:1234'
       : BERLIN_STOCK_PHOTOS ? 'http://berlinstockphotos.com/stock-photos' : 'http://hem.rocks'
 
-    if (!form) throw new Error('Form not found')
-
     const state = yield select()
-    const { products } = state.cart
+    const { products }: { products: IProduct[] } = state.cart
 
     yield call(
       fetch,
@@ -61,6 +59,14 @@ function* submitSale({ payload: saleId }: any) {
         method: 'post',
       }
     )
+
+    const isInstantDownload = products.length === 1 && products[0].finalPrice === '0'
+    
+    if (isInstantDownload) return
+    
+    const form = document.getElementById('pay-pal-cart-upload-form')
+    
+    if (!form) throw new Error('Form not found')
 
     const saleIdField = document.createElement('input')
     const invoiceField = document.createElement('input')

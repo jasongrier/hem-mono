@@ -51,6 +51,7 @@ export interface IState {
   adminFilterApplied: string
   adminSearchApplied: string
   currentContentItem: IContentItem | null
+  currentContentItems: IContentItem[]
   contentItems: IContentItem[]
   needsKeyArtFilter: boolean
   showUnpublishedFilter: boolean
@@ -110,6 +111,7 @@ export const REQUEST_DELETE_ITEMS = 'REQUEST_DELETE_ITEMS'
 export const REQUEST_READ_ITEMS = 'REQUEST_READ_ITEMS'
 export const REQUEST_UPDATE_ITEMS = 'REQUEST_UPDATE_ITEMS'
 export const SET_CURRENT_ITEM = 'SET_CURRENT_ITEM'
+export const SET_CURRENT_ITEMS = 'SET_CURRENT_ITEMS'
 export const TOGGLE_NEEDS_KEY_ART_FILTER = 'TOGGLE_NEEDS_KEY_ART_FILTER'
 export const TOGGLE_SHOW_UNPUBLISHED_FILTER = 'TOGGLE_SHOW_UNPUBLISHED_FILTER'
 
@@ -173,6 +175,11 @@ export interface ISetCurrentItem extends AnyAction {
   payload: IContentItem
 }
 
+export interface ISetCurrentItems extends AnyAction {
+  type: typeof SET_CURRENT_ITEMS
+  payload: IContentItem[]
+}
+
 export interface IToggleNeedsKeyArtFilter extends AnyAction {
   type: typeof TOGGLE_NEEDS_KEY_ART_FILTER
   payload: null
@@ -196,6 +203,7 @@ export type Action =
   | IRequestReadItems
   | IRequestUpdateItems
   | ISetCurrentItem
+  | ISetCurrentItems
   | IToggleNeedsKeyArtFilter
   | IToggleShowUnpublishedFilter
 
@@ -212,6 +220,7 @@ export {
   requestReadItems,
   requestUpdateItems,
   setCurrentItem,
+  setCurrentItems,
   toggleNeedsKeyArtFilter,
   toggleShowUnpublishedFilter,
 } from './actions'

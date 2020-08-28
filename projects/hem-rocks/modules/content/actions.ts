@@ -11,6 +11,7 @@ import {
   REQUEST_READ_ITEMS,
   REQUEST_UPDATE_ITEMS,
   SET_CURRENT_ITEM,
+  SET_CURRENT_ITEMS,
   TOGGLE_NEEDS_KEY_ART_FILTER,
   TOGGLE_SHOW_UNPUBLISHED_FILTER,
 
@@ -78,6 +79,11 @@ const setCurrentItem = (item: IContentItem): Action => ({
   payload: item,
 })
 
+const setCurrentItems = (items: IContentItem[]): Action => ({
+  type: SET_CURRENT_ITEMS,
+  payload: items,
+})
+
 const toggleNeedsKeyArtFilter = (): Action => ({
   type: TOGGLE_NEEDS_KEY_ART_FILTER,
   payload: null,
@@ -101,6 +107,7 @@ export {
   requestReadItems,
   requestUpdateItems,
   setCurrentItem,
+  setCurrentItems,
   toggleNeedsKeyArtFilter,
   toggleShowUnpublishedFilter,
 }

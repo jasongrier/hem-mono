@@ -317,7 +317,7 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
           <div style={{
             paddingLeft: '420px',
           }}>
-            {/* { presetTags.map(tag => (
+            { presetTags.map(tag => (
               <div 
                 onClick={() => {
                   setWorkingItem(produce(workingItem, (draftItem: any) => {
@@ -336,7 +336,7 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
               >
                 { tag }
               </div>
-            ))} */}
+            ))}
           </div>
         </header>
         <table className="admin-item">

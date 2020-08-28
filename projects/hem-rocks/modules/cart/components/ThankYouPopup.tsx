@@ -16,10 +16,12 @@ import { clearCart, requestSale, IProduct } from '../index'
 import { loginCheckSaga } from '../../login'
 
 function ThankYouPopup(): ReactElement {
-  const { currentSale, saleRetrievalError } = useSelector((state: RootState) => ({
+  const { currentSale, saleRetrievalError, forcedSaleId } = useSelector((state: RootState) => ({
     contentItems: state.content.contentItems,
     currentSale: state.cart.currentSale,
     saleRetrievalError: state.cart.saleRetrievalError,
+    
+    forcedSaleId: state.popups.propsToChildren?.saleId,
   }))
 
   const dispatch = useDispatch()
@@ -28,7 +30,7 @@ function ThankYouPopup(): ReactElement {
   const [linksUsed, setLinksUsed] = useState<string[]>([])
 
   useEffect(function init() {
-    const saleId = getQueryVar('sid')
+    const saleId = forcedSaleId || getQueryVar('sid')
     
     if (!saleId) return
     
@@ -51,7 +53,7 @@ function ThankYouPopup(): ReactElement {
     }, [],
   )
 
-  const valid = getQueryVar('sid')
+  const valid = forcedSaleId || getQueryVar('sid')
   const items = currentSale?.products.filter((product: IProduct) => product.isDigitalProduct)
 
   return (
@@ -92,7 +94,7 @@ function ThankYouPopup(): ReactElement {
                     >
                       { item?.title }
                     </a>
-                    { BERLIN_STOCK_PHOTOS && (
+                    { BERLIN_STOCK_PHOTOS && parseFloat(item.finalPrice) >= 20 && (
                       <>
                         &nbsp;|&nbsp;
                         <a 

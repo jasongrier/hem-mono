@@ -89,7 +89,7 @@ function migrate(allContentItems: IContentItem[]) {
   const { writeFileSync, readdirSync, renameSync, lstatSync, copyFileSync } = remote.require('fs')
   const { join, extname } = remote.require('path')
 
-  // const newItems = []
+  const newItems = []
   
   // const src = '/Users/admin/Desktop/Workingkong/HEM/Website/hem-static/berlin-stock-photos/content/images/jpg-full'
 
@@ -145,43 +145,29 @@ function migrate(allContentItems: IContentItem[]) {
   //   newItems.push(createItem)
   // }
 
-  // for (const item of allContentItems) {
-  //   const newItem = Object.assign({}, item)
+  for (const item of allContentItems) {
+    const newItem = Object.assign({}, item)
 
-  //   // DO STUFF HERE
-  //   if (hasCategory(newItem, 'stock-photos')) {
-  //     const compressedItem = {
-  //       category: 'stock-photos',
-  //       flexPriceMinimum: '5',
-  //       flexPriceRecommended: '10',
-  //       id: newItem.id,
-  //       isDigitalProduct: true,
-  //       isPhysicalProduct: false,
-  //       keyArt: newItem.keyArt,
-  //       published: true,
-  //       releasePhase: '1',
-  //       slug: newItem.slug,
-  //       sticky: newItem.sticky,
-  //       tags: newItem.tags,
-  //       title: newItem.title,
-  //       type: 'Stock Photo',
-  //     }
-      
-  //     newItems.push(compressedItem)
-  //   }
+    // DO STUFF HERE
+    if (hasCategory(newItem, 'stock-photos') && hasTag(newItem, 'best-of')) {
+      newItem.flexPriceMinimum = '10'
+      newItem.flexPriceRecommended = '20'
+    }
 
-  //   else {
-  //     newItems.push(newItem)
-  //   }
+    else {
+      newItem.flexPriceMinimum = '0'
+      newItem.flexPriceRecommended = '10'
+    }
 
+    newItems.push(newItem)
     // END DO STUFF HERE
-  // }
+  }
 
-  // const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
-  // const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
+  const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
+  const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
 
-  // writeFileSync(srcIndex, JSON.stringify(newItems, null, 2))
-  // writeFileSync(distIndex, JSON.stringify(newItems, null, 2))
+  writeFileSync(srcIndex, JSON.stringify(newItems, null, 2))
+  writeFileSync(distIndex, JSON.stringify(newItems, null, 2))
 }
 
 function assignImages() {

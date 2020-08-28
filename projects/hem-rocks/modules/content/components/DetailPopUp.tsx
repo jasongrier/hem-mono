@@ -2,7 +2,8 @@ import React, { ReactElement, SyntheticEvent, useEffect, useCallback, useContext
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { Link } from 'react-router-dom'
-import { find, isFinite, isNaN, noop } from 'lodash'
+import { find, isFinite, isNaN, noop, findIndex, last } from 'lodash'
+import $ from 'jquery'
 import marked from 'marked'
 import uuid from 'uuid/v1'
 import Scrollbars from 'react-scrollbars-custom'
@@ -16,10 +17,12 @@ import { IContentItem, getContentItemsFromRawList } from '../index'
 import { assetHostHostname } from '../../../functions'
 import { RootState } from '../../../index'
 import { BERLIN_STOCK_PHOTOS } from '../../../config'
-import { hasTag, contentItemToTrack, hasCategory, getContentItemBySlug } from '../functions'
+import { hasTag, contentItemToTrack, hasCategory, tagSpellingCorrections } from '../functions'
+import { titleCase } from 'voca'
 
 interface IProps {
   contentItem: IContentItem | null
+  currentContentItems: IContentItem[]
   filter: string
   category: string
 
@@ -35,10 +38,24 @@ function DetailPopUp({
 }: IProps): ReactElement {
   if (!contentItem) return <div />
 
-  const { activeLiveStream, allContentItems, cartProducts, currentTrackId, playing } = useSelector((state: RootState) => ({
+  const { 
+    activeLiveStream, 
+    
+    allContentItems, 
+    currentContentItems,
+
+    cartProducts, 
+    
+    currentTrackId, 
+    playing,
+  } = useSelector((state: RootState) => ({
     activeLiveStream: state.app.activeLiveStream,
+    
     allContentItems: state.content.contentItems,
+    currentContentItems: state.content.currentContentItems,
+    
     cartProducts: state.cart.products,
+    
     currentTrackId: state.player.currentTrack?.id,
     playing: state.player.playing,
   }))
@@ -49,6 +66,9 @@ function DetailPopUp({
   const [suggestedPrice, setSuggestedPrice] = useState<string>((contentItem ? contentItem.flexPriceRecommended : '0'))
   const [valid, setValid] = useState<boolean>(true)
   const [saleId, setSaleId] = useState<string>()
+  const [previousItem, setPreviousItem] = useState<IContentItem>()
+  const [nextItem, setNextItem] = useState<IContentItem>()
+  const [keyListenerAdded, setKeyListenerAdded] = useState<boolean>(false)
 
   useEffect(function init() {
     if (showPurchaseForm) {
@@ -103,6 +123,50 @@ function DetailPopUp({
 
   const history = useHistory()
 
+  useEffect(function initArrowNavigation() {
+    function bodyOnKeyDown(evt: any) {
+      const previousItemLink = $('.bsp-lightbox-prev')
+      const nextItemLink = $('.bsp-lightbox-next')
+
+      if (evt.keyCode === 37 && previousItemLink.length) {
+        // @ts-ignore
+        history.push(`/${category}/${previousItemLink.attr('href').split('/')[2]}/${filter ? filter : ''}`)
+      }
+      
+      if (evt.keyCode === 39 && nextItemLink.length) {
+        // @ts-ignore
+        history.push(`/${category}/${nextItemLink.attr('href').split('/')[2]}/${filter ? filter : ''}`)
+      }
+    }
+
+    function stopPropagationOnFormElements(evt: any) {
+      evt.stopPropagation()
+    }
+    
+    $('body').on('keydown', bodyOnKeyDown)
+    $('input, textarea, select').on('keydown', stopPropagationOnFormElements)
+
+    return function cleanup() {
+      $('body').off('keyup', bodyOnKeyDown)
+      $('body').off('keydown', stopPropagationOnFormElements)
+    }
+  }, [])
+  
+  useEffect(function setNextPreviousItems() {
+    if (!currentContentItems) return
+    if (!currentContentItems.length) return
+    if (!contentItem) return
+    
+    const itemIndex = findIndex(currentContentItems, { id: contentItem.id })
+
+    setPreviousItem(currentContentItems[itemIndex - 1])
+    setNextItem(currentContentItems[itemIndex + 1])
+  }, [currentContentItems, contentItem, nextItem, previousItem])
+  
+  useEffect(function resetValidityOnPrevNext() {
+    setValid(true)
+  }, [contentItem])
+
   const checkOutOnClick = useCallback(
     function checkOutOnClickFn() {
       if (!validate(suggestedPrice, true)) return
@@ -155,16 +219,27 @@ function DetailPopUp({
   const instantDownloadOnClick = useCallback(
     function instantDownloadOnClickFn() {
       if (!validate(suggestedPrice, true)) return
+      if (!saleId) return
 
-      dispatch(openPopup('thank-you-popup', { itemSlugs: [contentItem.slug] }))
+      dispatch(addProductToCart({
+        downloadFile: contentItem.downloadFile,
+        finalPrice: suggestedPrice,
+        isDigitalProduct: contentItem.isDigitalProduct,
+        title: contentItem.title,
+        slug: contentItem.slug,
+        type: contentItem.type,
+      }))
+
+      dispatch(submitSale(saleId))
+      dispatch(openPopup('thank-you-popup', { saleId }))
 
       history.push('/thank-you')
 
       ReactGA.event({
         category: 'User',
-        action: 'Clicked "Add to cart" in detail popup',
+        action: 'Clicked "Download" in detail popup',
       })
-    }, [],
+    }, [saleId, suggestedPrice],
   )
 
   function validate(price: any, showAlerts = false) {
@@ -216,7 +291,6 @@ function DetailPopUp({
       || hasCategory(item, 'merch')
       || hasCategory(item, 'venue-calendar')
       || hasCategory(item, 'stock-photos')
-      // TODO: Get rid of these flags and just use tags
       || (hasCategory(item, 'label') && (item.isDigitalProduct || item.isPhysicalProduct))
     ) {
       return true
@@ -318,9 +392,12 @@ function DetailPopUp({
   const chooseYourPriceText = category === 'venue-calendar'
     ? 'Choose your ticket price!'
     : ( BERLIN_STOCK_PHOTOS ? 'Name your price!' : 'Choose your price!')
-
+  
+    
   if (!contentItem) return (<div />)
 
+  const tags = (contentItem.tags || '').split(', ')
+  
   return (
     <section
       className={`
@@ -347,10 +424,39 @@ function DetailPopUp({
                   alt={contentItem.secondaryTitle}
                 />
               </div>
-              <div 
+              <div className="bsp-lightbox-tags">
+                { tags.map(tag =>
+                  <span key={tag}>
+                    <Link to={`/stock-photos/filter/${tag}`}>
+                      { tagSpellingCorrections(titleCase(tag.replace(/-/g, ' ')), true) }
+                    </Link>
+                    { tag === last(tags) ? '' : ',' }
+                  </span>
+                )}
+              </div>
+              <div
                 className="bsp-lightbox-caption"
                 dangerouslySetInnerHTML={{ __html: marked(contentItem.blurb) }}
-              />
+                />
+              <div className="bsp-lightbox-nav">
+                { previousItem && (
+                  <Link 
+                    className="bsp-lightbox-prev"
+                    to={`/${category}/${previousItem.slug}/${filter ? filter : ''}`}
+                  >
+                    &laquo; Previous photo
+                  </Link>
+                )}
+                &nbsp;&nbsp;|&nbsp;&nbsp;
+                { nextItem && (
+                  <Link 
+                    className="bsp-lightbox-next"
+                    to={`/${category}/${nextItem.slug}/${filter ? filter : ''}`}
+                  >
+                    Next photo &raquo;
+                  </Link>
+                )}
+              </div>
             </>
           )}
           { !BERLIN_STOCK_PHOTOS && (
@@ -396,6 +502,12 @@ function DetailPopUp({
                       }>
                         Minimum price: { contentItem.flexPriceMinimum } €
                       </small>
+                      <br />
+                      { BERLIN_STOCK_PHOTOS && (
+                        <small>
+                          Minimum price for RAW: 20 €
+                        </small>
+                      )}
                       {!valid && (
                         <div className="invalid-message">
                           Please enter a valid price.
@@ -407,7 +519,7 @@ function DetailPopUp({
                     detail-popup-buttons clearfix
                     ${valid ? '' : 'invalid'}
                   `}>
-                    { parseFloat(suggestedPrice) > 0 && (
+                    { (parseFloat(suggestedPrice) > 0 || cartProducts.length > 0) && (
                       <button
                         className="action-button"
                         onClick={checkOutOnClick}
@@ -415,7 +527,15 @@ function DetailPopUp({
                         { buyNowText }
                       </button>
                     )}
-                    { parseInt(suggestedPrice) === 0 && (
+                    { (parseFloat(suggestedPrice) > 0 || cartProducts.length > 0) && (
+                      <button
+                        className="action-button"
+                        onClick={addToCartOnClick}
+                      >
+                        { addToCartText }
+                      </button>
+                    )}
+                    { (parseInt(suggestedPrice) === 0 && cartProducts.length === 0) && (
                       <button
                         className="action-button"
                         onClick={instantDownloadOnClick}
@@ -423,15 +543,18 @@ function DetailPopUp({
                         Download
                       </button>
                     )}
-                    <button
-                      className="action-button"
-                      onClick={addToCartOnClick}
-                    >
-                      { addToCartText }
-                    </button>
                     { isNaN(parseFloat(suggestedPrice)) && (
                       <div className="purchase-form-spinner">
                         <Spinner />
+                      </div>
+                    )}
+                    { BERLIN_STOCK_PHOTOS && (
+                      <div className="bsp-print-link">
+                        <small>
+                          <Link to="/stock-photos/prints">
+                            Want a print of this photo?
+                          </Link>
+                        </small>
                       </div>
                     )}
                   </div>

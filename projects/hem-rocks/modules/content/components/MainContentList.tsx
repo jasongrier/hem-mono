@@ -1,5 +1,6 @@
 import React, { ReactElement, useEffect, useState, useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
 import Scrollbars from 'react-scrollbars-custom'
 import { slugify, titleCase } from 'voca'
@@ -9,10 +10,10 @@ import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup } from '../../../../../lib/modules/popups'
 import { replacePlaylist, setPlayerPlaylist, ITrack } from '../../../../../lib/modules/website-player'
 import { MainContentBox } from './index'
-import { IContentItem } from '../index'
+import { IContentItem, setCurrentItems } from '../index'
 import { RootState } from '../../../index'
 import { LISTS_HAVE_BLURBS, RELEASE_PHASE } from '../../../config'
-import { hasTag, hasCategory, contentItemToTrack, getContentItemsFromRawList } from '../functions'
+import { hasTag, hasCategory, contentItemToTrack, getContentItemsFromRawList, tagSpellingCorrections } from '../functions'
 
 interface IProps {
   category: string
@@ -37,7 +38,6 @@ interface IProps {
   onFiltersChanged?: () => void
   orderByOrder?: boolean
   showCategoryOnContentBoxes?: boolean
-  tagSpellingCorrections?: any
   title?: string
 }
 
@@ -63,7 +63,6 @@ function MainContentList({
   onlyTag,
   orderByOrder,
   showCategoryOnContentBoxes = false,
-  tagSpellingCorrections,
   title,
 }: IProps): ReactElement {
   const { storeContentItems, currentlyOpenPopUp } = useSelector((state: RootState) => ({
@@ -75,6 +74,8 @@ function MainContentList({
 
   const [finalContentItems, setFinalContentItems] = useState<IContentItem[]>([])
   const [finalFilters, setFinalFilters] = useState<string[]>([])
+
+  const { pathname } = useLocation()
 
   useEffect(function filters() {
     let semifinalFilters
@@ -106,7 +107,7 @@ function MainContentList({
     else {
       setFinalFilters(['All'].concat(compact(semifinalFilters)))
     }
-  }, [storeContentItems])
+  }, [storeContentItems, fixedFilters, noAll])
   
   useEffect(function itemsAndPlaylist() {
     let contentItems: IContentItem[]
@@ -164,6 +165,7 @@ function MainContentList({
     )
 
     setFinalContentItems(contentItems)
+    dispatch(setCurrentItems(contentItems))
 
     setTimeout(function () {
       if (currentlyOpenPopUp) return
@@ -269,10 +271,7 @@ function MainContentList({
               }
             >
               <span onClick={onFilterClick}>
-                { tagSpellingCorrections && tagSpellingCorrections[tag]
-                    ? tagSpellingCorrections[tag] 
-                    : tag
-                }
+                { tagSpellingCorrections(tag) }
               </span>
             </Link>
           ))}
@@ -287,7 +286,6 @@ function MainContentList({
         </div>
       )}
       <div className="main-content-items">
-        { console.log(finalContentItems.length) }
         { finalContentItems.map((contentItem: IContentItem, index: number) => (
           <MainContentBox
             badgeText={
