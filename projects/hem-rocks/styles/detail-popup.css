@@ -436,3 +436,12 @@
   display: block;
   transform: rotate(90deg);
 }
+
+.bsp-print-link {
+  float: left;
+  clear: both;
+}
+
+.bsp-print-link a {
+  color: inherit;
+}

@@ -26,7 +26,7 @@ function BerlinStockPhotos(): ReactElement {
     if (!contentItems) return
     if (!contentItems.length) return
     
-    const contentItem = sample(contentItems)
+    const contentItem = sample(contentItems.filter(item => hasTag(item, 'best-of')))
     
     if (!contentItem) return
     
@@ -51,9 +51,9 @@ function BerlinStockPhotos(): ReactElement {
       `}>
         <Header />
         
-        { isMoreTagsPage && (
+        {/* { isMoreTagsPage && (
           <h1>All Tags</h1>
-        )}
+        )} */}
         
         <main>
           { heroine && !isMoreTagsPage && (
@@ -84,7 +84,6 @@ function BerlinStockPhotos(): ReactElement {
                 'Elon Musk',
                 'Food Photography',
                 'Free Shit',
-                'Fucked Up Cars',
                 'Fucked Up Phone Booths',
                 'Furtive Dumpsters',
                 'German Words',
@@ -104,15 +103,10 @@ function BerlinStockPhotos(): ReactElement {
                 'Spaetis',
                 'Swans',
                 'Taped Up Boxes And Poles',
-                'Tourist Traps',
                 'Trash Configurations',
                 'Weeping Willow Trees',
                 'Weirdness',
               ]}
-              tagSpellingCorrections={{
-                'Nkz': 'NKZ',
-                'Spaetis': 'Spätis',
-              }}
             />
           </div>
         </main>

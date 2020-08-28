@@ -31,7 +31,7 @@ function ScrollToTop({ scrollPaneSelector }: IProps): ReactElement {
     }
 
     else {
-      console.log('*** Did NOT scroll to the top! >> ' + pathname)
+      // console.log('*** Did NOT scroll to the top! >> ' + pathname)
     }
   }, [pathname])
 

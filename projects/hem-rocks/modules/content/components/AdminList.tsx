@@ -178,9 +178,9 @@ function AdminList(): ReactElement {
               <th className="admin-list-column-category">
                 Tags
               </th>
-              {/* <th className="admin-list-column-order">
+              <th className="admin-list-column-order">
                 Order
-              </th> */}
+              </th>
               {/* <th className="admin-list-column-date">
                 Date
               </th> */}
@@ -209,9 +209,9 @@ function AdminList(): ReactElement {
                 <td className="admin-list-column-category">
                   { titleCase(item.tags.replace(/-/g, ' ')) }
                 </td>
-                {/* <td className="admin-list-column-order">
+                <td className="admin-list-column-order">
                   { item.order || '-' }
-                </td> */}
+                </td>
                 {/* <td className="admin-list-column-date">
                   { item.date }
                 </td> */}
