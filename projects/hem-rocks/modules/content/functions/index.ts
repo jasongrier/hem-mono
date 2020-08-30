@@ -1,4 +1,4 @@
-export { default as compressIndex } from './compress-index'
+export { default as compressIndex, compressIndexKeys, uncompressItem, validateCompressionMap } from './compress-index'
 export { default as contentItemToTrack } from './content-item-to-track'
 export { default as hasCategory } from './has-category'
 export { default as hasTag } from './has-tag'

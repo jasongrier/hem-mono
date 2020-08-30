@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import { assetHostHostname } from '../../functions'
 import { BASE_SITE_TITLE } from '../../config'
-import { Header } from '../../components/berlin-stock-photos'
+import { Header, Footer } from '../../components/berlin-stock-photos'
 import { ContactForm } from '../../../../lib/components'
 
 function Contact(): ReactElement {
@@ -46,6 +46,8 @@ function Contact(): ReactElement {
           />
         </div>
       </div>
+      
+      <Footer />
     </>
   )
 }

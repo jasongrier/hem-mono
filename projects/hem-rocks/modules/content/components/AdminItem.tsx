@@ -8,6 +8,7 @@ import { ElectronOnly, ZoomTextarea } from '../../../../../lib/components'
 import { assetHostHostname } from '../../../functions'
 import { IContentItem, fieldTypes, modelize, requestCreateItems, requestDeleteItems, requestUpdateItems, hasCategory } from '../index'
 import { RootState } from '../../../index'
+import { BERLIN_STOCK_PHOTOS } from '../../../config'
 
 interface IProps {
   create: boolean
@@ -91,7 +92,6 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
   
   function onChange(fieldName: string, value: string) {
     setWorkingItem(produce(workingItem, (draftItem: any) => {
-      console.log(value)
       draftItem[fieldName] = value
       setCanSave(!isEqual(draftItem, originalItem))
     }))
@@ -193,7 +193,6 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
     'Elon Musk',
     'Fences',
     'Flowers',
-    'Flowers',
     'Food Photography',
     'Forest',
     'Free Shit',
@@ -288,7 +287,7 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
               <img src={`${assetHost}/hem-rocks/content/images/key-art/${originalItem.keyArt}`} />
             )}
           </div>
-          <button
+          {/* <button
             className="action-button publish-item-button"
             onClick={(evt) => {
               evt.preventDefault()
@@ -306,7 +305,7 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
             }}
           >
             { workingItem.published ? 'Unpublish' : 'Publish' }
-          </button>
+          </button> */}
           <button
             className="action-button save-item-button"
             disabled={!canSave}
@@ -314,30 +313,33 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
           >
             Save
           </button>
-          <div style={{
-            paddingLeft: '420px',
-          }}>
-            { presetTags.map(tag => (
-              <div 
-                onClick={() => {
-                  setWorkingItem(produce(workingItem, (draftItem: any) => {
-                    draftItem.tags = (draftItem.tags + ', ' + slugify(tag)).replace(/^, /, '')
-                    setCanSave(!isEqual(draftItem, originalItem))
-                  }))
-                }} 
-                style={{ 
-                  float: 'left', 
-                  margin: '0 10px 10px 0', 
-                  border: '1px solid #000', 
-                  padding: '5px', 
-                  cursor: 'pointer',
-                  lineHeight: '20px',
-                }}
-              >
-                { tag }
-              </div>
-            ))}
-          </div>
+          { BERLIN_STOCK_PHOTOS && (
+            <div style={{
+              paddingLeft: '420px',
+            }}>
+              { presetTags.map(tag => (
+                <div 
+                  key={slugify(tag)}
+                  onClick={() => {
+                    setWorkingItem(produce(workingItem, (draftItem: any) => {
+                      draftItem.tags = (draftItem.tags + ', ' + slugify(tag)).replace(/^, /, '')
+                      setCanSave(!isEqual(draftItem, originalItem))
+                    }))
+                  }} 
+                  style={{ 
+                    float: 'left', 
+                    margin: '0 10px 10px 0', 
+                    border: '1px solid #000', 
+                    padding: '5px', 
+                    cursor: 'pointer',
+                    lineHeight: '20px',
+                  }}
+                >
+                  { tag }
+                </div>
+              ))}
+            </div>
+          )}
         </header>
         <table className="admin-item">
           <tbody>

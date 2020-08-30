@@ -46,7 +46,7 @@ function* submitSale({ payload: saleId }: any) {
     // TODO: websiteHostName() helper fn...
     const websiteHostName = window.location.hostname === 'localhost'
       ? 'http://localhost:1234'
-      : BERLIN_STOCK_PHOTOS ? 'http://berlinstockphotos.com/stock-photos' : 'http://hem.rocks'
+      : BERLIN_STOCK_PHOTOS ? 'http://berlinstockphotos.com' : 'http://hem.rocks'
 
     const state = yield select()
     const { products }: { products: IProduct[] } = state.cart

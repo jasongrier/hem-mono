@@ -55,6 +55,7 @@ export interface IState {
   contentItems: IContentItem[]
   needsKeyArtFilter: boolean
   showUnpublishedFilter: boolean
+  stickyFilter: boolean
 }
 
 export const fieldTypes: IContentItem = {
@@ -114,6 +115,7 @@ export const SET_CURRENT_ITEM = 'SET_CURRENT_ITEM'
 export const SET_CURRENT_ITEMS = 'SET_CURRENT_ITEMS'
 export const TOGGLE_NEEDS_KEY_ART_FILTER = 'TOGGLE_NEEDS_KEY_ART_FILTER'
 export const TOGGLE_SHOW_UNPUBLISHED_FILTER = 'TOGGLE_SHOW_UNPUBLISHED_FILTER'
+export const TOGGLE_STICKY_FILTER = 'TOGGLE_STICKY_FILTER'
 
 export interface IAdminApplyFilter extends AnyAction {
   type: typeof ADMIN_APPLY_FILTER
@@ -190,6 +192,11 @@ export interface IToggleShowUnpublishedFilter extends AnyAction {
   payload: null
 }
 
+export interface IToggleStickyFilter extends AnyAction {
+  type: typeof TOGGLE_STICKY_FILTER
+  payload: null
+}
+
 export type Action =
   IAdminApplyFilter
   | IAdminApplySearch
@@ -206,6 +213,7 @@ export type Action =
   | ISetCurrentItems
   | IToggleNeedsKeyArtFilter
   | IToggleShowUnpublishedFilter
+  | IToggleStickyFilter
 
 export {
   adminApplyFilter,
@@ -223,6 +231,7 @@ export {
   setCurrentItems,
   toggleNeedsKeyArtFilter,
   toggleShowUnpublishedFilter,
+  toggleStickyFilter,
 } from './actions'
 
 export { reducer as contentReducer } from './reducer'
@@ -240,6 +249,7 @@ export {
 
 export {
   compressIndex,
+  compressIndexKeys,
   contentItemToTrack,
   hasCategory,
   hasTag,
@@ -249,6 +259,8 @@ export {
   getContentItemsFromList,
   getContentItemsFromRawList,
   modelize,
+  uncompressItem,
+  validateCompressionMap
 } from './functions'
 
 export {

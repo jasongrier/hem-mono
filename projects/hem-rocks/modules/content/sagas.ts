@@ -1,5 +1,5 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects'
-import { compact, isEmpty } from 'lodash'
+import { map } from 'lodash'
 import {
   REQUEST_CREATE_ITEMS,
   REQUEST_DELETE_ITEMS,
@@ -14,6 +14,8 @@ import {
 
   modelize,
   compressIndex,
+  uncompressItem,
+  validateCompressionMap,
 
   IIndexEntry,
 } from './index'
@@ -28,7 +30,8 @@ function* createItems({ payload }: any) {
     const item = Object.assign({}, payload[0]) // TODO: Handle multiples
     const indexFile = join(__dirname, '..', '..', 'static', 'content', 'index.json')
     const distIndexFile = join(__dirname, '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
-    const index = JSON.parse(readFileSync(indexFile, 'utf8'))
+    const compressedIndex = JSON.parse(readFileSync(indexFile, 'utf8'))
+    const index: IIndexEntry[] = compressedIndex.map(uncompressItem)
     
     index.push(item)
 
@@ -55,10 +58,10 @@ function* deleteItems({ payload }: any) {
     const itemSlug = payload[0] // TODO: Handle multiples
     const indexFile = join(__dirname, '..', '..', 'static', 'content', 'index.json')
     const distIndexFile = join(__dirname, '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
-
-    let index: IIndexEntry[] = JSON.parse(readFileSync(indexFile, 'utf8'))
-
-    index = index.filter(entry => entry.slug !== itemSlug)
+    const compressedIndex: IIndexEntry[] = JSON.parse(readFileSync(indexFile, 'utf8'))
+    const index: IIndexEntry[] = compressedIndex
+      .map(uncompressItem)
+      .filter(entry => entry.slug !== itemSlug)
 
     writeFileSync(indexFile, JSON.stringify(compressIndex(index)))
 
@@ -75,9 +78,11 @@ function* deleteItems({ payload }: any) {
 
 function* readItems() {
   try {
+    validateCompressionMap()
+
     const res = yield call(fetch, '/static/content/index.json')
     const entries = yield res.json()
-    const items = entries.map(modelize)
+    const items = entries.map(uncompressItem).map(modelize)
 
     yield put(doReadItemsAc(items))
   }
@@ -97,12 +102,13 @@ function* updateItems({ payload }: any) {
     const updatedItem = payload[0] // TODO: Handle multiples
     const indexFile = join(__dirname, '..', '..', 'static', 'content', 'index.json')
     const distIndexFile = join(__dirname, '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
-    const index: IIndexEntry[] = JSON.parse(readFileSync(indexFile, 'utf8'))
+    const compressedIndex: IIndexEntry[] = JSON.parse(readFileSync(indexFile, 'utf8'))
+    const index: IIndexEntry[] = compressedIndex.map(uncompressItem)
     const entryIndex = index.findIndex(item => item.slug === updatedItem.slug)
 
     index[entryIndex] = updatedItem
 
-    writeFileSync(indexFile, JSON.stringify(compressIndex(index), null, 2))
+    writeFileSync(indexFile, JSON.stringify(compressIndex(index)))
     execSync(`cp ${indexFile} ${distIndexFile}`, { stdio: 'inherit' })
 
     yield put(doUpdateItemsAc([updatedItem]))

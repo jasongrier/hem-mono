@@ -11,15 +11,16 @@ import { adminApplyFilter, adminApplySearch, toggleNeedsKeyArtFilter, requestDel
 import { RootState } from '../../../index'
 import { hasCategory, hasTag } from '../functions'
 import { assetHostHostname } from '../../../functions'
-import { toggleShowUnpublishedFilter } from '../actions'
+import { toggleShowUnpublishedFilter, toggleStickyFilter } from '../actions'
 
 function AdminList(): ReactElement {
-  const { adminFilterApplied, adminSearchApplied, allContentItems, needsKeyArtFilter, showUnpublishedFilter } = useSelector((state: RootState) => ({
+  const { adminFilterApplied, adminSearchApplied, allContentItems, needsKeyArtFilter, showUnpublishedFilter, stickyFilter } = useSelector((state: RootState) => ({
     adminFilterApplied: state.content.adminFilterApplied,
     adminSearchApplied: state.content.adminSearchApplied,
     allContentItems: state.content.contentItems,
     needsKeyArtFilter: state.content.needsKeyArtFilter,
     showUnpublishedFilter: state.content.showUnpublishedFilter,
+    stickyFilter: state.content.stickyFilter,
   }))
 
   const dispatch = useDispatch()
@@ -51,6 +52,12 @@ function AdminList(): ReactElement {
       dispatch(toggleShowUnpublishedFilter())
     }, [],
   )
+  
+  const needsStickyOnChange = useCallback(
+    function needsStickyOnChangeFn(evt: SyntheticEvent<HTMLInputElement>) {
+      dispatch(toggleStickyFilter())
+    }, [],
+  )
 
   let contentItems = ([] as IContentItem[]).concat(adminFilterApplied === 'all' ? allContentItems : allContentItems.filter(item => {
     if (adminFilterApplied === 'home-feature') {
@@ -73,10 +80,12 @@ function AdminList(): ReactElement {
     contentItems = contentItems.filter(item => isEmpty(item.keyArt))
   }
 
-  // contentItems = contentItems.filter(item => isEmpty(item.tags))
-  
   if (!showUnpublishedFilter) {
     contentItems = contentItems.filter(item => item.published)
+  }
+  
+  if (stickyFilter) {
+    contentItems = contentItems.filter(item => item.sticky)
   }
 
   contentItems.sort((a, b) => {
@@ -92,11 +101,10 @@ function AdminList(): ReactElement {
 
   const assetHost = assetHostHostname()
 
-  // const firstItem = first(contentItems)
+  contentItems = contentItems.filter((item: IContentItem) => item.slug.includes('-print'))
 
   return (
     <ElectronOnly showMessage={true}>
-      {/* <Redirect to={`/admin/edit/${firstItem?.slug}`} /> */}
       <div className="admin-list">
         <div className="admin-list-controls clearfix">
           <div className="admin-list-controls-select">
@@ -162,6 +170,15 @@ function AdminList(): ReactElement {
               value={needsKeyArtFilter ? 'on' : 'off'}
             />
           </label>
+          <label htmlFor="needs-sticky">
+            Show sticky only:&nbsp;
+            <input
+              onChange={needsStickyOnChange}
+              name="needs-sticky"
+              type="checkbox"
+              value={stickyFilter ? 'on' : 'off'}
+            />
+          </label>
         </div>
         <div className="admin-list-stats">
           Selected Items: <strong>{ contentItems.length }</strong>&nbsp;&nbsp;|&nbsp;&nbsp;
@@ -207,7 +224,7 @@ function AdminList(): ReactElement {
                   <Link to={`/admin/edit/${item.slug}`}>{item.title}</Link>
                 </td> */}
                 <td className="admin-list-column-category">
-                  { titleCase(item.tags.replace(/-/g, ' ')) }
+                  { titleCase(item.tags.replace(/-/g, ' ').replace(/,/g, ', ')) }
                 </td>
                 <td className="admin-list-column-order">
                   { item.order || '-' }

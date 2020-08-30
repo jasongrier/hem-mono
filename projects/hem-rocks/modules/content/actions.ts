@@ -14,6 +14,7 @@ import {
   SET_CURRENT_ITEMS,
   TOGGLE_NEEDS_KEY_ART_FILTER,
   TOGGLE_SHOW_UNPUBLISHED_FILTER,
+  TOGGLE_STICKY_FILTER,
 
   Action,
   IContentItem,
@@ -94,6 +95,11 @@ const toggleShowUnpublishedFilter = (): Action => ({
   payload: null,
 })
 
+const toggleStickyFilter = (): Action => ({
+  type: TOGGLE_STICKY_FILTER,
+  payload: null,
+})
+
 export {
   adminApplyFilter,
   adminApplySearch,
@@ -110,4 +116,5 @@ export {
   setCurrentItems,
   toggleNeedsKeyArtFilter,
   toggleShowUnpublishedFilter,
+  toggleStickyFilter,
 }

@@ -50,10 +50,10 @@ import {
 
 import {
   About as BerlinStockPhotosAbout,
-  BerlinStockPhotos,
+  BerlinStockPhotos as BerlinStockPhotosHome,
   Contact as BerlinStockPhotosContact,
   NotFound as BerlinStockPhotosNotFound,
-  Support as BerlinStockPhotosSupport,
+  Prints as BerlinStockPhotosPrints,
 } from '../../../routes/berlin-stock-photos'
 
 function RoutingHub(): ReactElement {
@@ -62,9 +62,9 @@ function RoutingHub(): ReactElement {
     <div className="routing-hub">
       <Switch>
         {/* Home */}
-        <Route exact path="/" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotos : Home} />
-        <Route exact path="/cart" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotos : Home} />
-        <Route exact path="/thank-you" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotos : Home} />
+        <Route exact path="/" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotosHome : Home} />
+        <Route exact path="/cart" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotosHome : Home} />
+        <Route exact path="/thank-you" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotosHome : Home} />
 
         {/* New Website Overlay */}
         <Route exact path="/new-website" component={Home} />
@@ -100,8 +100,8 @@ function RoutingHub(): ReactElement {
         <Route exact path="/react-consulting" component={ReactConsulting} />
         <Route exact path="/react-consulting/cart" component={ReactConsulting} />
 
-        <Route exact path="/support" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotosSupport : Support} />
-        <Route exact path="/support/cart" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotosSupport : Support} />
+        <Route exact path="/support" component={Support} />
+        <Route exact path="/support/cart" component={Support} />
 
         {/* <Route exact path="/venue-main-stage" component={VenueStage} />
         <Route exact path="/venue-main-stage/cart" component={VenueStage} /> */}
@@ -188,16 +188,19 @@ function RoutingHub(): ReactElement {
         <Route path="/admin" component={Admin} />
 
         {/* Berlin Stock Photos */}
-        <Route exact path="/stock-photos/:contentItemSlug?/:filter?" component={BerlinStockPhotos} />
-        <Route exact path="/stock-photos/filter/:filter" component={BerlinStockPhotos} />
-        <Route exact path="/stock-photos/cart/:filter?" component={BerlinStockPhotos} />
+        <Route exact path="/stock-photos-prints" component={BerlinStockPhotosPrints} />
+        <Route exact path="/stock-photos-prints/cart" component={BerlinStockPhotosPrints} />
         
-        <Route exact path="/more-tags/:contentItemSlug?/:filter?" component={BerlinStockPhotos} />
-        <Route exact path="/more-tags/filter/:filter" component={BerlinStockPhotos} />
-        <Route exact path="/more-tags/cart/:filter?" component={BerlinStockPhotos} />
-
-        <Route exact path="/stock-photos/support" component={BerlinStockPhotosSupport} />
-        <Route exact path="/stock-photos/support/cart" component={BerlinStockPhotosSupport} />
+        <Route exact path="/stock-photos-prints/:contentItemSlug?" component={BerlinStockPhotosPrints} />
+        <Route exact path="/stock-photos-prints/cart/?" component={BerlinStockPhotosPrints} />
+        
+        <Route exact path="/stock-photos/:contentItemSlug?/:filter?" component={BerlinStockPhotosHome} />
+        <Route exact path="/stock-photos/filter/:filter" component={BerlinStockPhotosHome} />
+        <Route exact path="/stock-photos/cart/:filter?" component={BerlinStockPhotosHome} />
+        
+        <Route exact path="/more-tags/:contentItemSlug?/:filter?" component={BerlinStockPhotosHome} />
+        <Route exact path="/more-tags/filter/:filter" component={BerlinStockPhotosHome} />
+        <Route exact path="/more-tags/cart/:filter?" component={BerlinStockPhotosHome} />
 
         {/* Catch-all */}
         <Route path="*" component={ BERLIN_STOCK_PHOTOS ? BerlinStockPhotosNotFound : NotFound} />

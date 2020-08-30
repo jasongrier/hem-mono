@@ -1,8 +1,21 @@
 import React, { ReactElement } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { ElectronOnly } from '../../../../lib/components'
 
 function Header(): ReactElement {
+  const { pathname } = useLocation()
+
+  const noCartPaths = [
+    '/admin/create',
+    '/admin/list',
+    '/admin/manual-task-runner',
+    '/compilation-iv-artist-info',
+    '/checklists',
+    '/internal',
+  ]
+
+  const showCart = noCartPaths.indexOf(pathname) === -1
+
   return (
     <header className="main-header">
       <h1>
@@ -21,6 +34,28 @@ function Header(): ReactElement {
           <li>
             <NavLink to="/contact">Contact</NavLink>
           </li>
+          <li>
+            <NavLink to="/stock-photos-prints">
+              <strong>Order Prints</strong>
+            </NavLink>
+          </li>
+          { showCart && (
+            <li className="main-nav-item">
+              <NavLink
+                to={(() => {
+                  const [bspUrlPrefix, filter, filterName] = pathname.replace(/^\//, '').split('/')
+
+                  if (filter === 'filter') {
+                    return `/${bspUrlPrefix}/cart/${filterName}`
+                  }
+
+                  return `${pathname !== '/' ? pathname : ''}/cart`
+                })()}
+              >
+                Cart
+              </NavLink>
+            </li>
+          )}
           <ElectronOnly>
             <li>
               <NavLink to="/admin/list">Admin</NavLink>

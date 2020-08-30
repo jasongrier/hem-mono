@@ -6,7 +6,7 @@ import pad from 'pad'
 import $ from 'jquery'
 import { autoParagraph } from '../../../../../lib/functions'
 import { modelize, hasTag, getContentItemBySlug, hasCategory } from '../functions'
-import { IIndexEntry, IContentItem } from '..'
+import { IIndexEntry, IContentItem, compressIndex } from '..'
 import { RootState } from '../../../index'
 import { readdirSync, renameSync } from 'fs'
 import { slugify, titleCase } from 'voca'
@@ -149,16 +149,7 @@ function migrate(allContentItems: IContentItem[]) {
     const newItem = Object.assign({}, item)
 
     // DO STUFF HERE
-    if (hasCategory(newItem, 'stock-photos') && hasTag(newItem, 'best-of')) {
-      newItem.flexPriceMinimum = '10'
-      newItem.flexPriceRecommended = '20'
-    }
-
-    else {
-      newItem.flexPriceMinimum = '0'
-      newItem.flexPriceRecommended = '10'
-    }
-
+    newItem.tags = newItem.tags.replace('poignancy', 'sweetness')
     newItems.push(newItem)
     // END DO STUFF HERE
   }
@@ -166,8 +157,8 @@ function migrate(allContentItems: IContentItem[]) {
   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
   const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
 
-  writeFileSync(srcIndex, JSON.stringify(newItems, null, 2))
-  writeFileSync(distIndex, JSON.stringify(newItems, null, 2))
+  writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
+  writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
 }
 
 function assignImages() {

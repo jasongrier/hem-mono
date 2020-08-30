@@ -1,1 +1,0 @@
-# Berlin Stock Photos

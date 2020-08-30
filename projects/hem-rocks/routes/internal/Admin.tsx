@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import { NavLink, Switch, Route } from 'react-router-dom'
+import { Link, NavLink, Switch, Route } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import { AdminManualTaskRunner, AdminItem, AdminList, AdminSettings } from '../../modules/content'
 import { BASE_SITE_TITLE } from '../../config'
@@ -29,6 +29,9 @@ function Admin(): ReactElement {
             </li>
             <li>
               <NavLink to="/internal">Internal Pages</NavLink>
+            </li>
+            <li>
+              <Link to="/">Site</Link>
             </li>
           </ul>
         </nav>
