@@ -4,7 +4,7 @@ import { useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
 import Scrollbars from 'react-scrollbars-custom'
 import { slugify, titleCase } from 'voca'
-import { get, uniq, flatten, compact } from 'lodash'
+import { get, uniq, flatten, compact, last, shuffle } from 'lodash'
 import moment from 'moment'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup } from '../../../../../lib/modules/popups'
@@ -30,6 +30,7 @@ interface IProps {
   infoPopupText?: string
   infoPopupTitle?: string
   items?: IContentItem[]
+  limit?: number
   linkTo?: (contentItem: IContentItem) => string
   moreTagsLink?: string | null
   noAll?: boolean
@@ -37,6 +38,7 @@ interface IProps {
   onlyTag?: string
   onFiltersChanged?: () => void
   orderByOrder?: boolean
+  randomizeNonSticky?: boolean
   showCategoryOnContentBoxes?: boolean
   title?: string
 }
@@ -62,6 +64,7 @@ function MainContentList({
   noSplatter,
   onlyTag,
   orderByOrder,
+  randomizeNonSticky,
   showCategoryOnContentBoxes = false,
   title,
 }: IProps): ReactElement {
@@ -74,8 +77,6 @@ function MainContentList({
 
   const [finalContentItems, setFinalContentItems] = useState<IContentItem[]>([])
   const [finalFilters, setFinalFilters] = useState<string[]>([])
-
-  const { pathname } = useLocation()
 
   useEffect(function filters() {
     let semifinalFilters
@@ -117,7 +118,9 @@ function MainContentList({
     }
 
     else {
-      contentItems = storeContentItems.filter(item => {
+      const storeContentItemsImm = Array.from(storeContentItems)
+      
+      contentItems = storeContentItemsImm.filter(item => {
         if (additionalCategory) {
           return (hasCategory(item, category) || hasCategory(item, additionalCategory)) && item.published && !item.sticky
         }
@@ -127,7 +130,7 @@ function MainContentList({
         }
       })
 
-      let stickyContentItems = storeContentItems.filter(
+      let stickyContentItems = storeContentItemsImm.filter(
         item => hasCategory(item, category) && item.published && item.sticky
       )
       
@@ -147,7 +150,15 @@ function MainContentList({
         })
       }
 
-      if (orderByOrder) {
+      if (randomizeNonSticky) {
+        contentItems = shuffle(contentItems)
+
+        if (orderByOrder) {
+          stickyContentItems.sort(orderSortFn)
+        }
+      }
+
+      else if (orderByOrder) {
         contentItems.sort(orderSortFn)
         stickyContentItems.sort(orderSortFn)
       }
@@ -157,13 +168,13 @@ function MainContentList({
         stickyContentItems.sort(dateSortFn)
       }
 
-      contentItems = stickyContentItems.concat(contentItems)
+      contentItems = stickyContentItems.concat(contentItems.slice(0, 102))
     }
 
-    contentItems = contentItems.filter((item: IContentItem) =>
-      parseInt(item.releasePhase, 10) <= RELEASE_PHASE
-    )
-
+    // contentItems = contentItems.filter((item: IContentItem) =>
+    //   parseInt(item.releasePhase, 10) <= RELEASE_PHASE
+    // )
+    
     setFinalContentItems(contentItems)
     dispatch(setCurrentItems(contentItems))
 
@@ -194,9 +205,16 @@ function MainContentList({
   }, [currentFilter, storeContentItems, currentlyOpenPopUp])
 
   const onFilterClick = useCallback(() => {
+    const body = document.querySelector('.scroll-lock-content')
     const filterBox = document.querySelector('.main-content-filters')
-    if (!filterBox) return
-    filterBox.scrollIntoView(true)
+    
+    if (body) {
+      body.scrollIntoView(true)
+    }
+    
+    if (filterBox) {
+      filterBox.scrollIntoView(true)
+    }
   }, [])
 
   function dateSortFn(a: IContentItem, b: IContentItem) {
@@ -263,16 +281,17 @@ function MainContentList({
                 ${ currentFilter === slugify(tag) ? 'active' : '' }
                 ${ currentFilter === slugify(excludeFromAll) ? 'exclusive-filter' : '' }
               `}
-              key={tag}
+              key={ tag }
               to={
-                currentFilter === slugify(tag)
+                currentFilter === slugify(tag) && !noAll
                   ? `/${category}`
                   : `/${category}${tag !== 'All' ? '/filter/' + slugify(tag) : ''}`
               }
             >
-              <span onClick={onFilterClick}>
-                { tagSpellingCorrections(tag) }
-              </span>
+              <span 
+                onClick={onFilterClick}
+                dangerouslySetInnerHTML={{ __html: tagSpellingCorrections(tag).replace(/ /g, '&nbsp;') }}
+              />
             </Link>
           ))}
           { moreTagsLink && (

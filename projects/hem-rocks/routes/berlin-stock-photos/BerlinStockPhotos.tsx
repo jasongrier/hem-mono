@@ -9,7 +9,7 @@ import 'slick-carousel'
 import 'slick-carousel/slick/slick.css'
 import { NextButton } from '../../../../lib/packages/hem-buttons'
 import { MainContentList, IContentItem } from '../../modules/content'
-import { Header } from '../../components/berlin-stock-photos'
+import { Header, Footer } from '../../components/berlin-stock-photos'
 import { assetHostHostname } from '../../functions'
 import { RootState } from '../../index'
 import { hasCategory, hasTag } from '../../modules/content'
@@ -56,7 +56,7 @@ function BerlinStockPhotos(): ReactElement {
         )} */}
         
         <main>
-          { heroine && !isMoreTagsPage && (
+          {/* { heroine && !isMoreTagsPage && (
             <div className="bsp-heroine">
               <Link to={`/${heroine.category}/${heroine.slug}${currentFilter ? '/' + currentFilter : ''}`}>
                 <img 
@@ -65,15 +65,17 @@ function BerlinStockPhotos(): ReactElement {
                 />
               </Link>
             </div>
-          )}
+          )} */}
           
           <div className="bsp-content">
             <MainContentList
               category="stock-photos"
               currentFilter={ currentFilter || 'best-of' }
-              noSplatter={true}
+              noSplatter={ true }
               moreTagsLink={ isMoreTagsPage ? null : '/more-tags/filter/best-of' }
               noAll={ true }
+              orderByOrder={ true }
+              randomizeNonSticky={ true }
               fixedFilters={ isMoreTagsPage ? null : [
                 'Best Of',
                 'Architecture',
@@ -94,7 +96,8 @@ function BerlinStockPhotos(): ReactElement {
                 'Old Shit',
                 'Pappelfuzz',
                 'Parks',
-                'Poignancy',
+                'Sweetness',
+                'Rainbows',
                 'Sandy Soil',
                 'Satellite Dishes',
                 'Silver Paint',
@@ -111,24 +114,7 @@ function BerlinStockPhotos(): ReactElement {
           </div>
         </main>
 
-        <footer>
-          <nav>
-          <ul>
-            <li>
-              <NavLink to="">Instagram</NavLink>
-            </li>
-            <li>
-              <NavLink to="">Facebook</NavLink>
-            </li>
-            <li>
-              <NavLink to="">Twitter</NavLink>
-            </li>
-          </ul>
-          </nav>
-          <p>
-            &copy; 2020—2021 Berlin Stock Photos, OÜ
-          </p>
-        </footer>
+        <Footer />
       </div>
     </>
   )

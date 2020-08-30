@@ -10,6 +10,7 @@ import Scrollbars from 'react-scrollbars-custom'
 import { RootState } from '../../../index'
 import { removeProductFromCart, submitSale } from '../actions'
 import PayPalCartUpload from './PayPalCartUpload'
+import { BERLIN_STOCK_PHOTOS } from '../../../config'
 
 interface IProps {
   redirecting: boolean
@@ -126,7 +127,7 @@ function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
                         remove
                       </a>
                     </div>
-                    <h2>{ product.title }</h2>
+                    <h2>{ product.title }{ BERLIN_STOCK_PHOTOS && parseFloat(product.finalPrice) >= 20 && product.isDigitalProduct && ' + RAW' }</h2>
                     <p>{ product.type }</p>
                     <div className="cart-popup-item-price">{ product.finalPrice } €</div>
                   </div>
@@ -169,8 +170,12 @@ function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
           <div className="cart-popup-redirecting-overlay">
             <div className="cart-popup-redirecting-overlay-content">
               <h2>Great!</h2>
-              <p>We are redirecting you to PayPal to complete your purchase.</p>
-              <p><strong>Please do not close this window!</strong></p>
+              <p>Just a sec, we are redirecting you to PayPal to complete your purchase.</p>
+              <p>You do not need a PayPal account to buy.</p>
+              {/* <p><strong>Please do not close this window!</strong></p> */}
+              <p className="shipping-warning">
+                <strong>Don't forget to confirm your shipping address in PayPal!</strong>
+              </p>
               <Spinner />
             </div>
           </div>
@@ -181,6 +186,7 @@ function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
             slug: product.slug,
             title: product.title,
             type: product.type,
+            isNondigitalProduct: product.isDigitalProduct === false,
           }))}
         />
       </div>

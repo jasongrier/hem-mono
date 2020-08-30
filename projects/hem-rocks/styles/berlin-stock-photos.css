@@ -1,5 +1,6 @@
 :root {
   --bsp-top-bar-height: 70px;
+  --bsp-teal: rgb(0, 201, 252);
 }
 
 .berlin-stock-photos {
@@ -124,11 +125,53 @@
   transform-origin: center;
 }
 
+.main-content h1 {
+  color: var(--line-orange);
+}
+
 .bsp-content .main-content-filters {
-  position: fixed;
-  top: 80px;
+  top: 82px;
+  width: calc(var(--content-width-desk) - 16px);
+  margin-left: 2px;
+  overflow: hidden;
   padding-top: 15px;
+  padding-left: 0;
+  padding-right: 0;
   user-select: none;
+  line-height: 32px;
+}
+
+.bsp-content .main-content-filter {
+  padding: 0 5px;
+}
+
+.berlin-stock-photos .cookie-approval-warning {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.berlin-stock-photos .main-content-section {
+  width: 800px;
+  margin: 40px auto;
+}
+
+.berlin-stock-photos .main-content-section h2 {
+  color: var(--line-orange);
+}
+
+.berlin-stock-photos .main-content-section p {
+  margin-top: 20px;
+}
+
+.berlin-stock-photos .action-button,
+.berlin-stock-photos .cookie-approval-warning button,
+.berlin-stock-photos .campaign-monitor-form button,
+.berlin-stock-photos .hem-contact-form button {
+  background-color: var(--line-orange) !important;
+}
+
+.berlin-stock-photos .cookie-approval-warning .edit-cookies-button {
+  opacity: 1;
+  background-color: #ccc !important;
 }
 
 .bsp-content .main-content-filters h3 {
@@ -136,11 +179,16 @@
 }
 
 .main-content-filter.active {
-  background: rgb(0, 201, 252);
+  display: inline-block;
+  background: var(--line-orange);
+  font-size: 42px;
+  line-height: 48px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .bsp-content .main-content-items {
-  margin-top: 163px;
+  margin-top: 79px;
 }
 
 .bsp-content .main-content-box {
@@ -206,21 +254,15 @@
   height: 600px !important;
 }
 
-.berlin-stock-photos .thank-you-popup-email-form {
-  display: none;
-}
-
-.berlin-stock-photos .download-items {
-  height: 410px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
 .berlin-stock-photos .detail-popup header {
   position: relative;
   height: calc(100vh - 40px) !important;
   margin-top: 0;
   padding: 0;
+}
+
+.berlin-stock-photos .detail-popup .detail-popup-header-content {
+  pointer-events: none;
 }
 
 .berlin-stock-photos .detail-popup-title {
@@ -248,12 +290,17 @@
   display: none;
 }
 
+.berlin-stock-photos .detail-popup-details {
+  display: none;
+}
+
 .berlin-stock-photos .detail-popup-actions {
   left: auto;
   right: -110px;
   top: 0;
   width: 405px;
   bottom: auto;
+  pointer-events: all;
 }
 
 .berlin-stock-photos .hem-close-button {
@@ -284,7 +331,7 @@
   margin-bottom: 10px;
 }
 
-.bsp-lightbox-image {
+.bsp-lightbox-image img {
   margin-left: 20px;
   width: 70%;
   height: 70%;
@@ -293,12 +340,9 @@
 }
 
 .bsp-lightbox-tags {
-  position: absolute;
-  top: 580px;
-  z-index: 9999;
   width: 60%;
-  margin-left: 20px;
   margin-top: 10px;
+  margin-left: 20px;
 }
 
 .bsp-lightbox-tags span {
@@ -331,8 +375,7 @@
 
 .bsp-lightbox-image img {
   width: 100%;
-  height: 100%;
-  object-fit: contain;
+  height: auto;
 }
 
 .bsp-lightbox-nav {
@@ -366,16 +409,20 @@
 .bsp-page h1,
 .bsp-page p,
 .bsp-page .first-main-content-section {
-  margin-left: 20px;
+  margin-left: 5px;
 }
 
 .bsp-page p {
+  line-height: 18px;
   color: #fff;
+}
+
+.bsp-page p small {
+  font-size: 12px;
 }
 
 .bsp-about-page {
   width: 100vw;
-  height: 100vh;
   padding: 0;
   overflow: hidden;
 }
@@ -385,4 +432,12 @@
   width: 800px;
   height: auto;
   margin: 120px auto 0 auto;
+}
+
+.berlin-stock-photos .thank-you-popup-content a {
+  color: var(--line-orange) !important;
+}
+
+.berlin-stock-photos .action-button.continue-button {
+  background-color: #ccc !important;
 }

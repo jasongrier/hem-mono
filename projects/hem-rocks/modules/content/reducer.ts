@@ -17,6 +17,7 @@ import {
   SET_CURRENT_ITEMS,
   TOGGLE_NEEDS_KEY_ART_FILTER,
   TOGGLE_SHOW_UNPUBLISHED_FILTER,
+  TOGGLE_STICKY_FILTER,
 
   IState,
   IContentItem,
@@ -30,6 +31,7 @@ const initialState: IState = {
   contentItems: [],
   needsKeyArtFilter: false,
   showUnpublishedFilter: false,
+  stickyFilter: false,
 }
 
 const reducer = (
@@ -118,6 +120,12 @@ const reducer = (
     case TOGGLE_SHOW_UNPUBLISHED_FILTER: {
       return produce(state, draftState => {
         draftState.showUnpublishedFilter = !draftState.showUnpublishedFilter
+      })
+    }
+    
+    case TOGGLE_STICKY_FILTER: {
+      return produce(state, draftState => {
+        draftState.stickyFilter = !draftState.stickyFilter
       })
     }
 

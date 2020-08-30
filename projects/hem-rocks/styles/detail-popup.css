@@ -445,3 +445,9 @@
 .bsp-print-link a {
   color: inherit;
 }
+
+.detail-popup-fixed-price {
+  margin-top: 0;
+  margin-bottom: 30px;
+  font-size: 48px;
+}

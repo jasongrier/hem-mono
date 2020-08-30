@@ -1,6 +1,6 @@
 import React, { ReactElement, SyntheticEvent, useEffect, useCallback, useContext, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router'
+import { useHistory, useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
 import { find, isFinite, isNaN, noop, findIndex, last } from 'lodash'
 import $ from 'jquery'
@@ -22,7 +22,6 @@ import { titleCase } from 'voca'
 
 interface IProps {
   contentItem: IContentItem | null
-  currentContentItems: IContentItem[]
   filter: string
   category: string
 
@@ -62,13 +61,26 @@ function DetailPopUp({
 
   const dispatch = useDispatch()
 
+  let initialPrice
+
+  if (contentItem.hasFixedPrice) {
+    initialPrice = contentItem.fixedPrice
+  }
+
+  else if (contentItem.flexPriceRecommended) {
+    initialPrice = contentItem.flexPriceRecommended
+  }
+  
+  else {
+    initialPrice = '0'
+  }
+
   const [attachedPlaylist, setAttachedPlaylist] = useState<Partial<IPlaylist>>()
-  const [suggestedPrice, setSuggestedPrice] = useState<string>((contentItem ? contentItem.flexPriceRecommended : '0'))
+  const [suggestedPrice, setSuggestedPrice] = useState<string>(initialPrice)
   const [valid, setValid] = useState<boolean>(true)
   const [saleId, setSaleId] = useState<string>()
   const [previousItem, setPreviousItem] = useState<IContentItem>()
   const [nextItem, setNextItem] = useState<IContentItem>()
-  const [keyListenerAdded, setKeyListenerAdded] = useState<boolean>(false)
 
   useEffect(function init() {
     if (showPurchaseForm) {
@@ -103,7 +115,6 @@ function DetailPopUp({
       dispatch(setPlayerPlaylist(1))
 
       setAttachedPlaylist(playlist)
-      setSuggestedPrice(contentItem.flexPriceRecommended)
     })
   }, [contentItem.slug])
 
@@ -122,6 +133,7 @@ function DetailPopUp({
   )
 
   const history = useHistory()
+  const { pathname } = useLocation()
 
   useEffect(function initArrowNavigation() {
     function bodyOnKeyDown(evt: any) {
@@ -166,7 +178,7 @@ function DetailPopUp({
   useEffect(function resetValidityOnPrevNext() {
     setValid(true)
   }, [contentItem])
-
+  
   const checkOutOnClick = useCallback(
     function checkOutOnClickFn() {
       if (!validate(suggestedPrice, true)) return
@@ -397,7 +409,9 @@ function DetailPopUp({
   if (!contentItem) return (<div />)
 
   const tags = (contentItem.tags || '').split(', ')
-  
+
+  const isPrint = pathname.includes('stock-photos-prints')
+
   return (
     <section
       className={`
@@ -413,7 +427,7 @@ function DetailPopUp({
       >
         <header>
           <div className="detail-popup-title">
-            <h1>{ contentItem.title }</h1>
+            <h1>{ isPrint ? 'Print: ' : '' }{ contentItem.title }</h1>
             <h2 dangerouslySetInnerHTML={{ __html: contentItem.secondaryTitle }} />
           </div>
           { BERLIN_STOCK_PHOTOS && (
@@ -423,23 +437,24 @@ function DetailPopUp({
                   src={`${assetHost}/berlin-stock-photos/content/images/jpg-web/${contentItem.keyArt}`}
                   alt={contentItem.secondaryTitle}
                 />
-              </div>
-              <div className="bsp-lightbox-tags">
-                { tags.map(tag =>
-                  <span key={tag}>
-                    <Link to={`/stock-photos/filter/${tag}`}>
-                      { tagSpellingCorrections(titleCase(tag.replace(/-/g, ' ')), true) }
-                    </Link>
-                    { tag === last(tags) ? '' : ',' }
-                  </span>
-                )}
+                <div className="bsp-lightbox-tags">
+                  { tags.map(tag =>
+                    <span key={tag}>
+                      <Link to={`/stock-photos/filter/${tag}`}>
+                        { tagSpellingCorrections(titleCase(tag.replace(/-/g, ' ').replace(/,/g, ', ')), true) }
+                      </Link>
+                      { tag === last(tags) ? '' : ',' }
+                    </span>
+                  )}
+                  { isPrint ? contentItem.type : '' }
+                </div>
               </div>
               <div
                 className="bsp-lightbox-caption"
                 dangerouslySetInnerHTML={{ __html: marked(contentItem.blurb) }}
                 />
-              <div className="bsp-lightbox-nav">
-                { previousItem && (
+              <div className="bsp-lightbox-nav" hidden>
+                { previousItem && !isPrint && (
                   <Link 
                     className="bsp-lightbox-prev"
                     to={`/${category}/${previousItem.slug}/${filter ? filter : ''}`}
@@ -447,8 +462,8 @@ function DetailPopUp({
                     &laquo; Previous photo
                   </Link>
                 )}
-                &nbsp;&nbsp;|&nbsp;&nbsp;
-                { nextItem && (
+                { !isPrint && <>&nbsp;&nbsp;|&nbsp;&nbsp;</> }
+                { nextItem && !isPrint && (
                   <Link 
                     className="bsp-lightbox-next"
                     to={`/${category}/${nextItem.slug}/${filter ? filter : ''}`}
@@ -472,7 +487,7 @@ function DetailPopUp({
               { isPurchaseable(contentItem) && (
                 <div className="detail-popup-form">
                   {contentItem.hasFixedPrice && (
-                    <p>{ contentItem.fixedPrice }</p>
+                    <p className="detail-popup-fixed-price">{ contentItem.fixedPrice } €</p>
                   )}
                   {!contentItem.hasFixedPrice && (
                     <>
@@ -519,13 +534,16 @@ function DetailPopUp({
                     detail-popup-buttons clearfix
                     ${valid ? '' : 'invalid'}
                   `}>
-                    { (parseFloat(suggestedPrice) > 0 || cartProducts.length > 0) && (
-                      <button
-                        className="action-button"
-                        onClick={checkOutOnClick}
-                      >
-                        { buyNowText }
-                      </button>
+                    { (parseFloat(suggestedPrice) > 0 || cartProducts.length > 0) 
+                        && cartProducts.filter(p => p.isDigitalProduct === false).length === 0
+                        && contentItem.isDigitalProduct
+                        && (
+                          <button
+                            className="action-button"
+                            onClick={checkOutOnClick}
+                          >
+                            { buyNowText }
+                          </button>
                     )}
                     { (parseFloat(suggestedPrice) > 0 || cartProducts.length > 0) && (
                       <button
@@ -543,15 +561,15 @@ function DetailPopUp({
                         Download
                       </button>
                     )}
-                    { isNaN(parseFloat(suggestedPrice)) && (
+                    { !contentItem.hasFixedPrice && isNaN(parseFloat(suggestedPrice)) && (
                       <div className="purchase-form-spinner">
                         <Spinner />
                       </div>
                     )}
-                    { BERLIN_STOCK_PHOTOS && (
+                    { BERLIN_STOCK_PHOTOS && contentItem.physicalFormats.length > 0 && (
                       <div className="bsp-print-link">
                         <small>
-                          <Link to="/stock-photos/prints">
+                          <Link to={`/stock-photos-prints/${contentItem.physicalFormats}`}>
                             Want a print of this photo?
                           </Link>
                         </small>

@@ -75,6 +75,8 @@ function App(): ReactElement {
     { basePath: 'venue-calendar', id: 'detail-popup' },
     { basePath: 'venue-merch', id: 'detail-popup' },
     { basePath: 'videos', id: 'detail-popup' },
+    
+    { basePath: 'stock-photos-prints', id: 'detail-popup' },
   ]
 
   useEffect(function getCookieApprovals() {
@@ -252,6 +254,20 @@ function App(): ReactElement {
       ) {
         path += 'info'
       }
+      
+      if (
+        pathnameSplit[0] === 'about'
+        && pathnameSplit[1] === 'cart'
+      ) {
+        path += 'about'
+      }
+      
+      if (
+        pathnameSplit[0] === 'contact'
+        && pathnameSplit[1] === 'cart'
+      ) {
+        path += 'contact'
+      }
 
       if (
         pathnameSplit[0] === 'venue'
@@ -315,7 +331,7 @@ function App(): ReactElement {
           : ''
       }
       ${process.env.NODE_ENV === 'production' ? 'node-env-production' : ''}
-      ${ BERLIN_STOCK_PHOTOS && !pathname.includes('admin') ? 'berlin-stock-photos' : '' }
+      ${ BERLIN_STOCK_PHOTOS && !pathname.includes('admin') && !pathname.includes('internal') ? 'berlin-stock-photos' : '' }
       ${ pathname.includes('admin') ? 'is-admin' : '' }
     `}>
       <>
@@ -385,7 +401,6 @@ function App(): ReactElement {
       </ElectronNot>
 
       { cookiesMarketingApproved 
-        && !BERLIN_STOCK_PHOTOS
         && !Cookies.get(getCookieName('cannot-show-email-nag'))
         && (
         <ElectronNot>
@@ -410,7 +425,12 @@ function App(): ReactElement {
           >
             {() => (
               <>
-                <h3>HEM Newsletter</h3>
+                { BERLIN_STOCK_PHOTOS && (
+                  <h3>Berlin Stock Photos Newsletter</h3>
+                )}
+                { !BERLIN_STOCK_PHOTOS && (
+                  <h3>HEM Newsletter</h3>
+                )}
                 <p>{ MAILING_LIST_TEXT }</p>
                 <CampaignMonitorForm
                   action={CAMPAIGN_MONITOR_FORM_ACTION}

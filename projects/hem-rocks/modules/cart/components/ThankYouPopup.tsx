@@ -4,7 +4,7 @@ import { useHistory } from 'react-router'
 import { Link } from 'react-router-dom'
 import ReactGA from 'react-ga'
 import Scrollbars from 'react-scrollbars-custom'
-import uuid from 'uuid/v1'
+import moment from 'moment'
 import { getQueryVar } from '../../../../../lib/functions'
 import { Spinner } from '../../../../../lib/components'
 import { EmailForm } from '../../app'
@@ -54,7 +54,8 @@ function ThankYouPopup(): ReactElement {
   )
 
   const valid = forcedSaleId || getQueryVar('sid')
-  const items = currentSale?.products.filter((product: IProduct) => product.isDigitalProduct)
+  const products = currentSale?.products
+  const loading = !currentSale || !products
 
   return (
     <div className="thank-you-popup">
@@ -66,47 +67,48 @@ function ThankYouPopup(): ReactElement {
       <div className="thank-you-popup-content">
         { valid && !alreadyDownloaded && !saleRetrievalError && (
           <>
-            { !items && (
-              <p>Locating your files...</p>
-            )}
-            { items && items.length > 0 && (
-              <p>Here are links to your files. Click to download.</p>
+            { loading && (
+              <p>Locating your order...</p>
             )}
             <div className="download-items">
               <Scrollbars noScrollX={true}>
-                { !items && (
+                { loading && (
                   <Spinner />
                 )}
-                { items && items.length < 1 && (
-                  <>
-                    <p>That's odd, we can't find your downloads.</p>
-                    <p>Please <Link to="/support">contact us</Link> right away and we'll get this sorted!</p>
-                  </>
-                )}
-                { items && items.length > 0 && items.map((item, index) => (
-                  <li key={item?.slug}>
-                    <a 
-                      className={linksUsed.includes(item?.slug) ? 'download-items-used-link' : ''}
-                      href={`${assetHostHostname()}/hem-rocks/api?hem-cmd=download&did=${currentSale?.id}:${index}&sid=${currentSale?.id}&ii=${index}${BERLIN_STOCK_PHOTOS ? '&site=bsp' : ''}`}
-                      onClick={() => {
-                        setLinksUsed(([] as string[]).concat(linksUsed).concat([item?.slug]))
-                      }}
-                    >
-                      { item?.title }
-                    </a>
-                    { BERLIN_STOCK_PHOTOS && parseFloat(item.finalPrice) >= 20 && (
+                { products && products.length > 0 && products.map((product, index) => (
+                  <li key={product?.slug}>
+                    { product.isDigitalProduct && (
+                      <a 
+                        className={linksUsed.includes(product?.slug) ? 'download-items-used-link' : ''}
+                        href={`${assetHostHostname()}/hem-rocks/api?hem-cmd=download&did=${currentSale?.id}:${index}&sid=${currentSale?.id}&ii=${index}${BERLIN_STOCK_PHOTOS ? '&site=bsp' : ''}`}
+                        onClick={() => {
+                          setLinksUsed(([] as string[]).concat(linksUsed).concat([product?.slug]))
+                        }}
+                      >
+                        { BERLIN_STOCK_PHOTOS ? 'Photo' : ' '} #{ product?.title } ({ BERLIN_STOCK_PHOTOS ? 'JPEG' : ' '})
+                      </a>
+                    )}
+                    { product.isDigitalProduct && BERLIN_STOCK_PHOTOS && parseFloat(product.finalPrice) >= 20 && (
                       <>
                         &nbsp;|&nbsp;
                         <a 
-                          className={linksUsed.includes(item?.slug) ? 'download-items-used-link' : ''}
+                          className={linksUsed.includes(product?.slug) ? 'download-items-used-link' : ''}
                           href={`${assetHostHostname()}/hem-rocks/api?hem-cmd=download&did=${currentSale?.id}:${index}-raw&sid=${currentSale?.id}&ii=${index}${BERLIN_STOCK_PHOTOS ? '&site=bsp&format=raw' : ''}`}
                           onClick={() => {
-                            setLinksUsed(([] as string[]).concat(linksUsed).concat([item?.slug]))
+                            setLinksUsed(([] as string[]).concat(linksUsed).concat([product?.slug]))
                           }}
                         >
-                          { item?.title } (RAW)
+                          Photo #{ product?.title } (RAW)
                         </a>
                       </>
+                    )}
+                    
+                    { product.isDigitalProduct && (
+                      <>&nbsp;&nbsp;<small>&laquo; Click to download</small></>
+                    )}
+                    
+                    { !product.isDigitalProduct && (
+                      <span>{ BERLIN_STOCK_PHOTOS ? 'Photo' : ' '} #{ product?.title } &mdash; { product?.type } <small>(Ships on { moment().add(2, 'days').endOf('day').format('DD.MM.YYYY') })</small></span>
                     )}
                   </li>
                 ))}
@@ -115,7 +117,7 @@ function ThankYouPopup(): ReactElement {
                 className="support-link"
                 to="/support"
               >
-                Problems downloading?
+                Problems with your order?
               </Link>
             </div>
 

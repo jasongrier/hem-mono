@@ -63,7 +63,7 @@
 .hem-popup-content .cart-popup-item p {
   margin: 0;
   padding: 0;
-  font-size: 11px;
+  font-size: 16px;
 }
 
 .cart-popup-item-price {
@@ -74,9 +74,13 @@
 
 .cart-popup-item-remove {
   position: absolute;
-  top: 50px;
+  top: 60px;
   left: 10px;
   font-size: 10px;
+}
+
+.cart-popup-item-remove a {
+  cursor: pointer;
 }
 
 .cart-popup-item-remove .hem-close-button {

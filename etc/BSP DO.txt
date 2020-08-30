@@ -1,42 +1,44 @@
-√ Test purchase & download flow
-√ Test purchase & download flow with cents 
-√ Test instant download when price is 0
-√ With mix of 0 and up prices
-√ Only show download button when cart is empty
-– Add raw to cart line item when qualified
-√ Tags in detail popup
-√ Delete CPH pix
 – Royalty agreement
-  – What kinds of projects can these images be used in?
-  - Royalties?
-  - Limited use 
-√ Minimum 5, 0 for non best of
-√ Minimum 20 for hi res and raw
-√ Left/right arrow keys and chevrons for the detail pops
-– Max 100 pics per tag
-√ Higher price for best of
+  – Fnid some boilerplate, modify it, show it to Ece
+  - It downloads with the pic
+  - It has a page on the site, linked to from the cart
+    - "By downloading, you agree to our licensing agreement"
 – Helmets
-√ Fix invalid min error message position
-- "Order prints" page
-– Email setup (goes to analytics@hem.rocks)
-- j@hem.rocks MX to analytics@hem.rocks + info@ alias...
-– Don't pretty-print the index
-– Minify the index
-– Browser tests
+– Browser tests (litmus)
 – Mobile styles
-√ Place index files in the static content folders (local/live)
-- Change all Line Orange to Teal
-– Use that file format to replace title and background style in index.html
-- Migrate Poignancy to Sweetness
-- "New" page
-- Cart link
-- Check the jpegs match the nefs with task runner, fetch, and try... catch on nef 404's
-– Add more to best-of
-– Order for best-of
-- Create a "premium" badge and show that somewhere in lists
-- Only show "want a print" for best-of, or better yet, for ones who link to a physical product
-– Remove link needs hand cursor
 
 - IG setup
 - FB setup
 - TW setup
+
+- Cookies policy
+- Don't load images until they scroll into view, and have a spinner, make or find a component
+- Check emails page (in admin)
+- Cookie settings page
+- Organize hemberlin G-suite
+- Check the jpegs match the nefs with task runner, fetch, and try... catch on nef 404's
+- Print/unprint button
+- All content should fit in the middle (h2, contact form, etc)
+- Thumbnails should be progressive jpgs
+- https
+- lightbox nav is broken
+- when physical product is in cart, setting price to 0 grays out add button
+- thumbnails load slow
+- move hem api to staging/production
+- send some test $$$ to j@ ppl and do some real testing
+- icons
+- hardcoded SEO in index.html
+- best of doesn't scroll to top
+- sticky 9 images in each tag and preload them in index.html by directly accessing the index in a script tag
+
+- PR
+  - Exberliner
+  - Vice
+  - Vanity Fair
+  - The New Yorker
+  - TAZ
+  - FACT
+  - Kristoffer
+  - Deutsche Welle (Emmie)
+- "New" page
+– Use that file format to replace title and background style in index.html

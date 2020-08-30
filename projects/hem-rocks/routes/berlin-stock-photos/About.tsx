@@ -1,8 +1,10 @@
 import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
-import { Header } from '../../components/berlin-stock-photos'
+import ReactGA from 'react-ga'
+import { Header, Footer } from '../../components/berlin-stock-photos'
 import { assetHostHostname } from '../../functions'
-import { BASE_SITE_TITLE } from '../../config'
+import { CampaignMonitorForm } from '../../../../lib/components'
+import { CAMPAIGN_MONITOR_FORM_ACTION, BASE_SITE_TITLE, CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME, CAMPAIGN_MONITOR_FORM_ID, MAILING_LIST_TEXT } from '../../config'
 
 function About(): ReactElement {
   return (
@@ -13,11 +15,31 @@ function About(): ReactElement {
       </Helmet>
       <div className="page berlin-stock-photos bsp-page bsp-about-page">
         <Header />
-        <img 
-          className="bsp-about-image"
-          src={`${assetHostHostname()}/berlin-stock-photos/site/images/about.jpg`} alt="Berlin Stock Photos"
-        />
+        <div className="inline-newsletter-form main-content-section">
+          <img 
+            className="bsp-about-image"
+            src={`${assetHostHostname()}/berlin-stock-photos/site/images/about.jpg`} alt="Berlin Stock Photos"
+          />
+          <p>Hot indexicality 🔥</p>
+        </div>
+        <div className="inline-newsletter-form main-content-section">
+          <h2>Mailing List</h2>
+          <p>{ MAILING_LIST_TEXT }</p>
+          <CampaignMonitorForm
+            action={CAMPAIGN_MONITOR_FORM_ACTION}
+            emailFieldName={CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME}
+            id={CAMPAIGN_MONITOR_FORM_ID}
+            onFormSubmitted={() => {
+              ReactGA.event({
+                category: 'User',
+                action: 'Joined the mailing list from the mailing list page.',
+              })
+            }}
+            submitButtonText="Sign me up!"
+          />
+        </div>
       </div>
+      <Footer />
     </>
   )
 }
