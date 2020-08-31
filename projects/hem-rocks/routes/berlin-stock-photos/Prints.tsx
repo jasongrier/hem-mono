@@ -17,19 +17,19 @@ function Prints(): ReactElement {
   return (
     <>
       <Helmet>
-        <title>{ BASE_SITE_TITLE }</title>
-        <meta name="description" content="" />
+        <title>{ BASE_SITE_TITLE }: Prints</title>
+        <meta name="description" content="Lushness. Weirdness. Greenery. Grit. Cheap stock photos from Berlin, Germany, updated daily." />
       </Helmet>
       <div className="page berlin-stock-photos bsp-page bsp-prints-page">
         <Header />
-        <h1>Prints</h1>
-        <p>
-          Archival Giclée Prints on Hahnemühle Photorag<br />
-          <small>All prints A3 (18" x 24" approximately)</small><br />
-          <small>Limit 1 print per customer</small><br />
-          <small>Signed and numbered</small>
-        </p>
         <div className="bsp-content">
+          <h1>Prints</h1>
+          <p>
+            Archival Giclée Prints on Hahnemühle Photorag<br />
+            <small>All prints A3 (18" x 24" approximately)</small><br />
+            <small>Limit 1 print per customer</small><br />
+            <small>Signed and numbered</small>
+          </p>
           <MainContentList
             category="stock-photos"
             fixedFilters={[]}
@@ -38,9 +38,8 @@ function Prints(): ReactElement {
             noSplatter={ true }
           />
         </div>
+        <Footer />
       </div>
-      
-      <Footer />
     </>
   )
 }

@@ -36,7 +36,7 @@ function Header(): ReactElement {
           </li>
           <li>
             <NavLink to="/stock-photos-prints">
-              <strong>Order Prints</strong>
+              <sup>*</sup>Order Prints<sup>*</sup>
             </NavLink>
           </li>
           { showCart && (
@@ -52,7 +52,7 @@ function Header(): ReactElement {
                   return `${pathname !== '/' ? pathname : ''}/cart`
                 })()}
               >
-                Cart
+                View Cart
               </NavLink>
             </li>
           )}

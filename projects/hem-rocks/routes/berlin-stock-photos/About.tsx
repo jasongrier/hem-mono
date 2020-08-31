@@ -10,36 +10,43 @@ function About(): ReactElement {
   return (
     <>
       <Helmet>
-        <title>{ BASE_SITE_TITLE }</title>
-        <meta name="description" content="" />
+        <title>{ BASE_SITE_TITLE }: About</title>
+        <meta name="description" content="Lushness. Weirdness. Greenery. Grit. Cheap stock photos from Berlin, Germany, updated daily." />
       </Helmet>
       <div className="page berlin-stock-photos bsp-page bsp-about-page">
-        <Header />
-        <div className="inline-newsletter-form main-content-section">
-          <img 
-            className="bsp-about-image"
-            src={`${assetHostHostname()}/berlin-stock-photos/site/images/about.jpg`} alt="Berlin Stock Photos"
-          />
-          <p>Hot indexicality 🔥</p>
+        <div className="bsp-about-page-text">
+          <Header />
+          <div className="main-content-section">
+            <img 
+              className="bsp-about-image"
+              src={`${assetHostHostname()}/berlin-stock-photos/site/images/about.jpg`} alt="Berlin Stock Photos"
+            />
+            <p>Hot indexicality 🔥</p>
+            <p className="bsp-about-page-contact-info">
+              <a href="https://web.facebook.com/berlinstockphotos/">Facebook</a>
+              <a href="https://www.instagram.com/berlinstockphotos/">Instagram</a>
+              <a href="mailto:info@berlinstockphotos.com">info@berlinstockphotos.com</a>
+            </p>
+          </div>
+          <div className="inline-newsletter-form main-content-section">
+            <h2>Sign up for the mailing list!</h2>
+            {/* <p>{ MAILING_LIST_TEXT }</p> */}
+            <CampaignMonitorForm
+              action={CAMPAIGN_MONITOR_FORM_ACTION}
+              emailFieldName={CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME}
+              id={CAMPAIGN_MONITOR_FORM_ID}
+              onFormSubmitted={() => {
+                ReactGA.event({
+                  category: 'User',
+                  action: 'Joined the mailing list from the mailing list page.',
+                })
+              }}
+              submitButtonText="Sign me up!"
+            />
+          </div>
         </div>
-        <div className="inline-newsletter-form main-content-section">
-          <h2>Mailing List</h2>
-          <p>{ MAILING_LIST_TEXT }</p>
-          <CampaignMonitorForm
-            action={CAMPAIGN_MONITOR_FORM_ACTION}
-            emailFieldName={CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME}
-            id={CAMPAIGN_MONITOR_FORM_ID}
-            onFormSubmitted={() => {
-              ReactGA.event({
-                category: 'User',
-                action: 'Joined the mailing list from the mailing list page.',
-              })
-            }}
-            submitButtonText="Sign me up!"
-          />
-        </div>
+        <Footer />
       </div>
-      <Footer />
     </>
   )
 }

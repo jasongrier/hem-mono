@@ -8,18 +8,21 @@ function Footer(): ReactElement {
       <nav>
       <ul>
         <li>
-          <NavLink to="">Instagram</NavLink>
+          <NavLink to="https://www.instagram.com/berlinstockphotos/">Instagram</NavLink>
         </li>
         <li>
-          <NavLink to="">Facebook</NavLink>
+          <NavLink to="https://web.facebook.com/berlinstockphotos/">Facebook</NavLink>
         </li>
         <li>
-          <NavLink to="">Twitter</NavLink>
+          <NavLink to="mailto:info@berlinstockphotos.com">info@berlinstockphotos.com</NavLink>
+        </li>
+        <li>
+          <NavLink to="/stock-photos-license">License Agreement</NavLink>
         </li>
       </ul>
       </nav>
       <p>
-        &copy; 2020—2021 Berlin Stock Photos, OÜ
+        &copy; 2020—2021 Berlin Stock Photos
       </p>
     </footer>
   )

@@ -12,7 +12,6 @@ const styleSheet = `
     width: 60px;
     height: 60px;
     cursor: pointer;
-    background: red;
   }
 
   .hem-play-pause-button-icon {
