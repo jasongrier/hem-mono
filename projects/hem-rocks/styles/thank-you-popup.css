@@ -28,15 +28,32 @@
   color: var(--line-orange);
 }
 
+.thank-you-popup-content .order-heading {
+  margin: 0 0 10px 0;
+}
+
 .thank-you-popup-content .download-items {
   position: relative;
-  height: 130px;
+  height: 160px;
   margin-bottom: 15px;
   padding-top: 5px;
   padding-bottom: 5px;
   list-style-type: none;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
+}
+
+.thank-you-popup-content .download-items li {
+  width: 600px;
+  border-bottom: 1px solid #eee;
+}
+
+.thank-you-popup-content .download-items li small {
+  font-size: 11px;
+}
+
+.thank-you-popup-content .download-items li:last-child {
+  border-bottom: 0;
 }
 
 .thank-you-popup-content .download-items .hem-spinner {
@@ -55,17 +72,13 @@
   padding: 5px;
 }
 
-.thank-you-popup-content .download-items li small {
-  font-size: 12px;
-}
-
 .thank-you-popup-content .download-items-used-link {
   color: #666;
 }
 
 .thank-you-popup-email-form {
   width: calc(100% + 30px);
-  height: 383px;
+  height: 354px;
   margin: 0 0 0 -15px;
   background-color: #000;
   color: #fff;
@@ -76,13 +89,14 @@
   width: 650px;
   margin: 0 auto;
   padding-top: 20px;
-  font-size: 36px;
+  font-size: 28px;
 }
 
 .thank-you-popup-email-form p {
   width: calc(100% + 30px);
   margin-bottom: 35px;
   padding: 0;
+  font-size: 14px;
 }
 
 .thank-you-popup-email-form input {
@@ -106,25 +120,13 @@
 .support-link {
   position: absolute;
   bottom: 5px;
-  right: 1px;
+  right: 12px;
   font-size: 12px;
-  text-decoration: underline;
+  line-height: 20px;
+  color: var(--line-orange);
+  text-align: right;
 }
 
-.support-link::after {
-  /* display: block;
-  position: absolute;
-  top: 0;
-  left: -10px;
-  width: 8px;
-  height: 8px;
-  line-height: 8px;
-  border-radius: 30px;
-  background: var(--line-orange);
-  font-size: 11px;
+.support-link a {
   text-decoration: underline;
-  content: " ";
-  color: #fff;
-  text-align: center;
-  text-decoration: none; */
 }
