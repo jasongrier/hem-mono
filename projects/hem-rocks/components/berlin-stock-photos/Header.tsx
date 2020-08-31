@@ -36,7 +36,7 @@ function Header(): ReactElement {
           </li>
           <li>
             <NavLink to="/stock-photos-prints">
-              <sup>*</sup>Order Prints<sup>*</sup>
+              <strong>Order Prints</strong>
             </NavLink>
           </li>
           { showCart && (

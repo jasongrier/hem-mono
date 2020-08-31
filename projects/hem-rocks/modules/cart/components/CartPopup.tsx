@@ -1,6 +1,7 @@
 import React, { ReactElement, useCallback, useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
+import { Link } from 'react-router-dom'
 import { find } from 'lodash'
 import ReactGA from 'react-ga'
 import uuid from 'uuid/v1'
@@ -186,6 +187,9 @@ function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
                   Check out
                 </button>
               )}
+              <small>
+                <a href="/stock-photos-license" target="_blank">Read the License Agreement</a>
+              </small>
             </div>
           </>
         )}

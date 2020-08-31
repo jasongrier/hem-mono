@@ -437,7 +437,13 @@ function DetailPopUp({
                   src={`${assetHost}/berlin-stock-photos/content/images/jpg-web/${contentItem.keyArt}`}
                   alt={contentItem.secondaryTitle}
                 />
-                <div className="bsp-lightbox-tags">
+                <div 
+                  className="bsp-lightbox-tags"
+                  style={{
+                    display: contentItem.isPhysicalProduct ? 'none' : 'block'
+                  }}
+                >
+                  <strong>Tags: </strong>
                   { tags.map(tag =>
                     <span key={tag}>
                       <Link to={`/stock-photos/filter/${tag}`}>
@@ -452,7 +458,18 @@ function DetailPopUp({
               <div
                 className="bsp-lightbox-caption"
                 dangerouslySetInnerHTML={{ __html: marked(contentItem.blurb) }}
-                />
+                style={{
+                  display: contentItem.blurb ? 'block' : 'none'
+                }}
+              />
+              <div
+                className="bsp-lightbox-license"
+                style={{
+                  display: contentItem.isPhysicalProduct ? 'none' : 'block'
+                }}
+              >
+                <Link to="/stock-photos-license">Read the License Agreement</Link>
+              </div>
               <div className="bsp-lightbox-nav" hidden>
                 { previousItem && !isPrint && (
                   <Link 
@@ -462,7 +479,7 @@ function DetailPopUp({
                     &laquo; Previous photo
                   </Link>
                 )}
-                { !isPrint && <>&nbsp;&nbsp;|&nbsp;&nbsp;</> }
+                { previousItem && nextItem && !isPrint && <>&nbsp;&nbsp;|&nbsp;&nbsp;</> }
                 { nextItem && !isPrint && (
                   <Link 
                     className="bsp-lightbox-next"

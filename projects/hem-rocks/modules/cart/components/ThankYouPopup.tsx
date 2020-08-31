@@ -70,6 +70,7 @@ function ThankYouPopup(): ReactElement {
             { loading && (
               <p>Locating your order...</p>
             )}
+            <p className="order-heading">Here is your order summary</p>
             <div className="download-items">
               <Scrollbars noScrollX={true}>
                 { loading && (
@@ -104,21 +105,24 @@ function ThankYouPopup(): ReactElement {
                     )}
                     
                     { product.isDigitalProduct && (
-                      <>&nbsp;&nbsp;<small>&laquo; Click to download</small></>
+                      <><br /><small>Click the link(s) above to download</small></>
                     )}
                     
                     { !product.isDigitalProduct && (
-                      <span>{ BERLIN_STOCK_PHOTOS ? 'Photo' : ' '} #{ product?.title } &mdash; { product?.type } <small>(Ships on { moment().add(2, 'days').endOf('day').format('DD.MM.YYYY') })</small></span>
+                      <span>
+                        { BERLIN_STOCK_PHOTOS ? 'Photo' : ' '} 
+                        #{ product?.title } &mdash; { product?.type } 
+                        <br />
+                        <small>(Ships on { moment().add(2, 'days').endOf('day').format('DD.MM.YYYY') })</small>
+                      </span>
                     )}
                   </li>
                 ))}
               </Scrollbars>
-              <Link
-                className="support-link"
-                to="/support"
-              >
-                Problems with your order?
-              </Link>
+              <div className="support-link">
+                <a href="/stock-photos-license" target="_blank">License Agreement</a><br />
+                <a href="/support" target="_blank">Problems with your order?</a>
+              </div>
             </div>
 
             <div className="thank-you-popup-email-form">
