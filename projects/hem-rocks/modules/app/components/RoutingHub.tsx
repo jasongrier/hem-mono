@@ -53,6 +53,7 @@ import {
   BerlinStockPhotos as BerlinStockPhotosHome,
   Contact as BerlinStockPhotosContact,
   NotFound as BerlinStockPhotosNotFound,
+  LicenseAgreement as BerlinStockPhotosLicenseAgreement,
   Prints as BerlinStockPhotosPrints,
 } from '../../../routes/berlin-stock-photos'
 
@@ -188,11 +189,11 @@ function RoutingHub(): ReactElement {
         <Route path="/admin" component={Admin} />
 
         {/* Berlin Stock Photos */}
-        <Route exact path="/stock-photos-prints" component={BerlinStockPhotosPrints} />
+        <Route exact path="/stock-photos-prints/:contentItemSlug?" component={BerlinStockPhotosPrints} />
         <Route exact path="/stock-photos-prints/cart" component={BerlinStockPhotosPrints} />
         
-        <Route exact path="/stock-photos-prints/:contentItemSlug?" component={BerlinStockPhotosPrints} />
-        <Route exact path="/stock-photos-prints/cart/?" component={BerlinStockPhotosPrints} />
+        <Route exact path="/stock-photos-license" component={BerlinStockPhotosLicenseAgreement} />
+        <Route exact path="/stock-photos-license/cart" component={BerlinStockPhotosLicenseAgreement} />
         
         <Route exact path="/stock-photos/:contentItemSlug?/:filter?" component={BerlinStockPhotosHome} />
         <Route exact path="/stock-photos/filter/:filter" component={BerlinStockPhotosHome} />

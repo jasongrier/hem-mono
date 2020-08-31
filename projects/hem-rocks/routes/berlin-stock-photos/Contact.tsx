@@ -10,13 +10,13 @@ function Contact(): ReactElement {
   return (
     <>
       <Helmet>
-        <title>{ BASE_SITE_TITLE }</title>
-        <meta name="description" content="" />
+        <title>{ BASE_SITE_TITLE }: Contact</title>
+        <meta name="description" content="Lushness. Weirdness. Greenery. Grit. Cheap stock photos from Berlin, Germany, updated daily." />
       </Helmet>
       <div className="page berlin-stock-photos bsp-page">
         <Header />
-        <h1>Contact us</h1>
-        <div className="first-main-content-section">
+        <div className="main-content-section">
+          <h1>Contact us</h1>
           <ContactForm
             action={assetHostHostname() + '/hem-rocks/api/?hem-cmd=contact-form&site=bsp'}
 

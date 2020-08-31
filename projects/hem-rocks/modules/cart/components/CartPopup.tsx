@@ -1,6 +1,7 @@
 import React, { ReactElement, useCallback, useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
+import { find } from 'lodash'
 import ReactGA from 'react-ga'
 import uuid from 'uuid/v1'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
@@ -9,17 +10,19 @@ import { closePopup, openPopup, setPopupsFrozen } from '../../../../../lib/modul
 import Scrollbars from 'react-scrollbars-custom'
 import { RootState } from '../../../index'
 import { removeProductFromCart, submitSale } from '../actions'
+import { assetHostHostname } from '../../../functions'
 import PayPalCartUpload from './PayPalCartUpload'
 import { BERLIN_STOCK_PHOTOS } from '../../../config'
+import { getContentItemBySlug } from '../../content'
 
 interface IProps {
   redirecting: boolean
 }
 
 function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
-  const { cartProducts } = useSelector((state: RootState) => ({
+  const { cartProducts, cartContentItems } = useSelector((state: RootState) => ({
     cartProducts: state.cart.products,
-    redirecting: state.cart.redirecting,
+    cartContentItems: state.cart.products.map(product => getContentItemBySlug(state.content.contentItems, product.slug)),
   }))
 
   const dispatch = useDispatch()
@@ -84,6 +87,8 @@ function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
     return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(price)
   }
 
+  const assetHost = assetHostHostname()
+
   return (
     <section className="cart-popup">
       <header>
@@ -111,34 +116,52 @@ function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
               <Scrollbars noScrollX={true}>
                 {cartProducts.map(product => (
                   <div
-                    className="cart-popup-item"
+                    className="cart-popup-item clearfix"
                     key={product.slug}
                   >
-                    <div className="cart-popup-item-remove">
-                      <a
-                        onClick={() => {
-                          ReactGA.event({
-                            category: 'User',
-                            action: 'Clicked "remove" in shopping cart for ' + product.title,
-                          })
-                          dispatch(removeProductFromCart(product.slug))
-                        }}
-                      >
-                        remove
-                      </a>
+                    <div className="bsp-cart-thumbnail">
+                      { BERLIN_STOCK_PHOTOS && (
+                        <img 
+                          alt={find(cartContentItems, { slug: product.slug}).secondaryTitle}
+                          src={`${assetHost}/berlin-stock-photos/content/images/jpg-web/${find(cartContentItems, { slug: product.slug}).keyArt}`}
+                        />
+                      )}
                     </div>
-                    <h2>{ product.title }{ BERLIN_STOCK_PHOTOS && parseFloat(product.finalPrice) >= 20 && product.isDigitalProduct && ' + RAW' }</h2>
-                    <p>{ product.type }</p>
+                    <div className="cart-item-info">
+                      <h2>{ BERLIN_STOCK_PHOTOS && 'Photo #' }{ product.title }</h2>
+                      <p>
+                        { product.type }<br />
+                        <small>
+                          { product.type === 'Stock Photo' && 'Image file(s): 3008 x 2000 JPEG' }
+                          { BERLIN_STOCK_PHOTOS && !product.isDigitalProduct && 'A3 format (approximately 18" x 24")' }
+                          { BERLIN_STOCK_PHOTOS && parseFloat(product.finalPrice) >= 20 && product.isDigitalProduct && ' + RAW' }
+                        </small>
+                        <br />
+                        <a
+                          className="cart-popup-item-remove"
+                          onClick={() => {
+                            ReactGA.event({
+                              category: 'User',
+                              action: 'Clicked "remove" in shopping cart for ' + product.title,
+                            })
+                            dispatch(removeProductFromCart(product.slug))
+                          }}
+                        >
+                          remove
+                        </a>
+                      </p>
+                    </div>
                     <div className="cart-popup-item-price">{ product.finalPrice } €</div>
                   </div>
                 ))}
               </Scrollbars>
             </div>
-            <div className="cart-popup-totals">
-              Subtotal: { formatPrice(getSubotal()) }<br />
+            <div className="cart-popup-totals" hidden>
+              {/* Subtotal: { formatPrice(getSubotal()) }<br /> */}
               <strong>TOTAL: { formatPrice(getGrandTotal()) }</strong>
             </div>
             <div className="cart-popup-check-out">
+              <span>TOTAL: { formatPrice(getGrandTotal()) }</span>
               <button
                 className="action-button continue-button"
                 onClick={() => dispatch(closePopup())}

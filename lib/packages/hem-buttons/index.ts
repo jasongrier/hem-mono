@@ -1,5 +1,6 @@
 export { default as ChevronButton } from './ChevronButton'
 export { default as CloseButton } from './CloseButton'
+export { default as EnlargeButton } from './EnlargeButton'
 export { default as FastForwardButton } from './FastForwardButton'
 export { default as HamburgerButton } from './HamburgerButton'
 export { default as HeadphonesButton } from './HeadphonesButton'

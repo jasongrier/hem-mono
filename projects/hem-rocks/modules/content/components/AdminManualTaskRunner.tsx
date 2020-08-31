@@ -149,9 +149,9 @@ function migrate(allContentItems: IContentItem[]) {
     const newItem = Object.assign({}, item)
 
     // DO STUFF HERE
-    newItem.tags = newItem.tags.replace('poignancy', 'sweetness')
-    newItems.push(newItem)
     // END DO STUFF HERE
+    
+    newItems.push(newItem)
   }
 
   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')

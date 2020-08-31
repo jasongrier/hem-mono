@@ -2,6 +2,7 @@ import React, { ReactElement, PropsWithChildren, useCallback, useState, useEffec
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import marked from 'marked'
+import { EnlargeButton } from '../../../../../lib/packages/hem-buttons'
 import { SplatterDims } from '../../../../../lib/packages/hem-boxplatter'
 import { assetHostHostname } from '../../../functions'
 import { BERLIN_STOCK_PHOTOS } from '../../../config'
@@ -101,12 +102,17 @@ function MainContentBox({
             />
           )}
           { BERLIN_STOCK_PHOTOS && (
-            <div
-              className="main-content-box-key-art-image"
-              style={{
-                backgroundImage: `url(${assetHost}/berlin-stock-photos/content/images/jpg-web/${contentItem.keyArt})`
-              }}
-            />
+            <>
+              <div className="bsp-enlarge-button">
+                <EnlargeButton />
+              </div>
+              <div
+                className="main-content-box-key-art-image"
+                style={{
+                  backgroundImage: `url(${assetHost}/berlin-stock-photos/content/images/jpg-web/${contentItem.keyArt})`
+                }}
+              />
+            </>
           )}
         </Link>
       </div>

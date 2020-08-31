@@ -1,16 +1,34 @@
-– Royalty agreement
-  – Fnid some boilerplate, modify it, show it to Ece
-  - It downloads with the pic
-  - It has a page on the site, linked to from the cart
+– License agreement
+  - Add a page
+  – Adapt this: https://about.canva.com/license-agreements/extended/
+  - Link to page from the footer, detail, cart, and thank you
     - "By downloading, you agree to our licensing agreement"
-– Helmets
+
 – Browser tests (litmus)
 – Mobile styles
-
-- IG setup
-- FB setup
-- TW setup
-
+- photo resolutions in detail, cart, and thanks, migration for a media info field
+- check if 404 page works
+- alt attrs for thumbs
+- make some promo posts
+  - website link must be prominent
+  - "This photo appears in ..., ..., and ..."
+  - "Generate post" button in admin
+  - Descriptions for best
+  - invite friends
+- terms and privacy policy (copy from Canva)
+- not scrolling up when navigating to abt page
+- thumbnails in cart and in thank you page
+- randomised photos should not re-randomise when closing the detail popup
+- if you click "want a print" the transition is too quick and there is no "back to digital" link
+- better appearance when sending links over messenger/whatsapp
+- sort prints by order not date, boys top center
+- "order prints" link in nav all caps
+- "order prints" link in detail bigger
+- lightbox overlay darker
+- size in lightbox detail (description field)
+- photo #print: 0248 in print detail popups
+- no small for "All prints A3 (18" x 24" approximately)" etc
+- social icons under the fire
 - Cookies policy
 - Don't load images until they scroll into view, and have a spinner, make or find a component
 - Check emails page (in admin)
