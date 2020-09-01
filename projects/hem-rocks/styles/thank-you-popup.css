@@ -130,3 +130,35 @@
 .support-link a {
   text-decoration: underline;
 }
+
+.thank-you-popup-donate-form {
+  position: relative;
+}
+
+.thank-you-popup-donate-form h2 {
+  font-size: 24px;
+  text-align: center;
+}
+
+.thank-you-popup-donate-form input {
+  display: block;
+  width: 300px;
+  height: 80px;
+  line-height: 80px;
+  font-size: 24px;
+  text-align: center;
+  margin: 30px auto 20px auto;
+  box-sizing: border-box;
+}
+
+.thank-you-popup-donate-form button {
+  display: block;
+  width: 300px;
+  height: 80px;
+  margin: 0 auto;
+}
+
+.thank-you-popup-donate-form .detail-popup-currency-symbol {
+  top: 115px;
+  left: 545px;
+}

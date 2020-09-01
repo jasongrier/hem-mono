@@ -39,7 +39,8 @@ function DetailPopUp({
 
   const { 
     activeLiveStream, 
-    
+    pricingMode,
+
     allContentItems, 
     currentContentItems,
 
@@ -49,6 +50,7 @@ function DetailPopUp({
     playing,
   } = useSelector((state: RootState) => ({
     activeLiveStream: state.app.activeLiveStream,
+    pricingMode: state.app.pricingMode,
     
     allContentItems: state.content.contentItems,
     currentContentItems: state.content.currentContentItems,
@@ -249,7 +251,7 @@ function DetailPopUp({
 
       ReactGA.event({
         category: 'User',
-        action: 'Clicked "Download" in detail popup',
+        action: 'Clicked "Download" in detail popup: ' + contentItem.title,
       })
     }, [saleId, suggestedPrice],
   )
@@ -412,8 +414,6 @@ function DetailPopUp({
 
   const isPrint = pathname.includes('stock-photos-prints')
 
-  console.log(contentItem)
-
   return (
     <section
       className={`
@@ -429,7 +429,7 @@ function DetailPopUp({
       >
         <header>
           <div className="detail-popup-title">
-            <h1>{ isPrint ? 'Print of Photo #' : '' }{ contentItem.title }</h1>
+            <h1>{ isPrint ? 'Print of Photo #' : BERLIN_STOCK_PHOTOS ? 'Photo #' : '' }{ contentItem.title }</h1>
             <h2 dangerouslySetInnerHTML={{ __html: contentItem.secondaryTitle }} />
           </div>
           { BERLIN_STOCK_PHOTOS && (
@@ -439,25 +439,31 @@ function DetailPopUp({
                   src={`${assetHost}/berlin-stock-photos/content/images/jpg-web/${contentItem.keyArt}`}
                   alt={contentItem.secondaryTitle}
                 />
-                <div 
-                  className="bsp-lightbox-tags"
-                  style={{
-                    display: contentItem.isPhysicalProduct ? 'none' : 'block'
-                  }}
-                >
-                  <strong>Tags: </strong>
-                  { tags.map(tag =>
-                    <span key={tag}>
-                      <Link to={`/stock-photos/filter/${tag}`}>
-                        { tagSpellingCorrections(titleCase(tag.replace(/-/g, ' ').replace(/,/g, ', ')), true) }
-                      </Link>
-                      { tag === last(tags) ? '' : ',' }
-                    </span>
-                  )}
-                </div>
+                <img 
+                  className="bsp-lightbox-image-placeholder"
+                  src={`${assetHost}/berlin-stock-photos/content/images/jpg-placeholders/${contentItem.keyArt}`}
+                  alt={contentItem.secondaryTitle}
+                />
+              </div>
+              <div 
+                className="bsp-lightbox-tags"
+                style={{
+                  display: contentItem.isPhysicalProduct ? 'none' : 'block'
+                }}
+              >
+                <strong>Tags: </strong>
+                { tags.map(tag =>
+                  <span key={tag}>
+                    <Link to={`/stock-photos/filter/${tag}`}>
+                      { tagSpellingCorrections(titleCase(tag.replace(/-/g, ' ').replace(/,/g, ', ')), true) }
+                    </Link>
+                    { tag === last(tags) ? '' : ',' }
+                  </span>
+                )}
               </div>
               <div className="bsp-lightbox-type">
-                { contentItem.type }
+                <strong>Info: </strong>
+                { contentItem.type }, Image download, 3008 x 2000 pixels
               </div>
               <div
                 className="bsp-lightbox-caption"
@@ -505,7 +511,17 @@ function DetailPopUp({
           )}
           <div className="detail-popup-header-content">
             <div className="detail-popup-actions">
-              { isPurchaseable(contentItem) && (
+              <div className="detail-popup-form detail-popup-buttons">
+                { pricingMode === 2 && (
+                  <button
+                    className="action-button donation-pricing-scheme-button"
+                    onClick={instantDownloadOnClick}
+                  >
+                    Free Download
+                  </button>
+                )}
+                </div>
+              { pricingMode === 1 && isPurchaseable(contentItem) && (
                 <div className="detail-popup-form">
                   {contentItem.hasFixedPrice && (
                     <p className="detail-popup-fixed-price">{ contentItem.fixedPrice } €</p>

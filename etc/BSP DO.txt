@@ -1,22 +1,31 @@
 - bring back the carousel
 - copy below the carousel "pay as little as 1 euro / order fine art prints / get regular updates"
-- start FB ads
-- disable cookies warning
-- remove tags with profanities from the home page
 - "Download gorgeous images of the real Berlin"
 ? change price label text to "consider a donation..."
+- fake prog thumbs for hem
 
+- A/B test with donate while downloading
+  - A/B test architecture
+    - If no cookie, detect query var and set cookie
+    - Cookie should never expire
+    - Analytics event saying which side of the test they are on
+  - Second Google Ad which triggers the "B" mode
+    - "Free Stock Photos of Berlin"
+    - "Donation recommended"
+  - Second FB Ad which triggers the "B" mode
+    - "Free Stock Photos of Berlin"
+    - "Donation recommended"
+  - donate form component in thank you popup
+    - opens ppl in new window
+
+- True production bundle
+- SSR the home page (poor man's...)
+- Termsfeed stuff (also for HEM)
 – Browser tests (litmus)
 – Mobile styles
-- photo resolutions in detail, cart, and thanks, migration for a media info field
-- check if 404 page works
-- alt attrs for thumbs
-- make some promo posts
-  - website link must be prominent
-  - "This photo appears in ..., ..., and ..."
-  - "Generate post" button in admin
-  - Descriptions for best
-  - invite friends
+- photo resolutions in detail, cart, and thanks
+- migration for a media info field
+- alt attrs for thumbs (convert from css bg to img)
 - terms and privacy policy (copy from Canva)
 - not scrolling up when navigating to abt page
 - thumbnails in cart and in thank you page
@@ -24,11 +33,8 @@
 - if you click "want a print" the transition is too quick and there is no "back to digital" link
 - better appearance when sending links over messenger/whatsapp
 - sort prints by order not date, boys top center
-- "order prints" link in nav all caps
-- "order prints" link in detail bigger
 - lightbox overlay darker
 - size in lightbox detail (description field)
-- photo #print: 0248 in print detail popups
 - no small for "All prints A3 (18" x 24" approximately)" etc
 - social icons under the fire
 - Cookies policy

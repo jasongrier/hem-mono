@@ -14,6 +14,13 @@ function CookieApproval(): ReactElement {
 
   const [popupOpen, setPopupOpen] = useState(false)
 
+  useEffect(() => {
+    if (!BERLIN_STOCK_PHOTOS) return
+    dispatch(setCookieApproval('analytics', true, true))
+    dispatch(setCookieApproval('marketing', true, true))
+    dispatch(setCookiePreferencesSet(true, true))
+  }, [])
+
   const acceptAllCookiesOnClick = useCallback(
     function acceptAllCookiesOnClickFn(evt: SyntheticEvent<HTMLButtonElement>) {
       dispatch(setCookieApproval('analytics', true, true))
@@ -28,7 +35,7 @@ function CookieApproval(): ReactElement {
     }, [],
   )
 
-  if (cookiePreferencesSet) return <div />
+  if (cookiePreferencesSet || BERLIN_STOCK_PHOTOS) return <div />
 
   return (
     <>

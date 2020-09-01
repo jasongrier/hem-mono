@@ -10,13 +10,12 @@ function BerlinStockPhotosNotFound(): ReactElement {
         <title>{ BASE_SITE_TITLE }: 404 Not found</title>
         <meta name="description" content="Lushness. Weirdness. Greenery. Grit. Cheap stock photos from Berlin, Germany, updated daily." />
       </Helmet>
-      <div className="page berlin-stock-photos bsp-page">
-        <Header />
+      <Header />
+      <div className="page berlin-stock-photos bsp-page bsp-not-found-page">
         <h1>Uh oh...</h1>
         <p>We couldn't find what you're looking for.</p>
+        <Footer />
       </div>
-
-      <Footer />
     </>
   )
 }
