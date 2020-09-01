@@ -1,3 +1,11 @@
+- bring back the carousel
+- copy below the carousel "pay as little as 1 euro / order fine art prints / get regular updates"
+- start FB ads
+- disable cookies warning
+- remove tags with profanities from the home page
+- "Download gorgeous images of the real Berlin"
+? change price label text to "consider a donation..."
+
 – Browser tests (litmus)
 – Mobile styles
 - photo resolutions in detail, cart, and thanks, migration for a media info field

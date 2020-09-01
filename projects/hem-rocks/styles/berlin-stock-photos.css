@@ -293,11 +293,6 @@
   font-size: 20px;
 }
 
-.berlin-stock-photos .detail-popup h1::before {
-  display: inline;
-  content: "Photo #"
-}
-
 .berlin-stock-photos .detail-popup h2 {
   display: none;
 }
@@ -352,6 +347,12 @@
 }
 
 .bsp-lightbox-tags {
+  width: 60%;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.bsp-lightbox-type {
   width: 60%;
   margin-top: 10px;
   margin-left: 20px;

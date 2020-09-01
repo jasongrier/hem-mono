@@ -16,7 +16,7 @@ import { addProductToCart, submitSale } from '../../cart'
 import { IContentItem, getContentItemsFromRawList } from '../index'
 import { assetHostHostname } from '../../../functions'
 import { RootState } from '../../../index'
-import { BERLIN_STOCK_PHOTOS } from '../../../config'
+import { BERLIN_STOCK_PHOTOS, MINIMUM_PRICE_FOR_RAW } from '../../../config'
 import { hasTag, contentItemToTrack, hasCategory, tagSpellingCorrections } from '../functions'
 import { titleCase } from 'voca'
 
@@ -412,6 +412,8 @@ function DetailPopUp({
 
   const isPrint = pathname.includes('stock-photos-prints')
 
+  console.log(contentItem)
+
   return (
     <section
       className={`
@@ -427,7 +429,7 @@ function DetailPopUp({
       >
         <header>
           <div className="detail-popup-title">
-            <h1>{ isPrint ? 'Print: ' : '' }{ contentItem.title }</h1>
+            <h1>{ isPrint ? 'Print of Photo #' : '' }{ contentItem.title }</h1>
             <h2 dangerouslySetInnerHTML={{ __html: contentItem.secondaryTitle }} />
           </div>
           { BERLIN_STOCK_PHOTOS && (
@@ -452,8 +454,10 @@ function DetailPopUp({
                       { tag === last(tags) ? '' : ',' }
                     </span>
                   )}
-                  { isPrint ? contentItem.type : '' }
                 </div>
+              </div>
+              <div className="bsp-lightbox-type">
+                { contentItem.type }
               </div>
               <div
                 className="bsp-lightbox-caption"
@@ -537,7 +541,7 @@ function DetailPopUp({
                       <br />
                       { BERLIN_STOCK_PHOTOS && (
                         <small>
-                          Minimum price for RAW: 20 €
+                          Minimum price for RAW: { MINIMUM_PRICE_FOR_RAW } €
                         </small>
                       )}
                       {!valid && (

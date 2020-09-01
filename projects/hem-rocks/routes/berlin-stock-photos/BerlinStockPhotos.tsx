@@ -56,7 +56,6 @@ function BerlinStockPhotos(): ReactElement {
               moreTagsLink={ isMoreTagsPage ? null : '/more-tags/filter/best-of' }
               noAll={ true }
               orderByOrder={ true }
-              randomizeNonSticky={ true }
               fixedFilters={ isMoreTagsPage ? null : [
                 'Best Of',
                 'Architecture',
