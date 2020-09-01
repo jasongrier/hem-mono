@@ -6,6 +6,7 @@ export interface IState {
   cookiesMarketingApproved: boolean | null
   cookiePreferencesSet: boolean | null
   megaNavOpen: boolean
+  pricingMode: number // 1 = Pay what you want, 2 = Donate while downloading
   topBarCollapsed: boolean
 }
 
@@ -16,6 +17,7 @@ export const SET_ACTIVE_LIVE_STREAM = 'SET_ACTIVE_LIVE_STREAM'
 export const SET_COOKIE_APPROVAL = 'SET_COOKIE_APPROVAL'
 export const SET_COOKIE_PREFERENCES_SET = 'SET_COOKIE_PREFERENCES_SET'
 export const SET_MEGA_NAV_OPEN = 'SET_MEGA_NAV_OPEN'
+export const SET_PRICING_MODE = 'SET_PRICING_MODE'
 
 export interface ICollapseTopBar extends AnyAction {
   type: typeof COLLAPSE_TOP_BAR
@@ -52,6 +54,11 @@ export interface ISetMegaNavOpen extends AnyAction {
   payload: boolean
 }
 
+export interface ISetPricingMode extends AnyAction {
+  type: typeof SET_PRICING_MODE
+  payload: boolean
+}
+
 export type Action =
   ICollapseTopBar
   | IExpandTopBar
@@ -60,6 +67,7 @@ export type Action =
   | ISetCookieApproval
   | ISetCookiePreferencesSet
   | ISetMegaNavOpen
+  | ISetPricingMode
 
 export {
   collapseTopBar,
@@ -69,6 +77,7 @@ export {
   setCookieApproval,
   setCookiePreferencesSet,
   setMegaNavOpen,
+  setPricingMode,
 } from './actions'
 
 // TODO: Export all components here. Write a linter for it

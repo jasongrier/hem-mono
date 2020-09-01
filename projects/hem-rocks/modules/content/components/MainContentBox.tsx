@@ -95,7 +95,6 @@ function MainContentBox({
           { !BERLIN_STOCK_PHOTOS && (
             <div
               className="main-content-box-key-art-image"
-              draggable={false}
               style={{
                 backgroundImage: `url(${assetHost}/hem-rocks/content/images/key-art/${contentItem.keyArt})`
               }}
@@ -109,10 +108,18 @@ function MainContentBox({
               <div
                 className="main-content-box-key-art-image"
                 style={{
-                  backgroundImage: `url(${assetHost}/berlin-stock-photos/content/images/jpg-web/${contentItem.keyArt})`
+                  backgroundImage: `url(${assetHost}/berlin-stock-photos/content/images/jpg-thumbs/${contentItem.keyArt})`
                 }}
               />
             </>
+          )}
+          { BERLIN_STOCK_PHOTOS && index <= 10 && (
+            <div
+              className="main-content-box-key-art-placeholder"
+              style={{
+                backgroundImage: `url(${assetHost}/berlin-stock-photos/content/images/jpg-placeholders/${contentItem.keyArt})`
+              }}
+            />
           )}
         </Link>
       </div>

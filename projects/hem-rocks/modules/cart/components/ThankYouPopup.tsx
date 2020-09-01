@@ -1,8 +1,9 @@
-import React, { ReactElement, useCallback, useEffect, useState } from 'react'
+import React, { ReactElement, useCallback, useEffect, useState, SyntheticEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { Link } from 'react-router-dom'
 import ReactGA from 'react-ga'
+import uuid from 'uuid/v1'
 import Scrollbars from 'react-scrollbars-custom'
 import moment from 'moment'
 import { getQueryVar } from '../../../../../lib/functions'
@@ -11,12 +12,14 @@ import { EmailForm } from '../../app'
 import { assetHostHostname } from '../../../functions'
 import { BERLIN_STOCK_PHOTOS } from '../../../config'
 import { RootState } from '../../../index'
-import { closePopup } from '../../../../../lib/modules/popups'
-import { clearCart, requestSale, IProduct } from '../index'
+import { closePopup, openPopup } from '../../../../../lib/modules/popups'
+import { clearCart, requestSale, IProduct, addProductToCart, submitSale } from '../index'
 import { MINIMUM_PRICE_FOR_RAW } from '../../../config'
 
 function ThankYouPopup(): ReactElement {
-  const { currentSale, saleRetrievalError, forcedSaleId } = useSelector((state: RootState) => ({
+  const { currentSale, saleRetrievalError, forcedSaleId, pricingMode } = useSelector((state: RootState) => ({
+    pricingMode: state.app.pricingMode,
+    
     contentItems: state.content.contentItems,
     currentSale: state.cart.currentSale,
     saleRetrievalError: state.cart.saleRetrievalError,
@@ -28,6 +31,8 @@ function ThankYouPopup(): ReactElement {
 
   const [alreadyDownloaded, setAlreadyDownloaded] = useState<boolean>()
   const [linksUsed, setLinksUsed] = useState<string[]>([])
+  const [donationAmount, setDonationAmount] = useState<string>('10')
+  const [donationAmountValid, setDonationAmountValid] = useState<boolean>(true)
 
   useEffect(function init() {
     const saleId = forcedSaleId || getQueryVar('sid')
@@ -52,6 +57,120 @@ function ThankYouPopup(): ReactElement {
       })
     }, [],
   )
+
+  const onDontationChange = useCallback(
+    function onDontationChangeFn(evt: SyntheticEvent<HTMLInputElement>) {
+      const price = evt.currentTarget.value
+      validate(price)
+      setDonationAmount(price)
+    }, [],
+  )
+
+  const onDonateFormSubmit = useCallback(
+    function onDonateFormSubmitFn(evt: SyntheticEvent<HTMLFormElement>) {
+      evt.preventDefault()
+    }, [],
+  )
+
+  const onDontationBlur = useCallback(
+    function onDontationBlurFn(evt: SyntheticEvent<HTMLInputElement>) {
+      setDonationAmount(correctPrice(donationAmount))
+    }, [donationAmount],
+  )
+
+  const onDonateClick = useCallback(
+    function onDonateClickFn() {
+      if (!validate(donationAmount, true)) return
+      dispatch(addProductToCart({
+        downloadFile: '',
+        finalPrice: donationAmount,
+        isDigitalProduct: false,
+        title: 'Donation',
+        slug: 'donation',
+        type: 'Donation',
+      }))
+
+      dispatch(closePopup())
+
+      dispatch(openPopup('cart-popup', {
+        redirecting: true,
+        returnUrl: `/`,
+      }))
+
+      setTimeout(() => {
+        dispatch(submitSale(uuid()))
+      })
+
+      ReactGA.event({
+        category: 'User',
+        action: 'Donated: ' + donationAmount,
+      })
+    }, [donationAmount],
+  )
+
+  function validate(price: any, showAlerts = false) {
+    if (isNaN(parseFloat(price))) {
+      setDonationAmountValid(false)
+      return false
+    }
+    setDonationAmountValid(true)
+    return true
+  }
+
+  function correctPrice(price: string) {
+    const chars = price.split('')
+
+    if (isNaN(parseInt(chars[0], 10))) return price
+
+    let correctedPrice = ''
+    let decimalPlace = 0
+    for (const char of chars) {
+      if (char === ',') {
+        if (decimalPlace > 0) {
+          break
+        }
+        correctedPrice = correctedPrice + '.'
+        decimalPlace ++
+        continue
+      }
+
+      if (char === '.') {
+        if (decimalPlace > 0) {
+          break
+        }
+        correctedPrice = correctedPrice + char
+        decimalPlace ++
+        continue
+      }
+
+      if (isNaN(parseInt(char))) {
+        break
+      }
+
+      if (decimalPlace > 2) {
+        break
+      }
+
+      if (decimalPlace > 0) {
+        decimalPlace ++
+      }
+
+      correctedPrice = correctedPrice + char
+    }
+
+    correctedPrice = correctedPrice.replace(/\.$/, '')
+
+    const correctedPriceSplit = correctedPrice.split('.')
+
+    if (
+      correctedPriceSplit.length > 0
+      && parseInt(correctedPriceSplit[1], 10) === 0
+    ) {
+      correctedPrice = correctedPriceSplit[0]
+    }
+
+    return correctedPrice
+  }
 
   const valid = forcedSaleId || getQueryVar('sid')
   const products = currentSale?.products
@@ -108,12 +227,18 @@ function ThankYouPopup(): ReactElement {
                       <><br /><small>Click the link(s) above to download</small></>
                     )}
                     
-                    { !product.isDigitalProduct && (
+                    { !product.isDigitalProduct && product?.type !== 'Donation' && (
                       <span>
                         { BERLIN_STOCK_PHOTOS ? 'Photo' : ' '} 
                         #{ product?.title } &mdash; { product?.type } 
                         <br />
                         <small>(Ships on { moment().add(2, 'days').endOf('day').format('DD.MM.YYYY') })</small>
+                      </span>
+                    )}
+                    
+                    { product?.type === 'Donation' && (
+                      <span>
+                        { product?.title } &mdash; Thank you!
                       </span>
                     )}
                   </li>
@@ -124,10 +249,44 @@ function ThankYouPopup(): ReactElement {
                 <a href="/support" target="_blank">Problems with your order?</a>
               </div>
             </div>
-
-            <div className="thank-you-popup-email-form">
-              <EmailForm onFormSubmitted={onFormSubmitted} />
-            </div>
+            
+            { pricingMode === 1 && (
+              <div className="thank-you-popup-email-form">
+                <EmailForm onFormSubmitted={onFormSubmitted} />
+              </div>
+            )}
+            { pricingMode === 2 && products && products.length > 0 && products.filter(p => p.type === 'Donation').length === 0 && (
+              <div className="thank-you-popup-donate-form">
+                <>
+                  <h2>While you're here,<br />why not consider making a donation?</h2>
+                  <span className="detail-popup-currency-symbol">€</span>
+                  <form onSubmit={onDonateFormSubmit}>
+                    <input
+                      autoComplete="off"
+                      name="suggested-price"
+                      onBlur={onDontationBlur}
+                      onChange={onDontationChange}
+                      type="text"
+                      value={donationAmount}
+                    />
+                  </form>
+                  {!donationAmountValid && (
+                    <div className="invalid-message">
+                      Please enter a valid price.
+                    </div>
+                  )}
+                  <button
+                    className={`
+                      action-button
+                      ${valid ? '' : 'invalid'}
+                    `}
+                    onClick={onDonateClick}
+                  >
+                    SEND { donationAmount } €!
+                  </button>
+                </>
+              </div>
+            )}
           </>
         )}
         { !valid && (

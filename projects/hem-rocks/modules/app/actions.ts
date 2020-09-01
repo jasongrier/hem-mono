@@ -7,6 +7,7 @@ import {
   SET_COOKIE_APPROVAL,
   SET_COOKIE_PREFERENCES_SET,
   SET_MEGA_NAV_OPEN,
+  SET_PRICING_MODE,
 } from './index'
 
 const collapseTopBar = (): AnyAction => ({
@@ -44,6 +45,11 @@ const setMegaNavOpen = (open: boolean): AnyAction => ({
   payload: open,
 })
 
+const setPricingMode = (procingMode: number): AnyAction => ({
+  type: SET_PRICING_MODE,
+  payload: procingMode,
+})
+
 export {
   collapseTopBar,
   expandTopBar,
@@ -52,4 +58,5 @@ export {
   setCookieApproval,
   setCookiePreferencesSet,
   setMegaNavOpen,
+  setPricingMode,
 }

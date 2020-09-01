@@ -123,8 +123,10 @@ function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
                     <div className="bsp-cart-thumbnail">
                       { BERLIN_STOCK_PHOTOS && (
                         <img 
-                          alt={find(cartContentItems, { slug: product.slug}).secondaryTitle}
-                          src={`${assetHost}/berlin-stock-photos/content/images/jpg-web/${find(cartContentItems, { slug: product.slug}).keyArt}`}
+                          // @ts-ignore
+                          alt={find(cartContentItems || [], { slug: product.slug}).secondaryTitle}
+                          // @ts-ignore
+                          src={`${assetHost}/berlin-stock-photos/content/images/jpg-web/${find(cartContentItems || [], { slug: product.slug}).keyArt}`}
                         />
                       )}
                     </div>
@@ -196,13 +198,13 @@ function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
         {redirecting && (
           <div className="cart-popup-redirecting-overlay">
             <div className="cart-popup-redirecting-overlay-content">
-              <h2>Great!</h2>
-              <p>Just a sec, we are redirecting you to PayPal to complete your purchase.</p>
-              <p>You do not need a PayPal account to buy.</p>
-              {/* <p><strong>Please do not close this window!</strong></p> */}
-              <p className="shipping-warning">
+              <h2>Thanks!</h2>
+              <p>Just a sec, we are redirecting you to PayPal.</p>
+              <p>You do not need a PayPal account to proceed.</p>
+              <p><strong>Please do not close this window!</strong></p>
+              {/* <p className="shipping-warning">
                 <strong>Don't forget to confirm your shipping address in PayPal!</strong>
-              </p>
+              </p> */}
               <Spinner />
             </div>
           </div>

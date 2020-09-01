@@ -4,6 +4,7 @@ import { useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
 import Scrollbars from 'react-scrollbars-custom'
 import { slugify, titleCase } from 'voca'
+import ReactGA from 'react-ga'
 import { get, uniq, flatten, compact, last, shuffle } from 'lodash'
 import moment from 'moment'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
@@ -216,6 +217,13 @@ function MainContentList({
       filterBox.scrollIntoView(true)
     }
   }, [])
+
+  useEffect(function onFilterChanged() {
+    ReactGA.event({
+      category: 'User',
+      action: 'Clicked a filter: ' + currentFilter,
+    })
+  }, [currentFilter])
 
   function dateSortFn(a: IContentItem, b: IContentItem) {
     // @ts-ignore

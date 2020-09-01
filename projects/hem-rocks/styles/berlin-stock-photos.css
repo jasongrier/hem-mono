@@ -202,7 +202,7 @@
   float: left;
   width: 33%;
   height: auto;
-  margin: 0;
+  margin: 0 0 10px 0;
   border: none;
   color: #fff;
   border: 2.5px solid #000;
@@ -220,6 +220,7 @@
 }
 
 .bsp-content .main-content-box .main-content-box-key-art {
+  height: 239px;
   background-color: transparent;
 }
 
@@ -310,6 +311,17 @@
   pointer-events: all;
 }
 
+.berlin-stock-photos .detail-popup-form {
+  overflow: visible;
+}
+
+.donation-pricing-scheme-button {
+  width: 260px !important;
+  height: 80px !important;
+  line-height: 80px !important;
+  margin-top: -45px !important;
+}
+
 .berlin-stock-photos .hem-close-button {
   transform: scale(.5) translate(10px, -10px);
   transform-origin: center;
@@ -338,12 +350,33 @@
   margin-bottom: 10px;
 }
 
-.bsp-lightbox-image img {
+.bsp-lightbox-image {
+  position: relative;
+  width: 800px;
+  height: 532px;
   margin-left: 20px;
-  width: 70%;
-  height: 70%;
-  max-width: 800px;
-  max-height: 800px;
+  overflow: hidden;
+}
+
+.bsp-lightbox-image img {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 800px;
+  height: 532px;
+}
+
+.bsp-lightbox-image .bsp-lightbox-image-placeholder {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 800px;
+  height: 532px;
+  filter: blur(10px);
 }
 
 .bsp-lightbox-tags {
@@ -384,11 +417,6 @@
 
 .bsp-lightbox-caption p {
   margin: 0 0 10px 0;
-}
-
-.bsp-lightbox-image img {
-  width: 100%;
-  height: auto;
 }
 
 .bsp-lightbox-nav {
@@ -588,9 +616,17 @@
 .bsp-terms-page,
 .bsp-terms-page h1,
 .bsp-terms-page h2,
-.bsp-terms-page p {
+.bsp-terms-page p,
+.bsp-not-found-page,
+.bsp-not-found-page h1,
+.bsp-not-found-page h2,
+.bsp-not-found-page p {
   width: calc(var(--content-width-desk) - 16px);
   margin: 40px auto; 
+}
+
+.bsp-not-found-page p {
+  margin-bottom: calc(100vh - 320px);
 }
 
 .bsp-terms-page p {
