@@ -13,7 +13,7 @@ import { BERLIN_STOCK_PHOTOS } from '../../../config'
 import { RootState } from '../../../index'
 import { closePopup } from '../../../../../lib/modules/popups'
 import { clearCart, requestSale, IProduct } from '../index'
-import { loginCheckSaga } from '../../login'
+import { MINIMUM_PRICE_FOR_RAW } from '../../../config'
 
 function ThankYouPopup(): ReactElement {
   const { currentSale, saleRetrievalError, forcedSaleId } = useSelector((state: RootState) => ({
@@ -89,7 +89,7 @@ function ThankYouPopup(): ReactElement {
                         { BERLIN_STOCK_PHOTOS ? 'Photo' : ' '} #{ product?.title } ({ BERLIN_STOCK_PHOTOS ? 'JPEG' : ' '})
                       </a>
                     )}
-                    { product.isDigitalProduct && BERLIN_STOCK_PHOTOS && parseFloat(product.finalPrice) >= 20 && (
+                    { product.isDigitalProduct && BERLIN_STOCK_PHOTOS && parseFloat(product.finalPrice) >= MINIMUM_PRICE_FOR_RAW && (
                       <>
                         &nbsp;|&nbsp;
                         <a 

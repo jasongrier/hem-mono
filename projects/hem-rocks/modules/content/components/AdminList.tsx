@@ -101,8 +101,6 @@ function AdminList(): ReactElement {
 
   const assetHost = assetHostHostname()
 
-  contentItems = contentItems.filter((item: IContentItem) => item.slug.includes('-print'))
-
   return (
     <ElectronOnly showMessage={true}>
       <div className="admin-list">

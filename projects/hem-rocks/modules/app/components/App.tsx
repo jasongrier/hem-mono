@@ -99,8 +99,9 @@ function App(): ReactElement {
   }, [])
 
   useEffect(function checkAnalyticsCookieApproval() {
-    if (cookiesAnalyticsApproved) {
-      ReactGA.initialize('UA-163585797-1')
+    if (cookiesAnalyticsApproved && !pathname.includes('localhost')) {
+      const gaId = BERLIN_STOCK_PHOTOS ? 'UA-36136320-3' : 'UA-163585797-1'
+      ReactGA.initialize(gaId)
     }
   }, [cookiesAnalyticsApproved])
 

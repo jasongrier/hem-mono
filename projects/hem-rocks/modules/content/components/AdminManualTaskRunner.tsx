@@ -149,6 +149,9 @@ function migrate(allContentItems: IContentItem[]) {
     const newItem = Object.assign({}, item)
 
     // DO STUFF HERE
+    if (hasCategory(newItem, 'stock-photos') && newItem.slug.includes('-print')) {
+      newItem.fixedPrice = '149'
+    }
     // END DO STUFF HERE
     
     newItems.push(newItem)
