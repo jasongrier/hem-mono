@@ -20,7 +20,7 @@ const initialState: IState = {
   cookiesMarketingApproved: false,
   cookiePreferencesSet: false,
   megaNavOpen: false,
-  pricingMode: 2,
+  pricingMode: 1,
   topBarCollapsed: false,
 }
 

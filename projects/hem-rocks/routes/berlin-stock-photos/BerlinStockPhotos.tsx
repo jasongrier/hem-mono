@@ -15,8 +15,29 @@ import { RootState } from '../../index'
 import { hasCategory, hasTag } from '../../modules/content'
 
 function BerlinStockPhotos(): ReactElement {
+  const { contentItems } = useSelector((state: RootState) => ({
+    contentItems: state.content.contentItems.filter(item => hasCategory(item, 'stock-photos')),
+  }))
+
+  const [heroine, setHeroine] = useState<IContentItem>()
+
+  useEffect(function initHeroine() {
+    if (heroine) return
+    if (!contentItems) return
+    if (!contentItems.length) return
+    
+    const contentItem = sample(contentItems.filter(item => hasTag(item, 'best-of')))
+    
+    if (!contentItem) return
+    
+    setHeroine(contentItem)
+  }, [contentItems, heroine])
+
   const { filter: currentFilter } = useParams()
+  
   const { pathname } = useLocation()
+  
+  const assetHost = assetHostHostname()
   const isMoreTagsPage = pathname.includes('more-tags')
 
   return (
@@ -37,7 +58,7 @@ function BerlinStockPhotos(): ReactElement {
         )} */}
         
         <main>
-          {/* { heroine && !isMoreTagsPage && (
+          { heroine && !isMoreTagsPage && (
             <div className="bsp-heroine">
               <Link to={`/${heroine.category}/${heroine.slug}${currentFilter ? '/' + currentFilter : ''}`}>
                 <img 
@@ -46,7 +67,7 @@ function BerlinStockPhotos(): ReactElement {
                 />
               </Link>
             </div>
-          )} */}
+          )}
           
           <div className="bsp-content">
             <MainContentList
