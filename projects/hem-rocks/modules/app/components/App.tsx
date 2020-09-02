@@ -99,7 +99,7 @@ function App(): ReactElement {
   }, [])
 
   useEffect(function checkAnalyticsCookieApproval() {
-    if (cookiesAnalyticsApproved && !pathname.includes('localhost')) {
+    if (cookiesAnalyticsApproved && !location.hostname.includes('localhost')) {
       const gaId = BERLIN_STOCK_PHOTOS ? 'UA-36136320-3' : 'UA-163585797-1'
       ReactGA.initialize(gaId)
     }
@@ -403,6 +403,7 @@ function App(): ReactElement {
 
       { cookiesMarketingApproved 
         && !Cookies.get(getCookieName('cannot-show-email-nag'))
+        && !BERLIN_STOCK_PHOTOS
         && (
         <ElectronNot>
           <NagToaster

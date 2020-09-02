@@ -15,6 +15,7 @@ import { TrackPlayPauseButton, ITrack, replacePlaylist, setPlayerPlaylist, IPlay
 import { addProductToCart, submitSale } from '../../cart'
 import { IContentItem, getContentItemsFromRawList } from '../index'
 import { assetHostHostname } from '../../../functions'
+import { BvgWatermark } from '../../../components/berlin-stock-photos'
 import { RootState } from '../../../index'
 import { BERLIN_STOCK_PHOTOS, MINIMUM_PRICE_FOR_RAW } from '../../../config'
 import { hasTag, contentItemToTrack, hasCategory, tagSpellingCorrections } from '../functions'
@@ -78,8 +79,8 @@ function DetailPopUp({
   }
 
   const [attachedPlaylist, setAttachedPlaylist] = useState<Partial<IPlaylist>>()
-  const [suggestedPrice, setSuggestedPrice] = useState<string>(initialPrice)
-  const [valid, setValid] = useState<boolean>(true)
+  const [suggestedPrice, setSuggestedPrice] = useState<string>('')
+  const [valid, setValid] = useState<boolean>(false)
   const [saleId, setSaleId] = useState<string>()
   const [previousItem, setPreviousItem] = useState<IContentItem>()
   const [nextItem, setNextItem] = useState<IContentItem>()
@@ -177,9 +178,9 @@ function DetailPopUp({
     setNextItem(currentContentItems[itemIndex + 1])
   }, [currentContentItems, contentItem, nextItem, previousItem])
   
-  useEffect(function resetValidityOnPrevNext() {
-    setValid(true)
-  }, [contentItem])
+  // useEffect(function resetValidityOnPrevNext() {
+  //   setValid(true)
+  // }, [contentItem])
   
   const checkOutOnClick = useCallback(
     function checkOutOnClickFn() {
@@ -251,7 +252,7 @@ function DetailPopUp({
 
       ReactGA.event({
         category: 'User',
-        action: 'Clicked "Download" in detail popup: ' + contentItem.title,
+        action: 'Clicked "Download" in detail popup: ' + contentItem.title + ', ' + suggestedPrice,
       })
     }, [saleId, suggestedPrice],
   )
@@ -397,7 +398,7 @@ function DetailPopUp({
 
   const buyNowText = category === 'venue-calendar'
     ? 'Buy Ticket'
-    : 'Check out'
+    : 'Download'
 
   const addToCartText = category === 'venue-calendar'
     ? 'Add to Cart'
@@ -435,15 +436,15 @@ function DetailPopUp({
           { BERLIN_STOCK_PHOTOS && (
             <>
               <div className="bsp-lightbox-image">
-                <img 
-                  src={`${assetHost}/berlin-stock-photos/content/images/jpg-web/${contentItem.keyArt}`}
-                  alt={contentItem.secondaryTitle}
+                <div 
+                  className="img" 
+                  style={{ backgroundImage: `url(${assetHost}/berlin-stock-photos/content/images/jpg-web/${contentItem.keyArt})`}}
                 />
-                <img 
+                <div 
                   className="bsp-lightbox-image-placeholder"
-                  src={`${assetHost}/berlin-stock-photos/content/images/jpg-placeholders/${contentItem.keyArt}`}
-                  alt={contentItem.secondaryTitle}
+                  style={{ backgroundImage: `url(${assetHost}/berlin-stock-photos/content/images/jpg-placeholders/${contentItem.keyArt})`}}
                 />
+                <BvgWatermark width={800} />
               </div>
               <div 
                 className="bsp-lightbox-tags"
@@ -556,9 +557,15 @@ function DetailPopUp({
                       </small>
                       <br />
                       { BERLIN_STOCK_PHOTOS && (
-                        <small>
-                          Minimum price for RAW: { MINIMUM_PRICE_FOR_RAW } €
-                        </small>
+                        <>
+                          <small>
+                            Recommended price: { contentItem.flexPriceRecommended } €
+                          </small>
+                          <br />
+                          <small>
+                            Minimum price for RAW: { MINIMUM_PRICE_FOR_RAW } €
+                          </small>
+                        </>
                       )}
                       {!valid && (
                         <div className="invalid-message">
@@ -600,16 +607,19 @@ function DetailPopUp({
                     )}
                     { !contentItem.hasFixedPrice && isNaN(parseFloat(suggestedPrice)) && (
                       <div className="purchase-form-spinner">
-                        <Spinner />
+                        <button
+                          className="action-button"
+                          onClick={instantDownloadOnClick}
+                        >
+                          Download
+                        </button>
                       </div>
                     )}
                     { BERLIN_STOCK_PHOTOS && contentItem.physicalFormats.length > 0 && (
                       <div className="bsp-print-link">
-                        <small>
-                          <Link to={`/stock-photos-prints/${contentItem.physicalFormats}`}>
-                            Want a print of this photo?
-                          </Link>
-                        </small>
+                        <Link to={`/stock-photos-prints/${contentItem.physicalFormats}`}>
+                          Want a print of this photo?
+                        </Link>
                       </div>
                     )}
                   </div>

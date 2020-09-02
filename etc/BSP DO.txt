@@ -1,31 +1,20 @@
+- search box
+- previous/next is till broken, and resetValidityOnPrevNext should not fire initially
+
 - bring back the carousel
 - copy below the carousel "pay as little as 1 euro / order fine art prints / get regular updates"
 - "Download gorgeous images of the real Berlin"
 ? change price label text to "consider a donation..."
 - fake prog thumbs for hem
-
-- A/B test with donate while downloading
-  - A/B test architecture
-    - If no cookie, detect query var and set cookie
-    - Cookie should never expire
-    - Analytics event saying which side of the test they are on
-  - Second Google Ad which triggers the "B" mode
-    - "Free Stock Photos of Berlin"
-    - "Donation recommended"
-  - Second FB Ad which triggers the "B" mode
-    - "Free Stock Photos of Berlin"
-    - "Donation recommended"
-  - donate form component in thank you popup
-    - opens ppl in new window
-
+- little orange "download" badge on hover
+- try it for a couple of days in donate mode
 - True production bundle
 - SSR the home page (poor man's...)
 - Termsfeed stuff (also for HEM)
 – Browser tests (litmus)
 – Mobile styles
-- photo resolutions in detail, cart, and thanks
+- photo resolutions in cart and thanks
 - migration for a media info field
-- alt attrs for thumbs (convert from css bg to img)
 - terms and privacy policy (copy from Canva)
 - not scrolling up when navigating to abt page
 - thumbnails in cart and in thank you page
@@ -65,6 +54,10 @@
   - TAZ
   - FACT
   - Kristoffer
-  - Deutsche Welle (Emmie)
+  - With Berlin Love
+  - Digital in Berlin
+  - CO Berlin
+  - http://www.radiospaetkauf.com/
+
 - "New" page
 – Use that file format to replace title and background style in index.html

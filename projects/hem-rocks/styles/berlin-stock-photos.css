@@ -91,13 +91,9 @@
 }
 
 .bsp-heroine {
-  position: sticky;
   top: calc(-1 * (80vh - var(--bsp-top-bar-height) - 10px));
-  z-index: 9998;
   width: 100vw;
-  height: 10vh;
-  background-color: #000;
-  opacity: 0.4;
+  height: 300px;
 }
 
 .bsp-heroine .slick-slide {
@@ -195,7 +191,7 @@
 }
 
 .bsp-content .main-content-items {
-  margin-top: 79px;
+  margin-top: 0;
 }
 
 .bsp-content .main-content-box {
@@ -342,6 +338,10 @@
   padding: 0;
 }
 
+.berlin-stock-photos .detail-popup-form small {
+  font-size: 14px;
+}
+
 .berlin-stock-photos .detail-popup-form .invalid-message {
   display: none;
 }
@@ -358,7 +358,7 @@
   overflow: hidden;
 }
 
-.bsp-lightbox-image img {
+.bsp-lightbox-image .img {
   display: block;
   position: absolute;
   top: 0;
@@ -366,6 +366,8 @@
   z-index: 2;
   width: 800px;
   height: 532px;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .bsp-lightbox-image .bsp-lightbox-image-placeholder {
@@ -377,6 +379,8 @@
   width: 800px;
   height: 532px;
   filter: blur(10px);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .bsp-lightbox-tags {
@@ -417,6 +421,12 @@
 
 .bsp-lightbox-caption p {
   margin: 0 0 10px 0;
+}
+
+.bsp-lightbox-tags strong,
+.bsp-lightbox-type strong {
+  display: inline-block;
+  width: 60px;
 }
 
 .bsp-lightbox-nav {
@@ -594,8 +604,14 @@
 
 .bsp-enlarge-button {
   position: absolute;
-  bottom: 5px;
-  right: 5px;
+  left: 0;
+  top: 0;
+  z-index: 3;
+  width: 100px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  opacity: 0;
 }
 
 .hem-enlarge-button {
@@ -604,8 +620,8 @@
   opacity: 0;
 }
 
-.bsp-content .main-content-box:hover .hem-enlarge-button {
-  opacity: 0.7;
+.bsp-content .main-content-box:hover .bsp-enlarge-button {
+  opacity: 1;
 }
 
 .berlin-stock-photos .hem-contact-form-success h1 {
@@ -635,11 +651,25 @@
 }
 
 .bsp-lightbox-license {
-  margin-top: 40px;
-  margin-left: 20px;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
   font-size: 12px;
 }
 
 .bsp-lightbox-license a {
   color: inherit;
+}
+
+.bsp-print-link {
+  font-size: 16px;
+}
+
+.bvg-watermark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: 800px;
+  height: 532px;
 }

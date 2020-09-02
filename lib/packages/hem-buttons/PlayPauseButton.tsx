@@ -1,5 +1,4 @@
 import React, { ReactElement, PropsWithChildren } from 'react'
-import classnames from 'classnames'
 
 interface IProps {
   playing: boolean
@@ -79,10 +78,10 @@ function PlayPauseButton({ playing, onClick }: IProps): ReactElement {
     <>
       <style dangerouslySetInnerHTML={{ __html: styleSheet }} />
       <div
-        className={classnames({
-          'hem-play-pause-button': true,
-          'hem-play-pause-button-playing': playing,
-        })}
+        className={`
+          hem-play-pause-button
+          ${ playing ? 'hem-play-pause-button-playing' : '' }
+        `}
         onClick={onClick}
       >
         <div className="hem-play-pause-button-icon">

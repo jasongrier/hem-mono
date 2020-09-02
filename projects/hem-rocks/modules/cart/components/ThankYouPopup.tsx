@@ -45,6 +45,10 @@ function ThankYouPopup(): ReactElement {
     if (getQueryVar('ad') === 'true') {
       setAlreadyDownloaded(true)
     }
+
+    else {
+      ReactGA.modalview('Thank you, sale id: ' + saleId)
+    }
   }, [])
 
   const history = useHistory()
