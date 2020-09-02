@@ -70,17 +70,21 @@ function DetailPopUp({
     initialPrice = contentItem.fixedPrice
   }
 
-  else if (contentItem.flexPriceRecommended) {
+  else if (!BERLIN_STOCK_PHOTOS && contentItem.flexPriceRecommended) {
     initialPrice = contentItem.flexPriceRecommended
   }
   
-  else {
+  else if (!BERLIN_STOCK_PHOTOS) {
     initialPrice = '0'
+  }
+  
+  else {
+    initialPrice = ''
   }
 
   const [attachedPlaylist, setAttachedPlaylist] = useState<Partial<IPlaylist>>()
-  const [suggestedPrice, setSuggestedPrice] = useState<string>('')
-  const [valid, setValid] = useState<boolean>(false)
+  const [suggestedPrice, setSuggestedPrice] = useState<string>(initialPrice)
+  const [valid, setValid] = useState<boolean>(!!contentItem.fixedPrice)
   const [saleId, setSaleId] = useState<string>()
   const [previousItem, setPreviousItem] = useState<IContentItem>()
   const [nextItem, setNextItem] = useState<IContentItem>()
@@ -444,7 +448,9 @@ function DetailPopUp({
                   className="bsp-lightbox-image-placeholder"
                   style={{ backgroundImage: `url(${assetHost}/berlin-stock-photos/content/images/jpg-placeholders/${contentItem.keyArt})`}}
                 />
-                <BvgWatermark width={800} />
+                { !isPrint && (
+                  <BvgWatermark width={800} />
+                )}
               </div>
               <div 
                 className="bsp-lightbox-tags"
@@ -464,7 +470,7 @@ function DetailPopUp({
               </div>
               <div className="bsp-lightbox-type">
                 <strong>Info: </strong>
-                { contentItem.type }, Image download, 3008 x 2000 pixels
+                { contentItem.type + (isPrint ? '' : ', Image download, 3008 x 2000 pixels')}
               </div>
               <div
                 className="bsp-lightbox-caption"

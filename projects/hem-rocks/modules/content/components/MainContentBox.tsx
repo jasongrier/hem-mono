@@ -103,7 +103,7 @@ function MainContentBox({
           { BERLIN_STOCK_PHOTOS && (
             <>
               <div className="bsp-enlarge-button action-button">
-                Download
+                { contentItem.isPhysicalProduct ? 'Download' : '' }
               </div>
               <div
                 className="main-content-box-key-art-image"
