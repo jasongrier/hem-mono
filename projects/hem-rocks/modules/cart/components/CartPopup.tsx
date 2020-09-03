@@ -58,15 +58,18 @@ function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
 
   const downloadOnClick = useCallback(
     function downloadOnClickFn() {
-      dispatch(openPopup('thank-you-popup', { itemSlugs: cartProducts.map(product => product.slug) }))
+      if (!saleId) return
+      
+      dispatch(submitSale(saleId))
+      dispatch(openPopup('thank-you-popup', { saleId, itemSlugs: cartProducts.map(product => product.slug) }))
 
-      history.push('/thank-you')
+      history.push('/thank-you?sid=' + saleId)
 
       ReactGA.event({
         category: 'User',
         action: 'Clicked "Download" (all free products) in shopping cart form',
       })
-    }, [],
+    }, [saleId],
   )
 
   function getSubotal() {

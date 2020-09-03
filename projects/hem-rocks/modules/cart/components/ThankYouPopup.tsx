@@ -117,6 +117,12 @@ function ThankYouPopup(): ReactElement {
       setDonationAmountValid(false)
       return false
     }
+    
+    if (price <= 0) {
+      setDonationAmountValid(false)
+      return false
+    }
+    
     setDonationAmountValid(true)
     return true
   }
@@ -179,6 +185,16 @@ function ThankYouPopup(): ReactElement {
   const valid = forcedSaleId || getQueryVar('sid')
   const products = currentSale?.products
   const loading = !currentSale || !products
+
+  let cartTotal = 0
+  if (products) {
+    cartTotal = 0
+    for (const product of products) {
+      cartTotal = cartTotal + parseFloat(product.finalPrice)
+    }
+  }
+
+  console.log(cartTotal)
 
   return (
     <div className="thank-you-popup">
@@ -254,12 +270,12 @@ function ThankYouPopup(): ReactElement {
               </div>
             </div>
             
-            { pricingMode === 1 && (
+            { cartTotal > 0 && (
               <div className="thank-you-popup-email-form">
                 <EmailForm onFormSubmitted={onFormSubmitted} />
               </div>
             )}
-            { pricingMode === 2 && products && products.length > 0 && products.filter(p => p.type === 'Donation').length === 0 && (
+            { cartTotal === 0 && products && products.length > 0 && products.filter(p => p.type === 'Donation').length === 0 && (
               <div className="thank-you-popup-donate-form">
                 <>
                   <h2>While you're here,<br />why not consider making a donation?</h2>
@@ -281,12 +297,12 @@ function ThankYouPopup(): ReactElement {
                   )}
                   <button
                     className={`
-                      action-button
+                      action-button donation-button
                       ${valid ? '' : 'invalid'}
                     `}
                     onClick={onDonateClick}
                   >
-                    SEND { donationAmount } €!
+                    Send my Donation
                   </button>
                 </>
               </div>

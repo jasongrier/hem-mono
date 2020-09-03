@@ -1,6 +1,8 @@
 TODAY
 
+- bsp make it so that donation box shows in thank you when there is an instant download
 - bsp mobile
+- bsp currency choice (mainly for HEM's sake)
 - bsp search box
   - "Search and downloaad over 3000 images of the world's best city. Lushness, etc..."
 - bsp previous/next is till broken, and resetValidityOnPrevNext should not fire initially

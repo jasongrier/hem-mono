@@ -45,6 +45,9 @@
 - hardcoded SEO in index.html
 - best of doesn't scroll to top
 - sticky 9 images in each tag and preload them in index.html by directly accessing the index in a script tag
+- if you reload the thank you page for an instant download, you get the sale not found error; add sid to pushed query string for instant downloads
+- Click donate on thank you popup, panic and click the back button, you will see the "Hmmmmm..." screen there will be a weird product in the cart
+- Show some kinf of spinner or placeholder AS SOON AS the popup is launched (use direct dom manip if you have to)
 
 - PR
   - Exberliner

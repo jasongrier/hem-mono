@@ -11,7 +11,7 @@ const styleSheet = `
   .bvg-watermark {
     position: relative;
     overflow: hidden;
-    opacity: 0.7;
+    opacity: 0.6;
   }
 
   .bvg-watermark .bb-gate-cluster {

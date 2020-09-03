@@ -162,3 +162,14 @@
   top: 115px;
   left: 545px;
 }
+
+.thank-you-popup-donate-form .invalid-message {
+  text-align: center;
+  margin-top: -5px;
+  margin-bottom: 12px;
+}
+
+.thank-you-popup-donate-form .donation-button.invalid {
+  opacity: 0.5;
+  pointer-events: none;
+}

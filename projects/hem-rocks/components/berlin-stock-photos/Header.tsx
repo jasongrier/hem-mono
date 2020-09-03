@@ -1,8 +1,14 @@
 import React, { ReactElement } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import { ElectronOnly } from '../../../../lib/components'
+import { RootState } from '../../index'
 
 function Header(): ReactElement {
+  const { productsCount } = useSelector((state: RootState) => ({
+    productsCount: state.cart.products.length,
+  }))
+
   const { pathname } = useLocation()
 
   const noCartPaths = [
@@ -52,7 +58,7 @@ function Header(): ReactElement {
                   return `${pathname !== '/' ? pathname : ''}/cart`
                 })()}
               >
-                View Cart
+                View Cart ({ productsCount })
               </NavLink>
             </li>
           )}
