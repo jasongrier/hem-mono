@@ -79,7 +79,7 @@ function DetailPopUp({
   }
   
   else {
-    initialPrice = ''
+    initialPrice = '0'
   }
 
   const [attachedPlaylist, setAttachedPlaylist] = useState<Partial<IPlaylist>>()
@@ -252,7 +252,7 @@ function DetailPopUp({
       dispatch(submitSale(saleId))
       dispatch(openPopup('thank-you-popup', { saleId }))
 
-      history.push('/thank-you')
+      history.push('/thank-you?sid=' + saleId)
 
       ReactGA.event({
         category: 'User',
