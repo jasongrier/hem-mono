@@ -2,48 +2,10 @@
 ******************************************************
 ******************************************************
 
-BERLINSTOCKPHOTOS LAND
-
-- Helmet: Cheap arty stock photos from the German capitol city: Architecture. Grit. Green.
-- Assign domains (de/com)
-- Staging domains
-– Set up in Mono
-- Add a mailing list in CM
-- Mailing list UI
-– About page with contact form (Support/Problems Downloading/Contributing/Licensing/Other)
-- Favicon and mobile icons
-- Okojo font
-√ What data is needed? Is a CMS even necessary, or can it be file-name--date--location--copyright.jpg
-– Tags
-- Offer raw format as well
-- Cart/checkout (can be libified from HEM??)
-- "All shots taken with a..." on about page
-- "Grit. Weirdness. Plants." floating words hero h2
-- One-time download PHP + hash the file name before downloading
-- Products grid
-- Search
-- Filter
-- Random heroine
-- SEO text
-- Add to Google analytics
-- React GA events
-- Register berlinstockphotos.com
-- Privacy Policy
-- Cookies policy
-- Cookies nag and prefs (libify HEM's cookie stuff)
-–
-> Lightbox
-> User accounts
-
-******************************************************
-******************************************************
-******************************************************
-
 GRIER LAND
 
 – Script to automatically post to the gram every day
 - Favicon and mobile icons
-
 
 ******************************************************
 ******************************************************
@@ -65,6 +27,7 @@ BRETO LAND
 ******************************************************
 
 HEM LAND
+
 ###
 
 Sound Libraries as Artworks
@@ -77,6 +40,8 @@ Sound Libraries as Artworks
 
 > Admin "not:" search filter
 - Admin delete not working
+
+- Scatter flyers, live photos and stuff along timeline
 
 Review mode allows viewing of unpublished content which has the "reviewable" attribute
 
