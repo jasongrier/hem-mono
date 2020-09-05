@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useState, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import uuid from 'uuid/v1'
-import { noop, last, compact, has } from 'lodash'
+import { noop, last, compact, has, sample } from 'lodash'
 import pad from 'pad'
 import $ from 'jquery'
 import { autoParagraph } from '../../../../../lib/functions'
@@ -86,78 +86,89 @@ function convertOldTypescriptModelsToJson() {
 function migrate(allContentItems: IContentItem[]) {
   const { remote } = window.require('electron')
   const { execSync } = remote.require('child_process')
-  const { writeFileSync, readdirSync, renameSync, lstatSync, copyFileSync } = remote.require('fs')
+  const { writeFileSync, readdirSync, readFileSync, renameSync, lstatSync, copyFileSync } = remote.require('fs')
   const { join, extname } = remote.require('path')
+  const recursiveReadSync = remote.require('recursive-readdir-sync')
 
-  // const newItems = []
-  
-  // const src = '/Users/admin/Desktop/Prog'
+  const newItems = []
 
-  // const files = readdirSync(src)
-  
-  // for (const file of files) {
-  //   renameSync(src + '/' + file, src + '/' + file.replace(' Kopie', ''))
-  // }
-  
-  // for (const file of files) {
-  //   if (extname(file) !== '.jpg') continue
+  // const src = '/Volumes/April_Kepner/Eva_Vollmer/Disorganised/'
 
-  //   const slug = file.replace('.jpg', '')
-  //   const title = file.replace('.jpg', '').replace('bsp-', '')
-  //   const createItem: IContentItem = {
-  //     acceptingDonations: false,
-  //     aside: '',
-  //     attribution: '',
-  //     attributionLink: '',
-  //     audioFilename: '',
-  //     badgeText: '',
-  //     blurb: '',
-  //     category: 'stock-photos',
-  //     date: '17.09.2020',
-  //     description: '',
-  //     displayCategory: '',
-  //     downloadFile: '',
-  //     externalLinkText: '',
-  //     externalLinkUrl: '',
-  //     fixedPrice: '',
-  //     flexPriceMinimum: '5',
-  //     flexPriceRecommended: '10',
-  //     hasFixedPrice: false,
-  //     id: slug,
-  //     isDigitalProduct: true,
-  //     isPhysicalProduct: false,
-  //     keyArt: file,
-  //     order: '',
-  //     physicalFormats: '',
-  //     preview: true,
-  //     published: true,
-  //     relatedContent: '',
-  //     relatedContentLink: '',
-  //     releasePhase: '1',
-  //     secondaryAttribution: '',
-  //     secondaryAttributionLink: '',
-  //     secondaryTitle: '',
-  //     slug,
-  //     sticky: false,
-  //     tags: '',
-  //     title,
-  //     titleWrapping: '',
-  //     trackSlugs: '',
-  //     type: 'Stock Photo',
-  //   }
+  // const mainDirs = readdirSync(src).map().filter(dir => src + dir.replace)
 
-  //   newItems.push(createItem)
-  // }
+  // console.log(mainDirs)
+
+  let fileList: string[] = []
+
+  for (let i = 1; i <= 24; i ++) {
+    const subList = readFileSync('/Users/jason/Desktop/Workong/HEM/Repos/hem-mono/projects/hem-rocks/static/content/dir-' + i + '.json', 'utf8')
+    const filePaths = subList.split('\n')
+    fileList = fileList.concat(filePaths)
+    break
+  }
+
+  for (const file of fileList) {
+    const title = last(file.split('/')) || 'Untitled'
+    const slug = slugify(title)
+    const createItem: IContentItem = {
+      acceptingDonations: false,
+      aside: '',
+      attribution: '',
+      attributionLink: '',
+      audioFilename: file,
+      badgeText: '',
+      blurb: '',
+      category: 'assets',
+      date: lstatSync(file).birthtime,
+      description: '',
+      displayCategory: '',
+      downloadFile: '',
+      externalLinkText: '',
+      externalLinkUrl: '',
+      fixedPrice: '',
+      flexPriceMinimum: '',
+      flexPriceRecommended: '',
+      hasFixedPrice: false,
+      id: slug,
+      isDigitalProduct: false,
+      isPhysicalProduct: false,
+      keyArt: '',
+      order: '',
+      physicalFormats: '',
+      preview: true,
+      published: true,
+      relatedContent: '',
+      relatedContentLink: '',
+      releasePhase: '1',
+      secondaryAttribution: '',
+      secondaryAttributionLink: '',
+      secondaryTitle: '',
+      slug,
+      sticky: false,
+      tags: '',
+      title,
+      titleWrapping: '',
+      trackSlugs: '',
+      type: '',
+    }
+
+    newItems.push(createItem)
+  }
+
+  console.log(sample(newItems)?.date)
+  console.log(sample(newItems)?.date)
+  console.log(sample(newItems)?.date)
+  console.log(sample(newItems)?.date)
+  console.log(sample(newItems)?.date)
+  console.log(sample(newItems)?.date)
 
   for (const item of allContentItems) {
     const newItem = Object.assign({}, item)
 
     // DO STUFF HERE
-    // if (hasCategory(newItem, 'stock-photos') && newItem.slug.includes('-print')) {
-    //   newItem.fixedPrice = '149'
-    // }
+    newItems.push(newItem)
     // END DO STUFF HERE
-    
+
     // newItems.push(newItem)
   }
 
