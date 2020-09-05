@@ -24,7 +24,7 @@ import {
 } from './index'
 
 const initialState: IState = {
-  adminFilterApplied: 'all',
+  adminFilterApplied: 'sound-library',
   adminSearchApplied: '',
   currentContentItem: null,
   currentContentItems: [],
@@ -44,7 +44,7 @@ const reducer = (
         draftState.adminFilterApplied = payload
       })
     }
-    
+
     case ADMIN_APPLY_SEARCH: {
       return produce(state, draftState => {
         draftState.adminSearchApplied = payload
@@ -122,7 +122,7 @@ const reducer = (
         draftState.showUnpublishedFilter = !draftState.showUnpublishedFilter
       })
     }
-    
+
     case TOGGLE_STICKY_FILTER: {
       return produce(state, draftState => {
         draftState.stickyFilter = !draftState.stickyFilter
