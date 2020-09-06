@@ -88,95 +88,82 @@ function migrate(allContentItems: IContentItem[]) {
   const { execSync } = remote.require('child_process')
   const { writeFileSync, readdirSync, readFileSync, renameSync, lstatSync, copyFileSync } = remote.require('fs')
   const { join, extname } = remote.require('path')
-  const recursiveReadSync = remote.require('recursive-readdir-sync')
 
   const newItems = []
 
-  // const src = '/Volumes/April_Kepner/Eva_Vollmer/Disorganised/'
-
-  // const mainDirs = readdirSync(src).map().filter(dir => src + dir.replace)
-
-  // console.log(mainDirs)
-
   let fileList: string[] = []
 
-  for (let i = 1; i <= 24; i ++) {
-    const subList = readFileSync('/Users/jason/Desktop/Workong/HEM/Repos/hem-mono/projects/hem-rocks/static/content/dir-' + i + '.json', 'utf8')
-    const filePaths = subList.split('\n')
-    fileList = fileList.concat(filePaths)
-    break
-  }
+  // for (let i = 1; i <= 24; i ++) {
+  //   const subList = readFileSync('/Users/jason/Desktop/Workong/HEM/Repos/hem-mono/projects/hem-rocks/static/content/dir-' + i + '.json', 'utf8')
+  //   const filePaths = subList.split('\n')
+  //   fileList = fileList.concat(filePaths)
+  // }
 
-  for (const file of fileList) {
-    const title = last(file.split('/')) || 'Untitled'
-    const slug = slugify(title)
-    const createItem: IContentItem = {
-      acceptingDonations: false,
-      aside: '',
-      attribution: '',
-      attributionLink: '',
-      audioFilename: file,
-      badgeText: '',
-      blurb: '',
-      category: 'assets',
-      date: lstatSync(file).birthtime,
-      description: '',
-      displayCategory: '',
-      downloadFile: '',
-      externalLinkText: '',
-      externalLinkUrl: '',
-      fixedPrice: '',
-      flexPriceMinimum: '',
-      flexPriceRecommended: '',
-      hasFixedPrice: false,
-      id: slug,
-      isDigitalProduct: false,
-      isPhysicalProduct: false,
-      keyArt: '',
-      order: '',
-      physicalFormats: '',
-      preview: true,
-      published: true,
-      relatedContent: '',
-      relatedContentLink: '',
-      releasePhase: '1',
-      secondaryAttribution: '',
-      secondaryAttributionLink: '',
-      secondaryTitle: '',
-      slug,
-      sticky: false,
-      tags: '',
-      title,
-      titleWrapping: '',
-      trackSlugs: '',
-      type: '',
-    }
+  // for (const file of fileList) {
+  //   const title = last(file.split('/')) || 'Untitled'
+  //   const slug = slugify(title)
+  //   const createItem: IContentItem = {
+  //     acceptingDonations: false,
+  //     aside: '',
+  //     attribution: '',
+  //     attributionLink: '',
+  //     audioFilename: file,
+  //     badgeText: '',
+  //     blurb: '',
+  //     category: 'assets',
+  //     date: lstatSync(file).birthtime,
+  //     description: '',
+  //     displayCategory: '',
+  //     downloadFile: '',
+  //     externalLinkText: '',
+  //     externalLinkUrl: '',
+  //     fixedPrice: '',
+  //     flexPriceMinimum: '',
+  //     flexPriceRecommended: '',
+  //     hasFixedPrice: false,
+  //     id: slug,
+  //     isDigitalProduct: false,
+  //     isPhysicalProduct: false,
+  //     keyArt: '',
+  //     order: '',
+  //     physicalFormats: '',
+  //     preview: true,
+  //     published: false,
+  //     relatedContent: '',
+  //     relatedContentLink: '',
+  //     releasePhase: '1',
+  //     secondaryAttribution: '',
+  //     secondaryAttributionLink: '',
+  //     secondaryTitle: '',
+  //     slug,
+  //     sticky: false,
+  //     tags: '',
+  //     title,
+  //     titleWrapping: '',
+  //     trackSlugs: '',
+  //     type: '',
+  //   }
 
-    newItems.push(createItem)
-  }
-
-  console.log(sample(newItems)?.date)
-  console.log(sample(newItems)?.date)
-  console.log(sample(newItems)?.date)
-  console.log(sample(newItems)?.date)
-  console.log(sample(newItems)?.date)
-  console.log(sample(newItems)?.date)
+  //   newItems.push(createItem)
+  // }
 
   for (const item of allContentItems) {
     const newItem = Object.assign({}, item)
 
     // DO STUFF HERE
-    newItems.push(newItem)
+    if (hasCategory(item, 'assets')) {
+      newItem.date = lstatSync(newItem.audioFilename).birthtime.toString()
+    }
     // END DO STUFF HERE
 
-    // newItems.push(newItem)
+    newItems.push(newItem)
   }
 
   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
   const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
 
-  // writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
-  // writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
+  writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
+  writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
 }
 
 function assignImages() {

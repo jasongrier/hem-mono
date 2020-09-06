@@ -2,7 +2,6 @@ import React, { ReactElement, useEffect, useState } from 'react'
 import { useLocation, useHistory, Redirect } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { find, isArray, map } from 'lodash'
-import ScrollLock from 'react-scrolllock'
 import ReactGA from 'react-ga'
 import Cookies from 'js-cookie'
 import { slugify } from 'voca'
@@ -75,7 +74,7 @@ function App(): ReactElement {
     { basePath: 'venue-calendar', id: 'detail-popup' },
     { basePath: 'venue-merch', id: 'detail-popup' },
     { basePath: 'videos', id: 'detail-popup' },
-    
+
     { basePath: 'stock-photos-prints', id: 'detail-popup' },
   ]
 
@@ -255,14 +254,14 @@ function App(): ReactElement {
       ) {
         path += 'info'
       }
-      
+
       if (
         pathnameSplit[0] === 'about'
         && pathnameSplit[1] === 'cart'
       ) {
         path += 'about'
       }
-      
+
       if (
         pathnameSplit[0] === 'contact'
         && pathnameSplit[1] === 'cart'
@@ -391,17 +390,17 @@ function App(): ReactElement {
         >
           <NewWebsitePopup />
         </PopupContainer>
-        
+
         { !BERLIN_STOCK_PHOTOS && (
           <PlayerBar />
         )}
       </>
-      
+
       <ElectronNot>
         <CookieApproval />
       </ElectronNot>
 
-      { cookiesMarketingApproved 
+      { cookiesMarketingApproved
         && !Cookies.get(getCookieName('cannot-show-email-nag'))
         && !BERLIN_STOCK_PHOTOS
         && (

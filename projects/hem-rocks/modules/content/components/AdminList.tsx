@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useCallback, useState, SyntheticEvent }
 import { useSelector, useDispatch } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 import produce from 'immer'
-import { isEmpty, noop, first } from 'lodash'
+import { isEmpty, noop, find, filter } from 'lodash'
 import { titleCase } from 'voca'
 import moment from 'moment'
 import { ElectronOnly } from '../../../../../lib/components'
@@ -14,12 +14,12 @@ import { assetHostHostname } from '../../../functions'
 import { toggleShowUnpublishedFilter, toggleStickyFilter } from '../actions'
 
 function AdminList(): ReactElement {
-  const { adminFilterApplied, adminSearchApplied, allContentItems, needsKeyArtFilter, showUnpublishedFilter, stickyFilter } = useSelector((state: RootState) => ({
+  const { adminFilterApplied, adminSearchApplied, pageContentItems, needsKeyArtFilter, showUnpublishedFilter, stickyFilter } = useSelector((state: RootState) => ({
     adminFilterApplied: state.content.adminFilterApplied,
     adminSearchApplied: state.content.adminSearchApplied,
-    allContentItems: state.content.contentItems,
     needsKeyArtFilter: state.content.needsKeyArtFilter,
-    showUnpublishedFilter: state.content.showUnpublishedFilter,
+    pageContentItems: state.content.pageContentItems,
+    showUnpublishedFilter: state.content.showUnpublishedFilter || state.content.adminFilterApplied === 'assets',
     stickyFilter: state.content.stickyFilter,
   }))
 
@@ -28,6 +28,8 @@ function AdminList(): ReactElement {
   useEffect(function fetchItems() {
     dispatch(requestReadItems())
   }, [])
+
+  const [selectedItems, setSelectedItems] = useState<any>({})
 
   const categoryFilterOnChange = useCallback(
     function categoryFilterOnChangeFn(evt: SyntheticEvent<HTMLSelectElement>) {
@@ -52,52 +54,47 @@ function AdminList(): ReactElement {
       dispatch(toggleShowUnpublishedFilter())
     }, [],
   )
-  
+
   const needsStickyOnChange = useCallback(
     function needsStickyOnChangeFn(evt: SyntheticEvent<HTMLInputElement>) {
       dispatch(toggleStickyFilter())
     }, [],
   )
 
-  let contentItems = ([] as IContentItem[]).concat(adminFilterApplied === 'all' ? allContentItems : allContentItems.filter(item => {
-    if (adminFilterApplied === 'home-feature') {
-      return hasTag(item, adminFilterApplied)
+  function massTagSave(contentItems: IContentItem[]) {
+    const input = document.getElementById('mass-tag-input')
+
+    if (!input) return
+
+    const selectedIds: string[] = []
+
+    for (const id in selectedItems) {
+      if (selectedItems[id] === true) {
+        selectedIds.push(id)
+      }
     }
 
-    return hasCategory(item, adminFilterApplied)
-  }))
+    if (!selectedIds.length) return
 
-  if (!isEmpty(adminSearchApplied)) {
-    contentItems = contentItems.filter(item =>
-      item.title.toLowerCase().includes(adminSearchApplied.toLowerCase())
-      || item.tags.includes(adminSearchApplied)
-      || item.tags.includes(adminSearchApplied.toLowerCase())
-      || item.attribution.toLowerCase().includes(adminSearchApplied.toLowerCase())
-    )
-  }
+    // @ts-ignore
+    if (!input.value.length) return
 
-  if (needsKeyArtFilter) {
-    contentItems = contentItems.filter(item => isEmpty(item.keyArt))
-  }
+    for (const id of selectedIds) {
+      const checkedItem = find(contentItems, { id })
 
-  if (!showUnpublishedFilter) {
-    contentItems = contentItems.filter(item => item.published)
-  }
-  
-  if (stickyFilter) {
-    contentItems = contentItems.filter(item => item.sticky)
-  }
+      if (!checkedItem) continue
 
-  contentItems.sort((a, b) => {
-    if (adminFilterApplied === 'sound-library') {
-      return parseInt(a.order, 10) - parseInt(b.order, 10)
-    }
-    
-    else {
+      const newItem = Object.assign({}, checkedItem)
+
       // @ts-ignore
-      return moment(b.date, 'DD.MM.YYYY') - moment(a.date, 'DD.MM.YYYY')
+      newItem.tags = (newItem.tags + ', ' + input.value).replace(/^, /, '')
+      dispatch(requestUpdateItems([newItem]))
     }
-  })
+
+    // @ts-ignore
+    input.value = ''
+    setSelectedItems([])
+  }
 
   const assetHost = assetHostHostname()
 
@@ -133,9 +130,12 @@ function AdminList(): ReactElement {
               <option value="venue-calendar">Venue Calendar</option>
               <option value="venue-merch">Venue Merch</option>
               <option value="video">Videos</option>
-              <option value="all">---</option>
               <option value="lists">Lists</option>
+              <option value="all">---</option>
               <option value="stock-photos">Berlin Stock Photos</option>
+              <option value="all">---</option>
+              <option value="assets">Assets on "April Kepner"</option>
+              <option value="assets-vollmer">Assets on "Eva Vollmer"</option>
             </select>
           </div>
           <div className="admin-list-controls-search">
@@ -179,110 +179,179 @@ function AdminList(): ReactElement {
           </label>
         </div>
         <div className="admin-list-stats">
-          Selected Items: <strong>{ contentItems.length }</strong>&nbsp;&nbsp;|&nbsp;&nbsp;
-          Total Items: <strong>{ allContentItems.length }</strong>
+          Selected Items: <strong>{ pageContentItems.length }</strong>&nbsp;&nbsp;|&nbsp;&nbsp;
+          Total Items: <strong>{ pageContentItems.length }</strong>
+        </div>
+        <div className="admin-list-controls clearfix">
+          <div className="admin-list-controls-mass-tag">
+            <form onSubmit={evt => {
+              evt.preventDefault()
+              massTagSave(pageContentItems)
+            }}>
+              <label htmlFor="mass-tag-input">
+                Mass tag:
+              </label>
+              <input
+                id="mass-tag-input"
+                type="text"
+              />
+              <button
+                className="action-button"
+                onClick={evt => {
+                  evt.preventDefault()
+                  massTagSave(pageContentItems)
+                }}
+                type="submit"
+              >
+                Save
+              </button>
+            </form>
+          </div>
         </div>
         <table>
           <thead>
             <tr>
+              <th className="admin-list-column-check">
+
+              </th>
               <th className="admin-list-column-thumbnail">
                 Item
               </th>
-              {/* <th className="admin-list-column-title">
-              </th> */}
-              <th className="admin-list-column-category">
-                Tags
-              </th>
-              <th className="admin-list-column-order">
-                Order
-              </th>
-              {/* <th className="admin-list-column-date">
-                Date
-              </th> */}
+              { adminFilterApplied !== 'assets' && (
+                <th className="admin-list-column-category">
+                  Tags
+                </th>
+              )}
+              { adminFilterApplied === 'sound-library' && (
+                <th className="admin-list-column-order">
+                  Order
+                </th>
+              )}
+              { adminFilterApplied === 'assets' && (
+                <th className="admin-list-column-date">
+                  Date
+                </th>
+              )}
               <th className="admin-list-column-check">
                 Actions
               </th>
             </tr>
           </thead>
           <tbody>
-            { contentItems.map((item: IContentItem) => ( /* parseInt(item.title, 10) > 511 && */ (
+            { pageContentItems.map((item: IContentItem) => ( /* parseInt(item.title, 10) > 511 && */
               <tr key={item.slug}>
+                <td className="admin-list-column-check">
+                  <button
+                    className={`
+                      action-button
+                      small-action-button
+                      ${ selectedItems[item.id] ? 'small-action-button-active' : '' }
+                    `}
+                    onClick={() => {
+                      const newSelectedItems: any = Object.assign({}, selectedItems)
+
+                      if (newSelectedItems[item.id]) {
+                        newSelectedItems[item.id] = false
+                      }
+
+                      else {
+                        newSelectedItems[item.id] = true
+                      }
+
+                      setSelectedItems(newSelectedItems)
+                    }}
+                  />
+                </td>
                 <td className="admin-list-column-thumbnail">
-                  {item.title}<br />
+                  <Link to={`/admin/edit/${item.slug}`}>
+                    { hasCategory(item, 'assets')
+                      ? item.audioFilename.replace('/Volumes/April_Kepner/Eva_Vollmer/Disorganised/', '')
+                      : item.title
+                    }
+                  </Link>
+                  <br />
                   <Link to={`/admin/edit/${item.slug}`}>
                     { hasCategory(item, 'stock-photos') && (
                       <img src={`${assetHost}/berlin-stock-photos/content/images/jpg-web/${item.keyArt}`} />
                     )}
-                    { !hasCategory(item, 'stock-photos') && (
+                    { !hasCategory(item, 'stock-photos') && !hasCategory(item, 'assets') && (
                       <img src={`${assetHost}/hem-rocks/content/images/key-art/${item.keyArt}`} />
                     )}
                   </Link>
                 </td>
-                {/* <td className="admin-list-column-title">
-                  <Link to={`/admin/edit/${item.slug}`}>{item.title}</Link>
-                </td> */}
-                <td className="admin-list-column-category">
-                  { titleCase(item.tags.replace(/-/g, ' ').replace(/,/g, ', ')) }
-                </td>
-                <td className="admin-list-column-order">
-                  { item.order || '-' }
-                </td>
-                {/* <td className="admin-list-column-date">
-                  { item.date }
-                </td> */}
-                <td className="admin-list-column-actions">
-                  <button
-                    className="action-button"
-                    onClick={() => {
-                      const confirmation = confirm('Are you sure?')
-                      if (!confirmation) return
-                      dispatch(requestDeleteItems([item.slug]))
-                    }}
-                  >
-                    Delete
-                  </button>
-                  <button
-                    className="action-button"
-                    onClick={() => {
-                      const updatedItem: IContentItem = produce(item, (draftItem) => {
-                        draftItem.published = !draftItem.published
-                      })
-                      dispatch(requestUpdateItems([updatedItem]))
-                    }}
-                  >
-                    { item.published ? 'Unpublish' : 'Publish' }
-                  </button>
-                  <button
-                    className="action-button"
-                    onClick={() => {
-                      const updatedItem: IContentItem = produce(item, (draftItem) => {
-                        draftItem.sticky = !draftItem.sticky
-                      })
-                      dispatch(requestUpdateItems([updatedItem]))
-                    }}
-                  >
-                    { item.sticky ? 'Unsticky' : 'Sticky' }
-                  </button>
-                  <button
-                    className="action-button"
-                    onClick={() => {
-                      const updatedItem: IContentItem = produce(item, (draftItem) => {
-                        if (hasTag(item, 'best-of')) {
-                          draftItem.tags = draftItem.tags.replace(', best-of', '')
-                        }
+                { hasCategory(item, 'sound-library') && (
+                  <td className="admin-list-column-order">
+                    { item.order || '-' }
+                  </td>
+                )}
 
-                        else {
-                          draftItem.tags = draftItem.tags + ', best-of'
-                        }
-                      })
-                      dispatch(requestUpdateItems([updatedItem]))
-                    }}
-                  >
-                    { hasTag(item, 'best-of') ? 'Un-best' : 'Best' }
-                  </button>
+                { hasCategory(item, 'assets') && (
+                  <td className="admin-list-column-date">
+                    { item.date }
+                  </td>
+                )}
+
+                <td className="admin-list-column-actions">
+                  { !hasCategory(item, 'assets') && (
+                    <button
+                      className="action-button"
+                      onClick={() => {
+                        const confirmation = confirm('Are you sure?')
+                        if (!confirmation) return
+                        dispatch(requestDeleteItems([item.slug]))
+                      }}
+                    >
+                      Delete
+                    </button>
+                  )}
+                  { !hasCategory(item, 'assets') && (
+                    <button
+                      className="action-button"
+                      onClick={() => {
+                        const updatedItem: IContentItem = produce(item, (draftItem) => {
+                          draftItem.published = !draftItem.published
+                        })
+                        dispatch(requestUpdateItems([updatedItem]))
+                      }}
+                    >
+                      { item.published ? 'Unpublish' : 'Publish' }
+                    </button>
+                  )}
+                  { !hasCategory(item, 'assets') && (
+                    <button
+                      className="action-button"
+                      onClick={() => {
+                        const updatedItem: IContentItem = produce(item, (draftItem) => {
+                          draftItem.sticky = !draftItem.sticky
+                        })
+                        dispatch(requestUpdateItems([updatedItem]))
+                      }}
+                    >
+                      { item.sticky ? 'Unsticky' : 'Sticky' }
+                    </button>
+                  )}
+                  { !hasCategory(item, 'assets') && (
+                    <button
+                      className="action-button"
+                      onClick={() => {
+                        const updatedItem: IContentItem = produce(item, (draftItem) => {
+                          if (hasTag(item, 'best-of')) {
+                            draftItem.tags = draftItem.tags.replace(', best-of', '')
+                          }
+
+                          else {
+                            draftItem.tags = draftItem.tags + ', best-of'
+                          }
+                        })
+                        dispatch(requestUpdateItems([updatedItem]))
+                      }}
+                    >
+                      { hasTag(item, 'best-of') ? 'Un-best' : 'Best' }
+                    </button>
+                  )}
                 </td>
               </tr>
-            )))}
+            ))}
           </tbody>
         </table>
       </div>

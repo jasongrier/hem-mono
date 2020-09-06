@@ -18,7 +18,9 @@ import {
   validateCompressionMap,
 
   IIndexEntry,
+  IContentItem,
 } from './index'
+import { hasCategory } from './functions'
 
 function* createItems({ payload }: any) {
   try {
@@ -32,7 +34,7 @@ function* createItems({ payload }: any) {
     const distIndexFile = join(__dirname, '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
     const compressedIndex = JSON.parse(readFileSync(indexFile, 'utf8'))
     const index: IIndexEntry[] = compressedIndex.map(uncompressItem)
-    
+
     index.push(item)
 
     writeFileSync(indexFile, JSON.stringify(compressIndex(index)))
@@ -82,7 +84,11 @@ function* readItems() {
 
     const res = yield call(fetch, '/static/content/index.json')
     const entries = yield res.json()
-    const items = entries.map(uncompressItem).map(modelize)
+    let items = entries.map(uncompressItem).map(modelize)
+
+    if (!window.process?.env.ELECTRON_MONO_DEV) {
+      items.filter((item: any) => !hasCategory(item, 'assets'))
+    }
 
     yield put(doReadItemsAc(items))
   }
@@ -95,21 +101,22 @@ function* readItems() {
 function* updateItems({ payload }: any) {
   try {
     const { remote } = window.require('electron')
-    const { existsSync, readdirSync, readFileSync, writeFileSync } = remote.require('fs')
-    const { extname, join } = remote.require('path')
+    const { writeFileSync } = remote.require('fs')
+    const { join } = remote.require('path')
     const { execSync } = remote.require('child_process')
 
     const updatedItem = payload[0] // TODO: Handle multiples
-    const indexFile = join(__dirname, '..', '..', 'static', 'content', 'index.json')
-    const distIndexFile = join(__dirname, '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
-    const compressedIndex: IIndexEntry[] = JSON.parse(readFileSync(indexFile, 'utf8'))
-    const index: IIndexEntry[] = compressedIndex.map(uncompressItem)
-    const entryIndex = index.findIndex(item => item.slug === updatedItem.slug)
+    const dbFile = join(__dirname, '..', '..', 'static', 'content', 'index.json')
+    const distDbFile = join(__dirname, '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
+    const state = yield select()
+    const { contentItems } = state.content
+    const newContentItems: IContentItem[] = [].concat(contentItems)
+    const index = contentItems.findIndex((item: any) => item.id === updatedItem.id)
 
-    index[entryIndex] = updatedItem
+    newContentItems[index] = updatedItem
 
-    writeFileSync(indexFile, JSON.stringify(compressIndex(index)))
-    execSync(`cp ${indexFile} ${distIndexFile}`, { stdio: 'inherit' })
+    writeFileSync(dbFile, JSON.stringify(compressIndex(newContentItems)))
+    execSync(`cp ${dbFile} ${distDbFile}`, { stdio: 'inherit' })
 
     yield put(doUpdateItemsAc([updatedItem]))
     yield put(requestReadItemsAc())

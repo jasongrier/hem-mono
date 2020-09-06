@@ -4,7 +4,6 @@ import { uniqBy } from 'lodash'
 import {
   ADMIN_APPLY_FILTER,
   ADMIN_APPLY_SEARCH,
-  CLEAR_ITEMS,
   DO_CREATE_ITEMS,
   DO_DELETE_ITEMS,
   DO_READ_ITEMS,
@@ -22,14 +21,17 @@ import {
   IState,
   IContentItem,
 } from './index'
+import { applyPaginationAndFiltering } from './functions'
 
 const initialState: IState = {
-  adminFilterApplied: 'sound-library',
+  adminFilterApplied: 'assets',
   adminSearchApplied: '',
+  contentItems: [],
   currentContentItem: null,
   currentContentItems: [],
-  contentItems: [],
   needsKeyArtFilter: false,
+  page: 1,
+  pageContentItems: [],
   showUnpublishedFilter: false,
   stickyFilter: false,
 }
@@ -42,18 +44,14 @@ const reducer = (
     case ADMIN_APPLY_FILTER: {
       return produce(state, draftState => {
         draftState.adminFilterApplied = payload
+        draftState.pageContentItems = applyPaginationAndFiltering(draftState)
       })
     }
 
     case ADMIN_APPLY_SEARCH: {
       return produce(state, draftState => {
         draftState.adminSearchApplied = payload
-      })
-    }
-
-    case CLEAR_ITEMS: {
-      return produce(state, draftState => {
-        draftState.contentItems = []
+        draftState.pageContentItems = applyPaginationAndFiltering(draftState)
       })
     }
 
@@ -74,6 +72,7 @@ const reducer = (
     case DO_READ_ITEMS: {
       return produce(state, draftState => {
         draftState.contentItems = payload
+        draftState.pageContentItems = applyPaginationAndFiltering(state)
       })
     }
 
@@ -114,18 +113,21 @@ const reducer = (
     case TOGGLE_NEEDS_KEY_ART_FILTER: {
       return produce(state, draftState => {
         draftState.needsKeyArtFilter = !draftState.needsKeyArtFilter
+        draftState.pageContentItems = applyPaginationAndFiltering(draftState)
       })
     }
 
     case TOGGLE_SHOW_UNPUBLISHED_FILTER: {
       return produce(state, draftState => {
         draftState.showUnpublishedFilter = !draftState.showUnpublishedFilter
+        draftState.pageContentItems = applyPaginationAndFiltering(draftState)
       })
     }
 
     case TOGGLE_STICKY_FILTER: {
       return produce(state, draftState => {
         draftState.stickyFilter = !draftState.stickyFilter
+        draftState.pageContentItems = applyPaginationAndFiltering(draftState)
       })
     }
 

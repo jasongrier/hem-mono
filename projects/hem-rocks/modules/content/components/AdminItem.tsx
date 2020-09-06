@@ -89,7 +89,7 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
     //   }
     // })
   }, [canSave])
-  
+
   function onChange(fieldName: string, value: string) {
     setWorkingItem(produce(workingItem, (draftItem: any) => {
       draftItem[fieldName] = value
@@ -213,9 +213,9 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
     'Iron and Steel',
     'Kids',
     'Lakes',
-    'Malfunction', 
-    'Maritime', 
-    'Markets', 
+    'Malfunction',
+    'Maritime',
+    'Markets',
     'Monuments',
     'Nice Fonts',
     'Nite Time',
@@ -271,7 +271,7 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
     'Weeping Willow Trees',
     'Weirdness',
     'Windows',
-    'WTF', 
+    'WTF',
   ]
 
   return (
@@ -280,10 +280,10 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
         <header className="admin-item-header">
           <h2>{ originalItem?.title }</h2>
           <div className="admin-item-key-art clearfix">
-            { originalItem && hasCategory(originalItem, 'stock-photos') && (
+            { originalItem && originalItem.keyArt && hasCategory(originalItem, 'stock-photos') && (
               <img src={`${assetHost}/berlin-stock-photos/content/images/jpg-web/${originalItem.keyArt}`} />
             )}
-            { originalItem && !hasCategory(originalItem, 'stock-photos') && (
+            { originalItem && originalItem.keyArt && !hasCategory(originalItem, 'stock-photos') && (
               <img src={`${assetHost}/hem-rocks/content/images/key-art/${originalItem.keyArt}`} />
             )}
           </div>
@@ -291,14 +291,14 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
             className="action-button publish-item-button"
             onClick={(evt) => {
               evt.preventDefault()
-              
+
               if (originalItem) {
                 const updatedItem: IContentItem = produce(originalItem, (draftItem) => {
                   draftItem.published = !draftItem.published
                 })
                 dispatch(requestUpdateItems([updatedItem]))
               }
-              
+
               setWorkingItem(produce(workingItem, (draftItem: any) => {
                 draftItem.published = !draftItem.published
               }))
@@ -313,24 +313,24 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
           >
             Save
           </button>
-          { BERLIN_STOCK_PHOTOS && (
+          { hasCategory(workingItem, 'stock-photos') && (
             <div style={{
               paddingLeft: '420px',
             }}>
               { presetTags.map(tag => (
-                <div 
+                <div
                   key={slugify(tag)}
                   onClick={() => {
                     setWorkingItem(produce(workingItem, (draftItem: any) => {
                       draftItem.tags = (draftItem.tags + ', ' + slugify(tag)).replace(/^, /, '')
                       setCanSave(!isEqual(draftItem, originalItem))
                     }))
-                  }} 
-                  style={{ 
-                    float: 'left', 
-                    margin: '0 10px 10px 0', 
-                    border: '1px solid #000', 
-                    padding: '5px', 
+                  }}
+                  style={{
+                    float: 'left',
+                    margin: '0 10px 10px 0',
+                    border: '1px solid #000',
+                    padding: '5px',
                     cursor: 'pointer',
                     lineHeight: '20px',
                   }}
