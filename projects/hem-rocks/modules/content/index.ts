@@ -50,10 +50,12 @@ export interface IIndexEntry {
 export interface IState {
   adminFilterApplied: string
   adminSearchApplied: string
+  contentItems: IContentItem[]
   currentContentItem: IContentItem | null
   currentContentItems: IContentItem[]
-  contentItems: IContentItem[]
   needsKeyArtFilter: boolean
+  page: number,
+  pageContentItems: IContentItem[],
   showUnpublishedFilter: boolean
   stickyFilter: boolean
 }

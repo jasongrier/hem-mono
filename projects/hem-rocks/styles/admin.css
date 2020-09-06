@@ -79,7 +79,8 @@
   pointer-events: none;
 }
 
-.admin-list-controls-search input {
+.admin-list-controls-search input,
+.admin-list-controls-mass-tag input {
   float: left;
   width: 670px;
   height: 30px;
@@ -91,6 +92,11 @@
   font-weight: bold;
   box-shadow: none !important;
   border: 1px solid #ccc;
+}
+.admin-list-controls-mass-tag button {
+  height: 32px;
+  line-height: 32px;
+  margin-left: 10px;
 }
 
 .admin-list-controls-search input:active,
@@ -309,4 +315,17 @@
 
 .admin-manual-task-runner div {
   margin-bottom: 20px;
+}
+
+.small-action-button {
+  font-size: 12px;
+  width: 30px;
+  height: 30px;
+  line-height: 20px;
+  text-align: center;
+  background-color: gray;
+}
+
+.small-action-button-active {
+  background-color: var(--line-orange);
 }

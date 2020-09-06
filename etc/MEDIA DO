@@ -1,5 +1,10 @@
 # Category: Assets
 
+- Checkbox actions
+  - Tag
+  - Attribution
+- Shift-click to check multiple
+
 - "Convert to Site Track" button
 - "Play" button
 - Migrate audio file name to "fileName" (can also include the full path)
