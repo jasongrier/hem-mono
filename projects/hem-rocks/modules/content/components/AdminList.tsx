@@ -287,7 +287,7 @@ function AdminList(): ReactElement {
 
                 { hasCategory(item, 'assets') && (
                   <td className="admin-list-column-date">
-                    { item.date }
+                    { item.tags }
                   </td>
                 )}
 
