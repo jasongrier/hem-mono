@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useState, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import uuid from 'uuid/v1'
-import { noop, last, compact, has, sample } from 'lodash'
+import { noop, last, compact, has, sample, filter, map } from 'lodash'
 import pad from 'pad'
 import $ from 'jquery'
 import { autoParagraph } from '../../../../../lib/functions'
@@ -89,9 +89,9 @@ function migrate(allContentItems: IContentItem[]) {
   const { writeFileSync, readdirSync, readFileSync, renameSync, lstatSync, copyFileSync } = remote.require('fs')
   const { join, extname } = remote.require('path')
 
-  const newItems = []
+  // const newItems = []
 
-  let fileList: string[] = []
+  // let fileList: string[] = []
 
   // for (let i = 1; i <= 24; i ++) {
   //   const subList = readFileSync('/Users/jason/Desktop/Workong/HEM/Repos/hem-mono/projects/hem-rocks/static/content/dir-' + i + '.json', 'utf8')
@@ -147,23 +147,57 @@ function migrate(allContentItems: IContentItem[]) {
   //   newItems.push(createItem)
   // }
 
+  function extractFromFilePath(path: string, index?: number) {
+    const split = path.split('/')
+
+    if (!index) {
+      return split.pop()
+    }
+
+    else {
+      return split[split.length - 1]
+    }
+  }
+
+  function extractParentDirs(path: string) {
+    extractFromFilePath(path, 1) + '/' + extractFromFilePath(path, 2)
+  }
+
+  const fileNames = allContentItems.map(item => extractFromFilePath(item.audioFilename))
+  const duplicates: any = {}
+
   for (const item of allContentItems) {
     const newItem = Object.assign({}, item)
 
     // DO STUFF HERE
-    if (hasCategory(item, 'assets')) {
-      newItem.date = lstatSync(newItem.audioFilename).birthtime.toString()
+    if (hasCategory(newItem, 'assets')) {
+      const fileName = extractFromFilePath(newItem.audioFilename)
+
+      if (fileName && fileNames.includes(fileName)) {
+        if (duplicates[fileName]) {
+          duplicates[fileName].parentDirs.push(extractParentDirs(newItem.audioFilename))
+          duplicates[fileName].duplicatesCount ++
+        }
+
+        else {
+          duplicates[fileName].parentDirs = [extractParentDirs(newItem.audioFilename)]
+          duplicates[fileName].duplicatesCount = 1
+        }
+      }
     }
     // END DO STUFF HERE
 
-    newItems.push(newItem)
+    // newItems.push(newItem)
   }
 
-  const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
-  const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
+  const report = join(__dirname, '..', '..', '..', 'static', 'content', 'duplicates.json')
+  writeFileSync(report, JSON.stringify(duplicates))
 
-  writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
-  writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
+  // const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
+  // const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
+
+  // writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
+  // writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
 }
 
 function assignImages() {
