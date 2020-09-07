@@ -314,6 +314,10 @@ function App(): ReactElement {
     </div>
   )
 
+  // if (window.process?.env.ELECTRON_MONO_DEV) {
+  //   return <Redirect to="/admin/manual-task-runner" />
+  // }
+
   return (
     <div className={`
       hem-application

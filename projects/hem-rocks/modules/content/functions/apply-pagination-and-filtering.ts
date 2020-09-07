@@ -18,14 +18,15 @@ function applyPaginationAndFiltering(state: IState) {
   )
 
   if (!isEmpty(adminSearchApplied)) {
-    pageContentItems = pageContentItems.filter(item =>
-      item.tags.includes(adminSearchApplied)
+    pageContentItems = pageContentItems.filter(item => {
+      const tags = item.tags.split(',').map(t => t.trim())
+      return tags.includes(adminSearchApplied)
       // item.slug.toLowerCase().includes(adminSearchApplied.toLowerCase())
       // || item.slug.toLowerCase().includes(adminSearchApplied.toLowerCase())
       // || item.tags.toLowerCase().includes(adminSearchApplied.toLowerCase())
       // || item.audioFilename.toLowerCase().includes(adminSearchApplied.toLowerCase())
       // || item.attribution.toLowerCase().includes(adminSearchApplied.toLowerCase())
-    )
+    })
   }
 
   if (needsKeyArtFilter) {
@@ -52,7 +53,8 @@ function applyPaginationAndFiltering(state: IState) {
     }
   })
 
-  return pageContentItems.slice(page - 1, 10)
+  return pageContentItems
+  // return pageContentItems.slice(page - 1, 10)
 }
 
 export default applyPaginationAndFiltering
