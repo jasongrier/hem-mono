@@ -36,8 +36,12 @@ function Admin(): ReactElement {
           </ul>
         </nav>
         <Switch>
+          <Route exact path="/">
+            <AdminManualTaskRunner />
+          </Route>
           <Route exact path="/admin/list">
-            <AdminList />
+            {/* <AdminList /> */}
+            <AdminManualTaskRunner />
           </Route>
           <Route exact path="/admin/create">
             <AdminItem create={true} />

@@ -148,323 +148,453 @@ function migrate(allContentItems: IContentItem[]) {
   //   newItems.push(createItem)
   // }
 
-  function extractFromFilePath(path: string, index?: number) {
-    const split = path.split('/')
-
-    if (!index) {
-      return split.pop()
-    }
-
-    else {
-      return split[split.length - index]
-    }
-  }
-
-  function extractParentDirs(path: string) {
-    return extractFromFilePath(path, 4) + '/' + extractFromFilePath(path, 3) + '/' + extractFromFilePath(path, 2)
-  }
-
-  function pathByTime(newItem: IContentItem) {
-    return {
-      time: moment(newItem.date).valueOf(),
-      path: newItem.audioFilename.replace('/Volumes/April_Kepner/Eva_Vollmer/Disorganised/', ''),
-    }
-  }
-
-  const fileNames = allContentItems.map(item => extractFromFilePath(item.audioFilename))
-  const allFiles: any = {}
-
-  const projectDirs = []
-
-  const taggingPreview = []
-
-  const ids = allContentItems.map(item => item.id)
-  ids.sort()
-  // @ts-ignore
-  let nextHighestId = parseInt(ids.pop(), 10)
+  const definitely: string[] = []
+  const listen: string[] = []
+  const check: string[] = []
+  const unsorted: string[] = []
+  const tunes: string[] = []
+  const studio: string[] = []
+  const ineligible: string[] = []
+  const dedupe: string[] = []
+  const duplicate: string[] = []
 
   for (const item of allContentItems) {
-    nextHighestId ++
-
-    const newItem = Object.assign({}, item)
-
-    // DO STUFF HERE
-    if (!hasCategory(newItem, 'assets') && newItem.tags !== 'project') {
-      newItems.push(newItem)
-    }
-
-    if (hasCategory(newItem, 'assets')) {
-      const path = newItem.audioFilename
-      const fileName = extractFromFilePath(newItem.audioFilename)
+    if (hasCategory(item, 'assets')) {
+      const path = item.audioFilename
 
       if (
-        path.includes('Samples/Recorded')
+        path.includes('/__SRC__/GOGOGO/HEM/Temp/CLEAN ME UP III/Live at Studio 8/Jason.WAV')
+        || path.includes('/__SRC__/GOGOGO/HEM/Temp/CLEAN ME UP III/Live at Studio 8/Gary.WAV')
+        || path.includes('/Transient Backup/Workong/HEM/Resources/Jason Grier/Live at Studio 8 Berlin.WAV')
+        || path.includes('/Transient Backup/Workong/HEM/Resources/Tracks/Live at Studio 8 Berlin.mp3')
+        || path.includes('/Working/HEM/Resources/jasongrier/Live at Studio 8 Berlin.WAV')
+        || path.includes('/Working.prev/HEM/Resources/jasongrier/Live at Studio 8 Berlin.WA')
+        || path.includes('/__SRC__/GOGOGO/HEM/Documents/Press Kits/2017 Temporary Artist EPKS/Line Gøttsche')
+        || path.includes('August 2020/redmango/dev/redmango/Code/')
+      ) {
+        duplicate.push(path)
+      }
+
+      else if (
+        path.includes('Live at Studio 8')
+        || path.includes('/__SRC__/MISSING SOUNDS DONT TRASH/whistle_clairdelune_uncompressed.aif')
+        || path.includes('/__SRC__/GOGOGO/HEM/Temp/CLEAN ME UP VI/sl-previews')
+        || path.includes('/Archive/April 2020/Soft Trash/Nice Strangers.mp3')
+        || path.includes('/Archive/June 2020/Outer Spaceways Incorporated (orig. Sun Ra).mp3')
+        || path.includes('/JAG/Media/Random/Music for me was the pure....amr')
+        || path.includes('/Kalt/slushpile/Haunted, Frozen/')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock 1 Redux/CAS/B2 Empire of You/Empire of You Piano.wav')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock 1 Redux/CAS/B3 Heart Shaped Rock/Heart Shaped Rock 3.mp3')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock 1 Redux/CAS/B3 Heart Shaped Rock/Heart Shaped Rock - Piano.mp3')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock 1 Redux/CAS/A5 Blonde Blues/Blonde Blues.wav')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock 1 Redux/CAS/A3 Heart Shaped Rock - Plastic/Heart Shaped Rock (Plastic).wav')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock 1 Redux/CAS/A2 Empire of You/Empire of You Prom.wav')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock 2/Mixdowns/02 - The Best That I Can - Grownup Mix.aif')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock 2/Mixdowns/02 - The Best That I Can - Grownup Mix 2.aif')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock 1 Redux/For J.Kick/Girl - Boy Destroyed.aif')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock 1 Redux/For J.Kick/Girl - Boy Raw.aif')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock 1 Redux/For J.Kick/Midnite Blue - Raw.aif')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock 1 Redux/For J.Kick/On And On Destroyed Ambient.aif')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock 1 Redux/Mixdowns/Midnite Blue Redux - 05282011.aif')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock Pure Project/BOUNCES/nothing nothing first bounce.wav')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock Pure Project/Exports/on-On And On Water R.wav')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock Pure Project/BOUNCES/girl minus boy first bounce.wav')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock Pure Project/BOUNCES/on and on first bounce.wav')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock Pure Project/BOUNCES/heart shaped rock second bounce.wav')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock Pure Project/BOUNCES/Midnite Blue Redux.aif')
+        || path.includes('/Heart Shaped Rock 2011/Empire of You Redux Project/Empire of You - For Soloing Over.aif')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock 1 Redux/Mixdowns/The Landscape.aif')
+        || path.includes('/Kalt/slushpile')
+        || path.includes('/Kalt/deploy/2014/05 May/HEMK0035_Tombstones_II/2-02 New Tombstones.wav')
+        || path.includes('/Kalt/deploy/2014/05 May/HEMK0035_Tombstones_II/A stranger (ds6).wav')
+        || path.includes('/Kalt/deploy/2014/05 May/HEMK0035_Tombstones_II/Fool (ds6).aif')
+        || path.includes('/Kalt/deploy/2014/05 May/HEMK0035_Tombstones_II/The outside of everything (ds6).wav')
+        || path.includes('Tombstones II')
+        || path.includes('/Kalt/live/Michael Pisaro\'s Dog Star Orchestra')
+        || path.includes('/Kalt/backlog/Rare Tracks/')
+        || path.includes('/Kalt/studio/2009/Clouds/Clouds for Julia Really Rough/')
+        || path.includes('/Kalt/studio/2009/Pirate\'s Tale Remix/Live Remix/Pirates Tale Live Sounds/')
+        || path.includes('/Kalt/studio/2012/My Sweet Unbekannte/Sounds/High_Brasil_Song_1.aif')
+        || path.includes('/Kalt/studio/2012/High Brasil/High_Brasil_Song_1.aif')
+        || path.includes('/Kalt/studio/2013/Unbekannte/Sounds/High_Brasil_Song_1.aif')
+        || path.includes('/Kalt/studio/2012/Clouds/Stems/Sessions/Clouds [Novox]')
+        || path.includes('/Kalt/studio/2012/Clouds/Stems/Guests/Clouds/')
+        || path.includes('/Kalt/studio/2012/Midnite Blue for Holter FACT Mix/Midnite Blue (2009 Version).aif')
+        || path.includes('/Kalt/deploy/2012/09 September/HEMK0024_Clouds/Unmastered/')
+        || path.includes('/Kalt/deploy/2012/11 November/HEMK0026_Tombstones/Formats/CAS/')
+        || path.includes('/Kalt/deploy/2012/09 September/HEMK0023_Commotus/Deliverables/LP/')
+        || path.includes('/Kalt/studio/2012/Archive Mix/Reaper/')
+        || path.includes('/Kalt/live/2009/Trauermusik Festival 2009')
+        || path.includes('/Kalt/studio/2013/supercollider/')
+        || path.includes('/Koralle')
+        || path.includes('/Corruscations')
+        || path.includes('/Kalt/deploy/2014/05 May/HEMK0031_Katahymie/')
+        || path.includes('/Kalt/studio/2006/Sneaky Lover/Renders/')
+        || path.includes('/Transient Backup/Workong/HEM/Resources/Jason Grier/Piano Solo for BBC 6 Freakzone Julia Holter.wav')
+        || path.includes('/Transient Backup/Workong/HEM/Resources/Jason Grier/NTS Radio - SKYAPNEA w Jason Grier   5th December 2015.m4a')
+        || path.includes('/Transient Backup/Workong/HEM/Resources/Jason Grier/die_apparatur_als_musik_jason_griers_album_demonstration_dlf_k_20171030_1441_bb8aa3e7.mp3')
+        || path.includes('/Transient Backup/Workong/HEM/Resources/Jason Grier/Jason_Grier_for_The_Wire_Oct_2017.mp3')
+        || path.includes('/Warm/Projekte/Musik/Jason Grier — Pankstrasse/Library/By Type/Dings/Reichenbergerstr Demo/reichenbergerstr.m4a')
+        || path.includes('/Warm/Projekte/Musik/Jason Grier — Pankstrasse/Renders/Cviews Masters/')
+        || path.includes('NFOP BCR 32 JJ.aif')
+        || path.includes('/Warm/Projekte/Musik/Jason Grier — Pankstrasse/Renders/Cviews/Jamage')
+        || path.includes('/SOUNDS/GENOCIDE.aiff')
+        || path.includes('/Bass Barberpole')
+        || (path.includes('/Kalt/deploy/2014/05 May/HEMK0005_Eating-The-Stars/Julia Holter — Eating The Stars/') && path.includes('M3 reference.mp3'))
+        || path.includes('/Kalt/förderung/2014/Jason_Grier_Berlin_Art_Prize_Antrag_2014/Working/For Mike Kelley (Excerpt).wav')
+        || path.includes('/Kalt/bak/Studio/H Mastering/wetransfer-800639/Heroin')
+        || path.includes('/Kalt/bak/Studio/H Mastering/Heroin PLURAMIX 96 NEU.aif')
+        || path.includes('/Kalt/studio/2014/Pankstrasse/Library/By Type/Dings/Reichenbergerstr Demo/reichenbergerstr.m4a')
+        || path.includes('/Transient Backup/Workong/Evening Flower/Doodles/Demos/')
+        || path.includes('/Transient Backup/Workong/Evening Flower/Junedls/')
+        || path.includes('/Transient Backup/Workong/Outer Spaceways Incorporated.wav')
+        || path.includes('/Transient Backup/Workong/Evening Flower/Noodles/')
+        || path.includes('/Transient Backup/Noodles/Lentil Love Life')
+        || path.includes('/Kalt/live/2009/Human Genius at Soundwalk 2009/')
+        || path.includes('/Kalt/live/2008/Julia Holter and Jason Grier Live at CalArts 2008/')
+        || path.includes('/Kalt/deploy/2014/05 May/HEMK0031')
+        || path.includes('/Kalt/bilder/jason and julia church pics/Church:Music/SAMPLER/')
+        || (path.includes('/Kalt/deploy/') && path.includes('.mp3'))
+        || path.includes('/126 2nd Edition/')
+        // || path.includes('')
+        // || path.includes('')
+        // || path.includes('')
+        // || path.includes('')
+      ) {
+        definitely.push(path)
+      }
+
+      else if (
+        path.includes('/__SRC__/MISSING SOUNDS DONT TRASH/App Recording 20161110 0121.aiff')
+        || path.includes('/__SRC__/MISSING SOUNDS DONT TRASH/App Recording 20161221 2056.aiff')
+        || path.includes('/__SRC__/GOGOGO/HEM/Slushpile/Toucan/')
+        || path.includes('/JAG/Stuff/Demo Pile/Toucan/')
+        || path.includes('/__SRC__/GOGOGO/HEM/Temp/CLEAN ME UP/LAKEWTF.wav')
+        || path.includes('/__SRC__/GOGOGO/HEM/Temp/CLEAN ME UP/Morning Song.wav')
+        || path.includes('/__SRC__/GOGOGO/HEM/Temp/CLEAN ME UP IIII/Next time .m4a')
+        || path.includes('/__SRC__/GOGOGO/HEM/Temp/CLEAN ME UP IIII/Now and later.m4a')
+        || path.includes('/__SRC__/GOGOGO/Music/Unknown Artist/Unknown Album/Jason.mp3')
+        || path.includes('/__SRC__/GOGOGO/HEM/Repos/rocks-api/wp-content/uploads/2017/08/Jason.mp3')
+        || path.includes('/__SRC__/MISSING SOUNDS DONT TRASH/LS110165.WAV')
+        || path.includes('/__SRC__/GOGOGO/HEM/Temp/CLEAN ME UP VI/Video 1/Overdub Clips Raw/Video')
+        || path.includes('/Archive/April 2020/Soft Trash/GOOD KIDS/')
+        || path.includes('/Archive/April 2020/Soft Trash/COD-JAG.aif')
+        || path.includes('/Archive/April 2020/Soft Trash/hem-tools/test/lib/assets/Test.wav')
+        || path.includes('/Archive/May 2020/Rain/Rain_Chorus_JAG Project/Find Samples')
+        || path.includes('/__SRC__/GOGOGO/HEM/Temp/CLEAN ME UP/2017-04-18_ARIEL-PINK- RESPACED AND REVISIONS.mp3')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock 2/Mixdowns/03 - Babies - Ending Test Mix.aif')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock 2/Mixdowns/03 - Babies - Ending Test Mix 2.aif')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock 2/Mixdowns/03 - Babies - Laena Verse - 03142011.aif')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock 2/Mixdowns/4. Babies - Rough Jason Vox 03202011.aif')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock 2/Mixdowns/4. The Best That I Can - Rough 03202011.aif')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock 2/Mixdowns/4. The Best That I Can - 03222011.aif')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock 2/Mixdowns/4. The Best That I Can - 03282011.aif')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock 2/Mixdowns/4. The Best That I Can - 03282011 - L+1.aif')
+        || path.includes('/Kalt/studio/2012/High Brasil/0001 1-Audio.aif')
+        // || path.includes('')
+        // || path.includes('')
+        // || path.includes('')
+      ) {
+        listen.push(path)
+      }
+
+      else if (
+        path.includes('/__SRC__/GOGOGO/HEM/Documents/Press Kits/2017 Temporary Artist EPKS/Experimental Housewife/')
+        || path.includes('/Kalt/backlog/HEMKX001 - Zombie Sharkives/')
+        || path.includes('/Kalt/backlog/Ratkiller')
+      ) {
+        check.push(path)
+      }
+
+      else if (
+        path.includes('REGRM 007 Iannis Xenakis GRM Works 1957-1962')
+        || path.includes('Downloads/hdunes/')
+        || path.includes('/__SRC__/GOGOGO/Downloads/Klein - Tommy (HDB112)/Klein - Tommy (HDB112) - ')
+        || path.includes('/Flotsam/iTunes/Ladies First CD/')
+        || path.includes('Delia Derbyshire/Inventions For Radio')
+        || path.includes('Hans Edler/Elektron Kukéso')
+        || path.includes('/Lil B/Dior Paint/')
+        || path.includes('/Winter in America/')
+        || path.includes('/Jim French & Diamanda Galas/')
+        || path.includes('/Music of Indonesia, Vol. 9_ Music from Central and West Flores/')
+        || path.includes('/Delia Derbyshire/')
+        || path.includes('/The Flux Quartet/')
+        || path.includes('/Peter Phillips & The Tallis Scholars/')
+        || path.includes('/Alvin Lucier/Still and Moving Lines of Silence In Families of Hyperbolas/')
+        || path.includes('/Prefab Sprout/A Life of Surprises')
+        || path.includes('/Delphine Dora/A Stream Of Consciousness/')
+        || path.includes('/flac_Akos_Rozmann-Images_of_the_Dream_and_Death/')
+        || path.includes('/Tim Hecker/Virgins/')
+        || path.includes('/Phil Niblock/Works For Hurdy Gurdy And Voice/')
+        || path.includes('/Sote/Architectonic/')
+        || path.includes('/Anne Gillis/Euragine/')
+        || path.includes('/Anne Gillis/Bisherigori/')
+        || path.includes('/Jean-Luc Guionnet & Eric La Casa/')
+        || path.includes('/Sote/Hardcore Sounds From Tehran/')
+        || path.includes('/Scott Cazan/Ingress/')
+        || path.includes('/Thomas Brinkmann/A')
+        || path.includes('/Jenny Hval/Jenny Hval')
+        || (path.includes('/Flotsam/iTunes') && !path.includes('Jelena Glazova & Leonids Lobrev'))
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock 1 Redux/For J.Kick/Cushion_1.mp3')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock 1 Redux/For J.Kick/MEMPHIS (master).mp3')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock Pure Project/Exports/Girl Minus Boy Files/Girl Minus Boy')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock Pure Project/Exports/Nothing Nothing Files/Nothing Nothing ')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock Pure Project/Exports/On And On Files/On And On')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock Pure Project/Exports/on and on 24bit mono')
+        || path.includes('/HEM Site Content/Tracks/Old Tracks Sorting/')
+        || path.includes('HEMK0027_Early_Live_Recordings/Working/Unmastered/Appleasians')
+        || path.includes('Music/Tame Impala/')
+        || path.includes('Music/Still and Moving Lines')
+        || path.includes('Music/Boy Friend/Egyptian Wrinkle')
+        || path.includes('Music/Tame Impala/Lonerism')
+        || path.includes('/JAG/Stuff/Music')
+        || path.includes('/JAG/Stuff/Klein - Tommy ')
+        || path.includes('/Kalt/stuff/itunes/')
+        || path.includes('/Flotsam/iTunes/')
+        || path.includes('/Warm/Projekte/Musik/Jason Grier — Pankstrasse/Library/')
+        || path.includes('/Warm/Projekte/Web/HEM Portal 2015/Resources/Portfolio/Selected/Ab Ovo/')
+        || path.includes('/Working/HEM/Projects/Antalya/Audio')
+        || path.includes('Beyoncé')
+        || path.includes('/Kepner/tony/Music/iTunes/')
+        // || path.includes('')
+        // || path.includes('')
+      ) {
+        tunes.push(path)
+      }
+
+      else if (
+        path.includes('Formats/LP')
+        || path.includes('/__SRC__/The Shittiest Horse Project/The Chaffeur [Orig].wav')
+        || path.includes('/__SRC__/GOGOGO/HEM/Temp/CLEAN ME UP IIII/Edge, Other, Tar, Glass')
+        || path.includes('/__SRC__/GOGOGO/HEM/Temp/CLEAN ME UP IIII/Acoustic Guitar Sound 1 Preview.mp3')
+        || path.includes('/15. Jan (Semifinal)/HEM SL/')
+        || path.includes('Video 1/Overdub Clips Trimmed')
+        || path.includes('/2019/Working/HEM/SL22/G Project/')
+        || path.includes('/2019/Working/HEM/SL22/V')
+        || path.includes('/Amsterdam/App Recording 20161110 0121.aiff')
+        || path.includes('/Antalya/1/')
+        || path.includes('/Antalya/2/')
+        || path.includes('/Antalya/3/')
+        || path.includes('/Archive/April 2020/Soft Trash/hem-sound-tools/projects/antalya/')
+        || path.includes('/Archive/May 2020/Grand Piano Project/Merge LR')
+        || path.includes('/Archive/May 2020/Grand Piano Project/Taste Test')
+        || path.includes('/Archive/April 2020/INA GRM SAMPLE PACK FOR ABLETON LIVE')
+        || path.includes('/Archive/April 2020/Soft Trash/Dry Mics/')
+        || path.includes('Eyes of March Project/Samples')
+        || path.includes('Line Gøttsche – \"To Do\"/Prerenders')
+        || path.includes('Line Gøttsche – \"To Do\"/Renders/')
+        || path.includes('Line Gøttsche – \"To Do\"/Semifinal Prerenders')
+        || path.includes('/Bakermoon session Feb 2018/')
+        || path.includes('Samples/Recorded')
         || path.includes('Samples/Imported')
         || path.includes('Samples/Consolidate')
         || path.includes('Samples/Processed')
-        || path.includes('HEM SL/Samples/Library')
-        || path.includes('studio/2005')
-        || path.includes('studio/2006')
-        || path.includes('studio/2007')
-        || path.includes('studio/2008')
-        || path.includes('studio/2009')
-        || path.includes('studio/2010')
-        || path.includes('studio/2011')
-        || path.includes('studio/2012')
-        || path.includes('studio/2013')
-        || path.includes('studio/2014')
-        || path.includes('Thrash-and-Burn/Unmastered')
-        || path.includes('Unmastered/Appleasians')
-        || path.includes('Kalt/workstage')
-        || path.includes('MISSING SOUNDS DONT TRASH')
-        || path.includes('Quickburn Promos')
-        || path.includes('The Shittiest Horse')
-        || path.includes('Pankstrasse')
-        || path.includes('Flotsam/DD Stems')
-        || path.includes('Transient Backup')
-        || path.includes('Working.prev')
-        || path.includes('Working/HEM/Projects')
-        || path.includes('Old Apok/OLD')
-        || path.includes('Old Apok/OLD OLD')
-        || path.includes('Warm/Projekte/Musik/Jason Grier — Unbekannte II')
-        || path.includes('Shoulderblades/Old')
-        || path.includes('HEM Portal 2015')
-        || path.includes('JAG/Temp')
-        || path.includes('stuff/itunes')
-        || path.includes('Stuff/Music')
-        || path.includes('15. Jan (Semifinal)')
-        || path.includes('HEM S:L/HEM SL/Samples')
-        || path.includes('Lost Angeles/HEM/Projects/SL + Demonstration Disc')
-        || path.includes('deploy')
-        || path.includes('HEM Site Content')
-        || path.includes('HEMK0000_0006')
-        || path.includes('HEMK0000_0009')
-        || path.includes('HEMK0000_0011')
-        || path.includes('HEMK0000_0030')
-        || path.includes('Downloads/HEMK0100_EPK')
-        || path.includes('Tombstones/Unmastered')
-        || path.includes('Maria/Unmastered')
-        || path.includes('Commotus/Unmastered')
-        || path.includes('Clouds/Unmastered')
-        || path.includes('Deliverables/LP')
-        || path.includes('Downloads/Klein')
-        || path.includes('"To Do"')
-        || path.includes('Project/Merge')
-        || path.includes('Ebow/Piano')
-        || path.includes('Castle at Dawn Tracktion')
-        || path.includes('hem-sound-tools')
-        || path.includes('hem-mono')
-        || path.includes('Backups/Samples')
-        || path.includes('slushpile/Vibe')
-        || path.includes('SECRET SESSIONS')
-        || (path.includes('Antalya') && !path.includes('Kurdish'))
-        || (path.includes('Antalya') && !path.includes('Rain on the'))
+        || path.includes('Shoulderblades Stems')
+        || path.includes('Toucan/Resources/LOGIC/')
+        || path.includes('Fog Project 7.2.17')
+        || path.includes('Line Gøttsche – \"To Do\"/Semifinal Renders')
+        || path.includes('/Flotsam/2017 Fireworks Backup/LS110165.WAV')
+        || path.includes('/Flotsam/Boddinstr Backup/LS110148.WAV')
+        || path.includes('/Helen/Library/')
+        || path.includes('/HEM S:L/')
+        || path.includes('/Flotsam/Original Trump Protest Recording.aiff')
+        || path.includes('/Flotsam/DD Stems/')
+        || path.includes('/Flotsam/Album M1/AP_m1 ')
+        || (
+          path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock 1 Redux')
+          && !path.includes('Blonde Blues')
+          && !path.includes('Heart Shaped Rock (Plastic)')
+          && !path.includes('Empire of You Prom')
+          && !path.includes('On And On Destroyed Ambient')
+          && !path.includes('Midnite Blue - Raw')
+          && !path.includes('MEMPHIS (master)')
+          && !path.includes('Girl - Boy Destroyed')
+          && !path.includes('Girl - Boy Raw')
+          && !path.includes('Midnite Blue - Raw')
+          && !path.includes('Empire of You Piano')
+          && !path.includes('Heart Shaped Rock - Piano')
+          && !path.includes('Heart Shaped Rock 3')
+          && !path.includes('Midnite Blue Redux - 05282011')
+          && !path.includes('The Landscape')
+          && !path.includes('Empire of You - For Soloing Over')
+          && !path.includes('Heart Shaped Rock 2/Mixdowns/')
+          && !path.includes('Heart Shaped Rock Pure Project/BOUNCES/')
+        )
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock 1 Redux/CAS/B5 Blonde Blues/Blonde Blues.wav')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock 1 Redux/7\"/B Heart Shaped Rock - Plastic/Heart Shaped Rock (Plastic).wav')
+        || path.includes('/Heart Shaped Rock 2011/Missing Tracks/')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock 2/Backups/Samples/')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock 2/Outtakes/Samples/')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock 2/Backups/Samples')
+        || path.includes('/Heart Shaped Rock 2011/Heart Shaped Rock 2/Production/A Minute Project/Samples')
+        || path.includes('/Heart Shaped Rock 2011/SAG Archives/HSR4jasonNN/JG_nothing_trans/')
+        || path.includes('/JAG/Archive/indexhibit/public/audio/test-1.mp3')
+        || path.includes('/JAG/Temp/')
+        || path.includes('/JAG/Media/Demos/Leonids Lobrevs & Jelena Glazova/')
+        || path.includes('/Flotsam/iTunes/Jelena Glazova & Leonids Lobrev/')
+        || path.includes('/Kalt/stuff/itunes/1/David Bowie/Lodger/')
+        || path.includes('/Kalt/studio/2006/Posthumous Writer')
+        || path.includes('/Kalt/studio/2006/Sneaky Lover/Project Files/Tracktion/')
+        || path.includes('/Kalt/studio/2012/Library/')
+        || path.includes('/Kalt/lib/Drum Machines/')
+        || (path.includes('/Kalt/deploy/2014/05 May/HEMK0030_Heroin/Unmastered/') && !path.includes('H Remixes'))
+        || path.includes('/Kalt/deploy/2012/11 November/HEMK0001_Thrash-and-Burn/Formats/CAS/')
+        || path.includes('/Kalt/studio/2014/HEMKV/Lesungen/Models/Marc Sabat — Jean-Philippe Rameau/Rameau-Live.mp3')
+        || path.includes('/Kalt/deploy/2013/05 Mai/HEMK0001_Thrash-and-Burn_RP/Unmastered/Thrash and Burn')
+        || path.includes('/Kalt/deploy/2013/05 Mai/HEMK0001_Thrash-and-Burn_RP/Deliverables/LP/Master/Thrash and Burn')
+        || path.includes('/Kalt/studio/2013/Batholith Project/')
+        || path.includes('/Kalt/deploy/2014/04 April/HEMK0027_Early_Live_Recordings/Working/Unmastered/PREMASTER/')
+        || path.includes('/Kalt/bak/Desktop/Andre Vida/')
+        || path.includes('/Kalt/deploy/2012/11 November/HEMK0026_Tombstones/Unmastered/Tombstones')
+        || path.includes('/Kalt/studio/2012/Clouds/Stems/Sessions/Clouds [Demo].aif')
+        || path.includes('/Kalt/studio/2012/My Sweet Unbekannte/Sounds/')
+        || path.includes('/Kalt/deploy/2013/05 Mai/HEMK0001_Thrash-and-Burn_RP/Deliverables/24bit WAV/')
+        || path.includes('/Kalt/deploy/2012/11 November/HEMK0001_Thrash-and-Burn/Formats/24bit WAV/')
+        || path.includes('/Kalt/studio/2013/Unbekannte/Sounds/')
+        || path.includes('/Old Apok/')
+        || path.includes('/Transient Backup/Workong/HEM/Projects/SL2/Packs Project Files/HEM Grand Piano/Merged Mic Grands/')
+        || path.includes('/Transient Backup/Workong/Evening Flower/Doodles/Evening Flower Project/Merged Mic Grands/')
+        || path.includes('/Merged Mic Grands/')
+        || path.includes('/Working/HEM/Projects/SL1, 2nd Edition/')
+        || path.includes('/Working.prev/')
+        || path.includes('/Kalt/deploy/2006/HEMK0000_126/Unmastered/')
+        || path.includes('/Jelena Glazova - Lives selection/')
+        || path.includes('Jelena Glazova - Red Material')
+        || path.includes('/Kalt/studio/2013/Unbekannte/Mangos PrePost Sessions/')
+        || path.includes('/Kalt/studio/2014/Hanne Lippard')
+        || path.includes('/Kalt/studio/2014/Pankstrasse/Sessions/')
+        || path.includes('/Kepner/tony/Library/Application Support/Steam/')
+        || path.includes('/Transient Backup/Workong/HEM/Hosts/static/')
+        || path.includes('/Transient Backup/Workong/HEM/Resources/Seurat/16 Test')
+        || path.includes('/Transient Backup/Workong/HEM/Projects/SL2/')
+        || path.includes('/Warm/Projekte/Musik/Jason Grier — Pankstrasse/Sessions/')
+        || path.includes('/Warm/Projekte/Musik/Jason Grier — Pankstrasse/Library/')
+        || path.includes('/Hanne Lippard')
+        || path.includes('/Warm/Projekte/Musik/Jason Grier — Unbekannte II/Library/')
+        || path.includes('/Warm/Projekte/Web/HEM Portal 2015/Resources/Portfolio/Code/hem_main_2008_wordpress/')
+        || path.includes('/Warm/Projekte/Web/HEM Portal 2015/Resources/Portfolio/Code/hem_main_2008_flatfile/')
+        || path.includes('/Transient Backup/Workingkong.old')
+        || path.includes('/Kalt/backlog/raa_hem_improtaste')
+        || path.includes('/Lost Angeles/HEM/Projects/Antalya/')
+        || path.includes('/Kepner/GRAND Project/Merge LR/')
+        || path.includes('/Merge LR/')
+        || path.includes('/Lost Angeles/HEM/Projects/Shoulderblades/')
+        || path.includes('/Kalt/studio/2013/For Mike Kelley Project/Sounds/')
+        || path.includes('/Kalt/workstage/digitalformats/thrash/')
+        || path.includes('/Kalt/studio/2013/Unbekannte/Stems/')
+        || path.includes('/Kalt/workstage/digitalformats/unbekannte/')
+        || path.includes('/Kalt/workstage/digitalformats/')
+        || path.includes('/Kalt/deploy/2014/05 May/HEMK0005_Eating-The-Stars/Deliverables/Handmade/Master (OLD)')
+        || path.includes('/Kalt/förderung/2014/Jason_Grier_Berlin_Art_Prize_Antrag_2014/Working/Helen of Troy.wav')
+        || path.includes('/Kalt/studio/2013/Eating The Stars/Eating the Stars 2013/Mastering/Renders - No Compression/')
+        || path.includes('/Kalt/bak/Desktop/Drew Straus Album/')
+        || path.includes('/Kalt/deploy/2014/05 May/HEMK0005_Eating-The-Stars/Deliverables/LP/')
+        || path.includes('Jürg Frey')
+        || path.includes('GVE Spring 2014')
+        || path.includes('/Kalt/bak/Desktop/LUP')
+        || path.includes('/Kalt/studio/2014/HEMKV/Lesungen')
+        || path.includes('/Lost Angeles/HEM/Releases/Experimental Housewife – Geofamiliar')
+        || path.includes('/Transient Backup/Workong/HEM/Projects/Antalya/')
+        || path.includes('/Transient Backup/Workingkong/HEM/Website/hem-static')
+        || path.includes('/Transient Backup/Workong/HEM/Resources/Tracks/')
+        || path.includes('/Warm/Projekte/Web/HEM Portal 2015/Resources/Portfolio/Code/redmango/dev/redmango/')
+        || path.includes('/Warm/Projekte/Web/HEM Portal 2015/Resources/Portfolio/Code/supercreepland/')
+        || path.includes('/Warm/Projekte/Web/Quandoo Mobile/Dev/ec_fe_mobile/node_modules/grunt-fontsmith/node_modules/')
+        || path.includes('/Warm/Projekte/Musik/Jason Grier — Pankstrasse/Renders/Cviews/Loop')
+        || path.includes('/Warm/Dokumente/Id/Lucrecia Dalt/belowtheradar/05_Levedad.mp3')
+        || path.includes('/Kepner/tony/Music/iTunes/iTunes Media/Music/Unknown Artist/Unknown Album/SIDE ')
+        || path.includes('/Kepner/tony/Library/Application Support/Google/Chrome/Default/Extensions/')
+        || path.includes('/Library/Messages/')
+        || path.includes('Library/Application Support/')
+        || path.includes('/Pitchfork Advance/')
+        || path.includes('/Kalt/studio/2012/Clouds/')
+        || path.includes('/Kalt/studio/2013/Eating The Stars/Eating the Stars 2013/Mastering/Renders/')
+        || path.includes('/Kalt/förderung/2014/Jason_Grier_Berlin_Art_Prize_Antrag_2014/Working/Unbekannte.wav')
+        || path.includes('/Kalt/deploy/2014/04 April/HEMK0027_Early_Live_Recordings/Deliverables/LP/Audiomaster/Side')
+        || path.includes('/Old Helen/Workshops/')
+        || path.includes('/Transient Backup/Workingkong/SL 2020 Refresh/Resources/Hogir Sessions/')
+        || path.includes('/Kalt/studio/2012/Midnite Blue 2012 Version/')
+        || path.includes('/Kalt/studio/2013/Unbekannte/Working II/P1/Morgan State Project')
+        || path.includes('/Kalt/studio/2013/Unbekannte/Working II/P1/Unbekannte/')
+        || path.includes('/Kalt/deploy/2012/09 September/HEMK0024_Clouds/Deliverables/LP/')
+        || path.includes('/Kalt/studio/2012/Clouds/')
+        || path.includes('/Kalt/studio/2012/Jeepneys/Rawroo/')
+        || path.includes('/Unmastered/')
+        || path.includes('/Kalt/studio/2012/Jeepneys/LP Sessions')
+        || path.includes('/Kalt/studio/2013/Unbekannte/Working')
+        || path.includes('/Impulse Responses/')
+        || path.includes('/Kalt/studio/2009/Pirate\'s Tale Remix/')
+        || path.includes('/Kalt/live/2008/Julia Holter and Jason Grier Live at CalArts')
+        || path.includes('/Kalt/studio/2012/Midnite Blue for Holter FACT Mix/audio')
+        || path.includes('/Kalt/studio/2009/Clouds/Sketches/audio')
+        || path.includes('/Kalt/deploy/2008/HEMK0013_Good-Evening/')
+        || path.includes('/Kalt/studio/2008/Holy Shit Mexicali/')
+        || path.includes('/Kalt/studio/2008/Jason Grier/Say It with Your Love/Live Version/say it with your love Sounds/')
+        || path.includes('/Kalt/studio/2008/Jason Grier/Say It with Your Love/parts/')
+        || path.includes('/Kalt/studio/2008/Jason Grier/Say It with Your Love/say it with your love/audio_')
+        || path.includes('HEMK0011')
+        || path.includes('/Kalt/studio/2010/Tombstones/')
+        || path.includes('/Kalt/studio/2013/Eating The Stars/Eating the Stars Mixing/')
+        || path.includes('/Kalt/studio/2013/Eating The Stars/JSH - MIXES/')
+        || path.includes('/Kalt/studio/2013/Eating The Stars/')
+        || path.includes('/Kalt/bilder/jason and julia church pics/Church:Music/churchsounds/')
+        || path.includes('/Kalt/bilder/jason and julia church pics/Church:Music/CHURCH SAMPLES')
+        || path.includes('/Kalt/studio/2007/Optimism/Optimism Tracktion/')
+        || path.includes('HEMK0009')
+        || path.includes('/Kalt/studio/2007/Missing/Missing Loop')
+        || path.includes('/Kalt/studio/2008/HEATER/')
+        || path.includes('/Kalt/studio/2007/')
+        || path.includes('/Kalt/studio/2008/Jason Grier & Julia Holter Live at CalArts/TASTELESS CALARTS/audio')
+        || path.includes('/Kalt/deploy/')
+        // || path.includes('')
+        || /\.mid$/.test(path)
         || /\.flac$/.test(path)
       ) {
-        if (
-          path.includes('studio/2012/Library')
-          || path.includes('hem-sound-tools')
-          || path.includes('slushpile/Vibe')
-          || path.includes('Backups/Samples')
-          || path.includes('Castle at Dawn Tracktion')
-          || path.includes('SECRET SESSIONS')
-          || path.includes('"To Do"')
-          || path.includes('Ebow/Piano')
-          || path.includes('Downloads/HEMK0100_EPK')
-          || path.includes('Downloads/Klein')
-          || path.includes('Project/Merge')
-          || path.includes('hem-sound-tools')
-          || path.includes('hem-mono')
-          || (path.includes('Antalya') && !path.includes('Kurdish'))
-          || (path.includes('Antalya') && !path.includes('Rain on the'))
-          || path.includes('Tombstones/Unmastered')
-          || path.includes('Maria/Unmastered')
-          || path.includes('Commotus/Unmastered')
-          || path.includes('Clouds/Unmastered')
-          || path.includes('Deliverables/LP')
-          || /\.flac$/.test(path)
-          || path.includes('Flotsam/DD Stems')
-          || path.includes('HEMK0000_0006')
-          || path.includes('HEMK0000_0030')
-          || path.includes('HEMK0000_0011')
-          || path.includes('HEMK0000_0009')
-          || path.includes('Transient Backup')
-          || path.includes('Working.prev')
-          || path.includes('Working/HEM/Projects')
-          || path.includes('Old Apok/OLD')
-          || path.includes('Old Apok/OLD OLD')
-          || path.includes('Warm/Projekte')
-          || path.includes('Shoulderblades/Old')
-          || path.includes('JAG/Temp')
-          || path.includes('15. Jan (Semifinal)')
-          || path.includes('HEM S:L/HEM SL/Samples')
-          || path.includes('HEM SL/Samples/Library')
-          || path.includes('Thrash-and-Burn/Unmastered')
-          || path.includes('Unmastered/Appleasians')
-          || path.includes('Deliverables/LP')
-        ) {
-          taggingPreview.push({ path, tags: 'audio, needs-manual-review, not-eligible-for-web-player'})
-          newItem.tags = 'audio, needs-manual-review, not-eligible-for-web-player'
-          // newItems.push(newItem)
-        }
+        ineligible.push(path)
+      }
 
-        else if (
-          path.includes('deploy')
-          && path.includes('Formats')
-        ) {
-          taggingPreview.push({ path, tags: 'audio, deploy-format, eligible-for-web-player'})
-          newItem.tags = 'audio, deploy-format, eligible-for-web-player'
-          // newItems.push(newItem)
-        }
-
-        else if (
-          path.includes('deploy')
-          || path.includes('Kalt/workstage')
-        ) {
-          taggingPreview.push({ path, tags: 'audio, possible-promo-track'})
-          newItem.tags = 'audio, possible-promo-track'
-          // newItems.push(newItem)
-        }
-
-        else if (
-          path.includes('stuff/itunes')
-          || path.includes('Stuff/Music')
-        ) {
-          taggingPreview.push({ path, tags: 'audio, deploy-format'})
-          newItem.tags = 'audio, itunes'
-          // newItems.push(newItem)
-        }
-
-        else if (
-          path.includes('HEM Portal 2015')
-          || path.includes('HEM Site Content')
-        ) {
-          // do nothing (ie. delete)
-        }
-
-        else {
-          taggingPreview.push({ path, tags: 'audio, project-track'})
-          newItem.tags = 'audio, project-track'
-          // newItems.push(newItem)
-
-          if (
-            path.includes('Samples/Recorded')
-            || path.includes('Samples/Imported')
-            || path.includes('Samples/Consolidate')
-            || path.includes('Samples/Processed')
-          ) {
-            const projectPath = path.split(/Samples\/(Recorded|Imported|Consolidate|Processed)/)[0]
-            taggingPreview.push({ path: projectPath, tags: 'project'})
-            const title = projectPath.split('/').pop()
-            // newItems.push({
-            //   title,
-            //   id: nextHighestId,
-            //   slug: slugify(title),
-            //   date: lstatSync(projectPath).birthtime.toString(),
-            //   tags: 'project',
-            // })
-          }
-
-          else {
-            const projectPath = path.split(/studio\/(2005|2006|2007|2008|2009|2010|2011|2012|2013|2014)/)[0]
-            taggingPreview.push({ path: projectPath, tags: 'project'})
-            const title = projectPath.split('/')[0]
-            // newItems.push({
-            //   title,
-            //   id: nextHighestId,
-            //   slug: slugify(title),
-            //   date: lstatSync(projectPath).birthtime.toString(),
-            //   tags: 'project',
-            // })
-          }
-        }
+      else if (
+        path.includes('Demonstration Disc')
+        || path.includes('HEMK0100_EPK')
+        || path.includes('About_Repulsion_EPK')
+        || path.includes('Tombstones_EPK')
+        || path.includes('HEMK0032_Jason_Grier_Unbekannte_Presskit')
+        || path.includes('Omonia/Quickburn Promos/')
+        || path.includes('Omonia/Dense Digital Promo')
+      ) {
+        dedupe.push(path)
       }
 
       else {
-        if (fileName && fileNames.includes(fileName)) {
-          if (allFiles[fileName]) {
-            allFiles[fileName].pathsByTime.push(pathByTime(newItem))
-            allFiles[fileName].duplicatesCount ++
-          }
-
-          else {
-            allFiles[fileName] = {}
-            allFiles[fileName].pathsByTime = [pathByTime(newItem)]
-            allFiles[fileName].duplicatesCount = 0
-          }
-        }
+        unsorted.push(path)
       }
     }
-    // END DO STUFF HERE
-
-    // newItems.push(newItem)
   }
 
-  const duplicates: any = []
-
-  for (const fileName in allFiles) {
-    if (allFiles[fileName].duplicatesCount > 0) {
-      duplicates.push({
-        fileName,
-        duplicatesCount: allFiles[fileName].duplicatesCount,
-        pathsByTime: allFiles[fileName].pathsByTime,
-      })
-    }
+  function cleanUpPaths(paths: string[]) {
+    return paths.map(path => path.replace('/Volumes/April_Kepner/Eva_Vollmer/Disorganised', ''))
   }
 
-  const singles: any = []
-
-  for (const duplicate of duplicates) {
-    const pathsByTime = [].concat(duplicate.pathsByTime)
-    pathsByTime.sort((a: any, b: any) => {
-      return b.time - a.time
-    })
-
-    // @ts-ignore
-    singles.push(pathsByTime[0].path)
-    // @ts-ignore
-    taggingPreview.push({ path: pathsByTime[0].path, tags: 'audio, eligible-for-web-player'})
-    // @ts-ignore
-    const newItem = find(allContentItems, { audioFilename: '/Volumes/April_Kepner/Eva_Vollmer/Disorganised/' + pathsByTime[0].path })
-
-    if (!newItem) {
-      // @ts-ignore
-      console.log(pathsByTime[0].path)
-      throw new Error()
-    }
-
-    console.log(newItem.title)
-
-    // @ts-ignore
-    newItem.tags = 'audio, eligible-for-web-player'
-    newItems.push(newItem)
+  const report = {
+    definitely: cleanUpPaths(definitely),
+    listen: cleanUpPaths(listen),
+    check: cleanUpPaths(check),
+    unsorted: cleanUpPaths(unsorted),
+    // tunes: cleanUpPaths(tunes),
+    // dedupe: cleanUpPaths(dedupe),
+    // ineligible: cleanUpPaths(ineligible),
+    // duplicate: cleanUpPaths(duplicate),
   }
 
-  const itemsWithStars: IContentItem[] = []
+  const reportFile = join(__dirname, '..', '..', '..', 'static', 'content', 'report.json')
+  writeFileSync(reportFile, JSON.stringify(report, null, 2))
 
-  for (const itemToMaybeStar of newItems) {
-    if (
-      itemToMaybeStar.audioFilename.includes('Smallsongs')
-      || itemToMaybeStar.audioFilename.includes('HEMK0000_126')
-      || itemToMaybeStar.audioFilename.includes('HEMK0000_0034')
-      || itemToMaybeStar.audioFilename.includes('HEMK0000_0012')
-    ) {
-      itemToMaybeStar.tags += ', starred-for-web'
-    }
-
-    itemsWithStars.push(itemToMaybeStar)
-  }
-
-  alert(itemsWithStars.length)
-
-  // const report = join(__dirname, '..', '..', '..', 'static', 'content', 'duplicates.json')
-  // writeFileSync(report, JSON.stringify(taggingPreview, null, 2))
-
-  const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
-  const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
-
-  writeFileSync(srcIndex, JSON.stringify(compressIndex(itemsWithStars)))
-  writeFileSync(distIndex, JSON.stringify(compressIndex(itemsWithStars)))
+  // const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
+  // const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
+  // execSync(`rm index.bak.json`)
+  // execSync(`cp ${srcIndex} ${srcIndex.replace('index.json', 'index.bak.json')}`)
+  // writeFileSync(srcIndex, JSON.stringify(compressIndex(itemsWithStars)))
+  // writeFileSync(distIndex, JSON.stringify(compressIndex(itemsWithStars)))
 }
 
 function assignImages() {
@@ -512,6 +642,10 @@ function AdminManualTaskRunner(): ReactElement {
   }))
 
   const [running, setRunning] = useState(0)
+
+  useEffect(() => {
+    runTask(() => migrate(allContentItems))
+  }, [])
 
   const resetModelsOnClick = useCallback(
     function resetOnClickFn() {

@@ -63,7 +63,8 @@ function RoutingHub(): ReactElement {
     <div className="routing-hub">
       <Switch>
         {/* Home */}
-        <Route exact path="/" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotosHome : Home} />
+        <Route exact path="/" component={Admin} />
+        {/* <Route exact path="/" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotosHome : Home} /> */}
         <Route exact path="/cart" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotosHome : Home} />
         <Route exact path="/thank-you" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotosHome : Home} />
 
@@ -79,10 +80,10 @@ function RoutingHub(): ReactElement {
         {/* Static Pages */}
         <Route exact path="/about" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotosAbout : About} />
         <Route exact path="/about/cart" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotosAbout : About} />
-        
+
         <Route exact path="/sound-library/about-sl" component={AboutSoundLibrary} />
         <Route exact path="/sound-library/about-sl/cart" component={AboutSoundLibrary} />
-        
+
         <Route exact path="/sound-library/made-with-sl" component={MadeWithSoundLibrary} />
         <Route exact path="/sound-library/made-with-sl/cart" component={MadeWithSoundLibrary} />
 
@@ -91,7 +92,7 @@ function RoutingHub(): ReactElement {
 
         <Route exact path="/cookie-settings" component={CookieSettings} />
         <Route exact path="/cookie-settings/cart" component={CookieSettings} />
-        
+
         <Route exact path="/cookie-policy" component={CookiePolicy} />
         <Route exact path="/cookie-policy/cart" component={CookiePolicy} />
 
@@ -191,14 +192,14 @@ function RoutingHub(): ReactElement {
         {/* Berlin Stock Photos */}
         <Route exact path="/stock-photos-prints/:contentItemSlug?" component={BerlinStockPhotosPrints} />
         <Route exact path="/stock-photos-prints/cart" component={BerlinStockPhotosPrints} />
-        
+
         <Route exact path="/stock-photos-license" component={BerlinStockPhotosLicenseAgreement} />
         <Route exact path="/stock-photos-license/cart" component={BerlinStockPhotosLicenseAgreement} />
-        
+
         <Route exact path="/stock-photos/:contentItemSlug?/:filter?" component={BerlinStockPhotosHome} />
         <Route exact path="/stock-photos/filter/:filter" component={BerlinStockPhotosHome} />
         <Route exact path="/stock-photos/cart/:filter?" component={BerlinStockPhotosHome} />
-        
+
         <Route exact path="/more-tags/:contentItemSlug?/:filter?" component={BerlinStockPhotosHome} />
         <Route exact path="/more-tags/filter/:filter" component={BerlinStockPhotosHome} />
         <Route exact path="/more-tags/cart/:filter?" component={BerlinStockPhotosHome} />
