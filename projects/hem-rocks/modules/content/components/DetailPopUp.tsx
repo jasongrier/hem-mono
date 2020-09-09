@@ -84,7 +84,7 @@ function DetailPopUp({
 
   const [attachedPlaylist, setAttachedPlaylist] = useState<Partial<IPlaylist>>()
   const [suggestedPrice, setSuggestedPrice] = useState<string>(initialPrice)
-  const [valid, setValid] = useState<boolean>(!!contentItem.fixedPrice)
+  const [valid, setValid] = useState<boolean>(true /* !!contentItem.fixedPrice */)
   const [saleId, setSaleId] = useState<string>()
   const [previousItem, setPreviousItem] = useState<IContentItem>()
   const [nextItem, setNextItem] = useState<IContentItem>()
