@@ -579,7 +579,7 @@ function migrate(allContentItems: IContentItem[]) {
     definitely: cleanUpPaths(definitely),
     listen: cleanUpPaths(listen),
     check: cleanUpPaths(check),
-    unsorted: cleanUpPaths(unsorted),
+    // unsorted: cleanUpPaths(unsorted),
     // tunes: cleanUpPaths(tunes),
     // dedupe: cleanUpPaths(dedupe),
     // ineligible: cleanUpPaths(ineligible),
