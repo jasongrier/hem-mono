@@ -91,7 +91,8 @@
 }
 
 .bsp-heroine {
-  top: calc(-1 * (80vh - var(--bsp-top-bar-height) - 10px));
+  position: relative;
+  top: 0;
   width: 100vw;
   height: 300px;
 }
@@ -102,9 +103,20 @@
 }
 
 .bsp-heroine img {
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 300px;
   object-fit: cover;
+}
+
+.bsp-heroine-img-full {
+  z-index: 2;
+}
+
+.bsp-heroine-img-placeholder {
+  z-index: 1;
 }
 
 .bsp-next-heroine {
@@ -673,4 +685,90 @@
   z-index: 3;
   width: 800px;
   height: 532px;
+}
+
+@media only screen and (max-width: 414px) {
+  /* iPhone 6/7/8 Plus */
+
+  .berlin-stock-photos .main-header {
+    position: absolute;
+    height: auto;
+    pointer-events: none;
+  }
+
+  .berlin-stock-photos .main-header h1 {
+    width: 300px;
+    margin-bottom: 15px;
+    pointer-events: all;
+  }
+  
+  .berlin-stock-photos .main-header nav {
+    display: none;
+  }
+
+  .bsp-content .main-content-filters {
+    display: none;
+  }
+
+  .bsp-heroine {
+    margin-bottom: 30px;
+  }
+  
+  .berlin-stock-photos .main-content {
+    width: 100vw;
+    overflow-x: hidden;
+  }
+  
+  .bsp-content .main-content-items {
+    width: 100vw;
+  }
+
+  .bsp-content .main-content-box {
+    width: 100vw;
+    margin-bottom: 40px;
+  }
+
+  .hem-hamburger-menu-toggle {
+    top: 10px;
+    right: 10px;
+    z-index: 9999;
+    pointer-events: all;
+  }
+  
+  .hem-hamburger-menu-toggle span {
+    background-color: #fff !important;
+  }
+
+  .hem-hamburger-menu-content {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    pointer-events: all;
+  }
+  
+  .hem-hamburger-menu-content ul {
+    list-style-type: none;
+    text-align: center;
+    margin: 0;
+    padding: 60px 0 0 0;
+  }
+  
+  .hem-hamburger-menu-content ul li {
+    font-size: 32px;
+    color: #fff;
+    margin: 0 0 30px 0;
+    padding: 0;
+    text-transform: uppercase;
+  }
+
+  .hem-hamburger-menu-content ul a {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  .hem-hamburger-menu-content ul a.active {
+    color: var(--line-orange);
+  }
 }

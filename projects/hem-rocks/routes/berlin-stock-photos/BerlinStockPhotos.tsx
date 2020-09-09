@@ -53,16 +53,18 @@ function BerlinStockPhotos(): ReactElement {
       `}>
         <Header />
         
-        {/* { isMoreTagsPage && (
-          <h1>All Tags</h1>
-        )} */}
-        
         <main>
           { heroine && !isMoreTagsPage && (
             <div className="bsp-heroine">
               <Link to={`/${heroine.category}/${heroine.slug}${currentFilter ? '/' + currentFilter : ''}`}>
                 <img 
+                  className="bsp-heroine-img-full"
                   src={`${assetHost}/berlin-stock-photos/content/images/jpg-web/${heroine.keyArt}`}
+                  alt=""
+                  />
+                <img 
+                  className="bsp-heroine-img-placeholder"
+                  src={`${assetHost}/berlin-stock-photos/content/images/jpg-placeholders/${heroine.keyArt}`}
                   alt=""
                 />
               </Link>
@@ -70,6 +72,10 @@ function BerlinStockPhotos(): ReactElement {
           )}
           
           <div className="bsp-content">
+            { isMoreTagsPage && (
+              <h1>All Tags</h1>
+            )}
+            
             <MainContentList
               category="stock-photos"
               currentFilter={ currentFilter || 'best-of' }
