@@ -63,8 +63,7 @@ function RoutingHub(): ReactElement {
     <div className="routing-hub">
       <Switch>
         {/* Home */}
-        <Route exact path="/" component={Admin} />
-        {/* <Route exact path="/" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotosHome : Home} /> */}
+        <Route exact path="/" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotosHome : Home} />
         <Route exact path="/cart" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotosHome : Home} />
         <Route exact path="/thank-you" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotosHome : Home} />
 

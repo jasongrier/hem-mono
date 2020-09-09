@@ -302,7 +302,7 @@ function ThankYouPopup(): ReactElement {
                     `}
                     onClick={onDonateClick}
                   >
-                    Send my Donation
+                    Send my donation
                   </button>
                 </>
               </div>
