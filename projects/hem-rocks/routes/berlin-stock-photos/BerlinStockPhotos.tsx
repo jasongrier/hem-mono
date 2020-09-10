@@ -7,7 +7,7 @@ import { sample, compact } from 'lodash'
 import $ from 'jquery'
 import 'slick-carousel'
 import 'slick-carousel/slick/slick.css'
-import { NextButton } from '../../../../lib/packages/hem-buttons'
+import { NextButton, ChevronButton } from '../../../../lib/packages/hem-buttons'
 import { MainContentList, IContentItem } from '../../modules/content'
 import { Header, Footer } from '../../components/berlin-stock-photos'
 import { assetHostHostname } from '../../functions'
@@ -68,6 +68,9 @@ function BerlinStockPhotos(): ReactElement {
                   alt=""
                 />
               </Link>
+              <div className="bsp-mobile-scroll-down">
+                <ChevronButton />
+              </div>
             </div>
           )}
           

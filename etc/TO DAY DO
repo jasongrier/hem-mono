@@ -1,13 +1,21 @@
 TODAY
 
 - bsp mobile
+- bsp spread out watermarks, lighter
 - bsp search box
   - "Search and downloaad over 3000 images of the world's best city. Lushness, etc..."
 - bsp previous/next is till broken, and resetValidityOnPrevNext should not fire initially
 - bsp check 
 - bsp placeholders in thumbs
 - bsp currency choice (mainly for HEM's sake)
-- hem all tracks
+- play button in admin
+- import from report
 - doodle
-- easy text corrections
+- hem text corrections
 - sl zither
+
+
+TOMORROW
+
+- track of the day in hem home
+- bsp theme thumbs on home page, best-of as a main nav link

@@ -687,6 +687,10 @@
   height: 532px;
 }
 
+.bsp-mobile-scroll-down {
+  display: none;
+}
+
 @media only screen and (max-width: 414px) {
   /* iPhone 6/7/8 Plus */
 
@@ -711,7 +715,12 @@
   }
 
   .bsp-heroine {
-    margin-bottom: 30px;
+    height: 100vh;
+    margin-bottom: 0;
+  }
+  
+  .bsp-heroine img {
+    height: 100vh;
   }
   
   .berlin-stock-photos .main-content {
@@ -728,18 +737,18 @@
     margin-bottom: 40px;
   }
 
-  .hem-hamburger-menu-toggle {
+  .berlin-stock-photos .hem-hamburger-menu-toggle {
     top: 10px;
     right: 10px;
     z-index: 9999;
     pointer-events: all;
   }
   
-  .hem-hamburger-menu-toggle span {
+  .berlin-stock-photos .hem-hamburger-menu-toggle span {
     background-color: #fff !important;
   }
 
-  .hem-hamburger-menu-content {
+  .berlin-stock-photos .hem-hamburger-menu-content {
     top: 0;
     left: 0;
     width: 100vw;
@@ -748,14 +757,14 @@
     pointer-events: all;
   }
   
-  .hem-hamburger-menu-content ul {
+  .berlin-stock-photos .hem-hamburger-menu-content ul {
     list-style-type: none;
     text-align: center;
     margin: 0;
     padding: 60px 0 0 0;
   }
   
-  .hem-hamburger-menu-content ul li {
+  .berlin-stock-photos .hem-hamburger-menu-content ul li {
     font-size: 32px;
     color: #fff;
     margin: 0 0 30px 0;
@@ -763,12 +772,233 @@
     text-transform: uppercase;
   }
 
-  .hem-hamburger-menu-content ul a {
+  .berlin-stock-photos .hem-hamburger-menu-content ul a {
     color: inherit;
     text-decoration: none;
   }
   
-  .hem-hamburger-menu-content ul a.active {
+  .berlin-stock-photos .hem-hamburger-menu-content ul a.active {
     color: var(--line-orange);
+  }
+
+  .bsp-enlarge-button {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 3;
+    width: 90px;
+    height: 30px;
+    line-height: 30px;
+    opacity: 1;
+    font-size: 16px;
+  }
+
+  .berlin-stock-photos #detail-popup .hem-popup-content {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh !important;
+    margin: 0;
+  }
+
+  .berlin-stock-photos #detail-popup .hem-popup-content .bsp-lightbox-image {
+    width: calc(100vw - 10px);
+    height: 0;
+    margin-left: 5px;
+    padding-bottom: 65%;
+  }
+
+  .berlin-stock-photos #detail-popup header {
+    height: 100vh !important;
+  }
+  
+  .berlin-stock-photos #detail-popup .hem-popup-content .bsp-lightbox-image .img,
+  .berlin-stock-photos #detail-popup .hem-popup-content .bsp-lightbox-image .bvg-watermark,
+  .berlin-stock-photos #detail-popup .hem-popup-content .bsp-lightbox-image .bsp-lightbox-image-placeholder {
+    width: calc(100vw - 10px);
+    background-size: contain;
+  }
+
+  .bsp-lightbox-type,
+  .bsp-lightbox-tags {
+    width: calc(100vw - 10px);
+    margin-left: 5px;
+    margin-top: 5px;
+    font-size: 14px;
+  }
+
+  .bsp-lightbox-type {
+    margin-bottom: 15px;
+  }
+
+  .bsp-lightbox-type strong,
+  .bsp-lightbox-tags strong {
+    display: inline;
+  }
+
+  .bsp-lightbox-license {
+    bottom: 5px;
+    right: 5px;
+  }
+
+  .berlin-stock-photos #detail-popup .detail-popup-title {
+    margin-left: 5px;
+    margin-right: 0;
+  }
+  
+  .berlin-stock-photos #detail-popup .detail-popup-title h1 {
+    padding: 0;
+  }
+  
+  .berlin-stock-photos #detail-popup .detail-popup-header-content,
+  .berlin-stock-photos #detail-popup .detail-popup-actions,
+  .berlin-stock-photos #detail-popup .detail-popup-buttons,
+  .berlin-stock-photos #detail-popup .detail-popup-form {
+    position: static;
+  }
+  
+  .berlin-stock-photos #detail-popup .detail-popup-header-content {
+    padding: 0;
+  }
+  
+  .berlin-stock-photos #detail-popup .detail-popup-form input,
+  .berlin-stock-photos #detail-popup .detail-popup-form button {
+    width: calc(100vw - 10px);
+  }
+  
+  .berlin-stock-photos .detail-popup-currency-symbol {
+    top: 414px;
+    left: auto;
+    right: 10px;
+  }
+
+  .bsp-mobile-scroll-down {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 9998;
+    width: 100vw;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .bsp-mobile-scroll-down .hem-chevron-button {
+    transform: rotate(90deg);
+    background: transparent;
+  }
+  
+  .bsp-mobile-scroll-down .hem-chevron-button .hem-chevron-button-icon::before,
+  .bsp-mobile-scroll-down .hem-chevron-button .hem-chevron-button-icon::after {
+    opacity: 1;
+  }
+
+  .berlin-stock-photos #thank-you-popup .hem-popup-content {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh !important;
+    margin: 0;
+    transform: none;
+  }
+  
+  .berlin-stock-photos #thank-you-popup .hem-popup-content h1 {
+    font-size: 20px;
+    margin-top: 10px;
+    height: 30px;
+    margin-bottom: 5px;
+  }
+
+  .berlin-stock-photos #cart-popup .hem-popup-content {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh !important;
+    margin: 0;
+  }
+  
+  .berlin-stock-photos #cart-popup .hem-popup-content h1 {
+    font-size: 20px;
+    margin-top: 10px;
+    height: 30px;
+    margin-bottom: 5px;
+  }
+  
+  .berlin-stock-photos #cart-popup .cart-popup-check-out {
+    width: 100vw;
+    left: 0;
+    text-align: center;
+  }
+  
+  .berlin-stock-photos #cart-popup .cart-popup-check-out span {
+    height: 40px;
+    line-height: 40px;
+    margin: 0;
+    font-size: 16px;
+    font-weight: normal;
+    text-align: right;
+    transform: translateY(-20px);
+    text-align: center;
+  }
+  
+  .berlin-stock-photos #cart-popup .cart-popup-check-out button {
+    font-size: 20px !important;
+    width: 160px;
+    padding: 0 10px;
+    margin: 0 10px;
+  }
+
+  .berlin-stock-photos .cart-popup-items {
+    height: 455px;
+  }
+
+  .berlin-stock-photos footer {
+    margin-top: 40px;
+  }
+  
+  .berlin-stock-photos footer li {
+    display: block;
+    margin-bottom: 40px;
+  }
+
+  .bsp-about-page p {
+    width: 100vw;
+    margin: 10px 0 !important;
+    text-align: center;
+  }
+  
+  .bsp-about-page .bsp-about-page-contact-info {
+    display: none;
+  }
+  
+  .bsp-about-page h2 {
+    width: 100vw;
+    text-align: center;
+  }
+  
+  .bsp-about-page input {
+    width: 100vw !important;
+    height: 50px !important;
+    line-height: 50px !important;
+  }
+  
+  .bsp-about-page button {
+    width: 100vw;
+    height: 50px !important;
+    line-height: 50px !important;
+  }
+  
+  .bsp-about-page .bsp-about-page-contact-info {
+    line-height: 40px;
+  }
+  
+  .bsp-about-page .main-content-section {
+    margin: 0;
+  }
+
+  .bsp-about-image {
+    margin-top: -109px;
   }
 }
