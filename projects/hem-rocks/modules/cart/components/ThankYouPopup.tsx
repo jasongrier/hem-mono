@@ -194,8 +194,6 @@ function ThankYouPopup(): ReactElement {
     }
   }
 
-  console.log(cartTotal)
-
   return (
     <div className="thank-you-popup">
       <header>

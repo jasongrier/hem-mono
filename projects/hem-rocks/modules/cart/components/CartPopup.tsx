@@ -172,7 +172,7 @@ function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
                 className="action-button continue-button"
                 onClick={() => dispatch(closePopup())}
               >
-                Continue shopping
+                Continue
               </button>
               { getGrandTotal() === 0 && (
                 <button

@@ -2,7 +2,7 @@ import React, { ReactElement, PropsWithChildren } from 'react'
 
 interface IProps {
   className?: string
-  onClick: () => void
+  onClick?: () => void
 }
 
 const styleSheet = `
@@ -50,10 +50,6 @@ const styleSheet = `
     left: 17px;
   }
 `
-
-interface IProps {
-  onClick: () => void
-}
 
 function ChevronButton({ className, onClick }: PropsWithChildren<IProps>): ReactElement {
   return (
