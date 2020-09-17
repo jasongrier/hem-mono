@@ -687,12 +687,20 @@
   height: 532px;
 }
 
+.hem-hamburger-menu-toggle {
+  display: none;
+}
+
 .bsp-mobile-scroll-down {
   display: none;
 }
 
 @media only screen and (max-width: 414px) {
   /* iPhone 6/7/8 Plus */
+
+  .hem-hamburger-menu-toggle {
+    display: block;
+  }
 
   .berlin-stock-photos .main-header {
     position: absolute;
@@ -963,6 +971,7 @@
     margin-bottom: 40px;
   }
 
+  .bsp-prints-page p,
   .bsp-about-page p {
     width: 100vw;
     margin: 10px 0 !important;
@@ -994,11 +1003,62 @@
     line-height: 40px;
   }
   
+  .bsp-prints-page .main-content-section,
   .bsp-about-page .main-content-section {
     margin: 0;
   }
 
   .bsp-about-image {
     margin-top: -109px;
+  }
+
+  .bsp-prints-page .main-header h1,
+  .berlin-stock-photos-contact-page .main-header h1 {
+    font-size: 24px;
+    min-height: 40px;
+    line-height: 40px;
+    margin: 5px 0 5px 5px;
+  }
+
+  .bsp-prints-page .main-header h2,
+  .berlin-stock-photos-contact-page .main-header h2 {
+    padding: 0;
+    margin: 0 0 5px 5px;
+  }
+
+  .bsp-prints-page .main-content-section,
+  .berlin-stock-photos-contact-page .main-content-section {
+    margin-top: 10px;
+  }
+  
+  .bsp-prints-page .bsp-content h1,
+  .berlin-stock-photos-contact-page .main-content-section h1 {
+    font-size: 24px;
+    min-height: 30px;
+    line-height: 30px;
+    margin: 0 0 5px 5px;
+  }
+  
+  .berlin-stock-photos-contact-page .hem-contact-form .form-row {
+    width: calc(100vw - 10px);
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .berlin-stock-photos-contact-page .hem-contact-form .form-row input {
+    width: calc(100vw - 30px);
+  }
+  
+  .berlin-stock-photos-contact-page .hem-contact-form .form-row textarea {
+    width: calc(100vw - 30px);
+    height: 150px;
+  }
+  
+  .berlin-stock-photos-contact-page .hem-contact-form button {
+    width: calc(100vw - 10px);
+  }
+
+  .berlin-stock-photos .action-button-super-wide {
+    width: calc(100vw - 30px) !important;
   }
 }

@@ -3,24 +3,39 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 import produce from 'immer'
 import { isEmpty, noop, find, filter } from 'lodash'
-import { titleCase } from 'voca'
+import { slugify } from 'voca'
 import moment from 'moment'
 import { ElectronOnly } from '../../../../../lib/components'
 import { PlayPauseButton } from '../../../../../lib/packages/hem-buttons'
-import { adminApplyFilter, adminApplySearch, toggleNeedsKeyArtFilter, requestDeleteItems, requestReadItems, requestUpdateItems, IContentItem } from '../index'
+import { adminApplyFilter, adminApplySearch, setAdminSearchableField, toggleNeedsKeyArtFilter, requestDeleteItems, requestReadItems, requestUpdateItems, IContentItem } from '../index'
 import { RootState } from '../../../index'
 import { hasCategory, hasTag } from '../functions'
 import { assetHostHostname } from '../../../functions'
-import { toggleShowUnpublishedFilter, toggleStickyFilter } from '../actions'
+import { toggleShowUnpublishedFilter, toggleStickyFilter, setCurrentPage } from '../actions'
 
 function AdminList(): ReactElement {
-  const { adminFilterApplied, adminSearchApplied, pageContentItems, needsKeyArtFilter, showUnpublishedFilter, stickyFilter } = useSelector((state: RootState) => ({
+  const { 
+    adminFilterApplied, 
+    adminSearchableField, 
+    adminSearchApplied,
+    contentItemsCount, 
+    needsKeyArtFilter, 
+    page, 
+    pageContentItems, 
+    showUnpublishedFilter, 
+    stickyFilter, 
+    unpaginatedItemCount
+  } = useSelector((state: RootState) => ({
     adminFilterApplied: state.content.adminFilterApplied,
+    adminSearchableField: state.content.adminSearchableField,
     adminSearchApplied: state.content.adminSearchApplied,
+    contentItemsCount: state.content.contentItems.length,
     needsKeyArtFilter: state.content.needsKeyArtFilter,
+    page: state.content.page,
     pageContentItems: state.content.pageContentItems,
     showUnpublishedFilter: state.content.showUnpublishedFilter || state.content.adminFilterApplied === 'assets',
     stickyFilter: state.content.stickyFilter,
+    unpaginatedItemCount: state.content.unpaginatedItemCount,
   }))
 
   const dispatch = useDispatch()
@@ -30,6 +45,7 @@ function AdminList(): ReactElement {
   }, [])
 
   const [selectedItems, setSelectedItems] = useState<any>({})
+  const [interestingProperty, setInterestingProperty] = useState<keyof IContentItem>('tags')
 
   const categoryFilterOnChange = useCallback(
     function categoryFilterOnChangeFn(evt: SyntheticEvent<HTMLSelectElement>) {
@@ -108,6 +124,7 @@ function AdminList(): ReactElement {
               <PlayPauseButton playing={false} onClick={noop} />
             </label>
             <select
+              className="custom-select"
               name="select"
               onChange={categoryFilterOnChange}
               value={adminFilterApplied}
@@ -122,6 +139,7 @@ function AdminList(): ReactElement {
               <option value="mix">Mixes</option>
               <option value="press">Press</option>
               <option value="press-kits">Press Kits</option>
+              <option value="reminders">Reminders</option>
               <option value="sound-library">Sound Library</option>
               <option value="tracks">Tracks</option>
               <option value="tutorial">Tutorials</option>
@@ -139,13 +157,19 @@ function AdminList(): ReactElement {
             </select>
           </div>
           <div className="admin-list-controls-search">
-            <label htmlFor="search">
-              Search:&nbsp;
-            </label>
+            <select 
+              className="custom-select admin-select-searchable-field"
+              onChange={evt => dispatch(setAdminSearchableField(evt.currentTarget.value))}
+              value={adminSearchableField}
+            >
+              <option value="tag">Tag:</option>
+              <option value="title">Title:</option>
+              <option value="audioFilename">Audio:</option>
+            </select>
             <input
               onChange={searchOnChange}
-              placeholder="Tag, title, attribution..."
               type="text"
+              value={adminSearchApplied}
             />
           </div>
         </div>
@@ -179,8 +203,11 @@ function AdminList(): ReactElement {
           </label>
         </div>
         <div className="admin-list-stats">
-          Selected Items: <strong>{ pageContentItems.length }</strong>&nbsp;&nbsp;|&nbsp;&nbsp;
-          Total Items: <strong>{ pageContentItems.length }</strong>
+          Filtered items: <strong>{ unpaginatedItemCount }</strong>&nbsp;&nbsp;|&nbsp;&nbsp;
+          Total items: <strong>{ contentItemsCount }</strong>&nbsp;&nbsp;|&nbsp;&nbsp;
+          <button onClick={() => dispatch(setCurrentPage(page - 1))}>&lt;&lt;</button>&nbsp;&nbsp;
+          { page }&nbsp;&nbsp;
+          <button onClick={() => dispatch(setCurrentPage(page + 1))}>&gt;&gt;</button>
         </div>
         <div className="admin-list-controls clearfix">
           <div className="admin-list-controls-mass-tag">
@@ -217,29 +244,27 @@ function AdminList(): ReactElement {
               <th className="admin-list-column-thumbnail">
                 Item
               </th>
-              { adminFilterApplied !== 'assets' && (
+              { adminFilterApplied !== 'tracks' && (
                 <th className="admin-list-column-category">
-                  Tags
+                  <select onChange={(evt: SyntheticEvent<HTMLSelectElement>) => {
+                    setInterestingProperty(evt.currentTarget.value as keyof IContentItem)
+                  }}>
+                    <option value="tags">Tags</option>
+                    <option value="id">Id</option>
+                    <option value="date">Date</option>
+                    <option value="tags">Order</option>
+                    <option value="attribution">Attribution</option>
+                  </select>
                 </th>
               )}
-              { adminFilterApplied === 'sound-library' && (
-                <th className="admin-list-column-order">
-                  Order
-                </th>
-              )}
-              { adminFilterApplied === 'assets' && (
-                <th className="admin-list-column-date">
-                  Date
-                </th>
-              )}
-              <th className="admin-list-column-check">
+              <th className="admin-list-column-actions">
                 Actions
               </th>
             </tr>
           </thead>
           <tbody>
             { pageContentItems.map((item: IContentItem) => ( /* parseInt(item.title, 10) > 511 && */
-              <tr key={item.slug}>
+              <tr key={item.id}>
                 <td className="admin-list-column-check">
                   <button
                     className={`
@@ -274,25 +299,132 @@ function AdminList(): ReactElement {
                     { hasCategory(item, 'stock-photos') && (
                       <img src={`${assetHost}/berlin-stock-photos/content/images/jpg-web/${item.keyArt}`} />
                     )}
-                    { !hasCategory(item, 'stock-photos') && !hasCategory(item, 'assets') && (
-                      <img src={`${assetHost}/hem-rocks/content/images/key-art/${item.keyArt}`} />
+                    { !hasCategory(item, 'stock-photos') 
+                      && !hasCategory(item, 'assets') 
+                      && !hasCategory(item, 'tracks') 
+                      && (
+                        <img src={`${assetHost}/hem-rocks/content/images/key-art/${item.keyArt}`} />
+                    )}
+                    { hasCategory(item, 'tracks') && (
+                      <>
+                        <audio controls>
+                          {/* <source src={assetHostHostname() + '/hem-rocks/content/tracks/' + item.audioFilename} type="audio/mpeg" /> */}
+                          <source src={assetHostHostname() + item.audioFilename} />
+                        </audio>
+                        <br/>
+                        <small>{ item.audioFilename }</small>
+                      </>
                     )}
                   </Link>
+                  <br/>
+                  {/* <small>{ item.audioFilename }</small> */}
                 </td>
-                { hasCategory(item, 'sound-library') && (
-                  <td className="admin-list-column-order">
-                    { item.order || '-' }
+                { !hasCategory(item, 'tracks') && (
+                  <td className="admin-list-column-field">
+                    {(() => {
+                      // @ts-ignore
+                      return typeof interestingProperty === 'string' && item[interestingProperty].replace(/^, /, '')
+                    })()}
                   </td>
                 )}
-
-                { hasCategory(item, 'assets') && (
-                  <td className="admin-list-column-date">
-                    { item.tags }
-                  </td>
-                )}
-
                 <td className="admin-list-column-actions">
-                  { !hasCategory(item, 'assets') && (
+                  { hasCategory(item, 'tracks') && (
+                    <>
+                      <form 
+                        className="inline-edit-form first-inline-edit-form"
+                        onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
+                          evt.preventDefault()
+                          const input = evt.currentTarget.querySelector('input[name="title"]')
+                          if (!input) return
+                          const updatedItem: IContentItem = produce(item, (draftItem) => {
+                            // @ts-ignore
+                            draftItem.title = input.value
+                            // @ts-ignore
+                            draftItem.slug = slugify(input.value)
+                          })
+                          dispatch(requestUpdateItems([updatedItem]))
+                          // @ts-ignore
+                          input.value = ''
+                        }}
+                      >
+                        <label><span>Title:</span> <input type="text" name="title" placeholder={item.title} /></label>
+                        <button type="submit">Submit</button>
+                      </form>
+                      <form 
+                        className="inline-edit-form"
+                        onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
+                          evt.preventDefault()
+                          const input = evt.currentTarget.querySelector('input[name="tags"]')
+                          if (!input) return
+                          const updatedItem: IContentItem = produce(item, (draftItem) => {
+                            // @ts-ignore
+                            draftItem.tags = input.value
+                          })
+                          dispatch(requestUpdateItems([updatedItem]))
+                          // @ts-ignore
+                          input.value = ''
+                        }}
+                      >
+                        <label><span>Tags:</span> <input type="text" name="tags" placeholder={item.tags.replace(/^, /, '')} /></label>
+                        <button type="submit">Submit</button>
+                      </form>
+                      <form 
+                        className="inline-edit-form last-inline-edit-form"
+                        onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
+                          evt.preventDefault()
+                          const input = evt.currentTarget.querySelector('input[name="attribution"]')
+                          if (!input) return
+                          const updatedItem: IContentItem = produce(item, (draftItem) => {
+                            // @ts-ignore
+                            draftItem.attribution = input.value
+                          })
+                          dispatch(requestUpdateItems([updatedItem]))
+                          // @ts-ignore
+                          input.value = ''
+                        }}
+                      >
+                        <label><span>Artist:</span> <input type="text" name="attribution" placeholder={item.attribution} /></label>
+                        <button type="submit">Submit</button>
+                      </form>
+                      <form 
+                        className="inline-edit-form"
+                        onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
+                          evt.preventDefault()
+                          const input = evt.currentTarget.querySelector('input[name="secondary-attribution"]')
+                          if (!input) return
+                          const updatedItem: IContentItem = produce(item, (draftItem) => {
+                            // @ts-ignore
+                            draftItem.secondaryAttribution = input.value
+                          })
+                          dispatch(requestUpdateItems([updatedItem]))
+                          // @ts-ignore
+                          input.value = ''
+                        }}
+                      >
+                        <label><span>Album:</span> <input type="text" name="secondary-attribution" placeholder={item.secondaryAttribution} /></label>
+                        <button type="submit">Submit</button>
+                      </form>
+                      <form 
+                        className="inline-edit-form last-inline-edit-form"
+                        onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
+                          evt.preventDefault()
+                          const input = evt.currentTarget.querySelector('input[name="slug"]')
+                          if (!input) return
+                          const updatedItem: IContentItem = produce(item, (draftItem) => {
+                            // @ts-ignore
+                            draftItem.slug = input.value
+                          })
+                          dispatch(requestUpdateItems([updatedItem]))
+                          // @ts-ignore
+                          input.value = ''
+                        }}
+                      >
+                        <label><span>Slug:</span> <input type="text" name="slug" placeholder={item.slug} /></label>
+                        <button type="submit">Submit</button>
+                      </form>
+                    </>
+                  )}
+                  { !hasCategory(item, 'assets') && !hasCategory(item, 'tracks') && (
                     <button
                       className="action-button"
                       onClick={() => {
@@ -317,7 +449,7 @@ function AdminList(): ReactElement {
                       { item.published ? 'Unpublish' : 'Publish' }
                     </button>
                   )}
-                  { !hasCategory(item, 'assets') && (
+                  { !hasCategory(item, 'assets') && !hasCategory(item, 'tracks') && (
                     <button
                       className="action-button"
                       onClick={() => {
@@ -330,13 +462,13 @@ function AdminList(): ReactElement {
                       { item.sticky ? 'Unsticky' : 'Sticky' }
                     </button>
                   )}
-                  { !hasCategory(item, 'assets') && (
+                  { !hasCategory(item, 'assets') && !hasCategory(item, 'tracks') && (
                     <button
                       className="action-button"
                       onClick={() => {
                         const updatedItem: IContentItem = produce(item, (draftItem) => {
                           if (hasTag(item, 'best-of')) {
-                            draftItem.tags = draftItem.tags.replace(', best-of', '')
+                            draftItem.tags = draftItem.tags.replace(', best-of', '').replace('best-of', '')
                           }
 
                           else {
@@ -347,6 +479,217 @@ function AdminList(): ReactElement {
                       }}
                     >
                       { hasTag(item, 'best-of') ? 'Un-best' : 'Best' }
+                    </button>
+                  )}
+                  { hasCategory(item, 'tracks') && (
+                    <button
+                      className="action-button"
+                      onClick={() => {
+                        const updatedItem: IContentItem = produce(item, (draftItem) => {
+                          if (hasTag(item, 'flagged')) {
+                            draftItem.tags = draftItem.tags.replace(', flagged', '').replace('flagged', '')
+                          }
+
+                          else {
+                            draftItem.tags = draftItem.tags + ', flagged'
+                          }
+                        })
+                        dispatch(requestUpdateItems([updatedItem]))
+                      }}
+                    >
+                      { hasTag(item, 'flagged') ? 'Un-flag' : 'Flag' }
+                    </button>
+                  )}
+                  { hasCategory(item, 'tracks') && (
+                    <button
+                      className="action-button"
+                      onClick={() => {
+                        const updatedItem: IContentItem = produce(item, (draftItem) => {
+                          if (hasTag(item, 'rare-tracks')) {
+                            draftItem.tags = draftItem.tags.replace(', rare-tracks', '').replace('rare-tracks', '')
+                          }
+
+                          else {
+                            draftItem.tags = draftItem.tags + ', rare-tracks'
+                          }
+                        })
+                        dispatch(requestUpdateItems([updatedItem]))
+                      }}
+                    >
+                      { hasTag(item, 'rare-tracks') ? 'Un-Rare' : 'Rare' }
+                    </button>
+                  )}
+                  { hasCategory(item, 'tracks') && (
+                    <button
+                      className="action-button"
+                      onClick={() => {
+                        const updatedItem: IContentItem = produce(item, (draftItem) => {
+                          if (hasTag(item, 'album-tracks')) {
+                            draftItem.tags = draftItem.tags.replace(', album-tracks', '').replace('album-tracks', '')
+                          }
+
+                          else {
+                            draftItem.tags = draftItem.tags + ', album-tracks'
+                          }
+                        })
+                        dispatch(requestUpdateItems([updatedItem]))
+                      }}
+                    >
+                      { hasTag(item, 'album-tracks') ? 'Un-Album' : 'Album' }
+                    </button>
+                  )}
+                  { hasCategory(item, 'tracks') && (
+                    <button
+                      className="action-button"
+                      onClick={() => {
+                        const updatedItem: IContentItem = produce(item, (draftItem) => {
+                          if (hasTag(item, 'live-tracks')) {
+                            draftItem.tags = draftItem.tags.replace(', live-tracks', '').replace('live-tracks', '')
+                          }
+
+                          else {
+                            draftItem.tags = draftItem.tags + ', live-tracks'
+                          }
+                        })
+                        dispatch(requestUpdateItems([updatedItem]))
+                      }}
+                    >
+                      { hasTag(item, 'live-tracks') ? 'Un-Live' : 'Live' }
+                    </button>
+                  )}
+                  { hasCategory(item, 'tracks') && (
+                    <button
+                      className="action-button"
+                      onClick={() => {
+                        const updatedItem: IContentItem = produce(item, (draftItem) => {
+                          if (hasTag(item, 'done-for-now')) {
+                            draftItem.tags = draftItem.tags.replace(', done-for-now', '').replace('done-for-now', '')
+                          }
+
+                          else {
+                            draftItem.tags = draftItem.tags + ', done-for-now'
+                          }
+                        })
+                        dispatch(requestUpdateItems([updatedItem]))
+                      }}
+                    >
+                      { hasTag(item, 'done-for-now') ? 'Un-Done' : 'Done' }
+                    </button>
+                  )}
+                  { hasCategory(item, 'tracks') && (
+                    <button
+                      className="action-button"
+                      onClick={() => {
+                        const updatedItem: IContentItem = produce(item, (draftItem) => {
+                          if (hasTag(item, 'outtakes')) {
+                            draftItem.tags = draftItem.tags.replace(', outtakes', '').replace('outtakes', '')
+                          }
+
+                          else {
+                            draftItem.tags = draftItem.tags + ', outtakes'
+                          }
+                        })
+                        dispatch(requestUpdateItems([updatedItem]))
+                      }}
+                    >
+                      { hasTag(item, 'outtakes') ? 'Un-Out' : 'Outtakes' }
+                    </button>
+                  )}
+                  { hasCategory(item, 'tracks') && (
+                    <button
+                      className="action-button"
+                      onClick={() => {
+                        const updatedItem: IContentItem = produce(item, (draftItem) => {
+                          if (hasTag(item, 'demos')) {
+                            draftItem.tags = draftItem.tags.replace(', demos', '').replace('demos', '')
+                          }
+
+                          else {
+                            draftItem.tags = draftItem.tags + ', demos'
+                          }
+                        })
+                        dispatch(requestUpdateItems([updatedItem]))
+                      }}
+                    >
+                      { hasTag(item, 'demos') ? 'Un-Demos' : 'Demos' }
+                    </button>
+                  )}
+                  { hasCategory(item, 'tracks') && (
+                    <button
+                      className="action-button"
+                      onClick={() => {
+                        const updatedItem: IContentItem = produce(item, (draftItem) => {
+                          draftItem.attribution = 'Jason Grier'
+                        })
+                        dispatch(requestUpdateItems([updatedItem]))
+                      }}
+                    >
+                      Jason
+                    </button>
+                  )}
+                  { hasCategory(item, 'tracks') && (
+                    <button
+                      className="action-button"
+                      onClick={() => {
+                        const updatedItem: IContentItem = produce(item, (draftItem) => {
+                          draftItem.attribution = 'Julia Holter'
+                        })
+                        dispatch(requestUpdateItems([updatedItem]))
+                      }}
+                    >
+                      Julia
+                    </button>
+                  )}
+                  { hasCategory(item, 'tracks') && (
+                    <button
+                      className="action-button"
+                      onClick={() => {
+                        const updatedItem: IContentItem = produce(item, (draftItem) => {
+                          draftItem.attribution = 'Michael Pisaro'
+                        })
+                        dispatch(requestUpdateItems([updatedItem]))
+                      }}
+                    >
+                      Michael
+                    </button>
+                  )}
+                  { hasCategory(item, 'tracks') && (
+                    <button
+                      className="action-button"
+                      onClick={() => {
+                        const updatedItem: IContentItem = produce(item, (draftItem) => {
+                          draftItem.attribution = 'Ariel Pink'
+                        })
+                        dispatch(requestUpdateItems([updatedItem]))
+                      }}
+                    >
+                      Ariel
+                    </button>
+                  )}
+                  { hasCategory(item, 'tracks') && (
+                    <button
+                      className="action-button"
+                      onClick={() => {
+                        const updatedItem: IContentItem = produce(item, (draftItem) => {
+                          draftItem.secondaryAttribution = 'Heart Shaped Rock'
+                        })
+                        dispatch(requestUpdateItems([updatedItem]))
+                      }}
+                    >
+                      { item.secondaryAttribution === 'Heart Shaped Rock' ? '*' : '' }HSR
+                    </button>
+                  )}
+                  { hasCategory(item, 'tracks') && (
+                    <button
+                      className="action-button"
+                      onClick={() => {
+                        const updatedItem: IContentItem = produce(item, (draftItem) => {
+                          draftItem.secondaryAttribution = 'Dog Star Orchestra'
+                        })
+                        dispatch(requestUpdateItems([updatedItem]))
+                      }}
+                    >
+                      { item.secondaryAttribution === 'Dog Star Orchestra' ? '*' : '' }Dog Star
                     </button>
                   )}
                 </td>
