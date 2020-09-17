@@ -56,6 +56,7 @@ const reducer = (
 
     case ADMIN_APPLY_SEARCH: {
       return produce(state, draftState => {
+        console.log(payload)
         draftState.adminSearchApplied = payload
         const { unpaginatedItemCount, pageContentItems } = applyPaginationAndFiltering(draftState)
         draftState.unpaginatedItemCount = unpaginatedItemCount
