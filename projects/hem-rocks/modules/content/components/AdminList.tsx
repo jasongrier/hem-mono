@@ -162,14 +162,16 @@ function AdminList(): ReactElement {
               onChange={evt => dispatch(setAdminSearchableField(evt.currentTarget.value))}
               value={adminSearchableField}
             >
-              <option value="tag">Tag:</option>
+              <option value="tags">Tag:</option>
               <option value="title">Title:</option>
               <option value="audioFilename">Audio:</option>
+              <option value="attribution">Attr:</option>
+              <option value="secondaryAttribution">2nd Attr:</option>
             </select>
             <input
               onChange={searchOnChange}
+              placeholder={adminSearchApplied}
               type="text"
-              value={adminSearchApplied}
             />
           </div>
         </div>
@@ -479,217 +481,6 @@ function AdminList(): ReactElement {
                       }}
                     >
                       { hasTag(item, 'best-of') ? 'Un-best' : 'Best' }
-                    </button>
-                  )}
-                  { hasCategory(item, 'tracks') && (
-                    <button
-                      className="action-button"
-                      onClick={() => {
-                        const updatedItem: IContentItem = produce(item, (draftItem) => {
-                          if (hasTag(item, 'flagged')) {
-                            draftItem.tags = draftItem.tags.replace(', flagged', '').replace('flagged', '')
-                          }
-
-                          else {
-                            draftItem.tags = draftItem.tags + ', flagged'
-                          }
-                        })
-                        dispatch(requestUpdateItems([updatedItem]))
-                      }}
-                    >
-                      { hasTag(item, 'flagged') ? 'Un-flag' : 'Flag' }
-                    </button>
-                  )}
-                  { hasCategory(item, 'tracks') && (
-                    <button
-                      className="action-button"
-                      onClick={() => {
-                        const updatedItem: IContentItem = produce(item, (draftItem) => {
-                          if (hasTag(item, 'rare-tracks')) {
-                            draftItem.tags = draftItem.tags.replace(', rare-tracks', '').replace('rare-tracks', '')
-                          }
-
-                          else {
-                            draftItem.tags = draftItem.tags + ', rare-tracks'
-                          }
-                        })
-                        dispatch(requestUpdateItems([updatedItem]))
-                      }}
-                    >
-                      { hasTag(item, 'rare-tracks') ? 'Un-Rare' : 'Rare' }
-                    </button>
-                  )}
-                  { hasCategory(item, 'tracks') && (
-                    <button
-                      className="action-button"
-                      onClick={() => {
-                        const updatedItem: IContentItem = produce(item, (draftItem) => {
-                          if (hasTag(item, 'album-tracks')) {
-                            draftItem.tags = draftItem.tags.replace(', album-tracks', '').replace('album-tracks', '')
-                          }
-
-                          else {
-                            draftItem.tags = draftItem.tags + ', album-tracks'
-                          }
-                        })
-                        dispatch(requestUpdateItems([updatedItem]))
-                      }}
-                    >
-                      { hasTag(item, 'album-tracks') ? 'Un-Album' : 'Album' }
-                    </button>
-                  )}
-                  { hasCategory(item, 'tracks') && (
-                    <button
-                      className="action-button"
-                      onClick={() => {
-                        const updatedItem: IContentItem = produce(item, (draftItem) => {
-                          if (hasTag(item, 'live-tracks')) {
-                            draftItem.tags = draftItem.tags.replace(', live-tracks', '').replace('live-tracks', '')
-                          }
-
-                          else {
-                            draftItem.tags = draftItem.tags + ', live-tracks'
-                          }
-                        })
-                        dispatch(requestUpdateItems([updatedItem]))
-                      }}
-                    >
-                      { hasTag(item, 'live-tracks') ? 'Un-Live' : 'Live' }
-                    </button>
-                  )}
-                  { hasCategory(item, 'tracks') && (
-                    <button
-                      className="action-button"
-                      onClick={() => {
-                        const updatedItem: IContentItem = produce(item, (draftItem) => {
-                          if (hasTag(item, 'done-for-now')) {
-                            draftItem.tags = draftItem.tags.replace(', done-for-now', '').replace('done-for-now', '')
-                          }
-
-                          else {
-                            draftItem.tags = draftItem.tags + ', done-for-now'
-                          }
-                        })
-                        dispatch(requestUpdateItems([updatedItem]))
-                      }}
-                    >
-                      { hasTag(item, 'done-for-now') ? 'Un-Done' : 'Done' }
-                    </button>
-                  )}
-                  { hasCategory(item, 'tracks') && (
-                    <button
-                      className="action-button"
-                      onClick={() => {
-                        const updatedItem: IContentItem = produce(item, (draftItem) => {
-                          if (hasTag(item, 'outtakes')) {
-                            draftItem.tags = draftItem.tags.replace(', outtakes', '').replace('outtakes', '')
-                          }
-
-                          else {
-                            draftItem.tags = draftItem.tags + ', outtakes'
-                          }
-                        })
-                        dispatch(requestUpdateItems([updatedItem]))
-                      }}
-                    >
-                      { hasTag(item, 'outtakes') ? 'Un-Out' : 'Outtakes' }
-                    </button>
-                  )}
-                  { hasCategory(item, 'tracks') && (
-                    <button
-                      className="action-button"
-                      onClick={() => {
-                        const updatedItem: IContentItem = produce(item, (draftItem) => {
-                          if (hasTag(item, 'demos')) {
-                            draftItem.tags = draftItem.tags.replace(', demos', '').replace('demos', '')
-                          }
-
-                          else {
-                            draftItem.tags = draftItem.tags + ', demos'
-                          }
-                        })
-                        dispatch(requestUpdateItems([updatedItem]))
-                      }}
-                    >
-                      { hasTag(item, 'demos') ? 'Un-Demos' : 'Demos' }
-                    </button>
-                  )}
-                  { hasCategory(item, 'tracks') && (
-                    <button
-                      className="action-button"
-                      onClick={() => {
-                        const updatedItem: IContentItem = produce(item, (draftItem) => {
-                          draftItem.attribution = 'Jason Grier'
-                        })
-                        dispatch(requestUpdateItems([updatedItem]))
-                      }}
-                    >
-                      Jason
-                    </button>
-                  )}
-                  { hasCategory(item, 'tracks') && (
-                    <button
-                      className="action-button"
-                      onClick={() => {
-                        const updatedItem: IContentItem = produce(item, (draftItem) => {
-                          draftItem.attribution = 'Julia Holter'
-                        })
-                        dispatch(requestUpdateItems([updatedItem]))
-                      }}
-                    >
-                      Julia
-                    </button>
-                  )}
-                  { hasCategory(item, 'tracks') && (
-                    <button
-                      className="action-button"
-                      onClick={() => {
-                        const updatedItem: IContentItem = produce(item, (draftItem) => {
-                          draftItem.attribution = 'Michael Pisaro'
-                        })
-                        dispatch(requestUpdateItems([updatedItem]))
-                      }}
-                    >
-                      Michael
-                    </button>
-                  )}
-                  { hasCategory(item, 'tracks') && (
-                    <button
-                      className="action-button"
-                      onClick={() => {
-                        const updatedItem: IContentItem = produce(item, (draftItem) => {
-                          draftItem.attribution = 'Ariel Pink'
-                        })
-                        dispatch(requestUpdateItems([updatedItem]))
-                      }}
-                    >
-                      Ariel
-                    </button>
-                  )}
-                  { hasCategory(item, 'tracks') && (
-                    <button
-                      className="action-button"
-                      onClick={() => {
-                        const updatedItem: IContentItem = produce(item, (draftItem) => {
-                          draftItem.secondaryAttribution = 'Heart Shaped Rock'
-                        })
-                        dispatch(requestUpdateItems([updatedItem]))
-                      }}
-                    >
-                      { item.secondaryAttribution === 'Heart Shaped Rock' ? '*' : '' }HSR
-                    </button>
-                  )}
-                  { hasCategory(item, 'tracks') && (
-                    <button
-                      className="action-button"
-                      onClick={() => {
-                        const updatedItem: IContentItem = produce(item, (draftItem) => {
-                          draftItem.secondaryAttribution = 'Dog Star Orchestra'
-                        })
-                        dispatch(requestUpdateItems([updatedItem]))
-                      }}
-                    >
-                      { item.secondaryAttribution === 'Dog Star Orchestra' ? '*' : '' }Dog Star
                     </button>
                   )}
                 </td>

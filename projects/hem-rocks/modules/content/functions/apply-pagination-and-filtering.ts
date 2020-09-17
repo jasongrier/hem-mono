@@ -21,7 +21,7 @@ function applyPaginationAndFiltering(state: IState) {
   if (!isEmpty(adminSearchApplied)) {
     pageContentItems = pageContentItems.filter(item => {
       // @ts-ignore
-      return item[adminSearchableField].includes(adminSearchApplied)
+      return item[adminSearchableField]?.includes(adminSearchApplied)
     })
   }
 
