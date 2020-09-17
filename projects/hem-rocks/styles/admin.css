@@ -46,10 +46,12 @@
   position: relative;
 }
 
+.custom-select,
+.inline-edit-form select,
 .admin-list-controls-select select {
   float: left;
   width: 200px;
-  height: 30px;
+  height: 32px;
   padding: 0 10px;
   margin: 0 20px 0 0;
   line-height: 30px;
@@ -64,6 +66,15 @@
   -moz-appearance: none;
 }
 
+.admin-select-searchable-field {
+  width: 75px;
+  margin-right: 5px;
+}
+
+.custom-select:active,
+.custom-select:focus,
+.inline-edit-form select:active,
+.inline-edit-form select:focus,
 .admin-list-controls-select select:active,
 .admin-list-controls-select select:focus {
   outline: none;
@@ -82,7 +93,7 @@
 .admin-list-controls-search input,
 .admin-list-controls-mass-tag input {
   float: left;
-  width: 670px;
+  width: 650px;
   height: 30px;
   line-height: 30px;
   padding: 0 0 0 10px;
@@ -93,6 +104,7 @@
   box-shadow: none !important;
   border: 1px solid #ccc;
 }
+
 .admin-list-controls-mass-tag button {
   height: 32px;
   line-height: 32px;
@@ -102,10 +114,6 @@
 .admin-list-controls-search input:active,
 .admin-list-controls-search input:focus {
   outline: none;
-}
-
-.admin-list * {
-  user-select: none;
 }
 
 .admin-list table {
@@ -122,27 +130,9 @@
   text-align: left;
 }
 
-.admin-list thead {
-
-}
-
-.admin-list thead tr {
-
-}
-
-.admin-list th {
-
-}
-
-.admin-list tbody {
-
-}
-
-.admin-list tbody tr {
-
-}
-
 .admin-list td {
+  vertical-align: top;
+  padding-top: 20px;
   border-bottom: 1px solid #ddd;
 }
 
@@ -328,4 +318,55 @@
 
 .small-action-button-active {
   background-color: var(--line-orange);
+}
+
+.inline-edit-form {
+  float: right;
+  clear: both;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: -3px;
+}
+
+.first-inline-edit-form {
+  margin-top: 10px;
+}
+
+.last-inline-edit-form {
+  margin-bottom: 10px;
+}
+
+.inline-edit-form label {
+  float: left;
+  clear: both;
+}
+
+.inline-edit-form label > span {
+  float: left;
+  width: 55px;
+  height: 32px;
+  line-height: 32px;
+}
+
+.inline-edit-form input {
+  float: left;
+  width: 527px;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 0 0 10px;
+  margin: 0;
+  border: 0;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: none !important;
+  border: 1px solid #ccc;
+}
+
+.inline-edit-form button {
+  display: none;
+}
+
+.admin-list-column-thumbnail audio {
+  margin-top: 10px;
+  background-color: #f1f3f4;
 }

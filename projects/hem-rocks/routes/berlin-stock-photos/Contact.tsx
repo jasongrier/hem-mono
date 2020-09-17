@@ -13,7 +13,7 @@ function Contact(): ReactElement {
         <title>{ BASE_SITE_TITLE }: Contact</title>
         <meta name="description" content="Lushness. Weirdness. Greenery. Grit. Cheap stock photos from Berlin, Germany, updated daily." />
       </Helmet>
-      <div className="page berlin-stock-photos bsp-page">
+      <div className="page berlin-stock-photos bsp-page berlin-stock-photos-contact-page">
         <Header />
         <div className="main-content-section">
           <h1>Contact us</h1>

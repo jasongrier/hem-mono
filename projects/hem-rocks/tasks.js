@@ -1,7 +1,7 @@
 const { execSync } = require('child_process')
 const { join } = require('path')
 const { readFileSync, readdirSync, writeFileSync } = require('fs')
-const { RELEASE_PHASE } = require(join(__dirname, 'config'))
+const { RELEASE_PHASE, BERLIN_STOCK_PHOTOS } = require(join(__dirname, 'config'))
 
 function removeHiddenContentFromBuild() {
   const indexDir = join(__dirname, '..', '..', 'dist', 'static', 'content')

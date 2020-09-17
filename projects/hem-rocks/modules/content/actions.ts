@@ -10,8 +10,10 @@ import {
   REQUEST_DELETE_ITEMS,
   REQUEST_READ_ITEMS,
   REQUEST_UPDATE_ITEMS,
+  SET_ADMIN_SEARCHABLE_FIELD,
   SET_CURRENT_ITEM,
   SET_CURRENT_ITEMS,
+  SET_CURRENT_PAGE,
   TOGGLE_NEEDS_KEY_ART_FILTER,
   TOGGLE_SHOW_UNPUBLISHED_FILTER,
   TOGGLE_STICKY_FILTER,
@@ -75,6 +77,11 @@ const requestUpdateItems = (items: IContentItem[]): Action => ({
   payload: items,
 })
 
+const setAdminSearchableField = (field: string): Action => ({
+  type: SET_ADMIN_SEARCHABLE_FIELD,
+  payload: field,
+})
+
 const setCurrentItem = (item: IContentItem): Action => ({
   type: SET_CURRENT_ITEM,
   payload: item,
@@ -83,6 +90,11 @@ const setCurrentItem = (item: IContentItem): Action => ({
 const setCurrentItems = (items: IContentItem[]): Action => ({
   type: SET_CURRENT_ITEMS,
   payload: items,
+})
+
+const setCurrentPage = (page: number): Action => ({
+  type: SET_CURRENT_PAGE,
+  payload: page,
 })
 
 const toggleNeedsKeyArtFilter = (): Action => ({
@@ -112,8 +124,10 @@ export {
   requestDeleteItems,
   requestReadItems,
   requestUpdateItems,
+  setAdminSearchableField,
   setCurrentItem,
   setCurrentItems,
+  setCurrentPage,
   toggleNeedsKeyArtFilter,
   toggleShowUnpublishedFilter,
   toggleStickyFilter,

@@ -49,6 +49,7 @@ export interface IIndexEntry {
 
 export interface IState {
   adminFilterApplied: string
+  adminSearchableField: keyof IContentItem
   adminSearchApplied: string
   contentItems: IContentItem[]
   currentContentItem: IContentItem | null
@@ -58,6 +59,7 @@ export interface IState {
   pageContentItems: IContentItem[],
   showUnpublishedFilter: boolean
   stickyFilter: boolean
+  unpaginatedItemCount: number,
 }
 
 export const fieldTypes: IContentItem = {
@@ -113,8 +115,10 @@ export const REQUEST_CREATE_ITEMS = 'REQUEST_CREATE_ITEMS'
 export const REQUEST_DELETE_ITEMS = 'REQUEST_DELETE_ITEMS'
 export const REQUEST_READ_ITEMS = 'REQUEST_READ_ITEMS'
 export const REQUEST_UPDATE_ITEMS = 'REQUEST_UPDATE_ITEMS'
+export const SET_ADMIN_SEARCHABLE_FIELD = 'SET_ADMIN_SEARCHABLE_FIELD'
 export const SET_CURRENT_ITEM = 'SET_CURRENT_ITEM'
 export const SET_CURRENT_ITEMS = 'SET_CURRENT_ITEMS'
+export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 export const TOGGLE_NEEDS_KEY_ART_FILTER = 'TOGGLE_NEEDS_KEY_ART_FILTER'
 export const TOGGLE_SHOW_UNPUBLISHED_FILTER = 'TOGGLE_SHOW_UNPUBLISHED_FILTER'
 export const TOGGLE_STICKY_FILTER = 'TOGGLE_STICKY_FILTER'
@@ -179,9 +183,19 @@ export interface ISetCurrentItem extends AnyAction {
   payload: IContentItem
 }
 
+export interface ISetAdminSearchableField extends AnyAction {
+  type: typeof SET_ADMIN_SEARCHABLE_FIELD
+  payload: string
+}
+
 export interface ISetCurrentItems extends AnyAction {
   type: typeof SET_CURRENT_ITEMS
   payload: IContentItem[]
+}
+
+export interface ISetCurrentPage extends AnyAction {
+  type: typeof SET_CURRENT_PAGE
+  payload: number
 }
 
 export interface IToggleNeedsKeyArtFilter extends AnyAction {
@@ -211,8 +225,10 @@ export type Action =
   | IRequestDeleteItems
   | IRequestReadItems
   | IRequestUpdateItems
+  | ISetAdminSearchableField
   | ISetCurrentItem
   | ISetCurrentItems
+  | ISetCurrentPage
   | IToggleNeedsKeyArtFilter
   | IToggleShowUnpublishedFilter
   | IToggleStickyFilter
@@ -229,8 +245,10 @@ export {
   requestDeleteItems,
   requestReadItems,
   requestUpdateItems,
+  setAdminSearchableField,
   setCurrentItem,
   setCurrentItems,
+  setCurrentPage,
   toggleNeedsKeyArtFilter,
   toggleShowUnpublishedFilter,
   toggleStickyFilter,

@@ -1,9 +1,10 @@
 import { isEmpty } from 'lodash'
 import moment from 'moment'
 import { IState, hasCategory, IContentItem } from '../index'
+import hasTag from './has-tag'
 
 function applyPaginationAndFiltering(state: IState) {
-  const { adminFilterApplied, page, adminSearchApplied, needsKeyArtFilter, showUnpublishedFilter, stickyFilter } = state
+  const { adminFilterApplied, page, adminSearchApplied, adminSearchableField, needsKeyArtFilter, showUnpublishedFilter, stickyFilter } = state
 
   let pageContentItems = ([] as IContentItem[]).concat(
     (
@@ -19,13 +20,8 @@ function applyPaginationAndFiltering(state: IState) {
 
   if (!isEmpty(adminSearchApplied)) {
     pageContentItems = pageContentItems.filter(item => {
-      const tags = item.tags.split(',').map(t => t.trim())
-      return tags.includes(adminSearchApplied)
-      // item.slug.toLowerCase().includes(adminSearchApplied.toLowerCase())
-      // || item.slug.toLowerCase().includes(adminSearchApplied.toLowerCase())
-      // || item.tags.toLowerCase().includes(adminSearchApplied.toLowerCase())
-      // || item.audioFilename.toLowerCase().includes(adminSearchApplied.toLowerCase())
-      // || item.attribution.toLowerCase().includes(adminSearchApplied.toLowerCase())
+      // @ts-ignore
+      return item[adminSearchableField].includes(adminSearchApplied)
     })
   }
 
@@ -37,7 +33,6 @@ function applyPaginationAndFiltering(state: IState) {
     pageContentItems = pageContentItems.filter(item => item.published || hasCategory(item, 'assets'))
   }
 
-
   if (stickyFilter) {
     pageContentItems = pageContentItems.filter(item => item.sticky)
   }
@@ -46,6 +41,10 @@ function applyPaginationAndFiltering(state: IState) {
     if (adminFilterApplied === 'sound-library') {
       return parseInt(a.order, 10) - parseInt(b.order, 10)
     }
+    
+    else if (adminFilterApplied === 'tracks') {
+      return parseInt(a.id, 10) - parseInt(b.id, 10)
+    }
 
     else {
       // @ts-ignore
@@ -53,8 +52,12 @@ function applyPaginationAndFiltering(state: IState) {
     }
   })
 
-  return pageContentItems
-  // return pageContentItems.slice(page - 1, 10)
+  const pageIndex = (page - 1) * 25
+
+  return {
+    unpaginatedItemCount: pageContentItems.length,
+    pageContentItems: pageContentItems.slice(pageIndex, pageIndex + 24)
+  }
 }
 
 export default applyPaginationAndFiltering
