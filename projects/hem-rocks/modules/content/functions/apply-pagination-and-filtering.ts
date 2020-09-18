@@ -58,11 +58,12 @@ function applyPaginationAndFiltering(state: IState) {
     return 0
   })
 
-  const pageIndex = (page - 1) * 25
+  const pageSize = 100
+  const pageIndex = (page - 1) * pageSize
 
   return {
     unpaginatedItemCount: pageContentItems.length,
-    pageContentItems: pageContentItems.slice(pageIndex, pageIndex + 24)
+    pageContentItems: pageContentItems.slice(pageIndex, pageIndex + pageSize - 1)
   }
 }
 
