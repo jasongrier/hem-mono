@@ -234,7 +234,7 @@ RELEASE PHASE 1
   > Retrieve the image for said content item
   > Post templates for IG, FB, and TW
   > Generate a post for IG, FB, and TW
-  > Migrate "socialPost" text field 
+  > Migrate "socialPost" text field
   > Add a social-post content category
   > Patreon drive integration
   > Kickstarter integration (Seurat)
@@ -329,7 +329,7 @@ x Reset Google Analytics (or just go in there and see what it looks like)
   √ Spinner until download links appear
   √ Change the download link style when clicked, and disable DL
   > Already downloaded check should occur when the thanks pop first opens, and gray out the downloaded links, and also have hoverable question marks next to them
-  
+
   *** INCLUDE DALT REMIX BY JG ***
 
   √ Support page with contact form and multiple choice
@@ -340,16 +340,16 @@ x Reset Google Analytics (or just go in there and see what it looks like)
   √ Need a React developer page with contact form, analytics, and good SEO
   - Improve "Need a React developer?" page design
   x Does analytics fire for bookmarked deeplinks?? If not, make a hook for that: usePageView()
-  
+
   - Switch to Matomo
     - Cancel Soundcloud Pro
     - Sign up for Matomo 1 year
     - Install Matomo script (https://www.npmjs.com/package/react-piwik)
     – Replace ReactGA events with Matomo events
     - How to allow opt-out
-  
+
   > Pro github and move repos to HEM
-  
+
   > Proposals Feature
     > Proposal category (actually a list that holds slugs for short desc, long desc, budget, appendices)
     > Proposal short desc category
@@ -504,14 +504,10 @@ Email permissions
 √ Tags are auto-populated in main content filters
 - Maybe smaller tiles here?
 – Don't forget:
-<<<<<<< HEAD
   √ ZDF
   √ Nice Strangers
-=======
   – ZDF
   – Nice Strangers
->>>>>>> ec26121c2d0865a213d35be5c425a5ca3199c5cd
->>>>>>> edc01b10d71ebe0e3e9cb569a6ff4d0fa0b780ed
 – Link press content from about page
 – Old press releases as EPK items; linked from the albums
 *****
