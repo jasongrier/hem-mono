@@ -323,10 +323,17 @@ function AdminList(): ReactElement {
                 </td>
                 { !hasCategory(item, 'tracks') && (
                   <td className="admin-list-column-field">
-                    {(() => {
-                      // @ts-ignore
-                      return typeof interestingProperty === 'string' && item[interestingProperty].replace(/^, /, '')
-                    })()}
+                    <div>
+                      {(() => {
+                        // @ts-ignore
+                        return typeof interestingProperty === 'string' && item[interestingProperty].replace(/^, /, '')
+                      })()}
+                    </div>
+                    { hasTag(item, 'albums') && (
+                      <div>
+                        <pre>{ item.trackSlugs }</pre>
+                      </div>
+                    )}
                   </td>
                 )}
                 <td className="admin-list-column-actions">

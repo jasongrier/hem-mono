@@ -20,41 +20,16 @@ function migrate(allContentItems: IContentItem[]) {
   const { join, extname } = remote.require('path')
 
   const newItems = []
-  // @ts-ignore
-  let nextHighestId = allContentItems.map(item => parseInt(item.id, 10)).sort((a, b) => a - b).pop() + 1
-  // const slugs = compact(getContentItemBySlug(allContentItems, 'betrieb').trackSlugs.split('\n'))
 
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
 
-    // if (slugs.includes(newItem.slug)) {
-    //   newItem.slug = newItem.slug.replace(/^[0-9]+-/, '')
-    //   newItem.title = newItem.title.replace(/^[0-9]+ /, '').replace(' _ ', '/')
-    // }
-
     if (
-      hasCategory(newItem, 'tracks') 
-      && !newItems.filter(item => hasTag(item, 'albums')).find(item => item.title === newItem.secondaryAttribution)
-      && !isEmpty(newItem.secondaryAttribution)
+      hasCategory(newItem, 'label')
+      && hasTag(newItem, 'albums')
     ) {
-      newItems.push(modelize({
-        id: nextHighestId.toString(),
-        tags: 'albums, primary-format, format:digital',
-        title: newItem.secondaryAttribution,
-        secondaryTitle: newItem.attribution,
-        category: 'label',
-        attribution: newItem.attribution,
-        date: '17.09.2020',
-        keyArt: slugify(newItem.secondaryAttribution) + '.jpg',
-        preview: true,
-        published: true,
-        releasePhase: '1',
-        slug: slugify(newItem.secondaryAttribution),
-        trackSlugs: allContentItems.filter(item => item.secondaryAttribution === newItem.secondaryAttribution).join('\n'),
-        type: 'Album Release',
-      } as Partial<IContentItem>))
-
-      ++ nextHighestId
+      const tracks = filter(allContentItems, { secondaryAttribution: newItem.title })
+      newItem.trackSlugs = map(tracks, 'slug').join('\n')
     }
 
     newItems.push(newItem)
