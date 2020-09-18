@@ -14,16 +14,16 @@ import { assetHostHostname } from '../../../functions'
 import { toggleShowUnpublishedFilter, toggleStickyFilter, setCurrentPage } from '../actions'
 
 function AdminList(): ReactElement {
-  const { 
-    adminFilterApplied, 
-    adminSearchableField, 
+  const {
+    adminFilterApplied,
+    adminSearchableField,
     adminSearchApplied,
-    contentItemsCount, 
-    needsKeyArtFilter, 
-    page, 
-    pageContentItems, 
-    showUnpublishedFilter, 
-    stickyFilter, 
+    contentItemsCount,
+    needsKeyArtFilter,
+    page,
+    pageContentItems,
+    showUnpublishedFilter,
+    stickyFilter,
     unpaginatedItemCount
   } = useSelector((state: RootState) => ({
     adminFilterApplied: state.content.adminFilterApplied,
@@ -157,7 +157,7 @@ function AdminList(): ReactElement {
             </select>
           </div>
           <div className="admin-list-controls-search">
-            <select 
+            <select
               className="custom-select admin-select-searchable-field"
               onChange={evt => dispatch(setAdminSearchableField(evt.currentTarget.value))}
               value={adminSearchableField}
@@ -301,9 +301,9 @@ function AdminList(): ReactElement {
                     { hasCategory(item, 'stock-photos') && (
                       <img src={`${assetHost}/berlin-stock-photos/content/images/jpg-web/${item.keyArt}`} />
                     )}
-                    { !hasCategory(item, 'stock-photos') 
-                      && !hasCategory(item, 'assets') 
-                      && !hasCategory(item, 'tracks') 
+                    { !hasCategory(item, 'stock-photos')
+                      && !hasCategory(item, 'assets')
+                      && !hasCategory(item, 'tracks')
                       && (
                         <img src={`${assetHost}/hem-rocks/content/images/key-art/${item.keyArt}`} />
                     )}
@@ -332,7 +332,7 @@ function AdminList(): ReactElement {
                 <td className="admin-list-column-actions">
                   { hasCategory(item, 'tracks') && (
                     <>
-                      <form 
+                      <form
                         className="inline-edit-form first-inline-edit-form"
                         onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
                           evt.preventDefault()
@@ -352,7 +352,7 @@ function AdminList(): ReactElement {
                         <label><span>Title:</span> <input type="text" name="title" placeholder={item.title} /></label>
                         <button type="submit">Submit</button>
                       </form>
-                      <form 
+                      <form
                         className="inline-edit-form"
                         onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
                           evt.preventDefault()
@@ -370,7 +370,7 @@ function AdminList(): ReactElement {
                         <label><span>Tags:</span> <input type="text" name="tags" placeholder={item.tags.replace(/^, /, '')} /></label>
                         <button type="submit">Submit</button>
                       </form>
-                      <form 
+                      <form
                         className="inline-edit-form last-inline-edit-form"
                         onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
                           evt.preventDefault()
@@ -388,7 +388,7 @@ function AdminList(): ReactElement {
                         <label><span>Artist:</span> <input type="text" name="attribution" placeholder={item.attribution} /></label>
                         <button type="submit">Submit</button>
                       </form>
-                      <form 
+                      <form
                         className="inline-edit-form"
                         onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
                           evt.preventDefault()
@@ -406,7 +406,7 @@ function AdminList(): ReactElement {
                         <label><span>Album:</span> <input type="text" name="secondary-attribution" placeholder={item.secondaryAttribution} /></label>
                         <button type="submit">Submit</button>
                       </form>
-                      <form 
+                      <form
                         className="inline-edit-form last-inline-edit-form"
                         onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
                           evt.preventDefault()
@@ -483,11 +483,35 @@ function AdminList(): ReactElement {
                       { hasTag(item, 'best-of') ? 'Un-best' : 'Best' }
                     </button>
                   )}
+                  { hasCategory(item, 'label') && (
+                    <button
+                      className="action-button"
+                      onClick={() => {
+                        const updatedItem: IContentItem = produce(item, (draftItem) => {
+                          if (hasTag(item, 'label-page')) {
+                            draftItem.tags = draftItem.tags.replace(', label-page', '').replace('label-page', '')
+                          }
+
+                          else {
+                            draftItem.tags = draftItem.tags + ', label-page'
+                          }
+                        })
+                        dispatch(requestUpdateItems([updatedItem]))
+                      }}
+                    >
+                      { hasTag(item, 'label-page') ? 'Un-label page' : 'Label page' }
+                    </button>
+                  )}
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+        <div>
+          <button onClick={() => dispatch(setCurrentPage(page - 1))}>&lt;&lt;</button>&nbsp;&nbsp;
+          { page }&nbsp;&nbsp;
+          <button onClick={() => dispatch(setCurrentPage(page + 1))}>&gt;&gt;</button>
+        </div>
       </div>
     </ElectronOnly>
   )

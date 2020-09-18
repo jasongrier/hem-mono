@@ -26,8 +26,8 @@ import {
 import { applyPaginationAndFiltering } from './functions'
 
 const initialState: IState = {
-  adminFilterApplied: 'tracks',
-  adminSearchableField: 'title',
+  adminFilterApplied: 'label',
+  adminSearchableField: 'tags',
   adminSearchApplied: '',
   contentItems: [],
   currentContentItem: null,
@@ -129,7 +129,7 @@ const reducer = (
         draftState.currentContentItems = payload
       })
     }
-    
+
     case SET_CURRENT_PAGE: {
       return produce(state, draftState => {
         draftState.page = payload
@@ -141,6 +141,7 @@ const reducer = (
 
     case TOGGLE_NEEDS_KEY_ART_FILTER: {
       return produce(state, draftState => {
+        draftState.needsKeyArtFilter = !draftState.needsKeyArtFilter
         const { unpaginatedItemCount, pageContentItems } = applyPaginationAndFiltering(draftState)
         draftState.unpaginatedItemCount = unpaginatedItemCount
         draftState.pageContentItems = pageContentItems
@@ -149,6 +150,7 @@ const reducer = (
 
     case TOGGLE_SHOW_UNPUBLISHED_FILTER: {
       return produce(state, draftState => {
+        draftState.showUnpublishedFilter = !draftState.showUnpublishedFilter
         const { unpaginatedItemCount, pageContentItems } = applyPaginationAndFiltering(draftState)
         draftState.unpaginatedItemCount = unpaginatedItemCount
         draftState.pageContentItems = pageContentItems
