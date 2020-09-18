@@ -33,28 +33,10 @@ function migrate(allContentItems: IContentItem[]) {
     // }
 
     if (
-      hasCategory(newItem, 'tracks') 
-      && !newItems.filter(item => hasTag(item, 'albums')).find(item => item.title === newItem.secondaryAttribution)
-      && !isEmpty(newItem.secondaryAttribution)
+      hasCategory(newItem, 'label') 
+      && getContentItemBySlug(allContentItems, newItem.slug)
     ) {
-      newItems.push(modelize({
-        id: nextHighestId.toString(),
-        tags: 'albums, primary-format, format:digital',
-        title: newItem.secondaryAttribution,
-        secondaryTitle: newItem.attribution,
-        category: 'label',
-        attribution: newItem.attribution,
-        date: '17.09.2020',
-        keyArt: slugify(newItem.secondaryAttribution) + '.jpg',
-        preview: true,
-        published: true,
-        releasePhase: '1',
-        slug: slugify(newItem.secondaryAttribution),
-        trackSlugs: allContentItems.filter(item => item.secondaryAttribution === newItem.secondaryAttribution).join('\n'),
-        type: 'Album Release',
-      } as Partial<IContentItem>))
-
-      ++ nextHighestId
+      console.log(newItem.slug)
     }
 
     newItems.push(newItem)
@@ -62,8 +44,8 @@ function migrate(allContentItems: IContentItem[]) {
 
   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
   const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
-  writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
-  writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
+  // writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
+  // writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
 }
 
 function AdminManualTaskRunner(): ReactElement {
