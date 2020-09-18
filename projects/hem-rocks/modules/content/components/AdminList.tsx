@@ -207,7 +207,13 @@ function AdminList(): ReactElement {
         <div className="admin-list-stats">
           Filtered items: <strong>{ unpaginatedItemCount }</strong>&nbsp;&nbsp;|&nbsp;&nbsp;
           Total items: <strong>{ contentItemsCount }</strong>&nbsp;&nbsp;|&nbsp;&nbsp;
-          <button onClick={() => dispatch(setCurrentPage(page - 1))}>&lt;&lt;</button>&nbsp;&nbsp;
+          <button 
+            disabled={ page === 1 }
+            onClick={() => dispatch(setCurrentPage(page - 1))}
+          >
+            &lt;&lt;
+          </button>
+          &nbsp;&nbsp;
           { page }&nbsp;&nbsp;
           <button onClick={() => dispatch(setCurrentPage(page + 1))}>&gt;&gt;</button>
         </div>
@@ -449,6 +455,25 @@ function AdminList(): ReactElement {
                       }}
                     >
                       { item.published ? 'Unpublish' : 'Publish' }
+                    </button>
+                  )}
+                  { !hasCategory(item, 'assets') && (
+                    <button
+                      className="action-button"
+                      onClick={() => {
+                        const updatedItem: IContentItem = produce(item, (draftItem) => {
+                          if (hasTag(item, 'label-page')) {
+                            draftItem.tags = draftItem.tags.replace(', label-page', '').replace('label-page', '')
+                          }
+
+                          else {
+                            draftItem.tags = draftItem.tags + ', label-page'
+                          }
+                        })
+                        dispatch(requestUpdateItems([updatedItem]))
+                      }}
+                    >
+                      { hasTag(item, 'label-page') ? 'Un-label page' : 'Label Page' }
                     </button>
                   )}
                   { !hasCategory(item, 'assets') && !hasCategory(item, 'tracks') && (
