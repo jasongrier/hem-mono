@@ -20,26 +20,54 @@ function migrate(allContentItems: IContentItem[]) {
   const { join, extname } = remote.require('path')
 
   const newItems = []
-  const test = []
 
-  for (const oldItem of allContentItems) {
-    const newItem = Object.assign({}, oldItem)
+  const tracks = [
+    'on-and-on-destroyed-ambient-jason-grier',
+    'audio-new-edit-1-track-1-24-jul-2006-various-artists',
+    '08-the-body-is-the-bread-various-artists',
+    'why-do-we-duette-various-artists',
+    'the-weird-wolf-various-artists',
+    '13-one-true-comfort-various-artists',
+    'calling-human-ear-music-ivan-gomez',
+    '01-neighbor-neighbor-various-artists',
+    'from-left-to-right-various-artists',
+    '24-24-it-s-just-begun-various-artists',
+    '01-barnoon-hill-various-artists',
+    'hor-ich-das-liedchenmix-2-various-artists',
+    'manuscript-1-edit-various-artists',
+    'slavic-various-artists',
+    'ncprehearsal-1-various-artists',
+    'fire-first-mountain-various-artists',
+    'mt-various-artists',
+    'brothers-and-sisters-of-the-gun-demo-various-artists',
+    'christmas-plate-noverb-various-artists',
+    'dominos-various-artists',
+    '09-darby-s-revenge-various-artists',
+    '01-man-he-can-1-various-artists',
+    '01-ocean-farm-1-various-artists',
+    '02-strong-wait-various-artists',
+    'too-fucking-fun-various-artists',
+    'falling-out-of-love-various-artists',
+    'i-m-not-insane-various-artists',
+    '02-unearth-the-human-saxaphone-various-artists',
+    'calling-human-ear-music-various-artists',
+    'jason-grier-live-1-various-artists',
+  ]
 
-    if (
-      newItem.secondaryAttribution === 'Small Songs'
-      && newItem.published
-    ) {
-      test.push(newItem)
+  for (const track of tracks) {
+    // const newItem = Object.assign({}, oldItem)
+
+    const item = getContentItemBySlug(allContentItems, track)
+    if (item) {
+      console.log(hasTag(item, 'rare-tracks'), item.slug)
     }
 
-    newItems.push(newItem)
+    else {
+      console.log('uh oh!')
+    }
+
+    // newItems.push(newItem)
   }
-
-  test.sort((a, b) => {
-    return parseInt(a.order, 10) - parseInt(b.order, 10)
-  })
-
-  console.log(map(test, 'slug'))
 
   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
   const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
