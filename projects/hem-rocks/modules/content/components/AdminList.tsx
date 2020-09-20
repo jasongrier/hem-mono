@@ -167,6 +167,7 @@ function AdminList(): ReactElement {
               <option value="audioFilename">Audio:</option>
               <option value="attribution">Attr:</option>
               <option value="secondaryAttribution">2nd Attr:</option>
+              <option value="slug">Slug</option>
             </select>
             <input
               onChange={searchOnChange}
@@ -207,7 +208,7 @@ function AdminList(): ReactElement {
         <div className="admin-list-stats">
           Filtered items: <strong>{ unpaginatedItemCount }</strong>&nbsp;&nbsp;|&nbsp;&nbsp;
           Total items: <strong>{ contentItemsCount }</strong>&nbsp;&nbsp;|&nbsp;&nbsp;
-          <button 
+          <button
             disabled={ page === 1 }
             onClick={() => dispatch(setCurrentPage(page - 1))}
           >
@@ -321,6 +322,8 @@ function AdminList(): ReactElement {
                         </audio>
                         <br/>
                         <small>{ item.audioFilename }</small>
+                        <hr/>
+                        <small>{ item.slug }</small>
                       </>
                     )}
                   </Link>
@@ -435,6 +438,42 @@ function AdminList(): ReactElement {
                         }}
                       >
                         <label><span>Slug:</span> <input type="text" name="slug" placeholder={item.slug} /></label>
+                        <button type="submit">Submit</button>
+                      </form>
+                      <form
+                        className="inline-edit-form last-inline-edit-form"
+                        onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
+                          evt.preventDefault()
+                          const input = evt.currentTarget.querySelector('input[name="order"]')
+                          if (!input) return
+                          const updatedItem: IContentItem = produce(item, (draftItem) => {
+                            // @ts-ignore
+                            draftItem.order = input.value
+                          })
+                          dispatch(requestUpdateItems([updatedItem]))
+                          // @ts-ignore
+                          input.value = ''
+                        }}
+                      >
+                        <label><span>Order:</span> <input type="text" name="order" placeholder={item.order} /></label>
+                        <button type="submit">Submit</button>
+                      </form>
+                      <form
+                        className="inline-edit-form last-inline-edit-form"
+                        onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
+                          evt.preventDefault()
+                          const input = evt.currentTarget.querySelector('input[name="audio-filename"]')
+                          if (!input) return
+                          const updatedItem: IContentItem = produce(item, (draftItem) => {
+                            // @ts-ignore
+                            draftItem.audioFilename = input.value
+                          })
+                          dispatch(requestUpdateItems([updatedItem]))
+                          // @ts-ignore
+                          input.value = ''
+                        }}
+                      >
+                        <label><span>File:</span> <input type="text" name="audio-filename" placeholder={item.audioFilename} /></label>
                         <button type="submit">Submit</button>
                       </form>
                     </>

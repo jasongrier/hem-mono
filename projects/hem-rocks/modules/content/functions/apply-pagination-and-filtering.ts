@@ -37,25 +37,29 @@ function applyPaginationAndFiltering(state: IState) {
     pageContentItems = pageContentItems.filter(item => item.sticky)
   }
 
+  // pageContentItems.sort((a, b) => {
+  //   if (adminFilterApplied === 'sound-library') {
+  //     return parseInt(a.order, 10) - parseInt(b.order, 10)
+  //   }
+
+  //   else if (adminFilterApplied === 'tracks') {
+  //     return parseInt(a.id, 10) - parseInt(b.id, 10)
+  //   }
+
+  //   else {
+  //     // @ts-ignore
+  //     return moment(b.date, 'DD.MM.YYYY') - moment(a.date, 'DD.MM.YYYY')
+  //   }
+  // })
+
+  // pageContentItems.sort((a, b) => {
+  //   if (a.title > b.title) return 1
+  //   if (b.title > a.title) return -1
+  //   return 0
+  // })
+
   pageContentItems.sort((a, b) => {
-    if (adminFilterApplied === 'sound-library') {
-      return parseInt(a.order, 10) - parseInt(b.order, 10)
-    }
-
-    else if (adminFilterApplied === 'tracks') {
-      return parseInt(a.id, 10) - parseInt(b.id, 10)
-    }
-
-    else {
-      // @ts-ignore
-      return moment(b.date, 'DD.MM.YYYY') - moment(a.date, 'DD.MM.YYYY')
-    }
-  })
-
-  pageContentItems.sort((a, b) => {
-    if (a.title > b.title) return 1
-    if (b.title > a.title) return -1
-    return 0
+    return parseInt(a.order, 10) - parseInt(b.order, 10)
   })
 
   const pageSize = 100
