@@ -51,6 +51,7 @@ export interface IState {
   adminFilterApplied: string
   adminSearchableField: keyof IContentItem
   adminSearchApplied: string
+  adminSearchExact: boolean
   contentItems: IContentItem[]
   currentContentItem: IContentItem | null
   currentContentItems: IContentItem[]

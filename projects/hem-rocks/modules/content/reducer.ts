@@ -27,8 +27,9 @@ import { applyPaginationAndFiltering } from './functions'
 
 const initialState: IState = {
   adminFilterApplied: 'label',
-  adminSearchableField: 'slug',
-  adminSearchApplied: 'human-genius-at-soundwalk-2009',
+  adminSearchableField: 'title',
+  adminSearchApplied: '',
+  adminSearchExact: false,
   contentItems: [],
   currentContentItem: null,
   currentContentItems: [],

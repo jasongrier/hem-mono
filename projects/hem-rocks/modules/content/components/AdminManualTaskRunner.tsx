@@ -21,21 +21,72 @@ function migrate(allContentItems: IContentItem[]) {
   const { join, extname } = remote.require('path')
 
   const newItems: IContentItem[] = []
+  const trackSlugs: string[][] = []
 
   // let id = Math.max(...allContentItems.map(item => parseInt(item.id, 10)))
-  // let id = 1
+  let id = 1
 
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
+    newItem.id = id.toString()
 
-    if (newItem.secondaryAttribution === 'Human Genius') {
-      // newItem.tags = newItem.tags + ', done-for-now'
-      newItem.keyArt = 'human-genius-at-soundwalk-2009.jpg'
+    if (newItem.secondaryAttribution === 'Michael Pisaro\'s Dog Star Orchestra 2010') {
+      const dayNumber = parseInt(newItem.audioFilename.split('Day ')[1].split('/')[0], 10)
+      newItem.secondaryAttribution = 'Day ' + dayNumber
+      newItem.keyArt = slugify('Michael Pisaro\'s Dog Star Orchestra 2010') + '.jpg'
+      newItem.title = titleCase(newItem.title.replace(/^[0-9]+_/, '').replace(/_/g, ' '))
+
+      if (!trackSlugs[dayNumber]) {
+        trackSlugs[dayNumber] = []
+      }
+
+      trackSlugs[dayNumber].push(newItem.slug)
+
+      newItem.slug = newItem.slug.replace(/^[0-9]+-/, '')
     }
 
     newItems.push(newItem)
-    // ++ id
+    ++ id
   }
+
+  for (let i = 1; i <= 7; i ++) {
+    const myTrackSlugs = trackSlugs[i].join("\n")
+
+    newItems.push(modelize({
+      id: id.toString(),
+      tags: 'discs, format:digital',
+      title: 'Day ' + i,
+      secondaryTitle: 'Michael Pisaro\'s Dog Star Orchestra 2010',
+      category: 'label',
+      attribution: 'Michael Pisaro\'s Dog Star Orchestra',
+      date: '17.09.2020',
+      keyArt: slugify('Michael Pisaro\'s Dog Star Orchestra 2010') + '.jpg',
+      preview: true,
+      published: true,
+      releasePhase: '1',
+      secondaryAttribution: 'Michael Pisaro\'s Dog Star Orchestra 2010',
+      slug: slugify('Michael Pisaro\'s Dog Star Orchestra 2010') + 'day-' + i,
+      trackSlugs: myTrackSlugs,
+    } as Partial<IContentItem>))
+
+    ++ id
+  }
+
+  // for (const oldItem of allContentItems) {
+  //   const newItem = Object.assign({}, oldItem)
+
+  //   if (newItem.secondaryAttribution === 'Michael Pisaro\'s Dog Star Orchestra 2009') {
+  //     const disc = parseInt(newItem.audioFilename.split('Day ')[1].split('/')[0], 10)
+
+  //     console.log(disc)
+
+  //     newItem.tags = 'discs, done-for-now'
+  //     newItem.keyArt = 'dog-star-2009.jpg'
+  //   }
+
+  //   newItems.push(newItem)
+  //   // ++ id
+  // }
 
   // const tracks = [
   //   'DeliciousSFAI.mp3',
