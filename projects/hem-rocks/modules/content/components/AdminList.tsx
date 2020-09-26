@@ -313,7 +313,6 @@ function AdminList(): ReactElement {
                     )}
                     { !hasCategory(item, 'stock-photos')
                       && !hasCategory(item, 'assets')
-                      && !hasCategory(item, 'tracks')
                       && (
                         <img src={`${assetHost}/hem-rocks/content/images/key-art/${item.keyArt}`} />
                     )}
