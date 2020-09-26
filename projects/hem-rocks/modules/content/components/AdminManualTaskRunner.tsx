@@ -21,118 +21,40 @@ function migrate(allContentItems: IContentItem[]) {
   const { join, extname } = remote.require('path')
 
   const newItems: IContentItem[] = []
-  const trackSlugs: string[][] = []
 
-  // let id = Math.max(...allContentItems.map(item => parseInt(item.id, 10)))
   let id = 1
+
+  let found = false
 
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
-    newItem.id = id.toString()
+    // newItem.id = id.toString()
+    // ++ id
 
-    if (newItem.secondaryAttribution === 'Michael Pisaro\'s Dog Star Orchestra 2010') {
-      const dayNumber = parseInt(newItem.audioFilename.split('Day ')[1].split('/')[0], 10)
-      newItem.secondaryAttribution = 'Day ' + dayNumber
-      newItem.keyArt = slugify('Michael Pisaro\'s Dog Star Orchestra 2010') + '.jpg'
-      newItem.title = titleCase(newItem.title.replace(/^[0-9]+_/, '').replace(/_/g, ' '))
-
-      if (!trackSlugs[dayNumber]) {
-        trackSlugs[dayNumber] = []
-      }
-
-      trackSlugs[dayNumber].push(newItem.slug)
-
-      newItem.slug = newItem.slug.replace(/^[0-9]+-/, '')
+    if (!found && newItem.slug === 'the-human-ear-volume-1') {
+      newItem.slug = newItem.slug + '-1'
+      found = true
     }
 
     newItems.push(newItem)
-    ++ id
   }
-
-  for (let i = 1; i <= 7; i ++) {
-    const myTrackSlugs = trackSlugs[i].join("\n")
-
-    newItems.push(modelize({
-      id: id.toString(),
-      tags: 'discs, format:digital',
-      title: 'Day ' + i,
-      secondaryTitle: 'Michael Pisaro\'s Dog Star Orchestra 2010',
-      category: 'label',
-      attribution: 'Michael Pisaro\'s Dog Star Orchestra',
-      date: '17.09.2020',
-      keyArt: slugify('Michael Pisaro\'s Dog Star Orchestra 2010') + '.jpg',
-      preview: true,
-      published: true,
-      releasePhase: '1',
-      secondaryAttribution: 'Michael Pisaro\'s Dog Star Orchestra 2010',
-      slug: slugify('Michael Pisaro\'s Dog Star Orchestra 2010') + 'day-' + i,
-      trackSlugs: myTrackSlugs,
-    } as Partial<IContentItem>))
-
-    ++ id
-  }
-
-  // for (const oldItem of allContentItems) {
-  //   const newItem = Object.assign({}, oldItem)
-
-  //   if (newItem.secondaryAttribution === 'Michael Pisaro\'s Dog Star Orchestra 2009') {
-  //     const disc = parseInt(newItem.audioFilename.split('Day ')[1].split('/')[0], 10)
-
-  //     console.log(disc)
-
-  //     newItem.tags = 'discs, done-for-now'
-  //     newItem.keyArt = 'dog-star-2009.jpg'
-  //   }
-
-  //   newItems.push(newItem)
-  //   // ++ id
-  // }
-
-  // const tracks = [
-  //   'DeliciousSFAI.mp3',
-  //   'Chimacum RainSFAI.mp3',
-  // ]
-
-  // const trackSlugs: string[] = []
-
-  // for (const track of tracks) {
-  //   const slug = slugify(track.replace('SFAI.mp3', '')) + '-linda-perhacs'
-  //   const title = track.replace('SFAI.mp3', '')
-
-  //   trackSlugs.push(slug)
-
-  //   newItems.push(modelize({
-  //     id: id.toString(),
-  //     title,
-  //     category: 'tracks',
-  //     attribution: 'Linda Perhacs',
-  //     date: '17.09.2020',
-  //     keyArt: 'linda-perhacs-live-at-sfai.jpg',
-  //     preview: true,
-  //     published: true,
-  //     releasePhase: '1',
-  //     audioFilename: '/Volumes/April_Kepner/Eva_Vollmer/Disorganised/Kalt/live/2010/Linda Perhacs Live at SFAI 2010/Live @ SFAI/' + track,
-  //     slug,
-  //   } as Partial<IContentItem>))
-
-  //   ++ id
-  // }
 
   // newItems.push(modelize({
   //   id: id.toString(),
-  //   tags: 'albums, primary-format, format:digital',
-  //   title: 'Live at SFAI',
-  //   secondaryTitle: 'Linda Perhacs',
-  //   category: 'label',
-  //   attribution: 'Linda Perhacs',
+  //   tags: '',
+  //   title,
+  //   secondaryTitle: 'Michael Pisaro',
+  //   category: 'tracks',
+  //   attribution: 'Michael Pisaro',
   //   date: '17.09.2020',
-  //   keyArt: 'linda-perhacs-live-at-sfai.jpg',
+  //   keyArt: 'tombstones-ii.jpg',
   //   preview: true,
   //   published: true,
   //   releasePhase: '1',
-  //   slug: 'linda-perhacs-live-at-sfai',
-  //   trackSlugs: trackSlugs.join("\n"),
+  //   secondaryAttribution: 'Tombstones II',
+  //   slug,
   // } as Partial<IContentItem>))
+  // }
 
   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
   const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
