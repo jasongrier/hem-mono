@@ -9,12 +9,14 @@ import { ElectronOnly } from '../../../../../lib/components'
 import { PlayPauseButton } from '../../../../../lib/packages/hem-buttons'
 import { adminApplyFilter, adminApplySearch, setAdminSearchableField, toggleNeedsKeyArtFilter, requestDeleteItems, requestReadItems, requestUpdateItems, IContentItem } from '../index'
 import { RootState } from '../../../index'
-import { hasCategory, hasTag } from '../functions'
+import { getContentItemBySlug, hasCategory, hasTag } from '../functions'
 import { assetHostHostname } from '../../../functions'
 import { toggleShowUnpublishedFilter, toggleStickyFilter, setCurrentPage } from '../actions'
+import uuid from 'uuid'
 
 function AdminList(): ReactElement {
   const {
+    allContentItems,
     adminFilterApplied,
     adminSearchableField,
     adminSearchApplied,
@@ -24,8 +26,9 @@ function AdminList(): ReactElement {
     pageContentItems,
     showUnpublishedFilter,
     stickyFilter,
-    unpaginatedItemCount
+    unpaginatedItemCount,
   } = useSelector((state: RootState) => ({
+    allContentItems: state.content.contentItems,
     adminFilterApplied: state.content.adminFilterApplied,
     adminSearchableField: state.content.adminSearchableField,
     adminSearchApplied: state.content.adminSearchApplied,
@@ -328,7 +331,6 @@ function AdminList(): ReactElement {
                     )}
                   </Link>
                   <br/>
-                  {/* <small>{ item.audioFilename }</small> */}
                 </td>
                 { !hasCategory(item, 'tracks') && (
                   <td className="admin-list-column-field">
@@ -338,11 +340,34 @@ function AdminList(): ReactElement {
                         return typeof interestingProperty === 'string' && item[interestingProperty].replace(/^, /, '')
                       })()}
                     </div>
-                    { hasTag(item, 'albums') && (
-                      <div>
-                        <pre>{ item.trackSlugs }</pre>
+
+                    <hr/>
+
+                    {/* { hasTag(item, 'albums') && (
+                      <pre>
+                        { item.trackSlugs }
+                      </pre>
+                    )} */}
+                    { hasTag(item, 'albums') && item.trackSlugs.split("\n").map(slug => (
+                      <div key={uuid()}>
+                        { getContentItemBySlug(allContentItems, slug) && (
+                          <div>
+                            <Link to={`/admin/edit/${slug}`}>
+                              { getContentItemBySlug(allContentItems, slug).title }
+                            </Link>
+                            <br />
+                            <audio controls>
+                              <source src={assetHostHostname() + getContentItemBySlug(allContentItems, slug).audioFilename} />
+                            </audio>
+                          </div>
+                        )}
+                        { !getContentItemBySlug(allContentItems, slug) && (
+                          <div>
+                            Missing file: { slug }
+                          </div>
+                        )}
                       </div>
-                    )}
+                    ))}
                   </td>
                 )}
                 <td className="admin-list-column-actions">
@@ -474,6 +499,24 @@ function AdminList(): ReactElement {
                         }}
                       >
                         <label><span>File:</span> <input type="text" name="audio-filename" placeholder={item.audioFilename} /></label>
+                        <button type="submit">Submit</button>
+                      </form>
+                      <form
+                        className="inline-edit-form last-inline-edit-form"
+                        onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
+                          evt.preventDefault()
+                          const input = evt.currentTarget.querySelector('input[name="key-art"]')
+                          if (!input) return
+                          const updatedItem: IContentItem = produce(item, (draftItem) => {
+                            // @ts-ignore
+                            draftItem.keyArt = input.value
+                          })
+                          dispatch(requestUpdateItems([updatedItem]))
+                          // @ts-ignore
+                          input.value = ''
+                        }}
+                      >
+                        <label><span>Key Art:</span> <input type="text" name="key-art" placeholder={item.keyArt} /></label>
                         <button type="submit">Submit</button>
                       </form>
                     </>

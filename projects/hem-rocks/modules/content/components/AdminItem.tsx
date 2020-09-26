@@ -103,14 +103,6 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
 
       if (!workingItem) return
 
-      for (const item of allContentItems) {
-        if (item.id === workingItem.id) continue
-        if (item.slug === workingItem.slug) {
-          alert('Duplicate slug: ' + workingItem.slug)
-          return
-        }
-      }
-
       const payloadItem = Object.assign({}, workingItem)
 
       if (isEmpty(payloadItem.slug)) {
