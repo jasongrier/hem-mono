@@ -22,6 +22,7 @@ function applyPaginationAndFiltering(state: IState) {
     pageContentItems = pageContentItems.filter(item => {
       // @ts-ignore
       return item[adminSearchableField]?.includes(adminSearchApplied)
+      // return item[adminSearchableField] === adminSearchApplied
     })
   }
 
@@ -64,7 +65,7 @@ function applyPaginationAndFiltering(state: IState) {
     return parseInt(a.order, 10) - parseInt(b.order, 10)
   })
 
-  const pageSize = 100
+  const pageSize = 25
   const pageIndex = (page - 1) * pageSize
 
   return {

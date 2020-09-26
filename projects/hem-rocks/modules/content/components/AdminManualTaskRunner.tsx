@@ -12,6 +12,7 @@ import { RootState } from '../../../index'
 import { readdirSync, renameSync } from 'fs'
 import { slugify, titleCase } from 'voca'
 import { execSync } from 'child_process'
+import { all } from 'redux-saga/effects'
 
 function migrate(allContentItems: IContentItem[]) {
   const { remote } = window.require('electron')
@@ -19,60 +20,73 @@ function migrate(allContentItems: IContentItem[]) {
   const { writeFileSync, readdirSync, readFileSync, renameSync, lstatSync, copyFileSync } = remote.require('fs')
   const { join, extname } = remote.require('path')
 
-  const newItems = []
+  const newItems: IContentItem[] = []
 
-  const tracks = [
-    'on-and-on-destroyed-ambient-jason-grier',
-    'audio-new-edit-1-track-1-24-jul-2006-various-artists',
-    '08-the-body-is-the-bread-various-artists',
-    'why-do-we-duette-various-artists',
-    'the-weird-wolf-various-artists',
-    '13-one-true-comfort-various-artists',
-    'calling-human-ear-music-ivan-gomez',
-    '01-neighbor-neighbor-various-artists',
-    'from-left-to-right-various-artists',
-    '24-24-it-s-just-begun-various-artists',
-    '01-barnoon-hill-various-artists',
-    'hor-ich-das-liedchenmix-2-various-artists',
-    'manuscript-1-edit-various-artists',
-    'slavic-various-artists',
-    'ncprehearsal-1-various-artists',
-    'fire-first-mountain-various-artists',
-    'mt-various-artists',
-    'brothers-and-sisters-of-the-gun-demo-various-artists',
-    'christmas-plate-noverb-various-artists',
-    'dominos-various-artists',
-    '09-darby-s-revenge-various-artists',
-    '01-man-he-can-1-various-artists',
-    '01-ocean-farm-1-various-artists',
-    '02-strong-wait-various-artists',
-    'too-fucking-fun-various-artists',
-    'falling-out-of-love-various-artists',
-    'i-m-not-insane-various-artists',
-    '02-unearth-the-human-saxaphone-various-artists',
-    'calling-human-ear-music-various-artists',
-    'jason-grier-live-1-various-artists',
-  ]
+  // let id = Math.max(...allContentItems.map(item => parseInt(item.id, 10)))
+  // let id = 1
 
-  for (const track of tracks) {
-    // const newItem = Object.assign({}, oldItem)
+  for (const oldItem of allContentItems) {
+    const newItem = Object.assign({}, oldItem)
 
-    const item = getContentItemBySlug(allContentItems, track)
-    if (item) {
-      console.log(hasTag(item, 'rare-tracks'), item.slug)
+    if (newItem.secondaryAttribution === 'Human Genius') {
+      // newItem.tags = newItem.tags + ', done-for-now'
+      newItem.keyArt = 'human-genius-at-soundwalk-2009.jpg'
     }
 
-    else {
-      console.log('uh oh!')
-    }
-
-    // newItems.push(newItem)
+    newItems.push(newItem)
+    // ++ id
   }
+
+  // const tracks = [
+  //   'DeliciousSFAI.mp3',
+  //   'Chimacum RainSFAI.mp3',
+  // ]
+
+  // const trackSlugs: string[] = []
+
+  // for (const track of tracks) {
+  //   const slug = slugify(track.replace('SFAI.mp3', '')) + '-linda-perhacs'
+  //   const title = track.replace('SFAI.mp3', '')
+
+  //   trackSlugs.push(slug)
+
+  //   newItems.push(modelize({
+  //     id: id.toString(),
+  //     title,
+  //     category: 'tracks',
+  //     attribution: 'Linda Perhacs',
+  //     date: '17.09.2020',
+  //     keyArt: 'linda-perhacs-live-at-sfai.jpg',
+  //     preview: true,
+  //     published: true,
+  //     releasePhase: '1',
+  //     audioFilename: '/Volumes/April_Kepner/Eva_Vollmer/Disorganised/Kalt/live/2010/Linda Perhacs Live at SFAI 2010/Live @ SFAI/' + track,
+  //     slug,
+  //   } as Partial<IContentItem>))
+
+  //   ++ id
+  // }
+
+  // newItems.push(modelize({
+  //   id: id.toString(),
+  //   tags: 'albums, primary-format, format:digital',
+  //   title: 'Live at SFAI',
+  //   secondaryTitle: 'Linda Perhacs',
+  //   category: 'label',
+  //   attribution: 'Linda Perhacs',
+  //   date: '17.09.2020',
+  //   keyArt: 'linda-perhacs-live-at-sfai.jpg',
+  //   preview: true,
+  //   published: true,
+  //   releasePhase: '1',
+  //   slug: 'linda-perhacs-live-at-sfai',
+  //   trackSlugs: trackSlugs.join("\n"),
+  // } as Partial<IContentItem>))
 
   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
   const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
-  // writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
-  // writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
+  writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
+  writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
 }
 
 function AdminManualTaskRunner(): ReactElement {
