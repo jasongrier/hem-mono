@@ -70,7 +70,7 @@ function applyPaginationAndFiltering(state: IState) {
     return parseInt(a.order, 10) - parseInt(b.order, 10)
   })
 
-  const pageSize = 50
+  const pageSize = 25
   const pageIndex = (page - 1) * pageSize
 
   return {

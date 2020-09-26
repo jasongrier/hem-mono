@@ -303,7 +303,7 @@ function AdminList(): ReactElement {
                   <Link to={`/admin/edit/${item.slug}`}>
                     { hasCategory(item, 'assets')
                       ? item.audioFilename.replace('/Volumes/April_Kepner/Eva_Vollmer/Disorganised/', '')
-                      : item.title
+                      : item.title + ' (' + item.slug + ')'
                     }
                   </Link>
                   <br />
