@@ -22,38 +22,84 @@ function migrate(allContentItems: IContentItem[]) {
 
   const newItems: IContentItem[] = []
 
-  let id = 1
+  // ***** FIND A DUPLICATE SLUG *****
 
-  let found = false
+  // let found = false
+
+  // for (const oldItem of allContentItems) {
+  //   const newItem = Object.assign({}, oldItem)
+
+  //   if (newItem.slug === 'thrash-burn') {
+  //     console.log('found one')
+  //   }
+
+  //   newItems.push(newItem)
+  // }
+
+  // ***** CHANGE ITEMS *****
 
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
-    // newItem.id = id.toString()
-    // ++ id
 
-    if (!found && newItem.slug === 'the-human-ear-volume-1') {
-      newItem.slug = newItem.slug + '-1'
-      found = true
+    if (
+      newItem.secondaryAttribution === 'Live at CalArts'
+      && newItem.published
+    ) {
+      // newItem.title = newItem.title.replace(' - M3 reference', '')
+      // newItem.slug = newItem.slug.replace('-m-3-reference', '').replace('-m-4-reference', '').replace('w-illow', 'willow')
+      // newItem.secondaryAttribution = 'Eating the Stars'
+      newItem.keyArt = 'jason-grier-and-julia-holter-live.jpg'
     }
 
     newItems.push(newItem)
   }
 
-  // newItems.push(modelize({
-  //   id: id.toString(),
-  //   tags: '',
-  //   title,
-  //   secondaryTitle: 'Michael Pisaro',
-  //   category: 'tracks',
-  //   attribution: 'Michael Pisaro',
-  //   date: '17.09.2020',
-  //   keyArt: 'tombstones-ii.jpg',
-  //   preview: true,
-  //   published: true,
-  //   releasePhase: '1',
-  //   secondaryAttribution: 'Tombstones II',
-  //   slug,
-  // } as Partial<IContentItem>))
+  // ***** ADD TRACKS FROM DISK *****
+
+  // let id = 1
+
+  // for (const oldItem of allContentItems) {
+  //   const newItem = Object.assign({}, oldItem)
+  //   newItem.id = id.toString()
+  //   newItems.push(newItem)
+  //   ++ id
+  // }
+
+  // const tracks = [
+  //   'Side A - Lats Yerk 45 FINAL.aif',
+  //   'Side B - Herman The Bull 45 FINAL.aif',
+  // ]
+
+  // const trackSlugs = []
+
+  // for (const track of tracks) {
+  //   const basePath = '/Kalt/deploy/2011/HEMK0019_Lats-Yerk/Deliverables/SP/'
+  //   const title = track.split(' - ')[1].replace(/ 45 FINAL.aif$/, '')
+  //   const slug = slugify(title) + '-jeepneys'
+  //   const audioFilename = basePath + track
+
+  //   trackSlugs.push(slug)
+
+  //   console.log(slug)
+
+  //   newItems.push(modelize({
+  //     id: id.toString(),
+  //     tags: '',
+  //     title,
+  //     secondaryTitle: 'Ariel Pink',
+  //     category: 'tracks',
+  //     attribution: 'Ariel Pink',
+  //     date: '17.09.2020',
+  //     keyArt: slug + '.jpg',
+  //     preview: true,
+  //     published: true,
+  //     releasePhase: '1',
+  //     secondaryAttribution: 'Scared Famous',
+  //     slug,
+  //     audioFilename,
+  //   } as Partial<IContentItem>))
+
+  //   ++ id
   // }
 
   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
