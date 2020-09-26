@@ -348,7 +348,7 @@ function AdminList(): ReactElement {
                         { item.trackSlugs }
                       </pre>
                     )} */}
-                    { hasTag(item, 'albums') && item.trackSlugs.split("\n").map(slug => (
+                    { (hasTag(item, 'albums') || hasTag(item, 'discs')) && item.trackSlugs.split("\n").map(slug => (
                       <div key={uuid()}>
                         { getContentItemBySlug(allContentItems, slug) && (
                           <div>
@@ -371,7 +371,7 @@ function AdminList(): ReactElement {
                   </td>
                 )}
                 <td className="admin-list-column-actions">
-                  { hasCategory(item, 'tracks') && (
+                  { (hasCategory(item, 'tracks') || hasTag(item, 'discs')) && (
                     <>
                       <form
                         className="inline-edit-form first-inline-edit-form"

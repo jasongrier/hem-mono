@@ -4,7 +4,7 @@ import { IState, hasCategory, IContentItem } from '../index'
 import hasTag from './has-tag'
 
 function applyPaginationAndFiltering(state: IState) {
-  const { adminFilterApplied, page, adminSearchApplied, adminSearchableField, needsKeyArtFilter, showUnpublishedFilter, stickyFilter } = state
+  const { adminFilterApplied, page, adminSearchApplied, adminSearchableField, adminSearchExact, needsKeyArtFilter, showUnpublishedFilter, stickyFilter } = state
 
   let pageContentItems = ([] as IContentItem[]).concat(
     (
@@ -20,9 +20,14 @@ function applyPaginationAndFiltering(state: IState) {
 
   if (!isEmpty(adminSearchApplied)) {
     pageContentItems = pageContentItems.filter(item => {
-      // @ts-ignore
-      return item[adminSearchableField]?.includes(adminSearchApplied)
-      // return item[adminSearchableField] === adminSearchApplied
+      if (adminSearchExact) {
+        return item[adminSearchableField] === adminSearchApplied
+      }
+
+      else {
+        // @ts-ignore
+        return item[adminSearchableField]?.includes(adminSearchApplied)
+      }
     })
   }
 
@@ -65,7 +70,7 @@ function applyPaginationAndFiltering(state: IState) {
     return parseInt(a.order, 10) - parseInt(b.order, 10)
   })
 
-  const pageSize = 25
+  const pageSize = 50
   const pageIndex = (page - 1) * pageSize
 
   return {
