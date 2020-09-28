@@ -1,10 +1,10 @@
-import { isEmpty } from 'lodash'
+import { find, isEmpty } from 'lodash'
 import moment from 'moment'
 import { IState, hasCategory, IContentItem } from '../index'
 import hasTag from './has-tag'
 
 function applyPaginationAndFiltering(state: IState) {
-  const { adminFilterApplied, page, adminSearchApplied, adminSearchableField, adminSearchExact, needsKeyArtFilter, showUnpublishedFilter, stickyFilter } = state
+  const { adminFilterApplied, page, adminSearchApplied, contentItems, adminSearchableField, adminSearchExact, needsKeyArtFilter, showUnpublishedFilter, stickyFilter } = state
 
   let pageContentItems = ([] as IContentItem[]).concat(
     (
@@ -44,6 +44,20 @@ function applyPaginationAndFiltering(state: IState) {
   }
 
   pageContentItems = pageContentItems.filter(item => !hasTag(item, 'done-for-now'))
+
+  pageContentItems = pageContentItems.filter(item => {
+    if (
+      item.published
+      && hasCategory(item, 'tracks')
+      && !hasTag(item, 'sound-library')
+    ) {
+      const album = find(contentItems, { title: item.secondaryAttribution  })
+
+      if (!album) {
+        return true
+      }
+    }
+  })
 
   // pageContentItems.sort((a, b) => {
   //   if (adminFilterApplied === 'sound-library') {

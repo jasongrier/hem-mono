@@ -400,7 +400,7 @@ function AdminList(): ReactElement {
                           if (!input) return
                           const updatedItem: IContentItem = produce(item, (draftItem) => {
                             // @ts-ignore
-                            draftItem.tags = input.value
+                            draftItem.tags = draftItem.tags + ', ' + input.value
                           })
                           dispatch(requestUpdateItems([updatedItem]))
                           // @ts-ignore
@@ -543,6 +543,38 @@ function AdminList(): ReactElement {
                       }}
                     >
                       { item.published ? 'Unpublish' : 'Publish' }
+                    </button>
+                  )}
+                  { hasCategory(item, 'tracks') && (
+                    <button
+                      className="action-button"
+                      onClick={() => {
+                        const updatedItem: IContentItem = produce(item, (draftItem) => {
+                          draftItem.secondaryAttribution = 'Unknown Album'
+                        })
+                        dispatch(requestUpdateItems([updatedItem]))
+                      }}
+                    >
+                      Unknown
+                    </button>
+                  )}
+                  { !hasCategory(item, 'assets') && (
+                    <button
+                      className="action-button"
+                      onClick={() => {
+                        const updatedItem: IContentItem = produce(item, (draftItem) => {
+                          if (hasTag(item, 'done-for-now')) {
+                            draftItem.tags = draftItem.tags.replace(', done-for-now', '').replace('done-for-now', '')
+                          }
+
+                          else {
+                            draftItem.tags = draftItem.tags + ', done-for-now'
+                          }
+                        })
+                        dispatch(requestUpdateItems([updatedItem]))
+                      }}
+                    >
+                      { hasTag(item, 'done-for-now') ? 'Un-done page' : 'Done' }
                     </button>
                   )}
                   { !hasCategory(item, 'assets') && (
