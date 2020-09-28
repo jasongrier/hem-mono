@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useState, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import uuid from 'uuid/v1'
-import { uniq, noop, last, compact, has, sample, filter, map, find, isEmpty, includes } from 'lodash'
+import { uniq, noop, last, compact, uniqBy, has, sample, filter, map, find, isEmpty, includes, sortBy } from 'lodash'
 import pad from 'pad'
 import moment from 'moment'
 import $ from 'jquery'
@@ -29,31 +29,66 @@ function migrate(allContentItems: IContentItem[]) {
   // for (const oldItem of allContentItems) {
   //   const newItem = Object.assign({}, oldItem)
 
-  //   if (!found && newItem.slug === 'corruscations') {
-  //     newItem.slug = 'instant-coma'
+  //   if (!found && newItem.slug === 'genetic-memory-jason-grier-1') {
+  //     newItem.slug = 'genetic-memory-jason-grier-2'
   //     found = true
   //   }
 
   //   newItems.push(newItem)
   // }
 
+  // ***** FIND ALL DUPLICATE SLUGS *****
+
+  // const allSlugs = compact(allContentItems.map(item => item.published && item.slug))
+
+  // const findingCache: string[] = []
+  // const dupes: string[] = []
+
+  // for (const slug of allSlugs) {
+  //   if (findingCache.includes(slug)) {
+  //     dupes.push(slug)
+  //     console.log(slug)
+  //   }
+
+  //   else {
+  //     findingCache.push(slug)
+  //   }
+  // }
+
+
+  // const fixedDupes: string[] = []
+
+  // for (const oldItem of allContentItems) {
+  //   const newItem = Object.assign({}, oldItem)
+
+  //   if (dupes.includes(newItem.slug) && !fixedDupes.includes(newItem.slug)) {
+  //     fixedDupes.push(newItem.slug)
+  //     newItem.slug = newItem.slug + '-1'
+  //     newItem.tags = newItem.tags + ', dupe'
+  //   }
+
+  //   newItems.push(newItem)
+  // }
+
+  // console.log(fixedDupes.join("\n"))
+
   // ***** CHANGE ITEMS *****
 
-  for (const oldItem of allContentItems) {
-    const newItem = Object.assign({}, oldItem)
+  // for (const oldItem of allContentItems) {
+  //   const newItem = Object.assign({}, oldItem)
 
-    if (
-      newItem.secondaryAttribution === 'Lockdown Doodles'
-      && newItem.published
-    ) {
-      // newItem.title = newItem.title.replace(' - M3 reference', '')
-      // newItem.slug = newItem.slug.replace('-m-3-reference', '').replace('-m-4-reference', '').replace('w-illow', 'willow')
-      // newItem.secondaryAttribution = 'Eating the Stars'
-      newItem.keyArt = 'lockdown-doodles.jpg'
-    }
+  //   if (
+  //     newItem.secondaryAttribution === 'Lockdown Doodles'
+  //     && newItem.published
+  //   ) {
+  //     // newItem.title = newItem.title.replace(' - M3 reference', '')
+  //     // newItem.slug = newItem.slug.replace('-m-3-reference', '').replace('-m-4-reference', '').replace('w-illow', 'willow')
+  //     // newItem.secondaryAttribution = 'Eating the Stars'
+  //     newItem.keyArt = 'lockdown-doodles.jpg'
+  //   }
 
-    newItems.push(newItem)
-  }
+  //   newItems.push(newItem)
+  // }
 
   // ***** ADD TRACKS FROM DISK *****
 
@@ -213,10 +248,37 @@ function migrate(allContentItems: IContentItem[]) {
   //   }
   // }
 
+  // ***** RUN REPORT *****
+
+  const tracks: string[] = []
+
+  for (const item of allContentItems) {
+    if (
+      item.published
+      && hasCategory(item, 'tracks')
+      && !hasTag(item, 'sound-library')
+    ) {
+      const album = find(allContentItems, { title: item.secondaryAttribution  })
+
+      if (!album) {
+        console.log(item.slug)
+      }
+    }
+  }
+
+  // const plainSecondaryAttributions = sortBy(tracks, 'secondaryAttribution')
+  // const uniqueSecondaryAttributions = sortBy(uniqBy(tracks, 'secondaryAttribution'), 'secondaryAttribution')
+
+  // const report = plainSecondaryAttributions.map(track => track.secondaryAttribution + ': ' + track.title).join("\n")
+
+  // console.log(report)
+
+  // ***** DANGER ZONE *****
+
   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
   const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
-  writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
-  writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
+  // writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
+  // writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
 }
 
 function AdminManualTaskRunner(): ReactElement {
