@@ -9,7 +9,7 @@ import { autoParagraph } from '../../../../../lib/functions'
 import { modelize, hasTag, getContentItemBySlug, hasCategory } from '../functions'
 import { IIndexEntry, IContentItem, compressIndex } from '..'
 import { RootState } from '../../../index'
-import { readdirSync, renameSync } from 'fs'
+import { mkdirSync, readdirSync, renameSync } from 'fs'
 import { slugify, titleCase } from 'voca'
 import { execSync } from 'child_process'
 import { all } from 'redux-saga/effects'
@@ -17,10 +17,17 @@ import { all } from 'redux-saga/effects'
 function migrate(allContentItems: IContentItem[]) {
   const { remote } = window.require('electron')
   const { execSync } = remote.require('child_process')
-  const { writeFileSync, readdirSync, readFileSync, renameSync, lstatSync, copyFileSync } = remote.require('fs')
+  const { writeFileSync, readdirSync, readFileSync, renameSync, lstatSync, copyFileSync, constants: fsConstants } = remote.require('fs')
   const { join, extname } = remote.require('path')
 
   const newItems: IContentItem[] = []
+
+  // ***** CHECKSUM DUPLICATE SLUGS *****
+
+  // const slugs = map(allContentItems, 'slug')
+  // const uniqueSlugs = uniq(slugs)
+
+  // console.log(slugs.length - uniqueSlugs.length)
 
   // ***** FIND A DUPLICATE SLUG *****
 
@@ -55,7 +62,6 @@ function migrate(allContentItems: IContentItem[]) {
   //   }
   // }
 
-
   // const fixedDupes: string[] = []
 
   // for (const oldItem of allContentItems) {
@@ -77,17 +83,9 @@ function migrate(allContentItems: IContentItem[]) {
   // for (const oldItem of allContentItems) {
   //   const newItem = Object.assign({}, oldItem)
 
-  //   if (
-  //     newItem.secondaryAttribution === 'Lockdown Doodles'
-  //     && newItem.published
-  //   ) {
-  //     // newItem.title = newItem.title.replace(' - M3 reference', '')
-  //     // newItem.slug = newItem.slug.replace('-m-3-reference', '').replace('-m-4-reference', '').replace('w-illow', 'willow')
-  //     // newItem.secondaryAttribution = 'Eating the Stars'
-  //     newItem.keyArt = 'lockdown-doodles.jpg'
+  //   if (newItem.published) {
+  //     newItems.push(newItem)
   //   }
-
-  //   newItems.push(newItem)
   // }
 
   // ***** ADD TRACKS FROM DISK *****
@@ -250,21 +248,21 @@ function migrate(allContentItems: IContentItem[]) {
 
   // ***** RUN REPORT *****
 
-  const tracks: string[] = []
+  // const tracks: string[] = []
 
-  for (const item of allContentItems) {
-    if (
-      item.published
-      && hasCategory(item, 'tracks')
-      && !hasTag(item, 'sound-library')
-    ) {
-      const album = find(allContentItems, { title: item.secondaryAttribution  })
+  // for (const item of allContentItems) {
+  //   if (
+  //     item.published
+  //     && hasCategory(item, 'tracks')
+  //     && !hasTag(item, 'sound-library')
+  //   ) {
+  //     const album = find(allContentItems, { title: item.secondaryAttribution  })
 
-      if (!album) {
-        console.log(item.slug)
-      }
-    }
-  }
+  //     if (!album) {
+  //       console.log(item.slug)
+  //     }
+  //   }
+  // }
 
   // const plainSecondaryAttributions = sortBy(tracks, 'secondaryAttribution')
   // const uniqueSecondaryAttributions = sortBy(uniqBy(tracks, 'secondaryAttribution'), 'secondaryAttribution')
@@ -273,6 +271,30 @@ function migrate(allContentItems: IContentItem[]) {
 
   // console.log(report)
 
+  // ***** COLLATE AUDIO FILES *****
+
+  const pageSize = 20
+  const pageNumber = 4
+
+  const pageIndex = (pageNumber - 1) * pageSize
+  const allTracks = compact(allContentItems.map(item => hasCategory(item, 'tracks') ? item : null))
+
+  const page = allTracks.slice(pageIndex, pageIndex + pageSize)
+
+  execSync('mkdir /Volumes/April_Kepner/tracks/' + pageNumber)
+
+  for (const track of page) {
+    const src = '/Volumes/April_Kepner/Eva_Vollmer/Disorganised' + track.audioFilename
+    const dest = '/Volumes/April_Kepner/tracks/' + pageNumber + '/' + track.slug + extname(track.audioFilename)
+
+    copyFileSync(src, dest, fsConstants.COPYFILE_FICLONE, (err: any) => {
+      if (err) throw err
+      console.log(`${src} was copied to ${dest}`)
+    })
+  }
+
+  // ***** DANGER ZONE *****
+  // ***** DANGER ZONE *****
   // ***** DANGER ZONE *****
 
   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')

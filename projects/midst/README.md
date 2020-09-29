@@ -1,3 +1,3 @@
-# Template Project
+# Midst
 
-Starter for a project
+Poetry in process

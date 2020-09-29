@@ -43,21 +43,7 @@ function applyPaginationAndFiltering(state: IState) {
     pageContentItems = pageContentItems.filter(item => item.sticky)
   }
 
-  pageContentItems = pageContentItems.filter(item => !hasTag(item, 'done-for-now'))
-
-  pageContentItems = pageContentItems.filter(item => {
-    if (
-      item.published
-      && hasCategory(item, 'tracks')
-      && !hasTag(item, 'sound-library')
-    ) {
-      const album = find(contentItems, { title: item.secondaryAttribution  })
-
-      if (!album) {
-        return true
-      }
-    }
-  })
+  // pageContentItems = pageContentItems.filter(item => !hasTag(item, 'done-for-now'))
 
   // pageContentItems.sort((a, b) => {
   //   if (adminFilterApplied === 'sound-library') {
