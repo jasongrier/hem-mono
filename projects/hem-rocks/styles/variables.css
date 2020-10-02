@@ -1,10 +1,9 @@
 :root {
   --top-bar-height: 30px;
   --main-nav-height: 100px;
-
   --content-width-desk: 1098px;
-
   --main-content-body-spacing: 100px;
+  --hem-border-radius: 3px;
 
   /* Colors */
   --line-orange: #fa563c;

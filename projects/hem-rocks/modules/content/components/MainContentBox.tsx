@@ -1,6 +1,6 @@
 import React, { ReactElement, PropsWithChildren, useCallback, useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import marked from 'marked'
 import { EnlargeButton } from '../../../../../lib/packages/hem-buttons'
 import { SplatterDims } from '../../../../../lib/packages/hem-boxplatter'
@@ -48,11 +48,14 @@ function MainContentBox({
     }, [],
   )
 
+  const { pathname } = useLocation()
+
   const linkTo = customLinkTo
     ? customLinkTo(contentItem)
     : `/${contentItem.category}/${contentItem.slug}${filter ? '/' + filter : ''}`
 
   const assetHost = assetHostHostname()
+  const isHome = pathname === '/'
 
   return (
     <SplatterDims
@@ -77,13 +80,13 @@ function MainContentBox({
       marginRangeY={index < 0 ? 200 : 0}
     >
       {(badgeText || contentItem.badgeText) && (
-        <div className="main-content-box-badge">
-          <strong>{ badgeText || contentItem.badgeText }</strong>
+        <div className="main-content-box-badge clearfix">
+          <span>{ badgeText || contentItem.badgeText }</span>
         </div>
       )}
       <Link to={linkTo}>
         <h3 dangerouslySetInnerHTML={{ __html: contentItem.titleWrapping || contentItem.title }} />
-        { contentItem.secondaryTitle && (
+        { !isHome && contentItem.secondaryTitle && (
           <h4 dangerouslySetInnerHTML={{ __html: contentItem.secondaryTitle }} />
         )}
       </Link>
@@ -93,11 +96,10 @@ function MainContentBox({
       >
         <Link to={linkTo}>
           { !BERLIN_STOCK_PHOTOS && (
-            <div
-              className="main-content-box-key-art-image"
-              style={{
-                backgroundImage: `url(${assetHost}/hem-rocks/content/images/key-art/${contentItem.keyArt})`
-              }}
+            <img
+              className="main-content-box-key-art-image-as-img"
+              src={`${assetHost}/hem-rocks/content/images/key-art/${contentItem.keyArt}`}
+              alt=""
             />
           )}
           { BERLIN_STOCK_PHOTOS && (

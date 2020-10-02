@@ -244,7 +244,6 @@
   height: 500px;
   margin: 0 0 30px 0;
   padding: 0;
-  border-bottom: 1px solid #ccc;
 }
 
 .main-content-box a {
@@ -266,17 +265,19 @@
 }
 
 .main-content-box-badge {
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  z-index: 2;
-  padding: 5px 10px;
-  background-color: var(--line-orange);
+  margin-bottom: 5px;
   color: #fff;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 2px;
 }
 
-.main-content-box:first-child .main-content-box-badge {
-  top: -20px;
+.main-content-box-badge span {
+  display: inline-block;
+  padding: 2px 10px;
+  background-color: var(--line-orange);
+  border-radius: var(--hem-border-radius);
 }
 
 .main-content-box-key-art {
@@ -285,6 +286,10 @@
   height: 100%;
   cursor: pointer;
   background-color: #fff;
+}
+
+.main-content-box-key-art img {
+  border-radius: var(--hem-border-radius);
 }
 
 .main-content-box-key-art-image {
@@ -300,6 +305,11 @@
   background-repeat: no-repeat;
   background-size: cover;
   font-size: 0;
+}
+
+.main-content-box-key-art-image-as-img {
+  width: 100%;
+  height: auto;
 }
 
 .main-content-box-key-art-placeholder {
@@ -382,10 +392,10 @@
 
 .main-content-box h3 {
   width: calc(100% - 15px);
-  line-height: 45px;
-  margin: 0 0 20px 15px;
+  line-height: 54px;
+  margin: 0;
   padding-right: 15px;
-  font-size: 64px;
+  font-size: 48px;
   font-weight: 100;
   text-transform: uppercase;
   hyphens: manual;
@@ -396,12 +406,16 @@
 }
 
 .main-content-box h4 {
-  hyphens: manual;
+  font-family: Avenir, sans-serif;
+  font-weight: 100;
+  font-size: 16px;
+  margin: 0 0 5px 0;
 }
 
 .main-content-box p {
   width: 400px;
-  margin-left: -15px;
+  font-size: 17px;
+  font-weight: 300;
 }
 
 .main-content-box.with-photography h3,

@@ -80,13 +80,15 @@ function migrate(allContentItems: IContentItem[]) {
 
   // ***** CHANGE ITEMS *****
 
-  // for (const oldItem of allContentItems) {
-  //   const newItem = Object.assign({}, oldItem)
+  for (const oldItem of allContentItems) {
+    const newItem = Object.assign({}, oldItem)
 
-  //   if (newItem.published) {
-  //     newItems.push(newItem)
-  //   }
-  // }
+    if (hasCategory(newItem, 'tracks')) {
+      newItem.audioFilename = newItem.slug + '.mp3'
+    }
+
+    newItems.push(newItem)
+  }
 
   // ***** ADD TRACKS FROM DISK *****
 
@@ -273,25 +275,32 @@ function migrate(allContentItems: IContentItem[]) {
 
   // ***** COLLATE AUDIO FILES *****
 
-  const pageSize = 20
-  const pageNumber = 4
+  // const pageSize = 20
+  // const pageNumber = 50
 
-  const pageIndex = (pageNumber - 1) * pageSize
-  const allTracks = compact(allContentItems.map(item => hasCategory(item, 'tracks') ? item : null))
+  // const pageIndex = (pageNumber - 1) * pageSize
+  // const allTracks = compact(allContentItems.map(item => hasCategory(item, 'tracks') ? item : null))
 
-  const page = allTracks.slice(pageIndex, pageIndex + pageSize)
+  // const page = allTracks.slice(pageIndex, pageIndex + pageSize)
 
-  execSync('mkdir /Volumes/April_Kepner/tracks/' + pageNumber)
+  // execSync('mkdir /Volumes/April_Kepner/tracks/' + pageNumber)
 
-  for (const track of page) {
-    const src = '/Volumes/April_Kepner/Eva_Vollmer/Disorganised' + track.audioFilename
-    const dest = '/Volumes/April_Kepner/tracks/' + pageNumber + '/' + track.slug + extname(track.audioFilename)
+  // for (const track of page) {
+  //   const srcBasePath = hasTag(track, 'sound-library')
+  //     ? '/Volumes/April_Kepner/Eva_Vollmer/Disorganised/hem-rocks/content/tracks/'
+  //     : '/Volumes/April_Kepner/Eva_Vollmer/Disorganised'
 
-    copyFileSync(src, dest, fsConstants.COPYFILE_FICLONE, (err: any) => {
-      if (err) throw err
-      console.log(`${src} was copied to ${dest}`)
-    })
-  }
+  //   const src = (srcBasePath + track.audioFilename).replace(
+  //     '/Volumes/April_Kepner/Eva_Vollmer/Disorganised/Volumes/April_Kepner/Eva_Vollmer/Disorganised',
+  //     '/Volumes/April_Kepner/Eva_Vollmer/Disorganised',
+  //   )
+  //   const dest = '/Volumes/April_Kepner/tracks/' + pageNumber + '/' + track.slug + extname(track.audioFilename)
+
+  //   copyFileSync(src, dest, fsConstants.COPYFILE_FICLONE, (err: any) => {
+  //     if (err) throw err
+  //     console.log(`${src} was copied to ${dest}`)
+  //   })
+  // }
 
   // ***** DANGER ZONE *****
   // ***** DANGER ZONE *****
@@ -299,8 +308,8 @@ function migrate(allContentItems: IContentItem[]) {
 
   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
   const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
-  // writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
-  // writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
+  writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
+  writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
 }
 
 function AdminManualTaskRunner(): ReactElement {

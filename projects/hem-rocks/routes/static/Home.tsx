@@ -27,12 +27,7 @@ function Home(): ReactElement {
       </Helmet>
       <div className="page page-home">
         <div className="main-heroine">
-          <ReleasePhase exact phase={1}>
-            <SoundLibraryRefreshHeroine />
-          </ReleasePhase>
-          <ReleasePhase phase={2}>
-            <GrandPianoHeroine />
-          </ReleasePhase>
+          <SoundLibraryRefreshHeroine />
         </div>
         <MainContentList
           category="home-feature"
