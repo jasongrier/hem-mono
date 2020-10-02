@@ -1,10 +1,11 @@
 .main-nav {
   position: fixed;
-  top: 0;
-  right: 5px;
+  top: -1px;
+  right: 23px;
   width: 80vw;
+  height: 65px;
+  line-height: 65px;
   z-index: 9999;
-  height: var(--top-bar-height);
 }
 
 .main-nav a:focus,
@@ -14,10 +15,10 @@
 
 .main-nav .main-nav-items {
   width: 80vw;
-  height: var(--top-bar-height);
-  line-height: var(--top-bar-height);
+  height: 65px;
+  line-height: 65px;
   margin: 0;
-  padding: 0;
+  padding: 5px;
   list-style-type: none;
   text-align: right;
 }
@@ -27,7 +28,6 @@
   margin: 0 0 0 40px;
   text-transform: uppercase;
   cursor: pointer;
-  color: #fff;
   font-size: 20px;
   letter-spacing: 2px;
   font-weight: 100;

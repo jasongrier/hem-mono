@@ -81,14 +81,14 @@ function MainContentList({
 
   useEffect(function filters() {
     let semifinalFilters
-    
+
     if (fixedFilters) {
       semifinalFilters = fixedFilters
     }
 
     else {
       const contentItems = (propsContentItems || storeContentItems).filter(item =>
-        item.published && parseInt(item.releasePhase, 10) <= RELEASE_PHASE && hasCategory(item, category) 
+        item.published && parseInt(item.releasePhase, 10) <= RELEASE_PHASE && hasCategory(item, category)
       )
 
       if (!contentItems) return
@@ -98,7 +98,7 @@ function MainContentList({
       const allFiltersFlat = flatten(allFilters)
       let filters: string[] = uniq(allFiltersFlat.map(tag => titleCase(tag).replace(/-/g, ' ')))
       filters.sort()
-      
+
       semifinalFilters = filters
     }
 
@@ -110,7 +110,7 @@ function MainContentList({
       setFinalFilters(['All'].concat(compact(semifinalFilters)))
     }
   }, [storeContentItems, fixedFilters, noAll])
-  
+
   useEffect(function itemsAndPlaylist() {
     let contentItems: IContentItem[]
 
@@ -120,7 +120,7 @@ function MainContentList({
 
     else {
       const storeContentItemsImm = Array.from(storeContentItems)
-      
+
       contentItems = storeContentItemsImm.filter(item => {
         if (additionalCategory) {
           return (hasCategory(item, category) || hasCategory(item, additionalCategory)) && item.published && !item.sticky
@@ -134,12 +134,12 @@ function MainContentList({
       let stickyContentItems = storeContentItemsImm.filter(
         item => hasCategory(item, category) && item.published && item.sticky
       )
-      
+
       if (onlyTag) {
         contentItems = contentItems.filter(item => hasTag(item, onlyTag))
         stickyContentItems = stickyContentItems.filter(item => hasTag(item, onlyTag))
       }
-      
+
       else if (currentFilter && currentFilter !== 'all') {
         contentItems = contentItems.filter(item => hasTag(item, currentFilter))
         stickyContentItems = stickyContentItems.filter(item => hasTag(item, currentFilter))
@@ -175,7 +175,7 @@ function MainContentList({
     // contentItems = contentItems.filter((item: IContentItem) =>
     //   parseInt(item.releasePhase, 10) <= RELEASE_PHASE
     // )
-    
+
     setFinalContentItems(contentItems)
     dispatch(setCurrentItems(contentItems))
 
@@ -208,11 +208,11 @@ function MainContentList({
   const onFilterClick = useCallback(() => {
     const body = document.querySelector('.scroll-lock-content')
     const filterBox = document.querySelector('.main-content-filters')
-    
+
     if (body) {
       body.scrollIntoView(true)
     }
-    
+
     if (filterBox) {
       filterBox.scrollIntoView(true)
     }
@@ -229,7 +229,7 @@ function MainContentList({
     // @ts-ignore
     return moment(b.date, 'DD-MM-YYYY') - moment(a.date, 'DD-MM-YYYY')
   }
-  
+
   function orderSortFn(a: IContentItem, b: IContentItem) {
     return parseInt(a.order, 10) - parseInt(b.order, 10)
   }
@@ -296,14 +296,14 @@ function MainContentList({
                   : `/${category}${tag !== 'All' ? '/filter/' + slugify(tag) : ''}`
               }
             >
-              <span 
+              <span
                 onClick={onFilterClick}
                 dangerouslySetInnerHTML={{ __html: tagSpellingCorrections(tag).replace(/ /g, '&nbsp;') }}
               />
             </Link>
           ))}
           { moreTagsLink && (
-            <Link 
+            <Link
               className="main-content-filter"
               to={moreTagsLink}
             >
