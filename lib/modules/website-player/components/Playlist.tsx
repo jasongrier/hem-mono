@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import ReactGA from 'react-ga'
-import { findIndex } from 'lodash'
+import { findIndex, isEmpty } from 'lodash'
 import { PlayPauseButton as BasePlayPauseButton, CloseButton } from '../../../packages/hem-buttons'
 import { ITrack, IPlaylist, setPlayerPlaylist } from '../index'
 import TrackPlayPauseButton from './TrackPlayPauseButton'
@@ -45,12 +45,35 @@ function Playlist({ onCollapse }: IProps): ReactElement {
             { tabPlaylist.name }
           </div>
         ))}
+        <div className="hem-player-playlist-search">
+          <input
+            placeholder="Artist, title, tag, etc..."
+            type="text"
+          />
+          <i className="fa-icon fas fa-search"></i>
+        </div>
+      </div>
+      <div className="hem-player-playlist-list-head">
+        <div className="hem-player-playlist-line-text">
+          <div className="hem-player-playlist-line-title">
+            Title
+          </div>
+          <div className="hem-player-playlist-line-secondary-attribution">
+            Album
+          </div>
+          <div className="hem-player-playlist-line-date">
+            Date
+          </div>
+          <div className="hem-player-playlist-line-time">
+            <i className="far fa-clock" />
+          </div>
+        </div>
       </div>
       <div className="hem-player-playlist-window-controls">
         <div className="playlist-toggle-close">
           <BasePlayPauseButton
-            playing={false}
             onClick={onCollapse}
+            playing={false}
           />
         </div>
       </div>
@@ -60,7 +83,7 @@ function Playlist({ onCollapse }: IProps): ReactElement {
             permanentTrackY={true}
             noScrollX={true}
           >
-            { currentPlaylist.tracks.map((track: ITrack) => (
+            { currentPlaylist.tracks.map((track: ITrack, trackNumber: number) => (
               <li
                 key={track.id}
                 className={`
@@ -68,6 +91,7 @@ function Playlist({ onCollapse }: IProps): ReactElement {
                   ${(playing && currentTrack && track.id === currentTrack.id) ? 'hem-player-playlist-line-active' : ''}
                 `}
               >
+                <div className="track-number">{ trackNumber + 1 }</div>
                 <TrackPlayPauseButton
                   onClick={(playing) => {
                     if (playing) return
@@ -80,21 +104,21 @@ function Playlist({ onCollapse }: IProps): ReactElement {
                 />
                 <div className="hem-player-playlist-line-text">
                   <div className="hem-player-playlist-line-title">
-                    { track.title }
+                    <img src="http://placekitten.com/25/25" alt=""/>
+                    <p>
+                      <strong>{ track.title }</strong><br/>
+                      <span onClick={() => {
+                        ReactGA.event({
+                          category: 'User',
+                          action: 'Clicked on track attribution in playlist: ' + track.title + ', ' + track.attribution + '.',
+                        })
+                      }}>
+                        <Link to={ track.attributionLink }>
+                          { track.attribution }
+                        </Link>
+                      </span>
+                    </p>
                   </div>
-                  <span onClick={() => {
-                    ReactGA.event({
-                      category: 'User',
-                      action: 'Clicked on track attribution in playlist: ' + track.title + ', ' + track.attribution + '.',
-                    })
-                  }}>
-                    <Link
-                      className="hem-player-playlist-line-attribution"
-                      to={ track.attributionLink }
-                    >
-                      { track.attribution }
-                    </Link>
-                  </span>
                   <span onClick={() => {
                     ReactGA.event({
                       category: 'User',
@@ -103,11 +127,17 @@ function Playlist({ onCollapse }: IProps): ReactElement {
                   }}>
                     <Link
                       className="hem-player-playlist-line-secondary-attribution"
-                      to={ track.secondaryAttributionLink }
+                      to={ isEmpty(track.secondaryAttributionLink) ? '#' : track.secondaryAttributionLink }
                     >
-                      { track.secondaryAttribution }
+                      { isEmpty(track.secondaryAttribution) ? '—' : track.secondaryAttribution }
                     </Link>
                   </span>
+                  <div className="hem-player-playlist-line-date">
+                    17.09.2020
+                  </div>
+                  <div className="hem-player-playlist-line-time">
+                    35:41
+                  </div>
                 </div>
               </li>
             ))}

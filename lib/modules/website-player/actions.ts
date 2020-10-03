@@ -7,9 +7,12 @@ import {
   REPLACE_PLAYLIST,
   SEEK_PLAYER,
   SET_PLAYER_ACTUALLY_PLAYING,
+  SET_PLAYER_ALREADY_OPENED,
   SET_PLAYER_ERROR,
+  SET_PLAYER_EXPANDED,
   SET_PLAYER_INSTANCE,
   SET_PLAYER_PLAYLIST,
+  SET_PLAYER_PLAYLIST_EXPANDED,
   TRACK_ENDED,
   UNPAUSE_PLAYER,
 
@@ -54,14 +57,24 @@ const seekPlayer = (percent: number): Action => ({
   payload: percent,
 })
 
+const setPlayerActuallyPlaying = (actuallyPlaying: boolean): Action => ({
+  type: SET_PLAYER_ACTUALLY_PLAYING,
+  payload: actuallyPlaying,
+})
+
+const setPlayerAlreadyOpened = (alreadyOpened: boolean): Action => ({
+  type: SET_PLAYER_ALREADY_OPENED,
+  payload: alreadyOpened,
+})
+
 const setPlayerError = (error: string | null): Action => ({
   type: SET_PLAYER_ERROR,
   payload: error,
 })
 
-const setPlayerActuallyPlaying = (actuallyPlaying: boolean): Action => ({
-  type: SET_PLAYER_ACTUALLY_PLAYING,
-  payload: actuallyPlaying,
+const setPlayerExpanded = (setPlayerExpanded: boolean): Action => ({
+  type: SET_PLAYER_EXPANDED,
+  payload: setPlayerExpanded,
 })
 
 const setPlayerInstance = (): Action => ({
@@ -72,6 +85,11 @@ const setPlayerInstance = (): Action => ({
 const setPlayerPlaylist = (number: number): Action => ({
   type: SET_PLAYER_PLAYLIST,
   payload: number,
+})
+
+const setPlayerPlaylistExpanded = (playerPlaylistExpanded: boolean): Action => ({
+  type: SET_PLAYER_PLAYLIST_EXPANDED,
+  payload: playerPlaylistExpanded,
 })
 
 const trackEnded = (): Action => ({
@@ -93,9 +111,12 @@ export {
   replacePlaylist,
   seekPlayer,
   setPlayerActuallyPlaying,
+  setPlayerAlreadyOpened,
   setPlayerError,
+  setPlayerExpanded,
   setPlayerInstance,
   setPlayerPlaylist,
+  setPlayerPlaylistExpanded,
   trackEnded,
   unpausePlayer,
 }

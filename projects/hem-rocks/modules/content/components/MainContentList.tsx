@@ -197,7 +197,9 @@ function MainContentList({
         }
       }
 
-      dispatch(replacePlaylist(1, { name: 'Current Page', tracks }))
+      if (tracks.length) {
+        dispatch(replacePlaylist(1, { name: 'Current Page', tracks }))
+      }
 
       if (tracks.length && shouldSetCurrentPlaylist) {
         dispatch(setPlayerPlaylist(1))

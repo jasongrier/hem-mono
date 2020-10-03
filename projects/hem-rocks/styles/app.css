@@ -93,17 +93,6 @@ body {
   outline: none;
 }
 
-.main-footer {
-  width: var(--content-width-desk);
-  margin: 100px auto 40px auto;
-  font-size: 14px;
-  line-height: 32px;
-}
-
-.main-footer a {
-  color: inherit;
-}
-
 .page-support form {
   margin-top: 40px;
 }

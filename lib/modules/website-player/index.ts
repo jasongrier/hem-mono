@@ -24,12 +24,15 @@ export interface IPlaylist {
 
 export interface IState {
   actuallyPlaying: boolean
-  currentTrack: ITrack | null
+  alreadyOpened: boolean
   currentPlaylist: IPlaylist | null
+  currentTrack: ITrack | null
   error: string | null
+  expanded: boolean
   inited: boolean
   muted: boolean
   playing: boolean
+  playlistExpanded: boolean
   playlists: IPlaylist[]
 }
 
@@ -41,9 +44,12 @@ export const PREVIOUS_TRACK = 'PREVIOUS_TRACK'
 export const REPLACE_PLAYLIST = 'REPLACE_PLAYLIST'
 export const SEEK_PLAYER = 'SEEK_PLAYER'
 export const SET_PLAYER_ACTUALLY_PLAYING = 'SET_PLAYER_ACTUALLY_PLAYING'
+export const SET_PLAYER_ALREADY_OPENED = 'SET_PLAYER_ALREADY_OPENED'
 export const SET_PLAYER_ERROR = 'SET_PLAYER_ERROR'
+export const SET_PLAYER_EXPANDED = 'SET_PLAYER_EXPANDED'
 export const SET_PLAYER_INSTANCE = 'SET_PLAYER_INSTANCE'
 export const SET_PLAYER_PLAYLIST = 'SET_PLAYER_PLAYLIST'
+export const SET_PLAYER_PLAYLIST_EXPANDED = 'SET_PLAYER_PLAYLIST_EXPANDED'
 export const TRACK_ENDED = 'TRACK_ENDED'
 export const UNPAUSE_PLAYER = 'UNPAUSE_PLAYER'
 
@@ -51,11 +57,6 @@ export const UNPAUSE_PLAYER = 'UNPAUSE_PLAYER'
 export interface IAddPlaylist extends AnyAction {
   type: typeof ADD_PLAYLIST
   payload: Partial<IPlaylist>
-}
-
-export interface ISetPlayerActuallyPlaying extends AnyAction {
-  type: typeof SET_PLAYER_ACTUALLY_PLAYING
-  payload: boolean
 }
 
 export interface IPlayTrack extends AnyAction {
@@ -83,9 +84,24 @@ export interface ISeekPlayer extends AnyAction {
   payload: number
 }
 
+export interface ISetPlayerActuallyPlaying extends AnyAction {
+  type: typeof SET_PLAYER_ACTUALLY_PLAYING
+  payload: boolean
+}
+
+export interface ISetPlayerAlreadyOpened extends AnyAction {
+  type: typeof SET_PLAYER_ALREADY_OPENED
+  payload: boolean
+}
+
 export interface ISetPlayerError extends AnyAction {
   type: typeof SET_PLAYER_ERROR
   payload: string | null
+}
+
+export interface ISetPlayerExpanded extends AnyAction {
+  type: typeof SET_PLAYER_EXPANDED
+  payload: boolean
 }
 
 export interface ISetPlayerInstance extends AnyAction {
@@ -96,6 +112,11 @@ export interface ISetPlayerInstance extends AnyAction {
 export interface ISetPlayerPlaylist extends AnyAction {
   type: typeof SET_PLAYER_PLAYLIST
   payload: number
+}
+
+export interface ISetPlayerPlaylistExpanded extends AnyAction {
+  type: typeof SET_PLAYER_PLAYLIST_EXPANDED
+  payload: boolean
 }
 
 export interface IPreviousTrack extends AnyAction {
@@ -114,19 +135,22 @@ export interface IUnpausePlayer extends AnyAction {
 }
 
 export type Action =
-  | IPlayTrack
+  IAddPlaylist
   | INextTrack
   | IPausePlayer
+  | IPlayTrack
   | IPreviousTrack
   | IReplacePlaylist
   | ISeekPlayer
   | ISetPlayerActuallyPlaying
+  | ISetPlayerAlreadyOpened
   | ISetPlayerError
+  | ISetPlayerExpanded
   | ISetPlayerInstance
   | ISetPlayerPlaylist
+  | ISetPlayerPlaylistExpanded
   | ITrackEnded
   | IUnpausePlayer
-  | IAddPlaylist
 
 export {
   addPlaylist,
@@ -137,9 +161,12 @@ export {
   replacePlaylist,
   seekPlayer,
   setPlayerActuallyPlaying,
+  setPlayerAlreadyOpened,
   setPlayerError,
+  setPlayerExpanded,
   setPlayerInstance,
   setPlayerPlaylist,
+  setPlayerPlaylistExpanded,
   trackEnded,
   unpausePlayer,
 } from './actions'

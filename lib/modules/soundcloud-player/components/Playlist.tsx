@@ -48,10 +48,7 @@ function Playlist({ onCollapse }: IProps): ReactElement {
       </div>
       <div className="hem-player-playlist-window-controls">
         <div className="playlist-toggle-close">
-          <BasePlayPauseButton
-            playing={false}
-            onClick={onCollapse}
-          />
+          <CloseButton onClick={onCollapse} />
         </div>
       </div>
       { currentPlaylist && currentPlaylist.tracks.length > 0 && (

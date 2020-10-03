@@ -76,6 +76,8 @@ function* playTrack({ payload: track }: any) {
 
   const player = getPlayerInstance()
 
+  console.log(track.resource)
+
   player.src = track.resource
   player.play()
 }
@@ -111,7 +113,7 @@ function* setPlayerInstance() {
     playerEl.addEventListener('play', function() {
       win.STORE.dispatch(setPlayerActuallyPlayingAc(true))
     })
-    
+
     playerEl.addEventListener('ended', function() {
       win.STORE.dispatch(nextTrackAc())
     })

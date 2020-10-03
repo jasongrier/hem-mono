@@ -1,25 +1,38 @@
 import React, { ReactElement, useState, useCallback, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import ReactGA from 'react-ga'
 import { PlayPauseButton as BasePlayPauseButton, CloseButton, HamburgerButton } from '../../../packages/hem-buttons'
-import { NextButton, PreviousButton, ProgressBar, PlayerBarPlayPauseButton, Playlist, ITrack, IPlaylist } from '../index'
+import {
+  NextButton,
+  PreviousButton,
+  ProgressBar,
+  PlayerBarPlayPauseButton,
+  Playlist,
+  ITrack,
+  IPlaylist,
+  setPlayerAlreadyOpened,
+  setPlayerActuallyPlaying,
+  setPlayerExpanded,
+  setPlayerPlaylistExpanded,
+} from '../index'
 
 function PlayerBar(): ReactElement {
-  const { currentTrack, playing, currentPlaylist }: { currentTrack: ITrack, playing: boolean, currentPlaylist: IPlaylist } = useSelector((state: any) => ({
+  const { currentTrack, playing, currentPlaylist, expanded, playlistExpanded, alreadyOpened } = useSelector((state: any) => ({
     currentTrack: state.player.currentTrack,
     playing: state.player.playing,
     currentPlaylist: state.player.currentPlaylist,
+    expanded: state.player.expanded,
+    playlistExpanded: state.player.playlistExpanded,
+    alreadyOpened: state.player.alreadyOpened,
   }))
 
-  const [expanded, setExpanded] = useState(true)
-  const [playlistExpanded, setPlaylistExpanded] = useState(false)
-  const [alreadyOpened, setAlreadyOpened] = useState(false)
+  const dispatch = useDispatch()
 
   useEffect(function openOnPlay() {
     if (playing && !expanded) {
-      setExpanded(true)
-      setPlaylistExpanded(false)
+      dispatch(setPlayerExpanded(true))
+      dispatch(setPlayerPlaylistExpanded(false))
     }
   }, [playing])
 
@@ -29,7 +42,7 @@ function PlayerBar(): ReactElement {
         category: 'User',
         action: 'Toggled the playlist: ' + !playlistExpanded + '.',
       })
-      setPlaylistExpanded(!playlistExpanded)
+      dispatch(setPlayerPlaylistExpanded(!playlistExpanded))
     }, [playlistExpanded],
   )
 
@@ -77,7 +90,7 @@ function PlayerBar(): ReactElement {
 
       { playlistExpanded && (
         <div className="player-bar-playlist">
-          <Playlist onCollapse={() => setPlaylistExpanded(false)} />
+          <Playlist onCollapse={() => dispatch(setPlayerPlaylistExpanded(false))} />
         </div>
       )}
 
@@ -88,15 +101,15 @@ function PlayerBar(): ReactElement {
               category: 'User',
               action: 'Closed the player bar.',
             })
-            setExpanded(false)
+            dispatch(setPlayerExpanded(false))
           }} />
         )}
         { !expanded && (
           <div onClick={() => {
             if (playing) return
-            setAlreadyOpened(true)
-            setExpanded(true)
-            setPlaylistExpanded(true)
+            dispatch(setPlayerAlreadyOpened(true))
+            dispatch(setPlayerExpanded(true))
+            dispatch(setPlayerPlaylistExpanded(true))
             ReactGA.event({
               category: 'User',
               action: 'Opened the player bar.',
@@ -111,13 +124,13 @@ function PlayerBar(): ReactElement {
           </div>
         )}
       </div>
-        <div className="player-bar-now-playing">
-          <img src="http://placekitten.com/68/68" alt=""/>
-          <p>
-            <strong>{ currentTrack?.title }Clouds</strong><br/>
-            { currentTrack?.attribution }Jason Grier
-          </p>
-        </div>
+      <div className="player-bar-now-playing">
+        <img src="http://placekitten.com/68/68" alt=""/>
+        <p>
+          <strong>{ currentTrack?.title }Clouds</strong><br/>
+          { currentTrack?.attribution }Jason Grier
+        </p>
+      </div>
     </div>
   )
 }

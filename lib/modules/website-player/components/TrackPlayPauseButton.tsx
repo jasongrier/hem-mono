@@ -46,7 +46,7 @@ function TrackPlayPauseButton({ track, activeFor = [], onClick }: PropsWithChild
   let playing = false
 
   if (
-    playerPlaying 
+    playerPlaying
     && (
       (track.id === currentTrackId)
       || activeForIds.includes(currentTrackId)
