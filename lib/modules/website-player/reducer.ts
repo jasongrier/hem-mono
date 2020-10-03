@@ -10,8 +10,11 @@ import {
   REPLACE_PLAYLIST,
   SEEK_PLAYER,
   SET_PLAYER_ACTUALLY_PLAYING,
+  SET_PLAYER_ALREADY_OPENED,
   SET_PLAYER_ERROR,
+  SET_PLAYER_EXPANDED,
   SET_PLAYER_INSTANCE,
+  SET_PLAYER_PLAYLIST_EXPANDED,
   SET_PLAYER_PLAYLIST,
   TRACK_ENDED,
   UNPAUSE_PLAYER,
@@ -21,12 +24,15 @@ import {
 
 const initialState: IState = {
   actuallyPlaying: false,
+  alreadyOpened: false,
   currentTrack: null,
   currentPlaylist: null,
   error: null,
+  expanded: false,
   inited: false,
   muted: true,
   playing: false,
+  playlistExpanded: false,
   playlists: [],
 }
 
@@ -74,6 +80,18 @@ const reducer = (
       return state
     }
 
+    case SET_PLAYER_ACTUALLY_PLAYING: {
+      return produce(state, draftState => {
+        draftState.actuallyPlaying = payload
+      })
+    }
+
+    case SET_PLAYER_ALREADY_OPENED: {
+      return produce(state, draftState => {
+        draftState.alreadyOpened = payload
+      })
+    }
+
     case SET_PLAYER_ERROR: {
       return produce(state, draftState => {
         draftState.error = payload
@@ -84,9 +102,9 @@ const reducer = (
       })
     }
 
-    case SET_PLAYER_ACTUALLY_PLAYING: {
+    case SET_PLAYER_EXPANDED: {
       return produce(state, draftState => {
-        draftState.actuallyPlaying = payload
+        draftState.expanded = payload
       })
     }
 
@@ -99,6 +117,12 @@ const reducer = (
         if (draftState.playlists[payload]) {
           draftState.currentPlaylist = draftState.playlists[payload]
         }
+      })
+    }
+
+    case SET_PLAYER_PLAYLIST_EXPANDED: {
+      return produce(state, draftState => {
+        draftState.playlistExpanded = payload
       })
     }
 

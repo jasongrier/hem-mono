@@ -12,7 +12,7 @@ import { ProtectedContent } from '../../login'
 import { CampaignMonitorForm, ElectronNot, ScrollToTop, NagToaster, Spinner, Toaster, ElectronOnly } from '../../../../../lib/components'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup, closePopup } from '../../../../../lib/modules/popups'
-import { PlayerBar, setPlayerPlaylist, replacePlaylist, setPlayerInstance } from '../../../../../lib/modules/website-player'
+import { PlayerBar, setPlayerPlaylist, replacePlaylist, setPlayerInstance, setPlayerPlaylistExpanded, setPlayerExpanded } from '../../../../../lib/modules/website-player'
 import { usePrevious } from '../../../../../lib/hooks'
 import { collapseTopBar, expandTopBar, getCookieName } from '../index'
 import { SiteFooter, TopBar } from '../../../components/layout'
@@ -151,15 +151,16 @@ function App(): ReactElement {
       contentItemToTrack(item)
     )
 
-    dispatch(replacePlaylist(0, { name: 'Featured Tracks', tracks: featuredTracksTracks }))
+    dispatch(replacePlaylist(0, { name: 'Featured', tracks: featuredTracksTracks }))
     dispatch(setPlayerPlaylist(0))
 
     const trackTags = [
-      'Album Tracks',
+      'Albums',
+      'Rarities',
       'Live',
       'Made with SL',
-      'Rarities',
       'Sound Library',
+      'Video',
     ]
 
     trackTags.forEach((tag, i) => {
@@ -391,7 +392,16 @@ function App(): ReactElement {
         </PopupContainer>
 
         { !BERLIN_STOCK_PHOTOS && (
-          <PlayerBar />
+          <>
+            <PlayerBar />
+            <div
+              className="player-bar-overlay"
+              onClick={() => {
+                dispatch(setPlayerExpanded(false))
+                dispatch(setPlayerPlaylistExpanded(false))
+              }}
+            />
+          </>
         )}
       </>
 
