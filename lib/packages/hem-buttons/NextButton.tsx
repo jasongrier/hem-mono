@@ -4,6 +4,7 @@ interface IProps {
   onClick: () => void
 
   className?: string
+  useFa?: boolean
 }
 
 const styleSheet = `
@@ -42,9 +43,13 @@ const styleSheet = `
     background: #fff;
     transform: scaleY(.9);
   }
+
+  .hem-next-button .fa-icon {
+    display: inline-block;
+  }
 `
 
-function NextButton({ onClick, className }: IProps): ReactElement {
+function NextButton({ onClick, className, useFa = true }: IProps): ReactElement {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: styleSheet }} />
@@ -52,7 +57,12 @@ function NextButton({ onClick, className }: IProps): ReactElement {
         className={`hem-next-button ${className}`}
         onClick={onClick}
       >
-        <div className="hem-next-button-icon" />
+        { useFa && (
+          <i className="fa-icon fas fa-step-forward"></i>
+        )}
+        { !useFa && (
+          <div className="hem-next-button-icon" />
+        )}
       </div>
     </>
   )

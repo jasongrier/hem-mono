@@ -56,7 +56,10 @@ function Playlist({ onCollapse }: IProps): ReactElement {
       </div>
       { currentPlaylist && currentPlaylist.tracks.length > 0 && (
         <ul>
-          <Scrollbars noScrollX={true}>
+          <Scrollbars
+            permanentTrackY={true}
+            noScrollX={true}
+          >
             { currentPlaylist.tracks.map((track: ITrack) => (
               <li
                 key={track.id}

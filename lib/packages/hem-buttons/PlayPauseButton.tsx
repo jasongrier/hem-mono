@@ -88,6 +88,7 @@ function PlayPauseButton({ playing, onClick, useFa = true }: IProps): ReactEleme
         className={`
           hem-play-pause-button
           ${ playing ? 'hem-play-pause-button-playing' : '' }
+          ${ useFa ? 'use-fa' : '' }
         `}
         onClick={onClick}
       >
