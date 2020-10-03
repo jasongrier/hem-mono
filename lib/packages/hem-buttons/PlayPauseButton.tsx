@@ -3,6 +3,7 @@ import React, { ReactElement, PropsWithChildren } from 'react'
 interface IProps {
   playing: boolean
   onClick: () => void
+  useFa?: boolean
 }
 
 const styleSheet = `
@@ -10,6 +11,8 @@ const styleSheet = `
     position: relative;
     width: 60px;
     height: 60px;
+    line-height: 60px;
+    text-align: center;
     cursor: pointer;
   }
 
@@ -71,9 +74,13 @@ const styleSheet = `
     height: 30px;
     background-color: #fff;
   }
+
+  .hem-play-pause-button .fa-icon {
+    display: inline-block;
+  }
 `
 
-function PlayPauseButton({ playing, onClick }: IProps): ReactElement {
+function PlayPauseButton({ playing, onClick, useFa = true }: IProps): ReactElement {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: styleSheet }} />
@@ -84,9 +91,17 @@ function PlayPauseButton({ playing, onClick }: IProps): ReactElement {
         `}
         onClick={onClick}
       >
-        <div className="hem-play-pause-button-icon">
-          <span></span>
-        </div>
+        { useFa && playing && (
+          <i className="fa-icon fas fa-pause"></i>
+        )}
+        { useFa && !playing && (
+          <i className="fa-icon fas fa-play"></i>
+        )}
+        { !useFa && (
+          <div className="hem-play-pause-button-icon">
+            <span></span>
+          </div>
+        )}
       </div>
     </>
   )
