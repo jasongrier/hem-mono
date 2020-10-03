@@ -12,7 +12,7 @@ function PlayerBar(): ReactElement {
     currentPlaylist: state.player.currentPlaylist,
   }))
 
-  const [expanded, setExpanded] = useState(false)
+  const [expanded, setExpanded] = useState(true)
   const [playlistExpanded, setPlaylistExpanded] = useState(false)
   const [alreadyOpened, setAlreadyOpened] = useState(false)
 
@@ -55,7 +55,11 @@ function PlayerBar(): ReactElement {
 
       <NextButton />
 
-      <ProgressBar id="player-bar-progress-bar" />
+      <div className="player-bar-progress-bar">
+        <span className="player-bar-progress-bar-time player-bar-progress-bar-time-start">0:00</span>
+        <ProgressBar id="player-bar-progress-bar" />
+        <span className="player-bar-progress-bar-time player-bar-progress-bar-time-end">5:43</span>
+      </div>
 
       <div className="playlist-toggle">
         { !playlistExpanded && (
@@ -108,33 +112,11 @@ function PlayerBar(): ReactElement {
         )}
       </div>
         <div className="player-bar-now-playing">
-          { currentTrack && (
-            <span>
-              <span onClick={() => {
-                ReactGA.event({
-                  category: 'User',
-                  action: 'Clicked on "now playing" title: ' + currentTrack.title + '.',
-                })
-              }}>
-                <Link to={currentTrack.titleLink}>
-                  { currentTrack.title }
-                </Link>
-              </span>
-
-              &nbsp;–&nbsp;
-
-              <span onClick={() => {
-                ReactGA.event({
-                  category: 'User',
-                  action: 'Clicked on "now playing" attribution: ' + currentTrack.title + ', ' + currentTrack.attribution + '.',
-                })
-              }}>
-                <Link to={currentTrack.attributionLink}>
-                  { currentTrack.attribution }
-                </Link>
-              </span>
-            </span>
-          )}
+          <img src="http://placekitten.com/68/68" alt=""/>
+          <p>
+            <strong>{ currentTrack?.title }Clouds</strong><br/>
+            { currentTrack?.attribution }Jason Grier
+          </p>
         </div>
     </div>
   )

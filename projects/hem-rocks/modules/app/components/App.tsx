@@ -156,7 +156,6 @@ function App(): ReactElement {
 
     const trackTags = [
       'Album Tracks',
-      'Exclusives',
       'Live',
       'Made with SL',
       'Rarities',

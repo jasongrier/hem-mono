@@ -2,6 +2,7 @@ import React, { ReactElement, PropsWithChildren } from 'react'
 
 interface IProps {
   onClick: () => void
+  useFa?: boolean
 }
 
 const styleSheet = `
@@ -42,13 +43,17 @@ const styleSheet = `
   .hem-hamburger-button span:nth-child(3) {
     bottom: 0;
   }
+
+  .hem-hamburger-button .fa-icon {
+    display: inline-block;
+  }
 `
 
 interface IProps {
   onClick: () => void
 }
 
-function HamburgerButton({ onClick }: PropsWithChildren<IProps>): ReactElement {
+function HamburgerButton({ onClick, useFa = true }: PropsWithChildren<IProps>): ReactElement {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: styleSheet }} />
@@ -56,11 +61,16 @@ function HamburgerButton({ onClick }: PropsWithChildren<IProps>): ReactElement {
         className="hem-hamburger-button"
         onClick={onClick}
       >
-        <div className="hem-hamburger-button-icon">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
+        { useFa && (
+          <i className="fa-icon fas fa-expand-alt"></i>
+        )}
+        { !useFa && (
+          <div className="hem-hamburger-button-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        )}
       </div>
     </>
   )

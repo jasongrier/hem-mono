@@ -2,6 +2,7 @@ import React, { ReactElement, PropsWithChildren } from 'react'
 
 interface IProps {
   onClick: () => void
+  useFa?: boolean
 }
 
 const styleSheet = `
@@ -37,13 +38,17 @@ const styleSheet = `
   .hem-close-button span:nth-child(2) {
     transform: rotate(-45deg);
   }
+
+  .hem-close-button .fa-icon {
+    display: inline-block;
+  }
 `
 
 interface IProps {
   onClick: () => void
 }
 
-function CloseButton({ onClick }: PropsWithChildren<IProps>): ReactElement {
+function CloseButton({ onClick, useFa = true }: PropsWithChildren<IProps>): ReactElement {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: styleSheet }} />
@@ -51,10 +56,15 @@ function CloseButton({ onClick }: PropsWithChildren<IProps>): ReactElement {
         className="hem-close-button"
         onClick={onClick}
       >
-        <div className="hem-close-button-icon">
-          <span></span>
-          <span></span>
-        </div>
+        { useFa && (
+          <i className="fa-icon fas fa-times"></i>
+        )}
+        { !useFa && (
+          <div className="hem-close-button-icon">
+            <span></span>
+            <span></span>
+          </div>
+        )}
       </div>
     </>
   )
