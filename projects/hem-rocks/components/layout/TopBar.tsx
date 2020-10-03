@@ -35,7 +35,7 @@ function TopBar(): ReactElement {
       `}>
         <Logo />
 
-        <HeaderPlayer />
+        {/* <HeaderPlayer /> */}
 
         <nav className="main-nav">
           <ul className="main-nav-items">
@@ -44,7 +44,7 @@ function TopBar(): ReactElement {
             <MainNavItem name="Tracks" />
             <MainNavItem name="Articles" />
 
-            { showCart && cartProductsCount > -1 && (
+            { showCart && cartProductsCount > 0 && (
               <li className="main-nav-item">
                 <NavLink
                   to={(() => {

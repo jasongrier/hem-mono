@@ -1,18 +1,23 @@
 .player-bar {
   position: fixed;
-  bottom: 0;
-  right: 0;
+  bottom: 20px;
+  right: 20px;
   z-index: 9999999;
   width: 100vw;
-  width: 60px;
-  height: 60px;
-  background-color: #000;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
   overflow: hidden;
   user-select: none;
 }
 
 .player-bar * {
   user-select: none;
+}
+
+.player-bar .hem-player-next-button,
+.player-bar .player-bar-main-play-button {
+  display: none;
 }
 
 .player-bar-expanded {
@@ -53,6 +58,20 @@
 }
 
 .player-bar-toggle .hem-play-pause-button {
+  width: 50px;
+  height: 50px;
+  line-height: 53px;
+  background-color: var(--line-orange);
+  font-size: 24px;
+  border-radius: var(--hem-border-radius);
+  color: #eee;
+}
+
+.player-bar-toggle .hem-play-pause-button .fa-icon {
+  transform: translate(1px, 0);
+}
+
+.player-bar-toggle .hem-play-pause-button {
   border: 0;
 }
 
@@ -63,11 +82,6 @@
 
 .player-bar-toggle .hem-close-button-icon {
   transform: scale(.5);
-}
-
-.player-bar-toggle .hem-play-pause-button {
-  margin-left: 0;
-  background-color: #000;
 }
 
 .player-bar .player-bar-now-playing {
