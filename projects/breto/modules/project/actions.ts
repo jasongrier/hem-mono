@@ -9,7 +9,7 @@ import {
 } from './index'
 
 const loadProject = (project: IProject): AnyAction => ({
-  type: NEW_PROJECT,
+  type: LOAD_PROJECT,
   payload: project,
 })
 

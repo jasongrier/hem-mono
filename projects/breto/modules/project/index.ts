@@ -1,8 +1,17 @@
 import { AnyAction } from 'redux'
 
+export interface IClip {
+  file: number
+  name: string
+  startTime: number
+  endTime: number
+}
+
 export interface IProject {
   title: string
   fullPath: string
+  files: string[]
+  clips: IClip[]
 }
 
 export interface IState {
@@ -48,5 +57,6 @@ export {
 } from './actions'
 
 export { ProjectSplashScreen } from './components'
-export { reducer as appReducer } from './reducer'
+export { createProject } from './functions'
+export { reducer as projectReducer } from './reducer'
 export { projectSaga } from './sagas'
