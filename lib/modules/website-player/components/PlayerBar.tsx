@@ -127,8 +127,8 @@ function PlayerBar(): ReactElement {
       <div className="player-bar-now-playing">
         <img src="http://placekitten.com/68/68" alt=""/>
         <p>
-          <strong>{ currentTrack?.title }Clouds</strong><br/>
-          { currentTrack?.attribution }Jason Grier
+          <strong>{ currentTrack?.title }</strong><br/>
+          { currentTrack?.attribution }
         </p>
       </div>
     </div>

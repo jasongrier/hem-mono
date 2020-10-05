@@ -62,7 +62,7 @@ function HamburgerButton({ onClick, useFa = true }: PropsWithChildren<IProps>): 
         onClick={onClick}
       >
         { useFa && (
-          <i className="fa-icon fas fa-expand-alt"></i>
+          <i className="fa-icon fas fa-window-maximize"></i>
         )}
         { !useFa && (
           <div className="hem-hamburger-button-icon">

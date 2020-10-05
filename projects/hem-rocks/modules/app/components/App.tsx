@@ -155,10 +155,9 @@ function App(): ReactElement {
     dispatch(setPlayerPlaylist(0))
 
     const trackTags = [
-      'Albums',
       'Rarities',
       'Live',
-      'Made with SL',
+      // 'Made with SL',
       'Sound Library',
       'Video',
     ]
