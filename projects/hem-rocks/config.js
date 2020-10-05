@@ -4,7 +4,7 @@ BSP_BASE_SITE_TITLE = 'Berlin Stock Photos'
 var HEM_CAMPAIGN_MONITOR_FORM_ACTION = 'https://humanear.createsend.com/t/r/s/mddyht/'
 var HEM_CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME = 'cm-mddyht-mddyht'
 var HEM_CAMPAIGN_MONITOR_FORM_ID = '5B5E7037DA78A748374AD499497E309E34883504EC972B188E4CB169FC87154EA44D7B3A50124374F2DEEFB33D7CE7A53C0566B978C890570F878E42C80AD756'
-var HEM_MAILING_LIST_TEXT = 'Subscribe to HEM to receive updates on projects and happenings; sound and software.'
+var HEM_MAILING_LIST_TEXT = 'Subscribe to HEM to receive updates on projects and happenings, sound, and software.'
 
 var BSP_CAMPAIGN_MONITOR_FORM_ACTION = 'https://www.createsend.com/t/subscribeerror?description='
 var BSP_CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME = 'cm-oujlyid-oujlyid'

@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 import { CampaignMonitorForm } from '../../../../lib/components'
 import ReactGA from 'react-ga'
-import { CAMPAIGN_MONITOR_FORM_ACTION, CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME, CAMPAIGN_MONITOR_FORM_ID, BERLIN_STOCK_PHOTOS } from '../../config'
+import { MAILING_LIST_TEXT, CAMPAIGN_MONITOR_FORM_ACTION, CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME, CAMPAIGN_MONITOR_FORM_ID, BERLIN_STOCK_PHOTOS } from '../../config'
 
 function SiteFooter(): ReactElement {
   return (
@@ -12,32 +12,31 @@ function SiteFooter(): ReactElement {
         <div className="site-footer-content-row">
           <div className="site-footer-content-column">
             <ul>
-              <li><Link to="/label">Label</Link></li>
+              <li><Link to="/label">Tutorials</Link></li>
               <li><Link to="/support">Support</Link></li>
-              <li><Link to="/about">About HEM</Link></li>
               <li><Link to="/internships">Internships</Link></li>
+              <li><Link to="/about">About</Link></li>
             </ul>
           </div>
           <div className="site-footer-content-column">
             <ul>
-              <li><a href="">Github</a></li>
-              <li><a href="">Mastodon</a></li>
-              <li><a href="">VK</a></li>
-              <li><a href="">Patreon</a></li>
-              <li><a href="">Instagram</a></li>
-              <li><a href="">Facebook</a></li>
-              <li><a href="">Twitter</a></li>
-            </ul>
-          </div>
-          <div className="site-footer-content-column">
-            <ul>
+              <li><a href="">Video</a></li>
               <li><a href="">Press Releases</a></li>
               <li><a href="">Press Clippings</a></li>
               <li><a href="">Demo Policy</a></li>
             </ul>
           </div>
+          <div className="site-footer-content-column">
+            <ul>
+              <li><a href="">YouTube</a></li>
+              <li><a href="">Github</a></li>
+              <li><a href="">Mastodon</a></li>
+              <li><a href="">Patreon</a></li>
+            </ul>
+          </div>
           <div className="site-footer-content-column site-footer-content-column-wide">
             <h2>Sign up to our newsletter</h2>
+            <p>{ MAILING_LIST_TEXT }</p>
             <CampaignMonitorForm
               action={CAMPAIGN_MONITOR_FORM_ACTION}
               emailFieldName={CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME}

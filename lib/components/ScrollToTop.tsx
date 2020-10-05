@@ -11,6 +11,7 @@ function ScrollToTop({ scrollPaneSelector }: IProps): ReactElement {
 
   useEffect(() => {
     const forPaths = [
+      '/',
       '/sound-library',
       '/sound-library/about',
       '/sound-library/made-with-sl',
@@ -28,10 +29,11 @@ function ScrollToTop({ scrollPaneSelector }: IProps): ReactElement {
 
     if (forPaths.includes(pathname)) {
       $(scrollPaneSelector).scrollTop(0)
+      console.log($(scrollPaneSelector).scrollTop())
     }
 
     else {
-      // console.log('*** Did NOT scroll to the top! >> ' + pathname)
+      console.log('*** Did NOT scroll to the top! >> ' + pathname)
     }
   }, [pathname])
 
