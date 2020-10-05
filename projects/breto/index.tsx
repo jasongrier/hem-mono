@@ -5,17 +5,15 @@ import { BrowserRouter } from 'react-router-dom'
 import { combineReducers, createStore, applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import { popupsReducer } from '../../lib/modules/popups'
-import { playerReducer } from '../../lib/modules/website-player'
 import { App, appReducer } from './modules/app'
+import { projectReducer } from './modules/project'
 import './styles'
 
 declare const window: any
 
 const rootReducer = combineReducers({
   app: appReducer,
-  player: playerReducer,
-  popups: popupsReducer,
+  project: projectReducer,
 })
 
 const sagaMiddleware = createSagaMiddleware()
@@ -27,8 +25,8 @@ const store = window.STORE = createStore(
   )
 )
 
-import { requestActiveLiveStreamSaga } from './modules/app'
-sagaMiddleware.run(requestActiveLiveStreamSaga)
+import { projectSaga } from './modules/project'
+sagaMiddleware.run(projectSaga)
 
 const Root = (
   <Provider store={store}>

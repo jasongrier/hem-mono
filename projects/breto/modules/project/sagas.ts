@@ -7,14 +7,23 @@ import {
   loadProject as loadProjectAc,
 
   IProject,
+
+  createProject,
 } from './index'
+
+declare const window: any
 
 function* newProject() {
   try {
-    const project: IProject = {
-      title: '',
-      fullPath: '',
-    }
+    const { remote } = window.require('electron')
+    const { mkdirSync, writeFileSync } = remote.require('fs')
+    const fullPath = remote.dialog.showSaveDialogSync(null)
+    const title = fullPath.split('/').pop()
+    const project = createProject(title, fullPath)
+
+    mkdirSync(fullPath)
+    mkdirSync(fullPath + '/' + 'Audio')
+    writeFileSync(fullPath + '/' + title + '.breto', JSON.stringify(project, null, 2))
 
     yield put(loadProjectAc(project))
   }
@@ -26,12 +35,12 @@ function* newProject() {
 
 function* openProject() {
   try {
-    const project: IProject = {
-      title: '',
-      fullPath: '',
-    }
+    // const project: IProject = {
+    //   title: '',
+    //   fullPath: '',
+    // }
 
-    yield put(loadProjectAc(project))
+    // yield put(loadProjectAc(project))
   }
 
   catch (err) {
