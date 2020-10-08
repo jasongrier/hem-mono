@@ -1,6 +1,8 @@
 import { AnyAction } from 'redux'
 import {
   LOAD_PROJECT,
+  RECENT_PROJECTS_LOAD,
+  RECENT_PROJECTS_REQUEST,
   NEW_PROJECT,
   OPEN_PROJECT,
   SAVE_PROJECT,
@@ -11,6 +13,16 @@ import {
 const loadProject = (project: IProject): AnyAction => ({
   type: LOAD_PROJECT,
   payload: project,
+})
+
+const recentProjectsLoad = (projects: Partial<IProject>): AnyAction => ({
+  type: RECENT_PROJECTS_LOAD,
+  payload: projects,
+})
+
+const recentProjectsRequest = (): AnyAction => ({
+  type: RECENT_PROJECTS_REQUEST,
+  payload: null,
 })
 
 const newProject = (): AnyAction => ({
@@ -30,6 +42,8 @@ const saveProject = (project: IProject): AnyAction => ({
 
 export {
   loadProject,
+  recentProjectsLoad,
+  recentProjectsRequest,
   newProject,
   openProject,
   saveProject,

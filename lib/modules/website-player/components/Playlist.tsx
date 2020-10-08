@@ -104,7 +104,7 @@ function Playlist({ onCollapse }: IProps): ReactElement {
                 />
                 <div className="hem-player-playlist-line-text">
                   <div className="hem-player-playlist-line-title">
-                    <img src="http://placekitten.com/25/25" alt=""/>
+                    <img src={track.keyArt} alt={`${track.title} — ${track.attribution}`} />
                     <p>
                       <strong>{ track.title }</strong><br/>
                       <span onClick={() => {
