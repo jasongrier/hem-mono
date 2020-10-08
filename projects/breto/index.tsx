@@ -7,12 +7,14 @@ import createSagaMiddleware from 'redux-saga'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { App, appReducer } from './modules/app'
 import { projectReducer } from './modules/project'
+import { filesReducer } from './modules/files'
 import './styles'
 
 declare const window: any
 
 const rootReducer = combineReducers({
   app: appReducer,
+  files: filesReducer,
   project: projectReducer,
 })
 
@@ -24,6 +26,9 @@ const store = window.STORE = createStore(
     applyMiddleware(sagaMiddleware),
   )
 )
+
+import { filesSaga } from './modules/files'
+sagaMiddleware.run(filesSaga)
 
 import { projectSaga } from './modules/project'
 sagaMiddleware.run(projectSaga)

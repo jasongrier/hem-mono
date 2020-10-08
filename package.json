@@ -36,6 +36,7 @@
     "body-scroll-lock": "^3.0.2",
     "electron": "^8.3.0",
     "electron-rebuild": "^1.11.0",
+    "electron-store": "^6.0.1",
     "front-matter": "^3.2.1",
     "front-matter-markdown": "^0.4.4",
     "global.css": "^1.1.0",

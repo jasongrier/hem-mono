@@ -25,7 +25,7 @@ function* requestActiveLiveStream() {
 
 function* writeCookieApprovalCookie({ payload }: any) {
   const { approval, cookieName, write } = payload
-  
+
   try {
     if (approval && write) {
       Cookies.set(getCookieName(`${cookieName}-cookie-approved`), 'true')
@@ -35,10 +35,10 @@ function* writeCookieApprovalCookie({ payload }: any) {
   catch (err) {
     console.log(err)
   }
-  
+
   try {
     yield call(
-      fetch, 
+      fetch,
       `${assetHostHostname()}/hem-rocks/api/?hem-cmd=cookie-approval`,
       {
         body: JSON.stringify({ approval, cookieName }),

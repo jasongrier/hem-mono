@@ -1,14 +1,18 @@
-import React, { ReactElement, useCallback } from 'react'
+import React, { ReactElement, useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { newProject, openProject } from '../'
+import { recentProjectsRequest, newProject, openProject } from '../'
 import { RootState } from '../../../index'
 
 function ProjectSplashScreen(): ReactElement {
-  const { currentProject } = useSelector((state: RootState) => ({
-    currentProject: state.project.currentProject,
+  const { recentProjects } = useSelector((state: RootState) => ({
+    recentProjects: state.project.recentProjects,
   }))
 
   const dispatch = useDispatch()
+
+  useEffect(function init() {
+    dispatch(recentProjectsRequest())
+  }, [])
 
   const newProjectOnClick = useCallback(
     function openProjectOnClickFn() {
@@ -37,6 +41,12 @@ function ProjectSplashScreen(): ReactElement {
             New Project
           </button>
         </li>
+      </ul>
+      <h2>Recent Projects</h2>
+      <ul>
+        { recentProjects.map(project => (
+          <li key={project.id}>{ project.title }</li>
+        ))}
       </ul>
     </div>
   )
