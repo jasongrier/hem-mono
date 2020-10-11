@@ -74,6 +74,15 @@
   font-size: 14px;
 }
 
+.sound-library-refresh-heroine-test-drive {
+  display: block;
+  position: absolute;
+  bottom: 5px;
+  right: 34px;
+  width: 16px;
+  height: 16px;
+}
+
 .sound-library-refresh-heroine-text h5 {
   float: left;
   width: 100%;

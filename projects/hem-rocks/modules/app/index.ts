@@ -81,7 +81,14 @@ export {
 } from './actions'
 
 // TODO: Export all components here. Write a linter for it
-export { App, EmailForm, CookieSettings, HeaderPlayer } from './components'
+export {
+  App,
+  CookieSettings,
+  EmailForm,
+  HeaderPlayer,
+  Popups,
+} from './components'
+
 export { getCookieBaseName, getCookieName } from './functions'
 export { reducer as appReducer } from './reducer'
 export { requestActiveLiveStreamSaga } from './sagas'

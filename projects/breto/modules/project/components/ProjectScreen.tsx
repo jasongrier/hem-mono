@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback } from 'react'
+import React, { ReactElement, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { FileList } from '../../files'
 import { RootState } from '../../../index'
@@ -8,17 +8,42 @@ function ProjectScreen(): ReactElement {
     currentProjectTitle: state.project.currentProjectTitle,
   }))
 
-  const dispatch = useDispatch()
+  const [viewMode, setViewMode] = useState('files')
 
   return (
     <div className="project-screen">
       <header>
         <h1>{ currentProjectTitle }</h1>
+
+        <nav className="view-mode-nav">
+          <button onClick={() => setViewMode('files')}>Files</button>
+          <button onClick={() => setViewMode('clips')}>Clips</button>
+          <button onClick={() => setViewMode('sections')}>Sections</button>
+        </nav>
       </header>
       <main>
         <aside>
-          <FileList />
+          { viewMode === 'files' && (
+            <FileList />
+          )}
+          {/* { viewMode === 'clips' && (
+            <ClipList />
+          )}
+          { viewMode === 'sections' && (
+            <SectionList />
+          )} */}
         </aside>
+        <div className="detail-view">
+          {/* { viewMode === 'files' && (
+            <ClipEditor />
+          )}
+          { viewMode === 'clips' && (
+            <SectionEditor />
+          )}
+          { viewMode === 'sections' && (
+            <OutlineEditor />
+          )} */}
+        </div>
       </main>
       <footer>
 

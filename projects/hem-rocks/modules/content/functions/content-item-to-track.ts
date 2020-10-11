@@ -7,7 +7,7 @@ function contentItemToTrack(contentItem: IContentItem): ITrack {
     attribution: contentItem.attribution,
     attributionLink: contentItem.attributionLink,
     id: contentItem.slug,
-    keyArt: contentItem.keyArt,
+    keyArt: assetHostHostname() + '/hem-rocks/content/images/key-art/' + contentItem.keyArt,
     relatedContent: contentItem.relatedContent,
     relatedContentLink: contentItem.relatedContentLink,
     resource: assetHostHostname() + '/hem-rocks/content/tracks/' + contentItem.audioFilename,

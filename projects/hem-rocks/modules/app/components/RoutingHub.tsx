@@ -21,9 +21,10 @@ import {
 
 import {
   Admin,
-  InternalCalendar,
   Checklists,
+  InternalCalendar,
   InternalHome,
+  Polina,
 } from '../../../routes/internal'
 
 import {
@@ -184,6 +185,7 @@ function RoutingHub(): ReactElement {
         <Route exact path="/internal" component={InternalHome} />
         <Route exact path="/internal/checklists" component={Checklists} />
         <Route exact path="/internal/calendar" component={InternalCalendar} />
+        <Route exact path="/internal/pg" component={Polina} />
 
         {/* Desktop Admin Application */}
         <Route path="/admin" component={Admin} />

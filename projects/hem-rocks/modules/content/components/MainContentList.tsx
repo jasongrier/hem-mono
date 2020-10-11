@@ -198,7 +198,7 @@ function MainContentList({
       }
 
       if (tracks.length) {
-        dispatch(replacePlaylist(1, { name: 'On this page', tracks }))
+        dispatch(replacePlaylist(2, { name: 'On this page', tracks }))
       }
 
       if (tracks.length && shouldSetCurrentPlaylist) {

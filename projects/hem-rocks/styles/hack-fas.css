@@ -1,0 +1,11 @@
+.hack-fas {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.hack-fa-piano-keyboard {
+  background-image: url(../static/assets/icons/piano.png);
+}

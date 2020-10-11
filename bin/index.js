@@ -24,8 +24,8 @@ else if (a1 === 'task') { // TODO: Command not found error
       start(a3, true)
       break
 
-    case 'start-electron': // `npm run task start-electron my-project`
-      startElectron(a3)
+    case 'start-pug-electron': // `npm run task start-electron my-project`
+      startElectron(a3, true)
       break
 
     case 'start-php': // `npm run task start-php my-project`
