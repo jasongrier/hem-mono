@@ -1,13 +1,20 @@
 import React, { ReactElement } from 'react'
-import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { CloseButton } from '../../../../lib/packages/hem-buttons'
+import { PopupContainer, openPopup, closePopup } from '../../../../lib/modules/popups'
 import { assetHostHostname } from '../../functions'
 
 function SoundLibraryRefreshHeroine(): ReactElement {
+  const dispatch = useDispatch()
+
   const assetHost = assetHostHostname()
 
   return (
     <div className="sound-library-refresh-heroine">
-      <Link to="/sound-library">
+      <a
+        href="#"
+        onClick={() => dispatch(openPopup('sound-library-refresh-popup'))}
+      >
         <div
           className="sound-library-refresh-heroine-image"
           style={{
@@ -18,12 +25,13 @@ function SoundLibraryRefreshHeroine(): ReactElement {
           <div className="sound-library-refresh-heroine-text">
             <h2>
               SL 2020
+              <i className="sound-library-refresh-heroine-test-drive hack-fas hack-fa-piano-keyboard"></i>
               <i className="sound-library-refresh-heroine-play fas fa-volume-up"></i>
             </h2>
             <h5>HEM's Sound Library re-thought as a selection of highly playable virtual instruments.</h5>
           </div>
         </div>
-      </Link>
+      </a>
     </div>
   )
 }

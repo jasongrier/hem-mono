@@ -40,7 +40,7 @@ function PopupContainer({
       height: '100vh',
     })
   }, [])
-  
+
   useEffect(function captureEscapeKey() {
     function bodyOnKeyDown(evt: any) {
       if (
@@ -67,7 +67,7 @@ function PopupContainer({
 
       setPreviousScrollY(scrollY)
       setLocked(true)
-      
+
       $('.scroll-lock-container').css({
         overflow: 'hidden',
       })
@@ -81,11 +81,11 @@ function PopupContainer({
       document.body.classList.remove('with-popup-open')
 
       setLocked(false)
-      
+
       $('.scroll-lock-container').css({
         overflow: 'scroll',
       })
-      
+
       $('.scroll-lock-content').css({
         marginTop: 0,
       })
@@ -119,7 +119,6 @@ function PopupContainer({
               dispatch(closePopup())
             }}
           >
-            close
             { CloseIcon && <CloseIcon /> }
           </div>
         )}

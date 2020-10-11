@@ -83,8 +83,8 @@ function migrate(allContentItems: IContentItem[]) {
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
 
-    if (hasCategory(newItem, 'tracks')) {
-      newItem.audioFilename = newItem.slug + '.mp3'
+    if (isEmpty(newItem.keyArt)) {
+      newItem.keyArt = 'track-placeholder-image.jpg'
     }
 
     newItems.push(newItem)

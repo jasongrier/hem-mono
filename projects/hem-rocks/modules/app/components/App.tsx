@@ -16,8 +16,9 @@ import { PlayerBar, setPlayerPlaylist, replacePlaylist, setPlayerInstance, setPl
 import { usePrevious } from '../../../../../lib/hooks'
 import { collapseTopBar, expandTopBar, getCookieName } from '../index'
 import { SiteFooter, TopBar } from '../../../components/layout'
+import { SoundLibraryRefreshPopup } from '../../../components/popups'
 import { requestActiveLiveStream, setCookieApproval, setCookiePreferencesSet } from '../actions'
-import { CookieApproval, RoutingHub } from './index'
+import { CookieApproval, RoutingHub, Popups } from './index'
 import { CAMPAIGN_MONITOR_FORM_ACTION, CAMPAIGN_MONITOR_FORM_ID, CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME, MAILING_LIST_TEXT, BERLIN_STOCK_PHOTOS } from '../../../config'
 import { RootState } from '../../../index'
 import NewWebsitePopup from '../../../components/popups/NewWebsitePopup'
@@ -146,13 +147,17 @@ function App(): ReactElement {
   }, [])
 
   useEffect(function setSitePlaylists() {
+    const allTracks = contentItems.filter(item => hasCategory(item, 'tracks')).map(item =>
+      contentItemToTrack(item)
+    )
+
     const featuredTracksPlaylistTrackItems = getContentItemsFromList(contentItems, 'featured-tracks')
     const featuredTracksTracks = featuredTracksPlaylistTrackItems.map(item =>
       contentItemToTrack(item)
     )
 
-    dispatch(replacePlaylist(0, { name: 'Featured', tracks: featuredTracksTracks }))
-    dispatch(setPlayerPlaylist(0))
+    dispatch(replacePlaylist(1, { name: 'Featured', tracks: featuredTracksTracks }))
+    dispatch(replacePlaylist(0, { name: 'All', tracks: allTracks }))
 
     const trackTags = [
       'Rarities',
@@ -166,10 +171,10 @@ function App(): ReactElement {
       const tracks = contentItems.filter(item => hasCategory(item, 'tracks') && hasTag(item, slugify(tag))).map(item =>
         contentItemToTrack(item)
       )
-      dispatch(replacePlaylist(i + 2, { name: tag, tracks }))
+      dispatch(replacePlaylist(i + 3, { name: tag, tracks }))
     })
 
-    dispatch(setPlayerPlaylist(0))
+    dispatch(setPlayerPlaylist(1))
   }, [contentItems])
 
   useEffect(function handlePlayerErrors() {
@@ -355,40 +360,7 @@ function App(): ReactElement {
           </div>
         </div>
 
-        <PopupContainer
-          closeIcon={CloseButton}
-          id="detail-popup"
-        >
-          <DetailPopUp
-            contentItem={currentContentItem}
-            filter={pathname.split('/')[3]}
-            category={pathname.split('/')[1]}
-          />
-        </PopupContainer>
-
-        <PopupContainer
-          closeIcon={CloseButton}
-          id="cart-popup"
-        >
-          {(props: any) => (
-            <CartPopup redirecting={props?.redirecting} />
-          )}
-        </PopupContainer>
-
-
-        <PopupContainer
-          closeIcon={CloseButton}
-          id="thank-you-popup"
-        >
-          <ThankYouPopup />
-        </PopupContainer>
-
-        <PopupContainer
-          closeIcon={CloseButton}
-          id="new-website-popup"
-        >
-          <NewWebsitePopup />
-        </PopupContainer>
+        <Popups currentContentItem={currentContentItem} />
 
         { !BERLIN_STOCK_PHOTOS && (
           <>

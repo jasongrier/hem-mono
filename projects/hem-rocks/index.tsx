@@ -7,11 +7,11 @@ import createSagaMiddleware from 'redux-saga'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { popupsReducer } from '../../lib/modules/popups'
 import { playerReducer } from '../../lib/modules/website-player'
+import { flipBooksReducer } from '../../lib/modules/flip-book'
 import { App, appReducer } from './modules/app'
 import { loginReducer } from './modules/login'
 import { cartReducer } from './modules/cart'
 import { contentReducer } from './modules/content'
-import { ProtectedContent } from './modules/login'
 import './styles'
 
 declare const window: any
@@ -20,6 +20,7 @@ const rootReducer = combineReducers({
   app: appReducer,
   cart: cartReducer,
   content: contentReducer,
+  flipBooks: flipBooksReducer,
   login: loginReducer,
   player: playerReducer,
   popups: popupsReducer,
@@ -96,6 +97,9 @@ sagaMiddleware.run(loginSaga)
 
 import { logoutSaga } from './modules/login'
 sagaMiddleware.run(logoutSaga)
+
+import { flipBooksSaga } from '../../lib/modules/flip-book'
+sagaMiddleware.run(flipBooksSaga)
 
 const Root = (
   <Provider store={store}>

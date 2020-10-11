@@ -89,7 +89,7 @@ function InternalHome(): ReactElement {
             <li><Link to="/internal/calendar">Internal Calendar</Link></li>
           </ul>
         </div>
-        
+
         <div className="page-internal-link-group">
           <h2>Emails</h2>
           <ul>
