@@ -5,6 +5,8 @@ export const playerElementId = 'hem-website-player'
 export interface ITrack {
   attribution: string
   attributionLink: string
+  date: string
+  duration: string
   keyArt: string
   relatedContent: string
   relatedContentLink: string

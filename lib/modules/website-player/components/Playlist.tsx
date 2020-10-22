@@ -79,16 +79,14 @@ function Playlist({ onCollapse }: IProps): ReactElement {
       </div>
       { currentPlaylist && currentPlaylist.tracks.length > 0 && (
         <ul>
-          <Scrollbars
-            permanentTrackY={true}
-            noScrollX={true}
-          >
+          <Scrollbars noScrollX={true}>
             { currentPlaylist.tracks.map((track: ITrack, trackNumber: number) => (
               <li
                 key={track.id}
                 className={`
                   clearfix
                   ${(playing && currentTrack && track.id === currentTrack.id) ? 'hem-player-playlist-line-active' : ''}
+                  ${(trackNumber === currentPlaylist.tracks.length - 1) ? 'hem-player-playlist-line-last' : ''}
                 `}
               >
                 <div className="track-number">{ trackNumber + 1 }</div>
@@ -133,10 +131,10 @@ function Playlist({ onCollapse }: IProps): ReactElement {
                     </Link>
                   </span>
                   <div className="hem-player-playlist-line-date">
-                    17.09.2020
+                    { track.date }
                   </div>
                   <div className="hem-player-playlist-line-time">
-                    35:41
+                    { track.duration }
                   </div>
                 </div>
               </li>

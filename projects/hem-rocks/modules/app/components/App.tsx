@@ -160,8 +160,9 @@ function App(): ReactElement {
     dispatch(replacePlaylist(0, { name: 'All', tracks: allTracks }))
 
     const trackTags = [
-      'Rarities',
+      'Rare',
       'Live',
+      'Podcasts',
       // 'Made with SL',
       'Sound Library',
       'Video',

@@ -1,29 +1,29 @@
 import { AnyAction } from 'redux'
 
+export interface IFile {
+  lastModifiedDate: Date
+  name: string,
+  size: number
+  title: string,
+  type: string
+  webkitRelativePath: string
+}
+
 export interface IState {
-  files: string[]
+  files: IFile[]
 }
 
-export const ADD_FILES = 'ADD_FILES'
-export const ADD_FOLDER = 'ADD_FOLDER'
+export const ADD_FILE = 'ADD_FILE'
 
-export interface IAddFiles extends AnyAction {
-  type: typeof ADD_FILES
-  payload: string[]
+export interface IAddFile extends AnyAction {
+  type: typeof ADD_FILE
+  payload: any[]
 }
 
-export interface IAddFolder extends AnyAction {
-  type: typeof ADD_FOLDER
-  payload: null
-}
-
-export type Action =
-  IAddFiles
-  | IAddFolder
+export type Action = IAddFile
 
 export {
-  addFiles,
-  addFolder,
+  addFile,
 } from './actions'
 
 export { FileList, FileListHeader } from './components'

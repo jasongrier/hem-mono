@@ -1,4 +1,7 @@
 .main-footer {
+  position: sticky;
+  top: 0;
+  z-index: 9999999;
   width: var(--content-width-desk);
   margin: 100px auto 0 auto;
   font-size: 14px;

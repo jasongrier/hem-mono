@@ -1,20 +1,15 @@
 import { AnyAction } from 'redux'
 import {
-  ADD_FILES,
-  ADD_FOLDER,
+  ADD_FILE,
+
+  IFile,
 } from './index'
 
-const addFiles = (filePaths: string[]): AnyAction => ({
-  type: ADD_FILES,
-  payload: filePaths,
-})
-
-const addFolder = (): AnyAction => ({
-  type: ADD_FOLDER,
-  payload: null,
+const addFile = (file: Partial<IFile>): AnyAction => ({
+  type: ADD_FILE,
+  payload: file,
 })
 
 export {
-  addFiles,
-  addFolder,
+  addFile,
 }

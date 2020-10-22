@@ -124,13 +124,18 @@ function PlayerBar(): ReactElement {
           </div>
         )}
       </div>
-      <div className="player-bar-now-playing">
-        <img src="http://placekitten.com/68/68" alt=""/>
-        <p>
-          <strong>{ currentTrack?.title }</strong><br/>
-          { currentTrack?.attribution }
-        </p>
-      </div>
+      { currentTrack && (
+        <div className="player-bar-now-playing">
+          <img
+            src={currentTrack.keyArt}
+            alt={currentTrack.title}
+          />
+          <p>
+            <strong>{ currentTrack?.title }</strong><br/>
+            { currentTrack?.attribution }
+          </p>
+        </div>
+      )}
     </div>
   )
 }
