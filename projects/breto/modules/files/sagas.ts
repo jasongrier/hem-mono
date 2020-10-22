@@ -1,29 +1,10 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects'
 import {
-  ADD_FOLDER,
-
-  addFiles as addFilesAc,
+  ADD_FILE,
 } from './index'
 
-function* addFolder() {
+function* addFile({ payload: file }: any) {
   try {
-    const { remote } = window.require('electron')
-    const { readdirSync } = remote.require('fs')
-    const { extname } = remote.require('path')
-    const paths = remote.dialog.showOpenDialogSync({ properties: ['openDirectory'] })
-    const dir = paths[0]
-    const files = []
-
-    for (const file of readdirSync(dir)) {
-      if (
-        extname(file) === '.wav'
-        || extname(file) === '.mp3'
-      ) {
-        files.push(file)
-      }
-    }
-
-    yield put(addFilesAc(files))
   }
 
   catch (err) {
@@ -34,7 +15,7 @@ function* addFolder() {
 //--//
 
 function* filesSaga() {
-  yield takeLatest(ADD_FOLDER, addFolder)
+  yield takeLatest(ADD_FILE, addFile)
 }
 
 export {

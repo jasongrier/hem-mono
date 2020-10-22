@@ -14,9 +14,9 @@ function FileList(): ReactElement {
         <FileListHeader />
       </header>
       <ul>
-        { files.map(filePath => (
-          <li key={filePath}>
-            { getFileNameFromPath(filePath) }
+        { files.map(file => (
+          <li key={file.name}>
+            { file.name }
             <div className="file-actions">
               <button>Preview</button>
               <button>Remove</button>

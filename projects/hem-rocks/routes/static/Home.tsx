@@ -30,6 +30,7 @@ function Home(): ReactElement {
           <SoundLibraryRefreshHeroine />
         </div>
         <MainContentList
+          noSplatter={true}
           category="home-feature"
           items={getContentItemsFromList(contentItems, 'home-page-features')}
           shouldSetCurrentPlaylist={false}

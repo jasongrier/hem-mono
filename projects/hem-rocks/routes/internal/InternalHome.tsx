@@ -86,7 +86,8 @@ function InternalHome(): ReactElement {
         <div className="page-internal-link-group">
           <h2>Admin</h2>
           <ul>
-            <li><Link to="/internal/calendar">Internal Calendar</Link></li>
+            <li><Link to="/internal/calendar">Calendar</Link></li>
+            <li><Link to="/internal/todos">Todos</Link></li>
           </ul>
         </div>
 
@@ -96,6 +97,13 @@ function InternalHome(): ReactElement {
             <li><a href="https://cpanel-box5192.bluehost.com/cpsess8587732583/frontend/bluehost/mail/webmailform.html?user=j%40hem.rocks&return_request_uri=%2Fcpsess8587732583%2Ffrontend%2Fbluehost%2Femail_accounts%2Findex.html" target="_blank">j@hem.rocks</a></li>
             <li><a href="https://cpanel-box5192.bluehost.com/cpsess8587732583/frontend/bluehost/mail/webmailform.html?user=j%40hemberlin.de&return_request_uri=%2Fcpsess8587732583%2Ffrontend%2Fbluehost%2Femail_accounts%2Findex.html" target="_blank">j@hemberlin.de</a></li>
             <li><a href="https://cpanel-box5192.bluehost.com/cpsess8587732583/frontend/bluehost/mail/webmailform.html?user=info%40berlinstockphotos.com&return_request_uri=%2Fcpsess8587732583%2Ffrontend%2Fbluehost%2Femail_accounts%2Findex.html" target="_blank">info@berlinstockphotos.com</a></li>
+          </ul>
+        </div>
+
+        <div className="page-internal-link-group">
+          <h2>Sandbox</h2>
+          <ul>
+          <li><Link to="/internal/sandbox">Sandbox</Link></li>
           </ul>
         </div>
 

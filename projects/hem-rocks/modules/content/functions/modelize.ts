@@ -14,6 +14,7 @@ function modelize(rawContentItem: any): IContentItem {
     description: rawContentItem.description || '',
     displayCategory: rawContentItem.displayCategory || '',
     downloadFile: rawContentItem.downloadFile || '',
+    duration: rawContentItem.duration || '',
     externalLinkText: rawContentItem.externalLinkText || '',
     externalLinkUrl: rawContentItem.externalLinkUrl || '',
     fixedPrice: rawContentItem.fixedPrice || '',

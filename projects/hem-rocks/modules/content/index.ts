@@ -13,6 +13,7 @@ export interface IContentItem {
   description: string
   displayCategory: string
   downloadFile: string
+  duration: string
   externalLinkText: string
   externalLinkUrl: string
   fixedPrice: string
@@ -73,6 +74,7 @@ export const fieldTypes: IContentItem = {
   blurb: 'textarea',
   category: 'text',
   date: 'text',
+  duration: 'text',
   description: 'textarea',
   displayCategory: 'text',
   downloadFile: 'text',

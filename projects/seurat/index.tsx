@@ -5,39 +5,44 @@ import { BrowserRouter } from 'react-router-dom'
 import { combineReducers, createStore, applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import { popupsReducer } from '../../lib/modules/popups'
-import { playerReducer } from '../../lib/modules/website-player'
+import { App, appReducer } from './modules/app'
+import { projectReducer } from './modules/project'
+import { filesReducer } from './modules/files'
+import './styles'
 
-/**
- * API for Seurat.
- */
+declare const window: any
 
-// ================================================================================
-// External
-// ================================================================================
-import 'normalize.css'
+const rootReducer = combineReducers({
+  app: appReducer,
+  files: filesReducer,
+  project: projectReducer,
+})
 
-// ================================================================================
-// Framework
-// ================================================================================
-// import {bootstrap} from 'projekt/lib/public/bootstrap'
+const sagaMiddleware = createSagaMiddleware()
 
-// ================================================================================
-// Project
-// ================================================================================
-import './public/fonts/helvetica-neue/helvetica-neue.css'
-import './public/fonts/u8/u8.css'
-import {Seurat} from './components/SeuratPm'
+const store = window.STORE = createStore(
+  rootReducer,
+  composeWithDevTools(
+    applyMiddleware(sagaMiddleware),
+  )
+)
 
-// ================================================================================
-// Init
-// ================================================================================
-// bootstrap(Seurat)
+import { filesSaga } from './modules/files'
+sagaMiddleware.run(filesSaga)
+
+import { projectSaga } from './modules/project'
+sagaMiddleware.run(projectSaga)
 
 const Root = (
-  <BrowserRouter>
-    <Seurat />
-  </BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>
 )
 
 ReactDOM.render(Root, document.getElementById('root'))
+
+export type RootState = ReturnType<typeof rootReducer>
+
+export default store

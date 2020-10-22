@@ -58,38 +58,36 @@ function MainContentBox({
   const isHome = pathname === '/'
 
   return (
-    <SplatterDims
-      disabled={noSplatter}
-      bipolarX={false}
-      bipolarY={false}
-      minMarginX={50}
-      minMarginY={30}
-      className={`
-        main-content-box
-        main-content-box-date-${contentItem.date}
-        ${className ? className : ''}
-        ${contentItem.badgeText ? 'has-badge' : ''}
-        ${alignRight && index > 0 ? 'align-right' : ''}
-      `}
-      id={contentItem.slug}
-      width={400}
-      height={0}
-      rangeX={100}
-      rangeY={0}
-      marginRangeX={index < 0 ? 100 : 0}
-      marginRangeY={index < 0 ? 200 : 0}
-    >
+    <div className="main-content-box">
       {(badgeText || contentItem.badgeText) && (
         <div className="main-content-box-badge clearfix">
           <span>{ badgeText || contentItem.badgeText }</span>
         </div>
       )}
-      <Link to={linkTo}>
-        <h3 dangerouslySetInnerHTML={{ __html: contentItem.titleWrapping || contentItem.title }} />
-        { !isHome && contentItem.secondaryTitle && (
-          <h4 dangerouslySetInnerHTML={{ __html: contentItem.secondaryTitle }} />
-        )}
-      </Link>
+      {/* <div className="main-content-box-details">
+        <Link to={linkTo}>
+          <h3 dangerouslySetInnerHTML={{ __html: contentItem.titleWrapping || contentItem.title }} />
+          { !isHome && contentItem.secondaryTitle && (
+            <h4 dangerouslySetInnerHTML={{ __html: contentItem.secondaryTitle }} />
+          )}
+        </Link>
+        <Link to={linkTo}>
+          <div dangerouslySetInnerHTML={{ __html: marked(contentItem.blurb) }} />
+        </Link>
+        <div className="main-content-box-actions">
+          <div className="main-content-box-custom-actions">
+            { children }
+          </div>
+          { buttonText && (
+            <Link
+              className="action-button"
+              to={linkTo}
+            >
+              { buttonText }
+            </Link>
+          )}
+        </div>
+      </div> */}
       <div
         className="main-content-box-key-art"
         onClick={onClick}
@@ -125,28 +123,7 @@ function MainContentBox({
           )}
         </Link>
       </div>
-      <div
-        className="main-content-box-text"
-        onClick={onClick}
-      >
-        <Link to={linkTo}>
-          <div dangerouslySetInnerHTML={{ __html: marked(contentItem.blurb) }} />
-        </Link>
-        <div className="main-content-box-actions">
-          <div className="main-content-box-custom-actions">
-            { children }
-          </div>
-          { buttonText && (
-            <Link
-              className="action-button"
-              to={linkTo}
-            >
-              { buttonText }
-            </Link>
-          )}
-        </div>
-      </div>
-    </SplatterDims>
+    </div>
   )
 }
 

@@ -5,10 +5,10 @@ import { has, invert } from 'lodash'
 function compressIndex(index: any) {
   const defaults = modelize({}) as any
   const compressedIndex: any[] = []
-  
+
   for (const item of index) {
     const compressedItem: any = {}
-    
+
     for (const fieldName in item) {
       if (
         typeof item[fieldName] === 'boolean'
@@ -21,7 +21,7 @@ function compressIndex(index: any) {
         compressedItem[fieldName] = item[fieldName]
       }
     }
-    
+
     compressedIndex.push(compressedItem)
   }
 
@@ -41,6 +41,7 @@ const keyCompressionMap: any = {
   description: 'aj',
   displayCategory: 'ak',
   downloadFile: 'al',
+  duration: 'bn',
   externalLinkText: 'am',
   externalLinkUrl: 'an',
   fixedPrice: 'ao',
@@ -72,14 +73,14 @@ const keyCompressionMap: any = {
 
 export function validateCompressionMap() {
   const checkItem = modelize({})
-  
+
   for (const key in keyCompressionMap) {
     if (!has(checkItem, key)) {
       alert(`Compression map key not found in IContentItem type!!! ${key}`)
       throw new Error(`Compression map key not found in IContentItem type!!! ${key}`)
     }
   }
-  
+
   for (const key in checkItem) {
     if (!has(keyCompressionMap, key)) {
       alert(`IContentItem key not found in compression map!!! ${key}`)
@@ -90,7 +91,7 @@ export function validateCompressionMap() {
 
 export function compressIndexKeys(index: IContentItem[]) {
   validateCompressionMap()
-  
+
   const compressedIndex = []
 
   for (const item of index) {
@@ -104,13 +105,11 @@ export function compressIndexKeys(index: IContentItem[]) {
   return compressedIndex
 }
 
-let done = false
-
 export function uncompressItem(compressedItem: any) {
   const invertedMap = invert(keyCompressionMap)
   const compressedItemClone = Object.assign({}, compressedItem)
   const uncompressedItem: any = {}
-  
+
   for (const key in compressedItem) {
     uncompressedItem[invertedMap[key]] = compressedItemClone[key]
   }

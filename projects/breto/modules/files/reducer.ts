@@ -1,10 +1,10 @@
 import { AnyAction } from 'redux'
 import produce from 'immer'
-import { uniq } from 'lodash'
+import { uniqBy } from 'lodash'
 import {
-  ADD_FILES,
-  ADD_FOLDER,
+  ADD_FILE,
 
+  IFile,
   IState,
 } from './index'
 
@@ -17,13 +17,20 @@ const reducer = (
   { type, payload }: AnyAction,
 ): IState => {
   switch (type) {
-    case ADD_FILES: {
+    case ADD_FILE: {
       return produce(state, draftState => {
-        draftState.files = uniq(draftState.files.concat(payload))
+        const file: IFile = Object.assign({}, {
+          lastModifiedDate: payload.lastModifiedDate,
+          name: payload.name,
+          size: payload.size,
+          title: payload.name,
+          type: payload.type,
+          webkitRelativePath: payload.webkitRelativePath,
+        })
+        draftState.files = uniqBy(draftState.files.concat([file]), 'name')
       })
     }
 
-    case ADD_FOLDER:
     default:
       return state
   }

@@ -9,7 +9,6 @@ import { autoParagraph } from '../../../../../lib/functions'
 import { modelize, hasTag, getContentItemBySlug, hasCategory } from '../functions'
 import { IIndexEntry, IContentItem, compressIndex } from '..'
 import { RootState } from '../../../index'
-import { mkdirSync, readdirSync, renameSync } from 'fs'
 import { slugify, titleCase } from 'voca'
 import { execSync } from 'child_process'
 import { all } from 'redux-saga/effects'
@@ -17,8 +16,9 @@ import { all } from 'redux-saga/effects'
 function migrate(allContentItems: IContentItem[]) {
   const { remote } = window.require('electron')
   const { execSync } = remote.require('child_process')
-  const { writeFileSync, readdirSync, readFileSync, renameSync, lstatSync, copyFileSync, constants: fsConstants } = remote.require('fs')
+  const { existsSync, writeFileSync, readdirSync, readFileSync, renameSync, lstatSync, copyFileSync, constants: fsConstants } = remote.require('fs')
   const { join, extname } = remote.require('path')
+  const getMP3Duration = require('get-mp3-duration')
 
   const newItems: IContentItem[] = []
 
@@ -83,8 +83,15 @@ function migrate(allContentItems: IContentItem[]) {
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
 
-    if (isEmpty(newItem.keyArt)) {
-      newItem.keyArt = 'track-placeholder-image.jpg'
+    if (hasCategory(newItem, 'tracks')) {
+      const audioFile = '/Users/jason/Desktop/Workingkong/HEM/Website/hem-static/hem-rocks/content/tracks/' + newItem.audioFilename
+      const buffer = readFileSync(audioFile)
+      const duration = getMP3Duration(buffer)
+      const time = Math.floor(duration/(1000*60*60))
+        + ":" + Math.floor(duration/(1000*60))%60
+        + ":" + (Math.floor(duration/1000)%60).toString().padStart(2, '0')
+
+      newItem.duration = time.replace(/^0:/, '')
     }
 
     newItems.push(newItem)
