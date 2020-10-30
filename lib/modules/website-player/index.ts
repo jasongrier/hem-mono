@@ -29,6 +29,7 @@ export interface IPlaylist {
 
 export interface IAlbum extends IPlaylist {
   attribution: string
+  attributionLink: string
   coverArt: string
   date: string
 }

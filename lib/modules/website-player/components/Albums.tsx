@@ -10,7 +10,12 @@ function Albums({ albums }: IProps): ReactElement {
   return (
     <div className="hem-player-albums">
       <Scrollbars noScrollX={true}>
-        {albums.map(album => <Album album={album} />)}
+        {albums.map(album => (
+          <Album
+            album={album}
+            key={album.id}
+          />
+        ))}
       </Scrollbars>
     </div>
   )

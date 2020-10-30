@@ -12,7 +12,8 @@ function SiteFooter(): ReactElement {
         <div className="site-footer-content-row">
           <div className="site-footer-content-column">
             <ul>
-              <li><Link to="/label">Tutorials</Link></li>
+              <li><Link to="/label">Label</Link></li>
+              <li><Link to="/tutorials">Tutorials</Link></li>
               <li><Link to="/support">Support</Link></li>
               <li><Link to="/internships">Internships</Link></li>
               <li><Link to="/about">About</Link></li>

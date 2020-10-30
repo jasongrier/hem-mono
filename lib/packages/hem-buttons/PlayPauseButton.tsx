@@ -78,6 +78,10 @@ const styleSheet = `
   .hem-play-pause-button .fa-icon {
     display: inline-block;
   }
+
+  .hem-play-pause-button-text {
+    font-size: 0;
+  }
 `
 
 function PlayPauseButton({ playing, onClick, useFa = true }: IProps): ReactElement {
@@ -93,10 +97,16 @@ function PlayPauseButton({ playing, onClick, useFa = true }: IProps): ReactEleme
         onClick={onClick}
       >
         { useFa && playing && (
-          <i className="fa-icon fas fa-pause"></i>
+          <>
+            <i className="fa-icon fas fa-pause" />
+            <span className="hem-play-pause-button-text">Pause</span>
+          </>
         )}
         { useFa && !playing && (
-          <i className="fa-icon fas fa-play"></i>
+          <>
+            <i className="fa-icon fas fa-play" />
+            <span className="hem-play-pause-button-text">Play</span>
+          </>
         )}
         { !useFa && (
           <div className="hem-play-pause-button-icon">
