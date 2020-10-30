@@ -24,6 +24,7 @@ import {
   Checklists,
   InternalCalendar,
   InternalHome,
+  Notes,
   Sandbox,
   Todos,
 } from '../../../routes/internal'
@@ -186,6 +187,7 @@ function RoutingHub(): ReactElement {
         <Route exact path="/internal" component={InternalHome} />
         <Route exact path="/internal/checklists" component={Checklists} />
         <Route exact path="/internal/calendar" component={InternalCalendar} />
+        <Route exact path="/internal/notes" component={Notes} />
         <Route exact path="/internal/sandbox" component={Sandbox} />
         <Route exact path="/internal/todos" component={Todos} />
 

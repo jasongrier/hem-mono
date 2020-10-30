@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import { useLocation, useHistory, Redirect } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { find, isArray, map } from 'lodash'
+import { compact, find, isArray, map, noop } from 'lodash'
 import ReactGA from 'react-ga'
 import Cookies from 'js-cookie'
 import { slugify } from 'voca'
@@ -12,7 +12,7 @@ import { ProtectedContent } from '../../login'
 import { CampaignMonitorForm, ElectronNot, ScrollToTop, NagToaster, Spinner, Toaster, ElectronOnly } from '../../../../../lib/components'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup, closePopup } from '../../../../../lib/modules/popups'
-import { PlayerBar, setPlayerPlaylist, replacePlaylist, setPlayerInstance, setPlayerPlaylistExpanded, setPlayerExpanded } from '../../../../../lib/modules/website-player'
+import { PlayerBar, setPlayerPlaylist, replacePlaylist, setPlayerInstance, setPlayerPlaylistExpanded, setPlayerExpanded, Albums, IAlbum, ITrack } from '../../../../../lib/modules/website-player'
 import { usePrevious } from '../../../../../lib/hooks'
 import { collapseTopBar, expandTopBar, getCookieName } from '../index'
 import { SiteFooter, TopBar } from '../../../components/layout'
@@ -22,6 +22,7 @@ import { CookieApproval, RoutingHub, Popups } from './index'
 import { CAMPAIGN_MONITOR_FORM_ACTION, CAMPAIGN_MONITOR_FORM_ID, CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME, MAILING_LIST_TEXT, BERLIN_STOCK_PHOTOS } from '../../../config'
 import { RootState } from '../../../index'
 import NewWebsitePopup from '../../../components/popups/NewWebsitePopup'
+import { assetHostHostname } from '../../../functions'
 
 function App(): ReactElement {
   const {
@@ -151,13 +152,36 @@ function App(): ReactElement {
       contentItemToTrack(item)
     )
 
+    const albumItems = contentItems.filter(item => hasCategory(item, 'label') && hasTag(item, 'albums'))
+
+    const albums: IAlbum[] = []
+    let albumsPlaylistTracks: ITrack[] = []
+
+    for (const albumItem of albumItems) {
+      const trackSlugs = albumItem.trackSlugs.split("\n")
+      const tracks = compact(trackSlugs.map(trackSlug => allTracks.find(
+        track => track.id === trackSlug
+      )))
+
+      albums.push({
+        coverArt: `${assetHostHostname()}/hem-rocks/content/images/key-art/${albumItem.keyArt}`,
+        id: albumItem.slug,
+        name: albumItem.title,
+        date: albumItem.date,
+        attribution: albumItem.attribution,
+        tracks,
+      })
+
+      albumsPlaylistTracks = albumsPlaylistTracks.concat(tracks || [])
+    }
+
     const featuredTracksPlaylistTrackItems = getContentItemsFromList(contentItems, 'featured-tracks')
     const featuredTracksTracks = featuredTracksPlaylistTrackItems.map(item =>
       contentItemToTrack(item)
     )
 
-    dispatch(replacePlaylist(1, { name: 'Featured', tracks: featuredTracksTracks }))
-    dispatch(replacePlaylist(0, { name: 'All', tracks: allTracks }))
+    dispatch(replacePlaylist(0, { name: 'Featured', tracks: [], component: noop }))
+    dispatch(replacePlaylist(1, { name: 'Albums', tracks: albumsPlaylistTracks, component: () => <Albums albums={albums} /> }))
 
     const trackTags = [
       'Rare',
@@ -175,7 +199,7 @@ function App(): ReactElement {
       dispatch(replacePlaylist(i + 3, { name: tag, tracks }))
     })
 
-    dispatch(setPlayerPlaylist(1))
+    dispatch(setPlayerPlaylist(0))
   }, [contentItems])
 
   useEffect(function handlePlayerErrors() {
@@ -346,8 +370,8 @@ function App(): ReactElement {
           <TopBar />
         )}
 
-        <div className="scroll-lock-container">
-          <div className="scroll-lock-content">
+        {/* <div className="scroll-lock-container">
+          <div className="scroll-lock-content"> */}
             <main className="main-content">
               <div className="tabs-content">
                 <RoutingHub />
@@ -358,10 +382,12 @@ function App(): ReactElement {
                 <SiteFooter />
               </footer>
             )}
-          </div>
-        </div>
+          {/* </div>
+        </div> */}
 
-        <Popups currentContentItem={currentContentItem} />
+        { currentContentItem && (
+          <Popups currentContentItem={currentContentItem} />
+        )}
 
         { !BERLIN_STOCK_PHOTOS && (
           <>

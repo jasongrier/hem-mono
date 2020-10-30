@@ -1,3 +1,5 @@
+export { default as Album } from './Album'
+export { default as Albums } from './Albums'
 export { default as NextButton } from './NextButton'
 export { default as PauseButton } from './PauseButton'
 export { default as PlayerBar } from './PlayerBar'

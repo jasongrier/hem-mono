@@ -23,6 +23,14 @@ export interface IPlaylist {
   id: string
   name: string
   tracks: ITrack[]
+
+  component?: any
+}
+
+export interface IAlbum extends IPlaylist {
+  attribution: string
+  coverArt: string
+  date: string
 }
 
 export interface IState {
@@ -176,6 +184,8 @@ export {
 
 
 export {
+  Album,
+  Albums,
   NextButton,
   PauseButton,
   PlayerBar,
