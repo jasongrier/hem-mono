@@ -8,10 +8,11 @@ interface IProps {
   track: ITrack
 
   activeFor?: ITrack[]
+  className?: string
   onClick?: (playing: boolean) => void
 }
 
-function TrackPlayPauseButton({ track, activeFor = [], onClick }: PropsWithChildren<IProps>): ReactElement {
+function TrackPlayPauseButton({ track, activeFor = [], onClick, className }: PropsWithChildren<IProps>): ReactElement {
   const { actuallyPlaying, currentTrackId, playerPlaying } = useSelector((state: any) => ({
     actuallyPlaying: state.player.actuallyPlaying,
     currentTrackId: state.player.currentTrack?.id,
@@ -56,7 +57,10 @@ function TrackPlayPauseButton({ track, activeFor = [], onClick }: PropsWithChild
   }
 
   return (
-    <div className="hem-player-track-play-pause-button">
+    <div className={`
+      hem-player-track-play-pause-button
+      ${ className ? className : ''}
+    `}>
       { showSpinner && (
         <Spinner />
       )}

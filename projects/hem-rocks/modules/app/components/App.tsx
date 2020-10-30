@@ -169,6 +169,7 @@ function App(): ReactElement {
         name: albumItem.title,
         date: albumItem.date,
         attribution: albumItem.attribution,
+        attributionLink: albumItem.attributionLink,
         tracks,
       })
 
@@ -180,23 +181,21 @@ function App(): ReactElement {
       contentItemToTrack(item)
     )
 
-    dispatch(replacePlaylist(0, { name: 'Featured', tracks: [], component: noop }))
-    dispatch(replacePlaylist(1, { name: 'Albums', tracks: albumsPlaylistTracks, component: () => <Albums albums={albums} /> }))
-
     const trackTags = [
+      'Featured',
       'Rare',
       'Live',
-      'Podcasts',
+      'Mixes',
       // 'Made with SL',
       'Sound Library',
-      'Video',
+      // 'Video',
     ]
 
     trackTags.forEach((tag, i) => {
       const tracks = contentItems.filter(item => hasCategory(item, 'tracks') && hasTag(item, slugify(tag))).map(item =>
         contentItemToTrack(item)
       )
-      dispatch(replacePlaylist(i + 3, { name: tag, tracks }))
+      dispatch(replacePlaylist(i, { name: tag, tracks }))
     })
 
     dispatch(setPlayerPlaylist(0))
@@ -261,6 +260,11 @@ function App(): ReactElement {
       dispatch(closePopup())
     }
   }, [contentItems, pathname])
+
+  useEffect(function collapsePlayerOnRouteChange() {
+    dispatch(setPlayerPlaylistExpanded(false))
+    dispatch(setPlayerExpanded(false))
+  }, [pathname])
 
   const previouslyOpenPopup = usePrevious(currentlyOpenPopUp)
 
