@@ -12,8 +12,6 @@ function TopBar(): ReactElement {
     cartProductsCount: state.cart.products.length,
   }))
 
-  const dispatch = useDispatch()
-
   const { pathname } = useLocation()
 
   const noCartPaths = [
@@ -33,40 +31,40 @@ function TopBar(): ReactElement {
         top-bar
         ${ true ? ' top-bar-collapsed' : '' }
       `}>
-        <Logo />
+        <div className="top-bar-inner">
+          <Logo />
 
-        {/* <HeaderPlayer /> */}
+          <nav className="main-nav">
+            <ul className="main-nav-items">
+              <MainNavItem name="Sound Library" />
+              <MainNavItem name="Tracks" />
+              <MainNavItem name="Articles" />
+              <MainNavItem name="Editions" />
 
-        <nav className="main-nav">
-          <ul className="main-nav-items">
-            <MainNavItem name="Sound Library" />
-            <MainNavItem name="Tracks" />
-            <MainNavItem name="Articles" />
-            <MainNavItem name="Editions" />
+              { showCart && cartProductsCount > 0 && (
+                <li className="main-nav-item">
+                  <NavLink
+                    to={(() => {
+                      const [category, filter, filterName] = pathname.replace(/^\//, '').split('/')
 
-            { showCart && cartProductsCount > 0 && (
-              <li className="main-nav-item">
-                <NavLink
-                  to={(() => {
-                    const [category, filter, filterName] = pathname.replace(/^\//, '').split('/')
+                      if (filter === 'filter') {
+                        return `/${category}/cart/${filterName}`
+                      }
 
-                    if (filter === 'filter') {
-                      return `/${category}/cart/${filterName}`
-                    }
+                      return `${pathname !== '/' ? pathname : ''}/cart`
+                    })()}
+                  >
+                    Cart ({ cartProductsCount })
+                  </NavLink>
+                </li>
+              )}
 
-                    return `${pathname !== '/' ? pathname : ''}/cart`
-                  })()}
-                >
-                  Cart ({ cartProductsCount })
-                </NavLink>
-              </li>
-            )}
-
-            <ElectronOnly>
-              <MainNavItem name="Admin" to="admin/list" />
-            </ElectronOnly>
-          </ul>
-        </nav>
+              <ElectronOnly>
+                <MainNavItem name="Admin" to="admin/list" />
+              </ElectronOnly>
+            </ul>
+          </nav>
+        </div>
       </header>
 
       <MegaNav />

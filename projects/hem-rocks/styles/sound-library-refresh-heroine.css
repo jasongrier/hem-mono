@@ -1,10 +1,10 @@
 .sound-library-refresh-heroine {
   position: relative;
-  width: 66vw;
+  width: 60%;
   height: 0;
   min-height: 111px;
-  margin: 75px 0 30px 20px;
-  padding-bottom: 30%;
+  margin: 65px 0 30px 0;
+  padding-bottom: 25%;
   background-color: #000;
   user-select: none;
   cursor: pointer;
@@ -31,8 +31,8 @@
 
 .sound-library-refresh-heroine-details {
   position: absolute;
-  top: 25px;
-  right: 55px;
+  top: 20px;
+  right: 30px;
   z-index: 2;
   width: 280px;
   height: 150px;
@@ -62,7 +62,8 @@
   letter-spacing: 15px;
   background-color: var(--line-orange);
   text-align: left;
-  border-radius: var(--hem-border-radius);
+  border-top-left-radius: var(--hem-border-radius);
+  border-bottom-left-radius: var(--hem-border-radius);
 }
 
 .sound-library-refresh-heroine-play {
@@ -93,7 +94,8 @@
   font-weight: 100;
   background-color: var(--line-orange);
   text-align: left;
-  border-radius: var(--hem-border-radius);
+  border-top-left-radius: var(--hem-border-radius);
+  border-bottom-left-radius: var(--hem-border-radius);
 }
 
 .sound-library-refresh-heroine-text p {

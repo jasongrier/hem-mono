@@ -4,6 +4,7 @@ import { useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
 import Scrollbars from 'react-scrollbars-custom'
 import { slugify, titleCase } from 'voca'
+import { map } from 'lodash'
 import ReactGA from 'react-ga'
 import { get, uniq, flatten, compact, last, shuffle } from 'lodash'
 import moment from 'moment'
@@ -73,6 +74,7 @@ function MainContentList({
     storeContentItems: state.content.contentItems,
     currentlyOpenPopUp: state.popups.currentlyOpenPopUp,
   }))
+
 
   const dispatch = useDispatch()
 
@@ -197,9 +199,9 @@ function MainContentList({
         }
       }
 
-      if (tracks.length) {
-        dispatch(replacePlaylist(2, { name: 'On this page', tracks }))
-      }
+      // if (tracks.length) {
+      //   dispatch(replacePlaylist(2, { name: 'On this page', tracks }))
+      // }
 
       if (tracks.length && shouldSetCurrentPlaylist) {
         dispatch(setPlayerPlaylist(1))

@@ -1,9 +1,8 @@
 import React, { ReactElement, SyntheticEvent, useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { file } from 'lodash'
+import { find, map } from 'lodash'
 import { addFile } from '../actions'
 import { RootState } from '../../../index'
-import { find } from 'lodash'
 
 function FileListHeader(): ReactElement {
   const { files } = useSelector((state: RootState) => ({

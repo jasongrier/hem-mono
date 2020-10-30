@@ -33,8 +33,9 @@
   width: 800px;
   height: 90px;
   margin-left: -400px;
-  background-color: #222;
-  border-radius: var(--hem-border-radius);
+  background-color: #000;
+  border-top-left-radius: var(--hem-border-radius);
+  border-top-right-radius: var(--hem-border-radius);
   color: #ddd;
   text-align: center;
   box-shadow: 0px -1px 15px 0px rgba(0, 0, 0, 0.7);
@@ -45,6 +46,10 @@
   width: 1024px;
   margin-left: -512px;
   box-shadow: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: var(--hem-border-radius);
+  border-bottom-right-radius: var(--hem-border-radius);
 }
 
 .player-bar-playlist-expanded + .player-bar-overlay {
@@ -145,8 +150,8 @@
 
 .player-bar-toggle {
   position: absolute;
-  right: 0;
-  top: 0;
+  right: 10px;
+  top: 5px;
 }
 
 .player-bar-expanded.player-bar-playlist-expanded .player-bar-toggle {
@@ -307,8 +312,8 @@
 
 .playlist-toggle {
   position: absolute;
-  top: -19.5px;
-  right: 17px;
+  top: -14.5px;
+  right: 27px;
   width: 35px;
   height: 35px;
   line-height: 35px;
@@ -347,13 +352,14 @@
 
 .player-bar-playlist {
   position: absolute;
-  bottom: calc(100% - var(--hem-border-radius));
+  bottom: 90px;
   left: 0;
   z-index: 9999;
   width: 100%;
   height: 550px;
   background: #111;
-  border-radius: var(--hem-border-radius);
+  border-top-left-radius: var(--hem-border-radius);
+  border-top-right-radius: var(--hem-border-radius);
   overflow: hidden;
   box-sizing: border-box;
 }
@@ -438,8 +444,8 @@
 .player-bar-playlist li .track-number {
   display: block;
   top: 4px;
-  left: 5px;
   font-size: 18px;
+  text-align: center;
 }
 
 .player-bar-playlist li:hover .track-number {
@@ -597,7 +603,7 @@
 .hem-player-playlist-search .fa-icon {
   position: absolute;
   top: 18px;
-  right: 8px;
+  right: 12px;
   color: #666;
   transition: all 250ms;
 }
@@ -605,7 +611,7 @@
 .hem-player-playlist-search input {
   width: 290px;
   height: 40px;
-  padding: 0 10px;
+  padding: 0 15px;
   line-height: 40px;
   border: 1px solid #666;
   background: transparent;
@@ -630,7 +636,7 @@
 
 .hem-player-playlist-window-controls {
   position: absolute;
-  top: 0;
+  top: 1px;
   right: 0;
   width: 50px;
   height: 50px;
@@ -676,4 +682,149 @@
   border-bottom: 1px solid #333;
   color: #aaa;
   font-size: 13px;
+}
+
+.hem-player-albums {
+  height: 490px;
+}
+
+.hem-player-albums-album {
+  position: relative;
+  float: left;
+  width: 312px;
+  height: 330px;
+  margin: 13px 13px 60px 13px;
+}
+
+.hem-player-albums-album:hover {
+  cursor: pointer;
+}
+
+.hem-player-albums-album-cover-art {
+  width: 312px;
+  height: 312px;
+  border-radius: var(--hem-border-radius);
+  overflow: hidden;
+}
+
+.hem-player-albums-album-cover-art img {
+  display: block;
+  width: 100%;
+  object-fit: contain;
+}
+
+.hem-player-albums-album-info {
+  margin-top: 15px;
+  margin-left: 10px;
+  text-align: left;
+}
+
+.hem-player-albums-album-info h4 {
+  margin: 0 0 8px 0;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 14px;
+}
+
+.hem-player-albums-album-info h5 {
+  margin: 0 0 6px 0;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 12px;
+  color: #999;
+}
+
+.hem-player-albums-album-info p {
+  margin: 0;
+  padding: 0;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 14px;
+  color: #999;
+}
+
+.hem-player-albums-album-controls-overlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 312px;
+  height: 312px;
+  border-radius: var(--hem-border-radius);
+}
+
+.hem-player-albums-album:hover .hem-player-albums-album-controls-overlay {
+  display: block;
+}
+
+.hem-player-albums-album-play-pause {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.hem-player-albums-album-play-pause:hover {
+  transform: scale(1.1);
+  transform-origin: center;
+}
+
+.hem-player-albums-album-play-pause .hem-play-pause-button {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  background-color: #ddd;
+  border-radius: 50px;
+  color: #111;
+}
+
+.hem-player-albums-album-play-pause .hem-play-pause-button i {
+  transform: translate(1px, 2px);
+}
+
+.hem-player-albums-album-more {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 35px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+}
+
+.hem-player-albums-album-more-icon {
+  display: inline-block;
+  padding: 0 5px;
+  border-radius: 20px;
+  background-color: #ddd;
+  color: #000;
+}
+
+.hem-player-albums-album-more-icon:hover {
+  transform: scale(1.1);
+  transform-origin: center;
+}
+
+.hem-player-albums-album-more-menu {
+  position: absolute;
+  bottom: calc(100% - 10px);
+  right: 0;
+  width: 150px;
+  height: 130px;
+  padding: 20px 0;
+  border-radius: var(--hem-border-radius);
+  background-color: #333;
+  text-align: left;
+  font-size: 14px;
+  line-height: 32px;
+  box-shadow: 0px -1px 15px 0px rgba(0, 0, 0, 0.7);
+}
+
+.hem-player-albums-album-more-menu-item {
+  padding: 0 20px;
+}
+
+.hem-player-albums-album-more-menu-item:hover {
+  background-color: #444;
 }
