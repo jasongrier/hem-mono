@@ -47,7 +47,7 @@ function About(): ReactElement {
 
         <h2>Thanks</h2>
         <p><a href="https://bretanthonyjohnston.com/">Bret Anthony Johnston</a> is our advisor. <a href="http://www.chloescheffe.github.io/">Chloe Scheffe</a> made our logo and our shapes.
-        Thanks to Genesis, Josh, Gerald, Aaron, and Rajesh, Boots, and Erica and Amardeep Bains.
+  
         </p>
         <br />
 
