@@ -57,6 +57,7 @@ function SiteFooter(): ReactElement {
           <a href="">Cookie Policy</a>
           <Link to="/cookie-policy">Privacy Settings</Link>
           <Link to="/react-consulting">React Consulting</Link>
+          <Link to="/internal">Internal Pages</Link>
           <br />
           &copy; 2020, Hot Extramusicality, Inc.
         </div>

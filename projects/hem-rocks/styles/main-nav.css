@@ -1,7 +1,7 @@
 .main-nav {
-  position: fixed;
-  top: -1px;
-  right: 23px;
+  position: absolute;
+  top: -5px;
+  right: 3px;
   width: 80vw;
   height: 65px;
   line-height: 65px;

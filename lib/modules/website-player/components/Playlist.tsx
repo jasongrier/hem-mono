@@ -53,22 +53,24 @@ function Playlist({ onCollapse }: IProps): ReactElement {
           <i className="fa-icon fas fa-search"></i>
         </div>
       </div>
-      <div className="hem-player-playlist-list-head">
-        <div className="hem-player-playlist-line-text">
-          <div className="hem-player-playlist-line-title">
-            Title
-          </div>
-          <div className="hem-player-playlist-line-secondary-attribution">
-            Album
-          </div>
-          <div className="hem-player-playlist-line-date">
-            Date
-          </div>
-          <div className="hem-player-playlist-line-time">
-            <i className="far fa-clock" />
+      { !currentPlaylist.component && (
+        <div className="hem-player-playlist-list-head">
+          <div className="hem-player-playlist-line-text">
+            <div className="hem-player-playlist-line-title">
+              Title
+            </div>
+            <div className="hem-player-playlist-line-secondary-attribution">
+              Album
+            </div>
+            <div className="hem-player-playlist-line-date">
+              Date
+            </div>
+            <div className="hem-player-playlist-line-time">
+              <i className="far fa-clock" />
+            </div>
           </div>
         </div>
-      </div>
+      )}
       <div className="hem-player-playlist-window-controls">
         <div className="playlist-toggle-close">
           <BasePlayPauseButton
@@ -77,7 +79,10 @@ function Playlist({ onCollapse }: IProps): ReactElement {
           />
         </div>
       </div>
-      { currentPlaylist && currentPlaylist.tracks.length > 0 && (
+      { currentPlaylist.component && (
+        currentPlaylist.component(currentPlaylist) // TODO: Player pages are separate concept from playlists
+      )}
+      { currentPlaylist && !currentPlaylist.component && currentPlaylist.tracks.length > 0 && (
         <ul>
           <Scrollbars noScrollX={true}>
             { currentPlaylist.tracks.map((track: ITrack, trackNumber: number) => (
@@ -142,7 +147,7 @@ function Playlist({ onCollapse }: IProps): ReactElement {
           </Scrollbars>
         </ul>
       )}
-      { currentPlaylist && currentPlaylist.tracks.length < 1 && (
+      { currentPlaylist && !currentPlaylist.component && currentPlaylist.tracks.length < 1 && (
         <div className="hem-player-playlist-tab-empty">
           Hmpf! None on this page
         </div>
