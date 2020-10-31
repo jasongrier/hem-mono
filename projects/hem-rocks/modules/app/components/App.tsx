@@ -23,6 +23,7 @@ import { CAMPAIGN_MONITOR_FORM_ACTION, CAMPAIGN_MONITOR_FORM_ID, CAMPAIGN_MONITO
 import { RootState } from '../../../index'
 import NewWebsitePopup from '../../../components/popups/NewWebsitePopup'
 import { assetHostHostname } from '../../../functions'
+import { all } from 'redux-saga/effects'
 
 function App(): ReactElement {
   const {
@@ -198,6 +199,8 @@ function App(): ReactElement {
       dispatch(replacePlaylist(i, { name: tag, tracks }))
     })
 
+    dispatch(replacePlaylist(trackTags.length, { name: 'All Tracks', tracks: allTracks }))
+    dispatch(replacePlaylist(trackTags.length + 1, { name: 'Empty', tracks: [] }))
     dispatch(setPlayerPlaylist(0))
   }, [contentItems])
 
@@ -374,20 +377,16 @@ function App(): ReactElement {
           <TopBar />
         )}
 
-        {/* <div className="scroll-lock-container">
-          <div className="scroll-lock-content"> */}
-            <main className="main-content">
-              <div className="tabs-content">
-                <RoutingHub />
-              </div>
-            </main>
-            { !BERLIN_STOCK_PHOTOS && (
-              <footer className="main-footer">
-                <SiteFooter />
-              </footer>
-            )}
-          {/* </div>
-        </div> */}
+        <main className="main-content">
+          <div className="tabs-content">
+            <RoutingHub />
+          </div>
+        </main>
+        { !BERLIN_STOCK_PHOTOS && (
+          <footer className="main-footer">
+            <SiteFooter />
+          </footer>
+        )}
 
         { currentContentItem && (
           <Popups currentContentItem={currentContentItem} />

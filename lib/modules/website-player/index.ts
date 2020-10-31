@@ -27,6 +27,12 @@ export interface IPlaylist {
   component?: any
 }
 
+export const emptyPlaylist: IPlaylist = {
+  id: 'empty',
+  name: 'empty',
+  tracks: [],
+}
+
 export interface IAlbum extends IPlaylist {
   attribution: string
   attributionLink: string
