@@ -1,6 +1,6 @@
 import React, { ReactElement, useState, useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { noop } from 'lodash'
 import ReactGA from 'react-ga'
 import { PlayPauseButton as BasePlayPauseButton, CloseButton, HamburgerButton } from '../../../packages/hem-buttons'
 import {
@@ -28,6 +28,22 @@ function PlayerBar(): ReactElement {
   }))
 
   const dispatch = useDispatch()
+
+  useEffect(function disableMediaKeys() {
+    // TODO: Wire up media keys
+    // @ts-ignore
+    navigator.mediaSession.setActionHandler('play', noop)
+    // @ts-ignore
+    navigator.mediaSession.setActionHandler('pause', noop)
+    // @ts-ignore
+    navigator.mediaSession.setActionHandler('seekbackward', noop)
+    // @ts-ignore
+    navigator.mediaSession.setActionHandler('seekforward', noop)
+    // @ts-ignore
+    navigator.mediaSession.setActionHandler('previoustrack', noop)
+    // @ts-ignore
+    navigator.mediaSession.setActionHandler('nexttrack', noop)
+  }, [])
 
   useEffect(function openOnPlay() {
     if (playing && !expanded) {
@@ -90,7 +106,10 @@ function PlayerBar(): ReactElement {
 
       { playlistExpanded && (
         <div className="player-bar-playlist">
-          <Playlist onCollapse={() => dispatch(setPlayerPlaylistExpanded(false))} />
+          <Playlist onCollapse={() => {
+            dispatch(setPlayerExpanded(false))
+            dispatch(setPlayerPlaylistExpanded(false))
+          }} />
         </div>
       )}
 
@@ -126,14 +145,16 @@ function PlayerBar(): ReactElement {
       </div>
       { currentTrack && (
         <div className="player-bar-now-playing">
-          <img
-            src={currentTrack.keyArt}
-            alt={currentTrack.title}
-          />
-          <p>
-            <strong>{ currentTrack?.title }</strong><br/>
-            { currentTrack?.attribution }
-          </p>
+          <div className="player-bar-now-playing-inner">
+            <img
+              src={currentTrack.keyArt}
+              alt={currentTrack.title}
+            />
+            <p>
+              <strong>{ currentTrack?.title }</strong><br/>
+              { currentTrack?.attribution }
+            </p>
+          </div>
         </div>
       )}
     </div>

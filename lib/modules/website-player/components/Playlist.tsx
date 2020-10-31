@@ -1,28 +1,57 @@
-import React, { ReactElement, SyntheticEvent, useCallback, useState } from 'react'
+import React, { ReactElement, SyntheticEvent, useCallback, useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import ReactGA from 'react-ga'
-import { findIndex, compact } from 'lodash'
+import { findIndex, filter, last } from 'lodash'
+import { Spinner } from '../../../components'
 import { PlayPauseButton as BasePlayPauseButton, CloseButton } from '../../../packages/hem-buttons'
 import { ITrack, IPlaylist, setPlayerPlaylist } from '../index'
 import TrackPlayPauseButton from './TrackPlayPauseButton'
 import Scrollbars from 'react-scrollbars-custom'
+import { pausePlayer, replacePlaylist, unpausePlayer } from '../actions'
 
 interface IProps {
   onCollapse: () => void
 }
 
 function Playlist({ onCollapse }: IProps): ReactElement {
-  const { currentPlaylist, currentTrack, playing, playlists }: { currentPlaylist: IPlaylist, currentTrack: ITrack, playing: boolean, playlists: IPlaylist[] } = useSelector((state: any) => ({
+  const { actuallyPlaying, currentPlaylist, currentTrack, playing, playlists, playlistExpanded }:
+        { actuallyPlaying: boolean, currentPlaylist: IPlaylist, currentTrack: ITrack, playing: boolean, playlists: IPlaylist[], playlistExpanded: boolean } = useSelector((state: any) => ({
+    actuallyPlaying: state.player.actuallyPlaying,
     currentPlaylist: state.player.currentPlaylist,
     currentTrack: state.player.currentTrack,
     playing: state.player.playing,
     playlists: state.player.playlists,
+    playlistExpanded: state.player.playlistExpanded,
   }))
 
   const dispatch = useDispatch()
 
   const [searchText, setSearchText] = useState<string>('')
+
+  useEffect(function captureSpaceBar() {
+    if (!playlistExpanded) return
+
+    function onBodyKeyDown(evt: any) {
+      evt.preventDefault()
+
+      if (evt.keyCode === 32) {
+        if (playing && actuallyPlaying) {
+          dispatch(pausePlayer())
+        }
+
+        else {
+          dispatch(unpausePlayer())
+        }
+      }
+    }
+
+    document.body.addEventListener('keydown', onBodyKeyDown)
+
+    return function cleanup() {
+      document.body.removeEventListener('keydown', onBodyKeyDown)
+    }
+  }, [playlistExpanded, playing, actuallyPlaying])
 
   const searchOnChange = useCallback(
     function searchOnChangeFn(evt: SyntheticEvent<HTMLInputElement>) {
@@ -42,7 +71,7 @@ function Playlist({ onCollapse }: IProps): ReactElement {
   return (
     <div className="hem-player-playlist">
       <div className="hem-player-playlist-tabs">
-        { playlists.map(tabPlaylist => (
+        { filter(playlists, ({name}) => name !== 'Empty').map(tabPlaylist => (
           <div
             className={`
               hem-player-playlist-tab
@@ -53,16 +82,21 @@ function Playlist({ onCollapse }: IProps): ReactElement {
               if (tabPlaylist.id === currentPlaylist.id) return
 
               const nextPlaylistNumber = findIndex(playlists, { id: tabPlaylist.id })
+              const emptyPlaylistNumber = findIndex(playlists, { name: 'Empty' })
 
               if (nextPlaylistNumber === -1) return
 
-              dispatch(setPlayerPlaylist(nextPlaylistNumber))
+              dispatch(setPlayerPlaylist(emptyPlaylistNumber))
+
+              setTimeout(() => {
+                dispatch(setPlayerPlaylist(nextPlaylistNumber))
+              }, 500)
             }}
           >
             { tabPlaylist.name }
           </div>
         ))}
-        {/* <div className="hem-player-playlist-search">
+        <div className="hem-player-playlist-search">
           <input
             onChange={searchOnChange}
             placeholder="Artist, title, tag, etc..."
@@ -70,7 +104,7 @@ function Playlist({ onCollapse }: IProps): ReactElement {
             value={searchText}
           />
           <i className="fa-icon fas fa-search"></i>
-        </div> */}
+        </div>
       </div>
       { !currentPlaylist.component && (
         <div className="hem-player-playlist-list-head">
@@ -92,15 +126,15 @@ function Playlist({ onCollapse }: IProps): ReactElement {
       )}
       <div className="hem-player-playlist-window-controls">
         <div className="playlist-toggle-close">
-          <BasePlayPauseButton
-            onClick={onCollapse}
-            playing={false}
-          />
+          <CloseButton onClick={onCollapse} />
         </div>
       </div>
       { currentPlaylist.component && (
         currentPlaylist.component(currentPlaylist) // TODO: Player pages are separate concept from playlists
       )}
+
+      <Spinner />
+
       { currentPlaylist && !currentPlaylist.component && currentPlaylist.tracks.length > 0 && (
         <ul>
           <Scrollbars noScrollX={true}>
@@ -137,11 +171,11 @@ function Playlist({ onCollapse }: IProps): ReactElement {
                       action: 'Clicked on track attribution in playlist: ' + track.title + ', ' + track.attribution + '.',
                     })
                   }}>
-                    <Link
-                      className="hem-player-playlist-line-attribution"
-                      to={ track.attributionLink }>
-                      { track.attribution }
-                    </Link>
+                    <div className="hem-player-playlist-line-attribution">
+                      <Link to={ track.attributionLink }>
+                        { track.attribution }
+                      </Link>
+                    </div>
                   </span>
                   <div className="hem-player-playlist-line-date">
                     { track.date }
@@ -157,7 +191,7 @@ function Playlist({ onCollapse }: IProps): ReactElement {
       )}
       { currentPlaylist && !currentPlaylist.component && currentPlaylist.tracks.length < 1 && (
         <div className="hem-player-playlist-tab-empty">
-          Hmpf! None on this page
+          {/* Hmpf! None on this page */}
         </div>
       )}
     </div>
