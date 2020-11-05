@@ -13,33 +13,28 @@
         module.exports = {"editorTimelineFrames"...
 
 5. Change the file extension from `.midst` to `.js`
-6. Drop the file in this repo, in `src/projects/midst-journal/assets/poems`
-7. Open the Poem component at `src/projects/midst-journal/routes/Poem.tsx`
-8. Add it to the list of poems:
+6. Drop the file in this repo, in `projects/midst-press/static/assets/poems`
+7. Open the Poem component at `projects/midst-press/store/reducer.ts`
+8. Add it to the list of poems by adding a line before the right bracket "]" `createPoem('Author Name', 'Name of Poem'),`
 
-        const poemsJsData = {
-          'a-shade-whiter': require('../assets/poems/angelo_whiter_NO_TITLE'),
-          'pool': require('../assets/poems/pool'),
-          'prosperity': require('../assets/poems/prosperity'),
-          'alphabet-song': require('../assets/poems/AnnelyseGelman_AlphabetSong_NO_TITLE'),
-          'untitled-hedgie': require('../assets/poems/untitled-hedgie'),
-          'my-new-poem': require('../assets/poems/my-new-poem'),
-        } as any
-
-This represents the actual material that gets played back. Next, we add the poem's presentational info.
-
-10. Open up `src/projects/midst-journal/store/reducer.ts` and add that info there:
-
-        ...
-        }, {
-          slug: 'untitled-hedgie',
-          title: 'Untitled',
-          author: 'Hedgie Choi',
-          processNote: 'Lorem ipsum dolor sit amet',
-        }, {
-          slug: 'my-new-poem',
-          title: 'My New Poem',
-          author: 'Me',
-          processNote: 'Lorem ipsum dolor sit amet',
-        },
-        ...
+const poems = [
+createPoem('Anis Mojgani', 'Cuesta'),
+createPoem('Eleanor Eli Moss', 'THE HAMMER'),
+createPoem('Hedgie Choi', 'I Get It, Phases'),
+createPoem('Jackson Holbert', 'Poem Involving the Sea'),
+createPoem('Dara Wier', '5x5'),
+createPoem('Aja Moore', 'TGIF'),
+createPoem('manuel arturo abreu', 'Ablation'),
+createPoem('Woosung Sohn', 'Driving License'),
+createPoem('Zachary Schomburg', '2 Poems'),
+createPoem('Jackson Holbert', 'Poem About Judges', 'jackson-holbert-2'),
+createPoem('Jenny Qi', 'When This Is All Over'),
+createPoem('Veronica Martin', 'Epilogue in Summer'),
+createPoem('Jose Hernandez Diaz', 'The Dahlias in Autumn'),
+createPoem('Max Seifert', 'Benjamins'),
+createPoem('Mia You', 'Go Bokito'),
+createPoem('Sarah Matthes', 'Averting My Eyes'),
+createPoem('Annelyse Gelman', 'Prosperity'),
+createPoem('Annelyse Gelman', 'Pool'),
+createPoem('Annelyse Gelman', 'Questions'),
+]
