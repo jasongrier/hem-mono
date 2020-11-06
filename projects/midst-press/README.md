@@ -46,14 +46,14 @@
        Example:
 
                         npm start midst-press
-        
-       There should be a line in the terminal similar to:</br>
-        
-       Server running at <http://localhost:1234>
-        
-       Open your browser and enter that URL</br>
-        
-       You should see the midst welcome screen.
+
+ There should be a line in the terminal similar to:</br>
+
+ Server running at <http://localhost:1234> </br>
+
+ Open your browser and enter that URL</br>
+
+ You should see the midst welcome screen.
 
 ## How to prep .midst files for the journal player
 
