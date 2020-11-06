@@ -1,5 +1,60 @@
 # Official site of the Midst poetry journal
 
+## Recommended Environment
+
+1. Install nvm</br>
+        Follow instructions regarding creating a ~/.nvm directory
+        and copying recommended script lines in to your environment (e.g. ~/.zshrc)</br>
+        Example:
+
+                brew install nvm
+                mkdir ~/.nvm
+                vim ~/.zshrc
+2. Use nvm to install Node.js 12.x ( see <https://nodejs.org/en/download/releases/> )</br>
+       Midst is not yet compatible with newer versions of Node.js</br>
+       Example:
+
+                nvm install 12.19.0
+                nvm use 12.19.0
+3. Install local copy of hem-mono (either clone or fetch/pull if you have cloned earlier)</br>
+
+      Example:
+
+                git clone https://github.com/jasongrier/hem-mono.git
+
+      or using github, create a social fork of jasongrief/hem-mono and then clone that:
+
+                git clone https://github.com/yourgithubaccountname/hem-mono.git
+4. Install packages that midst depends on</br>
+ Example:
+
+                cd hem-mono
+                npm install
+
+   You may get errors, especially involving gyp. In which case, install or update XCode and then:
+
+                sudo xcode-select -s  /Applications/Xcode.app/Contents/Developer
+
+   You will likely receive warnings about peer dependencies.  Those can probably be ignored, especially if you have newer versions of the packages installed that are being warned about.
+        However, where a newer version of a package isn't already installed, peer dependencies need to be installed.</br>
+        In this situation you can try something similar to:
+
+                npm install -g install-peerdeps
+                install-peerdeps acorn@8.0.0
+
+5. Confirm your Environment will run midst</br>
+       Example:
+
+                        npm start midst-press
+
+ There should be a line in the terminal similar to:</br>
+
+ Server running at <http://localhost:1234> </br>
+
+ Open your browser and enter that URL</br>
+
+ You should see the midst welcome screen.
+
 ## How to prep .midst files for the journal player
 
 1. Open the file in Visual Studio Code
@@ -13,33 +68,29 @@
         module.exports = {"editorTimelineFrames"...
 
 5. Change the file extension from `.midst` to `.js`
-6. Drop the file in this repo, in `src/projects/midst-journal/assets/poems`
-7. Open the Poem component at `src/projects/midst-journal/routes/Poem.tsx`
-8. Add it to the list of poems:
+6. Drop the file in this repo, in `projects/midst-press/static/assets/poems`
+7. Open the Poem component at `projects/midst-press/store/reducer.ts`
+8. Add it to the list of poems by adding a line after the left bracket "[" `createPoem('Author Name', 'Name of Poem'),`
 
-        const poemsJsData = {
-          'a-shade-whiter': require('../assets/poems/angelo_whiter_NO_TITLE'),
-          'pool': require('../assets/poems/pool'),
-          'prosperity': require('../assets/poems/prosperity'),
-          'alphabet-song': require('../assets/poems/AnnelyseGelman_AlphabetSong_NO_TITLE'),
-          'untitled-hedgie': require('../assets/poems/untitled-hedgie'),
-          'my-new-poem': require('../assets/poems/my-new-poem'),
-        } as any
-
-This represents the actual material that gets played back. Next, we add the poem's presentational info.
-
-10. Open up `src/projects/midst-journal/store/reducer.ts` and add that info there:
-
-        ...
-        }, {
-          slug: 'untitled-hedgie',
-          title: 'Untitled',
-          author: 'Hedgie Choi',
-          processNote: 'Lorem ipsum dolor sit amet',
-        }, {
-          slug: 'my-new-poem',
-          title: 'My New Poem',
-          author: 'Me',
-          processNote: 'Lorem ipsum dolor sit amet',
-        },
-        ...
+const poems = [
+</br>
+&nbsp; &nbsp; createPoem('Anis Mojgani', 'Cuesta'),</br>
+&nbsp; &nbsp; createPoem('Eleanor Eli Moss', 'THE HAMMER'),</br>
+&nbsp; &nbsp; createPoem('Hedgie Choi', 'I Get It, Phases'),</br>
+&nbsp; &nbsp; createPoem('Jackson Holbert', 'Poem Involving the Sea'),</br>
+&nbsp; &nbsp; createPoem('Dara Wier', '5x5'),</br>
+&nbsp; &nbsp; createPoem('Aja Moore', 'TGIF'),</br>
+&nbsp; &nbsp; createPoem('manuel arturo abreu', 'Ablation'),</br>
+&nbsp; &nbsp; createPoem('Woosung Sohn', 'Driving License'),</br>
+&nbsp; &nbsp; createPoem('Zachary Schomburg', '2 Poems'),</br>
+&nbsp; &nbsp; createPoem('Jackson Holbert', 'Poem About Judges', 'jackson-holbert-2'),</br>
+&nbsp; &nbsp; createPoem('Jenny Qi', 'When This Is All Over'),</br>
+&nbsp; &nbsp; createPoem('Veronica Martin', 'Epilogue in Summer'),</br>
+&nbsp; &nbsp; createPoem('Jose Hernandez Diaz', 'The Dahlias in Autumn'),</br>
+&nbsp; &nbsp; createPoem('Max Seifert', 'Benjamins'),</br>
+&nbsp; &nbsp; createPoem('Mia You', 'Go Bokito'),</br>
+&nbsp; &nbsp; createPoem('Sarah Matthes', 'Averting My Eyes'),</br>
+&nbsp; &nbsp; createPoem('Annelyse Gelman', 'Prosperity'),</br>
+&nbsp; &nbsp; createPoem('Annelyse Gelman', 'Pool'),</br>
+&nbsp; &nbsp; createPoem('Annelyse Gelman', 'Questions'),</br>
+]
