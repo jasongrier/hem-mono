@@ -1,9 +1,12 @@
 import { AnyAction } from 'redux'
 import produce from 'immer'
+// deliberately including newline between SET_PRICESS_NOTE_OPEN and IState
+// to satisfy linter grouping
 import {
   LOAD_POEM_DATA,
   SET_MOBILE_NAV_OPEN,
   SET_PROCESS_NOTE_OPEN,
+
   IState,
 } from './types'
 
