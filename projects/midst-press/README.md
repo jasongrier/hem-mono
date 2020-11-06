@@ -3,31 +3,30 @@
 ## Recommended Environment
 
 1. Install nvm</br>
-       Follow instructions regarding creating a ~/.nvm directory
-       and copying recommended script lines in to your environment (e.g. ~/.zshrc)
-       * Example:
+        Follow instructions regarding creating a ~/.nvm directory
+        and copying recommended script lines in to your environment (e.g. ~/.zshrc)</br>
+        Example:
 
                 brew install nvm
                 mkdir ~/.nvm
                 vim ~/.zshrc
 2. Use nvm to install Node.js 12.x ( see <https://nodejs.org/en/download/releases/> )</br>
-       Midst is not yet compatible with newer versions of Node.js
+       Midst is not yet compatible with newer versions of Node.js</br>
+       Example:
 
-       * Example:
-       
                 nvm install 12.19.0
                 nvm use 12.19.0
-3. Install local copy of hem-mono (either clone or fetch/pull if you have cloned earlier)
+3. Install local copy of hem-mono (either clone or fetch/pull if you have cloned earlier)</br>
 
-      * Example:
+      Example:
 
                 git clone https://github.com/jasongrier/hem-mono.git
 
-        or using github, create a social fork of jasongrief/hem-mono and then clone that:
+      or using github, create a social fork of jasongrief/hem-mono and then clone that:
 
                 git clone https://github.com/yourgithubaccountname/hem-mono.git
-4. Install packages that midst depends on
-       * Example:
+4. Install packages that midst depends on</br>
+ Example:
 
                 cd hem-mono
                 npm install
@@ -43,18 +42,18 @@
                 npm install -g install-peerdeps
                 install-peerdeps acorn@8.0.0
 
-5. Confirm your Environment will run midst
-       * Example:
+5. Confirm your Environment will run midst</br>
+       Example:
 
                 npm start midst-press
         
-        There should be a line in the terminal similar to:</br>
+       There should be a line in the terminal similar to:</br>
         
-        Server running at <http://localhost:1234>
+       Server running at <http://localhost:1234>
         
-        Open your browser and enter that URL</br>
+       Open your browser and enter that URL</br>
         
-        You should see the midst welcome screen.
+       You should see the midst welcome screen.
 
 ## How to prep .midst files for the journal player
 
