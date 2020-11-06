@@ -45,7 +45,7 @@
 5. Confirm your Environment will run midst</br>
        Example:
 
-                npm start midst-press
+                        npm start midst-press
         
        There should be a line in the terminal similar to:</br>
         
