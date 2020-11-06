@@ -2,8 +2,8 @@
 
 ## Recommended Environment
 
-1. Install nvm
-       *Follow instructions regarding creating a ~/.nvm directory
+1. Install nvm</br>
+       Follow instructions regarding creating a ~/.nvm directory
        and copying recommended script lines in to your environment (e.g. ~/.zshrc)
        * Example:
 
