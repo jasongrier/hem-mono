@@ -1,4 +1,4 @@
-import React, { ReactElement, SyntheticEvent, useCallback, useState, useEffect } from 'react'
+import React, { useRef, ReactElement, SyntheticEvent, useCallback, useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import ReactGA from 'react-ga'
@@ -28,50 +28,71 @@ function Playlist({ onCollapse }: IProps): ReactElement {
   const dispatch = useDispatch()
 
   const [searchText, setSearchText] = useState<string>('')
+  const [page, setPage] = useState<ITrack[]>([])
 
   useEffect(function captureSpaceBar() {
-    if (!playlistExpanded) return
+    // if (!playlistExpanded) return
 
-    function onBodyKeyDown(evt: any) {
-      evt.preventDefault()
+    // function onBodyKeyDown(evt: any) {
+    //   if (evt.keyCode === 32) {
+    //     evt.preventDefault()
 
-      if (evt.keyCode === 32) {
-        if (playing && actuallyPlaying) {
-          dispatch(pausePlayer())
-        }
+    //     if (playing && actuallyPlaying) {
+    //       dispatch(pausePlayer())
+    //     }
 
-        else {
-          dispatch(unpausePlayer())
-        }
-      }
-    }
+    //     else {
+    //       dispatch(unpausePlayer())
+    //     }
+    //   }
+    // }
 
-    document.body.addEventListener('keydown', onBodyKeyDown)
+    // document.body.addEventListener('keydown', onBodyKeyDown)
 
-    return function cleanup() {
-      document.body.removeEventListener('keydown', onBodyKeyDown)
-    }
+    // return function cleanup() {
+    //   document.body.removeEventListener('keydown', onBodyKeyDown)
+    // }
   }, [playlistExpanded, playing, actuallyPlaying])
+
+  useEffect(function pagination() {
+    const tracks = Array.from(currentPlaylist.tracks)
+    setPage(tracks.slice(0, 25))
+  }, [currentPlaylist.id])
 
   const searchOnChange = useCallback(
     function searchOnChangeFn(evt: SyntheticEvent<HTMLInputElement>) {
+      evt.stopPropagation()
       const searchText = evt.currentTarget.value
+
       setSearchText(searchText)
 
       if (searchText.length) {
-
+        const allTracksPlaylistIndex = findIndex(playlists, { name: 'Search Results' })
+        dispatch(setPlayerPlaylist(allTracksPlaylistIndex))
       }
 
       else {
-
+        dispatch(setPlayerPlaylist(0))
       }
     }, [],
   )
 
+  function playlistOnScroll(scrollValues: any) {
+    // const reachedEnd = !!!(scrollValues.scrollHeight - scrollValues.scrollTop - scrollValues.clientHeight)
+
+    // if (reachedEnd) {
+    //   setPage(page.concat(page))
+    // }
+  }
+
   return (
     <div className="hem-player-playlist">
       <div className="hem-player-playlist-tabs">
-        { filter(playlists, ({name}) => name !== 'Empty').map(tabPlaylist => (
+        { filter(playlists, ({name}) => {
+          if (name === 'Empty') return false
+          if (name === 'Search Results' && !searchText.length) return false
+          return true
+        }).map(tabPlaylist => (
           <div
             className={`
               hem-player-playlist-tab
@@ -90,13 +111,13 @@ function Playlist({ onCollapse }: IProps): ReactElement {
 
               setTimeout(() => {
                 dispatch(setPlayerPlaylist(nextPlaylistNumber))
-              }, 500)
+              }, 100)
             }}
           >
             { tabPlaylist.name }
           </div>
         ))}
-        <div className="hem-player-playlist-search">
+        {/* <div className="hem-player-playlist-search">
           <input
             onChange={searchOnChange}
             placeholder="Artist, title, tag, etc..."
@@ -104,6 +125,9 @@ function Playlist({ onCollapse }: IProps): ReactElement {
             value={searchText}
           />
           <i className="fa-icon fas fa-search"></i>
+        </div> */}
+        <div className="hem-player-playlist-search">
+
         </div>
       </div>
       { !currentPlaylist.component && (
@@ -129,16 +153,22 @@ function Playlist({ onCollapse }: IProps): ReactElement {
           <CloseButton onClick={onCollapse} />
         </div>
       </div>
+
       { currentPlaylist.component && (
         currentPlaylist.component(currentPlaylist) // TODO: Player pages are separate concept from playlists
       )}
 
-      <Spinner />
+      <div className="empty-tab-spinner">
+        <Spinner />
+      </div>
 
-      { currentPlaylist && !currentPlaylist.component && currentPlaylist.tracks.length > 0 && (
+      { !currentPlaylist.component && page.length > 0 && (
         <ul>
-          <Scrollbars noScrollX={true}>
-            { currentPlaylist.tracks.map((track: ITrack, trackNumber: number) => (
+          <Scrollbars
+            noScrollX={true}
+            onScroll={playlistOnScroll}
+          >
+            { page.map((track: ITrack, trackNumber: number) => (
               <li
                 key={track.id}
                 className={`
@@ -186,6 +216,9 @@ function Playlist({ onCollapse }: IProps): ReactElement {
                 </div>
               </li>
             ))}
+            {/* <li className="load-waterfall">
+              <Spinner />
+            </li> */}
           </Scrollbars>
         </ul>
       )}

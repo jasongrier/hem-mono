@@ -17,6 +17,7 @@ function SiteFooter(): ReactElement {
               <li><Link to="/support">Support</Link></li>
               <li><Link to="/internships">Internships</Link></li>
               <li><Link to="/about">About</Link></li>
+              <li><Link to="/contact">Contact</Link></li>
             </ul>
           </div>
           <div className="site-footer-content-column">
@@ -54,9 +55,9 @@ function SiteFooter(): ReactElement {
           </div>
         </div>
         <div className="site-footer-content-row site-footer-content-fine-print">
-          <a href="">Privacy Policy</a>
-          <a href="">Cookie Policy</a>
-          <Link to="/cookie-policy">Privacy Settings</Link>
+          <Link to="/privacy-policy">Privacy Policy</Link>
+          <Link to="/cookie-policy">Cookie Policy</Link>
+          <Link to="/privacy-settings">Privacy Settings</Link>
           <Link to="/react-consulting">React Consulting</Link>
           <Link to="/internal">Internal Pages</Link>
           <br />

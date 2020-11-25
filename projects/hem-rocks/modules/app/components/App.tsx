@@ -184,7 +184,7 @@ function App(): ReactElement {
 
     const trackTags = [
       'Featured',
-      'Rare',
+      // 'Rare',
       'Live',
       'Mixes',
       // 'Made with SL',
@@ -199,7 +199,7 @@ function App(): ReactElement {
       dispatch(replacePlaylist(i, { name: tag, tracks }))
     })
 
-    dispatch(replacePlaylist(trackTags.length, { name: 'All Tracks', tracks: allTracks }))
+    dispatch(replacePlaylist(trackTags.length, { name: 'Search Results', tracks: [] }))
     dispatch(replacePlaylist(trackTags.length + 1, { name: 'Empty', tracks: [] }))
     dispatch(setPlayerPlaylist(0))
   }, [contentItems])
@@ -377,16 +377,20 @@ function App(): ReactElement {
           <TopBar />
         )}
 
-        <main className="main-content">
-          <div className="tabs-content">
-            <RoutingHub />
+        <div className="scroll-lock-container">
+          <div className="scroll-lock-content">
+            <main className="main-content">
+              <div className="tabs-content">
+                <RoutingHub />
+              </div>
+            </main>
+            { !BERLIN_STOCK_PHOTOS && (
+              <footer className="main-footer">
+                <SiteFooter />
+              </footer>
+            )}
           </div>
-        </main>
-        { !BERLIN_STOCK_PHOTOS && (
-          <footer className="main-footer">
-            <SiteFooter />
-          </footer>
-        )}
+        </div>
 
         { currentContentItem && (
           <Popups currentContentItem={currentContentItem} />

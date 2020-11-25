@@ -1,6 +1,7 @@
 import React, { ReactElement, useState, useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { noop } from 'lodash'
+import $ from 'jquery'
 import ReactGA from 'react-ga'
 import { PlayPauseButton as BasePlayPauseButton, CloseButton, HamburgerButton } from '../../../packages/hem-buttons'
 import {
@@ -29,6 +30,9 @@ function PlayerBar(): ReactElement {
 
   const dispatch = useDispatch()
 
+  const [previousScrollY, setPreviousScrollY] = useState<number>()
+  const [locked, setLocked] = useState<boolean>()
+
   useEffect(function disableMediaKeys() {
     // TODO: Wire up media keys
     // @ts-ignore
@@ -51,6 +55,54 @@ function PlayerBar(): ReactElement {
       dispatch(setPlayerPlaylistExpanded(false))
     }
   }, [playing])
+
+  useEffect(function initBodyLock() {
+    $('.scroll-lock-container').css({
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      overflow: 'scroll',
+      width: '100vw',
+      height: '100vh',
+    })
+
+    setTimeout(() => {
+      console.log($('.scroll-lock-content').height())
+    }, 1000)
+  }, [])
+
+  useEffect(function lockBody() {
+    if (playlistExpanded) {
+      document.body.classList.add('with-popup-open')
+
+      const scrollY = $('.scroll-lock-content').scrollTop()
+
+      setPreviousScrollY(scrollY)
+      setLocked(true)
+
+      $('.scroll-lock-container').css({
+        overflow: 'hidden',
+      })
+
+      $('.scroll-lock-content').css({
+        marginTop: `-${scrollY}px`,
+      })
+    }
+
+    else {
+      document.body.classList.remove('with-popup-open')
+
+      setLocked(false)
+
+      $('.scroll-lock-container').css({
+        overflow: 'scroll',
+      })
+
+      $('.scroll-lock-content').css({
+        marginTop: 0,
+      })
+    }
+  }, [playlistExpanded])
 
   const togglePlaylistExpandedOnClick = useCallback(
     function togglePlaylistExpandedOnClickFn() {

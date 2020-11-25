@@ -7,16 +7,28 @@
   height: 65px;
   line-height: 65px;
   user-select: none;
-  background-color: #fff;
 }
 
 .top-bar * {
   user-select: none;
 }
 
+.top-bar::after {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: calc(100vw - 20px);
+  height: 65px;
+  background-color: #fff;
+  content: " ";
+}
+
 .top-bar .top-bar-inner {
   position: relative;
-  width: 100vw;
+  width: calc(100vw - 40px);
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 20px;
 }

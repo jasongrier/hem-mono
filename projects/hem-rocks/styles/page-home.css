@@ -6,14 +6,14 @@
 }
 
 .app-is-home .main-content {
-  width: 100vw;
+  width: calc(100vw - 40px);
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0;
+  padding: 0 20px;
 }
 
 .app-is-home .main-content-items {
-  width: 100vw;
+  width: calc(100vw - 40px);
   max-width: 1200px;
   margin: -220px auto 0 auto;
   padding: 0;
@@ -48,6 +48,7 @@
 
 .page-home .main-content-box:nth-child(1) {
   width: 37.5%;
+  margin-top: 15px;
   padding-bottom: 25%;
 }
 
