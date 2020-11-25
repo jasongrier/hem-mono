@@ -1,7 +1,7 @@
 .main-nav {
   position: absolute;
   top: -5px;
-  right: 3px;
+  right: 22px;
   width: 80vw;
   height: 65px;
   line-height: 65px;
@@ -18,7 +18,7 @@
   height: 65px;
   line-height: 65px;
   margin: 0;
-  padding: 5px;
+  padding: 5px 0 5px 5px;
   list-style-type: none;
   text-align: right;
 }

@@ -39,7 +39,6 @@ function Albums({ album }: IProps): ReactElement {
       document.execCommand('copy')
       // @ts-ignore
       setLinkCopied(true)
-
     }, [moreMenuOpen],
   )
 

@@ -106,7 +106,8 @@ function InternalHome(): ReactElement {
           <div className="page-internal-link-group">
             <h2>Sandbox</h2>
             <ul>
-            <li><Link to="/internal/sandbox">Sandbox</Link></li>
+              <li><Link to="/internal/sandbox">Sandbox</Link></li>
+              <li><Link to="/internal/docus">Docus</Link></li>
             </ul>
           </div>
 

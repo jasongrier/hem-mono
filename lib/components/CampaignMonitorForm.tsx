@@ -28,7 +28,7 @@ function CampaignMonitorForm({
   return (
     <div className="campaign-monitor-form">
       <form
-        id="subForm"
+        id={id}
         className="js-cm-form"
         action={action}
         method="post"
