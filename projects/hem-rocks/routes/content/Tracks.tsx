@@ -6,7 +6,7 @@ import { TrackPlayPauseButton } from '../../../../lib/modules/website-player'
 import { BASE_SITE_TITLE } from '../../config'
 
 function Tracks(): ReactElement {
-  const { filter: currentFilter } = useParams()
+  const { filter: currentFilter }: any = useParams()
 
   return (
     <>
@@ -19,7 +19,6 @@ function Tracks(): ReactElement {
           currentFilter={currentFilter}
           excludeFromAll="Sound Library"
           category="tracks"
-          title="Tracks"
           linkTo={ item => hasTag(item, 'attachment') ? item.relatedContentLink : `tracks/${item.slug}` }
         >
           {item => {

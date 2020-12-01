@@ -15,6 +15,7 @@ function ScrollToTop({ scrollPaneSelector }: IProps): ReactElement {
       '/sound-library',
       '/sound-library/about',
       '/sound-library/made-with-sl',
+      '/internal',
       '/label',
       '/tracks',
       '/press',

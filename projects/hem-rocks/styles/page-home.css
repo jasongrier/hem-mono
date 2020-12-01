@@ -5,114 +5,163 @@
   text-align: center;
 }
 
-.app-is-home .main-content {
-  width: calc(100vw - 40px);
-  max-width: 1200px;
+/* MAIN CONTENT HACK */
+
+.main-content {
+  width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
-.app-is-home .main-content-items {
-  width: calc(100vw - 40px);
-  max-width: 1200px;
-  margin: -220px auto 0 auto;
+.main-content-items {
+  width: 1200px;
+  margin: 190px auto 0 auto;
   padding: 0;
 }
 
-.page-home .main-content-box {
-  height: 0;
-  margin-bottom: 30px;
-  background-color: gray;
+.app-is-home .main-content-items {
+  width: 1200px;
+  margin: 65px auto 0 auto;
+  padding: 0;
+}
+
+.main-content-box {
   border-radius: var(--hem-border-radius);
-  overflow: hidden;
 }
 
-.page-home .main-content-box .main-content-box-key-art {
-  width: 100%;
+.main-content-box .main-content-box-key-art {
+  /* width: 100%;
+  height: 100%; */
+}
+
+.main-content-box .main-content-box-key-art img {
+  /* width: 100%;
   height: 100%;
+  object-fit: cover; */
 }
 
-.page-home .main-content-box .main-content-box-key-art img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.page-home .main-content-box:nth-child(even) {
+.main-content-box-template-0 {
   float: left;
+  width: 700px;
+  user-select: none;
+  cursor: pointer;
 }
 
-.page-home .main-content-box:nth-child(odd) {
+.main-content-box-template-0 h3 {
+  font-size: 24px;
+}
+
+.main-content-box-template-1 {
   float: right;
+  width: 470px;
+  margin-top: 290px;
 }
 
-.page-home .main-content-box:nth-child(1) {
-  width: 37.5%;
-  margin-top: 15px;
-  padding-bottom: 25%;
+.main-content-box-template-1 h3 {
+  font-size: 24px;
 }
 
-.page-home .main-content-box:nth-child(2) {
+.main-content-box-template-2 {
+  float: left;
+  clear: right;
+  width: 540px;
+  margin-top: -150px;
+}
+
+.main-content-box-template-2 h3 {
+  font-size: 24px;
+}
+
+.main-content-box-template-3 {
+  float: right;
+  margin-left: 30px;
+  width: 25%;
+  padding-bottom: 35%;
+}
+
+.main-content-box-template-3 h3 {
+  font-size: 24px;
+}
+
+.main-content-box-template-4 {
+  float: right;
+  width: 25%;
+  padding-bottom: 35%;
+}
+
+.main-content-box-template-4 h3 {
+  font-size: 24px;
+}
+
+.main-content-box-template-5 {
+  float: right;
+  width: 100%;
+  padding-bottom: 50%;
+}
+
+.main-content-box-template-5 h3 {
+  font-size: 24px;
+}
+
+.main-content-box-template-6 {
+  float: left;
+  width: 48.7%;
+  padding-bottom: 50%;
+}
+
+.main-content-box-template-6 h3 {
+  font-size: 48px;
+}
+
+.main-content-box-template-7 {
+  float: right;
   width: 40%;
-  margin-top: 220px;
-  padding-bottom: 20%;
-}
-
-.page-home .main-content-box:nth-child(3) {
-  width: 57%;
-  padding-bottom: 30%;
-}
-
-.page-home .main-content-box:nth-child(4) {
-  width: 40%;
-  padding-bottom: 40%;
-}
-
-.page-home .main-content-box:nth-child(5) {
-  width: 43%;
   padding-bottom: 50%;
 }
 
-.page-home .main-content-box:nth-child(6) {
-  width: 54%;
+.main-content-box-template-7 h3 {
+  font-size: 48px;
+}
+
+.main-content-box-template-8 {
+  float: left;
+  width: 57.3%;
   padding-bottom: 50%;
 }
 
-.page-home .main-content-box:nth-child(7) {
-  width: 43%;
-  padding-bottom: 50%;
+.main-content-box-template-8 h3 {
+  font-size: 48px;
 }
 
-.page-home .main-content-box:nth-child(8) {
-  width: 54%;
-  padding-bottom: 26.7%;
-}
-
-.page-home .main-content-box-badge {
+.main-content-box-badge {
+  display: none;
   position: absolute;
   top: 10px;
-  z-index: 2;
+  right: 10px;
+  z-index: 3;
 }
 
-.page-home .main-content-box:nth-child(even) .main-content-box-badge {
-  left: 10px;
+.main-content-box:nth-child(even) .main-content-box-badge {
+  /* left: 10px; */
 }
 
-.page-home .main-content-box:nth-child(odd) .main-content-box-badge {
+.main-content-box:nth-child(odd) .main-content-box-badge {
   right: 10px;
 }
 
-.page-home .main-content-box-key-art {
-  position: absolute;
+.main-content-box-key-art {
+  /* position: absolute;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 1; */
 }
 
-.page-home .main-content-box-key-art img {
-  position: absolute;
+.main-content-box-key-art img {
+  /* position: absolute;
   top: 0;
-  left: 0;
+  left: 0; */
   width: 100%;
   height: auto;
 }
+
+/* END MAIN CONTENT HACK */

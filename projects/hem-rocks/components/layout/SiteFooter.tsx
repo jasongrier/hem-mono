@@ -1,12 +1,39 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { CampaignMonitorForm } from '../../../../lib/components'
 import ReactGA from 'react-ga'
 import { MAILING_LIST_TEXT, CAMPAIGN_MONITOR_FORM_ACTION, CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME, CAMPAIGN_MONITOR_FORM_ID, BERLIN_STOCK_PHOTOS } from '../../config'
 
 function SiteFooter(): ReactElement {
+  const el = useRef<null | HTMLDivElement>(null)
+
+  useEffect(function toggleHeaderScrollbarSafetyZone() {
+    function handleIntersection(entries) {
+      entries.map(entry => {
+        if (entry.isIntersecting) {
+          console.log(1)
+          document.body.classList.add('footer-is-in-view')
+        }
+
+        else {
+          console.log(2)
+          document.body.classList.remove('footer-is-in-view')
+        }
+      })
+    }
+
+    const observer = new IntersectionObserver(handleIntersection)
+    observer.observe(el.current)
+
+    console.log(el.current)
+
+  }, [])
+
   return (
-    <div className="site-footer">
+    <div
+      className="site-footer"
+      ref={el}
+    >
       <div className="site-footer-content">
         <h1>HEM</h1>
         <div className="site-footer-content-row">

@@ -1,6 +1,7 @@
 export { default as Apps } from './Apps'
-export { default as Blog } from './Blog'
+export { default as Articles } from './Articles'
 export { default as Code } from './Code'
+export { default as Editions } from './Editions'
 export { default as Faqs } from './Faqs'
 export { default as Label } from './Label'
 export { default as Merch } from './Merch'
