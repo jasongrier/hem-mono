@@ -64,6 +64,7 @@ function PlayerBar(): ReactElement {
       overflow: 'scroll',
       width: '100vw',
       height: '100vh',
+      overflowX: 'hidden',
     })
 
     setTimeout(() => {

@@ -19,10 +19,14 @@
   top: 0;
   left: 0;
   z-index: -1;
-  width: calc(100vw - 20px);
+  width: calc(100vw - 19px);
   height: 65px;
   background-color: #fff;
   content: " ";
+}
+
+.footer-is-in-view .top-bar::after {
+  width: 100vw;
 }
 
 .top-bar .top-bar-inner {

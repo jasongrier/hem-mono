@@ -4,8 +4,9 @@ import { BERLIN_STOCK_PHOTOS } from '../../../config'
 
 import {
   Apps,
-  Blog,
+  Articles,
   Code,
+  Editions,
   Faqs,
   Label,
   Merch,
@@ -120,9 +121,13 @@ function RoutingHub(): ReactElement {
         <Route exact path="/apps/filter/:filter" component={Apps} />
         <Route exact path="/apps/cart/:filter?" component={Apps} />
 
-        <Route exact path="/blog/:contentItemSlug?/:filter?" component={Blog} />
-        <Route exact path="/blog/filter/:filter" component={Blog} />
-        <Route exact path="/blog/cart/:filter?" component={Blog} />
+        <Route exact path="/articles/:contentItemSlug?/:filter?" component={Articles} />
+        <Route exact path="/articles/filter/:filter" component={Articles} />
+        <Route exact path="/articles/cart/:filter?" component={Articles} />
+
+        <Route exact path="/editions/:contentItemSlug?/:filter?" component={Editions} />
+        <Route exact path="/editions/filter/:filter" component={Editions} />
+        <Route exact path="/editions/cart/:filter?" component={Editions} />
 
         {/* <Route exact path="/code/:contentItemSlug?/:filter?" component={Code} />
         <Route exact path="/code/filter/:filter" component={Code} />

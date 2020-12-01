@@ -6,6 +6,7 @@
   height: 65px;
   line-height: 65px;
   z-index: 9999;
+  pointer-events: none;
 }
 
 .main-nav a:focus,
@@ -31,6 +32,7 @@
   font-size: 20px;
   letter-spacing: 2px;
   font-weight: 100;
+  pointer-events: all;
 }
 
 .main-nav .main-nav-items li a {
@@ -44,6 +46,6 @@
 
 .main-nav .main-nav-items li a.active {
   display: inline-block;
-  height: 25px;
-  border-bottom: 5px solid #fff;
+  height: 45px;
+  border-bottom: 2px solid var(--line-orange);
 }

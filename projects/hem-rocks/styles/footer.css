@@ -2,10 +2,11 @@
   position: sticky;
   top: 0;
   z-index: 9999999;
-  width: var(--content-width-desk);
-  margin: 100px auto 0 auto;
+  width: 100vw;
+  margin: 0 auto;
   font-size: 14px;
   line-height: 32px;
+  overflow-x: hidden;
 }
 
 .main-footer a {
@@ -23,8 +24,8 @@
 .site-footer-content {
   position: absolute;
   left: 50%;
-  margin: 100px auto 0 calc(-1 * var(--content-width-desk) / 2);
-  width: var(--content-width-desk);
+  margin: 100px auto 0 calc(-1 * 1000px / 2);
+  width: 1000px;
 }
 
 .site-footer-content h1 {
@@ -57,7 +58,7 @@
 .site-footer-content-column {
   vertical-align: top;
   display: inline-block;
-  width: 190px;
+  width: 150px;
 }
 
 .site-footer-content-column-wide {

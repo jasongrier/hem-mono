@@ -13,7 +13,7 @@ function SoundLibrary(): ReactElement {
     allContentItems: state.content.contentItems,
   }))
 
-  const { filter: currentFilter } = useParams()
+  const { filter: currentFilter }: any = useParams()
 
   return (
     <>
@@ -22,7 +22,6 @@ function SoundLibrary(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
       <div className="page page-sound-library page-with-subnav">
-        <h1>Sound Library</h1>
         <SoundLibrarySubnav />
         <MainContentList
           buttonText="Download"
@@ -38,9 +37,9 @@ function SoundLibrary(): ReactElement {
 
             if (!attachedTracks || !attachedTracks.length) return <div />
 
-            return <TrackPlayPauseButton 
-              track={attachedTracks[0]} 
-              activeFor={attachedTracks} 
+            return <TrackPlayPauseButton
+              track={attachedTracks[0]}
+              activeFor={attachedTracks}
             />
           }}
         </MainContentList>

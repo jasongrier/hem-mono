@@ -238,6 +238,8 @@ function MainContentList({
     return parseInt(a.order, 10) - parseInt(b.order, 10)
   }
 
+  let boxTemplateIndex = -1
+
   return (
     <div className="main-content-list clearfix">
       { title && (
@@ -285,62 +287,69 @@ function MainContentList({
       </div>
       { finalFilters.length > 1 && (
         <div className="main-content-filters clearfix">
-          <h3>Filter:</h3>
-          { finalFilters.map(tag => (
-            <Link
-              className={`
-                main-content-filter
-                ${ currentFilter === slugify(tag) ? 'active' : '' }
-                ${ currentFilter === slugify(excludeFromAll) ? 'exclusive-filter' : '' }
-              `}
-              key={ tag }
-              to={
-                currentFilter === slugify(tag) && !noAll
-                  ? `/${category}`
-                  : `/${category}${tag !== 'All' ? '/filter/' + slugify(tag) : ''}`
-              }
-            >
-              <span
-                onClick={onFilterClick}
-                dangerouslySetInnerHTML={{ __html: tagSpellingCorrections(tag).replace(/ /g, '&nbsp;') }}
-              />
-            </Link>
-          ))}
-          { moreTagsLink && (
-            <Link
-              className="main-content-filter"
-              to={moreTagsLink}
-            >
-              More Tags...
-            </Link>
-          )}
+          <div className="main-content-filters-inner">
+            {/* <h3>Filter:</h3> */}
+            { finalFilters.map(tag => (
+              <Link
+                className={`
+                  main-content-filter
+                  ${ currentFilter === slugify(tag) ? 'active' : '' }
+                  ${ currentFilter === slugify(excludeFromAll) ? 'exclusive-filter' : '' }
+                `}
+                key={ tag }
+                to={
+                  currentFilter === slugify(tag) && !noAll
+                    ? `/${category}`
+                    : `/${category}${tag !== 'All' ? '/filter/' + slugify(tag) : ''}`
+                }
+              >
+                <span
+                  onClick={onFilterClick}
+                  dangerouslySetInnerHTML={{ __html: tagSpellingCorrections(tag).replace(/ /g, '&nbsp;') }}
+                />
+              </Link>
+            ))}
+            { moreTagsLink && (
+              <Link
+                className="main-content-filter"
+                to={moreTagsLink}
+              >
+                More Tags...
+              </Link>
+            )}
+          </div>
         </div>
       )}
       <div className="main-content-items">
-        { finalContentItems.map((contentItem: IContentItem, index: number) => (
-          <MainContentBox
-            badgeText={
-              showCategoryOnContentBoxes
-                ? titleCase(
-                  contentItem.displayCategory
-                    ? contentItem.displayCategory
-                    : hasCategory(contentItem, 'articles')
-                      ? get(contentItem.tags.split(','), 0)
-                      : contentItem.category.replace(/-/g, ' '))
-                : undefined
-            }
-            buttonText={buttonText}
-            contentItem={contentItem}
-            index={index}
-            filter={currentFilter}
-            key={contentItem.slug}
-            linkTo={linkTo}
-            noSplatter={noSplatter}
-            tag={category}
-          >
-            { children && children(contentItem) }
-          </MainContentBox>
-        ))}
+        { finalContentItems.map((contentItem: IContentItem, index: number) => {
+          boxTemplateIndex = boxTemplateIndex < 8 ? boxTemplateIndex + 1 : 0
+
+          return (
+            <MainContentBox
+              badgeText={
+                showCategoryOnContentBoxes
+                  ? titleCase(
+                    contentItem.displayCategory
+                      ? contentItem.displayCategory
+                      : hasCategory(contentItem, 'articles')
+                        ? get(contentItem.tags.split(','), 0)
+                        : contentItem.category.replace(/-/g, ' '))
+                  : undefined
+              }
+              buttonText={buttonText}
+              contentItem={contentItem}
+              index={index}
+              templateIndex={boxTemplateIndex}
+              filter={currentFilter}
+              key={contentItem.slug}
+              linkTo={linkTo}
+              noSplatter={noSplatter}
+              tag={category}
+            >
+              { children && children(contentItem) }
+            </MainContentBox>
+          )
+        })}
       </div>
       { infoPopupText && (
         <PopupContainer

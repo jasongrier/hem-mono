@@ -4,8 +4,8 @@ import { useParams } from 'react-router-dom'
 import { MainContentList } from '../../modules/content'
 import { BASE_SITE_TITLE } from '../../config'
 
-function Blog(): ReactElement {
-  const { filter: currentFilter } = useParams()
+function Editions(): ReactElement {
+  const { filter: currentFilter }: any = useParams()
 
   return (
     <>
@@ -13,15 +13,14 @@ function Blog(): ReactElement {
         <title>{ BASE_SITE_TITLE }</title>
         <meta name="description" content="" />
       </Helmet>
-      <div className="page page-blog">
+      <div className="page page-editions">
         <MainContentList
           currentFilter={currentFilter}
-          category="blog"
-          title="Blog"
+          category="editions"
         />
       </div>
     </>
   )
 }
 
-export default Blog
+export default Editions

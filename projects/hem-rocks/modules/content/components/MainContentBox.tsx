@@ -13,6 +13,7 @@ interface IProps {
   filter: string
   index: number
   tag: string
+  templateIndex: number
 
   badgeText?: string
   buttonText?: string
@@ -28,6 +29,7 @@ function MainContentBox({
   index,
   // TODO: Unused var
   tag,
+  templateIndex,
 
   badgeText,
   buttonText,
@@ -48,46 +50,23 @@ function MainContentBox({
     }, [],
   )
 
-  const { pathname } = useLocation()
-
   const linkTo = customLinkTo
     ? customLinkTo(contentItem)
     : `/${contentItem.category}/${contentItem.slug}${filter ? '/' + filter : ''}`
 
   const assetHost = assetHostHostname()
-  const isHome = pathname === '/'
 
   return (
-    <div className="main-content-box">
+    <div className={`
+      main-content-box
+      main-content-box-${index}
+      main-content-box-template-${templateIndex}
+    `}>
       {(badgeText || contentItem.badgeText) && (
         <div className="main-content-box-badge clearfix">
           <span>{ badgeText || contentItem.badgeText }</span>
         </div>
       )}
-      {/* <div className="main-content-box-details">
-        <Link to={linkTo}>
-          <h3 dangerouslySetInnerHTML={{ __html: contentItem.titleWrapping || contentItem.title }} />
-          { !isHome && contentItem.secondaryTitle && (
-            <h4 dangerouslySetInnerHTML={{ __html: contentItem.secondaryTitle }} />
-          )}
-        </Link>
-        <Link to={linkTo}>
-          <div dangerouslySetInnerHTML={{ __html: marked(contentItem.blurb) }} />
-        </Link>
-        <div className="main-content-box-actions">
-          <div className="main-content-box-custom-actions">
-            { children }
-          </div>
-          { buttonText && (
-            <Link
-              className="action-button"
-              to={linkTo}
-            >
-              { buttonText }
-            </Link>
-          )}
-        </div>
-      </div> */}
       <div
         className="main-content-box-key-art"
         onClick={onClick}
@@ -122,6 +101,32 @@ function MainContentBox({
             />
           )}
         </Link>
+      </div>
+      <div className="main-content-box-details">
+        <Link to={linkTo}>
+          <h3 dangerouslySetInnerHTML={{ __html: contentItem.titleWrapping || contentItem.title }} />
+        </Link>
+        {/* {(badgeText || contentItem.badgeText) && (
+          <h4>
+            <span>{ badgeText || contentItem.badgeText }</span>
+          </h4>
+        )} */}
+        <Link to={linkTo}>
+          <div dangerouslySetInnerHTML={{ __html: marked(contentItem.blurb) }} />
+        </Link>
+        {/* <div className="main-content-box-actions">
+          <div className="main-content-box-custom-actions">
+            { children }
+          </div>
+          { buttonText && (
+            <Link
+              className="action-button"
+              to={linkTo}
+            >
+              { buttonText }
+            </Link>
+          )}
+        </div> */}
       </div>
     </div>
   )

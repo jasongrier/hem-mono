@@ -175,16 +175,6 @@
   color: #eee;
 }
 
-.player-bar-toggle .hem-play-pause-button {
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
-  background-color: var(--line-orange);
-  font-size: 24px;
-  border-radius: var(--hem-border-radius);
-  color: #eee;
-}
-
 .player-bar-toggle .hem-play-pause-button .fa-icon {
   transform: translate(1px, 2px);
 }

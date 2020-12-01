@@ -134,9 +134,11 @@ function AdminList(): ReactElement {
             >
               <option value="all">All</option>
               <option value="apps">Apps</option>
-              <option value="blog">Blog</option>
+              <option value="articles">Articles</option>
               <option value="code">Code</option>
               <option value="faqs">FAQ's</option>
+              <option value="editions">Editions</option>
+              <option value="heroines">Heroines</option>
               <option value="label">Label</option>
               <option value="merch">Merch</option>
               <option value="mix">Mixes</option>

@@ -26,13 +26,13 @@ function Home(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
       <div className="page page-home">
-        <div className="main-heroine">
+        {/* <div className="main-heroine">
           <SoundLibraryRefreshHeroine />
-        </div>
+        </div> */}
         <MainContentList
           noSplatter={true}
           category="home-feature"
-          items={getContentItemsFromList(contentItems, 'home-page-features')}
+          items={getContentItemsFromList(contentItems, 'home-page-features').concat(getContentItemsFromList(contentItems, 'home-page-features'))}
           shouldSetCurrentPlaylist={false}
           showCategoryOnContentBoxes={true}
         />
