@@ -4,9 +4,10 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 9999999;
-  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 99999;
+  background-color: rgba(0, 0, 0, 0.6);
   opacity: 0;
+  /* transition: opacity 100ms; */
   pointer-events: none;
 }
 
@@ -17,13 +18,13 @@
 
 .hem-popup-content {
   position: absolute;
-  top: 70px;
+  top: 100px;
   left: 50%;
   width: 800px;
   height: 600px;
   margin-left: -400px;
   padding: 0;
-  box-shadow: 0px -1px 15px 0px rgba(0, 0, 0, 0.7);
+  background: #fff;
 }
 
 .hem-popup-content .ScrollbarsCustom-TrackY[style] {
@@ -49,16 +50,8 @@
 
 .hem-popup-close {
   position: absolute;
-  top: -14px;
-  right: -17px;
+  top: -10px;
+  right: -10px;
   z-index: 9999;
-  font-size: 14px;
-}
-
-.hem-popup-close .hem-close-button {
-  width: 14px !important;
-  height: 14px !important;
-  line-height: 14px;
-  color: #000;
-  background-color: transparent;
+  font-size: 0;
 }
