@@ -23,11 +23,7 @@ function SoundLibraryRefreshHeroine(): ReactElement {
         />
         <div className="sound-library-refresh-heroine-details">
           <div className="sound-library-refresh-heroine-text">
-            <h2>
-              SL 2020
-              <i className="sound-library-refresh-heroine-test-drive hack-fas hack-fa-piano-keyboard"></i>
-              <i className="sound-library-refresh-heroine-play fas fa-volume-up"></i>
-            </h2>
+            <h2>SL 2021</h2>
             <h5>HEM's Sound Library re-thought as a selection of highly playable virtual instruments.</h5>
           </div>
         </div>

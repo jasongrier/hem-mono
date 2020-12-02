@@ -49,7 +49,7 @@ const styleSheet = `
   }
 `
 
-function NextButton({ onClick, className, useFa = true }: IProps): ReactElement {
+function NextButton({ onClick, className, useFa = false }: IProps): ReactElement {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: styleSheet }} />

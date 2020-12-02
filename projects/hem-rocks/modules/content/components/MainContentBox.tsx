@@ -1,6 +1,6 @@
 import React, { ReactElement, PropsWithChildren, useCallback, useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import marked from 'marked'
 import { EnlargeButton } from '../../../../../lib/packages/hem-buttons'
 import { SplatterDims } from '../../../../../lib/packages/hem-boxplatter'
@@ -13,7 +13,6 @@ interface IProps {
   filter: string
   index: number
   tag: string
-  templateIndex: number
 
   badgeText?: string
   buttonText?: string
@@ -29,7 +28,6 @@ function MainContentBox({
   index,
   // TODO: Unused var
   tag,
-  templateIndex,
 
   badgeText,
   buttonText,
@@ -57,26 +55,49 @@ function MainContentBox({
   const assetHost = assetHostHostname()
 
   return (
-    <div className={`
-      main-content-box
-      main-content-box-${index}
-      main-content-box-template-${templateIndex}
-    `}>
+    <SplatterDims
+      disabled={noSplatter}
+      bipolarX={false}
+      bipolarY={false}
+      minMarginX={50}
+      minMarginY={30}
+      className={`
+        main-content-box
+        main-content-box-date-${contentItem.date}
+        ${className ? className : ''}
+        ${contentItem.badgeText ? 'has-badge' : ''}
+        ${alignRight && index > 0 ? 'align-right' : ''}
+      `}
+      id={contentItem.slug}
+      width={400}
+      height={0}
+      rangeX={100}
+      rangeY={0}
+      marginRangeX={index < 0 ? 100 : 0}
+      marginRangeY={index < 0 ? 200 : 0}
+    >
       {(badgeText || contentItem.badgeText) && (
-        <div className="main-content-box-badge clearfix">
-          <span>{ badgeText || contentItem.badgeText }</span>
+        <div className="main-content-box-badge">
+          <strong>{ badgeText || contentItem.badgeText }</strong>
         </div>
       )}
+      <Link to={linkTo}>
+        <h3 dangerouslySetInnerHTML={{ __html: contentItem.titleWrapping || contentItem.title }} />
+        { contentItem.secondaryTitle && (
+          <h4 dangerouslySetInnerHTML={{ __html: contentItem.secondaryTitle }} />
+        )}
+      </Link>
       <div
         className="main-content-box-key-art"
         onClick={onClick}
       >
         <Link to={linkTo}>
           { !BERLIN_STOCK_PHOTOS && (
-            <img
-              className="main-content-box-key-art-image-as-img"
-              src={`${assetHost}/hem-rocks/content/images/key-art/${contentItem.keyArt}`}
-              alt=""
+            <div
+              className="main-content-box-key-art-image"
+              style={{
+                backgroundImage: `url(${assetHost}/hem-rocks/content/images/key-art/${contentItem.keyArt})`
+              }}
             />
           )}
           { BERLIN_STOCK_PHOTOS && (
@@ -102,19 +123,14 @@ function MainContentBox({
           )}
         </Link>
       </div>
-      <div className="main-content-box-details">
-        <Link to={linkTo}>
-          <h3 dangerouslySetInnerHTML={{ __html: contentItem.titleWrapping || contentItem.title }} />
-        </Link>
-        {/* {(badgeText || contentItem.badgeText) && (
-          <h4>
-            <span>{ badgeText || contentItem.badgeText }</span>
-          </h4>
-        )} */}
+      <div
+        className="main-content-box-text"
+        onClick={onClick}
+      >
         <Link to={linkTo}>
           <div dangerouslySetInnerHTML={{ __html: marked(contentItem.blurb) }} />
         </Link>
-        {/* <div className="main-content-box-actions">
+        <div className="main-content-box-actions">
           <div className="main-content-box-custom-actions">
             { children }
           </div>
@@ -126,9 +142,9 @@ function MainContentBox({
               { buttonText }
             </Link>
           )}
-        </div> */}
+        </div>
       </div>
-    </div>
+    </SplatterDims>
   )
 }
 

@@ -199,8 +199,9 @@ function App(): ReactElement {
       dispatch(replacePlaylist(i, { name: tag, tracks }))
     })
 
-    dispatch(replacePlaylist(trackTags.length, { name: 'Search Results', tracks: [] }))
-    dispatch(replacePlaylist(trackTags.length + 1, { name: 'Empty', tracks: [] }))
+    dispatch(replacePlaylist(trackTags.length, { name: 'All Tracks', tracks: allTracks }))
+    // dispatch(replacePlaylist(trackTags.length, { name: 'Search Results', tracks: [] }))
+    // dispatch(replacePlaylist(trackTags.length + 1, { name: 'Empty', tracks: [] }))
     dispatch(setPlayerPlaylist(0))
   }, [contentItems])
 

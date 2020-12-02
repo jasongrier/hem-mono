@@ -1,109 +1,27 @@
 import React, { ReactElement, useState, useCallback, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { noop } from 'lodash'
-import $ from 'jquery'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import ReactGA from 'react-ga'
 import { PlayPauseButton as BasePlayPauseButton, CloseButton, HamburgerButton } from '../../../packages/hem-buttons'
-import {
-  NextButton,
-  PreviousButton,
-  ProgressBar,
-  PlayerBarPlayPauseButton,
-  Playlist,
-  ITrack,
-  IPlaylist,
-  setPlayerAlreadyOpened,
-  setPlayerActuallyPlaying,
-  setPlayerExpanded,
-  setPlayerPlaylistExpanded,
-} from '../index'
+import { NextButton, PreviousButton, ProgressBar, PlayerBarPlayPauseButton, Playlist, ITrack, IPlaylist } from '../index'
 
 function PlayerBar(): ReactElement {
-  const { currentTrack, playing, currentPlaylist, expanded, playlistExpanded, alreadyOpened } = useSelector((state: any) => ({
+  const { currentTrack, playing, currentPlaylist }: { currentTrack: ITrack, playing: boolean, currentPlaylist: IPlaylist } = useSelector((state: any) => ({
     currentTrack: state.player.currentTrack,
     playing: state.player.playing,
     currentPlaylist: state.player.currentPlaylist,
-    expanded: state.player.expanded,
-    playlistExpanded: state.player.playlistExpanded,
-    alreadyOpened: state.player.alreadyOpened,
   }))
 
-  const dispatch = useDispatch()
-
-  const [previousScrollY, setPreviousScrollY] = useState<number>()
-  const [locked, setLocked] = useState<boolean>()
-
-  useEffect(function disableMediaKeys() {
-    // TODO: Wire up media keys
-    // @ts-ignore
-    navigator.mediaSession.setActionHandler('play', noop)
-    // @ts-ignore
-    navigator.mediaSession.setActionHandler('pause', noop)
-    // @ts-ignore
-    navigator.mediaSession.setActionHandler('seekbackward', noop)
-    // @ts-ignore
-    navigator.mediaSession.setActionHandler('seekforward', noop)
-    // @ts-ignore
-    navigator.mediaSession.setActionHandler('previoustrack', noop)
-    // @ts-ignore
-    navigator.mediaSession.setActionHandler('nexttrack', noop)
-  }, [])
+  const [expanded, setExpanded] = useState(false)
+  const [playlistExpanded, setPlaylistExpanded] = useState(false)
+  const [alreadyOpened, setAlreadyOpened] = useState(false)
 
   useEffect(function openOnPlay() {
     if (playing && !expanded) {
-      dispatch(setPlayerExpanded(true))
-      dispatch(setPlayerPlaylistExpanded(false))
+      setExpanded(true)
+      setPlaylistExpanded(false)
     }
   }, [playing])
-
-  useEffect(function initBodyLock() {
-    $('.scroll-lock-container').css({
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      overflow: 'scroll',
-      width: '100vw',
-      height: '100vh',
-      overflowX: 'hidden',
-    })
-
-    setTimeout(() => {
-      console.log($('.scroll-lock-content').height())
-    }, 1000)
-  }, [])
-
-  useEffect(function lockBody() {
-    if (playlistExpanded) {
-      document.body.classList.add('with-popup-open')
-
-      const scrollY = $('.scroll-lock-content').scrollTop()
-
-      setPreviousScrollY(scrollY)
-      setLocked(true)
-
-      $('.scroll-lock-container').css({
-        overflow: 'hidden',
-      })
-
-      $('.scroll-lock-content').css({
-        marginTop: `-${scrollY}px`,
-      })
-    }
-
-    else {
-      document.body.classList.remove('with-popup-open')
-
-      setLocked(false)
-
-      $('.scroll-lock-container').css({
-        overflow: 'scroll',
-      })
-
-      $('.scroll-lock-content').css({
-        marginTop: 0,
-      })
-    }
-  }, [playlistExpanded])
 
   const togglePlaylistExpandedOnClick = useCallback(
     function togglePlaylistExpandedOnClickFn() {
@@ -111,7 +29,7 @@ function PlayerBar(): ReactElement {
         category: 'User',
         action: 'Toggled the playlist: ' + !playlistExpanded + '.',
       })
-      dispatch(setPlayerPlaylistExpanded(!playlistExpanded))
+      setPlaylistExpanded(!playlistExpanded)
     }, [playlistExpanded],
   )
 
@@ -137,11 +55,7 @@ function PlayerBar(): ReactElement {
 
       <NextButton />
 
-      <div className="player-bar-progress-bar">
-        <span className="player-bar-progress-bar-time player-bar-progress-bar-time-start">0:00</span>
-        <ProgressBar id="player-bar-progress-bar" />
-        <span className="player-bar-progress-bar-time player-bar-progress-bar-time-end">5:43</span>
-      </div>
+      <ProgressBar id="player-bar-progress-bar" />
 
       <div className="playlist-toggle">
         { !playlistExpanded && (
@@ -159,10 +73,7 @@ function PlayerBar(): ReactElement {
 
       { playlistExpanded && (
         <div className="player-bar-playlist">
-          <Playlist onCollapse={() => {
-            dispatch(setPlayerExpanded(false))
-            dispatch(setPlayerPlaylistExpanded(false))
-          }} />
+          <Playlist onCollapse={() => setPlaylistExpanded(false)} />
         </div>
       )}
 
@@ -173,15 +84,15 @@ function PlayerBar(): ReactElement {
               category: 'User',
               action: 'Closed the player bar.',
             })
-            dispatch(setPlayerExpanded(false))
+            setExpanded(false)
           }} />
         )}
         { !expanded && (
           <div onClick={() => {
             if (playing) return
-            dispatch(setPlayerAlreadyOpened(true))
-            dispatch(setPlayerExpanded(true))
-            dispatch(setPlayerPlaylistExpanded(true))
+            setAlreadyOpened(true)
+            setExpanded(true)
+            setPlaylistExpanded(true)
             ReactGA.event({
               category: 'User',
               action: 'Opened the player bar.',
@@ -196,20 +107,35 @@ function PlayerBar(): ReactElement {
           </div>
         )}
       </div>
-      { currentTrack && (
         <div className="player-bar-now-playing">
-          <div className="player-bar-now-playing-inner">
-            <img
-              src={currentTrack.keyArt}
-              alt={currentTrack.title}
-            />
-            <p>
-              <strong>{ currentTrack?.title }</strong><br/>
-              { currentTrack?.attribution }
-            </p>
-          </div>
+          { currentTrack && (
+            <span>
+              <span onClick={() => {
+                ReactGA.event({
+                  category: 'User',
+                  action: 'Clicked on "now playing" title: ' + currentTrack.title + '.',
+                })
+              }}>
+                <Link to={currentTrack.titleLink}>
+                  { currentTrack.title }
+                </Link>
+              </span>
+
+              &nbsp;–&nbsp;
+
+              <span onClick={() => {
+                ReactGA.event({
+                  category: 'User',
+                  action: 'Clicked on "now playing" attribution: ' + currentTrack.title + ', ' + currentTrack.attribution + '.',
+                })
+              }}>
+                <Link to={currentTrack.attributionLink}>
+                  { currentTrack.attribution }
+                </Link>
+              </span>
+            </span>
+          )}
         </div>
-      )}
     </div>
   )
 }
