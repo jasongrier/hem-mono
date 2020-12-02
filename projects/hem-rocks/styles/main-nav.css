@@ -1,12 +1,10 @@
 .main-nav {
-  position: absolute;
-  top: -5px;
-  right: 22px;
+  position: fixed;
+  top: 0;
+  right: 5px;
   width: 80vw;
-  height: 65px;
-  line-height: 65px;
   z-index: 9999;
-  pointer-events: none;
+  height: var(--top-bar-height);
 }
 
 .main-nav a:focus,
@@ -16,10 +14,10 @@
 
 .main-nav .main-nav-items {
   width: 80vw;
-  height: 65px;
-  line-height: 65px;
+  height: var(--top-bar-height);
+  line-height: var(--top-bar-height);
   margin: 0;
-  padding: 5px 0 5px 5px;
+  padding: 0;
   list-style-type: none;
   text-align: right;
 }
@@ -29,10 +27,10 @@
   margin: 0 0 0 40px;
   text-transform: uppercase;
   cursor: pointer;
+  color: #fff;
   font-size: 20px;
   letter-spacing: 2px;
   font-weight: 100;
-  pointer-events: all;
 }
 
 .main-nav .main-nav-items li a {
@@ -46,6 +44,6 @@
 
 .main-nav .main-nav-items li a.active {
   display: inline-block;
-  height: 45px;
-  border-bottom: 2px solid var(--line-orange);
+  height: 25px;
+  border-bottom: 5px solid #fff;
 }

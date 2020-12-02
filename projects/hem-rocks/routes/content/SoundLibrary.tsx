@@ -37,10 +37,12 @@ function SoundLibrary(): ReactElement {
 
             if (!attachedTracks || !attachedTracks.length) return <div />
 
-            return <TrackPlayPauseButton
-              track={attachedTracks[0]}
-              activeFor={attachedTracks}
-            />
+            return (
+              <TrackPlayPauseButton
+                activeFor={attachedTracks}
+                track={attachedTracks[0]}
+              />
+            )
           }}
         </MainContentList>
       </div>

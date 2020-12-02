@@ -288,7 +288,7 @@ function MainContentList({
       { finalFilters.length > 1 && (
         <div className="main-content-filters clearfix">
           <div className="main-content-filters-inner">
-            {/* <h3>Filter:</h3> */}
+            <h3>Filter:</h3>
             { finalFilters.map(tag => (
               <Link
                 className={`

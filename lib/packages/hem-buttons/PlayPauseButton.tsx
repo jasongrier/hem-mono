@@ -84,7 +84,7 @@ const styleSheet = `
   }
 `
 
-function PlayPauseButton({ playing, onClick, useFa = true }: IProps): ReactElement {
+function PlayPauseButton({ playing, onClick, useFa = false }: IProps): ReactElement {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: styleSheet }} />

@@ -66,8 +66,9 @@ function TrackPlayPauseButton({ track, activeFor = [], onClick, className }: Pro
       )}
       { !showSpinner && (
         <BasePlayPauseButton
-          playing={playing}
           onClick={playPauseButtonOnClick}
+          playing={playing}
+          useFa={false}
         />
       )}
     </div>

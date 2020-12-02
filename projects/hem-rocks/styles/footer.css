@@ -84,8 +84,6 @@
   padding-left: 14px;
   line-height: 34px;
   border: 0;
-  border-top-left-radius: var(--hem-border-radius);
-  border-bottom-left-radius: var(--hem-border-radius);
   font-family: Avenir, sans-serif;
   font-size: 16px;
 }
@@ -93,8 +91,6 @@
 .site-footer-content-column button {
   float: left;
   width: 100px;
-  border-top-right-radius: var(--hem-border-radius);
-  border-bottom-right-radius: var(--hem-border-radius);
 }
 
 .site-footer-content-column input:focus,

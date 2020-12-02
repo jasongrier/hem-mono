@@ -48,7 +48,7 @@ interface IProps {
   onClick: () => void
 }
 
-function CloseButton({ onClick, useFa = true }: PropsWithChildren<IProps>): ReactElement {
+function CloseButton({ onClick, useFa = false }: PropsWithChildren<IProps>): ReactElement {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: styleSheet }} />

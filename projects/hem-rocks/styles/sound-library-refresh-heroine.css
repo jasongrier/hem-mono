@@ -1,15 +1,10 @@
 .sound-library-refresh-heroine {
   position: relative;
-  width: 60%;
-  height: 0;
-  min-height: 111px;
-  margin: 65px 0 30px 0;
-  padding-bottom: 25%;
+  width: 100vw;
+  height: calc(100vh - 180px);
   background-color: #000;
   user-select: none;
   cursor: pointer;
-  overflow: hidden;
-  border-radius: var(--hem-border-radius);
 }
 
 .sound-library-refresh-heroine * {
@@ -20,8 +15,8 @@
 .sound-library-refresh-heroine-image {
   position: absolute;
   top: 0;
-  right: 0;
-  width: 110%;
+  left: 0;
+  width: 100%;
   height: 100%;
   z-index: 1;
   background-position: center;
@@ -31,11 +26,11 @@
 
 .sound-library-refresh-heroine-details {
   position: absolute;
-  top: 20px;
-  right: 30px;
+  top: 60px;
+  right: 6%;
   z-index: 2;
-  width: 280px;
-  height: 150px;
+  width: 330px;
+  height: 180px;
   margin-left: -350px;
   color: #ffffff;
   font-size: 12px;
@@ -44,6 +39,7 @@
 }
 
 .sound-library-refresh-heroine .hem-speaker-button {
+  display: none;
   width: 60px;
   height: 60px;
   background-color: var(--line-orange);
@@ -55,34 +51,13 @@
   width: 100%;
   height: auto;
   margin: 0 0 20px 0;
-  padding: 15px 15px 30px 15px;
-  font-size: 80px;
-  line-height: 100px;
+  padding: 30px 15px;
+  font-size: 100px;
+  line-height: 120px;
   font-weight: 100;
   letter-spacing: 15px;
   background-color: var(--line-orange);
   text-align: left;
-  border-top-left-radius: var(--hem-border-radius);
-  border-bottom-left-radius: var(--hem-border-radius);
-}
-
-.sound-library-refresh-heroine-play {
-  display: block;
-  position: absolute;
-  bottom: 8px;
-  right: 10px;
-  width: 14px;
-  height: 14px;
-  font-size: 14px;
-}
-
-.sound-library-refresh-heroine-test-drive {
-  display: block;
-  position: absolute;
-  bottom: 5px;
-  right: 34px;
-  width: 16px;
-  height: 16px;
 }
 
 .sound-library-refresh-heroine-text h5 {
@@ -90,12 +65,10 @@
   width: 100%;
   margin: 0 30px 15px 0;
   padding: 20px 15px;
-  font-size: 17px;
+  font-size: 20px;
   font-weight: 100;
   background-color: var(--line-orange);
   text-align: left;
-  border-top-left-radius: var(--hem-border-radius);
-  border-bottom-left-radius: var(--hem-border-radius);
 }
 
 .sound-library-refresh-heroine-text p {

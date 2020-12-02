@@ -4,8 +4,7 @@
   left: 0;
   z-index: 8888;
   width: 100vw;
-  height: 65px;
-  line-height: 65px;
+  height: 30px;
   user-select: none;
 }
 
@@ -13,26 +12,12 @@
   user-select: none;
 }
 
-.top-bar::after {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  width: calc(100vw - 19px);
-  height: 65px;
-  background-color: #fff;
-  content: " ";
+.top-bar-collapsed {
+  background-color: #000;
+  overflow: hidden;
 }
 
-.footer-is-in-view .top-bar::after {
-  width: 100vw;
-}
-
-.top-bar .top-bar-inner {
-  position: relative;
-  width: calc(100vw - 40px);
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+.top-bar-collapsed .logo {
+  margin: 0;
+  font-size: 65px;
 }

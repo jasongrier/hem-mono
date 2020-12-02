@@ -53,7 +53,7 @@ interface IProps {
   onClick: () => void
 }
 
-function HamburgerButton({ onClick, useFa = true }: PropsWithChildren<IProps>): ReactElement {
+function HamburgerButton({ onClick, useFa = false }: PropsWithChildren<IProps>): ReactElement {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: styleSheet }} />
