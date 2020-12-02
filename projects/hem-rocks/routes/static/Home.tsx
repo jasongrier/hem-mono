@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import { setPlayerPlaylist } from '../../../../lib/modules/website-player'
-import { SoundLibraryRefreshHeroine, GrandPianoHeroine } from '../../components/heroines'
+import { SoundLibraryRefreshHeroine, HemRefreshHeroine, GrandPianoHeroine } from '../../components/heroines'
 import { MainContentList, getContentItemsFromList } from '../../modules/content'
 import { ReleasePhase } from '../../components/layout'
 import { BASE_SITE_TITLE } from '../../config'
@@ -28,7 +28,7 @@ function Home(): ReactElement {
       <div className="page page-home">
         <div className="main-heroine">
           <ReleasePhase exact phase={1}>
-            <SoundLibraryRefreshHeroine />
+            <HemRefreshHeroine />
           </ReleasePhase>
           <ReleasePhase phase={2}>
             <GrandPianoHeroine />
