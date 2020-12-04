@@ -147,6 +147,7 @@ function App(): ReactElement {
 
   useEffect(function setSitePlaylists() {
     const featuredTracksPlaylistTrackItems = getContentItemsFromList(contentItems, 'featured-tracks')
+
     const featuredTracksTracks = featuredTracksPlaylistTrackItems.map(item =>
       contentItemToTrack(item)
     )
@@ -154,17 +155,19 @@ function App(): ReactElement {
     dispatch(replacePlaylist(0, { name: 'Featured Tracks', tracks: featuredTracksTracks }))
     dispatch(setPlayerPlaylist(0))
 
-    const trackTags = [
-      'Album Tracks',
-      'Exclusives',
-      'Live',
-      'Made with SL',
-      'Rarities',
-      'Sound Library',
+    const curatedPlaylists = [
+      'Player Featured',
+      'Player Rare',
+      'Player Live',
+      'Player Mixes',
+      'Player Interviews',
+      'Player Sound Library',
+      'Player Releases',
     ]
 
-    trackTags.forEach((tag, i) => {
-      const tracks = contentItems.filter(item => hasCategory(item, 'tracks') && hasTag(item, slugify(tag))).map(item =>
+    curatedPlaylists.forEach((title, i) => {
+      const trackContentItems: IContentItem = getContentItemsFromList(contentItems, slugify(title))
+      const tracks = trackContentItems.map(item =>
         contentItemToTrack(item)
       )
       dispatch(replacePlaylist(i + 2, { name: tag, tracks }))

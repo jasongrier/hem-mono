@@ -7,7 +7,7 @@ import Cookies from 'js-cookie'
 import { slugify } from 'voca'
 import { CartPopup, setCartProducts } from '../../cart'
 import { ThankYouPopup } from '../../cart'
-import { DetailPopUp, requestReadItems, setCurrentItem, hasTag, getContentItemsFromList, contentItemToTrack, hasCategory } from '../../content'
+import { DetailPopUp, requestReadItems, setCurrentItem, hasTag, getContentItemsFromList, contentItemToTrack, hasCategory, IContentItem } from '../../content'
 import { ProtectedContent } from '../../login'
 import { CampaignMonitorForm, ElectronNot, ScrollToTop, NagToaster, Spinner, Toaster, ElectronOnly } from '../../../../../lib/components'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
@@ -149,59 +149,34 @@ function App(): ReactElement {
   }, [])
 
   useEffect(function setSitePlaylists() {
-    const allTracks = contentItems.filter(item => hasCategory(item, 'tracks')).map(item =>
-      contentItemToTrack(item)
-    )
-
-    const albumItems = contentItems.filter(item => hasCategory(item, 'label') && hasTag(item, 'albums'))
-
-    const albums: IAlbum[] = []
-    let albumsPlaylistTracks: ITrack[] = []
-
-    for (const albumItem of albumItems) {
-      const trackSlugs = albumItem.trackSlugs.split("\n")
-      const tracks = compact(trackSlugs.map(trackSlug => allTracks.find(
-        track => track.id === trackSlug
-      )))
-
-      albums.push({
-        coverArt: `${assetHostHostname()}/hem-rocks/content/images/key-art/${albumItem.keyArt}`,
-        id: albumItem.slug,
-        name: albumItem.title,
-        date: albumItem.date,
-        attribution: albumItem.attribution,
-        attributionLink: albumItem.attributionLink,
-        tracks,
-      })
-
-      albumsPlaylistTracks = albumsPlaylistTracks.concat(tracks || [])
-    }
-
     const featuredTracksPlaylistTrackItems = getContentItemsFromList(contentItems, 'featured-tracks')
+
     const featuredTracksTracks = featuredTracksPlaylistTrackItems.map(item =>
       contentItemToTrack(item)
     )
 
-    const trackTags = [
-      'Featured',
-      // 'Rare',
-      'Live',
-      'Mixes',
-      // 'Made with SL',
-      'Sound Library',
-      // 'Video',
+    const curatedPlaylists = [
+      'Player Featured',
+      'Player Rare',
+      'Player Live',
+      'Player Radio',
+      'Player Sound Library',
+      'Player Releases',
     ]
 
-    trackTags.forEach((tag, i) => {
-      const tracks = contentItems.filter(item => hasCategory(item, 'tracks') && hasTag(item, slugify(tag))).map(item =>
+    curatedPlaylists.forEach((name, i) => {
+      const trackContentItems: IContentItem[] = getContentItemsFromList(contentItems, slugify(name))
+
+      console.log(name)
+      console.log(trackContentItems)
+      console.log('=======')
+
+      const tracks = trackContentItems.map(item =>
         contentItemToTrack(item)
       )
-      dispatch(replacePlaylist(i, { name: tag, tracks }))
+      dispatch(replacePlaylist(i, { name: name.replace('Player ', ''), tracks }))
     })
 
-    dispatch(replacePlaylist(trackTags.length, { name: 'All Tracks', tracks: allTracks }))
-    // dispatch(replacePlaylist(trackTags.length, { name: 'Search Results', tracks: [] }))
-    // dispatch(replacePlaylist(trackTags.length + 1, { name: 'Empty', tracks: [] }))
     dispatch(setPlayerPlaylist(0))
   }, [contentItems])
 

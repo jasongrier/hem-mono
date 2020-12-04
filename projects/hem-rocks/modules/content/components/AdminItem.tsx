@@ -9,6 +9,7 @@ import { assetHostHostname } from '../../../functions'
 import { IContentItem, fieldTypes, modelize, requestCreateItems, requestDeleteItems, requestUpdateItems, hasCategory } from '../index'
 import { RootState } from '../../../index'
 import { BERLIN_STOCK_PHOTOS } from '../../../config'
+import uuid from 'uuid'
 
 interface IProps {
   create: boolean
@@ -52,7 +53,7 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
     else if (create) {
       // @ts-ignore
       const nextHighestId = allContentItems.map(item => parseInt(item.id, 10)).sort((a, b) => a - b).pop() + 1
-      item = modelize({ id: nextHighestId })
+      item = modelize({ id: uuid() })
       setCanSave(true)
     }
 

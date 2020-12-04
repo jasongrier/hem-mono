@@ -51,6 +51,7 @@ const keyCompressionMap: any = {
   id: 'as',
   isDigitalProduct: 'at',
   isPhysicalProduct: 'au',
+  note: 'bp',
   keyArt: 'av',
   order: 'aw',
   physicalFormats: 'ax',

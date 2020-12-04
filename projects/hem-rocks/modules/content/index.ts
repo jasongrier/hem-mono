@@ -24,6 +24,7 @@ export interface IContentItem {
   isDigitalProduct: boolean
   isPhysicalProduct: boolean
   keyArt: string
+  note: string
   order: string
   physicalFormats: string
   preview: boolean
@@ -88,6 +89,7 @@ export const fieldTypes: IContentItem = {
   isDigitalProduct: false,
   isPhysicalProduct: false,
   keyArt: 'text',
+  note: 'textarea',
   order: 'text',
   physicalFormats: 'textarea',
   preview: false,
