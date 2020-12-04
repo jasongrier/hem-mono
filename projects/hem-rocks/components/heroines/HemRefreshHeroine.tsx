@@ -24,7 +24,7 @@ function HemRefreshHeroine(): ReactElement {
         <div className="hem-refresh-heroine-details">
           <div className="hem-refresh-heroine-text">
             <h2>HEM 2021</h2>
-            <h5>Vito Acconci on Music and Language, Anna Petrisko on India Cooke. Rare tracks by Ariel Pink and Julia Holter. New sounds in the Library.</h5>
+            <h5>Music in a Petri Dish. Vito Acconci on Music and Language. Anna-Luisa Petrisko on India Cooke. Rare tracks by Ariel Pink, Kevin Drumm, Michael Pisaro, Julia Holter. New sounds in the Library.</h5>
           </div>
         </div>
       </a>

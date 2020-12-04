@@ -78,20 +78,124 @@ function migrate(allContentItems: IContentItem[]) {
 
   // console.log(fixedDupes.join("\n"))
 
-  // ***** CHANGE ITEMS *****
+  // ***** CHANGE/ADD ITEMS *****
+
+  const playlists = [
+    {
+      title: 'Player Mixes',
+      description: `
+        jason-grier-mix-for-the-wire-jason-grier
+        jason-grier-mix-for-skyapnea-on-nts-radio-jason-grier
+      `,
+    },
+    {
+      title: 'Player Featured',
+      description: `
+        ariel-orig-friedman-ariel-pink
+        some-kind-of-emergency-feat-julia-holter-michael-pisaro
+        outer-spaceways-incorporated-orig-sun-ra-jason-grier
+        09-rawroo-jeepneys-various-artists
+        solo-india-cooke
+        seashell-bruegel
+        unbekannte-jason-grier
+        office-of-the-dead-julia-holter
+      `,
+    },
+    {
+      title: 'Player Live',
+      description: `
+        gary-schultz-live-at-studio-acht-gary-schultz
+        jason-grier-live-at-studio-acht-jason-grier
+        human-genius-at-soundwalk-2009-jason-grier-1
+        a-cloud-drifting-over-the-plain-various-artists
+        untitled-william-basinski
+        07-chimacum-rain-linda-perhacs-various-artists
+        tasteless-julia-holter-and-jason-grier
+      `,
+    },
+    {
+      title: 'Player Rare',
+      description: `
+        enviornments-ornaments-super-creep
+        music-for-me-was-the-pure-perception-of-plasticity-jason-grier
+        calling-human-ear-music-ivan-gomez
+        mac-voice-reading-an-email-from-julia-holter-to-jason-grier-2009-julia-holter-and-jason-grier
+        brothers-and-sisters-of-the-gun-demo-various-artists
+        02-the-weird-wolf-obelisk-various-artists
+        11-for-madison-michael-pisaro-various-artists
+        piano-solo-for-bbc-6-freakzone-julia-holter-jason-grier
+        under-the-radar-ry-rock
+        for-ariel-pink-john-maus
+        the-asthma-song-ariel-pink-andrew-arduini-geneva-jacuzzi-matt-fishbeck-super-creep
+        debbie-get-the-fuck-out-of-my-house-bubonic-plague
+        oh-no-its-you-again-alex-black-ivory
+        sita-in-the-garden-the-remarkable-thing-about-swans
+        rangelines-laurel-halo
+        haunted-frozen-1-jason-grier-and-ariel-pink
+      `,
+    },
+    {
+      title: 'Player Interviews',
+      description: `
+        jason-grier-on-nice-strangers-with-silvia-mal-silvia-mal
+        jason-grier-on-dlf-kultur-please-more-accurate-title-credits-jason-grier
+        julia-holter-and-jason-grier-on-no-fear-of-pop-july-2014-henning-lahmann-julia-holter-and-jason-grier
+      `,
+    },
+    {
+      title: 'Player Sound Library',
+      description: `
+        destroyed-piano-sample-track-1
+        guitars-sample-track-1
+        new-years-eve-berlin-kreuzberg-sample-track-1
+        studio-fails-sample-track-1
+        runout-grooves-sample-track-1
+        ducking-artifacts-sample-track-1
+        bendir-darbuka-flower-pot-sample-track-1
+        sax-sample-track-1
+        vintage-field-recording-sample-track-1
+        cymbal-workouts-sample-track-1
+        studio-detritus-sample-track-1
+        election-protest-sample-track-1
+        condenser-mic-squeals-sample-track-1
+        noise-reduction-artifacts-sample-track-1
+      `,
+    },
+    {
+      title: 'Player Releases',
+      description: `
+        heart-shaped-rock-jason-grier-and-nite-jewel
+        polyhedron-bubonic-plague
+        let-the-machine-fall-asleep-super-creep
+        dragonsinger-julia-holter
+        feeling-of-total-inner-waste-super-creep
+        orange-octagon-bubonic-plague
+        stop-michael-pisaro
+        escopolamina-lucrecia-dalt
+        seashell-bruegel
+        round-rund-ekkehard-ehlers
+        shoes-ariel-pink
+        maria-julia-holter
+        edgewise-lucrecia-dalt
+        the-widows-jason-grier
+        office-of-the-dead-julia-holter
+        3-jason-grier
+        herman-the-bull-jeepneys
+        facts-of-destiny-orig-gomberg-keyes-ariel-pink
+        here-is-tonight-stellar-om-source
+        real-bad-liar-ariel-pink-super-creep-immaculate-conception
+        clouds-with-lucrecia-dalt-jason-grier
+      `
+    },
+  ]
+
 
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
 
-    if (hasCategory(newItem, 'tracks')) {
-      const audioFile = '/Users/jason/Desktop/Workingkong/HEM/Website/hem-static/hem-rocks/content/tracks/' + newItem.audioFilename
-      const buffer = readFileSync(audioFile)
-      const duration = getMP3Duration(buffer)
-      const time = Math.floor(duration/(1000*60*60))
-        + ":" + Math.floor(duration/(1000*60))%60
-        + ":" + (Math.floor(duration/1000)%60).toString().padStart(2, '0')
-
-      newItem.duration = time.replace(/^0:/, '')
+    if (newItem.attribution === 'HEM Sound Library') {
+      newItem.attribution = 'HEM'
+      newItem.secondaryAttribution = 'Sound Library'
     }
 
     newItems.push(newItem)

@@ -166,24 +166,34 @@
   bottom: 100%;
   left: 0;
   width: 100vw;
-  height: 400px;
+  height: 450px;
   background: #222;
   border-top: 1px solid var(--line-orange);
 }
 
 .player-bar-playlist ul {
   width: 100vw;
-  height: 349px;
+  height: 366px;
   margin: 0;
   padding: 0;
+}
+
+.player-bar-playlist ul.hem-player-playlist-table-header {
+  height: 32px;
+}
+
+.player-bar-playlist ul.hem-player-playlist-table-header div {
+  font-weight: 400;
+  font-size: 12px;
+  color: #666;
 }
 
 .player-bar-playlist li {
   position: relative;
   display: block;
   width: 100%;
-  height: 40px;
-  line-height: 40px;
+  height: 32px;
+  line-height: 32px;
   margin: 0;
   list-style-type: none;
   border-bottom: 1px solid #666;
@@ -191,6 +201,10 @@
   font-size: 13px;
   cursor: pointer;
   padding-left: 40px;
+}
+
+.player-bar-playlist ul:not(.hem-player-playlist-table-header) li:last-child {
+  border: 0;
 }
 
 .hem-player-playlist-line-active {
@@ -202,7 +216,7 @@
   top: 0;
   left: 0;
   width: 100vw;
-  height: 40px;
+  height: 32px;
   transform-origin: top left;
   border: 0;
   background: transparent;
@@ -212,9 +226,9 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 40px;
-  height: 40px;
-  transform: scale(0.7) translateX(-2px) translateY(-1px);
+  width: 32px;
+  height: 32px;
+  transform: scale(0.4) translateX(7px);
   transform-origin: center;
 }
 
@@ -228,20 +242,20 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
 }
 
 .player-bar-playlist li .hem-play-pause-button-playing .hem-play-pause-button-icon {
-  transform: scale(.5);
+  transform: scale(.3) translateX(10px);
 }
 
 .hem-player-playlist-line-text {
   position: absolute;
   top: 0;
-  left: 40px;
-  width: 100vw;
-  height: 40px;
+  left: 45px;
+  width: calc(100vw - 60px);
+  height: 32px;
   pointer-events: none;
 }
 
@@ -250,13 +264,32 @@
   width: 400px;
 }
 
-.hem-player-playlist-line-attribution,
-.hem-player-playlist-line-secondary-attribution {
+.hem-player-playlist-line-attribution {
   float: left;
   width: 300px;
   text-decoration: none;
   color: inherit;
   pointer-events: all;
+}
+
+.hem-player-playlist-line-secondary-attribution {
+  float: left;
+  width: 150px;
+  text-decoration: none;
+  color: inherit;
+  pointer-events: all;
+}
+
+.hem-player-playlist-line-share,
+.hem-player-playlist-line-date,
+.hem-player-playlist-line-duration {
+  float: right;
+  text-align: right;
+  width: 150px;
+}
+
+.hem-player-playlist-line-no-info {
+  color: #444;
 }
 
 .hem-player-playlist-tabs {

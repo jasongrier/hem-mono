@@ -49,6 +49,7 @@ function AdminList(): ReactElement {
 
   const [selectedItems, setSelectedItems] = useState<any>({})
   const [interestingProperty, setInterestingProperty] = useState<keyof IContentItem>('tags')
+  const [collapsed, setCollapsed] = useState<boolean>(true)
 
   const categoryFilterOnChange = useCallback(
     function categoryFilterOnChangeFn(evt: SyntheticEvent<HTMLSelectElement>) {
@@ -77,6 +78,12 @@ function AdminList(): ReactElement {
   const needsStickyOnChange = useCallback(
     function needsStickyOnChangeFn(evt: SyntheticEvent<HTMLInputElement>) {
       dispatch(toggleStickyFilter())
+    }, [],
+  )
+
+  const collapsedLayoutOnChange = useCallback(
+    function collapsedLayoutOnChangeFn(evt: SyntheticEvent<HTMLInputElement>) {
+      setCollapsed(!collapsed)
     }, [],
   )
 
@@ -209,6 +216,15 @@ function AdminList(): ReactElement {
               value={stickyFilter ? 'on' : 'off'}
             />
           </label>
+          <label htmlFor="collapsed-layout">
+            Collapse layout:&nbsp;
+            <input
+              onChange={collapsedLayoutOnChange}
+              name="collapsed-layout"
+              type="checkbox"
+              value={collapsed ? 'on' : 'off'}
+            />
+          </label>
         </div>
         <div className="admin-list-stats">
           Filtered items: <strong>{ unpaginatedItemCount }</strong>&nbsp;&nbsp;|&nbsp;&nbsp;
@@ -301,38 +317,52 @@ function AdminList(): ReactElement {
                     }}
                   />
                 </td>
-                <td className="admin-list-column-thumbnail">
-                  <Link to={`/admin/edit/${item.slug}`}>
-                    { hasCategory(item, 'assets')
-                      ? item.audioFilename.replace('/Volumes/April_Kepner/Eva_Vollmer/Disorganised/', '')
-                      : item.title + ' (' + item.slug + ')'
-                    }
-                  </Link>
-                  <br />
-                  <Link to={`/admin/edit/${item.slug}`}>
-                    { hasCategory(item, 'stock-photos') && (
-                      <img src={`${assetHost}/berlin-stock-photos/content/images/jpg-web/${item.keyArt}`} />
-                    )}
-                    { !hasCategory(item, 'stock-photos')
-                      && !hasCategory(item, 'assets')
-                      && (
-                        <img src={`${assetHost}/hem-rocks/content/images/key-art/${item.keyArt}`} />
-                    )}
-                    { hasCategory(item, 'tracks') && (
-                      <>
-                        <audio controls>
-                          {/* <source src={assetHostHostname() + '/hem-rocks/content/tracks/' + item.audioFilename} type="audio/mpeg" /> */}
-                          <source src={assetHostHostname() + item.audioFilename} />
-                        </audio>
-                        <br/>
-                        <small>{ item.audioFilename }</small>
-                        <hr/>
-                        <small>{ item.slug }</small>
-                      </>
-                    )}
-                  </Link>
-                  <br/>
-                </td>
+                { collapsed && (
+                  <td className="admin-list-column-thumbnail">
+                    <Link to={`/admin/edit/${item.slug}`}>{ item.title }</Link><br />
+                    <input
+                      type="text"
+                      value={item.slug}
+                      onClick={(evt: any) => {
+                        evt.target.select()
+                      }}
+                    />
+                  </td>
+                )}
+                { !collapsed && (
+                  <td className="admin-list-column-thumbnail">
+                    <Link to={`/admin/edit/${item.slug}`}>
+                      { hasCategory(item, 'assets')
+                        ? item.audioFilename.replace('/Volumes/April_Kepner/Eva_Vollmer/Disorganised/', '')
+                        : item.title + ' (' + item.slug + ')'
+                      }
+                    </Link>
+                    <br />
+                    <Link to={`/admin/edit/${item.slug}`}>
+                      { hasCategory(item, 'stock-photos') && (
+                        <img src={`${assetHost}/berlin-stock-photos/content/images/jpg-web/${item.keyArt}`} />
+                      )}
+                      { !hasCategory(item, 'stock-photos')
+                        && !hasCategory(item, 'assets')
+                        && !hasCategory(item, 'lists')
+                        && (
+                          <img src={`${assetHost}/hem-rocks/content/images/key-art/${item.keyArt}`} />
+                      )}
+                      { hasCategory(item, 'tracks') && (
+                        <>
+                          <audio controls>
+                            <source src={assetHostHostname() + '/hem-rocks/content/tracks/' + item.audioFilename} type="audio/mpeg" />
+                          </audio>
+                          <br/>
+                          <small>{ item.audioFilename }</small>
+                          <hr/>
+                          <small>{ item.slug }</small>
+                        </>
+                      )}
+                    </Link>
+                    <br/>
+                  </td>
+                )}
                 { !hasCategory(item, 'tracks') && (
                   <td className="admin-list-column-field">
                     <div>
@@ -344,11 +374,11 @@ function AdminList(): ReactElement {
 
                     <hr/>
 
-                    {/* { hasTag(item, 'albums') && (
+                    { hasTag(item, 'albums') && (
                       <pre>
                         { item.trackSlugs }
                       </pre>
-                    )} */}
+                    )}
                     { (hasTag(item, 'albums') || hasTag(item, 'discs')) && item.trackSlugs.split("\n").map(slug => (
                       <div key={uuid()}>
                         { getContentItemBySlug(allContentItems, slug) && (
@@ -371,158 +401,8 @@ function AdminList(): ReactElement {
                     ))}
                   </td>
                 )}
-                <td className="admin-list-column-actions">
-                  { (hasCategory(item, 'tracks') || hasTag(item, 'discs')) && (
-                    <>
-                      <form
-                        className="inline-edit-form first-inline-edit-form"
-                        onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
-                          evt.preventDefault()
-                          const input = evt.currentTarget.querySelector('input[name="title"]')
-                          if (!input) return
-                          const updatedItem: IContentItem = produce(item, (draftItem) => {
-                            // @ts-ignore
-                            draftItem.title = input.value
-                            // @ts-ignore
-                            draftItem.slug = slugify(input.value)
-                          })
-                          dispatch(requestUpdateItems([updatedItem]))
-                          // @ts-ignore
-                          input.value = ''
-                        }}
-                      >
-                        <label><span>Title:</span> <input type="text" name="title" placeholder={item.title} /></label>
-                        <button type="submit">Submit</button>
-                      </form>
-                      <form
-                        className="inline-edit-form"
-                        onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
-                          evt.preventDefault()
-                          const input = evt.currentTarget.querySelector('input[name="tags"]')
-                          if (!input) return
-                          const updatedItem: IContentItem = produce(item, (draftItem) => {
-                            // @ts-ignore
-                            draftItem.tags = draftItem.tags + ', ' + input.value
-                          })
-                          dispatch(requestUpdateItems([updatedItem]))
-                          // @ts-ignore
-                          input.value = ''
-                        }}
-                      >
-                        <label><span>Tags:</span> <input type="text" name="tags" placeholder={item.tags.replace(/^, /, '')} /></label>
-                        <button type="submit">Submit</button>
-                      </form>
-                      <form
-                        className="inline-edit-form last-inline-edit-form"
-                        onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
-                          evt.preventDefault()
-                          const input = evt.currentTarget.querySelector('input[name="attribution"]')
-                          if (!input) return
-                          const updatedItem: IContentItem = produce(item, (draftItem) => {
-                            // @ts-ignore
-                            draftItem.attribution = input.value
-                          })
-                          dispatch(requestUpdateItems([updatedItem]))
-                          // @ts-ignore
-                          input.value = ''
-                        }}
-                      >
-                        <label><span>Artist:</span> <input type="text" name="attribution" placeholder={item.attribution} /></label>
-                        <button type="submit">Submit</button>
-                      </form>
-                      <form
-                        className="inline-edit-form"
-                        onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
-                          evt.preventDefault()
-                          const input = evt.currentTarget.querySelector('input[name="secondary-attribution"]')
-                          if (!input) return
-                          const updatedItem: IContentItem = produce(item, (draftItem) => {
-                            // @ts-ignore
-                            draftItem.secondaryAttribution = input.value
-                          })
-                          dispatch(requestUpdateItems([updatedItem]))
-                          // @ts-ignore
-                          input.value = ''
-                        }}
-                      >
-                        <label><span>Album:</span> <input type="text" name="secondary-attribution" placeholder={item.secondaryAttribution} /></label>
-                        <button type="submit">Submit</button>
-                      </form>
-                      <form
-                        className="inline-edit-form last-inline-edit-form"
-                        onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
-                          evt.preventDefault()
-                          const input = evt.currentTarget.querySelector('input[name="slug"]')
-                          if (!input) return
-                          const updatedItem: IContentItem = produce(item, (draftItem) => {
-                            // @ts-ignore
-                            draftItem.slug = input.value
-                          })
-                          dispatch(requestUpdateItems([updatedItem]))
-                          // @ts-ignore
-                          input.value = ''
-                        }}
-                      >
-                        <label><span>Slug:</span> <input type="text" name="slug" placeholder={item.slug} /></label>
-                        <button type="submit">Submit</button>
-                      </form>
-                      <form
-                        className="inline-edit-form last-inline-edit-form"
-                        onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
-                          evt.preventDefault()
-                          const input = evt.currentTarget.querySelector('input[name="order"]')
-                          if (!input) return
-                          const updatedItem: IContentItem = produce(item, (draftItem) => {
-                            // @ts-ignore
-                            draftItem.order = input.value
-                          })
-                          dispatch(requestUpdateItems([updatedItem]))
-                          // @ts-ignore
-                          input.value = ''
-                        }}
-                      >
-                        <label><span>Order:</span> <input type="text" name="order" placeholder={item.order} /></label>
-                        <button type="submit">Submit</button>
-                      </form>
-                      <form
-                        className="inline-edit-form last-inline-edit-form"
-                        onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
-                          evt.preventDefault()
-                          const input = evt.currentTarget.querySelector('input[name="audio-filename"]')
-                          if (!input) return
-                          const updatedItem: IContentItem = produce(item, (draftItem) => {
-                            // @ts-ignore
-                            draftItem.audioFilename = input.value
-                          })
-                          dispatch(requestUpdateItems([updatedItem]))
-                          // @ts-ignore
-                          input.value = ''
-                        }}
-                      >
-                        <label><span>File:</span> <input type="text" name="audio-filename" placeholder={item.audioFilename} /></label>
-                        <button type="submit">Submit</button>
-                      </form>
-                      <form
-                        className="inline-edit-form last-inline-edit-form"
-                        onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
-                          evt.preventDefault()
-                          const input = evt.currentTarget.querySelector('input[name="key-art"]')
-                          if (!input) return
-                          const updatedItem: IContentItem = produce(item, (draftItem) => {
-                            // @ts-ignore
-                            draftItem.keyArt = input.value
-                          })
-                          dispatch(requestUpdateItems([updatedItem]))
-                          // @ts-ignore
-                          input.value = ''
-                        }}
-                      >
-                        <label><span>Key Art:</span> <input type="text" name="key-art" placeholder={item.keyArt} /></label>
-                        <button type="submit">Submit</button>
-                      </form>
-                    </>
-                  )}
-                  { !hasCategory(item, 'assets') && !hasCategory(item, 'tracks') && (
+                { collapsed && (
+                  <td className="admin-list-column-actions">
                     <button
                       className="action-button"
                       onClick={() => {
@@ -533,8 +413,6 @@ function AdminList(): ReactElement {
                     >
                       Delete
                     </button>
-                  )}
-                  { !hasCategory(item, 'assets') && (
                     <button
                       className="action-button"
                       onClick={() => {
@@ -546,110 +424,301 @@ function AdminList(): ReactElement {
                     >
                       { item.published ? 'Unpublish' : 'Publish' }
                     </button>
-                  )}
-                  { hasCategory(item, 'tracks') && (
-                    <button
-                      className="action-button"
-                      onClick={() => {
-                        const updatedItem: IContentItem = produce(item, (draftItem) => {
-                          draftItem.secondaryAttribution = 'Unknown Album'
-                        })
-                        dispatch(requestUpdateItems([updatedItem]))
-                      }}
-                    >
-                      Unknown
-                    </button>
-                  )}
-                  { !hasCategory(item, 'assets') && (
-                    <button
-                      className="action-button"
-                      onClick={() => {
-                        const updatedItem: IContentItem = produce(item, (draftItem) => {
-                          if (hasTag(item, 'done-for-now')) {
-                            draftItem.tags = draftItem.tags.replace(', done-for-now', '').replace('done-for-now', '')
-                          }
+                  </td>
+                )}
+                {!collapsed && (
+                  <td className="admin-list-column-actions">
+                    { (hasCategory(item, 'tracks') || hasTag(item, 'discs')) && (
+                      <>
+                        <form
+                          className="inline-edit-form first-inline-edit-form"
+                          onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
+                            evt.preventDefault()
+                            const input = evt.currentTarget.querySelector('input[name="title"]')
+                            if (!input) return
+                            const updatedItem: IContentItem = produce(item, (draftItem) => {
+                              // @ts-ignore
+                              draftItem.title = input.value
+                              // @ts-ignore
+                              draftItem.slug = slugify(input.value)
+                            })
+                            dispatch(requestUpdateItems([updatedItem]))
+                            // @ts-ignore
+                            input.value = ''
+                          }}
+                        >
+                          <label><span>Title:</span> <input type="text" name="title" placeholder={item.title} /></label>
+                          <button type="submit">Submit</button>
+                        </form>
+                        <form
+                          className="inline-edit-form"
+                          onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
+                            evt.preventDefault()
+                            const input = evt.currentTarget.querySelector('input[name="tags"]')
+                            if (!input) return
+                            const updatedItem: IContentItem = produce(item, (draftItem) => {
+                              // @ts-ignore
+                              draftItem.tags = draftItem.tags + ', ' + input.value
+                            })
+                            dispatch(requestUpdateItems([updatedItem]))
+                            // @ts-ignore
+                            input.value = ''
+                          }}
+                        >
+                          <label><span>Tags:</span> <input type="text" name="tags" placeholder={item.tags.replace(/^, /, '')} /></label>
+                          <button type="submit">Submit</button>
+                        </form>
+                        <form
+                          className="inline-edit-form last-inline-edit-form"
+                          onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
+                            evt.preventDefault()
+                            const input = evt.currentTarget.querySelector('input[name="attribution"]')
+                            if (!input) return
+                            const updatedItem: IContentItem = produce(item, (draftItem) => {
+                              // @ts-ignore
+                              draftItem.attribution = input.value
+                            })
+                            dispatch(requestUpdateItems([updatedItem]))
+                            // @ts-ignore
+                            input.value = ''
+                          }}
+                        >
+                          <label><span>Artist:</span> <input type="text" name="attribution" placeholder={item.attribution} /></label>
+                          <button type="submit">Submit</button>
+                        </form>
+                        <form
+                          className="inline-edit-form"
+                          onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
+                            evt.preventDefault()
+                            const input = evt.currentTarget.querySelector('input[name="secondary-attribution"]')
+                            if (!input) return
+                            const updatedItem: IContentItem = produce(item, (draftItem) => {
+                              // @ts-ignore
+                              draftItem.secondaryAttribution = input.value
+                            })
+                            dispatch(requestUpdateItems([updatedItem]))
+                            // @ts-ignore
+                            input.value = ''
+                          }}
+                        >
+                          <label><span>Album:</span> <input type="text" name="secondary-attribution" placeholder={item.secondaryAttribution} /></label>
+                          <button type="submit">Submit</button>
+                        </form>
+                        <form
+                          className="inline-edit-form last-inline-edit-form"
+                          onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
+                            evt.preventDefault()
+                            const input = evt.currentTarget.querySelector('input[name="slug"]')
+                            if (!input) return
+                            const updatedItem: IContentItem = produce(item, (draftItem) => {
+                              // @ts-ignore
+                              draftItem.slug = input.value
+                            })
+                            dispatch(requestUpdateItems([updatedItem]))
+                            // @ts-ignore
+                            input.value = ''
+                          }}
+                        >
+                          <label><span>Slug:</span> <input type="text" name="slug" placeholder={item.slug} /></label>
+                          <button type="submit">Submit</button>
+                        </form>
+                        <form
+                          className="inline-edit-form last-inline-edit-form"
+                          onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
+                            evt.preventDefault()
+                            const input = evt.currentTarget.querySelector('input[name="order"]')
+                            if (!input) return
+                            const updatedItem: IContentItem = produce(item, (draftItem) => {
+                              // @ts-ignore
+                              draftItem.order = input.value
+                            })
+                            dispatch(requestUpdateItems([updatedItem]))
+                            // @ts-ignore
+                            input.value = ''
+                          }}
+                        >
+                          <label><span>Order:</span> <input type="text" name="order" placeholder={item.order} /></label>
+                          <button type="submit">Submit</button>
+                        </form>
+                        <form
+                          className="inline-edit-form last-inline-edit-form"
+                          onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
+                            evt.preventDefault()
+                            const input = evt.currentTarget.querySelector('input[name="audio-filename"]')
+                            if (!input) return
+                            const updatedItem: IContentItem = produce(item, (draftItem) => {
+                              // @ts-ignore
+                              draftItem.audioFilename = input.value
+                            })
+                            dispatch(requestUpdateItems([updatedItem]))
+                            // @ts-ignore
+                            input.value = ''
+                          }}
+                        >
+                          <label><span>File:</span> <input type="text" name="audio-filename" placeholder={item.audioFilename} /></label>
+                          <button type="submit">Submit</button>
+                        </form>
+                        <form
+                          className="inline-edit-form last-inline-edit-form"
+                          onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
+                            evt.preventDefault()
+                            const input = evt.currentTarget.querySelector('input[name="key-art"]')
+                            if (!input) return
+                            const updatedItem: IContentItem = produce(item, (draftItem) => {
+                              // @ts-ignore
+                              draftItem.keyArt = input.value
+                            })
+                            dispatch(requestUpdateItems([updatedItem]))
+                            // @ts-ignore
+                            input.value = ''
+                          }}
+                        >
+                          <label><span>Key Art:</span> <input type="text" name="key-art" placeholder={item.keyArt} /></label>
+                          <button type="submit">Submit</button>
+                        </form>
+                      </>
+                    )}
+                    { !hasCategory(item, 'assets') && !hasCategory(item, 'tracks') && (
+                      <button
+                        className="action-button"
+                        onClick={() => {
+                          const confirmation = confirm('Are you sure?')
+                          if (!confirmation) return
+                          dispatch(requestDeleteItems([item.slug]))
+                        }}
+                      >
+                        Delete
+                      </button>
+                    )}
+                    { !hasCategory(item, 'assets') && (
+                      <button
+                        className="action-button"
+                        onClick={() => {
+                          const updatedItem: IContentItem = produce(item, (draftItem) => {
+                            draftItem.published = !draftItem.published
+                          })
+                          dispatch(requestUpdateItems([updatedItem]))
+                        }}
+                      >
+                        { item.published ? 'Unpublish' : 'Publish' }
+                      </button>
+                    )}
+                    { hasCategory(item, 'tracks') && (
+                      <button
+                        className="action-button"
+                        onClick={() => {
+                          const updatedItem: IContentItem = produce(item, (draftItem) => {
+                            draftItem.secondaryAttribution = 'Unknown Album'
+                          })
+                          dispatch(requestUpdateItems([updatedItem]))
+                        }}
+                      >
+                        Unknown
+                      </button>
+                    )}
+                    { !hasCategory(item, 'assets')
+                      && !hasCategory(item, 'lists')
+                      && (
+                        <button
+                          className="action-button"
+                          onClick={() => {
+                            const updatedItem: IContentItem = produce(item, (draftItem) => {
+                              if (hasTag(item, 'done-for-now')) {
+                                draftItem.tags = draftItem.tags.replace(', done-for-now', '').replace('done-for-now', '')
+                              }
 
-                          else {
-                            draftItem.tags = draftItem.tags + ', done-for-now'
-                          }
-                        })
-                        dispatch(requestUpdateItems([updatedItem]))
-                      }}
-                    >
-                      { hasTag(item, 'done-for-now') ? 'Un-done page' : 'Done' }
-                    </button>
-                  )}
-                  { !hasCategory(item, 'assets') && (
-                    <button
-                      className="action-button"
-                      onClick={() => {
-                        const updatedItem: IContentItem = produce(item, (draftItem) => {
-                          if (hasTag(item, 'label-page')) {
-                            draftItem.tags = draftItem.tags.replace(', label-page', '').replace('label-page', '')
-                          }
+                              else {
+                                draftItem.tags = draftItem.tags + ', done-for-now'
+                              }
+                            })
+                            dispatch(requestUpdateItems([updatedItem]))
+                          }}
+                        >
+                          { hasTag(item, 'done-for-now') ? 'Un-done page' : 'Done' }
+                        </button>
+                    )}
+                    { !hasCategory(item, 'assets')
+                      && !hasCategory(item, 'lists')
+                      && (
+                        <button
+                          className="action-button"
+                          onClick={() => {
+                            const updatedItem: IContentItem = produce(item, (draftItem) => {
+                              if (hasTag(item, 'label-page')) {
+                                draftItem.tags = draftItem.tags.replace(', label-page', '').replace('label-page', '')
+                              }
 
-                          else {
-                            draftItem.tags = draftItem.tags + ', label-page'
-                          }
-                        })
-                        dispatch(requestUpdateItems([updatedItem]))
-                      }}
-                    >
-                      { hasTag(item, 'label-page') ? 'Un-label page' : 'Label Page' }
-                    </button>
-                  )}
-                  { !hasCategory(item, 'assets') && !hasCategory(item, 'tracks') && (
-                    <button
-                      className="action-button"
-                      onClick={() => {
-                        const updatedItem: IContentItem = produce(item, (draftItem) => {
-                          draftItem.sticky = !draftItem.sticky
-                        })
-                        dispatch(requestUpdateItems([updatedItem]))
-                      }}
-                    >
-                      { item.sticky ? 'Unsticky' : 'Sticky' }
-                    </button>
-                  )}
-                  { !hasCategory(item, 'assets') && !hasCategory(item, 'tracks') && (
-                    <button
-                      className="action-button"
-                      onClick={() => {
-                        const updatedItem: IContentItem = produce(item, (draftItem) => {
-                          if (hasTag(item, 'best-of')) {
-                            draftItem.tags = draftItem.tags.replace(', best-of', '').replace('best-of', '')
-                          }
+                              else {
+                                draftItem.tags = draftItem.tags + ', label-page'
+                              }
+                            })
+                            dispatch(requestUpdateItems([updatedItem]))
+                          }}
+                        >
+                          { hasTag(item, 'label-page') ? 'Un-label page' : 'Label Page' }
+                        </button>
+                    )}
+                    { !hasCategory(item, 'assets')
+                      && !hasCategory(item, 'tracks')
+                      && !hasCategory(item, 'lists')
+                      && (
+                        <button
+                          className="action-button"
+                          onClick={() => {
+                            const updatedItem: IContentItem = produce(item, (draftItem) => {
+                              draftItem.sticky = !draftItem.sticky
+                            })
+                            dispatch(requestUpdateItems([updatedItem]))
+                          }}
+                        >
+                          { item.sticky ? 'Unsticky' : 'Sticky' }
+                        </button>
+                    )}
+                    { !hasCategory(item, 'assets')
+                      && !hasCategory(item, 'tracks')
+                      && !hasCategory(item, 'lists')
+                      && (
+                        <button
+                          className="action-button"
+                          onClick={() => {
+                            const updatedItem: IContentItem = produce(item, (draftItem) => {
+                              if (hasTag(item, 'best-of')) {
+                                draftItem.tags = draftItem.tags.replace(', best-of', '').replace('best-of', '')
+                              }
 
-                          else {
-                            draftItem.tags = draftItem.tags + ', best-of'
-                          }
-                        })
-                        dispatch(requestUpdateItems([updatedItem]))
-                      }}
-                    >
-                      { hasTag(item, 'best-of') ? 'Un-best' : 'Best' }
-                    </button>
-                  )}
-                  { hasCategory(item, 'label') && (
-                    <button
-                      className="action-button"
-                      onClick={() => {
-                        const updatedItem: IContentItem = produce(item, (draftItem) => {
-                          if (hasTag(item, 'label-page')) {
-                            draftItem.tags = draftItem.tags.replace(', label-page', '').replace('label-page', '')
-                          }
+                              else {
+                                draftItem.tags = draftItem.tags + ', best-of'
+                              }
+                            })
+                            dispatch(requestUpdateItems([updatedItem]))
+                          }}
+                        >
+                          { hasTag(item, 'best-of') ? 'Un-best' : 'Best' }
+                        </button>
+                    )}
+                    { hasCategory(item, 'label')
+                      && hasCategory(item, 'lists')
+                      && (
+                        <button
+                          className="action-button"
+                          onClick={() => {
+                            const updatedItem: IContentItem = produce(item, (draftItem) => {
+                              if (hasTag(item, 'label-page')) {
+                                draftItem.tags = draftItem.tags.replace(', label-page', '').replace('label-page', '')
+                              }
 
-                          else {
-                            draftItem.tags = draftItem.tags + ', label-page'
-                          }
-                        })
-                        dispatch(requestUpdateItems([updatedItem]))
-                      }}
-                    >
-                      { hasTag(item, 'label-page') ? 'Un-label page' : 'Label page' }
-                    </button>
-                  )}
-                </td>
+                              else {
+                                draftItem.tags = draftItem.tags + ', label-page'
+                              }
+                            })
+                            dispatch(requestUpdateItems([updatedItem]))
+                          }}
+                        >
+                          { hasTag(item, 'label-page') ? 'Un-label page' : 'Label page' }
+                        </button>
+                    )}
+                  </td>
+                )}
               </tr>
             ))}
           </tbody>

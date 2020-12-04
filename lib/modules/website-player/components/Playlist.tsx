@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import ReactGA from 'react-ga'
-import { findIndex } from 'lodash'
+import { findIndex, isEmpty } from 'lodash'
 import { PlayPauseButton as BasePlayPauseButton, CloseButton } from '../../../packages/hem-buttons'
 import { ITrack, IPlaylist, setPlayerPlaylist } from '../index'
 import TrackPlayPauseButton from './TrackPlayPauseButton'
@@ -55,61 +55,94 @@ function Playlist({ onCollapse }: IProps): ReactElement {
         </div>
       </div>
       { currentPlaylist && currentPlaylist.tracks.length > 0 && (
-        <ul>
-          <Scrollbars noScrollX={true}>
-            { currentPlaylist.tracks.map((track: ITrack) => (
-              <li
-                key={track.id}
-                className={`
-                  clearfix
-                  ${(playing && currentTrack && track.id === currentTrack.id) ? 'hem-player-playlist-line-active' : ''}
-                `}
-              >
-                <TrackPlayPauseButton
-                  onClick={(playing) => {
-                    if (playing) return
-                    ReactGA.event({
-                      category: 'User',
-                      action: 'Started track from playlist: ' + track.title + '.',
-                    })
-                  }}
-                  track={track}
-                />
-                <div className="hem-player-playlist-line-text">
-                  <div className="hem-player-playlist-line-title">
-                    { track.title }
+        <>
+          <ul className="hem-player-playlist-table-header">
+            <li>
+              <div className="hem-player-playlist-line-text">
+                <div className="hem-player-playlist-line-title">Title</div>
+                <div className="hem-player-playlist-line-attribution">By</div>
+                <div className="hem-player-playlist-line-secondary-attribution">From</div>
+                <div className="hem-player-playlist-line-duration">Time</div>
+                <div className="hem-player-playlist-line-date">Year</div>
+                <div className="hem-player-playlist-line-share">Share</div>
+              </div>
+            </li>
+          </ul>
+          <ul>
+            <Scrollbars noScrollX={true}>
+              { currentPlaylist.tracks.map((track: ITrack) => (
+                <li
+                  key={track.id}
+                  className={`
+                    clearfix
+                    ${(playing && currentTrack && track.id === currentTrack.id) ? 'hem-player-playlist-line-active' : ''}
+                  `}
+                >
+                  <TrackPlayPauseButton
+                    onClick={(playing) => {
+                      if (playing) return
+                      ReactGA.event({
+                        category: 'User',
+                        action: 'Started track from playlist: ' + track.title + '.',
+                      })
+                    }}
+                    track={track}
+                  />
+                  <div className="hem-player-playlist-line-text">
+                    <div className="hem-player-playlist-line-title">
+                      { track.title }
+                    </div>
+                    { !isEmpty(track.attribution) && (
+                      <span onClick={() => {
+                        ReactGA.event({
+                          category: 'User',
+                          action: 'Clicked on track attribution in playlist: ' + track.title + ', ' + track.attribution + '.',
+                        })
+                      }}>
+                        <Link
+                          className="hem-player-playlist-line-attribution"
+                          to={ track.attributionLink }
+                        >
+                          { track.attribution }
+                        </Link>
+                      </span>
+                    )}
+                    { isEmpty(track.attribution) && (
+                      <span className="hem-player-playlist-line-no-info">&mdash;</span>
+                    )}
+                    { !isEmpty(track.secondaryAttribution) && (
+                      <span onClick={() => {
+                        ReactGA.event({
+                          category: 'User',
+                          action: 'Clicked on track secondary attribution in playlist: ' + track.title + ', ' + track.secondaryAttribution + '.',
+                        })
+                      }}>
+                        <Link
+                          className="hem-player-playlist-line-secondary-attribution"
+                          to={ track.secondaryAttributionLink }
+                        >
+                          { track.secondaryAttribution }
+                        </Link>
+                      </span>
+                    )}
+                    { isEmpty(track.secondaryAttribution) && (
+                      <span className="hem-player-playlist-line-no-info">&mdash;</span>
+                    )}
+                    <div className="hem-player-playlist-line-duration">
+                      { track.duration }
+                    </div>
+                    <div className="hem-player-playlist-line-date">
+                      { track.date }
+                    </div>
+                    <div className="hem-player-playlist-line-share">
+                      Share
+                    </div>
                   </div>
-                  <span onClick={() => {
-                    ReactGA.event({
-                      category: 'User',
-                      action: 'Clicked on track attribution in playlist: ' + track.title + ', ' + track.attribution + '.',
-                    })
-                  }}>
-                    <Link
-                      className="hem-player-playlist-line-attribution"
-                      to={ track.attributionLink }
-                    >
-                      { track.attribution }
-                    </Link>
-                  </span>
-                  <span onClick={() => {
-                    ReactGA.event({
-                      category: 'User',
-                      action: 'Clicked on track secondary attribution in playlist: ' + track.title + ', ' + track.secondaryAttribution + '.',
-                    })
-                  }}>
-                    <Link
-                      className="hem-player-playlist-line-secondary-attribution"
-                      to={ track.secondaryAttributionLink }
-                    >
-                      { track.secondaryAttribution }
-                    </Link>
-                  </span>
-                </div>
-              </li>
-            ))}
-          </Scrollbars>
-        </ul>
+                </li>
+              ))}
+            </Scrollbars>
+          </ul>
+        </>
       )}
       { currentPlaylist && currentPlaylist.tracks.length < 1 && (
         <div className="hem-player-playlist-tab-empty">

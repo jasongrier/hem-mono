@@ -11,12 +11,10 @@ function SiteFooter(): ReactElement {
     function handleIntersection(entries) {
       entries.map(entry => {
         if (entry.isIntersecting) {
-          console.log(1)
           document.body.classList.add('footer-is-in-view')
         }
 
         else {
-          console.log(2)
           document.body.classList.remove('footer-is-in-view')
         }
       })
@@ -49,6 +47,7 @@ function SiteFooter(): ReactElement {
           </div>
           <div className="site-footer-content-column">
             <ul>
+              <li><Link to="/apps">Apps</Link></li>
               <li><a href="">Video</a></li>
               <li><a href="">Press Releases</a></li>
               <li><a href="">Press Clippings</a></li>
