@@ -194,9 +194,9 @@
   background: #000;
 }
 
-.with-popup-open .main-content-filters {
+/* .with-popup-open .main-content-filters {
   position: fixed;
-}
+} */
 
 .page-with-subnav .main-content-filters {
   top: 80px;

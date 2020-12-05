@@ -140,6 +140,17 @@ function Playlist({ onCollapse }: IProps): ReactElement {
                   </div>
                 </li>
               ))}
+              { currentPlaylist.linkTo && (
+                <li onClick={onCollapse}>
+                  <div className="hem-player-playlist-line-text">
+                    <div className="hem-player-playlist-line-title hem-player-playlist-line-more-link">
+                      <Link to={currentPlaylist.linkTo}>
+                        See all&hellip;
+                      </Link>
+                    </div>
+                  </div>
+                </li>
+              )}
             </Scrollbars>
           </ul>
         </>

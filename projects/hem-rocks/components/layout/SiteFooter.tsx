@@ -22,9 +22,6 @@ function SiteFooter(): ReactElement {
 
     const observer = new IntersectionObserver(handleIntersection)
     observer.observe(el.current)
-
-    console.log(el.current)
-
   }, [])
 
   return (
@@ -48,6 +45,7 @@ function SiteFooter(): ReactElement {
           <div className="site-footer-content-column">
             <ul>
               <li><Link to="/apps">Apps</Link></li>
+              <li><Link to="/recipes">Recipes</Link></li>
               <li><a href="">Video</a></li>
               <li><a href="">Press Releases</a></li>
               <li><a href="">Press Clippings</a></li>

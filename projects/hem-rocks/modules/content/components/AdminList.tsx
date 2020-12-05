@@ -151,6 +151,7 @@ function AdminList(): ReactElement {
               <option value="mix">Mixes</option>
               <option value="press">Press</option>
               <option value="press-kits">Press Kits</option>
+              <option value="recipes">Recipes</option>
               <option value="reminders">Reminders</option>
               <option value="sound-library">Sound Library</option>
               <option value="tracks">Tracks</option>

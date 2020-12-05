@@ -13,6 +13,7 @@ import {
   Mixes,
   Press,
   PressKits,
+  Recipes,
   SoundLibrary,
   Tracks,
   Tutorials,
@@ -156,6 +157,10 @@ function RoutingHub(): ReactElement {
         <Route exact path="/press-kits/:contentItemSlug?/:filter?" component={PressKits} />
         <Route exact path="/press-kits/filter/:filter" component={PressKits} />
         <Route exact path="/press-kits/cart/:filter?" component={PressKits} />
+
+        <Route exact path="/recipes/:contentItemSlug?/:filter?" component={Recipes} />
+        <Route exact path="/recipes/filter/:filter" component={Recipes} />
+        <Route exact path="/recipes/cart/:filter?" component={Recipes} />
 
         <Route exact path="/sound-library/:contentItemSlug?/:filter?" component={SoundLibrary} />
         <Route exact path="/sound-library/filter/:filter" component={SoundLibrary} />
