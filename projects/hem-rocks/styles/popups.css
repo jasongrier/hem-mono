@@ -7,7 +7,6 @@
   z-index: 99999;
   background-color: rgba(0, 0, 0, 0.6);
   opacity: 0;
-  /* transition: opacity 100ms; */
   pointer-events: none;
 }
 
@@ -54,4 +53,11 @@
   right: -10px;
   z-index: 9999;
   font-size: 0;
+}
+
+.scroll-lock-container {
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }

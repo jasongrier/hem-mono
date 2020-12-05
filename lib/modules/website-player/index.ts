@@ -25,6 +25,7 @@ export interface IPlaylist {
   tracks: ITrack[]
 
   component?: any
+  linkTo?: string
 }
 
 export const emptyPlaylist: IPlaylist = {

@@ -30,18 +30,6 @@ function PopupContainer({
   const [locked, setLocked] = useState<boolean>(false)
   const [previousScrollY, setPreviousScrollY] = useState<number>()
 
-  useEffect(function initBodyLock() {
-    $('.scroll-lock-container').css({
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      overflow: 'scroll',
-      width: '100vw',
-      height: '100vh',
-      overflowX: 'hidden',
-    })
-  }, [])
-
   useEffect(function captureEscapeKey() {
     function bodyOnKeyDown(evt: any) {
       if (
@@ -74,7 +62,7 @@ function PopupContainer({
       })
 
       $('.scroll-lock-content').css({
-        marginTop: `-${scrollY}px`,
+        transform: `translateY(-${scrollY}px)`,
       })
     }
 
@@ -88,7 +76,7 @@ function PopupContainer({
       })
 
       $('.scroll-lock-content').css({
-        marginTop: 0,
+        transform: 'translateY(0)',
       })
     }
   }, [currentlyOpenPopUp, locked])

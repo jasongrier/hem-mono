@@ -2,6 +2,7 @@ import React, { ReactElement, useEffect, useState } from 'react'
 import { useLocation, useHistory, Redirect } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { compact, find, isArray, map, noop } from 'lodash'
+import $ from 'jquery'
 import ReactGA from 'react-ga'
 import Cookies from 'js-cookie'
 import { slugify } from 'voca'
@@ -156,25 +157,38 @@ function App(): ReactElement {
     )
 
     const curatedPlaylists = [
-      'Player Featured',
-      'Player Rare',
-      'Player Live',
-      'Player Radio',
-      'Player Sound Library',
-      'Player Releases',
+      {
+        name: 'Player Featured',
+        linkTo: '/tracks/filter/featured',
+      },
+      {
+        name: 'Player Rare',
+        linkTo: '/tracks/filter/rare',
+      },
+      {
+        name: 'Player Live',
+        linkTo: '/tracks/filter/live',
+      },
+      // {
+      //   name: 'Player Radio',
+      //   linkTo: '/tracks/filter/radio',
+      // },
+      {
+        name: 'Player Sound Library',
+        linkTo: '/sound-library',
+      },
+      {
+        name: 'Player Releases',
+        linkTo: '/label',
+      },
     ]
 
-    curatedPlaylists.forEach((name, i) => {
+    curatedPlaylists.forEach(({ name, linkTo }, i) => {
       const trackContentItems: IContentItem[] = getContentItemsFromList(contentItems, slugify(name))
-
-      console.log(name)
-      console.log(trackContentItems)
-      console.log('=======')
-
       const tracks = trackContentItems.map(item =>
         contentItemToTrack(item)
       )
-      dispatch(replacePlaylist(i, { name: name.replace('Player ', ''), tracks }))
+      dispatch(replacePlaylist(i, { name: name.replace('Player ', ''), tracks, linkTo }))
     })
 
     dispatch(setPlayerPlaylist(0))
@@ -347,7 +361,7 @@ function App(): ReactElement {
       ${ pathname.includes('admin') ? 'is-admin' : '' }
     `}>
       <>
-        <ScrollToTop scrollPaneSelector=".scroll-lock-content" />
+        <ScrollToTop scrollPaneSelector=".scroll-lock-container" />
 
         { !BERLIN_STOCK_PHOTOS && (
           <TopBar />

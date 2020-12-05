@@ -12,25 +12,31 @@ function ScrollToTop({ scrollPaneSelector }: IProps): ReactElement {
   useEffect(() => {
     const forPaths = [
       '/',
+      '/admin/list',
+      '/contact',
+      '/cookies-policy',
+      '/internal',
+      '/label',
+      '/mailing-list',
+      '/press-kits',
+      '/press',
+      '/privacy-policy',
+      '/react-consulting',
+      '/recipes',
       '/sound-library',
       '/sound-library/about',
       '/sound-library/made-with-sl',
-      '/internal',
-      '/label',
-      '/tracks',
-      '/press',
-      '/mailing-list',
-      '/contact',
       '/support',
-      '/press-kits',
-      '/privacy-policy',
-      '/cookies-policy',
-      '/react-consulting',
+      '/tracks',
     ]
 
-    if (forPaths.includes(pathname)) {
+    console.log('??')
+
+    if (
+      forPaths.includes(pathname)
+      && $(scrollPaneSelector).scrollTop() !== undefined
+    ) {
       $(scrollPaneSelector).scrollTop(0)
-      console.log($(scrollPaneSelector).scrollTop())
     }
 
     else {

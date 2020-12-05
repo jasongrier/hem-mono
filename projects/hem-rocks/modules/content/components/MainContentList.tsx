@@ -268,7 +268,7 @@ function MainContentList({
             { blurb() }
           </div>
       )}
-      <div
+      {/* <div
         hidden
         className={`
           main-content-highlights clearfix
@@ -284,7 +284,7 @@ function MainContentList({
             />
           ))
         )}
-      </div>
+      </div> */}
       { finalFilters.length > 1 && (
         <div className="main-content-filters clearfix">
           <div className="main-content-filters-inner">
