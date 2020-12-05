@@ -13,7 +13,7 @@ import { ProtectedContent } from '../../login'
 import { CampaignMonitorForm, ElectronNot, ScrollToTop, NagToaster, Spinner, Toaster, ElectronOnly } from '../../../../../lib/components'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup, closePopup } from '../../../../../lib/modules/popups'
-import { PlayerBar, setPlayerPlaylist, replacePlaylist, setPlayerInstance, setPlayerPlaylistExpanded, setPlayerExpanded, Albums, IAlbum, ITrack } from '../../../../../lib/modules/website-player'
+import { PlayerBar, setPlayerPlaylist, replacePlaylist, setPlayerInstance, setPlayerPlaylistExpanded, setPlayerExpanded, Albums, IAlbum, ITrack, setPlayerMessage } from '../../../../../lib/modules/website-player'
 import { usePrevious } from '../../../../../lib/hooks'
 import { collapseTopBar, expandTopBar, getCookieName } from '../index'
 import { SiteFooter, TopBar } from '../../../components/layout'
@@ -35,6 +35,7 @@ function App(): ReactElement {
     currentContentItem,
 
     playerError,
+    playerMessage,
 
     currentlyOpenPopUp,
   } = useSelector((state: RootState) => ({
@@ -45,6 +46,7 @@ function App(): ReactElement {
     currentContentItem: state.content.currentContentItem,
 
     playerError: state.player.error,
+    playerMessage: state.player.message,
 
     currentlyOpenPopUp: state.popups.currentlyOpenPopUp,
   }))
@@ -457,6 +459,15 @@ function App(): ReactElement {
 
       { playerError && (
         <Toaster message={ playerError } />
+      )}
+      { playerMessage && (
+        <Toaster
+          className="player-message"
+          message={ playerMessage }
+          delay={false}
+          delayAfterClick={1000}
+          onClose={() => dispatch(setPlayerMessage(null))}
+        />
       )}
     </div>
   )

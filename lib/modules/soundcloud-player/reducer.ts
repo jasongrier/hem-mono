@@ -12,6 +12,7 @@ import {
   SEEK_PLAYER,
   SET_PLAYER_ERROR,
   SET_PLAYER_ACTUALLY_PLAYING,
+  SET_PLAYER_MESSAGE,
   SET_PLAYER_PLAYLIST,
   TRACK_ENDED,
   UNMUTE_PLAYER,
@@ -26,6 +27,7 @@ const initialState: IState = {
   currentPlaylist: null,
   error: null,
   inited: false,
+  message: null,
   muted: true,
   playing: false,
   playlists: [],
@@ -94,6 +96,12 @@ const reducer = (
     case SET_PLAYER_ACTUALLY_PLAYING: {
       return produce(state, draftState => {
         draftState.actuallyPlaying = payload
+      })
+    }
+
+    case SET_PLAYER_MESSAGE: {
+      return produce(state, draftState => {
+        draftState.message = payload
       })
     }
 

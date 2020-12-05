@@ -15,6 +15,7 @@ export interface ITrack {
   secret: string
   secondaryAttribution: string
   secondaryAttributionLink: string
+  slug: string
   title: string
   titleLink: string
 }
@@ -49,6 +50,7 @@ export interface IState {
   error: string | null
   expanded: boolean
   inited: boolean
+  message: string | null
   muted: boolean
   playing: boolean
   playlistExpanded: boolean
@@ -65,6 +67,7 @@ export const SEEK_PLAYER = 'SEEK_PLAYER'
 export const SET_PLAYER_ACTUALLY_PLAYING = 'SET_PLAYER_ACTUALLY_PLAYING'
 export const SET_PLAYER_ALREADY_OPENED = 'SET_PLAYER_ALREADY_OPENED'
 export const SET_PLAYER_ERROR = 'SET_PLAYER_ERROR'
+export const SET_PLAYER_MESSAGE = 'SET_PLAYER_MESSAGE'
 export const SET_PLAYER_EXPANDED = 'SET_PLAYER_EXPANDED'
 export const SET_PLAYER_INSTANCE = 'SET_PLAYER_INSTANCE'
 export const SET_PLAYER_PLAYLIST = 'SET_PLAYER_PLAYLIST'
@@ -118,6 +121,11 @@ export interface ISetPlayerError extends AnyAction {
   payload: string | null
 }
 
+export interface ISetPlayerMessage extends AnyAction {
+  type: typeof SET_PLAYER_MESSAGE
+  payload: string | null
+}
+
 export interface ISetPlayerExpanded extends AnyAction {
   type: typeof SET_PLAYER_EXPANDED
   payload: boolean
@@ -164,6 +172,7 @@ export type Action =
   | ISetPlayerActuallyPlaying
   | ISetPlayerAlreadyOpened
   | ISetPlayerError
+  | ISetPlayerMessage
   | ISetPlayerExpanded
   | ISetPlayerInstance
   | ISetPlayerPlaylist
@@ -182,6 +191,7 @@ export {
   setPlayerActuallyPlaying,
   setPlayerAlreadyOpened,
   setPlayerError,
+  setPlayerMessage,
   setPlayerExpanded,
   setPlayerInstance,
   setPlayerPlaylist,

@@ -16,6 +16,7 @@ function contentItemToTrack(contentItem: IContentItem): ITrack {
     secondaryAttribution: contentItem.secondaryAttribution,
     secondaryAttributionLink: contentItem.secondaryAttributionLink,
     secret: '',
+    slug: contentItem.slug,
     title: contentItem.title,
     titleLink: hasTag(contentItem, 'attachment') ? contentItem.relatedContentLink : `tracks#${contentItem.slug}`,
   }
