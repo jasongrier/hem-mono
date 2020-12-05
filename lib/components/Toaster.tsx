@@ -3,10 +3,13 @@ import React, { ReactElement, useEffect, useState, PropsWithChildren, useCallbac
 interface IProps {
   message: string
 
-  delay?: number
+  className?: string
+  delay?: number | false
+  delayAfterClick?: number
+  onClose?: () => void
 }
 
-function Toaster({ message, delay = 3000 }: IProps): ReactElement {
+function Toaster({ message, onClose, className, delay = 3000, delayAfterClick = 0 }: IProps): ReactElement {
   const [open, setOpen] = useState<boolean>(false)
   const [timeoutId, setTimeoutId] = useState<number>()
 
@@ -20,25 +23,33 @@ function Toaster({ message, delay = 3000 }: IProps): ReactElement {
 
   const toasterOnClick = useCallback(
     function toasterOnClickFn() {
-      window.clearTimeout(timeoutId)
-      setOpen(false)
-      setTimeoutId(undefined)
+      setTimeout(function() {
+        if (timeoutId) {
+          window.clearTimeout(timeoutId)
+        }
+        setOpen(false)
+        setTimeoutId(undefined)
+        onClose && onClose()
+      }, delayAfterClick)
     }, [],
   )
 
   function openToaster() {
-    const newTimeoutId = window.setTimeout(function closeAfterDelay() {
-      setOpen(false)
-    }, delay)
+    if (delay) {
+      const newTimeoutId = window.setTimeout(function closeAfterDelay() {
+        setOpen(false)
+      }, delay)
+      setTimeoutId(newTimeoutId)
+    }
 
     setOpen(true)
-    setTimeoutId(newTimeoutId)
   }
 
   return (
     <div
       className={`
         hem-toaster
+        ${ className ? className : '' }
         ${ open ? 'hem-toaster-open' : '' }
       `}
       onClick={toasterOnClick}

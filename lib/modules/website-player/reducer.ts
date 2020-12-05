@@ -13,6 +13,7 @@ import {
   SET_PLAYER_ALREADY_OPENED,
   SET_PLAYER_ERROR,
   SET_PLAYER_EXPANDED,
+  SET_PLAYER_MESSAGE,
   SET_PLAYER_INSTANCE,
   SET_PLAYER_PLAYLIST_EXPANDED,
   SET_PLAYER_PLAYLIST,
@@ -32,6 +33,7 @@ const initialState: IState = {
   error: null,
   expanded: false,
   inited: false,
+  message: null,
   muted: true,
   playing: false,
   playlistExpanded: false,
@@ -101,6 +103,12 @@ const reducer = (
         if (draftState.error) {
           draftState.currentTrack = null
         }
+      })
+    }
+
+    case SET_PLAYER_MESSAGE: {
+      return produce(state, draftState => {
+        draftState.message = payload
       })
     }
 

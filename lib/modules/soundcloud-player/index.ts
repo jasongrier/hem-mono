@@ -31,6 +31,7 @@ export interface IState {
   currentPlaylist: IPlaylist | null
   error: string | null
   inited: boolean
+  message: string
   muted: boolean
   playing: boolean
   playlists: IPlaylist[]
@@ -46,6 +47,7 @@ export const REPLACE_PLAYLIST = 'REPLACE_PLAYLIST'
 export const SEEK_PLAYER = 'SEEK_PLAYER'
 export const SET_PLAYER_ERROR = 'SET_PLAYER_ERROR'
 export const SET_PLAYER_INSTANCE = 'SET_PLAYER_INSTANCE'
+export const SET_PLAYER_MESSAGE = 'SET_PLAYER_MESSAGE'
 export const SET_PLAYER_PLAYLIST = 'SET_PLAYER_PLAYLIST'
 export const SET_PLAYER_ACTUALLY_PLAYING = 'SET_PLAYER_ACTUALLY_PLAYING'
 export const TRACK_ENDED = 'TRACK_ENDED'
@@ -98,6 +100,11 @@ export interface ISetPlayerError extends AnyAction {
   payload: string | null
 }
 
+export interface ISetPlayerMessage extends AnyAction {
+  type: typeof SET_PLAYER_MESSAGE
+  payload: string | null
+}
+
 export interface ISetPlayerPlaylist extends AnyAction {
   type: typeof SET_PLAYER_PLAYLIST
   payload: number
@@ -134,6 +141,7 @@ export type Action =
   | ISeekPlayer
   | ISetPlayerError
   | ISetPlayerActuallyPlaying
+  | ISetPlayerMessage
   | ISetPlayerPlaylist
   | ITrackEnded
   | IUnmutePlayer
@@ -150,6 +158,7 @@ export {
   seekPlayer,
   setPlayerError,
   setPlayerActuallyPlaying,
+  setPlayerMessage,
   setPlayerPlaylist,
   trackEnded,
   unmutePlayer,

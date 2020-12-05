@@ -50,6 +50,18 @@
   src="https://www.facebook.com/tr?id=1241972079485254&ev=PageView&noscript=1"
   /></noscript>
   <!-- End Facebook Pixel Code -->
+  <script>
+    function copyToClipboard() {
+      var copyText = document.getElementById('clipboard-content')
+      var copyMessage = document.getElementById('clipboard-message')
+
+      copyText.select()
+      copyText.setSelectionRange(0, 99999)
+      document.execCommand('copy')
+      copyMessage.innerHTML = 'Copied!'
+      // alert("Copied the text: " + copyText.value)
+    }
+  </script>
 </head>
 <body>
   <div id="root"></div>

@@ -9,6 +9,7 @@ import {
   SET_PLAYER_ACTUALLY_PLAYING,
   SET_PLAYER_ALREADY_OPENED,
   SET_PLAYER_ERROR,
+  SET_PLAYER_MESSAGE,
   SET_PLAYER_EXPANDED,
   SET_PLAYER_INSTANCE,
   SET_PLAYER_PLAYLIST,
@@ -62,6 +63,11 @@ const setPlayerActuallyPlaying = (actuallyPlaying: boolean): Action => ({
   payload: actuallyPlaying,
 })
 
+const setPlayerMessage = (message: string | null): Action => ({
+  type: SET_PLAYER_MESSAGE,
+  payload: message,
+})
+
 const setPlayerAlreadyOpened = (alreadyOpened: boolean): Action => ({
   type: SET_PLAYER_ALREADY_OPENED,
   payload: alreadyOpened,
@@ -111,6 +117,7 @@ export {
   replacePlaylist,
   seekPlayer,
   setPlayerActuallyPlaying,
+  setPlayerMessage,
   setPlayerAlreadyOpened,
   setPlayerError,
   setPlayerExpanded,

@@ -16,6 +16,13 @@ function PlayerBar(): ReactElement {
   const [playlistExpanded, setPlaylistExpanded] = useState(false)
   const [alreadyOpened, setAlreadyOpened] = useState(false)
 
+  useEffect(function TEMP() {
+    setTimeout(function() {
+      setExpanded(true)
+      setPlaylistExpanded(true)
+    }, 250)
+  }, [])
+
   useEffect(function openOnPlay() {
     if (playing && !expanded) {
       setExpanded(true)

@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom'
 import ReactGA from 'react-ga'
 import { findIndex, isEmpty } from 'lodash'
 import { PlayPauseButton as BasePlayPauseButton, CloseButton } from '../../../packages/hem-buttons'
-import { ITrack, IPlaylist, setPlayerPlaylist } from '../index'
+import { ITrack, IPlaylist, setPlayerPlaylist, setPlayerError } from '../index'
 import TrackPlayPauseButton from './TrackPlayPauseButton'
 import Scrollbars from 'react-scrollbars-custom'
+import { setPlayerMessage } from '../../soundcloud-player'
 
 interface IProps {
   onCollapse: () => void
@@ -93,16 +94,15 @@ function Playlist({ onCollapse }: IProps): ReactElement {
                       { track.title }
                     </div>
                     { !isEmpty(track.attribution) && (
-                      <span onClick={() => {
-                        ReactGA.event({
-                          category: 'User',
-                          action: 'Clicked on track attribution in playlist: ' + track.title + ', ' + track.attribution + '.',
-                        })
+                      <span
+                        className="hem-player-playlist-line-attribution"
+                        onClick={() => {
+                          ReactGA.event({
+                            category: 'User',
+                            action: 'Clicked on track attribution in playlist: ' + track.title + ', ' + track.attribution + '.',
+                          })
                       }}>
-                        <Link
-                          className="hem-player-playlist-line-attribution"
-                          to={ track.attributionLink }
-                        >
+                        <Link to={ track.attributionLink }>
                           { track.attribution }
                         </Link>
                       </span>
@@ -111,16 +111,15 @@ function Playlist({ onCollapse }: IProps): ReactElement {
                       <span className="hem-player-playlist-line-no-info">&mdash;</span>
                     )}
                     { !isEmpty(track.secondaryAttribution) && (
-                      <span onClick={() => {
-                        ReactGA.event({
-                          category: 'User',
-                          action: 'Clicked on track secondary attribution in playlist: ' + track.title + ', ' + track.secondaryAttribution + '.',
-                        })
+                      <span
+                        className="hem-player-playlist-line-secondary-attribution"
+                        onClick={() => {
+                          ReactGA.event({
+                            category: 'User',
+                            action: 'Clicked on track secondary attribution in playlist: ' + track.title + ', ' + track.secondaryAttribution + '.',
+                          })
                       }}>
-                        <Link
-                          className="hem-player-playlist-line-secondary-attribution"
-                          to={ track.secondaryAttributionLink }
-                        >
+                        <Link to={ track.secondaryAttributionLink }>
                           { track.secondaryAttribution }
                         </Link>
                       </span>
@@ -135,19 +134,37 @@ function Playlist({ onCollapse }: IProps): ReactElement {
                       { track.date }
                     </div>
                     <div className="hem-player-playlist-line-share">
-                      Share
+                      <div
+                        className="hem-player-playlist-line-share-clickable-area"
+                        onClick={() => {
+                          let link
+
+                          if (currentPlaylist.name === 'Sound Library') {
+                            link = 'http://hem.rocks/sound-library/' + track.slug
+                          }
+
+                          else {
+                            link = 'http://hem.rocks/tracks/' + track.slug
+                          }
+
+                          dispatch(setPlayerMessage(`
+                            <input type="text" value=${link} id="clipboard-content">
+                            <button onclick="copyToClipboard()" id="clipboard-message">Click here to copy link to clipboard</button>
+                          `))
+                        }}
+                      >
+                        <div className="hem-player-playlist-line-share-trigger" />
+                      </div>
                     </div>
                   </div>
                 </li>
               ))}
               { currentPlaylist.linkTo && (
                 <li onClick={onCollapse}>
-                  <div className="hem-player-playlist-line-text">
-                    <div className="hem-player-playlist-line-title hem-player-playlist-line-more-link">
-                      <Link to={currentPlaylist.linkTo}>
-                        See all&hellip;
-                      </Link>
-                    </div>
+                  <div className="hem-player-playlist-line-text hem-player-playlist-line-text-more">
+                    <Link to={currentPlaylist.linkTo}>
+                      See all {currentPlaylist.name} Tracks&hellip;
+                    </Link>
                   </div>
                 </li>
               )}

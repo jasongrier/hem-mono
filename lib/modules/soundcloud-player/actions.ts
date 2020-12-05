@@ -9,6 +9,7 @@ import {
   SEEK_PLAYER,
   SET_PLAYER_ERROR,
   SET_PLAYER_ACTUALLY_PLAYING,
+  SET_PLAYER_MESSAGE,
   SET_PLAYER_PLAYLIST,
   TRACK_ENDED,
   UNMUTE_PLAYER,
@@ -70,6 +71,11 @@ const setPlayerActuallyPlaying = (actuallyPlaying: boolean): Action => ({
   payload: actuallyPlaying,
 })
 
+const setPlayerMessage = (message: string | null): Action => ({
+  type: SET_PLAYER_MESSAGE,
+  payload: message,
+})
+
 const setPlayerPlaylist = (number: number): Action => ({
   type: SET_PLAYER_PLAYLIST,
   payload: number,
@@ -101,6 +107,7 @@ export {
   seekPlayer,
   setPlayerError,
   setPlayerActuallyPlaying,
+  setPlayerMessage,
   setPlayerPlaylist,
   trackEnded,
   unmutePlayer,
