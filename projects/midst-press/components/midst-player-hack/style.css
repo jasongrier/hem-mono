@@ -633,6 +633,18 @@
   background-repeat: no-repeat;
 }
 
+.speed-selector.speed--low .drop .drop__toggle {
+  background-image: url('./speedometer_low.png');
+}
+
+.speed-selector.speed--med .drop .drop__toggle {
+  background-image: url('./speedometer_med.png');
+}
+
+.speed-selector.speed--hi .drop .drop__toggle {
+  background-image: url('./speedometer_hi.png');
+}
+
 .speed-selector .drop .drop__content {
   position: relative;
   border: 0;
@@ -652,6 +664,18 @@
   margin-bottom: 10px;
   background-size: contain;
   background-repeat: no-repeat;
+}
+
+.speed-selector .drop .drop__content .speed-icon--low {
+  background-image: url('./speedometer_low.png');
+}
+
+.speed-selector .drop .drop__content .speed-icon--med {
+  background-image: url('./speedometer_med.png');
+}
+
+.speed-selector .drop .drop__content .speed-icon--hi {
+  background-image: url('./speedometer_hi.png');
 }
 
 .speed-selector .hem-slider {

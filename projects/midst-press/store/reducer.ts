@@ -32,7 +32,6 @@ function createPoem(author: string, title: string, authorSecondaryFolder?: any) 
 }
 
 const poems = [
-  createPoem('asdfsad', 'fasdfasdf'),
   createPoem('Anis Mojgani', 'Cuesta'),
   createPoem('Eleanor Eli Moss', 'THE HAMMER'),
   createPoem('Hedgie Choi', 'I Get It, Phases'),
