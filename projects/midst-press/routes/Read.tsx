@@ -43,8 +43,8 @@ function Read(): ReactElement {
       </Helmet>
 
       <section className="heroine">
-        <div className="issue-date">Winter&nbsp;2019</div>
-        <div className="issue-number">The Pilot Issue</div>
+        {/* <div className="issue-date">Winter&nbsp;2019</div>
+        <div className="issue-number">The Pilot Issue</div> */}
         <div
           className="editor-letter-toggle"
           onClick={() => setEditorLetterOpen(!editorLetterOpen)}
@@ -82,7 +82,10 @@ function Read(): ReactElement {
 
         {poems.map((poem: IPoem) => (
           <Link key={poem.url}
-            className="poem-link"
+            className={`
+              poem-link
+              ${ poem.highlighted ? 'poem-highlighted' : '' }
+            `}
             data-trigger={poem.trigger ? 'true' : 'false'}
             to={`/poem/${poem.url}/`}
             onClick={() => dispatch(setMobileNavOpen(false))}
@@ -92,6 +95,9 @@ function Read(): ReactElement {
               className="poem-link__column poem-title"
               dangerouslySetInnerHTML={{ __html: poem.title }}
             />
+            <div className="poem-link__column poem-date">
+              { poem.date }
+            </div>
           </Link>
         ))}
       </section>

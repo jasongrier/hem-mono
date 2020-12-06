@@ -10,7 +10,7 @@ import {
   IState,
 } from './types'
 
-function createPoem(author: string, title: string, authorSecondaryFolder?: any) {
+function createPoem(author: string, title: string, date: string, highlighted: boolean, authorSecondaryFolder?: any) {
   const authorId = author.toLowerCase().replace(/ /g, '-')
   const url = title.toLowerCase()
     .replace(/ /g, '-')
@@ -23,37 +23,42 @@ function createPoem(author: string, title: string, authorSecondaryFolder?: any) 
     authorId,
     authorSecondaryFolder,
     data: null,
+    date,
     poemId: `${authorId}--${url}`,
+    highlighted,
     loaded: false,
     processNote: '',
     url,
+    tags: '',
     title,
   }
 }
 
+const MORI_POEM_LONG_TITLE = 'After Watching <i>Westworld</i>, the Left Side of My Body Malfunctions'
+
 const poems = [
-  createPoem('Test Poet', 'Test Poem'),
-  createPoem('Anis Mojgani', 'Cuesta'),
-  createPoem('Anis Mojgani', 'Cuesta'),
-  createPoem('Eleanor Eli Moss', 'THE HAMMER'),
-  createPoem('Hedgie Choi', 'I Get It, Phases'),
-  createPoem('Jackson Holbert', 'Poem Involving the Sea'),
-  createPoem('Dara Wier', '5x5'),
-  createPoem('Aja Moore', 'TGIF'),
-  createPoem('manuel arturo abreu', 'Ablation'),
-  createPoem('Woosung Sohn', 'Driving License'),
-  createPoem('Zachary Schomburg', '2 Poems'),
-  createPoem('Jackson Holbert', 'Poem About Judges', 'jackson-holbert-2'),
-  createPoem('Jenny Qi', 'When This Is All Over'),
-  createPoem('Veronica Martin', 'Epilogue in Summer'),
-  createPoem('Jose Hernandez Diaz', 'The Dahlias in Autumn'),
-  createPoem('Max Seifert', 'Benjamins'),
-  createPoem('Madeleine Mori', 'After Watching <i>Westworld</i>, the Left Side of My Body Malfunctions'),
-  createPoem('Mia You', 'Go Bokito'),
-  createPoem('Sarah Matthes', 'Averting My Eyes'),
-  createPoem('Annelyse Gelman', 'Prosperity'),
-  createPoem('Annelyse Gelman', 'Pool'),
-  createPoem('Annelyse Gelman', 'Questions'),
+  createPoem('Test Poet',           'Test Poem',                '06.12.2020', true),
+  createPoem('Anis Mojgani',        'Cuesta',                   '06.12.2020', false),
+  createPoem('Anis Mojgani',        'Cuesta',                   '06.12.2020', false),
+  createPoem('Eleanor Eli Moss',    'THE HAMMER',               '06.12.2020', false),
+  createPoem('Hedgie Choi',         'I Get It, Phases',         '06.12.2020', false),
+  createPoem('Jackson Holbert',     'Poem Involving the Sea',   '06.12.2020', false),
+  createPoem('Dara Wier',           '5x5',                      '06.12.2020', false),
+  createPoem('Aja Moore',           'TGIF',                     '06.12.2020', false),
+  createPoem('manuel arturo abreu', 'Ablation',                 '06.12.2020', false),
+  createPoem('Woosung Sohn',        'Driving License',          '06.12.2020', false),
+  createPoem('Zachary Schomburg',   '2 Poems',                  '06.12.2020', false),
+  createPoem('Jackson Holbert',     'Poem About Judges',        '06.12.2020', false, 'jackson-holbert-2'),
+  createPoem('Jenny Qi',            'When This Is All Over',    '06.12.2020', false),
+  createPoem('Veronica Martin',     'Epilogue in Summer',       '06.12.2020', false),
+  createPoem('Jose Hernandez Diaz', 'The Dahlias in Autumn',    '06.12.2020', false),
+  createPoem('Max Seifert',         'Benjamins',                '06.12.2020', false),
+  createPoem('Madeleine Mori',      MORI_POEM_LONG_TITLE,       '06.12.2020', false),
+  createPoem('Mia You',             'Go Bokito',                '06.12.2020', false),
+  createPoem('Sarah Matthes',       'Averting My Eyes',         '06.12.2020', false),
+  createPoem('Annelyse Gelman',     'Prosperity',               '06.12.2020', false),
+  createPoem('Annelyse Gelman',     'Pool',                     '06.12.2020', false),
+  createPoem('Annelyse Gelman',     'Questions',                '06.12.2020', false),
 ]
 
 const initialState: IState = {

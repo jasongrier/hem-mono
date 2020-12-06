@@ -28,10 +28,13 @@ export interface IPoem {
   authorId: string
   authorSecondaryFolder: string
   data: IMidstFile | null
+  date: string
   hidden?: boolean
+  highlighted: boolean
   loaded: boolean
   poemId: string
   processNote: string
+  tags: string
   title: string
   trigger?: boolean
   url: string
