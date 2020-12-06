@@ -163,7 +163,12 @@ function Playlist({ onCollapse }: IProps): ReactElement {
                 <li onClick={onCollapse}>
                   <div className="hem-player-playlist-line-text hem-player-playlist-line-text-more">
                     <Link to={currentPlaylist.linkTo}>
-                      See all {currentPlaylist.name} Tracks&hellip;
+                      { currentPlaylist.name === 'Releases' && (
+                        <span>See all Releases</span>
+                      )}
+                      { currentPlaylist.name !== 'Releases' && (
+                        <span>See all {currentPlaylist.name} Tracks</span>
+                      )}
                     </Link>
                   </div>
                 </li>
