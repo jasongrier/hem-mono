@@ -409,8 +409,8 @@ body {
   top: 151px;
   left: 50%;
   z-index: 9997;
-  width: 642px;
-  margin-left: -310px;
+  width: 800px;
+  margin-left: -400px;
   margin-bottom: 120px;
   padding: 10px 30px;
   text-align: left;
@@ -442,7 +442,7 @@ body {
 
 .table-of-contents .heroine .editor-letter-toggle {
   position: absolute;
-  left: 510px;
+  left: 670px;
   top: -28px;
   transform-origin: top left;
   font-size: 20px;
@@ -498,7 +498,7 @@ body {
 .table-of-contents a.poem-link {
   float: left;
   width: 100%;
-  font-size: 24px;
+  font-size: 20px;
   border-bottom: 1px dashed #FF91AF;
 }
 
@@ -506,9 +506,13 @@ body {
   border-bottom: none;
 }
 
+.table-of-contents a.poem-highlighted {
+  background-color: goldenrod;
+}
+
 .table-of-contents .poem-link__column {
   float: left;
-  padding: 20px 0;
+  padding: 20px 10px;
 }
 
 .table-of-contents a.poem-link:hover {
@@ -516,11 +520,16 @@ body {
 }
 
 .table-of-contents a.poem-link .poem-author {
-  width: 60%;
+  width: 35%;
 }
 
 .table-of-contents a.poem-link .poem-title {
   width: 40%;
+  font-style: italic;
+}
+
+.table-of-contents a.poem-link .poem-date {
+  width: 10%;
   font-style: italic;
 }
 
