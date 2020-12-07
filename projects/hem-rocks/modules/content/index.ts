@@ -263,6 +263,7 @@ export { reducer as contentReducer } from './reducer'
 
 export {
   AdminManualTaskRunner,
+  AdminReconcilePlaylists,
   AdminItem,
   AdminList,
   AdminSettings,

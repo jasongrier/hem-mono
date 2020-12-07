@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { Link, NavLink, Switch, Route } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
-import { AdminManualTaskRunner, AdminItem, AdminList, AdminSettings } from '../../modules/content'
+import { AdminManualTaskRunner, AdminItem, AdminList, AdminSettings, AdminReconcilePlaylists } from '../../modules/content'
 import { BASE_SITE_TITLE } from '../../config'
 
 function Admin(): ReactElement {
@@ -23,6 +23,9 @@ function Admin(): ReactElement {
             </li>
             <li>
               <NavLink to="/admin/manual-task-runner">Run Task</NavLink>
+            </li>
+            <li>
+              <NavLink to="/admin/reconcile-playlists">Reconcile Playlists</NavLink>
             </li>
             <li>
               <NavLink to="/admin/settings">Settings</NavLink>
@@ -47,6 +50,9 @@ function Admin(): ReactElement {
           </Route>
           <Route exact path="/admin/manual-task-runner">
             <AdminManualTaskRunner />
+          </Route>
+          <Route exact path="/admin/reconcile-playlists">
+            <AdminReconcilePlaylists />
           </Route>
           <Route
             exact
