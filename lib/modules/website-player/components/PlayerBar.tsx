@@ -1,6 +1,6 @@
 import React, { ReactElement, useState, useCallback, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import ReactGA from 'react-ga'
 import { PlayPauseButton as BasePlayPauseButton, CloseButton, HamburgerButton } from '../../../packages/hem-buttons'
 import { NextButton, PreviousButton, ProgressBar, PlayerBarPlayPauseButton, Playlist, ITrack, IPlaylist } from '../index'
@@ -14,7 +14,14 @@ function PlayerBar(): ReactElement {
 
   const [expanded, setExpanded] = useState(false)
   const [playlistExpanded, setPlaylistExpanded] = useState(false)
-  const [alreadyOpened, setAlreadyOpened] = useState(false)
+  const [playlistAutoOpened, setPlaylistAutoOpened] = useState(false)
+
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    setExpanded(false)
+    setPlaylistExpanded(false)
+  }, [pathname])
 
   // useEffect(function TEMP() {
   //   setTimeout(function() {
@@ -26,7 +33,6 @@ function PlayerBar(): ReactElement {
   useEffect(function openOnPlay() {
     if (playing && !expanded) {
       setExpanded(true)
-      setPlaylistExpanded(false)
     }
   }, [playing])
 
@@ -92,14 +98,17 @@ function PlayerBar(): ReactElement {
               action: 'Closed the player bar.',
             })
             setExpanded(false)
+            setPlaylistExpanded(false)
           }} />
         )}
         { !expanded && (
           <div onClick={() => {
             if (playing) return
-            setAlreadyOpened(true)
             setExpanded(true)
-            setPlaylistExpanded(true)
+            if (!playlistAutoOpened) {
+              setPlaylistExpanded(true)
+              setPlaylistAutoOpened(true)
+            }
             ReactGA.event({
               category: 'User',
               action: 'Opened the player bar.',

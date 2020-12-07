@@ -199,8 +199,14 @@ function MainContentList({
         }
       }
 
-      if (tracks.length) {
+      if (shouldSetCurrentPlaylist && tracks.length) {
         dispatch(replacePlaylist(5, { name: 'On this page', tracks }))
+        dispatch(setPlayerPlaylist(5))
+      }
+
+      else {
+        dispatch(replacePlaylist(5, { name: 'EMPTY', tracks: [] }))
+        dispatch(setPlayerPlaylist(0))
       }
     })
   }, [currentFilter, storeContentItems, currentlyOpenPopUp])
