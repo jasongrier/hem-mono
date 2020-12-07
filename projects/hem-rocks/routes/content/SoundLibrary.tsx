@@ -32,7 +32,7 @@ function SoundLibrary(): ReactElement {
           shouldSetCurrentPlaylist={false}
         >
           {(pack) => {
-            const attachedTracks = getContentItemsFromRawList(allContentItems, pack.trackSlugs).map(track =>
+            const attachedTracks = getContentItemsFromRawList(allContentItems, pack.trackIds).map(track =>
               contentItemToTrack(track)
             )
 

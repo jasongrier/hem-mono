@@ -1,4 +1,4 @@
-import { compact, map } from 'lodash'
+import { compact, find } from 'lodash'
 import { getContentItemBySlug } from './get-content-item-by-field'
 import { IContentItem } from '../index'
 
@@ -7,16 +7,16 @@ function getContentItemsFromList(contentItems: IContentItem[], listSlug: string)
 
   if (!listItem) return []
 
-  return getContentItemsFromRawList(contentItems, listItem.description)
+  return getContentItemsFromRawList(contentItems, listItem.trackIds)
 }
 
 function getContentItemsFromRawList(contentItems: IContentItem[], list: string) {
-  const listItemSlugs = compact(
-    list.split('\n').map(item => item.trim())
+  const listItemIds = compact(
+    list.split('\n').map(id => id.trim())
   )
 
   return compact(
-    listItemSlugs.map(slug => getContentItemBySlug(contentItems, slug))
+    listItemIds.map(id => find(contentItems, { id }))
   )
 }
 

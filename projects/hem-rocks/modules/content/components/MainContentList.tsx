@@ -192,7 +192,7 @@ function MainContentList({
         }
 
         else {
-          const attachedTracks = getContentItemsFromRawList(storeContentItems, item.trackSlugs).map(track =>
+          const attachedTracks = getContentItemsFromRawList(storeContentItems, item.trackIds).map(track =>
             contentItemToTrack(track)
           )
           tracks = tracks.concat(attachedTracks)

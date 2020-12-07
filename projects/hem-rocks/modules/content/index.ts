@@ -40,7 +40,7 @@ export interface IContentItem {
   tags: string
   title: string
   titleWrapping: string
-  trackSlugs: string
+  trackIds: string
   type: string
 }
 
@@ -105,7 +105,7 @@ export const fieldTypes: IContentItem = {
   tags: 'text',
   title: 'text',
   titleWrapping: 'text',
-  trackSlugs: 'textarea',
+  trackIds: 'textarea',
   type: 'text',
 }
 
