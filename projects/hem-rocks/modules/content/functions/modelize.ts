@@ -41,7 +41,7 @@ function modelize(rawContentItem: any): IContentItem {
     tags: rawContentItem.tags || '',
     title: rawContentItem.title || '',
     titleWrapping: rawContentItem.titleWrapping || '',
-    trackIds: rawContentItem.trackIds || '',
+    attachments: rawContentItem.attachments || '',
     type: rawContentItem.type || '',
   }
 }

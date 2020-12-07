@@ -68,7 +68,7 @@ const keyCompressionMap: any = {
   tags: 'bi',
   title: 'bj',
   titleWrapping: 'bk',
-  trackIds: 'bl',
+  attachments: 'bl',
   type: 'bm',
 }
 

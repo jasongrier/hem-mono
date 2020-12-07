@@ -95,7 +95,7 @@ function migrate(allContentItems: IContentItem[]) {
     {
       id: uuid(),
       name: 'Spider Babies',
-      trackIds: [
+      attachments: [
         'intro-spider-babies',
         'we-re-just-tuning-up-spider-babies',
         'we-re-not-doing-a-song-by-the-beetles-spider-babies',
@@ -108,7 +108,7 @@ function migrate(allContentItems: IContentItem[]) {
     {
       id: uuid(),
       name: 'Haunted: Frozen',
-      trackIds: [
+      attachments: [
         'haunted-frozen-1-jason-grier-and-ariel-pink',
         'haunted-frozen-2-jason-grier-and-ariel-pink',
         'haunted-frozen-3-jason-grier-and-ariel-pink',
@@ -125,9 +125,10 @@ function migrate(allContentItems: IContentItem[]) {
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
 
-    if (!isEmpty(newItem.trackIds)) {
-      const trackIds = map(getContentItemsFromRawList(allContentItems, newItem.trackIds), 'id')
-      newItem.trackIds = trackIds.join('\n')
+    if (newItem.title === 'Home Page Features') {
+      const attachments = map(getContentItemsFromRawList(allContentItems, newItem.description), 'id')
+      newItem.attachments = attachments.join('\n')
+      newItem.description = ''
     }
 
     newItems.push(newItem)

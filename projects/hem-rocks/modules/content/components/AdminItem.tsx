@@ -351,7 +351,7 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
             { orderedKeys.map(fieldName => {
               if (fieldName === 'id') return
               if (fieldName === 'userSuggestedPrice') return
-              if (fieldName === 'trackIds' && workingItem.category === 'tracks') return
+              if (fieldName === 'attachments' && workingItem.category === 'tracks') return
               if (fieldName === 'trackResourceId' && workingItem.category !== 'tracks') return
               if (fieldName === 'trackResourceSecret' && workingItem.category !== 'tracks') return
 
@@ -370,14 +370,14 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
                         />
                       </td>
                     </tr>
-                    { fieldName === 'trackIds' && (
+                    { fieldName === 'attachments' && (
                       <tr key={fieldName + '-items'}>
                         <td>
                           <label>Track Titles</label>
                         </td>
                         <td>
                           <pre>
-                            { workingItem.trackIds.split('\n').map(
+                            { workingItem.attachments.split('\n').map(
                               id => {
                                 const item = find(allContentItems, { id })
                                 if (item) {

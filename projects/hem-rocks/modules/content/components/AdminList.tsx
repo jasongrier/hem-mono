@@ -376,7 +376,7 @@ function AdminList(): ReactElement {
 
                     { hasTag(item, 'albums') && (
                       <pre>
-                        { item.trackIds.split('\n').map(
+                        { item.attachments.split('\n').map(
                           id => {
                             const item = find(allContentItems, { id })
                             if (item) {
@@ -390,7 +390,7 @@ function AdminList(): ReactElement {
                         ).join('\n')}
                       </pre>
                     )}
-                    { (hasTag(item, 'albums') || hasTag(item, 'discs')) && item.trackIds.split("\n").map(id => (
+                    { (hasTag(item, 'albums') || hasTag(item, 'discs')) && item.attachments.split("\n").map(id => (
                       <div key={uuid()}>
                         {(() => {
                           const item = find(allContentItems, { id })
