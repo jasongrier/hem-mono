@@ -30,8 +30,6 @@ function ScrollToTop({ scrollPaneSelector }: IProps): ReactElement {
       '/tracks',
     ]
 
-    console.log('??')
-
     if (
       forPaths.includes(pathname)
       && $(scrollPaneSelector).scrollTop() !== undefined

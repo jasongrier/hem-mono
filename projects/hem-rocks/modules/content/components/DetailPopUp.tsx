@@ -2,7 +2,7 @@ import React, { ReactElement, SyntheticEvent, useEffect, useCallback, useContext
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
-import { find, isFinite, isNaN, noop, findIndex, last } from 'lodash'
+import { find, isFinite, isNaN, noop, findIndex, last, compact } from 'lodash'
 import $ from 'jquery'
 import marked from 'marked'
 import uuid from 'uuid/v1'
@@ -38,26 +38,26 @@ function DetailPopUp({
 }: IProps): ReactElement {
   if (!contentItem) return <div />
 
-  const { 
-    activeLiveStream, 
+  const {
+    activeLiveStream,
     pricingMode,
 
-    allContentItems, 
+    allContentItems,
     currentContentItems,
 
-    cartProducts, 
-    
-    currentTrackId, 
+    cartProducts,
+
+    currentTrackId,
     playing,
   } = useSelector((state: RootState) => ({
     activeLiveStream: state.app.activeLiveStream,
     pricingMode: state.app.pricingMode,
-    
+
     allContentItems: state.content.contentItems,
     currentContentItems: state.content.currentContentItems,
-    
+
     cartProducts: state.cart.products,
-    
+
     currentTrackId: state.player.currentTrack?.id,
     playing: state.player.playing,
   }))
@@ -73,11 +73,11 @@ function DetailPopUp({
   else if (!BERLIN_STOCK_PHOTOS && contentItem.flexPriceRecommended) {
     initialPrice = contentItem.flexPriceRecommended
   }
-  
+
   else if (!BERLIN_STOCK_PHOTOS) {
     initialPrice = '0'
   }
-  
+
   else {
     initialPrice = '0'
   }
@@ -108,9 +108,9 @@ function DetailPopUp({
       }
 
       else {
-        attachedTracks = getContentItemsFromRawList(allContentItems, contentItem.trackSlugs).map(track =>
-          contentItemToTrack(track)
-        )
+        attachedTracks = compact(getContentItemsFromRawList(allContentItems, contentItem.trackIds).map(item =>
+          contentItemToTrack(item)
+        ))
       }
 
       const playlist = {
@@ -151,7 +151,7 @@ function DetailPopUp({
         // @ts-ignore
         history.push(`/${category}/${previousItemLink.attr('href').split('/')[2]}/${filter ? filter : ''}`)
       }
-      
+
       if (evt.keyCode === 39 && nextItemLink.length) {
         // @ts-ignore
         history.push(`/${category}/${nextItemLink.attr('href').split('/')[2]}/${filter ? filter : ''}`)
@@ -161,7 +161,7 @@ function DetailPopUp({
     function stopPropagationOnFormElements(evt: any) {
       evt.stopPropagation()
     }
-    
+
     $('body').on('keydown', bodyOnKeyDown)
     $('input, textarea, select').on('keydown', stopPropagationOnFormElements)
 
@@ -170,22 +170,22 @@ function DetailPopUp({
       $('body').off('keydown', stopPropagationOnFormElements)
     }
   }, [])
-  
+
   useEffect(function setNextPreviousItems() {
     if (!currentContentItems) return
     if (!currentContentItems.length) return
     if (!contentItem) return
-    
+
     const itemIndex = findIndex(currentContentItems, { id: contentItem.id })
 
     setPreviousItem(currentContentItems[itemIndex - 1])
     setNextItem(currentContentItems[itemIndex + 1])
   }, [currentContentItems, contentItem, nextItem, previousItem])
-  
+
   // useEffect(function resetValidityOnPrevNext() {
   //   setValid(true)
   // }, [contentItem])
-  
+
   const checkOutOnClick = useCallback(
     function checkOutOnClickFn() {
       if (!validate(suggestedPrice, true)) return
@@ -411,8 +411,8 @@ function DetailPopUp({
   const chooseYourPriceText = category === 'venue-calendar'
     ? 'Choose your ticket price!'
     : ( BERLIN_STOCK_PHOTOS ? 'Name your price!' : 'Choose your price!')
-  
-    
+
+
   if (!contentItem) return (<div />)
 
   const tags = (contentItem.tags || '').split(', ')
@@ -427,7 +427,7 @@ function DetailPopUp({
         with-photography
       `}
     >
-      <Scrollbars 
+      <Scrollbars
         noScroll={BERLIN_STOCK_PHOTOS}
         createContext={true}
         noScrollX={true}
@@ -440,11 +440,11 @@ function DetailPopUp({
           { BERLIN_STOCK_PHOTOS && (
             <>
               <div className="bsp-lightbox-image">
-                <div 
-                  className="img" 
+                <div
+                  className="img"
                   style={{ backgroundImage: `url(${assetHost}/berlin-stock-photos/content/images/jpg-web/${contentItem.keyArt})`}}
                 />
-                <div 
+                <div
                   className="bsp-lightbox-image-placeholder"
                   style={{ backgroundImage: `url(${assetHost}/berlin-stock-photos/content/images/jpg-placeholders/${contentItem.keyArt})`}}
                 />
@@ -452,7 +452,7 @@ function DetailPopUp({
                   <BvgWatermark width={800} />
                 )}
               </div>
-              <div 
+              <div
                 className="bsp-lightbox-tags"
                 style={{
                   display: contentItem.isPhysicalProduct ? 'none' : 'block'
@@ -489,7 +489,7 @@ function DetailPopUp({
               </div>
               <div className="bsp-lightbox-nav" hidden>
                 { previousItem && !isPrint && (
-                  <Link 
+                  <Link
                     className="bsp-lightbox-prev"
                     to={`/${category}/${previousItem.slug}/${filter ? filter : ''}`}
                   >
@@ -498,7 +498,7 @@ function DetailPopUp({
                 )}
                 { previousItem && nextItem && !isPrint && <>&nbsp;&nbsp;|&nbsp;&nbsp;</> }
                 { nextItem && !isPrint && (
-                  <Link 
+                  <Link
                     className="bsp-lightbox-next"
                     to={`/${category}/${nextItem.slug}/${filter ? filter : ''}`}
                   >
@@ -584,7 +584,7 @@ function DetailPopUp({
                     detail-popup-buttons clearfix
                     ${valid ? '' : 'invalid'}
                   `}>
-                    { (parseFloat(suggestedPrice) > 0 || cartProducts.length > 0) 
+                    { (parseFloat(suggestedPrice) > 0 || cartProducts.length > 0)
                         && cartProducts.filter(p => p.isDigitalProduct === false).length === 0
                         && contentItem.isDigitalProduct
                         && (
@@ -656,7 +656,7 @@ function DetailPopUp({
               )}
             </div>
             { category !== 'venue-calendar' && attachedPlaylist && attachedPlaylist.tracks && attachedPlaylist.tracks.length > 0 && (
-              <TrackPlayPauseButton 
+              <TrackPlayPauseButton
                 track={attachedPlaylist.tracks[0]}
                 activeFor={attachedPlaylist.tracks}
               />
@@ -686,11 +686,11 @@ function DetailPopUp({
               }}
             />
           )}
-          <div 
+          <div
             className="detail-cms-text"
             dangerouslySetInnerHTML={{
             __html: marked(contentItem.description.replace(/ /g, '').length === 0 ?  contentItem.blurb : contentItem.description),
-            }} 
+            }}
           />
           <div className="detail-popup-details-sidebar">
             { attachedPlaylist && attachedPlaylist.tracks && attachedPlaylist.tracks.length > 1 && (
@@ -708,8 +708,8 @@ function DetailPopUp({
                 </ul>
               </div>
             )}
-            { contentItem.aside && ( 
-              <div 
+            { contentItem.aside && (
+              <div
                 className="detail-popup-details-sidebar-info"
                 dangerouslySetInnerHTML={{
                   __html: marked(contentItem.aside),

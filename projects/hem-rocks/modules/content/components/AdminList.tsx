@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 import produce from 'immer'
 import { isEmpty, noop, find, filter } from 'lodash'
-import { slugify } from 'voca'
+import { slugify, titleCase } from 'voca'
 import moment from 'moment'
 import { ElectronOnly } from '../../../../../lib/components'
 import { PlayPauseButton } from '../../../../../lib/packages/hem-buttons'
@@ -49,7 +49,7 @@ function AdminList(): ReactElement {
 
   const [selectedItems, setSelectedItems] = useState<any>({})
   const [interestingProperty, setInterestingProperty] = useState<keyof IContentItem>('tags')
-  const [collapsed, setCollapsed] = useState<boolean>(true)
+  const [collapsed, setCollapsed] = useState<boolean>(false)
 
   const categoryFilterOnChange = useCallback(
     function categoryFilterOnChangeFn(evt: SyntheticEvent<HTMLSelectElement>) {
@@ -335,12 +335,12 @@ function AdminList(): ReactElement {
                     <Link to={`/admin/edit/${item.slug}`}>
                       { hasCategory(item, 'assets')
                         ? item.audioFilename.replace('/Volumes/April_Kepner/Eva_Vollmer/Disorganised/', '')
-                        : item.title + ' (' + item.slug + ')'
+                        : item.title
                       }
                     </Link>
                     <br />
                     <Link to={`/admin/edit/${item.slug}`}>
-                      { hasCategory(item, 'stock-photos') && (
+                      {/* { hasCategory(item, 'stock-photos') && (
                         <img src={`${assetHost}/berlin-stock-photos/content/images/jpg-web/${item.keyArt}`} />
                       )}
                       { !hasCategory(item, 'stock-photos')
@@ -348,16 +348,15 @@ function AdminList(): ReactElement {
                         && !hasCategory(item, 'lists')
                         && (
                           <img src={`${assetHost}/hem-rocks/content/images/key-art/${item.keyArt}`} />
-                      )}
+                      )} */}
                       { hasCategory(item, 'tracks') && (
                         <>
                           <audio controls>
                             <source src={assetHostHostname() + '/hem-rocks/content/tracks/' + item.audioFilename} type="audio/mpeg" />
                           </audio>
                           <br/>
-                          <small>{ item.audioFilename }</small>
-                          <hr/>
-                          <small>{ item.slug }</small>
+                          <small>{ item.slug }</small><br/>
+                          <small>{ item.secondaryAttribution }</small>
                         </>
                       )}
                     </Link>
@@ -373,31 +372,45 @@ function AdminList(): ReactElement {
                       })()}
                     </div>
 
-                    <hr/>
+                    {/* <hr/> */}
 
                     { hasTag(item, 'albums') && (
                       <pre>
-                        { item.trackSlugs }
+                        { item.trackIds.split('\n').map(
+                          id => {
+                            const item = find(allContentItems, { id })
+                            if (item) {
+                              return item.title
+                            }
+
+                            else {
+                              return 'NOT FOUND'
+                            }
+                          }
+                        ).join('\n')}
                       </pre>
                     )}
-                    { (hasTag(item, 'albums') || hasTag(item, 'discs')) && item.trackSlugs.split("\n").map(slug => (
+                    { (hasTag(item, 'albums') || hasTag(item, 'discs')) && item.trackIds.split("\n").map(id => (
                       <div key={uuid()}>
-                        { getContentItemBySlug(allContentItems, slug) && (
-                          <div>
-                            <Link to={`/admin/edit/${slug}`}>
-                              { getContentItemBySlug(allContentItems, slug).title }
-                            </Link>
-                            <br />
-                            <audio controls>
-                              <source src={assetHostHostname() + getContentItemBySlug(allContentItems, slug).audioFilename} />
-                            </audio>
-                          </div>
-                        )}
-                        { !getContentItemBySlug(allContentItems, slug) && (
-                          <div>
-                            Missing file: { slug }
-                          </div>
-                        )}
+                        {(() => {
+                          const item = find(allContentItems, { id })
+
+                          if (!item) return (
+                            <div>Not Found: { id }</div>
+                          )
+
+                          return (
+                            <div>
+                              <Link to={`/admin/edit/${item.slug}`}>
+                                { item.title }
+                              </Link>
+                              <br />
+                              <audio controls>
+                                <source src={assetHostHostname() + item.audioFilename} />
+                              </audio>
+                            </div>
+                          )
+                        })()}
                       </div>
                     ))}
                   </td>
@@ -429,7 +442,7 @@ function AdminList(): ReactElement {
                 )}
                 {!collapsed && (
                   <td className="admin-list-column-actions">
-                    { (hasCategory(item, 'tracks') || hasTag(item, 'discs')) && (
+                    {/* { (hasCategory(item, 'tracks') || hasTag(item, 'discs')) && (
                       <>
                         <form
                           className="inline-edit-form first-inline-edit-form"
@@ -578,8 +591,8 @@ function AdminList(): ReactElement {
                           <button type="submit">Submit</button>
                         </form>
                       </>
-                    )}
-                    { !hasCategory(item, 'assets') && !hasCategory(item, 'tracks') && (
+                    )} */}
+                    {/* { !hasCategory(item, 'assets') && (
                       <button
                         className="action-button"
                         onClick={() => {
@@ -590,7 +603,7 @@ function AdminList(): ReactElement {
                       >
                         Delete
                       </button>
-                    )}
+                    )} */}
                     { !hasCategory(item, 'assets') && (
                       <button
                         className="action-button"
@@ -609,12 +622,12 @@ function AdminList(): ReactElement {
                         className="action-button"
                         onClick={() => {
                           const updatedItem: IContentItem = produce(item, (draftItem) => {
-                            draftItem.secondaryAttribution = 'Unknown Album'
+                            draftItem.secondaryAttribution = ''
                           })
                           dispatch(requestUpdateItems([updatedItem]))
                         }}
                       >
-                        Unknown
+                        Remove Album
                       </button>
                     )}
                     { !hasCategory(item, 'assets')
@@ -641,23 +654,26 @@ function AdminList(): ReactElement {
                     { !hasCategory(item, 'assets')
                       && !hasCategory(item, 'lists')
                       && (
-                        <button
-                          className="action-button"
-                          onClick={() => {
-                            const updatedItem: IContentItem = produce(item, (draftItem) => {
-                              if (hasTag(item, 'label-page')) {
-                                draftItem.tags = draftItem.tags.replace(', label-page', '').replace('label-page', '')
-                              }
+                        ['featured', 'rare', 'live', 'radio', 'sound-library', 'releases'].map(tag => (
+                          <button
+                            key={tag}
+                            className="action-button"
+                            onClick={() => {
+                              const updatedItem: IContentItem = produce(item, (draftItem) => {
+                                if (hasTag(item, tag)) {
+                                  draftItem.tags = draftItem.tags.replace(', ' + tag, '').replace(tag, '')
+                                }
 
-                              else {
-                                draftItem.tags = draftItem.tags + ', label-page'
-                              }
-                            })
-                            dispatch(requestUpdateItems([updatedItem]))
-                          }}
-                        >
-                          { hasTag(item, 'label-page') ? 'Un-label page' : 'Label Page' }
-                        </button>
+                                else {
+                                  draftItem.tags = draftItem.tags + ', ' + tag
+                                }
+                              })
+                              dispatch(requestUpdateItems([updatedItem]))
+                            }}
+                          >
+                            { hasTag(item, tag) ? 'Un-' + titleCase(tag.replace('-', '')) : titleCase(tag.replace('-', '')) }
+                          </button>
+                      ))
                     )}
                     { !hasCategory(item, 'assets')
                       && !hasCategory(item, 'tracks')

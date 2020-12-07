@@ -3,16 +3,16 @@ import { IContentItem } from '../index'
 
 function getContentItemByField(contentItems: IContentItem[], fieldName: string, fieldValue: string, fieldIsArray: boolean) {
   if (fieldIsArray) {
-    return contentItems.filter(item => {
+    return contentItems.filter((item: any) => {
       if (isEmpty(item[fieldName])) return false
       let fieldItems = item[fieldName].split(',')
-      fieldItems = fieldItems.map(fieldItem => fieldItem.trim())
+      fieldItems = fieldItems.map((fieldItem: any) => fieldItem.trim())
       return fieldItems.includes(fieldValue)
     })
   }
 
   else {
-    return contentItems.find(item => item[fieldName] === fieldValue)
+    return contentItems.find((item: any) => item[fieldName] === fieldValue)
   }
 }
 

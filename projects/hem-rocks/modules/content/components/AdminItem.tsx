@@ -2,7 +2,7 @@ import React, { ReactElement, useState, SyntheticEvent, useEffect, useCallback }
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation } from 'react-router'
 import produce from 'immer'
-import { isEmpty, isEqual, startCase } from 'lodash'
+import { isEmpty, isEqual, startCase, find } from 'lodash'
 import { slugify } from 'voca'
 import { ElectronOnly, ZoomTextarea } from '../../../../../lib/components'
 import { assetHostHostname } from '../../../functions'
@@ -351,24 +351,49 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
             { orderedKeys.map(fieldName => {
               if (fieldName === 'id') return
               if (fieldName === 'userSuggestedPrice') return
-              if (fieldName === 'trackSlugs' && workingItem.category === 'tracks') return
+              if (fieldName === 'trackIds' && workingItem.category === 'tracks') return
               if (fieldName === 'trackResourceId' && workingItem.category !== 'tracks') return
               if (fieldName === 'trackResourceSecret' && workingItem.category !== 'tracks') return
 
               if ((fieldTypes as any)[fieldName] === 'textarea') {
                 return (
-                  <tr key={fieldName}>
-                    <td>
-                      <label htmlFor={fieldName}>{ startCase(fieldName) }</label>
-                    </td>
-                    <td>
-                      <ZoomTextarea
-                        name={fieldName}
-                        onChange={(value) => onChange(fieldName, value)}
-                        value={(workingItem as any)[fieldName]}
-                      />
-                    </td>
-                  </tr>
+                  <React.Fragment key={fieldName}>
+                    <tr>
+                      <td>
+                        <label htmlFor={fieldName}>{ startCase(fieldName) }</label>
+                      </td>
+                      <td>
+                        <ZoomTextarea
+                          name={fieldName}
+                          onChange={(value) => onChange(fieldName, value)}
+                          value={(workingItem as any)[fieldName]}
+                        />
+                      </td>
+                    </tr>
+                    { fieldName === 'trackIds' && (
+                      <tr key={fieldName + '-items'}>
+                        <td>
+                          <label>Track Titles</label>
+                        </td>
+                        <td>
+                          <pre>
+                            { workingItem.trackIds.split('\n').map(
+                              id => {
+                                const item = find(allContentItems, { id })
+                                if (item) {
+                                  return item.title
+                                }
+
+                                else {
+                                  return 'NOT FOUND'
+                                }
+                              }
+                            ).join('\n')}
+                          </pre>
+                        </td>
+                      </tr>
+                    )}
+                  </React.Fragment>
                 )
               }
 
