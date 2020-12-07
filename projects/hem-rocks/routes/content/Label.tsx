@@ -44,7 +44,7 @@ function Label(): ReactElement {
           category="label"
         >
           {(item) => {
-            const attachedTracks = getContentItemsFromRawList(allContentItems, item.trackIds).map(track =>
+            const attachedTracks = getContentItemsFromRawList(allContentItems, item.attachments).map(track =>
               contentItemToTrack(track)
             )
 

@@ -7,7 +7,7 @@ function getContentItemsFromList(contentItems: IContentItem[], listSlug: string)
 
   if (!listItem) return []
 
-  return getContentItemsFromRawList(contentItems, listItem.trackIds)
+  return getContentItemsFromRawList(contentItems, listItem.attachments)
 }
 
 function getContentItemsFromRawList(contentItems: IContentItem[], list: string) {

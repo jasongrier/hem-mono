@@ -192,19 +192,15 @@ function MainContentList({
         }
 
         else {
-          const attachedTracks = getContentItemsFromRawList(storeContentItems, item.trackIds).map(track =>
+          const attachedTracks = getContentItemsFromRawList(storeContentItems, item.attachments).map(track =>
             contentItemToTrack(track)
           )
           tracks = tracks.concat(attachedTracks)
         }
       }
 
-      // if (tracks.length) {
-      //   dispatch(replacePlaylist(2, { name: 'On this page', tracks }))
-      // }
-
-      if (tracks.length && shouldSetCurrentPlaylist) {
-        dispatch(setPlayerPlaylist(1))
+      if (tracks.length) {
+        dispatch(replacePlaylist(5, { name: 'On this page', tracks }))
       }
     })
   }, [currentFilter, storeContentItems, currentlyOpenPopUp])
@@ -339,7 +335,6 @@ function MainContentList({
               buttonText={buttonText}
               contentItem={contentItem}
               index={index}
-              templateIndex={boxTemplateIndex}
               filter={currentFilter}
               key={contentItem.slug}
               linkTo={linkTo}

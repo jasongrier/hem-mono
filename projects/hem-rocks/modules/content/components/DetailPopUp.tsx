@@ -108,7 +108,7 @@ function DetailPopUp({
       }
 
       else {
-        attachedTracks = compact(getContentItemsFromRawList(allContentItems, contentItem.trackIds).map(item =>
+        attachedTracks = compact(getContentItemsFromRawList(allContentItems, contentItem.attachments).map(item =>
           contentItemToTrack(item)
         ))
       }
