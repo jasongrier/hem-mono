@@ -8,8 +8,11 @@ function SiteFooter(): ReactElement {
   const el = useRef<null | HTMLDivElement>(null)
 
   useEffect(function toggleHeaderScrollbarSafetyZone() {
-    function handleIntersection(entries) {
-      entries.map(entry => {
+    if (!el) return
+    if (!el.current) return
+
+    function handleIntersection(entries: any) {
+      entries.map((entry: any) => {
         if (entry.isIntersecting) {
           document.body.classList.add('footer-is-in-view')
         }
@@ -40,6 +43,7 @@ function SiteFooter(): ReactElement {
               <li><Link to="/internships">Internships</Link></li>
               <li><Link to="/about">About</Link></li>
               <li><Link to="/contact">Contact</Link></li>
+              <li><Link to="/newsletters">Newsletters</Link></li>
             </ul>
           </div>
           <div className="site-footer-content-column">

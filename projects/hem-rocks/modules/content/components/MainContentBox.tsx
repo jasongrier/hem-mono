@@ -19,6 +19,7 @@ interface IProps {
   className?: string
   linkTo?: (contentItem: IContentItem) => string
   noSplatter?: boolean
+  width?: number
 }
 
 function MainContentBox({
@@ -34,6 +35,7 @@ function MainContentBox({
   className,
   linkTo: customLinkTo,
   noSplatter,
+  width = 400,
 }: PropsWithChildren<IProps>): ReactElement {
   const dispatch = useDispatch()
   const [alignRight, setAlignRight] = useState(false)
@@ -69,7 +71,7 @@ function MainContentBox({
         ${alignRight && index > 0 ? 'align-right' : ''}
       `}
       id={contentItem.slug}
-      width={400}
+      width={width}
       height={0}
       rangeX={100}
       rangeY={0}

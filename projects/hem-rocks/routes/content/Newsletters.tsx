@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { MainContentList } from '../../modules/content'
 import { BASE_SITE_TITLE } from '../../config'
 
-function Articles(): ReactElement {
+function Newsletters(): ReactElement {
   const { filter: currentFilter }: any = useParams()
 
   return (
@@ -16,11 +16,11 @@ function Articles(): ReactElement {
       <div className="page page-articles">
         <MainContentList
           noFilters={true}
-          category="articles"
+          category="newsletters"
         />
       </div>
     </>
   )
 }
 
-export default Articles
+export default Newsletters
