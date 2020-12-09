@@ -20,6 +20,7 @@ function Tracks(): ReactElement {
           excludeFromAll="Sound Library"
           category="tracks"
           linkTo={ item => hasTag(item, 'attachment') ? item.relatedContentLink : `tracks/${item.slug}` }
+          boxWidth={100}
         >
           {item => {
             const track = contentItemToTrack(item)

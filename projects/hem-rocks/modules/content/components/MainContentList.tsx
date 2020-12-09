@@ -22,6 +22,7 @@ interface IProps {
 
   additionalCategory?: string
   shouldSetCurrentPlaylist?: boolean
+  boxWidth: number
   blurb?: string | Function
   buttonText?: string
   children?: (contentItem: IContentItem) => any
@@ -36,6 +37,7 @@ interface IProps {
   linkTo?: (contentItem: IContentItem) => string
   moreTagsLink?: string | null
   noAll?: boolean
+  noFilters?: boolean
   noSplatter?: boolean
   onlyTag?: string
   onFiltersChanged?: () => void
@@ -51,18 +53,20 @@ function MainContentList({
   additionalCategory,
   shouldSetCurrentPlaylist = true,
   blurb,
+  boxWidth,
   buttonText,
   children,
   excludeFromAll,
   fixedFilters,
-  currentFilter = 'all',
+  currentFilter = 'featured',
   highlights,
   infoPopupText,
   infoPopupTitle,
   items: propsContentItems,
   linkTo,
   moreTagsLink,
-  noAll,
+  noAll = true,
+  noFilters,
   noSplatter,
   onlyTag,
   orderByOrder,
@@ -84,13 +88,15 @@ function MainContentList({
   useEffect(function filters() {
     let semifinalFilters
 
+    if (noFilters) return
+
     if (fixedFilters) {
       semifinalFilters = fixedFilters
     }
 
     else {
       const contentItems = (propsContentItems || storeContentItems).filter(item =>
-        item.published && parseInt(item.releasePhase, 10) <= RELEASE_PHASE && hasCategory(item, category)
+        item.published && hasCategory(item, category)
       )
 
       if (!contentItems) return
@@ -98,6 +104,7 @@ function MainContentList({
 
       const allFilters = contentItems.map(item => item.tags.split(',').map(tag => tag.trim()))
       const allFiltersFlat = flatten(allFilters)
+
       let filters: string[] = uniq(allFiltersFlat.map(tag => titleCase(tag).replace(/-/g, ' ')))
       filters.sort()
 
@@ -171,12 +178,8 @@ function MainContentList({
         stickyContentItems.sort(dateSortFn)
       }
 
-      contentItems = stickyContentItems.concat(contentItems.slice(0, 102))
+      contentItems = stickyContentItems.concat(contentItems)
     }
-
-    // contentItems = contentItems.filter((item: IContentItem) =>
-    //   parseInt(item.releasePhase, 10) <= RELEASE_PHASE
-    // )
 
     setFinalContentItems(contentItems)
     dispatch(setCurrentItems(contentItems))
@@ -241,6 +244,8 @@ function MainContentList({
   }
 
   let boxTemplateIndex = -1
+
+  console.log(boxWidth)
 
   return (
     <div className="main-content-list clearfix">
@@ -338,6 +343,7 @@ function MainContentList({
                         : contentItem.category.replace(/-/g, ' '))
                   : undefined
               }
+              width={boxWidth}
               buttonText={buttonText}
               contentItem={contentItem}
               index={index}

@@ -11,6 +11,7 @@ import {
   Label,
   Merch,
   Mixes,
+  Newsletters,
   Press,
   PressKits,
   Recipes,
@@ -153,6 +154,10 @@ function RoutingHub(): ReactElement {
         <Route exact path="/press/:contentItemSlug?/:filter?" component={Press} />
         <Route exact path="/press/filter/:filter" component={Press} />
         <Route exact path="/press/cart/:filter?" component={Press} />
+
+        <Route exact path="/newsletters/:contentItemSlug?/:filter?" component={Newsletters} />
+        <Route exact path="/newsletters/filter/:filter" component={Newsletters} />
+        <Route exact path="/newsletters/cart/:filter?" component={Newsletters} />
 
         <Route exact path="/press-kits/:contentItemSlug?/:filter?" component={PressKits} />
         <Route exact path="/press-kits/filter/:filter" component={PressKits} />
