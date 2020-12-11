@@ -1,4 +1,4 @@
-import { isEmpty } from 'lodash'
+import { find, isEmpty } from 'lodash'
 import { IContentItem } from '../index'
 
 function getContentItemByField(contentItems: IContentItem[], fieldName: string, fieldValue: string, fieldIsArray: boolean) {
@@ -24,8 +24,13 @@ function getContentItemsByTag(contentItems: IContentItem[], tag: string) {
   return getContentItemByField(contentItems, 'tag', tag, true) as IContentItem[]
 }
 
+function getContentItemById(contentItems: IContentItem[], id: string) {
+  return find(contentItems, { id })
+}
+
 export {
   getContentItemByField,
   getContentItemBySlug,
   getContentItemsByTag,
+  getContentItemById,
 }

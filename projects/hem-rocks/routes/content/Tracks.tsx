@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet'
 import { Link, useParams } from 'react-router-dom'
 import { MainContentList, contentItemToTrack, hasCategory, hasTag } from '../../modules/content'
 import { TrackPlayPauseButton } from '../../../../lib/modules/website-player'
+import { TracksSubnav } from '../../components/layout'
 import { BASE_SITE_TITLE } from '../../config'
 
 function Tracks(): ReactElement {
@@ -14,12 +15,15 @@ function Tracks(): ReactElement {
         <title>{ BASE_SITE_TITLE }</title>
         <meta name="description" content="" />
       </Helmet>
-      <div className="page page-tracks">
+      <div className="page page-tracks page-with-subnav">
+        <TracksSubnav />
         <MainContentList
-          currentFilter={currentFilter}
+          // currentFilter={currentFilter}
+          currentFilter="all"
           excludeFromAll="Sound Library"
           category="tracks"
           linkTo={ item => hasTag(item, 'attachment') ? item.relatedContentLink : `tracks/${item.slug}` }
+          boxSecondaryTitleField="attribution"
           boxWidth={100}
         >
           {item => {

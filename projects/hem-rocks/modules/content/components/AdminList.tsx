@@ -149,6 +149,7 @@ function AdminList(): ReactElement {
               <option value="label">Label</option>
               <option value="merch">Merch</option>
               <option value="mix">Mixes</option>
+              <option value="playlist">Playlist</option>
               <option value="press">Press</option>
               <option value="press-kits">Press Kits</option>
               <option value="recipes">Recipes</option>
@@ -180,6 +181,7 @@ function AdminList(): ReactElement {
               <option value="audioFilename">Audio:</option>
               <option value="attribution">Attr:</option>
               <option value="secondaryAttribution">2nd Attr:</option>
+              <option value="secondaryTitle">2nd Title:</option>
               <option value="slug">Slug</option>
             </select>
             <input
@@ -676,6 +678,46 @@ function AdminList(): ReactElement {
                       ))
                     )}
                     { !hasCategory(item, 'assets')
+                      && !hasCategory(item, 'lists')
+                      && (
+                        <>
+                          <button
+                            className="action-button"
+                            onClick={() => {
+                              const updatedItem: IContentItem = produce(item, (draftItem) => {
+                                draftItem.secondaryAttribution = 'Lockdown Doodles'
+                              })
+                              dispatch(requestUpdateItems([updatedItem]))
+                            }}
+                          >
+                            Doodles
+                          </button>
+                          <button
+                            className="action-button"
+                            onClick={() => {
+                              const updatedItem: IContentItem = produce(item, (draftItem) => {
+                                draftItem.secondaryAttribution = 'Heart Shaped Rock Sessions'
+                              })
+                              dispatch(requestUpdateItems([updatedItem]))
+                            }}
+                          >
+                            HSR Sessions
+                          </button>
+                          <button
+                            className="action-button"
+                            onClick={() => {
+                              const updatedItem: IContentItem = produce(item, (draftItem) => {
+                                draftItem.secondaryAttribution = 'Sound Library Sessions'
+                              })
+                              dispatch(requestUpdateItems([updatedItem]))
+                            }}
+                          >
+                            SL Sessions
+                          </button>
+                        </>
+                      )
+                    }
+                    { !hasCategory(item, 'assets')
                       && !hasCategory(item, 'tracks')
                       && !hasCategory(item, 'lists')
                       && (
@@ -734,6 +776,26 @@ function AdminList(): ReactElement {
                           { hasTag(item, 'label-page') ? 'Un-label page' : 'Label page' }
                         </button>
                     )}
+                    <form
+                      className="inline-edit-form first-inline-edit-form"
+                      onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
+                        evt.preventDefault()
+                        const input = evt.currentTarget.querySelector('input[name="title"]')
+                        if (!input) return
+                        const updatedItem: IContentItem = produce(item, (draftItem) => {
+                          // @ts-ignore
+                          draftItem.attribution = input.value
+                          draftItem.secondaryAttribution = ''
+                        })
+                        dispatch(requestUpdateItems([updatedItem]))
+                        // @ts-ignore
+                        input.value = ''
+                      }}
+                    >
+                      <input value={ item.secondaryAttribution } />
+                      <label><span>Artist:</span> <input type="text" name="title" /></label>
+                      <button type="submit">Submit</button>
+                    </form>
                   </td>
                 )}
               </tr>

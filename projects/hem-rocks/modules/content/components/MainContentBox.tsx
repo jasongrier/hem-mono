@@ -19,6 +19,7 @@ interface IProps {
   className?: string
   linkTo?: (contentItem: IContentItem) => string
   noSplatter?: boolean
+  secondaryTitleField?: 'secondaryTitle' | 'attribution'
   width?: number
 }
 
@@ -36,6 +37,7 @@ function MainContentBox({
   linkTo: customLinkTo,
   noSplatter,
   width = 400,
+  secondaryTitleField = 'secondaryTitle',
 }: PropsWithChildren<IProps>): ReactElement {
   const dispatch = useDispatch()
   const [alignRight, setAlignRight] = useState(false)
@@ -85,8 +87,8 @@ function MainContentBox({
       )}
       <Link to={linkTo}>
         <h3 dangerouslySetInnerHTML={{ __html: contentItem.titleWrapping || contentItem.title }} />
-        { contentItem.secondaryTitle && (
-          <h4 dangerouslySetInnerHTML={{ __html: contentItem.secondaryTitle }} />
+        { contentItem[secondaryTitleField] && (
+          <h4 dangerouslySetInnerHTML={{ __html: contentItem[secondaryTitleField] }} />
         )}
       </Link>
       <div
