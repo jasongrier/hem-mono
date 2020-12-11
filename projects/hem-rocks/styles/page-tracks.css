@@ -9,7 +9,7 @@
 }
 
 .page-tracks .main-content-box-text {
-  display: none;
+  height: 0;
 }
 
 .page-tracks .main-content-box h3 {
@@ -32,6 +32,7 @@
 .page-tracks .main-content-box h4 {
   margin: 5px 0;
   font-size: 12px;
+  font-weight: 100;
 }
 
 .page-tracks .main-content-box-actions {

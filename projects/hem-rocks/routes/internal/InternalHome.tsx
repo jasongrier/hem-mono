@@ -110,24 +110,6 @@ function InternalHome(): ReactElement {
               <li><Link to="/internal/docus">Docus</Link></li>
             </ul>
           </div>
-
-          <div className="page-internal-link-group">
-            <h2>Midst 2021</h2>
-            <ul>
-              <li>
-                <Link to="/">Midst 2020 General Info</Link>
-              </li>
-              <li>
-                <Link to="/">Midst 2020 Proposal</Link>
-              </li>
-              <li>
-                <Link to="/">Midst 2020 Budget</Link>
-              </li>
-              <li>
-                <Link to="/">Midst 2020 Updates</Link>
-              </li>
-            </ul>
-          </div>
         </ProtectedContent>
       </div>
     </>

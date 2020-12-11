@@ -142,6 +142,8 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
   const preferredOrder = [
     'tags',
     'title',
+    'attribution',
+    'secondaryAttribution',
     'titleWrapping',
     'description',
     'secondaryTitle',

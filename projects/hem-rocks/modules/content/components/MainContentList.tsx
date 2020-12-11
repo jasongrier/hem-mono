@@ -22,7 +22,8 @@ interface IProps {
 
   additionalCategory?: string
   shouldSetCurrentPlaylist?: boolean
-  boxWidth: number
+  boxWidth?: number
+  boxSecondaryTitleField?: 'secondaryTitle' | 'attribution'
   blurb?: string | Function
   buttonText?: string
   children?: (contentItem: IContentItem) => any
@@ -54,6 +55,7 @@ function MainContentList({
   shouldSetCurrentPlaylist = true,
   blurb,
   boxWidth,
+  boxSecondaryTitleField,
   buttonText,
   children,
   excludeFromAll,
@@ -78,7 +80,6 @@ function MainContentList({
     storeContentItems: state.content.contentItems,
     currentlyOpenPopUp: state.popups.currentlyOpenPopUp,
   }))
-
 
   const dispatch = useDispatch()
 
@@ -106,8 +107,8 @@ function MainContentList({
       const allFiltersFlat = flatten(allFilters)
 
       let filters: string[] = uniq(allFiltersFlat.map(tag => titleCase(tag).replace(/-/g, ' ')))
-      filters.sort()
 
+      filters.sort()
       semifinalFilters = filters
     }
 
@@ -182,6 +183,7 @@ function MainContentList({
     }
 
     setFinalContentItems(contentItems)
+
     dispatch(setCurrentItems(contentItems))
 
     setTimeout(function () {
@@ -204,7 +206,7 @@ function MainContentList({
 
       if (shouldSetCurrentPlaylist && tracks.length) {
         dispatch(replacePlaylist(5, { name: 'On this page', tracks }))
-        dispatch(setPlayerPlaylist(5))
+        dispatch(setPlayerPlaylist(0))
       }
 
       else {
@@ -244,8 +246,6 @@ function MainContentList({
   }
 
   let boxTemplateIndex = -1
-
-  console.log(boxWidth)
 
   return (
     <div className="main-content-list clearfix">
@@ -351,6 +351,7 @@ function MainContentList({
               key={contentItem.slug}
               linkTo={linkTo}
               noSplatter={noSplatter}
+              secondaryTitleField={boxSecondaryTitleField}
               tag={category}
             >
               { children && children(contentItem) }
