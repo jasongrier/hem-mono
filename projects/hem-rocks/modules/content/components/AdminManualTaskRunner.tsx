@@ -27,9 +27,10 @@ function migrate(allContentItems: IContentItem[]) {
     const newItem = Object.assign({}, oldItem)
 
     if (
-      newItem.secondaryAttribution === 'Betrieb'
+      newItem.attribution === 'Julia Holter'
+      && newItem.keyArt === 'track-placeholder-image.jpg'
     ) {
-      newItem.title = newItem.title.replace('/', ' / ')
+      newItem.keyArt = 'julia-holter.jpg'
     }
 
     newItems.push(newItem)
