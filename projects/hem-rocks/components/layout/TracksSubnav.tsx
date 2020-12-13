@@ -19,6 +19,9 @@ function SoundLibrarySubnav(): ReactElement {
         <li>
           <NavLink to="/tracks/tracks-by-artist">Tracks by Artist</NavLink>
         </li>
+        <li>
+          <NavLink to="/tracks/dog-star-orchestra">Dog Star Orchestra</NavLink>
+        </li>
       </ul>
     </nav>
   )

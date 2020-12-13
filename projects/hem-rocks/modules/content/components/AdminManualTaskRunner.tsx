@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useState, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import uuid from 'uuid/v1'
-import { uniq, noop, last, isNumber, compact, uniqBy, has, sample, filter, map, find, isEmpty, includes, sortBy, partial } from 'lodash'
+import { uniq, noop, last, isNumber, compact, uniqBy, has, sample, filter, map, find, isEmpty, includes, sortBy, partial, findIndex } from 'lodash'
 import pad from 'pad'
 import moment from 'moment'
 import $ from 'jquery'
@@ -26,15 +26,13 @@ function migrate(allContentItems: IContentItem[]) {
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
 
-    if (
-      newItem.attribution === 'Julia Holter'
-      && newItem.keyArt === 'track-placeholder-image.jpg'
-    ) {
-      newItem.keyArt = 'julia-holter.jpg'
+    if (hasCategory(newItem, 'tracks')) {
+      newItem.titleWrapping = ''
     }
 
     newItems.push(newItem)
   }
+
 
   // ***** DANGER ZONE *****
   // ***** DANGER ZONE *****
