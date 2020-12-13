@@ -24,7 +24,7 @@ function Tracks(): ReactElement {
           category="tracks"
           linkTo={ item => hasTag(item, 'attachment') ? item.relatedContentLink : `tracks/${item.slug}` }
           boxSecondaryTitleField="attribution"
-          boxWidth={100}
+          boxWidth={120}
         >
           {item => {
             const track = contentItemToTrack(item)

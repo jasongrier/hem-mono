@@ -45,11 +45,11 @@ function SplatterDims({
   useEffect(() => {
     if (disabled) return
 
-    function randomOffset(range) {
+    function randomOffset(range: number) {
       return (Math.random() * (range))
     }
 
-    function randomOffsetBipolar(range) {
+    function randomOffsetBipolar(range: number) {
       return randomOffset(range * 2) - range
     }
 

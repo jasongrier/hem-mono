@@ -149,7 +149,7 @@ function AdminList(): ReactElement {
               <option value="label">Label</option>
               <option value="merch">Merch</option>
               <option value="mix">Mixes</option>
-              <option value="playlist">Playlist</option>
+              <option value="playlists">Playlists</option>
               <option value="press">Press</option>
               <option value="press-kits">Press Kits</option>
               <option value="recipes">Recipes</option>
@@ -780,20 +780,20 @@ function AdminList(): ReactElement {
                       className="inline-edit-form first-inline-edit-form"
                       onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
                         evt.preventDefault()
-                        const input = evt.currentTarget.querySelector('input[name="title"]')
+                        const input = evt.currentTarget.querySelector('input[name="titleWrapping"]')
                         if (!input) return
                         const updatedItem: IContentItem = produce(item, (draftItem) => {
                           // @ts-ignore
-                          draftItem.attribution = input.value
-                          draftItem.secondaryAttribution = ''
+                          draftItem.titleWrapping = input.value
                         })
                         dispatch(requestUpdateItems([updatedItem]))
                         // @ts-ignore
                         input.value = ''
                       }}
                     >
-                      <input value={ item.secondaryAttribution } />
-                      <label><span>Artist:</span> <input type="text" name="title" /></label>
+                      <input value={item.title} />
+                      <input value="&amp;shy;" />
+                      <label><span>Artist:</span> <input type="text" name="titleWrapping" /></label>
                       <button type="submit">Submit</button>
                     </form>
                   </td>
