@@ -176,6 +176,7 @@ function AdminList(): ReactElement {
               onChange={evt => dispatch(setAdminSearchableField(evt.currentTarget.value))}
               value={adminSearchableField}
             >
+              <option value="id">Id:</option>
               <option value="tags">Tag:</option>
               <option value="title">Title:</option>
               <option value="audioFilename">Audio:</option>
@@ -776,26 +777,6 @@ function AdminList(): ReactElement {
                           { hasTag(item, 'label-page') ? 'Un-label page' : 'Label page' }
                         </button>
                     )}
-                    <form
-                      className="inline-edit-form first-inline-edit-form"
-                      onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
-                        evt.preventDefault()
-                        const input = evt.currentTarget.querySelector('input[name="titleWrapping"]')
-                        if (!input) return
-                        const updatedItem: IContentItem = produce(item, (draftItem) => {
-                          // @ts-ignore
-                          draftItem.titleWrapping = input.value
-                        })
-                        dispatch(requestUpdateItems([updatedItem]))
-                        // @ts-ignore
-                        input.value = ''
-                      }}
-                    >
-                      <input value={item.title} />
-                      <input value="&amp;shy;" />
-                      <label><span>Artist:</span> <input type="text" name="titleWrapping" /></label>
-                      <button type="submit">Submit</button>
-                    </form>
                   </td>
                 )}
               </tr>

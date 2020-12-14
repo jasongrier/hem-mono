@@ -26,8 +26,8 @@ function migrate(allContentItems: IContentItem[]) {
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
 
-    if (hasCategory(newItem, 'tracks')) {
-      newItem.titleWrapping = ''
+    if (hasTag(newItem, 'albums')) {
+      newItem.tags = newItem.tags.replace('albums', 'releases')
     }
 
     newItems.push(newItem)

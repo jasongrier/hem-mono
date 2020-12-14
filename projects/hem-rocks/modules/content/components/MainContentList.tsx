@@ -25,11 +25,14 @@ interface IProps {
   boxWidth?: number
   boxSecondaryTitleField?: 'secondaryTitle' | 'attribution'
   blurb?: string | Function
+  boxBlurbs?: boolean
   buttonText?: string
   children?: (contentItem: IContentItem) => any
   currentFilter?: string,
   excludeFromAll?: string
   fixedFilters?: string[] | null
+  additionalFilters?: string[]
+  hideFilters?: string[]
   highlights?: string[]
   infoPopupText?: string
   infoPopupTitle?: string
@@ -56,10 +59,12 @@ function MainContentList({
   blurb,
   boxWidth,
   boxSecondaryTitleField,
+  boxBlurbs,
   buttonText,
   children,
   excludeFromAll,
   fixedFilters,
+  hideFilters,
   currentFilter = 'featured',
   highlights,
   infoPopupText,
@@ -75,6 +80,7 @@ function MainContentList({
   randomizeNonSticky,
   showCategoryOnContentBoxes = false,
   title,
+  additionalFilters,
 }: IProps): ReactElement {
   const { storeContentItems, currentlyOpenPopUp } = useSelector((state: RootState) => ({
     storeContentItems: state.content.contentItems,
@@ -108,8 +114,16 @@ function MainContentList({
 
       let filters: string[] = uniq(allFiltersFlat.map(tag => titleCase(tag).replace(/-/g, ' ')))
 
+      if (hideFilters) {
+        filters = filters.filter(f => !hideFilters.includes(f))
+      }
+
       filters.sort()
       semifinalFilters = filters
+
+      if (additionalFilters) {
+        semifinalFilters = semifinalFilters.concat(additionalFilters)
+      }
     }
 
     if (noAll === true) {
@@ -140,47 +154,47 @@ function MainContentList({
           return hasCategory(item, category) && item.published && !item.sticky
         }
       })
+    }
 
-      let stickyContentItems = storeContentItemsImm.filter(
-        item => hasCategory(item, category) && item.published && item.sticky
-      )
+    let stickyContentItems = contentItems.filter(
+      item => hasCategory(item, category) && item.published && item.sticky
+    )
 
-      if (onlyTag) {
-        contentItems = contentItems.filter(item => hasTag(item, onlyTag))
-        stickyContentItems = stickyContentItems.filter(item => hasTag(item, onlyTag))
-      }
+    if (onlyTag) {
+      contentItems = contentItems.filter(item => hasTag(item, onlyTag))
+      stickyContentItems = stickyContentItems.filter(item => hasTag(item, onlyTag))
+    }
 
-      else if (currentFilter && currentFilter !== 'all') {
-        contentItems = contentItems.filter(item => hasTag(item, currentFilter))
-        stickyContentItems = stickyContentItems.filter(item => hasTag(item, currentFilter))
-      }
+    else if (currentFilter && currentFilter !== 'all') {
+      contentItems = contentItems.filter(item => hasTag(item, currentFilter))
+      stickyContentItems = stickyContentItems.filter(item => hasTag(item, currentFilter))
+    }
 
-      else if (excludeFromAll) {
-        contentItems = contentItems.filter(item => {
-          return !hasTag(item, slugify(excludeFromAll))
-        })
-      }
+    else if (excludeFromAll) {
+      contentItems = contentItems.filter(item => {
+        return !hasTag(item, slugify(excludeFromAll))
+      })
+    }
 
-      if (randomizeNonSticky) {
-        contentItems = shuffle(contentItems)
+    if (randomizeNonSticky) {
+      contentItems = shuffle(contentItems)
 
-        if (orderByOrder) {
-          stickyContentItems.sort(orderSortFn)
-        }
-      }
-
-      else if (orderByOrder) {
-        contentItems.sort(orderSortFn)
+      if (orderByOrder) {
         stickyContentItems.sort(orderSortFn)
       }
-
-      else {
-        contentItems.sort(dateSortFn)
-        stickyContentItems.sort(dateSortFn)
-      }
-
-      contentItems = stickyContentItems.concat(contentItems)
     }
+
+    else if (orderByOrder) {
+      contentItems.sort(orderSortFn)
+      stickyContentItems.sort(orderSortFn)
+    }
+
+    else {
+      contentItems.sort(dateSortFn)
+      stickyContentItems.sort(dateSortFn)
+    }
+
+    contentItems = stickyContentItems.concat(contentItems)
 
     setFinalContentItems(contentItems)
 
@@ -348,11 +362,12 @@ function MainContentList({
               contentItem={contentItem}
               index={index}
               filter={currentFilter}
-              key={contentItem.slug}
+              key={contentItem.id}
               linkTo={linkTo}
               noSplatter={noSplatter}
               secondaryTitleField={boxSecondaryTitleField}
               tag={category}
+              showBlurb={boxBlurbs}
             >
               { children && children(contentItem) }
             </MainContentBox>

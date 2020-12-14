@@ -43,8 +43,6 @@ function applyPaginationAndFiltering(state: IState) {
     pageContentItems = pageContentItems.filter(item => item.sticky)
   }
 
-  pageContentItems = pageContentItems.filter(item => !hasTag(item, 'done-for-now'))
-
   // pageContentItems.sort((a, b) => {
   //   if (adminFilterApplied === 'sound-library') {
   //     return parseInt(a.order, 10) - parseInt(b.order, 10)

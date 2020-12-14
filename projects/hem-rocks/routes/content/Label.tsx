@@ -35,12 +35,6 @@ function Label(): ReactElement {
         <LabelSubnav />
         <MainContentList
           currentFilter={currentFilter}
-          // excludeFromAll="Physical Formats"
-          filters={[
-            'Events',
-            'Record Releases',
-            // 'Physical Formats',
-          ]}
           category="label"
         >
           {(item) => {
