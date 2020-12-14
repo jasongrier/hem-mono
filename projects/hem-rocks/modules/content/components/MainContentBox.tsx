@@ -21,6 +21,7 @@ interface IProps {
   noSplatter?: boolean
   secondaryTitleField?: 'secondaryTitle' | 'attribution'
   width?: number
+  showBlurb?: boolean
 }
 
 function MainContentBox({
@@ -28,8 +29,6 @@ function MainContentBox({
   contentItem,
   filter,
   index,
-  // TODO: Unused var
-  tag,
 
   badgeText,
   buttonText,
@@ -38,6 +37,7 @@ function MainContentBox({
   noSplatter,
   width = 400,
   secondaryTitleField = 'secondaryTitle',
+  showBlurb = true,
 }: PropsWithChildren<IProps>): ReactElement {
   const dispatch = useDispatch()
   const [alignRight, setAlignRight] = useState(false)
@@ -131,9 +131,11 @@ function MainContentBox({
         className="main-content-box-text"
         onClick={onClick}
       >
-        <Link to={linkTo}>
-          <div dangerouslySetInnerHTML={{ __html: marked(contentItem.blurb) }} />
-        </Link>
+        { showBlurb && (
+          <Link to={linkTo}>
+            <div dangerouslySetInnerHTML={{ __html: marked(contentItem.blurb) }} />
+          </Link>
+        )}
         <div className="main-content-box-actions">
           <div className="main-content-box-custom-actions">
             { children }

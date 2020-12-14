@@ -1,5 +1,5 @@
-.page-tracks {
-
+.page-tracks .main-content {
+  transform: translateX(-3px);
 }
 
 .page-tracks .main-content-box {
