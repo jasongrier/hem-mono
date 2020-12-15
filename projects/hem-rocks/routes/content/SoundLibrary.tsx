@@ -30,6 +30,7 @@ function SoundLibrary(): ReactElement {
           excludeFromAll="Midi Devices"
           orderByOrder={true}
           shouldSetCurrentPlaylist={true}
+          speciallyOrderedTags={['Featured']}
         >
           {(pack) => {
             const attachedTracks = getContentItemsFromRawList(allContentItems, pack.attachments).map(track =>

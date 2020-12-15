@@ -12,14 +12,10 @@ import { getContentItemById } from '../../modules/content/functions'
 import { titleCase } from 'voca'
 
 function Tracks(): ReactElement {
-  const { featuredTracksAndPlaylists, playerFeaturedTracks, playlists, label, tracks } = useSelector((state: RootState) => ({
+  const { allContentItems, featuredTracksAndPlaylists, playlists, label, tracks } = useSelector((state: RootState) => ({
+    allContentItems: state.content.contentItems,
     featuredTracksAndPlaylists: getContentItemsFromList(
-      state.content.contentItems, 'featured-tracks',
-    ),
-    playerFeaturedTracks: flatten(
-      state.content.contentItems.filter(item => hasTag(item, 'player-playlist'))
-        .map(({ attachments }) => attachments)
-        .map(list => getContentItemsFromRawList(state.content.contentItems, list))
+      state.content.contentItems, 'featured-tracks-and-playlists',
     ),
     playlists: state.content.contentItems.filter(item => hasCategory(item, 'playlists') && !hasTag(item, 'player-playlist') && item.published && !isEmpty(item.attachments)),
     label: state.content.contentItems.filter(item => hasCategory(item, 'label') && (hasTag(item, 'albums') || hasTag(item, 'events')) && item.published && !isEmpty(item.attachments)),
@@ -33,14 +29,13 @@ function Tracks(): ReactElement {
   let items: IContentItem[] = []
 
   if (currentFilter === 'featured') {
-    const featuredIndividualTrackIds = map(featuredTracksAndPlaylists.filter(item => hasCategory(item, 'tracks')), 'id')
-    const featuredPlaylistTrackIds = map(playerFeaturedTracks, 'id')
-      .concat(map(featuredTracksAndPlaylists.filter(item => hasCategory(item, 'playlists')), 'id'))
-
-    items = compact(uniq(featuredIndividualTrackIds.concat(featuredPlaylistTrackIds)).map(id => getContentItemById(tracks, id)))
+    items = featuredTracksAndPlaylists
   }
 
   else if (currentFilter === 'playlists') {
+
+    console.log(map(playlists, 'title'))
+
     items = playlists
   }
 
@@ -76,15 +71,17 @@ function Tracks(): ReactElement {
         <TracksSubnav />
         <MainContentList
           currentFilter={currentFilter}
+          applyCurrentFilter={currentFilter !== 'featured' && currentFilter !== 'playlists'}
           excludeFromAll="Sound Library"
           category="tracks"
-          fixedFilters={fixedFilters}
           additionalFilters={['Playlists']}
+          excludeTags={['Primary Format', 'Format:Digital', 'Label Page']}
           items={items}
           linkTo={ item => hasTag(item, 'attachment') ? item.relatedContentLink : `tracks/${item.slug}` }
           boxSecondaryTitleField="attribution"
           boxWidth={120}
           boxBlurbs={false}
+          speciallyOrderedTags={['Featured', 'Playlists', 'Rare', 'Live', 'Releases']}
         >
           {item => {
             const track = contentItemToTrack(item)

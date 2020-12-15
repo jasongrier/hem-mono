@@ -37,6 +37,7 @@ function Home(): ReactElement {
         <MainContentList
           category="home-feature"
           items={getContentItemsFromList(contentItems, 'home-page-features')}
+          applyCurrentFilter={false}
           shouldSetCurrentPlaylist={false}
           showCategoryOnContentBoxes={true}
         />
