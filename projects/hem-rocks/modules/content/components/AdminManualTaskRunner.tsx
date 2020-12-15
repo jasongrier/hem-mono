@@ -26,8 +26,13 @@ function migrate(allContentItems: IContentItem[]) {
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
 
-    if (hasTag(newItem, 'albums')) {
-      newItem.tags = newItem.tags.replace('albums', 'releases')
+    if (newItem.title === 'The Raven & The Fox') {
+      console.log(1, newItem.slug)
+      newItem.slug = 'the-raven-and-the-fox'
+    }
+
+    if (newItem.title === 'Dedications') {
+      console.log(2, newItem.slug)
     }
 
     newItems.push(newItem)
@@ -40,8 +45,8 @@ function migrate(allContentItems: IContentItem[]) {
 
   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
   const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
-  writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
-  writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
+  // writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
+  // writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
 }
 
 function AdminManualTaskRunner(): ReactElement {

@@ -21,6 +21,7 @@ interface IProps {
   category: string
 
   additionalCategory?: string
+  applyCurrentFilter?: boolean
   shouldSetCurrentPlaylist?: boolean
   boxWidth?: number
   boxSecondaryTitleField?: 'secondaryTitle' | 'attribution'
@@ -49,12 +50,15 @@ interface IProps {
   randomizeNonSticky?: boolean
   showCategoryOnContentBoxes?: boolean
   title?: string
+  speciallyOrderedTags?: string[]
+  excludeTags?: string[]
 }
 
 function MainContentList({
   category,
 
   additionalCategory,
+  applyCurrentFilter = true,
   shouldSetCurrentPlaylist = true,
   blurb,
   boxWidth,
@@ -81,6 +85,8 @@ function MainContentList({
   showCategoryOnContentBoxes = false,
   title,
   additionalFilters,
+  speciallyOrderedTags,
+  excludeTags,
 }: IProps): ReactElement {
   const { storeContentItems, currentlyOpenPopUp } = useSelector((state: RootState) => ({
     storeContentItems: state.content.contentItems,
@@ -93,7 +99,7 @@ function MainContentList({
   const [finalFilters, setFinalFilters] = useState<string[]>([])
 
   useEffect(function filters() {
-    let semifinalFilters
+    let semifinalFilters: Array<string | undefined>
 
     if (noFilters) return
 
@@ -119,11 +125,36 @@ function MainContentList({
       }
 
       filters.sort()
+
       semifinalFilters = filters
 
       if (additionalFilters) {
         semifinalFilters = semifinalFilters.concat(additionalFilters)
       }
+    }
+
+    if (speciallyOrderedTags) {
+      for (const soTag of speciallyOrderedTags) {
+        const soIndex = semifinalFilters.findIndex(f => f === soTag)
+
+        if (typeof soIndex === 'number' && soIndex > -1) {
+          semifinalFilters[soIndex] = undefined
+        }
+      }
+
+      semifinalFilters = speciallyOrderedTags.concat(compact(semifinalFilters))
+    }
+
+    if (excludeTags) {
+      for (const exTag of excludeTags) {
+        const exIndex = semifinalFilters.findIndex(f => f === exTag)
+
+        if (typeof exIndex === 'number' && exIndex > -1) {
+          semifinalFilters[exIndex] = undefined
+        }
+      }
+
+      semifinalFilters = compact(semifinalFilters)
     }
 
     if (noAll === true) {
@@ -165,7 +196,7 @@ function MainContentList({
       stickyContentItems = stickyContentItems.filter(item => hasTag(item, onlyTag))
     }
 
-    else if (currentFilter && currentFilter !== 'all') {
+    else if (applyCurrentFilter && currentFilter && currentFilter !== 'all') {
       contentItems = contentItems.filter(item => hasTag(item, currentFilter))
       stickyContentItems = stickyContentItems.filter(item => hasTag(item, currentFilter))
     }
@@ -362,7 +393,7 @@ function MainContentList({
               contentItem={contentItem}
               index={index}
               filter={currentFilter}
-              key={contentItem.id}
+              key={contentItem.slug}
               linkTo={linkTo}
               noSplatter={noSplatter}
               secondaryTitleField={boxSecondaryTitleField}

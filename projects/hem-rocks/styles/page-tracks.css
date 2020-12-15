@@ -2,6 +2,10 @@
   transform: translateX(-3px);
 }
 
+.page-tracks .main-content-items {
+  margin-top: 100px;
+}
+
 .page-tracks .main-content-box {
   border-bottom: 0;
   margin-bottom: 0;
