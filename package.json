@@ -11,7 +11,7 @@
   "scripts": {
     "start": "node bin/index",
     "task": "node bin/index task",
-    "test": "node bin/index test"
+    "test": "mocha --timeout 10000"
   },
   "license": "WTFPL",
   "dependencies": {
@@ -54,7 +54,7 @@
     "leasot": "^9.3.1",
     "lines-to-paragraphs": "^1.0.3",
     "lodas": "^1.2.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.20",
     "marked": "^0.7.0",
     "midi": "^1.0.0",
     "moment": "^2.26.0",
@@ -108,6 +108,7 @@
     "parcel": "^1.12.4",
     "parcel-plugin-bundle-manifest": "^0.2.0",
     "prettier": "1.18.2",
+    "puppeteer": "^5.5.0",
     "sass": "^1.26.7",
     "typescript": "^3.9.3"
   }
