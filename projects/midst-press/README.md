@@ -29,7 +29,7 @@
  Example:
 
                 cd hem-mono
-                npm install
+                npm install --save-dev
 
    You may get errors, especially involving gyp. In which case, install or update XCode and then:
 
