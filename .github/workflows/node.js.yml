@@ -27,5 +27,7 @@ jobs:
  #   - run: npm ci
  #   - run: npm run build --if-present
     - run: |
-        npm start midst-press &
-        npm test "projects/**/*.test.js"
+        npm list
+ #       npm start midst-press &
+ #       npm test "projects/**/*.test.js"
+
