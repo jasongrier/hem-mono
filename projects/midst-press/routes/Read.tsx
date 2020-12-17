@@ -2,15 +2,18 @@ import React, { ReactElement, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { Helmet } from 'react-helmet'
+import { sortBy, reverse } from 'lodash'
 import { ChevronButton } from '../../../lib/packages/hem-buttons'
 import { BASE_SITE_PAGE_TITLE } from '../config'
 import { RootState } from '../store'
 import { IPoem } from '../store/types'
-import { setMobileNavOpen } from '../store/actions'
+import { setMobileNavOpen, setSortTerm, reverseSortOrder } from '../store/actions'
 
 function Read(): ReactElement {
-  const { poems } = useSelector((state: RootState) => ({
+  const { poems, sortTerm, sortOrder } = useSelector((state: RootState) => ({
     poems: state.app.poems.filter(poem => !poem.hidden),
+    sortTerm: state.app.sortTerm,
+    sortOrder: state.app.sortOrder,
   }))
 
   const dispatch = useDispatch()
@@ -35,6 +38,12 @@ function Read(): ReactElement {
     }
   }
 
+  let finalPoems = sortBy(poems, sortTerm)
+
+  if (sortOrder === 'ASC') {
+    finalPoems = reverse(finalPoems)
+  }
+
   return (
     <div className="table-of-contents">
       <Helmet>
@@ -42,9 +51,7 @@ function Read(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
 
-      <section className="heroine">
-        {/* <div className="issue-date">Winter&nbsp;2019</div>
-        <div className="issue-number">The Pilot Issue</div> */}
+      <section className="heroine clearfix">
         <div
           className="editor-letter-toggle"
           onClick={() => setEditorLetterOpen(!editorLetterOpen)}
@@ -80,23 +87,83 @@ function Read(): ReactElement {
           </div>
         </div>
 
-        {poems.map((poem: IPoem) => (
+        <div className="poem-line poem-head">
+          <div className="poem-line__column poem-author">
+            <span
+              className={`
+                poem-head-arrow
+                ${ sortTerm === 'authorId' ? 'poem-head-arrow-active' : ''}
+                ${ sortTerm === 'authorId' && sortOrder === 'ASC' ? 'poem-head-arrow-up' : ''}
+              `}
+              onClick={() => {
+                if (sortTerm === 'authorId') {
+                  dispatch(reverseSortOrder())
+                }
+
+                else {
+                  dispatch(setSortTerm('authorId'))
+                }
+              }}
+            />
+          </div>
+          <div className="poem-line__column poem-title">
+            <span
+              className={`
+                poem-head-arrow
+                ${ sortTerm === 'slug' ? 'poem-head-arrow-active' : ''}
+                ${ sortTerm === 'slug' && sortOrder === 'ASC' ? 'poem-head-arrow-up' : ''}
+              `}
+              onClick={() => {
+                if (sortTerm === 'slug') {
+                  dispatch(reverseSortOrder())
+                }
+
+                else {
+                  dispatch(setSortTerm('slug'))
+                }
+              }}
+            />
+          </div>
+          <div className="poem-line__column poem-date">
+            <span
+              className={`
+                poem-head-arrow
+                ${ sortTerm === 'date' ? 'poem-head-arrow-active' : ''}
+                ${ sortTerm === 'date' && sortOrder === 'ASC' ? 'poem-head-arrow-up' : ''}
+              `}
+              onClick={() => {
+                if (sortTerm === 'date') {
+                  dispatch(reverseSortOrder())
+                }
+
+                else {
+                  dispatch(setSortTerm('date'))
+                }
+              }}
+            />
+          </div>
+        </div>
+
+        {finalPoems.map((poem: IPoem) => (
           <Link key={poem.url}
             className={`
-              poem-link
+              poem-line
               ${ poem.highlighted ? 'poem-highlighted' : '' }
             `}
             data-trigger={poem.trigger ? 'true' : 'false'}
             to={`/poem/${poem.url}/`}
             onClick={() => dispatch(setMobileNavOpen(false))}
           >
-            <div className="poem-link__column poem-author">{poem.author}</div>
+            { poem.badge && (
+              <div className="poem-badge">{ poem.badge }</div>
+            )}
+            <div className="poem-line__column poem-author">{poem.author}</div>
             <div
-              className="poem-link__column poem-title"
+              className="poem-line__column poem-title"
               dangerouslySetInnerHTML={{ __html: poem.title }}
             />
-            <div className="poem-link__column poem-date">
-              { poem.date }
+            <div className="poem-line__column poem-date">
+              { poem.date.format('MM/DD/YYYY') }
             </div>
           </Link>
         ))}

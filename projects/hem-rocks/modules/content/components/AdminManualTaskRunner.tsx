@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useState, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import uuid from 'uuid/v1'
-import { uniq, noop, last, isNumber, compact, uniqBy, has, sample, filter, map, find, isEmpty, includes, sortBy, partial, findIndex } from 'lodash'
+import { uniq, noop, last, isNumber, compact, uniqBy, has, sample, filter, map, find, isEmpty, includes, sortBy, partial, findIndex, flatten } from 'lodash'
 import pad from 'pad'
 import moment from 'moment'
 import $ from 'jquery'
@@ -23,21 +23,57 @@ function migrate(allContentItems: IContentItem[]) {
 
   const newItems: IContentItem[] = []
 
+  const curatedPlaylists = [
+    {
+      name: 'Player Featured',
+      linkTo: '/tracks/filter/featured',
+    },
+    {
+      name: 'Player Rare',
+      linkTo: '/tracks/filter/rare',
+    },
+    {
+      name: 'Player Live',
+      linkTo: '/tracks/filter/live',
+    },
+    {
+      name: 'Player Radio',
+      linkTo: '/tracks/filter/radio',
+    },
+    {
+      name: 'Player Sound Library',
+      linkTo: '/sound-library',
+    },
+    {
+      name: 'Player Releases',
+      linkTo: '/label',
+    },
+  ]
+
+  let trackContentItemObjs: any[] = []
+  let order = 1
+
+  curatedPlaylists.forEach(({ name }, i) => {
+    const items = getContentItemsFromList(allContentItems, slugify(name))
+
+    for (const n in items) {
+      trackContentItemObjs.push({ id: items[n].id, order: order.toString() })
+      order ++
+    }
+  })
+
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
 
-    if (newItem.title === 'The Raven & The Fox') {
-      console.log(1, newItem.slug)
-      newItem.slug = 'the-raven-and-the-fox'
-    }
+    const obj = find(trackContentItemObjs, { id: newItem.id })
 
-    if (newItem.title === 'Dedications') {
-      console.log(2, newItem.slug)
+    if (obj) {
+      newItem.sticky = true
+      newItem.order = obj.order
     }
 
     newItems.push(newItem)
   }
-
 
   // ***** DANGER ZONE *****
   // ***** DANGER ZONE *****
@@ -45,8 +81,8 @@ function migrate(allContentItems: IContentItem[]) {
 
   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
   const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
-  // writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
-  // writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
+  writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
+  writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
 }
 
 function AdminManualTaskRunner(): ReactElement {

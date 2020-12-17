@@ -8,8 +8,10 @@ import marked from 'marked'
 import insane from 'insane'
 import {
   LOAD_POEM_DATA,
+  REVERSE_SORT_ORDER,
   SET_MOBILE_NAV_OPEN,
   SET_PROCESS_NOTE_OPEN,
+  SET_SORT_TERM,
 
   IPoem,
 } from './types'
@@ -65,8 +67,20 @@ const setProcessNoteOpen = (processNoteOpen: boolean): AnyAction => ({
   payload: processNoteOpen,
 })
 
+const reverseSortOrder = (): AnyAction => ({
+  type: REVERSE_SORT_ORDER,
+  payload: null,
+})
+
+const setSortTerm = (sortBy: string): AnyAction => ({
+  type: SET_SORT_TERM,
+  payload: sortBy,
+})
+
 export {
   loadPoemData,
   setMobileNavOpen,
   setProcessNoteOpen,
+  reverseSortOrder,
+  setSortTerm,
 }

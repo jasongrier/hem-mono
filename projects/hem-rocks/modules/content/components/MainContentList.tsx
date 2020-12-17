@@ -4,7 +4,7 @@ import { useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
 import Scrollbars from 'react-scrollbars-custom'
 import { slugify, titleCase } from 'voca'
-import { map } from 'lodash'
+import { filter, map } from 'lodash'
 import ReactGA from 'react-ga'
 import { get, uniq, flatten, compact, last, shuffle } from 'lodash'
 import moment from 'moment'
@@ -178,18 +178,18 @@ function MainContentList({
 
       contentItems = storeContentItemsImm.filter(item => {
         if (additionalCategory) {
-          return (hasCategory(item, category) || hasCategory(item, additionalCategory)) && item.published && !item.sticky
+          return (hasCategory(item, category) || hasCategory(item, additionalCategory)) && item.published
         }
 
         else {
-          return hasCategory(item, category) && item.published && !item.sticky
+          return hasCategory(item, category) && item.published
         }
       })
     }
 
-    let stickyContentItems = contentItems.filter(
-      item => hasCategory(item, category) && item.published && item.sticky
-    )
+    let stickyContentItems = filter(Array.from(contentItems), { sticky: true })
+
+    contentItems = filter(contentItems, { sticky: false })
 
     if (onlyTag) {
       contentItems = contentItems.filter(item => hasTag(item, onlyTag))
@@ -229,6 +229,8 @@ function MainContentList({
 
     setFinalContentItems(contentItems)
 
+    alert(filter(contentItems, { sticky: true }).length + ' vs ' + contentItems.length)
+
     dispatch(setCurrentItems(contentItems))
 
     setTimeout(function () {
@@ -251,7 +253,7 @@ function MainContentList({
 
       if (shouldSetCurrentPlaylist && tracks.length) {
         dispatch(replacePlaylist(5, { name: 'On this page', tracks }))
-        dispatch(setPlayerPlaylist(0))
+        dispatch(setPlayerPlaylist(5))
       }
 
       else {
@@ -262,16 +264,16 @@ function MainContentList({
   }, [currentFilter, storeContentItems, currentlyOpenPopUp])
 
   const onFilterClick = useCallback(() => {
-    const body = document.querySelector('.scroll-lock-content')
-    const filterBox = document.querySelector('.main-content-filters')
+    // const body = document.querySelector('.scroll-lock-content')
+    // const filterBox = document.querySelector('.main-content-filters')
 
-    if (body) {
-      body.scrollIntoView(true)
-    }
+    // if (body) {
+    //   body.scrollIntoView(true)
+    // }
 
-    if (filterBox) {
-      filterBox.scrollIntoView(true)
-    }
+    // if (filterBox) {
+    //   filterBox.scrollIntoView(true)
+    // }
   }, [])
 
   useEffect(function onFilterChanged() {
@@ -348,7 +350,7 @@ function MainContentList({
                   ${ currentFilter === slugify(tag) ? 'active' : '' }
                   ${ currentFilter === slugify(excludeFromAll) ? 'exclusive-filter' : '' }
                 `}
-                key={ tag }
+                key={tag}
                 to={
                   currentFilter === slugify(tag) && !noAll
                     ? `/${category}`

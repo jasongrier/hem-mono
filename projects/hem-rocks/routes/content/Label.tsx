@@ -35,6 +35,7 @@ function Label(): ReactElement {
         <LabelSubnav />
         <MainContentList
           currentFilter={currentFilter}
+          noAll={false}
           category="label"
         >
           {(item) => {

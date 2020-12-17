@@ -19,6 +19,7 @@ import {
   Contact,
   Faq,
   FaqForPoets,
+  Funding,
   Home,
   Nominate,
   Poem,
@@ -106,6 +107,7 @@ function App(): ReactElement {
           <Route exact path="/nominate" component={Nominate} />
           <Route exact path="/read" component={Read} />
           <Route exact path="/app" component={AboutTheApp} />
+          <Route exact path="/funding" component={Funding} />
           <Route exact path="/poem/:poemUrl" component={Poem} />
         </Switch>
       </main>
@@ -116,6 +118,10 @@ function App(): ReactElement {
             submitButtonText="Submit"
           />
         </Hide>
+        <a
+          href="http://patreon.com/midstpoetry"
+          className="patreon-logo"
+        />
       </footer>
     </div>
   )

@@ -16,6 +16,7 @@ function SiteNavLinks({ location }: IProps): ReactElement {
       <NavLink activeClassName="active" to="/read">Read</NavLink>
       <NavLink activeClassName="active" to="/nominate">Nominate</NavLink>
       <NavLink activeClassName="active" to="/app">App</NavLink>
+      <NavLink activeClassName="active" to="/funding" style={{ fontSize: '26px' }}>$</NavLink>
       <NavLink
         className="about-link--mobile"
         activeClassName="active"

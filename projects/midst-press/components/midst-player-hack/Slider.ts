@@ -65,16 +65,20 @@ class Slider extends React.Component {
         .hem-slider__value {
           position: absolute;
           top: 28px;
-          width: 68px;
+          width: 100px;
           height: 36px;
           line-height: 18px;
           font-size: 10px;
           background: white;
           border-radius: 5px;
           border: 1px solid #000;
-          transform: translate(-40px, -10px);
+          transform: translate(-58px, -10px);
           text-align: center;
           white-space: pre;
+        }
+
+        .left-align-slider-value .hem-slider__value {
+          transform: translate(-30px, -10px);
         }
 
         .horizontal .hem-slider__progress {
