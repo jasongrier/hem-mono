@@ -2,7 +2,8 @@ import React, { ReactElement, useState, useCallback, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
 import ReactGA from 'react-ga'
-import { PlayPauseButton as BasePlayPauseButton, CloseButton, HamburgerButton } from '../../../packages/hem-buttons'
+import { noop } from 'lodash'
+import { PlayPauseButton as BasePlayPauseButton, CloseButton, HamburgerButton, PlayPauseButton as DumbPlayPauseButton } from '../../../packages/hem-buttons'
 import { NextButton, PreviousButton, ProgressBar, PlayerBarPlayPauseButton, Playlist, ITrack, IPlaylist } from '../index'
 
 function PlayerBar(): ReactElement {
@@ -103,55 +104,63 @@ function PlayerBar(): ReactElement {
         )}
         { !expanded && (
           <div onClick={() => {
-            if (playing) return
             setExpanded(true)
+
             if (!playlistAutoOpened) {
               setPlaylistExpanded(true)
               setPlaylistAutoOpened(true)
             }
+
             ReactGA.event({
               category: 'User',
               action: 'Opened the player bar.',
             })
           }}>
-            <PlayerBarPlayPauseButton
-              currentTrackId={currentTrack?.id}
-              playing={playing}
-              playlist={currentPlaylist}
-              // trigger={!alreadyOpened}
-            />
+            { playing && (
+              <DumbPlayPauseButton
+                onClick={noop}
+                playing={true}
+              />
+            )}
+            { !playing && (
+              <PlayerBarPlayPauseButton
+                currentTrackId={currentTrack?.id}
+                playing={playing}
+                playlist={currentPlaylist}
+              />
+            )}
           </div>
         )}
       </div>
-        <div className="player-bar-now-playing">
-          { currentTrack && (
-            <span>
-              <span onClick={() => {
-                ReactGA.event({
-                  category: 'User',
-                  action: 'Clicked on "now playing" title: ' + currentTrack.title + '.',
-                })
-              }}>
-                <Link to={currentTrack.titleLink}>
-                  { currentTrack.title }
-                </Link>
-              </span>
-
-              &nbsp;–&nbsp;
-
-              <span onClick={() => {
-                ReactGA.event({
-                  category: 'User',
-                  action: 'Clicked on "now playing" attribution: ' + currentTrack.title + ', ' + currentTrack.attribution + '.',
-                })
-              }}>
-                <Link to={currentTrack.attributionLink}>
-                  { currentTrack.attribution }
-                </Link>
-              </span>
+      <div className="player-bar-now-playing">
+        { currentTrack && (
+          <span>
+            <span onClick={() => {
+              ReactGA.event({
+                category: 'User',
+                action: 'Clicked on "now playing" title: ' + currentTrack.title + '.',
+              })
+            }}>
+              <Link to={currentTrack.titleLink}>
+                { currentTrack.title }
+              </Link>
             </span>
-          )}
-        </div>
+
+            &nbsp;–&nbsp;
+
+            <span onClick={() => {
+              ReactGA.event({
+                category: 'User',
+                action: 'Clicked on "now playing" attribution: ' + currentTrack.title + ', ' + currentTrack.attribution + '.',
+              })
+            }}>
+              <Link to={currentTrack.attributionLink}>
+                { currentTrack.attribution }
+              </Link>
+            </span>
+          </span>
+        )}
+      </div>
     </div>
   )
 }

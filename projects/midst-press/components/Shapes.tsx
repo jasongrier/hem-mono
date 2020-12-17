@@ -27,7 +27,7 @@ function makeShapes() {
         .addClass('appended-shape')
         .css({
           position: 'fixed',
-          zIndex: '9999',
+          zIndex: '-1',
           top: (Math.random() * 100) + '%',
           left: (Math.random() * 100) + '%',
           width: (Math.random() * 150 + 50) + 'px',
@@ -63,6 +63,7 @@ function Shapes({ location }: IProps): ReactElement {
       || location.pathname === '/nominate'
       || location.pathname === '/contact'
       || location.pathname === '/app'
+      || location.pathname === '/read'
     ) {
       showShapes()
     }

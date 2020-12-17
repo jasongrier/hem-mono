@@ -622,6 +622,11 @@ function AdminList(): ReactElement {
                     )}
                     { hasCategory(item, 'tracks') && (
                       <button
+                        style={{
+                          opacity: item.secondaryAttribution === '' ? .2 : 1,
+                          pointerEvents: item.secondaryAttribution === '' ? 'none' : 'all',
+                          cursor: item.secondaryAttribution === '' ? 'auto' : 'pointer',
+                        }}
                         className="action-button"
                         onClick={() => {
                           const updatedItem: IContentItem = produce(item, (draftItem) => {
@@ -637,6 +642,9 @@ function AdminList(): ReactElement {
                       && !hasCategory(item, 'lists')
                       && (
                         <button
+                          style={hasTag(item, 'done-for-now') ? {
+                            backgroundColor: 'green',
+                          } : {}}
                           className="action-button"
                           onClick={() => {
                             const updatedItem: IContentItem = produce(item, (draftItem) => {
@@ -651,7 +659,7 @@ function AdminList(): ReactElement {
                             dispatch(requestUpdateItems([updatedItem]))
                           }}
                         >
-                          { hasTag(item, 'done-for-now') ? 'Un-done page' : 'Done' }
+                          { hasTag(item, 'done-for-now') ? '✓ Done' : 'Done' }
                         </button>
                     )}
                     { !hasCategory(item, 'assets')
@@ -674,7 +682,7 @@ function AdminList(): ReactElement {
                               dispatch(requestUpdateItems([updatedItem]))
                             }}
                           >
-                            { hasTag(item, tag) ? 'Un-' + titleCase(tag.replace('-', '')) : titleCase(tag.replace('-', '')) }
+                            { hasTag(item, tag) ? '✓ ' + titleCase(tag.replace('-', '')) : titleCase(tag.replace('-', '')) }
                           </button>
                       ))
                     )}
@@ -691,7 +699,7 @@ function AdminList(): ReactElement {
                               dispatch(requestUpdateItems([updatedItem]))
                             }}
                           >
-                            Doodles
+                            { item.secondaryAttribution === 'Lockdown Doodles' ? '✓ Doodles' : 'Doodles'}
                           </button>
                           <button
                             className="action-button"
@@ -702,7 +710,7 @@ function AdminList(): ReactElement {
                               dispatch(requestUpdateItems([updatedItem]))
                             }}
                           >
-                            HSR Sessions
+                            { item.secondaryAttribution === 'Heart Shaped Rock Sessions' ? '✓ HSR Sessions' : 'HSR Sessions'}
                           </button>
                           <button
                             className="action-button"
@@ -713,7 +721,40 @@ function AdminList(): ReactElement {
                               dispatch(requestUpdateItems([updatedItem]))
                             }}
                           >
-                            SL Sessions
+                            { item.secondaryAttribution === 'Sound Library Sessions' ? '✓ SL Sessions' : 'SL Sessions'}
+                          </button>
+                          <button
+                            className="action-button"
+                            onClick={() => {
+                              const updatedItem: IContentItem = produce(item, (draftItem) => {
+                                draftItem.secondaryAttribution = 'Dog Star Orchestra 2009'
+                              })
+                              dispatch(requestUpdateItems([updatedItem]))
+                            }}
+                          >
+                            { item.secondaryAttribution === 'Dog Star Orchestra 2009' ? '✓ DSO 2009' : 'DSO 2009'}
+                          </button>
+                          <button
+                            className="action-button"
+                            onClick={() => {
+                              const updatedItem: IContentItem = produce(item, (draftItem) => {
+                                draftItem.secondaryAttribution = 'Dog Star Orchestra 2010'
+                              })
+                              dispatch(requestUpdateItems([updatedItem]))
+                            }}
+                          >
+                            { item.secondaryAttribution === 'Dog Star Orchestra 2010' ? '✓ DSO 2010' : 'DSO 2010'}
+                          </button>
+                          <button
+                            className="action-button"
+                            onClick={() => {
+                              const updatedItem: IContentItem = produce(item, (draftItem) => {
+                                draftItem.secondaryAttribution = 'Linda Perhacs Live at SFAI'
+                              })
+                              dispatch(requestUpdateItems([updatedItem]))
+                            }}
+                          >
+                            { item.secondaryAttribution === 'Linda Perhacs Live at SFAI' ? '✓ Perhacs SFAI' : 'Perhacs SFAI'}
                           </button>
                         </>
                       )
@@ -731,7 +772,7 @@ function AdminList(): ReactElement {
                             dispatch(requestUpdateItems([updatedItem]))
                           }}
                         >
-                          { item.sticky ? 'Unsticky' : 'Sticky' }
+                          { item.sticky ? '✓ Sticky' : 'Sticky' }
                         </button>
                     )}
                     { !hasCategory(item, 'assets')
@@ -753,7 +794,7 @@ function AdminList(): ReactElement {
                             dispatch(requestUpdateItems([updatedItem]))
                           }}
                         >
-                          { hasTag(item, 'best-of') ? 'Un-best' : 'Best' }
+                          { hasTag(item, 'best-of') ? '✓ Best' : 'Best' }
                         </button>
                     )}
                     { hasCategory(item, 'label')
@@ -774,7 +815,26 @@ function AdminList(): ReactElement {
                             dispatch(requestUpdateItems([updatedItem]))
                           }}
                         >
-                          { hasTag(item, 'label-page') ? 'Un-label page' : 'Label page' }
+                          { hasTag(item, 'label-page') ? '✓ Label page' : 'Label page' }
+                        </button>
+                    )}
+                    { hasCategory(item, 'tracks') && (
+                        <button
+                          className="action-button"
+                          onClick={() => {
+                            const updatedItem: IContentItem = produce(item, (draftItem) => {
+                              if (hasTag(item, 'projects')) {
+                                draftItem.tags = draftItem.tags.replace(', projects', '').replace('projects', '')
+                              }
+
+                              else {
+                                draftItem.tags = draftItem.tags + ', projects'
+                              }
+                            })
+                            dispatch(requestUpdateItems([updatedItem]))
+                          }}
+                        >
+                          { hasTag(item, 'projects') ? '✓ Projects' : 'Projects' }
                         </button>
                     )}
                   </td>

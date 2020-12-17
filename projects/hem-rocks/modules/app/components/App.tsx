@@ -171,10 +171,10 @@ function App(): ReactElement {
         name: 'Player Live',
         linkTo: '/tracks/filter/live',
       },
-      // {
-      //   name: 'Player Radio',
-      //   linkTo: '/tracks/filter/radio',
-      // },
+      {
+        name: 'Player Radio',
+        linkTo: '/tracks/filter/radio',
+      },
       {
         name: 'Player Sound Library',
         linkTo: '/sound-library',

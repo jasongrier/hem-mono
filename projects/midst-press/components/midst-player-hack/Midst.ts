@@ -1252,16 +1252,16 @@ class Midst extends React.Component<IProps, any> {
     const value = editorTimelineIndex / editorTimelineFrames.length
 
     let timestamp = editorTimelineFrames[editorTimelineIndex] && editorTimelineFrames[editorTimelineIndex].timestamp
-    timestamp = timestamp && moment(timestamp).format('h:mm a[\r\n]MMMM D')
+    timestamp = timestamp && moment(timestamp).format('h:mm a[\r\n]MMMM D, YYYY')
 
     return (
       e('div', {
-        className: 'timeline' + (appTimelineMode || isPlayer ? ' open' : ''),
+        className: 'timeline' + (appTimelineMode || isPlayer ? ' open' : '') + (value < .06 ? ' left-align-slider-value' : ''),
       },
         e(Slider, {
           hideCursor: false,
           controlled: true,
-          readOnly: false, // creatingDraftMarker,
+          readOnly: false,
           value,
           showDisplayValue: editorTimelineIndex < editorTimelineFrames.length - 1,
           propsDisplayValue: timestamp,

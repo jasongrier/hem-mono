@@ -18,6 +18,7 @@ fieldset, form, label, legend,
 	vertical-align: baseline;
 	background: transparent;
 }
+
 body {
 	line-height: 1;
 }
@@ -99,6 +100,12 @@ body {
   background-color: #FFF5EE;
 }
 
+.clearfix::after {
+  content: " ";
+  clear: both;
+  display: table;
+}
+
 .shapes {
   display: none; /* Shapes will be revealed via JS. */
 }
@@ -115,8 +122,6 @@ body {
 }
 
 .site-header {
-  position: relative;
-  z-index: 9999;
   background-color: #FFF5EE;
 }
 
@@ -404,14 +409,13 @@ body {
   padding: 100px 0 0 0;
 }
 
+.table-of-contents {
+  padding-bottom: 500px;
+}
+
 .table-of-contents .heroine {
-  position: absolute;
-  top: 151px;
-  left: 50%;
-  z-index: 9997;
   width: 800px;
-  margin-left: -400px;
-  margin-bottom: 120px;
+  margin: 151px auto 120px auto;
   padding: 10px 30px;
   text-align: left;
   background: #fff;
@@ -495,57 +499,95 @@ body {
   margin-bottom: 80px;
 }
 
-.table-of-contents a.poem-link {
+.poem-head .poem-line__column {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.poem-head-arrow {
+  display: inline-block;
+  content: " ";
+  width: 0px;
+  height: 0px;
+  border-top: 16px solid transparent;
+  border-bottom: 16px solid transparent;
+  border-left: 16px solid #000;
+  transform: rotate(90deg) scaleX(.6) scaleY(.4);
+  cursor: pointer;
+  opacity: 0.2;
+}
+
+.poem-head-arrow-active {
+  opacity: 1;
+}
+
+.poem-head-arrow-up {
+  transform: rotate(-90deg) scaleX(.6) scaleY(.4);
+}
+
+.table-of-contents .poem-line {
+  position: relative;
   float: left;
   width: 100%;
   font-size: 20px;
   border-bottom: 1px dashed #FF91AF;
 }
 
-.table-of-contents a.poem-link:last-child {
+.table-of-contents .poem-line:last-child {
   border-bottom: none;
 }
 
 .table-of-contents a.poem-highlighted {
-  background-color: goldenrod;
+  background-color: #FFFF7D;
 }
 
-.table-of-contents .poem-link__column {
+.table-of-contents .poem-line__column {
   float: left;
   padding: 20px 10px;
 }
 
-.table-of-contents a.poem-link:hover {
+.table-of-contents .poem-line:hover {
   color: rgb(255, 53, 107); /* DARQ PINK  */
 }
 
-.table-of-contents a.poem-link .poem-author {
+.table-of-contents .poem-line .poem-author {
   width: 35%;
 }
 
-.table-of-contents a.poem-link .poem-title {
+.table-of-contents .poem-line .poem-title {
   width: 40%;
   font-style: italic;
 }
 
-.table-of-contents a.poem-link .poem-date {
+.table-of-contents .poem-line .poem-date {
   width: 10%;
   font-style: italic;
 }
 
-.table-of-contents a.poem-link .poem-title i {
+.table-of-contents .poem-line .poem-badge {
+  position: absolute;
+  top: -5px;
+  right: -25px;
+  padding: 5px;
+  background-color: rgb(255, 53, 107);
+  border-radius: 3px;
+  color: #fff;
+  font-size: 18px;
+}
+
+.table-of-contents .poem-line .poem-title i {
   font-style: normal;
 }
 
-.table-of-contents a.poem-link:hover .poem-author {
+.table-of-contents .poem-line:hover .poem-author {
   font-style: italic;
 }
 
-.table-of-contents a.poem-link:hover .poem-title {
+.table-of-contents .poem-line:hover .poem-title {
   font-style: normal;
 }
 
-.table-of-contents a.poem-link:hover .poem-title i {
+.table-of-contents .poem-line:hover .poem-title i {
   font-style: italic;
 }
 
@@ -1035,6 +1077,40 @@ body {
 }
 
 /* End Issue 1 poem-specific styles */
+
+.donor-wall {
+  margin-top: 100px;
+  padding-top: 30px;
+  padding-bottom: 100px;
+  border-top: 1px solid #ddd;
+}
+
+.donor-wall h2 {
+  font-weight: normal;
+  font-size: 20px;
+}
+
+.donor-wall ul {
+  list-style-type: none;
+}
+
+.donor-wall li {
+  display: inline-block;
+  margin: 0 20px;
+  font-size: 14px;
+}
+
+.patreon-logo {
+  display: block;
+  position: fixed;
+  bottom: 3px;
+  right: 5px;
+  width: 28px;
+  height: 28px;
+  background-image: url('./static/assets/patreon-logo.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 @media screen and (max-width: 1024px) {
   .site-header #mobile-nav-toggle {
