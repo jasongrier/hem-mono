@@ -32,7 +32,7 @@ jobs:
       run: |
         npx "browserslist@latest" --update-db
         npm start midst-press &
-        sleep 10 # give midst-press a chance to get up and running
+        sleep 20 # give midst-press a chance to get up and running
         npm test "projects/**/*.test.js"
       
 
