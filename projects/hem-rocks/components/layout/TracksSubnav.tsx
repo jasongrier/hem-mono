@@ -6,21 +6,13 @@ function SoundLibrarySubnav(): ReactElement {
     <nav className="main-content-subnav">
       <ul>
         <li>
-          <NavLink
-            isActive={(_, { pathname }) =>
-              pathname.indexOf('/tracks') === 0
-              && !pathname.includes('tracks-by-artist')
-            }
-            to="/tracks"
-          >
-            Tracks Home
-          </NavLink>
+          <NavLink to="/tracks">Tracks</NavLink>
         </li>
         <li>
-          <NavLink to="/tracks/tracks-by-artist">Tracks by Artist</NavLink>
+          <NavLink to="/playlists-and-albums">Playlists &amp; Albums</NavLink>
         </li>
         <li>
-          <NavLink to="/tracks/dog-star-orchestra">Dog Star Orchestra</NavLink>
+          <NavLink to="/artists">Artists</NavLink>
         </li>
       </ul>
     </nav>

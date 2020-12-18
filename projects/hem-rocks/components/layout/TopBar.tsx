@@ -37,7 +37,7 @@ function TopBar(): ReactElement {
           <nav className="main-nav">
             <ul className="main-nav-items">
               <MainNavItem name="Sound Library" />
-              <MainNavItem name="Tracks" to="tracks/filter/featured" />
+              <MainNavItem name="Tracks" />
               <MainNavItem name="Articles" />
               <MainNavItem name="Editions" />
 

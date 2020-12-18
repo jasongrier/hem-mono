@@ -23,56 +23,121 @@ function migrate(allContentItems: IContentItem[]) {
 
   const newItems: IContentItem[] = []
 
-  const curatedPlaylists = [
-    {
-      name: 'Player Featured',
-      linkTo: '/tracks/filter/featured',
-    },
-    {
-      name: 'Player Rare',
-      linkTo: '/tracks/filter/rare',
-    },
-    {
-      name: 'Player Live',
-      linkTo: '/tracks/filter/live',
-    },
-    {
-      name: 'Player Radio',
-      linkTo: '/tracks/filter/radio',
-    },
-    {
-      name: 'Player Sound Library',
-      linkTo: '/sound-library',
-    },
-    {
-      name: 'Player Releases',
-      linkTo: '/label',
-    },
+  const artists = [
+    'Adam Overton',
+    'Alex Black Ivory',
+    'André Cormier',
+    'Annelyse Gelman',
+    'Antoine Beuger',
+    'Ariel Pink',
+    'Babooshka',
+    'Black Powder',
+    'Bruegel',
+    'Bubonic Plague',
+    'Casey Anderson',
+    'Cassia Streb',
+    'Catherine Lamb',
+    'Christian Wolff',
+    'Common Graybird',
+    'Craig Shepard',
+    'Double Penetration',
+    'Douglas Wadle',
+    'Ekkehard Ehlers',
+    'Elisabeth McMullin',
+    'Eric KM Clark',
+    'Garbaej Katz',
+    'Geneva Jacuzzi',
+    'Heather Lockie',
+    'Immaculate Conception',
+    'India Cooke',
+    'Ivan Gomez',
+    'James Klopfleisch',
+    'James Tenney',
+    'Jason Brogan',
+    'Jason Grier',
+    'Jean-Luc Guionnet',
+    'Jeepneys',
+    'Jennie Gottschalk',
+    'Jessica Catron',
+    'Joe Lake',
+    'John Cage',
+    'John Lely',
+    'John Maus',
+    'John P. Hastings',
+    'Jonathan Marmour',
+    'Joseph Kudirka',
+    'Julia Holter',
+    'Juniper Foam',
+    'Jürg Frey',
+    'Kevin Drumm',
+    'Klaus Lang',
+    'Laena Geronimo',
+    'Laura Steenberge',
+    'Laurel Halo',
+    'Laurence Crane',
+    'Linda Perhacs',
+    'Lucrecia Dalt',
+    'Manfred Werder',
+    'Mari',
+    'Maria Minerva',
+    'Mark So',
+    'Matt Fishbeck',
+    'Michael Pisaro',
+    'Michael Winter',
+    'Morton Feldman',
+    'Muscle Drum',
+    'Nite Jewel',
+    'Obelisk',
+    'Paul Arámbula',
+    'Preemo',
+    'Raw Geronimo',
+    'Ry Rock',
+    'Sam Sfirri',
+    'Samuel Vriezen',
+    'Softboiled Eggies',
+    'Spider Babies',
+    'Stellar Om Source',
+    'Taku Unami',
+    'Taylan Susam',
+    'The Dowry',
+    'The Remarkable Thing About Swans',
+    'The Seasonings',
+    'Ulrich Krieger',
+    'Vibe Central',
+    'Weave',
+    'William Basinski',
+    'Wolfgang von Schweinitz',
   ]
-
-  let trackContentItemObjs: any[] = []
-  let order = 1
-
-  curatedPlaylists.forEach(({ name }, i) => {
-    const items = getContentItemsFromList(allContentItems, slugify(name))
-
-    for (const n in items) {
-      trackContentItemObjs.push({ id: items[n].id, order: order.toString() })
-      order ++
-    }
-  })
 
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
+    newItems.push(newItem)
+  }
 
-    const obj = find(trackContentItemObjs, { id: newItem.id })
+  for (const artistName of artists) {
+    const artistItem = modelize({
+      id: uuid(),
+      title: artistName,
+      slug: slugify(artistName),
+      category: 'artists',
+      date: 'January 2021',
+      published: true,
+      attachments: allContentItems
+        .filter(item => item.attribution.includes(artistName))
+        .map(item => item.id)
+        .join('\n')
+    })
 
-    if (obj) {
-      newItem.sticky = true
-      newItem.order = obj.order
+    const firstTrack = getContentItemById(
+      allContentItems,
+      artistItem.attachments.split('\n')[0]
+    )
+
+    if (firstTrack) {
+      artistItem.keyArt = firstTrack.keyArt
     }
 
-    newItems.push(newItem)
+    newItems.push(artistItem)
   }
 
   // ***** DANGER ZONE *****

@@ -9,7 +9,7 @@ import { TracksSubnav } from '../../components/layout'
 import { BASE_SITE_TITLE } from '../../config'
 import { RootState } from '../../index'
 
-function Tracks(): ReactElement {
+function PlaylistsAndAlbums(): ReactElement {
   const { allContentItems } = useSelector((state: RootState) => ({
     allContentItems: state.content.contentItems,
   }))
@@ -25,51 +25,33 @@ function Tracks(): ReactElement {
       <div className="page page-tracks page-with-subnav">
         <TracksSubnav />
         <MainContentList
-          currentFilter={currentFilter}
-          excludeFromAll="Sound Library"
-          category="tracks"
+          currentFilter={currentFilter || 'all'}
+          excludeFromAll="Player Playlist"
+          category="playlists"
+          additionalCategory="label"
           orderByOrder={true}
-          excludeTags={['Primary Format', 'Format:Digital', 'Label Page', 'Done For Now', 'Sessions', 'Releases', 'Press', 'Sound Library']}
+          excludeTags={['Primary Format', 'Format:Digital', 'Label Page', 'Done For Now', 'Sessions', 'Releases', 'Press', 'Sound Library', 'Player Playlist']}
           linkTo={ item => hasTag(item, 'attachment') ? item.relatedContentLink : `/tracks/${item.slug}` }
           boxSecondaryTitleField="attribution"
           boxWidth={120}
           boxBlurbs={false}
-          speciallyOrderedTags={['Featured', 'Rare', 'Live']}
+          noAll={false}
           shouldSetCurrentPlaylist={true}
+          hideIfNoAttachments={true}
         >
           {item => {
-            if (hasCategory(item, 'tracks')) {
-              const track = contentItemToTrack(item)
+            const attachedTracks = getContentItemsFromRawList(allContentItems, item.attachments).map(track =>
+              contentItemToTrack(track)
+            )
 
-              return (
-                <>
-                  <TrackPlayPauseButton track={track} />
-                  { hasTag(item, 'attachment') && (
-                    <Link
-                      className="action-button"
-                      to={item.relatedContentLink}
-                    >
-                      Learn more
-                    </Link>
-                  )}
-                </>
-              )
-            }
+            if (!attachedTracks || !attachedTracks.length) return <div />
 
-            else if (hasCategory(item, 'playlists')) {
-              const attachedTracks = getContentItemsFromRawList(allContentItems, item.attachments).map(track =>
-                contentItemToTrack(track)
-              )
-
-              if (!attachedTracks || !attachedTracks.length) return <div />
-
-              return (
-                <TrackPlayPauseButton
-                  activeFor={attachedTracks}
-                  track={attachedTracks[0]}
-                />
-              )
-            }
+            return (
+              <TrackPlayPauseButton
+                activeFor={attachedTracks}
+                track={attachedTracks[0]}
+              />
+            )
           }}
         </MainContentList>
       </div>
@@ -77,4 +59,4 @@ function Tracks(): ReactElement {
   )
 }
 
-export default Tracks
+export default PlaylistsAndAlbums
