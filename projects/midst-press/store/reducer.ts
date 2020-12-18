@@ -43,6 +43,7 @@ function createPoem(author: string, title: string, date: string, highlighted: bo
 const MORI_POEM_LONG_TITLE = 'After Watching <i>Westworld</i>, the Left Side of My Body Malfunctions'
 
 const poems = [
+  createPoem('Gabrielle Bates',     'Test Poem',                '12/06/2020', true,   'New'),
   createPoem('Test Poet',           'Test Poem',                '12/06/2020', true,   'New'),
   createPoem('Anis Mojgani',        'Cuesta',                   '12/06/2020', false),
   createPoem('Eleanor Eli Moss',    'THE HAMMER',               '12/06/2020', false),
