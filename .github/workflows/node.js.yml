@@ -27,6 +27,8 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: |
+         npx browserslist@latest --updated-db
          npm start midst-press &
+         sleep 10 # give midst-press a chance to get up and running
          npm test "projects/**/*.test.js"
 
