@@ -11,7 +11,7 @@
   "scripts": {
     "start": "node bin/index",
     "task": "node bin/index task",
-    "test": "mocha --timeout 10000"
+    "test": "mocha --timeout 15000"
   },
   "license": "WTFPL",
   "dependencies": {
