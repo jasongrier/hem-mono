@@ -4,7 +4,7 @@ import { useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
 import Scrollbars from 'react-scrollbars-custom'
 import { slugify, titleCase } from 'voca'
-import { filter, map } from 'lodash'
+import { filter, isEmpty, map } from 'lodash'
 import ReactGA from 'react-ga'
 import { get, uniq, flatten, compact, last, shuffle } from 'lodash'
 import moment from 'moment'
@@ -48,10 +48,12 @@ interface IProps {
   onFiltersChanged?: () => void
   orderByOrder?: boolean
   randomizeNonSticky?: boolean
+  hideIfNoAttachments?: boolean
   showCategoryOnContentBoxes?: boolean
   title?: string
   speciallyOrderedTags?: string[]
   excludeTags?: string[]
+  hasFilters?: boolean
 }
 
 function MainContentList({
@@ -82,11 +84,13 @@ function MainContentList({
   onlyTag,
   orderByOrder,
   randomizeNonSticky,
+  hideIfNoAttachments = false,
   showCategoryOnContentBoxes = false,
   title,
   additionalFilters,
   speciallyOrderedTags,
   excludeTags,
+  hasFilters = true,
 }: IProps): ReactElement {
   const { storeContentItems, currentlyOpenPopUp } = useSelector((state: RootState) => ({
     storeContentItems: state.content.contentItems,
@@ -207,6 +211,10 @@ function MainContentList({
       })
     }
 
+    if (hideIfNoAttachments) {
+      contentItems = contentItems.filter(item => !isEmpty(item.attachments))
+    }
+
     if (randomizeNonSticky) {
       contentItems = shuffle(contentItems)
 
@@ -216,20 +224,18 @@ function MainContentList({
     }
 
     else if (orderByOrder) {
-      contentItems.sort(orderSortFn)
       stickyContentItems.sort(orderSortFn)
+      contentItems.sort(orderSortFn)
     }
 
     else {
-      contentItems.sort(dateSortFn)
       stickyContentItems.sort(dateSortFn)
+      contentItems.sort(dateSortFn)
     }
 
     contentItems = stickyContentItems.concat(contentItems)
 
     setFinalContentItems(contentItems)
-
-    alert(filter(contentItems, { sticky: true }).length + ' vs ' + contentItems.length)
 
     dispatch(setCurrentItems(contentItems))
 
@@ -339,7 +345,7 @@ function MainContentList({
           ))
         )}
       </div> */}
-      { finalFilters.length > 1 && (
+      { hasFilters && finalFilters.length > 1 && (
         <div className="main-content-filters clearfix">
           <div className="main-content-filters-inner">
             <h3>Filter:</h3>
@@ -374,8 +380,11 @@ function MainContentList({
           </div>
         </div>
       )}
+      {console.log('====')}
       <div className="main-content-items">
         { finalContentItems.map((contentItem: IContentItem, index: number) => {
+          console.log(contentItem.title)
+
           boxTemplateIndex = boxTemplateIndex < 8 ? boxTemplateIndex + 1 : 0
 
           return (

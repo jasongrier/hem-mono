@@ -5,6 +5,7 @@ import { BERLIN_STOCK_PHOTOS } from '../../../config'
 import {
   Apps,
   Articles,
+  Artists,
   Code,
   Editions,
   Faqs,
@@ -12,6 +13,7 @@ import {
   Merch,
   Mixes,
   Newsletters,
+  PlaylistsAndAlbums,
   Press,
   PressKits,
   Recipes,
@@ -150,6 +152,14 @@ function RoutingHub(): ReactElement {
         {/* <Route exact path="/mixes/:contentItemSlug?/:filter?" component={Mixes} />
         <Route exact path="/mixes/filter/:filter" component={Mixes} />
         <Route exact path="/mixes/cart/:filter?" component={Mixes} /> */}
+
+        <Route exact path="/artists/:contentItemSlug?/:filter?" component={Artists} />
+        <Route exact path="/artists/filter/:filter" component={Artists} />
+        <Route exact path="/artists/cart/:filter?" component={Artists} />
+
+        <Route exact path="/playlists-and-albums/:contentItemSlug?/:filter?" component={PlaylistsAndAlbums} />
+        <Route exact path="/playlists-and-albums/filter/:filter" component={PlaylistsAndAlbums} />
+        <Route exact path="/playlists-and-albums/cart/:filter?" component={PlaylistsAndAlbums} />
 
         <Route exact path="/press/:contentItemSlug?/:filter?" component={Press} />
         <Route exact path="/press/filter/:filter" component={Press} />
