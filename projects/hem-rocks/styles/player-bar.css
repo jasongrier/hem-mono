@@ -457,3 +457,8 @@
 .player-message button:focus {
   outline: none;
 }
+
+.hem-player-progress-bar-meter-start-time,
+.hem-player-progress-bar-meter-end-time {
+
+}

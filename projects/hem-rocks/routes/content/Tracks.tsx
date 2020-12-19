@@ -36,6 +36,10 @@ function Tracks(): ReactElement {
           boxBlurbs={false}
           speciallyOrderedTags={['Featured', 'Rare', 'Live']}
           shouldSetCurrentPlaylist={true}
+          boxMinMarginX={0}
+          boxMinMarginY={0}
+          boxMarginRangeX={0}
+          boxMarginRangeY={80}
         >
           {item => {
             if (hasCategory(item, 'tracks')) {

@@ -1,3 +1,4 @@
+export { default as AdminItemOrdering } from './AdminItemOrdering'
 export { default as AdminManualTaskRunner } from './AdminManualTaskRunner'
 export { default as AdminReconcilePlaylists } from './AdminReconcilePlaylists'
 export { default as AdminItem } from './AdminItem'

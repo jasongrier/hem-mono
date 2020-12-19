@@ -62,6 +62,7 @@ function App(): ReactElement {
 
   const genericRoutedPopups = [
     { basePath: 'apps', id: 'detail-popup' },
+    { basePath: 'artists', id: 'detail-popup' },
     { basePath: 'blog', id: 'detail-popup' },
     { basePath: 'code', id: 'detail-popup' },
     { basePath: 'faqs', id: 'detail-popup' },
