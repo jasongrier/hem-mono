@@ -45,7 +45,6 @@ const MORI_POEM_LONG_TITLE = 'After Watching <i>Westworld</i>, the Left Side of 
 const poems = [
   createPoem('Gabrielle Bates',     'Ownership',                '12/17/2020', true,   'New'),
   createPoem('Sadie Dupuis',        'COME OVER MAKE MAC AND CHEESE',         '11/16/2020', true, 'New'),
-  createPoem('Test Poet',           'Test Poem',                '12/06/2020', true,   'New'),
   createPoem('Anis Mojgani',        'Cuesta',                   '12/06/2020', false),
   createPoem('Eleanor Eli Moss',    'THE HAMMER',               '12/06/2020', false),
   createPoem('Hedgie Choi',         'I Get It, Phases',         '12/06/2020', false),
@@ -64,8 +63,9 @@ const poems = [
   createPoem('Mia You',             'Go Bokito',                '12/06/2020', false),
   createPoem('Sarah Matthes',       'Averting My Eyes',         '12/06/2020', false),
   createPoem('Annelyse Gelman',     'Prosperity',               '12/31/2020', false),
-  createPoem('Annelyse Gelman',     'Pool',                     '12/06/2020', false),
-  createPoem('Annelyse Gelman',     'Questions',                '12/06/2020', false),
+  // createPoem('Annelyse Gelman',     'Pool',                     '12/06/2020', false),
+  // createPoem('Annelyse Gelman',     'Questions',                '12/06/2020', false),
+  // createPoem('Annelyse Gelman',     'Test Poem',                '12/01/2020', true,   'New'),
 ]
 
 const initialState: IState = {

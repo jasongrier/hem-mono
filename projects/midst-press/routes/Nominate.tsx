@@ -18,7 +18,7 @@ function Nominate(): ReactElement {
             You may nominate yourself.
           </p> */}
           <p>
-            If you could get a peek into the writing process of <i>any</i> living poet, who would that poet be?
+            If you could get a peek into the writing process of <i>any</i> living poet, who would you pick?
           </p>
         </div>
 
@@ -33,7 +33,7 @@ function Nominate(): ReactElement {
         </div>
 
         <div className="form-block">
-          <label htmlFor="entry.737165529">Why this poet? Anything else you want to tell us?</label>
+          <label htmlFor="entry.737165529">Why this poet? Anything else you want to tell us? If you can connect us directly with this poet via email, please let us know here.</label>
           <textarea name="entry.737165529"></textarea>
         </div>
 
