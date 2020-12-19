@@ -46,7 +46,7 @@ function About(): ReactElement {
 
 
         <h2>Thanks</h2>
-        <p><a href="https://bretanthonyjohnston.com/">Bret Anthony Johnston</a> is our advisor. <a href="http://www.chloescheffe.github.io/">Chloe Scheffe</a> made our logo and our shapes.
+        <p><a href="https://bretanthonyjohnston.com/">Bret Anthony Johnston</a> is our advisor. <a href="http://www.chloescheffe.github.io/">Chloe Scheffe</a> made our logo and our shapes. Our <a href="http://www.patreon.com/midstpoetry">patrons</a> and <a href="https://ko-fi.com/midst">donors</a> keep Midst free and public.
   
         </p>
         <br />
