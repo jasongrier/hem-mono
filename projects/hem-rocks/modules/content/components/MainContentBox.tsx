@@ -22,6 +22,10 @@ interface IProps {
   secondaryTitleField?: 'secondaryTitle' | 'attribution'
   width?: number
   showBlurb?: boolean
+  minMarginX?: number
+  minMarginY?: number
+  marginRangeX?: number
+  marginRangeY?: number
 }
 
 function MainContentBox({
@@ -38,6 +42,10 @@ function MainContentBox({
   width = 400,
   secondaryTitleField = 'secondaryTitle',
   showBlurb = true,
+  minMarginX = 50,
+  minMarginY = 30,
+  marginRangeX = 0,
+  marginRangeY = 0,
 }: PropsWithChildren<IProps>): ReactElement {
   const dispatch = useDispatch()
   const [alignRight, setAlignRight] = useState(false)
@@ -63,8 +71,8 @@ function MainContentBox({
       disabled={noSplatter}
       bipolarX={false}
       bipolarY={false}
-      minMarginX={50}
-      minMarginY={30}
+      minMarginX={minMarginX}
+      minMarginY={minMarginY}
       className={`
         main-content-box
         main-content-box-date-${contentItem.date}
@@ -77,8 +85,8 @@ function MainContentBox({
       height={0}
       rangeX={100}
       rangeY={0}
-      marginRangeX={index < 0 ? 100 : 0}
-      marginRangeY={index < 0 ? 200 : 0}
+      marginRangeX={marginRangeX}
+      marginRangeY={marginRangeY}
     >
       {(badgeText || contentItem.badgeText) && (
         <div className="main-content-box-badge">

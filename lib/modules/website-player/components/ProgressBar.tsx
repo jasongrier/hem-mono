@@ -36,6 +36,10 @@ function ProgressBar({ id }: IProps): ReactElement {
     playerInstance.addEventListener('timeupdate', function() {
       setMeter(progressBarEl, playerInstance)
     })
+
+    playerInstance.addEventListener('timeupdate', function() {
+      setTime(progressBarEl, playerInstance)
+    })
   }, [actuallyPlaying])
 
   const barOnClick = useCallback(
@@ -64,16 +68,38 @@ function ProgressBar({ id }: IProps): ReactElement {
     }
   }
 
+  function setTime(progressBarEl: HTMLDivElement, playerInstance: any) {
+    if (!progressBarEl) return
+
+    const startTimeEl: HTMLDivElement | null = progressBarEl.querySelector('.hem-player-progress-bar-meter-start-time')
+    const endTimeEl: HTMLDivElement | null = progressBarEl.querySelector('.hem-player-progress-bar-meter-end-time')
+
+    if (!startTimeEl) return
+    if (!endTimeEl) return
+
+    if (playerInstance === false) {
+      startTimeEl.innerHTML = ''
+      endTimeEl.innerHTML = ''
+    }
+
+    else {
+      startTimeEl.innerHTML = playerInstance.currentTime.toString()
+      endTimeEl.innerHTML = (playerInstance.duration - playerInstance.currentTime).toString()
+    }
+  }
+
   return (
     <div
       className="hem-player-progress-bar"
       onClick={barOnClick}
       ref={ref}
     >
+      <div className="hem-player-progress-bar-meter-start-time" />
       <div
         className="hem-player-progress-bar-meter"
         id={id}
       />
+      <div className="hem-player-progress-bar-meter-end-time" />
     </div>
   )
 }

@@ -4,7 +4,7 @@ import { useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
 import Scrollbars from 'react-scrollbars-custom'
 import { slugify, titleCase } from 'voca'
-import { filter, isEmpty, map } from 'lodash'
+import { filter, isEmpty, map, find } from 'lodash'
 import ReactGA from 'react-ga'
 import { get, uniq, flatten, compact, last, shuffle } from 'lodash'
 import moment from 'moment'
@@ -54,6 +54,10 @@ interface IProps {
   speciallyOrderedTags?: string[]
   excludeTags?: string[]
   hasFilters?: boolean
+  boxMinMarginX?: number
+  boxMinMarginY?: number
+  boxMarginRangeX?: number
+  boxMarginRangeY?: number
 }
 
 function MainContentList({
@@ -91,6 +95,10 @@ function MainContentList({
   speciallyOrderedTags,
   excludeTags,
   hasFilters = true,
+  boxMinMarginX,
+  boxMinMarginY,
+  boxMarginRangeX,
+  boxMarginRangeY,
 }: IProps): ReactElement {
   const { storeContentItems, currentlyOpenPopUp } = useSelector((state: RootState) => ({
     storeContentItems: state.content.contentItems,
@@ -380,11 +388,8 @@ function MainContentList({
           </div>
         </div>
       )}
-      {console.log('====')}
       <div className="main-content-items">
         { finalContentItems.map((contentItem: IContentItem, index: number) => {
-          console.log(contentItem.title)
-
           boxTemplateIndex = boxTemplateIndex < 8 ? boxTemplateIndex + 1 : 0
 
           return (
@@ -410,6 +415,10 @@ function MainContentList({
               secondaryTitleField={boxSecondaryTitleField}
               tag={category}
               showBlurb={boxBlurbs}
+              minMarginX={boxMinMarginX}
+              minMarginY={boxMinMarginY}
+              marginRangeX={boxMarginRangeX}
+              marginRangeY={boxMarginRangeY}
             >
               { children && children(contentItem) }
             </MainContentBox>

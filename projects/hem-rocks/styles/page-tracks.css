@@ -1,19 +1,24 @@
-.page-tracks .main-content {
-  transform: translateX(-3px);
+.page-tracks .main-content-items {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
-/* .page-tracks .main-content-items {
-  margin-top: 100px;
-} */
-
 .page-tracks .main-content-box {
+  display: inline-block;
+  float: none !important;
   border-bottom: 0;
-  margin-bottom: 0;
-  padding-bottom: 0;
+  margin: 0;
+  padding: 0 20px;
+  flex: 0 0 12.5%;
+}
+
+.page-tracks .main-content-box-text {
+  display: none;
 }
 
 .page-tracks .main-content-box.align-right {
-  float: left !important;
+  float: none !important;
 }
 
 .page-tracks .main-content-box-text {

@@ -22,122 +22,21 @@ function migrate(allContentItems: IContentItem[]) {
   const getMP3Duration = require('get-mp3-duration')
 
   const newItems: IContentItem[] = []
-
-  const artists = [
-    'Adam Overton',
-    'Alex Black Ivory',
-    'André Cormier',
-    'Annelyse Gelman',
-    'Antoine Beuger',
-    'Ariel Pink',
-    'Babooshka',
-    'Black Powder',
-    'Bruegel',
-    'Bubonic Plague',
-    'Casey Anderson',
-    'Cassia Streb',
-    'Catherine Lamb',
-    'Christian Wolff',
-    'Common Graybird',
-    'Craig Shepard',
-    'Double Penetration',
-    'Douglas Wadle',
-    'Ekkehard Ehlers',
-    'Elisabeth McMullin',
-    'Eric KM Clark',
-    'Garbaej Katz',
-    'Geneva Jacuzzi',
-    'Heather Lockie',
-    'Immaculate Conception',
-    'India Cooke',
-    'Ivan Gomez',
-    'James Klopfleisch',
-    'James Tenney',
-    'Jason Brogan',
-    'Jason Grier',
-    'Jean-Luc Guionnet',
-    'Jeepneys',
-    'Jennie Gottschalk',
-    'Jessica Catron',
-    'Joe Lake',
-    'John Cage',
-    'John Lely',
-    'John Maus',
-    'John P. Hastings',
-    'Jonathan Marmour',
-    'Joseph Kudirka',
-    'Julia Holter',
-    'Juniper Foam',
-    'Jürg Frey',
-    'Kevin Drumm',
-    'Klaus Lang',
-    'Laena Geronimo',
-    'Laura Steenberge',
-    'Laurel Halo',
-    'Laurence Crane',
-    'Linda Perhacs',
-    'Lucrecia Dalt',
-    'Manfred Werder',
-    'Mari',
-    'Maria Minerva',
-    'Mark So',
-    'Matt Fishbeck',
-    'Michael Pisaro',
-    'Michael Winter',
-    'Morton Feldman',
-    'Muscle Drum',
-    'Nite Jewel',
-    'Obelisk',
-    'Paul Arámbula',
-    'Preemo',
-    'Raw Geronimo',
-    'Ry Rock',
-    'Sam Sfirri',
-    'Samuel Vriezen',
-    'Softboiled Eggies',
-    'Spider Babies',
-    'Stellar Om Source',
-    'Taku Unami',
-    'Taylan Susam',
-    'The Dowry',
-    'The Remarkable Thing About Swans',
-    'The Seasonings',
-    'Ulrich Krieger',
-    'Vibe Central',
-    'Weave',
-    'William Basinski',
-    'Wolfgang von Schweinitz',
-  ]
+  const slugs: string[] = []
 
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
-    newItems.push(newItem)
-  }
 
-  for (const artistName of artists) {
-    const artistItem = modelize({
-      id: uuid(),
-      title: artistName,
-      slug: slugify(artistName),
-      category: 'artists',
-      date: 'January 2021',
-      published: true,
-      attachments: allContentItems
-        .filter(item => item.attribution.includes(artistName))
-        .map(item => item.id)
-        .join('\n')
-    })
-
-    const firstTrack = getContentItemById(
-      allContentItems,
-      artistItem.attachments.split('\n')[0]
-    )
-
-    if (firstTrack) {
-      artistItem.keyArt = firstTrack.keyArt
+    if (
+      hasCategory(newItem, 'tracks')
+      && hasTag(newItem, 'featured')
+    ) {
+      console.log(newItem.title)
     }
 
-    newItems.push(artistItem)
+    slugs.push(newItem.slug)
+
+    newItems.push(newItem)
   }
 
   // ***** DANGER ZONE *****
@@ -146,8 +45,8 @@ function migrate(allContentItems: IContentItem[]) {
 
   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
   const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
-  writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
-  writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
+  // writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
+  // writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
 }
 
 function AdminManualTaskRunner(): ReactElement {
