@@ -114,12 +114,12 @@ function DetailPopUp({
       }
 
       const playlist = {
-        name: 'Current Page',
+        name: 'On this page',
         tracks: attachedTracks,
       }
 
-      dispatch(replacePlaylist(1, playlist))
-      dispatch(setPlayerPlaylist(1))
+      dispatch(replacePlaylist(5, playlist))
+      dispatch(setPlayerPlaylist(5))
 
       setAttachedPlaylist(playlist)
     })

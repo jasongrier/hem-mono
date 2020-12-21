@@ -26,9 +26,9 @@ import {
 import { applyPaginationAndFiltering } from './functions'
 
 const initialState: IState = {
-  adminFilterApplied: 'playlists',
-  adminSearchableField: 'title',
-  adminSearchApplied: '',
+  adminFilterApplied: 'tracks',
+  adminSearchableField: 'attribution',
+  adminSearchApplied: 'Jason Grier',
   adminSearchExact: false,
   contentItems: [],
   currentContentItem: null,

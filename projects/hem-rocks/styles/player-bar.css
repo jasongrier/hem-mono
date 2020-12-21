@@ -460,5 +460,14 @@
 
 .hem-player-progress-bar-meter-start-time,
 .hem-player-progress-bar-meter-end-time {
+  position: absolute;
+  color: #eee;
+  width: 100px;
+  height: 20px;
+  z-index: 9999;
+}
 
+.hem-player-progress-bar-meter-end-time {
+  right: 0;
+  text-align: right;
 }

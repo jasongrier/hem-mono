@@ -8,7 +8,7 @@
 
 #detail-popup .hem-popup-content,
 #detail-popup-hidden-purchase-form .hem-popup-content {
-  top: 20px;
+  top: 50px;
   width: 1100px;
   margin-left: -550px;
   height: calc(100vh - 20px);

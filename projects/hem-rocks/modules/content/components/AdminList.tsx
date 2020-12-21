@@ -661,7 +661,7 @@ function AdminList(): ReactElement {
                     { !hasCategory(item, 'assets')
                       && !hasCategory(item, 'lists')
                       && (
-                        ['featured', 'rare', 'live', 'radio', 'sound-library', 'releases', 'add-to-more-tombstones', 'has-multiple-artists'].map(tag => (
+                        ['featured', 'rare', 'live', 'radio', 'sound-library', 'releases', 'delete-me', 'has-multiple-artists'].map(tag => (
                           <button
                             key={tag}
                             className="action-button"

@@ -13,11 +13,13 @@ function ScrollToTop({ scrollPaneSelector }: IProps): ReactElement {
     const forPaths = [
       '/',
       '/admin/list',
+      '/artists',
       '/contact',
       '/cookies-policy',
       '/internal',
       '/label',
       '/mailing-list',
+      '/playlists',
       '/press-kits',
       '/press',
       '/privacy-policy',
