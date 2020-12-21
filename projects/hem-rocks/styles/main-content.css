@@ -94,6 +94,7 @@
 
 .main-content-items {
   margin-top: 10px;
+  min-height: 100vh;
 }
 
 .page {

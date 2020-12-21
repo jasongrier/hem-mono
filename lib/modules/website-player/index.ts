@@ -230,6 +230,7 @@ export {
 } from './sagas'
 
 export {
+  formatTime,
   getNextTrack,
   getPlayerInstance,
   getPreviousTrack,

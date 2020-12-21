@@ -1,8 +1,9 @@
 import React, { ReactElement, useEffect, useCallback, useRef, SyntheticEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import moment from 'moment'
 import { coords } from '../../../functions'
 import { seekPlayer } from '../index'
-import { getPlayerInstance } from '../functions'
+import { getPlayerInstance, formatTime } from '../functions'
 
 declare const window: any
 
@@ -83,8 +84,8 @@ function ProgressBar({ id }: IProps): ReactElement {
     }
 
     else {
-      startTimeEl.innerHTML = playerInstance.currentTime.toString()
-      endTimeEl.innerHTML = (playerInstance.duration - playerInstance.currentTime).toString()
+      startTimeEl.innerHTML = formatTime(playerInstance.currentTime)
+      endTimeEl.innerHTML = '-' + formatTime(playerInstance.duration - playerInstance.currentTime)
     }
   }
 
