@@ -4,15 +4,17 @@ import { Link, useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { map, flatten, isEmpty, uniq, compact, findIndex } from 'lodash'
 import { MainContentList, contentItemToTrack, hasCategory, hasTag, getContentItemsFromRawList, getContentItemsFromList, IContentItem } from '../../modules/content'
-import { TrackPlayPauseButton } from '../../../../lib/modules/website-player'
+import { TrackPlayPauseButton, replacePlaylist, setPlayerPlaylist } from '../../../../lib/modules/website-player'
 import { TracksSubnav } from '../../components/layout'
 import { BASE_SITE_TITLE } from '../../config'
 import { RootState } from '../../index'
 
-function PlaylistsAndAlbums(): ReactElement {
+function Playlists(): ReactElement {
   const { allContentItems } = useSelector((state: RootState) => ({
     allContentItems: state.content.contentItems,
   }))
+
+  const dispatch = useDispatch()
 
   const { filter: currentFilter }: any = useParams()
 
@@ -25,19 +27,22 @@ function PlaylistsAndAlbums(): ReactElement {
       <div className="page page-tracks page-with-subnav">
         <TracksSubnav />
         <MainContentList
-          currentFilter={currentFilter || 'all'}
+          currentFilter={currentFilter || 'featured'}
           excludeFromAll="Player Playlist"
           category="playlists"
-          additionalCategory="label"
           orderByOrder={true}
-          excludeTags={['Primary Format', 'Format:Digital', 'Label Page', 'Done For Now', 'Sessions', 'Releases', 'Press', 'Sound Library', 'Player Playlist']}
-          linkTo={ item => hasTag(item, 'attachment') ? item.relatedContentLink : `/tracks/${item.slug}` }
+          excludeTags={['Primary Format', 'Format:Digital', 'Label Page', 'Done For Now', 'Player Playlist', 'Has Multiple Artists']}
           boxSecondaryTitleField="attribution"
           boxWidth={120}
           boxBlurbs={false}
-          noAll={false}
-          shouldSetCurrentPlaylist={true}
+          // shouldSetCurrentPlaylist={false}
+          // setDefaultEmptyPlaylist={false}
           hideIfNoAttachments={true}
+          boxMinMarginX={0}
+          boxMinMarginY={0}
+          boxMarginRangeX={0}
+          boxMarginRangeY={80}
+          boxRenderActionsOn="key-art"
         >
           {item => {
             const attachedTracks = getContentItemsFromRawList(allContentItems, item.attachments).map(track =>
@@ -47,10 +52,15 @@ function PlaylistsAndAlbums(): ReactElement {
             if (!attachedTracks || !attachedTracks.length) return <div />
 
             return (
-              <TrackPlayPauseButton
-                activeFor={attachedTracks}
-                track={attachedTracks[0]}
-              />
+              <div onClick={() => {
+                dispatch(replacePlaylist(5, { name: 'Current Playlist', tracks: attachedTracks }))
+                dispatch(setPlayerPlaylist(5))
+              }}>
+                <TrackPlayPauseButton
+                  activeFor={attachedTracks}
+                  track={attachedTracks[0]}
+                />
+              </div>
             )
           }}
         </MainContentList>
@@ -59,4 +69,4 @@ function PlaylistsAndAlbums(): ReactElement {
   )
 }
 
-export default PlaylistsAndAlbums
+export default Playlists

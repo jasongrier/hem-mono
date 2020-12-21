@@ -31,6 +31,8 @@ function compressIndex(index: any) {
 const keyCompressionMap: any = {
   acceptingDonations: 'aa',
   aside: 'ab',
+  attachments: 'bl',
+  attachmentTo: 'bq',
   attribution: 'ac',
   attributionLink: 'ad',
   audioFilename: 'ae',
@@ -51,8 +53,8 @@ const keyCompressionMap: any = {
   id: 'as',
   isDigitalProduct: 'at',
   isPhysicalProduct: 'au',
-  note: 'bp',
   keyArt: 'av',
+  note: 'bp',
   order: 'aw',
   physicalFormats: 'ax',
   preview: 'ay',
@@ -68,8 +70,13 @@ const keyCompressionMap: any = {
   tags: 'bi',
   title: 'bj',
   titleWrapping: 'bk',
-  attachments: 'bl',
   type: 'bm',
+}
+
+export function getHighestCompressionMapKey() {
+  const values = Object.values(keyCompressionMap)
+  values.sort()
+  console.log(values.pop())
 }
 
 export function validateCompressionMap() {

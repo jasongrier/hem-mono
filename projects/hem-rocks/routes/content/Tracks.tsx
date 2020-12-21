@@ -40,6 +40,7 @@ function Tracks(): ReactElement {
           boxMinMarginY={0}
           boxMarginRangeX={0}
           boxMarginRangeY={80}
+          boxRenderActionsOn="key-art"
         >
           {item => {
             if (hasCategory(item, 'tracks')) {

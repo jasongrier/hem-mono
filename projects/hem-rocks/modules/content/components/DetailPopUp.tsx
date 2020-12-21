@@ -2,7 +2,7 @@ import React, { ReactElement, SyntheticEvent, useEffect, useCallback, useContext
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
-import { find, isFinite, isNaN, noop, findIndex, last, compact } from 'lodash'
+import { find, isFinite, isNaN, noop, findIndex, last, compact, isEmpty } from 'lodash'
 import $ from 'jquery'
 import marked from 'marked'
 import uuid from 'uuid/v1'
@@ -702,7 +702,10 @@ function DetailPopUp({
                       key={track.id}
                     >
                       <TrackPlayPauseButton track={track} />
-                      <span className="detail-popup-details-playlist-text">{ track.title }</span>
+                      <span className="detail-popup-details-playlist-text">
+                        { track.title }
+                        { hasTag(contentItem, 'has-multiple-artists') ? ' — ' + track.attribution : '' }
+                      </span>
                     </li>
                   ))}
                 </ul>

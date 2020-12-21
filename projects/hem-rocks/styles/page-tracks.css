@@ -13,16 +13,12 @@
   flex: 0 0 12.5%;
 }
 
-.page-tracks .main-content-box-text {
-  display: none;
-}
-
 .page-tracks .main-content-box.align-right {
   float: none !important;
 }
 
 .page-tracks .main-content-box-text {
-  height: 0;
+  display: none;
 }
 
 .page-tracks .main-content-box h3 {
@@ -49,8 +45,14 @@
   font-weight: 100;
 }
 
+.page-tracks .main-content-box-key-art {
+  position: relative;
+  height: auto;
+}
+
 .page-tracks .main-content-box-actions {
-  top: -55px;
+  top: auto;
+  bottom: 5px;
   right: 5px;
   width: 30px;
   height: 30px;

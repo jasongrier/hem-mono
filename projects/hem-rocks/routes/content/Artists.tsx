@@ -31,6 +31,11 @@ function Artists(): ReactElement {
           boxBlurbs={false}
           shouldSetCurrentPlaylist={true}
           currentFilter="all"
+          boxMinMarginX={0}
+          boxMinMarginY={0}
+          boxMarginRangeX={0}
+          boxMarginRangeY={80}
+          boxRenderActionsOn="key-art"
         >
           {item => {
             const attachedTracks = getContentItemsFromRawList(allContentItems, item.attachments).map(track =>
