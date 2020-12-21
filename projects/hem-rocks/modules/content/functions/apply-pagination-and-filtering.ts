@@ -45,10 +45,16 @@ function applyPaginationAndFiltering(state: IState) {
 
   // pageContentItems = pageContentItems.filter(item => !hasTag(item, 'releases'))
   // pageContentItems = pageContentItems.filter(item => !hasTag(item, 'player-playlist'))
-  pageContentItems = pageContentItems.filter(item => !hasTag(item, 'done-for-now'))
+  // pageContentItems = pageContentItems.filter(item => !hasTag(item, 'done-for-now'))
   // pageContentItems = pageContentItems.filter(item => !hasTag(item, 'delete-me'))
   // pageContentItems = pageContentItems.filter(item => isEmpty(item.attribution))
-  pageContentItems = pageContentItems.filter(item => item.secondaryAttribution !== 'Heart Shaped Rock')
+  // pageContentItems = pageContentItems.filter(item => !item.secondaryAttribution.includes('Heart Shaped Rock'))
+  // pageContentItems = pageContentItems.filter(item => !item.note.includes('Heart Shaped Rock'))
+  // pageContentItems = pageContentItems.filter(item => !item.title.includes('Haunted'))
+  // pageContentItems = pageContentItems.filter(item => !item.secondaryAttribution.includes('CalArts'))
+  // pageContentItems = pageContentItems.filter(item => !item.secondaryAttribution.includes('Clouds'))
+  // pageContentItems = pageContentItems.filter(item => !item.secondaryAttribution.includes('Unbekannte'))
+  // pageContentItems = pageContentItems.filter(item => !item.secondaryAttribution.includes('Demonstration Disc'))
 
   // pageContentItems.sort((a, b) => {
   //   if (adminFilterApplied === 'sound-library') {

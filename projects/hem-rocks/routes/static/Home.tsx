@@ -13,12 +13,6 @@ function Home(): ReactElement {
     contentItems: state.content.contentItems,
   }))
 
-  const dispatch = useDispatch()
-
-  useEffect(function setPlaylistTab() {
-    dispatch(setPlayerPlaylist(0))
-  }, [])
-
   return (
     <>
       <Helmet>
@@ -38,7 +32,7 @@ function Home(): ReactElement {
           category="home-feature"
           items={getContentItemsFromList(contentItems, 'home-page-features')}
           applyCurrentFilter={false}
-          shouldSetCurrentPlaylist={false}
+          playlistToSet={0}
           showCategoryOnContentBoxes={true}
         />
       </div>

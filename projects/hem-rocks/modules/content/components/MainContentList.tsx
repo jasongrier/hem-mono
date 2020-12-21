@@ -60,6 +60,7 @@ interface IProps {
   boxMarginRangeY?: number
   boxRenderActionsOn?: 'key-art' | 'text'
   setDefaultEmptyPlaylist?: boolean
+  playlistToSet?: number
 }
 
 function MainContentList({
@@ -103,10 +104,12 @@ function MainContentList({
   boxMarginRangeY,
   boxRenderActionsOn,
   setDefaultEmptyPlaylist = true,
+  playlistToSet = 5,
 }: IProps): ReactElement {
-  const { storeContentItems, currentlyOpenPopUp } = useSelector((state: RootState) => ({
+  const { storeContentItems, currentlyOpenPopUp, playlists } = useSelector((state: RootState) => ({
     storeContentItems: state.content.contentItems,
     currentlyOpenPopUp: state.popups.currentlyOpenPopUp,
+    playlists: state.player.playlists,
   }))
 
   const dispatch = useDispatch()
@@ -288,7 +291,10 @@ function MainContentList({
 
       if (shouldSetCurrentPlaylist && tracks.length) {
         dispatch(replacePlaylist(5, { name: 'On this page', tracks }))
-        dispatch(setPlayerPlaylist(5))
+
+        if (!find(playlists, { name: 'Selected Playlist' })) {
+          dispatch(setPlayerPlaylist(playlistToSet))
+        }
       }
 
       else if (setDefaultEmptyPlaylist) {
