@@ -139,6 +139,8 @@ function Playlist({ onCollapse }: IProps): ReactElement {
                         onClick={() => {
                           let link
 
+                          // TODO: Hardcoded HEM-specific stuff here!
+
                           if (currentPlaylist.name === 'Sound Library') {
                             link = 'http://hem.rocks/sound-library/' + track.slug
                           }

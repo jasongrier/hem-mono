@@ -6,10 +6,10 @@ function SoundLibrarySubnav(): ReactElement {
     <nav className="main-content-subnav">
       <ul>
         <li>
-          <NavLink to="/tracks">Tracks</NavLink>
+          <NavLink to="/tracks">All Tracks</NavLink>
         </li>
         <li>
-          <NavLink to="/playlists-and-albums">Playlists &amp; Albums</NavLink>
+          <NavLink to="/playlists">Playlists</NavLink>
         </li>
         <li>
           <NavLink to="/artists">Artists</NavLink>

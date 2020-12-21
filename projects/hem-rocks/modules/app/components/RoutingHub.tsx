@@ -13,7 +13,7 @@ import {
   Merch,
   Mixes,
   Newsletters,
-  PlaylistsAndAlbums,
+  Playlists,
   Press,
   PressKits,
   Recipes,
@@ -157,9 +157,9 @@ function RoutingHub(): ReactElement {
         <Route exact path="/artists/filter/:filter" component={Artists} />
         <Route exact path="/artists/cart/:filter?" component={Artists} />
 
-        <Route exact path="/playlists-and-albums/:contentItemSlug?/:filter?" component={PlaylistsAndAlbums} />
-        <Route exact path="/playlists-and-albums/filter/:filter" component={PlaylistsAndAlbums} />
-        <Route exact path="/playlists-and-albums/cart/:filter?" component={PlaylistsAndAlbums} />
+        <Route exact path="/playlists/:contentItemSlug?/:filter?" component={Playlists} />
+        <Route exact path="/playlists/filter/:filter" component={Playlists} />
+        <Route exact path="/playlists/cart/:filter?" component={Playlists} />
 
         <Route exact path="/press/:contentItemSlug?/:filter?" component={Press} />
         <Route exact path="/press/filter/:filter" component={Press} />

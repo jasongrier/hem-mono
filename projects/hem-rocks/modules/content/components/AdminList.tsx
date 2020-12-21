@@ -367,7 +367,7 @@ function AdminList(): ReactElement {
                     <br/>
                   </td>
                 )}
-                { !hasCategory(item, 'tracks') && (
+                { hasCategory(item, 'playlists') && (
                   <td className="admin-list-column-field">
                     <div>
                       {(() => {
@@ -375,25 +375,20 @@ function AdminList(): ReactElement {
                         return typeof interestingProperty === 'string' && item[interestingProperty].replace(/^, /, '')
                       })()}
                     </div>
-
-                    {/* <hr/> */}
-
-                    { hasTag(item, 'albums') && (
-                      <pre>
-                        { item.attachments.split('\n').map(
-                          id => {
-                            const item = find(allContentItems, { id })
-                            if (item) {
-                              return item.title
-                            }
-
-                            else {
-                              return 'NOT FOUND'
-                            }
+                    <pre>
+                      { item.attachments.split('\n').map(
+                        id => {
+                          const item = find(allContentItems, { id })
+                          if (item) {
+                            return item.title
                           }
-                        ).join('\n')}
-                      </pre>
-                    )}
+
+                          else if (!isEmpty(id)) {
+                            return 'NOT FOUND'
+                          }
+                        }
+                      ).join('\n')}
+                    </pre>
                     { (hasTag(item, 'albums') || hasTag(item, 'discs')) && item.attachments.split("\n").map(id => (
                       <div key={uuid()}>
                         {(() => {
@@ -666,7 +661,7 @@ function AdminList(): ReactElement {
                     { !hasCategory(item, 'assets')
                       && !hasCategory(item, 'lists')
                       && (
-                        ['featured', 'rare', 'live', 'radio', 'sound-library', 'releases'].map(tag => (
+                        ['featured', 'rare', 'live', 'radio', 'sound-library', 'releases', 'add-to-more-tombstones', 'has-multiple-artists'].map(tag => (
                           <button
                             key={tag}
                             className="action-button"
@@ -745,6 +740,17 @@ function AdminList(): ReactElement {
                             }}
                           >
                             { item.secondaryAttribution === 'Dog Star Orchestra 2010' ? '✓ DSO 2010' : 'DSO 2010'}
+                          </button>
+                          <button
+                            className="action-button"
+                            onClick={() => {
+                              const updatedItem: IContentItem = produce(item, (draftItem) => {
+                                draftItem.secondaryAttribution = 'Linda Perhacs Live at SFAI'
+                              })
+                              dispatch(requestUpdateItems([updatedItem]))
+                            }}
+                          >
+                            { item.secondaryAttribution === 'Linda Perhacs Live at SFAI' ? '✓ Perhacs SFAI' : 'Perhacs SFAI'}
                           </button>
                           <button
                             className="action-button"
@@ -838,6 +844,64 @@ function AdminList(): ReactElement {
                           { hasTag(item, 'projects') ? '✓ Projects' : 'Projects' }
                         </button>
                     )}
+                    { !hasCategory(item, 'assets')
+                      && !hasCategory(item, 'lists')
+                      && (
+                        [
+                          '20th-century',
+                          'acousmatic',
+                          'activism',
+                          'bedroom-pop',
+                          'documentary',
+                          'electro-acoustic',
+                          'experimental',
+                          'installation',
+                          'new-classical',
+                          'non-cochlear',
+                          'pop',
+                          'sound-art',
+                          'sessions',
+                        ].map(tag => (
+                          <button
+                            key={tag}
+                            className="action-button"
+                            onClick={() => {
+                              const updatedItem: IContentItem = produce(item, (draftItem) => {
+                                if (hasTag(item, tag)) {
+                                  draftItem.tags = draftItem.tags.replace(', ' + tag, '').replace(tag, '')
+                                }
+
+                                else {
+                                  draftItem.tags = draftItem.tags + ', ' + tag
+                                }
+                              })
+                              dispatch(requestUpdateItems([updatedItem]))
+                            }}
+                          >
+                            { hasTag(item, tag) ? '✓ ' + titleCase(tag.replace('-', '')) : titleCase(tag.replace('-', '')) }
+                          </button>
+                      ))
+                    )}
+                    <div>
+                      <form
+                        className="inline-edit-form first-inline-edit-form"
+                        onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
+                          evt.preventDefault()
+                          const input = evt.currentTarget.querySelector('input[name="attribution"]')
+                          if (!input) return
+                          const updatedItem: IContentItem = produce(item, (draftItem) => {
+                            // @ts-ignore
+                            draftItem.attribution = input.value
+                          })
+                          dispatch(requestUpdateItems([updatedItem]))
+                          // @ts-ignore
+                          input.value = ''
+                        }}
+                      >
+                        <label><span>Artist:</span> <input type="text" name="attribution" placeholder={item.attribution} /></label>
+                        <button type="submit">Submit</button>
+                      </form>
+                    </div>
                   </td>
                 )}
               </tr>

@@ -4,6 +4,8 @@ function modelize(rawContentItem: any): IContentItem {
   return {
     acceptingDonations: rawContentItem.acceptingDonations || false,
     aside: rawContentItem.aside || '',
+    attachments: rawContentItem.attachments || '',
+    attachmentTo: rawContentItem.attachmentTo || '',
     attribution: rawContentItem.attribution || '',
     attributionLink: rawContentItem.attributionLink || '',
     audioFilename: rawContentItem.audioFilename || '',
@@ -41,7 +43,6 @@ function modelize(rawContentItem: any): IContentItem {
     tags: rawContentItem.tags || '',
     title: rawContentItem.title || '',
     titleWrapping: rawContentItem.titleWrapping || '',
-    attachments: rawContentItem.attachments || '',
     type: rawContentItem.type || '',
   }
 }

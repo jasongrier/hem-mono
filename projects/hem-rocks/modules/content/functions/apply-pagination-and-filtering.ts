@@ -43,6 +43,11 @@ function applyPaginationAndFiltering(state: IState) {
     pageContentItems = pageContentItems.filter(item => item.sticky)
   }
 
+  // pageContentItems = pageContentItems.filter(item => !hasTag(item, 'releases'))
+  // pageContentItems = pageContentItems.filter(item => !hasTag(item, 'player-playlist'))
+  pageContentItems = pageContentItems.filter(item => !hasTag(item, 'done-for-now'))
+  // pageContentItems = pageContentItems.filter(item => isEmpty(item.attribution))
+
   // pageContentItems.sort((a, b) => {
   //   if (adminFilterApplied === 'sound-library') {
   //     return parseInt(a.order, 10) - parseInt(b.order, 10)

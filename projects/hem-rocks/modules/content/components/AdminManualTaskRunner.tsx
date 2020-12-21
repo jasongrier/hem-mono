@@ -22,21 +22,22 @@ function migrate(allContentItems: IContentItem[]) {
   const getMP3Duration = require('get-mp3-duration')
 
   const newItems: IContentItem[] = []
-  const slugs: string[] = []
+  let attachments = ''
 
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
 
-    if (
-      hasCategory(newItem, 'tracks')
-      && hasTag(newItem, 'featured')
-    ) {
-      console.log(newItem.title)
+    if (newItem.title.includes('Lucifer in the Shadowland:')) {
+      attachments = attachments + newItem.id + '\n'
     }
 
-    slugs.push(newItem.slug)
-
     newItems.push(newItem)
+  }
+
+  const playlist = find(newItems, { title: 'Lucifer in the Shadowland' })
+
+  if (playlist) {
+    playlist.attachments = attachments
   }
 
   // ***** DANGER ZONE *****
@@ -45,8 +46,8 @@ function migrate(allContentItems: IContentItem[]) {
 
   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
   const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
-  // writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
-  // writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
+  writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
+  writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
 }
 
 function AdminManualTaskRunner(): ReactElement {

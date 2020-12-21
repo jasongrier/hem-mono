@@ -71,6 +71,8 @@ function App(): ReactElement {
     { basePath: 'merch', id: 'detail-popup' },
     { basePath: 'mixes', id: 'detail-popup' },
     { basePath: 'press', id: 'detail-popup' },
+    { basePath: 'playlists', id: 'detail-popup' },
+    { basePath: 'artists', id: 'detail-popup' },
     { basePath: 'press-kits', id: 'detail-popup' },
     { basePath: 'sound-library', id: 'detail-popup' },
     { basePath: 'stock-photos', id: 'detail-popup' },

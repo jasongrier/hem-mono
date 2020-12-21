@@ -30,7 +30,7 @@ interface IProps {
   buttonText?: string
   children?: (contentItem: IContentItem) => any
   currentFilter?: string,
-  excludeFromAll?: string
+  excludeFromAll?: string | string[]
   fixedFilters?: string[] | null
   additionalFilters?: string[]
   hideFilters?: string[]
@@ -58,6 +58,8 @@ interface IProps {
   boxMinMarginY?: number
   boxMarginRangeX?: number
   boxMarginRangeY?: number
+  boxRenderActionsOn?: 'key-art' | 'text'
+  setDefaultEmptyPlaylist?: boolean
 }
 
 function MainContentList({
@@ -99,6 +101,8 @@ function MainContentList({
   boxMinMarginY,
   boxMarginRangeX,
   boxMarginRangeY,
+  boxRenderActionsOn,
+  setDefaultEmptyPlaylist = true,
 }: IProps): ReactElement {
   const { storeContentItems, currentlyOpenPopUp } = useSelector((state: RootState) => ({
     storeContentItems: state.content.contentItems,
@@ -214,9 +218,26 @@ function MainContentList({
     }
 
     else if (excludeFromAll) {
-      contentItems = contentItems.filter(item => {
-        return !hasTag(item, slugify(excludeFromAll))
-      })
+      if (typeof excludeFromAll === 'string') {
+        contentItems = contentItems.filter(item => {
+          return !hasTag(item, slugify(excludeFromAll))
+        })
+      }
+
+      else {
+        contentItems = contentItems.filter(item => {
+          let keep = true
+
+          for (const tag of excludeFromAll) {
+            if (hasTag(item, slugify(tag))) {
+              keep = false
+              break
+            }
+          }
+
+          return keep
+        })
+      }
     }
 
     if (hideIfNoAttachments) {
@@ -270,7 +291,7 @@ function MainContentList({
         dispatch(setPlayerPlaylist(5))
       }
 
-      else {
+      else if (setDefaultEmptyPlaylist) {
         dispatch(replacePlaylist(5, { name: 'EMPTY', tracks: [] }))
         dispatch(setPlayerPlaylist(0))
       }
@@ -362,7 +383,6 @@ function MainContentList({
                 className={`
                   main-content-filter
                   ${ currentFilter === slugify(tag) ? 'active' : '' }
-                  ${ currentFilter === slugify(excludeFromAll) ? 'exclusive-filter' : '' }
                 `}
                 key={tag}
                 to={
@@ -419,6 +439,7 @@ function MainContentList({
               minMarginY={boxMinMarginY}
               marginRangeX={boxMarginRangeX}
               marginRangeY={boxMarginRangeY}
+              renderActionsOn={boxRenderActionsOn}
             >
               { children && children(contentItem) }
             </MainContentBox>

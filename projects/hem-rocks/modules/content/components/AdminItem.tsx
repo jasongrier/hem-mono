@@ -386,7 +386,7 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
                                   return item.title
                                 }
 
-                                else {
+                                else if (!isEmpty(id)) {
                                   return 'NOT FOUND'
                                 }
                               }

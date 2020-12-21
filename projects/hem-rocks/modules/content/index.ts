@@ -3,6 +3,8 @@ import { AnyAction } from 'redux'
 export interface IContentItem {
   acceptingDonations: boolean
   aside: string
+  attachments: string
+  attachmentTo: string
   attribution: string
   attributionLink: string
   audioFilename: string
@@ -40,7 +42,6 @@ export interface IContentItem {
   tags: string
   title: string
   titleWrapping: string
-  attachments: string
   type: string
 }
 
@@ -68,6 +69,8 @@ export interface IState {
 export const fieldTypes: IContentItem = {
   acceptingDonations: false,
   aside: 'textarea',
+  attachments: 'textarea',
+  attachmentTo: 'textarea',
   attribution: 'text',
   attributionLink: 'text',
   audioFilename: 'text',
@@ -75,10 +78,10 @@ export const fieldTypes: IContentItem = {
   blurb: 'textarea',
   category: 'text',
   date: 'text',
-  duration: 'text',
   description: 'textarea',
   displayCategory: 'text',
   downloadFile: 'text',
+  duration: 'text',
   externalLinkText: 'text',
   externalLinkUrl: 'text',
   fixedPrice: 'text',
@@ -105,7 +108,6 @@ export const fieldTypes: IContentItem = {
   tags: 'text',
   title: 'text',
   titleWrapping: 'text',
-  attachments: 'textarea',
   type: 'text',
 }
 
@@ -271,6 +273,7 @@ export {
   DetailPopUp,
   LaunchDetailPopupButton,
   MainContentBox,
+  MainContentBoxActions,
   MainContentList,
 } from './components'
 

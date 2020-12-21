@@ -6,7 +6,7 @@ import { EnlargeButton } from '../../../../../lib/packages/hem-buttons'
 import { SplatterDims } from '../../../../../lib/packages/hem-boxplatter'
 import { assetHostHostname } from '../../../functions'
 import { BERLIN_STOCK_PHOTOS } from '../../../config'
-import { IContentItem, setCurrentItem } from '../index'
+import { IContentItem, setCurrentItem, MainContentBoxActions } from '../index'
 
 interface IProps {
   contentItem: IContentItem
@@ -26,6 +26,7 @@ interface IProps {
   minMarginY?: number
   marginRangeX?: number
   marginRangeY?: number
+  renderActionsOn?: 'key-art' | 'text'
 }
 
 function MainContentBox({
@@ -46,6 +47,7 @@ function MainContentBox({
   minMarginY = 30,
   marginRangeX = 0,
   marginRangeY = 0,
+  renderActionsOn = 'text'
 }: PropsWithChildren<IProps>): ReactElement {
   const dispatch = useDispatch()
   const [alignRight, setAlignRight] = useState(false)
@@ -103,6 +105,14 @@ function MainContentBox({
         className="main-content-box-key-art"
         onClick={onClick}
       >
+        { renderActionsOn === 'key-art' && (
+          <MainContentBoxActions
+            linkTo={linkTo}
+            buttonText={buttonText}
+          >
+            { children }
+          </MainContentBoxActions>
+        )}
         <Link to={linkTo}>
           { !BERLIN_STOCK_PHOTOS && (
             <div
@@ -144,19 +154,14 @@ function MainContentBox({
             <div dangerouslySetInnerHTML={{ __html: marked(contentItem.blurb) }} />
           </Link>
         )}
-        <div className="main-content-box-actions">
-          <div className="main-content-box-custom-actions">
+        { renderActionsOn === 'text' && (
+          <MainContentBoxActions
+            linkTo={linkTo}
+            buttonText={buttonText}
+          >
             { children }
-          </div>
-          { buttonText && (
-            <Link
-              className="action-button"
-              to={linkTo}
-            >
-              { buttonText }
-            </Link>
-          )}
-        </div>
+          </MainContentBoxActions>
+        )}
       </div>
     </SplatterDims>
   )
