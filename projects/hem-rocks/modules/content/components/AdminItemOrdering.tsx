@@ -34,6 +34,8 @@ function AdminItemOrdering({ }: IProps): ReactElement {
       && item.published
     ))
 
+    console.log(find(sortSet, { attribution: 'The Dowry' }))
+
     sortSet.sort(
       (a: IContentItem, b: IContentItem) => parseInt(a.order, 10) - parseInt(b.order, 10)
     )

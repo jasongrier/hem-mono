@@ -35,8 +35,6 @@ function Playlists(): ReactElement {
           boxSecondaryTitleField="attribution"
           boxWidth={120}
           boxBlurbs={false}
-          // shouldSetCurrentPlaylist={false}
-          // setDefaultEmptyPlaylist={false}
           hideIfNoAttachments={true}
           boxMinMarginX={0}
           boxMinMarginY={0}
@@ -53,8 +51,8 @@ function Playlists(): ReactElement {
 
             return (
               <div onClick={() => {
-                dispatch(replacePlaylist(5, { name: 'Current Playlist', tracks: attachedTracks }))
-                dispatch(setPlayerPlaylist(5))
+                dispatch(replacePlaylist(6, { name: 'Selected Playlist', tracks: attachedTracks }))
+                dispatch(setPlayerPlaylist(6))
               }}>
                 <TrackPlayPauseButton
                   activeFor={attachedTracks}
