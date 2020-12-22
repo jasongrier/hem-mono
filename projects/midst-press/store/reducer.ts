@@ -21,6 +21,7 @@ function createPoem(author: string, title: string, date: string, publishDate: st
     .replace(/\,/g, '')
     .replace('<i>', '')
     .replace('</i>', '')
+    .replace('-:)', '')
 
   return {
     author,

@@ -26,27 +26,27 @@ function PoemNav({ history, match }: IProps): ReactElement {
   const nextPoemUrl = nextPoem && `/poem/${nextPoem.url}/`
   const previousPoemUrl = previousPoem && `/poem/${previousPoem.url}/`
 
-  if (POEM_ARROW_KEY === 'slide') {
-    useEffect(() => {
-      function slidePoemOnArrowKeyDown(evt: any) {
-        if (evt.keyCode === 37) {
-          dispatch(setProcessNoteOpen(false))
-          history.push(previousPoemUrl)
-        }
+  useEffect(() => {
+    if (POEM_ARROW_KEY !== 'slide') return
 
-        else if (evt.keyCode === 39) {
-          dispatch(setProcessNoteOpen(false))
-          history.push(nextPoemUrl)
-        }
+    function slidePoemOnArrowKeyDown(evt: any) {
+      if (evt.keyCode === 37) {
+        dispatch(setProcessNoteOpen(false))
+        history.push(previousPoemUrl)
       }
 
-      document.addEventListener('keydown', slidePoemOnArrowKeyDown)
-
-      return function cleanup() {
-        document.removeEventListener('keydown', slidePoemOnArrowKeyDown)
+      else if (evt.keyCode === 39) {
+        dispatch(setProcessNoteOpen(false))
+        history.push(nextPoemUrl)
       }
-    }, [nextPoemUrl, previousPoemUrl])
-  }
+    }
+
+    document.addEventListener('keydown', slidePoemOnArrowKeyDown)
+
+    return function cleanup() {
+      document.removeEventListener('keydown', slidePoemOnArrowKeyDown)
+    }
+  }, [nextPoemUrl, previousPoemUrl])
 
   return (
     <>
