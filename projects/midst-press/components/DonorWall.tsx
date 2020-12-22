@@ -1,5 +1,7 @@
-import React, { ReactElement } from 'react'
+import React, { PropsWithChildren, ReactElement } from 'react'
 import uuid from 'uuid/v1'
+
+interface IProps {}
 
 const donorList = [
   'Juliet Shafto',
@@ -61,14 +63,17 @@ const sampleList = [
   'Jetta Eakin',
 ]
 
-function DonorList(): ReactElement {
+function DonorWall({ children }: PropsWithChildren<IProps>): ReactElement {
   return (
-    <ul className="donor-list">
-      {sampleList.map(name => (
-        <li key={uuid()}>{ name }</li>
-      ))}
-    </ul>
+    <div className="donor-wall">
+      { children }
+      <ul className="donor-list">
+        {sampleList.map(name => (
+          <li key={uuid()}>{ name }</li>
+        ))}
+      </ul>
+    </div>
   )
 }
 
-export default DonorList
+export default DonorWall

@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
-import DonorList from '../components/DonorList'
+import DonorWall from '../components/DonorWall'
 import { BASE_SITE_TITLE } from '../config'
 
 function Home(): ReactElement {
@@ -26,10 +26,9 @@ function Home(): ReactElement {
 
         <p style={{ paddingTop: '10px' }} />
 
-        <div className="donor-wall">
+        <DonorWall>
           <h2>Special thanks to our <a href="http://www.patreon.com/midstpoetry">Patrons</a>:</h2>
-          <DonorList />
-        </div>
+        </DonorWall>
       </section>
     </div>
   )

@@ -1096,6 +1096,7 @@ body {
   padding-top: 30px;
   padding-bottom: 100px;
   border-top: 1px solid #ddd;
+  text-align: center;
 }
 
 .donor-wall h2 {
@@ -1129,6 +1130,26 @@ body {
   background-image: url('./static/assets/patreon-logo.png');
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.ko-fi-logo-in-text,
+.patreon-logo-in-text {
+  float: left;
+  width: 48px;
+  height: 48px;
+  margin-top: 3px;
+  margin-right: 20px;
+  margin-bottom: 30px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.ko-fi-logo-in-text {
+  background-image: url('./static/assets/ko-fi-logo.png');
+}
+
+.patreon-logo-in-text {
+  background-image: url('./static/assets/patreon-logo.png');
 }
 
 @media screen and (max-width: 1024px) {
