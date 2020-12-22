@@ -44,6 +44,7 @@ import {
   CookiePolicy,
   CookieSettings,
   Home,
+  LifeInLetters,
   MailingList,
   NotFound,
   MadeWithSoundLibrary,
@@ -107,6 +108,9 @@ function RoutingHub(): ReactElement {
 
         <Route exact path="/mailing-list" component={MailingList} />
         <Route exact path="/mailing-list/cart" component={MailingList} />
+
+        <Route exact path="/life-in-letters" component={LifeInLetters} />
+        <Route exact path="/life-in-letters/cart" component={LifeInLetters} />
 
         <Route exact path="/react-consulting" component={ReactConsulting} />
         <Route exact path="/react-consulting/cart" component={ReactConsulting} />
