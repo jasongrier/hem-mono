@@ -31,6 +31,7 @@ export interface IPoem {
   badge: string | null
   data: IMidstFile | null
   date: Moment
+  publishDate: Moment
   hidden?: boolean
   highlighted: boolean
   loaded: boolean

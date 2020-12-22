@@ -283,6 +283,7 @@ body {
   position: fixed;
   top: 50vh;
   right: 5px;
+  z-index: 99999;
   width: 50px;
   height: 300px;
   margin-top: -110px;
@@ -327,6 +328,7 @@ body {
   position: fixed;
   top: 75vh;
   left: 10px;
+  z-index: 99999;
   transform: rotate(-90deg);
   transform-origin: top left;
   width: 50vh;
@@ -373,6 +375,7 @@ body {
   position: fixed;
   top: 31px;
   right: 30px;
+  z-index: 99999;
   margin: 0;
   padding: 0 5px 0 0;
   font-size: 30px;
@@ -414,6 +417,7 @@ body {
 }
 
 .table-of-contents .heroine {
+  position: relative;
   width: 800px;
   margin: 151px auto 120px auto;
   padding: 10px 30px;
@@ -448,6 +452,7 @@ body {
   position: absolute;
   left: 670px;
   top: -28px;
+  z-index: 9999;
   transform-origin: top left;
   font-size: 20px;
   font-family: 'futuralight';
@@ -469,6 +474,7 @@ body {
 .table-of-contents .heroine .editor-letter {
   position: absolute;
   left: 0;
+  z-index: 99999;
   height: auto;
   top: -900px;
   padding:  39px 50px;
@@ -780,7 +786,7 @@ body {
 }
 
 .nominate-form form .form-block {
-  margin-bottom: 10px;
+  margin-bottom: 0;
 }
 
 .nominate-form form .form-block p {
@@ -799,7 +805,7 @@ body {
   display: block;
   width: 100%;
   height: 40px;
-  line-height: 40px;
+  line-height: 30px;
   margin: 0 auto;
   padding: 0;
   background: transparent;
@@ -807,10 +813,15 @@ body {
   font-size: 14px;
 }
 
+.nominate-form label {
+  height: auto;
+}
+
 .nominate-form input,
 .nominate-form textarea {
   border-bottom: 1px solid #000;
   color: #999;
+  margin-bottom: 20px;
 }
 
 .nominate-form textarea {
@@ -1079,7 +1090,9 @@ body {
 /* End Issue 1 poem-specific styles */
 
 .donor-wall {
+  width: calc(100% + 100px);
   margin-top: 100px;
+  margin-left: -50px;
   padding-top: 30px;
   padding-bottom: 100px;
   border-top: 1px solid #ddd;
@@ -1091,13 +1104,19 @@ body {
 }
 
 .donor-wall ul {
+  margin: 0;
+  padding: 0;
   list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .donor-wall li {
   display: inline-block;
-  margin: 0 20px;
+  margin: 20px;
   font-size: 14px;
+  flex: 0 0 25%;
 }
 
 .patreon-logo {
@@ -1211,6 +1230,11 @@ body {
 
   .issue-one-alert {
     display: none;
+  }
+
+  .donor-wall {
+    width: 100%;
+    margin-left: 0;
   }
 }
 

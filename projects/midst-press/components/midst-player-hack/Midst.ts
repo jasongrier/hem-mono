@@ -1263,7 +1263,8 @@ class Midst extends React.Component<IProps, any> {
           controlled: true,
           readOnly: false,
           value,
-          showDisplayValue: editorTimelineIndex < editorTimelineFrames.length - 1,
+          // showDisplayValue: editorTimelineIndex < editorTimelineFrames.length - 1,
+          showDisplayValue: true,
           propsDisplayValue: timestamp,
           onChange: this.sliderOnChange,
           onMouseDown: () => {

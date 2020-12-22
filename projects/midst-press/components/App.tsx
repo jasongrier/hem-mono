@@ -113,15 +113,17 @@ function App(): ReactElement {
       </main>
       <footer className="site-footer">
         <Hide from="/poem/:poemUrl">
-          <CampaignMonitorForm
-            labelForName="Newsletter &nbsp;🚀"
-            submitButtonText="Submit"
-          />
+          <>
+            <CampaignMonitorForm
+              labelForName="Newsletter &nbsp;🚀"
+              submitButtonText="Submit"
+            />
+            <a
+              href="http://patreon.com/midstpoetry"
+              className="patreon-logo"
+            />
+          </>
         </Hide>
-        <a
-          href="http://patreon.com/midstpoetry"
-          className="patreon-logo"
-        />
       </footer>
     </div>
   )
