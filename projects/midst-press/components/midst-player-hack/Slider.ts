@@ -245,7 +245,7 @@ class Slider extends React.Component {
             className: 'hem-slider__progress',
             style,
           }),
-          showDisplayValue && e('div', {
+          showDisplayValue && displayValue && e('div', {
             className: 'hem-slider__value',
             style: valueStyle,
           }, displayValue)

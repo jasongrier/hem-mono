@@ -128,16 +128,16 @@ function Read(): ReactElement {
             <span
               className={`
                 poem-head-arrow
-                ${ sortTerm === 'date' ? 'poem-head-arrow-active' : ''}
-                ${ sortTerm === 'date' && sortOrder === 'ASC' ? 'poem-head-arrow-up' : ''}
+                ${ sortTerm === 'publishDate' ? 'poem-head-arrow-active' : ''}
+                ${ sortTerm === 'publishDate' && sortOrder === 'ASC' ? 'poem-head-arrow-up' : ''}
               `}
               onClick={() => {
-                if (sortTerm === 'date') {
+                if (sortTerm === 'publishDate') {
                   dispatch(reverseSortOrder())
                 }
 
                 else {
-                  dispatch(setSortTerm('date'))
+                  dispatch(setSortTerm('publishDate'))
                 }
               }}
             />

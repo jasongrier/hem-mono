@@ -48,9 +48,7 @@ function Poem({ match }: IProps): ReactElement {
         <div className="sliding-poems">
           <div
             className="sliding-poems__frame"
-            style={{
-              width: `${poems.length * 200}%`,
-            }}
+            style={{ width: `${poems.length * 200}%` }}
           >
             {poems.map((poem: IPoem, i: number) =>
               <div

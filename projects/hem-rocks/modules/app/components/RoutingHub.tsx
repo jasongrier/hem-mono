@@ -216,7 +216,7 @@ function RoutingHub(): ReactElement {
         <Route exact path="/internal/calendar" component={InternalCalendar} />
         <Route exact path="/internal/docus" component={Docus} />
         <Route exact path="/internal/notes" component={Notes} />
-        <Route exact path="/internal/print-flip-books/:page?" component={PrintFlipBooks} />
+        <Route exact path="/internal/print-flip-books" component={PrintFlipBooks} />
         <Route exact path="/internal/sandbox" component={Sandbox} />
         <Route exact path="/internal/todos" component={Todos} />
 

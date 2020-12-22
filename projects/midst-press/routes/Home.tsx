@@ -1,13 +1,7 @@
 import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
+import DonorList from '../components/DonorList'
 import { BASE_SITE_TITLE } from '../config'
-
-const randomNames = [
-  'Juliet Shafto',
-  'Myrrh Crow',
-  'Lara Prescott',
-  'Alejandro Puyana', 
-]
 
 function Home(): ReactElement {
   return (
@@ -34,11 +28,7 @@ function Home(): ReactElement {
 
         <div className="donor-wall">
           <h2>Special thanks to our <a href="http://www.patreon.com/midstpoetry">Patrons</a>:</h2>
-          <ul>
-            {randomNames.map(name => (
-              <li key={name}>{ name }</li>
-            ))}
-          </ul>
+          <DonorList />
         </div>
       </section>
     </div>
