@@ -110,6 +110,20 @@ function InternalHome(): ReactElement {
               <li><Link to="/internal/docus">Docus</Link></li>
             </ul>
           </div>
+
+          <div className="page-internal-link-group">
+            <h2>Print a flip book</h2>
+            <ul>
+              <li>
+                <a
+                  href="/internal/print-flip-books"
+                  target="_blank"
+                >
+                  Print flip books
+                </a>
+              </li>
+            </ul>
+          </div>
         </ProtectedContent>
       </div>
     </>

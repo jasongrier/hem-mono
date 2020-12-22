@@ -13,6 +13,7 @@ import { slugify, titleCase } from 'voca'
 import { execSync } from 'child_process'
 import { all } from 'redux-saga/effects'
 import { formatTime } from '../../../../../lib/modules/website-player'
+import { serverFiles, localFiles } from '../deploy-files'
 
 function migrate(allContentItems: IContentItem[]) {
   const { remote } = window.require('electron')
@@ -22,18 +23,25 @@ function migrate(allContentItems: IContentItem[]) {
   const getMP3Duration = require('get-mp3-duration')
 
   const newItems: IContentItem[] = []
-  const itemsToUnRare = getContentItemsFromList(allContentItems, 'ariel-friedman')
-  const itemsToUnRareIds = map(itemsToUnRare, 'id')
 
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
-
-    if (itemsToUnRareIds.includes(newItem.id)) {
-      newItem.tags = newItem.tags.replace('rare', '')
-    }
-
     newItems.push(newItem)
   }
+
+  const allFiles = serverFiles.concat(localFiles)
+  const allFilesImm = uniq(Array.from(allFiles))
+
+  const srcDir = '/Users/jason/Desktop/Workingkong/HEM/Website/hem-static/hem-rocks/content/tracks/'
+  const destDir = '/Volumes/April_Kepner/TMP/deploy/'
+
+  for (const file of localFiles) {
+    if (!serverFiles.includes(file)) {
+      copyFileSync(join(srcDir, file), join(destDir, file))
+    }
+  }
+
+
 
   // ***** DANGER ZONE *****
   // ***** DANGER ZONE *****
