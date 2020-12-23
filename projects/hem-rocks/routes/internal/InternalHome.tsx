@@ -112,7 +112,7 @@ function InternalHome(): ReactElement {
           </div>
 
           <div className="page-internal-link-group">
-            <h2>Print a flip book</h2>
+            <h2>Projects</h2>
             <ul>
               <li>
                 <a
@@ -121,6 +121,13 @@ function InternalHome(): ReactElement {
                 >
                   Print flip books
                 </a>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <Link to="/internal/web-movie">
+                  Test web movie
+                </Link>
               </li>
             </ul>
           </div>

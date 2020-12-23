@@ -368,9 +368,13 @@ function App(): ReactElement {
       <>
         <ScrollToTop scrollPaneSelector=".scroll-lock-container" />
 
-        { !BERLIN_STOCK_PHOTOS && !pathname.includes('print-flip-books') && (
-          <TopBar />
-        )}
+        { !BERLIN_STOCK_PHOTOS
+          && !pathname.includes('print-flip-books')
+          && !pathname.includes('web-movie')
+          && (
+            <TopBar />
+          )
+        }
 
         <div className="scroll-lock-container">
           <div className="scroll-lock-content">
@@ -379,7 +383,10 @@ function App(): ReactElement {
                 <RoutingHub />
               </div>
             </main>
-            { !BERLIN_STOCK_PHOTOS && !pathname.includes('print-flip-books') && (
+            { !BERLIN_STOCK_PHOTOS
+              && !pathname.includes('print-flip-books')
+              && !pathname.includes('web-movie')
+              && (
               <footer className="main-footer">
                 <SiteFooter />
               </footer>
@@ -391,7 +398,10 @@ function App(): ReactElement {
           <Popups currentContentItem={currentContentItem} />
         )}
 
-        { !BERLIN_STOCK_PHOTOS && !pathname.includes('print-flip-books') && (
+        { !BERLIN_STOCK_PHOTOS
+          && !pathname.includes('print-flip-books')
+          && !pathname.includes('web-movie')
+          && (
           <>
             <PlayerBar />
             <div

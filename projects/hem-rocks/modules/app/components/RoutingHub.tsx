@@ -30,6 +30,7 @@ import {
   Docus,
   InternalCalendar,
   InternalHome,
+  WebMovie,
   Notes,
   PrintFlipBooks,
   Sandbox,
@@ -44,7 +45,6 @@ import {
   CookiePolicy,
   CookieSettings,
   Home,
-  LifeInLetters,
   MailingList,
   NotFound,
   MadeWithSoundLibrary,
@@ -108,9 +108,6 @@ function RoutingHub(): ReactElement {
 
         <Route exact path="/mailing-list" component={MailingList} />
         <Route exact path="/mailing-list/cart" component={MailingList} />
-
-        <Route exact path="/life-in-letters" component={LifeInLetters} />
-        <Route exact path="/life-in-letters/cart" component={LifeInLetters} />
 
         <Route exact path="/react-consulting" component={ReactConsulting} />
         <Route exact path="/react-consulting/cart" component={ReactConsulting} />
@@ -223,6 +220,7 @@ function RoutingHub(): ReactElement {
         <Route exact path="/internal/print-flip-books" component={PrintFlipBooks} />
         <Route exact path="/internal/sandbox" component={Sandbox} />
         <Route exact path="/internal/todos" component={Todos} />
+        <Route exact path="/internal/web-movie" component={WebMovie} />
 
         {/* Desktop Admin Application */}
         <Route path="/admin" component={Admin} />
