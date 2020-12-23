@@ -1,14 +1,16 @@
 import { AnyAction } from 'redux'
 import produce from 'immer'
-import uuid from 'uuid/v1'
 import {
-  SOME_ACTION,
+  MOVIE_ADD,
+  MOVIE_REQUEST,
+  SET_CURRENT_MOVIE,
 
   IState,
 } from './index'
 
 const initialState: IState = {
-  foo: 'bar',
+  currentMovieIndex: null,
+  movies: [],
 }
 
 const reducer = (
@@ -16,9 +18,19 @@ const reducer = (
   { type, payload }: AnyAction,
 ): IState => {
   switch (type) {
-    case SOME_ACTION: {
+    case MOVIE_ADD: {
       return produce(state, draftState => {
-        draftState.foo = payload
+        draftState.currentMovieIndex = payload
+      })
+    }
+
+    case MOVIE_REQUEST: {
+      return state
+    }
+
+    case SET_CURRENT_MOVIE: {
+      return produce(state, draftState => {
+        draftState.currentMovieIndex = payload
       })
     }
 

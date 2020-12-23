@@ -1,1 +1,1 @@
-export { default as someFunction } from './some-function'
+export { default as modelize } from './modelize'
