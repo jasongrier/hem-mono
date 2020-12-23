@@ -1,13 +1,13 @@
 import { AnyAction } from 'redux'
 
 export interface IWebMovieFrame {
-  name: string
+  fileName: string
   loaded: boolean
 }
 
 export interface IWebMovieClip {
-  name: string
   frames: IWebMovieFrame[]
+  name: string
 }
 
 export interface IWebMovie {
@@ -42,9 +42,9 @@ export interface ISetCurrentMovie extends AnyAction {
 }
 
 export type Action =
-IMovieAdd
-| IMovieRequest
-| ISetCurrentMovie
+  IMovieAdd
+  | IMovieRequest
+  | ISetCurrentMovie
 
 export {
   movieAdd,
