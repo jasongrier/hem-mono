@@ -1,4 +1,5 @@
 import {
+  MARK_LOADED,
   MOVIE_ADD,
   MOVIE_REQUEST,
   SET_CURRENT_MOVIE,
@@ -7,12 +8,17 @@ import {
   IWebMovie,
 } from './index'
 
+const markLoaded = (id: string): Action => ({
+  type: MARK_LOADED,
+  payload: id,
+})
+
 const movieAdd = (movie: IWebMovie): Action => ({
   type: MOVIE_ADD,
   payload: movie,
 })
 
-const movieRequest = (src: string): Action => ({
+const movieRequest = (src: string | string[]): Action => ({
   type: MOVIE_REQUEST,
   payload: src,
 })
@@ -23,6 +29,7 @@ const setCurrentMovie = (index: number): Action => ({
 })
 
 export {
+  markLoaded,
   movieAdd,
   movieRequest,
   setCurrentMovie,
