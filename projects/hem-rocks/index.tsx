@@ -7,6 +7,7 @@ import createSagaMiddleware from 'redux-saga'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { popupsReducer } from '../../lib/modules/popups'
 import { playerReducer } from '../../lib/modules/website-player'
+import { webMovieReducer } from '../../lib/modules/web-movie'
 import { flipBooksReducer } from '../../lib/modules/flip-book'
 import { App, appReducer } from './modules/app'
 import { loginReducer } from './modules/login'
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   login: loginReducer,
   player: playerReducer,
   popups: popupsReducer,
+  webMovie: webMovieReducer,
 })
 
 const sagaMiddleware = createSagaMiddleware()
@@ -100,6 +102,9 @@ sagaMiddleware.run(logoutSaga)
 
 import { flipBooksSaga } from '../../lib/modules/flip-book'
 sagaMiddleware.run(flipBooksSaga)
+
+import { webMovieSaga } from '../../lib/modules/web-movie'
+sagaMiddleware.run(webMovieSaga)
 
 const Root = (
   <Provider store={store}>
