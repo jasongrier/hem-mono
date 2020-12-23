@@ -1,21 +1,55 @@
 import { AnyAction } from 'redux'
 
-export interface IState {
-  foo: string
+export interface IWebMovieFrame {
+  name: string
+  loaded: boolean
 }
 
-export const SOME_ACTION = 'SOME_ACTION'
+export interface IWebMovieClip {
+  name: string
+  frames: IWebMovieFrame[]
+}
 
-/* TODO: These are not alphabetised, make a linter for this */
-export interface ISomeAction extends AnyAction {
-  type: typeof SOME_ACTION
+export interface IWebMovie {
+  clips: IWebMovieClip[]
+  slug: string
+  src: string
+  title: string
+}
+
+export interface IState {
+  currentMovieIndex: number
+  movies: IWebMovie[]
+}
+
+export const MOVIE_ADD = 'MOVIE_ADD'
+export const MOVIE_REQUEST = 'MOVIE_REQUEST'
+export const SET_CURRENT_MOVIE = 'SET_CURRENT_MOVIE'
+
+export interface IMovieAdd extends AnyAction {
+  type: typeof MOVIE_ADD
+  payload: IWebMovie
+}
+
+export interface IMovieRequest extends AnyAction {
+  type: typeof MOVIE_REQUEST
   payload: string
 }
 
-export type Action = ISomeAction
+export interface ISetCurrentMovie extends AnyAction {
+  type: typeof SET_CURRENT_MOVIE
+  payload: number
+}
+
+export type Action =
+IMovieAdd
+| IMovieRequest
+| ISetCurrentMovie
 
 export {
-  someAction,
+  movieAdd,
+  movieRequest,
+  setCurrentMovie,
 } from './actions'
 
 export {
@@ -29,5 +63,5 @@ export {
 } from './sagas'
 
 export {
-  someFunction,
+  modelize,
 } from './functions'

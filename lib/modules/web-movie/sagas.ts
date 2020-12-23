@@ -1,15 +1,20 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects'
 import {
-  SOME_ACTION,
+  MOVIE_REQUEST,
 
-  someAction as someActionAc,
+  movieAdd as movieAddAc,
 
-  someFunction,
+  modelize,
+  IWebMovie,
 } from './index'
 
-function* someSideEffect() {
+function* movieRequest({ payload: src }: any) {
   try {
-    yield put(someActionAc('bar'))
+    const res = yield call(fetch, src)
+    const movieInfo = yield res.json()
+    const movie = modelize(src, movieInfo)
+
+    yield put(movieAddAc(movie))
   } catch (err) {
     // console.log(err)
   }
@@ -18,7 +23,7 @@ function* someSideEffect() {
 //--//
 
 function* someSideEffectSaga() {
-  yield takeLatest(SOME_ACTION, someSideEffect)
+  yield takeLatest(MOVIE_REQUEST, movieRequest)
 }
 
 export {
