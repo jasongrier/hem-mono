@@ -333,7 +333,12 @@ function App(): ReactElement {
     ReactGA.pageview(pathname)
   }, [pathname])
 
-  if (!contentItems || !contentItems.length) return (
+  if (
+      !contentItems
+      || !contentItems.length
+      && !pathname.includes('web-movie')
+      && !pathname.includes('life-in-letters')
+    ) return (
     <div className={`
         app-loading
         ${ BERLIN_STOCK_PHOTOS ? 'berlin-stock-photos' : '' }
@@ -371,6 +376,7 @@ function App(): ReactElement {
         { !BERLIN_STOCK_PHOTOS
           && !pathname.includes('print-flip-books')
           && !pathname.includes('web-movie')
+          && !pathname.includes('life-in-letters')
           && (
             <TopBar />
           )
@@ -386,6 +392,7 @@ function App(): ReactElement {
             { !BERLIN_STOCK_PHOTOS
               && !pathname.includes('print-flip-books')
               && !pathname.includes('web-movie')
+              && !pathname.includes('life-in-letters')
               && (
               <footer className="main-footer">
                 <SiteFooter />
@@ -401,6 +408,7 @@ function App(): ReactElement {
         { !BERLIN_STOCK_PHOTOS
           && !pathname.includes('print-flip-books')
           && !pathname.includes('web-movie')
+          && !pathname.includes('life-in-letters')
           && (
           <>
             <PlayerBar />

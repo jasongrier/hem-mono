@@ -30,7 +30,6 @@ import {
   Docus,
   InternalCalendar,
   InternalHome,
-  WebMovie,
   Notes,
   PrintFlipBooks,
   Sandbox,
@@ -50,6 +49,7 @@ import {
   MadeWithSoundLibrary,
   ReactConsulting,
   Support,
+  LifeInLetters,
 } from '../../../routes/static'
 
 import {
@@ -114,6 +114,9 @@ function RoutingHub(): ReactElement {
 
         <Route exact path="/support" component={Support} />
         <Route exact path="/support/cart" component={Support} />
+
+        {/* Special Pages */}
+        <Route exact path="/life-in-letters" component={LifeInLetters} />
 
         {/* <Route exact path="/venue-main-stage" component={VenueStage} />
         <Route exact path="/venue-main-stage/cart" component={VenueStage} /> */}
@@ -220,7 +223,6 @@ function RoutingHub(): ReactElement {
         <Route exact path="/internal/print-flip-books" component={PrintFlipBooks} />
         <Route exact path="/internal/sandbox" component={Sandbox} />
         <Route exact path="/internal/todos" component={Todos} />
-        <Route exact path="/internal/web-movie" component={WebMovie} />
 
         {/* Desktop Admin Application */}
         <Route path="/admin" component={Admin} />
