@@ -52,14 +52,14 @@
 
 .page-internal-web-movie-container {
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  width: 1024px;
+  height: 681px;
 }
 
 .hem-web-movie-screen {
   position: absolute;
-  width: 100vw;
-  height: 100vh;
+  width: 1024px;
+  height: 681px;
   opacity: 0.5;
   filter: grayscale(100%);
 }
@@ -84,8 +84,8 @@
 
 .page-internal-web-movie-splash {
   position: absolute;
-  width: 100vw;
-  height: 100vh;
+  width: 1024px;
+  height: 681px;
   z-index: 9999;
   font-family: 'Times New Roman', Times, serif;
   font-style: italic;
@@ -99,12 +99,13 @@
 
 .hem-web-movie-splash {
   position: absolute;
-  width: 100vw;
-  height: 100vh;
+  width: 1024px;
+  height: 681px;
   z-index: 99999;
   font-family: 'Times New Roman', Times, serif;
   font-style: italic;
   color: #fff;
+  background-color: red;
   display: flex;
   justify-content: center;
   background-color: #000;
