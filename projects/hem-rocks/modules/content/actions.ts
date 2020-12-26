@@ -4,10 +4,12 @@ import {
   CLEAR_ITEMS,
   DO_CREATE_ITEMS,
   DO_DELETE_ITEMS,
+  DO_READ_CHUNK,
   DO_READ_ITEMS,
   DO_UPDATE_ITEMS,
   REQUEST_CREATE_ITEMS,
   REQUEST_DELETE_ITEMS,
+  REQUEST_READ_CHUNK,
   REQUEST_READ_ITEMS,
   REQUEST_UPDATE_ITEMS,
   SET_ADMIN_SEARCHABLE_FIELD,
@@ -47,6 +49,11 @@ const doDeleteItems = (itemIds: string[]): Action => ({
   payload: itemIds,
 })
 
+const doReadChunk = (items: IContentItem[]): Action => ({
+  type: DO_READ_CHUNK,
+  payload: items,
+})
+
 const doReadItems = (items: IContentItem[]): Action => ({
   type: DO_READ_ITEMS,
   payload: items,
@@ -65,6 +72,11 @@ const requestCreateItems = (items: IContentItem[]): Action => ({
 const requestDeleteItems = (itemIds: string[]): Action => ({
   type: REQUEST_DELETE_ITEMS,
   payload: itemIds,
+})
+
+const requestReadChunk = (chunkName: string): Action => ({
+  type: REQUEST_READ_CHUNK,
+  payload: chunkName,
 })
 
 const requestReadItems = (): Action => ({
@@ -118,10 +130,12 @@ export {
   clearItems,
   doCreateItems,
   doDeleteItems,
+  doReadChunk,
   doReadItems,
   doUpdateItems,
   requestCreateItems,
   requestDeleteItems,
+  requestReadChunk,
   requestReadItems,
   requestUpdateItems,
   setAdminSearchableField,

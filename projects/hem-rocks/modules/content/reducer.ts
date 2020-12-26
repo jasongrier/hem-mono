@@ -6,6 +6,7 @@ import {
   ADMIN_APPLY_SEARCH,
   DO_CREATE_ITEMS,
   DO_DELETE_ITEMS,
+  DO_READ_CHUNK,
   DO_READ_ITEMS,
   DO_UPDATE_ITEMS,
   REQUEST_CREATE_ITEMS,
@@ -22,8 +23,9 @@ import {
 
   IState,
   IContentItem,
+  REQUEST_READ_CHUNK,
 } from './index'
-import { applyPaginationAndFiltering } from './functions'
+import { applyPaginationAndFiltering, getContentItemById } from './functions'
 
 const initialState: IState = {
   adminFilterApplied: 'todos',
@@ -79,6 +81,21 @@ const reducer = (
       })
     }
 
+    case DO_READ_CHUNK: {
+      return produce(state, draftState => {
+        for (const contentItem of payload) {
+          if (!getContentItemById(draftState.contentItems, contentItem.id)) {
+            console.log(1)
+            draftState.contentItems.push(contentItem)
+          }
+
+          else {
+            console.log(2)
+          }
+        }
+      })
+    }
+
     case DO_READ_ITEMS: {
       return produce(state, draftState => {
         draftState.contentItems = payload
@@ -105,6 +122,7 @@ const reducer = (
 
     case REQUEST_CREATE_ITEMS:
     case REQUEST_DELETE_ITEMS:
+    case REQUEST_READ_CHUNK:
     case REQUEST_READ_ITEMS:
     case REQUEST_UPDATE_ITEMS: {
       return state

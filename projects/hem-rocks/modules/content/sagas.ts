@@ -3,12 +3,14 @@ import { map } from 'lodash'
 import {
   REQUEST_CREATE_ITEMS,
   REQUEST_DELETE_ITEMS,
+  REQUEST_READ_CHUNK,
   REQUEST_READ_ITEMS,
   REQUEST_UPDATE_ITEMS,
 
   doCreateItems as doCreateItemsAc,
   doDeleteItems as doDeleteItemsAc,
   doReadItems as doReadItemsAc,
+  doReadChunk as doReadChunkAc,
   doUpdateItems as doUpdateItemsAc,
   requestReadItems as requestReadItemsAc,
 
@@ -98,6 +100,26 @@ function* readItems() {
   }
 }
 
+function* readChunk({ payload }: any) {
+  try {
+    validateCompressionMap()
+
+    const res = yield call(fetch, '/static/content/' + payload + '.json')
+    const entries = yield res.json()
+    let items = entries.map(uncompressItem).map(modelize)
+
+    if (!window.process?.env.ELECTRON_MONO_DEV) {
+      items.filter((item: any) => !hasCategory(item, 'assets'))
+    }
+
+    yield put(doReadChunkAc(items))
+  }
+
+  catch (err) {
+    console.error(err)
+  }
+}
+
 function* updateItems({ payload }: any) {
   try {
     const { remote } = window.require('electron')
@@ -142,6 +164,10 @@ function* readItemsSaga() {
   yield takeLatest(REQUEST_READ_ITEMS, readItems)
 }
 
+function* readChunkSaga() {
+  yield takeLatest(REQUEST_READ_CHUNK, readChunk)
+}
+
 function* updateItemsSaga() {
   yield takeLatest(REQUEST_UPDATE_ITEMS, updateItems)
 }
@@ -150,5 +176,6 @@ export {
   createItemsSaga,
   deleteItemsSaga,
   readItemsSaga,
+  readChunkSaga,
   updateItemsSaga,
 }
