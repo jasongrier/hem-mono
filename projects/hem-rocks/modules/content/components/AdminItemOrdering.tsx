@@ -28,13 +28,9 @@ function AdminItemOrdering({ }: IProps): ReactElement {
     let sortSet = Array.from(allContentItems)
 
     sortSet = sortSet.filter(item => (
-      hasCategory(item, 'tracks')
-      && hasTag(item, 'featured')
-      && item.sticky
+      hasCategory(item, 'home-features')
       && item.published
     ))
-
-    console.log(find(sortSet, { attribution: 'The Dowry' }))
 
     sortSet.sort(
       (a: IContentItem, b: IContentItem) => parseInt(a.order, 10) - parseInt(b.order, 10)

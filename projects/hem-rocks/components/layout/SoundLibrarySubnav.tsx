@@ -6,8 +6,8 @@ function SoundLibrarySubnav(): ReactElement {
     <nav className="main-content-subnav">
       <ul>
         <li>
-          <NavLink 
-            isActive={(_, { pathname }) => 
+          <NavLink
+            isActive={(_, { pathname }) =>
               pathname.indexOf('/sound-library') === 0
               && !pathname.includes('about')
               && !pathname.includes('made-with-sl')
@@ -24,7 +24,7 @@ function SoundLibrarySubnav(): ReactElement {
           <NavLink to="/sound-library/made-with-sl">Made something with SL?</NavLink>
         </li>
         <li>
-          <NavLink to="/sound-library/new-in-sl-2020">What's new in SL 2020?</NavLink>
+          <NavLink to="/sound-library/new-in-sl-2021">What's new in SL 2021?</NavLink>
         </li>
       </ul>
     </nav>

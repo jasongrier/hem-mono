@@ -15,8 +15,10 @@ function Articles(): ReactElement {
       </Helmet>
       <div className="page page-articles">
         <MainContentList
-          noFilters={true}
+          currentFilter={currentFilter}
           category="articles"
+          speciallyOrderedTags={['Featured']}
+          boxSecondaryTitleField="attribution"
         />
       </div>
     </>

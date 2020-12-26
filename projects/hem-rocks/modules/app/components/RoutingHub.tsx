@@ -126,6 +126,10 @@ function RoutingHub(): ReactElement {
         <Route exact path="/compilation-iv-artist-info/cart" component={CompilationIVArtistInfo} /> */}
 
         {/* List Pages */}
+        <Route exact path="/home/:contentItemSlug?/:filter?" component={Home} />
+        <Route exact path="/home/filter/:filter" component={Home} />
+        <Route exact path="/home/cart/:filter?" component={Home} />
+
         <Route exact path="/apps/:contentItemSlug?/:filter?" component={Apps} />
         <Route exact path="/apps/filter/:filter" component={Apps} />
         <Route exact path="/apps/cart/:filter?" component={Apps} />

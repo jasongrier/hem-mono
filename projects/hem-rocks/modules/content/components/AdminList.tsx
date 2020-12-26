@@ -9,9 +9,9 @@ import { ElectronOnly } from '../../../../../lib/components'
 import { PlayPauseButton } from '../../../../../lib/packages/hem-buttons'
 import { adminApplyFilter, adminApplySearch, setAdminSearchableField, toggleNeedsKeyArtFilter, requestDeleteItems, requestReadItems, requestUpdateItems, IContentItem } from '../index'
 import { RootState } from '../../../index'
-import { getContentItemBySlug, hasCategory, hasTag } from '../functions'
+import { getContentItemBySlug, hasCategory, hasTag, modelize } from '../functions'
 import { assetHostHostname } from '../../../functions'
-import { toggleShowUnpublishedFilter, toggleStickyFilter, setCurrentPage } from '../actions'
+import { toggleShowUnpublishedFilter, toggleStickyFilter, setCurrentPage, requestCreateItems } from '../actions'
 import uuid from 'uuid'
 
 function AdminList(): ReactElement {
@@ -147,6 +147,7 @@ function AdminList(): ReactElement {
               <option value="faqs">FAQ's</option>
               <option value="editions">Editions</option>
               <option value="heroines">Heroines</option>
+              <option value="home-features">Home Features</option>
               <option value="label">Label</option>
               <option value="merch">Merch</option>
               <option value="mix">Mixes</option>
@@ -169,6 +170,8 @@ function AdminList(): ReactElement {
               <option value="all">---</option>
               <option value="assets">Assets on "April Kepner"</option>
               <option value="assets-vollmer">Assets on "Eva Vollmer"</option>
+              <option value="all">---</option>
+              <option value="todos">Todo's</option>
             </select>
           </div>
           <div className="admin-list-controls-search">
@@ -273,9 +276,7 @@ function AdminList(): ReactElement {
         <table>
           <thead>
             <tr>
-              <th className="admin-list-column-check">
-
-              </th>
+              <th className="admin-list-column-check"></th>
               <th className="admin-list-column-thumbnail">
                 Item
               </th>
@@ -603,7 +604,23 @@ function AdminList(): ReactElement {
                         Delete
                       </button>
                     )} */}
-                    { !hasCategory(item, 'assets') && (
+                    { !hasCategory(item, 'assets')
+                      && !hasCategory(item, 'todos')
+                      && (
+                      <button
+                        className="action-button"
+                        onClick={() => {
+                          const updatedItem: IContentItem = produce(item, (draftItem) => {
+                            draftItem.published = !draftItem.published
+                          })
+                          dispatch(requestUpdateItems([updatedItem]))
+                        }}
+                      >
+                        { item.published ? 'Unpublish' : 'Publish' }
+                      </button>
+                    )}
+                    { !hasCategory(item, 'assets')
+                      && (
                       <button
                         className="action-button"
                         onClick={() => {
@@ -634,8 +651,32 @@ function AdminList(): ReactElement {
                         Remove Album
                       </button>
                     )}
+                    { hasCategory(item, 'todos')
+                      && (
+                        <button
+                          style={hasTag(item, 'done-todo') ? {
+                            backgroundColor: 'green',
+                          } : {}}
+                          className="action-button"
+                          onClick={() => {
+                            const updatedItem: IContentItem = produce(item, (draftItem) => {
+                              if (hasTag(item, 'done-todo')) {
+                                draftItem.tags = draftItem.tags.replace(', done-todo', '').replace('done-todo', '')
+                              }
+
+                              else {
+                                draftItem.tags = draftItem.tags + ', done-todo'
+                              }
+                            })
+                            dispatch(requestUpdateItems([updatedItem]))
+                          }}
+                        >
+                          { hasTag(item, 'done-todo') ? '✓ Done' : 'Not Done' }
+                        </button>
+                    )}
                     { !hasCategory(item, 'assets')
                       && !hasCategory(item, 'lists')
+                      && !hasCategory(item, 'todos')
                       && (
                         <button
                           style={hasTag(item, 'done-for-now') ? {
@@ -660,6 +701,7 @@ function AdminList(): ReactElement {
                     )}
                     { !hasCategory(item, 'assets')
                       && !hasCategory(item, 'lists')
+                      && !hasCategory(item, 'todos')
                       && (
                         ['featured', 'rare', 'live', 'radio', 'sound-library', 'releases', 'delete-me', 'has-multiple-artists'].map(tag => (
                           <button
@@ -684,6 +726,7 @@ function AdminList(): ReactElement {
                     )}
                     { !hasCategory(item, 'assets')
                       && !hasCategory(item, 'lists')
+                      && !hasCategory(item, 'todos')
                       && (
                         <>
                           <button
@@ -769,6 +812,7 @@ function AdminList(): ReactElement {
                     { !hasCategory(item, 'assets')
                       && !hasCategory(item, 'tracks')
                       && !hasCategory(item, 'lists')
+                      && !hasCategory(item, 'todos')
                       && (
                         <button
                           className="action-button"
@@ -785,6 +829,7 @@ function AdminList(): ReactElement {
                     { !hasCategory(item, 'assets')
                       && !hasCategory(item, 'tracks')
                       && !hasCategory(item, 'lists')
+                      && !hasCategory(item, 'todos')
                       && (
                         <button
                           className="action-button"
@@ -806,6 +851,7 @@ function AdminList(): ReactElement {
                     )}
                     { hasCategory(item, 'label')
                       && hasCategory(item, 'lists')
+                      && !hasCategory(item, 'todos')
                       && (
                         <button
                           className="action-button"
@@ -825,7 +871,9 @@ function AdminList(): ReactElement {
                           { hasTag(item, 'label-page') ? '✓ Label page' : 'Label page' }
                         </button>
                     )}
-                    { hasCategory(item, 'tracks') && (
+                    { hasCategory(item, 'tracks')
+                      && !hasCategory(item, 'todos')
+                      && (
                         <button
                           className="action-button"
                           onClick={() => {
@@ -846,6 +894,7 @@ function AdminList(): ReactElement {
                     )}
                     { !hasCategory(item, 'assets')
                       && !hasCategory(item, 'lists')
+                      && !hasCategory(item, 'todos')
                       && (
                         [
                           '20th-century',
@@ -882,32 +931,40 @@ function AdminList(): ReactElement {
                           </button>
                       ))
                     )}
-                    <div>
-                      <form
-                        className="inline-edit-form first-inline-edit-form"
-                        onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
-                          evt.preventDefault()
-                          const input = evt.currentTarget.querySelector('input[name="attribution"]')
-                          if (!input) return
-                          const updatedItem: IContentItem = produce(item, (draftItem) => {
-                            // @ts-ignore
-                            draftItem.attribution = input.value
-                          })
-                          dispatch(requestUpdateItems([updatedItem]))
-                          // @ts-ignore
-                          input.value = ''
-                        }}
-                      >
-                        <label><span>Artist:</span> <input type="text" name="attribution" placeholder={item.attribution} /></label>
-                        <button type="submit">Submit</button>
-                      </form>
-                    </div>
                   </td>
                 )}
               </tr>
             ))}
           </tbody>
         </table>
+        { adminFilterApplied === 'todos' && (
+          <div>
+            <form
+              className="inline-edit-form first-inline-edit-form"
+              onSubmit={(evt: SyntheticEvent<HTMLFormElement>) => {
+                evt.preventDefault()
+                const input = evt.currentTarget.querySelector('input[name="title"]')
+                if (!input) return
+                const item: IContentItem = modelize({
+                  id: uuid(),
+                  // @ts-ignore
+                  title: input.value,
+                  // @ts-ignore
+                  slug: slugify(input.value),
+                  published: true,
+                  date: 'January 2021',
+                  category: 'todos',
+                } as Partial<IContentItem>)
+                dispatch(requestCreateItems([item]))
+                // @ts-ignore
+                input.value = ''
+              }}
+            >
+              <label><span>New Do:</span> <input type="text" name="title" /></label>
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+        )}
         <div>
           <button onClick={() => dispatch(setCurrentPage(page - 1))}>&lt;&lt;</button>&nbsp;&nbsp;
           { page }&nbsp;&nbsp;

@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
 import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { CloseButton } from '../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup, closePopup } from '../../../../lib/modules/popups'
 import { assetHostHostname } from '../../functions'
@@ -11,10 +12,7 @@ function HemRefreshHeroine(): ReactElement {
 
   return (
     <div className="hem-refresh-heroine">
-      <a
-        href="#"
-        onClick={() => dispatch(openPopup('hem-refresh-popup'))}
-      >
+      <Link to="home/new-website">
         <div
           className="hem-refresh-heroine-image"
           style={{
@@ -27,7 +25,7 @@ function HemRefreshHeroine(): ReactElement {
             <h5>Music in a Petri Dish. Vito Acconci on Music and Language. Anna-Luisa Petrisko on India Cooke. Rare tracks by Ariel Pink, Kevin Drumm, Michael Pisaro, Julia Holter. New sounds in the Library.</h5>
           </div>
         </div>
-      </a>
+      </Link>
     </div>
   )
 }

@@ -60,6 +60,7 @@ interface IProps {
   boxMarginRangeY?: number
   boxRenderActionsOn?: 'key-art' | 'text'
   setDefaultEmptyPlaylist?: boolean
+  ignoreSticky?: boolean
   playlistToSet?: number
 }
 
@@ -104,6 +105,7 @@ function MainContentList({
   boxMarginRangeY,
   boxRenderActionsOn,
   setDefaultEmptyPlaylist = true,
+  ignoreSticky = false,
   playlistToSet = 5,
 }: IProps): ReactElement {
   const { storeContentItems, currentlyOpenPopUp, playlists } = useSelector((state: RootState) => ({
@@ -208,7 +210,9 @@ function MainContentList({
 
     let stickyContentItems = filter(Array.from(contentItems), { sticky: true })
 
-    contentItems = filter(contentItems, { sticky: false })
+    if (!ignoreSticky) {
+      contentItems = filter(contentItems, { sticky: false })
+    }
 
     if (onlyTag) {
       contentItems = contentItems.filter(item => hasTag(item, onlyTag))
@@ -265,7 +269,9 @@ function MainContentList({
       contentItems.sort(dateSortFn)
     }
 
-    contentItems = stickyContentItems.concat(contentItems)
+    if (!ignoreSticky) {
+      contentItems = stickyContentItems.concat(contentItems)
+    }
 
     setFinalContentItems(contentItems)
 
@@ -422,12 +428,10 @@ function MainContentList({
             <MainContentBox
               badgeText={
                 showCategoryOnContentBoxes
-                  ? titleCase(
-                    contentItem.displayCategory
-                      ? contentItem.displayCategory
-                      : hasCategory(contentItem, 'articles')
-                        ? get(contentItem.tags.split(','), 0)
-                        : contentItem.category.replace(/-/g, ' '))
+                  ?
+                    <Link to={`${slugify(contentItem.displayCategory || contentItem.category)}/`}>
+                      {titleCase(contentItem.displayCategory || contentItem.category)}
+                    </Link>
                   : undefined
               }
               width={boxWidth}

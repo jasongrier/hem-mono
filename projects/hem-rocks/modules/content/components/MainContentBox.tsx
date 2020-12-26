@@ -14,7 +14,7 @@ interface IProps {
   index: number
   tag: string
 
-  badgeText?: string
+  badgeText?: ReactElement | string
   buttonText?: string
   className?: string
   linkTo?: (contentItem: IContentItem) => string
@@ -64,7 +64,7 @@ function MainContentBox({
 
   const linkTo = customLinkTo
     ? customLinkTo(contentItem)
-    : `/${contentItem.category}/${contentItem.slug}${filter ? '/' + filter : ''}`
+    : `/${contentItem.category.split(',')[0]}/${contentItem.slug}${filter ? '/' + filter : ''}`
 
   const assetHost = assetHostHostname()
 
