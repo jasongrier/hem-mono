@@ -29,11 +29,13 @@ function Home(): ReactElement {
           </ReleasePhase>
         </div>
         <MainContentList
-          category="home-feature"
-          items={getContentItemsFromList(contentItems, 'home-page-features')}
-          applyCurrentFilter={false}
+          category="home-features"
           playlistToSet={0}
           showCategoryOnContentBoxes={true}
+          noFilters={true}
+          linkTo={(contentItem) => `home/${contentItem.slug}`}
+          orderByOrder={true}
+          ignoreSticky={true}
         />
       </div>
     </>

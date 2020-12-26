@@ -62,11 +62,13 @@ function App(): ReactElement {
 
   const genericRoutedPopups = [
     { basePath: 'apps', id: 'detail-popup' },
+    { basePath: 'articles', id: 'detail-popup' },
     { basePath: 'artists', id: 'detail-popup' },
     { basePath: 'blog', id: 'detail-popup' },
     { basePath: 'code', id: 'detail-popup' },
     { basePath: 'faqs', id: 'detail-popup' },
     { basePath: 'faqs', id: 'detail-popup' },
+    { basePath: 'home', id: 'detail-popup' },
     { basePath: 'label', id: 'detail-popup' },
     { basePath: 'merch', id: 'detail-popup' },
     { basePath: 'mixes', id: 'detail-popup' },
@@ -362,6 +364,7 @@ function App(): ReactElement {
         || pathname === '/thank-you/'
         || pathname === '/new-website'
         || pathname === '/new-website/'
+        || pathname.includes('/home')
         || BERLIN_STOCK_PHOTOS && !pathname.includes('admin')
           ? ' app-is-home'
           : ''
