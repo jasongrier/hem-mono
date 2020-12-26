@@ -15,6 +15,61 @@ import { all } from 'redux-saga/effects'
 import { formatTime } from '../../../../../lib/modules/website-player'
 import { serverFiles, localFiles } from '../deploy-files'
 
+function bakeIn(allContentItems: IContentItem[]) {
+  const { remote } = window.require('electron')
+  const { execSync } = remote.require('child_process')
+  const { existsSync, writeFileSync, readdirSync, readFileSync, renameSync, lstatSync, copyFileSync, constants: fsConstants, unlinkSync } = remote.require('fs')
+  const { join, extname } = remote.require('path')
+  const getMP3Duration = require('get-mp3-duration')
+
+  const categories = [
+    'home-features',
+    'sound-library',
+    'tracks',
+    'playlists',
+    'artists',
+    'articles',
+    'editions',
+    'label',
+    'tutorials',
+    'newsletters',
+    'apps',
+    'recipes',
+    'videos',
+    'press-releases',
+    'press-clippings',
+  ]
+
+  const chunks = categories.map(category => ({
+    chunkName: category,
+    contentItems: [],
+  }))
+
+  const newItems: IContentItem[] = []
+
+  for (const oldItem of allContentItems) {
+    const newItem = Object.assign({}, oldItem)
+
+    for (const category of categories) {
+      if (hasCategory(newItem, category)) {
+        const chunk = find(chunks, { chunkName: category })
+        chunk.contentItems.push(newItem)
+      }
+    }
+  }
+
+  console.log(chunks)
+
+  // ***** DANGER ZONE *****
+  // ***** DANGER ZONE *****
+  // ***** DANGER ZONE *****
+
+  const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
+  const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
+  // writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
+  // writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
+}
+
 function migrate(allContentItems: IContentItem[]) {
   const { remote } = window.require('electron')
   const { execSync } = remote.require('child_process')
@@ -41,8 +96,6 @@ function migrate(allContentItems: IContentItem[]) {
     }
   }
 
-
-
   // ***** DANGER ZONE *****
   // ***** DANGER ZONE *****
   // ***** DANGER ZONE *****
@@ -62,7 +115,7 @@ function AdminManualTaskRunner(): ReactElement {
 
   const migrateOnClick = useCallback(
     function migrateOnClickFn() {
-      runTask(() => migrate(allContentItems))
+      runTask(() => bakeIn(allContentItems))
     }, [],
   )
 
