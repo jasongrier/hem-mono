@@ -58,16 +58,12 @@ function bakeIn(allContentItems: IContentItem[]) {
     }
   }
 
-  console.log(chunks)
-
-  // ***** DANGER ZONE *****
-  // ***** DANGER ZONE *****
-  // ***** DANGER ZONE *****
-
-  const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
-  const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
-  // writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
-  // writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
+  for (const chunk of chunks) {
+    const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', chunk.chunkName + '.json')
+    const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', chunk.chunkName + '.json')
+    writeFileSync(srcIndex, JSON.stringify(compressIndex(chunk.contentItems)))
+    writeFileSync(distIndex, JSON.stringify(compressIndex(chunk.contentItems)))
+  }
 }
 
 function migrate(allContentItems: IContentItem[]) {

@@ -67,6 +67,9 @@ sagaMiddleware.run(unpausePlayerSaga)
 import { createItemsSaga } from './modules/content'
 sagaMiddleware.run(createItemsSaga)
 
+import { readChunkSaga } from './modules/content'
+sagaMiddleware.run(readChunkSaga)
+
 import { readItemsSaga } from './modules/content'
 sagaMiddleware.run(readItemsSaga)
 

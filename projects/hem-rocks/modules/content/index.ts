@@ -116,10 +116,12 @@ export const ADMIN_APPLY_SEARCH = 'ADMIN_APPLY_SEARCH'
 export const CLEAR_ITEMS = 'CLEAR_ITEMS'
 export const DO_CREATE_ITEMS = 'DO_CREATE_ITEMS'
 export const DO_DELETE_ITEMS = 'DO_DELETE_ITEMS'
+export const DO_READ_CHUNK = 'DO_READ_CHUNK'
 export const DO_READ_ITEMS = 'DO_READ_ITEMS'
 export const DO_UPDATE_ITEMS = 'DO_UPDATE_ITEMS'
 export const REQUEST_CREATE_ITEMS = 'REQUEST_CREATE_ITEMS'
 export const REQUEST_DELETE_ITEMS = 'REQUEST_DELETE_ITEMS'
+export const REQUEST_READ_CHUNK = 'REQUEST_READ_CHUNK'
 export const REQUEST_READ_ITEMS = 'REQUEST_READ_ITEMS'
 export const REQUEST_UPDATE_ITEMS = 'REQUEST_UPDATE_ITEMS'
 export const SET_ADMIN_SEARCHABLE_FIELD = 'SET_ADMIN_SEARCHABLE_FIELD'
@@ -155,6 +157,11 @@ export interface IDoDeleteItems extends AnyAction {
   payload: string[]
 }
 
+export interface IDoReadChunk extends AnyAction {
+  type: typeof DO_READ_CHUNK
+  payload: IContentItem[]
+}
+
 export interface IDoReadItems extends AnyAction {
   type: typeof DO_READ_ITEMS
   payload: IContentItem[]
@@ -173,6 +180,11 @@ export interface IRequestCreateItems extends AnyAction {
 export interface IRequestDeleteItems extends AnyAction {
   type: typeof REQUEST_DELETE_ITEMS
   payload: string[]
+}
+
+export interface IRequestReadChunk extends AnyAction {
+  type: typeof REQUEST_READ_CHUNK
+  payload: string
 }
 
 export interface IRequestReadItems extends AnyAction {
@@ -226,10 +238,12 @@ export type Action =
   | IClearItems
   | IDoCreateItems
   | IDoDeleteItems
+  | IDoReadChunk
   | IDoReadItems
   | IDoUpdateItems
   | IRequestCreateItems
   | IRequestDeleteItems
+  | IRequestReadChunk
   | IRequestReadItems
   | IRequestUpdateItems
   | ISetAdminSearchableField
@@ -246,10 +260,12 @@ export {
   clearItems,
   doCreateItems,
   doDeleteItems,
+  doReadChunk,
   doReadItems,
   doUpdateItems,
   requestCreateItems,
   requestDeleteItems,
+  requestReadChunk,
   requestReadItems,
   requestUpdateItems,
   setAdminSearchableField,
@@ -296,6 +312,7 @@ export {
 export {
   createItemsSaga,
   deleteItemsSaga,
+  readChunkSaga,
   readItemsSaga,
   updateItemsSaga,
 } from './sagas'

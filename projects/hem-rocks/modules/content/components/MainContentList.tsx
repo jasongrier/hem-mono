@@ -16,6 +16,7 @@ import { IContentItem, setCurrentItems } from '../index'
 import { RootState } from '../../../index'
 import { LISTS_HAVE_BLURBS, RELEASE_PHASE } from '../../../config'
 import { hasTag, hasCategory, contentItemToTrack, getContentItemsFromRawList, tagSpellingCorrections } from '../functions'
+import { requestReadChunk } from '../actions'
 
 interface IProps {
   category: string
@@ -118,6 +119,10 @@ function MainContentList({
 
   const [finalContentItems, setFinalContentItems] = useState<IContentItem[]>([])
   const [finalFilters, setFinalFilters] = useState<string[]>([])
+
+  useEffect(function getChunk() {
+    dispatch(requestReadChunk(category))
+  }, [])
 
   useEffect(function filters() {
     let semifinalFilters: Array<string | undefined>

@@ -116,7 +116,7 @@ function App(): ReactElement {
   }, [cookiesAnalyticsApproved])
 
   useEffect(function fetchContent() {
-    dispatch(requestReadItems())
+    // dispatch(requestReadItems())
   }, [])
 
   useEffect(function initPlayer() {
@@ -335,22 +335,22 @@ function App(): ReactElement {
     ReactGA.pageview(pathname)
   }, [pathname])
 
-  if (
-      !contentItems
-      || !contentItems.length
-      && !pathname.includes('web-movie')
-      && !pathname.includes('life-in-letters')
-    ) return (
-    <div className={`
-        app-loading
-        ${ BERLIN_STOCK_PHOTOS ? 'berlin-stock-photos' : '' }
-    `}>
-      <h1>
-        <div>{ BERLIN_STOCK_PHOTOS ? 'BERLIN STOCK PHOTOS' : 'HEM' }</div>
-        <Spinner />
-      </h1>
-    </div>
-  )
+  // if (
+  //     !contentItems
+  //     || !contentItems.length
+  //     && !pathname.includes('web-movie')
+  //     && !pathname.includes('life-in-letters')
+  //   ) return (
+  //   <div className={`
+  //       app-loading
+  //       ${ BERLIN_STOCK_PHOTOS ? 'berlin-stock-photos' : '' }
+  //   `}>
+  //     <h1>
+  //       <div>{ BERLIN_STOCK_PHOTOS ? 'BERLIN STOCK PHOTOS' : 'HEM' }</div>
+  //       <Spinner />
+  //     </h1>
+  //   </div>
+  // )
 
   return (
     <div className={`
