@@ -8,6 +8,7 @@ import { MainContentList, getContentItemsFromList, getContentItemBySlug, content
 import { assetHostHostname } from '../../functions'
 import { ReleasePhase } from '../../components/layout'
 import { BASE_SITE_TITLE } from '../../config'
+import { ProtectedContent } from '../../modules/login'
 import { RootState } from '../../index'
 
 function WebMovie(): ReactElement {
@@ -26,19 +27,19 @@ function WebMovie(): ReactElement {
 
   const onTriggerClick = useCallback(
     function onTriggerClickFn() {
-      const el = document.querySelector('.page-internal-web-movie')
+      // const el = document.querySelector('.page-internal-web-movie')
 
-      if (el.requestFullscreen) {
-        el.requestFullscreen()
-        // @ts-ignore
-      } else if (el.webkitRequestFullscreen) {
-        // @ts-ignore
-        el.webkitRequestFullscreen()
-        // @ts-ignore
-      } else if (el.msRequestFullscreen) {
-        // @ts-ignore
-        el.msRequestFullscreen()
-      }
+      // if (el.requestFullscreen) {
+      //   el.requestFullscreen()
+      //   // @ts-ignore
+      // } else if (el.webkitRequestFullscreen) {
+      //   // @ts-ignore
+      //   el.webkitRequestFullscreen()
+      //   // @ts-ignore
+      // } else if (el.msRequestFullscreen) {
+      //   // @ts-ignore
+      //   el.msRequestFullscreen()
+      // }
 
       setCanStart(true)
     }, [],
@@ -63,49 +64,51 @@ function WebMovie(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
       <div className="page page-internal page-internal-web-movie">
-        <div className="page-internal-web-movie-container">
-          <div
-            className="page-internal-web-movie-trigger"
-            onClick={onTriggerClick}
-            style={{
-              opacity: canStart ? 0 : 1,
-            }}
-          >
-            <p>(click anywhere to start)</p>
-          </div>
+        <ProtectedContent>
+          <div className="page-internal-web-movie-container">
+            <div
+              className="page-internal-web-movie-trigger"
+              onClick={onTriggerClick}
+              style={{
+                opacity: canStart ? 0 : 1,
+              }}
+            >
+              <p>(click anywhere to start)</p>
+            </div>
 
-          <WebMoviePlayer
-            canStart={canStart}
-            onStart={onMovieStart}
-            src={src}
-            frameRate={3}
-            startClip={3}
-          >
-            <div
-              className="page-internal-web-movie-splash"
-              style={{
-                opacity: playing ? 0 : 1,
-              }}
+            <WebMoviePlayer
+              canStart={canStart}
+              onStart={onMovieStart}
+              src={src}
+              frameRate={3}
+              startClip={3}
             >
-              <h2>Life in Letters: A fan vid</h2>
-            </div>
-          </WebMoviePlayer>
-          <WebMoviePlayer
-            canStart={canStart}
-            src={src}
-            frameRate={2}
-            startClip={0}
-          >
-            <div
-              className="page-internal-web-movie-splash"
-              style={{
-                opacity: playing ? 0 : 1,
-              }}
+              <div
+                className="page-internal-web-movie-splash"
+                style={{
+                  opacity: playing ? 0 : 1,
+                }}
+              >
+                <h2>Life in Letters: A fan vid</h2>
+              </div>
+            </WebMoviePlayer>
+            <WebMoviePlayer
+              canStart={canStart}
+              src={src}
+              frameRate={2}
+              startClip={0}
             >
-              <h2>Life in Letters: A fan vid</h2>
-            </div>
-          </WebMoviePlayer>
-        </div>
+              <div
+                className="page-internal-web-movie-splash"
+                style={{
+                  opacity: playing ? 0 : 1,
+                }}
+              >
+                <h2>Life in Letters: A fan vid</h2>
+              </div>
+            </WebMoviePlayer>
+          </div>
+        </ProtectedContent>
       </div>
     </>
   )

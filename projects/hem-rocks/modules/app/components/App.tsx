@@ -424,12 +424,15 @@ function App(): ReactElement {
       </>
 
       <ElectronNot>
-        <CookieApproval />
+        { !pathname.includes('life-in-letters') && (
+          <CookieApproval />
+        )}
       </ElectronNot>
 
       { cookiesMarketingApproved
         && !Cookies.get(getCookieName('cannot-show-email-nag'))
         && !BERLIN_STOCK_PHOTOS
+        && !pathname.includes('life-in-letters')
         && (
         <ElectronNot>
           <NagToaster
