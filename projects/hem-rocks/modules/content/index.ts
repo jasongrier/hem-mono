@@ -55,6 +55,7 @@ export interface IState {
   adminSearchableField: keyof IContentItem
   adminSearchApplied: string
   adminSearchExact: boolean
+  chunkLog: string[]
   contentItems: IContentItem[]
   currentContentItem: IContentItem | null
   currentContentItems: IContentItem[]
@@ -159,7 +160,7 @@ export interface IDoDeleteItems extends AnyAction {
 
 export interface IDoReadChunk extends AnyAction {
   type: typeof DO_READ_CHUNK
-  payload: IContentItem[]
+  payload: { chunkName: string, contentItems: IContentItem[] }
 }
 
 export interface IDoReadItems extends AnyAction {

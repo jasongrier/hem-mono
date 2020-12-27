@@ -8,7 +8,7 @@ import Cookies from 'js-cookie'
 import { slugify } from 'voca'
 import { CartPopup, setCartProducts } from '../../cart'
 import { ThankYouPopup } from '../../cart'
-import { DetailPopUp, requestReadItems, setCurrentItem, hasTag, getContentItemsFromList, contentItemToTrack, hasCategory, IContentItem } from '../../content'
+import { DetailPopUp, requestReadItems, setCurrentItem, hasTag, getContentItemsFromList, contentItemToTrack, requestReadChunk, IContentItem, getContentItemBySlug } from '../../content'
 import { ProtectedContent } from '../../login'
 import { CampaignMonitorForm, ElectronNot, ScrollToTop, NagToaster, Spinner, Toaster, ElectronOnly } from '../../../../../lib/components'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
@@ -23,8 +23,7 @@ import { CookieApproval, RoutingHub, Popups } from './index'
 import { CAMPAIGN_MONITOR_FORM_ACTION, CAMPAIGN_MONITOR_FORM_ID, CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME, MAILING_LIST_TEXT, BERLIN_STOCK_PHOTOS } from '../../../config'
 import { RootState } from '../../../index'
 import NewWebsitePopup from '../../../components/popups/NewWebsitePopup'
-import { assetHostHostname } from '../../../functions'
-import { all } from 'redux-saga/effects'
+import { curatedPlaylists } from '../index'
 
 function App(): ReactElement {
   const {
@@ -33,6 +32,7 @@ function App(): ReactElement {
 
     contentItems,
     currentContentItem,
+    chunkLog,
 
     playerError,
     playerMessage,
@@ -44,6 +44,7 @@ function App(): ReactElement {
 
     contentItems: state.content.contentItems,
     currentContentItem: state.content.currentContentItem,
+    chunkLog: state.content.chunkLog,
 
     playerError: state.player.error,
     playerMessage: state.player.message,
@@ -115,10 +116,6 @@ function App(): ReactElement {
     }
   }, [cookiesAnalyticsApproved])
 
-  useEffect(function fetchContent() {
-    // dispatch(requestReadItems())
-  }, [])
-
   useEffect(function initPlayer() {
     dispatch(setPlayerInstance())
   }, [])
@@ -156,50 +153,27 @@ function App(): ReactElement {
     }
   }, [])
 
+  useEffect(function getCuratedPlaylists() {
+    if (chunkLog.length < 1) return
+    if (chunkLog.includes('curated-playlists')) return
+
+    dispatch(requestReadChunk('curated-playlists'))
+  }, [chunkLog])
+
   useEffect(function setSitePlaylists() {
-    const featuredTracksPlaylistTrackItems = getContentItemsFromList(contentItems, 'featured-tracks')
-
-    const featuredTracksTracks = featuredTracksPlaylistTrackItems.map(item =>
-      contentItemToTrack(item)
-    )
-
-    const curatedPlaylists = [
-      {
-        name: 'Player Featured',
-        linkTo: '/tracks/filter/featured',
-      },
-      {
-        name: 'Player Rare',
-        linkTo: '/tracks/filter/rare',
-      },
-      {
-        name: 'Player Live',
-        linkTo: '/tracks/filter/live',
-      },
-      {
-        name: 'Player Radio',
-        linkTo: '/tracks/filter/radio',
-      },
-      {
-        name: 'Player Sound Library',
-        linkTo: '/sound-library',
-      },
-      {
-        name: 'Player Releases',
-        linkTo: '/label',
-      },
-    ]
+    if (!chunkLog.includes('curated-playlists')) return
 
     curatedPlaylists.forEach(({ name, linkTo }, i) => {
       const trackContentItems: IContentItem[] = getContentItemsFromList(contentItems, slugify(name))
       const tracks = trackContentItems.map(item =>
         contentItemToTrack(item)
       )
+
       dispatch(replacePlaylist(i, { name: name.replace('Player ', ''), tracks, linkTo }))
     })
 
     dispatch(setPlayerPlaylist(0))
-  }, [contentItems])
+  }, [contentItems, chunkLog])
 
   useEffect(function handlePlayerErrors() {
     if (!openPlayerErrorToaster) return

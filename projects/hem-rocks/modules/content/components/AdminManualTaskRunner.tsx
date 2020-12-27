@@ -1,19 +1,20 @@
 import React, { ReactElement, useEffect, useState, useCallback } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import uuid from 'uuid/v1'
 import { uniq, noop, last, isNumber, compact, uniqBy, has, sample, filter, map, find, isEmpty, includes, sortBy, partial, findIndex, flatten } from 'lodash'
 import pad from 'pad'
 import moment from 'moment'
 import $ from 'jquery'
 import { autoParagraph } from '../../../../../lib/functions'
-import { modelize, hasTag, getContentItemById, hasCategory, getContentItemsFromList, getContentItemsFromRawList } from '../functions'
-import { IIndexEntry, IContentItem, compressIndex } from '..'
+import { modelize, hasTag, getContentItemById, hasCategory, getContentItemsFromList, getContentItemsFromRawList, getContentItemBySlug } from '../functions'
+import { IIndexEntry, IContentItem, compressIndex, requestReadItems } from '..'
 import { RootState } from '../../../index'
 import { slugify, titleCase } from 'voca'
 import { execSync } from 'child_process'
 import { all } from 'redux-saga/effects'
 import { formatTime } from '../../../../../lib/modules/website-player'
 import { serverFiles, localFiles } from '../deploy-files'
+import { curatedPlaylists } from '../../app'
 
 function bakeIn(allContentItems: IContentItem[]) {
   const { remote } = window.require('electron')
@@ -22,7 +23,7 @@ function bakeIn(allContentItems: IContentItem[]) {
   const { join, extname } = remote.require('path')
   const getMP3Duration = require('get-mp3-duration')
 
-  const categories = [
+  const terms = [
     'home-features',
     'sound-library',
     'tracks',
@@ -38,29 +39,49 @@ function bakeIn(allContentItems: IContentItem[]) {
     'videos',
     'press-releases',
     'press-clippings',
+    {
+      name: 'curated-playlists',
+      getContentItems(allContentItems) {
+        this.contentItems = this.contentItems.concat(flatten(curatedPlaylists.map(({ name }) => {
+          const slug = slugify(name)
+          const listItem = getContentItemBySlug(allContentItems, slug)
+          const attachments = getContentItemsFromList(allContentItems, slug)
+
+          return [listItem].concat(attachments)
+        })))
+      },
+      contentItems: [],
+    },
   ]
 
-  const chunks = categories.map(category => ({
-    chunkName: category,
-    contentItems: [],
-  }))
+  const chunks = terms.map(term =>
+    typeof term === 'object' ? term : ({
+      name: term,
+      getContentItems: null,
+      contentItems: [],
+    })
+  )
 
-  const newItems: IContentItem[] = []
+  for (const chunk of chunks) {
+    if (typeof chunk.getContentItems === 'function') {
+      chunk.getContentItems(allContentItems)
+    }
 
-  for (const oldItem of allContentItems) {
-    const newItem = Object.assign({}, oldItem)
-
-    for (const category of categories) {
-      if (hasCategory(newItem, category)) {
-        const chunk = find(chunks, { chunkName: category })
-        chunk.contentItems.push(newItem)
+    else {
+      for (const oldItem of allContentItems) {
+        const newItem = Object.assign({}, oldItem)
+        if (hasCategory(newItem, chunk.name)) {
+          chunk.contentItems.push(newItem)
+        }
       }
     }
   }
 
+  console.log(chunks.map(term => term.name + ': ' + term.contentItems.length))
+
   for (const chunk of chunks) {
-    const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', chunk.chunkName + '.json')
-    const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', chunk.chunkName + '.json')
+    const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', chunk.name + '.json')
+    const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', chunk.name + '.json')
     writeFileSync(srcIndex, JSON.stringify(compressIndex(chunk.contentItems)))
     writeFileSync(distIndex, JSON.stringify(compressIndex(chunk.contentItems)))
   }
@@ -107,12 +128,18 @@ function AdminManualTaskRunner(): ReactElement {
     allContentItems: state.content.contentItems,
   }))
 
+  const dispatch = useDispatch()
+
   const [running, setRunning] = useState(0)
+
+  useEffect(function fetchItems() {
+    dispatch(requestReadItems())
+  }, [])
 
   const migrateOnClick = useCallback(
     function migrateOnClickFn() {
       runTask(() => bakeIn(allContentItems))
-    }, [],
+    }, [allContentItems],
   )
 
   const resetOnClick = useCallback(

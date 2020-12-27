@@ -1,5 +1,32 @@
 import { AnyAction } from 'redux'
 
+export const curatedPlaylists = [
+  {
+    name: 'Player Featured',
+    linkTo: '/tracks/filter/featured',
+  },
+  {
+    name: 'Player Rare',
+    linkTo: '/tracks/filter/rare',
+  },
+  {
+    name: 'Player Live',
+    linkTo: '/tracks/filter/live',
+  },
+  {
+    name: 'Player Radio',
+    linkTo: '/tracks/filter/radio',
+  },
+  {
+    name: 'Player Sound Library',
+    linkTo: '/sound-library',
+  },
+  {
+    name: 'Player Releases',
+    linkTo: '/label',
+  },
+]
+
 export interface IState {
   activeLiveStream: string | null
   cookiesAnalyticsApproved: boolean | null

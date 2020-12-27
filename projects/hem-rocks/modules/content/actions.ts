@@ -49,9 +49,9 @@ const doDeleteItems = (itemIds: string[]): Action => ({
   payload: itemIds,
 })
 
-const doReadChunk = (items: IContentItem[]): Action => ({
+const doReadChunk = (chunkName: string, contentItems: IContentItem[]): Action => ({
   type: DO_READ_CHUNK,
-  payload: items,
+  payload: { chunkName, contentItems },
 })
 
 const doReadItems = (items: IContentItem[]): Action => ({
