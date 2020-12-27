@@ -15,7 +15,7 @@ import { MainContentBox } from './index'
 import { IContentItem, setCurrentItems } from '../index'
 import { RootState } from '../../../index'
 import { LISTS_HAVE_BLURBS, RELEASE_PHASE } from '../../../config'
-import { hasTag, hasCategory, contentItemToTrack, getContentItemsFromRawList, tagSpellingCorrections } from '../functions'
+import { hasTag, hasCategory, contentItemToTrack, getContentItemsFromRawList, tagSpellingCorrections, getContentItemById } from '../functions'
 import { requestReadChunk } from '../actions'
 
 interface IProps {
@@ -292,6 +292,20 @@ function MainContentList({
       for (const item of contentItems) {
         if (hasCategory(item, 'tracks')) {
           tracks.push(contentItemToTrack(item))
+        }
+
+        else if (
+          hasCategory(item, 'label')
+          || hasCategory(item, 'press-releases')
+        ) {
+          const attachedPlaylist = getContentItemById(storeContentItems, item.attachments)
+
+          if (attachedPlaylist) {
+            const attachedTracks = getContentItemsFromRawList(storeContentItems, attachedPlaylist.attachments).map(track =>
+              contentItemToTrack(track)
+            )
+            tracks = tracks.concat(attachedTracks)
+          }
         }
 
         else {

@@ -28,7 +28,7 @@ import {
 import { applyPaginationAndFiltering, getContentItemById } from './functions'
 
 const initialState: IState = {
-  adminFilterApplied: 'todos',
+  adminFilterApplied: 'press-releases',
   adminSearchableField: 'title',
   adminSearchApplied: '',
   adminSearchExact: false,
