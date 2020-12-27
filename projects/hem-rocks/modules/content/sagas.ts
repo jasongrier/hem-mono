@@ -100,19 +100,19 @@ function* readItems() {
   }
 }
 
-function* readChunk({ payload }: any) {
+function* readChunk({ payload: chunkName }: any) {
   try {
     validateCompressionMap()
 
-    const res = yield call(fetch, '/static/content/' + payload + '.json')
+    const res = yield call(fetch, '/static/content/' + chunkName + '.json')
     const entries = yield res.json()
-    let items = entries.map(uncompressItem).map(modelize)
+    let contentItems = entries.map(uncompressItem).map(modelize)
 
     if (!window.process?.env.ELECTRON_MONO_DEV) {
-      items.filter((item: any) => !hasCategory(item, 'assets'))
+      contentItems.filter((item: any) => !hasCategory(item, 'assets'))
     }
 
-    yield put(doReadChunkAc(items))
+    yield put(doReadChunkAc(chunkName, contentItems))
   }
 
   catch (err) {

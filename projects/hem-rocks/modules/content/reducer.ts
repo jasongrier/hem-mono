@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux'
 import produce from 'immer'
-import { uniqBy } from 'lodash'
+import { uniqBy, uniq } from 'lodash'
 import {
   ADMIN_APPLY_FILTER,
   ADMIN_APPLY_SEARCH,
@@ -32,6 +32,7 @@ const initialState: IState = {
   adminSearchableField: 'title',
   adminSearchApplied: '',
   adminSearchExact: false,
+  chunkLog: [],
   contentItems: [],
   currentContentItem: null,
   currentContentItems: [],
@@ -59,9 +60,9 @@ const reducer = (
 
     case ADMIN_APPLY_SEARCH: {
       return produce(state, draftState => {
-        console.log(payload)
-        draftState.adminSearchApplied = payload
         const { unpaginatedItemCount, pageContentItems } = applyPaginationAndFiltering(draftState)
+
+        draftState.adminSearchApplied = payload
         draftState.unpaginatedItemCount = unpaginatedItemCount
         draftState.pageContentItems = pageContentItems
       })
@@ -83,14 +84,11 @@ const reducer = (
 
     case DO_READ_CHUNK: {
       return produce(state, draftState => {
-        for (const contentItem of payload) {
-          if (!getContentItemById(draftState.contentItems, contentItem.id)) {
-            console.log(1)
-            draftState.contentItems.push(contentItem)
-          }
+        draftState.chunkLog = uniq(draftState.chunkLog.concat([payload.chunkName]))
 
-          else {
-            console.log(2)
+        for (const contentItem of payload.contentItems) {
+          if (!getContentItemById(draftState.contentItems, contentItem.id)) {
+            draftState.contentItems.push(contentItem)
           }
         }
       })

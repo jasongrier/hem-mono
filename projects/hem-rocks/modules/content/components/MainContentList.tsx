@@ -109,7 +109,8 @@ function MainContentList({
   ignoreSticky = false,
   playlistToSet = 5,
 }: IProps): ReactElement {
-  const { storeContentItems, currentlyOpenPopUp, playlists } = useSelector((state: RootState) => ({
+  const { chunkLog, storeContentItems, currentlyOpenPopUp, playlists } = useSelector((state: RootState) => ({
+    chunkLog: state.content.chunkLog,
     storeContentItems: state.content.contentItems,
     currentlyOpenPopUp: state.popups.currentlyOpenPopUp,
     playlists: state.player.playlists,
@@ -121,8 +122,9 @@ function MainContentList({
   const [finalFilters, setFinalFilters] = useState<string[]>([])
 
   useEffect(function getChunk() {
+    if (chunkLog.includes(category)) return
     dispatch(requestReadChunk(category))
-  }, [])
+  }, [chunkLog])
 
   useEffect(function filters() {
     let semifinalFilters: Array<string | undefined>
