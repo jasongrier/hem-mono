@@ -38,12 +38,11 @@ function chunkData(allContentItems: IContentItem[]) {
     'apps',
     'recipes',
     'videos',
-    'press-releases',
     'press-clippings',
     {
       name: 'curated-playlists',
-      getContentItems(allContentItems) {
-        this.contentItems = this.contentItems.concat(flatten(curatedPlaylists.map(({ name }) => {
+      getContentItems(allContentItems: any) {
+        this.contentItems = this.contentItems.concat(flatten((curatedPlaylists as any).map(({ name }: any) => {
           const slug = slugify(name)
           const listItem = getContentItemBySlug(allContentItems, slug)
           const attachments = getContentItemsFromList(allContentItems, slug)
@@ -51,7 +50,18 @@ function chunkData(allContentItems: IContentItem[]) {
           return [listItem].concat(attachments)
         })))
       },
-      contentItems: [],
+      contentItems: [] as IContentItem[],
+    },
+    {
+      name: 'press-releases',
+      getContentItems(allContentItems: any) {
+        const pressReleaseItems = allContentItems.filter((item: any) => hasCategory(item, 'press-releases'))
+        const attachedPlaylists = compact(pressReleaseItems.map((item: IContentItem) => getContentItemById(allContentItems, item.attachments)))
+        const attachedTracks = flatten(attachedPlaylists.map((item: any) => getContentItemsFromRawList(allContentItems, item.attachments)))
+
+        this.contentItems = pressReleaseItems.concat(attachedPlaylists).concat(attachedTracks)
+      },
+      contentItems: [] as IContentItem[],
     },
   ]
 
@@ -72,6 +82,7 @@ function chunkData(allContentItems: IContentItem[]) {
       for (const oldItem of allContentItems) {
         const newItem = Object.assign({}, oldItem)
         if (hasCategory(newItem, chunk.name)) {
+          // @ts-ignore
           chunk.contentItems.push(newItem)
         }
       }
@@ -81,45 +92,100 @@ function chunkData(allContentItems: IContentItem[]) {
   for (const chunk of chunks) {
     const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', chunk.name + '.json')
     const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', chunk.name + '.json')
+
+    // ***** DANGER ZONE *****
+    // ***** DANGER ZONE *****
+    // ***** DANGER ZONE *****
+
     writeFileSync(srcIndex, JSON.stringify(compressIndex(chunk.contentItems)))
     writeFileSync(distIndex, JSON.stringify(compressIndex(chunk.contentItems)))
   }
 }
 
-function migrate(allContentItems: IContentItem[]) {
+// async function migrate(allContentItems: IContentItem[]) {
+//   const { remote } = window.require('electron')
+//   const { execSync } = remote.require('child_process')
+//   const { existsSync, writeFileSync, readdirSync, readFileSync, renameSync, lstatSync, copyFileSync, constants: fsConstants, unlinkSync } = remote.require('fs')
+//   const { join, extname } = remote.require('path')
+//   const getMP3Duration = require('get-mp3-duration')
+//   const pdfParse = require('pdf-parse')
+
+//   const newItems: IContentItem[] = []
+
+//   for (const oldItem of allContentItems) {
+//     const newItem = Object.assign({}, oldItem)
+//     newItems.push(newItem)
+//   }
+
+//   const srcDir = '/Volumes/April_Kepner/TMP/releases-processed/'
+//   const srcFiles = readdirSync(srcDir)
+
+//   for (const fileName of srcFiles) {
+//     if (!fileName.includes('.DS_')) {
+//       const fileNameNoExt = fileName.split('.')[0]
+//       let [release, artist, date, version] = fileNameNoExt.split('--')
+
+//       release = titleCase(release.replace(/-/g, ' '))
+//       artist = titleCase(artist.replace(/-/g, ' '))
+//       date = moment(date).format('MMMM YYYY')
+
+//       const description = readFileSync(join(srcDir, fileName), 'utf8')
+//       const slug = slugify(release + '-' + artist) + '-press-release'
+//       const attachedPlaylist = allContentItems.find(item => item.attribution === artist)
+
+//       newItems.push(modelize({
+//         id: uuid(),
+//         title: release + ' Press Release',
+//         secondaryTitle: artist,
+//         attribution: 'Jason Grier',
+//         date,
+//         published: true,
+//         description,
+//         keyArt: slug + '.jpg',
+//         category: 'press-releases',
+//         attachments: attachedPlaylist ? attachedPlaylist.id : '',
+//         slug,
+//       } as Partial<IContentItem>))
+//     }
+//   }
+
+//   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
+//   const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
+
+//   // ***** DANGER ZONE *****
+//   // ***** DANGER ZONE *****
+//   // ***** DANGER ZONE *****
+
+//   writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
+//   writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
+// }
+
+async function migrate(allContentItems: IContentItem[]) {
   const { remote } = window.require('electron')
   const { execSync } = remote.require('child_process')
   const { existsSync, writeFileSync, readdirSync, readFileSync, renameSync, lstatSync, copyFileSync, constants: fsConstants, unlinkSync } = remote.require('fs')
   const { join, extname } = remote.require('path')
   const getMP3Duration = require('get-mp3-duration')
+  const pdfParse = require('pdf-parse')
 
   const newItems: IContentItem[] = []
 
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
+    if (newItem.title === 'Betrieb Press Release' && !newItem.published) continue
     newItems.push(newItem)
   }
 
-  const allFiles = serverFiles.concat(localFiles)
-  const allFilesImm = uniq(Array.from(allFiles))
-
-  const srcDir = '/Users/jason/Desktop/Workingkong/HEM/Website/hem-static/hem-rocks/content/tracks/'
-  const destDir = '/Volumes/April_Kepner/TMP/deploy/'
-
-  for (const file of localFiles) {
-    if (!serverFiles.includes(file)) {
-      copyFileSync(join(srcDir, file), join(destDir, file))
-    }
-  }
-
-  // ***** DANGER ZONE *****
-  // ***** DANGER ZONE *****
-  // ***** DANGER ZONE *****
 
   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
   const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
-  // writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
-  // writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
+
+  // ***** DANGER ZONE *****
+  // ***** DANGER ZONE *****
+  // ***** DANGER ZONE *****
+
+  writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
+  writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
 }
 
 function AdminManualTaskRunner(): ReactElement {
@@ -137,13 +203,13 @@ function AdminManualTaskRunner(): ReactElement {
 
   const migrateOnClick = useCallback(
     function migrateOnClickFn() {
-      runTask(() => bakeIn(allContentItems))
+      runTask(() => migrate(allContentItems))
     }, [allContentItems],
   )
 
   const chunkOnClick = useCallback(
-    function migrateOnClickFn() {
-      runTask(() => bakeIn(allContentItems))
+    function chunkOnClickFn() {
+      runTask(() => chunkData(allContentItems))
     }, [allContentItems],
   )
 
@@ -170,15 +236,15 @@ function AdminManualTaskRunner(): ReactElement {
               href="#"
               onClick={migrateOnClick}
             >
-              Run Task
+              Run migration task
             </a>
           </li>
           <li>
             <a
               href="#"
-              onClick={migrateOnClick}
+              onClick={chunkOnClick}
             >
-              Run Task
+              Generate data chunks
             </a>
           </li>
         </ul>

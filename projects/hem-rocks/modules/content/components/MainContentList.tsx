@@ -446,7 +446,7 @@ function MainContentList({
               contentItem={contentItem}
               index={index}
               filter={currentFilter}
-              key={contentItem.slug}
+              key={contentItem.id}
               linkTo={linkTo}
               noSplatter={noSplatter}
               secondaryTitleField={boxSecondaryTitleField}

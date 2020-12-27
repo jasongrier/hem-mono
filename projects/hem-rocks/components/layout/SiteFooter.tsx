@@ -51,7 +51,7 @@ function SiteFooter(): ReactElement {
               <li><Link to="/apps">Apps</Link></li>
               <li><Link to="/recipes">Recipes</Link></li>
               <li><a href="">Video</a></li>
-              <li><a href="">Press Releases</a></li>
+              <li><Link to="/press-releases">Press Releases</Link></li>
               <li><a href="">Press Clippings</a></li>
               <li><a href="">Demo Policy</a></li>
             </ul>
