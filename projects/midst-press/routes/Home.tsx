@@ -21,7 +21,7 @@ function Home(): ReactElement {
         </p>
 
         <p style={{ paddingTop: '20px' }}>
-          <a href="http://www.midst.press/read">Go forth to the poems!</a>
+          <a style={{ textDecoration: 'underline' }} href="http://www.midst.press/read">Go forth to the poems!</a>
         </p>
 
         <p style={{ paddingTop: '10px' }} />

@@ -16,7 +16,7 @@ import { formatTime } from '../../../../../lib/modules/website-player'
 import { serverFiles, localFiles } from '../deploy-files'
 import { curatedPlaylists } from '../../app'
 
-function bakeIn(allContentItems: IContentItem[]) {
+function chunkData(allContentItems: IContentItem[]) {
   const { remote } = window.require('electron')
   const { execSync } = remote.require('child_process')
   const { existsSync, writeFileSync, readdirSync, readFileSync, renameSync, lstatSync, copyFileSync, constants: fsConstants, unlinkSync } = remote.require('fs')
@@ -77,8 +77,6 @@ function bakeIn(allContentItems: IContentItem[]) {
       }
     }
   }
-
-  console.log(chunks.map(term => term.name + ': ' + term.contentItems.length))
 
   for (const chunk of chunks) {
     const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', chunk.name + '.json')
@@ -143,6 +141,12 @@ function AdminManualTaskRunner(): ReactElement {
     }, [allContentItems],
   )
 
+  const chunkOnClick = useCallback(
+    function migrateOnClickFn() {
+      runTask(() => bakeIn(allContentItems))
+    }, [allContentItems],
+  )
+
   const resetOnClick = useCallback(
     function resetOnClickFn() {
       setRunning(0)
@@ -161,6 +165,14 @@ function AdminManualTaskRunner(): ReactElement {
     <div className="admin-manual-task-runner">
       { running === 0 && (
         <ul>
+          <li>
+            <a
+              href="#"
+              onClick={migrateOnClick}
+            >
+              Run Task
+            </a>
+          </li>
           <li>
             <a
               href="#"

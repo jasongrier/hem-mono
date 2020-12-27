@@ -373,7 +373,7 @@ body {
 
 .site-header .about-link--desk {
   position: fixed;
-  top: 31px;
+  top: 33px;
   right: 30px;
   z-index: 99999;
   margin: 0;
@@ -413,7 +413,7 @@ body {
 }
 
 .table-of-contents {
-  padding-bottom: 500px;
+  padding-bottom: 100px;
 }
 
 .table-of-contents .heroine {
@@ -1117,7 +1117,7 @@ body {
   display: inline-block;
   margin: 20px;
   font-size: 14px;
-  flex: 0 0 25%;
+  flex: 0 0 20%;
 }
 
 .patreon-logo {
@@ -1135,10 +1135,11 @@ body {
 .ko-fi-logo-in-text,
 .patreon-logo-in-text {
   float: left;
-  width: 48px;
-  height: 48px;
+  width: 30px;
+  height: 30px;
   margin-top: 3px;
-  margin-right: 20px;
+  margin-right: 15px;
+  margin-left: 25px;
   margin-bottom: 30px;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1150,6 +1151,16 @@ body {
 
 .patreon-logo-in-text {
   background-image: url('./static/assets/patreon-logo.png');
+}
+
+.funding-page .emoji-heading {
+  margin-top: 80px;
+  font-size: 100px;
+  font-style: normal;
+}
+
+.funding-page .emoji-heading.no-space {
+  margin-top: 0;
 }
 
 @media screen and (max-width: 1024px) {
@@ -1351,5 +1362,9 @@ body {
 
   .site-header #mobile-nav-toggle {
     right: 10px;
+  }
+
+  .funding-page p {
+    font-size: 11px;
   }
 }
