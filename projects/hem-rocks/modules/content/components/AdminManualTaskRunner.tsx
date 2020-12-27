@@ -24,7 +24,16 @@ function chunkData(allContentItems: IContentItem[]) {
   const getMP3Duration = require('get-mp3-duration')
 
   const terms = [
-    'home-features',
+    {
+      name: 'home-features',
+      getContentItems(allContentItems: any) {
+        const homeFeaturesItems = allContentItems.filter((item: any) => hasCategory(item, 'home-features'))
+        const homeHeroineItem = getContentItemBySlug(allContentItems, 'new-website')
+
+        this.contentItems = homeFeaturesItems.concat(homeHeroineItem)
+      },
+      contentItems: [] as IContentItem[],
+    },
     'sound-library',
     'tracks',
     'playlists',
@@ -172,10 +181,13 @@ async function migrate(allContentItems: IContentItem[]) {
 
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
-    if (newItem.title === 'Betrieb Press Release' && !newItem.published) continue
+
+    if (hasCategory(newItem, 'press-releases')) {
+      newItem.attachments = ''
+    }
+
     newItems.push(newItem)
   }
-
 
   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
   const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
@@ -184,8 +196,8 @@ async function migrate(allContentItems: IContentItem[]) {
   // ***** DANGER ZONE *****
   // ***** DANGER ZONE *****
 
-  writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
-  writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
+  // writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
+  // writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
 }
 
 function AdminManualTaskRunner(): ReactElement {

@@ -16,7 +16,8 @@ function Recipes(): ReactElement {
       </Helmet>
       <div className="page page-recipes">
         <MainContentList
-          currentFilter={currentFilter}
+          currentFilter={currentFilter || 'all'}
+          noAll={false}
           category="recipes"
           title="Recipes"
         />

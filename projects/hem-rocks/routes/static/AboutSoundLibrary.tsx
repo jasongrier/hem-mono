@@ -16,7 +16,7 @@ function AboutSoundLibrary(): ReactElement {
     contentItems: state.content.contentItems,
   }))
 
-  const aboutSLArticle = getContentItemBySlug(contentItems, 'about-sound-library')
+  const aboutSLpage = getContentItemBySlug(contentItems, 'about-sl')
 
   return (
     <>
@@ -29,7 +29,7 @@ function AboutSoundLibrary(): ReactElement {
         <SoundLibrarySubnav />
         <div className="main-content-section first-main-content-section">
           <div dangerouslySetInnerHTML={{
-            __html: marked(aboutSLArticle.description),
+            __html: marked(aboutSLpage.description),
           }} />
         </div>
         <div className="main-content-section">

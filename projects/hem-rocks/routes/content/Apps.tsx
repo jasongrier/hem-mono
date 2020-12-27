@@ -16,7 +16,8 @@ function Apps(): ReactElement {
       </Helmet>
       <div className="page page-apps">
         <MainContentList
-          currentFilter={currentFilter}
+          currentFilter={currentFilter || 'all'}
+          noAll={false}
           category="apps"
           title="Apps"
         >
