@@ -14,7 +14,7 @@ function Funding(): ReactElement {
       <section className="heroine heroine--normal">
         <h2>Funding</h2>
 
-        <h2>🌱</h2>
+        <h2 className="emoji-heading no-space">🌱</h2>
 
         <p>
           Midst's journal will always be free to the public.
@@ -28,7 +28,7 @@ function Funding(): ReactElement {
           All contributions directly support Midst's future, including paying for commissions, web hosting, design, app development, and more.
         </p>
 
-        <h2>💵</h2>
+        <h2 className="emoji-heading">💵</h2>
 
         <p>
           <a
@@ -45,11 +45,11 @@ function Funding(): ReactElement {
           You can also give a Fee-free, one-time donation of any amount <a href="https://ko-fi.com/midst">here</a>.
         </p>
 
+        <h2 className="emoji-heading">🙌</h2>
+
         <p>
           Other inquiries: annelysegelman@gmail.com.
         </p>
-
-        <h2>🙌</h2>
 
         <DonorWall>
           <h2>Special thanks to the Genesis program and to our <a href="http://www.patreon.com/midstpoetry">Patrons</a>:</h2>

@@ -1,6 +1,6 @@
-import React, { ReactElement, useEffect } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { hasCategory, hasTag, requestReadChunk } from '../../modules/content'
+import { hasCategory, hasTag, requestReadChunk, IContentItem } from '../../modules/content'
 import { RootState } from '../../'
 
 function Todos(): ReactElement {
@@ -18,8 +18,8 @@ function Todos(): ReactElement {
 
   return (
     <div className="page page-internal page-internal-todos">
-      <h2>Todo's</h2>
-      <ul>
+      <h1>Todo's</h1>
+      <ul className="page-internal-todos-list">
         { todos.map(todo => (
           <li>
             <div>
