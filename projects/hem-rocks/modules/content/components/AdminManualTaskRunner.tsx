@@ -31,6 +31,7 @@ function bakeIn(allContentItems: IContentItem[]) {
     'artists',
     'articles',
     'editions',
+    'todos',
     'label',
     'tutorials',
     'newsletters',
