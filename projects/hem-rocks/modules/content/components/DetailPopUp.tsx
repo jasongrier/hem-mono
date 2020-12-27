@@ -13,7 +13,7 @@ import { PlayPauseButton, ChevronButton } from '../../../../../lib/packages/hem-
 import { closePopup, openPopup } from '../../../../../lib/modules/popups'
 import { TrackPlayPauseButton, ITrack, replacePlaylist, setPlayerPlaylist, IPlaylist } from '../../../../../lib/modules/website-player'
 import { addProductToCart, submitSale } from '../../cart'
-import { IContentItem, getContentItemsFromRawList } from '../index'
+import { IContentItem, getContentItemsFromRawList, getContentItemById } from '../index'
 import { assetHostHostname } from '../../../functions'
 import { BvgWatermark } from '../../../components/berlin-stock-photos'
 import { RootState } from '../../../index'
@@ -105,6 +105,19 @@ function DetailPopUp({
 
       if (hasCategory(contentItem, 'tracks')) {
         attachedTracks = [contentItemToTrack(contentItem)]
+      }
+
+      else if (
+        hasCategory(contentItem, 'label')
+        || hasCategory(contentItem, 'press-releases')
+      ) {
+        const attachedPlaylistItem = getContentItemById(allContentItems, contentItem.attachments)
+
+        if (attachedPlaylistItem) {
+          attachedTracks = compact(getContentItemsFromRawList(allContentItems, attachedPlaylistItem.attachments).map(item =>
+            contentItemToTrack(item)
+          ))
+        }
       }
 
       else {

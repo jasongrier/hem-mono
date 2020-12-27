@@ -300,6 +300,7 @@ export {
   contentItemToTrack,
   hasCategory,
   hasTag,
+  getContentItemById,
   getContentItemByField,
   getContentItemBySlug,
   getContentItemsByTag,

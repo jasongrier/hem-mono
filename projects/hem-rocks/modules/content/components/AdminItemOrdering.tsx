@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation } from 'react-router'
 import produce from 'immer'
 import { isEmpty, isEqual, startCase, find } from 'lodash'
+// @ts-ignore
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { slugify } from 'voca'
 import { ElectronOnly, ZoomTextarea } from '../../../../../lib/components'
@@ -28,7 +29,7 @@ function AdminItemOrdering({ }: IProps): ReactElement {
     let sortSet = Array.from(allContentItems)
 
     sortSet = sortSet.filter(item => (
-      hasCategory(item, 'home-features')
+      hasCategory(item, 'press-releases')
       && item.published
     ))
 
@@ -39,7 +40,7 @@ function AdminItemOrdering({ }: IProps): ReactElement {
     setFinalItems(sortSet)
   }, [])
 
-  function onDragEnd(res) {
+  function onDragEnd(res: any) {
     if (!res.source) return
     if (!res.destination) return
 
@@ -66,7 +67,7 @@ function AdminItemOrdering({ }: IProps): ReactElement {
 
   const grid = 4
 
-  const getItemStyle = (isDragging, draggableStyle) => ({
+  const getItemStyle = (isDragging: any, draggableStyle: any) => ({
     userSelect: 'none',
     padding: grid * 2,
     margin: `0 0 ${grid}px 0`,
@@ -74,7 +75,7 @@ function AdminItemOrdering({ }: IProps): ReactElement {
     ...draggableStyle,
   })
 
-  const getListStyle = isDraggingOver => ({
+  const getListStyle = (isDraggingOver : any) => ({
     background: isDraggingOver ? 'lightblue' : 'lightgrey',
     padding: grid,
     width: 450,
@@ -96,7 +97,7 @@ function AdminItemOrdering({ }: IProps): ReactElement {
         </div>
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="droppable">
-            {(provided, snapshot) => (
+            {(provided: any, snapshot: any) => (
               <div
                 {...provided.droppableProps}
                 ref={provided.innerRef}
@@ -104,7 +105,7 @@ function AdminItemOrdering({ }: IProps): ReactElement {
               >
                 {finalItems.map((item, index) => (
                   <Draggable key={item.id} draggableId={item.id} index={index}>
-                    {(provided, snapshot) => (
+                    {(provided: any, snapshot: any) => (
                       <div
                         ref={provided.innerRef}
                         {...provided.draggableProps}

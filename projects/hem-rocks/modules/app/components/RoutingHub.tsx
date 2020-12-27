@@ -16,6 +16,7 @@ import {
   Playlists,
   Press,
   PressKits,
+  PressReleases,
   Recipes,
   SoundLibrary,
   Tracks,
@@ -181,6 +182,10 @@ function RoutingHub(): ReactElement {
         <Route exact path="/press-kits/:contentItemSlug?/:filter?" component={PressKits} />
         <Route exact path="/press-kits/filter/:filter" component={PressKits} />
         <Route exact path="/press-kits/cart/:filter?" component={PressKits} />
+
+        <Route exact path="/press-releases/:contentItemSlug?/:filter?" component={PressReleases} />
+        <Route exact path="/press-releases/filter/:filter" component={PressReleases} />
+        <Route exact path="/press-releases/cart/:filter?" component={PressReleases} />
 
         <Route exact path="/recipes/:contentItemSlug?/:filter?" component={Recipes} />
         <Route exact path="/recipes/filter/:filter" component={Recipes} />
