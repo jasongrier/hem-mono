@@ -9,6 +9,7 @@ import {
   Code,
   Editions,
   Faqs,
+  GenericPage,
   Label,
   Merch,
   Mixes,
@@ -39,7 +40,6 @@ import {
 
 import {
   About,
-  AboutSoundLibrary,
   CompilationIVArtistInfo,
   Contact,
   CookiePolicy,
@@ -88,15 +88,13 @@ function RoutingHub(): ReactElement {
         <Route exact path="/tracks/new-website" component={Tracks} />
         <Route exact path="/tracks/new-website/:filter?" component={Tracks} />
 
+        {/* "Dynamic-Static" Pages */}
+        <Route exact path="/page/:contentItemSlug" component={GenericPage} />
+        <Route exact path="/page/:contentItemSlug/cart" component={GenericPage} />
+
         {/* Static Pages */}
         <Route exact path="/about" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotosAbout : About} />
         <Route exact path="/about/cart" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotosAbout : About} />
-
-        <Route exact path="/sound-library/about-sl" component={AboutSoundLibrary} />
-        <Route exact path="/sound-library/about-sl/cart" component={AboutSoundLibrary} />
-
-        <Route exact path="/sound-library/made-with-sl" component={MadeWithSoundLibrary} />
-        <Route exact path="/sound-library/made-with-sl/cart" component={MadeWithSoundLibrary} />
 
         <Route exact path="/contact" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotosContact : Contact} />
         <Route exact path="/contact/cart" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotosContact : Contact} />

@@ -5,7 +5,6 @@ import { MainContentList } from '../../modules/content'
 import { BASE_SITE_TITLE } from '../../config'
 
 function Apps(): ReactElement {
-
   const { filter: currentFilter } = useParams() as any
 
   return (

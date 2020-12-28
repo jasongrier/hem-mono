@@ -140,24 +140,27 @@ function AdminList(): ReactElement {
               value={adminFilterApplied}
             >
               <option value="all">All</option>
+              <option value="all">---</option>
               <option value="apps">Apps</option>
               <option value="articles">Articles</option>
               <option value="artists">Artists</option>
               <option value="code">Code</option>
-              <option value="faqs">FAQ's</option>
               <option value="editions">Editions</option>
+              <option value="faqs">FAQ's</option>
               <option value="heroines">Heroines</option>
               <option value="home-features">Home Features</option>
               <option value="label">Label</option>
+              <option value="lists">Lists</option>
               <option value="merch">Merch</option>
               <option value="mix">Mixes</option>
-              <option value="pages">Pages</option>
+              <option value="notes">Notes</option>
               <option value="playlists">Playlists</option>
-              <option value="press">Press</option>
               <option value="press-kits">Press Kits</option>
               <option value="press-releases">Press Releases</option>
+              <option value="press">Press</option>
               <option value="recipes">Recipes</option>
               <option value="reminders">Reminders</option>
+              <option value="site-texts">Site Texts</option>
               <option value="sound-library">Sound Library</option>
               <option value="tracks">Tracks</option>
               <option value="tutorial">Tutorials</option>
@@ -166,7 +169,6 @@ function AdminList(): ReactElement {
               <option value="venue-calendar">Venue Calendar</option>
               <option value="venue-merch">Venue Merch</option>
               <option value="video">Videos</option>
-              <option value="lists">Lists</option>
               <option value="all">---</option>
               <option value="stock-photos">Berlin Stock Photos</option>
               <option value="all">---</option>
@@ -952,7 +954,7 @@ function AdminList(): ReactElement {
                   // @ts-ignore
                   title: input.value,
                   // @ts-ignore
-                  slug: slugify(input.value),
+                  slug: slugify(input.value) + '-todo',
                   published: true,
                   date: 'January 2021',
                   category: 'todos',
