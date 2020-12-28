@@ -320,17 +320,17 @@ function AdminManualTaskRunner(): ReactElement {
           <li>
             <a
               href="#"
-              onClick={chunkOnClick}
+              onClick={createOnClick}
             >
-              Generate data chunks
+              Create from array
             </a>
           </li>
           <li>
             <a
               href="#"
-              onClick={createOnClick}
+              onClick={chunkOnClick}
             >
-              Create from array
+              Generate data chunks
             </a>
           </li>
         </ul>
