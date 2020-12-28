@@ -17,7 +17,7 @@ function Label(): ReactElement {
 
   const [refreshTimeline, setRefreshTimeline] = useState(0)
 
-  const { filter: currentFilter } = useParams()
+  const { filter: currentFilter } = useParams() as any
 
   useEffect(function updateTimeline() {
     setRefreshTimeline(refreshTimeline + 1)

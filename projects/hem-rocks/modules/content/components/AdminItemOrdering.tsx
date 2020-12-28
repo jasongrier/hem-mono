@@ -29,7 +29,8 @@ function AdminItemOrdering({ }: IProps): ReactElement {
     let sortSet = Array.from(allContentItems)
 
     sortSet = sortSet.filter(item => (
-      hasCategory(item, 'press-releases')
+      hasCategory(item, 'playlists')
+      && hasTag(item, 'featured')
       && item.published
     ))
 
@@ -115,7 +116,7 @@ function AdminItemOrdering({ }: IProps): ReactElement {
                           provided.draggableProps.style
                         )}
                       >
-                        {item.attribution}: {item.title}
+                        {item.attribution}: {item.title} ({item.order})
                       </div>
                     )}
                   </Draggable>
