@@ -16,7 +16,7 @@ function About(): ReactElement {
         <p>Midst is a new digital journal publishing poems in the form of interactive timelapses, giving readers and writers unprecedented access to the creative process.
         </p>
         <p>
-        Midst shows you the finished poem by default—just like any other magazine—but then allows you to hit play and “rewind” to find out exactly how it was written: blank page to final draft, and every edit in between.
+        Midst shows you the finished poem by default—just like any other journal—but then allows you to hit play and “rewind” to find out exactly how it was written: blank page to final draft, and every edit in between.
         </p>
         {/* <p>More at the <a href="http://midst.press/faq">FAQ</a>.</p> */}
         <br />
@@ -36,9 +36,8 @@ function About(): ReactElement {
         <br />
 
         <h2>Contact</h2>
-        <p>Nominate a poet: <a href="http://www.midst.press/nominate">midst.press/nominate</a>.<br />
-        Tech support: midsthq@gmail.com.<br />
-        Other inquiries: annelysegelman@gmail.com.</p>
+
+        <p>👋: team@midst.press</p>
         <br />
 
 
@@ -46,7 +45,7 @@ function About(): ReactElement {
 
 
         <h2>Thanks</h2>
-        <p><a href="https://bretanthonyjohnston.com/">Bret Anthony Johnston</a> is our advisor. <a href="http://www.chloescheffe.github.io/">Chloe Scheffe</a> made our logo and our shapes. Our <a href="http://www.patreon.com/midstpoetry">patrons</a> and <a href="https://ko-fi.com/midst">donors</a> keep Midst free and public.
+        <p><a href="https://bretanthonyjohnston.com/">Bret Anthony Johnston</a> is our advisor. <a href="http://www.chloescheffe.github.io/">Chloe Scheffe</a> made our logo and our shapes. Our <a href="http://www.patreon.com/midstpoetry">patrons</a> and <a href="https://ko-fi.com/midst">donors</a> keep Midst free and public and help us pay our contributors!
   
         </p>
         <br />
