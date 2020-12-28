@@ -45,11 +45,13 @@ function createPoem(author: string, title: string, date: string, publishDate: st
 const MORI_POEM_LONG_TITLE = 'After Watching <i>Westworld</i>, the Left Side of My Body Malfunctions'
 
 const poems = [
-  createPoem('Jos Charles',                 'and',                                '10/29/2020', '10/29/2020', true,   'New'),
-  createPoem('Imani Elizabeth Jackson',     'And went to plant',                  '10/24/2020', '10/24/2020', true,   'New'),
-  createPoem('Dan Beachy-Quick',            'Mnemosyne in Tatters',               '11/24/2020', '11/24/2020', true,   'New'),
-  createPoem('Gabrielle Bates',             'Ownership',                          '10/17/2020', '10/17/2020', true,   'New'),
-  createPoem('Sadie Dupuis',                'COME OVER MAKE MAC AND CHEESE :)',   '12/17/2020', '12/17/2020', true,   'New'),
+  createPoem('Jos Charles',                 'and',                                '01/26/2021', '11/23/2020', true,   'New'),
+  createPoem('Imani Elizabeth Jackson',     'And went to plant',                  '01/26/2021', '12/24/2020', true,   'New'),
+  createPoem('Dan Beachy-Quick',            'Mnemosyne in Tatters',               '01/26/2021', '11/24/2020', true,   'New'),
+  createPoem('Rosebud Ben-Oni',           'Poet Wrestling with the Dead Stars We Are {:: made from ::}',                  '01/26/2021', '12/24/2020', true,   'New'),
+  createPoem('Gabrielle Bates',             'Ownership',                          '01/26/2021', '10/17/2020', true,   'New'),
+  // createPoem('Sadie Dupuis',                'COME OVER MAKE MAC AND CHEESE :)',   '01/26/2021', '12/17/2020', true,   'New'),
+  // // createPoem('Annelyse Gelman',             'Pool',                               '01/05/2021', '12/17/2020', true,   'New'),
   createPoem('Anis Mojgani',                'Cuesta',                             '11/30/2019', '11/30/2019', false),
   createPoem('Eleanor Eli Moss',            'THE HAMMER',                         '11/06/2019', '11/06/2019', false),
   createPoem('Hedgie Choi',                 'I Get It, Phases',                   '10/17/2019', '10/17/2019', false),
