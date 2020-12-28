@@ -27,7 +27,7 @@ function Home(): ReactElement {
         <p style={{ paddingTop: '10px' }} />
 
         <DonorWall>
-          <h2>Special thanks to our <a href="http://www.patreon.com/midstpoetry">Patrons</a>:</h2>
+          <h2>🙌 to our <a href="http://www.patreon.com/midstpoetry">Patrons</a>:</h2>
         </DonorWall>
       </section>
     </div>

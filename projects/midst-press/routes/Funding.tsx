@@ -21,10 +21,12 @@ function Funding(): ReactElement {
         </p>
 
         <p>
-          We hope to continue to grow and to share diverse new work from contemporary writers, serving as a growing library of poetry-as-process. We currently have two "staff" members (Annelyse Gelman and Jason Gillis-Grier), both volunteers, and each contributor is currently paid $50. Midst's financial future is uncertain, but we believe transparency is important to build a healthy, thriving literary community where people trust each other. We hope you'll consider a one-time or monthly donation to help us continue our work!
-        </p>
+          We hope to continue to grow and to regularly share diverse new work from contemporary writers, serving as a growing library of poetry-as-process. We currently have two "staff" members (Annelyse Gelman and Jason Gillis-Grier), both volunteers, and each contributor is currently paid $50. These commission fees are pulled from runner-up earnings from UT Austin's Keene Prize and from Midst's <a href="http://www.patreon.com/midstpoetry">patrons</a>. As Midst evolves, we'll continue to share up-to-date information on funding here. We believe transparency like this is important to build a healthy, thriving literary community where people trust each other. </p>
+          
+          <p>If you're excited about what we're building here, we hope you'll consider a one-time or monthly donation to help us continue our work!
+     </p>
 
-        <p>
+        <p>   
           All contributions directly support Midst's future, including paying for commissions, web hosting, design, app development, and more.
         </p>
 
@@ -34,7 +36,7 @@ function Funding(): ReactElement {
           <a
             className="patreon-logo-in-text"
             href="http://patreon.com/midstpoetry"
-          /> Join Midst's<a href="http://www.patreon.com/midstpoetry">Patreon</a> page as a monthly donor and receive sneak-peeks, previews, and special perks, starting at $3/month.
+          /> Join Midst's <a href="http://www.patreon.com/midstpoetry">Patreon</a> page as a monthly donor and receive sneak-peeks, previews, and special perks, starting at $3/month.
         </p>
 
         <p>
@@ -44,15 +46,15 @@ function Funding(): ReactElement {
           />
           You can also give a Fee-free, one-time donation of any amount <a href="https://ko-fi.com/midst">here</a>.
         </p>
-
+{/* 
         <h2 className="emoji-heading">🙌</h2>
 
         <p>
-          Other inquiries: annelysegelman@gmail.com.
-        </p>
+          xyz
+        </p> */}
 
         <DonorWall>
-          <h2>Special thanks to the Genesis program and to our <a href="http://www.patreon.com/midstpoetry">Patrons</a>:</h2>
+          <h2>Enormous thanks and 🙌 forever to our <a href="http://www.patreon.com/midstpoetry">Patrons</a>:</h2>
         </DonorWall>
       </section>
     </div>

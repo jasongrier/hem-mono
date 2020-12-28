@@ -8,6 +8,7 @@ const donorList = [
   'Myrrh Crow',
   'Lara Prescott',
   'Alejandro Puyana',
+  'Anonymous donors',
 ]
 
 const sampleList = [
@@ -68,7 +69,7 @@ function DonorWall({ children }: PropsWithChildren<IProps>): ReactElement {
     <div className="donor-wall">
       { children }
       <ul className="donor-list">
-        {sampleList.map(name => (
+        {donorList.map(name => (
           <li key={uuid()}>{ name }</li>
         ))}
       </ul>

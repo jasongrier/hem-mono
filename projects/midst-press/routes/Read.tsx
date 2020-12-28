@@ -68,6 +68,29 @@ function Read(): ReactElement {
             </div>
             <p> Dear friends,</p>
             <p>
+              In late 2019, we released a pilot—a proof of concept showing what Midst is and how it works, with contributions from more than a dozen brave contemporary poets. The response was incredible. Already, people are starting to use Midst in their classrooms, researching process using the journal and app, and nominating their favorite poets to contribute.
+            </p>
+            <p>
+              Then 2020 happened. The world fell apart. I am sure you, too, have been in the throes of grief and anger and helplessness. Whoever you are, my heart goes out to you.
+            </p>
+            <p>
+              I hope that this year is better than the last, and I'm excited to welcome it in with the official launch of Midst. From now on, we'll be commissioning and publishing poems on a regular basis. You can check back here or sign up for our mailing list below if you want to keep posted!
+            </p>
+            <p>
+                A lot of people have asked when the software will be more widely available, when we'll be able to start accepting public submissions, etc.—I'm so grateful for the enthusiasm, and I promise these updates are coming as soon as possible! If you want to help us get there, we've also launched a <a href="http://www.patreon.com/midstpoetry">Patreon</a> page. 
+                </p>
+                <p>
+                  In the meantime: thank you for reading and sharing Midst. Hang in there, be gentle with yourself, and happy reading.
+            </p>
+            <p>
+            🥳🥳🥳,
+            </p>
+            <p>
+              Annelyse<br />
+              January 2021
+            </p>
+            {/* <p> Dear friends,</p>
+            <p>
               Welcome to the debut issue of Midst! I've been fascinated with this concept—a journal that would let you see exactly how each of its poems were written—for years, and am so excited for you to finally see the first examples of brand-new works-in-process from these extraordinarily brave poets.
             </p>
             <p>
@@ -83,7 +106,7 @@ function Read(): ReactElement {
             </p>
             <p>
               Annelyse
-            </p>
+            </p> */}
           </div>
         </div>
 
