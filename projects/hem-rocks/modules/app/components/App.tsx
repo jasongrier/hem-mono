@@ -154,10 +154,14 @@ function App(): ReactElement {
     }
   }, [])
 
+  useEffect(function preloadSiteText() {
+    if (chunkLog.includes('site-texts')) return
+    dispatch(requestReadChunk('site-texts'))
+  }, [chunkLog])
+
   useEffect(function getCuratedPlaylists() {
     if (chunkLog.length < 1) return
     if (chunkLog.includes('curated-playlists')) return
-
     dispatch(requestReadChunk('curated-playlists'))
   }, [chunkLog])
 

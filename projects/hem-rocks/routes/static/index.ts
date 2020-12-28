@@ -1,5 +1,4 @@
 export { default as About } from './About'
-export { default as AboutSoundLibrary } from './AboutSoundLibrary'
 export { default as CompilationIVArtistInfo } from './CompilationIVArtistInfo'
 export { default as Contact } from './Contact'
 export { default as CookiePolicy } from './CookiePolicy'

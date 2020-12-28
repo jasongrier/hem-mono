@@ -24,30 +24,21 @@ function chunkData(allContentItems: IContentItem[]) {
   const getMP3Duration = require('get-mp3-duration')
 
   const terms = [
-    {
-      name: 'home-features',
-      getContentItems(allContentItems: any) {
-        const homeFeaturesItems = allContentItems.filter((item: any) => hasCategory(item, 'home-features'))
-        const homeHeroineItem = getContentItemBySlug(allContentItems, 'new-website')
-
-        this.contentItems = homeFeaturesItems.concat(homeHeroineItem)
-      },
-      contentItems: [] as IContentItem[],
-    },
-    'sound-library',
-    'tracks',
-    'playlists',
-    'artists',
-    'articles',
-    'editions',
-    'todos',
-    'label',
-    'tutorials',
-    'newsletters',
     'apps',
-    'recipes',
-    'videos',
+    'articles',
+    'artists',
+    'editions',
+    'label',
+    'newsletters',
+    'playlists',
     'press-clippings',
+    'recipes',
+    'site-texts',
+    'sound-library',
+    'todos',
+    'tracks',
+    'tutorials',
+    'videos',
     {
       name: 'curated-playlists',
       getContentItems(allContentItems: any) {
@@ -58,6 +49,16 @@ function chunkData(allContentItems: IContentItem[]) {
 
           return [listItem].concat(attachments)
         })))
+      },
+      contentItems: [] as IContentItem[],
+    },
+    {
+      name: 'home-features',
+      getContentItems(allContentItems: any) {
+        const homeFeaturesItems = allContentItems.filter((item: any) => hasCategory(item, 'home-features'))
+        const homeHeroineItem = getContentItemBySlug(allContentItems, 'new-website')
+
+        this.contentItems = homeFeaturesItems.concat(homeHeroineItem)
       },
       contentItems: [] as IContentItem[],
     },
@@ -111,63 +112,63 @@ function chunkData(allContentItems: IContentItem[]) {
   }
 }
 
-// async function migrate(allContentItems: IContentItem[]) {
-//   const { remote } = window.require('electron')
-//   const { execSync } = remote.require('child_process')
-//   const { existsSync, writeFileSync, readdirSync, readFileSync, renameSync, lstatSync, copyFileSync, constants: fsConstants, unlinkSync } = remote.require('fs')
-//   const { join, extname } = remote.require('path')
-//   const getMP3Duration = require('get-mp3-duration')
-//   const pdfParse = require('pdf-parse')
+async function createItemsFromFiles(allContentItems: IContentItem[]) {
+  const { remote } = window.require('electron')
+  const { execSync } = remote.require('child_process')
+  const { existsSync, writeFileSync, readdirSync, readFileSync, renameSync, lstatSync, copyFileSync, constants: fsConstants, unlinkSync } = remote.require('fs')
+  const { join, extname } = remote.require('path')
+  const getMP3Duration = require('get-mp3-duration')
+  const pdfParse = require('pdf-parse')
 
-//   const newItems: IContentItem[] = []
+  const newItems: IContentItem[] = []
 
-//   for (const oldItem of allContentItems) {
-//     const newItem = Object.assign({}, oldItem)
-//     newItems.push(newItem)
-//   }
+  for (const oldItem of allContentItems) {
+    const newItem = Object.assign({}, oldItem)
+    newItems.push(newItem)
+  }
 
-//   const srcDir = '/Volumes/April_Kepner/TMP/releases-processed/'
-//   const srcFiles = readdirSync(srcDir)
+  const srcDir = '/Volumes/April_Kepner/TMP/releases-processed/'
+  const srcFiles = readdirSync(srcDir)
 
-//   for (const fileName of srcFiles) {
-//     if (!fileName.includes('.DS_')) {
-//       const fileNameNoExt = fileName.split('.')[0]
-//       let [release, artist, date, version] = fileNameNoExt.split('--')
+  for (const fileName of srcFiles) {
+    if (!fileName.includes('.DS_')) {
+      const fileNameNoExt = fileName.split('.')[0]
+      let [release, artist, date, version] = fileNameNoExt.split('--')
 
-//       release = titleCase(release.replace(/-/g, ' '))
-//       artist = titleCase(artist.replace(/-/g, ' '))
-//       date = moment(date).format('MMMM YYYY')
+      release = titleCase(release.replace(/-/g, ' '))
+      artist = titleCase(artist.replace(/-/g, ' '))
+      date = moment(date).format('MMMM YYYY')
 
-//       const description = readFileSync(join(srcDir, fileName), 'utf8')
-//       const slug = slugify(release + '-' + artist) + '-press-release'
-//       const attachedPlaylist = allContentItems.find(item => item.attribution === artist)
+      const description = readFileSync(join(srcDir, fileName), 'utf8')
+      const slug = slugify(release + '-' + artist) + '-press-release'
+      const attachedPlaylist = allContentItems.find(item => item.attribution === artist)
 
-//       newItems.push(modelize({
-//         id: uuid(),
-//         title: release + ' Press Release',
-//         secondaryTitle: artist,
-//         attribution: 'Jason Grier',
-//         date,
-//         published: true,
-//         description,
-//         keyArt: slug + '.jpg',
-//         category: 'press-releases',
-//         attachments: attachedPlaylist ? attachedPlaylist.id : '',
-//         slug,
-//       } as Partial<IContentItem>))
-//     }
-//   }
+      newItems.push(modelize({
+        id: uuid(),
+        title: release + ' Press Release',
+        secondaryTitle: artist,
+        attribution: 'Jason Grier',
+        date,
+        published: true,
+        description,
+        keyArt: slug + '.jpg',
+        category: 'press-releases',
+        attachments: attachedPlaylist ? attachedPlaylist.id : '',
+        slug,
+      } as Partial<IContentItem>))
+    }
+  }
 
-//   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
-//   const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
+  const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
+  const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
 
-//   // ***** DANGER ZONE *****
-//   // ***** DANGER ZONE *****
-//   // ***** DANGER ZONE *****
+  // ***** DANGER ZONE *****
+  // ***** DANGER ZONE *****
+  // ***** DANGER ZONE *****
 
-//   writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
-//   writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
-// }
+  writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
+  writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
+}
 
 async function migrate(allContentItems: IContentItem[]) {
   const { remote } = window.require('electron')

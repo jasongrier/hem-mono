@@ -10,7 +10,7 @@ function NotFound(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
       <div className="page page-not-found">
-        <h1>Uh oh...</h1>
+        <h1>Uh oh&hellip;</h1>
         <p>We couldn't find what you're looking for.</p>
       </div>
     </>

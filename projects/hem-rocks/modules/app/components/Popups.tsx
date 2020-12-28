@@ -12,8 +12,6 @@ interface IProps {
 }
 
 function Popups({ currentContentItem }: IProps): ReactElement {
-  const dispatch = useDispatch()
-
   const { pathname } = useLocation()
 
   return (
