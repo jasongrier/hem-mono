@@ -45,7 +45,7 @@ function createPoem(author: string, title: string, date: string, publishDate: st
 const MORI_POEM_LONG_TITLE = 'After Watching <i>Westworld</i>, the Left Side of My Body Malfunctions'
 
 const poems = [
-  createPoem('Jos Charles',                 'and',                                '01/26/2021', '01/27/2021', true,   'New'),
+  createPoem('Jos Charles',                 'and',                                '01/26/2021', '11/23/2020', true,   'New'),
   createPoem('Imani Elizabeth Jackson',     'And went to plant',                  '01/26/2021', '12/24/2020', true,   'New'),
   createPoem('Dan Beachy-Quick',            'Mnemosyne in Tatters',               '01/26/2021', '11/24/2020', true,   'New'),
   createPoem('Rosebud Ben-Oni',           'Poet Wrestling with the Dead Stars We Are {:: made from ::}',                  '01/26/2021', '12/24/2020', true,   'New'),
