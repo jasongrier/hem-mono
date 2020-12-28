@@ -170,6 +170,65 @@ async function createItemsFromFiles(allContentItems: IContentItem[]) {
   writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
 }
 
+function createItemsFromArray(allContentItems: IContentItem[]) {
+  const { remote } = window.require('electron')
+  const { execSync } = remote.require('child_process')
+  const { existsSync, writeFileSync, readdirSync, readFileSync, renameSync, lstatSync, copyFileSync, constants: fsConstants, unlinkSync } = remote.require('fs')
+  const { join, extname } = remote.require('path')
+  const getMP3Duration = require('get-mp3-duration')
+  const pdfParse = require('pdf-parse')
+
+  const newItems: IContentItem[] = []
+
+  for (const oldItem of allContentItems) {
+    const newItem = Object.assign({}, oldItem)
+    newItems.push(newItem)
+  }
+
+  const audioFilenames: string[] = [
+    'line-goettsche-omonia-aristokrat.mp3',
+    'line-goettsche-omonia-armor-girls.mp3',
+    'line-goettsche-omonia-nacre-seashell.mp3',
+    'line-goettsche-omonia-opal-aglow.mp3',
+    'line-goettsche-omonia-rome.mp3',
+  ]
+
+  for (const audioFilename of audioFilenames) {
+    // @ts-ignore
+    const title = titleCase(audioFilename.split('-omonia-').pop().replace('.mp3', ''))
+    const buff = readFileSync('/Users/jason/Desktop/Workingkong/HEM/Website/hem-static/hem-rocks/content/tracks/' + audioFilename)
+    const duration = moment(getMP3Duration(buff)).format('m:ss')
+    const createdItem = modelize({
+      id: uuid(),
+      tags: 'releases',
+      title,
+      attribution: 'Line Gøttsche',
+      secondaryAttribution: 'Omonia',
+      date: 'November 2016',
+      published: true,
+      keyArt: 'omonia.jpg',
+      category: 'tracks',
+      displayCategory: 'tracks',
+      slug: audioFilename.replace('.mp3', ''),
+      duration,
+      audioFilename,
+    } as Partial<IContentItem>)
+
+    newItems.push(createdItem)
+  }
+
+
+  const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
+  const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
+
+  // ***** DANGER ZONE *****
+  // ***** DANGER ZONE *****
+  // ***** DANGER ZONE *****
+
+  // writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
+  // writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
+}
+
 async function migrate(allContentItems: IContentItem[]) {
   const { remote } = window.require('electron')
   const { execSync } = remote.require('child_process')
@@ -226,6 +285,12 @@ function AdminManualTaskRunner(): ReactElement {
     }, [allContentItems],
   )
 
+  const createOnClick = useCallback(
+    function createOnClickFn() {
+      runTask(() => createItemsFromArray(allContentItems))
+    }, [allContentItems],
+  )
+
   const resetOnClick = useCallback(
     function resetOnClickFn() {
       setRunning(0)
@@ -258,6 +323,14 @@ function AdminManualTaskRunner(): ReactElement {
               onClick={chunkOnClick}
             >
               Generate data chunks
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onClick={createOnClick}
+            >
+              Create from array
             </a>
           </li>
         </ul>

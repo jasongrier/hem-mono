@@ -79,7 +79,7 @@ function MainContentBox({
         main-content-box
         main-content-box-date-${contentItem.date}
         ${className ? className : ''}
-        ${contentItem.badgeText ? 'has-badge' : ''}
+        ${(badgeText || contentItem.badgeText) ? 'has-badge' : ''}
         ${alignRight && index > 0 ? 'align-right' : ''}
       `}
       id={contentItem.slug}

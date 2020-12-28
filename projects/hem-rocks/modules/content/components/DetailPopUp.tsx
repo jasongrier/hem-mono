@@ -101,7 +101,7 @@ function DetailPopUp({
     setSaleId(uuid())
 
     setTimeout(() => {
-      let attachedTracks
+      let attachedTracks: ITrack[] = []
 
       if (hasCategory(contentItem, 'tracks')) {
         attachedTracks = [contentItemToTrack(contentItem)]
@@ -735,9 +735,9 @@ function DetailPopUp({
           </div>
         </div>
       </Scrollbars>
-      <div className="scroll-down-pointer">
+      {/* <div className="scroll-down-pointer">
         <ChevronButton onClick={noop} />
-      </div>
+      </div> */}
     </section>
   )
 }

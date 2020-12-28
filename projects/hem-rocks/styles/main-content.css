@@ -248,6 +248,11 @@
   border-bottom: 1px solid #ccc;
 }
 
+.main-content-box p i {
+  font-family: Didot;
+  color: #666;
+}
+
 .main-content-box a {
   color: inherit;
   text-decoration: none;
