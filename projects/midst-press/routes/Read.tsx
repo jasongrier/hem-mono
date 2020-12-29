@@ -2,7 +2,6 @@ import React, { ReactElement, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { Helmet } from 'react-helmet'
-import { sortBy, reverse } from 'lodash'
 import { ChevronButton } from '../../../lib/packages/hem-buttons'
 import { BASE_SITE_PAGE_TITLE } from '../config'
 import { RootState } from '../store'
@@ -38,12 +37,6 @@ function Read(): ReactElement {
     }
   }
 
-  let finalPoems = sortBy(poems, sortTerm)
-
-  if (sortOrder === 'ASC') {
-    finalPoems = reverse(finalPoems)
-  }
-
   return (
     <div className="table-of-contents">
       <Helmet>
@@ -77,36 +70,38 @@ function Read(): ReactElement {
               I hope that this year is better than the last, and I'm excited to welcome it in with the official launch of Midst. From now on, we'll be commissioning and publishing poems on a regular basis. You can check back here or sign up for our mailing list below if you want to keep posted!
             </p>
             <p>
-                A lot of people have asked when the software will be more widely available, when we'll be able to start accepting public submissions, etc.—I'm so grateful for the enthusiasm, and I promise these updates are coming as soon as possible! If you want to help us get there, we've also launched a <a href="http://www.patreon.com/midstpoetry">Patreon</a> page. 
-                </p>
-                <p>
-                  In the meantime: thank you for reading and sharing Midst. Hang in there, be gentle with yourself, and happy reading.
+              A lot of people have asked when the software will be more widely available, when we'll be able to start accepting public submissions, etc.—I'm so grateful for the enthusiasm, and I promise these updates are coming as soon as possible! If you want to help us get there, we've also launched a <a href="http://www.patreon.com/midstpoetry">Patreon</a> page.
             </p>
             <p>
-            🥳🥳🥳,
+              In the meantime: thank you for reading and sharing Midst. Hang in there, be gentle with yourself, and happy reading.
+            </p>
+            <p>
+              🥳🥳🥳,
             </p>
             <p>
               Annelyse<br />
               January 2021
             </p>
-            {/* <p> Dear friends,</p>
-            <p>
-              Welcome to the debut issue of Midst! I've been fascinated with this concept—a journal that would let you see exactly how each of its poems were written—for years, and am so excited for you to finally see the first examples of brand-new works-in-process from these extraordinarily brave poets.
-            </p>
-            <p>
-              Inside, you'll find prose poetry, hyper-sparse forms, imitations, poetry in Korean (with both its initial process <i>and</i> the process of its translation), and more. Some of these poems
-              are remarkably straightforward in their development, seeming to spill out all at once, intact; others
-              evolve through long, winding strings of text that beautifully showcase the interplay of "writing" and "editing".
-            </p>
-            <p>
-              Future issues will have even more great features, and I welcome your comments and suggestions—feel free to reach out to midsthq@gmail.com. This is just the beginning. You can subscribe to our newsletter below and follow us at <a href="http://www.twitter.com/midstpoetry">@midstpoetry</a>.
-            </p>
-            <p>
-              Happy reading!
-            </p>
-            <p>
-              Annelyse
-            </p> */}
+            {/*
+              <p> Dear friends,</p>
+              <p>
+                Welcome to the debut issue of Midst! I've been fascinated with this concept—a journal that would let you see exactly how each of its poems were written—for years, and am so excited for you to finally see the first examples of brand-new works-in-process from these extraordinarily brave poets.
+              </p>
+              <p>
+                Inside, you'll find prose poetry, hyper-sparse forms, imitations, poetry in Korean (with both its initial process <i>and</i> the process of its translation), and more. Some of these poems
+                are remarkably straightforward in their development, seeming to spill out all at once, intact; others
+                evolve through long, winding strings of text that beautifully showcase the interplay of "writing" and "editing".
+              </p>
+              <p>
+                Future issues will have even more great features, and I welcome your comments and suggestions—feel free to reach out to midsthq@gmail.com. This is just the beginning. You can subscribe to our newsletter below and follow us at <a href="http://www.twitter.com/midstpoetry">@midstpoetry</a>.
+              </p>
+              <p>
+                Happy reading!
+              </p>
+              <p>
+                Annelyse
+              </p>
+            */}
           </div>
         </div>
 
@@ -167,7 +162,7 @@ function Read(): ReactElement {
           </div>
         </div>
 
-        {finalPoems.map((poem: IPoem) => (
+        {poems.map((poem: IPoem) => (
           <Link key={poem.url}
             className={`
               poem-line
@@ -177,7 +172,7 @@ function Read(): ReactElement {
             to={`/poem/${poem.url}/`}
             onClick={() => dispatch(setMobileNavOpen(false))}
           >
-            { poem.badge && (
+            {poem.badge && (
               <div className="poem-badge">{ poem.badge }</div>
             )}
             <div className="poem-line__column poem-author">{poem.author}</div>

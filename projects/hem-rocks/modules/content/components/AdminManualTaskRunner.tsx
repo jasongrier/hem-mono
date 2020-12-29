@@ -67,9 +67,8 @@ function chunkData(allContentItems: IContentItem[]) {
       getContentItems(allContentItems: any) {
         const pressReleaseItems = allContentItems.filter((item: any) => hasCategory(item, 'press-releases'))
         const attachedPlaylists = compact(pressReleaseItems.map((item: IContentItem) => getContentItemById(allContentItems, item.attachments)))
-        const attachedTracks = flatten(attachedPlaylists.map((item: any) => getContentItemsFromRawList(allContentItems, item.attachments)))
 
-        this.contentItems = pressReleaseItems.concat(attachedPlaylists).concat(attachedTracks)
+        this.contentItems = pressReleaseItems.concat(attachedPlaylists)
       },
       contentItems: [] as IContentItem[],
     },
@@ -166,8 +165,8 @@ async function createItemsFromFiles(allContentItems: IContentItem[]) {
   // ***** DANGER ZONE *****
   // ***** DANGER ZONE *****
 
-  writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
-  writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
+  // writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
+  // writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
 }
 
 function createItemsFromArray(allContentItems: IContentItem[]) {

@@ -1,9 +1,9 @@
 import React, { ReactElement, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Helmet } from 'react-helmet'
-import { TrackPlayPauseButton } from '../../../../lib/modules/website-player'
+import { ITrack, TrackPlayPauseButton } from '../../../../lib/modules/website-player'
 import { SoundLibraryRefreshHeroine, HemRefreshHeroine, GrandPianoHeroine } from '../../components/heroines'
-import { MainContentList, getContentItemsFromRawList, contentItemToTrack } from '../../modules/content'
+import { MainContentList, getContentItemsFromRawList, contentItemToTrack, hasCategory } from '../../modules/content'
 import { ReleasePhase } from '../../components/layout'
 import { BASE_SITE_TITLE } from '../../config'
 import { RootState } from '../../index'
@@ -38,9 +38,18 @@ function Home(): ReactElement {
           ignoreSticky={true}
           >
           {(item) => {
-            const attachedTracks = getContentItemsFromRawList(contentItems, item.attachments).map(track =>
-              contentItemToTrack(track)
-            )
+            let attachedTracks: ITrack[]
+
+            if (hasCategory(item, 'tracks')) {
+              attachedTracks = [contentItemToTrack(item)]
+            }
+
+            else {
+              attachedTracks = getContentItemsFromRawList(contentItems, item.attachments)
+                .map(track =>
+                  contentItemToTrack(track)
+                )
+            }
 
             if (!attachedTracks || !attachedTracks.length) return <div />
 

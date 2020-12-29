@@ -45,7 +45,7 @@ function applyPaginationAndFiltering(state: IState) {
 
   // pageContentItems = pageContentItems.filter(item => !hasTag(item, 'releases'))
   // pageContentItems = pageContentItems.filter(item => !hasTag(item, 'player-playlist'))
-  // pageContentItems = pageContentItems.filter(item => !hasTag(item, 'done-for-now'))
+  pageContentItems = pageContentItems.filter(item => !hasTag(item, 'done-for-now'))
   // pageContentItems = pageContentItems.filter(item => !hasTag(item, 'delete-me'))
   // pageContentItems = pageContentItems.filter(item => isEmpty(item.attribution))
   // pageContentItems = pageContentItems.filter(item => !item.secondaryAttribution.includes('Heart Shaped Rock'))

@@ -29,7 +29,7 @@ function PressReleases(): ReactElement {
           category="press-releases"
           title="Press Releases"
           orderByOrder={true}
-          hideFilters={['Done For Now']}
+          hideFilters={['Done For Now', 'Has Multiple Artists']}
         >
           {(item) => {
             const attachedPlaylist = getContentItemById(allContentItems, item.attachments)

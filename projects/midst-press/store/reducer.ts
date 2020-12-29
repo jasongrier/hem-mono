@@ -1,4 +1,5 @@
 import { AnyAction } from 'redux'
+import { sortBy, reverse } from 'lodash'
 import produce from 'immer'
 // deliberately including newline between SET_PROCESS_NOTE_OPEN and IState
 // to satisfy linter grouping
@@ -14,7 +15,7 @@ import {
 import moment from 'moment'
 import { slugify } from 'voca'
 
-function createPoem(author: string, title: string, date: string, publishDate: string, highlighted: boolean, badge?, authorSecondaryFolder?: any) {
+function createPoem(author: string, title: string, date: string, publishDate: string, highlighted: boolean, badge?: string | null | undefined, authorSecondaryFolder?: any) {
   const authorId = author.toLowerCase().replace(/ /g, '-')
   const url = title.toLowerCase()
     .replace(/ /g, '-')
@@ -22,6 +23,10 @@ function createPoem(author: string, title: string, date: string, publishDate: st
     .replace('<i>', '')
     .replace('</i>', '')
     .replace('-:)', '')
+    .replace('{::', '')
+    .replace('::}', '')
+    .replace(/-$/, '')
+    .replace(/--/g, '-')
 
   return {
     author,
@@ -42,16 +47,28 @@ function createPoem(author: string, title: string, date: string, publishDate: st
   }
 }
 
+function sortPoems(draftState: IState) {
+  let finalPoems = Array.from(draftState.poems)
+
+  finalPoems = sortBy(poems, draftState.sortTerm)
+
+  if (draftState.sortOrder === 'DESC') {
+    finalPoems = reverse(finalPoems)
+  }
+
+  return finalPoems
+}
+
 const MORI_POEM_LONG_TITLE = 'After Watching <i>Westworld</i>, the Left Side of My Body Malfunctions'
 
 const poems = [
   createPoem('Jos Charles',                 'and',                                '01/26/2021', '11/23/2020', true,   'New'),
   createPoem('Imani Elizabeth Jackson',     'And went to plant',                  '01/26/2021', '12/24/2020', true,   'New'),
   createPoem('Dan Beachy-Quick',            'Mnemosyne in Tatters',               '01/26/2021', '11/24/2020', true,   'New'),
-  createPoem('Rosebud Ben-Oni',           'Poet Wrestling with the Dead Stars We Are {:: made from ::}',                  '01/26/2021', '12/24/2020', true,   'New'),
+  createPoem('Rosebud Ben-Oni',             'Poet Wrestling with the Dead Stars We Are {:: made from ::}',                      '01/26/2021', '12/24/2020', true,   'New'),
   createPoem('Gabrielle Bates',             'Ownership',                          '01/26/2021', '10/17/2020', true,   'New'),
   // createPoem('Sadie Dupuis',                'COME OVER MAKE MAC AND CHEESE :)',   '01/26/2021', '12/17/2020', true,   'New'),
-  // // createPoem('Annelyse Gelman',             'Pool',                               '01/05/2021', '12/17/2020', true,   'New'),
+  // createPoem('Annelyse Gelman',             'Pool',                               '01/05/2021', '12/17/2020', true,   'New'),
   createPoem('Anis Mojgani',                'Cuesta',                             '11/30/2019', '11/30/2019', false),
   createPoem('Eleanor Eli Moss',            'THE HAMMER',                         '11/06/2019', '11/06/2019', false),
   createPoem('Hedgie Choi',                 'I Get It, Phases',                   '10/17/2019', '10/17/2019', false),
@@ -106,6 +123,8 @@ const reducer = (
         else {
           draftState.sortOrder = 'DESC'
         }
+
+        draftState.poems = sortPoems(draftState)
       })
 
     case SET_MOBILE_NAV_OPEN:
@@ -115,7 +134,10 @@ const reducer = (
       return { ...state, processNoteOpen: payload }
 
     case SET_SORT_TERM:
-      return { ...state, sortTerm: payload }
+      return produce(state, draftState => {
+        draftState.sortTerm = payload
+        draftState.poems = sortPoems(draftState)
+      })
 
     default:
       return state
