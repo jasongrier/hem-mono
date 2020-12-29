@@ -28,7 +28,7 @@ export interface IPoem {
   author: string
   authorId: string
   authorSecondaryFolder: string
-  badge: string | null
+  badge: string | null | undefined
   data: IMidstFile | null
   date: Moment
   publishDate: Moment

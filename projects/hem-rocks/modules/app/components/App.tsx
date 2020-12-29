@@ -165,6 +165,13 @@ function App(): ReactElement {
     dispatch(requestReadChunk('curated-playlists'))
   }, [chunkLog])
 
+  useEffect(function getAllRemainingTracks() {
+    if (chunkLog.length < 1) return
+    if (chunkLog.includes('tracks')) return
+    if (!chunkLog.includes('curated-playlists')) return
+    dispatch(requestReadChunk('tracks'))
+  }, [chunkLog])
+
   useEffect(function setSitePlaylists() {
     if (!chunkLog.includes('curated-playlists')) return
 

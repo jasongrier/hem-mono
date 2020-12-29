@@ -1133,7 +1133,9 @@ body {
 }
 
 .ko-fi-logo-in-text,
-.patreon-logo-in-text {
+.patreon-logo-in-text,
+.twitter-logo-in-text,
+.instagram-logo-in-text {
   float: left;
   width: 30px;
   height: 30px;
@@ -1145,12 +1147,29 @@ body {
   background-size: cover;
 }
 
+.ko-fi-logo-in-text.sm,
+.patreon-logo-in-text.sm,
+.twitter-logo-in-text.sm,
+.instagram-logo-in-text.sm {
+  width: 20px;
+  height: 20px;
+  margin-left: 0;
+}
+
 .ko-fi-logo-in-text {
   background-image: url('./static/assets/ko-fi-logo.png');
 }
 
 .patreon-logo-in-text {
   background-image: url('./static/assets/patreon-logo.png');
+}
+
+.instagram-logo-in-text {
+  background-image: url('./static/assets/instagram-logo.png');
+}
+
+.twitter-logo-in-text {
+  background-image: url('./static/assets/twitter-logo.png');
 }
 
 .funding-page .emoji-heading {
