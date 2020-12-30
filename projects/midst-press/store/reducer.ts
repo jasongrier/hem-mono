@@ -62,11 +62,12 @@ function sortPoems(draftState: IState) {
 const MORI_POEM_LONG_TITLE = 'After Watching <i>Westworld</i>, the Left Side of My Body Malfunctions'
 
 const poems = [
-  createPoem('Jos Charles',                 'and',                                '01/26/2021', '11/23/2020', true,   'New'),
-  createPoem('Imani Elizabeth Jackson',     'And went to plant',                  '01/26/2021', '12/24/2020', true,   'New'),
-  createPoem('Dan Beachy-Quick',            'Mnemosyne in Tatters',               '01/26/2021', '11/24/2020', true,   'New'),
-  createPoem('Rosebud Ben-Oni',             'Poet Wrestling with the Dead Stars We Are {:: made from ::}',                      '01/26/2021', '12/24/2020', true,   'New'),
-  createPoem('Gabrielle Bates',             'Ownership',                          '01/26/2021', '10/17/2020', true,   'New'),
+  createPoem('Jos Charles',                 'and',                                '02/09/2021', '11/23/2020', true,   'New'),
+  createPoem('Imani Elizabeth Jackson',     'And went to plant',                  '02/09/2021', '12/24/2020', true,   'New'),
+  createPoem('Dan Beachy-Quick',            'Mnemosyne in Tatters',               '02/09/2021', '10/16/2020', true,   'New'),
+  createPoem('Rosebud Ben-Oni',             'Poet Wrestling with the Dead Stars We Are {:: made from ::}',                      '02/09/2021', '12/24/2020', true,   'New'),
+  createPoem('Gabrielle Bates',             'Ownership',                          '02/09/2021', '10/17/2020', true,   'New'),
+  createPoem('Zachary Schomburg',             'Flushing Michigan',                          '02/09/2021', '11/22/2020', true, 'New',  'zachary-schomburg-2'),
   // createPoem('Sadie Dupuis',                'COME OVER MAKE MAC AND CHEESE :)',   '01/26/2021', '12/17/2020', true,   'New'),
   // createPoem('Annelyse Gelman',             'Pool',                               '01/05/2021', '12/17/2020', true,   'New'),
   createPoem('Anis Mojgani',                'Cuesta',                             '11/30/2019', '11/30/2019', false),
