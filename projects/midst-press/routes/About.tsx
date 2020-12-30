@@ -42,22 +42,20 @@ function About(): ReactElement {
         <h2>Contact</h2>
 
         <p>👋: team@midst.press</p>
-
         <p>
+
           <a
             className="twitter-logo-in-text sm"
             href="http://twitter.com/midstpoetry"
           />
-          <a href="http://twitter.com/midstpoetry">Twitter</a>
-        </p>
-
-        <p>
+          <a href="http://twitter.com/midstpoetry"></a>
           <a
             className="instagram-logo-in-text sm"
             href="https://www.instagram.com/midstpoetry/"
           />
-          <a href="http://instagram.com/midstpoetry">Instagram</a>
-        </p>
+          <a href="http://instagram.com/midstpoetry"></a>
+          </p>
+        <br />
 
         <br />
 
