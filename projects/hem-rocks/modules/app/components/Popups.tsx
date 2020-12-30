@@ -24,6 +24,7 @@ function Popups({ currentContentItem }: IProps): ReactElement {
             contentItem={currentContentItem}
             filter={pathname.split('/')[3]}
             category={pathname.split('/')[1]}
+            showMegaBlurb={!pathname.includes('press-releases')}
           />
         </PopupContainer>
 

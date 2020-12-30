@@ -27,6 +27,7 @@ interface IProps {
   category: string
 
   showPurchaseForm?: boolean
+  showMegaBlurb?: boolean
 }
 
 function DetailPopUp({
@@ -35,6 +36,7 @@ function DetailPopUp({
   category,
 
   showPurchaseForm = true,
+  showMegaBlurb = true,
 }: IProps): ReactElement {
   if (!contentItem) return <div />
 
@@ -691,7 +693,7 @@ function DetailPopUp({
           {/* { showPurchaseForm && (
             <h2 className="main-subheading">Details</h2>
           )} */}
-          { contentItem.description.replace(/ /g, '').length > 0 && (
+          { contentItem.description.replace(/ /g, '').length > 0 && showMegaBlurb && (
             <div
               className="mega-blurb"
               dangerouslySetInnerHTML={{
