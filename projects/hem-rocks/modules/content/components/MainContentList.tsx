@@ -4,10 +4,11 @@ import { useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
 import Scrollbars from 'react-scrollbars-custom'
 import { slugify, titleCase } from 'voca'
-import { filter, isEmpty, map, find } from 'lodash'
+import { filter, isEmpty, map, find, isNaN } from 'lodash'
 import ReactGA from 'react-ga'
 import { get, uniq, flatten, compact, last, shuffle } from 'lodash'
 import moment from 'moment'
+import { parse } from 'qs'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup } from '../../../../../lib/modules/popups'
 import { replacePlaylist, setPlayerPlaylist, ITrack } from '../../../../../lib/modules/website-player'
@@ -17,6 +18,7 @@ import { RootState } from '../../../index'
 import { LISTS_HAVE_BLURBS, RELEASE_PHASE } from '../../../config'
 import { hasTag, hasCategory, contentItemToTrack, getContentItemsFromRawList, tagSpellingCorrections, getContentItemById } from '../functions'
 import { requestReadChunk } from '../actions'
+import { release } from 'os'
 
 interface IProps {
   category: string
@@ -117,6 +119,8 @@ function MainContentList({
   }))
 
   const dispatch = useDispatch()
+
+  const location = useLocation()
 
   const [finalContentItems, setFinalContentItems] = useState<IContentItem[]>([])
   const [finalFilters, setFinalFilters] = useState<string[]>([])
@@ -278,6 +282,25 @@ function MainContentList({
 
     if (!ignoreSticky) {
       contentItems = stickyContentItems.concat(contentItems)
+    }
+
+    const params = parse(location.search)
+    const releasePhase = params['?releasePhase']
+      ? parseInt(params['?releasePhase'] as string, 10)
+      :  RELEASE_PHASE
+
+    if (releasePhase > 0) {
+      contentItems = contentItems.filter(item => {
+        const itemReleasePhase = parseInt(item.releasePhase, 10)
+
+        if (!isNaN(itemReleasePhase)) {
+           return itemReleasePhase <= releasePhase
+        }
+
+        else {
+          return false
+        }
+      })
     }
 
     setFinalContentItems(contentItems)
