@@ -237,7 +237,11 @@ async function migrate(allContentItems: IContentItem[]) {
 
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
-    newItem.releasePhase = '1'
+
+    if (newItem.attribution.includes('Ariel')) {
+      newItem.published = false
+    }
+
     newItems.push(newItem)
   }
 

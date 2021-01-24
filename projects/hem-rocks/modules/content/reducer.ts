@@ -28,9 +28,9 @@ import {
 import { applyPaginationAndFiltering, getContentItemById } from './functions'
 
 const initialState: IState = {
-  adminFilterApplied: 'tracks',
-  adminSearchableField: 'attribution',
-  adminSearchApplied: '',
+  adminFilterApplied: 'all',
+  adminSearchableField: 'description',
+  adminSearchApplied: 'Ariel',
   adminSearchExact: false,
   chunkLog: [],
   contentItems: [],
