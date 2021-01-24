@@ -237,22 +237,7 @@ async function migrate(allContentItems: IContentItem[]) {
 
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
-
-    for (const key of Object.keys(newItem)) {
-      // @ts-ignore
-      if (!newItem[key].includes) continue
-
-      if (
-        // @ts-ignore
-        newItem[key].includes('Ariel Pink')
-        // @ts-ignore
-        || newItem[key].includes('John Maus')
-      ) {
-        // @ts-ignore
-        console.log(key, newItem[key])
-      }
-    }
-
+    newItem.releasePhase = '1'
     newItems.push(newItem)
   }
 
@@ -263,8 +248,8 @@ async function migrate(allContentItems: IContentItem[]) {
   // ***** DANGER ZONE *****
   // ***** DANGER ZONE *****
 
-  // writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
-  // writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
+  writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
+  writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
 }
 
 function AdminManualTaskRunner(): ReactElement {
