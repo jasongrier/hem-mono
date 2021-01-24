@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 import produce from 'immer'
 import { isEmpty, noop, find, filter } from 'lodash'
-import { slugify, titleCase } from 'voca'
+import { slugify, titleCase, tr } from 'voca'
 import moment from 'moment'
 import { ElectronOnly } from '../../../../../lib/components'
 import { PlayPauseButton } from '../../../../../lib/packages/hem-buttons'
@@ -442,18 +442,35 @@ function AdminList(): ReactElement {
                     className="action-button"
                     onClick={() => {
                       const updatedItem: IContentItem = produce(item, (draftItem) => {
-                        if (hasTag(item, 'not-playable')) {
-                          item.tags = item.tags + ', not-playable'
+                        if (!hasTag(draftItem, 'not-playable')) {
+                          draftItem.tags = draftItem.tags + ', not-playable'
                         }
 
                         else {
-                          item.tags = item.tags.replace('not-playable', '')
+                          draftItem.tags = draftItem.tags.replace('not-playable', '')
                         }
                       })
                       dispatch(requestUpdateItems([updatedItem]))
                     }}
                   >
-                    { hasTag(item, 'not-playable') ? 'x Playable' : 'Playable'}
+                    { hasTag(item, 'not-playable') ? 'Not Playable' : 'Playable'}
+                  </button>
+                  <button
+                    className="action-button"
+                    onClick={() => {
+                      const updatedItem: IContentItem = produce(item, (draftItem) => {
+                        if (draftItem.published) {
+                          draftItem.published = false
+                        }
+
+                        else {
+                          draftItem.published = true
+                        }
+                      })
+                      dispatch(requestUpdateItems([updatedItem]))
+                    }}
+                  >
+                    { item.published ? 'Unpublish' : 'Publish'}
                   </button>
                 </td>
               </tr>
