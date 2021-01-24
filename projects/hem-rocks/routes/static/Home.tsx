@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import { ITrack, TrackPlayPauseButton } from '../../../../lib/modules/website-player'
 import { SoundLibraryRefreshHeroine, HemRefreshHeroine, GrandPianoHeroine } from '../../components/heroines'
-import { MainContentList, getContentItemsFromRawList, contentItemToTrack, hasCategory } from '../../modules/content'
+import { MainContentList, getContentItemsFromRawList, contentItemToTrack, hasCategory, getContentItemBySlug } from '../../modules/content'
 import { ReleasePhase } from '../../components/layout'
 import { BASE_SITE_TITLE } from '../../config'
 import { RootState } from '../../index'
@@ -21,12 +21,7 @@ function Home(): ReactElement {
       </Helmet>
       <div className="page page-home">
         <div className="main-heroine">
-          <ReleasePhase exact phase={1}>
-            <HemRefreshHeroine />
-          </ReleasePhase>
-          <ReleasePhase phase={2}>
-            <GrandPianoHeroine />
-          </ReleasePhase>
+          <HemRefreshHeroine contentItem={getContentItemBySlug(contentItems, 'home-heroine-january-2021')} />
         </div>
         <MainContentList
           category="home-features"

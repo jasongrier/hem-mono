@@ -2,13 +2,13 @@ import React, { ReactElement, useState, SyntheticEvent, useEffect, useCallback }
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation } from 'react-router'
 import produce from 'immer'
-import { isEmpty, isEqual, startCase, find } from 'lodash'
+import { isEmpty, isEqual, startCase, find, map, filter } from 'lodash'
 // @ts-ignore
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { slugify } from 'voca'
 import { ElectronOnly, ZoomTextarea } from '../../../../../lib/components'
 import { assetHostHostname } from '../../../functions'
-import { IContentItem, fieldTypes, hasTag, modelize, requestCreateItems, requestDeleteItems, requestUpdateItems, hasCategory } from '../index'
+import { IContentItem, requestReadChunk, fieldTypes, hasTag, modelize, requestCreateItems, requestDeleteItems, requestUpdateItems, hasCategory } from '../index'
 import { RootState } from '../../../index'
 import { BERLIN_STOCK_PHOTOS } from '../../../config'
 import uuid from 'uuid'
@@ -16,7 +16,8 @@ import uuid from 'uuid'
 interface IProps { }
 
 function AdminItemOrdering({ }: IProps): ReactElement {
-  const { allContentItems } = useSelector((state: RootState) => ({
+  const { allContentItems, chunkLog } = useSelector((state: RootState) => ({
+    chunkLog: state.content.chunkLog,
     allContentItems: state.content.contentItems,
   }))
 
@@ -26,20 +27,27 @@ function AdminItemOrdering({ }: IProps): ReactElement {
   const [canSave, setCanSave] = useState<boolean>(false)
 
   useEffect(function init() {
+    dispatch(requestReadChunk('tracks'))
+  }, [])
+
+  useEffect(function setContent() {
+    if (!allContentItems.length) return
+
     let sortSet = Array.from(allContentItems)
 
     sortSet = sortSet.filter(item => (
-      hasCategory(item, 'playlists')
-      && hasTag(item, 'featured')
-      && item.published
+      hasTag(item, 'rare')
+      && item.sticky
     ))
 
     sortSet.sort(
       (a: IContentItem, b: IContentItem) => parseInt(a.order, 10) - parseInt(b.order, 10)
     )
 
+    console.log(filter(map(allContentItems, 'attribution')))
+
     setFinalItems(sortSet)
-  }, [])
+  }, [allContentItems])
 
   function onDragEnd(res: any) {
     if (!res.source) return

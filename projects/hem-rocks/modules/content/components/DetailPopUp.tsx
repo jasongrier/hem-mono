@@ -16,6 +16,7 @@ import { addProductToCart, submitSale } from '../../cart'
 import { IContentItem, getContentItemsFromRawList, getContentItemById } from '../index'
 import { assetHostHostname } from '../../../functions'
 import { BvgWatermark } from '../../../components/berlin-stock-photos'
+import ContentComponents from '../../../components/content'
 import { RootState } from '../../../index'
 import { BERLIN_STOCK_PHOTOS, MINIMUM_PRICE_FOR_RAW } from '../../../config'
 import { hasTag, contentItemToTrack, hasCategory, tagSpellingCorrections } from '../functions'
@@ -112,6 +113,7 @@ function DetailPopUp({
       else if (
         hasCategory(contentItem, 'label')
         || hasCategory(contentItem, 'press-releases')
+        || hasCategory(contentItem, 'articles')
       ) {
         const attachedPlaylistItem = getContentItemById(allContentItems, contentItem.attachments)
 
@@ -701,12 +703,17 @@ function DetailPopUp({
               }}
             />
           )}
-          <div
-            className="detail-cms-text"
-            dangerouslySetInnerHTML={{
-            __html: marked(contentItem.description.replace(/ /g, '').length === 0 ?  contentItem.blurb : contentItem.description),
-            }}
-          />
+          { hasTag(contentItem, 'component-content') && (
+            React.createElement(ContentComponents[contentItem.description])
+          )}
+          { !hasTag(contentItem, 'component-content') && (
+            <div
+              className="detail-cms-text"
+              dangerouslySetInnerHTML={{
+                __html: marked(contentItem.description.replace(/ /g, '').length === 0 ?  contentItem.blurb : contentItem.description),
+              }}
+            />
+          )}
           <div className="detail-popup-details-sidebar">
             { attachedPlaylist && attachedPlaylist.tracks && attachedPlaylist.tracks.length > 1 && (
               <div className="detail-popup-details-sidebar-section">

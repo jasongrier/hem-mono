@@ -1,4 +1,5 @@
 export { default as AboutSubnav } from './AboutSubnav'
+export { default as Deva } from './Deva'
 export { default as LabelSubnav } from './LabelSubnav'
 export { default as Logo } from './Logo'
 export { default as MainNavItem } from './MainNavItem'

@@ -43,6 +43,7 @@ function applyPaginationAndFiltering(state: IState) {
     pageContentItems = pageContentItems.filter(item => item.sticky)
   }
 
+  // pageContentItems = pageContentItems.filter(item => hasTag(item, 'rare') && item.sticky)
   // pageContentItems = pageContentItems.filter(item => !hasTag(item, 'releases'))
   // pageContentItems = pageContentItems.filter(item => !hasTag(item, 'player-playlist'))
   // pageContentItems = pageContentItems.filter(item => !hasTag(item, 'done-for-now'))
