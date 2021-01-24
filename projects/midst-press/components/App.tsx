@@ -1,8 +1,9 @@
-import React, { ReactElement, useEffect } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
 import { Switch, Route, Link, NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 //@ts-ignore
 import smoothscroll from 'smoothscroll-polyfill'
+import useWindowSize from '@rooks/use-window-size'
 import { Hide } from '../../../lib/components'
 import CampaignMonitorForm from '../components/CampaignMonitorForm'
 import Shapes from '../components/Shapes'
@@ -35,10 +36,18 @@ function App(): ReactElement {
 
   const dispatch = useDispatch()
 
+  const { innerWidth } = useWindowSize()
+
+  const [windowSizeWarningDismissed, setWindowSizeWarningDismissed] = useState<boolean>(false)
+
   function handleEsc(evt: any) {
     if (evt.keyCode === 27) {
       dispatch(setMobileNavOpen(false))
     }
+  }
+
+  function dismissWindowSizeWarning() {
+    setWindowSizeWarningDismissed(true)
   }
 
   useEffect(() => {
@@ -125,6 +134,17 @@ function App(): ReactElement {
           </>
         </Hide>
       </footer>
+
+      {windowSizeWarningDismissed === false && innerWidth && innerWidth < 600 && (
+        <div className="window-size-popup">
+          <h2>Hi there!</h2>
+          <p>It looks like you might be viewing this site on a screen for which Midst is unfortunately not optimised.</p>
+          <p>Consider coming back with a larger device.</p>
+          <p>
+            Or click <a href="#" onClick={dismissWindowSizeWarning}>here</a> to continue.
+          </p>
+        </div>
+      )}
     </div>
   )
 }
