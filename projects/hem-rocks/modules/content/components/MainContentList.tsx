@@ -50,6 +50,7 @@ interface IProps {
   onlyTag?: string
   onFiltersChanged?: () => void
   orderByOrder?: boolean
+  orderByTitle?: boolean
   randomizeNonSticky?: boolean
   hideIfNoAttachments?: boolean
   showCategoryOnContentBoxes?: boolean
@@ -94,6 +95,7 @@ function MainContentList({
   noSplatter,
   onlyTag,
   orderByOrder,
+  orderByTitle,
   randomizeNonSticky,
   hideIfNoAttachments = false,
   showCategoryOnContentBoxes = false,
@@ -275,6 +277,11 @@ function MainContentList({
       contentItems.sort(orderSortFn)
     }
 
+    else if (orderByTitle) {
+      stickyContentItems.sort(titleSortFn)
+      contentItems.sort(titleSortFn)
+    }
+
     else {
       stickyContentItems.sort(dateSortFn)
       contentItems.sort(dateSortFn)
@@ -368,6 +375,12 @@ function MainContentList({
 
   function orderSortFn(a: IContentItem, b: IContentItem) {
     return parseInt(a.order, 10) - parseInt(b.order, 10)
+  }
+
+  function titleSortFn(a: IContentItem, b: IContentItem) {
+    if(a.title < b.title) { return -1 }
+    if(a.title > b.title) { return 1 }
+    return 0
   }
 
   let boxTemplateIndex = -1

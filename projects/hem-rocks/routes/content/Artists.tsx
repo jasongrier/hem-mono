@@ -36,6 +36,7 @@ function Artists(): ReactElement {
           boxMarginRangeX={0}
           boxMarginRangeY={80}
           boxRenderActionsOn="key-art"
+          orderByTitle={true}
         >
           {item => {
             const attachedTracks = getContentItemsFromRawList(allContentItems, item.attachments).map(track =>
