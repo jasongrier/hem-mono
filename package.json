@@ -16,6 +16,7 @@
   "license": "WTFPL",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.1",
+    "@rooks/use-window-size": "^4.6.1",
     "@types/body-scroll-lock": "^2.6.1",
     "@types/jquery": "^3.3.38",
     "@types/js-cookie": "^2.2.6",
