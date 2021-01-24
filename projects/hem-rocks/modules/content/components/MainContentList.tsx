@@ -331,19 +331,6 @@ function MainContentList({
     })
   }, [currentFilter, storeContentItems, currentlyOpenPopUp])
 
-  const onFilterClick = useCallback(() => {
-    // const body = document.querySelector('.scroll-lock-content')
-    // const filterBox = document.querySelector('.main-content-filters')
-
-    // if (body) {
-    //   body.scrollIntoView(true)
-    // }
-
-    // if (filterBox) {
-    //   filterBox.scrollIntoView(true)
-    // }
-  }, [])
-
   useEffect(function onFilterChanged() {
     ReactGA.event({
       category: 'User',
@@ -390,23 +377,6 @@ function MainContentList({
             { blurb() }
           </div>
       )}
-      {/* <div
-        hidden
-        className={`
-          main-content-highlights clearfix
-          ${highlights ? 'has-highlights' : ''}
-        `}
-      >
-        { highlights && (
-          highlights.map(highlight => (
-            <div
-              className="main-content-highlight"
-              dangerouslySetInnerHTML={{__html: '– ' + highlight}}
-              key={highlight}
-            />
-          ))
-        )}
-      </div> */}
       { hasFilters && finalFilters.length > 1 && (
         <div className="main-content-filters clearfix">
           <div className="main-content-filters-inner">
@@ -424,10 +394,7 @@ function MainContentList({
                     : `/${category}${tag !== 'All' ? '/filter/' + slugify(tag) : ''}`
                 }
               >
-                <span
-                  onClick={onFilterClick}
-                  dangerouslySetInnerHTML={{ __html: tagSpellingCorrections(tag).replace(/ /g, '&nbsp;') }}
-                />
+                <span dangerouslySetInnerHTML={{ __html: tagSpellingCorrections(tag).replace(/ /g, '&nbsp;') }} />
               </Link>
             ))}
             { moreTagsLink && (

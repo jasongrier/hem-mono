@@ -28,8 +28,8 @@ import {
 import { applyPaginationAndFiltering, getContentItemById } from './functions'
 
 const initialState: IState = {
-  adminFilterApplied: 'press-releases',
-  adminSearchableField: 'title',
+  adminFilterApplied: 'tracks',
+  adminSearchableField: 'attribution',
   adminSearchApplied: '',
   adminSearchExact: false,
   chunkLog: [],

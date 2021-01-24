@@ -185,35 +185,25 @@ function createItemsFromArray(allContentItems: IContentItem[]) {
   }
 
   const audioFilenames: string[] = [
-    'all-alone-in-endicott-gary-wilson.mp3',
-    'as-i-walk-into-the-night-gary-wilson.mp3',
-    'come-on-mary-gary-wilson.mp3',
-    'dance-with-linda-tonight-gary-wilson.mp3',
-    'feel-the-breeze-gary-wilson.mp3',
-    'i-still-think-about-cathy-gary-wilson.mp3',
-    'lisa-wants-to-talk-to-you-gary-wilson.mp3',
-    'mary-won-t-you-dance-for-me-gary-wilson.mp3',
-    'molly-had-a-secret-gary-wilson.mp3',
-    'run-through-the-woods-gary-wilson.mp3',
-    'sandy-gary-wilson.mp3',
-    'you-are-still-my-girlfriend-gary-wilson.mp3',
-    'your-dream-is-not-my-scene-gary-wilson.mp3',
+    'first-bird-line-goettsche.mp3',
+    'june-line-goettsche.mp3',
+    'september-line-goettsche.mp3',
   ]
 
   for (const audioFilename of audioFilenames) {
     // @ts-ignore
-    const title = titleCase(audioFilename.split('-gary-wilson-').pop().replace('.mp3', '').replace(/-/g, ''))
+    const title = titleCase(audioFilename.split('-line-goettsche')[0].replace(/-/g, ' '))
     const buff = readFileSync('/Users/jason/Desktop/Workingkong/HEM/Website/hem-static/hem-rocks/content/tracks/' + audioFilename)
     const duration = moment(getMP3Duration(buff)).format('m:ss')
     const createdItem = modelize({
       id: uuid(),
-      tags: 'releases',
+      tags: 'rare, featured',
       title,
-      attribution: 'Gary Wilson',
-      secondaryAttribution: 'Lisa Wants to Talk to You',
-      date: 'November 2008',
+      attribution: 'Line Gøttsche',
+      secondaryAttribution: '',
+      date: 'February 2021',
       published: true,
-      keyArt: 'lisa-wants-to-talk-to-you.jpg',
+      keyArt: 'line-goettsche.jpg',
       category: 'tracks',
       displayCategory: 'Tracks',
       slug: audioFilename.replace('.mp3', ''),
@@ -222,8 +212,6 @@ function createItemsFromArray(allContentItems: IContentItem[]) {
     } as Partial<IContentItem>)
 
     newItems.push(createdItem)
-
-    console.log(createdItem.id)
   }
 
   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
@@ -233,8 +221,8 @@ function createItemsFromArray(allContentItems: IContentItem[]) {
   // ***** DANGER ZONE *****
   // ***** DANGER ZONE *****
 
-  writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
-  writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
+  // writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
+  // writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
 }
 
 async function migrate(allContentItems: IContentItem[]) {
@@ -250,8 +238,19 @@ async function migrate(allContentItems: IContentItem[]) {
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
 
-    if (hasCategory(newItem, 'press-releases')) {
-      newItem.attachments = ''
+    for (const key of Object.keys(newItem)) {
+      // @ts-ignore
+      if (!newItem[key].includes) continue
+
+      if (
+        // @ts-ignore
+        newItem[key].includes('Ariel Pink')
+        // @ts-ignore
+        || newItem[key].includes('John Maus')
+      ) {
+        // @ts-ignore
+        console.log(key, newItem[key])
+      }
     }
 
     newItems.push(newItem)
