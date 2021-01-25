@@ -10,4 +10,4 @@
 | [projects/midst-press/store/types.ts](projects/midst-press/store/types.ts#L5) | 5 | How to get around putting this in every project??
 | [projects/midst-press/store/types.ts](projects/midst-press/store/types.ts#L8) | 8 | Move Midst types to common
 | [projects/midst-press/store/types.ts](projects/midst-press/store/types.ts#L15) | 15 | Move Midst types to common
-| [projects/midst-press/index.css](projects/midst-press/index.css#L1043) | 1043 | Does Redux even render these class names any more?
+| [projects/midst-press/index.css](projects/midst-press/index.css#L1056) | 1056 | Does Redux even render these class names any more?
