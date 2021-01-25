@@ -454,7 +454,7 @@ function MainContentList({
                 showCategoryOnContentBoxes
                   ?
                     <Link to={`${slugify(contentItem.displayCategory || contentItem.category)}/`}>
-                      {titleCase(contentItem.displayCategory || contentItem.category)}
+                      {titleCase(contentItem.displayCategory || contentItem.category).replace(/-/g, ' ')}
                     </Link>
                   : undefined
               }

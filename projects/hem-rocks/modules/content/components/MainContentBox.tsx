@@ -6,7 +6,7 @@ import { EnlargeButton } from '../../../../../lib/packages/hem-buttons'
 import { SplatterDims } from '../../../../../lib/packages/hem-boxplatter'
 import { assetHostHostname } from '../../../functions'
 import { BERLIN_STOCK_PHOTOS } from '../../../config'
-import { IContentItem, setCurrentItem, MainContentBoxActions } from '../index'
+import { IContentItem, setCurrentItem, MainContentBoxActions, hasCategory } from '../index'
 
 interface IProps {
   contentItem: IContentItem
@@ -97,7 +97,7 @@ function MainContentBox({
       )}
       <Link to={linkTo}>
         <h3 dangerouslySetInnerHTML={{ __html: contentItem.titleWrapping || contentItem.title }} />
-        { contentItem[secondaryTitleField] && (
+        {contentItem[secondaryTitleField] && (
           <h4 dangerouslySetInnerHTML={{ __html: contentItem[secondaryTitleField] }} />
         )}
       </Link>

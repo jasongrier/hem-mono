@@ -26,12 +26,13 @@ function Home(): ReactElement {
         <MainContentList
           category="home-features"
           playlistToSet={0}
+          boxSecondaryTitleField="attribution"
           showCategoryOnContentBoxes={true}
           noFilters={true}
           linkTo={(contentItem) => `home/${contentItem.slug}`}
           orderByOrder={true}
           ignoreSticky={true}
-          >
+        >
           {(item) => {
             let attachedTracks: ITrack[]
 

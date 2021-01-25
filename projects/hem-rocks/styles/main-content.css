@@ -387,18 +387,22 @@
   line-height: 45px;
   margin: 0 0 20px 15px;
   padding-right: 15px;
-  font-size: 64px;
+  font-size: 60px;
   font-weight: 100;
   text-transform: uppercase;
   hyphens: manual;
 }
 
 .main-content-box.has-badge h3 {
-  margin: 40px 0 10px 15px;
+  margin: 14px 0 5px 15px;
 }
 
 .main-content-box h4 {
+  font-family: Avenir, sans-serif;
+  font-size: 24px;
   hyphens: manual;
+  font-weight: 100;
+  margin: 5px 0 10px 0;
 }
 
 .main-content-box p {
