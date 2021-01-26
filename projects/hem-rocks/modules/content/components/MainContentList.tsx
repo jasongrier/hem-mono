@@ -66,6 +66,9 @@ interface IProps {
   setDefaultEmptyPlaylist?: boolean
   ignoreSticky?: boolean
   playlistToSet?: number
+  randomizeTags?: string[]
+  limitTags?: string[]
+  tagLimit?: number
 }
 
 function MainContentList({
@@ -112,6 +115,9 @@ function MainContentList({
   setDefaultEmptyPlaylist = true,
   ignoreSticky = false,
   playlistToSet = 5,
+  randomizeTags,
+  limitTags,
+  tagLimit = 9,
 }: IProps): ReactElement {
   const { chunkLog, storeContentItems, currentlyOpenPopUp, playlists } = useSelector((state: RootState) => ({
     chunkLog: state.content.chunkLog,
@@ -308,6 +314,14 @@ function MainContentList({
           return false
         }
       })
+    }
+
+    if (randomizeTags?.length && randomizeTags.includes(currentFilter)) {
+      contentItems = shuffle(contentItems)
+    }
+
+    if (limitTags?.length && limitTags.includes(currentFilter)) {
+      contentItems = contentItems.slice(0, tagLimit)
     }
 
     setFinalContentItems(contentItems)
