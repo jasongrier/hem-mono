@@ -34,13 +34,15 @@ function Tracks(): ReactElement {
           boxSecondaryTitleField="attribution"
           boxWidth={120}
           boxBlurbs={false}
-          speciallyOrderedTags={['Featured', 'Rare', 'Live']}
+          speciallyOrderedTags={['Featured', 'New', 'Rare', 'Live']}
           shouldSetCurrentPlaylist={true}
           boxMinMarginX={0}
           boxMinMarginY={0}
           boxMarginRangeX={0}
           boxMarginRangeY={80}
           boxRenderActionsOn="key-art"
+          randomizeTags={['featured']}
+          limitTags={['featured']}
         >
           {item => {
             if (hasCategory(item, 'tracks')) {

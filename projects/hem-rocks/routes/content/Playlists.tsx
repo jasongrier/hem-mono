@@ -36,6 +36,7 @@ function Playlists(): ReactElement {
           boxWidth={120}
           boxBlurbs={false}
           hideIfNoAttachments={true}
+          speciallyOrderedTags={['Featured', 'New', 'Rare', 'Live']}
           boxMinMarginX={0}
           boxMinMarginY={0}
           boxMarginRangeX={0}
