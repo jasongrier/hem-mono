@@ -51,7 +51,8 @@ function build(projectName, devSession = false, developerBuild = false, pug = fa
   }
 
   else {
-    execSync(`${developerBuild ? 'NODE_ENV=development ' : ''}parcel build projects/${projectName}/index.html --no-minify '.'`, { stdio: 'inherit' })
+    // execSync(`${developerBuild ? 'NODE_ENV=development ' : ''}parcel build projects/${projectName}/index.html --no-minify '.'`, { stdio: 'inherit' })
+    execSync(`rm -rf .cache && ${developerBuild ? 'NODE_ENV=development ' : ''}parcel build projects/${projectName}/index.html '.'`, { stdio: 'inherit' })
   }
 
   runPostBuildTasks(projectName, devSession, true)
