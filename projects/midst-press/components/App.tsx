@@ -136,13 +136,13 @@ function App(): ReactElement {
       </footer>
 
       {windowSizeWarningDismissed === false && innerWidth && innerWidth < 600 && (
-        <div className="window-size-popup">
+        <div
+          className="window-size-popup"
+          onClick={dismissWindowSizeWarning}
+        >
           <h2>Hi there!</h2>
           <p>It looks like you might be viewing this site on a screen for which Midst is unfortunately not optimised.</p>
           <p>Consider coming back with a larger device.</p>
-          <p>
-            Or click <a href="#" onClick={dismissWindowSizeWarning}>here</a> to continue.
-          </p>
         </div>
       )}
     </div>

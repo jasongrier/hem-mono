@@ -727,14 +727,14 @@ body {
 }
 
 .window-size-popup h2 {
-  margin-top: 100px;
+  margin-top: 60px;
   font-size: 60px;
 }
 
 .window-size-popup p {
   margin-top: 30px;
-  font-size: 30px;
-  line-height: 40px;
+  font-size: 20px;
+  line-height: 30px;
 }
 
 .home-page {
