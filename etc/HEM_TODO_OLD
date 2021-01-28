@@ -1,26 +1,7 @@
-******************************************************
-******************************************************
-******************************************************
 
-GRIER LAND
-
-– Script to automatically post to the gram every day
+– Script to automatically post to IG every day
 - Favicon and mobile icons
 
-******************************************************
-******************************************************
-******************************************************
-
-BRETO LAND
-
-– Make the tooling stop when the Electron app is closed
-√ Close the Electron app when the tooling is stopped
-– Hoist content module out of rocks mini for use in other projects
-– Basic set a marker and annotate it functionality
-– Annotations module should be separate from app module
-– Read markers from live
-– Reconcile markers. This will be a reconciliation UI similar to diff in VSCode
-– Make electron main window configurable from within the project
 
 ******************************************************
 ******************************************************
@@ -43,11 +24,8 @@ Sound Libraries as Artworks
 
 - Scatter flyers, live photos and stuff along timeline
 
-Review mode allows viewing of unpublished content which has the "reviewable" attribute
 
-√ Stop building individual JSON files
 
-- Rename index.json to content.json
 
 √ Exclude unpublished content from the content.json unless in dev mode
 
