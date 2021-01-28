@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback } from 'react'
+import React, { ReactElement, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
 import { NavLink } from 'react-router-dom'
@@ -13,6 +13,8 @@ function TopBar(): ReactElement {
   }))
 
   const { pathname } = useLocation()
+
+  const [programOpen, setProgramOpen] = useState<boolean>(false)
 
   const noCartPaths = [
     '/admin/create',
@@ -39,9 +41,47 @@ function TopBar(): ReactElement {
               <MainNavItem name="Sound Library" />
               <MainNavItem name="Tracks" />
               <MainNavItem name="Articles" />
+
+              <li className="main-nav-item">
+                <a
+                  href="#"
+                  onClick={() => {
+                    setProgramOpen(!programOpen)
+                  }}
+                >
+                  Program
+                </a>
+                { programOpen && (
+                  <div className="program-popup">
+                    <h2>Program 2021</h2>
+                    <div className="program-popup-row">
+                      <h3>February</h3>
+                      <p><strong>Tracks:</strong> Line Gøttsche, Jason Grier, Julia Holter &amp; Michael Pisaro</p>
+                      <p><strong>Articles:</strong> Vito Acconci, India Cooke</p>
+                      <p><strong>Editions:</strong> Unbekannte petri dish edition</p>
+                      <p><strong>Sound Library:</strong> Destroyed Piano, Studio #Fails, Noise Reduction Artefacts</p>
+                    </div>
+                    <div className="program-popup-row">
+                      <h3>March</h3>
+                      <p><strong>Tracks:</strong> Lucrecia Dalt, Jason Urick, Kevin Drumm</p>
+                      <p><strong>Articles:</strong> Jason Grier, Julia Holter, Gary Schultz</p>
+                      <p><strong>Editions:</strong> Omonia handmade casette</p>
+                      <p><strong>Sound Library:</strong> Grand Piano</p>
+                    </div>
+                    <div className="program-popup-row">
+                      <h3>April</h3>
+                      <p><strong>Tracks:</strong> UCC Harlow, </p>
+                      <p><strong>Articles:</strong> Hito Steyrl</p>
+                      <p><strong>Apps:</strong> Seurat, Breto</p>
+                      <p><strong>Sound Library:</strong> Viola</p>
+                    </div>
+                  </div>
+                )}
+              </li>
+
               <MainNavItem name="Editions" />
 
-              { showCart && cartProductsCount > 0 && (
+              { showCart && (
                 <li className="main-nav-item">
                   <NavLink
                     to={(() => {
