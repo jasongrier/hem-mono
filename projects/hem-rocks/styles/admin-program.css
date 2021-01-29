@@ -1,0 +1,27 @@
+.admin-program {
+
+}
+
+.admin-program-column {
+  float: left;
+  width: 509px;
+  height: 1000px;
+  padding: 20px;
+  background-color: #ccc;
+}
+
+.admin-program-column h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.admin-program-box {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #000;
+  color: #fff;
+}
+
+.admin-program-month {
+  min-height: 400px;
+}
