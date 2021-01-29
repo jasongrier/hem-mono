@@ -482,6 +482,44 @@ function App(): ReactElement {
           onClose={() => dispatch(setPlayerMessage(null))}
         />
       )}
+
+      <PopupContainer
+        closeIcon={CloseButton}
+        id="detail-popup"
+      >
+        <DetailPopUp
+          contentItem={currentContentItem}
+          filter={pathname.split('/')[3]}
+          category={pathname.split('/')[1]}
+          showMegaBlurb={!pathname.includes('press-releases')}
+        />
+      </PopupContainer>
+
+      <PopupContainer
+        closeIcon={CloseButton}
+        id="cart-popup"
+      >
+        {(props: any) => (
+          <CartPopup redirecting={props?.redirecting} />
+        )}
+      </PopupContainer>
+
+
+      <PopupContainer
+        closeIcon={CloseButton}
+        id="thank-you-popup"
+      >
+        <ThankYouPopup />
+      </PopupContainer>
+
+      <PopupContainer
+        closeIcon={CloseButton}
+        id="sound-library-refresh-popup"
+      >
+        {(props: any) => (
+          <SoundLibraryRefreshPopup />
+        )}
+      </PopupContainer>
     </div>
   )
 }

@@ -30,6 +30,12 @@ function PopupContainer({
   const [locked, setLocked] = useState<boolean>(false)
   const [previousScrollY, setPreviousScrollY] = useState<number>()
 
+  useEffect(function test() {
+    console.log('***')
+    console.log(currentlyOpenPopUp)
+    console.log('***')
+  }, [currentlyOpenPopUp])
+
   useEffect(function captureEscapeKey() {
     function bodyOnKeyDown(evt: any) {
       if (

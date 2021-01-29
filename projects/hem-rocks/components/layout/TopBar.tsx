@@ -56,23 +56,24 @@ function TopBar(): ReactElement {
                     <h2>Program 2021</h2>
                     <div className="program-popup-row">
                       <h3>February</h3>
-                      <p><strong>Tracks:</strong> Line Gøttsche, Jason Grier, Julia Holter &amp; Michael Pisaro</p>
-                      <p><strong>Articles:</strong> Vito Acconci, India Cooke</p>
-                      <p><strong>Editions:</strong> Unbekannte petri dish edition</p>
-                      <p><strong>Sound Library:</strong> Destroyed Piano, Studio #Fails, Noise Reduction Artefacts</p>
+                      <p><strong>Tracks:</strong>Line Gøttsche, Julia Holter &amp; Michael Pisaro, Sara Galaxia, Kevin Drumm</p>
+                      <p><strong>Articles:</strong>Vito Acconci, India Cooke</p>
+                      <p><strong>Editions:</strong>Unbekannte petri dish edition</p>
+                      <p><strong>Sound Library:</strong>Updates: Destroyed Piano, Studio #Fails, Noise Reduction Artefacts, and more</p>
                     </div>
                     <div className="program-popup-row">
                       <h3>March</h3>
-                      <p><strong>Tracks:</strong> Lucrecia Dalt, Jason Urick, Kevin Drumm</p>
-                      <p><strong>Articles:</strong> Jason Grier, Julia Holter, Gary Schultz</p>
-                      <p><strong>Editions:</strong> Omonia handmade casette</p>
-                      <p><strong>Sound Library:</strong> Grand Piano</p>
+                      <p><strong>Tracks:</strong>Lucrecia Dalt, Jason Urick, Hanne Lippard, Janet Kim</p>
+                      <p><strong>Articles:</strong>Jason Grier, Emily Hochmann</p>
+                      <p><strong>Editions:</strong>Omonia handmade casette</p>
+                      <p><strong>Mixes:</strong>Julia Holter, Line Gøttsche</p>
+                      <p><strong>Sound Library:</strong>Grand Piano</p>
                     </div>
                     <div className="program-popup-row">
                       <h3>April</h3>
-                      <p><strong>Tracks:</strong> UCC Harlow, </p>
-                      <p><strong>Articles:</strong> Hito Steyrl</p>
-                      <p><strong>Apps:</strong> Seurat, Breto</p>
+                      <p><strong>Tracks:</strong>UCC Harlow, Nite Jewel, Jason Grier, Scott Cazan</p>
+                      <p><strong>Articles:</strong>Hito Steyrl, Kathi Hofer</p>
+                      <p><strong>Apps:</strong>Seurat, Breto</p>
                       <p><strong>Sound Library:</strong> Viola</p>
                     </div>
                   </div>

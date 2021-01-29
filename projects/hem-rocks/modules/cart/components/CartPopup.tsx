@@ -44,7 +44,7 @@ function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
   const checkoutOnClick = useCallback(
     function checkoutOnClickFn() {
       if (!saleId) return
-      
+
       setRedirecting(true)
       dispatch(setPopupsFrozen(true))
       dispatch(submitSale(saleId))
@@ -59,7 +59,7 @@ function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
   const downloadOnClick = useCallback(
     function downloadOnClickFn() {
       if (!saleId) return
-      
+
       dispatch(submitSale(saleId))
       dispatch(openPopup('thank-you-popup', { saleId, itemSlugs: cartProducts.map(product => product.slug) }))
 
@@ -104,14 +104,6 @@ function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
             <p>
               Your cart is empty.
             </p>
-            <p>
-              <button
-                className="action-button action-button-super-wide"
-                onClick={() => dispatch(closePopup())}
-              >
-                Close this window and go back
-              </button>
-            </p>
           </div>
         )}
         {!!cartProducts.length && (
@@ -125,7 +117,7 @@ function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
                   >
                     <div className="bsp-cart-thumbnail">
                       { BERLIN_STOCK_PHOTOS && (
-                        <img 
+                        <img
                           // @ts-ignore
                           alt={find(cartContentItems || [], { slug: product.slug}).secondaryTitle}
                           // @ts-ignore
@@ -167,7 +159,7 @@ function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
               <strong>TOTAL: { formatPrice(getGrandTotal()) }</strong>
             </div>
             <div className="cart-popup-check-out">
-              <span>TOTAL: { formatPrice(getGrandTotal()) }</span>
+              <span className="cart-popup-total">TOTAL: { formatPrice(getGrandTotal()) }</span>
               <button
                 className="action-button continue-button"
                 onClick={() => dispatch(closePopup())}
@@ -192,9 +184,11 @@ function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
                   Check out
                 </button>
               )}
-              <small>
-                <a href="/stock-photos-license" target="_blank">Read the License Agreement</a>
-              </small>
+              { BERLIN_STOCK_PHOTOS && (
+                <small>
+                  <a href="/stock-photos-license" target="_blank">Read the License Agreement</a>
+                </small>
+              )}
             </div>
           </>
         )}
@@ -205,9 +199,6 @@ function CartPopup({ redirecting: alreadyRedirecting }: IProps): ReactElement {
               <p>Just a sec, we are redirecting you to PayPal.</p>
               <p>You do not need a PayPal account to proceed.</p>
               <p><strong>Please do not close this window!</strong></p>
-              {/* <p className="shipping-warning">
-                <strong>Don't forget to confirm your shipping address in PayPal!</strong>
-              </p> */}
               <Spinner />
             </div>
           </div>

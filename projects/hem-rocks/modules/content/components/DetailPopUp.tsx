@@ -427,7 +427,7 @@ function DetailPopUp({
 
   const chooseYourPriceText = category === 'venue-calendar'
     ? 'Choose your ticket price!'
-    : ( BERLIN_STOCK_PHOTOS ? 'Name your price!' : 'Choose your price!')
+    : ( BERLIN_STOCK_PHOTOS ? 'Name your price!' : 'Set your price')
 
 
   if (!contentItem) return (<div />)
@@ -544,7 +544,7 @@ function DetailPopUp({
                     Free Download
                   </button>
                 )}
-                </div>
+              </div>
               { pricingMode === 1 && isPurchaseable(contentItem) && (
                 <div className="detail-popup-form">
                   {contentItem.hasFixedPrice && (
@@ -556,9 +556,9 @@ function DetailPopUp({
                         className="suggested-price"
                         htmlFor="suggested-price"
                       >
-                        <em>{ chooseYourPriceText }</em><br />
+                        { chooseYourPriceText }
                       </label>
-                      <span className="detail-popup-currency-symbol">€</span>
+                      {/* <span className="detail-popup-currency-symbol">€</span> */}
                       <form onSubmit={formOnSubmit}>
                         <input
                           autoComplete="off"
@@ -672,7 +672,7 @@ function DetailPopUp({
                 </div>
               )}
             </div>
-            { category !== 'venue-calendar' && attachedPlaylist && attachedPlaylist.tracks && attachedPlaylist.tracks.length > 0 && (
+            {/* { category !== 'venue-calendar' && attachedPlaylist && attachedPlaylist.tracks && attachedPlaylist.tracks.length > 0 && (
               <TrackPlayPauseButton
                 track={attachedPlaylist.tracks[0]}
                 activeFor={attachedPlaylist.tracks}
@@ -688,7 +688,7 @@ function DetailPopUp({
                 }}
                 playing={false}
               />
-            )}
+            )} */}
           </div>
         </header>
         <div className="detail-popup-details">
