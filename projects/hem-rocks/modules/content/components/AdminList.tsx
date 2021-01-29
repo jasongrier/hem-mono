@@ -7,7 +7,7 @@ import { slugify, titleCase, tr } from 'voca'
 import moment from 'moment'
 import { ElectronOnly } from '../../../../../lib/components'
 import { PlayPauseButton } from '../../../../../lib/packages/hem-buttons'
-import { adminApplyFilter, adminApplySearch, setAdminSearchableField, toggleNeedsKeyArtFilter, requestDeleteItems, requestReadItems, requestUpdateItems, IContentItem } from '../index'
+import { adminApplyFilter, adminApplySearch, setAdminSearchableField, toggleNeedsKeyArtFilter, requestDeleteItems, requestReadItems, requestUpdateItems, IContentItem, categories } from '../index'
 import { RootState } from '../../../index'
 import { getContentItemBySlug, hasCategory, hasTag, modelize } from '../functions'
 import { assetHostHostname } from '../../../functions'
@@ -140,42 +140,9 @@ function AdminList(): ReactElement {
               value={adminFilterApplied}
             >
               <option value="all">All</option>
-              <option value="all">---</option>
-              <option value="apps">Apps</option>
-              <option value="articles">Articles</option>
-              <option value="artists">Artists</option>
-              <option value="code">Code</option>
-              <option value="editions">Editions</option>
-              <option value="faqs">FAQ's</option>
-              <option value="heroines">Heroines</option>
-              <option value="home-features">Home Features</option>
-              <option value="label">Label</option>
-              <option value="lists">Lists</option>
-              <option value="merch">Merch</option>
-              <option value="mix">Mixes</option>
-              <option value="notes">Notes</option>
-              <option value="playlists">Playlists</option>
-              <option value="press-kits">Press Kits</option>
-              <option value="press-releases">Press Releases</option>
-              <option value="press">Press</option>
-              <option value="recipes">Recipes</option>
-              <option value="reminders">Reminders</option>
-              <option value="site-texts">Site Texts</option>
-              <option value="sound-library">Sound Library</option>
-              <option value="tracks">Tracks</option>
-              <option value="tutorial">Tutorials</option>
-              <option value="user-guides">User Guides</option>
-              <option value="venue-archive">Venue Archive</option>
-              <option value="venue-calendar">Venue Calendar</option>
-              <option value="venue-merch">Venue Merch</option>
-              <option value="video">Videos</option>
-              <option value="all">---</option>
-              <option value="stock-photos">Berlin Stock Photos</option>
-              <option value="all">---</option>
-              <option value="assets">Assets on "April Kepner"</option>
-              <option value="assets-vollmer">Assets on "Eva Vollmer"</option>
-              <option value="all">---</option>
-              <option value="todos">Todo's</option>
+              { categories.map(category => (
+                <option value={category}>{ titleCase(category).replace(/-/g, ' ') }</option>
+              ))}
             </select>
           </div>
           <div className="admin-list-controls-search">

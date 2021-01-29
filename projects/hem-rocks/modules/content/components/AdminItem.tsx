@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation } from 'react-router'
 import produce from 'immer'
 import { isEmpty, isEqual, startCase, find } from 'lodash'
-import { slugify } from 'voca'
+import { slugify, titleCase } from 'voca'
 import { ElectronOnly, ZoomTextarea } from '../../../../../lib/components'
 import { assetHostHostname } from '../../../functions'
-import { IContentItem, fieldTypes, modelize, requestCreateItems, requestDeleteItems, requestUpdateItems, hasCategory } from '../index'
+import { categories, IContentItem, fieldTypes, modelize, requestCreateItems, requestDeleteItems, requestUpdateItems, hasCategory } from '../index'
 import { RootState } from '../../../index'
 import { BERLIN_STOCK_PHOTOS } from '../../../config'
 import uuid from 'uuid'
@@ -140,14 +140,14 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
 
   const keys = Object.keys(workingItem)
   const preferredOrder = [
-    'tags',
     'title',
+    'category',
+    'tags',
     'attribution',
     'secondaryAttribution',
     'titleWrapping',
     'description',
     'secondaryTitle',
-    'category',
     'order',
   ]
 
@@ -357,7 +357,30 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
               if (fieldName === 'trackResourceId' && workingItem.category !== 'tracks') return
               if (fieldName === 'trackResourceSecret' && workingItem.category !== 'tracks') return
 
-              if ((fieldTypes as any)[fieldName] === 'textarea') {
+              if (fieldName === 'category') {
+                return (
+                  <tr key={fieldName}>
+                    <td>
+                      <label htmlFor="category">Category</label>
+                    </td>
+                    <td>
+                      <select
+                        className="custom-select"
+                        name="select"
+                        onChange={(evt: SyntheticEvent<HTMLSelectElement>) => onChange(fieldName, evt.currentTarget.value)}
+                        value={(workingItem as any)[fieldName]}
+                      >
+                        <option value="all">All</option>
+                        { categories.map(category => (
+                          <option value={category}>{ titleCase(category).replace(/-/g, ' ') }</option>
+                        ))}
+                      </select>
+                    </td>
+                  </tr>
+                )
+              }
+
+              else if ((fieldTypes as any)[fieldName] === 'textarea') {
                 return (
                   <React.Fragment key={fieldName}>
                     <tr>
