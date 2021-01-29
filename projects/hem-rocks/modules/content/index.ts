@@ -129,7 +129,7 @@ export const categories = [
   'playlists',
   'press-kits',
   'press-releases',
-  'press',
+  'press-clippings',
   'program',
   'recipes',
   'reminders',
@@ -317,11 +317,12 @@ export {
 export { reducer as contentReducer } from './reducer'
 
 export {
-  AdminItemOrdering,
-  AdminManualTaskRunner,
-  AdminReconcilePlaylists,
   AdminItem,
+  AdminItemOrdering,
   AdminList,
+  AdminManualTaskRunner,
+  AdminProgram,
+  AdminReconcilePlaylists,
   AdminSettings,
   DetailPopUp,
   LaunchDetailPopupButton,

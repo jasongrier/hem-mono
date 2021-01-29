@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { Link, NavLink, Switch, Route } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
-import { AdminManualTaskRunner, AdminItem, AdminList, AdminSettings, AdminReconcilePlaylists, AdminItemOrdering } from '../../modules/content'
+import { AdminManualTaskRunner, AdminItem, AdminProgram, AdminList, AdminSettings, AdminReconcilePlaylists, AdminItemOrdering } from '../../modules/content'
 import { BASE_SITE_TITLE } from '../../config'
 
 function Admin(): ReactElement {
@@ -29,6 +29,9 @@ function Admin(): ReactElement {
             </li>
             <li>
               <NavLink to="/admin/item-ordering">Item Ordering</NavLink>
+            </li>
+            <li>
+              <NavLink to="/admin/program">Program</NavLink>
             </li>
             <li>
               <NavLink to="/admin/settings">Settings</NavLink>
@@ -59,6 +62,9 @@ function Admin(): ReactElement {
           </Route>
           <Route exact path="/admin/item-ordering">
             <AdminItemOrdering />
+          </Route>
+          <Route exact path="/admin/program">
+            <AdminProgram />
           </Route>
           <Route
             exact
