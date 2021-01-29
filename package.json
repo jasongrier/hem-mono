@@ -11,7 +11,8 @@
   "scripts": {
     "start": "node bin/index",
     "task": "node bin/index task",
-    "test": "node bin/index test"
+    "test": "node bin/index test",
+    "hem": "node bin/index task start-pug-electron hem-rocks"
   },
   "license": "WTFPL",
   "dependencies": {

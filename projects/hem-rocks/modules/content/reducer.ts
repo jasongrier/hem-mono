@@ -30,7 +30,7 @@ import { applyPaginationAndFiltering, getContentItemById } from './functions'
 const initialState: IState = {
   adminFilterApplied: 'all',
   adminSearchableField: 'title',
-  adminSearchApplied: 'Volume',
+  adminSearchApplied: '',
   adminSearchExact: false,
   chunkLog: [],
   contentItems: [],

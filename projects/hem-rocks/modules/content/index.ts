@@ -112,6 +112,42 @@ export const fieldTypes: IContentItem = {
   type: 'text',
 }
 
+export const categories = [
+  'apps',
+  'articles',
+  'artists',
+  'code',
+  'editions',
+  'faqs',
+  'heroines',
+  'home-features',
+  'label',
+  'lists',
+  'merch',
+  'mix',
+  'notes',
+  'playlists',
+  'press-kits',
+  'press-releases',
+  'press',
+  'program',
+  'recipes',
+  'reminders',
+  'site-texts',
+  'sound-library',
+  'tracks',
+  'tutorial',
+  'user-guides',
+  'venue-archive',
+  'venue-calendar',
+  'venue-merch',
+  'video',
+  'stock-photos',
+  'assets',
+  'assets-vollmer',
+  'todos',
+]
+
 export const ADMIN_APPLY_FILTER = 'ADMIN_APPLY_FILTER'
 export const ADMIN_APPLY_SEARCH = 'ADMIN_APPLY_SEARCH'
 export const CLEAR_ITEMS = 'CLEAR_ITEMS'

@@ -429,7 +429,6 @@ function DetailPopUp({
     ? 'Choose your ticket price!'
     : ( BERLIN_STOCK_PHOTOS ? 'Name your price!' : 'Set your price')
 
-
   if (!contentItem) return (<div />)
 
   const tags = (contentItem.tags || '').split(', ')
