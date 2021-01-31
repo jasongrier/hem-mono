@@ -236,13 +236,16 @@ async function migrate(allContentItems: IContentItem[]) {
 
   const newItems: IContentItem[] = []
 
-  const slugs = map(allContentItems, 'slug')
-
-  console.log(slugs.length)
-  console.log(uniq(slugs).length)
+  const slugs: string[] = []
 
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
+
+    if (slugs.includes(newItem.slug)) {
+      newItem.slug = newItem.slug + '-2'
+    }
+
+    slugs.push(newItem.slug)
 
     newItems.push(newItem)
   }
@@ -254,8 +257,8 @@ async function migrate(allContentItems: IContentItem[]) {
   // ***** DANGER ZONE *****
   // ***** DANGER ZONE *****
 
-  // writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
-  // writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
+  writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
+  writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
 }
 
 function AdminManualTaskRunner(): ReactElement {
