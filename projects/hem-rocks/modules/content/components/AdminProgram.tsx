@@ -11,7 +11,7 @@ import { assetHostHostname } from '../../../functions'
 import { IContentItem, requestReadChunk, fieldTypes, hasTag, modelize, requestCreateItems, requestDeleteItems, requestUpdateItems, hasCategory } from '../index'
 import { RootState } from '../../../index'
 import { BERLIN_STOCK_PHOTOS } from '../../../config'
-import uuid from 'uuid'
+import uuid from 'uuid/v1'
 import { Deva } from '../../../components/layout'
 
 interface IProps { }
@@ -25,6 +25,13 @@ function AdminProgram({ }: IProps): ReactElement {
 
   const [finalItems, setFinalItems] = useState<IContentItem[]>([])
   const [canSave, setCanSave] = useState<boolean>(false)
+  const [workingNewItem, setWorkingNewItem] = useState<IContentItem>(modelize({
+    id: uuid(),
+    category: 'program',
+    tags: 'invited',
+    type: 'Tracks',
+    published: true,
+  }))
 
   useEffect(function init() {
     dispatch(requestReadChunk('program'))
@@ -71,6 +78,27 @@ function AdminProgram({ }: IProps): ReactElement {
     }, [finalItems],
   )
 
+  function onNewItemFieldChange(fieldName: string, value: string) {
+
+    console.log(fieldName, value)
+
+    setWorkingNewItem(produce(workingNewItem, (draftItem: any) => {
+      draftItem[fieldName] = value
+    }))
+  }
+
+  const onNewItemFormSubmit = useCallback(
+    function onNewItemFormSubmitFn(evt: SyntheticEvent<HTMLFormElement>) {
+      evt.preventDefault()
+
+      const payloadItem = Object.assign({}, workingNewItem)
+
+      payloadItem.slug = slugify(payloadItem.title)
+
+      console.log(payloadItem)
+    }, [workingNewItem],
+  )
+
   const grid = 4
 
   const getItemStyle = (isDragging: any, draggableStyle: any) => ({
@@ -113,89 +141,114 @@ function AdminProgram({ }: IProps): ReactElement {
             Save
           </button>
         </div>
-        <div className="admin-program-column admin-program-months clearfix">
-          <div className="admin-program-box admin-program-devas">
-            <Deva
-              name="bird-of-pointerdise"
-              animate={false}
-            />
-            <Deva
-              name="mr-namaste"
-              animate={false}
-            />
+        <div className="admin-program-content clearfix">
+          <div className="admin-program-column admin-program-months">
+            <div className="admin-program-box admin-program-devas">
+              <Deva
+                name="bird-of-pointerdise"
+                animate={false}
+              />
+              <Deva
+                name="mr-namaste"
+                animate={false}
+              />
+              <Deva
+                name="chill-fishy"
+                animate={false}
+              />
+              <Deva
+                name="kuhllucko"
+                animate={false}
+              />
+            </div>
+            { months.map(month => (
+              <div
+                key={month}
+                className="admin-program-box admin-program-month"
+              >
+                <h3>{ month } 2021</h3>
+                <ul>
+                  { programItems
+                      .filter(i => i.date.split(' ')[0] === month)
+                      .sort((a, b) => parseInt(a.order, 10) - parseInt(b.order, 10))
+                      .map(item => (
+                        <li>
+                          <h5>{ item.title }</h5>
+                          <p>{ item.secondaryTitle }</p>
+                        </li>
+                      )
+                  )}
+                </ul>
+              </div>
+            ))}
           </div>
-          { months.map(month => (
-            <div
-              key={month}
-              className="admin-program-box admin-program-month"
-            >
-              <h3>{ month } 2021</h3>
-              <ul>
-                { programItems
-                    .filter(i => i.date.split(' ')[0] === month)
-                    .sort((a, b) => parseInt(a.order, 10) - parseInt(b.order, 10))
-                    .map(item => (
-                      <li>
-                        <h5>{ item.title }</h5>
-                        <p>{ item.secondaryTitle }</p>
-                      </li>
-                    )
-                )}
+          <div className="admin-program-column admin-program-items">
+            <div className="admin-program-box admin-program-items-new">
+              <form onSubmit={onNewItemFormSubmit}>
+                <h3>New Item</h3>
+                <div>
+                  <label>Name:</label>
+                  <input
+                    onChange={(evt: SyntheticEvent<HTMLInputElement>) => onNewItemFieldChange('title', evt.currentTarget.value)}
+                    placeholder="Name"
+                    type="text"
+                  />
+                </div>
+                <div>
+                  <label>Type:</label>
+                  <select
+                    className="custom-select"
+                    onChange={(evt: SyntheticEvent<HTMLSelectElement>) => onNewItemFieldChange('type', evt.currentTarget.value)}
+                  >
+                    <option value="Tracks">Tracks</option>
+                    <option value="Apps">Apps</option>
+                    <option value="Articles">Articles</option>
+                    <option value="Editions">Editions</option>
+                    <option value="Mixes">Mixes</option>
+                    <option value="Sound Library">Sound Library</option>
+                  </select>
+                </div>
+                <div>
+                  <label>Status:</label>
+                  <select
+                    className="custom-select"
+                    onChange={(evt: SyntheticEvent<HTMLSelectElement>) => onNewItemFieldChange('tags', evt.currentTarget.value)}
+                  >
+                    <option value="invited">Invited</option>
+                    <option value="wish-list">Wish List</option>
+                    <option value="needs-permission">Needs Permission</option>
+                    <option value="available">Available</option>
+                  </select>
+                </div>
+                <div>
+                  <label>Note:</label>
+                  <input
+                    onChange={(evt: SyntheticEvent<HTMLInputElement>) => onNewItemFieldChange('note', evt.currentTarget.value)}
+                    placeholder="Note"
+                    type="text"
+                  />
+                </div>
+                <div>
+                  <button
+                    className="action-button"
+                    type="submit"
+                  >
+                    Create
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div className="admin-program-box admin-program-items-new">
+              <ul className="admin-program-box admin-program-items-list">
+                { programItems.filter(i => !hasTag(i, 'scheduled')).map(item => (
+                  <li>
+                    <h5>{ item.title }</h5>
+                    <p>{ item.secondaryTitle }</p>
+                  </li>
+                ))}
               </ul>
             </div>
-          ))}
-        </div>
-        <div className="admin-program-column admin-program-items clearfix">
-          <div className="admin-program-box admin-program-items-new">
-            <form action="">
-              <h3>New Item</h3>
-              <div>
-                <label htmlFor="">Name:</label>
-                <input type="text" placeholder="Name" />
-              </div>
-              <div>
-                <label htmlFor="">Type:</label>
-                <select className="custom-select">
-                  <option value="">Apps</option>
-                  <option value="">Articles</option>
-                  <option value="">Editions</option>
-                  <option value="">Mixes</option>
-                  <option value="">Sound Library</option>
-                  <option value="">Tracks</option>
-                </select>
-              </div>
-              <div>
-                <label htmlFor="">Status:</label>
-                <select className="custom-select">
-                  <option value="">Invited</option>
-                  <option value="">Wish List</option>
-                  <option value="">Needs Permission</option>
-                  <option value="">Available</option>
-                </select>
-              </div>
-              <div>
-                <label htmlFor="">Note:</label>
-                <input type="text" placeholder="Note" />
-              </div>
-              <div>
-                <button
-                  className="action-button"
-                  type="submit"
-                >
-                  Create
-                </button>
-              </div>
-            </form>
           </div>
-          <h3>Unassigned</h3>
-          <ul className="admin-program-box admin-program-items-list">
-            { programItems.filter(i => !hasTag(i, 'scheduled')).map(item => (
-              <li>
-                <h5>{ item.title }</h5>
-                <p>{ item.secondaryTitle }</p>
-              </li>
-            ))}
-          </ul>
         </div>
         {/* <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="droppable">

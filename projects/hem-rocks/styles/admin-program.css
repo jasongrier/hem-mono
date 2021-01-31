@@ -1,13 +1,11 @@
-.admin-program {
-
+.admin-program-content {
+  background-color: #ccc;
 }
 
 .admin-program-column {
   float: left;
   width: 509px;
-  height: 1000px;
   padding: 20px;
-  background-color: #ccc;
 }
 
 .admin-program-column h3 {
