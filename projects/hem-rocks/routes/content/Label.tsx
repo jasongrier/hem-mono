@@ -32,10 +32,10 @@ function Label(): ReactElement {
       <div className="page page-label page-with-subnav">
         <LabelTimeline refresh={refreshTimeline} />
         <h1>Label</h1>
-        <LabelSubnav />
         <MainContentList
-          currentFilter={currentFilter}
-          noAll={false}
+          currentFilter={currentFilter || 'releases'}
+          speciallyOrderedTags={['Releases', 'Events']}
+          excludeTags={['Primary Format', 'New', 'Label Page', 'Format:Digital']}
           category="label"
         >
           {(item) => {
