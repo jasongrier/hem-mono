@@ -78,14 +78,16 @@ function AdminProgram({ }: IProps): ReactElement {
     }, [finalItems],
   )
 
-  function onNewItemFieldChange(fieldName: string, value: string) {
+  const onNewItemFieldChange = useCallback(
+    function onNewItemFieldChangeFn(fieldName: string, value: string) {
 
-    console.log(fieldName, value)
+      console.log(fieldName, value)
 
-    setWorkingNewItem(produce(workingNewItem, (draftItem: any) => {
-      draftItem[fieldName] = value
-    }))
-  }
+      setWorkingNewItem(produce(workingNewItem, (draftItem: any) => {
+        draftItem[fieldName] = value
+      }))
+    }, [workingNewItem],
+  )
 
   const onNewItemFormSubmit = useCallback(
     function onNewItemFormSubmitFn(evt: SyntheticEvent<HTMLFormElement>) {
