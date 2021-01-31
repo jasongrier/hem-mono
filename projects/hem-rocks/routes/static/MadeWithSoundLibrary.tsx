@@ -20,14 +20,13 @@ function MadeWithSoundLibrary(): ReactElement {
         <div className="main-content-section first-main-content-section">
           <h2>Have you used SL in a project?</h2>
           <p>Send your project info here, along with a link where we can hear it.</p>
-          <p>If you like, we would love to feature your work here on hem.rocks!</p>
-          <p>Your project will appear on hem.rocks, on social media, and in the monthly newsletter.</p>
+          <p>If you like, we would love to feature your work here on hem.rocks.</p>
         </div>
 
         <ContactForm
           action={assetHostHostname() + '/hem-rocks/api/?hem-cmd=made-with-sl'}
 
-          subjectLabel="Choose one"
+          subjectLabel="What would you prefer?"
           subjects={[
             'I would like to have my track featured on hem.rocks, social media, and newsletter',
             'I would simply like you to know I did this and what you think',
