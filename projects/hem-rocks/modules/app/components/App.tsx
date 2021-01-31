@@ -267,35 +267,24 @@ function App(): ReactElement {
         path += 'support'
       }
 
-      if (
-        pathnameSplit[0] === 'info'
-        && pathnameSplit[1] === 'cart'
-      ) {
-        path += 'info'
+      const cartReturnPaths = [
+        'info',
+        'about',
+        'contact',
+        'made-with-sl',
+      ]
+
+      for (const cartReturnPath of cartReturnPaths) {
+        if (
+          pathnameSplit[0] === cartReturnPath
+          && pathnameSplit[1] === 'cart'
+        ) {
+          path += cartReturnPath
+          break
+        }
       }
 
-      if (
-        pathnameSplit[0] === 'about'
-        && pathnameSplit[1] === 'cart'
-      ) {
-        path += 'about'
-      }
-
-      if (
-        pathnameSplit[0] === 'contact'
-        && pathnameSplit[1] === 'cart'
-      ) {
-        path += 'contact'
-      }
-
-      if (
-        pathnameSplit[0] === 'venue'
-        && pathnameSplit[1] === 'cart'
-      ) {
-        path += 'venue'
-      }
-
-      else if (map(genericRoutedPopups, 'basePath').includes(pathnameSplit[0])) {
+      if (map(genericRoutedPopups, 'basePath').includes(pathnameSplit[0])) {
         path += pathnameSplit[0]
 
         if (pathnameSplit[2]) {
