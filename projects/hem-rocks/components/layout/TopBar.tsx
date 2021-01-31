@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
 import { NavLink } from 'react-router-dom'
 import { ElectronOnly } from '../../../../lib/components'
+import { closePopup, openPopup } from '../../../../lib/modules/popups'
 import { Logo, MainNavItem, MegaNav } from './index'
 import { HeaderPlayer } from '../../modules/app'
 import { RootState } from '../../index'
@@ -11,6 +12,8 @@ function TopBar(): ReactElement {
   const { cartProductsCount } = useSelector((state: RootState) => ({
     cartProductsCount: state.cart.products.length,
   }))
+
+  const dispatch = useDispatch()
 
   const { pathname } = useLocation()
 
@@ -83,13 +86,20 @@ function TopBar(): ReactElement {
               <MainNavItem name="Editions" />
 
               { showCart && (
-                <li className="main-nav-item">
+                <li
+                  className="main-nav-item"
+                  // onClick={() => dispatch(closePopup())}
+                >
                   <NavLink
                     to={(() => {
                       const [category, filter, filterName] = pathname.replace(/^\//, '').split('/')
 
                       if (filter === 'filter') {
                         return `/${category}/cart/${filterName}`
+                      }
+
+                      if (category && openPopup) {
+                        return `/${category}/cart`
                       }
 
                       return `${pathname !== '/' ? pathname : ''}/cart`
