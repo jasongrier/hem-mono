@@ -443,11 +443,7 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
                         onChange={(evt: SyntheticEvent<HTMLInputElement>) => onChange(fieldName, evt.currentTarget.value)}
                         type={(fieldTypes as any)[fieldName]}
                         value={(workingItem as any)[fieldName]}
-                        required={(
-                          fieldName === 'title'
-                          || fieldName === 'category'
-                          || fieldName === 'date'
-                        )}
+                        required={fieldName === 'title'}
                       />
                     </td>
                   </tr>

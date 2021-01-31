@@ -8,7 +8,7 @@ import Cookies from 'js-cookie'
 import { slugify } from 'voca'
 import { CartPopup, setCartProducts } from '../../cart'
 import { ThankYouPopup } from '../../cart'
-import { DetailPopUp, requestReadItems, setCurrentItem, hasTag, getContentItemsFromList, contentItemToTrack, requestReadChunk, IContentItem, getContentItemBySlug } from '../../content'
+import { DetailPopUp, requestReadItems, setCurrentItem, hasTag, getContentItemsFromList, contentItemToTrack, requestReadChunk, IContentItem, getContentItemBySlug, hasCategory } from '../../content'
 import { ProtectedContent } from '../../login'
 import { CampaignMonitorForm, ElectronNot, ScrollToTop, NagToaster, Spinner, Toaster, ElectronOnly } from '../../../../../lib/components'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
@@ -196,7 +196,9 @@ function App(): ReactElement {
 
   useEffect(function routedPopup() {
     const [basePath, slug] = pathname.replace(/^\//, '').split('/')
-    const requestedContentItem = find(contentItems, { slug })
+    const requestedContentItem = contentItems.find(item =>
+      item.slug === slug && !hasCategory(item, 'site-texts')
+    )
 
     let popupId
 
