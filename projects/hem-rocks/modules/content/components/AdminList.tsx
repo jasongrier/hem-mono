@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useCallback, useState, SyntheticEvent }
 import { useSelector, useDispatch } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 import produce from 'immer'
-import { isEmpty, noop, find, filter } from 'lodash'
+import { isEmpty, noop, find, filter, map, includes } from 'lodash'
 import { slugify, titleCase, tr } from 'voca'
 import moment from 'moment'
 import { ElectronOnly } from '../../../../../lib/components'
@@ -122,8 +122,6 @@ function AdminList(): ReactElement {
     setSelectedItems([])
   }
 
-  const assetHost = assetHostHostname()
-
   return (
     <ElectronOnly showMessage={true}>
       <div className="admin-list">
@@ -141,7 +139,12 @@ function AdminList(): ReactElement {
             >
               <option value="all">All</option>
               { categories.map(category => (
-                <option value={category}>{ titleCase(category).replace(/-/g, ' ') }</option>
+                <option
+                  key={category}
+                  value={category}
+                >
+                  { titleCase(category).replace(/-/g, ' ') }
+                </option>
               ))}
             </select>
           </div>
