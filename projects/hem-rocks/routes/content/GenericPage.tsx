@@ -23,6 +23,8 @@ function AboutSoundLibrary(): ReactElement {
 
   const { contentItemSlug }: any = useParams()
 
+  console.log(contentItemSlug)
+
   let contentItem: IContentItem | false = false
 
   if (contentItemSlug) {

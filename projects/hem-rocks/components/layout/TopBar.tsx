@@ -1,7 +1,7 @@
 import React, { ReactElement, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import { ElectronOnly } from '../../../../lib/components'
 import { closePopup, openPopup } from '../../../../lib/modules/popups'
 import { Logo, MainNavItem, MegaNav } from './index'
@@ -9,8 +9,9 @@ import { HeaderPlayer } from '../../modules/app'
 import { RootState } from '../../index'
 
 function TopBar(): ReactElement {
-  const { cartProductsCount } = useSelector((state: RootState) => ({
+  const { cartProductsCount, currentlyOpenPopUp } = useSelector((state: RootState) => ({
     cartProductsCount: state.cart.products.length,
+    currentlyOpenPopUp: state.popups.currentlyOpenPopUp,
   }))
 
   const dispatch = useDispatch()
@@ -44,6 +45,7 @@ function TopBar(): ReactElement {
               <MainNavItem name="Sound Library" />
               <MainNavItem name="Tracks" />
               <MainNavItem name="Articles" />
+              <MainNavItem name="Editions" />
 
               <li className="main-nav-item">
                 <a
@@ -83,22 +85,23 @@ function TopBar(): ReactElement {
                 )}
               </li>
 
-              <MainNavItem name="Editions" />
-
               { showCart && (
                 <li
                   className="main-nav-item"
-                  // onClick={() => dispatch(closePopup())}
                 >
-                  <NavLink
+                  <Link
                     to={(() => {
                       const [category, filter, filterName] = pathname.replace(/^\//, '').split('/')
+
+                      if (currentlyOpenPopUp === 'cart-popup') {
+                        return pathname
+                      }
 
                       if (filter === 'filter') {
                         return `/${category}/cart/${filterName}`
                       }
 
-                      if (category && openPopup) {
+                      if (category && currentlyOpenPopUp) {
                         return `/${category}/cart`
                       }
 
@@ -106,7 +109,7 @@ function TopBar(): ReactElement {
                     })()}
                   >
                     Cart ({ cartProductsCount })
-                  </NavLink>
+                  </Link>
                 </li>
               )}
 

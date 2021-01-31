@@ -236,23 +236,15 @@ async function migrate(allContentItems: IContentItem[]) {
 
   const newItems: IContentItem[] = []
 
-  let subItems
+  const slugs = map(allContentItems, 'slug')
+
+  console.log(slugs.length)
+  console.log(uniq(slugs).length)
 
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
 
-    if (newItem.id === '6f93b0c9-c716-4c42-868d-cc11768533fc') {
-      newItem.tags = newItem.tags + ', new'
-      subItems = newItem.attachments.split('\n').map(id => id.trim())
-    }
-
     newItems.push(newItem)
-  }
-
-  for (const newItem of newItems) {
-    if (subItems?.includes(newItem.id)) {
-      newItem.tags = newItem.tags + ', new'
-    }
   }
 
   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
@@ -262,8 +254,8 @@ async function migrate(allContentItems: IContentItem[]) {
   // ***** DANGER ZONE *****
   // ***** DANGER ZONE *****
 
-  writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
-  writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
+  // writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
+  // writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
 }
 
 function AdminManualTaskRunner(): ReactElement {

@@ -31,9 +31,6 @@ function PopupContainer({
   const [previousScrollY, setPreviousScrollY] = useState<number>()
 
   useEffect(function test() {
-    console.log('***')
-    console.log(currentlyOpenPopUp)
-    console.log('***')
   }, [currentlyOpenPopUp])
 
   useEffect(function captureEscapeKey() {
