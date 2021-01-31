@@ -52,7 +52,6 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
 
     else if (create) {
       // @ts-ignore
-      const nextHighestId = allContentItems.map(item => parseInt(item.id, 10)).sort((a, b) => a - b).pop() + 1
       item = modelize({ id: uuid() })
       setCanSave(true)
     }
@@ -372,7 +371,12 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
                       >
                         <option value="all">All</option>
                         { categories.map(category => (
-                          <option value={category}>{ titleCase(category).replace(/-/g, ' ') }</option>
+                          <option
+                            key={category}
+                            value={category}
+                          >
+                            { titleCase(category).replace(/-/g, ' ') }
+                          </option>
                         ))}
                       </select>
                     </td>
@@ -405,6 +409,7 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
                             { workingItem.attachments.split('\n').map(
                               id => {
                                 const item = find(allContentItems, { id })
+
                                 if (item) {
                                   return item.title
                                 }

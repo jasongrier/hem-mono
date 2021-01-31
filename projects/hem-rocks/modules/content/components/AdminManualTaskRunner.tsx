@@ -32,6 +32,7 @@ function chunkData(allContentItems: IContentItem[]) {
     'newsletters',
     'playlists',
     'press-clippings',
+    'program',
     'recipes',
     'site-texts',
     'sound-library',

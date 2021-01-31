@@ -80,9 +80,6 @@ function AdminProgram({ }: IProps): ReactElement {
 
   const onNewItemFieldChange = useCallback(
     function onNewItemFieldChangeFn(fieldName: string, value: string) {
-
-      console.log(fieldName, value)
-
       setWorkingNewItem(produce(workingNewItem, (draftItem: any) => {
         draftItem[fieldName] = value
       }))
@@ -97,7 +94,7 @@ function AdminProgram({ }: IProps): ReactElement {
 
       payloadItem.slug = slugify(payloadItem.title)
 
-      console.log(payloadItem)
+      dispatch(requestCreateItems([payloadItem]))
     }, [workingNewItem],
   )
 
@@ -174,7 +171,7 @@ function AdminProgram({ }: IProps): ReactElement {
                       .filter(i => i.date.split(' ')[0] === month)
                       .sort((a, b) => parseInt(a.order, 10) - parseInt(b.order, 10))
                       .map(item => (
-                        <li>
+                        <li key={item.id}>
                           <h5>{ item.title }</h5>
                           <p>{ item.secondaryTitle }</p>
                         </li>
@@ -241,47 +238,48 @@ function AdminProgram({ }: IProps): ReactElement {
               </form>
             </div>
             <div className="admin-program-box admin-program-items-new">
-              <ul className="admin-program-box admin-program-items-list">
+              {/* <ul className="admin-program-box admin-program-items-list">
                 { programItems.filter(i => !hasTag(i, 'scheduled')).map(item => (
-                  <li>
+                  <li key={item.id}>
                     <h5>{ item.title }</h5>
                     <p>{ item.secondaryTitle }</p>
                   </li>
                 ))}
-              </ul>
+              </ul> */}
+
+              <DragDropContext onDragEnd={onDragEnd}>
+                <Droppable droppableId="droppable">
+                  {(provided: any, snapshot: any) => (
+                    <div
+                      {...provided.droppableProps}
+                      ref={provided.innerRef}
+                      style={getListStyle(snapshot.isDraggingOver)}
+                    >
+                      {programItems.filter(i => !hasTag(i, 'scheduled')).map((item, index) => (
+                        <Draggable key={item.id} draggableId={item.id} index={index}>
+                          {(provided: any, snapshot: any) => (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              style={getItemStyle(
+                                snapshot.isDragging,
+                                provided.draggableProps.style
+                              )}
+                            >
+                              {item.title}
+                            </div>
+                          )}
+                        </Draggable>
+                      ))}
+                      { provided.placeholder }
+                    </div>
+                  )}
+                </Droppable>
+              </DragDropContext>
             </div>
           </div>
         </div>
-        {/* <DragDropContext onDragEnd={onDragEnd}>
-          <Droppable droppableId="droppable">
-            {(provided: any, snapshot: any) => (
-              <div
-                {...provided.droppableProps}
-                ref={provided.innerRef}
-                style={getListStyle(snapshot.isDraggingOver)}
-              >
-                {finalItems.map((item, index) => (
-                  <Draggable key={item.id} draggableId={item.id} index={index}>
-                    {(provided: any, snapshot: any) => (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        style={getItemStyle(
-                          snapshot.isDragging,
-                          provided.draggableProps.style
-                        )}
-                      >
-                        {item.attribution}: {item.title} ({item.order})
-                      </div>
-                    )}
-                  </Draggable>
-                ))}
-                { provided.placeholder }
-              </div>
-            )}
-          </Droppable>
-        </DragDropContext> */}
       </div>
     </ElectronOnly>
   )
