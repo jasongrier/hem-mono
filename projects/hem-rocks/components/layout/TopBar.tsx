@@ -71,8 +71,8 @@ function TopBar(): ReactElement {
                     </div>
                     <div className="program-popup-row">
                       <h3>April</h3>
-                      <p><strong>Tracks:</strong>UCC Harlow, Nite Jewel, Jason Grier, Scott Cazan</p>
-                      <p><strong>Articles:</strong>Hito Steyrl, Kathi Hofer</p>
+                      <p><strong>Tracks:</strong>UCC Harlow, Nite Jewel, Jason Grier, Scott Cazan, Charles Gaines</p>
+                      <p><strong>Articles:</strong>Hito Steyrl, Kathi Hofer, Charles Gaines</p>
                       <p><strong>Apps:</strong>Seurat, Breto</p>
                       <p><strong>Sound Library:</strong> Viola</p>
                     </div>
