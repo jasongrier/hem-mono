@@ -5,24 +5,29 @@ import { assetHostHostname } from '../../functions'
 interface IProps {
   name: string
 
+  animate?: boolean
   className?: string
   display?: string
   flip?: boolean
   height?: string
   rotate?: number
   scale?: number
+  speed?: number
   style?: any
   width?: string
 }
 
 function Deva({
   name,
+
+  animate = true,
   className,
   display = 'inline-block',
   flip,
   height = '180px',
   rotate,
   scale,
+  speed = 250,
   style = {},
   width = '180px',
 }: IProps): ReactElement {
@@ -30,12 +35,14 @@ function Deva({
   const [shiftY, setShiftY] = useState<number>(0)
   const [flipped, setFlipped] = useState<boolean>(false)
 
-  useEffect(function animate() {
+  useEffect(function animation() {
+    if (!animate) return
+
     setInterval(() => {
       setShiftX(Math.random() * 60 - 30)
       setShiftY(Math.random() * 60 - 30)
       setFlipped(Math.random() > .5)
-    }, 250)
+    }, speed)
   }, [])
 
   const assetHost = assetHostHostname()

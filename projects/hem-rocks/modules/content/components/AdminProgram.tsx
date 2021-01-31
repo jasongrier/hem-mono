@@ -12,6 +12,7 @@ import { IContentItem, requestReadChunk, fieldTypes, hasTag, modelize, requestCr
 import { RootState } from '../../../index'
 import { BERLIN_STOCK_PHOTOS } from '../../../config'
 import uuid from 'uuid'
+import { Deva } from '../../../components/layout'
 
 interface IProps { }
 
@@ -112,7 +113,17 @@ function AdminProgram({ }: IProps): ReactElement {
             Save
           </button>
         </div>
-        <div className="admin-program-column admin-program-months">
+        <div className="admin-program-column admin-program-months clearfix">
+          <div className="admin-program-box admin-program-devas">
+            <Deva
+              name="bird-of-pointerdise"
+              animate={false}
+            />
+            <Deva
+              name="mr-namaste"
+              animate={false}
+            />
+          </div>
           { months.map(month => (
             <div
               key={month}
@@ -134,31 +145,46 @@ function AdminProgram({ }: IProps): ReactElement {
             </div>
           ))}
         </div>
-        <div className="admin-program-column admin-program-items">
+        <div className="admin-program-column admin-program-items clearfix">
           <div className="admin-program-box admin-program-items-new">
             <form action="">
               <h3>New Item</h3>
-              <label htmlFor="">Name:</label>
-              <input type="text" placeholder="Name" />
-              <label htmlFor="">Type:</label>
-              <select>
-                <option value="">Apps</option>
-                <option value="">Articles</option>
-                <option value="">Editions</option>
-                <option value="">Mixes</option>
-                <option value="">Sound Library</option>
-                <option value="">Tracks</option>
-              </select>
-              <label htmlFor="">Status:</label>
-              <select>
-                <option value="">Invited</option>
-                <option value="">Wish List</option>
-                <option value="">Needs Permission</option>
-                <option value="">Available</option>
-              </select>
-              <label htmlFor="">Note:</label>
-              <input type="text" placeholder="Note" />
-              <button type="submit">Create</button>
+              <div>
+                <label htmlFor="">Name:</label>
+                <input type="text" placeholder="Name" />
+              </div>
+              <div>
+                <label htmlFor="">Type:</label>
+                <select className="custom-select">
+                  <option value="">Apps</option>
+                  <option value="">Articles</option>
+                  <option value="">Editions</option>
+                  <option value="">Mixes</option>
+                  <option value="">Sound Library</option>
+                  <option value="">Tracks</option>
+                </select>
+              </div>
+              <div>
+                <label htmlFor="">Status:</label>
+                <select className="custom-select">
+                  <option value="">Invited</option>
+                  <option value="">Wish List</option>
+                  <option value="">Needs Permission</option>
+                  <option value="">Available</option>
+                </select>
+              </div>
+              <div>
+                <label htmlFor="">Note:</label>
+                <input type="text" placeholder="Note" />
+              </div>
+              <div>
+                <button
+                  className="action-button"
+                  type="submit"
+                >
+                  Create
+                </button>
+              </div>
             </form>
           </div>
           <h3>Unassigned</h3>
