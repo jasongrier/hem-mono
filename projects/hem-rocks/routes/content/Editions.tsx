@@ -16,7 +16,7 @@ function Editions(): ReactElement {
       <div className="page page-editions">
         <MainContentList
           currentFilter={currentFilter}
-          category="editions"
+          category="articles"
         />
       </div>
     </>
