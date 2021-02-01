@@ -195,7 +195,7 @@ function App(): ReactElement {
   }, [openPlayerErrorToaster, playerError])
 
   useEffect(function routedPopup() {
-    const [basePath, slug] = pathname.replace(/^\//, '').split('/')
+    const [basePath, slug, cart] = pathname.replace(/^\//, '').split('/')
     const requestedContentItem = contentItems.find(item =>
       item.slug === slug && !hasCategory(item, 'site-texts')
     )
@@ -205,6 +205,7 @@ function App(): ReactElement {
     if (
       basePath === 'cart'
       || slug === 'cart'
+      || cart === 'cart'
     ) {
       popupId = 'cart-popup'
     }
@@ -269,19 +270,23 @@ function App(): ReactElement {
         path += 'support'
       }
 
-      const cartReturnPaths = [
-        'info',
+      const staticPageCartReturnPaths = [
         'about',
         'contact',
+        'mailing-list',
+        'support',
+
+        'page',
+
         'made-with-sl',
       ]
 
-      for (const cartReturnPath of cartReturnPaths) {
+      for (const staticPageCartReturnPath of staticPageCartReturnPaths) {
         if (
-          pathnameSplit[0] === cartReturnPath
-          && pathnameSplit[1] === 'cart'
+          pathnameSplit[0] === staticPageCartReturnPath
+          && pathname.includes('cart')
         ) {
-          path += cartReturnPath
+          path = '/' + staticPageCartReturnPath
           break
         }
       }

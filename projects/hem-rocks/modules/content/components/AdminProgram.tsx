@@ -243,7 +243,7 @@ function AdminProgram(): ReactElement {
                 </div>
               </form>
             </div>
-            <div className="admin-program-box admin-program-items-new">
+            <div className="admin-program-box admin-program-items-unassigned">
               <DragDropContext onDragEnd={onDragEnd}>
                 <Droppable droppableId="droppable">
                   {(provided: any, snapshot: any) => (
@@ -253,7 +253,11 @@ function AdminProgram(): ReactElement {
                       style={getListStyle(snapshot.isDraggingOver)}
                     >
                       {programItems.filter(i => !hasTag(i, 'scheduled')).map((item, index) => (
-                        <Draggable key={item.id} draggableId={item.id} index={index}>
+                        <Draggable
+                          key={item.id}
+                          draggableId={item.id}
+                          index={index}
+                        >
                           {(provided: any, snapshot: any) => (
                             <div
                               ref={provided.innerRef}
@@ -264,7 +268,9 @@ function AdminProgram(): ReactElement {
                                 provided.draggableProps.style
                               )}
                             >
-                              {item.title}
+                              <span className={`admin-program-item admin-program-state-${item.tags}`}>
+                                {item.title}
+                              </span>
                             </div>
                           )}
                         </Draggable>

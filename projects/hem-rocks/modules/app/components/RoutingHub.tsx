@@ -111,9 +111,6 @@ function RoutingHub(): ReactElement {
         <Route exact path="/react-consulting" component={ReactConsulting} />
         <Route exact path="/react-consulting/cart" component={ReactConsulting} />
 
-        <Route exact path="/sound-library/made-with-sl" component={MadeWithSoundLibrary} />
-        <Route exact path="/sound-library/made-with-sl/cart" component={MadeWithSoundLibrary} />
-
         <Route exact path="/sound-library/:contentItemSlug" component={GenericPage} />
         <Route exact path="/sound-library/:contentItemSlug/cart" component={GenericPage} />
 

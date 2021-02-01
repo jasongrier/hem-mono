@@ -68,3 +68,32 @@
 .admin-program-devas {
   height: 425px;
 }
+
+.admin-program-item {
+  display: block;
+  position: relative;
+}
+
+.admin-program-item::after {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  content: "⚑";
+}
+
+.admin-program-state-invited::after {
+  color: orange;
+}
+
+.admin-program-state-wish-list::after {
+  color: pink;
+}
+
+.admin-program-state-needs-permission::after {
+  color: red;
+}
+
+.admin-program-state-available::after {
+  color: green;
+}
