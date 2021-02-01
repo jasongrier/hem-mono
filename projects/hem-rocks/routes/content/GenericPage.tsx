@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import { useParams } from 'react-router'
+import { useLocation, useParams } from 'react-router'
 import { useSelector } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import ReactGA from 'react-ga'
@@ -21,9 +21,8 @@ function AboutSoundLibrary(): ReactElement {
     ),
   }))
 
+  const { pathname }: any = useLocation()
   const { contentItemSlug }: any = useParams()
-
-  console.log(contentItemSlug)
 
   let contentItem: IContentItem | false = false
 
@@ -33,6 +32,8 @@ function AboutSoundLibrary(): ReactElement {
 
   if (contentItem === false) return <div />
 
+  const category = pathname.split('/')[1]
+
   return (
     <>
       <Helmet>
@@ -40,13 +41,15 @@ function AboutSoundLibrary(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
       <div className={'page page-' + (contentItem === undefined ? 'content-item-not-found' : contentItem?.slug)}>
+        { category === 'sound-library' && (
+          <SoundLibrarySubnav />
+        )}
         { contentItem && (
           <h1>{ contentItem?.title }</h1>
         )}
         { !contentItem && (
           <h1>Uh oh&hellip;</h1>
         )}
-        <SoundLibrarySubnav />
         <div className="main-content-section first-main-content-section">
           { contentItem && (
             <div dangerouslySetInnerHTML={{

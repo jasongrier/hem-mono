@@ -14,8 +14,8 @@ function MailingList(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
       <div className="page page-mailing-list page-with-subnav">
-        <h1>Mailing List</h1>
         <AboutSubnav />
+        <h1>Mailing List</h1>
         <div className="inline-newsletter-form first-main-content-section">
           <p>{ MAILING_LIST_TEXT }</p>
           <CampaignMonitorForm

@@ -14,8 +14,8 @@ function Contact(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
       <div className="page page-contact">
-        <h1>Contact us</h1>
         <AboutSubnav />
+        <h1>Contact us</h1>
         <div className="first-main-content-section">
           <ContactForm
             action={assetHostHostname() + '/hem-rocks/api/?hem-cmd=contact-form'}

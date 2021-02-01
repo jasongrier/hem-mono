@@ -29,7 +29,7 @@ function Label(): ReactElement {
         <title>{ BASE_SITE_TITLE }</title>
         <meta name="description" content="" />
       </Helmet>
-      <div className="page page-label page-with-subnav">
+      <div className="page page-label">
         <LabelTimeline refresh={refreshTimeline} />
         <h1>Label</h1>
         <MainContentList

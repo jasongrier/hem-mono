@@ -15,8 +15,8 @@ function MadeWithSoundLibrary(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
       <div className="page page-made-with-sl">
-        <h1>Made with SL</h1>
         <SoundLibrarySubnav />
+        <h1>Made with SL</h1>
         <div className="main-content-section first-main-content-section">
           <h2>Have you used SL in a project?</h2>
           <p>Send your project info here, along with a link where we can hear it.</p>

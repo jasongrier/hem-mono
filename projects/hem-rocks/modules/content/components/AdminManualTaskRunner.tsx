@@ -241,13 +241,9 @@ async function migrate(allContentItems: IContentItem[]) {
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
 
-    if (slugs.includes(newItem.slug)) {
-      newItem.slug = newItem.slug + '-2'
+    if (!hasCategory(newItem, 'program')) {
+      newItems.push(newItem)
     }
-
-    slugs.push(newItem.slug)
-
-    newItems.push(newItem)
   }
 
   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')

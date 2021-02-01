@@ -21,7 +21,7 @@ function AboutSubnav(): ReactElement {
           <NavLink to="/press">Press Clippings</NavLink>
         </li>
         <li>
-          <NavLink to="/press-kits">Press Kits</NavLink>
+          <NavLink to="/press-releases">Press Releases</NavLink>
         </li>
       </ul>
     </nav>
