@@ -32,8 +32,6 @@ function AboutSoundLibrary(): ReactElement {
 
   if (contentItem === false) return <div />
 
-  const category = pathname.split('/')[1]
-
   return (
     <>
       <Helmet>
@@ -41,7 +39,11 @@ function AboutSoundLibrary(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
       <div className={'page page-' + (contentItem === undefined ? 'content-item-not-found' : contentItem?.slug)}>
-        { category === 'sound-library' && (
+        {(
+          contentItemSlug === 'about-sl'
+          || contentItemSlug === 'whats-new-in-sl2'
+          || contentItemSlug === 'made-with-sl'
+        ) && (
           <SoundLibrarySubnav />
         )}
         { contentItem && (
