@@ -141,8 +141,9 @@ function App(): ReactElement {
           onClick={dismissWindowSizeWarning}
         >
           <h2>Hi there!</h2>
-          <p>It looks like you might be viewing this site on a screen for which Midst is unfortunately not optimised.</p>
-          <p>Consider coming back with a larger device.</p>
+          <p>It looks like you might be viewing this site on a screen for which Midst isn't optimized yet.</p>
+          <p>Consider coming back with a larger device; click anywhere to dismiss this notice.</p>
+          <p>💖,<br/>Team Midst</p>
         </div>
       )}
     </div>
