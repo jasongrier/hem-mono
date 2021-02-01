@@ -111,8 +111,20 @@ function RoutingHub(): ReactElement {
         <Route exact path="/react-consulting" component={ReactConsulting} />
         <Route exact path="/react-consulting/cart" component={ReactConsulting} />
 
-        <Route exact path="/sound-library/:contentItemSlug" component={GenericPage} />
-        <Route exact path="/sound-library/:contentItemSlug/cart" component={GenericPage} />
+        <Route exact path="/sound-library/page/:contentItemSlug/:cart?" component={GenericPage} />
+
+        {/* <Route exact path="/sound-library/:contentItemSlug/:cart?" render={({ match }) => {
+          if (
+            match.params.contentItemSlug === 'cart'
+            || match.params.contentItemSlug === 'filter'
+          ) {
+            return <SoundLibrary />
+          }
+
+          else {
+            return <GenericPage />
+          }
+        }} /> */}
 
         <Route exact path="/support" component={Support} />
         <Route exact path="/support/cart" component={Support} />
@@ -195,10 +207,6 @@ function RoutingHub(): ReactElement {
         <Route exact path="/sound-library/:contentItemSlug?/:filter?" component={SoundLibrary} />
         <Route exact path="/sound-library/filter/:filter" component={SoundLibrary} />
         <Route exact path="/sound-library/cart/:filter?" component={SoundLibrary} />
-
-        <Route exact path="/sound-library/:contentItemSlug?/:filter?" component={SoundLibrary} />
-        <Route exact path="/sound-library/filter/:filter" component={SoundLibrary} />
-        <Route exact path="/sound-library/made-with-sl/cart" component={SoundLibrary} />
 
         <Route exact path="/tracks/:contentItemSlug?/:filter?" component={Tracks} />
         <Route exact path="/tracks/filter/:filter" component={Tracks} />

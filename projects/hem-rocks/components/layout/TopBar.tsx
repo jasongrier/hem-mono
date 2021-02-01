@@ -43,7 +43,14 @@ function TopBar(): ReactElement {
           <nav className="main-nav">
             <ul className="main-nav-items">
               <MainNavItem name="Sound Library" />
-              <MainNavItem name="Tracks" />
+              <MainNavItem
+                name="Tracks"
+                activeFor={[
+                  '/tracks',
+                  '/playlists',
+                  '/artists',
+                ]}
+              />
               <MainNavItem name="Articles" />
               <MainNavItem name="Editions" />
 
@@ -95,6 +102,13 @@ function TopBar(): ReactElement {
 
                       if (currentlyOpenPopUp === 'cart-popup') {
                         return pathname
+                      }
+
+                      if (
+                        currentlyOpenPopUp === 'detail-popup'
+                        && filterName
+                      ) {
+                        return `/${category}/cart/${filterName}`
                       }
 
                       if (filter === 'filter') {

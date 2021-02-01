@@ -65,10 +65,9 @@ function App(): ReactElement {
     { basePath: 'apps', id: 'detail-popup' },
     { basePath: 'articles', id: 'detail-popup' },
     { basePath: 'artists', id: 'detail-popup' },
-    { basePath: 'artists', id: 'detail-popup' },
     { basePath: 'blog', id: 'detail-popup' },
     { basePath: 'code', id: 'detail-popup' },
-    { basePath: 'faqs', id: 'detail-popup' },
+    { basePath: 'editions', id: 'detail-popup' },
     { basePath: 'faqs', id: 'detail-popup' },
     { basePath: 'home', id: 'detail-popup' },
     { basePath: 'label', id: 'detail-popup' },
@@ -195,7 +194,7 @@ function App(): ReactElement {
   }, [openPlayerErrorToaster, playerError])
 
   useEffect(function routedPopup() {
-    const [basePath, slug, cart] = pathname.replace(/^\//, '').split('/')
+    const [basePath, slug, cart, orCart] = pathname.replace(/^\//, '').split('/')
     const requestedContentItem = contentItems.find(item =>
       item.slug === slug && !hasCategory(item, 'site-texts')
     )
@@ -206,6 +205,7 @@ function App(): ReactElement {
       basePath === 'cart'
       || slug === 'cart'
       || cart === 'cart'
+      || orCart === 'cart'
     ) {
       popupId = 'cart-popup'
     }
@@ -271,27 +271,32 @@ function App(): ReactElement {
       }
 
       const staticPageCartReturnPaths = [
+        'sound-library/page/made-with-sl',
+        'sound-library/page/whats-new-in-sl2',
+        'sound-library/page/about-sl',
         'about',
         'contact',
         'mailing-list',
         'support',
-
-        'page',
-
-        'made-with-sl',
       ]
+
+      let cartReturnFound = false
 
       for (const staticPageCartReturnPath of staticPageCartReturnPaths) {
         if (
-          pathnameSplit[0] === staticPageCartReturnPath
+          pathname.includes(staticPageCartReturnPath)
           && pathname.includes('cart')
         ) {
           path = '/' + staticPageCartReturnPath
+          cartReturnFound = true
           break
         }
       }
 
-      if (map(genericRoutedPopups, 'basePath').includes(pathnameSplit[0])) {
+      if (
+        !cartReturnFound
+        && map(genericRoutedPopups, 'basePath').includes(pathnameSplit[0])
+      ) {
         path += pathnameSplit[0]
 
         if (pathnameSplit[2]) {

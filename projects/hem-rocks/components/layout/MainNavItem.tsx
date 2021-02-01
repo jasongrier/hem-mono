@@ -8,12 +8,13 @@ import { collapseTopBar } from '../../modules/app'
 interface IProps {
   name: string
 
+  activeFor?: string[]
   additive?: boolean
   displayName?: string
   to?: string
 }
 
-function MainNavItem({ name, additive = false, displayName, to }: IProps): ReactElement {
+function MainNavItem({ name, activeFor, additive = false, displayName, to }: IProps): ReactElement {
   const dispatch = useDispatch()
 
   const { pathname } = useLocation()
@@ -25,6 +26,17 @@ function MainNavItem({ name, additive = false, displayName, to }: IProps): React
       <NavLink
         to={`${additive ? pathname : ''}/${to || slug}`}
         onClick={() => dispatch(collapseTopBar())}
+        isActive={activeFor ? (_, { pathname }) => {
+          let isActive = false
+
+          for (const hint of activeFor) {
+            if (pathname.includes(hint)) {
+              isActive = true
+            }
+          }
+
+          return isActive
+        } : null}
       >
         { displayName || name }
       </NavLink>
