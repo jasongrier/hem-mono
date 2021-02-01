@@ -345,7 +345,8 @@ export {
   getContentItemsFromRawList,
   modelize,
   uncompressItem,
-  validateCompressionMap
+  uniqueSlug,
+  validateCompressionMap,
 } from './functions'
 
 export {

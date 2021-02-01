@@ -7,7 +7,7 @@ import { BASE_SITE_TITLE } from '../../config'
 
 function Press(): ReactElement {
 
-  const { filter: currentFilter } = useParams()
+  const { filter: currentFilter }: any = useParams()
 
   return (
     <>
@@ -16,16 +16,9 @@ function Press(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
       <div className="page page-press page-with-subnav">
-        <h1>Press Clippings</h1>
         <AboutSubnav />
         <MainContentList
           currentFilter={currentFilter}
-          filters={[
-            'Label',
-            'Sound Library',
-            'Technology',
-            'Events',
-          ]}
           category="press"
         />
       </div>

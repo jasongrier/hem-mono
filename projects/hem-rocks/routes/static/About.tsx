@@ -15,8 +15,8 @@ function About(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
       <div className="page page-about page-with-subnav">
-        <h1>About HEM</h1>
         <AboutSubnav />
+        <h1>About HEM</h1>
         <div className="main-content-section first-main-content-section">
           {/* <h2>HEM is a sound art and software company.</h2>
           <p>We make <Link to="sound-library">Sound Library</Link>, <Link to="apps/seurat">Seurat</Link>, <Link to="apps/midst">Midst</Link>, and <Link to="apps/breto">Breto</Link>.</p> */}
@@ -39,7 +39,7 @@ function About(): ReactElement {
           <p>Please note that it is more about that than producing and releasing stuff, in the traditional sense.</p>
           <p>Please do send us a link to your work via the <Link to="contact">contact form</Link>.</p>
         </div> */}
-        
+
         <div className="main-content-section">
           <h2>Find HEM online</h2>
           <p>

@@ -8,33 +8,39 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { slugify } from 'voca'
 import { ElectronOnly, ZoomTextarea } from '../../../../../lib/components'
 import { assetHostHostname } from '../../../functions'
-import { IContentItem, requestReadChunk, fieldTypes, hasTag, modelize, requestCreateItems, requestDeleteItems, requestUpdateItems, hasCategory } from '../index'
+import { uniqueSlug, IContentItem, requestReadItems, fieldTypes, hasTag, modelize, requestCreateItems, requestDeleteItems, requestUpdateItems, hasCategory } from '../index'
 import { RootState } from '../../../index'
 import { BERLIN_STOCK_PHOTOS } from '../../../config'
 import uuid from 'uuid/v1'
 import { Deva } from '../../../components/layout'
 
-interface IProps { }
+function newWorkingItem() {
+  return modelize({
+    id: uuid(),
+    category: 'program',
+    tags: 'invited',
+    type: 'Tracks',
+    published: true,
+  })
+}
 
-function AdminProgram({ }: IProps): ReactElement {
-  const { programItems } = useSelector((state: RootState) => ({
-    programItems: state.content.contentItems.filter(item => hasCategory(item, 'program')),
+function AdminProgram(): ReactElement {
+  const { allContentItems, programItems } = useSelector((state: RootState) => ({
+    allContentItems: state.content.contentItems,
+    programItems: state.content.contentItems.filter(item =>
+      hasCategory(item, 'program')
+      && item.published
+    ),
   }))
 
   const dispatch = useDispatch()
 
   const [finalItems, setFinalItems] = useState<IContentItem[]>([])
   const [canSave, setCanSave] = useState<boolean>(false)
-  const [workingNewItem, setWorkingNewItem] = useState<IContentItem>(modelize({
-    id: uuid(),
-    category: 'program',
-    tags: 'invited',
-    type: 'Tracks',
-    published: true,
-  }))
+  const [workingNewItem, setWorkingNewItem] = useState<IContentItem>(newWorkingItem())
 
   useEffect(function init() {
-    dispatch(requestReadChunk('program'))
+    dispatch(requestReadItems())
   }, [])
 
   // useEffect(function setContent() {
@@ -73,7 +79,6 @@ function AdminProgram({ }: IProps): ReactElement {
           draftItem.order = (i + 1).toString()
         })
         dispatch(requestUpdateItems([updatedItem]))
-        setCanSave(false)
       }
     }, [finalItems],
   )
@@ -92,10 +97,11 @@ function AdminProgram({ }: IProps): ReactElement {
 
       const payloadItem = Object.assign({}, workingNewItem)
 
-      payloadItem.slug = slugify(payloadItem.title)
+      payloadItem.slug = uniqueSlug(slugify(payloadItem.title), allContentItems)
 
       dispatch(requestCreateItems([payloadItem]))
-    }, [workingNewItem],
+      setWorkingNewItem(newWorkingItem())
+    }, [workingNewItem, allContentItems],
   )
 
   const grid = 4
@@ -238,15 +244,6 @@ function AdminProgram({ }: IProps): ReactElement {
               </form>
             </div>
             <div className="admin-program-box admin-program-items-new">
-              {/* <ul className="admin-program-box admin-program-items-list">
-                { programItems.filter(i => !hasTag(i, 'scheduled')).map(item => (
-                  <li key={item.id}>
-                    <h5>{ item.title }</h5>
-                    <p>{ item.secondaryTitle }</p>
-                  </li>
-                ))}
-              </ul> */}
-
               <DragDropContext onDragEnd={onDragEnd}>
                 <Droppable droppableId="droppable">
                   {(provided: any, snapshot: any) => (
