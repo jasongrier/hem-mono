@@ -322,6 +322,8 @@ export {
   AdminList,
   AdminManualTaskRunner,
   AdminProgram,
+  AdminProgramMonth,
+  AdminProgramNewItemForm,
   AdminReconcilePlaylists,
   AdminSettings,
   DetailPopUp,

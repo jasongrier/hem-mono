@@ -1,5 +1,6 @@
 export { default as Admin } from './Admin'
 export { default as Checklists } from './Checklists'
+export { default as DndTest } from './DndTest'
 export { default as Docus } from './Docus'
 export { default as InternalCalendar } from './InternalCalendar'
 export { default as InternalHome } from './InternalHome'
