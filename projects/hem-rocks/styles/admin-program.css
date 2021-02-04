@@ -32,7 +32,7 @@
   display: none;
 }
 
-.admin-program-box-open {
+.admin-program-months .admin-program-box-open {
   height: auto;
   min-height: 200px;
 }

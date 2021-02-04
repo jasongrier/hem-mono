@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+import { Droppable, Draggable } from 'react-beautiful-dnd'
 import { IContentItem } from '../index'
 
 interface IProps {
@@ -7,65 +7,23 @@ interface IProps {
   items: IContentItem[]
 }
 
-const grid = 8
-
-const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
+const getItemStyle = (isDragging: any, draggableStyle: any) => ({
   userSelect: 'none',
-  padding: grid * 2,
-  margin: `0 0 ${grid}px 0`,
-  background: isDragging ? 'lightgreen' : 'grey',
-  ...draggableStyle
+  padding: '6px',
+  margin: '0 0 10px 0',
+  borderRadius: '3px',
+  background: isDragging ? 'lightgrey' : 'grey',
+  ...draggableStyle,
 })
 
-const getListStyle = (isDraggingOver: boolean) => ({
-  background: isDraggingOver ? 'lightblue' : 'lightgrey',
-  padding: grid,
-  width: 472,
-} as any)
+const getListStyle = (isDraggingOver : any) => ({
+  background: '#222',
+  padding: 0,
+  width: 490,
+  minHeight: 150,
+})
 
 function AdminProgramMonth({ id, items }: IProps): ReactElement {
-  function onDragEnd(res: any) {
-    // const { source, destination } = result
-
-    // // dropped outside the list
-    // if (!destination) {
-    //   return
-    // }
-
-    // if (source.droppableId === destination.droppableId) {
-    //   const items = reorder(
-    //     this.getList(source.droppableId),
-    //     source.index,
-    //     destination.index
-    //   )
-
-    //   let state = { items }
-
-    //   if (source.droppableId === 'droppable2') {
-    //     state = { selected: items } as any
-    //   }
-
-    //   this.setState(state)
-
-    // }
-
-    // else {
-    //   const result = move(
-    //     this.getList(source.droppableId),
-    //     this.getList(destination.droppableId),
-    //     source,
-    //     destination
-    //   )
-
-    //   this.setState({
-    //     // @ts-ignore
-    //     items: result.droppable,
-    //     // @ts-ignore
-    //     selected: result.droppable2
-    //   })
-    // }
-  }
-
   return (
     <Droppable droppableId={id}>
       {(provided: any, snapshot: any) => (
@@ -86,8 +44,11 @@ function AdminProgramMonth({ id, items }: IProps): ReactElement {
                   style={getItemStyle(
                     snapshot.isDragging,
                     provided.draggableProps.style
-                  )}>
-                  {item.content}
+                  )}
+                >
+                  <span className={`admin-program-item admin-program-state-${item.tags.replace(', scheduled', '')}`}>
+                    <b>{ item.type }</b> { item.title } : { item.order }
+                  </span>
                 </div>
               )}
             </Draggable>

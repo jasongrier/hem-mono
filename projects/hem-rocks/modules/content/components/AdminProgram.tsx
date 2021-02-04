@@ -1,6 +1,7 @@
 import React, { ReactElement, useState, useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import produce from 'immer'
+import { map, filter } from 'lodash'
 // @ts-ignore
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { ElectronOnly } from '../../../../../lib/components'
@@ -25,6 +26,8 @@ function AdminProgram(): ReactElement {
 
   const dispatch = useDispatch()
 
+  const [unscheduledItems, setUnscheduledItems] = useState<IContentItem[]>([])
+
   const [months, setMonths] = useState<Array<{ month: string, open: boolean}>>([
     { month: 'March', open: false },
     { month: 'April', open: false },
@@ -41,39 +44,84 @@ function AdminProgram(): ReactElement {
     dispatch(requestReadItems())
   }, [])
 
-  const onDragEnd = useCallback(
-    function onDragEndFn(res: any) {
-      const sourceList = getUnscheduledItems(programItems)
-      const { source, destination } = res
+  useEffect(function loadItems() {
+    if (!unscheduledItems.length)
+    setUnscheduledItems(getUnscheduledItems(programItems))
+  }, [programItems, unscheduledItems])
 
-      if (destination.droppableId.includes('admin-program-month')) {
-        const month = destination.droppableId.replace('admin-program-month-', '')
-        const newItem = Object.assign({}, sourceList[source.index])
+  function onDragEnd(res: any) {
+    const unscheduledList = Array.from(unscheduledItems)
+    const { source, destination } = res
 
+    if (destination.droppableId.includes('admin-program-month')) {
+      const month = destination.droppableId.replace('admin-program-month-', '')
+
+      if (source.droppableId === 'unassigned-items') {
+        const newItem = Object.assign({}, unscheduledList[source.index])
         newItem.date = month + ' 2021'
         newItem.tags = newItem.tags + ', scheduled'
 
+        setUnscheduledItems([])
         dispatch(requestUpdateItems([newItem]))
       }
 
-      else if (destination.droppableId === 'unassigned-items') {
-        const newItems = Array.from(sourceList)
-        const newItem = Object.assign({}, newItems[res.source.index, 1])
+      else if (source.droppableId.includes('admin-program-month')) {
+        const sourceMonth = source.droppableId.replace('admin-program-month-', '')
+        const destinationMonth = destination.droppableId.replace('admin-program-month-', '')
+        const sourceMonthItems: IContentItem[] | undefined = programItems.filter(i => i.date === sourceMonth + ' 2021' && hasTag(i, 'scheduled'))
+        const newItem = Object.assign({}, sourceMonthItems[source.index])
 
-        newItem.tags = newItem.tags.replace(', scheduled', '')
+        newItem.date = destinationMonth + ' 2021'
 
-        newItems.splice(res.source.index, 1)
-        newItems.splice(res.destination.index, 0, newItem)
-
-        for (const o in newItems) {
-          const newItem = Object.assign({}, newItems[o])
-          newItem.order = o
-          dispatch(requestUpdateItems([newItem]))
-        }
+        setUnscheduledItems([])
+        dispatch(requestUpdateItems([newItem]))
       }
 
-    }, [programItems],
-  )
+      else {
+        const monthItems: IContentItem[] | undefined = programItems.filter(i => i.date === month + ' 2021' && hasTag(i, 'scheduled'))
+        const [movedItem] = monthItems.splice(res.source.index, 1)
+        monthItems.splice(res.destination.index, 0, movedItem)
+
+        for (let i = 0; i < monthItems.length; i ++) {
+          const payloadItem: IContentItem = produce(monthItems[i], (draftItem) => {
+            draftItem.order = (i + 1).toString()
+          })
+          setUnscheduledItems([])
+          dispatch(requestUpdateItems([payloadItem]))
+        }
+      }
+    }
+
+    else if (destination.droppableId === 'unassigned-items') {
+      const newItems = Array.from(unscheduledList)
+
+      if (source.droppableId === 'unassigned-items') {
+        const newItem = Object.assign({}, unscheduledList[res.source.index])
+        newItem.tags = newItem.tags.replace(', scheduled', '')
+        newItems.splice(res.source.index, 1)
+        newItems.splice(res.destination.index, 0, newItem)
+      }
+
+      else {
+        const month = res.source.droppableId.replace('admin-program-month-', '')
+        const monthItems: IContentItem[] | undefined = programItems.filter(i => i.date === month + ' 2021' && hasTag(i, 'scheduled'))
+        const newItem = Object.assign({}, monthItems[res.source.index])
+
+        console.log(newItem.title)
+
+        newItem.tags = newItem.tags.replace(', scheduled', '')
+        newItems.splice(res.destination.index, 0, newItem)
+      }
+
+      for (let i = 0; i < newItems.length; i ++) {
+        const payloadItem: IContentItem = produce(newItems[i], (draftItem) => {
+          draftItem.order = (i + 1).toString()
+        })
+        setUnscheduledItems([])
+        dispatch(requestUpdateItems([payloadItem]))
+      }
+    }
+  }
 
   const getItemStyle = (isDragging: any, draggableStyle: any) => ({
     userSelect: 'none',
@@ -107,7 +155,7 @@ function AdminProgram(): ReactElement {
                       ref={provided.innerRef}
                       style={getListStyle(snapshot.isDraggingOver)}
                     >
-                      {getUnscheduledItems(programItems).map((item, index) => (
+                      {unscheduledItems.map((item, index) => (
                         <Draggable
                           key={item.id}
                           draggableId={item.id}
@@ -120,11 +168,11 @@ function AdminProgram(): ReactElement {
                               {...provided.dragHandleProps}
                               style={getItemStyle(
                                 snapshot.isDragging,
-                                provided.draggableProps.style
+                                provided.draggableProps.style,
                               )}
                             >
                               <span className={`admin-program-item admin-program-state-${item.tags}`}>
-                                <b>{ item.type }</b> {item.title} : {item.order}
+                                <b>{ item.type }</b> { item.title } : { item.order }
                               </span>
                             </div>
                           )}
@@ -161,7 +209,7 @@ function AdminProgram(): ReactElement {
                   <AdminProgramMonth
                     id={`admin-program-month-${month}`}
                     items={programItems
-                      .filter(i => i.date.split(' ')[0] === month)
+                      .filter(i => i.date.split(' ')[0] === month && hasTag(i, 'scheduled'))
                       .sort((a, b) => parseInt(a.order, 10) - parseInt(b.order, 10))
                     }
                   />
