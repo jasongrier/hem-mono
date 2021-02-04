@@ -1,19 +1,17 @@
-import React, { ReactElement, useState, SyntheticEvent, useEffect, useCallback } from 'react'
+import React, { ReactElement, useState, useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import produce from 'immer'
-import { isEmpty, isEqual, startCase, find, map, filter } from 'lodash'
 // @ts-ignore
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-import { ElectronOnly, ZoomTextarea } from '../../../../../lib/components'
-import { assetHostHostname } from '../../../functions'
-import { AdminProgramNewItemForm, AdminProgramMonth, uniqueSlug, IContentItem, requestReadItems, fieldTypes, hasTag, modelize, requestCreateItems, requestDeleteItems, requestUpdateItems, hasCategory } from '../index'
+import { ElectronOnly } from '../../../../../lib/components'
+import { AdminProgramNewItemForm, AdminProgramMonth, IContentItem, requestReadItems, hasTag, requestUpdateItems, hasCategory } from '../index'
 import { RootState } from '../../../index'
-import { BERLIN_STOCK_PHOTOS } from '../../../config'
-import uuid from 'uuid/v1'
-import { Deva } from '../../../components/layout'
 
 function getUnscheduledItems(programItems: IContentItem[]) {
-  return programItems.filter(i => !hasTag(i, 'scheduled'))
+  return Array.from(
+    programItems.filter(i => !hasTag(i, 'scheduled'))
+      .sort((a, b) => parseInt(a.order, 10) - parseInt(b.order, 10))
+  )
 }
 
 function AdminProgram(): ReactElement {
@@ -45,14 +43,33 @@ function AdminProgram(): ReactElement {
 
   const onDragEnd = useCallback(
     function onDragEndFn(res: any) {
+      const sourceList = getUnscheduledItems(programItems)
       const { source, destination } = res
 
       if (destination.droppableId.includes('admin-program-month')) {
         const month = destination.droppableId.replace('admin-program-month-', '')
-        const date = month + ' 2021'
-        const sourceList = getUnscheduledItems(programItems)
-        const item = sourceList[source.index]
-        console.log(item.title)
+        const newItem = Object.assign({}, sourceList[source.index])
+
+        newItem.date = month + ' 2021'
+        newItem.tags = newItem.tags + ', scheduled'
+
+        dispatch(requestUpdateItems([newItem]))
+      }
+
+      else if (destination.droppableId === 'unassigned-items') {
+        const newItems = Array.from(sourceList)
+        const newItem = Object.assign({}, newItems[res.source.index, 1])
+
+        newItem.tags = newItem.tags.replace(', scheduled', '')
+
+        newItems.splice(res.source.index, 1)
+        newItems.splice(res.destination.index, 0, newItem)
+
+        for (const o in newItems) {
+          const newItem = Object.assign({}, newItems[o])
+          newItem.order = o
+          dispatch(requestUpdateItems([newItem]))
+        }
       }
 
     }, [programItems],
@@ -107,7 +124,7 @@ function AdminProgram(): ReactElement {
                               )}
                             >
                               <span className={`admin-program-item admin-program-state-${item.tags}`}>
-                                <b>{ item.type }</b> {item.title}
+                                <b>{ item.type }</b> {item.title} : {item.order}
                               </span>
                             </div>
                           )}
@@ -141,18 +158,6 @@ function AdminProgram(): ReactElement {
                     {open ? 'close' : 'open'}
                   </div>
                   <h3>{ month } 2021</h3>
-                  {/* <ul>
-                    { programItems
-                        .filter(i => i.date.split(' ')[0] === month)
-                        .sort((a, b) => parseInt(a.order, 10) - parseInt(b.order, 10))
-                        .map(item => (
-                          <li key={item.id}>
-                            <h5>{ item.title }</h5>
-                            <p>{ item.secondaryTitle }</p>
-                          </li>
-                        )
-                    )}
-                  </ul> */}
                   <AdminProgramMonth
                     id={`admin-program-month-${month}`}
                     items={programItems
