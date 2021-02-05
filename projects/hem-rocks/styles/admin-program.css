@@ -23,6 +23,11 @@
   border-radius: 3px;
 }
 
+/* .admin-program-months {
+  height: calc(100vh - 320px);
+  overflow: scroll;
+} */
+
 .admin-program-months .admin-program-box {
   height: 50px;
   line-height: 50px;
@@ -55,10 +60,16 @@
   padding: 0;
   margin: 0;
   font-size: 12px;
+  background-color: transparent;
 }
 
 .admin-program-items-new-open {
-  height: 425px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  line-height: 70px;
 }
 
 .admin-program-items-new h3 {
@@ -67,34 +78,45 @@
   border-bottom: 1px solid #666;
 }
 
+.admin-program-items-new form > div {
+  display: inline-block;
+}
+
 .admin-program-items-new label,
 .admin-program-items-new input {
-  display: block;
+  display: inline-block;
+  margin: 0 10px;
 }
 
 .admin-program-items-new label {
+  display: none;
   margin-bottom: 5px;
 }
 
 .admin-program-items-new input {
-  width: 475px;
-  height: 32px;
+  width: 485px;
+  height: 34px;
   margin-bottom: 20px;
   padding-left: 10px;
   font-size: 14px;
   font-weight: bold;
+  border: 1px solid #ccc;
 }
 
 .admin-program-items-new .custom-select {
   float: none;
-  width: 490px;
-  height: 42px;
-  margin-bottom: 20px;
+  display: inline-block;
+  width: 200px;
+  height: 38px;
+  margin: 0 10px;
 }
 
 .admin-program-items-new button {
+  height: 38px;
   margin-top: 10px;
   margin-bottom: 5px;
+  margin: 0 10px;
+  font-size: 14px;
 }
 
 .admin-program-devas {
@@ -149,4 +171,8 @@
 
 .admin-program-state-send-invite-soon::after {
   color: yellow;
+}
+
+.admin-program-state-needs-production::after {
+  color: white;
 }

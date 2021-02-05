@@ -47,7 +47,7 @@ function AdminProgramMonth({ id, items }: IProps): ReactElement {
                   )}
                 >
                   <span className={`admin-program-item admin-program-state-${item.tags.replace(', scheduled', '')}`}>
-                    <b>{ item.type }</b> { item.title } : { item.order }
+                    <b>{ item.type }</b> { item.title }
                   </span>
                 </div>
               )}

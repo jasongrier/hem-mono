@@ -265,6 +265,7 @@ function AdminList(): ReactElement {
                     <option value="date">Date</option>
                     <option value="tags">Order</option>
                     <option value="attribution">Attribution</option>
+                    <option value="type">Type</option>
                   </select>
                 </th>
               )}
@@ -343,14 +344,14 @@ function AdminList(): ReactElement {
                     <br/>
                   </td>
                 )}
-                { hasCategory(item, 'playlists') && (
-                  <td className="admin-list-column-field">
-                    <div>
-                      {(() => {
-                        // @ts-ignore
-                        return typeof interestingProperty === 'string' && item[interestingProperty].replace(/^, /, '')
-                      })()}
-                    </div>
+                <td className="admin-list-column-field">
+                  <div>
+                    {(() => {
+                      // @ts-ignore
+                      return typeof interestingProperty === 'string' && item[interestingProperty].replace(/^, /, '')
+                    })()}
+                  </div>
+                  { hasCategory(item, 'playlists') && (
                     <pre>
                       { item.attachments.split('\n').map(
                         id => {
@@ -365,31 +366,31 @@ function AdminList(): ReactElement {
                         }
                       ).join('\n')}
                     </pre>
-                    { (hasTag(item, 'albums') || hasTag(item, 'discs')) && item.attachments.split("\n").map(id => (
-                      <div key={uuid()}>
-                        {(() => {
-                          const item = find(allContentItems, { id })
+                  )}
+                  {(hasTag(item, 'albums') || hasTag(item, 'discs')) && item.attachments.split("\n").map(id => (
+                    <div key={uuid()}>
+                      {(() => {
+                        const item = find(allContentItems, { id })
 
-                          if (!item) return (
-                            <div>Not Found: { id }</div>
-                          )
+                        if (!item) return (
+                        <div>Not Found: { id }</div>
+                        )
 
-                          return (
-                            <div>
-                              <Link to={`/admin/edit/${item.slug}`}>
-                                { item.title }
-                              </Link>
-                              <br />
-                              <audio controls>
-                                <source src={assetHostHostname() + item.audioFilename} />
-                              </audio>
-                            </div>
-                          )
-                        })()}
-                      </div>
-                    ))}
-                  </td>
-                )}
+                        return (
+                          <div>
+                            <Link to={`/admin/edit/${item.slug}`}>
+                              { item.title }
+                            </Link>
+                            <br />
+                            <audio controls>
+                              <source src={assetHostHostname() + item.audioFilename} />
+                            </audio>
+                          </div>
+                        )
+                      })()}
+                    </div>
+                  ))}
+                </td>
                 <td className="admin-list-column-actions">
                   <button
                     className="action-button"

@@ -6,6 +6,10 @@ import { slugify } from 'voca'
 import { modelize, IContentItem, hasCategory, uniqueSlug, requestCreateItems } from '../index'
 import { RootState } from '../../../index'
 
+interface IProps {
+  onSubmit: () => void
+}
+
 function newWorkingItem(oldWorkingItem?: Partial<IContentItem>) {
   return modelize({
     id: uuid(),
@@ -14,10 +18,11 @@ function newWorkingItem(oldWorkingItem?: Partial<IContentItem>) {
     title: oldWorkingItem ? oldWorkingItem.title : '',
     type: oldWorkingItem ? oldWorkingItem.type : 'Tracks',
     published: true,
+    order: '0',
   })
 }
 
-function AdminProgramNewItemForm(): ReactElement {
+function AdminProgramNewItemForm({ onSubmit }: IProps): ReactElement {
   const { allContentItems, programItems } = useSelector((state: RootState) => ({
     allContentItems: state.content.contentItems,
     programItems: state.content.contentItems.filter(item =>
@@ -28,7 +33,7 @@ function AdminProgramNewItemForm(): ReactElement {
 
   const dispatch = useDispatch()
 
-  const [newItemFormOpen, setNewItemFormOpen] = useState<boolean>(false)
+  const [newItemFormOpen, setNewItemFormOpen] = useState<boolean>(true)
   const [workingNewItem, setWorkingNewItem] = useState<IContentItem>(newWorkingItem())
 
   const onNewItemFieldChange = useCallback(
@@ -47,6 +52,7 @@ function AdminProgramNewItemForm(): ReactElement {
 
       payloadItem.slug = uniqueSlug(slugify(payloadItem.title), allContentItems)
 
+      onSubmit()
       dispatch(requestCreateItems([payloadItem]))
       setWorkingNewItem(newWorkingItem())
     }, [workingNewItem, allContentItems],
@@ -58,7 +64,6 @@ function AdminProgramNewItemForm(): ReactElement {
       ${newItemFormOpen ? 'admin-program-items-new-open' : ''}
     `}>
       <form onSubmit={onNewItemFormSubmit}>
-        <h3>New Item</h3>
         <div>
           <label>Name:</label>
           <input
@@ -91,16 +96,9 @@ function AdminProgramNewItemForm(): ReactElement {
             <option value="invited">Invited</option>
             <option value="send-invite-soon">Send Invite Soon</option>
             <option value="needs-permission">Needs Permission</option>
+            <option value="needs-production">Needs Production</option>
             <option value="available">Available</option>
           </select>
-        </div>
-        <div>
-          <label>Note:</label>
-          <input
-            onChange={(evt: SyntheticEvent<HTMLInputElement>) => onNewItemFieldChange('note', evt.currentTarget.value)}
-            placeholder="Note"
-            type="text"
-          />
         </div>
         <div>
           <button

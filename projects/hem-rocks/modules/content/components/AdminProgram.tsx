@@ -11,7 +11,7 @@ import { RootState } from '../../../index'
 function getUnscheduledItems(programItems: IContentItem[]) {
   return Array.from(
     programItems.filter(i => !hasTag(i, 'scheduled'))
-      .sort((a, b) => parseInt(a.order, 10) - parseInt(b.order, 10))
+    .sort((a, b) => parseInt(a.order, 10) - parseInt(b.order, 10))
   )
 }
 
@@ -29,7 +29,7 @@ function AdminProgram(): ReactElement {
   const [unscheduledItems, setUnscheduledItems] = useState<IContentItem[]>([])
 
   const [months, setMonths] = useState<Array<{ month: string, open: boolean}>>([
-    { month: 'March', open: false },
+    { month: 'March', open: true },
     { month: 'April', open: false },
     { month: 'May', open: false },
     { month: 'June', open: false },
@@ -107,8 +107,6 @@ function AdminProgram(): ReactElement {
         const monthItems: IContentItem[] | undefined = programItems.filter(i => i.date === month + ' 2021' && hasTag(i, 'scheduled'))
         const newItem = Object.assign({}, monthItems[res.source.index])
 
-        console.log(newItem.title)
-
         newItem.tags = newItem.tags.replace(', scheduled', '')
         newItems.splice(res.destination.index, 0, newItem)
       }
@@ -143,7 +141,7 @@ function AdminProgram(): ReactElement {
       <DragDropContext onDragEnd={onDragEnd}>
         <div className="admin-list admin-program">
           <div className="admin-list-controls clearfix">
-            <AdminProgramNewItemForm />
+            <AdminProgramNewItemForm onSubmit={() => setUnscheduledItems([])} />
           </div>
           <div className="admin-program-content clearfix">
             <div className="admin-program-column admin-program-items">
@@ -172,7 +170,7 @@ function AdminProgram(): ReactElement {
                               )}
                             >
                               <span className={`admin-program-item admin-program-state-${item.tags}`}>
-                                <b>{ item.type }</b> { item.title } : { item.order }
+                                <b>{ item.type }</b> { item.title }
                               </span>
                             </div>
                           )}
