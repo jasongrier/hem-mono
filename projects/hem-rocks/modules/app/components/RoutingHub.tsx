@@ -114,31 +114,14 @@ function RoutingHub(): ReactElement {
 
         <Route exact path="/sound-library/page/:contentItemSlug/:cart?" component={GenericPage} />
 
-        {/* <Route exact path="/sound-library/:contentItemSlug/:cart?" render={({ match }) => {
-          if (
-            match.params.contentItemSlug === 'cart'
-            || match.params.contentItemSlug === 'filter'
-          ) {
-            return <SoundLibrary />
-          }
-
-          else {
-            return <GenericPage />
-          }
-        }} /> */}
+        <Route exact path="/tracks-overview" component={TracksOverview} />
+        <Route exact path="/tracks-overview/cart" component={TracksOverview} />
 
         <Route exact path="/support" component={Support} />
         <Route exact path="/support/cart" component={Support} />
 
         {/* Special Pages */}
         <Route exact path="/life-in-letters" component={LifeInLetters} />
-
-        {/* <Route exact path="/venue-main-stage" component={VenueStage} />
-        <Route exact path="/venue-main-stage/cart" component={VenueStage} /> */}
-
-        {/* Temporary Static Pages */}
-        {/* <Route exact path="/compilation-iv-artist-info" component={CompilationIVArtistInfo} />
-        <Route exact path="/compilation-iv-artist-info/cart" component={CompilationIVArtistInfo} /> */}
 
         {/* List Pages */}
         <Route exact path="/home/:contentItemSlug?/:filter?" component={Home} />
