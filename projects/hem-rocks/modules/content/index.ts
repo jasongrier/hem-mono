@@ -33,6 +33,7 @@ export interface IContentItem {
   published: boolean
   relatedContent: string
   relatedContentLink: string
+  releaseDate: string
   releasePhase: string
   secondaryAttribution: string
   secondaryAttributionLink: string
@@ -100,6 +101,7 @@ export const fieldTypes: IContentItem = {
   published: false,
   relatedContent: 'text',
   relatedContentLink: 'text',
+  releaseDate: 'text',
   releasePhase: 'text',
   secondaryAttribution: 'text',
   secondaryAttributionLink: 'text',

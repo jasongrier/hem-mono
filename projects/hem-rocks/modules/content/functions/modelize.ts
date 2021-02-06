@@ -34,6 +34,7 @@ function modelize(rawContentItem: any): IContentItem {
     published: rawContentItem.published || false,
     relatedContent: rawContentItem.relatedContent || '',
     relatedContentLink: rawContentItem.relatedContentLink || '',
+    releaseDate: rawContentItem.releaseDate || '',
     releasePhase: rawContentItem.releasePhase || '',
     secondaryAttribution: rawContentItem.secondaryAttribution || '',
     secondaryAttributionLink: rawContentItem.secondaryAttributionLink || '',

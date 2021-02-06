@@ -17,6 +17,7 @@ function TracksOverviewContentBox({ allContentItems, contentItem, filter, index,
     <MainContentBox
       width={120}
       contentItem={contentItem}
+      secondaryTitleField="attribution"
       index={index}
       filter={filter}
       tag={tag}
