@@ -46,10 +46,12 @@ function TopBar(): ReactElement {
               <MainNavItem
                 name="Tracks"
                 activeFor={[
+                  '/tracks-overview',
                   '/tracks',
                   '/playlists',
                   '/artists',
                 ]}
+                to="tracks-overview"
               />
               <MainNavItem name="Articles" />
               <MainNavItem name="Editions" />

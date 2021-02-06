@@ -1,0 +1,7 @@
+.page-tracks-overview h2 {
+  color: var(--line-orange);
+  text-transform: uppercase;
+  font-weight: 100;
+  font-family: Avenir;
+  font-size: 48px;
+}

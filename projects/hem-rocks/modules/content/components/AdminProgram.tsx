@@ -16,8 +16,7 @@ function getUnscheduledItems(programItems: IContentItem[]) {
 }
 
 function AdminProgram(): ReactElement {
-  const { allContentItems, programItems } = useSelector((state: RootState) => ({
-    allContentItems: state.content.contentItems,
+  const { programItems } = useSelector((state: RootState) => ({
     programItems: state.content.contentItems.filter(item =>
       hasCategory(item, 'program')
       && item.published
