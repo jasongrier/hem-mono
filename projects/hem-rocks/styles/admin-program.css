@@ -29,8 +29,19 @@
 } */
 
 .admin-program-months .admin-program-box {
-  height: 50px;
-  line-height: 50px;
+  height: 30px;
+  padding: 0;
+  line-height: 30px;
+  cursor: pointer;
+}
+
+.admin-program-months .admin-program-box h3 {
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+.admin-program-months .admin-program-box .admin-program-box-content {
+  display: none;
 }
 
 .admin-program-box-content {
@@ -40,18 +51,26 @@
 .admin-program-months .admin-program-box-open {
   height: auto;
   min-height: 200px;
+  padding: 10px;
+  cursor: auto;
 }
 
-.admin-program-box-open .admin-program-box-content {
+.admin-program-months .admin-program-box-open .admin-program-box-content {
   display: block;
+}
+
+.admin-program-months .admin-program-box-open h3 {
+  padding: 0;
+  line-height: 10px;
+  margin-bottom: 15px;
 }
 
 .admin-program-box-toggle {
   position: absolute;
   top: 0;
   right: 10px;
-  height: 70px;
-  line-height: 70px;
+  height: 30px;
+  line-height: 30px;
   cursor: pointer;
 }
 

@@ -29,7 +29,6 @@ import {
 import {
   Admin,
   Checklists,
-  DndTest,
   Docus,
   InternalCalendar,
   InternalHome,
@@ -46,12 +45,13 @@ import {
   CookiePolicy,
   CookieSettings,
   Home,
+  LifeInLetters,
+  MadeWithSoundLibrary,
   MailingList,
   NotFound,
-  MadeWithSoundLibrary,
   ReactConsulting,
   Support,
-  LifeInLetters,
+  TracksOverview,
 } from '../../../routes/static'
 
 import {
@@ -246,7 +246,6 @@ function RoutingHub(): ReactElement {
         <Route exact path="/internal/print-flip-books" component={PrintFlipBooks} />
         <Route exact path="/internal/sandbox" component={Sandbox} />
         <Route exact path="/internal/todos" component={Todos} />
-        <Route exact path="/internal/dnd-test" component={DndTest} />
 
         {/* Desktop Admin Application */}
         <Route path="/admin" component={Admin} />
