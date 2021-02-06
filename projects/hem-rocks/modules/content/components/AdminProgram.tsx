@@ -121,13 +121,17 @@ function AdminProgram(): ReactElement {
         newItems.splice(res.destination.index, 0, newItem)
       }
 
+      let payloadItems: IContentItem[] = []
+
       for (let i = 0; i < newItems.length; i ++) {
         const payloadItem: IContentItem = produce(newItems[i], (draftItem) => {
           draftItem.order = (i + 1).toString()
         })
-        setUnscheduledItems([])
-        dispatch(requestUpdateItems([payloadItem]))
+        payloadItems.push(payloadItem)
       }
+
+      setUnscheduledItems([])
+      dispatch(requestUpdateItems(payloadItems))
     }
   }
 
