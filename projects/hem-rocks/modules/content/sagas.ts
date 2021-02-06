@@ -126,21 +126,23 @@ function* updateItems({ payload }: any) {
     const { writeFileSync } = remote.require('fs')
     const { join } = remote.require('path')
     const { execSync } = remote.require('child_process')
-
-    const updatedItem = payload[0] // TODO: Handle multiples
     const dbFile = join(__dirname, '..', '..', 'static', 'content', 'index.json')
     const distDbFile = join(__dirname, '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
     const state = yield select()
     const { contentItems } = state.content
     const newContentItems: IContentItem[] = [].concat(contentItems)
-    const index = contentItems.findIndex((item: any) => item.id === updatedItem.id)
+    const updatedItems: IContentItem[] = []
 
-    newContentItems[index] = updatedItem
+    for (const updatedItem of payload) {
+      const index = contentItems.findIndex((item: any) => item.id === updatedItem.id)
+      newContentItems[index] = updatedItem
+      updatedItems.push(updatedItem)
+    }
 
     writeFileSync(dbFile, JSON.stringify(compressIndex(newContentItems)))
     execSync(`cp ${dbFile} ${distDbFile}`, { stdio: 'inherit' })
 
-    yield put(doUpdateItemsAc([updatedItem]))
+    yield put(doUpdateItemsAc(updatedItems))
     yield put(requestReadItemsAc())
   }
 
