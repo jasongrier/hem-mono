@@ -1,4 +1,9 @@
+.page-tracks-overview .overview-page-row {
+  margin-bottom: 30px;
+}
+
 .page-tracks-overview h2 {
+  margin: 0;
   color: var(--line-orange);
   text-transform: uppercase;
   font-weight: 100;

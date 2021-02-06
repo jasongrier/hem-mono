@@ -61,6 +61,7 @@ const keyCompressionMap: any = {
   published: 'az',
   relatedContent: 'ba',
   relatedContentLink: 'bb',
+  releaseDate: 'br',
   releasePhase: 'bc',
   secondaryAttribution: 'bd',
   secondaryAttributionLink: 'be',

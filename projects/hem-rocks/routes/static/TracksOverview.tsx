@@ -1,10 +1,11 @@
 import React, { ReactElement, useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import { useDispatch, useSelector } from 'react-redux'
+import moment from 'moment'
 import { BASE_SITE_TITLE } from '../../config'
 import { TracksSubnav } from '../../components/layout'
 import { TracksOverviewContentBox } from '../../components/layout'
-import { hasCategory, hasTag, MainContentBox, requestReadChunk } from '../../modules/content'
+import { getContentItemById, hasCategory, hasTag, MainContentBox, requestReadChunk } from '../../modules/content'
 import { RootState } from '../../'
 
 function TracksOverview(): ReactElement {
@@ -27,16 +28,23 @@ function TracksOverview(): ReactElement {
   }, [chunkLog])
 
   const rowTracks = tracks.filter(i =>
-    hasTag(i, 'new-in-month')
-    && !hasTag(i, 'mixes')
-    && !hasTag(i, 'rare')
+    hasTag(i, 'in-overview-tracks')
+    && i.published
   )
 
-  const rowPlaylists = playlists.filter(i => hasTag(i, 'new-in-month'))
+  const rowPlaylists = playlists.filter(i =>
+    hasTag(i, 'in-overview-playlists')
+    && i.published
+  )
+
+  const rowMixes = playlists.filter(i =>
+    hasTag(i, 'in-overview-mixes')
+    && i.published
+  )
 
   const rowRare = tracks.filter(i =>
-    hasTag(i, 'new-in-month')
-    && hasTag(i, 'rare')
+    hasTag(i, 'in-overview-rare')
+    && i.published
   )
 
   return (
@@ -45,13 +53,14 @@ function TracksOverview(): ReactElement {
         <title>{ BASE_SITE_TITLE }</title>
         <meta name="description" content="" />
       </Helmet>
-      <div className="page page-tracks-overview">
+      <div className="page page-tracks page-tracks-overview">
         <TracksSubnav />
         <div className="overview-page">
           <div className="overview-page-row">
             <h2>Tracks</h2>
             { rowTracks.map((track, i) =>
               <TracksOverviewContentBox
+                key={track.id}
                 allContentItems={tracks}
                 contentItem={track}
                 filter="all"
