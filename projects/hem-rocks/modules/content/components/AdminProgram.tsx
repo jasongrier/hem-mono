@@ -49,6 +49,16 @@ function AdminProgram(): ReactElement {
     setUnscheduledItems(getUnscheduledItems(programItems))
   }, [programItems, unscheduledItems])
 
+  useEffect(function sidebarFollow() {
+    const months: HTMLDivElement = document.querySelector('.admin-program-months')
+    const scrollLockContainer = document.querySelector('.scroll-lock-container')
+
+    scrollLockContainer.addEventListener('scroll', function() {
+      const height = this.scrollTop
+      months.style.marginTop = height < 200 ? '0' : (height - 200) + 'px'
+    })
+  }, [])
+
   function onDragEnd(res: any) {
     const unscheduledList = Array.from(unscheduledItems)
     const { source, destination } = res
@@ -191,19 +201,15 @@ function AdminProgram(): ReactElement {
                     ${open ? 'admin-program-box-open' : ''}
                   `}
                 >
-                  <div
-                    className="admin-program-box-toggle"
-                    onClick={() => {
-                      setMonths(produce(months, (draftMonths) => {
-                        const newMonth = draftMonths.find(m => m.month === month)
-                        if (!newMonth) return
-                        newMonth.open = !newMonth.open
-                      }))
-                    }}
-                  >
-                    {open ? 'close' : 'open'}
-                  </div>
-                  <h3>{ month } 2021</h3>
+                  <h3 onClick={() => {
+                    setMonths(produce(months, (draftMonths) => {
+                      const newMonth = draftMonths.find(m => m.month === month)
+                      if (!newMonth) return
+                      newMonth.open = !newMonth.open
+                    }))
+                  }}>
+                    { month } 2021
+                  </h3>
                   <AdminProgramMonth
                     id={`admin-program-month-${month}`}
                     items={programItems
