@@ -31,7 +31,7 @@ function Playlists(): ReactElement {
           excludeFromAll="Player Playlist"
           category="playlists"
           orderByOrder={true}
-          excludeTags={['Primary Format', 'Format:Digital', 'Label Page', 'Done For Now', 'Player Playlist', 'Has Multiple Artists']}
+          excludeTags={['Primary Format', 'Format:Digital', 'Label Page', 'Done For Now', 'Player Playlist', 'Has Multiple Artists', 'In Overview Playlists']}
           boxSecondaryTitleField="attribution"
           boxWidth={120}
           boxBlurbs={false}

@@ -49,8 +49,11 @@ function AdminProgram(): ReactElement {
   }, [programItems, unscheduledItems])
 
   useEffect(function sidebarFollow() {
-    const months: HTMLDivElement = document.querySelector('.admin-program-months')
-    const scrollLockContainer = document.querySelector('.scroll-lock-container')
+    const months: HTMLDivElement | null = document.querySelector('.admin-program-months')
+    const scrollLockContainer: HTMLDivElement | null = document.querySelector('.scroll-lock-container')
+
+    if (!months) return
+    if (!scrollLockContainer) return
 
     scrollLockContainer.addEventListener('scroll', function() {
       const height = this.scrollTop

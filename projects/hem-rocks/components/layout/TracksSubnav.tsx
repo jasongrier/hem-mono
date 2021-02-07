@@ -6,7 +6,7 @@ function SoundLibrarySubnav(): ReactElement {
     <nav className="main-content-subnav">
       <ul>
         <li>
-          <NavLink to="/tracks-overview">March 2021</NavLink>
+          <NavLink to="/tracks-overview">MARCH 2021</NavLink>
         </li>
         <li>
           <NavLink to="/tracks">All</NavLink>

@@ -15,7 +15,7 @@ interface IProps {
 function TracksOverviewContentBox({ allContentItems, contentItem, filter, index, tag }: IProps): ReactElement {
   return (
     <MainContentBox
-      width={120}
+      width={90}
       contentItem={contentItem}
       secondaryTitleField="attribution"
       index={index}
@@ -24,7 +24,7 @@ function TracksOverviewContentBox({ allContentItems, contentItem, filter, index,
       minMarginX={0}
       minMarginY={0}
       marginRangeX={0}
-      marginRangeY={80}
+      marginRangeY={0}
       renderActionsOn="key-art"
     >
       <TracksBoxChild
