@@ -27,7 +27,7 @@ function Tracks(): ReactElement {
           excludeFromAll="Sound Library"
           category="tracks"
           orderByOrder={true}
-          excludeTags={['Primary Format', 'Format:Digital', 'Label Page', 'Done For Now', 'Sessions', 'Releases', 'Press', 'Sound Library', 'Not Playable']}
+          excludeTags={['Primary Format', 'Format:Digital', 'Label Page', 'Done For Now', 'Sessions', 'Releases', 'Press', 'Sound Library', 'Not Playable', 'In Overview Tracks', 'In Overview Rare']}
           linkTo={ item => hasTag(item, 'attachment') ? item.relatedContentLink : `/tracks/${item.slug}` }
           boxSecondaryTitleField="attribution"
           boxWidth={120}

@@ -1,11 +1,11 @@
 import React, { ReactElement, useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import { useDispatch, useSelector } from 'react-redux'
-import moment from 'moment'
+import { Link } from 'react-router-dom'
 import { BASE_SITE_TITLE } from '../../config'
 import { TracksSubnav } from '../../components/layout'
 import { TracksOverviewContentBox } from '../../components/layout'
-import { getContentItemById, hasCategory, hasTag, MainContentBox, requestReadChunk } from '../../modules/content'
+import { hasCategory, hasTag, requestReadChunk } from '../../modules/content'
 import { RootState } from '../../'
 
 function TracksOverview(): ReactElement {
@@ -55,28 +55,71 @@ function TracksOverview(): ReactElement {
       </Helmet>
       <div className="page page-tracks page-tracks-overview">
         <TracksSubnav />
+        <h1>Tracks for March 2021</h1>
         <div className="overview-page">
           <div className="overview-page-row">
             <h2>Tracks</h2>
-            { rowTracks.map((track, i) =>
-              <TracksOverviewContentBox
-                key={track.id}
-                allContentItems={tracks}
-                contentItem={track}
-                filter="all"
-                index={i}
-                tag="new-in-month"
-              />
-            )}
+            <div className="overview-page-row-items">
+              { rowTracks.map((track, i) =>
+                <TracksOverviewContentBox
+                  key={track.id}
+                  allContentItems={tracks}
+                  contentItem={track}
+                  filter="all"
+                  index={i}
+                  tag="in-overview-tracks"
+                />
+              )}
+            </div>
+            <Link to="tracks">See all &gt;</Link>
           </div>
           <div className="overview-page-row">
             <h2>Playlists</h2>
+            <div className="overview-page-row-items">
+              { rowPlaylists.map((track, i) =>
+                <TracksOverviewContentBox
+                  key={track.id}
+                  allContentItems={tracks}
+                  contentItem={track}
+                  filter="all"
+                  index={i}
+                  tag="in-overview-playlists"
+                />
+              )}
+            </div>
+            <Link to="playlists">See all &gt;</Link>
           </div>
-          <div className="overview-page-row">
+          {/* <div className="overview-page-row">
             <h2>Mixes</h2>
-          </div>
+            <div className="overview-page-row-items">
+              { rowMixes.map((track, i) =>
+                <TracksOverviewContentBox
+                  key={track.id}
+                  allContentItems={tracks}
+                  contentItem={track}
+                  filter="all"
+                  index={i}
+                  tag="in-overview-mixes"
+                />
+              )}
+            </div>
+            <Link to="/tracks/filter/mixes">See all &gt;</Link>
+          </div> */}
           <div className="overview-page-row">
             <h2>Rare</h2>
+            <div className="overview-page-row-items">
+              { rowRare.map((track, i) =>
+                <TracksOverviewContentBox
+                  key={track.id}
+                  allContentItems={tracks}
+                  contentItem={track}
+                  filter="all"
+                  index={i}
+                  tag="in-overview-rare"
+                />
+              )}
+            </div>
+            <Link to="tracks/filter/rare">See all &gt;</Link>
           </div>
         </div>
       </div>
