@@ -56,7 +56,7 @@ function chunkData(allContentItems: IContentItem[]) {
     {
       name: 'home-features',
       getContentItems(allContentItems: any) {
-        const homeFeaturesItems = allContentItems.filter((item: any) => hasCategory(item, 'home-features'))
+        const homeFeaturesItems = allContentItems.filter((item: any) => hasTag(item, 'home-features'))
         const homeHeroineItem = getContentItemBySlug(allContentItems, 'new-website')
 
         this.contentItems = homeFeaturesItems.concat(homeHeroineItem)

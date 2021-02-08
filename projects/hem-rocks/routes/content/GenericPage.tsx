@@ -1,26 +1,30 @@
 import React, { ReactElement, useEffect, useState } from 'react'
-import { useLocation, useParams } from 'react-router'
-import { useSelector } from 'react-redux'
+import { useParams } from 'react-router'
+import { useDispatch, useSelector } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import Mustache from 'mustache'
-import ReactGA from 'react-ga'
-import { map } from 'lodash'
 import marked from 'marked'
-import { CampaignMonitorForm } from '../../../../lib/components'
 import { SoundLibrarySubnav } from '../../components/layout'
 import { assetHostHostname } from '../../functions'
-import { BASE_SITE_TITLE, CAMPAIGN_MONITOR_FORM_ACTION, CAMPAIGN_MONITOR_FORM_ID, CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME, BERLIN_STOCK_PHOTOS } from '../../config'
+import { BASE_SITE_TITLE } from '../../config'
 import { RootState } from '../../index'
-import { getContentItemBySlug, hasCategory, hasTag, IContentItem } from '../../modules/content'
-import { autoParagraph } from '../../../../lib/functions'
+import { getContentItemBySlug, hasCategory, hasTag, IContentItem, requestReadChunk } from '../../modules/content'
 
-function AboutSoundLibrary(): ReactElement {
-  const { contentItems } = useSelector((state: RootState) => ({
+function GenericPage(): ReactElement {
+  const { chunkLog, contentItems } = useSelector((state: RootState) => ({
+    chunkLog: state.content.chunkLog,
     contentItems: state.content.contentItems.filter(item =>
       hasCategory(item, 'site-texts')
       && item.published
     ),
   }))
+
+  const dispatch = useDispatch()
+
+  useEffect(function preloadSiteText() {
+    if (chunkLog.includes('site-texts')) return
+    dispatch(requestReadChunk('site-texts'))
+  }, [chunkLog])
 
   const { contentItemSlug }: any = useParams()
 
@@ -49,7 +53,7 @@ function AboutSoundLibrary(): ReactElement {
       <div className={'page page-' + (contentItem === false ? 'content-item-not-found' : contentItem?.slug)}>
         {(
           contentItemSlug === 'about-sl'
-          || contentItemSlug === 'whats-new-in-sl2'
+          || contentItemSlug === 'whats-new-in-sl-two'
           || contentItemSlug === 'made-with-sl'
         ) && (
           <SoundLibrarySubnav />
@@ -77,4 +81,4 @@ function AboutSoundLibrary(): ReactElement {
   )
 }
 
-export default AboutSoundLibrary
+export default GenericPage

@@ -52,6 +52,7 @@ import {
   ReactConsulting,
   Support,
   TracksOverview,
+  WhatsNewInSL2,
 } from '../../../routes/static'
 
 import {
@@ -122,6 +123,9 @@ function RoutingHub(): ReactElement {
 
         <Route exact path="/support" component={Support} />
         <Route exact path="/support/cart" component={Support} />
+
+        <Route exact path="/sound-library/whats-new-in-sl-two" component={WhatsNewInSL2} />
+        <Route exact path="/sound-library/whats-new-in-sl-two/cart" component={WhatsNewInSL2} />
 
         {/* Special Pages */}
         <Route exact path="/life-in-letters" component={LifeInLetters} />

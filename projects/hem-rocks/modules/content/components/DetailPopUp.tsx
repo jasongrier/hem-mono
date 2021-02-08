@@ -5,11 +5,10 @@ import { Link } from 'react-router-dom'
 import { find, isFinite, isNaN, noop, findIndex, last, compact, isEmpty } from 'lodash'
 import $ from 'jquery'
 import marked from 'marked'
+import Mustache from 'mustache'
 import uuid from 'uuid/v1'
 import Scrollbars from 'react-scrollbars-custom'
 import ReactGA from 'react-ga'
-import { Spinner } from '../../../../../lib/components'
-import { PlayPauseButton, ChevronButton } from '../../../../../lib/packages/hem-buttons'
 import { closePopup, openPopup } from '../../../../../lib/modules/popups'
 import { TrackPlayPauseButton, ITrack, replacePlaylist, setPlayerPlaylist, IPlaylist } from '../../../../../lib/modules/website-player'
 import { addProductToCart, submitSale } from '../../cart'
@@ -709,7 +708,9 @@ function DetailPopUp({
             <div
               className="detail-cms-text"
               dangerouslySetInnerHTML={{
-                __html: marked(contentItem.description.replace(/ /g, '').length === 0 ?  contentItem.blurb : contentItem.description),
+                __html: marked(
+                  Mustache.render(contentItem.description.replace(/ /g, '').length === 0 ?  contentItem.blurb : contentItem.description, { assetHost: assetHostHostname() })
+                ),
               }}
             />
           )}
