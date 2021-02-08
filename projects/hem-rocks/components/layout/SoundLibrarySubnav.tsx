@@ -11,7 +11,7 @@ function SoundLibrarySubnav(): ReactElement {
               pathname.indexOf('/sound-library') === 0
               && !pathname.includes('about-sl')
               && !pathname.includes('made-with-sl')
-              && !pathname.includes('whats-new-in-sl2')
+              && !pathname.includes('whats-new-in-sl-two')
             }
             to="/sound-library"
           >
@@ -22,7 +22,7 @@ function SoundLibrarySubnav(): ReactElement {
           <NavLink to="/sound-library/page/about-sl">About SL</NavLink>
         </li>
         <li>
-          <NavLink to="/sound-library/page/whats-new-in-sl2">What's new in SL2</NavLink>
+          <NavLink to="/sound-library/whats-new-in-sl-two">What's new in SL2</NavLink>
         </li>
         <li>
           <NavLink to="/sound-library/made-with-sl">Made something with SL?</NavLink>

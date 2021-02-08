@@ -1,10 +1,10 @@
-import React, { ReactElement, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React, { ReactElement } from 'react'
+import { useSelector } from 'react-redux'
 import { Helmet } from 'react-helmet'
+import { map } from 'lodash'
 import { ITrack, TrackPlayPauseButton } from '../../../../lib/modules/website-player'
-import { SoundLibraryRefreshHeroine, HemRefreshHeroine, GrandPianoHeroine } from '../../components/heroines'
-import { MainContentList, getContentItemsFromRawList, contentItemToTrack, hasCategory, getContentItemBySlug } from '../../modules/content'
-import { ReleasePhase } from '../../components/layout'
+import { HemRefreshHeroine } from '../../components/heroines'
+import { MainContentList, getContentItemsFromRawList, contentItemToTrack, hasCategory, getContentItemBySlug, hasTag } from '../../modules/content'
 import { BASE_SITE_TITLE } from '../../config'
 import { RootState } from '../../index'
 
@@ -25,11 +25,13 @@ function Home(): ReactElement {
         </div>
         <MainContentList
           category="home-features"
+          applyCurrentFilter={false}
+          items={contentItems.filter(i => hasTag(i, 'home-features'))}
           playlistToSet={0}
           boxSecondaryTitleField="attribution"
           showCategoryOnContentBoxes={true}
           noFilters={true}
-          linkTo={(contentItem) => `home/${contentItem.slug}`}
+          linkTo={contentItem => `home/${contentItem.slug}`}
           orderByOrder={true}
           ignoreSticky={true}
         >

@@ -260,6 +260,7 @@ function AdminList(): ReactElement {
                   <select onChange={(evt: SyntheticEvent<HTMLSelectElement>) => {
                     setInterestingProperty(evt.currentTarget.value as keyof IContentItem)
                   }}>
+                    <option value="category">Category</option>
                     <option value="tags">Tags</option>
                     <option value="id">Id</option>
                     <option value="date">Date</option>

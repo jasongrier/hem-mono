@@ -12,6 +12,7 @@ import { IContentItem, requestReadChunk, fieldTypes, hasTag, modelize, requestCr
 import { RootState } from '../../../index'
 import { BERLIN_STOCK_PHOTOS } from '../../../config'
 import uuid from 'uuid'
+import { requestReadItems } from '../actions'
 
 interface IProps { }
 
@@ -27,7 +28,7 @@ function AdminItemOrdering({ }: IProps): ReactElement {
   const [canSave, setCanSave] = useState<boolean>(false)
 
   useEffect(function init() {
-    dispatch(requestReadChunk('tracks'))
+    dispatch(requestReadItems())
   }, [])
 
   useEffect(function setContent() {
@@ -36,7 +37,7 @@ function AdminItemOrdering({ }: IProps): ReactElement {
     let sortSet = Array.from(allContentItems)
 
     sortSet = sortSet.filter(item => (
-      hasCategory(item, 'home-features')
+      hasTag(item, 'home-features')
     ))
 
     sortSet.sort(

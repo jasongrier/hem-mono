@@ -122,7 +122,6 @@ export const categories = [
   'editions',
   'faqs',
   'heroines',
-  'home-features',
   'label',
   'lists',
   'merch',

@@ -22,7 +22,6 @@ const reducer = (
     case OPEN_POPUP: {
       return produce(state, draftState => {
         if (state.frozen) return draftState
-        console.log(payload.id)
         draftState.currentlyOpenPopUp = payload.id
         draftState.propsToChildren = payload.propsToChildren
       })
