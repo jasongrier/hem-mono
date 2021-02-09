@@ -326,6 +326,7 @@ function DetailPopUp({
       || hasCategory(item, 'merch')
       || hasCategory(item, 'venue-calendar')
       || hasCategory(item, 'stock-photos')
+      || hasCategory(item, 'editions')
       || (hasCategory(item, 'label') && (item.isDigitalProduct || item.isPhysicalProduct))
     ) {
       return true
@@ -532,144 +533,146 @@ function DetailPopUp({
             />
           )}
           <div className="detail-popup-header-content">
-            <div className="detail-popup-actions">
-              <div className="detail-popup-form detail-popup-buttons">
-                { pricingMode === 2 && (
-                  <button
-                    className="action-button donation-pricing-scheme-button"
-                    onClick={instantDownloadOnClick}
-                  >
-                    Free Download
-                  </button>
-                )}
-              </div>
-              { pricingMode === 1 && isPurchaseable(contentItem) && (
-                <div className="detail-popup-form">
-                  {contentItem.hasFixedPrice && (
-                    <p className="detail-popup-fixed-price">{ contentItem.fixedPrice } €</p>
+            { isPurchaseable(contentItem) && (
+              <div className="detail-popup-actions">
+                <div className="detail-popup-form detail-popup-buttons">
+                  { pricingMode === 2 && (
+                    <button
+                      className="action-button donation-pricing-scheme-button"
+                      onClick={instantDownloadOnClick}
+                    >
+                      Free Download
+                    </button>
                   )}
-                  {!contentItem.hasFixedPrice && (
-                    <>
-                      <label
-                        className="suggested-price"
-                        htmlFor="suggested-price"
-                      >
-                        { chooseYourPriceText }
-                      </label>
-                      {/* <span className="detail-popup-currency-symbol">€</span> */}
-                      <form onSubmit={formOnSubmit}>
-                        <input
-                          autoComplete="off"
-                          min={contentItem.flexPriceMinimum || 0}
-                          name="suggested-price"
-                          onBlur={suggestedPriceOnBlur}
-                          onChange={suggestedPriceOnChange}
-                          type="text"
-                          value={suggestedPrice}
-                        />
-                      </form>
-                      <small className={
-                        isFinite(parseFloat(suggestedPrice))
-                        && parseFloat(suggestedPrice) < parseFloat(contentItem.flexPriceMinimum)
-                          ? 'invalid-minimum'
-                          : ''
-                      }>
-                        Minimum price: { contentItem.flexPriceMinimum } €
-                      </small>
-                      <br />
-                      { BERLIN_STOCK_PHOTOS && (
-                        <>
-                          <small>
-                            Recommended price: { contentItem.flexPriceRecommended } €
-                          </small>
-                          <br />
-                          <small>
-                            Minimum price for RAW: { MINIMUM_PRICE_FOR_RAW } €
-                          </small>
-                        </>
+                </div>
+                { pricingMode === 1 && isPurchaseable(contentItem) && (
+                  <div className="detail-popup-form">
+                    {contentItem.hasFixedPrice && (
+                      <p className="detail-popup-fixed-price">{ contentItem.fixedPrice } €</p>
+                    )}
+                    {!contentItem.hasFixedPrice && (
+                      <>
+                        <label
+                          className="suggested-price"
+                          htmlFor="suggested-price"
+                        >
+                          { chooseYourPriceText }
+                        </label>
+                        {/* <span className="detail-popup-currency-symbol">€</span> */}
+                        <form onSubmit={formOnSubmit}>
+                          <input
+                            autoComplete="off"
+                            min={contentItem.flexPriceMinimum || 0}
+                            name="suggested-price"
+                            onBlur={suggestedPriceOnBlur}
+                            onChange={suggestedPriceOnChange}
+                            type="text"
+                            value={suggestedPrice}
+                          />
+                        </form>
+                        <small className={
+                          isFinite(parseFloat(suggestedPrice))
+                          && parseFloat(suggestedPrice) < parseFloat(contentItem.flexPriceMinimum)
+                            ? 'invalid-minimum'
+                            : ''
+                        }>
+                          Minimum price: { contentItem.flexPriceMinimum } €
+                        </small>
+                        <br />
+                        { BERLIN_STOCK_PHOTOS && (
+                          <>
+                            <small>
+                              Recommended price: { contentItem.flexPriceRecommended } €
+                            </small>
+                            <br />
+                            <small>
+                              Minimum price for RAW: { MINIMUM_PRICE_FOR_RAW } €
+                            </small>
+                          </>
+                        )}
+                        {!valid && (
+                          <div className="invalid-message">
+                            Please enter a valid price.
+                          </div>
+                        )}
+                      </>
+                    )}
+                    <div className={`
+                      detail-popup-buttons clearfix
+                      ${valid ? '' : 'invalid'}
+                    `}>
+                      { (parseFloat(suggestedPrice) > 0 || cartProducts.length > 0)
+                          && cartProducts.filter(p => p.isDigitalProduct === false).length === 0
+                          && contentItem.isDigitalProduct
+                          && (
+                            <button
+                              className="action-button"
+                              onClick={checkOutOnClick}
+                            >
+                              { buyNowText }
+                            </button>
                       )}
-                      {!valid && (
-                        <div className="invalid-message">
-                          Please enter a valid price.
-                        </div>
+                      { (parseFloat(suggestedPrice) > 0 || cartProducts.length > 0) && (
+                        <button
+                          className="action-button"
+                          onClick={addToCartOnClick}
+                        >
+                          { addToCartText }
+                        </button>
                       )}
-                    </>
-                  )}
-                  <div className={`
-                    detail-popup-buttons clearfix
-                    ${valid ? '' : 'invalid'}
-                  `}>
-                    { (parseFloat(suggestedPrice) > 0 || cartProducts.length > 0)
-                        && cartProducts.filter(p => p.isDigitalProduct === false).length === 0
-                        && contentItem.isDigitalProduct
-                        && (
-                          <button
-                            className="action-button"
-                            onClick={checkOutOnClick}
-                          >
-                            { buyNowText }
-                          </button>
-                    )}
-                    { (parseFloat(suggestedPrice) > 0 || cartProducts.length > 0) && (
-                      <button
-                        className="action-button"
-                        onClick={addToCartOnClick}
-                      >
-                        { addToCartText }
-                      </button>
-                    )}
-                    { (parseInt(suggestedPrice) === 0 && cartProducts.length === 0) && (
-                      <button
-                        className="action-button"
-                        onClick={instantDownloadOnClick}
-                      >
-                        Download
-                      </button>
-                    )}
-                    { !contentItem.hasFixedPrice && isNaN(parseFloat(suggestedPrice)) && (
-                      <div className="purchase-form-spinner">
+                      { (parseInt(suggestedPrice) === 0 && cartProducts.length === 0) && (
                         <button
                           className="action-button"
                           onClick={instantDownloadOnClick}
                         >
                           Download
                         </button>
-                      </div>
-                    )}
-                    { BERLIN_STOCK_PHOTOS && contentItem.physicalFormats.length > 0 && (
-                      <div className="bsp-print-link">
-                        <Link to={`/stock-photos-prints/${contentItem.physicalFormats}`}>
-                          Want a print of this photo?
-                        </Link>
-                      </div>
-                    )}
-                  </div>
-                  {/* { contentItem.physicalFormats.length > 1 && (
-                    <div className="purchase-form-alternate-formats">
-                      <h3>Other Formats</h3>
-                      { contentItem.physicalFormats.split('\n').map(slug => {
-                        const item = getContentItemBySlug(allContentItems, slug)
-                        if (item) {
-                          return (
-                            <Link
-                              key={item.slug}
-                              to={`/label/${item.slug}`}
-                            >
-                              { item.title }
-                            </Link>
-                          )
-                        }
-                      })}
+                      )}
+                      { !contentItem.hasFixedPrice && isNaN(parseFloat(suggestedPrice)) && (
+                        <div className="purchase-form-spinner">
+                          <button
+                            className="action-button"
+                            onClick={instantDownloadOnClick}
+                          >
+                            Download
+                          </button>
+                        </div>
+                      )}
+                      { BERLIN_STOCK_PHOTOS && contentItem.physicalFormats.length > 0 && (
+                        <div className="bsp-print-link">
+                          <Link to={`/stock-photos-prints/${contentItem.physicalFormats}`}>
+                            Want a print of this photo?
+                          </Link>
+                        </div>
+                      )}
                     </div>
-                  )} */}
-                </div>
-              )}
-              { showPurchaseForm && contentItem.acceptingDonations && (
-                <div>
-                  <h4>Contributing to this project</h4>
-                </div>
-              )}
-            </div>
+                    {/* { contentItem.physicalFormats.length > 1 && (
+                      <div className="purchase-form-alternate-formats">
+                        <h3>Other Formats</h3>
+                        { contentItem.physicalFormats.split('\n').map(slug => {
+                          const item = getContentItemBySlug(allContentItems, slug)
+                          if (item) {
+                            return (
+                              <Link
+                                key={item.slug}
+                                to={`/label/${item.slug}`}
+                              >
+                                { item.title }
+                              </Link>
+                            )
+                          }
+                        })}
+                      </div>
+                    )} */}
+                  </div>
+                )}
+                { showPurchaseForm && contentItem.acceptingDonations && (
+                  <div>
+                    <h4>Contributing to this project</h4>
+                  </div>
+                )}
+              </div>
+            )}
             {/* { category !== 'venue-calendar' && attachedPlaylist && attachedPlaylist.tracks && attachedPlaylist.tracks.length > 0 && (
               <TrackPlayPauseButton
                 track={attachedPlaylist.tracks[0]}
@@ -714,7 +717,10 @@ function DetailPopUp({
               }}
             />
           )}
-          <div className="detail-popup-details-sidebar">
+          <div className={`
+            detail-popup-details-sidebar
+            ${ isPurchaseable(contentItem) ? '' : 'detail-popup-details-sidebar-raised'}
+          `}>
             { attachedPlaylist && attachedPlaylist.tracks && attachedPlaylist.tracks.length > 1 && (
               <div className="detail-popup-details-sidebar-section">
                 <ul className="detail-popup-details-playlist">

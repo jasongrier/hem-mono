@@ -15,7 +15,7 @@ function HemRefreshHeroine({ contentItem }: IProps): ReactElement {
 
   return (
     <div className="hem-refresh-heroine">
-      <Link to="home/new-website">
+      <Link to="home/update-march-2021">
         <div
           className="hem-refresh-heroine-image"
           style={{
