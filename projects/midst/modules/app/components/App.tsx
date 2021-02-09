@@ -200,10 +200,6 @@ function App(): ReactElement {
       popupId = 'thank-you-popup'
     }
 
-    if (basePath === 'new-website') {
-      popupId = 'new-website-popup'
-    }
-
     if (!popupId) {
       for (const routedPopup of genericRoutedPopups) {
         if (

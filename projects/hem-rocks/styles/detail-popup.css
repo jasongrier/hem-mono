@@ -47,13 +47,14 @@
 }
 
 .detail-popup header h1 {
-  width: 760px;
+  width: 1000px;
   line-height: 57px;
   margin: 5px 0 15px 10px;
   padding: 0;
   font-weight: normal;
   font-size: 80px;
   text-transform: uppercase;
+  color: var(--line-orange);
 }
 
 .detail-popup header h2 {
@@ -304,7 +305,7 @@
 }
 
 .hem-popup-content .detail-popup-details .mega-blurb {
-  margin: 20px 0 50px 0;
+  margin: 20px 0 20px 0;
 }
 
 .hem-popup-content .detail-popup-details .mega-blurb p {
@@ -319,6 +320,10 @@
   line-height: 32px;
   font-size: 18px;
   color: #333;
+}
+
+.hem-popup-content .detail-popup-details .detail-cms-text {
+  margin-top: -30px;
 }
 
 .hem-popup-content .detail-popup-details .detail-cms-text ul {
@@ -338,8 +343,8 @@
   background-color: #eee;
 }
 
-.detail-popup-details-sidebar-section {
-
+.detail-popup-details-sidebar-raised {
+  top: -80px;
 }
 
 .detail-popup-details-playlist {

@@ -57,7 +57,7 @@ function chunkData(allContentItems: IContentItem[]) {
       name: 'home-features',
       getContentItems(allContentItems: any) {
         const homeFeaturesItems = allContentItems.filter((item: any) => hasTag(item, 'home-features'))
-        const homeHeroineItem = getContentItemBySlug(allContentItems, 'new-website')
+        const homeHeroineItem = getContentItemBySlug(allContentItems, 'update-march-2021')
 
         this.contentItems = homeFeaturesItems.concat(homeHeroineItem)
       },
@@ -253,8 +253,8 @@ async function migrate(allContentItems: IContentItem[]) {
   // ***** DANGER ZONE *****
   // ***** DANGER ZONE *****
 
-  writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
-  writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
+  // writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
+  // writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
 }
 
 function AdminManualTaskRunner(): ReactElement {

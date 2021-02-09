@@ -88,6 +88,7 @@ function SiteFooter(): ReactElement {
           <Link to="/privacy-settings">Privacy Settings</Link>
           <Link to="/react-consulting">React Consulting</Link>
           <Link to="/internal">Internal Pages</Link>
+          <Link to="/dance-party">Dance Party!</Link>
           <br />
           &copy; 2020, Hot Extramusicality, Inc.
         </div>

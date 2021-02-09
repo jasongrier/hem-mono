@@ -44,6 +44,7 @@ import {
   Contact,
   CookiePolicy,
   CookieSettings,
+  DanceParty,
   Home,
   LifeInLetters,
   MadeWithSoundLibrary,
@@ -106,6 +107,9 @@ function RoutingHub(): ReactElement {
 
         <Route exact path="/cookie-policy" component={CookiePolicy} />
         <Route exact path="/cookie-policy/cart" component={CookiePolicy} />
+
+        <Route exact path="/dance-party" component={DanceParty} />
+        <Route exact path="/dance-party/cart" component={DanceParty} />
 
         <Route exact path="/mailing-list" component={MailingList} />
         <Route exact path="/mailing-list/cart" component={MailingList} />

@@ -195,6 +195,7 @@ function App(): ReactElement {
 
   useEffect(function routedPopup() {
     const [basePath, slug, cart, orCart] = pathname.replace(/^\//, '').split('/')
+    console.log(slug)
     const requestedContentItem = contentItems.find(item =>
       item.slug === slug && !hasCategory(item, 'site-texts')
     )
@@ -214,9 +215,7 @@ function App(): ReactElement {
       popupId = 'thank-you-popup'
     }
 
-    if (basePath === 'new-website') {
-      popupId = 'new-website-popup'
-    }
+    console.log(requestedContentItem)
 
     if (!popupId) {
       for (const routedPopup of genericRoutedPopups) {
