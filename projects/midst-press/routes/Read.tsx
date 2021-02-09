@@ -80,7 +80,7 @@ function Read(): ReactElement {
             </p>
             <p>
               Annelyse<br />
-              January 2021
+              February 2021
             </p>
             {/*
               <p> Dear friends,</p>
