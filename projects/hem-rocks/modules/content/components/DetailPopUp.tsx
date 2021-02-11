@@ -2,6 +2,7 @@ import React, { ReactElement, SyntheticEvent, useEffect, useCallback, useContext
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
+import Cookies from 'js-cookie'
 import { find, isFinite, isNaN, noop, findIndex, last, compact, isEmpty } from 'lodash'
 import $ from 'jquery'
 import marked from 'marked'
@@ -12,6 +13,7 @@ import ReactGA from 'react-ga'
 import { closePopup, openPopup } from '../../../../../lib/modules/popups'
 import { TrackPlayPauseButton, ITrack, replacePlaylist, setPlayerPlaylist, IPlaylist } from '../../../../../lib/modules/website-player'
 import { addProductToCart, submitSale } from '../../cart'
+import { getCookieName, SplitTests } from '../../app'
 import { IContentItem, getContentItemsFromRawList, getContentItemById } from '../index'
 import { assetHostHostname } from '../../../functions'
 import { BvgWatermark } from '../../../components/berlin-stock-photos'
@@ -417,6 +419,8 @@ function DetailPopUp({
 
   const assetHost = assetHostHostname()
 
+  const flexPricingType = Cookies.get(getCookieName(SplitTests.FlexPricingType))
+
   const buyNowText = category === 'venue-calendar'
     ? 'Buy Ticket'
     : 'Download'
@@ -427,7 +431,7 @@ function DetailPopUp({
 
   const chooseYourPriceText = category === 'venue-calendar'
     ? 'Choose your ticket price!'
-    : ( BERLIN_STOCK_PHOTOS ? 'Name your price!' : 'Set your price')
+    : ( BERLIN_STOCK_PHOTOS ? 'Name your price!' : flexPricingType === 'buttons' ? 'Choose your price:' : 'Set your price')
 
   if (!contentItem) return (<div />)
 
@@ -547,40 +551,52 @@ function DetailPopUp({
                   )}
                 </div>
                 { pricingMode === 1 && isPurchaseable(contentItem) && (
-                  <div className="detail-popup-form">
+                  <div className={`detail-popup-form flex-pricing-type-${flexPricingType}`}>
                     {contentItem.hasFixedPrice && (
                       <p className="detail-popup-fixed-price">{ contentItem.fixedPrice } €</p>
                     )}
                     {!contentItem.hasFixedPrice && (
                       <>
-                        <label
-                          className="suggested-price"
-                          htmlFor="suggested-price"
-                        >
+                        <label className="suggested-price-label">
                           { chooseYourPriceText }
                         </label>
                         {/* <span className="detail-popup-currency-symbol">€</span> */}
                         <form onSubmit={formOnSubmit}>
-                          <input
-                            autoComplete="off"
-                            min={contentItem.flexPriceMinimum || 0}
-                            name="suggested-price"
-                            onBlur={suggestedPriceOnBlur}
-                            onChange={suggestedPriceOnChange}
-                            type="text"
-                            value={suggestedPrice}
-                          />
+                          {flexPricingType === 'input' && (
+                            <input
+                              autoComplete="off"
+                              min={contentItem.flexPriceMinimum || 0}
+                              name="suggested-price"
+                              onBlur={suggestedPriceOnBlur}
+                              onChange={suggestedPriceOnChange}
+                              type="text"
+                              value={suggestedPrice}
+                            />
+                          )}
+                          {flexPricingType === 'buttons' && (
+                            contentItem.flexPriceChoices.split('|').map(choice => (
+                              <label className="radio-label">
+                                { choice } €
+                                <input
+                                  type="radio"
+                                  value={choice}
+                                />
+                              </label>
+                            ))
+                          )}
                         </form>
-                        <small className={
-                          isFinite(parseFloat(suggestedPrice))
-                          && parseFloat(suggestedPrice) < parseFloat(contentItem.flexPriceMinimum)
-                            ? 'invalid-minimum'
-                            : ''
-                        }>
-                          Minimum price: { contentItem.flexPriceMinimum } €
-                        </small>
+                        {flexPricingType === 'input' && (
+                          <small className={
+                            isFinite(parseFloat(suggestedPrice))
+                            && parseFloat(suggestedPrice) < parseFloat(contentItem.flexPriceMinimum)
+                              ? 'invalid-minimum'
+                              : ''
+                          }>
+                            Minimum price: { contentItem.flexPriceMinimum } €
+                          </small>
+                        )}
                         <br />
-                        { BERLIN_STOCK_PHOTOS && (
+                        { BERLIN_STOCK_PHOTOS && flexPricingType === 'input' && (
                           <>
                             <small>
                               Recommended price: { contentItem.flexPriceRecommended } €
@@ -591,7 +607,7 @@ function DetailPopUp({
                             </small>
                           </>
                         )}
-                        {!valid && (
+                        {!valid && flexPricingType === 'input' && (
                           <div className="invalid-message">
                             Please enter a valid price.
                           </div>

@@ -87,23 +87,23 @@
   width: 390px;
 }
 
-.detail-popup header input,
-.detail-popup header label,
-.detail-popup header small {
+.detail-popup header .flex-pricing-type-input input,
+.suggested-price-label,
+.detail-popup header .flex-pricing-type-input small {
   display: block;
   margin-bottom: 5px;
 }
 
-.detail-popup header label {
+.detail-popup header .suggested-price-label {
   display: inline-block;
   margin: 30px 0 5px 0;
   padding: 0 10px;
   font-size: 14px !important;
-  transform: translateY(-5px);
+  transform: translateY(-15px);
   color: #fff;
 }
 
-.detail-popup header input {
+.detail-popup header .flex-pricing-type-input input {
   display: inline-block;
   width: 280px;
   height: 50px;
@@ -117,12 +117,12 @@
   text-align: center;
 }
 
-.detail-popup header input:focus,
-.detail-popup header input:active {
+.detail-popup header .flex-pricing-type-input input:focus,
+.detail-popup header .flex-pricing-type-input input:active {
   outline: none;
 }
 
-.detail-popup .invalid-message {
+.detail-popup .flex-pricing-type-input .invalid-message {
   position: absolute;
   top: 68px;
   right: 20px;
@@ -131,7 +131,7 @@
   background-color: #fff;
 }
 
-.detail-popup header small {
+.detail-popup header .flex-pricing-type-input small {
   display: inline-block;
   padding: 0 5px;
   margin: 5px 0 30px 0;
@@ -140,7 +140,7 @@
   color: #fff;
 }
 
-.detail-popup header small.invalid-minimum {
+.detail-popup header .flex-pricing-type-input small.invalid-minimum {
   color: red;
 }
 
@@ -150,6 +150,34 @@
   left: 180px;
   z-index: 9999;
   font-size: 30px;
+}
+
+.detail-popup header .flex-pricing-type-buttons .radio-label {
+  display: inline-block;
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  margin: 0 5px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 600;
+}
+
+.detail-popup header .flex-pricing-type-buttons .radio-label:nth-child(1) {
+  background-color: blue;
+}
+
+.detail-popup header .flex-pricing-type-buttons .radio-label:nth-child(2) {
+  background-color: orange;
+}
+
+.detail-popup header .flex-pricing-type-buttons .radio-label:nth-child(3) {
+  background-color: green;
+}
+
+.detail-popup header .flex-pricing-type-buttons input {
+  display: none;
 }
 
 .detail-popup-buttons {
@@ -254,7 +282,7 @@
   font-size: 20px;
 }
 
-.detail-popup-form .suggested-price em {
+.detail-popup-form .suggested-price-label em {
   font-size: 28px;
 }
 
