@@ -8,6 +8,8 @@ const donorList = [
   'Myrrh Crow',
   'Lara Prescott',
   'Alejandro Puyana',
+  'Dave Malone',
+  'Sarah T. Jewell',
   'Anonymous donors',
 ]
 
