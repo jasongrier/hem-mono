@@ -109,9 +109,6 @@ export function compressIndexKeys(index: IContentItem[]) {
     for (const key in keyCompressionMap) {
       compressedItem[keyCompressionMap[key]] = item[key as keyof IContentItem]
     }
-
-    console.log(compressedItem.bs)
-
     compressedIndex.push(compressedItem)
   }
 
