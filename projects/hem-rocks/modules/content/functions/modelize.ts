@@ -20,7 +20,7 @@ function modelize(rawContentItem: any): IContentItem {
     externalLinkText: rawContentItem.externalLinkText || '',
     externalLinkUrl: rawContentItem.externalLinkUrl || '',
     fixedPrice: rawContentItem.fixedPrice || '',
-    flexPriceChoices: rawContentItem.flexPriceMinimum || '',
+    flexPriceChoices: rawContentItem.flexPriceChoices || '',
     flexPriceMinimum: rawContentItem.flexPriceMinimum || '',
     flexPriceRecommended: rawContentItem.flexPriceRecommended || '',
     hasFixedPrice: rawContentItem.hasFixedPrice || false,

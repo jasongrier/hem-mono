@@ -246,6 +246,8 @@ async function migrate(allContentItems: IContentItem[]) {
   // ***** DANGER ZONE *****
   // ***** DANGER ZONE *****
 
+  console.log(getContentItemById(newItems, '484b146f-3893-11eb-9b19-d773ba798561').flexPriceChoices)
+
   writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
   writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
 }
