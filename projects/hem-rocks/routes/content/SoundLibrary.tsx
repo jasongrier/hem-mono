@@ -26,11 +26,13 @@ function SoundLibrary(): ReactElement {
         <MainContentList
           buttonText="Download"
           category="sound-library"
-          currentFilter={currentFilter}
+          currentFilter={currentFilter || 'all'}
           excludeFromAll="Midi Devices"
           orderByOrder={true}
+          noAll={false}
           shouldSetCurrentPlaylist={true}
           speciallyOrderedTags={['Featured']}
+          excludeTags={['Home Features']}
         >
           {(pack) => {
             const attachedTracks = getContentItemsFromRawList(allContentItems, pack.attachments).map(track =>

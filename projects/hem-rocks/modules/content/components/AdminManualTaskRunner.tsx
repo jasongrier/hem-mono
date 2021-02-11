@@ -1,19 +1,12 @@
 import React, { ReactElement, useEffect, useState, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import uuid from 'uuid/v1'
-import { uniq, noop, last, isNumber, compact, uniqBy, has, sample, filter, map, find, isEmpty, includes, sortBy, partial, findIndex, flatten } from 'lodash'
-import pad from 'pad'
+import { compact, flatten } from 'lodash'
 import moment from 'moment'
-import $ from 'jquery'
-import { autoParagraph } from '../../../../../lib/functions'
-import { modelize, hasTag, getContentItemById, hasCategory, getContentItemsFromList, getContentItemsFromRawList, getContentItemBySlug } from '../functions'
-import { IIndexEntry, IContentItem, compressIndex, requestReadItems } from '..'
+import { modelize, hasTag, getContentItemById, hasCategory, getContentItemsFromList, getContentItemBySlug } from '../functions'
+import { IContentItem, compressIndex, requestReadItems } from '..'
 import { RootState } from '../../../index'
 import { slugify, titleCase } from 'voca'
-import { execSync } from 'child_process'
-import { all } from 'redux-saga/effects'
-import { formatTime } from '../../../../../lib/modules/website-player'
-import { serverFiles, localFiles } from '../deploy-files'
 import { curatedPlaylists } from '../../app'
 
 function chunkData(allContentItems: IContentItem[]) {
@@ -236,14 +229,14 @@ async function migrate(allContentItems: IContentItem[]) {
 
   const newItems: IContentItem[] = []
 
-  const slugs: string[] = []
-
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
 
-    if (!hasCategory(newItem, 'program')) {
-      newItems.push(newItem)
+    if (hasCategory(newItem, 'sound-library')) {
+      newItem.flexPriceChoices = '5|25|45'
     }
+
+    newItems.push(newItem)
   }
 
   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
@@ -253,8 +246,8 @@ async function migrate(allContentItems: IContentItem[]) {
   // ***** DANGER ZONE *****
   // ***** DANGER ZONE *****
 
-  // writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
-  // writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
+  writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
+  writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
 }
 
 function AdminManualTaskRunner(): ReactElement {

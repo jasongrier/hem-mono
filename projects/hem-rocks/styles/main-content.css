@@ -444,8 +444,32 @@
 }
 
 .app-is-home .main-content-list {
-  width: var(--content-width-desk);
-  margin: 0 auto;
+  width: 1080px;
+  margin: -100px auto 0 auto;
+}
+
+.app-is-home .main-content-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.app-is-home .main-content-box {
+  float: none !important;
+  max-width: 320px;
+  vertical-align: top;
+  margin-bottom: 80px;
+  flex: 0 0 33.333333%;
+}
+
+.app-is-home .main-content-box h3 {
+  width: 300px;
+  font-size: 50px;
+}
+
+.app-is-home .main-content-box p {
+  width: 300px;
 }
 
 .app-is-home .main-content-box:first-child .main-content-box-badge,

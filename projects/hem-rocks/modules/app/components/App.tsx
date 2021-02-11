@@ -195,7 +195,6 @@ function App(): ReactElement {
 
   useEffect(function routedPopup() {
     const [basePath, slug, cart, orCart] = pathname.replace(/^\//, '').split('/')
-    console.log(slug)
     const requestedContentItem = contentItems.find(item =>
       item.slug === slug && !hasCategory(item, 'site-texts')
     )

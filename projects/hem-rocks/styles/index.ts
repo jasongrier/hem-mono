@@ -1,6 +1,7 @@
 import './app.css'
 import './variables.css'
 
+import './about-sl2.css'
 import './admin.css'
 import './admin-program.css'
 import './cart-popup.css'
@@ -38,5 +39,6 @@ import './thank-you-popup.css'
 import './toaster.css'
 import './top-bar.css'
 import './venue.css'
+import './whats-new-in-sl2.css'
 
 // import './berlin-stock-photos.css'

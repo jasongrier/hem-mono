@@ -440,6 +440,7 @@ function DetailPopUp({
       className={`
         detail-popup
         ${showPurchaseForm ? '' : 'purchase-form-hidden'}
+        ${contentItem.slug}
         with-photography
       `}
     >
@@ -712,7 +713,12 @@ function DetailPopUp({
               className="detail-cms-text"
               dangerouslySetInnerHTML={{
                 __html: marked(
-                  Mustache.render(contentItem.description.replace(/ /g, '').length === 0 ?  contentItem.blurb : contentItem.description, { assetHost: assetHostHostname() })
+                  Mustache.render(
+                    contentItem.description.replace(/ /g, '').length === 0
+                      ? contentItem.blurb
+                      : contentItem.description,
+                    { assetHost: assetHostHostname() }
+                  )
                 ),
               }}
             />

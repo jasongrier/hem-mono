@@ -53,7 +53,7 @@ import {
   ReactConsulting,
   Support,
   TracksOverview,
-  WhatsNewInSL2,
+  AboutSL,
 } from '../../../routes/static'
 
 import {
@@ -122,14 +122,14 @@ function RoutingHub(): ReactElement {
         <Route exact path="/tracks-overview" component={TracksOverview} />
         <Route exact path="/tracks-overview/cart" component={TracksOverview} />
 
+        <Route exact path="/sound-library/about-sl" component={AboutSL} />
+        <Route exact path="/sound-library/about-sl/cart" component={AboutSL} />
+
         <Route exact path="/sound-library/made-with-sl" component={MadeWithSoundLibrary} />
         <Route exact path="/sound-library/made-with-sl/cart" component={MadeWithSoundLibrary} />
 
         <Route exact path="/support" component={Support} />
         <Route exact path="/support/cart" component={Support} />
-
-        <Route exact path="/sound-library/whats-new-in-sl-two" component={WhatsNewInSL2} />
-        <Route exact path="/sound-library/whats-new-in-sl-two/cart" component={WhatsNewInSL2} />
 
         {/* Special Pages */}
         <Route exact path="/life-in-letters" component={LifeInLetters} />

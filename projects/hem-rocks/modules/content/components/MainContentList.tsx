@@ -58,6 +58,8 @@ interface IProps {
   speciallyOrderedTags?: string[]
   excludeTags?: string[]
   hasFilters?: boolean
+  boxBipolarX?: boolean
+  boxBipolarY?: boolean
   boxMinMarginX?: number
   boxMinMarginY?: number
   boxMarginRangeX?: number
@@ -107,6 +109,8 @@ function MainContentList({
   speciallyOrderedTags,
   excludeTags,
   hasFilters = true,
+  boxBipolarX,
+  boxBipolarY,
   boxMinMarginX,
   boxMinMarginY,
   boxMarginRangeX,
@@ -488,6 +492,8 @@ function MainContentList({
               marginRangeX={boxMarginRangeX}
               marginRangeY={boxMarginRangeY}
               renderActionsOn={boxRenderActionsOn}
+              bipolarX={boxBipolarX}
+              bipolarY={boxBipolarY}
             >
               { children && children(contentItem) }
             </MainContentBox>

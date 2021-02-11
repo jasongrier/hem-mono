@@ -1,4 +1,4 @@
-import React, { ReactElement, PropsWithChildren, useState, useEffect } from 'react'
+import React, { ReactElement, PropsWithChildren, useState, useEffect, CSSProperties } from 'react'
 
 interface IProps {
   height: number
@@ -64,13 +64,14 @@ function SplatterDims({
     setMarginYOffset(randomYMarginOffsetFn(marginRangeY))
   }, [])
 
-  let style = {}
+  let style: CSSProperties = {}
+
   if (!disabled) {
     style = {
       width: width + widthOffset + 'px',
       height: height === 0 ? 'auto' : height + heightOffset,
-      marginTop: Math.max(marginYOffset, minMarginY),
-      marginLeft: Math.max(marginXOffset, minMarginX),
+      marginTop: marginYOffset + minMarginY + 'px',
+      marginLeft: marginXOffset + minMarginX + 'px',
     }
   }
 
