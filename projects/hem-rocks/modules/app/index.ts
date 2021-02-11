@@ -1,5 +1,9 @@
 import { AnyAction } from 'redux'
 
+export enum SplitTests {
+  FlexPricingType = 'flex-pricing-type',
+}
+
 export const curatedPlaylists = [
   {
     name: 'Player Featured',

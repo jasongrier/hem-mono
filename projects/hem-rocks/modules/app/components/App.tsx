@@ -8,14 +8,14 @@ import Cookies from 'js-cookie'
 import { slugify } from 'voca'
 import { CartPopup, setCartProducts } from '../../cart'
 import { ThankYouPopup } from '../../cart'
-import { DetailPopUp, requestReadItems, setCurrentItem, hasTag, getContentItemsFromList, contentItemToTrack, requestReadChunk, IContentItem, getContentItemBySlug, hasCategory } from '../../content'
+import { DetailPopUp, setCurrentItem, hasTag, getContentItemsFromList, contentItemToTrack, requestReadChunk, IContentItem, getContentItemBySlug, hasCategory } from '../../content'
 import { ProtectedContent } from '../../login'
 import { CampaignMonitorForm, ElectronNot, ScrollToTop, NagToaster, Spinner, Toaster, ElectronOnly } from '../../../../../lib/components'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup, closePopup } from '../../../../../lib/modules/popups'
 import { PlayerBar, setPlayerPlaylist, replacePlaylist, setPlayerInstance, setPlayerPlaylistExpanded, setPlayerExpanded, Albums, IAlbum, ITrack, setPlayerMessage } from '../../../../../lib/modules/website-player'
 import { usePrevious } from '../../../../../lib/hooks'
-import { collapseTopBar, expandTopBar, getCookieName } from '../index'
+import { collapseTopBar, expandTopBar, getCookieName, SplitTests } from '../index'
 import { SiteFooter, TopBar } from '../../../components/layout'
 import { SoundLibraryRefreshPopup } from '../../../components/popups'
 import { requestActiveLiveStream, setCookieApproval, setCookiePreferencesSet } from '../actions'
@@ -24,6 +24,7 @@ import { CAMPAIGN_MONITOR_FORM_ACTION, CAMPAIGN_MONITOR_FORM_ID, CAMPAIGN_MONITO
 import { RootState } from '../../../index'
 import NewWebsitePopup from '../../../components/popups/NewWebsitePopup'
 import { curatedPlaylists } from '../index'
+import { type } from 'os'
 
 function App(): ReactElement {
   const {
@@ -214,8 +215,6 @@ function App(): ReactElement {
       popupId = 'thank-you-popup'
     }
 
-    console.log(requestedContentItem)
-
     if (!popupId) {
       for (const routedPopup of genericRoutedPopups) {
         if (
@@ -320,22 +319,14 @@ function App(): ReactElement {
     ReactGA.pageview(pathname)
   }, [pathname])
 
-  // if (
-  //     !contentItems
-  //     || !contentItems.length
-  //     && !pathname.includes('web-movie')
-  //     && !pathname.includes('life-in-letters')
-  //   ) return (
-  //   <div className={`
-  //       app-loading
-  //       ${ BERLIN_STOCK_PHOTOS ? 'berlin-stock-photos' : '' }
-  //   `}>
-  //     <h1>
-  //       <div>{ BERLIN_STOCK_PHOTOS ? 'BERLIN STOCK PHOTOS' : 'HEM' }</div>
-  //       <Spinner />
-  //     </h1>
-  //   </div>
-  // )
+  useEffect(function setSplitTestCookies() {
+    const { FlexPricingType } = SplitTests
+
+    if (!Cookies.get(getCookieName(FlexPricingType))) {
+      const type = Math.random() > .5 ? 'input' : 'buttons'
+      Cookies.set(getCookieName(FlexPricingType), type, { expires: 7 })
+    }
+  }, [])
 
   return (
     <div className={`
