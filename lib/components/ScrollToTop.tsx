@@ -29,16 +29,20 @@ function ScrollToTop({ scrollPaneSelector }: IProps): ReactElement {
       '/react-consulting',
       '/recipes',
       '/sound-library',
-      '/sound-library/about',
-      '/sound-library/made-with-sl',
       '/support',
       '/tracks',
     ]
 
-    if (
-      forPaths.includes(pathname)
-      && $(scrollPaneSelector).scrollTop() !== undefined
-    ) {
+    let matched = false
+
+    for (const path of forPaths) {
+      if (pathname.includes(path)) {
+        matched = true
+        break
+      }
+    }
+
+    if (matched && $(scrollPaneSelector).scrollTop() !== undefined) {
       $(scrollPaneSelector).scrollTop(0)
     }
 

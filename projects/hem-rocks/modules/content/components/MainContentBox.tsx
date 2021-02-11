@@ -27,6 +27,8 @@ interface IProps {
   marginRangeX?: number
   marginRangeY?: number
   renderActionsOn?: 'key-art' | 'text'
+  bipolarX?: boolean
+  bipolarY?: boolean
 }
 
 function MainContentBox({
@@ -96,10 +98,10 @@ function MainContentBox({
         </div>
       )}
       <Link to={linkTo}>
-        <h3 dangerouslySetInnerHTML={{ __html: contentItem.titleWrapping || contentItem.title }} />
         {contentItem[secondaryTitleField] && (
           <h4 dangerouslySetInnerHTML={{ __html: contentItem[secondaryTitleField] }} />
         )}
+        <h3 dangerouslySetInnerHTML={{ __html: contentItem.titleWrapping || contentItem.title }} />
       </Link>
       <div
         className="main-content-box-key-art"

@@ -48,7 +48,7 @@ function AdminList(): ReactElement {
   }, [])
 
   const [selectedItems, setSelectedItems] = useState<any>({})
-  const [interestingProperty, setInterestingProperty] = useState<keyof IContentItem>('tags')
+  const [interestingProperty, setInterestingProperty] = useState<keyof IContentItem>('category')
   const [collapsed, setCollapsed] = useState<boolean>(false)
 
   const categoryFilterOnChange = useCallback(

@@ -1,7 +1,6 @@
 import React, { ReactElement, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Helmet } from 'react-helmet'
-import { map } from 'lodash'
 import Mustache from 'mustache'
 import marked from 'marked'
 import { getContentItemById, requestReadChunk } from '../../modules/content'
@@ -10,18 +9,17 @@ import { BASE_SITE_TITLE } from '../../config'
 import { RootState } from '../../index'
 import { SoundLibrarySubnav } from '../../components/layout'
 
-function WhatsNewInSL2(): ReactElement {
-  const { chunkLog, contentItem, contentItems } = useSelector((state: RootState) => ({
+function AboutSL(): ReactElement {
+  const { chunkLog, contentItem } = useSelector((state: RootState) => ({
     chunkLog: state.content.chunkLog,
-    contentItems: state.content.contentItems,
-    contentItem: getContentItemById(state.content.contentItems, '20813842-3935-4347-8d41-01e547f47a40')
+    contentItem: getContentItemById(state.content.contentItems, '93eee2a2-cbd1-43f4-9a0e-515d525c686a')
   }))
 
   const dispatch = useDispatch()
 
   useEffect(function preloadSiteText() {
-    if (chunkLog.includes('articles')) return
-    dispatch(requestReadChunk('articles'))
+    if (chunkLog.includes('site-texts')) return
+    dispatch(requestReadChunk('site-texts'))
   }, [chunkLog])
 
   return (
@@ -30,9 +28,9 @@ function WhatsNewInSL2(): ReactElement {
         <title>{ BASE_SITE_TITLE }</title>
         <meta name="description" content="" />
       </Helmet>
-      <div className="page page-whats-new-in-sl-two">
+      <div className="page about-sl2">
         <SoundLibrarySubnav />
-        <h1>{ contentItem?.title }</h1>
+        <h1>HEM | SL</h1>
         <div className="main-content-section first-main-content-section">
           { contentItem && (
             <div dangerouslySetInnerHTML={{
@@ -47,4 +45,4 @@ function WhatsNewInSL2(): ReactElement {
   )
 }
 
-export default WhatsNewInSL2
+export default AboutSL

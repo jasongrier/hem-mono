@@ -34,6 +34,11 @@ function Home(): ReactElement {
           linkTo={contentItem => `home/${contentItem.slug}`}
           orderByOrder={true}
           ignoreSticky={true}
+          boxBipolarY={true}
+          boxWidth={200}
+          boxMinMarginX={0}
+          boxMarginRangeX={0}
+          boxMarginRangeY={75}
         >
           {(item) => {
             let attachedTracks: ITrack[]

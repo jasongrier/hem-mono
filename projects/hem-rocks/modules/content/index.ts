@@ -19,6 +19,7 @@ export interface IContentItem {
   externalLinkText: string
   externalLinkUrl: string
   fixedPrice: string
+  flexPriceChoices: string
   flexPriceMinimum: string
   flexPriceRecommended: string
   hasFixedPrice: boolean
@@ -87,6 +88,7 @@ export const fieldTypes: IContentItem = {
   externalLinkText: 'text',
   externalLinkUrl: 'text',
   fixedPrice: 'text',
+  flexPriceChoices: 'text',
   flexPriceMinimum: 'text',
   flexPriceRecommended: 'text',
   hasFixedPrice: false,
