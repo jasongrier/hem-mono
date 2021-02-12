@@ -29,9 +29,11 @@ export interface IPoem {
   authorId: string
   authorSecondaryFolder: string
   badge: string | null | undefined
+  cursorFollowing: boolean | undefined
   data: IMidstFile | null
   date: Moment
   publishDate: Moment
+  hasScrollbar?: boolean
   hidden?: boolean
   highlighted: boolean
   loaded: boolean

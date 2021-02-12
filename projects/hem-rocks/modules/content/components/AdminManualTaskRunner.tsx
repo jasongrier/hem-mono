@@ -233,7 +233,7 @@ async function migrate(allContentItems: IContentItem[]) {
     const newItem = Object.assign({}, oldItem)
 
     if (hasCategory(newItem, 'sound-library')) {
-      newItem.flexPriceChoices = '5|25|45'
+      newItem.flexPriceRecommended = '25'
     }
 
     newItems.push(newItem)
@@ -245,8 +245,6 @@ async function migrate(allContentItems: IContentItem[]) {
   // ***** DANGER ZONE *****
   // ***** DANGER ZONE *****
   // ***** DANGER ZONE *****
-
-  console.log(getContentItemById(newItems, '484b146f-3893-11eb-9b19-d773ba798561').flexPriceChoices)
 
   writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
   writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))

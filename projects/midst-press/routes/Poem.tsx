@@ -61,8 +61,11 @@ function Poem({ match }: IProps): ReactElement {
                 key={poem.poemId}
               >
                 <div className="scrolling-area-border" />
+
                 <Midst
                   activePlayer={i === currentPoemIndex}
+                  appCursorFollowing={poem.cursorFollowing !== undefined ? poem.cursorFollowing : true}
+                  hasScrollbar={poem.hasScrollbar !== undefined ? poem.hasScrollbar : true}
                   isPlayer={true}
                   MIDST_DATA_JS_KEY={poem.data ? poem.poemId : undefined}
                   MIDST_DATA_JS={poem.data as IMidstFile}

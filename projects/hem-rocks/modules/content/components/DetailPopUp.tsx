@@ -76,6 +76,7 @@ function DetailPopUp({
 
   else if (!BERLIN_STOCK_PHOTOS && contentItem.flexPriceRecommended) {
     initialPrice = contentItem.flexPriceRecommended
+    console.log(contentItem.title, initialPrice)
   }
 
   else if (!BERLIN_STOCK_PHOTOS) {
@@ -145,6 +146,7 @@ function DetailPopUp({
 
   const suggestedPriceOnChange = useCallback(
     function suggestedPriceOnChangeFn(evt: SyntheticEvent<HTMLInputElement>) {
+      console.log(evt.currentTarget.value)
       const price = evt.currentTarget.value
       validate(price)
       setSuggestedPrice(price)
@@ -575,13 +577,16 @@ function DetailPopUp({
                           )}
                           {flexPricingType === 'buttons' && (
                             contentItem.flexPriceChoices.split('|').map(choice => (
-                              <label className="radio-label">
+                              <div
+                                className={`
+                                  radio-label
+                                  ${choice === suggestedPrice ? 'radio-label-active' : ''}
+                                `}
+                                key={choice}
+                                onClick={() => setSuggestedPrice(choice)}
+                              >
                                 { choice } €
-                                <input
-                                  type="radio"
-                                  value={choice}
-                                />
-                              </label>
+                              </div>
                             ))
                           )}
                         </form>
