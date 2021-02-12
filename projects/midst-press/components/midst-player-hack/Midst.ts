@@ -44,6 +44,8 @@ function getUrlVars() {
 
 interface IProps {
   activePlayer: boolean
+  appCursorFollowing: boolean
+  hasScrollbar: boolean
   isPlayer: boolean
   MIDST_DATA_URL?: string
   MIDST_DATA_JS?: IMidstFile
@@ -160,7 +162,7 @@ class Midst extends React.Component<IProps, any> {
 // Lifecycle
 // ================================================================================#
   componentDidMount() {
-    const { isPlayer, MIDST_DATA_URL, MIDST_DATA_JS } = this.props
+    const { isPlayer, MIDST_DATA_URL, MIDST_DATA_JS, appCursorFollowing, hasScrollbar } = this.props
 
     this.$editable = $(this.el).find('.editable')
     this.$scrollable = $(this.el).find('.ScrollbarsCustom-Scroller')
@@ -169,6 +171,11 @@ class Midst extends React.Component<IProps, any> {
 
     // Force first line of contenteditable to be wrapped in a <p>.
     this.$editable.html('<p><br></p>')
+
+    this.setState({
+      appCursorFollowing,
+      hasScrollbar,
+    })
 
     if (isPlayer && !isEmpty(MIDST_DATA_URL)) {
       $.ajax({
@@ -1128,7 +1135,7 @@ class Midst extends React.Component<IProps, any> {
 
   renderEditor() {
     const { isPlayer } = this.props
-    const { editorFontFamily, editorFontSize, editorCreatingDraftMarker, editorEditingDraftMarker, appDrawerOpen, appFocusMode, appTimelineMode } = this.state
+    const { editorFontFamily, editorFontSize, editorCreatingDraftMarker, editorEditingDraftMarker, appDrawerOpen, appFocusMode, appTimelineMode, hasScrollbar } = this.state
 
     return (
       e('div', {
@@ -1139,6 +1146,7 @@ class Midst extends React.Component<IProps, any> {
         },
       },
         e(Scrollbars, {
+          noScroll: !hasScrollbar,
           ref: (ref: Scrollbars) => this.scrollerInstance = ref,
           onScrollStop: () => {
             this.doneScrollingIntoView()

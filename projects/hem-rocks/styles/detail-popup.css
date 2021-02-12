@@ -152,16 +152,25 @@
   font-size: 30px;
 }
 
+.detail-popup header .flex-pricing-type-buttons * {
+  user-select: none;
+}
+
 .detail-popup header .flex-pricing-type-buttons .radio-label {
   display: inline-block;
   width: 100px;
   height: 40px;
   line-height: 40px;
   text-align: center;
-  margin: 0 5px;
+  margin: 0 2px;
   cursor: pointer;
   color: #fff;
   font-weight: 600;
+  border: 3px solid #000;
+}
+
+.detail-popup header .flex-pricing-type-buttons .radio-label-active {
+  border: 3px solid #fff;
 }
 
 .detail-popup header .flex-pricing-type-buttons .radio-label:nth-child(1) {
@@ -169,11 +178,11 @@
 }
 
 .detail-popup header .flex-pricing-type-buttons .radio-label:nth-child(2) {
-  background-color: orange;
+  background-color: green;
 }
 
 .detail-popup header .flex-pricing-type-buttons .radio-label:nth-child(3) {
-  background-color: green;
+  background-color: orange;
 }
 
 .detail-popup header .flex-pricing-type-buttons input {

@@ -15,7 +15,17 @@ import {
 import moment from 'moment'
 import { slugify } from 'voca'
 
-function createPoem(author: string, title: string, date: string, publishDate: string, highlighted: boolean, badge?: string | null | undefined, authorSecondaryFolder?: any) {
+function createPoem(
+  author: string,
+  title: string,
+  date: string,
+  publishDate: string,
+  highlighted: boolean,
+  badge?: string | null | undefined,
+  authorSecondaryFolder?: any,
+  cursorFollowing?: boolean,
+  hasScrollbar?: boolean,
+) {
   const authorId = author.toLowerCase().replace(/ /g, '-')
   const url = title.toLowerCase()
     .replace(/ /g, '-')
@@ -32,10 +42,12 @@ function createPoem(author: string, title: string, date: string, publishDate: st
     author,
     authorId,
     authorSecondaryFolder,
+    cursorFollowing,
     data: null,
     date: moment(date),
     publishDate: moment(publishDate),
     poemId: `${authorId}--${url}`,
+    hasScrollbar,
     highlighted,
     loaded: false,
     processNote: '',
@@ -62,7 +74,7 @@ function sortPoems(draftState: IState) {
 const MORI_POEM_LONG_TITLE = 'After Watching <i>Westworld</i>, the Left Side of My Body Malfunctions'
 
 const poems = [
-  createPoem('Jos Charles',                 'and',                                '02/09/2021', '11/23/2020', true,   'New'),
+  createPoem('Jos Charles',                 'and',                                '02/09/2021', '11/23/2020', true,   'New', undefined, false, false),
   createPoem('Imani Elizabeth Jackson',     'And went to plant',                  '02/09/2021', '12/24/2020', true,   'New'),
   createPoem('Dan Beachy-Quick',            'Mnemosyne in Tatters',               '02/09/2021', '10/16/2020', true,   'New'),
   createPoem('Rosebud Ben-Oni',             'Poet Wrestling with the Dead Stars We Are {:: made from ::}',                      '02/09/2021', '12/24/2020', true,   'New'),

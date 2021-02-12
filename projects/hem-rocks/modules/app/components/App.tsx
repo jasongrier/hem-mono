@@ -268,9 +268,8 @@ function App(): ReactElement {
       }
 
       const staticPageCartReturnPaths = [
-        'sound-library/page/made-with-sl',
-        'sound-library/page/whats-new-in-sl2',
-        'sound-library/page/about-sl',
+        'sound-library/made-with-sl',
+        'sound-library/about-sl',
         'about',
         'contact',
         'mailing-list',
