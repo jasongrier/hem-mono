@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { map, flatten, isEmpty, uniq, compact, findIndex } from 'lodash'
 import { MainContentList, contentItemToTrack, hasCategory, hasTag, getContentItemsFromRawList, getContentItemsFromList, IContentItem } from '../../modules/content'
 import { TrackPlayPauseButton, replacePlaylist, setPlayerPlaylist } from '../../../../lib/modules/website-player'
-import { TracksSubnav } from '../../components/layout'
+import { TracksSubnav, TracksBanner } from '../../components/layout'
 import { BASE_SITE_TITLE } from '../../config'
 import { RootState } from '../../index'
 
@@ -25,6 +25,7 @@ function Playlists(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
       <div className="page page-tracks page-with-subnav">
+        <TracksBanner>Playlists</TracksBanner>
         <TracksSubnav />
         <MainContentList
           currentFilter={currentFilter || 'featured'}

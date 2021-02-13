@@ -18,6 +18,7 @@ export interface IContentItem {
   duration: string
   externalLinkText: string
   externalLinkUrl: string
+  fileSize: string
   fixedPrice: string
   flexPriceChoices: string
   flexPriceMinimum: string
@@ -87,6 +88,7 @@ export const fieldTypes: IContentItem = {
   duration: 'text',
   externalLinkText: 'text',
   externalLinkUrl: 'text',
+  fileSize: 'text',
   fixedPrice: 'text',
   flexPriceChoices: 'text',
   flexPriceMinimum: 'text',

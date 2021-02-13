@@ -46,7 +46,7 @@
   transform: scale(1.5) translate(10px, 5px);
 }
 
-.hem-refresh-heroine-text h2 {
+.main-content .hem-refresh-heroine-text h2 {
   position: relative;
   width: 100%;
   height: auto;

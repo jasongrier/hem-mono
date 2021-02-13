@@ -77,3 +77,7 @@
 .page-tracks .main-content-box-actions .hem-player-track-play-pause-button .hem-play-pause-button .hem-play-pause-button-icon {
   transform: scale(0.6);
 }
+
+.tracks-banner h1 {
+  font-size: 86px;
+}

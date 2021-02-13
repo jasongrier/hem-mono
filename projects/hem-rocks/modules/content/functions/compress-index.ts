@@ -46,6 +46,7 @@ const keyCompressionMap: any = {
   duration: 'bn',
   externalLinkText: 'am',
   externalLinkUrl: 'an',
+  fileSize: 'bt',
   fixedPrice: 'ao',
   flexPriceChoices: 'bs',
   flexPriceMinimum: 'ap',
@@ -80,6 +81,8 @@ export function getHighestCompressionMapKey() {
   values.sort()
   console.log(values.pop())
 }
+
+getHighestCompressionMapKey()
 
 export function validateCompressionMap() {
   const checkItem = modelize({})
