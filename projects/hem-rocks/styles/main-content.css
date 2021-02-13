@@ -65,7 +65,7 @@
 
 .main-content-subnav {
   position: sticky;
-  top: 40px;
+  top: 30px;
   z-index: 999;
   height: 50px;
   line-height: 50px;
@@ -215,7 +215,7 @@
 }
 
 .page-with-subnav .main-content-filters {
-  top: 90px;
+  top: 80px;
 }
 
 .main-content-filters h3 {

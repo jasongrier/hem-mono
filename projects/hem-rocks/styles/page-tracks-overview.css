@@ -39,7 +39,24 @@
   text-transform: uppercase;
 }
 
+.page-tracks-overview .main-content-items {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
 .page-tracks-overview .main-content-box {
+  display: inline-block;
+  float: none !important;
+  border-bottom: 0;
+  margin: 0;
+  padding: 0 20px;
+  flex: 0 0 12.5%;
+  align-self: flex-start;
   padding-left: 0;
   padding-right: 0;
+}
+
+.page-tracks-overview .main-content-box.align-right {
+  float: none !important;
 }
