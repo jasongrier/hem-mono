@@ -37,7 +37,7 @@ function AdminItemOrdering({ }: IProps): ReactElement {
     let sortSet = Array.from(allContentItems)
 
     sortSet = sortSet.filter(item => (
-      hasTag(item, 'home-features')
+      hasTag(item, 'in-overview-tracks')
     ))
 
     sortSet.sort(

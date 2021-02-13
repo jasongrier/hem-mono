@@ -9,11 +9,13 @@ interface IProps {
   emailPlaceholder: string
   errorContent: () => ReactElement
   spinnerText: string
-  subjectLabel: string
   successContent: (id: string) => ReactElement
-  textareaLabel: string
-  textareaPlaceholder: string
+  bodyLabel: string
+  bodyPlaceholder: string
 
+  bodyAsInput?: boolean
+  prefilledSubject?: string
+  subjectLabel?: string
   subjects?: string[]
   subjectPlaceholder?: string
   title?: string
@@ -27,11 +29,13 @@ function ContactForm({
   errorContent,
   spinnerText,
   subjectLabel,
-  subjects,
   successContent,
-  textareaLabel,
-  textareaPlaceholder,
+  bodyLabel,
+  bodyPlaceholder,
 
+  bodyAsInput,
+  prefilledSubject,
+  subjects,
   subjectPlaceholder,
   title,
  }: IProps): ReactElement {
@@ -54,7 +58,7 @@ function ContactForm({
   )
 
   const onBodyChange = useCallback(
-    function onBodyChangeChangeFn(evt: SyntheticEvent<HTMLTextAreaElement>) {
+    function onBodyChangeChangeFn(evt: SyntheticEvent<HTMLInputElement | HTMLTextAreaElement>) {
       setBody(evt.currentTarget.value)
     }, [],
   )
@@ -101,32 +105,41 @@ function ContactForm({
             className="hem-contact-form"
             onSubmit={onSubmit}
           >
-            <div className="form-row">
-              <label htmlFor="subject">{ subjectLabel }</label>
-              { subjects && subjects.length > 0 && (
-                <select
-                  name="subject"
-                  onChange={onSubjectChange}
-                >
-                  { subjects.map(subject => (
-                    <option
-                      key={subject}
-                      value={subject}
-                    >
-                      { subject }
-                    </option>
-                  ))}
-                </select>
-              )}
-              { (!subjects || subjects.length < 1) && (
-                <input
-                  name="subject"
-                  onChange={onSubjectChange}
-                  placeholder={subjectPlaceholder}
-                  type="text"
-                />
-              )}
-            </div>
+            { !prefilledSubject && (
+              <div className="form-row">
+                <label htmlFor="subject">{ subjectLabel }</label>
+                { subjects && subjects.length > 0 && (
+                  <select
+                    name="subject"
+                    onChange={onSubjectChange}
+                  >
+                    { subjects.map(subject => (
+                      <option
+                        key={subject}
+                        value={subject}
+                      >
+                        { subject }
+                      </option>
+                    ))}
+                  </select>
+                )}
+                {(!subjects || subjects.length < 1) && !prefilledSubject && (
+                  <input
+                    name="subject"
+                    onChange={onSubjectChange}
+                    placeholder={subjectPlaceholder}
+                    type="text"
+                  />
+                )}
+                {prefilledSubject && (
+                  <input
+                    name="subject"
+                    type="hidden"
+                    value={prefilledSubject}
+                  />
+                )}
+              </div>
+            )}
             <div className="form-row">
               <label htmlFor="email">{ emailLabel }</label>
               <input
@@ -137,12 +150,21 @@ function ContactForm({
               />
             </div>
             <div className="form-row">
-              <label htmlFor="body">{ textareaLabel }</label>
-              <textarea
-                name="body"
-                onChange={onBodyChange}
-                placeholder={textareaPlaceholder}
-              ></textarea>
+              <label htmlFor="body">{ bodyLabel }</label>
+              { bodyAsInput && (
+                <input
+                  name="body"
+                  onChange={onBodyChange}
+                  placeholder={bodyPlaceholder}
+                />
+              )}
+              { !bodyAsInput && (
+                <textarea
+                  name="body"
+                  onChange={onBodyChange}
+                  placeholder={bodyPlaceholder}
+                ></textarea>
+              )}
             </div>
             <div className="form-row">
               <button type="submit">{ buttonText }</button>

@@ -1,11 +1,10 @@
 import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
-import ReactGA from 'react-ga'
 import { ContactForm } from '../../../../lib/components'
-import { SoundLibrarySubnav } from '../../components/layout'
+import { SoundLibrarySubnav, SoundLibraryBanner } from '../../components/layout'
 import { assetHostHostname } from '../../functions'
-import { BASE_SITE_TITLE, CAMPAIGN_MONITOR_FORM_ACTION, CAMPAIGN_MONITOR_FORM_ID, CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME } from '../../config'
+import { BASE_SITE_TITLE } from '../../config'
 
 function MadeWithSoundLibrary(): ReactElement {
   return (
@@ -15,26 +14,23 @@ function MadeWithSoundLibrary(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
       <div className="page page-made-with-sl">
+        <SoundLibraryBanner />
         <SoundLibrarySubnav />
-        <h1>Made with SL</h1>
         <div className="main-content-section first-main-content-section">
-          <h2>Have you used SL in a project?</h2>
-          <p>Send your project info here, along with a link where we can hear it.</p>
-          <p>If you like, we would love to feature your work here on hem.rocks.</p>
+          <h2>Have you used HEM.SL in a project?</h2>
+          <p>
+            Send your project info here, along with a link where we can hear it. If you like, we would love to feature your work here on hem.rocks.
+          </p>
         </div>
 
         <ContactForm
           action={assetHostHostname() + '/hem-rocks/api/?hem-cmd=made-with-sl'}
-
-          subjectLabel="What would you prefer?"
-          subjects={[
-            'I would like to have my track featured on hem.rocks, social media, and newsletter',
-            'I would simply like you to know I did this and what you think',
-          ]}
+          bodyAsInput={true}
+          prefilledSubject="New Made with SL message"
           emailLabel="Your email (so we can reach you)"
           emailPlaceholder="hrvoje.horvat@gmail.com"
-          textareaLabel="Please say more"
-          textareaPlaceholder="I used the Noise Reduction Artefacts pack at 4'33'' in my track! Here's the secret link: https://soundclou..."
+          bodyLabel="Link to your work online (Bandcamp, SoundCloud, your website, etc.)"
+          bodyPlaceholder="http://www..."
           buttonText="Send"
           spinnerText="Sending..."
           successContent={id => (

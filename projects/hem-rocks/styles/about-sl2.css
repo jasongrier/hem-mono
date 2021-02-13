@@ -1,4 +1,11 @@
-.about-sl2 img {
+.about-sl2 .main-content-section img {
   width: 600px;
   height: auto;
+}
+
+.about-sl2 .main-content-section h2 {
+  font-size: 60px;
+  color: var(--line-orange);
+  font-weight: 100;
+  margin: 70px 0 20px 2px;
 }

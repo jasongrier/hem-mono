@@ -232,11 +232,13 @@ async function migrate(allContentItems: IContentItem[]) {
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
 
-    if (hasCategory(newItem, 'sound-library')) {
-      newItem.flexPriceRecommended = '25'
+    if (newItem.title.includes('Article for')) {
+      console.log(newItem.title)
     }
 
-    newItems.push(newItem)
+    else {
+      newItems.push(newItem)
+    }
   }
 
   const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
