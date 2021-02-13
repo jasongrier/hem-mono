@@ -19,6 +19,7 @@ function modelize(rawContentItem: any): IContentItem {
     duration: rawContentItem.duration || '',
     externalLinkText: rawContentItem.externalLinkText || '',
     externalLinkUrl: rawContentItem.externalLinkUrl || '',
+    fileSize: rawContentItem.fileSize || '',
     fixedPrice: rawContentItem.fixedPrice || '',
     flexPriceChoices: rawContentItem.flexPriceChoices || '',
     flexPriceMinimum: rawContentItem.flexPriceMinimum || '',

@@ -17,9 +17,9 @@ function MadeWithSoundLibrary(): ReactElement {
         <SoundLibraryBanner />
         <SoundLibrarySubnav />
         <div className="main-content-section first-main-content-section">
-          <h2>Have you used HEM.SL in a project?</h2>
+          <h2>Have you used SL or SL2 in a project?</h2>
           <p>
-            Send your project info here, along with a link where we can hear it. If you like, we would love to feature your work here on hem.rocks.
+            Send a link! If you like, we would love to feature your work here on hem.rocks.
           </p>
         </div>
 

@@ -40,6 +40,9 @@ function AboutSL(): ReactElement {
             }} />
           )}
         </div>
+        <div className="main-content-section">
+          <p>SL2 is currently available for Ableton Live and works in all versions of Live, including the free "Live Lite" that ships with many hardware devices.</p>
+        </div>
       </div>
     </>
   )

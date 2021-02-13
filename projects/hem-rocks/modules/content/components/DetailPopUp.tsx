@@ -204,9 +204,9 @@ function DetailPopUp({
     setNextItem(currentContentItems[itemIndex + 1])
   }, [currentContentItems, contentItem, nextItem, previousItem])
 
-  // useEffect(function resetValidityOnPrevNext() {
-  //   setValid(true)
-  // }, [contentItem])
+  useEffect(function resetValidityOnPrevNext() {
+    setValid(true)
+  }, [contentItem])
 
   const checkOutOnClick = useCallback(
     function checkOutOnClickFn() {
@@ -578,6 +578,7 @@ function DetailPopUp({
                     {!contentItem.hasFixedPrice && (
                       <>
                         <label className="suggested-price-label">
+                          <strong>{ contentItem.type }&nbsp;—&nbsp;{ contentItem.fileSize }</strong><br />
                           { chooseYourPriceText }
                         </label>
                         {/* <span className="detail-popup-currency-symbol">€</span> */}

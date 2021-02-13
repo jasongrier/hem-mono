@@ -20,10 +20,10 @@ function SoundLibrarySubnav(): ReactElement {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/sound-library/about-sl">About SL</NavLink>
+          <NavLink to="/sound-library/about-sl">About SL2</NavLink>
         </li>
         <li>
-          <NavLink to="/sound-library/made-with-sl">Made something with SL?</NavLink>
+          <NavLink to="/sound-library/made-with-sl">Made something with it?</NavLink>
         </li>
       </ul>
     </nav>
