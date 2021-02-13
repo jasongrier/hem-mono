@@ -28,6 +28,7 @@ body {
   border: 0;
   color: #fff;
   user-select: none;
+  font-family: Avenir;
 }
 
 .action-button-wide {

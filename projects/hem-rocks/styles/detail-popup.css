@@ -513,3 +513,37 @@
   margin-bottom: 30px;
   font-size: 48px;
 }
+
+.detail-popup-title {
+  position: relative;
+}
+
+.detail-popup-sibling-selectors {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.detail-popup-sibling-selector {
+  position: absolute;
+  bottom: 0;
+}
+
+.detail-popup-sibling-selector a {
+  text-decoration: none;
+  color: inherit;
+  font-size: 12px;
+  pointer-events: all;
+}
+
+.detail-popup-sibling-selector-prev {
+  left: 10px;
+}
+
+.detail-popup-sibling-selector-next {
+  right: 10px;
+}

@@ -17,7 +17,7 @@ function Articles(): ReactElement {
         <MainContentList
           currentFilter={currentFilter}
           category="articles"
-          hideFilters={['Component Content']}
+          hideFilters={['Component Content', 'Hide Title', 'Home Features']}
           speciallyOrderedTags={['Featured']}
           boxSecondaryTitleField="attribution"
         />

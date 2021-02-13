@@ -22,6 +22,7 @@ import { RootState } from '../../../index'
 import { BERLIN_STOCK_PHOTOS, MINIMUM_PRICE_FOR_RAW } from '../../../config'
 import { hasTag, contentItemToTrack, hasCategory, tagSpellingCorrections } from '../functions'
 import { titleCase } from 'voca'
+import { ChevronButton } from '../../../../../lib/packages/hem-buttons'
 
 interface IProps {
   contentItem: IContentItem | null
@@ -76,7 +77,6 @@ function DetailPopUp({
 
   else if (!BERLIN_STOCK_PHOTOS && contentItem.flexPriceRecommended) {
     initialPrice = contentItem.flexPriceRecommended
-    console.log(contentItem.title, initialPrice)
   }
 
   else if (!BERLIN_STOCK_PHOTOS) {
@@ -93,6 +93,7 @@ function DetailPopUp({
   const [saleId, setSaleId] = useState<string>()
   const [previousItem, setPreviousItem] = useState<IContentItem>()
   const [nextItem, setNextItem] = useState<IContentItem>()
+  const [arrowKeysInited, setArrowKeysInited] = useState<boolean>(false)
 
   useEffect(function init() {
     if (showPurchaseForm) {
@@ -164,17 +165,15 @@ function DetailPopUp({
 
   useEffect(function initArrowNavigation() {
     function bodyOnKeyDown(evt: any) {
-      const previousItemLink = $('.bsp-lightbox-prev')
-      const nextItemLink = $('.bsp-lightbox-next')
+      const $previousItemLink = $(BERLIN_STOCK_PHOTOS ?  '.bsp-lightbox-prev' : '.detail-popup-sibling-selector-prev a')
+      const $nextItemLink = $(BERLIN_STOCK_PHOTOS ?  '.bsp-lightbox-next' : '.detail-popup-sibling-selector-next a')
 
-      if (evt.keyCode === 37 && previousItemLink.length) {
-        // @ts-ignore
-        history.push(`/${category}/${previousItemLink.attr('href').split('/')[2]}/${filter ? filter : ''}`)
+      if (evt.keyCode === 37) {
+        $previousItemLink.trigger('click')
       }
 
-      if (evt.keyCode === 39 && nextItemLink.length) {
-        // @ts-ignore
-        history.push(`/${category}/${nextItemLink.attr('href').split('/')[2]}/${filter ? filter : ''}`)
+      if (evt.keyCode === 39) {
+        $nextItemLink.trigger('click')
       }
     }
 
@@ -182,14 +181,17 @@ function DetailPopUp({
       evt.stopPropagation()
     }
 
-    $('body').on('keydown', bodyOnKeyDown)
-    $('input, textarea, select').on('keydown', stopPropagationOnFormElements)
+    if (!arrowKeysInited) {
+      $('body').on('keydown', bodyOnKeyDown)
+      $('input, textarea, select').on('keydown', stopPropagationOnFormElements)
+      setArrowKeysInited(true)
+    }
 
     return function cleanup() {
       $('body').off('keyup', bodyOnKeyDown)
       $('body').off('keydown', stopPropagationOnFormElements)
     }
-  }, [])
+  }, [arrowKeysInited])
 
   useEffect(function setNextPreviousItems() {
     if (!currentContentItems) return
@@ -459,6 +461,22 @@ function DetailPopUp({
           <div className="detail-popup-title">
             <h1>{ isPrint ? 'Print of Photo #' : BERLIN_STOCK_PHOTOS ? 'Photo #' : '' }{ contentItem.title }</h1>
             <h2 dangerouslySetInnerHTML={{ __html: contentItem.secondaryTitle }} />
+            <div className="detail-popup-sibling-selectors">
+              { previousItem && (
+                <div className="detail-popup-sibling-selector detail-popup-sibling-selector-prev">
+                  <Link to={`/${category}/${previousItem.slug}${filter ? '/' + filter : ''}`}>
+                    &laquo; { previousItem.title }
+                  </Link>
+                </div>
+              )}
+              { nextItem && (
+                <div className="detail-popup-sibling-selector detail-popup-sibling-selector-next">
+                  <Link to={`/${category}/${nextItem.slug}${filter ? '/' + filter : ''}`}>
+                    { nextItem.title } &raquo;
+                  </Link>
+                </div>
+              )}
+            </div>
           </div>
           { BERLIN_STOCK_PHOTOS && (
             <>
