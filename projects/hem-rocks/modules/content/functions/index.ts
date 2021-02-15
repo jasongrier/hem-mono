@@ -4,6 +4,7 @@ export { default as contentItemToTrack } from './content-item-to-track'
 export { default as hasCategory } from './has-category'
 export { default as hasTag } from './has-tag'
 export { default as modelize } from './modelize'
+export { default as parseText } from './parse-text'
 export { default as tagSpellingCorrections } from './tag-spelling-corrections'
 export { default as uniqueSlug } from './unique-slug'
 

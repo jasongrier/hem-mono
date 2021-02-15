@@ -20,7 +20,7 @@ import { BvgWatermark } from '../../../components/berlin-stock-photos'
 import ContentComponents from '../../../components/content'
 import { RootState } from '../../../index'
 import { BERLIN_STOCK_PHOTOS, MINIMUM_PRICE_FOR_RAW } from '../../../config'
-import { hasTag, contentItemToTrack, hasCategory, tagSpellingCorrections } from '../functions'
+import { hasTag, contentItemToTrack, hasCategory, tagSpellingCorrections, parseText } from '../functions'
 import { titleCase } from 'voca'
 import { ChevronButton } from '../../../../../lib/packages/hem-buttons'
 
@@ -44,27 +44,20 @@ function DetailPopUp({
   if (!contentItem) return <div />
 
   const {
-    activeLiveStream,
-    pricingMode,
-
     allContentItems,
-    currentContentItems,
-
     cartProducts,
-
+    currentContentItems,
     currentTrackId,
     playing,
+    pricingMode,
   } = useSelector((state: RootState) => ({
     activeLiveStream: state.app.activeLiveStream,
-    pricingMode: state.app.pricingMode,
-
     allContentItems: state.content.contentItems,
-    currentContentItems: state.content.currentContentItems,
-
     cartProducts: state.cart.products,
-
+    currentContentItems: state.content.currentContentItems,
     currentTrackId: state.player.currentTrack?.id,
     playing: state.player.playing,
+    pricingMode: state.app.pricingMode,
   }))
 
   const dispatch = useDispatch()
@@ -421,8 +414,6 @@ function DetailPopUp({
     return correctedPrice
   }
 
-  const assetHost = assetHostHostname()
-
   const flexPricingType = Cookies.get(getCookieName(SplitTests.FlexPricingType))
 
   const buyNowText = category === 'venue-calendar'
@@ -440,8 +431,8 @@ function DetailPopUp({
   if (!contentItem) return (<div />)
 
   const tags = (contentItem.tags || '').split(', ')
-
   const isPrint = pathname.includes('stock-photos-prints')
+  const assetHost = assetHostHostname()
 
   return (
     <section
@@ -752,14 +743,24 @@ function DetailPopUp({
             <div
               className="detail-cms-text"
               dangerouslySetInnerHTML={{
-                __html: marked(
-                  Mustache.render(
-                    contentItem.description.replace(/ /g, '').length === 0
-                      ? contentItem.blurb
-                      : contentItem.description,
-                    { assetHost: assetHostHostname() }
-                  )
-                ),
+                __html: parseText(
+                  contentItem.description.replace(/ /g, '').length === 0
+                    ? contentItem.blurb
+                    : contentItem.description
+                  ,
+                  {
+                    assetHost,
+                    siteTexts: allContentItems
+                      .filter(i => hasCategory(i, 'site-texts'))
+                      .reduce(
+                        (acc, i) => {
+                          acc[i.slug] = parseText(i.description, { assetHost })
+                          return acc
+                        }, {},
+                      )
+                    ,
+                  },
+                )
               }}
             />
           )}
