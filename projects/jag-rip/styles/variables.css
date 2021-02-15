@@ -1,16 +1,3 @@
 :root {
-  --top-bar-height: 30px;
-  --main-nav-height: 100px;
-  --content-width-desk: 1098px;
-  --main-content-body-spacing: 100px;
-  --hem-border-radius: 20px;
-  --hem-border-radius-sm: 5px;
-  --hem-player-icon-color: #ccc;
-
-  /* Colors */
-  --line-orange: #fa563c;
-  --line-orange-light: #fa8573;
-  --light-gray: #cac9c9;
-  --nice-blue: #3535e6;
-  --exclusive-purple: #e035e6;
+  --some-color: #000;
 }

@@ -1,3 +1,3 @@
-# Template Project
+# JAG RIP
 
-Starter for a project
+Jason's "personal" website

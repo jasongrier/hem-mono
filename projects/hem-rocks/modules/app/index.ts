@@ -116,7 +116,6 @@ export {
   App,
   CookieSettings,
   EmailForm,
-  HeaderPlayer,
   Popups,
 } from './components'
 
