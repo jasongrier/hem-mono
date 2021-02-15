@@ -678,24 +678,6 @@ function DetailPopUp({
                         </div>
                       )}
                     </div>
-                    {/* { contentItem.physicalFormats.length > 1 && (
-                      <div className="purchase-form-alternate-formats">
-                        <h3>Other Formats</h3>
-                        { contentItem.physicalFormats.split('\n').map(slug => {
-                          const item = getContentItemBySlug(allContentItems, slug)
-                          if (item) {
-                            return (
-                              <Link
-                                key={item.slug}
-                                to={`/label/${item.slug}`}
-                              >
-                                { item.title }
-                              </Link>
-                            )
-                          }
-                        })}
-                      </div>
-                    )} */}
                   </div>
                 )}
                 { showPurchaseForm && contentItem.acceptingDonations && (
@@ -705,30 +687,10 @@ function DetailPopUp({
                 )}
               </div>
             )}
-            {/* { category !== 'venue-calendar' && attachedPlaylist && attachedPlaylist.tracks && attachedPlaylist.tracks.length > 0 && (
-              <TrackPlayPauseButton
-                track={attachedPlaylist.tracks[0]}
-                activeFor={attachedPlaylist.tracks}
-              />
-            )}
-            { category === 'venue-calendar' && activeLiveStream === contentItem.slug && (
-              <PlayPauseButton
-                onClick={() => {
-                  dispatch(closePopup())
-                  setTimeout(() => {
-                    history.push('/venue/main-stage')
-                  })
-                }}
-                playing={false}
-              />
-            )} */}
           </div>
         </header>
         <div className="detail-popup-details">
-          {/* { showPurchaseForm && (
-            <h2 className="main-subheading">Details</h2>
-          )} */}
-          { contentItem.description.replace(/ /g, '').length > 0 && showMegaBlurb && (
+          { showMegaBlurb && (
             <div
               className="mega-blurb"
               dangerouslySetInnerHTML={{
@@ -744,14 +706,14 @@ function DetailPopUp({
               className="detail-cms-text"
               dangerouslySetInnerHTML={{
                 __html: parseText(
-                  contentItem.description.replace(/ /g, '').length === 0
-                    ? contentItem.blurb
-                    : contentItem.description
-                  ,
+                  contentItem.description,
                   {
                     assetHost,
                     siteTexts: allContentItems
-                      .filter(i => hasCategory(i, 'site-texts'))
+                      .filter(i =>
+                        hasCategory(i, 'site-texts')
+                        || hasTag(i, 'embedded-essay')
+                      )
                       .reduce(
                         (acc, i) => {
                           acc[i.slug] = parseText(i.description, { assetHost })
