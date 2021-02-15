@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { MainContentList, hasTag } from '../../modules/content'
-import { TracksSubnav, TracksBoxChild, TracksBanner } from '../../components/layout'
+import { TracksSubnav, TracksBoxChild, MainContentBanner } from '../../components/layout'
 import { BASE_SITE_TITLE } from '../../config'
 import { RootState } from '../../index'
 
@@ -21,7 +21,7 @@ function Tracks(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
       <div className="page page-tracks page-with-subnav">
-        <TracksBanner>Tracks</TracksBanner>
+        <MainContentBanner>Tracks</MainContentBanner>
         <TracksSubnav />
         <MainContentList
           currentFilter={currentFilter}

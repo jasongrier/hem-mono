@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { MainContentList, contentItemToTrack, getContentItemsFromRawList } from '../../modules/content'
 import { TrackPlayPauseButton } from '../../../../lib/modules/website-player'
 import { BASE_SITE_TITLE } from '../../config'
-import { SoundLibrarySubnav, SoundLibraryBanner } from '../../components/layout'
+import { SoundLibrarySubnav, MainContentBanner } from '../../components/layout'
 import { RootState } from '../../index'
 
 function SoundLibrary(): ReactElement {
@@ -22,7 +22,6 @@ function SoundLibrary(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
       <div className="page page-sound-library page-with-subnav page-with-banner">
-        <SoundLibraryBanner />
         <SoundLibrarySubnav />
         <MainContentList
           buttonText="Download"

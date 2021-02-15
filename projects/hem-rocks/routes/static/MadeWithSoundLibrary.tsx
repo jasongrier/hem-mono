@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import { ContactForm } from '../../../../lib/components'
-import { SoundLibrarySubnav, SoundLibraryBanner } from '../../components/layout'
+import { SoundLibrarySubnav, MainContentBanner } from '../../components/layout'
 import { assetHostHostname } from '../../functions'
 import { BASE_SITE_TITLE } from '../../config'
 
@@ -14,7 +14,6 @@ function MadeWithSoundLibrary(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
       <div className="page page-made-with-sl">
-        <SoundLibraryBanner />
         <SoundLibrarySubnav />
         <div className="main-content-section first-main-content-section">
           <h2>Have you used SL or SL2 in a project?</h2>
