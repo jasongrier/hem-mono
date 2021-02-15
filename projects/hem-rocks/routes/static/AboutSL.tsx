@@ -7,7 +7,7 @@ import { getContentItemById, requestReadChunk } from '../../modules/content'
 import { assetHostHostname } from '../../functions'
 import { BASE_SITE_TITLE } from '../../config'
 import { RootState } from '../../index'
-import { SoundLibrarySubnav, SoundLibraryBanner } from '../../components/layout'
+import { SoundLibrarySubnav, MainContentBanner } from '../../components/layout'
 
 function AboutSL(): ReactElement {
   const { chunkLog, contentItem } = useSelector((state: RootState) => ({
@@ -29,7 +29,6 @@ function AboutSL(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
       <div className="page about-sl2 page-with-subnav page-with-banner">
-        <SoundLibraryBanner />
         <SoundLibrarySubnav />
         <div className="main-content-section first-main-content-section">
           { contentItem && (

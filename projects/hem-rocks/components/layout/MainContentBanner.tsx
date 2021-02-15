@@ -3,7 +3,7 @@ import { assetHostHostname } from '../../functions'
 
 interface IProps {}
 
-function TracksBanner({ children }: PropsWithChildren<IProps>): ReactElement {
+function MainContentBanner({ children }: PropsWithChildren<IProps>): ReactElement {
   return (
     <div className="main-content-subnav-banner tracks-banner">
       <h1>{ children }</h1>
@@ -12,4 +12,4 @@ function TracksBanner({ children }: PropsWithChildren<IProps>): ReactElement {
   )
 }
 
-export default TracksBanner
+export default MainContentBanner

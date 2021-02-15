@@ -6,6 +6,7 @@ import {
   Apps,
   Articles,
   Artists,
+  Blog,
   Code,
   Editions,
   Faqs,
@@ -13,6 +14,7 @@ import {
   Label,
   Merch,
   Mixes,
+  News,
   Newsletters,
   Playlists,
   Press,
@@ -142,6 +144,14 @@ function RoutingHub(): ReactElement {
         <Route exact path="/apps/:contentItemSlug?/:filter?" component={Apps} />
         <Route exact path="/apps/filter/:filter" component={Apps} />
         <Route exact path="/apps/cart/:filter?" component={Apps} />
+
+        <Route exact path="/blog/:contentItemSlug?/:filter?" component={Blog} />
+        <Route exact path="/blog/filter/:filter" component={Blog} />
+        <Route exact path="/blog/cart/:filter?" component={Blog} />
+
+        <Route exact path="/news/:contentItemSlug?/:filter?" component={News} />
+        <Route exact path="/news/filter/:filter" component={News} />
+        <Route exact path="/news/cart/:filter?" component={News} />
 
         <Route exact path="/articles/:contentItemSlug?/:filter?" component={Articles} />
         <Route exact path="/articles/filter/:filter" component={Articles} />

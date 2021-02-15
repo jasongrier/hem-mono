@@ -5,7 +5,7 @@ import { MainContentList } from '../../modules/content'
 import { ArticlesSubnav, MainContentBanner } from '../../components/layout'
 import { BASE_SITE_TITLE } from '../../config'
 
-function Articles(): ReactElement {
+function News(): ReactElement {
   const { filter: currentFilter }: any = useParams()
 
   return (
@@ -14,14 +14,14 @@ function Articles(): ReactElement {
         <title>{ BASE_SITE_TITLE }</title>
         <meta name="description" content="" />
       </Helmet>
-      <div className="page page-articles">
-        <MainContentBanner>Articles</MainContentBanner>
+      <div className="page page-news">
+        <MainContentBanner>News</MainContentBanner>
         <ArticlesSubnav />
         <MainContentList
-          currentFilter={currentFilter}
-          category="articles"
+          currentFilter={currentFilter || 'monthly-updates'}
+          category="news"
           hideFilters={['Component Content', 'Hide Title', 'Home Features']}
-          speciallyOrderedTags={['Featured']}
+          // speciallyOrderedTags={['Featured']}
           boxSecondaryTitleField="attribution"
         />
       </div>
@@ -29,4 +29,4 @@ function Articles(): ReactElement {
   )
 }
 
-export default Articles
+export default News

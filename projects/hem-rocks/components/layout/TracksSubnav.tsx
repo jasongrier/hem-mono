@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
 import { NavLink } from 'react-router-dom'
+import { MainContentBanner } from '../../components/layout'
 
 function SoundLibrarySubnav(): ReactElement {
   return (

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { BASE_SITE_TITLE } from '../../config'
 import { TracksSubnav } from '../../components/layout'
-import { TracksOverviewContentBox, TracksBanner } from '../../components/layout'
+import { TracksOverviewContentBox, MainContentBanner } from '../../components/layout'
 import { hasCategory, hasTag, requestReadChunk, IContentItem } from '../../modules/content'
 import { RootState } from '../../'
 
@@ -47,7 +47,7 @@ function TracksOverview(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
       <div className="page page-tracks page-tracks-overview page-with-subnav page-with-banner">
-        <TracksBanner>Tracks for March 2021</TracksBanner>
+        <MainContentBanner>Tracks for March 2021</MainContentBanner>
         <TracksSubnav />
         <div className="overview-page">
           { rows.map(({ title, tracks }) => (

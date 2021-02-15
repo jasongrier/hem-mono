@@ -1,32 +1,35 @@
 import React, { ReactElement } from 'react'
 import { NavLink } from 'react-router-dom'
-import { assetHostHostname } from '../../functions'
+import { MainContentBanner } from '../../components/layout'
 
 function SoundLibrarySubnav(): ReactElement {
   return (
-    <nav className="main-content-subnav">
-      <ul>
-        <li>
-          <NavLink
-            isActive={(_, { pathname }) =>
-              pathname.indexOf('/sound-library') === 0
-              && !pathname.includes('about-sl')
-              && !pathname.includes('made-with-sl')
-              && !pathname.includes('whats-new-in-sl-two')
-            }
-            to="/sound-library"
-          >
-            Packs
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/sound-library/about-sl">About SL2</NavLink>
-        </li>
-        <li>
-          <NavLink to="/sound-library/made-with-sl">Made something with it?</NavLink>
-        </li>
-      </ul>
-    </nav>
+    <>
+      <MainContentBanner>SL2</MainContentBanner>
+      <nav className="main-content-subnav">
+        <ul>
+          <li>
+            <NavLink
+              isActive={(_, { pathname }) =>
+                pathname.indexOf('/sound-library') === 0
+                && !pathname.includes('about-sl')
+                && !pathname.includes('made-with-sl')
+                && !pathname.includes('whats-new-in-sl-two')
+              }
+              to="/sound-library"
+            >
+              Packs
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/sound-library/about-sl">About SL2</NavLink>
+          </li>
+          <li>
+            <NavLink to="/sound-library/made-with-sl">Made something with it?</NavLink>
+          </li>
+        </ul>
+      </nav>
+    </>
   )
 }
 

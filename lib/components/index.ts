@@ -1,3 +1,4 @@
+export { default as BannerSwitcher } from './BannerSwitcher'
 export { default as CampaignMonitorForm } from './CampaignMonitorForm'
 export { default as ContactForm } from './ContactForm'
 export { default as DynamicImport } from './DynamicImport'
