@@ -1,0 +1,62 @@
+.overview-page {
+  margin-top: 30px;
+}
+
+.page-tracks-overview .overview-page-row {
+  position: relative;
+  margin-bottom: 36px;
+}
+
+.page-tracks-overview .overview-page-row > a {
+  position: absolute;
+  top: 10px;
+  right: 7px;
+  text-decoration: none;
+  font-weight: 300;
+  color: var(--line-orange);
+  text-transform: lowercase;
+}
+
+.page-tracks-overview .overview-page-row > a:hover {
+  text-decoration: underline;
+}
+
+.page-tracks-overview .overview-page-row-items {
+  display: flex;
+  justify-content: space-between;
+}
+
+.page-tracks-overview h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  width: 1084px;
+  padding: 0 0 5px 0;
+  color: var(--line-orange);
+  font-family: Avenir;
+  font-size: 18px;
+  border-bottom: 1px solid var(--line-orange);
+  font-weight: 100;
+  text-transform: uppercase;
+}
+
+.page-tracks-overview .main-content-items {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.page-tracks-overview .main-content-box {
+  display: inline-block;
+  float: none !important;
+  border-bottom: 0;
+  margin: 0;
+  padding: 0 20px;
+  flex: 0 0 12.5%;
+  align-self: flex-start;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.page-tracks-overview .main-content-box.align-right {
+  float: none !important;
+}

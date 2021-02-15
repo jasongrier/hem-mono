@@ -1,0 +1,382 @@
+.is-admin .scroll-lock-container {
+  background-color: #fff;
+}
+
+.page-admin .main-content-subnav {
+  margin-bottom: 0;
+}
+
+.page-admin .main-content-subnav li a.active {
+  border-bottom: 4px solid #000;
+}
+
+.admin-list-controls {
+  position: relative;
+  padding: 20px;
+  height: 30px;
+  line-height: 30px;
+  background: #efefef;
+}
+
+.admin-list-stats {
+  padding: 20px 25px;
+  font-size: 12px;
+  border-bottom: 1px solid #ccc;
+}
+
+.admin-list-controls label {
+  float: left;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.admin-list-controls-select-all,
+.admin-list-controls-select,
+.admin-list-controls-search {
+  float: left;
+  height: 30px;
+  line-height: 30px;
+  margin-right: 20px;
+}
+
+.admin-list-controls-search {
+  margin-right: 0;
+}
+
+.admin-list-controls-select {
+  position: relative;
+}
+
+.custom-select,
+.inline-edit-form select,
+.admin-list-controls-select select {
+  float: left;
+  width: 200px;
+  height: 32px;
+  padding: 0 10px;
+  margin: 0 20px 0 0;
+  line-height: 30px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.admin-select-searchable-field {
+  width: 75px;
+  margin-right: 5px;
+}
+
+.custom-select:active,
+.custom-select:focus,
+.inline-edit-form select:active,
+.inline-edit-form select:focus,
+.admin-list-controls-select select:active,
+.admin-list-controls-select select:focus {
+  outline: none;
+}
+
+.admin-list-controls-select .hem-play-pause-button {
+  position: absolute;
+  top: -14px;
+  right: 4px;
+  background-color: transparent;
+  transform: rotate(90deg) scale(0.3);
+  filter: invert(1);
+  pointer-events: none;
+}
+
+.admin-list-controls-search input,
+.admin-list-controls-mass-tag input {
+  float: left;
+  width: 650px;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 0 0 10px;
+  margin: 0;
+  border: 0;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: none !important;
+  border: 1px solid #ccc;
+}
+
+.admin-list-controls-mass-tag button {
+  height: 32px;
+  line-height: 32px;
+  margin-left: 10px;
+}
+
+.admin-list-controls-search input:active,
+.admin-list-controls-search input:focus {
+  outline: none;
+}
+
+.admin-list table {
+  width: 100%;
+}
+
+.admin-list table a {
+  color: inherit;
+}
+
+.admin-list th,
+.admin-list td {
+  height: 50px;
+  text-align: left;
+}
+
+.admin-list td {
+  vertical-align: top;
+  padding-top: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.admin-list tr:first-child td {
+  border-top: 1px solid #ddd;
+}
+
+.admin-list td a {
+  text-decoration: none;
+}
+
+.admin-list-column-check {
+  width: 50px;
+  padding-left: 10px;
+}
+
+.admin-list-column-thumbnail {
+  width: 100px;
+  height: 100px;
+}
+
+.admin-list-column-thumbnail img {
+  width: 400px;
+  height: 400px;
+  object-fit: contain;
+}
+
+.admin-list-column-date,
+.admin-list-column-category {
+  width: 150px;
+}
+
+.admin-list-column-order input {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #eee;
+  text-align: center;
+}
+
+.admin-list-column-actions {
+  width: 210px;
+}
+
+.admin-list-column-actions button {
+  float: right;
+  width: 120px;
+  height: 30px;
+  line-height: 30px;
+  margin: 0 0 10px 10px;
+  transform: translateX(3px);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.admin-list-column-actions button:last-child {
+  margin-left: 0;
+}
+
+.admin-item {
+  width: 100%;
+}
+
+.admin-item-header {
+  position: relative;
+  height: 100px;
+  line-height: 100px;
+}
+
+.admin-item-header h2 {
+  display: inline-block;
+  margin: 3px 0 0 0;
+  padding: 0;
+  font-size: 40px;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+.admin-item-key-art {
+  float: left;
+}
+
+.admin-item-key-art img {
+  width: 400px;
+  height: auto;
+}
+
+.admin-item-header button {
+  position: absolute;
+  top: 33px;
+  right: 0;
+  margin-right: 0;
+}
+
+.admin-item-header .publish-item-button {
+  position: absolute;
+  top: 33px;
+  right: 140px;
+  margin-right: 0;
+}
+
+.admin-item-header button:disabled {
+  background-color: #ccc;
+  pointer-events: none;
+}
+
+.admin-item td {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  background: #efefef;
+}
+
+.admin-item label {
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  margin-right: 50px;
+  font-weight: bold;
+}
+
+.admin-item input,
+.admin-item textarea {
+  display: inline-block;
+  width: 750px;
+  height: 30px;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  font-size: 18px;
+}
+
+.admin-item select {
+  display: inline-block;
+  width: 790px;
+  height: 50px;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  font-size: 18px;
+}
+
+.admin-item input:focus,
+.admin-item textarea:focus {
+  outline: none;
+}
+
+.admin-item input {
+  line-height: 40px;
+}
+
+.admin-item input[disabled] {
+  background-color: #ccc;
+}
+
+.admin-item textarea {
+  width: calc(100vw - 280px);
+  padding: 100px;
+  resize: none;
+}
+
+.admin-manual-task-runner {
+  width: 960px;
+  margin: 40px auto 0 auto;
+}
+
+.admin-manual-task-runner ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.admin-manual-task-runner li {
+  margin-bottom: 20px;
+}
+
+.admin-manual-task-runner a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.admin-manual-task-runner div {
+  margin-bottom: 20px;
+}
+
+.small-action-button {
+  font-size: 12px;
+  width: 30px;
+  height: 30px;
+  line-height: 20px;
+  text-align: center;
+  background-color: gray;
+}
+
+.small-action-button-active {
+  background-color: var(--line-orange);
+}
+
+.inline-edit-form {
+  float: right;
+  clear: both;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: -3px;
+}
+
+.first-inline-edit-form {
+  margin-top: 10px;
+}
+
+.last-inline-edit-form {
+  margin-bottom: 10px;
+}
+
+.inline-edit-form label {
+  float: left;
+  clear: both;
+}
+
+.inline-edit-form label > span {
+  float: left;
+  width: 55px;
+  height: 32px;
+  line-height: 32px;
+}
+
+.inline-edit-form input {
+  float: left;
+  width: 527px;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 0 0 10px;
+  margin: 0;
+  border: 0;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: none !important;
+  border: 1px solid #ccc;
+}
+
+.inline-edit-form button {
+  display: none;
+}
+
+.admin-list-column-thumbnail audio {
+  margin-top: 10px;
+  background-color: #f1f3f4;
+}

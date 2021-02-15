@@ -1,0 +1,6 @@
+export { default as About } from './About'
+export { default as BerlinStockPhotos } from './BerlinStockPhotos'
+export { default as Contact } from './Contact'
+export { default as LicenseAgreement } from './LicenseAgreement'
+export { default as NotFound } from './NotFound'
+export { default as Prints } from './Prints'

@@ -1,0 +1,23 @@
+.page-internal-todos {
+
+}
+
+.page-internal .page-internal-todos-list li {
+  height: 30px;
+  line-height: 20px;
+  padding-top: 10px;
+  padding-left: 10px;
+  margin-bottom: 10px;
+  background-color: #eee;
+  border-radius: 5px;
+}
+
+.page-internal-todos-list li > div {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.page-internal-todos-list li input[type="checkbox"] {
+  display: inline-block;
+  transform: translateY(1px);
+}
