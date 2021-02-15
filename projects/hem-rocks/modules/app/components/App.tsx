@@ -159,6 +159,11 @@ function App(): ReactElement {
     dispatch(requestReadChunk('site-texts'))
   }, [chunkLog])
 
+  useEffect(function preloadEmbeddedEssays() {
+    if (chunkLog.includes('embedded-essays')) return
+    dispatch(requestReadChunk('embedded-essays'))
+  }, [chunkLog])
+
   useEffect(function getCuratedPlaylists() {
     if (chunkLog.length < 1) return
     if (chunkLog.includes('curated-playlists')) return

@@ -68,6 +68,16 @@ function chunkData(allContentItems: IContentItem[]) {
       },
       contentItems: [] as IContentItem[],
     },
+    {
+      name: 'embedded-essays',
+      getContentItems(allContentItems: any) {
+        this.contentItems = allContentItems.filter((item: any) =>
+          hasCategory(item, 'articles')
+          && hasTag(item, 'sound-library')
+        )
+      },
+      contentItems: [] as IContentItem[],
+    },
   ]
 
   const chunks = terms.map(term =>

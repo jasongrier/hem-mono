@@ -53,7 +53,14 @@ function TopBar(): ReactElement {
                 ]}
                 to="tracks-overview"
               />
-              <MainNavItem name="Articles" />
+              <MainNavItem
+                name="Articles"
+                activeFor={[
+                  '/articles',
+                  '/blog',
+                  '/news',
+                ]}
+              />
               <MainNavItem name="Editions" />
 
               <li className="main-nav-item">
