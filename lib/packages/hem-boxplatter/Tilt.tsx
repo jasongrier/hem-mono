@@ -44,12 +44,11 @@ function Tilt({
     `
 
     compensator.style.transform = compensate
-      ?
-      `
-        rotate(${tilt * -1}deg)
-        skewX(${skewX * -1}deg)
-        skewY(${skewY * -1}deg)
-      `
+      ? `
+          rotate(${tilt * -1}deg)
+          skewX(${skewX * -1}deg)
+          skewY(${skewY * -1}deg)
+        `
       : null
 
     onRender && onRender()
@@ -63,8 +62,8 @@ function Tilt({
       `}
       ref={el}
     >
-      <div className="kas-tilt-tiltor">
-        <div className="kas-tilt-compensator">
+      <div className="hem-tilt-tiltor">
+        <div className="hem-tilt-compensator">
           {children}
         </div>
       </div>
