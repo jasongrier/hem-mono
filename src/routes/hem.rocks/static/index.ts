@@ -1,0 +1,17 @@
+export default [
+  'About',
+  'AboutSL',
+  'CompilationIVArtistInfo',
+  'Contact',
+  'CookiePolicy',
+  'CookieSettings',
+  'DanceParty',
+  'Home',
+  'LifeInLetters',
+  'MadeWithSoundLibrary',
+  'MailingList',
+  'NotFound',
+  'ReactConsulting',
+  'Support',
+  'TracksOverview',
+]
