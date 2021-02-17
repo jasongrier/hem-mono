@@ -75,7 +75,6 @@ import {
 } from '../../../routes/berlin-stock-photos'
 
 function RoutingHub(): ReactElement {
-
   return (
     <div className="routing-hub">
       <Switch>

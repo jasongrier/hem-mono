@@ -8,13 +8,13 @@ function ReactConsulting(): ReactElement {
 
       <p>I specialise in devising strategies and practical implementations for you to migrate legacy systems to React in a smooth and nontoxic way. I love solving "the hard problems" elegantly and beautifully.</p>
 
-      <p className="page-react-consulting-framework-logos">[Django Logo -> React Logo] [AngularJS Logo -> React Logo]</p>
+      <p className="page-react-consulting-framework-logos">[Django Logo to React Logo] [AngularJS Logo to React Logo]</p>
 
-      <p className="page-react-consulting-framework-logos">[Rails Logo -> React Logo] [AngularJS Logo -> React Logo] [Ember Logo -> React Logo] [Vanilla JS  -> React Logo]</p>
+      <p className="page-react-consulting-framework-logos">[Rails Logo to React Logo] [AngularJS Logo to React Logo] [Ember Logo to React Logo] [Vanilla JS  to React Logo]</p>
 
       <h2>TL;DR? Just get in touch:</h2>
 
-      <ContactForm />
+      {/* <ContactForm /> */}
 
       <h2>More about what I offer</h2>
 
