@@ -138,7 +138,7 @@ function App(): ReactElement {
     }
   }, [])
 
-  useEffect(function test() {
+  useEffect(function loadSettings() {
     if (chunkLog.includes('settings')) return
     dispatch(requestReadChunk('settings'))
   }, [chunkLog])

@@ -7,20 +7,22 @@ import {
   REQUEST_UPDATE_ITEMS,
 
   doCreateItems as doCreateItemsAc,
+  doDeleteItems as doDeleteItemsAc,
   doReadItems as doReadItemsAc,
   doReadChunk as doReadChunkAc,
   doUpdateItems as doUpdateItemsAc,
   requestReadItems as requestReadItemsAc,
 
-  modelize,
   compressIndex,
+  generateChunks,
+  hasCategory,
+  modelize,
+  readAllItems,
   uncompressItem,
   validateCompressionMap,
 
   IContentItem,
 } from './index'
-import { hasCategory } from './functions'
-import generateChunks from './functions/generate-chunks'
 
 function* createItems({ payload }: any) {
   try {
@@ -43,7 +45,36 @@ function* createItems({ payload }: any) {
     yield put(doCreateItemsAc([item]))
     yield put(requestReadItemsAc())
 
-    generateChunks(index)
+    const allContentItems = yield readAllItems()
+    generateChunks(allContentItems)
+  }
+
+  catch (err) {
+    console.error(err)
+  }
+}
+
+function* deleteItems({ payload }: any) {
+  try {
+    const { remote } = window.require('electron')
+    const { existsSync, readdirSync, readFileSync, writeFileSync } = remote.require('fs')
+    const { extname, join } = remote.require('path')
+    const { execSync } = remote.require('child_process')
+
+    const itemSlug = payload[0] // TODO: Handle multiples
+    const indexFile = join(__dirname, '..', '..', 'static', 'content', 'index.json')
+    const distIndexFile = join(__dirname, '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
+    const compressedIndex: IContentItem[] = JSON.parse(readFileSync(indexFile, 'utf8'))
+    const index: IContentItem[] = compressedIndex
+      .map(uncompressItem)
+      .filter(entry => entry.slug !== itemSlug)
+
+    writeFileSync(indexFile, JSON.stringify(compressIndex(index)))
+
+    execSync(`cp ${indexFile} ${distIndexFile}`, { stdio: 'inherit' })
+
+    yield put(doDeleteItemsAc([itemSlug]))
+    yield put(requestReadItemsAc())
   }
 
   catch (err) {
@@ -53,16 +84,7 @@ function* createItems({ payload }: any) {
 
 function* readItems() {
   try {
-    validateCompressionMap()
-
-    const res = yield call(fetch, '/static/content/index.json')
-    const entries = yield res.json()
-    let items = entries.map(uncompressItem).map(modelize)
-
-    if (!window.process?.env.ELECTRON_MONO_DEV) {
-      items.filter((item: any) => !hasCategory(item, 'assets'))
-    }
-
+    const items = yield readAllItems()
     yield put(doReadItemsAc(items))
   }
 
@@ -93,6 +115,8 @@ function* readChunk({ payload: chunkName }: any) {
 
 function* updateItems({ payload }: any) {
   try {
+    yield put(requestReadItemsAc())
+
     const { remote } = window.require('electron')
     const { writeFileSync } = remote.require('fs')
     const { join } = remote.require('path')
@@ -116,7 +140,8 @@ function* updateItems({ payload }: any) {
     yield put(doUpdateItemsAc(updatedItems))
     yield put(requestReadItemsAc())
 
-    generateChunks(newContentItems)
+    const allContentItems = yield readAllItems()
+    generateChunks(allContentItems)
   }
 
   catch (err) {
@@ -144,13 +169,13 @@ function* updateItemsSaga() {
 }
 
 function* deleteItemsSaga() {
-  yield takeLatest(REQUEST_DELETE_ITEMS, updateItems)
+  yield takeLatest(REQUEST_DELETE_ITEMS, deleteItems)
 }
 
 export {
   createItemsSaga,
   deleteItemsSaga,
-  readItemsSaga,
   readChunkSaga,
+  readItemsSaga,
   updateItemsSaga,
 }

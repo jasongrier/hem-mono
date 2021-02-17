@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux'
 import { useLocation } from 'react-router'
 import { NavLink } from 'react-router-dom'
 import { slugify } from 'voca'
-import { collapseTopBar } from '../../modules/app'
 
 interface IProps {
   name: string
@@ -15,8 +14,6 @@ interface IProps {
 }
 
 function MainNavItem({ name, activeFor, additive = false, displayName, to }: IProps): ReactElement {
-  const dispatch = useDispatch()
-
   const { pathname } = useLocation()
 
   const slug = slugify(name)
@@ -25,7 +22,6 @@ function MainNavItem({ name, activeFor, additive = false, displayName, to }: IPr
     <li className="main-nav-item">
       <NavLink
         to={`${additive ? pathname : ''}/${to || slug}`}
-        onClick={() => dispatch(collapseTopBar())}
         isActive={activeFor ? (_, { pathname }) => {
           let isActive = false
 
