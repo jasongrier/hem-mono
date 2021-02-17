@@ -4,7 +4,6 @@ import {
   SET_COOKIE_PREFERENCES_SET,
   SET_MEGA_NAV_OPEN,
   SET_PRICING_MODE,
-  SET_PROJECT,
 } from './index'
 
 const setCookieApproval = (cookieName: string, approval: boolean, write: boolean): AnyAction => ({
@@ -27,15 +26,9 @@ const setPricingMode = (pricingMode: number): AnyAction => ({
   payload: pricingMode,
 })
 
-const setProject = (project: string): AnyAction => ({
-  type: SET_PROJECT,
-  payload: project,
-})
-
 export {
   setCookieApproval,
   setCookiePreferencesSet,
   setMegaNavOpen,
   setPricingMode,
-  setProject,
 }

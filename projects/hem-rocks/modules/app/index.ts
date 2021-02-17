@@ -32,7 +32,6 @@ export const curatedPlaylists = [
 ]
 
 export interface IState {
-  currentProject: string,
   cookiesAnalyticsApproved: boolean | null
   cookiesMarketingApproved: boolean | null
   cookiePreferencesSet: boolean | null
@@ -44,7 +43,6 @@ export const SET_COOKIE_APPROVAL = 'SET_COOKIE_APPROVAL'
 export const SET_COOKIE_PREFERENCES_SET = 'SET_COOKIE_PREFERENCES_SET'
 export const SET_MEGA_NAV_OPEN = 'SET_MEGA_NAV_OPEN'
 export const SET_PRICING_MODE = 'SET_PRICING_MODE'
-export const SET_PROJECT = 'SET_PROJECT'
 
 export interface ISetCookieApproval extends AnyAction {
   type: typeof SET_COOKIE_APPROVAL
@@ -66,24 +64,17 @@ export interface ISetPricingMode extends AnyAction {
   payload: boolean
 }
 
-export interface ISetProject extends AnyAction {
-  type: typeof SET_PROJECT
-  payload: string
-}
-
 export type Action =
   ISetCookieApproval
   | ISetCookiePreferencesSet
   | ISetMegaNavOpen
   | ISetPricingMode
-  | ISetProject
 
 export {
   setCookieApproval,
   setCookiePreferencesSet,
   setMegaNavOpen,
   setPricingMode,
-  setProject,
 } from './actions'
 
 // TODO: Export all components here. Write a linter for it

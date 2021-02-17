@@ -24,8 +24,12 @@ import {
   IState,
   IContentItem,
   REQUEST_READ_CHUNK,
+  SET_CURRENT_PROJECT,
 } from './index'
 import { applyPaginationAndFiltering, getContentItemById } from './functions'
+import { RootState } from '../../index'
+
+declare const window: any
 
 const initialState: IState = {
   adminFilterApplied: 'all',
@@ -36,6 +40,7 @@ const initialState: IState = {
   contentItems: [],
   currentContentItem: null,
   currentContentItems: [],
+  currentProject: 'hem.rocks',
   needsKeyArtFilter: false,
   page: 1,
   pageContentItems: [],
@@ -153,6 +158,12 @@ const reducer = (
         const { unpaginatedItemCount, pageContentItems } = applyPaginationAndFiltering(draftState)
         draftState.unpaginatedItemCount = unpaginatedItemCount
         draftState.pageContentItems = pageContentItems
+      })
+    }
+
+    case SET_CURRENT_PROJECT: {
+      return produce(state, draftState => {
+        draftState.currentProject = payload
       })
     }
 

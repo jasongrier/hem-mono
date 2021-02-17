@@ -16,6 +16,7 @@ import {
   SET_CURRENT_ITEM,
   SET_CURRENT_ITEMS,
   SET_CURRENT_PAGE,
+  SET_CURRENT_PROJECT,
   TOGGLE_NEEDS_KEY_ART_FILTER,
   TOGGLE_SHOW_UNPUBLISHED_FILTER,
   TOGGLE_STICKY_FILTER,
@@ -109,6 +110,11 @@ const setCurrentPage = (page: number): Action => ({
   payload: page,
 })
 
+const setCurrentProject = (project: string): Action => ({
+  type: SET_CURRENT_PROJECT,
+  payload: project,
+})
+
 const toggleNeedsKeyArtFilter = (): Action => ({
   type: TOGGLE_NEEDS_KEY_ART_FILTER,
   payload: null,
@@ -142,6 +148,7 @@ export {
   setCurrentItem,
   setCurrentItems,
   setCurrentPage,
+  setCurrentProject,
   toggleNeedsKeyArtFilter,
   toggleShowUnpublishedFilter,
   toggleStickyFilter,

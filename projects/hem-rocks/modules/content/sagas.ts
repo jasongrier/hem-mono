@@ -57,8 +57,8 @@ function* createItems({ payload }: any) {
 function* deleteItems({ payload }: any) {
   try {
     const { remote } = window.require('electron')
-    const { existsSync, readdirSync, readFileSync, writeFileSync } = remote.require('fs')
-    const { extname, join } = remote.require('path')
+    const { readFileSync, writeFileSync } = remote.require('fs')
+    const { join } = remote.require('path')
     const { execSync } = remote.require('child_process')
 
     const itemSlug = payload[0] // TODO: Handle multiples
@@ -75,6 +75,9 @@ function* deleteItems({ payload }: any) {
 
     yield put(doDeleteItemsAc([itemSlug]))
     yield put(requestReadItemsAc())
+
+    const allContentItems = yield readAllItems()
+    generateChunks(allContentItems)
   }
 
   catch (err) {

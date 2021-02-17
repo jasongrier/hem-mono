@@ -10,7 +10,6 @@ import { PlayPauseButton } from '../../../../../lib/packages/hem-buttons'
 import { adminApplyFilter, adminApplySearch, getContentItemBySlug, setAdminSearchableField, toggleNeedsKeyArtFilter, requestReadItems, requestUpdateItems, IContentItem, categories, projects } from '../index'
 import { RootState } from '../../../index'
 import { hasCategory, hasTag, modelize } from '../functions'
-import { setProject } from '../../app'
 import { assetHostHostname } from '../../../functions'
 import { toggleShowUnpublishedFilter, toggleStickyFilter, setCurrentPage, requestCreateItems } from '../actions'
 
@@ -34,7 +33,7 @@ function AdminList(): ReactElement {
     adminSearchApplied: state.content.adminSearchApplied,
     allContentItems: state.content.contentItems,
     contentItemsCount: state.content.contentItems.length,
-    currentProject: state.app.currentProject,
+    currentProject: state.content.currentProject,
     needsKeyArtFilter: state.content.needsKeyArtFilter,
     page: state.content.page,
     pageContentItems: state.content.pageContentItems,
@@ -60,7 +59,7 @@ function AdminList(): ReactElement {
         draftItem.description = evt.currentTarget.value
       })
       dispatch(requestUpdateItems([updatedItem]))
-    }, [],
+    }, [allContentItems],
   )
 
   const categoryFilterOnChange = useCallback(
@@ -167,7 +166,10 @@ function AdminList(): ReactElement {
           <div className="admin-list-controls-select">
             <label htmlFor="select">
               Category:&nbsp;
-              <PlayPauseButton playing={false} onClick={noop} />
+              <PlayPauseButton
+                playing={false}
+                onClick={noop}
+              />
             </label>
             <select
               className="custom-select"
@@ -314,7 +316,7 @@ function AdminList(): ReactElement {
             </tr>
           </thead>
           <tbody>
-            { pageContentItems.map((item: IContentItem) => ( /* parseInt(item.title, 10) > 511 && */
+            { pageContentItems.map((item: IContentItem) => (
               <tr key={item.id}>
                 <td className="admin-list-column-check">
                   <button
