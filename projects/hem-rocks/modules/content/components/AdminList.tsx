@@ -1,26 +1,27 @@
 import React, { ReactElement, useEffect, useCallback, useState, SyntheticEvent } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Link, Redirect } from 'react-router-dom'
+import { Link, } from 'react-router-dom'
 import produce from 'immer'
-import { isEmpty, noop, find, filter, map, includes } from 'lodash'
-import { slugify, titleCase, tr } from 'voca'
-import moment from 'moment'
+import uuid from 'uuid'
+import { isEmpty, noop, find } from 'lodash'
+import { slugify, titleCase } from 'voca'
 import { ElectronOnly } from '../../../../../lib/components'
 import { PlayPauseButton } from '../../../../../lib/packages/hem-buttons'
-import { adminApplyFilter, adminApplySearch, setAdminSearchableField, toggleNeedsKeyArtFilter, requestDeleteItems, requestReadItems, requestUpdateItems, IContentItem, categories } from '../index'
+import { adminApplyFilter, adminApplySearch, getContentItemBySlug, setAdminSearchableField, toggleNeedsKeyArtFilter, requestReadItems, requestUpdateItems, IContentItem, categories, projects } from '../index'
 import { RootState } from '../../../index'
-import { getContentItemBySlug, hasCategory, hasTag, modelize } from '../functions'
+import { hasCategory, hasTag, modelize } from '../functions'
+import { setProject } from '../../app'
 import { assetHostHostname } from '../../../functions'
 import { toggleShowUnpublishedFilter, toggleStickyFilter, setCurrentPage, requestCreateItems } from '../actions'
-import uuid from 'uuid'
 
 function AdminList(): ReactElement {
   const {
-    allContentItems,
     adminFilterApplied,
     adminSearchableField,
     adminSearchApplied,
+    allContentItems,
     contentItemsCount,
+    currentProject,
     needsKeyArtFilter,
     page,
     pageContentItems,
@@ -28,11 +29,12 @@ function AdminList(): ReactElement {
     stickyFilter,
     unpaginatedItemCount,
   } = useSelector((state: RootState) => ({
-    allContentItems: state.content.contentItems,
     adminFilterApplied: state.content.adminFilterApplied,
     adminSearchableField: state.content.adminSearchableField,
     adminSearchApplied: state.content.adminSearchApplied,
+    allContentItems: state.content.contentItems,
     contentItemsCount: state.content.contentItems.length,
+    currentProject: state.app.currentProject,
     needsKeyArtFilter: state.content.needsKeyArtFilter,
     page: state.content.page,
     pageContentItems: state.content.pageContentItems,
@@ -50,6 +52,16 @@ function AdminList(): ReactElement {
   const [selectedItems, setSelectedItems] = useState<any>({})
   const [interestingProperty, setInterestingProperty] = useState<keyof IContentItem>('category')
   const [collapsed, setCollapsed] = useState<boolean>(false)
+
+  const projectFilterOnChange = useCallback(
+    function projectFilterOnChange(evt: SyntheticEvent<HTMLSelectElement>) {
+      const item = getContentItemBySlug(allContentItems, 'setting-current-project')
+      const updatedItem: IContentItem = produce(item, (draftItem) => {
+        draftItem.description = evt.currentTarget.value
+      })
+      dispatch(requestUpdateItems([updatedItem]))
+    }, [],
+  )
 
   const categoryFilterOnChange = useCallback(
     function categoryFilterOnChangeFn(evt: SyntheticEvent<HTMLSelectElement>) {
@@ -125,6 +137,32 @@ function AdminList(): ReactElement {
   return (
     <ElectronOnly showMessage={true}>
       <div className="admin-list">
+        <div className="admin-list-controls clearfix">
+          <div className="admin-list-controls-select">
+            <label htmlFor="select">
+              Project:&nbsp;
+              <PlayPauseButton
+                playing={false}
+                onClick={noop}
+              />
+            </label>
+            <select
+              className="custom-select"
+              name="select"
+              onChange={projectFilterOnChange}
+              value={currentProject}
+            >
+              { projects.map(project => (
+                <option
+                  key={project}
+                  value={project}
+                >
+                  { project }
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
         <div className="admin-list-controls clearfix">
           <div className="admin-list-controls-select">
             <label htmlFor="select">

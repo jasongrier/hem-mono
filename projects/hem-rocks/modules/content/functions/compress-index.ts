@@ -60,6 +60,7 @@ const keyCompressionMap: any = {
   order: 'aw',
   physicalFormats: 'ax',
   preview: 'ay',
+  project: 'bu',
   published: 'az',
   relatedContent: 'ba',
   relatedContentLink: 'bb',

@@ -5,7 +5,6 @@ import { NavLink, Link } from 'react-router-dom'
 import { ElectronOnly } from '../../../../lib/components'
 import { closePopup, openPopup } from '../../../../lib/modules/popups'
 import { Logo, MainNavItem, MegaNav } from './index'
-import { HeaderPlayer } from '../../modules/app'
 import { RootState } from '../../index'
 
 function TopBar(): ReactElement {

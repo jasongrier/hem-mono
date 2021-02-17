@@ -37,8 +37,8 @@ const store = window.STORE = createStore(
   )
 )
 
-import { requestActiveLiveStreamSaga } from './modules/app'
-sagaMiddleware.run(requestActiveLiveStreamSaga)
+import { appSaga } from './modules/app'
+sagaMiddleware.run(appSaga)
 
 import { nextTrackSaga } from '../../lib/modules/website-player'
 sagaMiddleware.run(nextTrackSaga)

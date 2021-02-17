@@ -32,6 +32,7 @@ export interface IContentItem {
   order: string
   physicalFormats: string
   preview: boolean
+  project: string
   published: boolean
   relatedContent: string
   relatedContentLink: string
@@ -102,6 +103,7 @@ export const fieldTypes: IContentItem = {
   order: 'text',
   physicalFormats: 'textarea',
   preview: false,
+  project: 'string',
   published: false,
   relatedContent: 'text',
   relatedContentLink: 'text',
@@ -122,6 +124,8 @@ export const categories = [
   'apps',
   'articles',
   'artists',
+  'assets-vollmer',
+  'assets',
   'blog',
   'code',
   'editions',
@@ -131,28 +135,31 @@ export const categories = [
   'lists',
   'merch',
   'mix',
-  'notes',
   'news',
+  'notes',
   'playlists',
+  'press-clippings',
   'press-kits',
   'press-releases',
-  'press-clippings',
   'program',
   'recipes',
   'reminders',
+  'settings',
   'site-texts',
   'sound-library',
+  'stock-photos',
+  'todos',
   'tracks',
   'tutorial',
   'user-guides',
-  'venue-archive',
-  'venue-calendar',
-  'venue-merch',
   'video',
-  'stock-photos',
-  'assets',
-  'assets-vollmer',
-  'todos',
+]
+
+export const projects = [
+  'hem.rocks',
+  'berlinstockphotos.com',
+  'jag.rip',
+  'midst.press',
 ]
 
 export const ADMIN_APPLY_FILTER = 'ADMIN_APPLY_FILTER'

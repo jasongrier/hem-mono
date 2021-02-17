@@ -2,26 +2,22 @@ import { AnyAction } from 'redux'
 import produce from 'immer'
 import { capitalize } from 'voca'
 import {
-  COLLAPSE_TOP_BAR,
-  EXPAND_TOP_BAR,
-  REQUEST_ACTIVE_LIVE_STREAM,
-  SET_ACTIVE_LIVE_STREAM,
   SET_COOKIE_APPROVAL,
   SET_COOKIE_PREFERENCES_SET,
   SET_MEGA_NAV_OPEN,
   SET_PRICING_MODE,
 
   IState,
+  SET_PROJECT,
 } from './index'
 
 const initialState: IState = {
-  activeLiveStream: null,
+  currentProject: 'hem.rocks',
   cookiesAnalyticsApproved: false,
   cookiesMarketingApproved: false,
   cookiePreferencesSet: false,
   megaNavOpen: false,
   pricingMode: 1,
-  topBarCollapsed: false,
 }
 
 const reducer = (
@@ -29,28 +25,6 @@ const reducer = (
   { type, payload }: AnyAction,
 ): IState => {
   switch (type) {
-    case COLLAPSE_TOP_BAR: {
-      return produce(state, draftState => {
-        draftState.topBarCollapsed = true
-      })
-    }
-
-    case EXPAND_TOP_BAR: {
-      return produce(state, draftState => {
-        draftState.topBarCollapsed = false
-      })
-    }
-
-    case REQUEST_ACTIVE_LIVE_STREAM: {
-      return state
-    }
-
-    case SET_ACTIVE_LIVE_STREAM: {
-      return produce(state, draftState => {
-        draftState.activeLiveStream = payload
-      })
-    }
-
     case SET_COOKIE_APPROVAL: {
       return produce(state, draftState => {
         const { cookieName, approval } = payload
@@ -70,10 +44,16 @@ const reducer = (
         draftState.megaNavOpen = payload
       })
     }
-    
+
     case SET_PRICING_MODE: {
       return produce(state, draftState => {
         draftState.pricingMode = payload
+      })
+    }
+
+    case SET_PROJECT: {
+      return produce(state, draftState => {
+        draftState.currentProject = payload
       })
     }
 
