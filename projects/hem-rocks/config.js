@@ -1,3 +1,55 @@
+/*******************************/
+/* NEW, SPLIT-BY-CONFIG METHOD */
+/*******************************/
+var PROJECT = 'jag.rip'
+
+var PROJECT_CONFIGS = {
+  'hem.rocks': {
+    htmlHeadMeta: {
+      BASE_SITE_TITLE: 'HEM',
+      META_DESCRIPTION: 'Sound | Art | Software | Rare Tracks | Articles | Editions',
+    },
+    campaignMonitor: {
+      CAMPAIGN_MONITOR_FORM_ACTION: 'https://humanear.createsend.com/t/r/s/mddyht/',
+      CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME: 'cm-mddyht-mddyht',
+      CAMPAIGN_MONITOR_FORM_ID: '5B5E7037DA78A748374AD499497E309E34883504EC972B188E4CB169FC87154EA44D7B3A50124374F2DEEFB33D7CE7A53C0566B978C890570F878E42C80AD756',
+      MAILING_LIST_TEXT: 'Subscribe to HEM to receive updates on projects and happenings, sound, and software.',
+    },
+  },
+  'berlinstockphotos.com': {
+    htmlHeadMeta: {
+      BASE_SITE_TITLE: 'Berlin Stock Photos',
+      META_DESCRIPTION: 'Lushness. Weirdness. Greenery. Grit. Cheap stock photos from Berlin, Germany, updated daily.',
+    },
+    campaignMonitor: {
+      CAMPAIGN_MONITOR_FORM_ACTION: 'https://www.createsend.com/t/subscribeerror?description=',
+      CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME: 'cm-oujlyid-oujlyid',
+      CAMPAIGN_MONITOR_FORM_ID: '5B5E7037DA78A748374AD499497E309EB922E7320A74FE320567395932FD1E089D2A299E8E211FF50C89D028E56FA7A33DAA79AA4ACDB46632A1641971EAA8B4',
+      MAILING_LIST_TEXT: 'Subscribe to Berlin Stock Photos to receive updates on new photos, prints, and more.',
+    },
+  },
+  'midst.press': {
+    htmlHeadMeta: {
+      BASE_SITE_TITLE: 'Berlin Stock Photos',
+      META_DESCRIPTION: 'Lushness. Weirdness. Greenery. Grit. Cheap stock photos from Berlin, Germany, updated daily.',
+    },
+    campaignMonitor: {
+      CAMPAIGN_MONITOR_FORM_ACTION: 'https://www.createsend.com/t/subscribeerror?description=',
+      CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME: 'cm-oujlyid-oujlyid',
+      CAMPAIGN_MONITOR_FORM_ID: '5B5E7037DA78A748374AD499497E309EB922E7320A74FE320567395932FD1E089D2A299E8E211FF50C89D028E56FA7A33DAA79AA4ACDB46632A1641971EAA8B4',
+      MAILING_LIST_TEXT: 'Subscribe to Berlin Stock Photos to receive updates on new photos, prints, and more.',
+    },
+  },
+  'breto': { },
+  'dot': { },
+  'midst': { },
+}
+
+module.exports.PROJECT_CONFIG = PROJECT_CONFIGS[PROJECT]
+
+/********************************/
+/* OLD, SPLIT-BY-TOOLING METHOD */
+/*******************************/
 var BERLIN_STOCK_PHOTOS = false
 
 // Source configs
