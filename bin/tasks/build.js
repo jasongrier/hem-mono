@@ -1,7 +1,7 @@
 const Bundler = require('parcel-bundler')
 const lazyRequire = require('lazy-require')
 const { execSync, spawn } = require('child_process')
-const { join } = require('path') // TODO: Group alphabetize all imports
+const { join } = require('path')
 
 function copyStatic(projectName) {
   execSync(`cp -rf projects/${projectName}/static dist/static`, { stdio: 'inherit' })
@@ -31,23 +31,14 @@ function build(projectName, devSession = false, developerBuild = false, pug = fa
       })
     }
 
-    // The CLI way...
-    if (projectName.includes('zak')) {
-      // TODO: Make this a task parameter, eg: `npm run task start-cli zak-pdp-widget`
-      execSync(`NODE_ENV=development parcel projects/${projectName}/index.${pug ? 'pug' : 'html'}`, { stdio: 'inherit' })
-    }
+    const bundler = new Bundler(`${__dirname}/../../projects/${projectName}/index.${pug ? 'pug' : 'html'}`)
 
-    else {
-      // TODO: Make programmatic bundler work with parcel-manifests
-      const bundler = new Bundler(`${__dirname}/../../projects/${projectName}/index.${pug ? 'pug' : 'html'}`)
+    bundler.on('buildEnd', () => {
+      copyStatic(projectName)
+      runPostBuildTasks(projectName, devSession, false)
+    })
 
-      bundler.on('buildEnd', () => {
-        copyStatic(projectName)
-        runPostBuildTasks(projectName, devSession, false)
-      })
-
-      bundler.serve()
-    }
+    bundler.serve()
   }
 
   else {

@@ -63,6 +63,7 @@ export interface IState {
   contentItems: IContentItem[]
   currentContentItem: IContentItem | null
   currentContentItems: IContentItem[]
+  currentProject: string
   needsKeyArtFilter: boolean
   page: number,
   pageContentItems: IContentItem[],
@@ -103,7 +104,7 @@ export const fieldTypes: IContentItem = {
   order: 'text',
   physicalFormats: 'textarea',
   preview: false,
-  project: 'string',
+  project: 'text',
   published: false,
   relatedContent: 'text',
   relatedContentLink: 'text',
@@ -179,6 +180,7 @@ export const SET_ADMIN_SEARCHABLE_FIELD = 'SET_ADMIN_SEARCHABLE_FIELD'
 export const SET_CURRENT_ITEM = 'SET_CURRENT_ITEM'
 export const SET_CURRENT_ITEMS = 'SET_CURRENT_ITEMS'
 export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
+export const SET_CURRENT_PROJECT = 'SET_CURRENT_PROJECT'
 export const TOGGLE_NEEDS_KEY_ART_FILTER = 'TOGGLE_NEEDS_KEY_ART_FILTER'
 export const TOGGLE_SHOW_UNPUBLISHED_FILTER = 'TOGGLE_SHOW_UNPUBLISHED_FILTER'
 export const TOGGLE_STICKY_FILTER = 'TOGGLE_STICKY_FILTER'
@@ -268,6 +270,12 @@ export interface ISetCurrentPage extends AnyAction {
   payload: number
 }
 
+
+export interface ISetCurrentProject extends AnyAction {
+  type: typeof SET_CURRENT_PROJECT
+  payload: string
+}
+
 export interface IToggleNeedsKeyArtFilter extends AnyAction {
   type: typeof TOGGLE_NEEDS_KEY_ART_FILTER
   payload: null
@@ -301,6 +309,7 @@ export type Action =
   | ISetCurrentItem
   | ISetCurrentItems
   | ISetCurrentPage
+  | ISetCurrentProject
   | IToggleNeedsKeyArtFilter
   | IToggleShowUnpublishedFilter
   | IToggleStickyFilter
@@ -323,6 +332,7 @@ export {
   setCurrentItem,
   setCurrentItems,
   setCurrentPage,
+  setCurrentProject,
   toggleNeedsKeyArtFilter,
   toggleShowUnpublishedFilter,
   toggleStickyFilter,

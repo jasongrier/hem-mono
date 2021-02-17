@@ -8,11 +8,9 @@ import {
   SET_PRICING_MODE,
 
   IState,
-  SET_PROJECT,
 } from './index'
 
 const initialState: IState = {
-  currentProject: 'hem.rocks',
   cookiesAnalyticsApproved: false,
   cookiesMarketingApproved: false,
   cookiePreferencesSet: false,
@@ -48,12 +46,6 @@ const reducer = (
     case SET_PRICING_MODE: {
       return produce(state, draftState => {
         draftState.pricingMode = payload
-      })
-    }
-
-    case SET_PROJECT: {
-      return produce(state, draftState => {
-        draftState.currentProject = payload
       })
     }
 

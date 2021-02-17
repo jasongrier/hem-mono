@@ -2,8 +2,8 @@ import React, { ReactElement, useEffect, useState, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import uuid from 'uuid/v1'
 import moment from 'moment'
-import { modelize, hasCategory } from '../functions'
-import { IContentItem, requestReadItems } from '..'
+import { modelize, hasCategory, generateChunks } from '../functions'
+import { IContentItem, requestReadItems, compressIndex } from '../index'
 import { RootState } from '../../../index'
 import { slugify, titleCase } from 'voca'
 
@@ -134,8 +134,12 @@ async function migrate(allContentItems: IContentItem[]) {
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
 
-    if (hasCategory(newItem, 'sound-library')) {
-      newItem.fileSize = '1.06 GB'
+    if (hasCategory(newItem, 'stock-photos')) {
+      newItem.project = 'berlinstockphotos.com'
+    }
+
+    else {
+      newItem.project = 'hem.rocks'
     }
 
     newItems.push(newItem)
@@ -150,6 +154,7 @@ async function migrate(allContentItems: IContentItem[]) {
 
   // writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
   // writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
+  // generateChunks(allContentItems)
 }
 
 function AdminManualTaskRunner(): ReactElement {

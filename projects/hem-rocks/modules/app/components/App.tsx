@@ -8,7 +8,7 @@ import Cookies from 'js-cookie'
 import { slugify } from 'voca'
 import { CartPopup, setCartProducts } from '../../cart'
 import { ThankYouPopup } from '../../cart'
-import { DetailPopUp, setCurrentItem, hasTag, getContentItemsFromList, contentItemToTrack, requestReadChunk, IContentItem, getContentItemBySlug, hasCategory } from '../../content'
+import { DetailPopUp, setCurrentItem, setCurrentProject, getContentItemsFromList, contentItemToTrack, requestReadChunk, IContentItem, getContentItemBySlug, hasCategory } from '../../content'
 import { ProtectedContent } from '../../login'
 import { CampaignMonitorForm, ElectronNot, ScrollToTop, NagToaster, Spinner, Toaster, ElectronOnly } from '../../../../../lib/components'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
@@ -18,7 +18,7 @@ import { usePrevious } from '../../../../../lib/hooks'
 import { getCookieName, SplitTests } from '../index'
 import { SiteFooter, TopBar } from '../../../components/layout'
 import { SoundLibraryRefreshPopup } from '../../../components/popups'
-import { setCookieApproval, setCookiePreferencesSet, setProject } from '../actions'
+import { setCookieApproval, setCookiePreferencesSet } from '../actions'
 import { CookieApproval, RoutingHub, Popups } from './index'
 import { CAMPAIGN_MONITOR_FORM_ACTION, CAMPAIGN_MONITOR_FORM_ID, CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME, MAILING_LIST_TEXT, BERLIN_STOCK_PHOTOS } from '../../../config'
 import { RootState } from '../../../index'
@@ -45,7 +45,7 @@ function App(): ReactElement {
     cookiesMarketingApproved: state.app.cookiesMarketingApproved,
     currentContentItem: state.content.currentContentItem,
     currentlyOpenPopUp: state.popups.currentlyOpenPopUp,
-    currentProject: state.app.currentProject,
+    currentProject: state.content.currentProject,
     currentProjectSettingItem: getContentItemBySlug(state.content.contentItems, 'setting-current-project'),
     playerError: state.player.error,
     playerMessage: state.player.message,
@@ -169,7 +169,7 @@ function App(): ReactElement {
   useEffect(function setSitePlaylists() {
     if (!currentProjectSettingItem) return
     if (currentProjectSettingItem.description === currentProject) return
-    dispatch(setProject(currentProjectSettingItem.description))
+    dispatch(setCurrentProject(currentProjectSettingItem.description))
   }, [currentProjectSettingItem])
 
   useEffect(function setSitePlaylists() {
@@ -356,7 +356,7 @@ function App(): ReactElement {
           && !pathname.includes('admin')
           && (
             <ElectronOnly>
-              <Link to="admin">Admin</Link>
+              <Link to="admin/list">Admin</Link>
             </ElectronOnly>
         )}
 
