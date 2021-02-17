@@ -1,3 +1,0 @@
-# Midst
-
-Poetry in process
