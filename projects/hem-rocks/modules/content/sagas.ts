@@ -17,7 +17,6 @@ import {
   uncompressItem,
   validateCompressionMap,
 
-  IIndexEntry,
   IContentItem,
 } from './index'
 import { hasCategory } from './functions'
