@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useState } from 'react'
-import { useLocation, useHistory, Redirect } from 'react-router-dom'
+import { useLocation, useHistory, Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { compact, find, isArray, map, noop } from 'lodash'
 import $ from 'jquery'
@@ -15,10 +15,10 @@ import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup, closePopup } from '../../../../../lib/modules/popups'
 import { PlayerBar, setPlayerPlaylist, replacePlaylist, setPlayerInstance, setPlayerPlaylistExpanded, setPlayerExpanded, Albums, IAlbum, ITrack, setPlayerMessage } from '../../../../../lib/modules/website-player'
 import { usePrevious } from '../../../../../lib/hooks'
-import { collapseTopBar, expandTopBar, getCookieName, SplitTests } from '../index'
+import { getCookieName, SplitTests } from '../index'
 import { SiteFooter, TopBar } from '../../../components/layout'
 import { SoundLibraryRefreshPopup } from '../../../components/popups'
-import { requestActiveLiveStream, setCookieApproval, setCookiePreferencesSet } from '../actions'
+import { setCookieApproval, setCookiePreferencesSet, setProject } from '../actions'
 import { CookieApproval, RoutingHub, Popups } from './index'
 import { CAMPAIGN_MONITOR_FORM_ACTION, CAMPAIGN_MONITOR_FORM_ID, CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME, MAILING_LIST_TEXT, BERLIN_STOCK_PHOTOS } from '../../../config'
 import { RootState } from '../../../index'
@@ -28,29 +28,27 @@ import { type } from 'os'
 
 function App(): ReactElement {
   const {
+    chunkLog,
+    contentItems,
     cookiesAnalyticsApproved,
     cookiesMarketingApproved,
-
-    contentItems,
     currentContentItem,
-    chunkLog,
-
+    currentlyOpenPopUp,
+    currentProject,
+    currentProjectSettingItem,
     playerError,
     playerMessage,
-
-    currentlyOpenPopUp,
   } = useSelector((state: RootState) => ({
+    chunkLog: state.content.chunkLog,
+    contentItems: state.content.contentItems,
     cookiesAnalyticsApproved: state.app.cookiesAnalyticsApproved,
     cookiesMarketingApproved: state.app.cookiesMarketingApproved,
-
-    contentItems: state.content.contentItems,
     currentContentItem: state.content.currentContentItem,
-    chunkLog: state.content.chunkLog,
-
+    currentlyOpenPopUp: state.popups.currentlyOpenPopUp,
+    currentProject: state.app.currentProject,
+    currentProjectSettingItem: getContentItemBySlug(state.content.contentItems, 'setting-current-project'),
     playerError: state.player.error,
     playerMessage: state.player.message,
-
-    currentlyOpenPopUp: state.popups.currentlyOpenPopUp,
   }))
 
   const dispatch = useDispatch()
@@ -121,20 +119,6 @@ function App(): ReactElement {
     dispatch(setPlayerInstance())
   }, [])
 
-  useEffect(function setActiveLiveStream() {
-    if (window.process?.env.ELECTRON_MONO_DEV) return
-
-    dispatch(requestActiveLiveStream())
-
-    const liveStreamStatePoll = window.setInterval(function pollForLiveStreamState() {
-      dispatch(requestActiveLiveStream())
-    }, 30000)
-
-    return function cleanup() {
-      window.clearInterval(liveStreamStatePoll)
-    }
-  }, [])
-
   useEffect(function getCartFromCookies() {
     const cartCookie = Cookies.get(getCookieName('cart'))
     if (!cartCookie) return
@@ -153,6 +137,11 @@ function App(): ReactElement {
       console.error('Could not get cart cookie: ' + err)
     }
   }, [])
+
+  useEffect(function test() {
+    if (chunkLog.includes('settings')) return
+    dispatch(requestReadChunk('settings'))
+  }, [chunkLog])
 
   useEffect(function preloadSiteText() {
     if (chunkLog.includes('site-texts')) return
@@ -176,6 +165,12 @@ function App(): ReactElement {
     if (!chunkLog.includes('curated-playlists')) return
     dispatch(requestReadChunk('tracks'))
   }, [chunkLog])
+
+  useEffect(function setSitePlaylists() {
+    if (!currentProjectSettingItem) return
+    if (currentProjectSettingItem.description === currentProject) return
+    dispatch(setProject(currentProjectSettingItem.description))
+  }, [currentProjectSettingItem])
 
   useEffect(function setSitePlaylists() {
     if (!chunkLog.includes('curated-playlists')) return
@@ -309,16 +304,6 @@ function App(): ReactElement {
     }
   }, [currentlyOpenPopUp, previouslyOpenPopup])
 
-  useEffect(function setTopBar() {
-    if (pathname !== '/') {
-      dispatch(collapseTopBar())
-    }
-
-    else {
-      dispatch(expandTopBar())
-    }
-  }, [pathname])
-
   useEffect(function trackPageView() {
     ReactGA.pageview(pathname)
   }, [pathname])
@@ -349,7 +334,7 @@ function App(): ReactElement {
           ? ' app-is-home'
           : ''
       }
-      ${process.env.NODE_ENV === 'production' ? 'node-env-production' : ''}
+      ${ process.env.NODE_ENV === 'production' ? 'node-env-production' : '' }
       ${ BERLIN_STOCK_PHOTOS && !pathname.includes('admin') && !pathname.includes('internal') ? 'berlin-stock-photos' : '' }
       ${ pathname.includes('admin') ? 'is-admin' : '' }
     `}>
@@ -357,6 +342,7 @@ function App(): ReactElement {
         <ScrollToTop scrollPaneSelector=".scroll-lock-container" />
 
         { !BERLIN_STOCK_PHOTOS
+          && currentProject !== 'jag.rip'
           && !pathname.includes('print-flip-books')
           && !pathname.includes('web-movie')
           && !pathname.includes('life-in-letters')
@@ -364,6 +350,15 @@ function App(): ReactElement {
             <TopBar />
           )
         }
+
+        { currentProject === 'jag.rip'
+          && !pathname.includes('admin')
+          && !pathname.includes('admin')
+          && (
+            <ElectronOnly>
+              <Link to="admin">Admin</Link>
+            </ElectronOnly>
+        )}
 
         <div className="scroll-lock-container">
           <div className="scroll-lock-content">
@@ -373,13 +368,14 @@ function App(): ReactElement {
               </div>
             </main>
             { !BERLIN_STOCK_PHOTOS
+              && currentProject !== 'jag.rip'
               && !pathname.includes('print-flip-books')
               && !pathname.includes('web-movie')
               && !pathname.includes('life-in-letters')
               && (
-              <footer className="main-footer">
-                <SiteFooter />
-              </footer>
+                <footer className="main-footer">
+                  <SiteFooter />
+                </footer>
             )}
           </div>
         </div>
@@ -389,6 +385,7 @@ function App(): ReactElement {
         )}
 
         { !BERLIN_STOCK_PHOTOS
+          && currentProject !== 'jag.rip'
           && !pathname.includes('print-flip-books')
           && !pathname.includes('web-movie')
           && !pathname.includes('life-in-letters')

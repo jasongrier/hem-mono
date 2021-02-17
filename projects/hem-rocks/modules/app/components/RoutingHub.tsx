@@ -1,6 +1,8 @@
 import React, { ReactElement } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import { BERLIN_STOCK_PHOTOS } from '../../../config'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../../index'
+import { BERLIN_STOCK_PHOTOS, PROJECT } from '../../../config'
 
 import {
   Apps,
@@ -74,14 +76,31 @@ import {
   Prints as BerlinStockPhotosPrints,
 } from '../../../routes/berlin-stock-photos'
 
+import {
+  Home as JagHome,
+  ReactConsulting as JagReactConsulting,
+} from '../../../routes/jag-rip'
+
 function RoutingHub(): ReactElement {
+  const { currentProject } = useSelector((state: RootState) => ({
+    chunkLog: state.content.chunkLog,
+    contentItems: state.content.contentItems,
+    cookiesAnalyticsApproved: state.app.cookiesAnalyticsApproved,
+    cookiesMarketingApproved: state.app.cookiesMarketingApproved,
+    currentContentItem: state.content.currentContentItem,
+    currentlyOpenPopUp: state.popups.currentlyOpenPopUp,
+    currentProject: state.app.currentProject,
+    playerError: state.player.error,
+    playerMessage: state.player.message,
+  }))
+
   return (
     <div className="routing-hub">
       <Switch>
         {/* Home */}
-        <Route exact path="/" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotosHome : Home} />
-        <Route exact path="/cart" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotosHome : Home} />
-        <Route exact path="/thank-you" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotosHome : Home} />
+        <Route exact path="/" component={currentProject === 'jag.rip' ? JagHome : Home} />
+        <Route exact path="/cart" component={currentProject === 'jag.rip' ? JagHome : Home} />
+        <Route exact path="/thank-you" component={currentProject === 'jag.rip' ? JagHome : Home} />
 
         {/* New Website Overlay */}
         <Route exact path="/new-website" component={Home} />
@@ -131,6 +150,9 @@ function RoutingHub(): ReactElement {
 
         <Route exact path="/support" component={Support} />
         <Route exact path="/support/cart" component={Support} />
+
+        <Route exact path="/react-consulting" component={JagReactConsulting} />
+        <Route exact path="/react-consulting/cart" component={JagReactConsulting} />
 
         {/* Special Pages */}
         <Route exact path="/life-in-letters" component={LifeInLetters} />

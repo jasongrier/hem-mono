@@ -1,5 +1,4 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects'
-import { map } from 'lodash'
 import {
   REQUEST_CREATE_ITEMS,
   REQUEST_DELETE_ITEMS,
@@ -8,7 +7,6 @@ import {
   REQUEST_UPDATE_ITEMS,
 
   doCreateItems as doCreateItemsAc,
-  doDeleteItems as doDeleteItemsAc,
   doReadItems as doReadItemsAc,
   doReadChunk as doReadChunkAc,
   doUpdateItems as doUpdateItemsAc,
@@ -23,6 +21,7 @@ import {
   IContentItem,
 } from './index'
 import { hasCategory } from './functions'
+import generateChunks from './functions/generate-chunks'
 
 function* createItems({ payload }: any) {
   try {
@@ -35,44 +34,17 @@ function* createItems({ payload }: any) {
     const indexFile = join(__dirname, '..', '..', 'static', 'content', 'index.json')
     const distIndexFile = join(__dirname, '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
     const compressedIndex = JSON.parse(readFileSync(indexFile, 'utf8'))
-    const index: IIndexEntry[] = compressedIndex.map(uncompressItem)
+    const index: IContentItem[] = compressedIndex.map(uncompressItem)
 
     index.push(item)
 
     writeFileSync(indexFile, JSON.stringify(compressIndex(index)))
-
     execSync(`cp ${indexFile} ${distIndexFile}`, { stdio: 'inherit' })
 
     yield put(doCreateItemsAc([item]))
     yield put(requestReadItemsAc())
-  }
 
-  catch (err) {
-    console.error(err)
-  }
-}
-
-function* deleteItems({ payload }: any) {
-  try {
-    const { remote } = window.require('electron')
-    const { existsSync, readdirSync, readFileSync, writeFileSync } = remote.require('fs')
-    const { extname, join } = remote.require('path')
-    const { execSync } = remote.require('child_process')
-
-    const itemSlug = payload[0] // TODO: Handle multiples
-    const indexFile = join(__dirname, '..', '..', 'static', 'content', 'index.json')
-    const distIndexFile = join(__dirname, '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
-    const compressedIndex: IIndexEntry[] = JSON.parse(readFileSync(indexFile, 'utf8'))
-    const index: IIndexEntry[] = compressedIndex
-      .map(uncompressItem)
-      .filter(entry => entry.slug !== itemSlug)
-
-    writeFileSync(indexFile, JSON.stringify(compressIndex(index)))
-
-    execSync(`cp ${indexFile} ${distIndexFile}`, { stdio: 'inherit' })
-
-    yield put(doDeleteItemsAc([itemSlug]))
-    yield put(requestReadItemsAc())
+    generateChunks(index)
   }
 
   catch (err) {
@@ -144,6 +116,8 @@ function* updateItems({ payload }: any) {
 
     yield put(doUpdateItemsAc(updatedItems))
     yield put(requestReadItemsAc())
+
+    generateChunks(newContentItems)
   }
 
   catch (err) {
@@ -158,10 +132,6 @@ function* createItemsSaga() {
   yield takeLatest(REQUEST_CREATE_ITEMS, createItems)
 }
 
-function* deleteItemsSaga() {
-  yield takeLatest(REQUEST_DELETE_ITEMS, deleteItems)
-}
-
 function* readItemsSaga() {
   yield takeLatest(REQUEST_READ_ITEMS, readItems)
 }
@@ -172,6 +142,10 @@ function* readChunkSaga() {
 
 function* updateItemsSaga() {
   yield takeLatest(REQUEST_UPDATE_ITEMS, updateItems)
+}
+
+function* deleteItemsSaga() {
+  yield takeLatest(REQUEST_DELETE_ITEMS, updateItems)
 }
 
 export {

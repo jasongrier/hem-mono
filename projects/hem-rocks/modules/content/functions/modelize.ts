@@ -33,6 +33,7 @@ function modelize(rawContentItem: any): IContentItem {
     order: rawContentItem.order || '',
     physicalFormats: rawContentItem.physicalFormats || '',
     preview: rawContentItem.preview || false,
+    project: rawContentItem.project || false,
     published: rawContentItem.published || false,
     relatedContent: rawContentItem.relatedContent || '',
     relatedContentLink: rawContentItem.relatedContentLink || '',

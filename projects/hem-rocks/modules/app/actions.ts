@@ -1,34 +1,11 @@
 import { AnyAction } from 'redux'
 import {
-  COLLAPSE_TOP_BAR,
-  EXPAND_TOP_BAR,
-  REQUEST_ACTIVE_LIVE_STREAM,
-  SET_ACTIVE_LIVE_STREAM,
   SET_COOKIE_APPROVAL,
   SET_COOKIE_PREFERENCES_SET,
   SET_MEGA_NAV_OPEN,
   SET_PRICING_MODE,
+  SET_PROJECT,
 } from './index'
-
-const collapseTopBar = (): AnyAction => ({
-  type: COLLAPSE_TOP_BAR,
-  payload: null,
-})
-
-const expandTopBar = (): AnyAction => ({
-  type: EXPAND_TOP_BAR,
-  payload: null,
-})
-
-const requestActiveLiveStream = (): AnyAction => ({
-  type: REQUEST_ACTIVE_LIVE_STREAM,
-  payload: null,
-})
-
-const setActiveLiveStream = (contentItemSlug: string): AnyAction => ({
-  type: SET_ACTIVE_LIVE_STREAM,
-  payload: contentItemSlug,
-})
 
 const setCookieApproval = (cookieName: string, approval: boolean, write: boolean): AnyAction => ({
   type: SET_COOKIE_APPROVAL,
@@ -45,18 +22,20 @@ const setMegaNavOpen = (open: boolean): AnyAction => ({
   payload: open,
 })
 
-const setPricingMode = (procingMode: number): AnyAction => ({
+const setPricingMode = (pricingMode: number): AnyAction => ({
   type: SET_PRICING_MODE,
-  payload: procingMode,
+  payload: pricingMode,
+})
+
+const setProject = (project: string): AnyAction => ({
+  type: SET_PROJECT,
+  payload: project,
 })
 
 export {
-  collapseTopBar,
-  expandTopBar,
-  requestActiveLiveStream,
-  setActiveLiveStream,
   setCookieApproval,
   setCookiePreferencesSet,
   setMegaNavOpen,
   setPricingMode,
+  setProject,
 }

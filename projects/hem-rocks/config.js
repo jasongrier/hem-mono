@@ -1,8 +1,6 @@
 /*******************************/
 /* NEW, SPLIT-BY-CONFIG METHOD */
 /*******************************/
-var PROJECT = 'jag.rip'
-
 var PROJECT_CONFIGS = {
   'hem.rocks': {
     htmlHeadMeta: {
@@ -45,7 +43,7 @@ var PROJECT_CONFIGS = {
   'midst': { },
 }
 
-module.exports.PROJECT_CONFIG = PROJECT_CONFIGS[PROJECT]
+module.exports.PROJECT_CONFIG = PROJECT_CONFIGS['hem.rocks']
 
 /********************************/
 /* OLD, SPLIT-BY-TOOLING METHOD */
