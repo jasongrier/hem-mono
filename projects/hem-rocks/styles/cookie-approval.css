@@ -3,10 +3,11 @@
   bottom: 0;
   left: 0;
   z-index: 999999;
-  width: calc(100vw - 60px);
+  width: calc(100vw - 61px);
   height: 60px;
   background-color: #000;
   color: #fff;
+  border-right: 1px solid #000;
 }
 
 .cookie-approval-warning p {
