@@ -4,33 +4,6 @@ export enum SplitTests {
   FlexPricingType = 'flex-pricing-type',
 }
 
-export const curatedPlaylists = [
-  {
-    name: 'Player Featured',
-    linkTo: '/tracks/filter/featured',
-  },
-  {
-    name: 'Player Rare',
-    linkTo: '/tracks/filter/rare',
-  },
-  {
-    name: 'Player Live',
-    linkTo: '/tracks/filter/live',
-  },
-  {
-    name: 'Player Radio',
-    linkTo: '/tracks/filter/radio',
-  },
-  {
-    name: 'Player Sound Library',
-    linkTo: '/sound-library',
-  },
-  {
-    name: 'Player Releases',
-    linkTo: '/label',
-  },
-]
-
 export interface IState {
   cookiesAnalyticsApproved: boolean | null
   cookiesMarketingApproved: boolean | null
@@ -80,9 +53,13 @@ export {
 // TODO: Export all components here. Write a linter for it
 export {
   App,
+  CookieApproval,
+  CookiesBlock,
   CookieSettings,
   EmailForm,
+  PlayerFrame,
   Popups,
+  RoutingHub,
 } from './components'
 
 export { getCookieBaseName, getCookieName } from './functions'

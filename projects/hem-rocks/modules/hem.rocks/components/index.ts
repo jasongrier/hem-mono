@@ -1,1 +1,1 @@
-export { default as SiteFrame } from './SiteFrame'
+export { default as ProjectFrame } from './ProjectFrame'

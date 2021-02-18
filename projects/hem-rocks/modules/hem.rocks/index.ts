@@ -4,7 +4,6 @@ export interface IState {
   foo: boolean
 }
 
-
 export const SOME_ACTION = 'SOME_ACTION'
 
 export interface ISomeAction extends AnyAction {
@@ -23,7 +22,7 @@ export {
 export { reducer as contentReducer } from './reducer'
 
 export {
-  SiteFrame,
+  ProjectFrame,
 } from './components'
 
 export {

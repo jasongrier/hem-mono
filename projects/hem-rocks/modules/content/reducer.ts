@@ -40,7 +40,7 @@ const initialState: IState = {
   contentItems: [],
   currentContentItem: null,
   currentContentItems: [],
-  currentProject: 'hem.rocks',
+  currentProject: '',
   needsKeyArtFilter: false,
   page: 1,
   pageContentItems: [],
