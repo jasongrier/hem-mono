@@ -143,6 +143,7 @@ export const categories = [
   'press-kits',
   'press-releases',
   'program',
+  'projects',
   'recipes',
   'reminders',
   'settings',

@@ -17,8 +17,9 @@ interface IProps {
 }
 
 function AdminItem({ create, itemSlug }: IProps): ReactElement {
-  const { allContentItems } = useSelector((state: RootState) => ({
+  const { allContentItems, currentProject } = useSelector((state: RootState) => ({
     allContentItems: state.content.contentItems,
+    currentProject: state.content.currentProject,
   }))
 
   const dispatch = useDispatch()
@@ -52,7 +53,11 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
 
     else if (create) {
       // @ts-ignore
-      item = modelize({ id: uuid() })
+      item = modelize({
+        id: uuid(),
+        project: currentProject,
+        published: true,
+      } as Partial<IContentItem>)
       setCanSave(true)
     }
 
@@ -139,6 +144,7 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
 
   const keys = Object.keys(workingItem)
   const preferredOrder = [
+    'project',
     'title',
     'published',
     'category',
@@ -368,7 +374,8 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
                         className="custom-select"
                         name="select"
                         onChange={(evt: SyntheticEvent<HTMLSelectElement>) => onChange(fieldName, evt.currentTarget.value)}
-                        value={(workingItem as any)[fieldName]}
+                        // value={(workingItem as any)[fieldName]}
+                        defaultValue="projects"
                       >
                         <option value="all">All</option>
                         { categories.map(category => (
