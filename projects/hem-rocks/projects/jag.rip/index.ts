@@ -23,7 +23,7 @@ export {
 export { reducer as contentReducer } from './reducer'
 
 export {
-  SiteFrame,
+  ProjectFrame,
 } from './components'
 
 export {

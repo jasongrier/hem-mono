@@ -19,15 +19,11 @@ function Hide({ from, children, fallback }: PropsWithChildren<IProps>): ReactEle
   let hide = false
 
   for (const pathPart of from) {
-    if (from.includes('print-flip-books')) {
-      console.log(pathPart)
-    }
     if (pathname.includes(pathPart)) {
       hide = true
       break
     }
   }
-
 
   return (
     <div className="hem-hide">

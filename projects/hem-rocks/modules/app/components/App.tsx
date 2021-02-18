@@ -1,19 +1,20 @@
 import React, { Suspense, ReactElement, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { isArray } from 'lodash'
 import ReactGA from 'react-ga'
 import Cookies from 'js-cookie'
-import { setCartProducts } from '../../cart'
+import { CartFrame } from '../../cart'
 import { setCurrentProject, requestReadChunk, getContentItemBySlug } from '../../content'
 import { Hide, ElectronNot, ScrollToTop, Spinner } from '../../../../../lib/components'
 import { RoutingHub, CookiesFrame, Popups, getCookieName, SplitTests, PlayerFrame } from '../index'
-import { PROJECT_CONFIGS } from '../../../config'
+import { PROJECT_CONFIGS as UNTYPED_PROJECT_CONFIGS } from '../../../config'
 import { RootState } from '../../../index'
 
-const siteFrames = {
-  'hem.rocks': React.lazy(() => import('../../hem.rocks/components/ProjectFrame')),
-  'jag.rocks': React.lazy(() => import('../../jag.rip/components/ProjectFrame')),
+const PROJECT_CONFIGS = UNTYPED_PROJECT_CONFIGS as any
+
+const siteFrames: any = {
+  'hem.rocks': React.lazy(() => import('../../../projects/hem.rocks/components/ProjectFrame')),
+  'jag.rip': React.lazy(() => import('../../../projects/jag.rip/components/ProjectFrame')),
 }
 
 function App(): ReactElement {
@@ -30,26 +31,6 @@ function App(): ReactElement {
   const dispatch = useDispatch()
 
   const { pathname } = useLocation()
-
-  useEffect(function getCartFromCookies() {
-    const cartCookie = Cookies.get(getCookieName('cart', currentProject))
-
-    if (!cartCookie) return
-
-    try {
-      const cartProducts = JSON.parse(cartCookie)
-
-      if (!cartProducts) return
-      if (!isArray(cartProducts)) return
-      if (!cartProducts.length) return
-
-      dispatch(setCartProducts(cartProducts))
-    }
-
-    catch(err) {
-      console.error('Could not get cart cookie: ' + err)
-    }
-  }, [])
 
   useEffect(function loadSettings() {
     if (chunkLog.includes('settings')) return
@@ -118,8 +99,12 @@ function App(): ReactElement {
         </Hide>
       )}
 
+      { PROJECT_CONFIGS[currentProject].HAS_CART && (
+        <CartFrame />
+      )}
+
       <ElectronNot>
-        { PROJECT_CONFIGS[currentProject].USES_COOKIES && (
+        { PROJECT_CONFIGS[currentProject].HAS_COOKIES && (
           <Hide from={PROJECT_CONFIGS[currentProject].HIDE_COOKIES_FRAME_FOR}>
             <CookiesFrame />
           </Hide>
