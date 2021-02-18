@@ -8,7 +8,9 @@ import { usePrevious } from '../../../../../lib/hooks'
 import { DetailPopUp, hasCategory, setCurrentItem } from '../../content'
 import { CartPopup, ThankYouPopup } from '../../cart'
 import { RootState } from '../../../index'
-import { PROJECT_CONFIGS } from '../../../config'
+import { PROJECT_CONFIGS as UNTYPED_PROJECT_CONFIGS } from '../../../config'
+
+const PROJECT_CONFIGS = UNTYPED_PROJECT_CONFIGS as any
 
 function Popups(): ReactElement {
   const { contentItems, currentContentItem, currentlyOpenPopUp, currentProject } = useSelector((state: RootState) => ({
@@ -24,11 +26,11 @@ function Popups(): ReactElement {
   const history = useHistory()
 
   const routedPopups = PROJECT_CONFIGS[currentProject]
-      .ROUTED_POPUPS
-      .map(basePath => ({
-        basePath,
-        id: 'detail-popup',
-      }))
+    .ROUTED_POPUPS
+    .map((basePath: string) => ({
+      basePath,
+      id: 'detail-popup'
+    }))
 
   useEffect(function handleRoutedPopups() {
     const [basePath, slug, cart, orCart] = pathname.replace(/^\//, '').split('/')

@@ -41,7 +41,10 @@ function applyPaginationAndFiltering(state: IState) {
     pageContentItems = pageContentItems.filter(item => item.sticky)
   }
 
-  pageContentItems = pageContentItems.filter(item => item.project === state.currentProject)
+  pageContentItems = pageContentItems.filter(item =>
+    item.project === state.currentProject
+    || state.adminFilterApplied === 'settings'
+  )
 
   pageContentItems.sort((a, b) => {
     return parseInt(a.order, 10) - parseInt(b.order, 10)

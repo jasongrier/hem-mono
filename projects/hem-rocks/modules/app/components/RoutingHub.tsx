@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../index'
-import { BERLIN_STOCK_PHOTOS, PROJECT } from '../../../config'
+import { BERLIN_STOCK_PHOTOS } from '../../../config'
 
 import {
   Apps,
@@ -44,7 +44,6 @@ import {
 
 import {
   About,
-  CompilationIVArtistInfo,
   Contact,
   CookiePolicy,
   CookieSettings,
@@ -59,13 +58,6 @@ import {
   TracksOverview,
   AboutSL,
 } from '../../../routes/static'
-
-import {
-  Venue,
-  VenueArchive,
-  VenueMerch,
-  VenueStage,
-} from '../../../routes/venue'
 
 import {
   About as BerlinStockPhotosAbout,
@@ -83,15 +75,7 @@ import {
 
 function RoutingHub(): ReactElement {
   const { currentProject } = useSelector((state: RootState) => ({
-    chunkLog: state.content.chunkLog,
-    contentItems: state.content.contentItems,
-    cookiesAnalyticsApproved: state.app.cookiesAnalyticsApproved,
-    cookiesMarketingApproved: state.app.cookiesMarketingApproved,
-    currentContentItem: state.content.currentContentItem,
-    currentlyOpenPopUp: state.popups.currentlyOpenPopUp,
-    currentProject: state.app.currentProject,
-    playerError: state.player.error,
-    playerMessage: state.player.message,
+    currentProject: state.content.currentProject,
   }))
 
   return (

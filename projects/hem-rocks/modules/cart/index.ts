@@ -95,6 +95,7 @@ export {
 } from './actions'
 
 export {
+  CartFrame,
   CartPopup,
   PayPalCartUpload,
   ThankYouPopup

@@ -1,12 +1,15 @@
 import { flatten, compact } from 'lodash'
 import { slugify } from 'voca'
 import { IContentItem, compressIndex, hasCategory, getContentItemBySlug, getContentItemById, getContentItemsFromList, hasTag } from '../index'
-import { curatedPlaylists } from '../../app'
+import { PROJECT_CONFIGS as UNTYPED_PROJECT_CONFIGS } from '../../../config'
+
+const PROJECT_CONFIGS = UNTYPED_PROJECT_CONFIGS as any
 
 function generateChunks(allContentItems: IContentItem[]) {
   const { remote } = window.require('electron')
   const { writeFileSync } = remote.require('fs')
   const { join } = remote.require('path')
+  const currentProject = getContentItemBySlug(allContentItems, 'setting-current-project')
 
   const terms = [
     'apps',
@@ -31,13 +34,17 @@ function generateChunks(allContentItems: IContentItem[]) {
     {
       name: 'curated-playlists',
       getContentItems(allContentItems: any) {
-        this.contentItems = this.contentItems.concat(flatten((curatedPlaylists as any).map(({ name }: any) => {
-          const slug = slugify(name)
-          const listItem = getContentItemBySlug(allContentItems, slug)
-          const attachments = getContentItemsFromList(allContentItems, slug)
+        const curatedPlaylists = PROJECT_CONFIGS[currentProject.description].CURATED_PLAYLISTS
 
-          return [listItem].concat(attachments)
-        })))
+        this.contentItems = curatedPlaylists
+          ? this.contentItems.concat(flatten((curatedPlaylists as any).map(({ name }: any) => {
+              const slug = slugify(name)
+              const listItem = getContentItemBySlug(allContentItems, slug)
+              const attachments = getContentItemsFromList(allContentItems, slug)
+
+              return [listItem].concat(attachments)
+            })))
+          : []
       },
       contentItems: [] as IContentItem[],
     },

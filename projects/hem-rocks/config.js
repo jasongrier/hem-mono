@@ -3,18 +3,19 @@
 /*******************************/
 module.exports.PROJECT_CONFIGS = {
   'hem.rocks': {
-    htmlHeadMeta: {
+    HTML_HEAD_META: {
       BASE_SITE_TITLE: 'HEM',
       META_DESCRIPTION: 'Sound | Art | Software | Rare Tracks | Articles | Editions',
     },
-    campaignMonitor: {
+    CAMPAIGN_MONITOR: {
       CAMPAIGN_MONITOR_FORM_ACTION: 'https://humanear.createsend.com/t/r/s/mddyht/',
       CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME: 'cm-mddyht-mddyht',
       CAMPAIGN_MONITOR_FORM_ID: '5B5E7037DA78A748374AD499497E309E34883504EC972B188E4CB169FC87154EA44D7B3A50124374F2DEEFB33D7CE7A53C0566B978C890570F878E42C80AD756',
       MAILING_LIST_TEXT: 'Subscribe to HEM to receive updates on projects and happenings, sound, and software.',
     },
+    HAS_CART: true,
     HAS_PLAYER: true,
-    USES_COOKIES: true,
+    HAS_COOKIES: true,
     HIDE_COOKIES_FRAME_FOR: ['life-in-letters'],
     HIDE_PLAYER_FRAME_FOR: ['print-flip-books', 'web-movie', 'life-in-letters'],
     NAG_HEADER: 'HEM Newsletter',
@@ -73,28 +74,31 @@ module.exports.PROJECT_CONFIGS = {
     ]
   },
   'berlinstockphotos.com': {
-    htmlHeadMeta: {
+    HTML_HEAD_META: {
       BASE_SITE_TITLE: 'Berlin Stock Photos',
       META_DESCRIPTION: 'Lushness. Weirdness. Greenery. Grit. Cheap stock photos from Berlin, Germany, updated daily.',
     },
-    campaignMonitor: {
+    CAMPAIGN_MONITOR: {
       CAMPAIGN_MONITOR_FORM_ACTION: 'https://www.createsend.com/t/subscribeerror?description=',
       CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME: 'cm-oujlyid-oujlyid',
       CAMPAIGN_MONITOR_FORM_ID: '5B5E7037DA78A748374AD499497E309EB922E7320A74FE320567395932FD1E089D2A299E8E211FF50C89D028E56FA7A33DAA79AA4ACDB46632A1641971EAA8B4',
       MAILING_LIST_TEXT: 'Subscribe to Berlin Stock Photos to receive updates on new photos, prints, and more.',
     },
+    ROUTED_POPUPS: [],
   },
   'midst.press': {
-    htmlHeadMeta: {
-      BASE_SITE_TITLE: 'Berlin Stock Photos',
-      META_DESCRIPTION: 'Lushness. Weirdness. Greenery. Grit. Cheap stock photos from Berlin, Germany, updated daily.',
+    HTML_HEAD_META: {
+      BASE_SITE_TITLE: 'Midst Journal',
+      META_DESCRIPTION: 'Midst is a new digital journal publishing poems in the form of interactive timelapses. You’ll see the finished text by default, but then you can rewind it to see exactly how it was written: start to finish, blank page to final draft, and every edit in between.',
     },
-    campaignMonitor: {
-      CAMPAIGN_MONITOR_FORM_ACTION: 'https://www.createsend.com/t/subscribeerror?description=',
-      CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME: 'cm-oujlyid-oujlyid',
-      CAMPAIGN_MONITOR_FORM_ID: '5B5E7037DA78A748374AD499497E309EB922E7320A74FE320567395932FD1E089D2A299E8E211FF50C89D028E56FA7A33DAA79AA4ACDB46632A1641971EAA8B4',
-      MAILING_LIST_TEXT: 'Subscribe to Berlin Stock Photos to receive updates on new photos, prints, and more.',
+    ROUTED_POPUPS: [],
+  },
+  'jag.rip': {
+    HTML_HEAD_META: {
+      BASE_SITE_TITLE: 'RIP JAG',
+      META_DESCRIPTION: 'Official site of Jason Aaron Gillis-Grier.',
     },
+    ROUTED_POPUPS: [],
   },
   'breto': { },
   'dot': { },
