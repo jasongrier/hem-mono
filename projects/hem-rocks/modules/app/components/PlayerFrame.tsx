@@ -1,9 +1,9 @@
-import React, { useState, useEffect, PropsWithChildren, ReactElement } from 'react'
+import React, { useEffect, PropsWithChildren, ReactElement } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
 import { slugify } from 'voca'
-import { PlayerBar, setPlayerPlaylist, replacePlaylist, setPlayerPlaylistExpanded, setPlayerExpanded, setPlayerMessage } from '../../../../../lib/modules/website-player'
-import { Hide, Toaster } from '../../../../../lib/components'
+import { setPlayerInstance, PlayerBar, setPlayerPlaylist, replacePlaylist, setPlayerPlaylistExpanded, setPlayerExpanded, setPlayerMessage } from '../../../../../lib/modules/website-player'
+import { Toaster } from '../../../../../lib/components'
 import { requestReadChunk, IContentItem, getContentItemsFromList, contentItemToTrack } from '../../content'
 import { PROJECT_CONFIGS } from '../../../config'
 import { RootState } from '../../../index'
@@ -28,6 +28,10 @@ function PlayerFrame({}: PropsWithChildren<IProps>): ReactElement {
   const dispatch = useDispatch()
 
   const { pathname } = useLocation()
+
+  useEffect(function initPlayer() {
+    dispatch(setPlayerInstance())
+  }, [])
 
   useEffect(function getCuratedPlaylists() {
     if (chunkLog.length < 1) return

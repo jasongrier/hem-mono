@@ -1,11 +1,7 @@
 import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
-import ReactGA from 'react-ga'
-import { CampaignMonitorForm } from '../../../../lib/components'
-import { AboutSubnav } from '../../components/layout'
-import { assetHostHostname } from '../../functions'
-import { BASE_SITE_TITLE, CAMPAIGN_MONITOR_FORM_ACTION, CAMPAIGN_MONITOR_FORM_ID, CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME } from '../../config'
+import { BASE_SITE_TITLE } from '../../config'
 
 function CookiePolicy(): ReactElement {
   return (
@@ -47,7 +43,17 @@ function CookiePolicy(): ReactElement {
 
         <p>We also use social media buttons and/or plugins on this site that allow you to connect with your social network in various ways. For these to work the following social media sites including; Facebook, Twitter, will set cookies through our site which may be used to enhance your profile on their site or contribute to the data they hold for various purposes outlined in their respective privacy policies. More Information</p>
 
-        <p>If you are looking for more information you can contact us via support@bleepstores.com</p>
+        <p>If you are looking for more information you can contact us via the <Link to="/support">support page</Link>.</p>
+
+        <h2>A/B Test Cookies</h2>
+
+        <p>The following cookies allow us to test new features by providing variations on the user experience.</p>
+
+        <p>These cookies are disabled when the option "analytics cookies" is disabled.</p>
+
+        <p><strong>hem.rocks-flex-pricing-type</strong></p>
+
+        <p>Lets us figure out whether people prefer to click multiple choice buttons for choose-your-own-price, or to type in a number manually.</p>
       </div>
     </>
   )

@@ -54,7 +54,7 @@ export {
 export {
   App,
   CookieApproval,
-  CookiesBlock,
+  CookiesFrame,
   CookieSettings,
   EmailForm,
   PlayerFrame,
