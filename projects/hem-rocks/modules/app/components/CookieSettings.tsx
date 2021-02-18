@@ -1,7 +1,8 @@
 import React, { ReactElement, useCallback, useState, SyntheticEvent } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Cookies from 'js-cookie'
 import { getCookieName, setCookieApproval, setCookiePreferencesSet } from '../index'
+import { RootState } from '../../../index'
 
 interface IProps {
   onSubmit?: () => void
@@ -9,8 +10,10 @@ interface IProps {
 }
 
 function CookieSettings({ onSubmit, onCancel }: IProps): ReactElement {
-  const [analytics, setAnalytics] = useState(!!Cookies.get(getCookieName('analytics-cookie-approved')))
-  const [marketing, setMarketing] = useState(!!Cookies.get(getCookieName('marketing-cookie-approved')))
+  const { currentProject } = useSelector((state: RootState) => ({ currentProject: state.content.currentProject }))
+
+  const [analytics, setAnalytics] = useState(!!Cookies.get(getCookieName('analytics-cookie-approved', currentProject)))
+  const [marketing, setMarketing] = useState(!!Cookies.get(getCookieName('marketing-cookie-approved', currentProject)))
 
   const dispatch = useDispatch()
 

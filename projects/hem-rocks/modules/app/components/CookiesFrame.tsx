@@ -49,7 +49,7 @@ function CookiesFrame({}: IProps): ReactElement {
   const nagText = PROJECT_CONFIGS[currentProject].NAG_TEXT
 
   return (
-    <>
+    <div className="cookie-frame">
       <CookieApproval />
 
       { cookiesMarketingApproved
@@ -75,35 +75,31 @@ function CookiesFrame({}: IProps): ReactElement {
                 Cookies.set(getCookieName('cannot-show-email-nag', currentProject), 'true')
               }}
             >
-              {() => (
-                <>
-                  { nagHeader && (
-                    <h3>{ nagHeader }</h3>
-                  )}
-
-                  { nagText && (
-                    <p>{ nagText }</p>
-                  )}
-
-                  <CampaignMonitorForm
-                    action={CAMPAIGN_MONITOR_FORM_ACTION}
-                    emailFieldName={CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME}
-                    id={CAMPAIGN_MONITOR_FORM_ID}
-                    onFormSubmitted={() => {
-                      ReactGA.event({
-                        category: 'User',
-                        action: 'Joined the mailing list from the nag popup.',
-                      })
-                    }}
-                    submitButtonText="Sign me up!"
-                  />
-                </>
+              { nagHeader && (
+                <h3>{ nagHeader }</h3>
               )}
+
+              { nagText && (
+                <p>{ nagText }</p>
+              )}
+
+              <CampaignMonitorForm
+                action={CAMPAIGN_MONITOR_FORM_ACTION}
+                emailFieldName={CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME}
+                id={CAMPAIGN_MONITOR_FORM_ID}
+                onFormSubmitted={() => {
+                  ReactGA.event({
+                    category: 'User',
+                    action: 'Joined the mailing list from the nag popup.',
+                  })
+                }}
+                submitButtonText="Sign me up!"
+              />
             </NagToaster>
           </ElectronNot>
         )
       }
-    </>
+    </div>
   )
 }
 

@@ -2,11 +2,11 @@ import React, { useEffect, PropsWithChildren, ReactElement } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
 import { slugify } from 'voca'
-import { setPlayerInstance, PlayerBar, setPlayerPlaylist, replacePlaylist, setPlayerPlaylistExpanded, setPlayerExpanded, setPlayerMessage } from '../../../../../lib/modules/website-player'
+import { PlayerBar, setPlayerPlaylistExpanded, setPlayerPlaylist, replacePlaylist, setPlayerExpanded, setPlayerMessage, setPlayerInstance } from '../../../../../lib/modules/website-player'
 import { Toaster } from '../../../../../lib/components'
-import { requestReadChunk, IContentItem, getContentItemsFromList, contentItemToTrack } from '../../content'
-import { PROJECT_CONFIGS } from '../../../config'
+import { requestReadChunk, IContentItem, contentItemToTrack, getContentItemsFromList } from '../../content'
 import { RootState } from '../../../index'
+import { PROJECT_CONFIGS } from '../../../config'
 
 interface IProps {}
 
@@ -69,6 +69,7 @@ function PlayerFrame({}: PropsWithChildren<IProps>): ReactElement {
   return (
     <div className="player-frame">
       <PlayerBar />
+
       <div
         className="player-bar-overlay"
         onClick={() => {

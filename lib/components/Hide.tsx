@@ -1,33 +1,38 @@
-import React, { ReactElement } from 'react'
-import { Switch, Route } from 'react-router-dom'
+import React, { Children, PropsWithChildren, ReactElement } from 'react'
+import { useLocation } from 'react-router'
 
 interface IProps {
-  children: any
   from: string[] | string
 
-  exact?: boolean
+  fallback?: any
 }
 
-function Hide({ children, from, exact = false }: IProps): ReactElement {
+function Hide({ from, children, fallback }: PropsWithChildren<IProps>): ReactElement {
+  const { pathname } = useLocation()
+
   if (typeof from === 'string') {
     from = [from]
   }
 
-  const renderMain = children.length ? children[0] : children
-  const renderAlternate = children.length ? children[1] : <></>
+  fallback = fallback || <></>
+
+  let hide = false
+
+  for (const pathPart of from) {
+    if (from.includes('print-flip-books')) {
+      console.log(pathPart)
+    }
+    if (pathname.includes(pathPart)) {
+      hide = true
+      break
+    }
+  }
+
 
   return (
-    <Switch>
-      {from.map(path => (
-        <Route
-          exact={exact}
-          key={path}
-          path={path}
-          component={() => renderAlternate}
-        />
-      ))}
-      <Route component={() => <>{renderMain}</>} />
-    </Switch>
+    <div className="hem-hide">
+      { children }
+    </div>
   )
 }
 

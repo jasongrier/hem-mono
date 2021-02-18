@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from 'react'
+import React, { Suspense, ReactElement, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { isArray } from 'lodash'
@@ -6,7 +6,7 @@ import ReactGA from 'react-ga'
 import Cookies from 'js-cookie'
 import { setCartProducts } from '../../cart'
 import { setCurrentProject, requestReadChunk, getContentItemBySlug } from '../../content'
-import { Hide, ElectronNot, ScrollToTop } from '../../../../../lib/components'
+import { Hide, ElectronNot, ScrollToTop, Spinner } from '../../../../../lib/components'
 import { RoutingHub, CookiesFrame, Popups, getCookieName, SplitTests, PlayerFrame } from '../index'
 import { PROJECT_CONFIGS } from '../../../config'
 import { RootState } from '../../../index'
@@ -33,6 +33,7 @@ function App(): ReactElement {
 
   useEffect(function getCartFromCookies() {
     const cartCookie = Cookies.get(getCookieName('cart', currentProject))
+
     if (!cartCookie) return
 
     try {
@@ -105,11 +106,13 @@ function App(): ReactElement {
     `}>
       <ScrollToTop scrollPaneSelector=".scroll-lock-container" />
 
-      <SiteFrame>
-        <RoutingHub />
-      </SiteFrame>
+      <Suspense fallback={<Spinner />}>
+        <SiteFrame>
+          <RoutingHub />
+        </SiteFrame>
+      </Suspense>
 
-      { PROJECT_CONFIGS[currentProject].PLAYER && (
+      { PROJECT_CONFIGS[currentProject].HAS_PLAYER && (
         <Hide from={PROJECT_CONFIGS[currentProject].HIDE_PLAYER_FRAME_FOR}>
           <PlayerFrame />
         </Hide>
