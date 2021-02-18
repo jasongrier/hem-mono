@@ -1,17 +1,18 @@
 import React, { ReactElement } from 'react'
+import { useSelector } from 'react-redux'
 import { useLocation, useHistory, Redirect } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup, closePopup } from '../../../../../lib/modules/popups'
 import { IContentItem, DetailPopUp } from '../../content'
 import { CartPopup, ThankYouPopup } from '../../cart'
 import { SoundLibraryRefreshPopup } from '../../../components/popups'
+import { RootState } from '../../../index'
 
-interface IProps {
-  currentContentItem: IContentItem
-}
+function Popups(): ReactElement {
+  const { currentContentItem } = useSelector((state: RootState) => ({
+    currentContentItem: state.content.currentContentItem,
+  }))
 
-function Popups({ currentContentItem }: IProps): ReactElement {
   const { pathname } = useLocation()
 
   return (

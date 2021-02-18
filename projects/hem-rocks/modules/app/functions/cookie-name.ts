@@ -1,11 +1,9 @@
-const cookiePrefix = 'hem-rocks-cookie-'
-
-function getCookieName(baseName: string) {
-  return `${cookiePrefix}-${baseName}`
+function getCookieName(baseName: string, prefix: string) {
+  return `${prefix}-${baseName}`
 }
 
-function getCookieBaseName(cookieName: string) {
-  return cookieName.replace(cookieName, cookiePrefix)
+function getCookieBaseName(cookieName: string, prefix: string) {
+  return cookieName.replace(cookieName, prefix)
 }
 
 export {

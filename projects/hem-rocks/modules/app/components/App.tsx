@@ -1,126 +1,54 @@
-import React, { ReactElement, useEffect, useState } from 'react'
-import { useLocation, useHistory, Link } from 'react-router-dom'
+import React, { ReactElement, useEffect } from 'react'
+import { useLocation, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { compact, find, isArray, map, noop } from 'lodash'
-import $ from 'jquery'
+import { isArray, map } from 'lodash'
 import ReactGA from 'react-ga'
 import Cookies from 'js-cookie'
 import { slugify } from 'voca'
-import { CartPopup, setCartProducts } from '../../cart'
-import { ThankYouPopup } from '../../cart'
-import { DetailPopUp, setCurrentItem, setCurrentProject, getContentItemsFromList, contentItemToTrack, requestReadChunk, IContentItem, getContentItemBySlug, hasCategory } from '../../content'
-import { ProtectedContent } from '../../login'
-import { CampaignMonitorForm, ElectronNot, ScrollToTop, NagToaster, Spinner, Toaster, ElectronOnly } from '../../../../../lib/components'
-import { CloseButton } from '../../../../../lib/packages/hem-buttons'
-import { PopupContainer, openPopup, closePopup } from '../../../../../lib/modules/popups'
-import { PlayerBar, setPlayerPlaylist, replacePlaylist, setPlayerInstance, setPlayerPlaylistExpanded, setPlayerExpanded, Albums, IAlbum, ITrack, setPlayerMessage } from '../../../../../lib/modules/website-player'
+import { setCartProducts } from '../../cart'
+import { setCurrentItem, setCurrentProject, getContentItemsFromList, contentItemToTrack, requestReadChunk, IContentItem, getContentItemBySlug, hasCategory } from '../../content'
+import { Hide, ElectronNot, ScrollToTop } from '../../../../../lib/components'
+import { openPopup, closePopup } from '../../../../../lib/modules/popups'
+import { setPlayerPlaylist, replacePlaylist, setPlayerInstance, setPlayerPlaylistExpanded, setPlayerExpanded } from '../../../../../lib/modules/website-player'
 import { usePrevious } from '../../../../../lib/hooks'
-import { getCookieName, SplitTests } from '../index'
-import { SiteFooter, TopBar } from '../../../components/layout'
-import { SoundLibraryRefreshPopup } from '../../../components/popups'
-import { setCookieApproval, setCookiePreferencesSet } from '../actions'
-import { CookieApproval, RoutingHub, Popups } from './index'
-import { CAMPAIGN_MONITOR_FORM_ACTION, CAMPAIGN_MONITOR_FORM_ID, CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME, MAILING_LIST_TEXT, BERLIN_STOCK_PHOTOS } from '../../../config'
+import { Popups, getCookieName, SplitTests, PlayerFrame } from '../index'
+import { RoutingHub, CookiesFrame } from './index'
+import { PROJECT_CONFIGS } from '../../../config'
 import { RootState } from '../../../index'
-import NewWebsitePopup from '../../../components/popups/NewWebsitePopup'
-import { curatedPlaylists } from '../index'
-import { type } from 'os'
+
+const siteFrames = {
+  'hem.rocks': React.lazy(() => import('../../hem.rocks/components/ProjectFrame')),
+  'jag.rocks': React.lazy(() => import('../../jag.rip/components/ProjectFrame')),
+}
 
 function App(): ReactElement {
   const {
     chunkLog,
     contentItems,
-    cookiesAnalyticsApproved,
-    cookiesMarketingApproved,
-    currentContentItem,
     currentlyOpenPopUp,
     currentProject,
     currentProjectSettingItem,
-    playerError,
-    playerMessage,
   } = useSelector((state: RootState) => ({
     chunkLog: state.content.chunkLog,
     contentItems: state.content.contentItems,
-    cookiesAnalyticsApproved: state.app.cookiesAnalyticsApproved,
-    cookiesMarketingApproved: state.app.cookiesMarketingApproved,
     currentContentItem: state.content.currentContentItem,
     currentlyOpenPopUp: state.popups.currentlyOpenPopUp,
     currentProject: state.content.currentProject,
     currentProjectSettingItem: getContentItemBySlug(state.content.contentItems, 'setting-current-project'),
-    playerError: state.player.error,
-    playerMessage: state.player.message,
   }))
 
   const dispatch = useDispatch()
 
-  const [ openPlayerErrorToaster, setOpenPlayerErrorToaster ] = useState<(error: string) => void>()
-  const [ initialPathname, setInitialPathname ] = useState<string>()
-
   const { pathname } = useLocation()
 
   const history = useHistory()
-
-  const genericRoutedPopups = [
-    { basePath: 'apps', id: 'detail-popup' },
-    { basePath: 'articles', id: 'detail-popup' },
-    { basePath: 'artists', id: 'detail-popup' },
-    { basePath: 'blog', id: 'detail-popup' },
-    { basePath: 'code', id: 'detail-popup' },
-    { basePath: 'editions', id: 'detail-popup' },
-    { basePath: 'faqs', id: 'detail-popup' },
-    { basePath: 'home', id: 'detail-popup' },
-    { basePath: 'label', id: 'detail-popup' },
-    { basePath: 'merch', id: 'detail-popup' },
-    { basePath: 'mixes', id: 'detail-popup' },
-    { basePath: 'playlists', id: 'detail-popup' },
-    { basePath: 'press-kits', id: 'detail-popup' },
-    { basePath: 'press-releases', id: 'detail-popup' },
-    { basePath: 'press', id: 'detail-popup' },
-    { basePath: 'sound-library', id: 'detail-popup' },
-    { basePath: 'stock-photos', id: 'detail-popup' },
-    { basePath: 'tracks', id: 'detail-popup' },
-    { basePath: 'tutorials', id: 'detail-popup' },
-    { basePath: 'user-guides', id: 'detail-popup' },
-    { basePath: 'venue-archive', id: 'detail-popup' },
-    { basePath: 'venue-calendar', id: 'detail-popup' },
-    { basePath: 'venue-merch', id: 'detail-popup' },
-    { basePath: 'videos', id: 'detail-popup' },
-
-    { basePath: 'stock-photos-prints', id: 'detail-popup' },
-  ]
-
-  useEffect(function getCookieApprovals() {
-    const cookiePreferencesSet = !!Cookies.get(getCookieName(`cookie-preferences-set`))
-
-    if (cookiePreferencesSet) {
-      dispatch(setCookiePreferencesSet(true, false))
-    }
-
-    const cookieApprovals = [
-      'analytics',
-      'marketing',
-    ]
-
-    for (const name of cookieApprovals) {
-      if (Cookies.get(getCookieName(`${name}-cookie-approved`))) {
-        dispatch(setCookieApproval(name, cookiePreferencesSet, false))
-      }
-    }
-  }, [])
-
-  useEffect(function checkAnalyticsCookieApproval() {
-    if (cookiesAnalyticsApproved && !location.hostname.includes('localhost')) {
-      const gaId = BERLIN_STOCK_PHOTOS ? 'UA-36136320-3' : 'UA-163585797-1'
-      ReactGA.initialize(gaId)
-    }
-  }, [cookiesAnalyticsApproved])
 
   useEffect(function initPlayer() {
     dispatch(setPlayerInstance())
   }, [])
 
   useEffect(function getCartFromCookies() {
-    const cartCookie = Cookies.get(getCookieName('cart'))
+    const cartCookie = Cookies.get(getCookieName('cart', currentProject))
     if (!cartCookie) return
 
     try {
@@ -153,52 +81,24 @@ function App(): ReactElement {
     dispatch(requestReadChunk('embedded-essays'))
   }, [chunkLog])
 
-  useEffect(function getCuratedPlaylists() {
-    if (chunkLog.length < 1) return
-    if (chunkLog.includes('curated-playlists')) return
-    dispatch(requestReadChunk('curated-playlists'))
-  }, [chunkLog])
-
-  useEffect(function getAllRemainingTracks() {
-    if (chunkLog.length < 1) return
-    if (chunkLog.includes('tracks')) return
-    if (!chunkLog.includes('curated-playlists')) return
-    dispatch(requestReadChunk('tracks'))
-  }, [chunkLog])
-
-  useEffect(function setSitePlaylists() {
+  useEffect(function initProject() {
     if (!currentProjectSettingItem) return
     if (currentProjectSettingItem.description === currentProject) return
     dispatch(setCurrentProject(currentProjectSettingItem.description))
   }, [currentProjectSettingItem])
 
-  useEffect(function setSitePlaylists() {
-    if (!chunkLog.includes('curated-playlists')) return
-
-    curatedPlaylists.forEach(({ name, linkTo }, i) => {
-      const trackContentItems: IContentItem[] = getContentItemsFromList(contentItems, slugify(name))
-      const tracks = trackContentItems.map(item =>
-        contentItemToTrack(item)
-      )
-
-      dispatch(replacePlaylist(i, { name: name.replace('Player ', ''), tracks, linkTo }))
-    })
-
-    dispatch(setPlayerPlaylist(0))
-  }, [contentItems, chunkLog])
-
-  useEffect(function handlePlayerErrors() {
-    if (!openPlayerErrorToaster) return
-    if (!playerError) return
-
-    openPlayerErrorToaster(playerError)
-  }, [openPlayerErrorToaster, playerError])
-
-  useEffect(function routedPopup() {
+  useEffect(function handleRoutedPopups() {
     const [basePath, slug, cart, orCart] = pathname.replace(/^\//, '').split('/')
     const requestedContentItem = contentItems.find(item =>
       item.slug === slug && !hasCategory(item, 'site-texts')
     )
+
+    const routedPopups = PROJECT_CONFIGS[currentProject]
+      .ROUTED_POPUPS
+      .map(basePath => ({
+        basePath,
+        id: 'detail-popup',
+      }))
 
     let popupId
 
@@ -216,7 +116,7 @@ function App(): ReactElement {
     }
 
     if (!popupId) {
-      for (const routedPopup of genericRoutedPopups) {
+      for (const routedPopup of routedPopups) {
         if (
           basePath === routedPopup.basePath
           && requestedContentItem
@@ -246,11 +146,6 @@ function App(): ReactElement {
       dispatch(closePopup())
     }
   }, [contentItems, pathname])
-
-  useEffect(function collapsePlayerOnRouteChange() {
-    dispatch(setPlayerPlaylistExpanded(false))
-    dispatch(setPlayerExpanded(false))
-  }, [pathname])
 
   const previouslyOpenPopup = usePrevious(currentlyOpenPopUp)
 
@@ -317,200 +212,47 @@ function App(): ReactElement {
     }
   }, [])
 
+  const SiteFrame = siteFrames[currentProject]
+
+  if (!SiteFrame) return (<div></div>)
+
   return (
     <div className={`
       hem-application
-      hem-rocks
+      ${ pathname.includes('admin') ? 'is-admin' : '' }
+      ${ process.env.NODE_ENV === 'production' ? 'node-env-production' : '' }
       ${
         pathname === '/'
         || pathname === '/cart'
         || pathname === '/cart/'
         || pathname === '/thank-you'
         || pathname === '/thank-you/'
-        || pathname === '/new-website'
-        || pathname === '/new-website/'
         || pathname.includes('/home')
-        || BERLIN_STOCK_PHOTOS && !pathname.includes('admin')
           ? ' app-is-home'
           : ''
       }
-      ${ process.env.NODE_ENV === 'production' ? 'node-env-production' : '' }
-      ${ BERLIN_STOCK_PHOTOS && !pathname.includes('admin') && !pathname.includes('internal') ? 'berlin-stock-photos' : '' }
-      ${ pathname.includes('admin') ? 'is-admin' : '' }
     `}>
-      <>
-        <ScrollToTop scrollPaneSelector=".scroll-lock-container" />
+      <ScrollToTop scrollPaneSelector=".scroll-lock-container" />
 
-        { !BERLIN_STOCK_PHOTOS
-          && currentProject !== 'jag.rip'
-          && !pathname.includes('print-flip-books')
-          && !pathname.includes('web-movie')
-          && !pathname.includes('life-in-letters')
-          && (
-            <TopBar />
-          )
-        }
+      <SiteFrame>
+        <RoutingHub />
+      </SiteFrame>
 
-        { currentProject === 'jag.rip'
-          && !pathname.includes('admin')
-          && !pathname.includes('admin')
-          && (
-            <ElectronOnly>
-              <Link to="admin/list">Admin</Link>
-            </ElectronOnly>
-        )}
-
-        <div className="scroll-lock-container">
-          <div className="scroll-lock-content">
-            <main className="main-content">
-              <div className="tabs-content">
-                <RoutingHub />
-              </div>
-            </main>
-            { !BERLIN_STOCK_PHOTOS
-              && currentProject !== 'jag.rip'
-              && !pathname.includes('print-flip-books')
-              && !pathname.includes('web-movie')
-              && !pathname.includes('life-in-letters')
-              && (
-                <footer className="main-footer">
-                  <SiteFooter />
-                </footer>
-            )}
-          </div>
-        </div>
-
-        { currentContentItem && (
-          <Popups currentContentItem={currentContentItem} />
-        )}
-
-        { !BERLIN_STOCK_PHOTOS
-          && currentProject !== 'jag.rip'
-          && !pathname.includes('print-flip-books')
-          && !pathname.includes('web-movie')
-          && !pathname.includes('life-in-letters')
-          && (
-          <>
-            <PlayerBar />
-            <div
-              className="player-bar-overlay"
-              onClick={() => {
-                dispatch(setPlayerExpanded(false))
-                dispatch(setPlayerPlaylistExpanded(false))
-              }}
-            />
-          </>
-        )}
-      </>
+      { PROJECT_CONFIGS[currentProject].PLAYER && (
+        <Hide from={PROJECT_CONFIGS[currentProject].HIDE_PLAYER_FRAME_FOR}>
+          <PlayerFrame />
+        </Hide>
+      )}
 
       <ElectronNot>
-        { !pathname.includes('life-in-letters') && (
-          <CookieApproval />
+        { PROJECT_CONFIGS[currentProject].USES_COOKIES && (
+          <Hide from={PROJECT_CONFIGS[currentProject].HIDE_COOKIES_FRAME_FOR}>
+            <CookiesFrame />
+          </Hide>
         )}
       </ElectronNot>
 
-      { cookiesMarketingApproved
-        && !Cookies.get(getCookieName('cannot-show-email-nag'))
-        && !BERLIN_STOCK_PHOTOS
-        && !pathname.includes('life-in-letters')
-        && (
-        <ElectronNot>
-          <NagToaster
-            closeIcon={CloseButton}
-            delay={5000}
-            id="hem-rocks-website-email-nag"
-            onDismiss={() => {
-              ReactGA.event({
-                category: 'User',
-                action: 'Closed the mailing list nag popup without joining.',
-              })
-            }}
-            onLaunch={() => {
-              ReactGA.event({
-                category: 'System',
-                action: 'The mailing list nag popped up.',
-              })
-
-              Cookies.set(getCookieName('cannot-show-email-nag'), 'true')
-            }}
-          >
-            {() => (
-              <>
-                { BERLIN_STOCK_PHOTOS && (
-                  <h3>Berlin Stock Photos Newsletter</h3>
-                )}
-                { !BERLIN_STOCK_PHOTOS && (
-                  <h3>HEM Newsletter</h3>
-                )}
-                <p>{ MAILING_LIST_TEXT }</p>
-                <CampaignMonitorForm
-                  action={CAMPAIGN_MONITOR_FORM_ACTION}
-                  emailFieldName={CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME}
-                  id={CAMPAIGN_MONITOR_FORM_ID}
-                  onFormSubmitted={() => {
-                    ReactGA.event({
-                      category: 'User',
-                      action: 'Joined the mailing list from the nag popup.',
-                    })
-                  }}
-                  submitButtonText="Sign me up!"
-                />
-              </>
-            )}
-          </NagToaster>
-        </ElectronNot>
-      )}
-
-      { playerError && (
-        <Toaster message={ playerError } />
-      )}
-      { playerMessage && (
-        <Toaster
-          className="player-message"
-          message={ playerMessage }
-          delay={false}
-          delayAfterClick={1000}
-          onClose={() => dispatch(setPlayerMessage(null))}
-        />
-      )}
-
-      <PopupContainer
-        closeIcon={CloseButton}
-        id="detail-popup"
-      >
-        <DetailPopUp
-          contentItem={currentContentItem}
-          filter={pathname.split('/')[3]}
-          category={pathname.split('/')[1]}
-          showMegaBlurb={!pathname.includes('press-releases')}
-        />
-      </PopupContainer>
-
-      <PopupContainer
-        closeIcon={CloseButton}
-        id="cart-popup"
-      >
-        {(props: any) => (
-          <CartPopup redirecting={props?.redirecting} />
-        )}
-      </PopupContainer>
-
-
-      <PopupContainer
-        closeIcon={CloseButton}
-        id="thank-you-popup"
-      >
-        <ThankYouPopup />
-      </PopupContainer>
-
-      <PopupContainer
-        closeIcon={CloseButton}
-        id="sound-library-refresh-popup"
-      >
-        {(props: any) => (
-          <SoundLibraryRefreshPopup />
-        )}
-      </PopupContainer>
+      <Popups />
     </div>
   )
 }

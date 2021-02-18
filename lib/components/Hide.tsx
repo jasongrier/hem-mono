@@ -2,11 +2,13 @@ import React, { ReactElement } from 'react'
 import { Switch, Route } from 'react-router-dom'
 
 interface IProps {
-  from: string[] | string
   children: any
+  from: string[] | string
+
+  exact?: boolean
 }
 
-function Hide({ from, children }: IProps): ReactElement {
+function Hide({ children, from, exact = false }: IProps): ReactElement {
   if (typeof from === 'string') {
     from = [from]
   }
@@ -18,7 +20,7 @@ function Hide({ from, children }: IProps): ReactElement {
     <Switch>
       {from.map(path => (
         <Route
-          exact
+          exact={exact}
           key={path}
           path={path}
           component={() => renderAlternate}

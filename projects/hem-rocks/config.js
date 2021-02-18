@@ -1,7 +1,7 @@
 /*******************************/
 /* NEW, SPLIT-BY-CONFIG METHOD */
 /*******************************/
-var PROJECT_CONFIGS = {
+module.exports.PROJECT_CONFIGS = {
   'hem.rocks': {
     htmlHeadMeta: {
       BASE_SITE_TITLE: 'HEM',
@@ -13,6 +13,63 @@ var PROJECT_CONFIGS = {
       CAMPAIGN_MONITOR_FORM_ID: '5B5E7037DA78A748374AD499497E309E34883504EC972B188E4CB169FC87154EA44D7B3A50124374F2DEEFB33D7CE7A53C0566B978C890570F878E42C80AD756',
       MAILING_LIST_TEXT: 'Subscribe to HEM to receive updates on projects and happenings, sound, and software.',
     },
+    USES_COOKIES: true,
+    HIDE_COOKIES_FRAME_FOR: ['life-in-letters'],
+    HIDE_PLAYER_FRAME_FOR: ['print-flip-books', 'web-movie', 'life-in-letters'],
+    NAG_HEADER: 'HEM Newsletter',
+    NAG_TEXT: 'HEM Newsletter',
+    ROUTED_POPUPS: [
+      'apps',
+      'articles',
+      'artists',
+      'blog',
+      'code',
+      'editions',
+      'faqs',
+      'home',
+      'label',
+      'merch',
+      'mixes',
+      'playlists',
+      'press-kits',
+      'press-releases',
+      'press',
+      'sound-library',
+      'stock-photos',
+      'tracks',
+      'tutorials',
+      'user-guides',
+      'venue-archive',
+      'venue-calendar',
+      'venue-merch',
+      'videos',
+    ],
+    CURATED_PLAYLISTS = [
+      {
+        name: 'Player Featured',
+        linkTo: '/tracks/filter/featured',
+      },
+      {
+        name: 'Player Rare',
+        linkTo: '/tracks/filter/rare',
+      },
+      {
+        name: 'Player Live',
+        linkTo: '/tracks/filter/live',
+      },
+      {
+        name: 'Player Radio',
+        linkTo: '/tracks/filter/radio',
+      },
+      {
+        name: 'Player Sound Library',
+        linkTo: '/sound-library',
+      },
+      {
+        name: 'Player Releases',
+        linkTo: '/label',
+      },
+    ]
   },
   'berlinstockphotos.com': {
     htmlHeadMeta: {
@@ -42,8 +99,6 @@ var PROJECT_CONFIGS = {
   'dot': { },
   'midst': { },
 }
-
-module.exports.PROJECT_CONFIG = PROJECT_CONFIGS['hem.rocks']
 
 /********************************/
 /* OLD, SPLIT-BY-TOOLING METHOD */
