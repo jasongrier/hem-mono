@@ -176,6 +176,12 @@ function AdminManualTaskRunner(): ReactElement {
     }, [allContentItems],
   )
 
+  const generateChunksOnClick = useCallback(
+    function migrateOnClickFn() {
+      runTask(() => generateChunks(allContentItems))
+    }, [allContentItems],
+  )
+
   const createOnClick = useCallback(
     function createOnClickFn() {
       runTask(() => createItemsFromArray(allContentItems))
@@ -206,6 +212,14 @@ function AdminManualTaskRunner(): ReactElement {
               onClick={migrateOnClick}
             >
               Run migration task
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onClick={generateChunksOnClick}
+            >
+              Generate Chunks
             </a>
           </li>
           <li>

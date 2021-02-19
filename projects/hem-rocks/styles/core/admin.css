@@ -2,6 +2,10 @@
   background-color: #fff;
 }
 
+.page-admin {
+  color: #000;
+}
+
 .page-admin .main-content-subnav {
   margin-bottom: 0;
 }

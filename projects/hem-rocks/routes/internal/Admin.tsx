@@ -6,13 +6,13 @@ import { BASE_SITE_TITLE } from '../../config'
 
 function Admin(): ReactElement {
   return (
-    <>
+    <div className="main-content">
       <Helmet>
         <title>{ BASE_SITE_TITLE }</title>
         <meta name="description" content="" />
       </Helmet>
       <div className="page page-admin">
-        <h1>CMS</h1>
+        <h1>HEM | CMS</h1>
         <nav className="main-content-subnav">
           <ul>
             <li>
@@ -83,7 +83,7 @@ function Admin(): ReactElement {
           </Route>
         </Switch>
       </div>
-    </>
+    </div>
   )
 }
 

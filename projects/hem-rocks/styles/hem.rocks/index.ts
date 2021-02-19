@@ -2,8 +2,6 @@ import './app.css'
 import './variables.css'
 
 import './about-sl2.css'
-import './admin.css'
-import './admin-program.css'
 import './cart-popup.css'
 import './contact-form.css'
 import './cookie-approval.css'

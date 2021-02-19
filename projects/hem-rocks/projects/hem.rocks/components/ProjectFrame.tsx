@@ -1,5 +1,6 @@
 import React, { PropsWithChildren, ReactElement } from 'react'
 import { SiteFooter, TopBar } from '../../../components/layout'
+import '../../../styles/hem.rocks'
 
 interface IProps {}
 
