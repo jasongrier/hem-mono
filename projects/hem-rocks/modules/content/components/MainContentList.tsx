@@ -1,12 +1,12 @@
-import React, { ReactElement, useEffect, useState, useCallback } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
 import Scrollbars from 'react-scrollbars-custom'
 import { slugify, titleCase } from 'voca'
-import { filter, isEmpty, map, find, isNaN } from 'lodash'
+import { filter, isEmpty, find, isNaN } from 'lodash'
 import ReactGA from 'react-ga'
-import { get, uniq, flatten, compact, last, shuffle } from 'lodash'
+import { uniq, flatten, compact, shuffle } from 'lodash'
 import moment from 'moment'
 import { parse } from 'qs'
 import { CloseButton } from '../../../../../lib/packages/hem-buttons'
@@ -15,84 +15,102 @@ import { replacePlaylist, setPlayerPlaylist, ITrack } from '../../../../../lib/m
 import { MainContentBox } from './index'
 import { IContentItem, setCurrentItems } from '../index'
 import { RootState } from '../../../index'
-import { LISTS_HAVE_BLURBS, RELEASE_PHASE } from '../../../config'
+import { LISTS_HAVE_BLURBS, PROJECT_CONFIGS as UNTYPED_PROJECT_CONFIGS, RELEASE_PHASE } from '../../../config'
 import { hasTag, hasCategory, contentItemToTrack, getContentItemsFromRawList, tagSpellingCorrections, getContentItemById } from '../functions'
 import { requestReadChunk } from '../actions'
-import { release } from 'os'
+
+const PROJECT_CONFIGS = UNTYPED_PROJECT_CONFIGS as any
 
 interface IProps {
   category: string
 
   additionalCategory?: string
+  additionalFilters?: string[]
   applyCurrentFilter?: boolean
-  shouldSetCurrentPlaylist?: boolean
-  boxWidth?: number
-  boxSecondaryTitleField?: 'secondaryTitle' | 'attribution'
   blurb?: string | Function
+  boxBipolarX?: boolean
+  boxBipolarY?: boolean
   boxBlurbs?: boolean
+  boxHeight?: number
+  boxMarginRangeX?: number
+  boxMarginRangeY?: number
+  boxMinMarginX?: number
+  boxMinMarginY?: number
+  boxRangeX?: number
+  boxRangeY?: number
+  boxRenderActionsOn?: 'key-art' | 'text'
+  boxSecondaryTitleField?: 'secondaryTitle' | 'attribution'
+  boxWidth?: number
   buttonText?: string
   children?: (contentItem: IContentItem) => any
   currentFilter?: string,
   excludeFromAll?: string | string[]
+  excludeTags?: string[]
   fixedFilters?: string[] | null
-  additionalFilters?: string[]
+  hasFilters?: boolean
   hideFilters?: string[]
+  hideIfNoAttachments?: boolean
   highlights?: string[]
+  ignoreSticky?: boolean
   infoPopupText?: string
   infoPopupTitle?: string
   items?: IContentItem[]
   limit?: number
+  limitTags?: string[]
   linkTo?: (contentItem: IContentItem) => string
   moreTagsLink?: string | null
   noAll?: boolean
   noFilters?: boolean
   noSplatter?: boolean
-  onlyTag?: string
   onFiltersChanged?: () => void
+  onlyTag?: string
   orderByOrder?: boolean
   orderByTitle?: boolean
-  randomizeNonSticky?: boolean
-  hideIfNoAttachments?: boolean
-  showCategoryOnContentBoxes?: boolean
-  title?: string
-  speciallyOrderedTags?: string[]
-  excludeTags?: string[]
-  hasFilters?: boolean
-  boxBipolarX?: boolean
-  boxBipolarY?: boolean
-  boxMinMarginX?: number
-  boxMinMarginY?: number
-  boxMarginRangeX?: number
-  boxMarginRangeY?: number
-  boxRenderActionsOn?: 'key-art' | 'text'
-  setDefaultEmptyPlaylist?: boolean
-  ignoreSticky?: boolean
   playlistToSet?: number
+  randomizeNonSticky?: boolean
   randomizeTags?: string[]
-  limitTags?: string[]
+  setDefaultEmptyPlaylist?: boolean
+  shouldSetCurrentPlaylist?: boolean
+  showCategoryOnContentBoxes?: boolean
+  speciallyOrderedTags?: string[]
   tagLimit?: number
+  title?: string
 }
 
 function MainContentList({
   category,
 
   additionalCategory,
+  additionalFilters,
   applyCurrentFilter = true,
-  shouldSetCurrentPlaylist = true,
   blurb,
-  boxWidth,
-  boxSecondaryTitleField,
+  boxBipolarX,
+  boxBipolarY,
   boxBlurbs,
+  boxHeight,
+  boxMarginRangeX,
+  boxMarginRangeY,
+  boxMinMarginX,
+  boxMinMarginY,
+  boxRenderActionsOn,
+  boxSecondaryTitleField,
+  boxRangeX,
+  boxRangeY,
+  boxWidth,
   buttonText,
   children,
-  excludeFromAll,
-  fixedFilters,
-  hideFilters,
   currentFilter = 'featured',
-  highlights,
+  excludeFromAll,
+  excludeTags,
+  fixedFilters,
+  hasFilters = true,
+  hideFilters,
+  hideIfNoAttachments = false,
+  ignoreSticky = false,
   infoPopupText,
   infoPopupTitle,
   items: propsContentItems,
+  limitTags,
   linkTo,
   moreTagsLink,
   noAll = true,
@@ -101,33 +119,28 @@ function MainContentList({
   onlyTag,
   orderByOrder,
   orderByTitle,
-  randomizeNonSticky,
-  hideIfNoAttachments = false,
-  showCategoryOnContentBoxes = false,
-  title,
-  additionalFilters,
-  speciallyOrderedTags,
-  excludeTags,
-  hasFilters = true,
-  boxBipolarX,
-  boxBipolarY,
-  boxMinMarginX,
-  boxMinMarginY,
-  boxMarginRangeX,
-  boxMarginRangeY,
-  boxRenderActionsOn,
-  setDefaultEmptyPlaylist = true,
-  ignoreSticky = false,
   playlistToSet = 5,
+  randomizeNonSticky,
   randomizeTags,
-  limitTags,
+  setDefaultEmptyPlaylist = true,
+  shouldSetCurrentPlaylist = true,
+  showCategoryOnContentBoxes = false,
+  speciallyOrderedTags,
   tagLimit = 9,
+  title,
 }: IProps): ReactElement {
-  const { chunkLog, storeContentItems, currentlyOpenPopUp, playlists } = useSelector((state: RootState) => ({
+  const {
+    chunkLog,
+    currentProject,
+    currentlyOpenPopUp,
+    playlists,
+    storeContentItems,
+  } = useSelector((state: RootState) => ({
     chunkLog: state.content.chunkLog,
-    storeContentItems: state.content.contentItems,
+    currentProject: state.content.currentProject,
     currentlyOpenPopUp: state.popups.currentlyOpenPopUp,
     playlists: state.player.playlists,
+    storeContentItems: state.content.contentItems,
   }))
 
   const dispatch = useDispatch()
@@ -152,9 +165,23 @@ function MainContentList({
     }
 
     else {
-      const contentItems = (propsContentItems || storeContentItems).filter(item =>
-        item.published && hasCategory(item, category)
-      )
+      let contentItems
+
+      if (additionalCategory) {
+        contentItems = (propsContentItems || storeContentItems).filter(item =>
+          item.published
+          && item.project === currentProject
+          && (hasCategory(item, category) || hasCategory(item, additionalCategory))
+        )
+      }
+
+      else {
+        contentItems = (propsContentItems || storeContentItems).filter(item =>
+          item.published
+          && item.project === currentProject
+          && hasCategory(item, category)
+        )
+      }
 
       if (!contentItems) return
       if (!contentItems.length) return
@@ -222,11 +249,19 @@ function MainContentList({
 
       contentItems = storeContentItemsImm.filter(item => {
         if (additionalCategory) {
-          return (hasCategory(item, category) || hasCategory(item, additionalCategory)) && item.published
+          return (
+            item.project === currentProject
+            && (hasCategory(item, category) || hasCategory(item, additionalCategory))
+            && item.published
+          )
         }
 
         else {
-          return hasCategory(item, category) && item.published
+          return (
+            item.project === currentProject
+            && item.published
+            && hasCategory(item, category)
+          )
         }
       })
     }
@@ -304,14 +339,14 @@ function MainContentList({
     const params = parse(location.search)
     const releasePhase = params['?releasePhase']
       ? parseInt(params['?releasePhase'] as string, 10)
-      :  RELEASE_PHASE
+      : PROJECT_CONFIGS[currentProject].RELEASE_PHASE
 
     if (releasePhase > 0) {
       contentItems = contentItems.filter(item => {
         const itemReleasePhase = parseInt(item.releasePhase, 10)
 
         if (!isNaN(itemReleasePhase)) {
-           return itemReleasePhase <= releasePhase
+          return itemReleasePhase <= releasePhase
         }
 
         else {
@@ -364,17 +399,19 @@ function MainContentList({
         }
       }
 
-      if (shouldSetCurrentPlaylist && tracks.length) {
-        dispatch(replacePlaylist(5, { name: 'On this page', tracks }))
+      if (PROJECT_CONFIGS[currentProject].HAS_PLAYER) {
+        if (shouldSetCurrentPlaylist && tracks.length) {
+          dispatch(replacePlaylist(5, { name: 'On this page', tracks }))
 
-        if (!find(playlists, { name: 'Selected Playlist' })) {
-          dispatch(setPlayerPlaylist(playlistToSet))
+          if (!find(playlists, { name: 'Selected Playlist' })) {
+            dispatch(setPlayerPlaylist(playlistToSet))
+          }
         }
-      }
 
-      else if (setDefaultEmptyPlaylist) {
-        dispatch(replacePlaylist(5, { name: 'EMPTY', tracks: [] }))
-        dispatch(setPlayerPlaylist(0))
+        else if (setDefaultEmptyPlaylist) {
+          dispatch(replacePlaylist(5, { name: 'EMPTY', tracks: [] }))
+          dispatch(setPlayerPlaylist(0))
+        }
       }
     })
   }, [currentFilter, storeContentItems, currentlyOpenPopUp])
@@ -439,7 +476,7 @@ function MainContentList({
               <Link
                 className={`
                   main-content-filter
-                  ${ currentFilter === slugify(tag) ? 'active' : '' }
+                  ${ currentFilter === slugify(tag) ? 'main-content-filter-active' : '' }
                 `}
                 key={tag}
                 to={
@@ -476,24 +513,27 @@ function MainContentList({
                     </Link>
                   : undefined
               }
-              width={boxWidth}
-              buttonText={buttonText}
-              contentItem={contentItem}
-              index={index}
-              filter={currentFilter}
-              key={contentItem.id}
-              linkTo={linkTo}
-              noSplatter={noSplatter}
-              secondaryTitleField={boxSecondaryTitleField}
-              tag={category}
-              showBlurb={boxBlurbs}
-              minMarginX={boxMinMarginX}
-              minMarginY={boxMinMarginY}
-              marginRangeX={boxMarginRangeX}
-              marginRangeY={boxMarginRangeY}
-              renderActionsOn={boxRenderActionsOn}
               bipolarX={boxBipolarX}
               bipolarY={boxBipolarY}
+              buttonText={buttonText}
+              contentItem={contentItem}
+              filter={currentFilter}
+              height={boxHeight}
+              index={index}
+              key={contentItem.id}
+              linkTo={linkTo}
+              marginRangeX={boxMarginRangeX}
+              marginRangeY={boxMarginRangeY}
+              minMarginX={boxMinMarginX}
+              minMarginY={boxMinMarginY}
+              noSplatter={noSplatter}
+              rangeX={boxRangeX}
+              rangeY={boxRangeY}
+              renderActionsOn={boxRenderActionsOn}
+              secondaryTitleField={boxSecondaryTitleField}
+              showBlurb={boxBlurbs}
+              tag={category}
+              width={boxWidth}
             >
               { children && children(contentItem) }
             </MainContentBox>

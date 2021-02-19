@@ -239,7 +239,7 @@
   vertical-align: bottom;
 }
 
-.main-content-filter.active {
+.main-content-filter-active {
   background: var(--line-orange);
   color: #fff;
   font-size: 24px;

@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { MainContentList, contentItemToTrack, getContentItemsFromRawList } from '../../modules/content'
 import { TrackPlayPauseButton } from '../../../../lib/modules/website-player'
 import { BASE_SITE_TITLE } from '../../config'
-import { SoundLibrarySubnav, MainContentBanner } from '../../components/layout'
+import { SoundLibrarySubnav } from '../../components/layout'
 import { RootState } from '../../index'
 
 function SoundLibrary(): ReactElement {

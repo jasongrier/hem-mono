@@ -1,0 +1,43 @@
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:active,
+a:focus {
+  outline: 2px solid #fff;
+}
+
+.admin-link {
+  position: fixed;
+  top: 0;
+  left: 0;
+  color: blue;
+}
+
+.main-header > h1 {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 9999;
+  text-transform: uppercase;
+  font-size: 18px;
+}
+
+a[href="#more-anchor"] {
+  position: fixed;
+  bottom: 0;
+  right: 180px;
+  z-index: 9999;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  font-size: 48px;
+  background-color: #000;
+}
+
+a[id="more-anchor"] {
+  position: fixed;
+  top: calc(100vh + 600px);
+  right: 180px;
+  color: red;
+}

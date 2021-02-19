@@ -66,12 +66,12 @@ import {
   NotFound as BerlinStockPhotosNotFound,
   LicenseAgreement as BerlinStockPhotosLicenseAgreement,
   Prints as BerlinStockPhotosPrints,
-} from '../../../routes/berlin-stock-photos'
+} from '../../../routes/berlin.stock.photos.com'
 
 import {
   Home as JagHome,
   ReactConsulting as JagReactConsulting,
-} from '../../../routes/jag-rip'
+} from '../../../routes/jag.rip'
 
 function RoutingHub(): ReactElement {
   const { currentProject } = useSelector((state: RootState) => ({
@@ -85,15 +85,6 @@ function RoutingHub(): ReactElement {
         <Route exact path="/" component={currentProject === 'jag.rip' ? JagHome : Home} />
         <Route exact path="/cart" component={currentProject === 'jag.rip' ? JagHome : Home} />
         <Route exact path="/thank-you" component={currentProject === 'jag.rip' ? JagHome : Home} />
-
-        {/* New Website Overlay */}
-        <Route exact path="/new-website" component={Home} />
-        <Route exact path="/sound-library/new-website" component={SoundLibrary} />
-        <Route exact path="/sound-library/new-website/:filter?" component={SoundLibrary} />
-        <Route exact path="/label/new-website" component={Label} />
-        <Route exact path="/label/new-website/:filter?" component={Label} />
-        <Route exact path="/tracks/new-website" component={Tracks} />
-        <Route exact path="/tracks/new-website/:filter?" component={Tracks} />
 
         {/* "Dynamic-Static" Pages */}
         <Route exact path="/page/:contentItemSlug" component={GenericPage} />
@@ -197,6 +188,10 @@ function RoutingHub(): ReactElement {
         <Route exact path="/press/:contentItemSlug?/:filter?" component={Press} />
         <Route exact path="/press/filter/:filter" component={Press} />
         <Route exact path="/press/cart/:filter?" component={Press} />
+
+        <Route exact path="/projects/:contentItemSlug?/:filter?" component={currentProject === 'jag.rip' ? JagHome : Home} />
+        <Route exact path="/projects/filter/:filter" component={currentProject === 'jag.rip' ? JagHome : Home} />
+        <Route exact path="/projects/cart/:filter?" component={currentProject === 'jag.rip' ? JagHome : Home} />
 
         <Route exact path="/newsletters/:contentItemSlug?/:filter?" component={Newsletters} />
         <Route exact path="/newsletters/filter/:filter" component={Newsletters} />

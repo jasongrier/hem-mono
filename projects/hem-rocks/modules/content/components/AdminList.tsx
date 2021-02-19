@@ -7,11 +7,14 @@ import { isEmpty, noop, find } from 'lodash'
 import { slugify, titleCase } from 'voca'
 import { ElectronOnly } from '../../../../../lib/components'
 import { PlayPauseButton } from '../../../../../lib/packages/hem-buttons'
-import { adminApplyFilter, adminApplySearch, getContentItemBySlug, setAdminSearchableField, toggleNeedsKeyArtFilter, requestReadItems, requestUpdateItems, IContentItem, categories, projects } from '../index'
+import { selectableCategories, adminApplyFilter, adminApplySearch, getContentItemBySlug, setAdminSearchableField, toggleNeedsKeyArtFilter, requestReadItems, requestUpdateItems, IContentItem, categories, projects } from '../index'
 import { RootState } from '../../../index'
 import { hasCategory, hasTag, modelize } from '../functions'
 import { assetHostHostname } from '../../../functions'
 import { toggleShowUnpublishedFilter, toggleStickyFilter, setCurrentPage, requestCreateItems } from '../actions'
+import { PROJECT_CONFIGS as UNTYPED_PROJECT_CONFIGS } from '../../../config'
+
+const PROJECT_CONFIGS = UNTYPED_PROJECT_CONFIGS as any
 
 function AdminList(): ReactElement {
   const {
@@ -178,7 +181,7 @@ function AdminList(): ReactElement {
               value={adminFilterApplied}
             >
               <option value="all">All</option>
-              { categories.map(category => (
+              { selectableCategories(categories, currentProject).map(category => (
                 <option
                   key={category}
                   value={category}

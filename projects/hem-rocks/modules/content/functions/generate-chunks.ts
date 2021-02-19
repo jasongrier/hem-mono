@@ -23,6 +23,7 @@ function generateChunks(allContentItems: IContentItem[]) {
     'playlists',
     'press-clippings',
     'program',
+    'projects',
     'recipes',
     'settings',
     'site-texts',

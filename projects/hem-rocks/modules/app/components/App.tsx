@@ -12,7 +12,7 @@ import { RootState } from '../../../index'
 
 const PROJECT_CONFIGS = UNTYPED_PROJECT_CONFIGS as any
 
-const siteFrames: any = {
+const projectFrames: any = {
   'hem.rocks': React.lazy(() => import('../../../projects/hem.rocks/components/ProjectFrame')),
   'jag.rip': React.lazy(() => import('../../../projects/jag.rip/components/ProjectFrame')),
 }
@@ -65,9 +65,9 @@ function App(): ReactElement {
     }
   }, [])
 
-  const SiteFrame = siteFrames[currentProject]
+  const ProjectFrame = projectFrames[currentProject]
 
-  if (!SiteFrame) return (<div></div>)
+  if (!ProjectFrame) return (<div></div>)
 
   return (
     <div className={`
@@ -88,9 +88,9 @@ function App(): ReactElement {
       <ScrollToTop scrollPaneSelector=".scroll-lock-container" />
 
       <Suspense fallback={<Spinner />}>
-        <SiteFrame>
+        <ProjectFrame>
           <RoutingHub />
-        </SiteFrame>
+        </ProjectFrame>
       </Suspense>
 
       { PROJECT_CONFIGS[currentProject].HAS_PLAYER && (

@@ -13,7 +13,7 @@ import { App, appReducer } from './modules/app'
 import { loginReducer } from './modules/login'
 import { cartReducer } from './modules/cart'
 import { contentReducer } from './modules/content'
-import './styles'
+import './styles/core'
 
 declare const window: any
 

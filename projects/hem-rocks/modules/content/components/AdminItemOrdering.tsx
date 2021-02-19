@@ -1,18 +1,13 @@
-import React, { ReactElement, useState, SyntheticEvent, useEffect, useCallback } from 'react'
+import React, { ReactElement, useState, useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useLocation } from 'react-router'
 import produce from 'immer'
-import { isEmpty, isEqual, startCase, find, map, filter } from 'lodash'
 // @ts-ignore
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-import { slugify } from 'voca'
-import { ElectronOnly, ZoomTextarea } from '../../../../../lib/components'
-import { assetHostHostname } from '../../../functions'
-import { IContentItem, requestReadChunk, fieldTypes, hasTag, modelize, requestCreateItems, requestDeleteItems, requestUpdateItems, hasCategory } from '../index'
+import { ElectronOnly } from '../../../../../lib/components'
+import { IContentItem, hasTag, requestUpdateItems, } from '../index'
 import { RootState } from '../../../index'
-import { BERLIN_STOCK_PHOTOS } from '../../../config'
-import uuid from 'uuid'
 import { requestReadItems } from '../actions'
+import { hasCategory } from '../functions'
 
 interface IProps { }
 
@@ -37,7 +32,8 @@ function AdminItemOrdering({ }: IProps): ReactElement {
     let sortSet = Array.from(allContentItems)
 
     sortSet = sortSet.filter(item => (
-      hasTag(item, 'home-features')
+      hasCategory(item, 'projects')
+      && item.project === 'jag.rip'
     ))
 
     sortSet.sort(

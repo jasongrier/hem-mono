@@ -2,8 +2,7 @@ import React, { ReactElement, PropsWithChildren, useCallback, useState, useEffec
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import marked from 'marked'
-import { EnlargeButton } from '../../../../../lib/packages/hem-buttons'
-import { SplatterDims } from '../../../../../lib/packages/hem-boxplatter'
+import { SplatterDims, Tilt } from '../../../../../lib/packages/hem-boxplatter'
 import { assetHostHostname } from '../../../functions'
 import { BERLIN_STOCK_PHOTOS } from '../../../config'
 import { IContentItem, setCurrentItem, MainContentBoxActions, hasCategory } from '../index'
@@ -15,20 +14,24 @@ interface IProps {
   tag: string
 
   badgeText?: ReactElement | string
+  bipolarX?: boolean
+  bipolarY?: boolean
   buttonText?: string
   className?: string
   linkTo?: (contentItem: IContentItem) => string
-  noSplatter?: boolean
-  secondaryTitleField?: 'secondaryTitle' | 'attribution'
-  width?: number
-  showBlurb?: boolean
-  minMarginX?: number
-  minMarginY?: number
   marginRangeX?: number
   marginRangeY?: number
+  minMarginX?: number
+  minMarginY?: number
+  noSplatter?: boolean
+  noTilt?: boolean
+  rangeX?: number
+  rangeY?: number
   renderActionsOn?: 'key-art' | 'text'
-  bipolarX?: boolean
-  bipolarY?: boolean
+  secondaryTitleField?: 'secondaryTitle' | 'attribution'
+  showBlurb?: boolean
+  width?: number
+  height?: number
 }
 
 function MainContentBox({
@@ -42,13 +45,17 @@ function MainContentBox({
   className,
   linkTo: customLinkTo,
   noSplatter,
+  noTilt,
   width = 400,
+  height,
   secondaryTitleField = 'secondaryTitle',
   showBlurb = true,
   minMarginX = 50,
   minMarginY = 30,
   marginRangeX = 0,
   marginRangeY = 0,
+  rangeX,
+  rangeY,
   renderActionsOn = 'text'
 }: PropsWithChildren<IProps>): ReactElement {
   const dispatch = useDispatch()
@@ -86,85 +93,91 @@ function MainContentBox({
       `}
       id={contentItem.slug}
       width={width}
-      height={0}
-      rangeX={100}
-      rangeY={0}
+      height={height || 0}
+      rangeX={rangeX || 100}
+      rangeY={rangeY || 0}
       marginRangeX={marginRangeX}
       marginRangeY={marginRangeY}
     >
-      {(badgeText || contentItem.badgeText) && (
-        <div className="main-content-box-badge">
-          <strong>{ badgeText || contentItem.badgeText }</strong>
-        </div>
-      )}
-      <Link to={linkTo}>
-        {contentItem[secondaryTitleField] && (
-          <h4 dangerouslySetInnerHTML={{ __html: contentItem[secondaryTitleField] }} />
-        )}
-        <h3 dangerouslySetInnerHTML={{ __html: contentItem.titleWrapping || contentItem.title }} />
-      </Link>
-      <div
-        className="main-content-box-key-art"
-        onClick={onClick}
-      >
-        { renderActionsOn === 'key-art' && (
-          <MainContentBoxActions
-            linkTo={linkTo}
-            buttonText={buttonText}
-          >
-            { children }
-          </MainContentBoxActions>
+      <Tilt disabled={noTilt}>
+        {(badgeText || contentItem.badgeText) && (
+          <div className="main-content-box-badge">
+            <strong>{ badgeText || contentItem.badgeText }</strong>
+          </div>
         )}
         <Link to={linkTo}>
-          { !BERLIN_STOCK_PHOTOS && (
-            <div
-              className="main-content-box-key-art-image"
-              style={{
-                backgroundImage: `url(${assetHost}/hem-rocks/content/images/key-art/${contentItem.keyArt})`
-              }}
-            />
+          {contentItem[secondaryTitleField] && (
+            <h4 dangerouslySetInnerHTML={{ __html: contentItem[secondaryTitleField] }} />
           )}
-          { BERLIN_STOCK_PHOTOS && (
-            <>
-              <div className="bsp-enlarge-button action-button">
-                { contentItem.isPhysicalProduct ? 'Order now' : 'Download' }
-              </div>
+          <h3 dangerouslySetInnerHTML={{ __html: contentItem.titleWrapping || contentItem.title }} />
+        </Link>
+        <div
+          className="main-content-box-key-art"
+          onClick={onClick}
+        >
+          { renderActionsOn === 'key-art'
+            && buttonText
+            && (
+              <MainContentBoxActions
+                linkTo={linkTo}
+                buttonText={buttonText}
+              >
+                { children }
+              </MainContentBoxActions>
+          )}
+          <Link to={linkTo}>
+            { !BERLIN_STOCK_PHOTOS && (
               <div
                 className="main-content-box-key-art-image"
                 style={{
-                  backgroundImage: `url(${assetHost}/berlin-stock-photos/content/images/jpg-thumbs/${contentItem.keyArt})`
+                  backgroundImage: `url(${assetHost}/hem-rocks/content/images/key-art/${contentItem.keyArt})`
                 }}
               />
-            </>
-          )}
-          { BERLIN_STOCK_PHOTOS && index <= 10 && (
-            <div
-              className="main-content-box-key-art-placeholder"
-              style={{
-                backgroundImage: `url(${assetHost}/berlin-stock-photos/content/images/jpg-placeholders/${contentItem.keyArt})`
-              }}
-            />
-          )}
-        </Link>
-      </div>
-      <div
-        className="main-content-box-text"
-        onClick={onClick}
-      >
-        { showBlurb && (
-          <Link to={linkTo}>
-            <div dangerouslySetInnerHTML={{ __html: marked(contentItem.blurb) }} />
+            )}
+            { BERLIN_STOCK_PHOTOS && (
+              <>
+                <div className="bsp-enlarge-button action-button">
+                  { contentItem.isPhysicalProduct ? 'Order now' : 'Download' }
+                </div>
+                <div
+                  className="main-content-box-key-art-image"
+                  style={{
+                    backgroundImage: `url(${assetHost}/berlin-stock-photos/content/images/jpg-thumbs/${contentItem.keyArt})`
+                  }}
+                />
+              </>
+            )}
+            { BERLIN_STOCK_PHOTOS && index <= 10 && (
+              <div
+                className="main-content-box-key-art-placeholder"
+                style={{
+                  backgroundImage: `url(${assetHost}/berlin-stock-photos/content/images/jpg-placeholders/${contentItem.keyArt})`
+                }}
+              />
+            )}
           </Link>
-        )}
-        { renderActionsOn === 'text' && (
-          <MainContentBoxActions
-            linkTo={linkTo}
-            buttonText={buttonText}
-          >
-            { children }
-          </MainContentBoxActions>
-        )}
-      </div>
+        </div>
+        <div
+          className="main-content-box-text"
+          onClick={onClick}
+        >
+          { showBlurb && (
+            <Link to={linkTo}>
+              <div dangerouslySetInnerHTML={{ __html: marked(contentItem.blurb) }} />
+            </Link>
+          )}
+          { renderActionsOn === 'text'
+            && buttonText
+            && (
+              <MainContentBoxActions
+                linkTo={linkTo}
+                buttonText={buttonText}
+              >
+                { children }
+              </MainContentBoxActions>
+          )}
+        </div>
+      </Tilt>
     </SplatterDims>
   )
 }

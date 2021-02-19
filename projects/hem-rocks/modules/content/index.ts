@@ -1,4 +1,5 @@
 import { AnyAction } from 'redux'
+import { PROJECT_CONFIGS } from '../../config'
 
 export interface IContentItem {
   acceptingDonations: boolean
@@ -373,6 +374,7 @@ export {
   hasTag,
   modelize,
   readAllItems,
+  selectableCategories,
   uncompressItem,
   uniqueSlug,
   validateCompressionMap,

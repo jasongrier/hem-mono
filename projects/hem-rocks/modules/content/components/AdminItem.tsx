@@ -1,15 +1,14 @@
 import React, { ReactElement, useState, SyntheticEvent, useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useLocation } from 'react-router'
+import { useHistory } from 'react-router'
 import produce from 'immer'
+import uuid from 'uuid'
 import { isEmpty, isEqual, startCase, find } from 'lodash'
 import { slugify, titleCase } from 'voca'
 import { ElectronOnly, ZoomTextarea } from '../../../../../lib/components'
 import { assetHostHostname } from '../../../functions'
-import { categories, IContentItem, fieldTypes, modelize, requestCreateItems, requestDeleteItems, requestUpdateItems, hasCategory } from '../index'
+import { selectableCategories, IContentItem, fieldTypes, modelize, requestCreateItems, requestDeleteItems, requestUpdateItems, hasCategory, categories } from '../index'
 import { RootState } from '../../../index'
-import { BERLIN_STOCK_PHOTOS } from '../../../config'
-import uuid from 'uuid'
 
 interface IProps {
   create: boolean
@@ -171,110 +170,6 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
 
   const assetHost = assetHostHostname()
 
-  const presetTags = [
-    'Abandoned Bikes',
-    'Abstract',
-    'Arches and Overpasses',
-    'Architecture',
-    'Astronomy',
-    'Bikes',
-    'Birdhouses',
-    'Bottles',
-    'Bottle Caps',
-    'Broken Glass',
-    'Candy Machines',
-    'Cobblestones',
-    'Condom And Needle Vending Machines',
-    'Construction',
-    'Cool Cars',
-    'Coronatimes',
-    'Doener',
-    'Doors',
-    'Drinking',
-    'Elon Musk',
-    'Fences',
-    'Flowers',
-    'Food Photography',
-    'Forest',
-    'Free Shit',
-    'Fucked Up Cars',
-    'Fucked Up Phone Booths',
-    'German Words',
-    'Glass Bottle Gumdrops',
-    'Glitter',
-    'Graffiti',
-    'Grass',
-    'Gray Skies',
-    'Green Depth',
-    'Grit',
-    'Guerilla Gardening',
-    'High Up',
-    'Industry',
-    'Interiors',
-    'Iron and Steel',
-    'Kids',
-    'Lakes',
-    'Malfunction',
-    'Maritime',
-    'Markets',
-    'Monuments',
-    'Nice Fonts',
-    'Nite Time',
-    'Old Shit',
-    'Pappelfuzz',
-    'Parks',
-    'Paths',
-    'Patterns',
-    'People',
-    'Piles',
-    'Poignancy',
-    'Political',
-    'Posters',
-    'Pretty Skies',
-    'Pretty Tiles',
-    'Public Works',
-    'Puddles',
-    'Purple Pipe',
-    'Railing',
-    'Rain',
-    'Rainbows',
-    'Ruins',
-    'Rust',
-    'Sandy Soil',
-    'Shopping Carts',
-    'Sidewalks',
-    'Signage',
-    'Silver Paint',
-    'Soviet Stuff',
-    'Spaetis',
-    'Springtime',
-    'Statues',
-    'Stickers',
-    'Stone',
-    'Storage Spaces',
-    'Storefronts',
-    'Streets',
-    'Street Signs',
-    'Stucco',
-    'Summer Vibes',
-    'Swans',
-    'Taped Up Boxes And Poles',
-    'The Baloon',
-    'The Canal',
-    'The Spree',
-    'The Wall',
-    'Trash Configurations',
-    'Trees',
-    'Treptow',
-    'Utility Boxes',
-    'Walls',
-    'Weeds',
-    'Weeping Willow Trees',
-    'Weirdness',
-    'Windows',
-    'WTF',
-  ]
-
   return (
     <ElectronOnly showMessage={true}>
       <form onSubmit={onSubmit}>
@@ -288,25 +183,6 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
               <img src={`${assetHost}/hem-rocks/content/images/key-art/${originalItem.keyArt}`} />
             )}
           </div>
-          {/* <button
-            className="action-button publish-item-button"
-            onClick={(evt) => {
-              evt.preventDefault()
-
-              if (originalItem) {
-                const updatedItem: IContentItem = produce(originalItem, (draftItem) => {
-                  draftItem.published = !draftItem.published
-                })
-                dispatch(requestUpdateItems([updatedItem]))
-              }
-
-              setWorkingItem(produce(workingItem, (draftItem: any) => {
-                draftItem.published = !draftItem.published
-              }))
-            }}
-          >
-            { workingItem.published ? 'Unpublish' : 'Publish' }
-          </button> */}
           <button
             className="action-button save-item-button"
             disabled={!canSave}
@@ -314,33 +190,6 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
           >
             Save
           </button>
-          { hasCategory(workingItem, 'stock-photos') && (
-            <div style={{
-              paddingLeft: '420px',
-            }}>
-              { presetTags.map(tag => (
-                <div
-                  key={slugify(tag)}
-                  onClick={() => {
-                    setWorkingItem(produce(workingItem, (draftItem: any) => {
-                      draftItem.tags = (draftItem.tags + ', ' + slugify(tag)).replace(/^, /, '')
-                      setCanSave(!isEqual(draftItem, originalItem))
-                    }))
-                  }}
-                  style={{
-                    float: 'left',
-                    margin: '0 10px 10px 0',
-                    border: '1px solid #000',
-                    padding: '5px',
-                    cursor: 'pointer',
-                    lineHeight: '20px',
-                  }}
-                >
-                  { tag }
-                </div>
-              ))}
-            </div>
-          )}
         </header>
         <table className="admin-item">
           <tbody>
@@ -374,11 +223,11 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
                         className="custom-select"
                         name="select"
                         onChange={(evt: SyntheticEvent<HTMLSelectElement>) => onChange(fieldName, evt.currentTarget.value)}
-                        // value={(workingItem as any)[fieldName]}
-                        defaultValue="projects"
+                        value={(workingItem as any)[fieldName]}
+                        defaultValue="all"
                       >
                         <option value="all">All</option>
-                        { categories.map(category => (
+                        { selectableCategories(categories, currentProject).map(category => (
                           <option
                             key={category}
                             value={category}

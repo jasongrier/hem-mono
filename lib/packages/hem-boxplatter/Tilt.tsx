@@ -3,8 +3,8 @@ import React, { PropsWithChildren, ReactElement, useEffect, useRef } from 'react
 interface IProps {
   amount?: number
   both?: boolean
-  className: string
   compensate?: boolean
+  disabled?: boolean
   onRender?: () => void
   skew?: number
 }
@@ -12,12 +12,12 @@ interface IProps {
 function Tilt({
   children,
 
-  amount = 1,
+  amount = 5,
   both = false,
-  className,
   compensate = true,
+  disabled,
   onRender,
-  skew = 1,
+  skew = 0,
 }: PropsWithChildren<IProps>): ReactElement {
   const el = useRef<null | HTMLDivElement>(null)
 
@@ -54,12 +54,11 @@ function Tilt({
     onRender && onRender()
   }, [])
 
+  if (disabled) return (<>{ children }</>)
+
   return (
     <div
-      className={`
-        hem-tilt
-        ${className ? className : ''}
-      `}
+      className="hem-tilt"
       ref={el}
     >
       <div className="hem-tilt-tiltor">
