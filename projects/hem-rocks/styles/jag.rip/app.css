@@ -3,10 +3,10 @@ a {
   text-decoration: none;
 }
 
-a:active,
+/* a:active,
 a:focus {
   outline: 2px solid #fff;
-}
+} */
 
 .admin-link {
   position: fixed;
@@ -24,7 +24,7 @@ a:focus {
   font-size: 18px;
 }
 
-a[href="#more-anchor"] {
+.more-link {
   position: fixed;
   bottom: 0;
   right: 180px;
@@ -33,6 +33,8 @@ a[href="#more-anchor"] {
   text-transform: uppercase;
   font-size: 48px;
   background-color: #000;
+  transform: scale(.7);
+  transform-origin: bottom;
 }
 
 a[id="more-anchor"] {

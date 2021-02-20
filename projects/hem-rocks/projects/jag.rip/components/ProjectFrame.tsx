@@ -1,6 +1,8 @@
 import React, { PropsWithChildren, ReactElement, useCallback, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import { ElectronOnly } from '../../../../../lib/components'
+import { RootState } from '../../../index'
 import '../../../styles/jag.rip'
 
 interface IProps {}
@@ -12,6 +14,9 @@ function ProjectFrame({ children }: PropsWithChildren<IProps>): ReactElement {
 
   const moreLinkOnClick = useCallback(
     function moreLinkOnClickFn() {
+      const thirdBox = document.querySelector('.main-content-box:nth-child(3)')
+      if (!thirdBox) return
+      thirdBox.scrollIntoView({ behavior: 'smooth' })
       setMoreLinkClicked(true)
     }, [],
   )
@@ -30,15 +35,17 @@ function ProjectFrame({ children }: PropsWithChildren<IProps>): ReactElement {
       </header>
       { children }
       <footer>
-        { !moreLinkClicked && (
-          <a
-            href="#more-anchor"
-            onClick={moreLinkOnClick}
-          >
-            &darr;
-          </a>
-        )}
-        <a id="more-anchor">????</a>
+        {/* { !moreLinkClicked
+          && !pathname.includes('admin')
+          && (
+            <a
+              className="more-link"
+              href="#"
+              onClick={moreLinkOnClick}
+            >
+              &darr;
+            </a>
+        )} */}
       </footer>
     </div>
   )

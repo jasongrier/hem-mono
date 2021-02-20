@@ -53,14 +53,16 @@ body {
 
 .main-content-filters a {
   display: block;
+  padding: 0;
   margin-bottom: 10px;
 }
 
 .main-content-filters a:hover {
-  text-decoration: underline;
+  text-decoration: overline;
 }
 
 .main-content-filter-active {
+  margin-bottom: 0;
   font-size: 24px;
   line-height: 38px;
   text-decoration: overline;
