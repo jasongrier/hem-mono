@@ -87,11 +87,17 @@ function App(): ReactElement {
     `}>
       <ScrollToTop scrollPaneSelector=".scroll-lock-container" />
 
-      <Suspense fallback={<Spinner />}>
-        <ProjectFrame>
-          <RoutingHub />
-        </ProjectFrame>
-      </Suspense>
+      <div className="scroll-lock-container">
+        <div className="scroll-lock-content">
+          <main className="main-content">
+            <Suspense fallback={<Spinner />}>
+              <ProjectFrame>
+                <RoutingHub />
+              </ProjectFrame>
+            </Suspense>
+          </main>
+        </div>
+      </div>
 
       { PROJECT_CONFIGS[currentProject].HAS_PLAYER && (
         <Hide from={PROJECT_CONFIGS[currentProject].HIDE_PLAYER_FRAME_FOR}>

@@ -32,8 +32,7 @@ function AdminItemOrdering({ }: IProps): ReactElement {
     let sortSet = Array.from(allContentItems)
 
     sortSet = sortSet.filter(item => (
-      hasCategory(item, 'projects')
-      && hasTag(item, 'labels')
+      hasTag(item, 'home')
       && item.project === 'jag.rip'
     ))
 

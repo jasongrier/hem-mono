@@ -4,7 +4,7 @@ import { useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
 import Scrollbars from 'react-scrollbars-custom'
 import { slugify, titleCase } from 'voca'
-import { filter, isEmpty, find, isNaN } from 'lodash'
+import { filter, isEmpty, find, isNaN, orderBy, intersection } from 'lodash'
 import ReactGA from 'react-ga'
 import { uniq, flatten, compact, shuffle } from 'lodash'
 import moment from 'moment'
@@ -15,8 +15,8 @@ import { replacePlaylist, setPlayerPlaylist, ITrack } from '../../../../../lib/m
 import { MainContentBox } from './index'
 import { IContentItem, setCurrentItems } from '../index'
 import { RootState } from '../../../index'
-import { LISTS_HAVE_BLURBS, PROJECT_CONFIGS as UNTYPED_PROJECT_CONFIGS, RELEASE_PHASE } from '../../../config'
-import { hasTag, hasCategory, contentItemToTrack, getContentItemsFromRawList, tagSpellingCorrections, getContentItemById } from '../functions'
+import { LISTS_HAVE_BLURBS, PROJECT_CONFIGS as UNTYPED_PROJECT_CONFIGS } from '../../../config'
+import { hasTag, hasCategory, contentItemToTrack, getContentItemsFromRawList, smartSlugify, tagSpellingCorrections, getContentItemById } from '../functions'
 import { requestReadChunk } from '../actions'
 
 const PROJECT_CONFIGS = UNTYPED_PROJECT_CONFIGS as any
@@ -68,6 +68,7 @@ interface IProps {
   orderByOrder?: boolean
   orderByTitle?: boolean
   playlistToSet?: number
+  prependTagLinks?: Array<{ title: string, url: string }>
   randomizeNonSticky?: boolean
   randomizeTags?: string[]
   setDefaultEmptyPlaylist?: boolean
@@ -122,6 +123,7 @@ function MainContentList({
   orderByOrder,
   orderByTitle,
   playlistToSet = 5,
+  prependTagLinks = [],
   randomizeNonSticky,
   randomizeTags,
   setDefaultEmptyPlaylist = true,
@@ -217,7 +219,9 @@ function MainContentList({
     }
 
     if (speciallyOrderedTags) {
-      for (const soTag of speciallyOrderedTags) {
+      const validSpeciallyOrderedTags = intersection(speciallyOrderedTags, semifinalFilters)
+
+      for (const soTag of validSpeciallyOrderedTags) {
         const soIndex = semifinalFilters.findIndex(f => f === soTag)
 
         if (typeof soIndex === 'number' && soIndex > -1) {
@@ -225,7 +229,7 @@ function MainContentList({
         }
       }
 
-      semifinalFilters = speciallyOrderedTags.concat(compact(semifinalFilters))
+      semifinalFilters = validSpeciallyOrderedTags.concat(compact(semifinalFilters))
     }
 
     if (excludeTags) {
@@ -436,8 +440,31 @@ function MainContentList({
   }, [currentFilter])
 
   function dateSortFn(a: IContentItem, b: IContentItem) {
-    // @ts-ignore
-    return moment(b.date, 'DD-MM-YYYY') - moment(a.date, 'DD-MM-YYYY')
+    const months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ]
+
+    const [aMonth, aYear] = a.date.split(' ')
+    const [bMonth, bYear] = b.date.split(' ')
+
+    if (parseInt(aYear, 10) === parseInt(bYear, 10)) {
+      return months.indexOf(bMonth) - months.indexOf(aMonth)
+    }
+
+    else {
+      return parseInt(bYear, 10) - parseInt(aYear, 10)
+    }
   }
 
   function orderSortFn(a: IContentItem, b: IContentItem) {
@@ -484,17 +511,29 @@ function MainContentList({
         <div className="main-content-filters clearfix">
           <div className="main-content-filters-inner">
             <h3>Filter:</h3>
+            { prependTagLinks.map(tag => (
+              <Link
+                className={`
+                  main-content-filter
+                  ${ currentFilter === slugify(tag.title) ? 'main-content-filter-active' : '' }
+                `}
+                key={tag.title}
+                to={tag.url}
+              >
+                <span dangerouslySetInnerHTML={{ __html: tagSpellingCorrections(tag.title).replace(/ /g, '&nbsp;') }} />
+              </Link>
+            ))}
             { finalFilters.map(tag => (
               <Link
                 className={`
                   main-content-filter
-                  ${ currentFilter === slugify(tag) ? 'main-content-filter-active' : '' }
+                  ${ currentFilter === smartSlugify(tag) ? 'main-content-filter-active' : '' }
                 `}
                 key={tag}
                 to={
-                  currentFilter === slugify(tag) && !noAll
+                  currentFilter === smartSlugify(tag) && !noAll
                     ? `/${category}`
-                    : `/${category}${tag !== 'All' ? '/filter/' + slugify(tag) : ''}`
+                    : `/${category}${tag !== 'All' ? '/filter/' + smartSlugify(tag) : ''}`
                 }
               >
                 <span dangerouslySetInnerHTML={{
