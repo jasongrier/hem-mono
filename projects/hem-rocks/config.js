@@ -99,7 +99,7 @@ module.exports.PROJECT_CONFIGS = {
       META_DESCRIPTION: 'Official site of Jason Aaron Gillis-Grier.',
     },
     HAS_CART: false,
-    HAS_PLAYER: false,
+    HAS_PLAYER: true,
     HAS_COOKIES: false,
     RELEASE_PHASE: 0,
     HIDE_COOKIES_FRAME_FOR: [],

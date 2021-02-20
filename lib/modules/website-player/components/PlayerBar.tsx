@@ -24,13 +24,6 @@ function PlayerBar(): ReactElement {
     setPlaylistExpanded(false)
   }, [pathname])
 
-  // useEffect(function TEMP() {
-  //   setTimeout(function() {
-  //     setExpanded(true)
-  //     setPlaylistExpanded(true)
-  //   }, 250)
-  // }, [])
-
   useEffect(function openOnPlay() {
     if (playing && !expanded) {
       setExpanded(true)

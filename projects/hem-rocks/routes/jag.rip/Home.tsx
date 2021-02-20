@@ -31,7 +31,7 @@ function Home(): ReactElement {
           { title: 'Home', url: '/' },
         ]}
         appendTagLinks={[
-          { title: 'Info', url: '/info' },
+          { title: 'About', url: '/about' },
         ]}
         currentFilter={currentFilter || 'home'}
         orderByOrder={pathname === '/'}
