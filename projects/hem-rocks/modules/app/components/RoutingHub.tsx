@@ -66,10 +66,11 @@ import {
   NotFound as BerlinStockPhotosNotFound,
   LicenseAgreement as BerlinStockPhotosLicenseAgreement,
   Prints as BerlinStockPhotosPrints,
-} from '../../../routes/berlin.stock.photos.com'
+} from '../../../routes/berlinstockphotos.com'
 
 import {
   Home as JagHome,
+  About as JagAbout,
   ReactConsulting as JagReactConsulting,
 } from '../../../routes/jag.rip'
 
@@ -91,8 +92,8 @@ function RoutingHub(): ReactElement {
         <Route exact path="/page/:contentItemSlug/cart" component={GenericPage} />
 
         {/* Static Pages */}
-        <Route exact path="/about" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotosAbout : About} />
-        <Route exact path="/about/cart" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotosAbout : About} />
+        <Route exact path="/about" component={BERLIN_STOCK_PHOTOS ? JagAbout : About} />
+        <Route exact path="/about/cart" component={BERLIN_STOCK_PHOTOS ? JagAbout : About} />
 
         <Route exact path="/contact" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotosContact : Contact} />
         <Route exact path="/contact/cart" component={BERLIN_STOCK_PHOTOS ? BerlinStockPhotosContact : Contact} />

@@ -66,21 +66,28 @@ function ProjectFrame({ children }: PropsWithChildren<IProps>): ReactElement {
       <div className="main-jag">
         { children }
       </div>
-      <footer className="main-footer">
-        <ElectronNot>
-          { showMoreLink
-            && itemsCount > 2
-            && (
-              <a
-                className="more-link"
-                href="#"
-                onClick={moreLinkOnClick}
-              >
-                &darr;
-              </a>
-          )}
-        </ElectronNot>
-      </footer>
+      <ElectronNot>
+        <footer className="main-footer">
+          <p>
+            &copy; Jason Grier, 2021
+            &nbsp;|&nbsp;<Link to="/news">News</Link>
+            &nbsp;|&nbsp;<Link to="/react-javascript-consulting">React Javascript Consulting</Link>
+            &nbsp;|&nbsp;<a href="https://web.facebook.com/jasongriermusic">FB</a>
+            &nbsp;|&nbsp;<a href="mailto:j@hem.rocks">j@hem.rocks</a>
+          </p>
+            { showMoreLink
+              && itemsCount > 2
+              && (
+                <a
+                  className="more-link"
+                  href="#"
+                  onClick={moreLinkOnClick}
+                >
+                  &darr;
+                </a>
+            )}
+        </footer>
+      </ElectronNot>
     </div>
   )
 }
