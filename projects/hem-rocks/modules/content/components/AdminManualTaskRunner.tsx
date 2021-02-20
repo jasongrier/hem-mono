@@ -134,7 +134,9 @@ async function migrate(allContentItems: IContentItem[]) {
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
 
-    newItem.tags = newItem.tags.replace('hot-stuff', 'home')
+    if (newItem.project === 'jag.rip') {
+      newItem.tags = newItem.tags.replace('jason-grier', 'home')
+    }
 
     newItems.push(newItem)
   }

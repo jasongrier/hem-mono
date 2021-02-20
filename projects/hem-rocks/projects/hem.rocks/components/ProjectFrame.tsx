@@ -8,16 +8,12 @@ function ProjectFrame({ children }: PropsWithChildren<IProps>): ReactElement {
   return (
     <div className="project-frame project-frame-hem-rocks">
       <TopBar />
-      <div className="scroll-lock-container">
-        <div className="scroll-lock-content">
-          <main className="main-content">
-            { children }
-          </main>
-          <footer className="main-footer">
-            <SiteFooter />
-          </footer>
-        </div>
+      <div className="main-hem">
+        { children }
       </div>
+      <footer className="main-footer">
+        <SiteFooter />
+      </footer>
     </div>
   )
 }

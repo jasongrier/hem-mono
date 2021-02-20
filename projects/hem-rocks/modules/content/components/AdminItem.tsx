@@ -148,6 +148,7 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
     'published',
     'category',
     'tags',
+    'date',
     'attribution',
     'secondaryAttribution',
     'titleWrapping',

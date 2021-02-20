@@ -8,6 +8,7 @@ export { default as modelize } from './modelize'
 export { default as readAllItems } from './read-all-items'
 export { default as parseText } from './parse-text'
 export { default as selectableCategories } from './selectable-categories'
+export { default as smartSlugify } from './smart-slugify'
 export { default as tagSpellingCorrections } from './tag-spelling-corrections'
 export { default as uniqueSlug } from './unique-slug'
 

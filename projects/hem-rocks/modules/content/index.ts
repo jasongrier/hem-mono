@@ -375,6 +375,7 @@ export {
   modelize,
   readAllItems,
   selectableCategories,
+  smartSlugify,
   uncompressItem,
   uniqueSlug,
   validateCompressionMap,

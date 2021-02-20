@@ -19,13 +19,12 @@ function Contact(): ReactElement {
         <div className="first-main-content-section">
           <ContactForm
             action={assetHostHostname() + '/hem-rocks/api/?hem-cmd=contact-form'}
-
             subjectLabel="Subject"
             subjectPlaceholder="Greetz from Hrvoje"
             emailLabel="Your email (so we can reach you)"
             emailPlaceholder="hrvoje.horvat@gmail.com"
-            textareaLabel="Please say more"
-            textareaPlaceholder="Hey do you guys accept demos?"
+            bodyLabel="Please say more"
+            bodyPlaceholder="Hey do you guys accept demos?"
             buttonText="Send"
             spinnerText="Sending..."
             successContent={id => (

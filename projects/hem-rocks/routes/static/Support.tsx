@@ -27,12 +27,11 @@ function Support(): ReactElement {
               'Website bugs or suggestions',
               'Something else',
             ]}
-
             subjectLabel="What seems to be the problem? (choose one)"
             emailLabel="Your email (so we can reach you)"
             emailPlaceholder="hrvoje.horvat@gmail.com"
-            textareaLabel="Please say more"
-            textareaPlaceholder="Why can't I download my files a second time?!"
+            bodyLabel="Please say more"
+            bodyPlaceholder="Why can't I download my files a second time?!"
             buttonText="Send"
             spinnerText="Sending..."
             successContent={id => (

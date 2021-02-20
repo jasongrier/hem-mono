@@ -1,5 +1,7 @@
-import React, { PropsWithChildren, ReactElement, useEffect, useRef } from 'react'
-import { ContactForm } from '../../../lib/components'
+import React, { ReactElement } from 'react'
+import { Link } from 'react-router-dom'
+import { assetHostHostname } from '../../../hem-rocks/functions'
+import { ContactForm } from '../../../../lib/components'
 
 function ReactConsulting(): ReactElement {
   return (
@@ -14,7 +16,32 @@ function ReactConsulting(): ReactElement {
 
       <h2>TL;DR? Just get in touch:</h2>
 
-      {/* <ContactForm /> */}
+      <ContactForm
+        action={assetHostHostname() + '/hem-rocks/api/?hem-cmd=contact-form&site=bsp'}
+        subjectLabel="Subject"
+        subjectPlaceholder="Greetz from Hrvoje"
+        emailLabel="Your email (so we can reach you)"
+        emailPlaceholder="hrvoje.horvat@gmail.com"
+        bodyLabel="Please say more"
+        bodyPlaceholder="Sehr geehrte Damen und Herren..."
+        buttonText="Send"
+        spinnerText="Sending..."
+        successContent={id => (
+          <>
+            <h1>Talk soon!</h1>
+            <p>We'll get back to you soon.</p>
+            <p className="contact-form-home-link">&larr; <Link to="/">Home</Link></p>
+          </>
+        )}
+        errorContent={() => (
+          <>
+            <h1>Uh oh</h1>
+            <p>For some reason, your message could not be sent.</p>
+            <p>Please send an e-mail to: <a href="mailto:support@berlinstockphotos.com">support@berlinstockphotos.com</a></p>
+            <p className="contact-form-home-link">&larr; <Link to="/">Home</Link></p>
+          </>
+        )}
+      />
 
       <h2>More about what I offer</h2>
 

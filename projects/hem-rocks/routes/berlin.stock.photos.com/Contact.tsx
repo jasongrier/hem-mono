@@ -19,13 +19,12 @@ function Contact(): ReactElement {
           <h1>Contact us</h1>
           <ContactForm
             action={assetHostHostname() + '/hem-rocks/api/?hem-cmd=contact-form&site=bsp'}
-
             subjectLabel="Subject"
             subjectPlaceholder="Greetz from Hrvoje"
             emailLabel="Your email (so we can reach you)"
             emailPlaceholder="hrvoje.horvat@gmail.com"
-            textareaLabel="Please say more"
-            textareaPlaceholder="Sehr geehrte Damen und Herren..."
+            bodyLabel="Please say more"
+            bodyPlaceholder="Sehr geehrte Damen und Herren..."
             buttonText="Send"
             spinnerText="Sending..."
             successContent={id => (
@@ -46,7 +45,7 @@ function Contact(): ReactElement {
           />
         </div>
       </div>
-      
+
       <Footer />
     </>
   )
