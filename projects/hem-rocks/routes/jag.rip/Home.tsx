@@ -27,11 +27,23 @@ function Home(): ReactElement {
           boxRangeY={100}
           category="projects"
           additionalCategory="site-texts"
-          currentFilter={currentFilter || 'hot-stuff'}
+          appendTagLinks={[
+            { title: 'Info', url: '/info' },
+          ]}
+          currentFilter={currentFilter || 'home'}
           orderByOrder={true}
           shouldSetCurrentPlaylist={true}
-          speciallyOrderedTags={['Hot Stuff']}
-          excludeFromAll={['React Consulting']}
+          hideFilters={['Websites', 'Consulting', 'Productions']}
+          speciallyOrderedTags={[
+            'Home',
+            'Sound',
+            'Photo',
+            'Text',
+            'Code',
+            'Labels',
+            'Press',
+          ]}
+          excludeFromAll={['Consulting']}
         />
       </div>
     </div>

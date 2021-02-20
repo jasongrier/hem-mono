@@ -6,9 +6,10 @@ function tagSpellingCorrections(tag: string, split: boolean = false) {
     'Best Of': 'Best of',
   }
 
-  return ( split
-    ? tag.split(', ').map(t => map[t] || t).join(', ')
-    : map[tag] || tag
+  return (
+    split
+      ? tag.split(', ').map(t => map[t] || t).join(', ')
+      : map[tag] || tag
   )
 }
 

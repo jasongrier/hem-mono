@@ -26,6 +26,7 @@ interface IProps {
 
   additionalCategory?: string
   additionalFilters?: string[]
+  appendTagLinks?: Array<{ title: string, url: string }>
   applyCurrentFilter?: boolean
   blurb?: string | Function
   boxBipolarX?: boolean
@@ -82,6 +83,7 @@ function MainContentList({
 
   additionalCategory,
   additionalFilters,
+  appendTagLinks = [],
   applyCurrentFilter = true,
   blurb,
   boxBipolarX,
@@ -151,8 +153,18 @@ function MainContentList({
   const [finalFilters, setFinalFilters] = useState<string[]>([])
 
   useEffect(function getChunk() {
-    if (chunkLog.includes(category)) return
-    dispatch(requestReadChunk(category))
+    if (
+      additionalCategory
+      && !chunkLog.includes(category)
+      && !chunkLog.includes(additionalCategory)
+    ) {
+      dispatch(requestReadChunk(category))
+      dispatch(requestReadChunk(additionalCategory))
+    }
+
+    else if (!chunkLog.includes(category)) {
+      dispatch(requestReadChunk(category))
+    }
   }, [chunkLog])
 
   useEffect(function filters() {
@@ -485,7 +497,24 @@ function MainContentList({
                     : `/${category}${tag !== 'All' ? '/filter/' + slugify(tag) : ''}`
                 }
               >
-                <span dangerouslySetInnerHTML={{ __html: tagSpellingCorrections(tag).replace(/ /g, '&nbsp;') }} />
+                <span dangerouslySetInnerHTML={{
+                  __html: tagSpellingCorrections(tag)
+                    .replace('%26', ' &amp; ')
+                    .replace(/ /g, '&nbsp;')
+                  }}
+                />
+              </Link>
+            ))}
+            { appendTagLinks.map(tag => (
+              <Link
+                className={`
+                  main-content-filter
+                  ${ currentFilter === slugify(tag.title) ? 'main-content-filter-active' : '' }
+                `}
+                key={tag.title}
+                to={tag.url}
+              >
+                <span dangerouslySetInnerHTML={{ __html: tagSpellingCorrections(tag.title).replace(/ /g, '&nbsp;') }} />
               </Link>
             ))}
             { moreTagsLink && (

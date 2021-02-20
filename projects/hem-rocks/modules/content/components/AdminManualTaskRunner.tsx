@@ -134,13 +134,7 @@ async function migrate(allContentItems: IContentItem[]) {
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
 
-    if (hasCategory(newItem, 'stock-photos')) {
-      newItem.project = 'berlinstockphotos.com'
-    }
-
-    else {
-      newItem.project = 'hem.rocks'
-    }
+    newItem.tags = newItem.tags.replace('hot-stuff', 'home')
 
     newItems.push(newItem)
   }
@@ -152,9 +146,9 @@ async function migrate(allContentItems: IContentItem[]) {
   // ***** DANGER ZONE *****
   // ***** DANGER ZONE *****
 
-  // writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
-  // writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
-  // generateChunks(allContentItems)
+  writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
+  writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
+  generateChunks(allContentItems)
 }
 
 function AdminManualTaskRunner(): ReactElement {
