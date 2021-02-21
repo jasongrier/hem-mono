@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { useSelector } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import { Header, Footer } from '../../components/berlin-stock-photos'
-import { MainContentList, getContentItemBySlug } from '../../modules/content'
+import { MainContentList, getContentItemBySlug } from '../../modules/core/content'
 import { BASE_SITE_TITLE } from '../../config'
 import { RootState } from '../../index'
 

@@ -1,7 +1,7 @@
 import React, { ReactElement, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { CampaignMonitorForm, ElectronOnly, HamburgerMenu } from '../../../../lib/components'
-import { setMegaNavOpen } from '../../modules/app'
+import { setMegaNavOpen } from '../../modules/core/app'
 import { Logo, MainNavItem, SiteFooter } from './index'
 import ReactGA from 'react-ga'
 import { CAMPAIGN_MONITOR_FORM_ACTION, CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME, CAMPAIGN_MONITOR_FORM_ID, BERLIN_STOCK_PHOTOS } from '../../config'

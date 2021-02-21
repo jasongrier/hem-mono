@@ -95,6 +95,11 @@ a[id="more-anchor"] {
   padding: 0 40px;
   border-radius: 2px;
   background-color: #000;
+  cursor: pointer;
+}
+
+.main-content-box:hover .hem-tilt-tiltor {
+  background-color: #111;
 }
 
 .main-content-box h3 {

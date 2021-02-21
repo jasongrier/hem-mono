@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
 import { Link, useParams } from 'react-router-dom'
-import { MainContentList } from '../../modules/content'
+import { MainContentList } from '../../modules/core/content'
 import { BASE_SITE_TITLE } from '../../config'
 
 function Code(): ReactElement {

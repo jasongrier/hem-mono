@@ -1,7 +1,5 @@
 import React, { ReactElement } from 'react'
-import { Link } from 'react-router-dom'
-import { titleCase } from 'voca'
-import { IContentItem, MainContentBox } from '../../modules/content'
+import { IContentItem, MainContentBox } from '../../modules/core/content'
 import { TracksBoxChild } from './'
 
 interface IProps {

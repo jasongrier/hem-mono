@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { CloseButton } from '../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup, closePopup } from '../../../../lib/modules/popups'
 import { assetHostHostname } from '../../functions'
-import { IContentItem } from '../../modules/content'
+import { IContentItem } from '../../modules/core/content'
 
 interface  IProps {
   contentItem: IContentItem

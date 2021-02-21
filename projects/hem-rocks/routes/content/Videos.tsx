@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
 import { Link, useParams } from 'react-router-dom'
 import { noop } from 'lodash'
-import { MainContentList } from '../../modules/content'
+import { MainContentList } from '../../modules/core/content'
 import { BASE_SITE_TITLE } from '../../config'
 import { PlayPauseButton } from '../../../../lib/packages/hem-buttons'
 

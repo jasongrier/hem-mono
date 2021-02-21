@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router-dom'
-import { MainContentList, contentItemToTrack } from '../../modules/content'
+import { MainContentList, contentItemToTrack } from '../../modules/core/content'
 import { TrackPlayPauseButton } from '../../../../lib/modules/website-player'
 import { BASE_SITE_TITLE } from '../../config'
 

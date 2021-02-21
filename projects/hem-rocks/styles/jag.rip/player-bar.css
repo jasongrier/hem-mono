@@ -67,7 +67,7 @@
 
 .player-bar-toggle .hem-play-pause-button {
   margin-left: 0;
-  background-color: var(--line-orange);
+  background-color: #000;
 }
 
 .player-bar .player-bar-now-playing {
@@ -169,7 +169,7 @@
   width: 100vw;
   height: 445px;
   background: #222;
-  border-top: 1px solid var(--line-orange);
+  border-top: 1px solid #fff;
 }
 
 .player-bar-playlist ul {

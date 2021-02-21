@@ -8,11 +8,11 @@ import $ from 'jquery'
 import 'slick-carousel'
 import 'slick-carousel/slick/slick.css'
 import { NextButton, ChevronButton } from '../../../../lib/packages/hem-buttons'
-import { MainContentList, IContentItem } from '../../modules/content'
+import { MainContentList, IContentItem } from '../../modules/core/content'
 import { Header, Footer } from '../../components/berlin-stock-photos'
 import { assetHostHostname } from '../../functions'
 import { RootState } from '../../index'
-import { hasCategory, hasTag } from '../../modules/content'
+import { hasCategory, hasTag } from '../../modules/core/content'
 
 function BerlinStockPhotos(): ReactElement {
   const { contentItems } = useSelector((state: RootState) => ({
@@ -25,18 +25,18 @@ function BerlinStockPhotos(): ReactElement {
     if (heroine) return
     if (!contentItems) return
     if (!contentItems.length) return
-    
+
     const contentItem = sample(contentItems.filter(item => hasTag(item, 'best-of')))
-    
+
     if (!contentItem) return
-    
+
     setHeroine(contentItem)
   }, [contentItems, heroine])
 
   const { filter: currentFilter } = useParams()
-  
+
   const { pathname } = useLocation()
-  
+
   const assetHost = assetHostHostname()
   const isMoreTagsPage = pathname.includes('more-tags')
 
@@ -47,22 +47,22 @@ function BerlinStockPhotos(): ReactElement {
         <meta name="description" content="Lushness. Weirdness. Greenery. Grit. Cheap stock photos from Berlin, Germany, updated daily." />
       </Helmet>
       <div className={`
-        page 
+        page
         berlin-stock-photos
         ${ isMoreTagsPage ? 'bsp-page' : '' }
       `}>
         <Header />
-        
+
         <main>
           { heroine && !isMoreTagsPage && (
             <div className="bsp-heroine">
               <Link to={`/${heroine.category}/${heroine.slug}${currentFilter ? '/' + currentFilter : ''}`}>
-                <img 
+                <img
                   className="bsp-heroine-img-full"
                   src={`${assetHost}/berlin-stock-photos/content/images/jpg-web/${heroine.keyArt}`}
                   alt=""
                   />
-                <img 
+                <img
                   className="bsp-heroine-img-placeholder"
                   src={`${assetHost}/berlin-stock-photos/content/images/jpg-placeholders/${heroine.keyArt}`}
                   alt=""
@@ -73,12 +73,12 @@ function BerlinStockPhotos(): ReactElement {
               </div>
             </div>
           )}
-          
+
           <div className="bsp-content">
             { isMoreTagsPage && (
               <h1>All Tags</h1>
             )}
-            
+
             <MainContentList
               category="stock-photos"
               currentFilter={ currentFilter || 'best-of' }
