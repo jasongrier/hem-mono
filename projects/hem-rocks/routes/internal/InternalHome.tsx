@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
-import { ProtectedContent } from '../../modules/login'
+import { ProtectedContent } from '../../modules/core/login'
 import { BASE_SITE_TITLE } from '../../config'
 
 function InternalHome(): ReactElement {

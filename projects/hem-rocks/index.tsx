@@ -9,10 +9,10 @@ import { popupsReducer } from '../../lib/modules/popups'
 import { playerReducer } from '../../lib/modules/website-player'
 import { webMovieReducer } from '../../lib/modules/web-movie'
 import { flipBooksReducer } from '../../lib/modules/flip-book'
-import { App, appReducer } from './modules/app'
-import { loginReducer } from './modules/login'
-import { cartReducer } from './modules/cart'
-import { contentReducer } from './modules/content'
+import { App, appReducer } from './modules/core/app'
+import { loginReducer } from './modules/core/login'
+import { cartReducer } from './modules/core/cart'
+import { contentReducer } from './modules/core/content'
 import './styles/core'
 
 declare const window: any
@@ -37,7 +37,7 @@ const store = window.STORE = createStore(
   )
 )
 
-import { appSaga } from './modules/app'
+import { appSaga } from './modules/core/app'
 sagaMiddleware.run(appSaga)
 
 import { nextTrackSaga } from '../../lib/modules/website-player'
@@ -64,43 +64,43 @@ sagaMiddleware.run(trackEndedSaga)
 import { unpausePlayerSaga } from '../../lib/modules/website-player'
 sagaMiddleware.run(unpausePlayerSaga)
 
-import { createItemsSaga } from './modules/content'
+import { createItemsSaga } from './modules/core/content'
 sagaMiddleware.run(createItemsSaga)
 
-import { readChunkSaga } from './modules/content'
+import { readChunkSaga } from './modules/core/content'
 sagaMiddleware.run(readChunkSaga)
 
-import { readItemsSaga } from './modules/content'
+import { readItemsSaga } from './modules/core/content'
 sagaMiddleware.run(readItemsSaga)
 
-import { updateItemsSaga } from './modules/content'
+import { updateItemsSaga } from './modules/core/content'
 sagaMiddleware.run(updateItemsSaga)
 
-import { deleteItemsSaga } from './modules/content'
+import { deleteItemsSaga } from './modules/core/content'
 sagaMiddleware.run(deleteItemsSaga)
 
-import { addProductToCartSaga } from './modules/cart'
+import { addProductToCartSaga } from './modules/core/cart'
 sagaMiddleware.run(addProductToCartSaga)
 
-import { clearCartSaga } from './modules/cart'
+import { clearCartSaga } from './modules/core/cart'
 sagaMiddleware.run(clearCartSaga)
 
-import { removeProductFromCartSaga } from './modules/cart'
+import { removeProductFromCartSaga } from './modules/core/cart'
 sagaMiddleware.run(removeProductFromCartSaga)
 
-import { requestSaleSaga } from './modules/cart'
+import { requestSaleSaga } from './modules/core/cart'
 sagaMiddleware.run(requestSaleSaga)
 
-import { submitSaleSaga } from './modules/cart'
+import { submitSaleSaga } from './modules/core/cart'
 sagaMiddleware.run(submitSaleSaga)
 
-import { loginCheckSaga } from './modules/login'
+import { loginCheckSaga } from './modules/core/login'
 sagaMiddleware.run(loginCheckSaga)
 
-import { loginSaga } from './modules/login'
+import { loginSaga } from './modules/core/login'
 sagaMiddleware.run(loginSaga)
 
-import { logoutSaga } from './modules/login'
+import { logoutSaga } from './modules/core/login'
 sagaMiddleware.run(logoutSaga)
 
 import { flipBooksSaga } from '../../lib/modules/flip-book'

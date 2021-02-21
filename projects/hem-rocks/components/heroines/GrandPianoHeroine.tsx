@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { find } from 'lodash'
 import { RootState } from '../../index'
-import { contentItemToTrack, requestReadItems } from '../../modules/content'
+import { contentItemToTrack, requestReadItems } from '../../modules/core/content'
 
 function GrandPianoHeroine(): ReactElement {
   const { allProducts } = useSelector((state: RootState) => ({

@@ -1,7 +1,8 @@
 import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
 import { useLocation, useParams } from 'react-router-dom'
-import { MainContentList } from '../../modules/content'
+import { compact } from 'lodash'
+import { MainContentList } from '../../modules/core/content'
 import { PROJECT_CONFIGS } from '../../config'
 
 function Home(): ReactElement {
@@ -30,9 +31,12 @@ function Home(): ReactElement {
         prependTagLinks={[
           { title: 'Home', url: '/' },
         ]}
-        appendTagLinks={[
+        appendTagLinks={compact([
           { title: 'About', url: '/about' },
-        ]}
+          window.process?.env.ELECTRON_MONO_DEV
+            ? { title: 'Admin', url: '/admin/list' }
+            : null
+        ])}
         currentFilter={currentFilter || 'home'}
         orderByOrder={pathname === '/'}
         shouldSetCurrentPlaylist={true}

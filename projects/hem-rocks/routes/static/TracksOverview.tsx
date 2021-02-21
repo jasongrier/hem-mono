@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { BASE_SITE_TITLE } from '../../config'
 import { TracksSubnav } from '../../components/layout'
 import { TracksOverviewContentBox, MainContentBanner } from '../../components/layout'
-import { hasCategory, hasTag, requestReadChunk, IContentItem } from '../../modules/content'
+import { hasCategory, hasTag, requestReadChunk, IContentItem } from '../../modules/core/content'
 import { RootState } from '../../'
 
 function getRow(tracks: IContentItem[], tag: string) {

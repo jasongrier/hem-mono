@@ -1,5 +1,5 @@
 import { FORCE_PLACEMATS } from '../config'
-import { IContentItem } from '../modules/content'
+import { IContentItem } from '../modules/core/content'
 
 function usePlacemats(contentItem: IContentItem) {
   if (FORCE_PLACEMATS) {

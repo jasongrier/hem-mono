@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { hasCategory, hasTag, requestReadChunk, IContentItem } from '../../modules/content'
+import { hasCategory, hasTag, requestReadChunk, IContentItem } from '../../modules/core/content'
 import { RootState } from '../../'
 
 function Todos(): ReactElement {

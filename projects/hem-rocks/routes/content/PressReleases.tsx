@@ -4,10 +4,10 @@ import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { AboutSubnav } from '../../components/layout'
 import { TrackPlayPauseButton } from '../../../../lib/modules/website-player'
-import { MainContentList, getContentItemsFromRawList, contentItemToTrack } from '../../modules/content'
+import { MainContentList, getContentItemsFromRawList, contentItemToTrack } from '../../modules/core/content'
 import { BASE_SITE_TITLE } from '../../config'
 import { RootState } from '../../index'
-import { getContentItemById } from '../../modules/content/functions'
+import { getContentItemById } from '../../modules/core/content/functions'
 import { isEmpty } from 'lodash'
 
 function PressReleases(): ReactElement {

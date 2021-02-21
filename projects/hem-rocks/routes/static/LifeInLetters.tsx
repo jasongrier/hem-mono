@@ -4,11 +4,11 @@ import { Helmet } from 'react-helmet'
 import { movieRequest, WebMoviePlayer } from '../../../../lib/modules/web-movie'
 import { setPlayerPlaylist, replacePlaylist, unpausePlayer, playTrack } from '../../../../lib/modules/website-player'
 import { SoundLibraryRefreshHeroine, HemRefreshHeroine, GrandPianoHeroine } from '../../components/heroines'
-import { MainContentList, getContentItemsFromList, getContentItemBySlug, contentItemToTrack } from '../../modules/content'
+import { MainContentList, getContentItemsFromList, getContentItemBySlug, contentItemToTrack } from '../../modules/core/content'
 import { assetHostHostname } from '../../functions'
 import { ReleasePhase } from '../../components/layout'
 import { BASE_SITE_TITLE } from '../../config'
-import { ProtectedContent } from '../../modules/login'
+import { ProtectedContent } from '../../modules/core/login'
 import { RootState } from '../../index'
 
 function WebMovie(): ReactElement {

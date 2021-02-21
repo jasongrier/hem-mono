@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 import { TrackPlayPauseButton } from '../../../../lib/modules/website-player'
-import { IContentItem, hasCategory, contentItemToTrack, getContentItemsFromRawList, hasTag } from '../../modules/content'
+import { IContentItem, hasCategory, contentItemToTrack, getContentItemsFromRawList, hasTag } from '../../modules/core/content'
 
 interface IProps {
   item: IContentItem

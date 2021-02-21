@@ -8,7 +8,7 @@ import { SoundLibrarySubnav } from '../../components/layout'
 import { assetHostHostname } from '../../functions'
 import { BASE_SITE_TITLE } from '../../config'
 import { RootState } from '../../index'
-import { getContentItemBySlug, hasCategory, hasTag, IContentItem, requestReadChunk } from '../../modules/content'
+import { getContentItemBySlug, hasCategory, hasTag, IContentItem, requestReadChunk } from '../../modules/core/content'
 
 function GenericPage(): ReactElement {
   const { chunkLog, contentItems } = useSelector((state: RootState) => ({

@@ -108,7 +108,22 @@ module.exports.PROJECT_CONFIGS = {
     NAG_TEXT: '',
     ROUTED_POPUPS: ['projects'],
     CURATED_PLAYLISTS: [],
-    CATEGORIES: ['projects', 'site-texts', 'press-clippings'],
+    CATEGORIES: [
+      'projects',
+      'site-texts',
+      'playlists',
+      'press-clippings',
+    ],
+    CURATED_PLAYLISTS: [
+      {
+        name: 'Tracks',
+        linkTo: '/tracks/filter/featured',
+      },
+      {
+        name: 'Radio & Interviews',
+        linkTo: '/tracks/filter/radio-interviews',
+      },
+    ],
   },
   'breto': { },
   'dot': { },

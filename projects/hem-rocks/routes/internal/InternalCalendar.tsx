@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { NavLink, Switch, Route } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
-import { AdminManualTaskRunner, AdminItem, AdminList } from '../../modules/content'
+import { AdminManualTaskRunner, AdminItem, AdminList } from '../../modules/core/content'
 import { BASE_SITE_TITLE } from '../../config'
 
 function InternalCalendar(): ReactElement {
