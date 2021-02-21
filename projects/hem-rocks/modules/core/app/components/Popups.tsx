@@ -133,6 +133,10 @@ function Popups(): ReactElement {
         }
       }
 
+      if (path === '/home') {
+        path = '/'
+      }
+
       history.push(path)
     }
   }, [currentlyOpenPopUp, previouslyOpenPopup])
