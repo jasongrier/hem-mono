@@ -29,10 +29,10 @@ function Home(): ReactElement {
         boxMinMarginY={0}
         boxMarginRangeX={200}
         boxMarginRangeY={0}
-        boxHotZoneTop={-100}
-        boxHotZoneBottom={250}
+        boxHotZoneTop={175}
+        boxHotZoneBottom={350}
         boxWidth={500}
-        boxHeight={350}
+        boxHeight={400}
         boxRangeX={200}
         boxRangeY={20}
         category="projects"

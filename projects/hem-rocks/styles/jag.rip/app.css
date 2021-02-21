@@ -133,30 +133,48 @@ a[id="more-anchor"] {
   color: #ccc;
 }
 
+.main-content-box * {
+  border: 0 !important;
+}
+
 .main-content-box-key-art {
   display: block;
   position: absolute;
   width: 100%;
   height: 100%;
+  bottom: 90px;
   cursor: pointer;
   background-color: #fff;
   opacity: 0;
   transition: opacity 500ms;
+  transform: scale(1.3);
 }
 
 .main-content-box-hot .main-content-box-key-art {
   opacity: 1;
 }
 
-.main-content-box:nth-child(1) .main-content-box-key-art {
-  bottom: 190px;
-  left: 0;
-  transform: scale(1.3);
+.main-content-box-hot .main-content-box-key-art-image {
+  border-color: #000;
+}
+
+.main-content-box-ref:nth-child(1) .main-content-box-key-art {
+  bottom: 120px;
   transform-origin: bottom;
 }
 
 .main-content-box:nth-child(1) p {
   color: #fff;
+}
+
+#main-content-box-hot-extramusicality.main-content-box-hot .main-content-box-key-art,
+#main-content-box-demonstration-disc-jag.main-content-box-hot .main-content-box-key-art,
+#main-content-box-sound-library-jag.main-content-box-hot .main-content-box-key-art,
+#main-content-box-human-ear-music-jag.main-content-box-hot .main-content-box-key-art,
+#main-content-box-seurat-desktop-jag.main-content-box-hot .main-content-box-key-art,
+#main-content-box-seurat-midi-jag.main-content-box-hot .main-content-box-key-art,
+#main-content-box-midst.main-content-box-hot .main-content-box-key-art {
+  opacity: 0.2;
 }
 
 .main-content-box-key-art-image {
@@ -168,7 +186,7 @@ a[id="more-anchor"] {
   background-repeat: no-repeat;
   background-size: cover;
   font-size: 0;
-  box-shadow: inset 0px -50px 19px -16px #000000;
+  box-shadow: inset 0px -30px 19px -16px #000000;
 }
 
 .main-content-filters {
@@ -181,7 +199,7 @@ a[id="more-anchor"] {
   padding: 20px;
   background-color: #000;
   transform: rotate(-2deg);
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 .main-content-filters-inner {

@@ -80,26 +80,27 @@ function MainContentBox({
   }, [])
 
   useEffect(function initScrollSpy() {
+    const scrollContainer = document.querySelector('.scroll-lock-container')
+    const scrollContent = document.querySelector('.scroll-lock-content')
+
     if (typeof hotZoneTop !== 'number') return
     if (typeof hotZoneBottom !== 'number') return
+    if (!scrollContainer) return
+    if (!scrollContent) return
 
     function scrollSpy() {
       setInTheHotZone(
-        el.current.getBoundingClientRect().top > hotZoneTop
-        && el.current.getBoundingClientRect().top < hotZoneBottom
+        el.current.getBoundingClientRect().top - scrollContent.scrollTop > hotZoneTop
+        && el.current.getBoundingClientRect().top - scrollContent.scrollTop < hotZoneBottom
       )
     }
 
-    const scrollLockContainer = document.querySelector('.scroll-lock-container')
-
-    if (!scrollLockContainer) return
-
-    scrollLockContainer.addEventListener('scroll', scrollSpy)
+    scrollContainer.addEventListener('scroll', scrollSpy)
 
     scrollSpy()
 
     return function cleanup() {
-      scrollLockContainer.removeEventListener('scroll', scrollSpy)
+      scrollContainer.removeEventListener('scroll', scrollSpy)
     }
   }, [])
 
@@ -134,7 +135,7 @@ function MainContentBox({
           ${alignRight && index > 0 ? 'align-right' : ''}
           ${inTheHotZone ? 'main-content-box-hot' : ''}
         `}
-        id={contentItem.slug}
+        id={`main-content-box-${contentItem.slug}`}
         width={width}
         height={height || 0}
         rangeX={rangeX || 100}
