@@ -1,11 +1,11 @@
-import React, { ReactElement, PropsWithChildren, useCallback, useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { ReactElement, PropsWithChildren, useCallback, useState, useEffect, useRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import marked from 'marked'
 import { SplatterDims, Tilt } from '../../../../../../lib/packages/hem-boxplatter'
 import { assetHostHostname } from '../../../../functions'
-import { BERLIN_STOCK_PHOTOS } from '../../../../config'
-import { IContentItem, setCurrentItem, MainContentBoxActions, hasCategory } from '../index'
+import { IContentItem, setCurrentItem, MainContentBoxActions } from '../index'
+import { RootState } from '../../../../index'
 
 interface IProps {
   contentItem: IContentItem
@@ -18,6 +18,10 @@ interface IProps {
   bipolarY?: boolean
   buttonText?: string
   className?: string
+  hasKeyArt: (index: number) => boolean
+  height?: number
+  hotZoneTop?: number
+  hotZoneBottom?: number
   linkTo?: (contentItem: IContentItem) => string
   marginRangeX?: number
   marginRangeY?: number
@@ -31,7 +35,6 @@ interface IProps {
   secondaryTitleField?: 'secondaryTitle' | 'attribution'
   showBlurb?: boolean
   width?: number
-  height?: number
 }
 
 function MainContentBox({
@@ -43,6 +46,9 @@ function MainContentBox({
   badgeText,
   buttonText,
   className,
+  hasKeyArt = () => true,
+  hotZoneTop,
+  hotZoneBottom,
   linkTo: customLinkTo,
   noSplatter,
   noTilt,
@@ -58,11 +64,43 @@ function MainContentBox({
   rangeY,
   renderActionsOn = 'text'
 }: PropsWithChildren<IProps>): ReactElement {
-  const dispatch = useDispatch()
-  const [alignRight, setAlignRight] = useState(false)
+  const { currentProject } = useSelector((state: RootState) => ({
+    currentProject: state.content.currentProject,
+  }))
 
-  useEffect(function init() {
+  const dispatch = useDispatch()
+
+  const [alignRight, setAlignRight] = useState<boolean>(false)
+  const [inTheHotZone, setInTheHotZone] = useState<boolean>(false)
+
+  const el = useRef<null | HTMLDivElement>(null)
+
+  useEffect(function initAlignRight() {
     setAlignRight(Math.random() > 0.5)
+  }, [])
+
+  useEffect(function initScrollSpy() {
+    if (typeof hotZoneTop !== 'number') return
+    if (typeof hotZoneBottom !== 'number') return
+
+    function scrollSpy() {
+      setInTheHotZone(
+        el.current.getBoundingClientRect().top > hotZoneTop
+        && el.current.getBoundingClientRect().top < hotZoneBottom
+      )
+    }
+
+    const scrollLockContainer = document.querySelector('.scroll-lock-container')
+
+    if (!scrollLockContainer) return
+
+    scrollLockContainer.addEventListener('scroll', scrollSpy)
+
+    scrollSpy()
+
+    return function cleanup() {
+      scrollLockContainer.removeEventListener('scroll', scrollSpy)
+    }
   }, [])
 
   const onClick = useCallback(
@@ -78,107 +116,92 @@ function MainContentBox({
   const assetHost = assetHostHostname()
 
   return (
-    <SplatterDims
-      disabled={noSplatter}
-      bipolarX={false}
-      bipolarY={false}
-      minMarginX={minMarginX}
-      minMarginY={minMarginY}
-      className={`
-        main-content-box
-        main-content-box-date-${contentItem.date}
-        ${className ? className : ''}
-        ${(badgeText || contentItem.badgeText) ? 'has-badge' : ''}
-        ${alignRight && index > 0 ? 'align-right' : ''}
-      `}
-      id={contentItem.slug}
-      width={width}
-      height={height || 0}
-      rangeX={rangeX || 100}
-      rangeY={rangeY || 0}
-      marginRangeX={marginRangeX}
-      marginRangeY={marginRangeY}
+    <div
+      className="main-content-box-ref"
+      ref={el}
     >
-      <Tilt disabled={noTilt}>
-        {(badgeText || contentItem.badgeText) && (
-          <div className="main-content-box-badge">
-            <strong>{ badgeText || contentItem.badgeText }</strong>
-          </div>
-        )}
-        <Link to={linkTo}>
-          {contentItem[secondaryTitleField] && (
-            <h4 dangerouslySetInnerHTML={{ __html: contentItem[secondaryTitleField] }} />
+      <SplatterDims
+        disabled={noSplatter}
+        bipolarX={false}
+        bipolarY={false}
+        minMarginX={minMarginX}
+        minMarginY={minMarginY}
+        className={`
+          main-content-box
+          main-content-box-date-${contentItem.date}
+          ${className ? className : ''}
+          ${(badgeText || contentItem.badgeText) ? 'has-badge' : ''}
+          ${alignRight && index > 0 ? 'align-right' : ''}
+          ${inTheHotZone ? 'main-content-box-hot' : ''}
+        `}
+        id={contentItem.slug}
+        width={width}
+        height={height || 0}
+        rangeX={rangeX || 100}
+        rangeY={rangeY || 0}
+        marginRangeX={marginRangeX}
+        marginRangeY={marginRangeY}
+      >
+        <Tilt disabled={noTilt}>
+          {(badgeText || contentItem.badgeText) && (
+            <div className="main-content-box-badge">
+              <strong>{ badgeText || contentItem.badgeText }</strong>
+            </div>
           )}
-          <h3 dangerouslySetInnerHTML={{ __html: contentItem.titleWrapping || contentItem.title }} />
-        </Link>
-        <div
-          className="main-content-box-key-art"
-          onClick={onClick}
-        >
-          { renderActionsOn === 'key-art'
-            && buttonText
-            && (
-              <MainContentBoxActions
-                linkTo={linkTo}
-                buttonText={buttonText}
-              >
-                { children }
-              </MainContentBoxActions>
-          )}
-          <Link to={linkTo}>
-            { !BERLIN_STOCK_PHOTOS && (
-              <div
-                className="main-content-box-key-art-image"
-                style={{
-                  backgroundImage: `url(${assetHost}/hem-rocks/content/images/key-art/${contentItem.keyArt})`
-                }}
-              />
-            )}
-            { BERLIN_STOCK_PHOTOS && (
-              <>
-                <div className="bsp-enlarge-button action-button">
-                  { contentItem.isPhysicalProduct ? 'Order now' : 'Download' }
-                </div>
+          { hasKeyArt(index) && (
+            <div
+              className="main-content-box-key-art"
+              onClick={onClick}
+            >
+              { renderActionsOn === 'key-art'
+                && buttonText
+                && (
+                  <MainContentBoxActions
+                    linkTo={linkTo}
+                    buttonText={buttonText}
+                  >
+                    { children }
+                  </MainContentBoxActions>
+              )}
+              <Link to={linkTo}>
                 <div
                   className="main-content-box-key-art-image"
                   style={{
-                    backgroundImage: `url(${assetHost}/berlin-stock-photos/content/images/jpg-thumbs/${contentItem.keyArt})`
+                    backgroundImage: `url(${assetHost}/${currentProject.replace(/\./g, '-')}/content/images/key-art/${contentItem.keyArt})`
                   }}
                 />
-              </>
-            )}
-            { BERLIN_STOCK_PHOTOS && index <= 10 && (
-              <div
-                className="main-content-box-key-art-placeholder"
-                style={{
-                  backgroundImage: `url(${assetHost}/berlin-stock-photos/content/images/jpg-placeholders/${contentItem.keyArt})`
-                }}
-              />
-            )}
-          </Link>
-        </div>
-        <div
-          className="main-content-box-text"
-          onClick={onClick}
-        >
-          { showBlurb && (
+              </Link>
+            </div>
+          )}
+          <div
+            className="main-content-box-text"
+            onClick={onClick}
+          >
             <Link to={linkTo}>
-              <div dangerouslySetInnerHTML={{ __html: marked(contentItem.blurb) }} />
+              {contentItem[secondaryTitleField] && (
+                <h4 dangerouslySetInnerHTML={{ __html: contentItem[secondaryTitleField] }} />
+              )}
+              <h3 dangerouslySetInnerHTML={{ __html: contentItem.titleWrapping || contentItem.title }} />
             </Link>
-          )}
-          { renderActionsOn === 'text'
-            && buttonText
-            && (
-              <MainContentBoxActions
-                linkTo={linkTo}
-                buttonText={buttonText}
-              >
-                { children }
-              </MainContentBoxActions>
-          )}
-        </div>
-      </Tilt>
-    </SplatterDims>
+            { showBlurb && (
+              <Link to={linkTo}>
+                <div dangerouslySetInnerHTML={{ __html: marked(contentItem.blurb) }} />
+              </Link>
+            )}
+            { renderActionsOn === 'text'
+              && buttonText
+              && (
+                <MainContentBoxActions
+                  linkTo={linkTo}
+                  buttonText={buttonText}
+                >
+                  { children }
+                </MainContentBoxActions>
+            )}
+          </div>
+        </Tilt>
+      </SplatterDims>
+    </div>
   )
 }
 

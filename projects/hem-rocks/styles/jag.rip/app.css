@@ -30,12 +30,13 @@ a:focus {
 .main-header h1 {
   position: fixed;
   top: 0;
-  left: 0;
+  right: 0;
+  z-index: 99999;
   margin: 0;
   padding: 0;
   text-transform: uppercase;
   font-size: 18px;
-  color: #000;
+  color: #fff;
 }
 
 .more-link {
@@ -55,7 +56,6 @@ a[id="more-anchor"] {
   position: fixed;
   top: calc(100vh + 600px);
   right: 180px;
-  color: red;
 }
 
 .main-jag,
@@ -63,6 +63,11 @@ a[id="more-anchor"] {
 .routing-hub,
 .main-content-list {
   float: left;
+}
+
+.main-content-box-ref {
+  float: left;
+  clear: both;
 }
 
 .is-admin .routing-hub,
@@ -96,14 +101,74 @@ a[id="more-anchor"] {
   border-radius: 2px;
   background-color: #000;
   cursor: pointer;
+  overflow: hidden;
 }
 
-.main-content-box:hover .hem-tilt-tiltor {
-  background-color: #111;
+.hem-tilt-tiltor::after {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99999;
+  content: " ";
+  box-shadow: inset 0px -50px 19px -16px #000000;
+}
+
+.main-content-box-text {
+  position: absolute;
+  z-index: 9999;
 }
 
 .main-content-box h3 {
+  margin: 20px 0 0 0;
   font-size: 60px;
+}
+
+.main-content-box p {
+  width: 175px;
+  font-family: Avenir;
+  font-weight: 100;
+  color: #ccc;
+}
+
+.main-content-box-key-art {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background-color: #fff;
+  opacity: 0;
+  transition: opacity 500ms;
+}
+
+.main-content-box-hot .main-content-box-key-art {
+  opacity: 1;
+}
+
+.main-content-box:nth-child(1) .main-content-box-key-art {
+  bottom: 190px;
+  left: 0;
+  transform: scale(1.3);
+  transform-origin: bottom;
+}
+
+.main-content-box:nth-child(1) p {
+  color: #fff;
+}
+
+.main-content-box-key-art-image {
+  display: block;
+  width: 100%;
+  height: 0;
+  padding-bottom: 70%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-size: 0;
+  box-shadow: inset 0px -50px 19px -16px #000000;
 }
 
 .main-content-filters {
@@ -111,7 +176,7 @@ a[id="more-anchor"] {
   top: 0;
   right: 0;
   width: 250px;
-  margin-top: -20px;
+  margin-top: -7px;
   margin-right: -20px;
   padding: 20px;
   background-color: #000;
@@ -153,6 +218,6 @@ a[id="more-anchor"] {
 .main-footer p {
   position: absolute;
   bottom: 10px;
-  right: 10px;
+  left: 10px;
   font-size: 12px;
 }
