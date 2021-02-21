@@ -206,7 +206,7 @@ function MainContentList({
       if (!contentItems.length) return
 
       const allFilters = contentItems.map(item => item.tags.split(',').map(tag => tag.trim()))
-      const allFiltersFlat = flatten(allFilters)
+      const allFiltersFlat: string[] = flatten(allFilters)
 
       let filters: string[] = uniq(allFiltersFlat.map(tag => titleCase(tag).replace(/-/g, ' ')))
 
