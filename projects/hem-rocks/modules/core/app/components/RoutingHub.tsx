@@ -134,9 +134,9 @@ function RoutingHub(): ReactElement {
         <Route exact path="/life-in-letters" component={LifeInLetters} />
 
         {/* List Pages */}
-        <Route exact path="/home/:contentItemSlug?/:filter?" component={Home} />
-        <Route exact path="/home/filter/:filter" component={Home} />
-        <Route exact path="/home/cart/:filter?" component={Home} />
+        <Route exact path="/home/:contentItemSlug?/:filter?" component={currentProject === 'jag.rip' ? JagHome : Home} />
+        <Route exact path="/home/filter/:filter" component={currentProject === 'jag.rip' ? JagHome : Home} />
+        <Route exact path="/home/cart/:filter?" component={currentProject === 'jag.rip' ? JagHome : Home} />
 
         <Route exact path="/apps/:contentItemSlug?/:filter?" component={Apps} />
         <Route exact path="/apps/filter/:filter" component={Apps} />

@@ -32,7 +32,7 @@ interface IProps {
   boxBipolarY?: boolean
   boxBlurbs?: boolean
   boxHeight?: number
-  boxHasKeyArt?: (index: number) => boolean
+  boxHasKeyArt?: (contentItem: IContentItem, index: number) => boolean
   boxHotZoneTop?: number
   boxHotZoneBottom?: number
   boxMarginRangeX?: number

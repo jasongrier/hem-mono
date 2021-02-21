@@ -18,7 +18,7 @@ interface IProps {
   bipolarY?: boolean
   buttonText?: string
   className?: string
-  hasKeyArt: (index: number) => boolean
+  hasKeyArt: (contentItem: IContentItem, index: number) => boolean
   height?: number
   hotZoneTop?: number
   hotZoneBottom?: number
@@ -121,40 +121,72 @@ function MainContentBox({
       className="main-content-box-ref"
       ref={el}
     >
-      <SplatterDims
-        disabled={noSplatter}
-        bipolarX={false}
-        bipolarY={false}
-        minMarginX={minMarginX}
-        minMarginY={minMarginY}
-        className={`
-          main-content-box
-          main-content-box-date-${contentItem.date}
-          ${className ? className : ''}
-          ${(badgeText || contentItem.badgeText) ? 'has-badge' : ''}
-          ${alignRight && index > 0 ? 'align-right' : ''}
-          ${inTheHotZone ? 'main-content-box-hot' : ''}
-        `}
-        id={`main-content-box-${contentItem.slug}`}
-        width={width}
-        height={height || 0}
-        rangeX={rangeX || 100}
-        rangeY={rangeY || 0}
-        marginRangeX={marginRangeX}
-        marginRangeY={marginRangeY}
-      >
-        <Tilt disabled={noTilt}>
-          {(badgeText || contentItem.badgeText) && (
-            <div className="main-content-box-badge">
-              <strong>{ badgeText || contentItem.badgeText }</strong>
-            </div>
-          )}
-          { hasKeyArt(index) && (
+      <Link to={linkTo}>
+        <SplatterDims
+          disabled={noSplatter}
+          bipolarX={false}
+          bipolarY={false}
+          minMarginX={minMarginX}
+          minMarginY={minMarginY}
+          className={`
+            main-content-box
+            main-content-box-date-${contentItem.date}
+            ${className ? className : ''}
+            ${(badgeText || contentItem.badgeText) ? 'has-badge' : ''}
+            ${alignRight && index > 0 ? 'align-right' : ''}
+            ${inTheHotZone ? 'main-content-box-hot' : ''}
+          `}
+          id={`main-content-box-${contentItem.slug}`}
+          width={width}
+          height={height || 0}
+          rangeX={rangeX || 100}
+          rangeY={rangeY || 0}
+          marginRangeX={marginRangeX}
+          marginRangeY={marginRangeY}
+        >
+          <Tilt disabled={noTilt}>
+            {(badgeText || contentItem.badgeText) && (
+              <div className="main-content-box-badge">
+                <strong>{ badgeText || contentItem.badgeText }</strong>
+              </div>
+            )}
+            { hasKeyArt(contentItem, index) && (
+              <div
+                className="main-content-box-key-art"
+                onClick={onClick}
+              >
+                { renderActionsOn === 'key-art'
+                  && buttonText
+                  && (
+                    <MainContentBoxActions
+                      linkTo={linkTo}
+                      buttonText={buttonText}
+                    >
+                      { children }
+                    </MainContentBoxActions>
+                )}
+                  <div
+                    className="main-content-box-key-art-image"
+                    style={{
+                      backgroundImage: `url(${assetHost}/${currentProject.replace(/\./g, '-')}/content/images/key-art/${contentItem.keyArt})`
+                    }}
+                  />
+              </div>
+            )}
             <div
-              className="main-content-box-key-art"
+              className="main-content-box-text"
               onClick={onClick}
             >
-              { renderActionsOn === 'key-art'
+              <>
+                {contentItem[secondaryTitleField] && (
+                  <h4 dangerouslySetInnerHTML={{ __html: contentItem[secondaryTitleField] }} />
+                )}
+                <h3 dangerouslySetInnerHTML={{ __html: contentItem.titleWrapping || contentItem.title }} />
+              </>
+              { showBlurb && (
+                <div dangerouslySetInnerHTML={{ __html: marked(contentItem.blurb) }} />
+              )}
+              { renderActionsOn === 'text'
                 && buttonText
                 && (
                   <MainContentBoxActions
@@ -164,44 +196,10 @@ function MainContentBox({
                     { children }
                   </MainContentBoxActions>
               )}
-              <Link to={linkTo}>
-                <div
-                  className="main-content-box-key-art-image"
-                  style={{
-                    backgroundImage: `url(${assetHost}/${currentProject.replace(/\./g, '-')}/content/images/key-art/${contentItem.keyArt})`
-                  }}
-                />
-              </Link>
             </div>
-          )}
-          <div
-            className="main-content-box-text"
-            onClick={onClick}
-          >
-            <Link to={linkTo}>
-              {contentItem[secondaryTitleField] && (
-                <h4 dangerouslySetInnerHTML={{ __html: contentItem[secondaryTitleField] }} />
-              )}
-              <h3 dangerouslySetInnerHTML={{ __html: contentItem.titleWrapping || contentItem.title }} />
-            </Link>
-            { showBlurb && (
-              <Link to={linkTo}>
-                <div dangerouslySetInnerHTML={{ __html: marked(contentItem.blurb) }} />
-              </Link>
-            )}
-            { renderActionsOn === 'text'
-              && buttonText
-              && (
-                <MainContentBoxActions
-                  linkTo={linkTo}
-                  buttonText={buttonText}
-                >
-                  { children }
-                </MainContentBoxActions>
-            )}
-          </div>
-        </Tilt>
-      </SplatterDims>
+          </Tilt>
+        </SplatterDims>
+      </Link>
     </div>
   )
 }

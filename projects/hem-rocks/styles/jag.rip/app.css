@@ -121,6 +121,18 @@ a[id="more-anchor"] {
   z-index: 9999;
 }
 
+.main-content-box-ref a {
+  float: left;
+  width: 100%;
+  height: 100%;
+  pointer-events: all;
+  cursor: pointer;
+}
+
+.main-content-box-ref a * {
+  /* pointer-events: none; */
+}
+
 .main-content-box h3 {
   margin: 20px 0 0 0;
   font-size: 60px;
@@ -151,30 +163,25 @@ a[id="more-anchor"] {
 }
 
 .main-content-box-hot .main-content-box-key-art {
-  opacity: 1;
+  opacity: 0.2;
 }
 
 .main-content-box-hot .main-content-box-key-art-image {
   border-color: #000;
 }
 
-.main-content-box-ref:nth-child(1) .main-content-box-key-art {
+#main-content-box-epic-gifs.main-content-box-hot .main-content-box-key-art {
   bottom: 120px;
   transform-origin: bottom;
+  opacity: 1;
+}
+
+#main-content-box-lockdown-doodles-jag.main-content-box-hot .main-content-box-key-art {
+  opacity: 0.4;
 }
 
 .main-content-box:nth-child(1) p {
   color: #fff;
-}
-
-#main-content-box-hot-extramusicality.main-content-box-hot .main-content-box-key-art,
-#main-content-box-demonstration-disc-jag.main-content-box-hot .main-content-box-key-art,
-#main-content-box-sound-library-jag.main-content-box-hot .main-content-box-key-art,
-#main-content-box-human-ear-music-jag.main-content-box-hot .main-content-box-key-art,
-#main-content-box-seurat-desktop-jag.main-content-box-hot .main-content-box-key-art,
-#main-content-box-seurat-midi-jag.main-content-box-hot .main-content-box-key-art,
-#main-content-box-midst.main-content-box-hot .main-content-box-key-art {
-  opacity: 0.2;
 }
 
 .main-content-box-key-art-image {

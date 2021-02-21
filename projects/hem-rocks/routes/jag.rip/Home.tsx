@@ -35,6 +35,7 @@ function Home(): ReactElement {
         boxHeight={400}
         boxRangeX={200}
         boxRangeY={20}
+        boxHasKeyArt={(item) => item.id === '263d0eac-a4ab-460e-a0d8-fc121a6721f7'}
         category="projects"
         additionalCategory="site-texts"
         prependTagLinks={[
@@ -47,7 +48,7 @@ function Home(): ReactElement {
             : null
         ])}
         currentFilter={currentFilter || 'home'}
-        orderByOrder={pathname === '/'}
+        orderByOrder={pathname === '/' || pathname === '/projects/filter/home'}
         shouldSetCurrentPlaylist={true}
         hideFilters={[
           'Home',
@@ -60,12 +61,11 @@ function Home(): ReactElement {
           'Radio',
         ]}
         excludeFromAll={['Consulting']}
-        linkTo={contentItem => `home/${contentItem.slug}`}
         speciallyOrderedTags={[
           'Music %26 Sound',
           'Photo %26 Film',
           'Installation %26 Live',
-          'Text',
+          'Blog',
           'Code',
           'Press',
         ]}
