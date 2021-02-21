@@ -32,6 +32,9 @@ interface IProps {
   boxBipolarY?: boolean
   boxBlurbs?: boolean
   boxHeight?: number
+  boxHasKeyArt?: (index: number) => boolean
+  boxHotZoneTop?: number
+  boxHotZoneBottom?: number
   boxMarginRangeX?: number
   boxMarginRangeY?: number
   boxMinMarginX?: number
@@ -89,7 +92,10 @@ function MainContentList({
   boxBipolarX,
   boxBipolarY,
   boxBlurbs,
+  boxHasKeyArt,
   boxHeight,
+  boxHotZoneTop,
+  boxHotZoneBottom,
   boxMarginRangeX,
   boxMarginRangeY,
   boxMinMarginX,
@@ -586,7 +592,10 @@ function MainContentList({
               contentItem={contentItem}
               filter={currentFilter}
               height={boxHeight}
+              hasKeyArt={boxHasKeyArt}
               index={index}
+              hotZoneBottom={boxHotZoneBottom}
+              hotZoneTop={boxHotZoneTop}
               key={contentItem.id}
               linkTo={linkTo}
               marginRangeX={boxMarginRangeX}

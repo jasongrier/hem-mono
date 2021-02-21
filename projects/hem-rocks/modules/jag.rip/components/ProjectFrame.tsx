@@ -29,11 +29,19 @@ function ProjectFrame({ children }: PropsWithChildren<IProps>): ReactElement {
   }, [pathname, contentItems])
 
   useEffect(function hideMoreLinkOnScroll() {
-    const scrollLockContainer = document.querySelector('.scroll-lock-container')
-    if (!scrollLockContainer) return
-    scrollLockContainer.addEventListener('scroll', function hideMoreLink() {
+    function hideMoreLink() {
       setShowMoreLink(false)
-    })
+    }
+
+    const scrollLockContainer = document.querySelector('.scroll-lock-container')
+
+    if (!scrollLockContainer) return
+
+    scrollLockContainer.addEventListener('scroll', hideMoreLink)
+
+    return function cleanup() {
+      scrollLockContainer.removeEventListener('scroll', hideMoreLink)
+    }
   }, [])
 
   const moreLinkOnClick = useCallback(
@@ -48,13 +56,13 @@ function ProjectFrame({ children }: PropsWithChildren<IProps>): ReactElement {
   return (
     <div className="jag-rip-site-frame">
       <header className="main-header">
-        <ElectronNot>
+        {/* <ElectronNot>
           <h1>
             <Link to="/">
               Jason Grier
             </Link>
           </h1>
-        </ElectronNot>
+        </ElectronNot> */}
       </header>
       <div className="main-jag">
         { children }

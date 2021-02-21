@@ -143,6 +143,7 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
 
   const keys = Object.keys(workingItem)
   const preferredOrder = [
+    'blurb',
     'project',
     'title',
     'published',

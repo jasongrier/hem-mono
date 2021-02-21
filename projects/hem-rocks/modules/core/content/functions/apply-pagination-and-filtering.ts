@@ -46,6 +46,8 @@ function applyPaginationAndFiltering(state: IState) {
     || state.adminFilterApplied === 'settings'
   )
 
+  // pageContentItems = pageContentItems.filter(item => !item.blurb.length)
+
   pageContentItems.sort((a, b) => {
     return parseInt(a.order, 10) - parseInt(b.order, 10)
   })
