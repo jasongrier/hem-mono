@@ -10,6 +10,7 @@ const donorList = [
   'Alejandro Puyana',
   'Dave Malone',
   'Sarah T. Jewell',
+  'Patrycja Humienik',
   'Anonymous donors',
 ]
 
