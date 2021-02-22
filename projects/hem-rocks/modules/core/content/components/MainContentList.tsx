@@ -472,8 +472,20 @@ function MainContentList({
     }
   }
 
+  function parseSerializedOrderFieldValue(orderFieldValue: string) {
+    const orderBuckets = orderFieldValue.split('|').map(bucket => {
+      const [filter, order] = bucket
+      return ({ filter, order })
+    })
+
+    return orderBuckets[currentFilter] || 0
+  }
+
   function orderSortFn(a: IContentItem, b: IContentItem) {
-    return parseInt(a.order, 10) - parseInt(b.order, 10)
+    let aOrder = a.order.includes(':') ? parseSerializedOrderFieldValue(a.order) : a.order
+    let bOrder = b.order.includes(':') ? parseSerializedOrderFieldValue(b.order) : b.order
+
+    return parseInt(aOrder, 10) - parseInt(bOrder, 10)
   }
 
   function titleSortFn(a: IContentItem, b: IContentItem) {

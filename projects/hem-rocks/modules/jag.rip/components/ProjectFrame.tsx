@@ -56,13 +56,13 @@ function ProjectFrame({ children }: PropsWithChildren<IProps>): ReactElement {
   return (
     <div className="jag-rip-site-frame">
       <header className="main-header">
-        {/* <ElectronNot>
+        <ElectronNot>
           <h1>
             <Link to="/">
               Jason Grier
             </Link>
           </h1>
-        </ElectronNot> */}
+        </ElectronNot>
       </header>
       <div className="main-jag">
         { children }

@@ -165,6 +165,7 @@ function Playlist({ onCollapse }: IProps): ReactElement {
                 <li onClick={onCollapse}>
                   <div className="hem-player-playlist-line-text hem-player-playlist-line-text-more">
                     <Link to={currentPlaylist.linkTo}>
+                      {/* HACK: Remove HEM specific code */}
                       { currentPlaylist.name === 'Releases' && (
                         <span>See all Releases</span>
                       )}

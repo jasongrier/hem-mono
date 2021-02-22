@@ -134,15 +134,24 @@ async function migrate(allContentItems: IContentItem[]) {
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
 
-    if (newItem.slug.includes('-jag')) {
-      console.log(newItem.title)
+    if (
+      hasCategory(newItem, 'tracks')
+      && newItem.project === 'hem.rocks'
+      && newItem.attribution.includes('Jason Grier')
+      && newItem.published
+    ) {
+      const copiedItem = Object.assign({}, newItem)
+      copiedItem.project = 'jag.rip'
+      copiedItem.slug = copiedItem.slug + '-jag'
+
+      newItems.push(copiedItem)
     }
 
     newItems.push(newItem)
   }
 
-  const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
-  const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
+  const srcIndex = join(__dirname, '..', '..', '..', '..', 'static', 'content', 'index.json')
+  const distIndex = join(__dirname, '..', '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
 
   // ***** DANGER ZONE *****
   // ***** DANGER ZONE *****
