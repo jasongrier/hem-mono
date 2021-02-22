@@ -55,7 +55,6 @@ function PlayerFrame({}: PropsWithChildren<IProps>): ReactElement {
         contentItemToTrack(item)
       )
 
-      console.log(name.replace('Player ', ''), tracks.length)
       dispatch(replacePlaylist(i, { name: name.replace('Player ', ''), tracks, linkTo }))
     })
 
