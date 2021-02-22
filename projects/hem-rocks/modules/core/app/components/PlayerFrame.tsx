@@ -49,12 +49,13 @@ function PlayerFrame({}: PropsWithChildren<IProps>): ReactElement {
   useEffect(function setSitePlaylists() {
     if (!chunkLog.includes('curated-playlists')) return
 
-    PROJECT_CONFIGS[currentProject].CURATED_PLAYLISTS.forEach(({ name, linkTo }, i) => {
-      const trackContentItems: IContentItem[] = getContentItemsFromList(contentItems, slugify(name))
+    PROJECT_CONFIGS[currentProject].CURATED_PLAYLISTS.forEach(({ linkTo, name, slug }, i) => {
+      const trackContentItems: IContentItem[] = getContentItemsFromList(contentItems, slug || slugify(name))
       const tracks = trackContentItems.map(item =>
         contentItemToTrack(item)
       )
 
+      console.log(name.replace('Player ', ''), tracks.length)
       dispatch(replacePlaylist(i, { name: name.replace('Player ', ''), tracks, linkTo }))
     })
 

@@ -109,19 +109,20 @@ module.exports.PROJECT_CONFIGS = {
     ROUTED_POPUPS: ['projects'],
     CURATED_PLAYLISTS: [],
     CATEGORIES: [
-      'projects',
-      'site-texts',
       'playlists',
       'press-clippings',
+      'projects',
+      'site-texts',
+      'tracks',
     ],
     CURATED_PLAYLISTS: [
       {
         name: 'Tracks',
-        linkTo: '/tracks/filter/featured',
+        slug: 'player-tracks-jag',
       },
       {
         name: 'Radio & Interviews',
-        linkTo: '/tracks/filter/radio-interviews',
+        slug: 'player-radio-interviews-jag',
       },
     ],
   },
