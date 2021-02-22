@@ -4,7 +4,7 @@ import { useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
 import Scrollbars from 'react-scrollbars-custom'
 import { slugify, titleCase } from 'voca'
-import { filter, isEmpty, find, isNaN, orderBy, intersection } from 'lodash'
+import { filter, isEmpty, find, isNaN, intersection } from 'lodash'
 import ReactGA from 'react-ga'
 import { uniq, flatten, compact, shuffle } from 'lodash'
 import { parse } from 'qs'
@@ -15,7 +15,7 @@ import { MainContentBox } from './index'
 import { IContentItem, setCurrentItems } from '../index'
 import { RootState } from '../../../../index'
 import { LISTS_HAVE_BLURBS, PROJECT_CONFIGS as UNTYPED_PROJECT_CONFIGS } from '../../../../config'
-import { hasTag, hasCategory, contentItemToTrack, getContentItemsFromRawList, smartSlugify, tagSpellingCorrections, getContentItemById } from '../functions'
+import { hasTag, hasCategory, contentItemToTrack, orderSortFnFact, getContentItemsFromRawList, smartSlugify, tagSpellingCorrections, getContentItemById } from '../functions'
 import { requestReadChunk } from '../actions'
 
 const PROJECT_CONFIGS = UNTYPED_PROJECT_CONFIGS as any
@@ -334,13 +334,13 @@ function MainContentList({
       contentItems = shuffle(contentItems)
 
       if (orderByOrder) {
-        stickyContentItems.sort(orderSortFn)
+        stickyContentItems.sort(orderSortFnFact(currentFilter))
       }
     }
 
     else if (orderByOrder) {
-      stickyContentItems.sort(orderSortFn)
-      contentItems.sort(orderSortFn)
+      stickyContentItems.sort(orderSortFnFact(currentFilter))
+      contentItems.sort(orderSortFnFact(currentFilter))
     }
 
     else if (orderByTitle) {
@@ -470,22 +470,6 @@ function MainContentList({
     else {
       return parseInt(bYear, 10) - parseInt(aYear, 10)
     }
-  }
-
-  function parseSerializedOrderFieldValue(orderFieldValue: string) {
-    const orderBuckets = orderFieldValue.split('|').map(bucket => {
-      const [filter, order] = bucket
-      return ({ filter, order })
-    })
-
-    return orderBuckets[currentFilter] || 0
-  }
-
-  function orderSortFn(a: IContentItem, b: IContentItem) {
-    let aOrder = a.order.includes(':') ? parseSerializedOrderFieldValue(a.order) : a.order
-    let bOrder = b.order.includes(':') ? parseSerializedOrderFieldValue(b.order) : b.order
-
-    return parseInt(aOrder, 10) - parseInt(bOrder, 10)
   }
 
   function titleSortFn(a: IContentItem, b: IContentItem) {
