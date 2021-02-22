@@ -1,11 +1,15 @@
 import React, { ReactElement, useState, useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import produce from 'immer'
+import { find } from 'lodash'
 // @ts-ignore
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { ElectronOnly } from '../../../../../../lib/components'
-import { IContentItem, hasTag, orderSortFnFact, requestReadItems, requestUpdateItems, updateSerializedOrderFieldValue } from '../index'
+import { IContentItem, hasTag, orderSortFnFact, requestReadItems, requestUpdateItems, parseSerializedOrderFieldValue, updateSerializedOrderFieldValue } from '../index'
 import { RootState } from '../../../../index'
+import { PROJECT_CONFIGS as UNTYPED_PROJECT_CONFIGS } from '../../../../config'
+
+const PROJECT_CONFIGS = UNTYPED_PROJECT_CONFIGS as any
 
 interface IProps { }
 
@@ -33,6 +37,7 @@ function AdminItemOrdering({ }: IProps): ReactElement {
     sortSet = sortSet.filter(item => (
       hasTag(item, currentFilter)
       && item.project === currentProject
+      && item.published
     ))
 
     sortSet.sort(orderSortFnFact(currentFilter))
@@ -57,7 +62,15 @@ function AdminItemOrdering({ }: IProps): ReactElement {
     function onSaveClickFn() {
       for (let i = 0; i < finalItems.length; i ++) {
         const updatedItem: IContentItem = produce(finalItems[i], (draftItem) => {
-          draftItem.order = updateSerializedOrderFieldValue(draftItem.order, currentFilter, (i + 1).toString())
+          const order = (i + 1).toString()
+
+          if (PROJECT_CONFIGS[currentProject].HAS_SERIALIZED_ITEM_ORDER) {
+            draftItem.order = updateSerializedOrderFieldValue(draftItem.order, currentFilter, order)
+          }
+
+          else {
+            draftItem.order = order
+          }
         })
 
         dispatch(requestUpdateItems([updatedItem]))
@@ -116,7 +129,7 @@ function AdminItemOrdering({ }: IProps): ReactElement {
                           provided.draggableProps.style
                         )}
                       >
-                        {item.attribution}: {item.title} ({item.order})
+                        {item.attribution}: {item.title} ({ find(parseSerializedOrderFieldValue(item.order), { filter: currentFilter }).order })
                       </div>
                     )}
                   </Draggable>

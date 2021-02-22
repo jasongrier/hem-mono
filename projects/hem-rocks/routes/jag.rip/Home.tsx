@@ -48,7 +48,7 @@ function Home(): ReactElement {
             : null
         ])}
         currentFilter={currentFilter || 'home'}
-        orderByOrder={pathname === '/' || pathname === '/projects/filter/home'}
+        orderByOrder={true}
         shouldSetCurrentPlaylist={true}
         hideFilters={[
           'Home',

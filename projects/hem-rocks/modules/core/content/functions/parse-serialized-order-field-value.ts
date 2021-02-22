@@ -7,25 +7,20 @@ interface IOrderBucket {
 }
 
 function fieldIsSerialized(fieldValue: string): boolean {
-  return (
-    fieldValue.includes(':')
-    && fieldValue.includes('|')
-  )
+  return (fieldValue.includes(':'))
 }
 
 function getOrder(item: IContentItem, forFilter: string): string {
   if (fieldIsSerialized(item.order)) {
+    console.log(1)
     const orderBuckets = parseSerializedOrderFieldValue(item.order)
     const bucket = find(orderBuckets, { filter: forFilter })
 
-    if (!bucket) {
-      throw new Error('Probably a corrupt order field: ' + forFilter + ' in ' + item.title + '.')
-    }
-
-    return bucket.order
+    return bucket ? bucket.order : '0'
   }
 
   else {
+    console.log(2)
     return item.order
   }
 }
@@ -41,14 +36,17 @@ function updateSerializedOrderFieldValue(fieldValue: string, forFilter: string, 
   let orderBuckets: IOrderBucket[]
 
   if (fieldIsSerialized(fieldValue)) {
-    const buckets = Array.from(parseSerializedOrderFieldValue(fieldValue))
+    let buckets = Array.from(parseSerializedOrderFieldValue(fieldValue))
     const bucketIndex = findIndex(buckets, { filter: forFilter })
 
     if (bucketIndex === -1) {
-      throw new Error('Probably a corrupt order field: ' + forFilter + '.')
+      buckets = buckets.concat([{ filter: forFilter, order: newValue }])
     }
 
-    buckets[bucketIndex].order = newValue
+    else {
+      buckets[bucketIndex].order = newValue
+    }
+
     orderBuckets = Array.from(buckets)
   }
 
@@ -60,9 +58,13 @@ function updateSerializedOrderFieldValue(fieldValue: string, forFilter: string, 
 }
 
 function orderSortFnFact(currentFilter: string): (a: IContentItem, b: IContentItem) => number {
+  console.log('wtf')
+
   return function orderSortFn(a: IContentItem, b: IContentItem): number {
     let aOrder =  getOrder(a, currentFilter)
     let bOrder =  getOrder(b, currentFilter)
+
+    console.log(aOrder, bOrder)
 
     return parseInt(aOrder, 10) - parseInt(bOrder, 10)
   }
