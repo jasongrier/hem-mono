@@ -4,23 +4,22 @@ import produce from 'immer'
 // @ts-ignore
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { ElectronOnly } from '../../../../../../lib/components'
-import { IContentItem, hasTag, requestUpdateItems, } from '../index'
+import { IContentItem, hasTag, orderSortFnFact, requestReadItems, requestUpdateItems, updateSerializedOrderFieldValue } from '../index'
 import { RootState } from '../../../../index'
-import { requestReadItems } from '../actions'
-import { hasCategory } from '../functions'
 
 interface IProps { }
 
 function AdminItemOrdering({ }: IProps): ReactElement {
-  const { allContentItems, chunkLog } = useSelector((state: RootState) => ({
-    chunkLog: state.content.chunkLog,
+  const { allContentItems, currentProject } = useSelector((state: RootState) => ({
     allContentItems: state.content.contentItems,
+    currentProject: state.content.currentProject,
   }))
 
   const dispatch = useDispatch()
 
   const [finalItems, setFinalItems] = useState<IContentItem[]>([])
   const [canSave, setCanSave] = useState<boolean>(false)
+  const [currentFilter, setCurrentFilter] = useState<string>('music-%26-sound')
 
   useEffect(function init() {
     dispatch(requestReadItems())
@@ -32,16 +31,14 @@ function AdminItemOrdering({ }: IProps): ReactElement {
     let sortSet = Array.from(allContentItems)
 
     sortSet = sortSet.filter(item => (
-      hasTag(item, 'home')
-      && item.project === 'jag.rip'
+      hasTag(item, currentFilter)
+      && item.project === currentProject
     ))
 
-    sortSet.sort(
-      (a: IContentItem, b: IContentItem) => parseInt(a.order, 10) - parseInt(b.order, 10)
-    )
+    sortSet.sort(orderSortFnFact(currentFilter))
 
     setFinalItems(sortSet)
-  }, [allContentItems])
+  }, [allContentItems, currentFilter])
 
   function onDragEnd(res: any) {
     if (!res.source) return
@@ -60,12 +57,13 @@ function AdminItemOrdering({ }: IProps): ReactElement {
     function onSaveClickFn() {
       for (let i = 0; i < finalItems.length; i ++) {
         const updatedItem: IContentItem = produce(finalItems[i], (draftItem) => {
-          draftItem.order = (i + 1).toString()
+          draftItem.order = updateSerializedOrderFieldValue(draftItem.order, currentFilter, (i + 1).toString())
         })
+
         dispatch(requestUpdateItems([updatedItem]))
         setCanSave(false)
       }
-    }, [finalItems],
+    }, [finalItems, currentFilter],
   )
 
   const grid = 4

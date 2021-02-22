@@ -1,5 +1,4 @@
 import { AnyAction } from 'redux'
-import { PROJECT_CONFIGS } from '../../../config'
 
 export interface IContentItem {
   acceptingDonations: boolean
@@ -370,14 +369,18 @@ export {
   getContentItemsByTag,
   getContentItemsFromList,
   getContentItemsFromRawList,
+  getOrder,
   hasCategory,
   hasTag,
   modelize,
+  orderSortFnFact,
+  parseSerializedOrderFieldValue,
   readAllItems,
   selectableCategories,
   smartSlugify,
   uncompressItem,
   uniqueSlug,
+  updateSerializedOrderFieldValue,
   validateCompressionMap,
 } from './functions'
 
