@@ -122,7 +122,8 @@ module.exports.PROJECT_CONFIGS = {
     CURATED_PLAYLISTS: [],
     CATEGORIES: [
       'playlists',
-      'press-clippings',
+      'wtf',
+      'press',
       'projects',
       'site-texts',
       'tracks',
