@@ -1,7 +1,7 @@
 export { default as applyPaginationAndFiltering } from './apply-pagination-and-filtering'
 export { default as compressIndex, compressIndexKeys, uncompressItem, validateCompressionMap } from './compress-index'
 export { default as contentItemToTrack } from './content-item-to-track'
-export { getOrder, parseSerializedOrderFieldValue, updateSerializedOrderFieldValue, orderSortFnFact} from './parse-serialized-order-field-value'
+export { fieldIsSerialized, getOrder, parseSerializedOrderFieldValue, updateSerializedOrderFieldValue, orderSortFnFact} from './parse-serialized-order-field-value'
 export { default as generateChunks } from './generate-chunks'
 export { default as hasCategory } from './has-category'
 export { default as hasTag } from './has-tag'

@@ -12,9 +12,6 @@ import { RootState } from '../../../../index'
 import { hasCategory, hasTag, modelize } from '../functions'
 import { assetHostHostname } from '../../../../functions'
 import { toggleShowUnpublishedFilter, toggleStickyFilter, setCurrentPage, requestCreateItems } from '../actions'
-import { PROJECT_CONFIGS as UNTYPED_PROJECT_CONFIGS } from '../../../../config'
-
-const PROJECT_CONFIGS = UNTYPED_PROJECT_CONFIGS as any
 
 function AdminList(): ReactElement {
   const {

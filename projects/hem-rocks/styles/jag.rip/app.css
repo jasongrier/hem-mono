@@ -158,12 +158,12 @@ a[id="more-anchor"] {
   cursor: pointer;
   background-color: #fff;
   opacity: 0;
-  transition: opacity 500ms;
+  transition: opacity 250ms;
   transform: scale(1.3);
 }
 
 .main-content-box-hot .main-content-box-key-art {
-  opacity: 0.2;
+  opacity: 0.3;
 }
 
 .main-content-box-hot .main-content-box-key-art-image {
@@ -171,8 +171,6 @@ a[id="more-anchor"] {
 }
 
 #main-content-box-epic-gifs.main-content-box-hot .main-content-box-key-art {
-  bottom: 120px;
-  transform-origin: bottom;
   opacity: 1;
 }
 

@@ -362,6 +362,7 @@ export {
   compressIndex,
   compressIndexKeys,
   contentItemToTrack,
+  fieldIsSerialized,
   generateChunks,
   getContentItemByField,
   getContentItemById,

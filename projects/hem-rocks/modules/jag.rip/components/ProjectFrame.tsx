@@ -59,7 +59,7 @@ function ProjectFrame({ children }: PropsWithChildren<IProps>): ReactElement {
         <ElectronNot>
           <h1>
             <Link to="/">
-              Jason Grier
+              Jason Aaron Grier
             </Link>
           </h1>
         </ElectronNot>
@@ -76,17 +76,17 @@ function ProjectFrame({ children }: PropsWithChildren<IProps>): ReactElement {
             &nbsp;|&nbsp;<a href="https://web.facebook.com/jasongriermusic">FB</a>
             &nbsp;|&nbsp;<a href="mailto:j@hem.rocks">j@hem.rocks</a>
           </p>
-            { showMoreLink
-              && itemsCount > 2
-              && (
-                <a
-                  className="more-link"
-                  href="#"
-                  onClick={moreLinkOnClick}
-                >
-                  &darr;
-                </a>
-            )}
+          { showMoreLink
+            && itemsCount > 2
+            && (
+              <a
+                className="more-link"
+                href="#"
+                onClick={moreLinkOnClick}
+              >
+                &darr;
+              </a>
+          )}
         </footer>
       </ElectronNot>
     </div>

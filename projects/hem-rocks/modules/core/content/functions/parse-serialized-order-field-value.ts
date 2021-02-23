@@ -12,7 +12,6 @@ function fieldIsSerialized(fieldValue: string): boolean {
 
 function getOrder(item: IContentItem, forFilter: string): string {
   if (fieldIsSerialized(item.order)) {
-    console.log(1)
     const orderBuckets = parseSerializedOrderFieldValue(item.order)
     const bucket = find(orderBuckets, { filter: forFilter })
 
@@ -20,7 +19,6 @@ function getOrder(item: IContentItem, forFilter: string): string {
   }
 
   else {
-    console.log(2)
     return item.order
   }
 }
@@ -58,19 +56,16 @@ function updateSerializedOrderFieldValue(fieldValue: string, forFilter: string, 
 }
 
 function orderSortFnFact(currentFilter: string): (a: IContentItem, b: IContentItem) => number {
-  console.log('wtf')
-
   return function orderSortFn(a: IContentItem, b: IContentItem): number {
     let aOrder =  getOrder(a, currentFilter)
     let bOrder =  getOrder(b, currentFilter)
-
-    console.log(aOrder, bOrder)
 
     return parseInt(aOrder, 10) - parseInt(bOrder, 10)
   }
 }
 
 export {
+  fieldIsSerialized,
   getOrder,
   parseSerializedOrderFieldValue,
   updateSerializedOrderFieldValue,
