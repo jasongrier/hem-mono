@@ -129,6 +129,7 @@ function createItemsFromArray(allContentItems: IContentItem[]) {
     const createdItem = modelize({
       id: uuid(),
       tags: 'press',
+      project: 'jag.rip',
       title,
       attribution: 'Line Gøttsche',
       secondaryAttribution: '',
@@ -143,8 +144,8 @@ function createItemsFromArray(allContentItems: IContentItem[]) {
     newItems.push(createdItem)
   }
 
-  const srcIndex = join(__dirname, '..', '..', '..', 'static', 'content', 'index.json')
-  const distIndex = join(__dirname, '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
+  const srcIndex = join(__dirname, '..', '..', '..', '..', 'static', 'content', 'index.json')
+  const distIndex = join(__dirname, '..', '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
 
   // ***** DANGER ZONE *****
   // ***** DANGER ZONE *****
