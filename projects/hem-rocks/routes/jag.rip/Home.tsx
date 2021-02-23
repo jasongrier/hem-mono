@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import { compact } from 'lodash'
@@ -59,6 +59,7 @@ function Home(): ReactElement {
           'Radio',
         ]}
         excludeFromAll={['Consulting']}
+        extraBottomBoxes={[1]}
         speciallyOrderedTags={[
           'Music %26 Sound',
           'Photo %26 Film',
