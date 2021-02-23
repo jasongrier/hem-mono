@@ -80,31 +80,64 @@ function createItemsFromArray(allContentItems: IContentItem[]) {
     newItems.push(newItem)
   }
 
-  const audioFilenames: string[] = [
-    'first-bird-line-goettsche.mp3',
-    'june-line-goettsche.mp3',
-    'september-line-goettsche.mp3',
+  const filenames: string[] = [
+    'Grier_ME_Oct17.jpg',
+    'Arttforum.jpg',
+    'Grier_Debug_Dec13.jpg',
+    'Grier_MDelire_Feb14.jpg',
+    'Grier_ME_Nov17.jpg',
+    'Grier_Spex_Diederichsen_Jul14.jpg',
+    'Grier_Spex_Jan14.jpg',
+    'Grier_Spex_Nov17 (1).jpg',
+    'Grier_Westzeit_Oct17.jpg',
+    'LAIF_01_str_46_57_RECENZJE3.jpg',
+    'MagicRPM.jpg',
+    'Ableton',
+    'BBC Radio 3 - Late Junction, Nick Luscombe with Björk',
+    'Die Tageszeitung — Dez 2013',
+    'Eine Frage des Inputs – amusio',
+    'Grier_ChainDLK_Interview',
+    'Grier_ChainDLK_Oct17',
+    'Grier_DarkEntries_Apr18',
+    'Grier_Dissolve_Nov13',
+    'Grier_DlfKultur_Nov17',
+    'Grier_FeltHat_Dec17',
+    'Grier_HungerCulture_Dec13',
+    'Grier_ME_Oct17',
+    'Grier_MusicMap_Oct17',
+    'Grier_Musikansich_Jan14',
+    'Grier_NieuweNoten_Feb18',
+    'Grier_NowaMuzyka_Nov17_UNBEKANNTE',
+    'Grier_NowaMuzyka_Nov17_VS',
+    'Grier_OndaRock_Jan14k',
+    'Grier_Ondarock_Oct17',
+    'Grier_Rifraf_Feb14',
+    'Grier_taz_Dec13',
+    'Grier_ToPeriodiko_Dec17',
+    'Grier_TSP_May18',
+    'Grier_W&H_Feb14',
+    'Grier_Wire_Oct17',
+    'Grier2_Spex_Dec13.png',
+    'HEM_NowaMuzyka_Feb14',
+    'HEM_Wire_Jan14',
+    'Vital Weekly 914',
   ]
 
-  for (const audioFilename of audioFilenames) {
+  for (const filename of filenames) {
     // @ts-ignore
-    const title = titleCase(audioFilename.split('-line-goettsche')[0].replace(/-/g, ' '))
-    const buff = readFileSync('/Users/jason/Desktop/Workingkong/HEM/Website/hem-static/hem-rocks/content/tracks/' + audioFilename)
-    const duration = moment(getMP3Duration(buff)).format('m:ss')
+    const title = titleCase(filename)
     const createdItem = modelize({
       id: uuid(),
-      tags: 'rare, featured',
+      tags: 'press',
       title,
       attribution: 'Line Gøttsche',
       secondaryAttribution: '',
       date: 'February 2021',
       published: true,
-      keyArt: 'line-goettsche.jpg',
-      category: 'tracks',
+      keyArt: filename,
+      category: 'projects',
       displayCategory: 'Tracks',
-      slug: audioFilename.replace('.mp3', ''),
-      duration,
-      audioFilename,
+      slug: filename + '-jag',
     } as Partial<IContentItem>)
 
     newItems.push(createdItem)
@@ -117,8 +150,8 @@ function createItemsFromArray(allContentItems: IContentItem[]) {
   // ***** DANGER ZONE *****
   // ***** DANGER ZONE *****
 
-  // writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
-  // writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
+  writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
+  writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
 }
 
 async function migrate(allContentItems: IContentItem[]) {

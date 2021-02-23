@@ -15,7 +15,7 @@ import { MainContentBox } from './index'
 import { IContentItem, setCurrentItems } from '../index'
 import { RootState } from '../../../../index'
 import { LISTS_HAVE_BLURBS, PROJECT_CONFIGS as UNTYPED_PROJECT_CONFIGS } from '../../../../config'
-import { hasTag, hasCategory, contentItemToTrack, orderSortFnFact, getContentItemsFromRawList, smartSlugify, tagSpellingCorrections, getContentItemById } from '../functions'
+import { hasTag, hasCategory, contentItemToTrack, orderSortFnFact, getContentItemsFromRawList, smartSlugify, tagSpellingCorrections, getContentItemById, modelize } from '../functions'
 import { requestReadChunk } from '../actions'
 
 const PROJECT_CONFIGS = UNTYPED_PROJECT_CONFIGS as any
@@ -49,6 +49,7 @@ interface IProps {
   currentFilter?: string,
   excludeFromAll?: string | string[]
   excludeTags?: string[]
+  extraBottomBoxes?: any[]
   fixedFilters?: string[] | null
   hasFilters?: boolean
   hideFilters?: string[]
@@ -110,6 +111,7 @@ function MainContentList({
   currentFilter = 'featured',
   excludeFromAll,
   excludeTags,
+  extraBottomBoxes,
   fixedFilters,
   hasFilters = true,
   hideFilters,
@@ -611,11 +613,39 @@ function MainContentList({
             </MainContentBox>
           )
         })}
+        { extraBottomBoxes.map((contentItem, key) => (
+          <MainContentBox
+            badgeText=""
+            bipolarX={boxBipolarX}
+            bipolarY={boxBipolarY}
+            buttonText={buttonText}
+            contentItem={modelize({})}
+            filter={currentFilter}
+            height={boxHeight}
+            hasKeyArt={boxHasKeyArt}
+            index={key}
+            hotZoneBottom={boxHotZoneBottom}
+            hotZoneTop={boxHotZoneTop}
+            key={key}
+            linkTo={linkTo}
+            marginRangeX={boxMarginRangeX}
+            marginRangeY={boxMarginRangeY}
+            minMarginX={boxMinMarginX}
+            minMarginY={boxMinMarginY}
+            noSplatter={noSplatter}
+            rangeX={boxRangeX}
+            rangeY={boxRangeY}
+            renderActionsOn={boxRenderActionsOn}
+            secondaryTitleField={boxSecondaryTitleField}
+            showBlurb={boxBlurbs}
+            tag={category}
+            width={boxWidth}
+          />
+        ))}
       </div>
       { infoPopupText && (
         <PopupContainer
           id="sound-library-info"
-          // @ts-ignore
           closeIcon={CloseButton}
         >
           <Scrollbars>
