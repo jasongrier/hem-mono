@@ -1,11 +1,12 @@
-import React, { ReactElement, useState, useEffect, useCallback } from 'react'
+import React, { ReactElement, useState, useEffect, useCallback, SyntheticEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import produce from 'immer'
 import { find } from 'lodash'
+import { titleCase } from 'voca'
 // @ts-ignore
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { ElectronOnly } from '../../../../../../lib/components'
-import { IContentItem, hasTag, orderSortFnFact, requestReadItems, requestUpdateItems, parseSerializedOrderFieldValue, updateSerializedOrderFieldValue } from '../index'
+import { IContentItem, hasTag, orderSortFnFact, requestReadItems, fieldIsSerialized, requestUpdateItems, parseSerializedOrderFieldValue, updateSerializedOrderFieldValue } from '../index'
 import { RootState } from '../../../../index'
 import { PROJECT_CONFIGS as UNTYPED_PROJECT_CONFIGS } from '../../../../config'
 
@@ -23,13 +24,13 @@ function AdminItemOrdering({ }: IProps): ReactElement {
 
   const [finalItems, setFinalItems] = useState<IContentItem[]>([])
   const [canSave, setCanSave] = useState<boolean>(false)
-  const [currentFilter, setCurrentFilter] = useState<string>('music-%26-sound')
+  const [currentFilter, setCurrentFilter] = useState<string>(PROJECT_CONFIGS[currentProject].ORDERING_BUCKETS[0])
 
   useEffect(function init() {
     dispatch(requestReadItems())
   }, [])
 
-  useEffect(function setContent() {
+  useEffect(function initContent() {
     if (!allContentItems.length) return
 
     let sortSet = Array.from(allContentItems)
@@ -57,6 +58,12 @@ function AdminItemOrdering({ }: IProps): ReactElement {
     setFinalItems(reorderedItems)
     setCanSave(true)
   }
+
+  const onFilterSelectChanged = useCallback(
+    function onFilterSelectChangedFn(evt: SyntheticEvent<HTMLSelectElement>) {
+      setCurrentFilter(evt.currentTarget.value)
+    }, [],
+  )
 
   const onSaveClick = useCallback(
     function onSaveClickFn() {
@@ -99,6 +106,27 @@ function AdminItemOrdering({ }: IProps): ReactElement {
     <ElectronOnly showMessage={true}>
       <div className="admin-list">
         <div className="admin-list-controls clearfix">
+          { PROJECT_CONFIGS[currentProject].HAS_SERIALIZED_ITEM_ORDER && (
+            <select
+              className="custom-select"
+              name="select"
+              onChange={onFilterSelectChanged}
+              value={currentFilter}
+            >
+              { PROJECT_CONFIGS[currentProject].ORDERING_BUCKETS.map(filter => (
+                <option
+                  key={filter}
+                  value={filter}
+                >
+                  { titleCase(
+                    filter
+                      .replace(/-/g, ' ')
+                      .replace(/%26/g, '&')
+                  )}
+                </option>
+              ))}
+            </select>
+          )}
           <button
             className="action-button save-item-button"
             type="submit"
@@ -129,7 +157,23 @@ function AdminItemOrdering({ }: IProps): ReactElement {
                           provided.draggableProps.style
                         )}
                       >
-                        {item.attribution}: {item.title} ({ find(parseSerializedOrderFieldValue(item.order), { filter: currentFilter }).order })
+                        {(() => {
+                          let orderToDisplay
+
+                          if (
+                            PROJECT_CONFIGS[currentProject].HAS_SERIALIZED_ITEM_ORDER
+                            && fieldIsSerialized(item.order)
+                          ) {
+                            const bucket = find(parseSerializedOrderFieldValue(item.order), { filter: currentFilter })
+                            orderToDisplay = bucket ? bucket.order : item.order
+                          }
+
+                          else {
+                            orderToDisplay = item.order
+                          }
+
+                          return `${item.attribution ? item.attribution + ': ' : ''}${item.title} (${orderToDisplay})`
+                        })()}
                       </div>
                     )}
                   </Draggable>

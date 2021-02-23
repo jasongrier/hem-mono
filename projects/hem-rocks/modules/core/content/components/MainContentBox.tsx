@@ -1,6 +1,6 @@
 import React, { ReactElement, PropsWithChildren, useCallback, useState, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import marked from 'marked'
 import { SplatterDims, Tilt } from '../../../../../../lib/packages/hem-boxplatter'
 import { assetHostHostname } from '../../../../functions'
@@ -70,6 +70,8 @@ function MainContentBox({
 
   const dispatch = useDispatch()
 
+  const { pathname } = useLocation()
+
   const [alignRight, setAlignRight] = useState<boolean>(false)
   const [inTheHotZone, setInTheHotZone] = useState<boolean>(false)
 
@@ -81,19 +83,10 @@ function MainContentBox({
 
   useEffect(function initScrollSpy() {
     const scrollContainer = document.querySelector('.scroll-lock-container')
-    const scrollContent = document.querySelector('.scroll-lock-content')
 
     if (typeof hotZoneTop !== 'number') return
     if (typeof hotZoneBottom !== 'number') return
     if (!scrollContainer) return
-    if (!scrollContent) return
-
-    function scrollSpy() {
-      setInTheHotZone(
-        el.current.getBoundingClientRect().top - scrollContent.scrollTop > hotZoneTop
-        && el.current.getBoundingClientRect().top - scrollContent.scrollTop < hotZoneBottom
-      )
-    }
 
     scrollContainer.addEventListener('scroll', scrollSpy)
 
@@ -103,6 +96,23 @@ function MainContentBox({
       scrollContainer.removeEventListener('scroll', scrollSpy)
     }
   }, [])
+
+  useEffect(function spyOnRouteChange() {
+    setTimeout(() => {
+      scrollSpy()
+    })
+  }, [pathname])
+
+  function scrollSpy() {
+    const scrollContent = document.querySelector('.scroll-lock-content')
+
+    if (!scrollContent) return
+
+    setInTheHotZone(
+      el.current.getBoundingClientRect().top - scrollContent.scrollTop > hotZoneTop
+      && el.current.getBoundingClientRect().top - scrollContent.scrollTop < hotZoneBottom
+    )
+  }
 
   const onClick = useCallback(
     function onClickFn() {

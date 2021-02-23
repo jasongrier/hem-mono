@@ -13,7 +13,6 @@ function Home(): ReactElement {
     contentItems: state.content.contentItems,
   }))
 
-  const { pathname }: any = useLocation()
   const { filter: currentFilter }: any = useParams()
 
   return (
@@ -29,13 +28,12 @@ function Home(): ReactElement {
         boxMinMarginY={0}
         boxMarginRangeX={200}
         boxMarginRangeY={0}
-        boxHotZoneTop={175}
+        boxHotZoneTop={75}
         boxHotZoneBottom={350}
         boxWidth={500}
         boxHeight={400}
         boxRangeX={200}
         boxRangeY={20}
-        boxHasKeyArt={(item) => item.id === '263d0eac-a4ab-460e-a0d8-fc121a6721f7'}
         category="projects"
         additionalCategory="site-texts"
         prependTagLinks={[
