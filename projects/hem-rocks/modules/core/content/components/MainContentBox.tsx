@@ -178,7 +178,7 @@ function MainContentBox({
                   <div
                     className="main-content-box-key-art-image"
                     style={{
-                      backgroundImage: `url(${assetHost}/${currentProject.replace(/\./g, '-')}/content/images/key-art/${contentItem.keyArt})`
+                      backgroundImage: `url(${assetHost}/${currentProject}/content/images/key-art/${contentItem.keyArt})`
                     }}
                   />
               </div>
