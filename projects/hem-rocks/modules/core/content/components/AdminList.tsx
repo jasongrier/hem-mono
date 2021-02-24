@@ -166,10 +166,6 @@ function AdminList(): ReactElement {
           <div className="admin-list-controls-select">
             <label htmlFor="select">
               Category:&nbsp;
-              <PlayPauseButton
-                playing={false}
-                onClick={noop}
-              />
             </label>
             <select
               className="custom-select"
