@@ -33,6 +33,7 @@ export interface IContentItem {
   physicalFormats: string
   preview: boolean
   project: string
+  properties: string
   published: boolean
   relatedContent: string
   relatedContentLink: string
@@ -105,6 +106,7 @@ export const fieldTypes: IContentItem = {
   physicalFormats: 'textarea',
   preview: false,
   project: 'text',
+  properties: 'text',
   published: false,
   relatedContent: 'text',
   relatedContentLink: 'text',
@@ -359,6 +361,9 @@ export {
 } from './components'
 
 export {
+  addProperty,
+  addTag,
+  addTerm,
   compressIndex,
   compressIndexKeys,
   contentItemToTrack,
@@ -371,12 +376,20 @@ export {
   getContentItemsFromList,
   getContentItemsFromRawList,
   getOrder,
+  getProperties,
+  getTags,
+  getTerms,
   hasCategory,
+  hasProperty,
   hasTag,
+  hasTerm,
   modelize,
   orderSortFnFact,
   parseSerializedOrderFieldValue,
   readAllItems,
+  removeProperty,
+  removeTag,
+  removeTerm,
   selectableCategories,
   smartSlugify,
   uncompressItem,

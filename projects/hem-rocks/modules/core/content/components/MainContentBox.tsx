@@ -106,6 +106,7 @@ function MainContentBox({
   function scrollSpy() {
     const scrollContent = document.querySelector('.scroll-lock-content')
 
+    if (!el) return
     if (!scrollContent) return
 
     setInTheHotZone(

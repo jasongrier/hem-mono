@@ -34,6 +34,7 @@ function modelize(rawContentItem: any): IContentItem {
     physicalFormats: rawContentItem.physicalFormats || '',
     preview: rawContentItem.preview || false,
     project: rawContentItem.project || false,
+    properties: rawContentItem.project || false,
     published: rawContentItem.published || false,
     relatedContent: rawContentItem.relatedContent || '',
     relatedContentLink: rawContentItem.relatedContentLink || '',
