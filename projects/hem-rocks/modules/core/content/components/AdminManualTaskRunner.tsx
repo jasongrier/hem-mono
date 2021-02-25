@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useState, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import uuid from 'uuid/v1'
 import moment from 'moment'
-import { modelize, hasCategory, generateChunks, removeTag, addProperty } from '../functions'
+import { modelize, hasCategory, generateChunks, removeTag, addProperty, hasTag } from '../functions'
 import { IContentItem, requestReadItems, compressIndex, getTags } from '../index'
 import { RootState } from '../../../../index'
 import { slugify, titleCase } from 'voca'
@@ -184,8 +184,10 @@ async function migrate(allContentItems: IContentItem[]) {
     const newItem = Object.assign({}, oldItem)
 
     for (const tag of tagsToProperties) {
-      removeTag(newItem, tag)
-      addProperty(newItem, tag)
+      if (hasTag(newItem, tag)) {
+        newItem.tags = removeTag(newItem, tag)
+        newItem.properties = addProperty(newItem, tag)
+      }
     }
 
     newItems.push(newItem)
@@ -198,9 +200,9 @@ async function migrate(allContentItems: IContentItem[]) {
   // ***** DANGER ZONE *****
   // ***** DANGER ZONE *****
 
-  // writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
-  // writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
-  // generateChunks(allContentItems)
+  writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
+  writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
+  generateChunks(allContentItems)
 }
 
 function AdminManualTaskRunner(): ReactElement {
