@@ -61,6 +61,7 @@ const keyCompressionMap: any = {
   physicalFormats: 'ax',
   preview: 'ay',
   project: 'bu',
+  properties: 'bv',
   published: 'az',
   relatedContent: 'ba',
   relatedContentLink: 'bb',

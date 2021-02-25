@@ -2,10 +2,11 @@ import React, { ReactElement, useEffect, useState, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import uuid from 'uuid/v1'
 import moment from 'moment'
-import { modelize, hasCategory, generateChunks } from '../functions'
-import { IContentItem, requestReadItems, compressIndex } from '../index'
+import { modelize, hasCategory, generateChunks, removeTag, addProperty } from '../functions'
+import { IContentItem, requestReadItems, compressIndex, getTags } from '../index'
 import { RootState } from '../../../../index'
 import { slugify, titleCase } from 'voca'
+import { intersection } from 'lodash'
 
 async function createItemsFromFiles(allContentItems: IContentItem[]) {
   const { remote } = window.require('electron')
@@ -165,20 +166,26 @@ async function migrate(allContentItems: IContentItem[]) {
 
   const newItems: IContentItem[] = []
 
+  const tagsToProperties = [
+    'done-for-now',
+    'format:digital',
+    'has-multiple-artists',
+    'home-features',
+    'in-overview-playlists',
+    'in-overview-rare',
+    'in-overview-tracks',
+    'label-page',
+    'not-playable',
+    'player-playlist',
+    'primary-format',
+  ]
+
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
 
-    if (
-      hasCategory(newItem, 'tracks')
-      && newItem.project === 'hem.rocks'
-      && newItem.attribution.includes('Jason Grier')
-      && newItem.published
-    ) {
-      const copiedItem = Object.assign({}, newItem)
-      copiedItem.project = 'jag.rip'
-      copiedItem.slug = copiedItem.slug + '-jag'
-
-      newItems.push(copiedItem)
+    for (const tag of tagsToProperties) {
+      removeTag(newItem, tag)
+      addProperty(newItem, tag)
     }
 
     newItems.push(newItem)

@@ -4,7 +4,20 @@ export { default as contentItemToTrack } from './content-item-to-track'
 export { fieldIsSerialized, getOrder, parseSerializedOrderFieldValue, updateSerializedOrderFieldValue, orderSortFnFact} from './parse-serialized-order-field-value'
 export { default as generateChunks } from './generate-chunks'
 export { default as hasCategory } from './has-category'
-export { default as hasTag } from './has-tag'
+export {
+  addProperty,
+  addTag,
+  addTerm,
+  getProperties,
+  getTags,
+  getTerms,
+  hasProperty,
+  hasTag,
+  hasTerm,
+  removeProperty,
+  removeTag,
+  removeTerm,
+} from './csv-list-fields'
 export { default as modelize } from './modelize'
 export { default as readAllItems } from './read-all-items'
 export { default as parseText } from './parse-text'
