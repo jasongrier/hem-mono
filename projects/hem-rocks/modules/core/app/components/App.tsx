@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import ReactGA from 'react-ga'
 import Cookies from 'js-cookie'
+import { isEmpty } from 'lodash'
 import { CartFrame } from '../../cart'
 import { setCurrentProject, requestReadChunk, getContentItemBySlug } from '../../content'
 import { Hide, ElectronNot, ScrollToTop, Spinner } from '../../../../../../lib/components'
@@ -65,9 +66,13 @@ function App(): ReactElement {
     }
   }, [])
 
-  const ProjectFrame = projectFrames[currentProject]
+  if (isEmpty(currentProject)) return (<div title="Waiting for project frame" />)
 
-  if (!ProjectFrame) return (<div></div>)
+  const ProjectFrame = window.process?.env.ELECTRON_MONO_DEV
+    ? projectFrames['hem.rocks']
+    : projectFrames[currentProject]
+
+  if (!ProjectFrame) return (<div style={{ color: 'black' }}>No project frame found for { currentProject }!</div>)
 
   return (
     <div className={`
