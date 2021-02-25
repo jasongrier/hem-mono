@@ -64,9 +64,9 @@ function Home(): ReactElement {
           'Music %26 Sound',
           'Photo %26 Film',
           'Installation %26 Live',
-          'Blog',
-          'Code',
           'Press',
+          'Code',
+          'Blog',
         ]}
       >
         {(item) => {

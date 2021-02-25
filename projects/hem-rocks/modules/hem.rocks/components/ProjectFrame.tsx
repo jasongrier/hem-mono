@@ -8,9 +8,7 @@ interface IProps {}
 function ProjectFrame({ children }: PropsWithChildren<IProps>): ReactElement {
   return (
     <div className="project-frame project-frame-hem-rocks">
-      <ElectronNot>
-        <TopBar />
-      </ElectronNot>
+      <TopBar />
       <div className="main-hem">
         { children }
       </div>

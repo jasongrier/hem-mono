@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom'
 import { assetHostHostname } from '../../../hem-rocks/functions'
 import { ContactForm } from '../../../../lib/components'
 
-function ReactConsulting(): ReactElement {
+function ReactJavascriptConsulting(): ReactElement {
+  console.log('??')
   return (
-    <div className="page page-react-consulting">
+    <div className="page page-react-javascript-consulting">
       <h1>React Javascript Consulting</h1>
 
       <p>I specialise in devising strategies and practical implementations for you to migrate legacy systems to React in a smooth and nontoxic way. I love solving "the hard problems" elegantly and beautifully.</p>
@@ -93,4 +94,4 @@ function ReactConsulting(): ReactElement {
   )
 }
 
-export default ReactConsulting
+export default ReactJavascriptConsulting

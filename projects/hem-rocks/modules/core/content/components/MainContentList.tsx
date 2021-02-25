@@ -613,7 +613,7 @@ function MainContentList({
             </MainContentBox>
           )
         })}
-        { extraBottomBoxes.map((contentItem, key) => (
+        { extraBottomBoxes && extraBottomBoxes.map((contentItem, key) => (
           <MainContentBox
             badgeText=""
             bipolarX={boxBipolarX}
