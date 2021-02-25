@@ -192,6 +192,7 @@ function AdminList(): ReactElement {
             >
               <option value="id">Id:</option>
               <option value="tags">Tag:</option>
+              <option value="property">Property:</option>
               <option value="title">Title:</option>
               <option value="audioFilename">Audio:</option>
               <option value="attribution">Attr:</option>

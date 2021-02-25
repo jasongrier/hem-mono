@@ -107,6 +107,9 @@ function MainContentBox({
     const scrollContent = document.querySelector('.scroll-lock-content')
 
     if (!el) return
+    if (!el.current) return
+    if (!hotZoneTop) return
+    if (!hotZoneBottom) return
     if (!scrollContent) return
 
     setInTheHotZone(
@@ -169,10 +172,7 @@ function MainContentBox({
                 { renderActionsOn === 'key-art'
                   && buttonText
                   && (
-                    <MainContentBoxActions
-                      linkTo={linkTo}
-                      buttonText={buttonText}
-                    >
+                    <MainContentBoxActions buttonText={buttonText}>
                       { children }
                     </MainContentBoxActions>
                 )}
@@ -200,10 +200,7 @@ function MainContentBox({
               { renderActionsOn === 'text'
                 && buttonText
                 && (
-                  <MainContentBoxActions
-                    linkTo={linkTo}
-                    buttonText={buttonText}
-                  >
+                  <MainContentBoxActions buttonText={buttonText}>
                     { children }
                   </MainContentBoxActions>
               )}
