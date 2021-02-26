@@ -71,7 +71,9 @@ function ProjectFrame({ children }: PropsWithChildren<IProps>): ReactElement {
         <footer className="main-footer">
           <p>
             &copy; Jason Grier, 2021
-            &nbsp;|&nbsp;<Link to="/news">News</Link>
+            &nbsp;|&nbsp;<Link to="#">News</Link>
+            &nbsp;|&nbsp;<Link to="#">Contact</Link>
+            &nbsp;|&nbsp;<Link to="#">About</Link>
             &nbsp;|&nbsp;<Link to="/bespoke-react-developer">React Javascript Consulting</Link>
             &nbsp;|&nbsp;<a href="https://web.facebook.com/jasongriermusic">FB</a>
             &nbsp;|&nbsp;<a href="mailto:j@hem.rocks">j@hem.rocks</a>

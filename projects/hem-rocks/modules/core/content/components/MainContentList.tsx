@@ -15,7 +15,7 @@ import { MainContentBox } from './index'
 import { IContentItem, setCurrentItems } from '../index'
 import { RootState } from '../../../../index'
 import { LISTS_HAVE_BLURBS, PROJECT_CONFIGS as UNTYPED_PROJECT_CONFIGS } from '../../../../config'
-import { hasTag, hasCategory, contentItemToTrack, orderSortFnFact, getContentItemsFromRawList, smartSlugify, tagSpellingCorrections, getContentItemById, modelize } from '../functions'
+import { hasTag, hasCategory, contentItemToTrack, orderSortFnFact, getTagsInCollection, getContentItemsFromRawList, smartSlugify, tagSpellingCorrections, getContentItemById, modelize, getTags } from '../functions'
 import { requestReadChunk } from '../actions'
 
 const PROJECT_CONFIGS = UNTYPED_PROJECT_CONFIGS as any
@@ -207,10 +207,7 @@ function MainContentList({
       if (!contentItems) return
       if (!contentItems.length) return
 
-      const allFilters = contentItems.map(item => item.tags.split(',').map(tag => tag.trim()))
-      const allFiltersFlat: string[] = flatten(allFilters)
-
-      let filters: string[] = uniq(allFiltersFlat.map(tag => titleCase(tag).replace(/-/g, ' ')))
+      let filters: string[] = getTagsInCollection(contentItems).map(t => titleCase(t).replace(/-/g, ' '))
 
       if (hideFilters) {
         filters = filters.filter(f => !hideFilters.includes(f))

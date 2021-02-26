@@ -24,7 +24,7 @@ function AdminItemOrdering({ }: IProps): ReactElement {
 
   const [finalItems, setFinalItems] = useState<IContentItem[]>([])
   const [canSave, setCanSave] = useState<boolean>(false)
-  const [currentFilter, setCurrentFilter] = useState<string>(PROJECT_CONFIGS[currentProject].ORDERING_BUCKETS[0])
+  const [currentFilter, setCurrentFilter] = useState<string>(PROJECT_CONFIGS[currentProject].ORDERING_BUCKETS_TAGS[0])
 
   useEffect(function init() {
     dispatch(requestReadItems())
@@ -113,7 +113,7 @@ function AdminItemOrdering({ }: IProps): ReactElement {
               onChange={onFilterSelectChanged}
               value={currentFilter}
             >
-              { PROJECT_CONFIGS[currentProject].ORDERING_BUCKETS.map(filter => (
+              { PROJECT_CONFIGS[currentProject].ORDERING_BUCKETS_TAGS.map((filter: string) => (
                 <option
                   key={filter}
                   value={filter}

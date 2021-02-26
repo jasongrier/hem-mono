@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import uuid from 'uuid/v1'
 import moment from 'moment'
 import { modelize, hasCategory, generateChunks, removeTag, addProperty, hasTag } from '../functions'
-import { IContentItem, requestReadItems, compressIndex, getTags } from '../index'
+import { IContentItem, requestReadItems, compressIndex, addTag } from '../index'
 import { RootState } from '../../../../index'
 import { slugify, titleCase } from 'voca'
 import { intersection } from 'lodash'
@@ -166,28 +166,26 @@ async function migrate(allContentItems: IContentItem[]) {
 
   const newItems: IContentItem[] = []
 
-  const tagsToProperties = [
-    'done-for-now',
-    'format:digital',
-    'has-multiple-artists',
-    'home-features',
-    'in-overview-playlists',
-    'in-overview-rare',
-    'in-overview-tracks',
-    'label-page',
-    'not-playable',
-    'player-playlist',
-    'primary-format',
+  const removeTags = [
+    'releases',
+    'featured',
+    'new',
+    'sessions',
+    'rare',
+    'radio',
+    'live',
+    'mixes',
+    'tracks',
   ]
 
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
 
-    for (const tag of tagsToProperties) {
-      if (hasTag(newItem, tag)) {
-        newItem.tags = removeTag(newItem, tag)
-        newItem.properties = addProperty(newItem, tag)
-      }
+    if (
+      newItem.project === 'jag.rip'
+      && hasTag(newItem, 'press')
+    ) {
+      newItem.blurb = 'Review of "' + newItem.blurb + '"'
     }
 
     newItems.push(newItem)
@@ -200,9 +198,9 @@ async function migrate(allContentItems: IContentItem[]) {
   // ***** DANGER ZONE *****
   // ***** DANGER ZONE *****
 
-  writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
-  writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
-  generateChunks(allContentItems)
+  // writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
+  // writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
+  // generateChunks(newItems)
 }
 
 function AdminManualTaskRunner(): ReactElement {

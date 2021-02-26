@@ -544,7 +544,7 @@ function DetailPopUp({
             <div
               className="detail-popup-key-art-image"
               style={{
-                backgroundImage: `url(${assetHost}/hem-rocks/content/images/key-art/${contentItem.keyArt})`
+                backgroundImage: `url(${assetHost}/${currentProject}/content/images/key-art/${contentItem.keyArt})`
               }}
             />
           )}
@@ -715,7 +715,7 @@ function DetailPopUp({
                         || hasTag(i, 'embedded-essay')
                       )
                       .reduce(
-                        (acc, i) => {
+                        (acc: any, i) => {
                           acc[i.slug] = parseText(i.description, { assetHost })
                           return acc
                         }, {},
