@@ -41,7 +41,7 @@ function Admin(): ReactElement {
                 <NavLink to="/internal">Internal Pages</NavLink>
               </li>
               <li>
-                <Link to="/">Site</Link>
+                <Link to="#">Deploy (coming soon)</Link>
               </li>
             </ul>
           </nav>

@@ -133,7 +133,10 @@ export const categories = [
   'code',
   'editions',
   'faqs',
+  'general-content',
   'heroines',
+  'image-gallery',
+  'image',
   'label',
   'lists',
   'merch',
@@ -396,6 +399,8 @@ export {
   uniqueSlug,
   updateSerializedOrderFieldValue,
   validateCompressionMap,
+  getPropertiesInCollection,
+  getTagsInCollection,
 } from './functions'
 
 export {

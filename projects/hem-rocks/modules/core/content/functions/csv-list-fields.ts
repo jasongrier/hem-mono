@@ -1,11 +1,18 @@
-import { isEmpty } from 'lodash'
+import { isEmpty, uniq, flatten } from 'lodash'
 import { IContentItem } from '../index'
 
 function getTerms(item: IContentItem, termTaxonomy: 'tags' | 'properties') {
   if (isEmpty(item[termTaxonomy])) return []
   let terms = item[termTaxonomy].split(',')
-  terms = terms.filter((t: string) => !/\A\s*\z/.test(t))
+  terms = terms
+    .filter((t: string) => !/\A\s*\z/.test(t))
+    .map((t: string) => t.trim())
+    .filter((t: string) => !isEmpty(t))
   return terms
+}
+
+function getTermsInCollection(contentItems: IContentItem[], termTaxonomy: 'tags' | 'properties') {
+  return uniq(flatten(contentItems.map(i => getTerms(i, termTaxonomy))))
 }
 
 function hasTerm(item: IContentItem, term: string, termTaxonomy: 'tags' | 'properties') {
@@ -35,6 +42,10 @@ function getTags(item: IContentItem) {
   return getTerms(item, 'tags')
 }
 
+function getTagsInCollection(items: IContentItem[]) {
+  return getTermsInCollection(items, 'tags')
+}
+
 function hasTag(item: IContentItem, tag: string) {
   return hasTerm(item, tag, 'tags')
 }
@@ -49,6 +60,10 @@ function removeTag(item: IContentItem, tag: string) {
 
 function getProperties(item: IContentItem) {
   return getTerms(item, 'properties')
+}
+
+function getPropertiesInCollection(items: IContentItem[]) {
+  return getTermsInCollection(items, 'properties')
 }
 
 function hasProperty(item: IContentItem, property: string) {
@@ -68,7 +83,9 @@ export {
   addTag,
   addTerm,
   getProperties,
+  getPropertiesInCollection,
   getTags,
+  getTagsInCollection,
   getTerms,
   hasProperty,
   hasTag,

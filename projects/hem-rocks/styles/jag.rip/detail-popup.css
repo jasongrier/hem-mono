@@ -323,6 +323,10 @@
   background-color: #fff;
 }
 
+.detail-popup-details a {
+  text-decoration: underline;
+}
+
 .detail-popup.purchase-form-hidden .detail-popup-details {
   padding-top: 0;
 }

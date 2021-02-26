@@ -220,14 +220,17 @@ a[id="more-anchor"] {
   display: block;
   padding: 0;
   margin-bottom: 15px;
+  padding-bottom: 6px;
 }
 
 .main-content-filters a:hover {
-  text-decoration: underline;
+  border-bottom: 3px solid #fff;
+  padding-bottom: 3px;
 }
 
 .main-content-filter-active {
-  text-decoration: underline;
+  border-bottom: 3px solid #fff;
+  padding-bottom: 3px !important;
 }
 
 .main-footer {
@@ -243,4 +246,14 @@ a[id="more-anchor"] {
   bottom: 10px;
   left: 10px;
   font-size: 12px;
+}
+
+.current-project-jag-rip .detail-popup header h1 {
+  color: #000;
+  line-height: 72px;
+  text-transform: none;
+}
+
+.current-project-jag-rip .detail-popup .detail-popup-key-art-image {
+  background-position: top center;
 }

@@ -194,9 +194,9 @@ function RoutingHub(): ReactElement {
         <Route exact path="/press/filter/:filter" component={Press} />
         <Route exact path="/press/cart/:filter?" component={Press} />
 
-        <Route exact path="/projects/:contentItemSlug?/:filter?" component={currentProject === 'jag.rip' ? JagHome : Home} />
-        <Route exact path="/projects/filter/:filter" component={currentProject === 'jag.rip' ? JagHome : Home} />
-        <Route exact path="/projects/cart/:filter?" component={currentProject === 'jag.rip' ? JagHome : Home} />
+        <Route exact path="/general-content/:contentItemSlug?/:filter?" component={currentProject === 'jag.rip' ? JagHome : Home} />
+        <Route exact path="/general-content/filter/:filter" component={currentProject === 'jag.rip' ? JagHome : Home} />
+        <Route exact path="/general-content/cart/:filter?" component={currentProject === 'jag.rip' ? JagHome : Home} />
 
         <Route exact path="/newsletters/:contentItemSlug?/:filter?" component={Newsletters} />
         <Route exact path="/newsletters/filter/:filter" component={Newsletters} />

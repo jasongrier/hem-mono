@@ -34,13 +34,14 @@ function Home(): ReactElement {
         boxHeight={400}
         boxRangeX={200}
         boxRangeY={20}
-        category="projects"
+        category="general-content"
         additionalCategory="site-texts"
         prependTagLinks={[
           { title: 'Home', url: '/' },
         ]}
         appendTagLinks={compact([
-          { title: 'About', url: '/about' },
+          { title: 'Booking', url: '/booking' },
+          // { title: 'About', url: '/about' },
           window.process?.env.ELECTRON_MONO_DEV
             ? { title: 'Admin', url: '/admin/list' }
             : null
@@ -58,14 +59,14 @@ function Home(): ReactElement {
           'Tracks',
           'Radio',
         ]}
-        excludeFromAll={['Consulting']}
         extraBottomBoxes={[1]}
         speciallyOrderedTags={[
           'Music %26 Sound',
           'Photo %26 Film',
           'Installation %26 Live',
+          'Creative Code',
+          'Web Work',
           'Press',
-          'Code',
           'Blog',
         ]}
       >

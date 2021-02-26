@@ -2,6 +2,7 @@ import React, { ReactElement, PropsWithChildren, useCallback, useState, useEffec
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
 import marked from 'marked'
+import { isEmpty } from 'lodash'
 import { SplatterDims, Tilt } from '../../../../../../lib/packages/hem-boxplatter'
 import { assetHostHostname } from '../../../../functions'
 import { IContentItem, setCurrentItem, MainContentBoxActions } from '../index'
@@ -164,7 +165,9 @@ function MainContentBox({
                 <strong>{ badgeText || contentItem.badgeText }</strong>
               </div>
             )}
-            { hasKeyArt(contentItem, index) && (
+            { hasKeyArt(contentItem, index)
+              && !isEmpty(contentItem.keyArt)
+              && (
               <div
                 className="main-content-box-key-art"
                 onClick={onClick}

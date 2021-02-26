@@ -32,7 +32,7 @@ declare const window: any
 
 const initialState: IState = {
   adminFilterApplied: 'all',
-  adminSearchableField: 'title',
+  adminSearchableField: 'tags',
   adminSearchApplied: '',
   adminSearchExact: false,
   chunkLog: [],

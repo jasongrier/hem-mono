@@ -79,6 +79,7 @@ function App(): ReactElement {
       hem-application
       ${ pathname.includes('admin') ? 'is-admin' : '' }
       ${ process.env.NODE_ENV === 'production' ? 'node-env-production' : '' }
+      current-project-${currentProject.replace(/\./g, '-')}
       ${
         pathname === '/'
         || pathname === '/cart'

@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Link, } from 'react-router-dom'
 import produce from 'immer'
 import uuid from 'uuid'
-import { isEmpty, noop, find } from 'lodash'
+import { isEmpty, noop, find, filter } from 'lodash'
 import { slugify, titleCase } from 'voca'
 import { ElectronOnly } from '../../../../../../lib/components'
 import { PlayPauseButton } from '../../../../../../lib/packages/hem-buttons'
-import { selectableCategories, adminApplyFilter, adminApplySearch, getContentItemBySlug, setAdminSearchableField, toggleNeedsKeyArtFilter, requestReadItems, requestUpdateItems, IContentItem, categories, projects } from '../index'
+import { selectableCategories, adminApplyFilter, adminApplySearch, getTagsInCollection, getContentItemBySlug, setAdminSearchableField, toggleNeedsKeyArtFilter, requestReadItems, requestUpdateItems, IContentItem, categories, projects } from '../index'
 import { RootState } from '../../../../index'
 import { hasCategory, hasTag, modelize } from '../functions'
 import { assetHostHostname } from '../../../../functions'
@@ -49,7 +49,7 @@ function AdminList(): ReactElement {
   }, [])
 
   const [selectedItems, setSelectedItems] = useState<any>({})
-  const [interestingProperty, setInterestingProperty] = useState<keyof IContentItem>('category')
+  const [interestingProperty, setInterestingProperty] = useState<keyof IContentItem>('tags')
   const [collapsed, setCollapsed] = useState<boolean>(false)
 
   const projectFilterOnChange = useCallback(
@@ -69,7 +69,8 @@ function AdminList(): ReactElement {
   )
 
   const searchOnChange = useCallback(
-    function categoryFilterOnChangeFn(evt: SyntheticEvent<HTMLInputElement>) {
+    function categoryFilterOnChangeFn(evt: SyntheticEvent<HTMLInputElement | HTMLSelectElement>) {
+      dispatch(adminApplySearch(evt.currentTarget.value))
       dispatch(adminApplySearch(evt.currentTarget.value))
     }, [],
   )
@@ -201,11 +202,30 @@ function AdminList(): ReactElement {
               <option value="slug">Slug</option>
               <option value="description">Desc</option>
             </select>
-            <input
-              onChange={searchOnChange}
-              placeholder={adminSearchApplied}
-              type="text"
-            />
+            { adminSearchableField === 'tags' && (
+              <select
+                className="custom-select admin-select-tag"
+                onChange={searchOnChange}
+                value={adminSearchApplied}
+              >
+                <option value="">All</option>
+                { getTagsInCollection(filter(allContentItems, { project: currentProject })).map(tag => (
+                  <option
+                    key={tag}
+                    value={tag}
+                  >
+                    { titleCase(tag).replace(/-/g, ' ').replace(/%26/g, '&') }
+                  </option>
+                )) }
+              </select>
+            )}
+            { adminSearchableField !== 'tags' && (
+              <input
+                onChange={searchOnChange}
+                placeholder={adminSearchApplied}
+                type="text"
+              />
+            )}
           </div>
         </div>
         <div className="admin-list-controls clearfix">
