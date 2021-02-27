@@ -140,7 +140,6 @@ function DetailPopUp({
 
   const suggestedPriceOnChange = useCallback(
     function suggestedPriceOnChangeFn(evt: SyntheticEvent<HTMLInputElement>) {
-      console.log(evt.currentTarget.value)
       const price = evt.currentTarget.value
       validate(price)
       setSuggestedPrice(price)
@@ -195,7 +194,7 @@ function DetailPopUp({
 
     setPreviousItem(currentContentItems[itemIndex - 1])
     setNextItem(currentContentItems[itemIndex + 1])
-  }, [currentContentItems, contentItem, nextItem, previousItem])
+  }, [currentContentItems, contentItem])
 
   useEffect(function resetValidityOnPrevNext() {
     setValid(true)
@@ -438,8 +437,9 @@ function DetailPopUp({
     <section
       className={`
         detail-popup
-        ${showPurchaseForm ? '' : 'purchase-form-hidden'}
-        ${contentItem.slug}
+        ${showPurchaseForm ? '' : 'detail-popup-purchase-form-hidden'}
+        detail-popup-with-for-item-${contentItem.slug}
+        detail-popup-with-filter-${filter}
         with-photography
       `}
     >
@@ -469,85 +469,12 @@ function DetailPopUp({
               )}
             </div>
           </div>
-          { BERLIN_STOCK_PHOTOS && (
-            <>
-              <div className="bsp-lightbox-image">
-                <div
-                  className="img"
-                  style={{ backgroundImage: `url(${assetHost}/berlin-stock-photos/content/images/jpg-web/${contentItem.keyArt})`}}
-                />
-                <div
-                  className="bsp-lightbox-image-placeholder"
-                  style={{ backgroundImage: `url(${assetHost}/berlin-stock-photos/content/images/jpg-placeholders/${contentItem.keyArt})`}}
-                />
-                { !isPrint && (
-                  <BvgWatermark width={800} />
-                )}
-              </div>
-              <div
-                className="bsp-lightbox-tags"
-                style={{
-                  display: contentItem.isPhysicalProduct ? 'none' : 'block'
-                }}
-              >
-                <strong>Tags: </strong>
-                { tags.map(tag =>
-                  <span key={tag}>
-                    <Link to={`/stock-photos/filter/${tag}`}>
-                      { tagSpellingCorrections(titleCase(tag.replace(/-/g, ' ').replace(/,/g, ', ')), true) }
-                    </Link>
-                    { tag === last(tags) ? '' : ',' }
-                  </span>
-                )}
-              </div>
-              <div className="bsp-lightbox-type">
-                <strong>Info: </strong>
-                { contentItem.type + (isPrint ? '' : ', Image download, 3008 x 2000 pixels')}
-              </div>
-              <div
-                className="bsp-lightbox-caption"
-                dangerouslySetInnerHTML={{ __html: marked(contentItem.blurb) }}
-                style={{
-                  display: contentItem.blurb ? 'block' : 'none'
-                }}
-              />
-              <div
-                className="bsp-lightbox-license"
-                style={{
-                  display: contentItem.isPhysicalProduct ? 'none' : 'block'
-                }}
-              >
-                <Link to="/stock-photos-license">Read the License Agreement</Link>
-              </div>
-              <div className="bsp-lightbox-nav" hidden>
-                { previousItem && !isPrint && (
-                  <Link
-                    className="bsp-lightbox-prev"
-                    to={`/${category}/${previousItem.slug}/${filter ? filter : ''}`}
-                  >
-                    &laquo; Previous photo
-                  </Link>
-                )}
-                { previousItem && nextItem && !isPrint && <>&nbsp;&nbsp;|&nbsp;&nbsp;</> }
-                { nextItem && !isPrint && (
-                  <Link
-                    className="bsp-lightbox-next"
-                    to={`/${category}/${nextItem.slug}/${filter ? filter : ''}`}
-                  >
-                    Next photo &raquo;
-                  </Link>
-                )}
-              </div>
-            </>
-          )}
-          { !BERLIN_STOCK_PHOTOS && (
-            <div
-              className="detail-popup-key-art-image"
-              style={{
-                backgroundImage: `url(${assetHost}/${currentProject}/content/images/key-art/${contentItem.keyArt})`
-              }}
-            />
-          )}
+          <div
+            className="detail-popup-key-art-image"
+            style={{
+              backgroundImage: `url(${assetHost}/${currentProject}/content/images/key-art/${contentItem.keyArt})`
+            }}
+          />
           <div className="detail-popup-header-content">
             { isPurchaseable(contentItem) && (
               <div className="detail-popup-actions">

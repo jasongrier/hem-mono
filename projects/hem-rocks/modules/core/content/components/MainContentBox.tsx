@@ -146,6 +146,7 @@ function MainContentBox({
           className={`
             main-content-box
             main-content-box-date-${contentItem.date}
+            main-content-box-with-filter-${filter}
             ${className ? className : ''}
             ${(badgeText || contentItem.badgeText) ? 'has-badge' : ''}
             ${alignRight && index > 0 ? 'align-right' : ''}
