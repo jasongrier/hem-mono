@@ -167,7 +167,7 @@ function MainContentBox({
               </div>
             )}
             { hasKeyArt(contentItem, index)
-              && !isEmpty(contentItem.keyArt)
+              && !isEmpty(contentItem.keyArtFullPath || contentItem.keyArt)
               && (
               <div
                 className="main-content-box-key-art"
@@ -180,12 +180,16 @@ function MainContentBox({
                       { children }
                     </MainContentBoxActions>
                 )}
-                  <div
-                    className="main-content-box-key-art-image"
-                    style={{
-                      backgroundImage: `url(${assetHost}/${currentProject}/content/images/key-art/${contentItem.keyArt})`
-                    }}
-                  />
+                <div
+                  className="main-content-box-key-art-image"
+                  style={{
+                    backgroundImage: (
+                      contentItem.keyArtFullPath
+                        ? `url(${assetHost}/${currentProject}/${contentItem.keyArtFullPath})`
+                        : `url(${assetHost}/${currentProject}/content/images/key-art/${contentItem.keyArt})`
+                    ),
+                  }}
+                />
               </div>
             )}
             <div

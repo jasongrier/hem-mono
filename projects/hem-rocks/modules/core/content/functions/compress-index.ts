@@ -56,6 +56,7 @@ const keyCompressionMap: any = {
   isDigitalProduct: 'at',
   isPhysicalProduct: 'au',
   keyArt: 'av',
+  keyArtFullPath: 'bw',
   note: 'bp',
   order: 'aw',
   physicalFormats: 'ax',
@@ -83,6 +84,8 @@ export function getHighestCompressionMapKey() {
   values.sort()
   console.log(values.pop())
 }
+
+getHighestCompressionMapKey()
 
 export function validateCompressionMap() {
   const checkItem = modelize({})
