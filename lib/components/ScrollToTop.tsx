@@ -10,8 +10,11 @@ function ScrollToTop({ scrollPaneSelector }: IProps): ReactElement {
   const { pathname } = useLocation()
 
   useEffect(() => {
-    const forPaths = [
-      '/',
+    const exactPaths = [
+      '/'
+    ]
+
+    const fuzzyPaths = [
       '/admin/list',
       '/about',
       '/apps',
@@ -35,14 +38,24 @@ function ScrollToTop({ scrollPaneSelector }: IProps): ReactElement {
 
     let matched = false
 
-    for (const path of forPaths) {
-      if (pathname.includes(path)) {
+    for (const path of exactPaths) {
+      if (pathname === path) {
         matched = true
         break
       }
     }
 
+    if (!matched) {
+      for (const path of fuzzyPaths) {
+        if (pathname.includes(path)) {
+          matched = true
+          break
+        }
+      }
+    }
+
     if (matched && $(scrollPaneSelector).scrollTop() !== undefined) {
+      console.log('*** We DID scroll to the top! >> ' + pathname)
       $(scrollPaneSelector).scrollTop(0)
     }
 
