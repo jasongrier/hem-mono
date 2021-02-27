@@ -14,13 +14,13 @@ import { closePopup, openPopup } from '../../../../../../lib/modules/popups'
 import { TrackPlayPauseButton, ITrack, replacePlaylist, setPlayerPlaylist, IPlaylist } from '../../../../../../lib/modules/website-player'
 import { addProductToCart, submitSale } from '../../cart'
 import { getCookieName, SplitTests } from '../../app'
-import { IContentItem, getContentItemsFromRawList, getContentItemById } from '../index'
+import { IContentItem, getContentItemsFromRawList, getContentItemById, getProperties } from '../index'
 import { assetHostHostname } from '../../../../functions'
 import { BvgWatermark } from '../../../../components/berlin-stock-photos'
 import ContentComponents from '../../../../components/content'
 import { RootState } from '../../../../index'
 import { BERLIN_STOCK_PHOTOS, MINIMUM_PRICE_FOR_RAW } from '../../../../config'
-import { hasTag, contentItemToTrack, hasCategory, tagSpellingCorrections, parseText } from '../functions'
+import { hasTag, contentItemToTrack, hasCategory, tagSpellingCorrections, parseText, hasProperty } from '../functions'
 import { titleCase } from 'voca'
 
 interface IProps {
@@ -438,13 +438,17 @@ function DetailPopUp({
       className={`
         detail-popup
         ${showPurchaseForm ? '' : 'detail-popup-purchase-form-hidden'}
-        detail-popup-with-for-item-${contentItem.slug}
+        detail-popup-for-item-${contentItem.slug}
         detail-popup-with-filter-${filter}
-        with-photography
+        ${ getProperties(contentItem)
+            .map(p => 'detail-popup-with-property-' + p)
+            .join(' ')
+          }
+        ${filter}
       `}
     >
       <Scrollbars
-        noScroll={BERLIN_STOCK_PHOTOS}
+        noScroll={hasCategory(contentItem, 'images')}
         createContext={true}
         noScrollX={true}
       >
@@ -472,7 +476,11 @@ function DetailPopUp({
           <div
             className="detail-popup-key-art-image"
             style={{
-              backgroundImage: `url(${assetHost}/${currentProject}/content/images/key-art/${contentItem.keyArt})`
+              backgroundImage: (
+                contentItem.keyArtFullPath
+                  ? `url(${assetHost}/${currentProject}/${contentItem.keyArtFullPath})`
+                  : `url(${assetHost}/${currentProject}/content/images/key-art/${contentItem.keyArt})`
+              ),
             }}
           />
           <div className="detail-popup-header-content">

@@ -82,46 +82,52 @@ function createItemsFromArray(allContentItems: IContentItem[]) {
   }
 
   const filenames: string[] = [
-    'Grier_MDelire_Feb14.jpg',
-    'Arttforum.jpg',
-    'Grier_Debug_Dec13.jpg',
-    'Grier_ME_Nov17.jpg',
-    'Grier_ME_Oct17.jpg',
-    'Grier_Spex_Diederichsen_Jul14.jpg',
-    'Grier_Spex_Jan14.jpg',
-    'Grier_Spex_Nov17 (1).jpg',
-    'Grier_Westzeit_Oct17.jpg',
-    'LAIF_01_str_46_57_RECENZJE3.jpg',
-    'MagicRPM.jpg',
-    'Ableton.png',
-    'BBC Radio 3 - Late Junction, Nick Luscombe with Björk.png',
-    'Die Tageszeitung — Dez 2013.png',
-    'Eine Frage des Inputs – amusio.png',
-    'Grier_ChainDLK_Interview.png',
-    'Grier_ChainDLK_Oct17.png',
-    'Grier_DarkEntries_Apr18.png',
-    'Grier_Dissolve_Nov13.png',
-    'Grier_DlfKultur_Nov17.png',
-    'Grier_FeltHat_Dec17.png',
-    'Grier_HungerCulture_Dec13.png',
-    'Grier_ME_Oct17.png',
-    'Grier_MusicMap_Oct17.png',
-    'Grier_Musikansich_Jan14.png',
-    'Grier_NieuweNoten_Feb18.png',
-    'Grier_NowaMuzyka_Nov17_UNBEKANNTE.png',
-    'Grier_NowaMuzyka_Nov17_VS.png',
-    'Grier_OndaRock_Jan14k.png',
-    'Grier_Ondarock_Oct17.png',
-    'Grier_Rifraf_Feb14.png',
-    'Grier_taz_Dec13.png',
-    'Grier_ToPeriodiko_Dec17.png',
-    'Grier_TSP_May18.png',
-    'Grier_W&H_Feb14.png',
-    'Grier_Wire_Oct17.png',
-    'Grier2_Spex_Dec13.png',
-    'HEM_NowaMuzyka_Feb14.png',
-    'HEM_Wire_Jan14.png',
-    'Vital Weekly 914.rtf',
+    'Sky-17.12.2020.gif',
+    'Untitled-21.12.2020.gif',
+    'Train-13.12.2020.gif',
+    'thumbnails',
+    'Sunrise-21.02.2020.gif',
+    'Sunrise-21.02.2020 2.gif',
+    'Sunrise-15.02.2020.gif',
+    'Snow-12.01.2021.gif',
+    'Sky-26.02.2021.gif',
+    'Sky-20.12.2020.gif',
+    'Sky-19.12.2020.gif',
+    'Sky-18.12.2020.gif',
+    'Sky-16.12.2020.gif',
+    'Sky-15.12.2020.gif',
+    'Sky-15.12.2020-2.gif',
+    'Sky-14.12.2020.gif',
+    'Sky-12.12.2020.gif',
+    'Sky-9.12.2020.gif',
+    'Sky-8.12.2020.gif',
+    'Sky-7.12.2020.gif',
+    'Sky-4.12.2020.gif',
+    'Self-13.12.2020.gif',
+    'Salad.gif',
+    'Raindrops-26.02.2021.gif',
+    'Raindrops-22.12.2020.gif',
+    'Park-13.12.2020.gif',
+    'Park-12.12.2020-2.gif',
+    'Park-11.12.2020.gif',
+    'Oranges.gif',
+    'Moon-28.12.2020.gif',
+    'Moon-26.12.2021.gif',
+    'Keyboard.gif',
+    'Fog-10.12.2020.gif',
+    'Fireworks.gif',
+    'Fernsehturn-19.02.2020.gif',
+    'Fernsehturn-19.02.2020 2.gif',
+    'Clouds-27.02.2021.gif',
+    'Cauliflower.gif',
+    'Candle-21.12.2020.gif',
+    'Candle-18.12.2020.gif',
+    'Candle-15.12.2020.gif',
+    'Candle-13.12.2020.gif',
+    'Candle-11.20.2020.gif',
+    'Candle-10.12.2020.gif',
+    'Birds-23.12.2020.gif',
+    'Bird-03.01.2021.gif',
   ]
 
   for (const filename of filenames) {
@@ -129,16 +135,16 @@ function createItemsFromArray(allContentItems: IContentItem[]) {
     const title = titleCase(filename)
     const createdItem = modelize({
       id: uuid(),
-      tags: 'press',
+      tags: 'animations',
       project: 'jag.rip',
       title,
-      attribution: 'Line Gøttsche',
+      attribution: '',
       secondaryAttribution: '',
       date: 'February 2021',
       published: true,
       keyArt: filename,
-      category: 'projects',
-      displayCategory: 'Tracks',
+      category: 'images',
+      displayCategory: '',
       slug: filename + '-jag',
     } as Partial<IContentItem>)
 
@@ -181,11 +187,8 @@ async function migrate(allContentItems: IContentItem[]) {
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
 
-    if (
-      newItem.project === 'jag.rip'
-      && hasTag(newItem, 'press')
-    ) {
-      newItem.blurb = 'Review of "' + newItem.blurb + '"'
+    if (hasCategory(newItem, 'image')) {
+      console.log(newItem.title)
     }
 
     newItems.push(newItem)

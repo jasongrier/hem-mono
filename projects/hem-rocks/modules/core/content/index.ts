@@ -28,6 +28,7 @@ export interface IContentItem {
   isDigitalProduct: boolean
   isPhysicalProduct: boolean
   keyArt: string
+  keyArtFullPath: string
   note: string
   order: string
   physicalFormats: string
@@ -101,6 +102,7 @@ export const fieldTypes: IContentItem = {
   isDigitalProduct: false,
   isPhysicalProduct: false,
   keyArt: 'text',
+  keyArtFullPath: 'text',
   note: 'textarea',
   order: 'text',
   physicalFormats: 'textarea',
@@ -136,7 +138,7 @@ export const categories = [
   'general-content',
   'heroines',
   'image-gallery',
-  'image',
+  'images',
   'label',
   'lists',
   'merch',
