@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, ReactElement, useCallback, useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { ElectronOnly, ElectronNot } from '../../../../../lib/components'
+import { Hide, ElectronNot } from '../../../../../lib/components'
 import { RootState } from '../../../index'
 import '../../../styles/jag.rip'
 import { hasTag } from '../../../modules/core/content'
@@ -57,11 +57,16 @@ function ProjectFrame({ children }: PropsWithChildren<IProps>): ReactElement {
     <div className="jag-rip-site-frame">
       <header className="main-header">
         <ElectronNot>
-          <h1>
-            <Link to="/">
-              Jason Aaron Grier
-            </Link>
-          </h1>
+          <Hide from={[
+            'bespoke-web-developer',
+            'react-javascript-consulting',
+          ]}>
+            <h1>
+              <Link to="/">
+                Jason Aaron Grier
+              </Link>
+            </h1>
+          </Hide>
         </ElectronNot>
       </header>
       <div className="main-jag">
@@ -74,21 +79,24 @@ function ProjectFrame({ children }: PropsWithChildren<IProps>): ReactElement {
             &nbsp;|&nbsp;<Link to="#">News</Link>
             &nbsp;|&nbsp;<Link to="#">Contact</Link>
             &nbsp;|&nbsp;<Link to="#">About</Link>
-            &nbsp;|&nbsp;<Link to="/react-javascript-consulting">React Javascript Consulting</Link>
             &nbsp;|&nbsp;<a href="https://web.facebook.com/jasongriermusic">FB</a>
             &nbsp;|&nbsp;<a href="mailto:j@hem.rocks">j@hem.rocks</a>
+            <br/>
+            <br/>
+            <Link
+              target="_blank"
+              to="/react-javascript-consulting"
+            >
+              React Javascript Consulting
+            </Link>
+            &nbsp;|&nbsp;
+            <Link
+              target="_blank"
+              to="/bespoke-web-developer"
+            >
+              Bespoke Web Developer
+            </Link>
           </p>
-          { showMoreLink
-            && itemsCount > 2
-            && (
-              <a
-                className="more-link"
-                href="#"
-                onClick={moreLinkOnClick}
-              >
-                &darr;
-              </a>
-          )}
         </footer>
       </ElectronNot>
     </div>

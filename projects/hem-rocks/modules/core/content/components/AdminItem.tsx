@@ -183,7 +183,7 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
                 originalItem.keyArtFullPath
                   ? `${assetHost}/${currentProject}/${originalItem.keyArtFullPath}`
                   : `${assetHost}/${currentProject}/content/images/key-art/${originalItem.keyArt}`
-              )} />
+              )}/>
             )}
           </div>
           <button

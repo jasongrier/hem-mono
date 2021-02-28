@@ -13,7 +13,7 @@ function ReactJavascriptConsulting(): ReactElement {
         <title>{ BASE_SITE_TITLE }</title>
         <meta name="description" content="" />
       </Helmet>
-      <div className="page about-sl2 page-web-biz-landing-page">
+      <div className="page page-web-biz-landing-page">
         <div className="main-content-section first-main-content-section" style={{ color: 'black' }}>
           <SiteText
             textItemId="353a8233-7926-4bfa-a858-36d09c357da8"
@@ -22,8 +22,8 @@ function ReactJavascriptConsulting(): ReactElement {
                 action={assetHostHostname() + '/hem-rocks/api/?hem-cmd=contact-form&site=jag.rip'}
                 emailPlaceholder="Your email address, please!"
                 buttonText="Send"
-                prefilledBody="New React Javascript Consulting Inquiry"
-                prefilledSubject="New React Javascript Consulting Inquiry"
+                prefilledBody="New Bespoke Web Developer Inquiry"
+                prefilledSubject="New Bespoke Web Developer Inquiry"
                 spinnerText="Sending..."
                 successContent={() => (
                   <>

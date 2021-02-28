@@ -72,7 +72,7 @@ import {
   Home as JagHome,
   About as JagAbout,
   ReactJavascriptConsulting as JagReactJavascriptConsulting,
-  BespokeReactDeveloper as JagBespokeReactDeveloper,
+  BespokeWebDeveloper as JagBespokeWebDeveloper,
 } from '../../../../routes/jag.rip'
 
 function RoutingHub(): ReactElement {
@@ -117,8 +117,8 @@ function RoutingHub(): ReactElement {
         <Route exact path="/react-javascript-consulting" component={JagReactJavascriptConsulting} />
         <Route exact path="/react-javascript-consulting/cart" component={JagReactJavascriptConsulting} />
 
-        <Route exact path="/bespoke-react-developer" component={JagBespokeReactDeveloper} />
-        <Route exact path="/bespoke-react-developer/cart" component={JagBespokeReactDeveloper} />
+        <Route exact path="/bespoke-web-developer" component={JagBespokeWebDeveloper} />
+        <Route exact path="/bespoke-web-developer/cart" component={JagBespokeWebDeveloper} />
 
         <Route exact path="/sound-library/page/:contentItemSlug/:cart?" component={GenericPage} />
 
