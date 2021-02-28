@@ -178,8 +178,12 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
         <header className="admin-item-header">
           <h2>{ originalItem?.title }</h2>
           <div className="admin-item-key-art clearfix">
-            { originalItem && originalItem.keyArt && (
-              <img src={`${assetHost}/${currentProject}/content/images/key-art/${originalItem.keyArt}`} />
+            { originalItem && (originalItem.keyArtFullPath || originalItem.keyArt) && (
+              <img src={(
+                originalItem.keyArtFullPath
+                  ? `${assetHost}/${currentProject}/${originalItem.keyArtFullPath}`
+                  : `${assetHost}/${currentProject}/content/images/key-art/${originalItem.keyArt}`
+              )} />
             )}
           </div>
           <button
