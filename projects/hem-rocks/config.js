@@ -125,7 +125,7 @@ module.exports.PROJECT_CONFIGS = {
     CATEGORIES: [
       'general-content',
       'image-gallery',
-      'image',
+      'images',
       'playlists',
       'site-texts',
       'tracks',

@@ -5,38 +5,40 @@ import uuid from 'uuid/v1'
 interface IProps {
   action: string
   buttonText: string
-  emailLabel: string
   emailPlaceholder: string
   errorContent: () => ReactElement
   spinnerText: string
-  successContent: (id: string) => ReactElement
-  bodyLabel: string
-  bodyPlaceholder: string
+  successContent: (id?: string) => ReactElement
 
   bodyAsInput?: boolean
+  bodyLabel?: string
+  bodyPlaceholder?: string
+  emailLabel?: string
+  prefilledBody?: string
   prefilledSubject?: string
   subjectLabel?: string
-  subjects?: string[]
   subjectPlaceholder?: string
+  subjects?: string[]
   title?: string
 }
 
 function ContactForm({
   action,
   buttonText,
-  emailLabel,
   emailPlaceholder,
   errorContent,
   spinnerText,
   subjectLabel,
   successContent,
-  bodyLabel,
-  bodyPlaceholder,
 
   bodyAsInput,
+  bodyLabel,
+  bodyPlaceholder,
+  emailLabel,
+  prefilledBody,
   prefilledSubject,
-  subjects,
   subjectPlaceholder,
+  subjects,
   title,
  }: IProps): ReactElement {
   const [body, setBody] = useState<string>()
@@ -131,17 +133,19 @@ function ContactForm({
                     type="text"
                   />
                 )}
-                {prefilledSubject && (
-                  <input
-                    name="subject"
-                    type="hidden"
-                    value={prefilledSubject}
-                  />
-                )}
               </div>
             )}
+            { prefilledSubject && (
+              <input
+                name="subject"
+                type="hidden"
+                value={prefilledSubject}
+              />
+            )}
             <div className="form-row">
-              <label htmlFor="email">{ emailLabel }</label>
+              { emailLabel && (
+                <label htmlFor="email">{ emailLabel }</label>
+              )}
               <input
                 name="email"
                 onChange={onEmailChange}
@@ -149,26 +153,39 @@ function ContactForm({
                 type="text"
               />
             </div>
-            <div className="form-row">
-              <label htmlFor="body">{ bodyLabel }</label>
-              { bodyAsInput && (
-                <input
-                  name="body"
-                  onChange={onBodyChange}
-                  placeholder={bodyPlaceholder}
-                />
-              )}
-              { !bodyAsInput && (
-                <textarea
-                  name="body"
-                  onChange={onBodyChange}
-                  placeholder={bodyPlaceholder}
-                ></textarea>
-              )}
-            </div>
-            <div className="form-row">
-              <button type="submit">{ buttonText }</button>
-            </div>
+            { !prefilledBody && (
+              <>
+                <div className="form-row">
+                  { bodyLabel && (
+                    <label htmlFor="body">{ bodyLabel }</label>
+                  )}
+                  { bodyAsInput && (
+                    <input
+                      name="body"
+                      onChange={onBodyChange}
+                      placeholder={bodyPlaceholder}
+                    />
+                  )}
+                  { !bodyAsInput && (
+                    <textarea
+                      name="body"
+                      onChange={onBodyChange}
+                      placeholder={bodyPlaceholder}
+                    ></textarea>
+                  )}
+                </div>
+                <div className="form-row">
+                  <button type="submit">{ buttonText }</button>
+                </div>
+              </>
+            )}
+            { prefilledBody && (
+              <input
+                name="body"
+                type="hidden"
+                value={prefilledBody}
+              />
+            )}
           </form>
         </div>
       )}

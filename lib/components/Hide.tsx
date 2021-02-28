@@ -26,9 +26,11 @@ function Hide({ from, children, fallback }: PropsWithChildren<IProps>): ReactEle
   }
 
   return (
-    <div className="hem-hide">
-      { children }
-    </div>
+    hide
+      ? <span />
+      : <div className="hem-hide">
+         { children }
+        </div>
   )
 }
 
