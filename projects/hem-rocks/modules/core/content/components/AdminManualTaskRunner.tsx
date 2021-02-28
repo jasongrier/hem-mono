@@ -142,7 +142,7 @@ function createItemsFromArray(allContentItems: IContentItem[]) {
       secondaryAttribution: '',
       date: 'February 2021',
       published: true,
-      keyArt: filename,
+      keyArtFullPath: 'content/images/galleries/animations/' + filename,
       category: 'images',
       displayCategory: '',
       slug: filename + '-jag',

@@ -363,6 +363,7 @@ export {
   MainContentBox,
   MainContentBoxActions,
   MainContentList,
+  SiteText,
 } from './components'
 
 export {

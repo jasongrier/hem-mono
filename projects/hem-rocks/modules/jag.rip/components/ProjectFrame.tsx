@@ -74,7 +74,7 @@ function ProjectFrame({ children }: PropsWithChildren<IProps>): ReactElement {
             &nbsp;|&nbsp;<Link to="#">News</Link>
             &nbsp;|&nbsp;<Link to="#">Contact</Link>
             &nbsp;|&nbsp;<Link to="#">About</Link>
-            &nbsp;|&nbsp;<Link to="/bespoke-react-developer">React Javascript Consulting</Link>
+            &nbsp;|&nbsp;<Link to="/react-javascript-consulting">React Javascript Consulting</Link>
             &nbsp;|&nbsp;<a href="https://web.facebook.com/jasongriermusic">FB</a>
             &nbsp;|&nbsp;<a href="mailto:j@hem.rocks">j@hem.rocks</a>
           </p>
