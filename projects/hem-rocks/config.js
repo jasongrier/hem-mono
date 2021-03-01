@@ -142,6 +142,15 @@ module.exports.PROJECT_CONFIGS = {
         slug: 'player-radio-interviews-jag',
       },
     ],
+    LANDING_PAGES: [
+      {
+        domains: [
+          'staging-bespoke-web-developer.hem.rocks',
+          'bespoke-web-developer.hem.rocks',
+        ],
+        componentPath: '../../../../routes/jag.rip/landing-pages',
+      },
+    ]
   },
   'breto': { },
   'dot': { },

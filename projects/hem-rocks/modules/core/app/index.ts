@@ -57,6 +57,7 @@ export {
   CookiesFrame,
   CookieSettings,
   EmailForm,
+  LandingPage,
   PlayerFrame,
   Popups,
   RoutingHub,
