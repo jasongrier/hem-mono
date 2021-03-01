@@ -17,12 +17,13 @@ function ReactJavascriptConsulting(): ReactElement {
         <div className="main-content-section first-main-content-section" style={{ color: 'black' }}>
           <SiteText
             textItemId="353a8233-7926-4bfa-a858-36d09c357da8"
-            renderContactForm={() => (
+            makeBlocks={true}
+            render={{ contactForm: () => (
               <ContactForm
                 action={assetHostHostname() + '/hem-rocks/api/?hem-cmd=contact-form&site=jag.rip'}
                 emailPlaceholder="Your email address, please!"
                 buttonText="Send"
-                prefilledBody="New Bespoke Web Developer Inquiry"
+                bodyPlaceholder="Write a little about yourself and your project."
                 prefilledSubject="New Bespoke Web Developer Inquiry"
                 spinnerText="Sending..."
                 successContent={() => (
@@ -41,7 +42,7 @@ function ReactJavascriptConsulting(): ReactElement {
                   </>
                 )}
               />
-            )}
+            )}}
           />
         </div>
       </div>

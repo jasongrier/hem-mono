@@ -104,6 +104,7 @@ module.exports.PROJECT_CONFIGS = {
     HAS_PLAYER: true,
     HAS_COOKIES: false,
     HAS_SERIALIZED_ITEM_ORDER: true,
+    HIDE_PLAYER_FRAME_FOR: ['bespoke-web-developer'],
     ORDERING_BUCKETS_TAGS: [
       'blog',
       'creative-code',

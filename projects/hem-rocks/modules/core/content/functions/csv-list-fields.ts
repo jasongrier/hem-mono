@@ -1,18 +1,19 @@
 import { isEmpty, uniq, flatten } from 'lodash'
 import { IContentItem } from '../index'
+import { alphabeticalAscSort } from '../../../../functions'
 
 function getTerms(item: IContentItem, termTaxonomy: 'tags' | 'properties') {
   if (isEmpty(item[termTaxonomy])) return []
-  let terms = item[termTaxonomy].split(',')
-  terms = terms
-    .filter((t: string) => !/\A\s*\z/.test(t))
-    .map((t: string) => t.trim())
-    .filter((t: string) => !isEmpty(t))
-  return terms
+  return alphabeticalAscSort(
+    item[termTaxonomy].split(',')
+      .filter((t: string) => !/\A\s*\z/.test(t))
+      .map((t: string) => t.trim())
+      .filter((t: string) => !isEmpty(t))
+  )
 }
 
 function getTermsInCollection(contentItems: IContentItem[], termTaxonomy: 'tags' | 'properties') {
-  return uniq(flatten(contentItems.map(i => getTerms(i, termTaxonomy))))
+  return alphabeticalAscSort(uniq(flatten(contentItems.map(i => getTerms(i, termTaxonomy)))))
 }
 
 function hasTerm(item: IContentItem, term: string, termTaxonomy: 'tags' | 'properties') {
