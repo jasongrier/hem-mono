@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import Mustache from 'mustache'
 import marked from 'marked'
-import { SoundLibrarySubnav } from '../../components/layout'
-import { assetHostHostname } from '../../functions'
-import { BASE_SITE_TITLE } from '../../config'
-import { RootState } from '../../index'
-import { getContentItemBySlug, hasCategory, hasTag, IContentItem, requestReadChunk } from '../../modules/core/content'
+import { SoundLibrarySubnav } from '../../../components/layout'
+import { assetHostHostname } from '../../../functions'
+import { BASE_SITE_TITLE } from '../../../config'
+import { RootState } from '../../../index'
+import { getContentItemBySlug, hasCategory, hasTag, IContentItem, requestReadChunk } from '../../../modules/core/content'
 
 function GenericPage(): ReactElement {
   const { chunkLog, contentItems } = useSelector((state: RootState) => ({

@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { hasCategory, hasTag, requestReadChunk, IContentItem } from '../../modules/core/content'
-import { RootState } from '../../'
+import { hasCategory, hasTag, requestReadChunk, IContentItem } from '../../../modules/core/content'
+import { RootState } from '../../../index'
 
 function Todos(): ReactElement {
   const { chunkLog, todos } = useSelector((state: RootState) => ({

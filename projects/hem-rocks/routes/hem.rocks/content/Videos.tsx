@@ -2,12 +2,12 @@ import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
 import { Link, useParams } from 'react-router-dom'
 import { noop } from 'lodash'
-import { MainContentList } from '../../modules/core/content'
-import { BASE_SITE_TITLE } from '../../config'
-import { PlayPauseButton } from '../../../../lib/packages/hem-buttons'
+import { MainContentList } from '../../../modules/core/content'
+import { BASE_SITE_TITLE } from '../../../config'
+import { PlayPauseButton } from '../../../../../lib/packages/hem-buttons'
 
 function Videos(): ReactElement {
-  const { filter: currentFilter } = useParams()
+  const { filter: currentFilter }: any = useParams()
 
   return (
     <>
@@ -19,13 +19,6 @@ function Videos(): ReactElement {
         <MainContentList
           additionalCategory="tutorials"
           currentFilter={currentFilter}
-          filters={[
-            'Live',
-            'Music',
-            'Original',
-            'Random',
-            'Tutorials',
-          ]}
           category="videos"
           title="Videos"
         >

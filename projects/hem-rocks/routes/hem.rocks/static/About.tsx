@@ -2,10 +2,10 @@ import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import ReactGA from 'react-ga'
-import { CampaignMonitorForm } from '../../../../lib/components'
-import { AboutSubnav } from '../../components/layout'
-import { assetHostHostname } from '../../functions'
-import { BASE_SITE_TITLE, CAMPAIGN_MONITOR_FORM_ACTION, CAMPAIGN_MONITOR_FORM_ID, CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME, BERLIN_STOCK_PHOTOS } from '../../config'
+import { CampaignMonitorForm } from '../../../../../lib/components'
+import { AboutSubnav } from '../../../components/layout'
+import { assetHostHostname } from '../../../functions'
+import { BASE_SITE_TITLE, CAMPAIGN_MONITOR_FORM_ACTION, CAMPAIGN_MONITOR_FORM_ID, CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME, BERLIN_STOCK_PHOTOS } from '../../../config'
 
 function About(): ReactElement {
   return (

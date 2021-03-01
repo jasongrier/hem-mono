@@ -1,12 +1,11 @@
 import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router-dom'
-import { MainContentList, contentItemToTrack } from '../../modules/core/content'
-import { TrackPlayPauseButton } from '../../../../lib/modules/website-player'
-import { BASE_SITE_TITLE } from '../../config'
+import { MainContentList, contentItemToTrack } from '../../../modules/core/content'
+import { BASE_SITE_TITLE } from '../../../config'
 
 function Tutorials(): ReactElement {
-  const { filter: currentFilter } = useParams()
+  const { filter: currentFilter }: any = useParams()
 
   return (
     <>
@@ -17,12 +16,6 @@ function Tutorials(): ReactElement {
       <div className="page page-tutorials">
         <MainContentList
           currentFilter={currentFilter}
-          filters={[
-            'Apps',
-            'Code',
-            'MIDI Devices',
-            'Sound Library',
-          ]}
           category="tutorials"
           title="Tutorials"
         />

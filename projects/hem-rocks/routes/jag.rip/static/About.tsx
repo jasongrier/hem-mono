@@ -1,8 +1,7 @@
 import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
 import { useLocation, useParams } from 'react-router-dom'
-import { MainContentList } from '../../modules/core/content'
-import { PROJECT_CONFIGS } from '../../config'
+import { PROJECT_CONFIGS } from '../../../config'
 
 function About(): ReactElement {
   const { pathname }: any = useLocation()

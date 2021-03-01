@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, ReactElement } from 'react'
-import { ElectronNot } from '../../../../../lib/components'
-import { SiteFooter, TopBar } from '../../../components/layout'
-import '../../../styles/hem.rocks'
+import { ElectronNot } from '../../../../../../lib/components'
+import { SiteFooter, TopBar } from '../../../../components/layout'
+import '../../../../styles/hem.rocks'
 
 interface IProps {}
 

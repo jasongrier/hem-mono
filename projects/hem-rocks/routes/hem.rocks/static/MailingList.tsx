@@ -1,10 +1,10 @@
 import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
 import ReactGA from 'react-ga'
-import { BASE_SITE_TITLE } from '../../config'
-import { AboutSubnav } from '../../components/layout'
-import { CampaignMonitorForm } from '../../../../lib/components'
-import { CAMPAIGN_MONITOR_FORM_ACTION, BERLIN_STOCK_PHOTOS, CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME, CAMPAIGN_MONITOR_FORM_ID, MAILING_LIST_TEXT } from '../../config'
+import { BASE_SITE_TITLE } from '../../../config'
+import { AboutSubnav } from '../../../components/layout'
+import { CampaignMonitorForm } from '../../../../../lib/components'
+import { CAMPAIGN_MONITOR_FORM_ACTION, BERLIN_STOCK_PHOTOS, CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME, CAMPAIGN_MONITOR_FORM_ID, MAILING_LIST_TEXT } from '../../../config'
 
 function MailingList(): ReactElement {
   return (

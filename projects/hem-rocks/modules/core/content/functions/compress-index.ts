@@ -85,8 +85,6 @@ export function getHighestCompressionMapKey() {
   console.log(values.pop())
 }
 
-getHighestCompressionMapKey()
-
 export function validateCompressionMap() {
   const checkItem = modelize({})
 

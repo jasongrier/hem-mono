@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
-import { BASE_SITE_TITLE } from '../../config'
+import { BASE_SITE_TITLE } from '../../../config'
 
 function CookiePolicy(): ReactElement {
   return (

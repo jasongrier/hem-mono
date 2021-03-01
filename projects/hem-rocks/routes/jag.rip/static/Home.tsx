@@ -3,10 +3,10 @@ import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import { compact } from 'lodash'
-import { ITrack, TrackPlayPauseButton} from '../../../../lib/modules/website-player'
-import { MainContentList, hasTag, contentItemToTrack, getContentItemsFromRawList } from '../../modules/core/content'
-import { PROJECT_CONFIGS } from '../../config'
-import { RootState } from '../../index'
+import { ITrack, TrackPlayPauseButton} from '../../../../../lib/modules/website-player'
+import { MainContentList, hasTag, contentItemToTrack, getContentItemsFromRawList } from '../../../modules/core/content'
+import { PROJECT_CONFIGS } from '../../../config'
+import { RootState } from '../../../index'
 
 function Home(): ReactElement {
   const { contentItems } = useSelector((state: RootState) => ({

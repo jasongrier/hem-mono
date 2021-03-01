@@ -1,5 +1,5 @@
 import React, { ReactElement, SyntheticEvent, useEffect, useState } from 'react'
-import { assetHostHostname } from '../../functions'
+import { assetHostHostname } from '../../../functions'
 
 // const images = [
 //   'IMG_1067.JPG',

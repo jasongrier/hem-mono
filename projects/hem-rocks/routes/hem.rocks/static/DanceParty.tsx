@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
-import { Deva } from '../../components/layout'
-import { BASE_SITE_TITLE } from '../../config'
+import { Deva } from '../../../components/layout'
+import { BASE_SITE_TITLE } from '../../../config'
 
 function DanceParty(): ReactElement {
   return (

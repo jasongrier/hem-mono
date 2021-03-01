@@ -1,12 +1,12 @@
 import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router-dom'
-import { MainContentList } from '../../modules/core/content'
-import { AboutSubnav } from '../../components/layout'
-import { BASE_SITE_TITLE } from '../../config'
+import { MainContentList } from '../../../modules/core/content'
+import { AboutSubnav } from '../../../components/layout'
+import { BASE_SITE_TITLE } from '../../../config'
 
 function PressKits(): ReactElement {
-  const { filter: currentFilter } = useParams()
+  const { filter: currentFilter }: any = useParams()
 
   return (
     <>
@@ -19,12 +19,6 @@ function PressKits(): ReactElement {
         <AboutSubnav />
         <MainContentList
           currentFilter={currentFilter}
-          filters={[
-            'Artists',
-            'Record Releases',
-            'Music',
-            'Technology',
-          ]}
           category="press-kits"
         />
       </div>

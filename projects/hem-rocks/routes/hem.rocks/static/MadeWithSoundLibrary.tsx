@@ -1,10 +1,10 @@
 import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
-import { ContactForm } from '../../../../lib/components'
-import { SoundLibrarySubnav, MainContentBanner } from '../../components/layout'
-import { assetHostHostname } from '../../functions'
-import { BASE_SITE_TITLE } from '../../config'
+import { ContactForm } from '../../../../../lib/components'
+import { SoundLibrarySubnav, MainContentBanner } from '../../../components/layout'
+import { assetHostHostname } from '../../../functions'
+import { BASE_SITE_TITLE } from '../../../config'
 
 function MadeWithSoundLibrary(): ReactElement {
   return (

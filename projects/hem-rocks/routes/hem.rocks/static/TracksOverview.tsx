@@ -2,11 +2,11 @@ import React, { ReactElement, useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { BASE_SITE_TITLE } from '../../config'
-import { TracksSubnav } from '../../components/layout'
-import { TracksOverviewContentBox, MainContentBanner } from '../../components/layout'
-import { hasCategory, hasTag, requestReadChunk, IContentItem } from '../../modules/core/content'
-import { RootState } from '../../'
+import { BASE_SITE_TITLE } from '../../../config'
+import { TracksSubnav } from '../../../components/layout'
+import { TracksOverviewContentBox, MainContentBanner } from '../../../components/layout'
+import { hasCategory, hasTag, requestReadChunk, IContentItem } from '../../../modules/core/content'
+import { RootState } from '../../../index'
 
 function getRow(tracks: IContentItem[], tag: string) {
   return tracks.filter(i => hasTag(i, tag) && i.published)

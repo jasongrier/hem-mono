@@ -28,7 +28,7 @@ import {
   Tutorials,
   UserGuides,
   Videos,
-} from '../../../../routes/content'
+} from '../../../../routes/hem.rocks/content'
 
 import {
   Admin,
@@ -40,7 +40,7 @@ import {
   PrintFlipBooks,
   Sandbox,
   Todos,
-} from '../../../../routes/internal'
+} from '../../../../routes/hem.rocks/internal'
 
 import {
   About,
@@ -57,7 +57,7 @@ import {
   Support,
   TracksOverview,
   AboutSL,
-} from '../../../../routes/static'
+} from '../../../../routes/hem.rocks/static'
 
 import {
   About as BerlinStockPhotosAbout,
@@ -71,9 +71,12 @@ import {
 import {
   Home as JagHome,
   About as JagAbout,
+} from '../../../../routes/jag.rip/static'
+
+import {
   ReactJavascriptConsulting as JagReactJavascriptConsulting,
   BespokeWebDeveloper as JagBespokeWebDeveloper,
-} from '../../../../routes/jag.rip'
+} from '../../../../routes/jag.rip/landing-pages'
 
 function RoutingHub(): ReactElement {
   const { currentProject } = useSelector((state: RootState) => ({
