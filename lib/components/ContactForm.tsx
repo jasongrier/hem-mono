@@ -153,9 +153,9 @@ function ContactForm({
                 type="text"
               />
             </div>
-            { !prefilledBody && (
-              <>
-                <div className="form-row">
+            <div className="form-row">
+              { !prefilledBody && (
+                <>
                   { bodyLabel && (
                     <label htmlFor="body">{ bodyLabel }</label>
                   )}
@@ -173,12 +173,9 @@ function ContactForm({
                       placeholder={bodyPlaceholder}
                     ></textarea>
                   )}
-                </div>
-                <div className="form-row">
-                  <button type="submit">{ buttonText }</button>
-                </div>
-              </>
-            )}
+                </>
+              )}
+            </div>
             { prefilledBody && (
               <input
                 name="body"
@@ -186,6 +183,9 @@ function ContactForm({
                 value={prefilledBody}
               />
             )}
+            <div className="form-row">
+              <button type="submit">{ buttonText }</button>
+            </div>
           </form>
         </div>
       )}

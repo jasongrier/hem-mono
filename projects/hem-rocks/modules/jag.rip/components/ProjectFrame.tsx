@@ -73,31 +73,36 @@ function ProjectFrame({ children }: PropsWithChildren<IProps>): ReactElement {
         { children }
       </div>
       <ElectronNot>
-        <footer className="main-footer">
-          <p>
-            &copy; Jason Grier, 2021
-            &nbsp;|&nbsp;<Link to="#">News</Link>
-            &nbsp;|&nbsp;<Link to="#">Contact</Link>
-            &nbsp;|&nbsp;<Link to="#">About</Link>
-            &nbsp;|&nbsp;<a href="https://web.facebook.com/jasongriermusic">FB</a>
-            &nbsp;|&nbsp;<a href="mailto:j@hem.rocks">j@hem.rocks</a>
-            <br/>
-            <br/>
-            <Link
-              target="_blank"
-              to="/react-javascript-consulting"
-            >
-              React Javascript Consulting
-            </Link>
-            &nbsp;|&nbsp;
-            <Link
-              target="_blank"
-              to="/bespoke-web-developer"
-            >
-              Bespoke Web Developer
-            </Link>
-          </p>
-        </footer>
+        <Hide from={[
+          'bespoke-web-developer',
+          'react-javascript-consulting',
+        ]}>
+          <footer className="main-footer">
+            <p>
+              &copy; Jason Grier, 2021
+              &nbsp;|&nbsp;<Link to="#">News</Link>
+              &nbsp;|&nbsp;<Link to="#">Contact</Link>
+              &nbsp;|&nbsp;<Link to="#">About</Link>
+              &nbsp;|&nbsp;<a href="https://web.facebook.com/jasongriermusic">FB</a>
+              &nbsp;|&nbsp;<a href="mailto:j@hem.rocks">j@hem.rocks</a>
+              <br/>
+              <br/>
+              <Link
+                target="_blank"
+                to="/react-javascript-consulting"
+              >
+                React Javascript Consulting
+              </Link>
+              &nbsp;|&nbsp;
+              <Link
+                target="_blank"
+                to="/bespoke-web-developer"
+              >
+                Bespoke Web Developer
+              </Link>
+            </p>
+          </footer>
+        </Hide>
       </ElectronNot>
     </div>
   )

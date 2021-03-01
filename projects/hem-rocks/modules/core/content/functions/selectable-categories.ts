@@ -1,4 +1,5 @@
 import { intersection } from 'lodash'
+import { alphabeticalAscSort } from '../../../../functions'
 import { PROJECT_CONFIGS as UNTYPED_PROJECT_CONFIGS } from '../../../../config'
 
 const PROJECT_CONFIGS = UNTYPED_PROJECT_CONFIGS as any
@@ -15,11 +16,7 @@ function selectableCategories(categories: string[], currentProject: string) {
     finalCategories = intersection(categoriesConfig, categories)
   }
 
-  finalCategories.sort((a, b) => {
-    if(a < b) { return -1 }
-    if(a > b) { return 1 }
-    return 0
-  })
+  return alphabeticalAscSort(finalCategories)
 }
 
 export default selectableCategories
