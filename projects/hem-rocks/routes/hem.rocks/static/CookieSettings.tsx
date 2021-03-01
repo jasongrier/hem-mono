@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
-import { CookieSettings } from '../../modules/core/app'
-import { BASE_SITE_TITLE } from '../../config'
+import { CookieSettings } from '../../../modules/core/app'
+import { BASE_SITE_TITLE } from '../../../config'
 
 function CookieSettingsPage(): ReactElement {
   return (

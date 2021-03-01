@@ -2,11 +2,11 @@ import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
 import { Link, NavLink, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { MainContentList, contentItemToTrack, getContentItemsFromRawList } from '../../modules/core/content'
-import { TrackPlayPauseButton } from '../../../../lib/modules/website-player'
-import { BASE_SITE_TITLE } from '../../config'
-import { SoundLibrarySubnav } from '../../components/layout'
-import { RootState } from '../../index'
+import { MainContentList, contentItemToTrack, getContentItemsFromRawList } from '../../../modules/core/content'
+import { TrackPlayPauseButton } from '../../../../../lib/modules/website-player'
+import { BASE_SITE_TITLE } from '../../../config'
+import { SoundLibrarySubnav } from '../../../components/layout'
+import { RootState } from '../../../index'
 
 function SoundLibrary(): ReactElement {
   const { allContentItems } = useSelector((state: RootState) => ({

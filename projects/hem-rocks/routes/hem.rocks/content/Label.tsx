@@ -2,13 +2,11 @@ import React, { ReactElement, useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import { Link, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { find } from 'lodash'
-import { MainContentList, contentItemToTrack, getContentItemsFromRawList } from '../../modules/core/content'
-import { TrackPlayPauseButton } from '../../../../lib/modules/website-player'
-import { LabelTimeline } from '../../components/timeline'
-import { LabelSubnav } from '../../components/layout'
-import { BASE_SITE_TITLE } from '../../config'
-import { RootState } from '../../index'
+import { MainContentList, contentItemToTrack, getContentItemsFromRawList } from '../../../modules/core/content'
+import { TrackPlayPauseButton } from '../../../../../lib/modules/website-player'
+import { LabelTimeline } from '../../../components/timeline'
+import { BASE_SITE_TITLE } from '../../../config'
+import { RootState } from '../../../index'
 
 function Label(): ReactElement {
   const { allContentItems } = useSelector((state: RootState) => ({

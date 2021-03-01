@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react'
 import { Link, NavLink, Switch, Route } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
-import { AdminManualTaskRunner, AdminItem, AdminProgram, AdminList, AdminSettings, AdminReconcilePlaylists, AdminItemOrdering } from '../../modules/core/content'
-import { BASE_SITE_TITLE } from '../../config'
+import { AdminManualTaskRunner, AdminItem, AdminProgram, AdminList, AdminSettings, AdminReconcilePlaylists, AdminItemOrdering } from '../../../modules/core/content'
+import { BASE_SITE_TITLE } from '../../../config'
 
 function Admin(): ReactElement {
   return (

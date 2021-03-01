@@ -14,8 +14,8 @@ import { RootState } from '../../../../index'
 const PROJECT_CONFIGS = UNTYPED_PROJECT_CONFIGS as any
 
 const projectFrames: any = {
-  'hem.rocks': React.lazy(() => import('../../../hem.rocks/components/ProjectFrame')),
-  'jag.rip': React.lazy(() => import('../../../jag.rip/components/ProjectFrame')),
+  'hem.rocks': React.lazy(() => import('../../../hem.rocks/project-frame/components/ProjectFrame')),
+  'jag.rip': React.lazy(() => import('../../../jag.rip/project-frame/components/ProjectFrame')),
 }
 
 function App(): ReactElement {
@@ -98,7 +98,7 @@ function App(): ReactElement {
           <main className="main-content">
             <Suspense fallback={<Spinner />}>
               <ProjectFrame>
-                <LandingPage landingPages={PROJECT_CONFIGS[currentProject].LANDING_PAGES || []}>
+                <LandingPage landingPageSpecs={PROJECT_CONFIGS[currentProject].LANDING_PAGES || []}>
                   <RoutingHub />
                 </LandingPage>
               </ProjectFrame>

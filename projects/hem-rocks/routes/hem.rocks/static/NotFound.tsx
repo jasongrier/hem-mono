@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
-import { BASE_SITE_TITLE } from '../../config'
+import { BASE_SITE_TITLE } from '../../../config'
 
 function NotFound(): ReactElement {
   return (

@@ -34,7 +34,6 @@ function buildBlockContent(block: string) {
   }
 
   else {
-    console.log(2)
     return blockContent
   }
 }

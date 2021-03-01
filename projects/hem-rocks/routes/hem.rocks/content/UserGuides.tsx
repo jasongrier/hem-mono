@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router-dom'
-import { MainContentList } from '../../modules/core/content'
-import { BASE_SITE_TITLE } from '../../config'
+import { MainContentList } from '../../../modules/core/content'
+import { BASE_SITE_TITLE } from '../../../config'
 
 function UserGuides(): ReactElement {
-  const { filter: currentFilter } = useParams()
+  const { filter: currentFilter }: any = useParams()
 
   return (
     <>
@@ -16,12 +16,6 @@ function UserGuides(): ReactElement {
       <div className="page page-user-guides">
         <MainContentList
           currentFilter={currentFilter}
-          filters={[
-            'Apps',
-            'Code',
-            'MIDI Devices',
-            'Sound Library',
-          ]}
           category="user-guides"
           title="User Guides"
         />

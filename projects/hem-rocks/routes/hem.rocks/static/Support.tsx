@@ -1,10 +1,10 @@
 import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
-import { assetHostHostname } from '../../functions'
-import { ContactForm } from '../../../../lib/components'
-import { AboutSubnav } from '../../components/layout'
-import { BASE_SITE_TITLE } from '../../config'
+import { assetHostHostname } from '../../../functions'
+import { ContactForm } from '../../../../../lib/components'
+import { AboutSubnav } from '../../../components/layout'
+import { BASE_SITE_TITLE } from '../../../config'
 
 function Support(): ReactElement {
   return (

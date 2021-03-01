@@ -3,11 +3,11 @@ import { Helmet } from 'react-helmet'
 import { Link, useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { map, flatten, isEmpty, uniq, compact, findIndex } from 'lodash'
-import { MainContentList, contentItemToTrack, hasCategory, hasTag, getContentItemsFromRawList, getContentItemsFromList, IContentItem } from '../../modules/core/content'
-import { TrackPlayPauseButton, replacePlaylist, setPlayerPlaylist } from '../../../../lib/modules/website-player'
-import { TracksSubnav, MainContentBanner } from '../../components/layout'
-import { BASE_SITE_TITLE } from '../../config'
-import { RootState } from '../../index'
+import { MainContentList, contentItemToTrack, hasCategory, hasTag, getContentItemsFromRawList, getContentItemsFromList, IContentItem } from '../../../modules/core/content'
+import { TrackPlayPauseButton, replacePlaylist, setPlayerPlaylist } from '../../../../../lib/modules/website-player'
+import { TracksSubnav, MainContentBanner } from '../../../components/layout'
+import { BASE_SITE_TITLE } from '../../../config'
+import { RootState } from '../../../index'
 
 function Playlists(): ReactElement {
   const { allContentItems } = useSelector((state: RootState) => ({

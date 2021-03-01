@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router-dom'
-import { MainContentList } from '../../modules/core/content'
-import { ArticlesSubnav, MainContentBanner } from '../../components/layout'
-import { BASE_SITE_TITLE } from '../../config'
+import { MainContentList } from '../../../modules/core/content'
+import { ArticlesSubnav, MainContentBanner } from '../../../components/layout'
+import { BASE_SITE_TITLE } from '../../../config'
 
 function Blog(): ReactElement {
   const { filter: currentFilter }: any = useParams()

@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
 import { Link, useParams } from 'react-router-dom'
-import { MainContentList } from '../../modules/core/content'
-import { BASE_SITE_TITLE } from '../../config'
+import { MainContentList } from '../../../modules/core/content'
+import { BASE_SITE_TITLE } from '../../../config'
 
 function Code(): ReactElement {
-  const { filter: currentFilter } = useParams()
+  const { filter: currentFilter }: any = useParams()
 
   return (
     <>
@@ -17,19 +17,6 @@ function Code(): ReactElement {
         <MainContentList
           additionalCategory="apps"
           currentFilter={currentFilter}
-          filters={[
-            'Composition',
-            'Desktop/Mobile Apps',
-            'Electron',
-            'Expanded Poetics',
-            'Javascript',
-            'New Media',
-            'NPM Modules',
-            'Pedagogy',
-            'Performance',
-            'React',
-            'Sound Studies',
-          ]}
           category="code"
           title="Code"
         >

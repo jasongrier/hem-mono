@@ -54,10 +54,11 @@ export {
 export {
   App,
   CookieApproval,
-  CookiesFrame,
   CookieSettings,
+  CookiesFrame,
   EmailForm,
   LandingPage,
+  LandingPageNot,
   PlayerFrame,
   Popups,
   RoutingHub,

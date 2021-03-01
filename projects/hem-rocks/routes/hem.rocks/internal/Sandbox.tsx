@@ -1,5 +1,5 @@
 import React, { ReactElement, useCallback, useEffect, useState } from 'react'
-import clock from '../../../../lib/modules/clock'
+import clock from '../../../../../lib/modules/clock'
 
 function Sandbox(): ReactElement {
   const [playing, setPlaying] = useState<boolean>(clock.getState().playing)

@@ -2,11 +2,11 @@ import React, { ReactElement } from 'react'
 import { useSelector } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import { map } from 'lodash'
-import { ITrack, TrackPlayPauseButton } from '../../../../lib/modules/website-player'
-import { HemRefreshHeroine } from '../../components/heroines'
-import { MainContentList, getContentItemsFromRawList, contentItemToTrack, hasCategory, getContentItemBySlug, hasTag, hasProperty } from '../../modules/core/content'
-import { BASE_SITE_TITLE } from '../../config'
-import { RootState } from '../../index'
+import { ITrack, TrackPlayPauseButton } from '../../../../../lib/modules/website-player'
+import { HemRefreshHeroine } from '../../../components/heroines'
+import { MainContentList, getContentItemsFromRawList, contentItemToTrack, hasCategory, getContentItemBySlug, hasTag, hasProperty } from '../../../modules/core/content'
+import { BASE_SITE_TITLE } from '../../../config'
+import { RootState } from '../../../index'
 
 function Home(): ReactElement {
   const { contentItems } = useSelector((state: RootState) => ({

@@ -1,41 +1,46 @@
-import React, { PropsWithChildren, ReactElement, Suspense } from 'react'
-import { find } from 'lodash'
-import { Spinner } from '../../../../../../lib/components'
+import React, { PropsWithChildren, ReactElement } from 'react'
+
+import {
+  BespokeWebDeveloper as BespokeWebDeveloperJag,
+  ReactJavascriptConsulting as ReactJavascriptConsultingJag,
+} from '../../../../routes/jag.rip/landing-pages'
+
+const landingPageComponents = {
+  BespokeWebDeveloperJag,
+  ReactJavascriptConsultingJag,
+}
 
 interface ILandingPageSpec {
   domains: string[]
-  componentPath: string
+  component: string
 }
 
 interface IProps {
-  landingPages: ILandingPageSpec[]
+  landingPageSpecs: ILandingPageSpec[]
 }
 
-function LandingPage({ children, landingPages: landingPageSpecs }: PropsWithChildren<IProps>): ReactElement {
-  const domain = window.location.hostname
-
+function LandingPage({ children, landingPageSpecs }: PropsWithChildren<IProps>): ReactElement {
   if (!landingPageSpecs.length)  return (<div />)
 
   let spec: ILandingPageSpec
 
   for (const candidate of landingPageSpecs) {
-    if (spec.domains.includes(domain)) {
+    if (candidate.domains.includes(window.location.hostname)) {
       spec = candidate
       break
     }
   }
 
-  if (!spec) return (<div />)
-
-  const LandingPageContent = React.lazy(() => import(spec.componentPath))
+  const LandingPage = landingPageComponents[spec.component]
 
   return (
-    <Suspense fallback={<Spinner />}>
+    <div>
       {spec
-        ? <LandingPageContent />
+        //@ts-ignore
+        ? <LandingPage />
         : children
       }
-    </Suspense>
+    </div>
   )
 }
 

@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import Mustache from 'mustache'
 import marked from 'marked'
-import { getContentItemById, requestReadChunk } from '../../modules/core/content'
-import { assetHostHostname } from '../../functions'
-import { BASE_SITE_TITLE } from '../../config'
-import { RootState } from '../../index'
-import { SoundLibrarySubnav, MainContentBanner } from '../../components/layout'
+import { getContentItemById, requestReadChunk } from '../../../modules/core/content'
+import { assetHostHostname } from '../../../functions'
+import { BASE_SITE_TITLE } from '../../../config'
+import { RootState } from '../../../index'
+import { SoundLibrarySubnav, MainContentBanner } from '../../../components/layout'
 
 function AboutSL(): ReactElement {
   const { chunkLog, contentItem } = useSelector((state: RootState) => ({

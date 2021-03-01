@@ -147,8 +147,9 @@ module.exports.PROJECT_CONFIGS = {
         domains: [
           'staging-bespoke-web-developer.hem.rocks',
           'bespoke-web-developer.hem.rocks',
+          'localhost',
         ],
-        componentPath: '../../../../routes/jag.rip/landing-pages',
+        component: 'BespokeWebDeveloperJag',
       },
     ]
   },

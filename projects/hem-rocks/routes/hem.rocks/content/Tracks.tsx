@@ -2,10 +2,10 @@ import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { MainContentList, hasTag } from '../../modules/core/content'
-import { TracksSubnav, TracksBoxChild, MainContentBanner } from '../../components/layout'
-import { BASE_SITE_TITLE } from '../../config'
-import { RootState } from '../../index'
+import { MainContentList, hasTag } from '../../../modules/core/content'
+import { TracksSubnav, TracksBoxChild, MainContentBanner } from '../../../components/layout'
+import { BASE_SITE_TITLE } from '../../../config'
+import { RootState } from '../../../index'
 
 function Tracks(): ReactElement {
   const { allContentItems } = useSelector((state: RootState) => ({
