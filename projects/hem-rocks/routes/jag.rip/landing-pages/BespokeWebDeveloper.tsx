@@ -1,10 +1,10 @@
 import React, { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
-import { assetHostHostname } from '../../../hem-rocks/functions'
-import { SiteText } from '../../modules/core/content'
-import { ContactForm } from '../../../../lib/components'
-import { BASE_SITE_TITLE } from '../../config'
+import { assetHostHostname } from '../../../../hem-rocks/functions'
+import { SiteText } from '../../../modules/core/content'
+import { ContactForm } from '../../../../../lib/components'
+import { BASE_SITE_TITLE } from '../../../config'
 
 function ReactJavascriptConsulting(): ReactElement {
   return (

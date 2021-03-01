@@ -7,7 +7,7 @@ import { isEmpty } from 'lodash'
 import { CartFrame } from '../../cart'
 import { setCurrentProject, requestReadChunk, getContentItemBySlug } from '../../content'
 import { Hide, ElectronNot, ScrollToTop, Spinner } from '../../../../../../lib/components'
-import { RoutingHub, CookiesFrame, Popups, getCookieName, SplitTests, PlayerFrame } from '../index'
+import { RoutingHub, CookiesFrame, Popups, getCookieName, SplitTests, PlayerFrame, LandingPage } from '../index'
 import { PROJECT_CONFIGS as UNTYPED_PROJECT_CONFIGS } from '../../../../config'
 import { RootState } from '../../../../index'
 
@@ -98,7 +98,9 @@ function App(): ReactElement {
           <main className="main-content">
             <Suspense fallback={<Spinner />}>
               <ProjectFrame>
-                <RoutingHub />
+                <LandingPage landingPages={PROJECT_CONFIGS[currentProject].LANDING_PAGES || []}>
+                  <RoutingHub />
+                </LandingPage>
               </ProjectFrame>
             </Suspense>
           </main>
