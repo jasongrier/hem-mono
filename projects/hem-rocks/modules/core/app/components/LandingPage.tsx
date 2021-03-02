@@ -1,4 +1,5 @@
 import React, { PropsWithChildren, ReactElement } from 'react'
+import { useLocation } from 'react-router'
 
 import {
   BespokeWebDeveloper as BespokeWebDeveloperJag,
@@ -22,6 +23,8 @@ interface IProps {
 function LandingPage({ children, landingPageSpecs }: PropsWithChildren<IProps>): ReactElement {
   if (!landingPageSpecs.length)  return (<div />)
 
+  const { pathname } = useLocation()
+
   let spec: ILandingPageSpec
 
   for (const candidate of landingPageSpecs) {
@@ -31,12 +34,13 @@ function LandingPage({ children, landingPageSpecs }: PropsWithChildren<IProps>):
     }
   }
 
-  const LandingPage = landingPageComponents[spec.component]
+  const LandingPage = pathname.indexOf('/admin') === 0
+    ? null
+    : landingPageComponents[spec?.component]
 
   return (
     <div>
-      {spec
-        //@ts-ignore
+      { LandingPage
         ? <LandingPage />
         : children
       }

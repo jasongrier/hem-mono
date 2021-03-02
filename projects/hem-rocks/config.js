@@ -71,7 +71,16 @@ module.exports.PROJECT_CONFIGS = {
         name: 'Player Releases',
         linkTo: '/label',
       },
-    ]
+    ],
+    LANDING_PAGES: [
+      {
+        domains: [
+          'staging-b-bespoke-web-developer.hem.rocks',
+          'bespoke-web-developer.hem.rocks',
+        ],
+        component: 'BespokeWebDeveloperJag',
+      },
+    ],
   },
   'berlinstockphotos.com': {
     HTML_HEAD_META: {
@@ -145,9 +154,8 @@ module.exports.PROJECT_CONFIGS = {
     LANDING_PAGES: [
       {
         domains: [
-          'staging-bespoke-web-developer.hem.rocks',
+          'staging-b-bespoke-web-developer.hem.rocks',
           'bespoke-web-developer.hem.rocks',
-          'localhost',
         ],
         component: 'BespokeWebDeveloperJag',
       },
