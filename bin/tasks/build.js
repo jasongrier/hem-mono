@@ -33,6 +33,8 @@ function build(projectName, devSession = false, developerBuild = false, pug = fa
 
     const bundler = new Bundler(`${__dirname}/../../projects/${projectName}/index.${pug ? 'pug' : 'html'}`)
 
+    process.env.NODE_ENV = 'development'
+
     bundler.on('buildEnd', () => {
       copyStatic(projectName)
       runPostBuildTasks(projectName, devSession, false)
@@ -43,11 +45,11 @@ function build(projectName, devSession = false, developerBuild = false, pug = fa
 
   else {
     if (projectName.includes('zak')) {
-      execSync(`${developerBuild ? 'NODE_ENV=development ' : ''}parcel build projects/${projectName}/index.html --no-minify '.'`, { stdio: 'inherit' })
+      execSync(`${developerBuild ? 'NODE_ENV=development ' : 'NODE_ENV=production '}parcel build projects/${projectName}/index.html --no-minify '.'`, { stdio: 'inherit' })
     }
 
     else {
-      execSync(`rm -rf .cache && ${developerBuild ? 'NODE_ENV=development ' : ''}parcel build projects/${projectName}/index.${pug ? 'pug' : 'html'} '.'`, { stdio: 'inherit' })
+      execSync(`rm -rf .cache && ${developerBuild ? 'NODE_ENV=development ' : 'NODE_ENV=production '}parcel build projects/${projectName}/index.${pug ? 'pug' : 'html'} '.'`, { stdio: 'inherit' })
     }
   }
 
