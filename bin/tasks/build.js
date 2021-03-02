@@ -33,7 +33,7 @@ function build(projectName, devSession = false, developerBuild = false, pug = fa
 
     const bundler = new Bundler(`${__dirname}/../../projects/${projectName}/index.${pug ? 'pug' : 'html'}`)
 
-    process.env.NODE_ENV = 'development'
+    execSync('rm -rf .cache')
 
     bundler.on('buildEnd', () => {
       copyStatic(projectName)
