@@ -6,47 +6,40 @@ import { SiteText } from '../../../modules/core/content'
 import { ContactForm } from '../../../../../lib/components'
 import { BASE_SITE_TITLE } from '../../../config'
 
-function ReactJavascriptConsulting(): ReactElement {
+function BespokeWebDeveloper(): ReactElement {
   return (
-    <>
-      <Helmet>
-        <title>{ BASE_SITE_TITLE }</title>
-        <meta name="description" content="" />
-      </Helmet>
-      <div className="page page-web-biz-landing-page">
-        <div className="main-content-section first-main-content-section" style={{ color: 'black' }}>
-          <SiteText
-            textItemId="353a8233-7926-4bfa-a858-36d09c357da8"
-            makeBlocks={true}
-            render={{ contactForm: () => (
-              <ContactForm
-                action={assetHostHostname() + '/hem-rocks/api/?hem-cmd=contact-form&site=jag.rip'}
-                emailPlaceholder="Your email address, please!"
-                buttonText="Send"
-                bodyPlaceholder="Write a little about yourself and your project."
-                prefilledSubject="New Bespoke Web Developer Inquiry"
-                spinnerText="Sending..."
-                successContent={() => (
-                  <>
-                    <h1>Talk soon!</h1>
-                    <p>We'll get back to you soon.</p>
-                    <p className="contact-form-home-link">&larr; <Link to="/">Home</Link></p>
-                  </>
-                )}
-                errorContent={() => (
-                  <>
-                    <h1>Uh oh</h1>
-                    <p>For some reason, your message could not be sent.</p>
-                    <p>Please send an e-mail to: <a href="mailto:support@berlinstockphotos.com">support@berlinstockphotos.com</a></p>
-                    <p className="contact-form-home-link">&larr; <Link to="/">Home</Link></p>
-                  </>
-                )}
-              />
-            )}}
-          />
-        </div>
+    <div className="page page-web-biz-landing-page">
+      <div className="main-content-section first-main-content-section" style={{ color: 'black' }}>
+        <SiteText
+          textItemId="353a8233-7926-4bfa-a858-36d09c357da8"
+          makeBlocks={true}
+          render={{ contactForm: () => (
+            <ContactForm
+              action={assetHostHostname() + '/api/?hem-cmd=contact-form&site=jag.rip'}
+              emailPlaceholder="Your email address, please!"
+              buttonText="Send"
+              bodyPlaceholder="Write a little about yourself and your project."
+              prefilledSubject="New Bespoke Web Developer Inquiry"
+              spinnerText="Sending..."
+              successContent={() => (
+                <>
+                  <h1>Talk soon!</h1>
+                  <p>We'll get back to you soon.</p>
+                </>
+              )}
+              errorContent={() => (
+                <>
+                  <h1>Uh oh</h1>
+                  <p>For some reason, your message could not be sent.</p>
+                  <p>Please send an e-mail to: <a href="mailto:support@berlinstockphotos.com">support@berlinstockphotos.com</a></p>
+                  <p className="contact-form-home-link">&larr; <Link to="/">Home</Link></p>
+                </>
+              )}
+            />
+          )}}
+        />
       </div>
-    </>
+    </div>
 
     // <div className="page page-react-javascript-consulting">
     //   <h1>React Javascript Consulting</h1>
@@ -136,4 +129,4 @@ function ReactJavascriptConsulting(): ReactElement {
   )
 }
 
-export default ReactJavascriptConsulting
+export default BespokeWebDeveloper

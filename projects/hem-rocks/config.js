@@ -156,6 +156,7 @@ module.exports.PROJECT_CONFIGS = {
         domains: [
           'staging-b-bespoke-web-developer.hem.rocks',
           'bespoke-web-developer.hem.rocks',
+          'localhost',
         ],
         component: 'BespokeWebDeveloperJag',
       },
