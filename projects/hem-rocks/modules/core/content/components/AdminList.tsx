@@ -391,7 +391,7 @@ function AdminList(): ReactElement {
                       { hasCategory(item, 'tracks') && (
                         <>
                           <audio controls>
-                            <source src={assetHostHostname() + '/hem-rocks/content/tracks/' + item.audioFilename} type="audio/mpeg" />
+                            <source src={assetHostHostname() + '/' + currentProject + '/content/tracks/' + item.audioFilename} type="audio/mpeg" />
                           </audio>
                           <br/>
                           <small>{ item.slug }</small><br/>

@@ -41,6 +41,8 @@ function TracksBoxChild({ item, allContentItems }: IProps): ReactElement {
       />
     )
   }
+
+  return <div />
 }
 
 export default TracksBoxChild

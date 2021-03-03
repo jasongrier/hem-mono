@@ -51,7 +51,7 @@ const styleSheet = `
 `
 
 function getDisplayText(subject: string) {
-  let longText
+  let longText = ''
 
   if (isArray(subject)) {
     longText = subject.join(', ')
@@ -62,7 +62,7 @@ function getDisplayText(subject: string) {
   }
 
   else if (typeof subject === 'number') {
-    longText = parseFloat(subject)
+    longText = parseFloat(subject).toString()
   }
 
   else if (
@@ -70,10 +70,6 @@ function getDisplayText(subject: string) {
     || subject === undefined
   ) {
     longText = ''
-  }
-
-  else {
-    console.log(longText, subject)
   }
 
   return longText.length > 150 ? longText.substr(0, 150) + '...' : longText

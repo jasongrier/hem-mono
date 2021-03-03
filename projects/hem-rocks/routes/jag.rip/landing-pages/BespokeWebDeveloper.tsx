@@ -31,8 +31,7 @@ function BespokeWebDeveloper(): ReactElement {
                 <>
                   <h1>Uh oh</h1>
                   <p>For some reason, your message could not be sent.</p>
-                  <p>Please send an e-mail to: <a href="mailto:support@berlinstockphotos.com">support@berlinstockphotos.com</a></p>
-                  <p className="contact-form-home-link">&larr; <Link to="/">Home</Link></p>
+                  <p>Please send an e-mail to: <a href="mailto:info@hem.rocks">info@hem.rocks</a></p>
                 </>
               )}
             />

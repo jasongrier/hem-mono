@@ -5,8 +5,10 @@ import Cookies from 'js-cookie'
 import { getCookieName, CookieApproval, setCookiePreferencesSet, setCookieApproval } from '../index'
 import { CampaignMonitorForm, ElectronNot, NagToaster } from '../../../../../../lib/components'
 import { CloseButton } from '../../../../../../lib/packages/hem-buttons'
-import { CAMPAIGN_MONITOR_FORM_ACTION, CAMPAIGN_MONITOR_FORM_ID, CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME, MAILING_LIST_TEXT, BERLIN_STOCK_PHOTOS, PROJECT_CONFIGS } from '../../../../config'
+import { CAMPAIGN_MONITOR_FORM_ACTION, CAMPAIGN_MONITOR_FORM_ID, CAMPAIGN_MONITOR_FORM_EMAIL_FIELD_NAME, MAILING_LIST_TEXT, BERLIN_STOCK_PHOTOS, PROJECT_CONFIGS as UNTYPED_PROJECT_CONFIGS } from '../../../../config'
 import { RootState } from '../../../../index'
+
+const PROJECT_CONFIGS = UNTYPED_PROJECT_CONFIGS as any
 
 interface IProps {}
 

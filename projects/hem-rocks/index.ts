@@ -1,4 +1,4 @@
-import React from 'react'
+import { createElement as e } from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
@@ -109,12 +109,11 @@ sagaMiddleware.run(flipBooksSaga)
 import { webMovieSaga } from '../../lib/modules/web-movie'
 sagaMiddleware.run(webMovieSaga)
 
-const Root = (
-  <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </Provider>
+const Root = e(
+  Provider, { store },
+  e(BrowserRouter, {},
+    e(App)
+  )
 )
 
 ReactDOM.render(Root, document.getElementById('root'))

@@ -172,23 +172,11 @@ async function migrate(allContentItems: IContentItem[]) {
 
   const newItems: IContentItem[] = []
 
-  const removeTags = [
-    'releases',
-    'featured',
-    'new',
-    'sessions',
-    'rare',
-    'radio',
-    'live',
-    'mixes',
-    'tracks',
-  ]
-
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
 
-    if (hasCategory(newItem, 'image')) {
-      console.log(newItem.title)
+    if (hasTag(newItem, 'animations')) {
+      console.log(newItem.id)
     }
 
     newItems.push(newItem)

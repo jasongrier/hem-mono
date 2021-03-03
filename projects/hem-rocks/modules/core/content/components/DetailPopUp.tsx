@@ -14,7 +14,7 @@ import { closePopup, openPopup } from '../../../../../../lib/modules/popups'
 import { TrackPlayPauseButton, ITrack, replacePlaylist, setPlayerPlaylist, IPlaylist } from '../../../../../../lib/modules/website-player'
 import { addProductToCart, submitSale } from '../../cart'
 import { getCookieName, SplitTests } from '../../app'
-import { IContentItem, getContentItemsFromRawList, getContentItemById, getProperties } from '../index'
+import { IContentItem, getContentItemsFromRawList, getContentItemById, getProperties, ImageGallery, SiteText } from '../index'
 import { assetHostHostname } from '../../../../functions'
 import { BvgWatermark } from '../../../../components/berlin-stock-photos'
 import ContentComponents from '../../../../components/content'
@@ -637,29 +637,17 @@ function DetailPopUp({
             React.createElement(ContentComponents[contentItem.description])
           )}
           { !hasTag(contentItem, 'component-content') && (
-            <div
-              className="detail-cms-text"
-              dangerouslySetInnerHTML={{
-                __html: parseText(
-                  contentItem.description,
-                  {
-                    assetHost,
-                    siteTexts: allContentItems
-                      .filter(i =>
-                        hasCategory(i, 'site-texts')
-                        || hasTag(i, 'embedded-essay')
-                      )
-                      .reduce(
-                        (acc: any, i) => {
-                          acc[i.slug] = parseText(i.description, { assetHost })
-                          return acc
-                        }, {},
-                      )
-                    ,
-                  },
-                )
-              }}
-            />
+            <div>
+              <SiteText
+                textItemId={contentItem.id}
+                makeBlocks={true}
+                render={{ imageGallery: () => (
+                  <ImageGallery
+                    galleryId={contentItem.attachments.split('\n').shift()}
+                  />
+                )}}
+              />
+            </div>
           )}
           <div className={`
             detail-popup-details-sidebar

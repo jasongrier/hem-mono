@@ -1,7 +1,7 @@
 import { map } from 'lodash'
 import { IContentItem } from '../index'
 
-function tpl(s, i) {
+function tpl(s: string, i: number) {
   return s + '-' + i
 }
 

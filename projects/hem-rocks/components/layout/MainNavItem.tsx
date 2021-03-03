@@ -32,7 +32,7 @@ function MainNavItem({ name, activeFor, additive = false, displayName, to }: IPr
           }
 
           return isActive
-        } : null}
+        } : undefined}
       >
         { displayName || name }
       </NavLink>

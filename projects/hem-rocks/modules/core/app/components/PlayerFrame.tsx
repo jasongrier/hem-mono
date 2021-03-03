@@ -2,11 +2,13 @@ import React, { useEffect, PropsWithChildren, ReactElement } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
 import { slugify } from 'voca'
-import { PlayerBar, setPlayerPlaylistExpanded, setPlayerPlaylist, replacePlaylist, setPlayerExpanded, setPlayerMessage, setPlayerInstance } from '../../../../../../lib/modules/website-player'
+import { PlayerBar, setPlayerPlaylistExpanded, setPlayerPlaylist, replacePlaylist, setPlayerExpanded, setPlayerMessage, setPlayerInstance, IPlaylist } from '../../../../../../lib/modules/website-player'
 import { Toaster } from '../../../../../../lib/components'
 import { requestReadChunk, IContentItem, contentItemToTrack, getContentItemsFromList } from '../../content'
 import { RootState } from '../../../../index'
-import { PROJECT_CONFIGS } from '../../../../config'
+import { PROJECT_CONFIGS as UNTYPED_PROJECT_CONFIGS } from '../../../../config'
+
+const PROJECT_CONFIGS = UNTYPED_PROJECT_CONFIGS as any
 
 interface IProps {}
 
@@ -49,7 +51,7 @@ function PlayerFrame({}: PropsWithChildren<IProps>): ReactElement {
   useEffect(function setSitePlaylists() {
     if (!chunkLog.includes('curated-playlists')) return
 
-    PROJECT_CONFIGS[currentProject].CURATED_PLAYLISTS.forEach(({ linkTo, name, slug }, i) => {
+    PROJECT_CONFIGS[currentProject].CURATED_PLAYLISTS.forEach(({ linkTo, name, slug }: any, i: number) => {
       const trackContentItems: IContentItem[] = getContentItemsFromList(contentItems, slug || slugify(name))
       const tracks = trackContentItems.map(item =>
         contentItemToTrack(item)

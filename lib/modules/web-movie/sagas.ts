@@ -19,7 +19,7 @@ function* movieRequest({ payload: src }: any) {
 
       yield put(movieAddAc(movie))
 
-      const images: Array<{ src: string, id: string, clip: string, el: HTMLImageElement }> = []
+      const images: Array<{ src: string, id: string, clip: string, el: HTMLImageElement | null }> = []
 
       for (const clip of movie.clips) {
         for (const frame of clip.frames) {

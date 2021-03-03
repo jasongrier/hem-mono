@@ -19,7 +19,7 @@ interface IProps {
   bipolarY?: boolean
   buttonText?: string
   className?: string
-  hasKeyArt: (contentItem: IContentItem, index: number) => boolean
+  hasKeyArt?: (contentItem: IContentItem, index: number) => boolean
   height?: number
   hotZoneTop?: number
   hotZoneBottom?: number

@@ -6,7 +6,7 @@ import {
   ReactJavascriptConsulting as ReactJavascriptConsultingJag,
 } from '../../../../routes/jag.rip/landing-pages'
 
-const landingPageComponents = {
+const landingPageComponents: {[key: string]: () => ReactElement} = {
   BespokeWebDeveloperJag,
   ReactJavascriptConsultingJag,
 }
@@ -21,11 +21,17 @@ interface IProps {
 }
 
 function LandingPage({ children, landingPageSpecs }: PropsWithChildren<IProps>): ReactElement {
-  if (!landingPageSpecs.length)  return (<div />)
+  if (!landingPageSpecs.length)  {
+    return (<>{ children }</>)
+  }
 
   const { pathname } = useLocation()
 
-  let spec: ILandingPageSpec
+  if (pathname.indexOf('/admin') === 0) {
+    return (<>{ children }</>)
+  }
+
+  let spec: ILandingPageSpec | null = null
 
   for (const candidate of landingPageSpecs) {
     if (candidate.domains.includes(window.location.hostname)) {
@@ -34,17 +40,18 @@ function LandingPage({ children, landingPageSpecs }: PropsWithChildren<IProps>):
     }
   }
 
-  const LandingPage = pathname.indexOf('/admin') === 0
-    ? null
-    : landingPageComponents[spec?.component]
+  if (!spec) {
+    return (<>{ children }</>)
+  }
+
+  const LandingPage = landingPageComponents[spec?.component]
+
+  if (!LandingPage) {
+    return (<>{ children }</>)
+  }
 
   return (
-    <div>
-      { LandingPage
-        ? <LandingPage />
-        : children
-      }
-    </div>
+    <LandingPage />
   )
 }
 
