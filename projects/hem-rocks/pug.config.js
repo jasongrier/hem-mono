@@ -1,19 +1,33 @@
-const config = require('./config')
 const { readFileSync } = require('fs')
 const { join } = require('path')
+const config = require('./config')
 
-const projectNameToTitle = {
-  'jag.rip': 'JAG',
-  'hem.rocks': 'HEM',
+const projectSetting = JSON.parse(readFileSync(join(__dirname, 'static', 'content', 'settings.json')))
+const project = projectSetting.find(s => s.bg === 'setting-current-project')
+const projectConfig = config.PROJECT_CONFIGS[project.aj]
+
+let headMeta
+
+if (process.argv[5]) {
+  if (process.argv[5].indexOf('landing-page-') === -1) {
+    throw new Error('Argv #7 must begin with "landing-page-"')
+  }
+
+  console.log(project)
+
+  const landingPageName = process.argv[5].replace('landing-page-', '')
+  const landingPageConfig = projectConfig.LANDING_PAGES.find(l => l.name === landingPageName)
+
+  headMeta = landingPageConfig.HTML_HEAD_META
 }
 
-const settings = JSON.parse(readFileSync(join(__dirname, 'static', 'content', 'settings.json')))
-const project = settings.find(s => s.bg === 'setting-current-project')
-const vanillaTitleAndDescription = projectNameToTitle[project.aj]
+else {
+  headMeta = projectConfig.HTML_HEAD_META
+}
 
 module.exports = {
   locals: {
-    title: vanillaTitleAndDescription,
-    description: vanillaTitleAndDescription,
+    title: headMeta.BASE_SITE_TITLE,
+    description: headMeta.META_DESCRIPTION,
   }
 }

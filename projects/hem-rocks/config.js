@@ -74,11 +74,16 @@ module.exports.PROJECT_CONFIGS = {
     ],
     LANDING_PAGES: [
       {
+        name: 'bespoke-web-developer',
         domains: [
           'staging-b-bespoke-web-developer.hem.rocks',
           'bespoke-web-developer.hem.rocks',
         ],
         component: 'BespokeWebDeveloperJag',
+        HTML_HEAD_META: {
+          BASE_SITE_TITLE: 'Bespoke Web Developer',
+          META_DESCRIPTION: 'Affordable Web Development tailored for nonprofits, cultural institutions, and artists',
+        }
       },
     ],
   },
@@ -153,14 +158,18 @@ module.exports.PROJECT_CONFIGS = {
     ],
     LANDING_PAGES: [
       {
+        name: 'bespoke-web-developer',
         domains: [
           'staging-b-bespoke-web-developer.hem.rocks',
           'bespoke-web-developer.hem.rocks',
-          'localhost',
         ],
         component: 'BespokeWebDeveloperJag',
+        HTML_HEAD_META: {
+          BASE_SITE_TITLE: 'Bespoke Web Developer',
+          META_DESCRIPTION: 'Affordable Web Development tailored for nonprofits, cultural institutions, and artists',
+        }
       },
-    ]
+    ],
   },
   'breto': { },
   'dot': { },
