@@ -13,7 +13,8 @@
     "task": "node bin/index task",
     "test": "node bin/index test",
     "hem": "node bin/index task start-pug-electron hem-rocks",
-    "bespoke": "node bin/index task start-pug-electron hem-rocks -landing-page 'bespoke-web-developer'",
+    "bespoke": "NODE_ENV=development node bin/index task start-pug-electron hem-rocks -landing-page 'bespoke-web-developer'",
+    "build-bespoke": "NODE_ENV=production node bin/index task build-pug hem-rocks -landing-page 'bespoke-web-developer'",
     "build-hem": "node bin/index task build-pug hem-rocks"
   },
   "license": "WTFPL",
@@ -119,7 +120,6 @@
     "assert": "^2.0.0",
     "mocha": "^6.2.3",
     "parcel": "^1.12.4",
-    "parcel-plugin-bundle-manifest": "^0.2.0",
     "prettier": "1.18.2",
     "sass": "^1.26.7",
     "typescript": "^3.9.3"

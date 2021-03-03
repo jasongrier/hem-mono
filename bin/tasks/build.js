@@ -12,8 +12,16 @@ function build(projectName, devSession = false, developerBuild = false, pug = fa
   execSync(`rm -rf dist`, { stdio: 'inherit' })
   execSync(`mkdir dist`, { stdio: 'inherit' })
   copyStatic(projectName)
+  execSync('rm -rf .cache')
 
   runPreBuildTasks(projectName, devSession)
+
+  const bundler = new Bundler(`${__dirname}/../../projects/${projectName}/index.jade`)
+
+  bundler.on('buildEnd', () => {
+    copyStatic(projectName)
+    runPostBuildTasks(projectName, devSession, false)
+  })
 
   if (devSession) {
     if (devSession === 'electron') {
@@ -31,26 +39,13 @@ function build(projectName, devSession = false, developerBuild = false, pug = fa
       })
     }
 
-    const bundler = new Bundler(`${__dirname}/../../projects/${projectName}/index.${pug ? 'jade' : 'html'}`)
-
-    execSync('rm -rf .cache')
-
-    bundler.on('buildEnd', () => {
-      copyStatic(projectName)
-      runPostBuildTasks(projectName, devSession, false)
-    })
-
     bundler.serve()
   }
 
   else {
-    if (projectName.includes('zak')) {
-      execSync(`${developerBuild ? 'NODE_ENV=development ' : 'NODE_ENV=production '}parcel build projects/${projectName}/index.html --no-minify '.'`, { stdio: 'inherit' })
-    }
-
-    else {
-      execSync(`rm -rf .cache && ${developerBuild ? 'NODE_ENV=development ' : 'NODE_ENV=production '}parcel build projects/${projectName}/index.${pug ? 'jade' : 'html'} '.'`, { stdio: 'inherit' })
-    }
+    bundler.bundle({
+      scopeHoist: true,
+    })
   }
 
   runPostBuildTasks(projectName, devSession, true)
