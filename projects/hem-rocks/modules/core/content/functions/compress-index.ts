@@ -82,7 +82,7 @@ const keyCompressionMap: any = {
 export function getHighestCompressionMapKey() {
   const values = Object.values(keyCompressionMap)
   values.sort()
-  console.log(values.pop())
+  return values.pop()
 }
 
 export function validateCompressionMap() {
