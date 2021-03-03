@@ -31,7 +31,7 @@ function build(projectName, devSession = false, developerBuild = false, pug = fa
       })
     }
 
-    const bundler = new Bundler(`${__dirname}/../../projects/${projectName}/index.${pug ? 'pug' : 'html'}`)
+    const bundler = new Bundler(`${__dirname}/../../projects/${projectName}/index.${pug ? 'jade' : 'html'}`)
 
     execSync('rm -rf .cache')
 
@@ -49,7 +49,7 @@ function build(projectName, devSession = false, developerBuild = false, pug = fa
     }
 
     else {
-      execSync(`rm -rf .cache && ${developerBuild ? 'NODE_ENV=development ' : 'NODE_ENV=production '}parcel build projects/${projectName}/index.${pug ? 'pug' : 'html'} '.'`, { stdio: 'inherit' })
+      execSync(`rm -rf .cache && ${developerBuild ? 'NODE_ENV=development ' : 'NODE_ENV=production '}parcel build projects/${projectName}/index.${pug ? 'jade' : 'html'} '.'`, { stdio: 'inherit' })
     }
   }
 

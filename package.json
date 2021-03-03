@@ -13,7 +13,7 @@
     "task": "node bin/index task",
     "test": "node bin/index test",
     "hem": "node bin/index task start-pug-electron hem-rocks",
-    "bespoke": "node bin/index task start-pug-electron hem-rocks landing-page-bespoke-web-developer",
+    "bespoke": "node bin/index task start-pug-electron hem-rocks -landing-page 'bespoke-web-developer'",
     "build-hem": "node bin/index task build-pug hem-rocks"
   },
   "license": "WTFPL",
