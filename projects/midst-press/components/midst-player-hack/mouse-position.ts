@@ -1,4 +1,4 @@
-export const mouseTheta = (evt, el) => {
+export const mouseTheta = (evt: any, el: any) => {
   const rect = el.getBoundingClientRect()
   const deltaX = evt.pageX - rect.left - rect.width / 2
   const deltaY = evt.pageY - rect.top - rect.height / 2
@@ -9,7 +9,7 @@ export const mouseTheta = (evt, el) => {
   return thetaNF
 }
 
-export const isMouseIn = (evt, el, invert = false) => {
+export const isMouseIn = (evt: any, el: any, invert = false) => {
   const rect = el.getBoundingClientRect()
   const mouseIn =
     evt.clientX > rect.left &&

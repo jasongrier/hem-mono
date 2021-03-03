@@ -100,7 +100,7 @@ function FlipBook({
           </div>
         </>
       )}
-      { loaded && flipBookState.frames?.map((src, frame) => (
+      { loaded && flipBookState.frames?.map((src: string, frame: number) => (
         <img
           key={src}
           src={src}

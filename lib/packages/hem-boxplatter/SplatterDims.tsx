@@ -39,9 +39,6 @@ function SplatterDims({
   const [marginXOffset, setMarginXOffset] = useState(0)
   const [marginYOffset, setMarginYOffset] = useState(0)
 
-  marginRangeX = marginRangeX === undefined ? rangeX : marginRangeX
-  marginRangeY = marginRangeY === undefined ? rangeY : marginRangeY
-
   useEffect(() => {
     if (disabled) return
 
@@ -60,8 +57,8 @@ function SplatterDims({
 
     setWidthOffset(randomXOffsetFn(rangeX))
     setHeightOffset(randomYOffsetFn(rangeY))
-    setMarginXOffset(randomXMarginOffsetFn(marginRangeX))
-    setMarginYOffset(randomYMarginOffsetFn(marginRangeY))
+    setMarginXOffset(randomXMarginOffsetFn(marginRangeX = marginRangeX === undefined ? rangeX : marginRangeX))
+    setMarginYOffset(randomYMarginOffsetFn(marginRangeY = marginRangeY === undefined ? rangeY : marginRangeY))
   }, [])
 
   let style: CSSProperties = {}

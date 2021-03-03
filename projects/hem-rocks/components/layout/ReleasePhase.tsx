@@ -1,3 +1,4 @@
+import { divide } from 'lodash'
 import React, { ReactElement, PropsWithChildren } from 'react'
 import { RELEASE_PHASE } from '../../config'
 
@@ -19,7 +20,7 @@ function ReleasePhase({ children, exact, id, phase }: PropsWithChildren<IProps>)
     canRender = phase <= RELEASE_PHASE
   }
 
-  if (!canRender) return null
+  if (!canRender) return (<div />)
 
   return (
     <div

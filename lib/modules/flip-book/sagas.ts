@@ -11,7 +11,7 @@ import {
 
 declare const window: any
 
-const subscribers = []
+const subscribers: Array<(beat: number) => void> = []
 let beat = 1
 
 function tick() {
@@ -45,10 +45,10 @@ function* registerFlipBook({ payload }: any) {
 function* imagesLoad({ payload }: any) {
   try {
     const { id, urls } = payload
-    const frames = []
-    const images = []
+    const frames: string[] = []
+    const images: HTMLImageElement[] = []
 
-    for (const i in urls) {
+    for (const [i, url] of urls.entries()) {
       images[i] = new Image()
       images[i].onload = function() {
         frames.push(urls[i])

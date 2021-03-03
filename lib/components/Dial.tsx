@@ -79,7 +79,7 @@ function Dial({ className, color, label, onChange, onChangeDone, onPress, overfl
     win.dragging = id
     document.body.classList.add('no-cursor')
     el.current.classList.add('dial--pressed')
-    onPress()
+    onPress && onPress()
   }
 
   function onMouseUp() {

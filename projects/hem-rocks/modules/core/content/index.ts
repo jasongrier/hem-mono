@@ -359,6 +359,7 @@ export {
   AdminReconcilePlaylists,
   AdminSettings,
   DetailPopUp,
+  ImageGallery,
   LaunchDetailPopupButton,
   MainContentBox,
   MainContentBoxActions,

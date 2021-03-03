@@ -23,7 +23,7 @@ export interface IWebMovie {
 }
 
 export interface IState {
-  currentMovieIndex: number
+  currentMovieIndex: number | null
   movies: IWebMovie[]
 }
 

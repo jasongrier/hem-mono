@@ -31,7 +31,7 @@ export interface IState {
   currentPlaylist: IPlaylist | null
   error: string | null
   inited: boolean
-  message: string
+  message: string | null
   muted: boolean
   playing: boolean
   playlists: IPlaylist[]

@@ -9,6 +9,7 @@ import { RootState } from '../../../../index'
 
 interface IComponents {
   contactForm?: () => ReactElement
+  imageGallery?: () => ReactElement
 }
 
 interface IProps {
@@ -38,7 +39,7 @@ function buildBlockContent(block: string) {
   }
 }
 
-function ReactJavascriptConsulting({
+function SiteText({
   textItemId,
 
   makeBlocks = true,
@@ -53,7 +54,7 @@ function ReactJavascriptConsulting({
 
   const [textBlocks, setTextBlocks] = useState<string[]>([])
 
-  useEffect(function preloadSiteText() {
+  useEffect(function loadSiteTexts() {
     if (chunkLog.includes('site-texts')) return
     dispatch(requestReadChunk('site-texts'))
   }, [chunkLog])
@@ -92,8 +93,8 @@ function ReactJavascriptConsulting({
           ),
         }} />
       )}
-  </div>
+    </div>
   )
 }
 
-export default ReactJavascriptConsulting
+export default SiteText

@@ -3,13 +3,9 @@ import produce from 'immer'
 import uuid from 'uuid/v1'
 import { map, compact } from 'lodash'
 
-interface IProps {
-  banners: Array<{
-    alt: string
-    url: string
-  }>
-  rotate?: boolean
-  rotateTime?: number
+interface ISrcBanner {
+  alt: string
+  url: string
 }
 
 interface IBanner {
@@ -19,17 +15,35 @@ interface IBanner {
   url: string
 }
 
-function pickBanner(banners, currentBanner?) {
+interface IProps {
+  banners: ISrcBanner[]
+  rotate?: boolean
+  rotateTime?: number
+}
+
+function srcBannerToBanner({ alt, url }: ISrcBanner): IBanner {
+  return {
+    alt,
+    id: uuid(),
+    loaded: false,
+    url,
+  }
+}
+
+function pickBanner(banners: IBanner[], currentBanner?: IBanner): IBanner {
   let banner = banners[Math.floor(Math.random() * banners.length)]
 
-  if (!currentBanner || banner.id !== currentBanner.id) {
+  if (
+    !currentBanner
+    || banner.id !== currentBanner.id
+  ) {
     return banner
   }
 
   return pickBanner(banners, currentBanner)
 }
 
-function allLoaded(banners) {
+function allLoaded(banners: IBanner[]) {
   return compact(map(banners, 'loaded')).length === banners.length
 }
 
@@ -38,14 +52,14 @@ function BannerSwitcher({ banners: srcBanners, rotate, rotateTime }: IProps): Re
     throw new Error('BannerSwitcher only takes max 25 images')
   }
 
-  const [currentBanner, setCurrentBanner] = useState<IBanner>(pickBanner(srcBanners))
+  const [currentBanner, setCurrentBanner] = useState<IBanner>(pickBanner(srcBanners.map(srcBannerToBanner)))
 
   const [banners, setBanners] = useState<IBanner[]>(
     srcBanners.map(({ alt, url }) => ({
       id: uuid(),
-      alt,
+      alt: alt || '',
       loaded: false,
-      url,
+      url: url || '',
     }))
   )
 
@@ -54,7 +68,7 @@ function BannerSwitcher({ banners: srcBanners, rotate, rotateTime }: IProps): Re
       const image = new Image()
 
       image.addEventListener('load', function() {
-        const i = this.getAttribute('data-preload-index')
+        const i = parseInt(this.getAttribute('data-preload-index') || '0', 10)
         setBanners(produce(banners, (draftBanners) => {
           draftBanners[i].loaded = true
         }))
@@ -67,7 +81,7 @@ function BannerSwitcher({ banners: srcBanners, rotate, rotateTime }: IProps): Re
   useEffect(function rotateBanners() {
     if (allLoaded(banners)) {
       setTimeout(() => {
-        setCurrentBanner(pickBanner(srcBanners))
+        setCurrentBanner(pickBanner(srcBanners.map(srcBannerToBanner)))
       }, rotateTime)
     }
   }, [banners])

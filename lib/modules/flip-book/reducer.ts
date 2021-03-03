@@ -24,6 +24,8 @@ const reducer = (
       return produce(state, draftState => {
         const flipBook = find(draftState.flipBooks, { id: payload.id })
 
+        if (!flipBook) return
+
         flipBook.frames = payload.frames
 
         if (flipBook.autoplay) {
@@ -41,7 +43,7 @@ const reducer = (
           autoplay: payload.autoplay,
           currentFrame: 0,
           id: payload.id,
-          frames: null,
+          frames: [],
           loaded: 0,
           playing: payload.playing,
         })

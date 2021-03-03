@@ -1,6 +1,6 @@
 import { flatten, compact } from 'lodash'
 import { slugify } from 'voca'
-import { IContentItem, compressIndex, hasCategory, getContentItemBySlug, getContentItemById, getContentItemsFromList, hasTag } from '../index'
+import { IContentItem, compressIndex, hasCategory, getContentItemBySlug, getContentItemsFromRawList, getContentItemById, getContentItemsFromList, hasTag } from '../index'
 import { PROJECT_CONFIGS as UNTYPED_PROJECT_CONFIGS } from '../../../../config'
 
 const PROJECT_CONFIGS = UNTYPED_PROJECT_CONFIGS as any
@@ -87,6 +87,25 @@ function generateChunks(allContentItems: IContentItem[]) {
           && hasTag(item, 'sound-library')
           && item.project === currentProject
         )
+      },
+      contentItems: [] as IContentItem[],
+    },
+    {
+      name: 'image-gallery',
+      getContentItems(allContentItems: any) {
+        const galleries = allContentItems.filter((item: any) =>
+          hasCategory(item, 'image-gallery')
+          && item.project === currentProject
+        )
+
+        let galleriesAndImages = Array.from(galleries)
+
+        for (const gallery of galleries) {
+          const attachments = getContentItemsFromRawList(allContentItems, gallery.attachments)
+          galleriesAndImages = galleriesAndImages.concat(attachments)
+        }
+
+        this.contentItems = galleriesAndImages
       },
       contentItems: [] as IContentItem[],
     },

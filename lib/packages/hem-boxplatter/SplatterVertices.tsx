@@ -44,11 +44,11 @@ function SplatterVertices({
   useEffect(() => {
     if (disabled) return
 
-    function randomSkew(range) {
+    function randomSkew(range: number) {
       return (Math.random() * (range))
     }
 
-    function randomSkewBipolar(range) {
+    function randomSkewBipolar(range: number) {
       return randomSkew(range * 2) - range
     }
 

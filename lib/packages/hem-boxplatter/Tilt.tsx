@@ -22,8 +22,14 @@ function Tilt({
   const el = useRef<null | HTMLDivElement>(null)
 
   useEffect(function renderEffect() {
-    const tiltor: HTMLElement = el.current.querySelector('.hem-tilt-tiltor')
-    const compensator: HTMLElement = el.current.querySelector('.hem-tilt-compensator')
+    if (!el) return
+    if (!el.current) return
+
+    const tiltor: HTMLElement | null = el.current.querySelector('.hem-tilt-tiltor')
+    const compensator: HTMLElement | null = el.current.querySelector('.hem-tilt-compensator')
+
+    if (!tiltor) return
+    if (!compensator) return
 
     const tilt = both
       ? Math.random() * amount * 2 - amount
@@ -49,7 +55,7 @@ function Tilt({
           skewX(${skewX * -1}deg)
           skewY(${skewY * -1}deg)
         `
-      : null
+      : ''
 
     onRender && onRender()
   }, [])

@@ -1,3 +1,4 @@
+import { AnyAction } from 'redux'
 import {
   LOG_IN,
   LOG_IN_CHECK_REQUEST,
@@ -14,12 +15,12 @@ const logIn = (email: string, password: string): Action => ({
   payload: { email, password },
 })
 
-const logInCheckRequest = (): Action => ({
+const logInCheckRequest = (): AnyAction => ({
   type: LOG_IN_CHECK_REQUEST,
   payload: null,
 })
 
-const logInCheckResult = (loggedIn: boolean): Action => ({
+const logInCheckResult = (loggedIn: boolean): AnyAction => ({
   type: LOG_IN_CHECK_RESULT,
   payload: loggedIn,
 })

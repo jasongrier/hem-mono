@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, ReactElement, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { movieRequest, WebMovie } from '../index'
+import { movieRequest, WebMovie, IWebMovie } from '../index'
 
 interface IProps {
   src: string | string[]
@@ -29,7 +29,7 @@ function WebMoviePlayer({ children, src, frameRate, startClip, id, canStart, onS
       id={id}
     >
       <div className="hem-web-movie-screen">
-        { movies.map(movie => (
+        { movies.map((movie: IWebMovie) => (
           <WebMovie
             key={movie.id}
             movie={movie}

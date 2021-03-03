@@ -1,4 +1,4 @@
-function getQueryVar(nameToGet) {
+function getQueryVar(nameToGet: string) {
   const query = window.location.search.substring(1)
   const queryVars = query.split('&')
 

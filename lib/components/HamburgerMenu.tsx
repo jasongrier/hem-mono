@@ -71,7 +71,7 @@ function HamburgerMenu({ controlled, children, open: controlledOpen, onChange }:
     function documentOnKeyDown(evt: any) {
       if (evt.keyCode === 27 && open) {
         if (controlled) {
-          onChange(false)
+          onChange && onChange(false)
         }
 
         else {
@@ -94,7 +94,7 @@ function HamburgerMenu({ controlled, children, open: controlledOpen, onChange }:
       if (evt.metaKey) return
 
       if (controlled) {
-        onChange(false)
+        onChange && onChange(false)
       }
 
       else {
@@ -119,7 +119,7 @@ function HamburgerMenu({ controlled, children, open: controlledOpen, onChange }:
         `}
         onClick={() => {
           if (controlled) {
-            onChange(!open)
+            onChange && onChange(!open)
           }
 
           else {
