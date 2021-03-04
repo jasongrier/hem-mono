@@ -66,6 +66,7 @@
     "jspdf": "^1.5.3",
     "lazy-require": "^3.5.0",
     "leasot": "^9.3.1",
+    "lib": "^4.3.2",
     "lines-to-paragraphs": "^1.0.3",
     "lodas": "^1.2.0",
     "lodash": "^4.17.11",

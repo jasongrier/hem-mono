@@ -176,7 +176,9 @@ async function migrate(allContentItems: IContentItem[]) {
     const newItem = Object.assign({}, oldItem)
 
     if (hasTag(newItem, 'animations')) {
-      newItem.keyArtThumbnailFullPath = newItem.keyArtFullPath.replace('animations/', 'animations/thumbnails/')
+      newItem.title = newItem.title
+        .replace('.Gif', '')
+        .replace(/-/g, ' ')
     }
 
     newItems.push(newItem)
