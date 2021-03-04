@@ -176,7 +176,7 @@ async function migrate(allContentItems: IContentItem[]) {
     const newItem = Object.assign({}, oldItem)
 
     if (hasTag(newItem, 'animations')) {
-      console.log(newItem.id)
+      newItem.keyArtThumbnailFullPath = newItem.keyArtFullPath.replace('animations/', 'animations/thumbnails/')
     }
 
     newItems.push(newItem)
@@ -189,9 +189,9 @@ async function migrate(allContentItems: IContentItem[]) {
   // ***** DANGER ZONE *****
   // ***** DANGER ZONE *****
 
-  // writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
-  // writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
-  // generateChunks(newItems)
+  writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
+  writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
+  generateChunks(newItems)
 }
 
 function AdminManualTaskRunner(): ReactElement {

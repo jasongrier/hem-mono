@@ -4,6 +4,7 @@ import { assetHostHostname } from '../../../../../hem-rocks/functions'
 import { getContentItemById, IContentItem, requestReadChunk } from '../'
 import { RootState } from '../../../../index'
 import { getContentItemsFromRawList } from '../functions'
+import { divide } from 'lodash'
 
 interface IProps {
   galleryId: string
@@ -32,27 +33,20 @@ function ImageGallery({ galleryId }: IProps): ReactElement {
     setImages(getContentItemsFromRawList(allContentItems, galleryContentItem.attachments))
   }, [galleryContentItem, allContentItems, currentProject])
 
+  if (!galleryContentItem) return (<div />)
+
   return (
     <div className="image-gallery">
       <ul>
-        { images.map(image => {
+        { images.map(image => (
           <li
             key={image.id}
             style={{
-              backgroundImage: (
-                'url('
-                + assetHostHostname()
-                + '/'
-                + currentProject
-                + '/content/images/galleries/'
-                + galleryContentItem.slug
-                + '/'
-                + image.keyArt
-                + ')'
-              ),
+              backgroundImage:
+                `url(${assetHostHostname()}/${currentProject}/${image.thumbnailFullPath})`,
             }}
           />
-        })}
+        ))}
       </ul>
     </div>
   )

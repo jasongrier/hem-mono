@@ -29,6 +29,7 @@ export interface IContentItem {
   isPhysicalProduct: boolean
   keyArt: string
   keyArtFullPath: string
+  keyArtThumbnailFullPath: string
   note: string
   order: string
   physicalFormats: string
@@ -103,6 +104,7 @@ export const fieldTypes: IContentItem = {
   isPhysicalProduct: false,
   keyArt: 'text',
   keyArtFullPath: 'text',
+  keyArtThumbnailFullPath: 'text',
   note: 'textarea',
   order: 'text',
   physicalFormats: 'textarea',

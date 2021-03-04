@@ -9,7 +9,7 @@ import { RootState } from '../../../../index'
 
 interface IComponents {
   contactForm?: () => ReactElement
-  imageGallery?: () => ReactElement
+  imageGallery?: (galleryId: string) => ReactElement
 }
 
 interface IProps {
@@ -75,6 +75,25 @@ function SiteText({
               key={i}
             >
               {render?.contactForm ? render.contactForm() : ''}
+            </div>
+          : <div
+              className="site-text-text-block"
+              dangerouslySetInnerHTML={{
+                __html: buildBlockContent(block),
+              }}
+              key={i}
+            />
+      )}
+      { makeBlocks && textBlocks.map((block, i) =>
+        block.indexOf('{{ Component:ImageGallery') > -1
+          ? <div
+              className="site-text-text-block site-text-text-component-block"
+              key={i}
+            >
+              { render?.imageGallery
+                ? render.imageGallery(block.split(':')[2].split(' }}')[0])
+                : ''
+              }
             </div>
           : <div
               className="site-text-text-block"

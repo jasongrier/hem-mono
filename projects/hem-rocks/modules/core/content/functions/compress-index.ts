@@ -57,6 +57,7 @@ const keyCompressionMap: any = {
   isPhysicalProduct: 'au',
   keyArt: 'av',
   keyArtFullPath: 'bw',
+  keyArtThumbnailFullPath: 'bx',
   note: 'bp',
   order: 'aw',
   physicalFormats: 'ax',

@@ -286,3 +286,23 @@ a[id="more-anchor"] {
 .detail-popup-sibling-selector a {
   color: #000;
 }
+
+.image-gallery {
+  width: 1040px;
+  height: 500px;
+  background-color: red;
+}
+
+.image-gallery ul {
+  margin: 0;
+  padding: 0;
+  justify-content: space-between;
+  list-style-type: none;
+}
+
+.image-gallery ul li {
+  float: left;
+  width: 110px;
+  height: 110px;
+  margin: 10px;
+}
