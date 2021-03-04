@@ -30,6 +30,7 @@ function modelize(rawContentItem: any): IContentItem {
     isPhysicalProduct: rawContentItem.isPhysicalProduct || false,
     keyArt: rawContentItem.keyArt || '',
     keyArtFullPath: rawContentItem.keyArtFullPath || '',
+    keyArtThumbnailFullPath: rawContentItem.keyArtThumbnailFullPath || '',
     note: rawContentItem.note || '',
     order: rawContentItem.order || '',
     physicalFormats: rawContentItem.physicalFormats || '',

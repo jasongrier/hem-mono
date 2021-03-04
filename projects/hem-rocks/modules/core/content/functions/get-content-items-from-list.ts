@@ -16,7 +16,7 @@ function getContentItemsFromRawList(contentItems: IContentItem[], list: string) 
   )
 
   return compact(
-    listItemIds.map(id => find(contentItems, { id }))
+    listItemIds.map(id => find(contentItems, { id, published: true }))
   )
 }
 

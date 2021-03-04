@@ -638,15 +638,9 @@ function DetailPopUp({
               <SiteText
                 textItemId={contentItem.id}
                 makeBlocks={true}
-                render={{ imageGallery: () => {
-                  const galleryId = contentItem.attachments.split('\n').shift()
-                  if (!galleryId) return (<div />)
-                  return (
-                    <ImageGallery
-                      galleryId={galleryId}
-                    />
-                  )
-                }}}
+                render={{ imageGallery: (galleryId: string) => (
+                  <ImageGallery galleryId={galleryId} />
+                )}}
               />
             </div>
           )}

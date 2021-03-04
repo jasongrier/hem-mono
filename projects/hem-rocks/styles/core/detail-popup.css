@@ -128,7 +128,7 @@
   top: 68px;
   right: 20px;
   padding: 0 5px;
-  color: red;
+  color: #ff0000;
   background-color: #fff;
 }
 
@@ -142,7 +142,7 @@
 }
 
 .detail-popup header .flex-pricing-type-input small.invalid-minimum {
-  color: red;
+  color: #ff0000;
 }
 
 .detail-popup-currency-symbol {
