@@ -3,9 +3,10 @@ import { Link, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { Hide, ElectronNot } from '../../../../../../lib/components'
 import { LandingPageNot } from '../../../core/app'
-import { RootState } from '../../../../index'
+import { Footer } from './index'
 import '../../../../styles/jag.rip'
 import { hasTag } from '../../../../modules/core/content'
+import { RootState } from '../../../../index'
 
 interface IProps {}
 
@@ -81,31 +82,7 @@ function ProjectFrame({ children }: PropsWithChildren<IProps>): ReactElement {
             'bespoke-web-developer',
             'react-javascript-consulting',
           ]}>
-            <footer className="main-footer">
-              <p>
-                &copy; Jason Grier, 2021
-                &nbsp;|&nbsp;<Link to="#">News</Link>
-                &nbsp;|&nbsp;<Link to="#">Contact</Link>
-                &nbsp;|&nbsp;<Link to="#">About</Link>
-                &nbsp;|&nbsp;<a href="https://web.facebook.com/jasongriermusic">FB</a>
-                &nbsp;|&nbsp;<a href="mailto:j@hem.rocks">j@hem.rocks</a>
-                <br/>
-                <br/>
-                <Link
-                  target="_blank"
-                  to="/react-javascript-consulting"
-                >
-                  React Javascript Consulting
-                </Link>
-                &nbsp;|&nbsp;
-                <Link
-                  target="_blank"
-                  to="/bespoke-web-developer"
-                >
-                  Bespoke Web Developer
-                </Link>
-              </p>
-            </footer>
+            <Footer />
           </Hide>
         </LandingPageNot>
       </ElectronNot>

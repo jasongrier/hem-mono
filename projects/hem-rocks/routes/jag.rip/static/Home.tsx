@@ -50,14 +50,15 @@ function Home(): ReactElement {
         orderByOrder={true}
         shouldSetCurrentPlaylist={true}
         hideFilters={[
-          'Home',
-          'Websites',
-          'Consulting',
-          'Productions',
           'Case Studies',
+          'Consulting',
+          'Home',
           'Mixes',
-          'Tracks',
+          'Productions',
           'Radio',
+          'Tracks',
+          'Web Work',
+          'Websites',
         ]}
         extraBottomBoxes={[1]}
         speciallyOrderedTags={[
@@ -65,7 +66,6 @@ function Home(): ReactElement {
           'Photo %26 Film',
           'Installation %26 Live',
           'Creative Code',
-          'Web Work',
           'Press',
           'Blog',
         ]}

@@ -127,7 +127,7 @@ function MainContentBox({
 
   const linkTo = customLinkTo
     ? customLinkTo(contentItem)
-    : `/${contentItem.category.split(',')[0]}/${contentItem.slug}${filter ? '/' + filter : ''}`
+    : `/${contentItem.category.split(',')[0]}/detail/${contentItem.slug}${filter ? '/' + filter : ''}`
 
   const assetHost = assetHostHostname()
 

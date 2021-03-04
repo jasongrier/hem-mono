@@ -8,6 +8,7 @@ import { CartFrame } from '../../cart'
 import { setCurrentProject, requestReadChunk, getContentItemBySlug } from '../../content'
 import { Hide, ElectronNot, ScrollToTop, Spinner } from '../../../../../../lib/components'
 import { RoutingHub, CookiesFrame, Popups, getCookieName, SplitTests, PlayerFrame, LandingPage } from '../index'
+import { usePrevious } from '../../../../../../lib/hooks'
 import { PROJECT_CONFIGS as UNTYPED_PROJECT_CONFIGS } from '../../../../config'
 import { RootState } from '../../../../index'
 
@@ -21,10 +22,12 @@ const projectFrames: any = {
 function App(): ReactElement {
   const {
     chunkLog,
+    currentlyOpenPopUp,
     currentProject,
     currentProjectSettingItem,
   } = useSelector((state: RootState) => ({
     chunkLog: state.content.chunkLog,
+    currentlyOpenPopUp: state.popups.currentlyOpenPopUp,
     currentProject: state.content.currentProject,
     currentProjectSettingItem: getContentItemBySlug(state.content.contentItems, 'setting-current-project'),
   }))
@@ -32,6 +35,7 @@ function App(): ReactElement {
   const dispatch = useDispatch()
 
   const { pathname } = useLocation()
+  const previouslyOpenPopup = usePrevious(currentlyOpenPopUp)
 
   useEffect(function loadSettings() {
     if (chunkLog.includes('settings')) return
@@ -91,7 +95,10 @@ function App(): ReactElement {
           : ''
       }
     `}>
-      <ScrollToTop scrollPaneSelector=".scroll-lock-container" />
+      <ScrollToTop
+        previouslyOpenPopup={!!!previouslyOpenPopup}
+        scrollPaneSelector=".scroll-lock-container"
+      />
 
       <div className="scroll-lock-container">
         <div className="scroll-lock-content">

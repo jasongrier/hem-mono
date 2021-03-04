@@ -6,7 +6,6 @@ import Cookies from 'js-cookie'
 import { find, isFinite, isNaN, noop, findIndex, last, compact, isEmpty } from 'lodash'
 import $ from 'jquery'
 import marked from 'marked'
-import Mustache from 'mustache'
 import uuid from 'uuid/v1'
 import Scrollbars from 'react-scrollbars-custom'
 import ReactGA from 'react-ga'
@@ -16,12 +15,10 @@ import { addProductToCart, submitSale } from '../../cart'
 import { getCookieName, SplitTests } from '../../app'
 import { IContentItem, getContentItemsFromRawList, getContentItemById, getProperties, ImageGallery, SiteText } from '../index'
 import { assetHostHostname } from '../../../../functions'
-import { BvgWatermark } from '../../../../components/berlin-stock-photos'
 import ContentComponents from '../../../../components/content'
 import { RootState } from '../../../../index'
 import { BERLIN_STOCK_PHOTOS, MINIMUM_PRICE_FOR_RAW } from '../../../../config'
 import { hasTag, contentItemToTrack, hasCategory, tagSpellingCorrections, parseText, hasProperty } from '../functions'
-import { titleCase } from 'voca'
 
 interface IProps {
   contentItem: IContentItem | null
@@ -641,11 +638,15 @@ function DetailPopUp({
               <SiteText
                 textItemId={contentItem.id}
                 makeBlocks={true}
-                render={{ imageGallery: () => (
-                  <ImageGallery
-                    galleryId={contentItem.attachments.split('\n').shift()}
-                  />
-                )}}
+                render={{ imageGallery: () => {
+                  const galleryId = contentItem.attachments.split('\n').shift()
+                  if (!galleryId) return (<div />)
+                  return (
+                    <ImageGallery
+                      galleryId={galleryId}
+                    />
+                  )
+                }}}
               />
             </div>
           )}

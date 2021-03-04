@@ -25,15 +25,8 @@ function Popups(): ReactElement {
   const { pathname } = useLocation()
   const history = useHistory()
 
-  const routedPopups = PROJECT_CONFIGS[currentProject]
-    .ROUTED_POPUPS
-    .map((basePath: string) => ({
-      basePath,
-      id: 'detail-popup'
-    }))
-
   useEffect(function handleRoutedPopups() {
-    const [basePath, slug, cart, orCart] = pathname.replace(/^\//, '').split('/')
+    const [basePath, detail, slug] = pathname.replace(/^\//, '').split('/')
     const requestedContentItem = contentItems.find(item =>
       item.slug === slug && !hasCategory(item, 'site-texts')
     )
@@ -41,28 +34,18 @@ function Popups(): ReactElement {
     let popupId
 
     if (
-      basePath === 'cart'
-      || slug === 'cart'
-      || cart === 'cart'
-      || orCart === 'cart'
+      pathname.includes('/cart/')
+      || /cart$/.test(pathname)
     ) {
       popupId = 'cart-popup'
     }
 
-    if (basePath === 'thank-you') {
+    else if (basePath === 'thank-you') {
       popupId = 'thank-you-popup'
     }
 
-    if (!popupId) {
-      for (const routedPopup of routedPopups) {
-        if (
-          basePath === routedPopup.basePath
-          && requestedContentItem
-        ) {
-          popupId = routedPopup.id
-          break
-        }
-      }
+    else if (detail === 'detail') {
+      popupId = 'detail-popup'
     }
 
     if (
@@ -70,26 +53,22 @@ function Popups(): ReactElement {
       && popupId !== 'detail-popup'
     ) return
 
-    if (popupId) {
-      dispatch(closePopup())
+    dispatch(closePopup())
 
+    if (popupId) {
       if (requestedContentItem) {
         dispatch(setCurrentItem(requestedContentItem))
       }
 
       dispatch(openPopup(popupId))
     }
-
-    else {
-      dispatch(closePopup())
-    }
   }, [contentItems, pathname])
 
   const previouslyOpenPopup = usePrevious(currentlyOpenPopUp)
 
-  useEffect(function closePopup() {
+  useEffect(function onClosePopup() {
     if (!currentlyOpenPopUp && previouslyOpenPopup) {
-      const pathnameSplit = pathname.replace(/^\//, '').split('/')
+      const [basePath, detail, slug, filter] = pathname.replace(/^\//, '').split('/')
 
       let path = '/'
 
@@ -124,12 +103,12 @@ function Popups(): ReactElement {
 
       if (
         !cartReturnFound
-        && map(routedPopups, 'basePath').includes(pathnameSplit[0])
+        && detail === 'detail'
       ) {
-        path += pathnameSplit[0]
+        path += basePath
 
-        if (pathnameSplit[2]) {
-          path += '/filter/' + pathnameSplit[2]
+        if (filter) {
+          path += '/filter/' + filter
         }
       }
 
@@ -149,7 +128,7 @@ function Popups(): ReactElement {
       >
         <DetailPopUp
           contentItem={currentContentItem}
-          filter={pathname.split('/')[3]}
+          filter={pathname.split('/')[4]}
           category={pathname.split('/')[1]}
         />
       </PopupContainer>
