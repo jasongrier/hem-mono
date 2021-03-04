@@ -23,28 +23,6 @@ module.exports.PROJECT_CONFIGS = {
     HIDE_PLAYER_FRAME_FOR: ['print-flip-books', 'web-movie', 'life-in-letters'],
     NAG_HEADER: 'HEM Newsletter',
     NAG_TEXT: 'HEM Newsletter',
-    ROUTED_POPUPS: [
-      'apps',
-      'articles',
-      'artists',
-      'blog',
-      'code',
-      'editions',
-      'faqs',
-      'home',
-      'label',
-      'merch',
-      'mixes',
-      'playlists',
-      'press-kits',
-      'press-releases',
-      'press',
-      'sound-library',
-      'tracks',
-      'tutorials',
-      'user-guides',
-      'videos',
-    ],
     CATEGORIES: '*',
     CURATED_PLAYLISTS: [
       {
@@ -98,7 +76,6 @@ module.exports.PROJECT_CONFIGS = {
       CAMPAIGN_MONITOR_FORM_ID: '5B5E7037DA78A748374AD499497E309EB922E7320A74FE320567395932FD1E089D2A299E8E211FF50C89D028E56FA7A33DAA79AA4ACDB46632A1641971EAA8B4',
       MAILING_LIST_TEXT: 'Subscribe to Berlin Stock Photos to receive updates on new photos, prints, and more.',
     },
-    ROUTED_POPUPS: [],
     CURATED_PLAYLISTS: [],
   },
   'midst.press': {
@@ -106,7 +83,6 @@ module.exports.PROJECT_CONFIGS = {
       BASE_SITE_TITLE: 'Midst Journal',
       META_DESCRIPTION: 'Midst is a new digital journal publishing poems in the form of interactive timelapses. You’ll see the finished text by default, but then you can rewind it to see exactly how it was written: start to finish, blank page to final draft, and every edit in between.',
     },
-    ROUTED_POPUPS: [],
     CURATED_PLAYLISTS: [],
   },
   'jag.rip': {
@@ -135,7 +111,6 @@ module.exports.PROJECT_CONFIGS = {
     HIDE_PLAYER_FRAME_FOR: [],
     NAG_HEADER: '',
     NAG_TEXT: '',
-    ROUTED_POPUPS: ['general-content'],
     CURATED_PLAYLISTS: [],
     CATEGORIES: [
       'general-content',

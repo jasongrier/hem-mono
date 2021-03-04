@@ -14,7 +14,7 @@ function LandingPageNot({ children }: PropsWithChildren<IProps>): ReactElement {
 
   const landingPageSpecs = PROJECT_CONFIGS[currentProject].LANDING_PAGES || []
 
-  let isLandingPage = undefined
+  let isLandingPage: boolean = false
 
   for (const candidate of landingPageSpecs) {
     if (candidate.domains.includes(window.location.hostname)) {
@@ -24,9 +24,9 @@ function LandingPageNot({ children }: PropsWithChildren<IProps>): ReactElement {
   }
 
   return (
-    (isLandingPage !== undefined && isLandingPage !== true)
-      ? <>{ children }</>
-      : <span />
+    isLandingPage
+      ? <span />
+      : <>{ children }</>
   )
 }
 
