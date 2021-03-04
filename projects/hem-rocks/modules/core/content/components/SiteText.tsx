@@ -4,7 +4,7 @@ import { isEmpty } from 'lodash'
 import Mustache from 'mustache'
 import marked from 'marked'
 import { assetHostHostname } from '../../../../../hem-rocks/functions'
-import { getContentItemById, requestReadChunk } from '../'
+import { getContentItemById, IContentItem, requestReadChunk } from '../'
 import { RootState } from '../../../../index'
 
 interface IComponents {
@@ -15,8 +15,8 @@ interface IComponents {
 interface IProps {
   textItemId: string
 
-  makeBlocks?: boolean
   render?: IComponents
+  textItemField?: keyof IContentItem
 }
 
 function buildPayload() {
@@ -42,8 +42,8 @@ function buildBlockContent(block: string) {
 function SiteText({
   textItemId,
 
-  makeBlocks = true,
   render,
+  textItemField = 'description',
 }: IProps): ReactElement {
   const { chunkLog, contentItem } = useSelector((state: RootState) => ({
     chunkLog: state.content.chunkLog,
@@ -61,57 +61,46 @@ function SiteText({
 
   useEffect(function getParagraphs() {
     if (!contentItem) return
-    if (!makeBlocks) return
-    setTextBlocks(contentItem.description.split('\n\n'))
+    const fieldValue = contentItem[textItemField]
+    if (typeof fieldValue !== 'string') return
+    setTextBlocks(fieldValue.split('\n\n'))
     dispatch(requestReadChunk('site-texts'))
   }, [contentItem])
 
   return (
     <div className="site-text-container">
-      { makeBlocks && textBlocks.map((block, i) =>
-        block.indexOf('{{ Component:ContactForm') > -1
-          ? <div
+      { textBlocks.map((block, i) => {
+        if (block.indexOf('{{ Component') > -1) {
+          return (
+            <div
               className="site-text-text-block site-text-text-component-block"
               key={i}
             >
-              {render?.contactForm ? render.contactForm() : ''}
+              {(() => {
+                if (block.indexOf('{{ Component:ContactForm') > -1) {
+                  return render?.contactForm ? render.contactForm() : ''
+                }
+
+                else if (block.indexOf('{{ Component:ImageGallery') > -1) {
+                  return render?.imageGallery ? render.imageGallery(block.split(':')[2].split(' }}')[0]) : ''
+                }
+              })()}
             </div>
-          : <div
+          )
+        }
+
+        else {
+          return (
+            <div
               className="site-text-text-block"
               dangerouslySetInnerHTML={{
                 __html: buildBlockContent(block),
               }}
               key={i}
             />
-      )}
-      { makeBlocks && textBlocks.map((block, i) =>
-        block.indexOf('{{ Component:ImageGallery') > -1
-          ? <div
-              className="site-text-text-block site-text-text-component-block"
-              key={i}
-            >
-              { render?.imageGallery
-                ? render.imageGallery(block.split(':')[2].split(' }}')[0])
-                : ''
-              }
-            </div>
-          : <div
-              className="site-text-text-block"
-              dangerouslySetInnerHTML={{
-                __html: buildBlockContent(block),
-              }}
-              key={i}
-            />
-      )}
-      { !makeBlocks && contentItem && (
-        <p dangerouslySetInnerHTML={{
-          __html: marked(
-            Mustache.render(contentItem.description, {
-              assetHost: assetHostHostname(),
-            })
-          ),
-        }} />
-      )}
+          )
+        }
+      })}
     </div>
   )
 }

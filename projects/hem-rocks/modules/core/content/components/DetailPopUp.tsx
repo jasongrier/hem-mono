@@ -456,14 +456,14 @@ function DetailPopUp({
             <div className="detail-popup-sibling-selectors">
               { previousItem && (
                 <div className="detail-popup-sibling-selector detail-popup-sibling-selector-prev">
-                  <Link to={`/${category}/${previousItem.slug}${filter ? '/' + filter : ''}`}>
+                  <Link to={`/${category}/detail/${previousItem.slug}${filter ? '/' + filter : ''}`}>
                     &laquo; { previousItem.title }
                   </Link>
                 </div>
               )}
               { nextItem && (
                 <div className="detail-popup-sibling-selector detail-popup-sibling-selector-next">
-                  <Link to={`/${category}/${nextItem.slug}${filter ? '/' + filter : ''}`}>
+                  <Link to={`/${category}/detail/${nextItem.slug}${filter ? '/' + filter : ''}`}>
                     { nextItem.title } &raquo;
                   </Link>
                 </div>
@@ -634,15 +634,12 @@ function DetailPopUp({
             React.createElement(ContentComponents[contentItem.description])
           )}
           { !hasTag(contentItem, 'component-content') && (
-            <div>
-              <SiteText
-                textItemId={contentItem.id}
-                makeBlocks={true}
-                render={{ imageGallery: (galleryId: string) => (
-                  <ImageGallery galleryId={galleryId} />
-                )}}
-              />
-            </div>
+            <SiteText
+              textItemId={contentItem.id}
+              render={{ imageGallery: (galleryId: string) => (
+                <ImageGallery galleryId={galleryId} />
+              )}}
+            />
           )}
           <div className={`
             detail-popup-details-sidebar
@@ -667,19 +664,17 @@ function DetailPopUp({
               </div>
             )}
             { contentItem.aside && (
-              <div
-                className="detail-popup-details-sidebar-info"
-                dangerouslySetInnerHTML={{
-                  __html: marked(contentItem.aside),
-                }}
+              <SiteText
+                textItemId={contentItem.id}
+                textItemField="aside"
+                render={{ imageGallery: (galleryId: string) => (
+                  <ImageGallery galleryId={galleryId} />
+                )}}
               />
             )}
           </div>
         </div>
       </Scrollbars>
-      {/* <div className="scroll-down-pointer">
-        <ChevronButton onClick={noop} />
-      </div> */}
     </section>
   )
 }

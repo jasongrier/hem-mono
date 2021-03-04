@@ -320,6 +320,7 @@
 .detail-popup-details {
   position: relative;
   padding: 30px 450px 20px 30px;
+  margin-bottom: 100px;
   background-color: #fff;
 }
 

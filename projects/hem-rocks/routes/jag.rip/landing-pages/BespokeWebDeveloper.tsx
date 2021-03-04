@@ -12,7 +12,6 @@ function BespokeWebDeveloper(): ReactElement {
       <div className="main-content-section first-main-content-section" style={{ color: 'black' }}>
         <SiteText
           textItemId="353a8233-7926-4bfa-a858-36d09c357da8"
-          makeBlocks={true}
           render={{ contactForm: () => (
             <ContactForm
               action={assetHostHostname() + '/api/?hem-cmd=contact-form&site=jag.rip'}

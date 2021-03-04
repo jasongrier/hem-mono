@@ -34,6 +34,8 @@ function PopupContainer({
   }, [currentlyOpenPopUp])
 
   useEffect(function captureEscapeKey() {
+    if (frozen) return
+
     function bodyOnKeyDown(evt: any) {
       if (
         escapeKeyCloses
@@ -49,7 +51,7 @@ function PopupContainer({
     return function cleanup() {
       document.body.removeEventListener('keydown', bodyOnKeyDown)
     }
-  }, [currentlyOpenPopUp])
+  }, [currentlyOpenPopUp, frozen])
 
   useEffect(function lockBody() {
     if (currentlyOpenPopUp === id && !locked) {
