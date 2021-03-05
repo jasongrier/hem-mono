@@ -16,12 +16,12 @@ function LandingPageNot({ children }: PropsWithChildren<IProps>): ReactElement {
 
   let isLandingPage: boolean = false
 
-  for (const candidate of landingPageSpecs) {
-    if (candidate.domains.includes(window.location.hostname)) {
-      isLandingPage = true
-      break
-    }
-  }
+  // for (const candidate of landingPageSpecs) {
+  //   if (candidate.domains.includes(window.location.hostname)) {
+  //     isLandingPage = true
+  //     break
+  //   }
+  // }
 
   return (
     isLandingPage

@@ -6,7 +6,7 @@ import { modelize, hasCategory, generateChunks, removeTag, addProperty, hasTag }
 import { IContentItem, requestReadItems, compressIndex, addTag } from '../index'
 import { RootState } from '../../../../index'
 import { slugify, titleCase } from 'voca'
-import { intersection } from 'lodash'
+import { intersection, isEmpty } from 'lodash'
 
 async function createItemsFromFiles(allContentItems: IContentItem[]) {
   const { remote } = window.require('electron')
@@ -175,10 +175,14 @@ async function migrate(allContentItems: IContentItem[]) {
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
 
-    if (hasTag(newItem, 'animations')) {
-      newItem.title = newItem.title
-        .replace('.Gif', '')
-        .replace(/-/g, ' ')
+    if (hasCategory(newItem, 'program')) {
+      if (newItem.title.includes('Adee')) {
+        newItem.project = 'hem.rocks'
+      }
+
+      else if (isEmpty(newItem.title)) {
+        newItem.published = false
+      }
     }
 
     newItems.push(newItem)
@@ -191,9 +195,9 @@ async function migrate(allContentItems: IContentItem[]) {
   // ***** DANGER ZONE *****
   // ***** DANGER ZONE *****
 
-  writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
-  writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
-  generateChunks(newItems)
+  // writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
+  // writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
+  // generateChunks(newItems)
 }
 
 function AdminManualTaskRunner(): ReactElement {

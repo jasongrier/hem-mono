@@ -50,20 +50,6 @@ module.exports.PROJECT_CONFIGS = {
         linkTo: '/label',
       },
     ],
-    LANDING_PAGES: [
-      {
-        name: 'bespoke-web-developer',
-        domains: [
-          'staging-b-bespoke-web-developer.hem.rocks',
-          'bespoke-web-developer.hem.rocks',
-        ],
-        component: 'BespokeWebDeveloperJag',
-        HTML_HEAD_META: {
-          BASE_SITE_TITLE: 'Bespoke Web Developer',
-          META_DESCRIPTION: 'Affordable Web Development tailored for nonprofits, cultural institutions, and artists',
-        }
-      },
-    ],
   },
   'berlinstockphotos.com': {
     HTML_HEAD_META: {
@@ -76,6 +62,7 @@ module.exports.PROJECT_CONFIGS = {
       CAMPAIGN_MONITOR_FORM_ID: '5B5E7037DA78A748374AD499497E309EB922E7320A74FE320567395932FD1E089D2A299E8E211FF50C89D028E56FA7A33DAA79AA4ACDB46632A1641971EAA8B4',
       MAILING_LIST_TEXT: 'Subscribe to Berlin Stock Photos to receive updates on new photos, prints, and more.',
     },
+    RELEASE_PHASE: 1,
     CURATED_PLAYLISTS: [],
   },
   'midst.press': {
@@ -83,6 +70,7 @@ module.exports.PROJECT_CONFIGS = {
       BASE_SITE_TITLE: 'Midst Journal',
       META_DESCRIPTION: 'Midst is a new digital journal publishing poems in the form of interactive timelapses. You’ll see the finished text by default, but then you can rewind it to see exactly how it was written: start to finish, blank page to final draft, and every edit in between.',
     },
+    RELEASE_PHASE: 1,
     CURATED_PLAYLISTS: [],
   },
   'jag.rip': {
@@ -117,10 +105,12 @@ module.exports.PROJECT_CONFIGS = {
       'image-gallery',
       'images',
       'playlists',
+      'settings',
       'site-texts',
       'tracks',
       'video',
     ],
+    RELEASE_PHASE: 1,
     CURATED_PLAYLISTS: [
       {
         name: 'Tracks',
@@ -134,15 +124,7 @@ module.exports.PROJECT_CONFIGS = {
     LANDING_PAGES: [
       {
         name: 'bespoke-web-developer',
-        domains: [
-          'staging-b-bespoke-web-developer.hem.rocks',
-          'bespoke-web-developer.hem.rocks',
-        ],
         component: 'BespokeWebDeveloperJag',
-        HTML_HEAD_META: {
-          BASE_SITE_TITLE: 'Bespoke Web Developer',
-          META_DESCRIPTION: 'Affordable Web Development tailored for nonprofits, cultural institutions, and artists',
-        }
       },
     ],
   },

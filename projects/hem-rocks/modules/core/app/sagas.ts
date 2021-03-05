@@ -21,7 +21,7 @@ function* writeCookieApprovalCookie({ payload }: any) {
   try {
     yield call(
       fetch,
-      `${assetHostHostname()}/hem-rocks/api/?hem-cmd=cookie-approval`,
+      `${assetHostHostname()}/hem.rocks/api/?hem-cmd=cookie-approval`,
       {
         body: JSON.stringify({ approval, cookieName }),
         method: 'post',

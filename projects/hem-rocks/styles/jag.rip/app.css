@@ -6,7 +6,7 @@ body {
 
 body {
   margin: 0;
-  font-family: 'Okojo';
+  font-family: 'Gilroy';
   color: #fff;
 }
 
@@ -27,16 +27,38 @@ a:focus {
   color: blue;
 }
 
+.jag-main-header-logo {
+  position: fixed;
+  top: -20px;
+  left: -20px;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+  color: #eee;
+  justify-content: center;
+  align-items: center;
+  font-size: 400px;
+  line-height: 300px;
+  font-weight: bold;
+}
+
 .main-header h1 {
   position: fixed;
   top: 0;
-  left: 0;
-  z-index: 99999;
+  right: 0;
+  z-index: 9999;
   margin: 0;
   padding: 0;
   text-transform: uppercase;
   font-size: 18px;
-  color: #000;
+  font-weight: normal;
+  letter-spacing: 1px;
+  color: #fff;
+  justify-content: center;
+  align-items: center;
 }
 
 .more-link {
@@ -203,7 +225,7 @@ a[id="more-anchor"] {
   width: 250px;
   margin-top: -7px;
   margin-right: -20px;
-  padding: 20px;
+  padding: 50px 20px 20px 30px;
   background-color: #000;
   transform: rotate(-2deg);
   border-radius: 4px;
@@ -219,7 +241,8 @@ a[id="more-anchor"] {
 }
 
 .main-content-filters a {
-  display: block;
+  float: left;
+  clear: both;
   padding: 0;
   margin-bottom: 15px;
   padding-bottom: 6px;
@@ -276,6 +299,10 @@ a[id="more-anchor"] {
   box-sizing: border-box;
   border-top: 1px solid #000;
   border-bottom: 1px solid #000;
+}
+
+.main-content-box h3 {
+  text-transform: uppercase;
 }
 
 .main-content-box-with-filter-press:hover .main-content-box-key-art,

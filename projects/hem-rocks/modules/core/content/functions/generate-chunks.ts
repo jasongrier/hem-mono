@@ -5,6 +5,18 @@ import { PROJECT_CONFIGS as UNTYPED_PROJECT_CONFIGS } from '../../../../config'
 
 const PROJECT_CONFIGS = UNTYPED_PROJECT_CONFIGS as any
 
+function outputFilter(items: IContentItem[], currentProject: string) {
+  return items
+  // return items.filter(i =>
+  //   hasCategory(i, 'settings')
+  //   || (
+  //     i.published
+  //     && parseInt(i.releasePhase, 10) >= PROJECT_CONFIGS.RELEASE_PHASE
+  //     && i.project === currentProject
+  //   )
+  // )
+}
+
 function generateChunks(allContentItems: IContentItem[]) {
   const { remote } = window.require('electron')
   const { writeFileSync } = remote.require('fs')
@@ -98,7 +110,7 @@ function generateChunks(allContentItems: IContentItem[]) {
           && item.project === currentProject
         )
 
-        let galleriesAndImages = Array.from(galleries)
+        let galleriesAndImages: IContentItem[] = Array.from(galleries)
 
         for (const gallery of galleries) {
           const attachments = getContentItemsFromRawList(allContentItems, gallery.attachments)
@@ -121,11 +133,11 @@ function generateChunks(allContentItems: IContentItem[]) {
 
   for (const chunk of chunks) {
     if (typeof chunk.getContentItems === 'function') {
-      chunk.getContentItems(allContentItems)
+      chunk.getContentItems(outputFilter(allContentItems, currentProject))
     }
 
     else {
-      for (const oldItem of allContentItems) {
+      for (const oldItem of outputFilter(allContentItems, currentProject)) {
         const newItem = Object.assign({}, oldItem)
         if (hasCategory(newItem, chunk.name)) {
           // @ts-ignore

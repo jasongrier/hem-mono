@@ -69,6 +69,9 @@ function ProjectFrame({ children }: PropsWithChildren<IProps>): ReactElement {
                   Jason Aaron Grier
                 </Link>
               </h1>
+              <div className="jag-main-header-logo">
+                JAG
+              </div>
             </Hide>
           </LandingPageNot>
         </ElectronNot>

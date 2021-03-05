@@ -50,6 +50,7 @@ function Home(): ReactElement {
         orderByOrder={true}
         shouldSetCurrentPlaylist={true}
         hideFilters={[
+          'Blog',
           'Case Studies',
           'Consulting',
           'Home',
