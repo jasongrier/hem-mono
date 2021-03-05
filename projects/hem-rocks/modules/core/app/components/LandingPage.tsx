@@ -33,25 +33,26 @@ function LandingPage({ children, landingPageSpecs }: PropsWithChildren<IProps>):
 
   let spec: ILandingPageSpec | null = null
 
-  for (const candidate of landingPageSpecs) {
-    if (candidate.domains.includes(window.location.hostname)) {
-      spec = candidate
-      break
-    }
-  }
+  // for (const candidate of landingPageSpecs) {
+  //   if (candidate.domains.includes(window.location.hostname)) {
+  //     spec = candidate
+  //     break
+  //   }
+  // }
 
   if (!spec) {
     return (<>{ children }</>)
   }
 
-  const LandingPage = landingPageComponents[spec?.component]
+  // const LandingPageComponent = landingPageComponents[spec?.component]
 
   if (!LandingPage) {
     return (<>{ children }</>)
   }
 
   return (
-    <LandingPage />
+    <div />
+    // <LandingPageComponent />
   )
 }
 

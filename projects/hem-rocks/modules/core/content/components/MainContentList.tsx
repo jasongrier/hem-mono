@@ -370,7 +370,7 @@ function MainContentList({
         }
 
         else {
-          return false
+          return true
         }
       })
     }

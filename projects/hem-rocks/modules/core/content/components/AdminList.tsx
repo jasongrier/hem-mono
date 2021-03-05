@@ -12,6 +12,9 @@ import { RootState } from '../../../../index'
 import { hasCategory, hasTag, modelize } from '../functions'
 import { assetHostHostname } from '../../../../functions'
 import { toggleShowUnpublishedFilter, toggleStickyFilter, setCurrentPage, requestCreateItems } from '../actions'
+import { PROJECT_CONFIGS as UNTYPED_PROJECT_CONFIGS } from '../../../../config'
+
+const PROJECT_CONFIGS = UNTYPED_PROJECT_CONFIGS as any
 
 function AdminList(): ReactElement {
   const {
@@ -53,8 +56,25 @@ function AdminList(): ReactElement {
   const [collapsed, setCollapsed] = useState<boolean>(false)
 
   const projectFilterOnChange = useCallback(
-    function projectFilterOnChange(evt: SyntheticEvent<HTMLSelectElement>) {
+    function projectFilterOnChangeFn(evt: SyntheticEvent<HTMLSelectElement>) {
       const item = getContentItemBySlug(allContentItems, 'setting-current-project')
+      const updatedItem: IContentItem = produce(item, (draftItem) => {
+        console.log(evt.currentTarget.value)
+        draftItem.description = evt.currentTarget.value
+      })
+      dispatch(requestUpdateItems([updatedItem]))
+
+      const landingPageItem = getContentItemBySlug(allContentItems, 'setting-landing-page')
+      const updatedLandingPageItemItem: IContentItem = produce(landingPageItem, (draftItem) => {
+        draftItem.description = ''
+      })
+      dispatch(requestUpdateItems([updatedLandingPageItemItem]))
+    }, [allContentItems],
+  )
+
+  const landingPageFilterOnChange = useCallback(
+    function landingPageFilterOnChangeFn(evt: SyntheticEvent<HTMLSelectElement>) {
+      const item = getContentItemBySlug(allContentItems, 'setting-landing-page')
       const updatedItem: IContentItem = produce(item, (draftItem) => {
         draftItem.description = evt.currentTarget.value
       })
@@ -139,7 +159,7 @@ function AdminList(): ReactElement {
       <div className="admin-list">
         <div className="admin-list-controls clearfix">
           <div className="admin-list-controls-select">
-            <label htmlFor="select">
+            <label htmlFor="project-filter">
               Project:&nbsp;
               <PlayPauseButton
                 playing={false}
@@ -148,7 +168,7 @@ function AdminList(): ReactElement {
             </label>
             <select
               className="custom-select"
-              name="select"
+              name="project-filter"
               onChange={projectFilterOnChange}
               value={currentProject}
             >
@@ -162,15 +182,54 @@ function AdminList(): ReactElement {
               ))}
             </select>
           </div>
+          { console.log(PROJECT_CONFIGS[currentProject]) }
+          { PROJECT_CONFIGS[currentProject].LANDING_PAGES
+            && PROJECT_CONFIGS[currentProject].LANDING_PAGES.length
+            && (
+              <div className="admin-list-controls-select">
+                <label htmlFor="project-filter">
+                  Landing page:&nbsp;
+                  <PlayPauseButton
+                    playing={false}
+                    onClick={noop}
+                  />
+                </label>
+                <select
+                  className="custom-select"
+                  name="project-filter"
+                  onChange={landingPageFilterOnChange}
+                  value={currentProject}
+                >
+                  <option
+                    key={'none'}
+                    value=""
+                  >
+                    None
+                  </option>
+                  { PROJECT_CONFIGS[currentProject].LANDING_PAGES.map((landingPageSpec: any) => (
+                    <option
+                      key={landingPageSpec.name}
+                      value={landingPageSpec.name}
+                    >
+                      { landingPageSpec.name }
+                    </option>
+                  ))}
+                </select>
+              </div>
+          )}
         </div>
         <div className="admin-list-controls clearfix">
           <div className="admin-list-controls-select">
-            <label htmlFor="select">
+            <label htmlFor="category">
               Category:&nbsp;
+              <PlayPauseButton
+                playing={false}
+                onClick={noop}
+              />
             </label>
             <select
               className="custom-select"
-              name="select"
+              name="category"
               onChange={categoryFilterOnChange}
               value={adminFilterApplied}
             >
@@ -203,21 +262,31 @@ function AdminList(): ReactElement {
               <option value="description">Desc</option>
             </select>
             { adminSearchableField === 'tags' && (
-              <select
-                className="custom-select admin-select-tag"
-                onChange={searchOnChange}
-                value={adminSearchApplied}
-              >
-                <option value="">All</option>
-                { getTagsInCollection(filter(allContentItems, { project: currentProject })).map(tag => (
-                  <option
-                    key={tag}
-                    value={tag}
-                  >
-                    { titleCase(tag).replace(/-/g, ' ').replace(/%26/g, '&') }
-                  </option>
-                )) }
-              </select>
+              <div className="admin-list-controls-select">
+                <label htmlFor="tag">
+                  &nbsp;
+                  <PlayPauseButton
+                    playing={false}
+                    onClick={noop}
+                  />
+                </label>
+                <select
+                  className="custom-select admin-select-tag"
+                  name="tag"
+                  onChange={searchOnChange}
+                  value={adminSearchApplied}
+                >
+                  <option value="">All</option>
+                  { getTagsInCollection(filter(allContentItems, { project: currentProject })).map(tag => (
+                    <option
+                      key={tag}
+                      value={tag}
+                    >
+                      { titleCase(tag).replace(/-/g, ' ').replace(/%26/g, '&') }
+                    </option>
+                  )) }
+                </select>
+              </div>
             )}
             { adminSearchableField !== 'tags' && (
               <input

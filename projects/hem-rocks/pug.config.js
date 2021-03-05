@@ -16,7 +16,6 @@ let headMeta
 if (landingPageArgIndex > -1) {
   const landingPageName = process.argv[landingPageArgIndex + 1]
   const landingPageConfig = projectConfig.LANDING_PAGES.find(l => l.name === landingPageName)
-
   headTagsPath = join(pugIncludesPath, projectName, 'head-tags-' + landingPageName + '.html')
   headMeta = landingPageConfig.HTML_HEAD_META
 }
@@ -25,6 +24,7 @@ else {
   headTagsPath = join(pugIncludesPath, projectName, 'head-tags.html')
   headMeta = projectConfig.HTML_HEAD_META
 }
+
 const headTagsTpl = readFileSync(headTagsPath, 'utf8')
 const headTags = Mustache.render(headTagsTpl, {
   title: headMeta.BASE_SITE_TITLE,
