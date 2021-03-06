@@ -1,0 +1,79 @@
+#hem-rocks-website-email-nag {
+  display: none;
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  z-index: 999999;
+  width: 350px;
+  height: 250px;
+  background-color: #000;
+}
+
+#hem-rocks-website-email-nag.hem-nag-toaster-open {
+  display: block;
+}
+
+#hem-rocks-website-email-nag .hem-nag-toaster-close-button {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 18px;
+  height: 18px;
+  font-size: 0;
+}
+
+#hem-rocks-website-email-nag .hem-nag-toaster-close-button .hem-close-button {
+  transform: scale(0.3);
+  transform-origin: top left;
+}
+
+#hem-rocks-website-email-nag .hem-nag-toaster-close-button .hem-close-button span {
+  height: 10px;
+}
+
+#hem-rocks-website-email-nag {
+  padding: 10px;
+  color: #fff;
+  font-family: Avenir, sans-serif;
+}
+
+#hem-rocks-website-email-nag h3 {
+  margin: 0 0 10px 0;
+  font-weight: normal;
+  font-size: 24px;
+}
+
+#hem-rocks-website-email-nag p {
+  margin: 0 0 15px 0;
+  font-weight: normal;
+  font-size: 11px;
+}
+
+#hem-rocks-website-email-nag input {
+  display: block;
+  width: 300px;
+  height: 36px;
+  margin: 0 0 12px 0;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+  background: #fff;
+  font-family: Avenir, sans-serif;
+  font-size: 14px;
+}
+
+#hem-rocks-website-email-nag button {
+  width: 120px;
+  height: 36px;
+  margin: 10px 30px 0 0;
+  font-size: 14px;
+  font-weight: normal;
+  background-color: var(--line-orange);
+  cursor: pointer;
+  border: 0;
+  color: #fff;
+}
+
+#hem-rocks-website-email-nag input:focus,
+#hem-rocks-website-email-nag button:focus {
+  outline: none;
+}

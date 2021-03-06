@@ -14,9 +14,6 @@
     ],
     "module": "esnext",
     "moduleResolution": "node",
-    "paths": {
-      "@core/*": ["./projects/hem-rocks/modules/core/*"],
-    },
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,

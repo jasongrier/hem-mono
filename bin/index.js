@@ -1,16 +1,29 @@
-const webpack = require('webpack')
-const WebpackDevServer = require('webpack-dev-server')
-const webpackConfig = require('../webpack.config')
+const { join } = require('path')
+const { execSync, spawn } = require('child_process')
+const Bundler = require('parcel-bundler')
+const env = Object.create(process.env)
 
-const compiler = webpack(webpackConfig())
+const bundler = new Bundler(
+  join('.', 'projects', 'hem-rocks', 'index.jade')
+)
 
-const devServerConfig = {
-  compress: true,
-  historyApiFallback: true,
-  stats: { colors: true },
-  disableHostCheck: true,
-}
+bundler.on('bundled', async () => {
+  execSync(`cp -rf ${join('.', 'projects', 'hem-rocks')} ${join('.', 'dist', 'static')}`)
+  execSync(`cp ${join('.', 'projects', 'hem-rocks', '.htaccess')} ${join('.', 'dist', '.htaccess')}`)
 
-const server = new WebpackDevServer(compiler, devServerConfig)
+  env.ELECTRON_MONO_DEV = true
 
-server.listen(3000, 'localhost')
+  const electronProcess = spawn('electron', ['bin/electron/main.js'], {
+    shell: true,
+    detached: true,
+    env,
+  })
+
+  process.on('SIGINT', function() {
+    electronProcess.kill()
+  })
+})
+
+execSync(`rm -rf ${join('.', 'cache')}`)
+
+bundler.serve()
