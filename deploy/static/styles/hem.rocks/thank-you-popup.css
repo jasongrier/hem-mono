@@ -1,0 +1,175 @@
+#thank-you-popup .hem-popup-content {
+  transform: translateY(-30px);
+}
+
+.thank-you-popup header {
+  padding: 0 10px;
+}
+
+/* TODO: Global H1 className */
+.thank-you-popup header h1 {
+  height: 60px;
+  margin: 0 0 10px 0;
+  font-size: 60px;
+  font-weight: 100;
+  text-transform: uppercase;
+}
+
+/* TODO: Globalize this className */
+.thank-you-popup-content {
+  padding: 0 15px;
+}
+
+.thank-you-popup-content p {
+  padding: 0;
+}
+
+.thank-you-popup-content a {
+  color: var(--line-orange);
+}
+
+.thank-you-popup-content .order-heading {
+  margin: 0 0 10px 0;
+}
+
+.thank-you-popup-content .download-items {
+  position: relative;
+  height: 160px;
+  margin-bottom: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  list-style-type: none;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.thank-you-popup-content .download-items li {
+  width: 600px;
+  border-bottom: 1px solid #eee;
+}
+
+.thank-you-popup-content .download-items li small {
+  font-size: 11px;
+}
+
+.thank-you-popup-content .download-items li:last-child {
+  border-bottom: 0;
+}
+
+.thank-you-popup-content .download-items .hem-spinner {
+  width: 100px;
+  height: 100px;
+  margin: 20px auto 0 auto;
+}
+
+.thank-you-popup-content .download-items .hem-spinner svg {
+  width: 100px;
+  height: 100px;
+}
+
+.thank-you-popup-content .download-items li {
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.thank-you-popup-content .download-items-used-link {
+  color: #666;
+}
+
+.thank-you-popup-email-form {
+  width: calc(100% + 30px);
+  height: 354px;
+  margin: 0 0 0 -15px;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+}
+
+.thank-you-popup-email-form h2 {
+  width: 650px;
+  margin: 0 auto;
+  padding-top: 20px;
+  font-size: 28px;
+}
+
+.thank-you-popup-email-form p {
+  width: calc(100% + 30px);
+  margin-bottom: 35px;
+  padding: 0;
+  font-size: 14px;
+}
+
+.thank-you-popup-email-form input {
+  display: block;
+  width: 260px;
+  height: 20px;
+  margin: 0 auto 15px auto;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.thank-you-popup-email-form button {
+  display: block;
+  width: 280px;
+  height: 40px;
+  margin: 25px auto 10px auto;
+  font-size: 18px;
+  font-weight: normal;
+}
+
+.support-link {
+  position: absolute;
+  bottom: 5px;
+  right: 12px;
+  font-size: 12px;
+  line-height: 20px;
+  color: var(--line-orange);
+  text-align: right;
+}
+
+.support-link a {
+  text-decoration: underline;
+}
+
+.thank-you-popup-donate-form {
+  position: relative;
+}
+
+.thank-you-popup-donate-form h2 {
+  font-size: 24px;
+  text-align: center;
+}
+
+.thank-you-popup-donate-form input {
+  display: block;
+  width: 300px;
+  height: 80px;
+  line-height: 80px;
+  font-size: 24px;
+  text-align: center;
+  margin: 30px auto 20px auto;
+  box-sizing: border-box;
+}
+
+.thank-you-popup-donate-form button {
+  display: block;
+  width: 300px;
+  height: 80px;
+  margin: 0 auto;
+}
+
+.thank-you-popup-donate-form .detail-popup-currency-symbol {
+  top: 115px;
+  left: 545px;
+}
+
+.thank-you-popup-donate-form .invalid-message {
+  text-align: center;
+  margin-top: -5px;
+  margin-bottom: 12px;
+}
+
+.thank-you-popup-donate-form .donation-button.invalid {
+  opacity: 0.5;
+  pointer-events: none;
+}
