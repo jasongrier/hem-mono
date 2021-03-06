@@ -4,6 +4,7 @@ import { capitalize } from 'voca'
 import {
   SET_COOKIE_APPROVAL,
   SET_COOKIE_PREFERENCES_SET,
+  SET_IS_LANDING_PAGE,
   SET_MEGA_NAV_OPEN,
   SET_PRICING_MODE,
 
@@ -14,6 +15,7 @@ const initialState: IState = {
   cookiesAnalyticsApproved: false,
   cookiesMarketingApproved: false,
   cookiePreferencesSet: false,
+  isLandingPage: false,
   megaNavOpen: false,
   pricingMode: 1,
 }
@@ -34,6 +36,12 @@ const reducer = (
     case SET_COOKIE_PREFERENCES_SET: {
       return produce(state, draftState => {
         draftState.cookiePreferencesSet = payload.value
+      })
+    }
+
+    case SET_IS_LANDING_PAGE: {
+      return produce(state, draftState => {
+        draftState.isLandingPage = payload
       })
     }
 

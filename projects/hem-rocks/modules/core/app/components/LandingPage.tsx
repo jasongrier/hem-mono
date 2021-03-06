@@ -1,7 +1,8 @@
-import React, { PropsWithChildren, ReactElement } from 'react'
+import React, { PropsWithChildren, ReactElement, useEffect, useState } from 'react'
 import { useLocation } from 'react-router'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { find } from 'lodash'
+import { setIsLandingPage } from '../index'
 import { RootState } from '../../../../index'
 import { PROJECT_CONFIGS as UNTYPED_PROJECT_CONFIGS } from '../../../../config'
 
@@ -28,28 +29,37 @@ function LandingPage({ children }: PropsWithChildren<{}>): ReactElement {
     currentProject: state.content.currentProject,
   }))
 
+  const dispatch = useDispatch()
+
+  const [LandingPageComponent, setLandingPageComponent] = useState<any>()
+
   const { pathname } = useLocation()
 
-  if (!currentProject) return <div />
-  if (!currentLandingPage === undefined) return <div />
-  if (!PROJECT_CONFIGS[currentProject].LANDING_PAGES) return <>{ children }</>
-  if (!PROJECT_CONFIGS[currentProject].LANDING_PAGES.length) return <>{ children }</>
-  if (currentLandingPage === '') return <>{ children }</>
-  if (pathname.indexOf('/admin') === 0) return <>{ children }</>
+  useEffect(() => {
+    if (!currentProject) return
+    if (!currentLandingPage === undefined) return
+    if (!PROJECT_CONFIGS[currentProject].LANDING_PAGES) return
+    if (!PROJECT_CONFIGS[currentProject].LANDING_PAGES.length) return
+    if (currentLandingPage === '') return
+    if (pathname.indexOf('/admin') === 0) return
 
-  const landingPageSpec: ILandingPageSpec | null = find(
-    PROJECT_CONFIGS[currentProject].LANDING_PAGES,
-    { name: currentLandingPage },
-  )
+    const landingPageSpec: ILandingPageSpec | null = find(
+      PROJECT_CONFIGS[currentProject].LANDING_PAGES,
+      { name: currentLandingPage },
+    )
 
-  if (!landingPageSpec) return <>{ children }</>
+    if (!landingPageSpec) return
 
-  const LandingPageComponent = landingPageComponents[landingPageSpec.component]
+    const component = landingPageComponents[landingPageSpec.component]
 
-  if (!LandingPageComponent) throw new Error('No landing page component for ' + landingPageSpec.component)
+    if (!component) throw new Error('No landing page component for ' + landingPageSpec.component)
+
+    setLandingPageComponent(component)
+    dispatch(setIsLandingPage(true))
+  }, [currentLandingPage, currentProject])
 
   return (
-    <LandingPageComponent />
+    LandingPageComponent || <>{ children }</>
   )
 }
 

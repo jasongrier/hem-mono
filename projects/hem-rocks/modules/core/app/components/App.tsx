@@ -11,6 +11,7 @@ import { RoutingHub, CookiesFrame, Popups, getCookieName, SplitTests, PlayerFram
 import { usePrevious } from '../../../../../../lib/hooks'
 import { PROJECT_CONFIGS as UNTYPED_PROJECT_CONFIGS } from '../../../../config'
 import { RootState } from '../../../../index'
+import LandingPageNot from './LandingPageNot'
 
 const PROJECT_CONFIGS = UNTYPED_PROJECT_CONFIGS as any
 
@@ -133,7 +134,9 @@ function App(): ReactElement {
 
       { PROJECT_CONFIGS[currentProject].HAS_PLAYER && (
         <Hide from={PROJECT_CONFIGS[currentProject].HIDE_PLAYER_FRAME_FOR}>
-          <PlayerFrame />
+          <LandingPageNot>
+            <PlayerFrame />
+          </LandingPageNot>
         </Hide>
       )}
 
