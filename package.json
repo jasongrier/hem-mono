@@ -31,7 +31,7 @@
     "@types/uuid": "^3.4.9",
     "@types/voca": "^1.4.0",
     "get-mp3-duration": "^1.0.0",
-    "immer": "^4.0.2",
+    "immer": "^8.0.1",
     "insane": "^2.6.2",
     "jquery": "^3.6.0",
     "jquery-ui": "^1.12.1",
