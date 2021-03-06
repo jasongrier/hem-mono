@@ -12,11 +12,10 @@
     "start": "node bin/legacy",
     "task": "node bin/legacy task",
     "test": "node bin/legacy test",
-    "hem": "NODE_ENV=development node bin/legacy task start-pug-electron hem-rocks",
-    "build-hem": "NODE_ENV=production node bin/legacy task build-pug hem-rocks",
     "bespoke": "NODE_ENV=development node bin/legacy task start-pug-electron hem-rocks -landing-page bespoke-web-developer",
     "build-bespoke": "NODE_ENV=production node bin/legacy task build-pug hem-rocks -landing-page bespoke-web-developer",
-    "serve": "node bin/index"
+    "serve": "NODE_ENV=development node bin/legacy task start-pug-electron hem-rocks",
+    "build": "NODE_ENV=production node bin/legacy task build-pug hem-rocks"
   },
   "license": "WTFPL",
   "dependencies": {

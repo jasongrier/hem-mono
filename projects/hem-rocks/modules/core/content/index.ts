@@ -66,7 +66,8 @@ export interface IState {
   contentItems: IContentItem[]
   currentContentItem: IContentItem | null
   currentContentItems: IContentItem[]
-  currentProject: string
+  currentLandingPage: string | null | undefined
+  currentProject: string | null
   needsKeyArtFilter: boolean
   page: number,
   pageContentItems: IContentItem[],
@@ -189,6 +190,7 @@ export const REQUEST_UPDATE_ITEMS = 'REQUEST_UPDATE_ITEMS'
 export const SET_ADMIN_SEARCHABLE_FIELD = 'SET_ADMIN_SEARCHABLE_FIELD'
 export const SET_CURRENT_ITEM = 'SET_CURRENT_ITEM'
 export const SET_CURRENT_ITEMS = 'SET_CURRENT_ITEMS'
+export const SET_CURRENT_LANDING_PAGE = 'SET_CURRENT_LANDING_PAGE'
 export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 export const SET_CURRENT_PROJECT = 'SET_CURRENT_PROJECT'
 export const TOGGLE_NEEDS_KEY_ART_FILTER = 'TOGGLE_NEEDS_KEY_ART_FILTER'
@@ -275,6 +277,11 @@ export interface ISetCurrentItems extends AnyAction {
   payload: IContentItem[]
 }
 
+export interface ISetCurrentLandingPage extends AnyAction {
+  type: typeof SET_CURRENT_LANDING_PAGE
+  payload: string | null
+}
+
 export interface ISetCurrentPage extends AnyAction {
   type: typeof SET_CURRENT_PAGE
   payload: number
@@ -283,7 +290,7 @@ export interface ISetCurrentPage extends AnyAction {
 
 export interface ISetCurrentProject extends AnyAction {
   type: typeof SET_CURRENT_PROJECT
-  payload: string
+  payload: string | null
 }
 
 export interface IToggleNeedsKeyArtFilter extends AnyAction {
@@ -318,6 +325,7 @@ export type Action =
   | ISetAdminSearchableField
   | ISetCurrentItem
   | ISetCurrentItems
+  | ISetCurrentLandingPage
   | ISetCurrentPage
   | ISetCurrentProject
   | IToggleNeedsKeyArtFilter
@@ -341,6 +349,7 @@ export {
   setAdminSearchableField,
   setCurrentItem,
   setCurrentItems,
+  setCurrentLandingPage,
   setCurrentPage,
   setCurrentProject,
   toggleNeedsKeyArtFilter,

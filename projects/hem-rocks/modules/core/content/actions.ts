@@ -15,6 +15,7 @@ import {
   SET_ADMIN_SEARCHABLE_FIELD,
   SET_CURRENT_ITEM,
   SET_CURRENT_ITEMS,
+  SET_CURRENT_LANDING_PAGE,
   SET_CURRENT_PAGE,
   SET_CURRENT_PROJECT,
   TOGGLE_NEEDS_KEY_ART_FILTER,
@@ -105,12 +106,17 @@ const setCurrentItems = (items: IContentItem[]): Action => ({
   payload: items,
 })
 
+const setCurrentLandingPage = (landingPageName: string | null): Action => ({
+  type: SET_CURRENT_LANDING_PAGE,
+  payload: landingPageName,
+})
+
 const setCurrentPage = (page: number): Action => ({
   type: SET_CURRENT_PAGE,
   payload: page,
 })
 
-const setCurrentProject = (project: string): Action => ({
+const setCurrentProject = (project: string | null): Action => ({
   type: SET_CURRENT_PROJECT,
   payload: project,
 })
@@ -147,6 +153,7 @@ export {
   setAdminSearchableField,
   setCurrentItem,
   setCurrentItems,
+  setCurrentLandingPage,
   setCurrentPage,
   setCurrentProject,
   toggleNeedsKeyArtFilter,
