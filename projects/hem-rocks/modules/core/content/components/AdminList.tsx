@@ -24,6 +24,7 @@ function AdminList(): ReactElement {
     allContentItems,
     contentItemsCount,
     currentProject,
+    currentLandingPage,
     needsKeyArtFilter,
     page,
     pageContentItems,
@@ -37,6 +38,7 @@ function AdminList(): ReactElement {
     allContentItems: state.content.contentItems,
     contentItemsCount: state.content.contentItems.length,
     currentProject: state.content.currentProject,
+    currentLandingPage: state.content.currentLandingPage,
     needsKeyArtFilter: state.content.needsKeyArtFilter,
     page: state.content.page,
     pageContentItems: state.content.pageContentItems,
@@ -59,7 +61,6 @@ function AdminList(): ReactElement {
     function projectFilterOnChangeFn(evt: SyntheticEvent<HTMLSelectElement>) {
       const item = getContentItemBySlug(allContentItems, 'setting-current-project')
       const updatedItem: IContentItem = produce(item, (draftItem) => {
-        console.log(evt.currentTarget.value)
         draftItem.description = evt.currentTarget.value
       })
       dispatch(requestUpdateItems([updatedItem]))
@@ -154,6 +155,8 @@ function AdminList(): ReactElement {
     setSelectedItems([])
   }
 
+  if (!currentProject) return (<div />)
+
   return (
     <ElectronOnly showMessage={true}>
       <div className="admin-list">
@@ -182,12 +185,11 @@ function AdminList(): ReactElement {
               ))}
             </select>
           </div>
-          { console.log(PROJECT_CONFIGS[currentProject]) }
           { PROJECT_CONFIGS[currentProject].LANDING_PAGES
             && PROJECT_CONFIGS[currentProject].LANDING_PAGES.length
             && (
               <div className="admin-list-controls-select">
-                <label htmlFor="project-filter">
+                <label htmlFor="landing-page-filter">
                   Landing page:&nbsp;
                   <PlayPauseButton
                     playing={false}
@@ -196,13 +198,13 @@ function AdminList(): ReactElement {
                 </label>
                 <select
                   className="custom-select"
-                  name="project-filter"
+                  name="landing-page-filter"
                   onChange={landingPageFilterOnChange}
-                  value={currentProject}
+                  value={currentLandingPage || undefined}
                 >
                   <option
                     key={'none'}
-                    value=""
+                    value={undefined}
                   >
                     None
                   </option>

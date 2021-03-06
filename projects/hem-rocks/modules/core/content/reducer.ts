@@ -16,6 +16,7 @@ import {
   SET_ADMIN_SEARCHABLE_FIELD,
   SET_CURRENT_ITEM,
   SET_CURRENT_ITEMS,
+  SET_CURRENT_LANDING_PAGE,
   SET_CURRENT_PAGE,
   TOGGLE_NEEDS_KEY_ART_FILTER,
   TOGGLE_SHOW_UNPUBLISHED_FILTER,
@@ -39,7 +40,8 @@ const initialState: IState = {
   contentItems: [],
   currentContentItem: null,
   currentContentItems: [],
-  currentProject: '',
+  currentProject: null,
+  currentLandingPage: undefined,
   needsKeyArtFilter: false,
   page: 1,
   pageContentItems: [],
@@ -148,6 +150,12 @@ const reducer = (
     case SET_CURRENT_ITEMS: {
       return produce(state, draftState => {
         draftState.currentContentItems = payload
+      })
+    }
+
+    case SET_CURRENT_LANDING_PAGE: {
+      return produce(state, draftState => {
+        draftState.currentLandingPage = payload
       })
     }
 

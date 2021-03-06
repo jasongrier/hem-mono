@@ -1,5 +1,11 @@
 import React, { PropsWithChildren, ReactElement } from 'react'
 import { useLocation } from 'react-router'
+import { useSelector } from 'react-redux'
+import { find } from 'lodash'
+import { RootState } from '../../../../index'
+import { PROJECT_CONFIGS as UNTYPED_PROJECT_CONFIGS } from '../../../../config'
+
+const PROJECT_CONFIGS = UNTYPED_PROJECT_CONFIGS as any
 
 import {
   BespokeWebDeveloper as BespokeWebDeveloperJag,
@@ -12,47 +18,38 @@ const landingPageComponents: {[key: string]: () => ReactElement} = {
 }
 
 interface ILandingPageSpec {
-  domains: string[]
+  name: string
   component: string
 }
 
-interface IProps {
-  landingPageSpecs: ILandingPageSpec[]
-}
-
-function LandingPage({ children, landingPageSpecs }: PropsWithChildren<IProps>): ReactElement {
-  if (!landingPageSpecs.length)  {
-    return (<>{ children }</>)
-  }
+function LandingPage({ children }: PropsWithChildren<{}>): ReactElement {
+  const { currentLandingPage, currentProject } = useSelector((state: RootState) => ({
+    currentLandingPage: state.content.currentLandingPage,
+    currentProject: state.content.currentProject,
+  }))
 
   const { pathname } = useLocation()
 
-  if (pathname.indexOf('/admin') === 0) {
-    return (<>{ children }</>)
-  }
+  if (!currentProject) return <div />
+  if (!currentLandingPage === undefined) return <div />
+  if (!PROJECT_CONFIGS[currentProject].LANDING_PAGES) return <>{ children }</>
+  if (!PROJECT_CONFIGS[currentProject].LANDING_PAGES.length) return <>{ children }</>
+  if (currentLandingPage === '') return <>{ children }</>
+  if (pathname.indexOf('/admin') === 0) return <>{ children }</>
 
-  let spec: ILandingPageSpec | null = null
+  const landingPageSpec: ILandingPageSpec | null = find(
+    PROJECT_CONFIGS[currentProject].LANDING_PAGES,
+    { name: currentLandingPage },
+  )
 
-  // for (const candidate of landingPageSpecs) {
-  //   if (candidate.domains.includes(window.location.hostname)) {
-  //     spec = candidate
-  //     break
-  //   }
-  // }
+  if (!landingPageSpec) return <>{ children }</>
 
-  if (!spec) {
-    return (<>{ children }</>)
-  }
+  const LandingPageComponent = landingPageComponents[landingPageSpec.component]
 
-  // const LandingPageComponent = landingPageComponents[spec?.component]
-
-  if (!LandingPage) {
-    return (<>{ children }</>)
-  }
+  if (!LandingPageComponent) throw new Error('No landing page component for ' + landingPageSpec.component)
 
   return (
-    <div />
-    // <LandingPageComponent />
+    <LandingPageComponent />
   )
 }
 

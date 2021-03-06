@@ -5,7 +5,7 @@ import ReactGA from 'react-ga'
 import Cookies from 'js-cookie'
 import { isEmpty } from 'lodash'
 import { CartFrame } from '../../cart'
-import { setCurrentProject, requestReadChunk, getContentItemBySlug } from '../../content'
+import { setCurrentProject, requestReadChunk, getContentItemBySlug, setCurrentLandingPage } from '../../content'
 import { Hide, ElectronNot, ScrollToTop, Spinner } from '../../../../../../lib/components'
 import { RoutingHub, CookiesFrame, Popups, getCookieName, SplitTests, PlayerFrame, LandingPage } from '../index'
 import { usePrevious } from '../../../../../../lib/hooks'
@@ -22,11 +22,15 @@ const projectFrames: any = {
 function App(): ReactElement {
   const {
     chunkLog,
+    currentLandingPage,
+    currentLandingPageSettingItem,
     currentlyOpenPopUp,
     currentProject,
     currentProjectSettingItem,
   } = useSelector((state: RootState) => ({
     chunkLog: state.content.chunkLog,
+    currentLandingPage: state.content.currentLandingPage,
+    currentLandingPageSettingItem: getContentItemBySlug(state.content.contentItems, 'setting-current-landing-page'),
     currentlyOpenPopUp: state.popups.currentlyOpenPopUp,
     currentProject: state.content.currentProject,
     currentProjectSettingItem: getContentItemBySlug(state.content.contentItems, 'setting-current-project'),
@@ -58,19 +62,32 @@ function App(): ReactElement {
     dispatch(setCurrentProject(currentProjectSettingItem.description))
   }, [currentProjectSettingItem])
 
+  useEffect(function loadLandingPage() {
+    if (!currentLandingPageSettingItem) return
+    if (currentLandingPageSettingItem.description === currentLandingPage) return
+
+
+    dispatch(setCurrentLandingPage(
+      isEmpty(currentLandingPageSettingItem.description)
+        ? null
+        : currentLandingPageSettingItem.description
+    ))
+  }, [currentLandingPageSettingItem])
+
   useEffect(function trackPageView() {
     ReactGA.pageview(pathname)
   }, [pathname])
 
   useEffect(function setSplitTestCookies() {
+    if (!currentProject) return
     const { FlexPricingType } = SplitTests
     if (!Cookies.get(getCookieName(FlexPricingType, currentProject))) {
       const type = Math.random() > .5 ? 'input' : 'buttons'
       Cookies.set(getCookieName(FlexPricingType, currentProject), type, { expires: 7 })
     }
-  }, [])
+  }, [currentProject])
 
-  if (isEmpty(currentProject)) return (<div title="Waiting for project frame" />)
+  if (!currentProject) return (<div title="Waiting for project frame" />)
 
   const ProjectFrame = window.process?.env.ELECTRON_MONO_DEV
     ? projectFrames['hem.rocks']
@@ -105,7 +122,7 @@ function App(): ReactElement {
           <main className="main-content">
             <Suspense fallback={<Spinner />}>
               <ProjectFrame>
-                <LandingPage landingPageSpecs={PROJECT_CONFIGS[currentProject].LANDING_PAGES || []}>
+                <LandingPage>
                   <RoutingHub />
                 </LandingPage>
               </ProjectFrame>
