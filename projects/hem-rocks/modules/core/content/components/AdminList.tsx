@@ -13,7 +13,6 @@ import { hasCategory, hasTag, modelize } from '../functions'
 import { assetHostHostname } from '../../../../functions'
 import { toggleShowUnpublishedFilter, toggleStickyFilter, setCurrentPage, requestCreateItems } from '../actions'
 import { PROJECT_CONFIGS as UNTYPED_PROJECT_CONFIGS } from '../../../../config'
-import { execSync } from 'child_process'
 
 const PROJECT_CONFIGS = UNTYPED_PROJECT_CONFIGS as any
 
@@ -150,7 +149,7 @@ function AdminList(): ReactElement {
         let bundler = new Bundler(entry, { outDir })
 
         bundler.on('bundled', async () => {
-          execSync(`cp -rf ${join('.', 'projects', 'hem-rocks')} ${join('.', 'deploy', 'static')}`)
+          execSync(`cp -rf ${join('.', 'projects', 'hem-rocks', 'static')} ${join('.', 'deploy', 'static')}`)
           execSync(`cp ${join('.', 'projects', 'hem-rocks', '.htaccess')} ${join('.', 'deploy', '.htaccess')}`)
 
           const browser = await puppeteer.launch()

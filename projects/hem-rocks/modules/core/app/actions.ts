@@ -2,6 +2,7 @@ import { AnyAction } from 'redux'
 import {
   SET_COOKIE_APPROVAL,
   SET_COOKIE_PREFERENCES_SET,
+  SET_IS_LANDING_PAGE,
   SET_MEGA_NAV_OPEN,
   SET_PRICING_MODE,
 } from './index'
@@ -14,6 +15,11 @@ const setCookieApproval = (cookieName: string, approval: boolean, write: boolean
 const setCookiePreferencesSet = (value: boolean, write: boolean): AnyAction => ({
   type: SET_COOKIE_PREFERENCES_SET,
   payload: { value, write },
+})
+
+const setIsLandingPage = (open: boolean): AnyAction => ({
+  type: SET_IS_LANDING_PAGE,
+  payload: open,
 })
 
 const setMegaNavOpen = (open: boolean): AnyAction => ({
@@ -29,6 +35,7 @@ const setPricingMode = (pricingMode: number): AnyAction => ({
 export {
   setCookieApproval,
   setCookiePreferencesSet,
+  setIsLandingPage,
   setMegaNavOpen,
   setPricingMode,
 }
