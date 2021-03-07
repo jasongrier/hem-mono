@@ -31,6 +31,7 @@ function modelize(rawContentItem: any): IContentItem {
     keyArt: rawContentItem.keyArt || '',
     keyArtFullPath: rawContentItem.keyArtFullPath || '',
     keyArtThumbnailFullPath: rawContentItem.keyArtThumbnailFullPath || '',
+    nftItemId: rawContentItem.nftItemId || '',
     note: rawContentItem.note || '',
     order: rawContentItem.order || '',
     physicalFormats: rawContentItem.physicalFormats || '',

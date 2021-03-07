@@ -1,7 +1,7 @@
 .hem-refresh-heroine {
   position: relative;
   width: 100vw;
-  height: calc(100vh - 250px);
+  height: calc(100vh - 420px);
   background-color: #000;
   user-select: none;
   cursor: pointer;
@@ -26,10 +26,10 @@
 
 .hem-refresh-heroine-details {
   position: absolute;
-  top: 30px;
-  right: 6%;
+  top: 50px;
+  right: 50px;
   z-index: 2;
-  width: 330px;
+  width: 500px;
   height: 180px;
   margin-left: -350px;
   color: #ffffff;
@@ -38,26 +38,19 @@
   cursor: pointer;
 }
 
-.hem-refresh-heroine .hem-speaker-button {
-  display: none;
-  width: 60px;
-  height: 60px;
-  background-color: var(--line-orange);
-  transform: scale(1.5) translate(10px, 5px);
-}
-
 .main-content .hem-refresh-heroine-text h2 {
   position: relative;
   width: 100%;
   height: auto;
   margin: 0 0 0 0;
   padding: 15px;
-  font-size: 80px;
-  line-height: 110px;
+  font-size: 50px;
+  line-height: 50px;
   font-weight: 100;
-  letter-spacing: 15px;
+  letter-spacing: 10px;
   background-color: var(--line-orange);
   text-align: left;
+  display: none;
 }
 
 .hem-refresh-heroine-text h5 {
@@ -65,7 +58,7 @@
   width: 100%;
   margin: 0 30px 15px 0;
   padding: 20px 15px;
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 100;
   background-color: var(--line-orange);
   text-align: left;
@@ -73,10 +66,11 @@
 
 .hem-refresh-heroine-text p {
   float: left;
-  width: 350px;
+  width: 500px;
   margin: 0 30px 0 0;
   padding-bottom: 5px;
-  font-size: 24px;
+  font-size: 14px;
+  line-height: 24px;
   font-weight: 100;
   background-color: var(--line-orange);
 }

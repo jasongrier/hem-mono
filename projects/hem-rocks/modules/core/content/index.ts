@@ -30,6 +30,7 @@ export interface IContentItem {
   keyArt: string
   keyArtFullPath: string
   keyArtThumbnailFullPath: string
+  nftItemId: string
   note: string
   order: string
   physicalFormats: string
@@ -106,6 +107,7 @@ export const fieldTypes: IContentItem = {
   keyArt: 'text',
   keyArtFullPath: 'text',
   keyArtThumbnailFullPath: 'text',
+  nftItemId: 'text',
   note: 'textarea',
   order: 'text',
   physicalFormats: 'textarea',
@@ -137,6 +139,7 @@ export const categories = [
   'blog',
   'code',
   'editions',
+  'editions-physical',
   'faqs',
   'general-content',
   'heroines',

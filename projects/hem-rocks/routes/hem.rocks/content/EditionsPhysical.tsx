@@ -5,7 +5,7 @@ import { MainContentList } from '../../../modules/core/content'
 import { EditionsSubnav } from '../../../components/layout'
 import { BASE_SITE_TITLE } from '../../../config'
 
-function Editions(): ReactElement {
+function EditionsPhysical(): ReactElement {
   const { filter: currentFilter }: any = useParams()
 
   return (
@@ -14,15 +14,15 @@ function Editions(): ReactElement {
         <title>{ BASE_SITE_TITLE }</title>
         <meta name="description" content="" />
       </Helmet>
-      <div className="page page-editions page-editions-digital">
+      <div className="page page-editions page-editions-physical">
         <EditionsSubnav />
         <MainContentList
           currentFilter={currentFilter}
-          category="editions"
+          category="editions-physical"
         />
       </div>
     </>
   )
 }
 
-export default Editions
+export default EditionsPhysical

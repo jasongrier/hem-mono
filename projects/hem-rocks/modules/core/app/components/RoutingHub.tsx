@@ -11,6 +11,7 @@ import {
   Blog,
   Code,
   Editions,
+  EditionsPhysical,
   Faqs,
   GenericPage,
   Label,
@@ -169,6 +170,11 @@ function RoutingHub(): ReactElement {
         <Route exact path="/editions/detail/:contentItemSlug?/:filter?" component={Editions} />
         <Route exact path="/editions/filter/:filter" component={Editions} />
         <Route exact path="/editions/cart/:filter?" component={Editions} />
+
+        <Route exact path="/editions-physical" component={EditionsPhysical} />
+        <Route exact path="/editions-physical/detail/:contentItemSlug?/:filter?" component={EditionsPhysical} />
+        <Route exact path="/editions-physical/filter/:filter" component={EditionsPhysical} />
+        <Route exact path="/editions-physical/cart/:filter?" component={EditionsPhysical} />
 
         <Route exact path="/label" component={Label} />
         <Route exact path="/label/detail/:contentItemSlug?/:filter?" component={Label} />

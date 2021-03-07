@@ -37,12 +37,12 @@ function SiteFooter(): ReactElement {
         <div className="site-footer-content-row">
           <div className="site-footer-content-column">
             <ul>
+              <li><Link to="/about">About</Link></li>
+              <li><Link to="/internships">Internships</Link></li>
+              <li><Link to="/contact">Contact</Link></li>
               <li><Link to="/label">Label</Link></li>
               <li><Link to="/tutorials">Tutorials</Link></li>
               <li><Link to="/support">Support</Link></li>
-              <li><Link to="/internships">Internships</Link></li>
-              <li><Link to="/about">About</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
               <li><Link to="/newsletters">Newsletters</Link></li>
             </ul>
           </div>
