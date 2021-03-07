@@ -49,6 +49,7 @@ function SiteFooter(): ReactElement {
           <div className="site-footer-content-column">
             <ul>
               <li><Link to="/apps">Apps</Link></li>
+              <li><Link to="/articles">Articles</Link></li>
               <li><Link to="/recipes">Recipes</Link></li>
               <li><a href="">Video</a></li>
               <li><Link to="/press-releases">Press Releases</Link></li>

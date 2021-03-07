@@ -35,7 +35,7 @@ function Home(): ReactElement {
           orderByOrder={true}
           ignoreSticky={true}
           boxBipolarY={true}
-          boxWidth={250}
+          boxWidth={275}
           boxMinMarginX={0}
           boxMarginRangeX={0}
           boxMarginRangeY={75}

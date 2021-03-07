@@ -30,6 +30,7 @@ function generateChunks(allContentItems: IContentItem[]) {
     'blog',
     'editions',
     'editions-physical',
+    'exhibits',
     'general-content',
     'label',
     'news',
