@@ -18,6 +18,7 @@ function TopBar(): ReactElement {
   const { pathname } = useLocation()
 
   const [programOpen, setProgramOpen] = useState<boolean>(false)
+  const [cartOpen, setCartOpen] = useState<boolean>(false)
 
   const noCartPaths = [
     '/admin/create',
@@ -104,34 +105,20 @@ function TopBar(): ReactElement {
                 <li
                   className="main-nav-item"
                 >
-                  <Link
-                    to={(() => {
-                      const [category, filter, filterName] = pathname.replace(/^\//, '').split('/')
-
-                      if (currentlyOpenPopUp === 'cart-popup') {
-                        return pathname
+                  <a
+                    href="#"
+                    onClick={() => {
+                      if (currentlyOpenPopUp !== 'cart-popup') {
+                        dispatch(openPopup('cart-popup'))
                       }
 
-                      if (
-                        currentlyOpenPopUp === 'detail-popup'
-                        && filterName
-                      ) {
-                        return `/${category}/cart/${filterName}`
+                      else {
+                        dispatch(closePopup())
                       }
-
-                      if (filter === 'filter') {
-                        return `/${category}/cart/${filterName}`
-                      }
-
-                      if (category && currentlyOpenPopUp) {
-                        return `/${category}/cart`
-                      }
-
-                      return `${pathname !== '/' ? pathname : ''}/cart`
-                    })()}
+                    }}
                   >
                     Cart ({ cartProductsCount })
-                  </Link>
+                  </a>
                 </li>
               )}
 

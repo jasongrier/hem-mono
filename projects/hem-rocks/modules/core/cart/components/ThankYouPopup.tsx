@@ -218,7 +218,7 @@ function ThankYouPopup(): ReactElement {
                     { product.isDigitalProduct && (
                       <a
                         className={linksUsed.includes(product?.slug) ? 'download-items-used-link' : ''}
-                        href={`${assetHostHostname()}/hem-rocks/api?hem-cmd=download&did=${currentSale?.id}:${index}&sid=${currentSale?.id}&ii=${index}${BERLIN_STOCK_PHOTOS ? '&site=bsp' : ''}`}
+                        href={`${assetHostHostname()}/hem.rocks/api?hem-cmd=download&did=${currentSale?.id}:${index}&sid=${currentSale?.id}&ii=${index}${BERLIN_STOCK_PHOTOS ? '&site=bsp' : ''}`}
                         onClick={() => {
                           setLinksUsed(([] as string[]).concat(linksUsed).concat([product?.slug]))
                         }}
@@ -231,7 +231,7 @@ function ThankYouPopup(): ReactElement {
                         &nbsp;|&nbsp;
                         <a
                           className={linksUsed.includes(product?.slug) ? 'download-items-used-link' : ''}
-                          href={`${assetHostHostname()}/hem-rocks/api?hem-cmd=download&did=${currentSale?.id}:${index}-raw&sid=${currentSale?.id}&ii=${index}${BERLIN_STOCK_PHOTOS ? '&site=bsp&format=raw' : ''}`}
+                          href={`${assetHostHostname()}/hem.rocks/api?hem-cmd=download&did=${currentSale?.id}:${index}-raw&sid=${currentSale?.id}&ii=${index}${BERLIN_STOCK_PHOTOS ? '&site=bsp&format=raw' : ''}`}
                           onClick={() => {
                             setLinksUsed(([] as string[]).concat(linksUsed).concat([product?.slug]))
                           }}

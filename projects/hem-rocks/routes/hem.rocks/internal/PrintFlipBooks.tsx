@@ -219,7 +219,7 @@ function PrintFlipBooks(): ReactElement {
           >
             <img
               className="flip-book-frame-image"
-              src={`${assetHostHostname()}/hem-rocks/flip-books/2/${image}`}
+              src={`${assetHostHostname()}/hem.rocks/flip-books/2/${image}`}
             />
           </div>
         ))}

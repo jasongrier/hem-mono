@@ -22,7 +22,7 @@ function About(): ReactElement {
           <p>We make <Link to="sound-library">Sound Library</Link>, <Link to="apps/seurat">Seurat</Link>, <Link to="apps/midst">Midst</Link>, and <Link to="apps/breto">Breto</Link>.</p> */}
 
           <p className="splash-image">
-            <img src={`${assetHostHostname()}/hem-rocks/content/images/key-art/info-page.jpg`} alt="About HEM" />
+            <img src={`${assetHostHostname()}/hem.rocks/content/images/key-art/info-page.jpg`} alt="About HEM" />
           </p>
         </div>
 

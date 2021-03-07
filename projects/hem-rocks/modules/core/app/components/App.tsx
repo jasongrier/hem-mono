@@ -20,6 +20,10 @@ const projectFrames: any = {
   'jag.rip': React.lazy(() => import('../../../jag.rip/project-frame/components/ProjectFrame')),
 }
 
+const projectHeaders: any = {
+  'hem.rocks': React.lazy(() => import('../../../../components/layout/TopBar')),
+}
+
 function App(): ReactElement {
   const {
     chunkLog,
@@ -90,6 +94,8 @@ function App(): ReactElement {
 
   if (!currentProject) return (<div title="Waiting for project frame" />)
 
+  const ProjectHeader = projectHeaders[currentProject]
+
   const ProjectFrame = window.process?.env.ELECTRON_MONO_DEV
     ? projectFrames['hem.rocks']
     : projectFrames[currentProject]
@@ -120,6 +126,7 @@ function App(): ReactElement {
 
       <Suspense fallback={<Spinner />}>
         <div className="scroll-lock-container">
+          <ProjectHeader />
           <div className="scroll-lock-content main-content">
             <ProjectFrame>
               <LandingPage>

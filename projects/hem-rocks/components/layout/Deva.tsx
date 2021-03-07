@@ -85,7 +85,7 @@ function Deva({
         backgroundSize: 'contain',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
-        backgroundImage: `url(${assetHost}/hem-rocks/site/devas/transparent/${name}.png)`,
+        backgroundImage: `url(${assetHost}/hem.rocks/site/devas/transparent/${name}.png)`,
         transform,
         transition: 'all 100ms',
         ...style,

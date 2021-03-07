@@ -18,7 +18,7 @@ import { BERLIN_STOCK_PHOTOS } from '../../../config'
 
 function* requestSale({ payload: saleId }: any) {
   try {
-    const res = yield call(fetch, assetHostHostname() + '/hem-rocks/api/?hem-cmd=get-sale&sid=' + saleId)
+    const res = yield call(fetch, assetHostHostname() + '/hem.rocks/api/?hem-cmd=get-sale&sid=' + saleId)
     const sale = yield res.json()
     yield put(setCurrentSaleAc(sale))
   }
@@ -52,7 +52,7 @@ function* submitSale({ payload: saleId }: any) {
 
     yield call(
       fetch,
-      assetHostHostname() + '/hem-rocks/api/?hem-cmd=new-sale',
+      assetHostHostname() + '/hem.rocks/api/?hem-cmd=new-sale',
       {
         body: JSON.stringify({ products, saleId }),
         method: 'post',

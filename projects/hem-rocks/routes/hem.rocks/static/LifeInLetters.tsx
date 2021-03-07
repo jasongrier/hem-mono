@@ -55,7 +55,7 @@ function WebMovie(): ReactElement {
     dispatch(playTrack(track))
   }
 
-  const src = `${assetHostHostname()}/hem-rocks/content/images/web-movie/life-in-letters/index.json`
+  const src = `${assetHostHostname()}/hem.rocks/content/images/web-movie/life-in-letters/index.json`
 
   return (
     <>

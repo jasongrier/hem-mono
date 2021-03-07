@@ -42,6 +42,7 @@ function DetailPopUp({
   const {
     allContentItems,
     cartProducts,
+    chunkLog,
     currentContentItems,
     currentProject,
     currentTrackId,
@@ -50,6 +51,7 @@ function DetailPopUp({
   } = useSelector((state: RootState) => ({
     allContentItems: state.content.contentItems,
     cartProducts: state.cart.products,
+    chunkLog: state.content.chunkLog,
     currentContentItems: state.content.currentContentItems,
     currentProject: state.content.currentProject,
     currentTrackId: state.player.currentTrack?.id,
@@ -85,7 +87,7 @@ function DetailPopUp({
   const [nextItem, setNextItem] = useState<IContentItem>()
   const [arrowKeysInited, setArrowKeysInited] = useState<boolean>(false)
 
-  useEffect(function init() {
+  useEffect(function setUpAttachedTracksPlaylist() {
     if (showPurchaseForm) {
       ReactGA.modalview('Detail Popup with Purchase Form: ' + contentItem.title)
     }
@@ -130,10 +132,9 @@ function DetailPopUp({
 
       dispatch(replacePlaylist(5, playlist))
       dispatch(setPlayerPlaylist(5))
-
       setAttachedPlaylist(playlist)
     })
-  }, [contentItem.slug])
+  }, [contentItem.slug, chunkLog])
 
   const suggestedPriceOnChange = useCallback(
     function suggestedPriceOnChangeFn(evt: SyntheticEvent<HTMLInputElement>) {
@@ -218,8 +219,6 @@ function DetailPopUp({
         redirecting: true ,
         returnUrl: `${category}/${contentItem.slug}`,
       }))
-
-      history.push(`/${category}/cart/${filter ? filter : ''}`)
 
       setTimeout(() => {
         if (!saleId) return
@@ -346,8 +345,6 @@ function DetailPopUp({
 
     dispatch(closePopup())
     dispatch(openPopup('cart-popup', { returnUrl: `${category}/${filter ? filter : ''}` }))
-
-    history.push(`/${category}/cart/${filter ? filter : ''}`)
 
     ReactGA.event({
       category: 'User',

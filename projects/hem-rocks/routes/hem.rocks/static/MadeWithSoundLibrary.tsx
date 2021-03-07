@@ -23,7 +23,7 @@ function MadeWithSoundLibrary(): ReactElement {
         </div>
 
         <ContactForm
-          action={assetHostHostname() + '/hem-rocks/api/?hem-cmd=made-with-sl'}
+          action={assetHostHostname() + '/hem.rocks/api/?hem-cmd=made-with-sl'}
           bodyAsInput={true}
           prefilledSubject="New Made with SL message"
           emailLabel="Your email (so we can reach you)"

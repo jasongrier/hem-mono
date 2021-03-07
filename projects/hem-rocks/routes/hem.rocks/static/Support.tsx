@@ -18,7 +18,7 @@ function Support(): ReactElement {
         <h1>Need help?</h1>
         <div className="first-main-content-section">
           <ContactForm
-            action={assetHostHostname() + '/hem-rocks/api/?hem-cmd=support-claim'}
+            action={assetHostHostname() + '/hem.rocks/api/?hem-cmd=support-claim'}
             subjects={[
               'Choose one',
               'Problems downloading',

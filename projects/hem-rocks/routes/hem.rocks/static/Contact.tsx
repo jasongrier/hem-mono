@@ -18,7 +18,7 @@ function Contact(): ReactElement {
         <h1>Contact us</h1>
         <div className="first-main-content-section">
           <ContactForm
-            action={assetHostHostname() + '/hem-rocks/api/?hem-cmd=contact-form'}
+            action={assetHostHostname() + '/hem.rocks/api/?hem-cmd=contact-form'}
             subjectLabel="Subject"
             subjectPlaceholder="Greetz from Hrvoje"
             emailLabel="Your email (so we can reach you)"

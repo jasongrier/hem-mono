@@ -18,7 +18,7 @@ function SoundLibraryRefreshHeroine(): ReactElement {
         <div
           className="sound-library-refresh-heroine-image"
           style={{
-            backgroundImage: `url(${assetHost}/hem-rocks/site/heroines/sound-library-refresh-heroine-5.jpg)`,
+            backgroundImage: `url(${assetHost}/hem.rocks/site/heroines/sound-library-refresh-heroine-5.jpg)`,
           }}
         />
         <div className="sound-library-refresh-heroine-details">
