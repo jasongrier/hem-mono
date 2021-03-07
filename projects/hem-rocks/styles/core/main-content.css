@@ -87,7 +87,7 @@
   left: 8px;
   margin: 0;
   padding: 0;
-  color: #fff;
+  color: var(--line-orange);
   font-size: 120px;
 }
 

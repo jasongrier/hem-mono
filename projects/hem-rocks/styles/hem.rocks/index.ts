@@ -2,7 +2,6 @@ import './app.css'
 import './variables.css'
 
 import './about-sl2.css'
-import './berlin-stock-photos.css'
 import './footer.css'
 import './grand-piano-heroine.css'
 import './hack-fas.css'

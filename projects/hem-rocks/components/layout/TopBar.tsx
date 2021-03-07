@@ -16,9 +16,6 @@ function TopBar(): ReactElement {
 
   const { pathname } = useLocation()
 
-  const [programOpen, setProgramOpen] = useState<boolean>(false)
-  const [cartOpen, setCartOpen] = useState<boolean>(false)
-
   const noCartPaths = [
     '/admin/create',
     '/admin/list',
@@ -61,56 +58,20 @@ function TopBar(): ReactElement {
                 ]}
               />
 
-              <MainNavItem
-                name="Articles"
-                activeFor={[
-                  '/articles',
-                  '/blog',
-                  '/news',
-                ]}
-              />
+              <MainNavItem name="Exhibits" />
 
-              <MainNavItem
-                name="Sound Library 2"
-                to="sound-library"
-              />
+              <MainNavItem name="Sound Library" />
 
               <li className="main-nav-item">
                 <a
                   href="#"
                   onClick={() => {
-                    setProgramOpen(!programOpen)
+                    dispatch(closePopup())
+                    dispatch(openPopup('program-popup'))
                   }}
                 >
                   Program
                 </a>
-                { programOpen && (
-                  <div className="program-popup">
-                    <h2>Program 2021</h2>
-                    <div className="program-popup-row">
-                      <h3>February</h3>
-                      <p><strong>Tracks:</strong>Line Gøttsche, Julia Holter &amp; Michael Pisaro, Sara Galaxia, Kevin Drumm</p>
-                      <p><strong>Articles:</strong>Vito Acconci, India Cooke</p>
-                      <p><strong>Editions:</strong>Unbekannte petri dish edition</p>
-                      <p><strong>Sound Library:</strong>Updates: Destroyed Piano, Studio #Fails, Noise Reduction Artefacts, and more</p>
-                    </div>
-                    <div className="program-popup-row">
-                      <h3>March</h3>
-                      <p><strong>Tracks:</strong>Lucrecia Dalt, Jason Urick, Hanne Lippard, Janet Kim</p>
-                      <p><strong>Articles:</strong>Jason Grier, Emily Hochmann</p>
-                      <p><strong>Editions:</strong>Omonia handmade casette</p>
-                      <p><strong>Mixes:</strong>Julia Holter, Line Gøttsche</p>
-                      <p><strong>Sound Library:</strong>Grand Piano</p>
-                    </div>
-                    <div className="program-popup-row">
-                      <h3>April</h3>
-                      <p><strong>Tracks:</strong>UCC Harlow, Nite Jewel, Jason Grier, Scott Cazan, Charles Gaines</p>
-                      <p><strong>Articles:</strong>Hito Steyrl, Kathi Hofer, Charles Gaines</p>
-                      <p><strong>Apps:</strong>Seurat, Breto</p>
-                      <p><strong>Sound Library:</strong> Viola</p>
-                    </div>
-                  </div>
-                )}
               </li>
 
               { showCart && (
@@ -120,13 +81,8 @@ function TopBar(): ReactElement {
                   <a
                     href="#"
                     onClick={() => {
-                      if (currentlyOpenPopUp !== 'cart-popup') {
-                        dispatch(openPopup('cart-popup'))
-                      }
-
-                      else {
-                        dispatch(closePopup())
-                      }
+                      dispatch(closePopup())
+                      dispatch(openPopup('cart-popup'))
                     }}
                   >
                     Cart ({ cartProductsCount })

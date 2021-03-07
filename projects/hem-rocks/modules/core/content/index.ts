@@ -140,6 +140,7 @@ export const categories = [
   'code',
   'editions',
   'editions-physical',
+  'exhibits',
   'faqs',
   'general-content',
   'heroines',
