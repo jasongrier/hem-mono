@@ -1,7 +1,6 @@
 import React, { ReactElement, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
-import { NavLink, Link } from 'react-router-dom'
 import { ElectronOnly } from '../../../../lib/components'
 import { closePopup, openPopup } from '../../../../lib/modules/popups'
 import { Logo, MainNavItem, MegaNav } from './index'
@@ -42,7 +41,6 @@ function TopBar(): ReactElement {
 
           <nav className="main-nav">
             <ul className="main-nav-items">
-              <MainNavItem name="Sound Library" />
               <MainNavItem
                 name="Tracks"
                 activeFor={[
@@ -53,6 +51,16 @@ function TopBar(): ReactElement {
                 ]}
                 to="tracks-overview"
               />
+
+              <MainNavItem
+                name="Editions"
+                to="editions"
+                activeFor={[
+                  '/editions',
+                  '/editions-physical',
+                ]}
+              />
+
               <MainNavItem
                 name="Articles"
                 activeFor={[
@@ -61,7 +69,11 @@ function TopBar(): ReactElement {
                   '/news',
                 ]}
               />
-              <MainNavItem name="Editions" />
+
+              <MainNavItem
+                name="Sound Library 2"
+                to="sound-library"
+              />
 
               <li className="main-nav-item">
                 <a

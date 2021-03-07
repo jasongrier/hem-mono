@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import marked from 'marked'
 import { CloseButton } from '../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup, closePopup } from '../../../../lib/modules/popups'
 import { assetHostHostname } from '../../functions'
@@ -27,7 +28,9 @@ function HemRefreshHeroine({ contentItem }: IProps): ReactElement {
             { contentItem && (
               <>
                 <h2>{ contentItem.title }</h2>
-                <h5>{ contentItem.description }</h5>
+                <h5
+                  dangerouslySetInnerHTML={{ __html: marked(contentItem.description) }}
+                />
               </>
             )}
           </div>

@@ -58,6 +58,7 @@ const keyCompressionMap: any = {
   keyArt: 'av',
   keyArtFullPath: 'bw',
   keyArtThumbnailFullPath: 'bx',
+  nftItemId: 'by',
   note: 'bp',
   order: 'aw',
   physicalFormats: 'ax',

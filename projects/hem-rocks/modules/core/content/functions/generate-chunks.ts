@@ -29,6 +29,7 @@ function generateChunks(allContentItems: IContentItem[]) {
     'artists',
     'blog',
     'editions',
+    'editions-physical',
     'general-content',
     'label',
     'news',
