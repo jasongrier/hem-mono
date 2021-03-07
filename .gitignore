@@ -2,6 +2,7 @@
 .vscode
 .env
 dist
+deploy
 zak-widget-dist
 node_modules
 .DS_Store

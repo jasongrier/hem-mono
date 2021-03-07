@@ -58,15 +58,15 @@ function AdminList(): ReactElement {
     dispatch(requestReadItems())
   }, [])
 
-  useEffect(function signDevApp() {
-    const { remote } = window.require('electron')
-    const { execSync } = remote.require('child_process')
-    const { join } = remote.require('path')
-    const electronAppPath = join('.', 'node_modules', 'electron', 'dist', 'Electron.app')
-    const signingTask = `codesign -s - -f ${ electronAppPath }`
-    execSync(`${ signingTask } --deep`)
-    execSync(signingTask)
-  }, [])
+  // useEffect(function signDevApp() {
+  //   const { remote } = window.require('electron')
+  //   const { execSync } = remote.require('child_process')
+  //   const { join } = remote.require('path')
+  //   const electronAppPath = join('.', 'node_modules', 'electron', 'dist', 'Electron.app')
+  //   const signingTask = `codesign -s - -f ${ electronAppPath }`
+  //   execSync(`${ signingTask } --deep`)
+  //   execSync(signingTask)
+  // }, [])
 
   const projectFilterOnChange = useCallback(
     function projectFilterOnChangeFn(evt: SyntheticEvent<HTMLSelectElement>) {
@@ -143,7 +143,7 @@ function AdminList(): ReactElement {
         const Bundler = remote.require('parcel-bundler')
         const puppeteer = remote.require('puppeteer')
 
-        const entry = join('.', 'projects', 'hem-rocks', 'index.jade')
+        const entry = join('.', 'projects', 'hem-rocks', 'index.html')
         const outDir = join('.', 'deploy')
 
         let bundler = new Bundler(entry, { outDir })

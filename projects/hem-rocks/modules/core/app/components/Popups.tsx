@@ -1,4 +1,4 @@
-import React, { useEffect, ReactElement } from 'react'
+import React, { useEffect, ReactElement, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useHistory, Redirect } from 'react-router-dom'
 import { map } from 'lodash'
@@ -8,9 +8,6 @@ import { usePrevious } from '../../../../../../lib/hooks'
 import { DetailPopUp, hasCategory, setCurrentItem } from '../../content'
 import { CartPopup, ThankYouPopup } from '../../cart'
 import { RootState } from '../../../../index'
-import { PROJECT_CONFIGS as UNTYPED_PROJECT_CONFIGS } from '../../../../config'
-
-const PROJECT_CONFIGS = UNTYPED_PROJECT_CONFIGS as any
 
 function Popups(): ReactElement {
   const { contentItems, currentContentItem, currentlyOpenPopUp, currentProject } = useSelector((state: RootState) => ({
@@ -24,87 +21,36 @@ function Popups(): ReactElement {
 
   const { pathname } = useLocation()
   const history = useHistory()
+  const previouslyOpenPopup = usePrevious(currentlyOpenPopUp)
 
-  useEffect(function handleRoutedPopups() {
+  useEffect(function handleOpenRoutedPopup() {
     const [basePath, detail, slug] = pathname.replace(/^\//, '').split('/')
+
+    if (detail !== 'detail') return
+
+    dispatch(closePopup())
+
     const requestedContentItem = contentItems.find(item =>
       item.slug === slug && !hasCategory(item, 'site-texts')
     )
 
-    let popupId
-
-    if (
-      pathname.includes('/cart/')
-      || /cart$/.test(pathname)
-    ) {
-      popupId = 'cart-popup'
+    if (requestedContentItem) {
+      dispatch(setCurrentItem(requestedContentItem))
+      dispatch(openPopup('detail-popup'))
     }
 
-    else if (basePath === 'thank-you') {
-      popupId = 'thank-you-popup'
-    }
-
-    else if (detail === 'detail') {
-      popupId = 'detail-popup'
-    }
-
-    if (
-      popupId === currentlyOpenPopUp
-      && popupId !== 'detail-popup'
-    ) return
-
-    dispatch(closePopup())
-
-    if (popupId) {
-      if (requestedContentItem) {
-        dispatch(setCurrentItem(requestedContentItem))
-      }
-
-      dispatch(openPopup(popupId))
+    else {
+      history.push('not-found')
     }
   }, [contentItems, pathname])
 
-  const previouslyOpenPopup = usePrevious(currentlyOpenPopUp)
-
-  useEffect(function onClosePopup() {
+  useEffect(function handleCloseRoutedPopup() {
     if (!currentlyOpenPopUp && previouslyOpenPopup) {
       const [basePath, detail, slug, filter] = pathname.replace(/^\//, '').split('/')
 
       let path = '/'
 
-      if (
-        pathname === '/support'
-        && previouslyOpenPopup === 'thank-you-popup'
-      ) {
-        path += 'support'
-      }
-
-      const staticPageCartReturnPaths = [
-        'sound-library/made-with-sl',
-        'sound-library/about-sl',
-        'about',
-        'contact',
-        'mailing-list',
-        'support',
-      ]
-
-      let cartReturnFound = false
-
-      for (const staticPageCartReturnPath of staticPageCartReturnPaths) {
-        if (
-          pathname.includes(staticPageCartReturnPath)
-          && pathname.includes('cart')
-        ) {
-          path = '/' + staticPageCartReturnPath
-          cartReturnFound = true
-          break
-        }
-      }
-
-      if (
-        !cartReturnFound
-        && detail === 'detail'
-      ) {
+      if (detail === 'detail') {
         path += basePath
 
         if (filter) {

@@ -258,6 +258,8 @@ function MainContentList({
   }, [storeContentItems, fixedFilters, noAll])
 
   useEffect(function itemsAndPlaylist() {
+    if (!currentProject) return
+
     let contentItems: IContentItem[]
 
     if (propsContentItems) {
@@ -434,7 +436,7 @@ function MainContentList({
         }
       }
     })
-  }, [currentFilter, storeContentItems, currentlyOpenPopUp])
+  }, [currentFilter, storeContentItems, currentlyOpenPopUp, currentProject])
 
   useEffect(function onFilterChanged() {
     ReactGA.event({

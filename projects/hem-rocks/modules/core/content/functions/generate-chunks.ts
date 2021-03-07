@@ -1,6 +1,6 @@
 import { flatten, compact } from 'lodash'
 import { slugify } from 'voca'
-import { IContentItem, compressIndex, hasCategory, getContentItemBySlug, getContentItemsFromRawList, getContentItemById, getContentItemsFromList, hasTag } from '../index'
+import { IContentItem, compressIndex, hasCategory, getContentItemBySlug, hasProperty, getContentItemsFromRawList, getContentItemById, getContentItemsFromList, hasTag } from '../index'
 import { PROJECT_CONFIGS as UNTYPED_PROJECT_CONFIGS } from '../../../../config'
 
 const PROJECT_CONFIGS = UNTYPED_PROJECT_CONFIGS as any
@@ -65,7 +65,7 @@ function generateChunks(allContentItems: IContentItem[]) {
       name: 'home-features',
       getContentItems(allContentItems: any) {
         const homeFeaturesItems = allContentItems.filter((item: any) => (
-          hasTag(item, 'home-features')
+          hasProperty(item, 'home-features')
           && item.project === currentProject
         ))
         const homeHeroineItem = getContentItemBySlug(allContentItems, 'update-march-2021')

@@ -136,61 +136,59 @@ function MainContentBox({
       className="main-content-box-ref"
       ref={el}
     >
-      <Link to={linkTo}>
-        <SplatterDims
-          disabled={noSplatter}
-          bipolarX={false}
-          bipolarY={false}
-          minMarginX={minMarginX}
-          minMarginY={minMarginY}
-          className={`
-            main-content-box
-            main-content-box-date-${contentItem.date}
-            main-content-box-with-filter-${filter}
-            ${className ? className : ''}
-            ${(badgeText || contentItem.badgeText) ? 'has-badge' : ''}
-            ${alignRight && index > 0 ? 'align-right' : ''}
-            ${inTheHotZone ? 'main-content-box-hot' : ''}
-          `}
-          id={`main-content-box-${contentItem.slug}`}
-          width={width}
-          height={height || 0}
-          rangeX={rangeX || 100}
-          rangeY={rangeY || 0}
-          marginRangeX={marginRangeX}
-          marginRangeY={marginRangeY}
-        >
-          <Tilt disabled={noTilt}>
-            {(badgeText || contentItem.badgeText) && (
-              <div className="main-content-box-badge">
-                <strong>{ badgeText || contentItem.badgeText }</strong>
-              </div>
-            )}
+      <SplatterDims
+        disabled={noSplatter}
+        bipolarX={false}
+        bipolarY={false}
+        minMarginX={minMarginX}
+        minMarginY={minMarginY}
+        className={`
+          main-content-box
+          main-content-box-date-${contentItem.date}
+          main-content-box-with-filter-${filter}
+          ${className ? className : ''}
+          ${(badgeText || contentItem.badgeText) ? 'has-badge' : ''}
+          ${alignRight && index > 0 ? 'align-right' : ''}
+          ${inTheHotZone ? 'main-content-box-hot' : ''}
+        `}
+        id={`main-content-box-${contentItem.slug}`}
+        width={width}
+        height={height || 0}
+        rangeX={rangeX || 100}
+        rangeY={rangeY || 0}
+        marginRangeX={marginRangeX}
+        marginRangeY={marginRangeY}
+      >
+        <Tilt disabled={noTilt}>
+          {(badgeText || contentItem.badgeText) && (
+            <div className="main-content-box-badge">
+              <strong>{ badgeText || contentItem.badgeText }</strong>
+            </div>
+          )}
+          <Link to={linkTo}>
             { hasKeyArt(contentItem, index)
               && !isEmpty(contentItem.keyArtFullPath || contentItem.keyArt)
               && (
-              <div
-                className="main-content-box-key-art"
-                onClick={onClick}
-              >
-                { renderActionsOn === 'key-art'
-                  && buttonText
-                  && (
+                <div
+                  className="main-content-box-key-art"
+                  onClick={onClick}
+                >
+                  { renderActionsOn === 'key-art' && (
                     <MainContentBoxActions buttonText={buttonText}>
                       { children }
                     </MainContentBoxActions>
-                )}
-                <div
-                  className="main-content-box-key-art-image"
-                  style={{
-                    backgroundImage: (
-                      contentItem.keyArtFullPath
-                        ? `url(${assetHost}/${currentProject}/${contentItem.keyArtFullPath})`
-                        : `url(${assetHost}/${currentProject}/content/images/key-art/${contentItem.keyArt})`
-                    ),
-                  }}
-                />
-              </div>
+                  )}
+                  <div
+                    className="main-content-box-key-art-image"
+                    style={{
+                      backgroundImage: (
+                        contentItem.keyArtFullPath
+                          ? `url(${assetHost}/${currentProject}/${contentItem.keyArtFullPath})`
+                          : `url(${assetHost}/${currentProject}/content/images/key-art/${contentItem.keyArt})`
+                      ),
+                    }}
+                  />
+                </div>
             )}
             <div
               className="main-content-box-text"
@@ -205,17 +203,15 @@ function MainContentBox({
               { showBlurb && (
                 <div dangerouslySetInnerHTML={{ __html: marked(contentItem.blurb) }} />
               )}
-              { renderActionsOn === 'text'
-                && buttonText
-                && (
-                  <MainContentBoxActions buttonText={buttonText}>
-                    { children }
-                  </MainContentBoxActions>
+              { renderActionsOn === 'text' && (
+                <MainContentBoxActions buttonText={buttonText}>
+                  { children }
+                </MainContentBoxActions>
               )}
             </div>
-          </Tilt>
-        </SplatterDims>
-      </Link>
+          </Link>
+        </Tilt>
+      </SplatterDims>
     </div>
   )
 }

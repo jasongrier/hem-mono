@@ -65,20 +65,11 @@
     "@babel/core": "^7.10.0",
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.12.42",
-    "assert": "^2.0.0",
-    "css-loader": "^5.1.1",
     "electron": "^8.3.0",
-    "file-loader": "^6.2.0",
-    "mocha": "^6.2.3",
+    "parcel": "^1.12.4",
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-at-alias": "^0.2.0",
-    "parcel": "^1.12.4",
-    "prettier": "1.18.2",
-    "pug": "^3.0.0",
     "puppeteer": "^8.0.0",
-    "sass": "^1.26.7",
-    "style-loader": "^2.0.0",
-    "ts-loader": "^8.0.17",
     "typescript": "^3.9.3"
   }
 }

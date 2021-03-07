@@ -63,7 +63,7 @@ function LabelTimeline({ refresh }: IProps): ReactElement {
                 ?
                   (`<img
                     alt="HEM logo from ${year}"
-                    src="${assetHost}/hem-rocks/site/timeline-logos/HEM_logo_${year}.jpg"
+                    src="${assetHost}/hem.rocks/site/timeline-logos/HEM_logo_${year}.jpg"
                   />`)
                 :
                   ''
