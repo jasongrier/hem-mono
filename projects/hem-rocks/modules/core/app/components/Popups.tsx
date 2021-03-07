@@ -38,10 +38,6 @@ function Popups(): ReactElement {
       dispatch(setCurrentItem(requestedContentItem))
       dispatch(openPopup('detail-popup'))
     }
-
-    else {
-      history.push('not-found')
-    }
   }, [contentItems, pathname])
 
   useEffect(function handleCloseRoutedPopup() {

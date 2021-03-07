@@ -22,6 +22,8 @@ function CookiesFrame({}: IProps): ReactElement {
   const dispatch = useDispatch()
 
   useEffect(function init() {
+    if (!currentProject) return
+
     const cookiePreferencesSet = !!Cookies.get(getCookieName('cookie-preferences-set', currentProject))
 
     if (cookiePreferencesSet) {
@@ -38,7 +40,7 @@ function CookiesFrame({}: IProps): ReactElement {
         dispatch(setCookieApproval(name, cookiePreferencesSet, false))
       }
     }
-  }, [])
+  }, [currentProject])
 
   useEffect(function checkAnalyticsCookieApproval() {
     if (cookiesAnalyticsApproved && !location.hostname.includes('localhost')) {
@@ -46,6 +48,8 @@ function CookiesFrame({}: IProps): ReactElement {
       ReactGA.initialize(gaId)
     }
   }, [cookiesAnalyticsApproved])
+
+  if (!currentProject) return <div />
 
   const nagHeader = PROJECT_CONFIGS[currentProject].NAG_HEADER
   const nagText = PROJECT_CONFIGS[currentProject].NAG_TEXT

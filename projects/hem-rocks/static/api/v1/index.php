@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         else {
           $download_file = $sale['products'][$_GET['ii']]['downloadFile'];
 
-          $file_url = 'http://' . $_SERVER['HTTP_HOST'] . '/hem-rocks/downloads/' . $download_file;
+          $file_url = 'http://' . $_SERVER['HTTP_HOST'] . '/hem.rocks/downloads/' . $download_file;
 
           echo $file_url;
 
@@ -166,7 +166,7 @@ else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
       echo 'OK';
     }
-    
+
     else if ($_GET['hem-cmd'] === 'made-with-sl') {
       $data = json_decode(file_get_contents('php://input'));
 
@@ -190,7 +190,7 @@ else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
       echo 'OK';
     }
-    
+
     else if ($_GET['hem-cmd'] === 'cookie-approval') {
       $data = json_decode(file_get_contents('php://input'));
 

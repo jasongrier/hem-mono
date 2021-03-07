@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom'
 import { BASE_SITE_TITLE } from '../../../config'
 import { TracksSubnav } from '../../../components/layout'
 import { TracksOverviewContentBox, MainContentBanner } from '../../../components/layout'
-import { hasCategory, hasTag, requestReadChunk, IContentItem } from '../../../modules/core/content'
+import { hasCategory, requestReadChunk, IContentItem, hasProperty } from '../../../modules/core/content'
 import { RootState } from '../../../index'
 
 function getRow(tracks: IContentItem[], tag: string) {
-  return tracks.filter(i => hasTag(i, tag) && i.published)
+  return tracks.filter(i => hasProperty(i, tag) && i.published)
     .slice(0, 5)
     .sort((a, b) =>
       parseInt(a.order, 10) - parseInt(b.order, 10)

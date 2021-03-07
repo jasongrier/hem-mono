@@ -24,6 +24,7 @@ function TracksOverviewContentBox({ allContentItems, contentItem, filter, index,
       marginRangeX={0}
       marginRangeY={0}
       renderActionsOn="key-art"
+      linkTo={contentItem => `tracks-overview/detail/${contentItem.slug}`}
     >
       <TracksBoxChild
         allContentItems={allContentItems}

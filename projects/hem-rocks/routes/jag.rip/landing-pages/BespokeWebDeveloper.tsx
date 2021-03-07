@@ -57,7 +57,7 @@ function BespokeWebDeveloper(): ReactElement {
     //   <h2>TL;DR? Just get in touch:</h2>
 
       // <ContactForm
-      //   action={assetHostHostname() + '/hem-rocks/api/?hem-cmd=contact-form&site=bsp'}
+      //   action={assetHostHostname() + '/hem.rocks/api/?hem-cmd=contact-form&site=bsp'}
       //   subjectLabel="Subject"
       //   subjectPlaceholder="Greetz from Hrvoje"
       //   emailLabel="Your email (so we can reach you)"

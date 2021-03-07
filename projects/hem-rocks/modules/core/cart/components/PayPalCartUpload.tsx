@@ -37,7 +37,7 @@ function PayPalCartUpload({ items }: IProps): ReactElement {
   }
 
   else {
-    banner = 'http://static.hem.rocks/hem-rocks/paypal/store_banner.jpg'
+    banner = 'http://static.hem.rocks/hem.rocks/paypal/store_banner.jpg'
   }
 
   const itemsIncludeNonDigitalProduct = filter(items, 'isNondigitalProduct').length > 0

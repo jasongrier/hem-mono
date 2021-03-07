@@ -15,7 +15,7 @@ function CompilationIVArtistInfo(): ReactElement {
       <p>
         <img
           alt="HEM Compilation IV artist info"
-          src={`${assetHostHostname()}/hem-rocks/content/images/key-art/info-page.jpg`}
+          src={`${assetHostHostname()}/hem.rocks/content/images/key-art/info-page.jpg`}
           style={{
             float: 'left',
             width: '450px',
