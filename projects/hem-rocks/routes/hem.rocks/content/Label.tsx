@@ -57,18 +57,13 @@ function Label(): ReactElement {
                   </a>
                 )}
                 { !directFromArtist && (
-                  <Link
-                    className="action-button"
-                    to={`/label/${item.slug}/${currentFilter || 'all'}`}
-                  >
+                  <button className="action-button">
                     {
                       item.isDigitalProduct
-                        // ? item.physicalFormats
-                        //   ? 'Order'
                         ? 'Download'
                         : 'Info'
                     }
-                  </Link>
+                  </button>
                 )}
               </>
             )

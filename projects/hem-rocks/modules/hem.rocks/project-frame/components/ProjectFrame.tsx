@@ -7,17 +7,15 @@ interface IProps {}
 
 function ProjectFrame({ children }: PropsWithChildren<IProps>): ReactElement {
   return (
-    <div className="project-frame project-frame-hem-rocks">
+    <>
       <TopBar />
-      <div className="main-hem">
-        { children }
-      </div>
+      { children }
       <ElectronNot>
         <footer className="main-footer">
           <SiteFooter />
         </footer>
       </ElectronNot>
-    </div>
+    </>
   )
 }
 

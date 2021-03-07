@@ -18,6 +18,9 @@ module.exports.PROJECT_CONFIGS = {
     HAS_COOKIES: true,
     HAS_SERIALIZED_ITEM_ORDER: false,
     ORDERING_BUCKETS_TAGS: [],
+    ORDERING_BUCKETS_PROPERTIES: [
+      'home-features'
+    ],
     RELEASE_PHASE: 1,
     HIDE_COOKIES_FRAME_FOR: ['life-in-letters'],
     HIDE_PLAYER_FRAME_FOR: ['print-flip-books', 'web-movie', 'life-in-letters'],
@@ -83,6 +86,7 @@ module.exports.PROJECT_CONFIGS = {
     HAS_COOKIES: false,
     HAS_SERIALIZED_ITEM_ORDER: true,
     HIDE_PLAYER_FRAME_FOR: ['bespoke-web-developer'],
+    ORDERING_BUCKETS_PROPERTIES: [],
     ORDERING_BUCKETS_TAGS: [
       'blog',
       'creative-code',

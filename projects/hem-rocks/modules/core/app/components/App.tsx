@@ -118,19 +118,17 @@ function App(): ReactElement {
         scrollPaneSelector=".scroll-lock-container"
       />
 
-      <div className="scroll-lock-container">
-        <div className="scroll-lock-content">
-          <main className="main-content">
-            <Suspense fallback={<Spinner />}>
-              <ProjectFrame>
-                <LandingPage>
-                  <RoutingHub />
-                </LandingPage>
-              </ProjectFrame>
-            </Suspense>
-          </main>
+      <Suspense fallback={<Spinner />}>
+        <div className="scroll-lock-container">
+          <div className="scroll-lock-content main-content">
+            <ProjectFrame>
+              <LandingPage>
+                <RoutingHub />
+              </LandingPage>
+            </ProjectFrame>
+          </div>
         </div>
-      </div>
+      </Suspense>
 
       { PROJECT_CONFIGS[currentProject].HAS_PLAYER && (
         <Hide from={PROJECT_CONFIGS[currentProject].HIDE_PLAYER_FRAME_FOR}>

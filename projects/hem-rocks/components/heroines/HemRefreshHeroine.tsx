@@ -19,7 +19,7 @@ function HemRefreshHeroine({ contentItem }: IProps): ReactElement {
         <div
           className="hem-refresh-heroine-image"
           style={{
-            backgroundImage: `url(${assetHost}/hem-rocks/site/heroines/hem-refresh-heroine-5.jpg)`,
+            backgroundImage: `url(${assetHost}/hem.rocks/site/heroines/hem-refresh-heroine-5.jpg)`,
           }}
         />
         <div className="hem-refresh-heroine-details">

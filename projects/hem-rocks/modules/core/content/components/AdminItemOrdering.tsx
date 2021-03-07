@@ -9,6 +9,7 @@ import { ElectronOnly } from '../../../../../../lib/components'
 import { IContentItem, hasTag, orderSortFnFact, requestReadItems, fieldIsSerialized, requestUpdateItems, parseSerializedOrderFieldValue, updateSerializedOrderFieldValue } from '../index'
 import { RootState } from '../../../../index'
 import { PROJECT_CONFIGS as UNTYPED_PROJECT_CONFIGS } from '../../../../config'
+import { hasProperty } from '../functions'
 
 const PROJECT_CONFIGS = UNTYPED_PROJECT_CONFIGS as any
 
@@ -24,19 +25,48 @@ function AdminItemOrdering({ }: IProps): ReactElement {
 
   const [finalItems, setFinalItems] = useState<IContentItem[]>([])
   const [canSave, setCanSave] = useState<boolean>(false)
-  const [currentFilter, setCurrentFilter] = useState<string>(PROJECT_CONFIGS[currentProject].ORDERING_BUCKETS_TAGS[0])
+  const [currentFilterType, setCurrentFilterType] = useState<string>('property')
+  const [currentFilter, setCurrentFilter] = useState<string>()
 
   useEffect(function init() {
     dispatch(requestReadItems())
   }, [])
 
+  useEffect(function initFilter() {
+    if (!currentProject) return
+
+    let bucket
+
+    if (currentFilterType === 'tag') {
+      bucket = 'ORDERING_BUCKETS_TAGS'
+    }
+
+    else if (currentFilterType === 'property') {
+      bucket = 'ORDERING_BUCKETS_PROPERTIES'
+    }
+
+    if (!bucket) return
+
+    setCurrentFilter(PROJECT_CONFIGS[currentProject][bucket][0])
+  }, [currentProject])
+
   useEffect(function initContent() {
+    if (!currentFilter) return
     if (!allContentItems.length) return
 
     let sortSet = Array.from(allContentItems)
+    let filterFn: (item: IContentItem, currentFilter: string) => boolean
+
+    if (currentFilterType === 'tag') {
+      filterFn = hasTag
+    }
+
+    else if (currentFilterType === 'property') {
+      filterFn = hasProperty
+    }
 
     sortSet = sortSet.filter(item => (
-      hasTag(item, currentFilter)
+      filterFn(item, currentFilter)
       && item.project === currentProject
       && item.published
     ))
@@ -67,6 +97,9 @@ function AdminItemOrdering({ }: IProps): ReactElement {
 
   const onSaveClick = useCallback(
     function onSaveClickFn() {
+      if (!currentFilter) return
+      if (!currentProject) return
+
       for (let i = 0; i < finalItems.length; i ++) {
         const updatedItem: IContentItem = produce(finalItems[i], (draftItem) => {
           const order = (i + 1).toString()
@@ -83,7 +116,7 @@ function AdminItemOrdering({ }: IProps): ReactElement {
         dispatch(requestUpdateItems([updatedItem]))
         setCanSave(false)
       }
-    }, [finalItems, currentFilter],
+    }, [finalItems, currentFilter, currentProject],
   )
 
   const grid = 4
@@ -101,6 +134,8 @@ function AdminItemOrdering({ }: IProps): ReactElement {
     padding: grid,
     width: 450,
   })
+
+  if (!currentProject) return <div />
 
   return (
     <ElectronOnly showMessage={true}>

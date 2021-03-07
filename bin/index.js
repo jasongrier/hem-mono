@@ -4,7 +4,7 @@ const Bundler = require('parcel-bundler')
 const env = Object.create(process.env)
 
 const bundler = new Bundler(
-  join('.', 'projects', 'hem-rocks', 'index.jade')
+  join('.', 'projects', 'hem-rocks', 'index.html')
 )
 
 bundler.on('buildEnd', async () => {

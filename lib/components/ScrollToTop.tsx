@@ -13,7 +13,7 @@ function ScrollToTop({ previouslyOpenPopup, scrollPaneSelector }: IProps): React
   const isDetailPopup = pathnameSplit[2] === 'detail'
 
   useEffect(() => {
-    if (!isDetailPopup && !previouslyOpenPopup) {
+    if (!isDetailPopup) {
       $(scrollPaneSelector).scrollTop(0)
     }
   }, [pathname, previouslyOpenPopup])

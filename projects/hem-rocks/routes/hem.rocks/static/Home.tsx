@@ -31,11 +31,11 @@ function Home(): ReactElement {
           boxSecondaryTitleField="attribution"
           showCategoryOnContentBoxes={true}
           noFilters={true}
-          linkTo={contentItem => `home/${contentItem.slug}`}
+          linkTo={contentItem => `home/detail/${contentItem.slug}`}
           orderByOrder={true}
           ignoreSticky={true}
           boxBipolarY={true}
-          boxWidth={200}
+          boxWidth={250}
           boxMinMarginX={0}
           boxMarginRangeX={0}
           boxMarginRangeY={75}

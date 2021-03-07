@@ -1,12 +1,8 @@
 .main-footer {
-  position: sticky;
-  top: 0;
-  z-index: 9999999;
   width: 100vw;
   margin: 0 auto;
   font-size: 14px;
   line-height: 32px;
-  overflow-x: hidden;
 }
 
 .main-footer a {
@@ -14,24 +10,38 @@
 }
 
 .site-footer {
+  position: relative;
+  width: var(--content-width-desk);
+  margin: 0 auto;
+}
+
+.site-footer::after {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -10000px;
+  z-index: -1;
   width: 20000px;
-  height: 850px;
-  margin-left: -10000px;
+  height: 800px;
   background-color: #222;
-  color: #eee;
+  content: " ";
 }
 
 .site-footer-content {
-  position: absolute;
-  left: 50%;
-  margin: 100px auto 0 calc(-1 * 1000px / 2);
-  width: 1000px;
+  width: var(--content-width-desk);
+  margin: 0 auto;
+  padding-top: 80px;
+  color: #eee;
 }
 
 .site-footer-content h1 {
   font-size: 100px;
   font-weight: 100;
   margin-left: -9px;
+}
+
+.site-footer-content p {
+  width: auto;
 }
 
 .site-footer-content-row {
