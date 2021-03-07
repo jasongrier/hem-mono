@@ -126,7 +126,9 @@ function App(): ReactElement {
 
       <Suspense fallback={<Spinner />}>
         <div className="scroll-lock-container">
-          <ProjectHeader />
+          { ProjectHeader && (
+            <ProjectHeader />
+          )}
           <div className="scroll-lock-content main-content">
             <ProjectFrame>
               <LandingPage>

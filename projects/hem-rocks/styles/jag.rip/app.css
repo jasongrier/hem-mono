@@ -15,11 +15,6 @@ a {
   text-decoration: none;
 }
 
-/* a:active,
-a:focus {
-  outline: 2px solid #fff;
-} */
-
 .admin-link {
   position: fixed;
   top: 0;
@@ -93,6 +88,10 @@ a[id="more-anchor"] {
   clear: both;
 }
 
+.main-content-box h3 {
+  font-weight: 600;
+}
+
 .is-admin .routing-hub,
 .is-admin .main-jag {
   float: none;
@@ -137,6 +136,11 @@ a[id="more-anchor"] {
   z-index: 99999;
   content: " ";
   box-shadow: inset 0px -50px 19px -16px #000000;
+  pointer-events: none;
+}
+
+.hem-tilt-compensator {
+  height: 100%;
 }
 
 .main-content-box-text {
@@ -150,10 +154,6 @@ a[id="more-anchor"] {
   height: 100%;
   pointer-events: all;
   cursor: pointer;
-}
-
-.main-content-box-ref a * {
-  /* pointer-events: none; */
 }
 
 .main-content-box h3 {
@@ -246,16 +246,20 @@ a[id="more-anchor"] {
   padding: 0;
   margin-bottom: 15px;
   padding-bottom: 6px;
+  background: none;
+  color: #fff;
 }
 
 .main-content-filters a:hover {
   border-bottom: 3px solid #fff;
   padding-bottom: 3px;
+  background: none;
 }
 
 .main-content-filter-active {
   border-bottom: 3px solid #fff;
   padding-bottom: 3px !important;
+  background: none;
 }
 
 .main-footer {
@@ -287,6 +291,7 @@ a[id="more-anchor"] {
   color: #000;
   line-height: 72px;
   text-transform: none;
+  font-weight: 600;
 }
 
 .current-project-jag-rip .detail-popup .detail-popup-key-art-image {
@@ -301,8 +306,19 @@ a[id="more-anchor"] {
   border-bottom: 1px solid #000;
 }
 
+.main-content-box {
+  border: none;
+}
+
 .main-content-box h3 {
   text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.main-content-box p {
+  margin-top: 20px;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 .main-content-box-with-filter-press:hover .main-content-box-key-art,
