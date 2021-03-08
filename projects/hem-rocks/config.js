@@ -23,7 +23,12 @@ module.exports.PROJECT_CONFIGS = {
     ],
     RELEASE_PHASE: 1,
     HIDE_COOKIES_FRAME_FOR: ['life-in-letters'],
-    HIDE_PLAYER_FRAME_FOR: ['print-flip-books', 'web-movie', 'life-in-letters'],
+    HIDE_PLAYER_FRAME_FOR: [
+      'print-flip-books',
+      'web-movie',
+      'life-in-letters',
+      'exhibits/detail',
+    ],
     NAG_HEADER: 'HEM Newsletter',
     NAG_TEXT: 'HEM Newsletter',
     CATEGORIES: '*',

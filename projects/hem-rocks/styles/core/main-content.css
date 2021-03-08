@@ -91,6 +91,16 @@
   font-size: 120px;
 }
 
+.main-content-subnav-banner h2 {
+  position: absolute;
+  top: 110px;
+  left: 15px;
+  margin: 0;
+  padding: 0;
+  color: #000;
+  font-size: 18px !important;
+}
+
 .main-content-subnav ul {
   margin: 0 0 0 10px;
   padding: 0;

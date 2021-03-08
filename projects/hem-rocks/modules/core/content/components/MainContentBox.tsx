@@ -121,6 +121,10 @@ function MainContentBox({
 
   const onClick = useCallback(
     function onClickFn() {
+      const copyText = document.getElementById(contentItem.id)
+      // @ts-ignore
+      copyText.select()
+      document.execCommand('copy')
       dispatch(setCurrentItem(contentItem))
     }, [],
   )
@@ -165,7 +169,7 @@ function MainContentBox({
               <strong>{ badgeText || contentItem.badgeText }</strong>
             </div>
           )}
-          <Link to={linkTo}>
+          <Link to="#">
             { hasKeyArt(contentItem, index)
               && !isEmpty(contentItem.keyArtFullPath || contentItem.keyArt)
               && (
@@ -173,6 +177,11 @@ function MainContentBox({
                   className="main-content-box-key-art"
                   onClick={onClick}
                 >
+                  <input
+                    type="text"
+                    id={contentItem.id}
+                    value={contentItem.title}
+                  />
                   { renderActionsOn === 'key-art' && (
                     <MainContentBoxActions buttonText={buttonText}>
                       { children }

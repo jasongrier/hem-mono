@@ -15,7 +15,9 @@ function News(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
       <div className="page page-news">
-        <MainContentBanner>News</MainContentBanner>
+        <MainContentBanner
+          headline="News"
+        />
         <ArticlesSubnav />
         <MainContentList
           currentFilter={currentFilter || 'monthly-updates'}

@@ -25,7 +25,9 @@ function Playlists(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
       <div className="page page-tracks page-with-subnav">
-        <MainContentBanner>Playlists</MainContentBanner>
+        <MainContentBanner
+          headline="Playlists"
+        />
         <TracksSubnav />
         <MainContentList
           currentFilter={currentFilter || 'featured'}
