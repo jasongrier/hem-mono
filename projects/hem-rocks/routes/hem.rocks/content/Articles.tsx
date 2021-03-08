@@ -15,7 +15,9 @@ function Articles(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
       <div className="page page-articles">
-        <MainContentBanner>Articles</MainContentBanner>
+        <MainContentBanner
+          headline="Articles"
+        />
         <ArticlesSubnav />
         <MainContentList
           currentFilter={currentFilter}

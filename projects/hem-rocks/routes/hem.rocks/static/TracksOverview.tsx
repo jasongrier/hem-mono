@@ -8,8 +8,8 @@ import { TracksOverviewContentBox, MainContentBanner } from '../../../components
 import { hasCategory, requestReadChunk, IContentItem, hasProperty } from '../../../modules/core/content'
 import { RootState } from '../../../index'
 
-function getRow(tracks: IContentItem[], tag: string) {
-  return tracks.filter(i => hasProperty(i, tag) && i.published)
+function getRow(items: IContentItem[], property: string) {
+  return items.filter(i => hasProperty(i, property) && i.published)
     .slice(0, 5)
     .sort((a, b) =>
       parseInt(a.order, 10) - parseInt(b.order, 10)
@@ -17,10 +17,10 @@ function getRow(tracks: IContentItem[], tag: string) {
 }
 
 function TracksOverview(): ReactElement {
-  const { chunkLog, allTracks, playlists } = useSelector((state: RootState) => ({
+  const { chunkLog, allTracks, allPlaylists } = useSelector((state: RootState) => ({
     chunkLog: state.content.chunkLog,
     allTracks: state.content.contentItems.filter(i => hasCategory(i, 'tracks')),
-    playlists: state.content.contentItems.filter(i => hasCategory(i, 'playlists')),
+    allPlaylists: state.content.contentItems.filter(i => hasCategory(i, 'playlists')),
   }))
 
   const dispatch = useDispatch()
@@ -37,8 +37,10 @@ function TracksOverview(): ReactElement {
 
   const rows = [
     { title: 'Tracks', tracks: getRow(allTracks, 'in-overview-tracks')},
-    { title: 'Playlists', tracks: getRow(allTracks, 'in-overview-playlists')},
+    { title: 'Playlists', tracks: getRow(allPlaylists, 'in-overview-playlists')},
   ]
+
+  console.log(getRow(allTracks, 'in-overview-playlists'))
 
   return (
     <>
@@ -47,7 +49,9 @@ function TracksOverview(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
       <div className="page page-tracks page-tracks-overview page-with-subnav page-with-banner">
-        <MainContentBanner>Tracks for March 2021</MainContentBanner>
+        <MainContentBanner
+          headline="Tracks for March 2021"
+        />
         <TracksSubnav />
         <div className="overview-page">
           { rows.map(({ title, tracks }) => (

@@ -1,11 +1,10 @@
 import React, { useEffect, ReactElement, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useLocation, useHistory, Redirect } from 'react-router-dom'
-import { map } from 'lodash'
+import { useLocation, useHistory } from 'react-router-dom'
 import { CloseButton } from '../../../../../../lib/packages/hem-buttons'
 import { PopupContainer, closePopup, openPopup } from '../../../../../../lib/modules/popups'
 import { usePrevious } from '../../../../../../lib/hooks'
-import { DetailPopUp, hasCategory, setCurrentItem } from '../../content'
+import { DetailPopup, hasCategory, setCurrentItem, ExhibitPopup } from '../../content'
 import { CartPopup, ThankYouPopup } from '../../cart'
 import { RootState } from '../../../../index'
 
@@ -24,9 +23,9 @@ function Popups(): ReactElement {
   const previouslyOpenPopup = usePrevious(currentlyOpenPopUp)
 
   useEffect(function handleOpenRoutedPopup() {
-    const [basePath, detail, slug] = pathname.replace(/^\//, '').split('/')
+    const [basePath, viewType, slug] = pathname.replace(/^\//, '').split('/')
 
-    if (detail !== 'detail') return
+    if (viewType !== 'detail') return
 
     dispatch(closePopup())
 
@@ -36,7 +35,11 @@ function Popups(): ReactElement {
 
     if (requestedContentItem) {
       dispatch(setCurrentItem(requestedContentItem))
-      dispatch(openPopup('detail-popup'))
+      dispatch(openPopup(
+        basePath === 'exhibits'
+          ? 'exhibit-popup'
+          : 'detail-popup'
+      ))
     }
   }, [contentItems, pathname])
 
@@ -68,11 +71,18 @@ function Popups(): ReactElement {
         closeIcon={CloseButton}
         id="detail-popup"
       >
-        <DetailPopUp
+        <DetailPopup
           contentItem={currentContentItem}
           filter={pathname.split('/')[4]}
           category={pathname.split('/')[1]}
         />
+      </PopupContainer>
+
+      <PopupContainer
+        // closeIcon={CloseButton}
+        id="exhibit-popup"
+      >
+        <ExhibitPopup rootContentItem={currentContentItem} />
       </PopupContainer>
 
       <PopupContainer
@@ -83,7 +93,6 @@ function Popups(): ReactElement {
           <CartPopup redirecting={props?.redirecting} />
         )}
       </PopupContainer>
-
 
       <PopupContainer
         closeIcon={CloseButton}

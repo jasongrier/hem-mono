@@ -15,7 +15,9 @@ function Blog(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
       <div className="page page-blog">
-        <MainContentBanner>Blog</MainContentBanner>
+        <MainContentBanner
+          headline="Blog"
+        />
         <ArticlesSubnav />
         <MainContentList
           currentFilter={currentFilter}

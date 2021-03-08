@@ -23,7 +23,9 @@ function Artists(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
       <div className="page page-tracks page-with-subnav">
-        <MainContentBanner>Artists</MainContentBanner>
+        <MainContentBanner
+          headline="Tracks by Artist"
+        />
         <TracksSubnav />
         <MainContentList
           hasFilters={false}

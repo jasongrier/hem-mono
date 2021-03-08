@@ -29,7 +29,7 @@ interface IProps {
   showMegaBlurb?: boolean
 }
 
-function DetailPopUp({
+function DetailPopup({
   contentItem,
   filter,
   category,
@@ -676,4 +676,4 @@ function DetailPopUp({
   )
 }
 
-export default DetailPopUp
+export default DetailPopup

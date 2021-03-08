@@ -5,7 +5,9 @@ import { MainContentBanner } from '../../components/layout'
 function AboutSubnav(): ReactElement {
   return (
     <>
-      <MainContentBanner>General Info</MainContentBanner>
+      <MainContentBanner
+        headline="General Info"
+      />
       <nav className="main-content-subnav">
         <ul>
           <li>

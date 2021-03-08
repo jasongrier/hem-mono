@@ -5,7 +5,10 @@ import { MainContentBanner } from '../../components/layout'
 function SoundLibrarySubnav(): ReactElement {
   return (
     <>
-      <MainContentBanner>SL2</MainContentBanner>
+      <MainContentBanner
+        headline="SL2"
+        subHeadline="HEM Sound Library is a critical resource for experimental sound practices"
+      />
       <nav className="main-content-subnav">
         <ul>
           <li>

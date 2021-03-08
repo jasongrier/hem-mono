@@ -33,9 +33,10 @@ function applyPaginationAndFiltering(state: IState) {
     pageContentItems = pageContentItems.filter(item => isEmpty(item.keyArt))
   }
 
-  if (!showUnpublishedFilter) {
-    pageContentItems = pageContentItems.filter(item => item.published || hasCategory(item, 'assets'))
-  }
+  // if (!showUnpublishedFilter) {
+  //   console.log('??')
+    pageContentItems = pageContentItems.filter(item => item.published)
+  // }
 
   if (stickyFilter) {
     pageContentItems = pageContentItems.filter(item => item.sticky)

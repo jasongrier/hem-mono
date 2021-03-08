@@ -169,16 +169,59 @@ async function migrate(allContentItems: IContentItem[]) {
 
   const newItems: IContentItem[] = []
 
+  const moveTitles = [
+    'Hör\' ich das Liedchen klingen',
+    'Nymphaea Odorata',
+    'Office of the Dead',
+    'Easter Time',
+    'Klavierstuck',
+    'Sunset Palm Tree',
+    'Dragonsinger',
+    'Saint Eulelia was a Virgin',
+    'Not Gonna Get Us! (orig. Taty)',
+    'Eating the Stars Noise',
+    'Ground Bass Aria',
+    'Ground Bass Aria 2',
+    'Lento Mysterioso',
+    'Ocean Farm',
+    'Falling Out of Love with Greil Marcus',
+    'I\'m Not Insane (You\'re Insane)',
+    'Saint Eulalia',
+    'Bunny Rabbits',
+    'Neighbor Neighbor',
+    'WIllow Weep',
+    'Je Vivroie Liement',
+    'Don\'t Dream It\'s Over',
+    'Orchid',
+    'With Loue To Toune',
+    'Flowering Dogwood (Cornus Florida)',
+    'Roller Coaster',
+    'Man He Can',
+    'NCP Rehearsal',
+    'Live at Studio Acht',
+  ]
+
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
 
-    if (hasCategory(newItem, 'program')) {
-      if (newItem.title.includes('Adee')) {
-        newItem.project = 'hem.rocks'
+    if (hasCategory(newItem, 'tracks')) {
+      newItem.tags = removeTag(newItem, 'new')
+
+      if (
+        newItem.attribution === 'Ry Rock'
+        || newItem.attribution === 'The Remarkable Thing About Swans'
+        || newItem.attribution === 'Gary Wilson'
+        || moveTitles.includes(newItem.title)
+      ) {
+        newItem.releasePhase = '2'
       }
 
-      else if (isEmpty(newItem.title)) {
+      if (newItem.title = 'For Ariel Pink') {
         newItem.published = false
+      }
+
+      if (newItem.title === 'New Tombstones') {
+
       }
     }
 

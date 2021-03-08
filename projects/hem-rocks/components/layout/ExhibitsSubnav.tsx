@@ -5,7 +5,9 @@ import { MainContentBanner } from '../../components/layout'
 function ExhibitsSubnav(): ReactElement {
   return (
     <>
-      <MainContentBanner>Exhibits</MainContentBanner>
+      <MainContentBanner
+        headline="Exhibits"
+      />
       <nav className="main-content-subnav">
         <ul>
         </ul>

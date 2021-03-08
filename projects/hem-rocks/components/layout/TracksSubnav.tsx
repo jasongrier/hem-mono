@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react'
 import { NavLink } from 'react-router-dom'
-import { MainContentBanner } from '../../components/layout'
 
 function SoundLibrarySubnav(): ReactElement {
   return (
@@ -16,7 +15,7 @@ function SoundLibrarySubnav(): ReactElement {
           <NavLink to="/playlists">Playlists</NavLink>
         </li>
         <li>
-          <NavLink to="/artists">Artists</NavLink>
+          <NavLink to="/artists">Tracks by Artist</NavLink>
         </li>
       </ul>
     </nav>

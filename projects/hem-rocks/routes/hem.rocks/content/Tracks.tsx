@@ -21,10 +21,12 @@ function Tracks(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
       <div className="page page-tracks page-with-subnav">
-        <MainContentBanner>Tracks</MainContentBanner>
+        <MainContentBanner
+          headline="Tracks"
+        />
         <TracksSubnav />
         <MainContentList
-          currentFilter={currentFilter}
+          currentFilter={currentFilter || 'all'}
           excludeFromAll="Sound Library"
           category="tracks"
           orderByOrder={true}
@@ -39,9 +41,10 @@ function Tracks(): ReactElement {
           boxMinMarginY={0}
           boxMarginRangeX={0}
           boxMarginRangeY={80}
+          noAll={false}
           boxRenderActionsOn="key-art"
-          randomizeTags={['featured']}
-          limitTags={['featured']}
+          // randomizeTags={['featured']}
+          // limitTags={['featured']}
         >
           {item => (
             <TracksBoxChild

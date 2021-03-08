@@ -50,7 +50,7 @@ function AdminList(): ReactElement {
   const dispatch = useDispatch()
 
   const [selectedItems, setSelectedItems] = useState<any>({})
-  const [interestingProperty, setInterestingProperty] = useState<keyof IContentItem>('tags')
+  const [interestingProperty, setInterestingProperty] = useState<keyof IContentItem>('category')
   const [collapsed, setCollapsed] = useState<boolean>(false)
   const [deploying, setDeploying] = useState<boolean>(false)
 
@@ -634,6 +634,23 @@ function AdminList(): ReactElement {
                     }}
                   >
                     { item.published ? 'Unpublish' : 'Publish'}
+                  </button>
+                  <button
+                    className="action-button"
+                    onClick={() => {
+                      const updatedItem: IContentItem = produce(item, (draftItem) => {
+                        if (draftItem.published) {
+                          draftItem.sticky = false
+                        }
+
+                        else {
+                          draftItem.sticky = true
+                        }
+                      })
+                      dispatch(requestUpdateItems([updatedItem]))
+                    }}
+                  >
+                    { item.sticky ? 'Unsticky' : 'Sticky'}
                   </button>
                 </td>
               </tr>
