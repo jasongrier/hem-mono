@@ -113,16 +113,21 @@ function DetailPopup({
         const attachedPlaylistItem = getContentItemById(allContentItems, contentItem.attachments)
 
         if (attachedPlaylistItem) {
-          attachedTracks = compact(getContentItemsFromRawList(allContentItems, attachedPlaylistItem.attachments).map(item =>
+          attachedTracks = compact(getContentItemsFromRawList(allContentItems, attachedPlaylistItem.attachments)
+          .filter(item => item.project === currentProject)
+          .map(item =>
             contentItemToTrack(item)
           ))
         }
       }
 
       else {
-        attachedTracks = compact(getContentItemsFromRawList(allContentItems, contentItem.attachments).map(item =>
-          contentItemToTrack(item)
-        ))
+        console.log(3)
+        attachedTracks = compact(getContentItemsFromRawList(allContentItems, contentItem.attachments)
+          .filter(item => item.project === currentProject)
+          .map(item =>
+            contentItemToTrack(item)
+          ))
       }
 
       const playlist = {
