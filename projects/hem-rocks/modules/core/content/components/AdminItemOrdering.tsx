@@ -48,7 +48,7 @@ function AdminItemOrdering({ }: IProps): ReactElement {
     if (!bucket) return
 
     // setCurrentFilter(PROJECT_CONFIGS[currentProject][bucket][0])
-    setCurrentFilter('in-overview-tracks')
+    setCurrentFilter('home-features')
   }, [currentProject])
 
   useEffect(function initContent() {
