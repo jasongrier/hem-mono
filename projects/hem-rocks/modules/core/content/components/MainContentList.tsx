@@ -306,11 +306,9 @@ function MainContentList({
 
     else if (excludeFromAll) {
       if (typeof excludeFromAll === 'string') {
-        console.log('1??', contentItems.length)
         contentItems = contentItems.filter(item => {
           return !hasTag(item, slugify(excludeFromAll))
         })
-        console.log('2??', contentItems.length)
       }
 
       else {

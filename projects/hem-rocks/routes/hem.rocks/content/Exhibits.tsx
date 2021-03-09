@@ -17,7 +17,7 @@ function Exhibits(): ReactElement {
       <div className="page page-exhibits">
         <ExhibitsSubnav />
         <MainContentList
-          currentFilter={currentFilter}
+          currentFilter={currentFilter || 'new'}
           category="exhibits"
         />
       </div>

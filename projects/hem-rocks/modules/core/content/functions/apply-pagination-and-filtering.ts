@@ -1,4 +1,4 @@
-import { isEmpty } from 'lodash'
+import { isEmpty, find } from 'lodash'
 import { IState, hasCategory, IContentItem } from '../index'
 
 function applyPaginationAndFiltering(state: IState) {
@@ -33,10 +33,9 @@ function applyPaginationAndFiltering(state: IState) {
     pageContentItems = pageContentItems.filter(item => isEmpty(item.keyArt))
   }
 
-  // if (!showUnpublishedFilter) {
-  //   console.log('??')
+  if (!showUnpublishedFilter) {
     pageContentItems = pageContentItems.filter(item => item.published)
-  // }
+  }
 
   if (stickyFilter) {
     pageContentItems = pageContentItems.filter(item => item.sticky)
@@ -46,8 +45,6 @@ function applyPaginationAndFiltering(state: IState) {
     item.project === state.currentProject
     || state.adminFilterApplied === 'settings'
   )
-
-  // pageContentItems = pageContentItems.filter(item => !item.blurb.length)
 
   pageContentItems.sort((a, b) => {
     return parseInt(a.order, 10) - parseInt(b.order, 10)
