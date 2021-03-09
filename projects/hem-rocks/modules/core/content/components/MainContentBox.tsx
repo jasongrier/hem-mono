@@ -169,7 +169,7 @@ function MainContentBox({
               <strong>{ badgeText || contentItem.badgeText }</strong>
             </div>
           )}
-          <Link to="#">
+          <Link to={linkTo}>
             { hasKeyArt(contentItem, index)
               && !isEmpty(contentItem.keyArtFullPath || contentItem.keyArt)
               && (

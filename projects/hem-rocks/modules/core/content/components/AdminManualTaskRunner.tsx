@@ -2,11 +2,11 @@ import React, { ReactElement, useEffect, useState, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import uuid from 'uuid/v1'
 import moment from 'moment'
-import { modelize, hasCategory, generateChunks, removeTag, addProperty, hasTag } from '../functions'
+import { modelize, hasCategory, generateChunks, removeTag, addProperty, hasTag, getContentItemById } from '../functions'
 import { IContentItem, requestReadItems, compressIndex, addTag } from '../index'
 import { RootState } from '../../../../index'
 import { slugify, titleCase } from 'voca'
-import { intersection, isEmpty } from 'lodash'
+import { filter, intersection, map, uniq } from 'lodash'
 
 async function createItemsFromFiles(allContentItems: IContentItem[]) {
   const { remote } = window.require('electron')
@@ -169,65 +169,22 @@ async function migrate(allContentItems: IContentItem[]) {
 
   const newItems: IContentItem[] = []
 
-  const moveTitles = [
-    'Hör\' ich das Liedchen klingen',
-    'Nymphaea Odorata',
-    'Office of the Dead',
-    'Easter Time',
-    'Klavierstuck',
-    'Sunset Palm Tree',
-    'Dragonsinger',
-    'Saint Eulelia was a Virgin',
-    'Not Gonna Get Us! (orig. Taty)',
-    'Eating the Stars Noise',
-    'Ground Bass Aria',
-    'Ground Bass Aria 2',
-    'Lento Mysterioso',
-    'Ocean Farm',
-    'Falling Out of Love with Greil Marcus',
-    'I\'m Not Insane (You\'re Insane)',
-    'Saint Eulalia',
-    'Bunny Rabbits',
-    'Neighbor Neighbor',
-    'WIllow Weep',
-    'Je Vivroie Liement',
-    'Don\'t Dream It\'s Over',
-    'Orchid',
-    'With Loue To Toune',
-    'Flowering Dogwood (Cornus Florida)',
-    'Roller Coaster',
-    'Man He Can',
-    'NCP Rehearsal',
-    'Live at Studio Acht',
-  ]
+  const ids: string[] = []
 
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
 
-    if (hasCategory(newItem, 'tracks')) {
-      newItem.tags = removeTag(newItem, 'new')
-
-      if (
-        newItem.attribution === 'Ry Rock'
-        || newItem.attribution === 'The Remarkable Thing About Swans'
-        || newItem.attribution === 'Gary Wilson'
-        || moveTitles.includes(newItem.title)
-      ) {
-        newItem.releasePhase = '2'
-      }
-
-      if (newItem.title = 'For Ariel Pink') {
-        newItem.published = false
-      }
-
-      if (newItem.title === 'New Tombstones') {
-
-      }
+    if (!ids.includes(newItem.id)) {
+      newItems.push(newItem)
+      ids.push(newItem.id)
     }
 
-    newItems.push(newItem)
+    else {
+      console.log(newItem.title)
+    }
   }
 
+  const backupDir = join(__dirname, '..', '..', '..', '..', 'static', 'content', 'backups')
   const srcIndex = join(__dirname, '..', '..', '..', '..', 'static', 'content', 'index.json')
   const distIndex = join(__dirname, '..', '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
 
@@ -235,9 +192,17 @@ async function migrate(allContentItems: IContentItem[]) {
   // ***** DANGER ZONE *****
   // ***** DANGER ZONE *****
 
-  // writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
-  // writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
-  // generateChunks(newItems)
+  const backupsCount = readdirSync(backupDir)
+    .filter((fileName: string) =>
+      extname(fileName) === '.json'
+    ).length
+
+  const backupIndex = join(__dirname, '..', '..', '..', '..', 'static', 'content', 'backups', backupsCount + '-index.json')
+  copyFileSync(srcIndex, backupIndex)
+
+  writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
+  writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
+  generateChunks(newItems)
 }
 
 function AdminManualTaskRunner(): ReactElement {
