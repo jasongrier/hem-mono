@@ -174,23 +174,39 @@ async function migrate(allContentItems: IContentItem[]) {
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
 
-    if (!ids.includes(newItem.id)) {
-      newItems.push(newItem)
-      ids.push(newItem.id)
-    }
-
-    else {
-      console.log(newItem.title)
-    }
+    newItems.push(newItem)
   }
 
-  const backupDir = join(__dirname, '..', '..', '..', '..', 'static', 'content', 'backups')
-  const srcIndex = join(__dirname, '..', '..', '..', '..', 'static', 'content', 'index.json')
-  const distIndex = join(__dirname, '..', '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
+  // ***** DANGER ZONE *****
+  // ***** DANGER ZONE *****
+  // ***** DANGER ZONE *****
 
-  // ***** DANGER ZONE *****
-  // ***** DANGER ZONE *****
-  // ***** DANGER ZONE *****
+  window.confirm('This can mess stuff up. Are you sure??')
+
+  doBackup()
+  writeFileSync(srcIndex(), JSON.stringify(compressIndex(newItems)))
+  writeFileSync(distIndex(), JSON.stringify(compressIndex(newItems)))
+  generateChunks(newItems)
+}
+
+function srcIndex() {
+  const { remote } = window.require('electron')
+  const { join } = remote.require('path')
+  return join(__dirname, '..', '..', '..', '..', 'static', 'content', 'index.json')
+}
+
+function distIndex() {
+  const { remote } = window.require('electron')
+  const { join } = remote.require('path')
+  return join(__dirname, '..', '..', '..', '..', '..', '..', 'dist', 'static', 'content', 'index.json')
+}
+
+function doBackup() {
+  const { remote } = window.require('electron')
+  const { existsSync, writeFileSync, readdirSync, readFileSync, renameSync, lstatSync, copyFileSync, constants: fsConstants, unlinkSync } = remote.require('fs')
+  const { join, extname } = remote.require('path')
+
+  const backupDir = join(__dirname, '..', '..', '..', '..', 'static', 'content', 'backups')
 
   const backupsCount = readdirSync(backupDir)
     .filter((fileName: string) =>
@@ -198,11 +214,10 @@ async function migrate(allContentItems: IContentItem[]) {
     ).length
 
   const backupIndex = join(__dirname, '..', '..', '..', '..', 'static', 'content', 'backups', backupsCount + '-index.json')
-  copyFileSync(srcIndex, backupIndex)
 
-  writeFileSync(srcIndex, JSON.stringify(compressIndex(newItems)))
-  writeFileSync(distIndex, JSON.stringify(compressIndex(newItems)))
-  generateChunks(newItems)
+  copyFileSync(srcIndex(), backupIndex)
+
+  alert('Done!')
 }
 
 function AdminManualTaskRunner(): ReactElement {
@@ -276,6 +291,14 @@ function AdminManualTaskRunner(): ReactElement {
               onClick={createOnClick}
             >
               Create from array
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              onClick={doBackup}
+            >
+              Make a backup
             </a>
           </li>
         </ul>

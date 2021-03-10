@@ -3,6 +3,8 @@ import React, { ReactElement, PropsWithChildren } from 'react'
 interface IProps {
   playing: boolean
   onClick: () => void
+
+  className?: string
   useFa?: boolean
 }
 
@@ -84,13 +86,14 @@ const styleSheet = `
   }
 `
 
-function PlayPauseButton({ playing, onClick, useFa = false }: IProps): ReactElement {
+function PlayPauseButton({ playing, onClick, className, useFa = false }: IProps): ReactElement {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: styleSheet }} />
       <div
         className={`
           hem-play-pause-button
+          ${ className }
           ${ playing ? 'hem-play-pause-button-playing' : '' }
           ${ useFa ? 'use-fa' : '' }
         `}

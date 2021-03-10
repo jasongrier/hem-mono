@@ -1,10 +1,10 @@
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { ReactElement, useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { pausePlayer } from '../../../../../../lib/modules/website-player'
 import { IContentItem, requestReadChunk, SiteText } from '../index'
 import { RootState } from '../../../../index'
 import { getContentItemsFromRawList } from '../functions'
-import { ChevronButton } from '../../../../../../lib/packages/hem-buttons'
+import { PlayPauseButton } from '../../../../../../lib/packages/hem-buttons'
 
 interface IProps {
   rootContentItem: IContentItem | null
@@ -19,6 +19,7 @@ function ExhibitionPopup({ rootContentItem }: IProps): ReactElement {
   const dispatch = useDispatch()
 
   const [frames, setFrames] = useState<IContentItem[]>([])
+  const [currentFrame, setCurrentFrame] = useState<number>(0)
 
   useEffect(function loadExhibitions() {
     if (chunkLog.includes('exhibits')) return
@@ -39,17 +40,37 @@ function ExhibitionPopup({ rootContentItem }: IProps): ReactElement {
     setFrames(getContentItemsFromRawList(allContentItems, rootContentItem.attachments))
   }, [allContentItems])
 
+  const prevFrame = useCallback(
+    function prevFrameFn() {
+      setCurrentFrame(currentFrame - 1)
+    }, [currentFrame],
+  )
+
+  const nextFrame = useCallback(
+    function prevFrameFn() {
+      setCurrentFrame(currentFrame + 1)
+    }, [currentFrame],
+  )
+
   if (!rootContentItem) return (<div />)
 
   return (
     <div className="exhibit-popup">
       <div className="exhibit-popup-navigation-arrows">
-        <ChevronButton
-          className="exhibit-popup-navigation-arrow-prev"
-        />
-        <ChevronButton
-          className="exhibit-popup-navigation-arrow-next"
-        />
+        {currentFrame > 0 && (
+          <PlayPauseButton
+            className="exhibit-popup-navigation-arrow-prev"
+            onClick={prevFrame}
+            playing={false}
+          />
+        )}
+        {currentFrame < frames.length - 1 && (
+          <PlayPauseButton
+            className="exhibit-popup-navigation-arrow-next"
+            onClick={nextFrame}
+            playing={false}
+          />
+        )}
       </div>
       <div
         className="exhibit-popup-frames"
@@ -57,8 +78,9 @@ function ExhibitionPopup({ rootContentItem }: IProps): ReactElement {
           position: 'absolute',
           top: '0',
           left: '50%',
-          marginLeft: '-550px',
+          marginLeft: (currentFrame * -1100) - 550  + 'px',
           width: (frames.length * 1100) + 'px',
+          transition: 'all 500ms',
         }}
       >
         {
