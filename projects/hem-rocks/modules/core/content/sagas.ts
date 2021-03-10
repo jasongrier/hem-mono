@@ -114,7 +114,7 @@ function* readChunk({ payload: chunkName }: any) {
   }
 
   catch (err) {
-    console.error(err)
+    console.error(chunkName)
   }
 }
 

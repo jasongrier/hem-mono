@@ -8,7 +8,7 @@ const bundler = new Bundler(
 )
 
 bundler.on('buildEnd', async () => {
-  execSync(`cp -rf ${join('.', 'projects', 'hem-rocks')} ${join('.', 'dist', 'static')}`)
+  execSync(`cp -rf ${join('.', 'projects', 'hem-rocks', 'static')} ${join('.', 'dist', 'static')}`)
   execSync(`cp ${join('.', 'projects', 'hem-rocks', '.htaccess')} ${join('.', 'dist', '.htaccess')}`)
 })
 
