@@ -412,6 +412,8 @@ function DetailPopup({
     return correctedPrice
   }
 
+  if (!currentProject) return <div />
+
   const flexPricingType = Cookies.get(getCookieName(SplitTests.FlexPricingType, currentProject))
 
   const buyNowText = category === 'venue-calendar'

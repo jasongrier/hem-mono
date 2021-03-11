@@ -1,0 +1,66 @@
+.exhibit-the-catalogue-as-a-work-of-art-exhibit {
+  font-size: 18px;
+  line-height: 32px;
+}
+
+.exhibit-the-catalogue-as-a-work-of-art-exhibit p {
+  width: 600px;
+  margin: 0 0 20px 0;
+  padding: 0;
+}
+
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-0 .exhibit-popup-frame-content {
+  box-shadow: inset 500px 0 49px 124px rgba(0, 0, 0, 0.8);
+}
+
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-1 .exhibit-popup-frame-content,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-2 .exhibit-popup-frame-content,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-3 .exhibit-popup-frame-content,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-4 .exhibit-popup-frame-content,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-5 .exhibit-popup-frame-content,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-6 .exhibit-popup-frame-content,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-7 .exhibit-popup-frame-content,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-8 .exhibit-popup-frame-content,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-9 .exhibit-popup-frame-content,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-10 .exhibit-popup-frame-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-0 h1 {
+  width: 800px;
+  margin: 0 0 30px 20px;
+  padding: 20px 0 0 0;
+  font-size: 100px;
+  line-height: 105px;
+  font-weight: 100;
+  text-transform: uppercase;
+  letter-spacing: -5px;
+}
+
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-0 p {
+  font-size: 24px;
+  line-height: 42px;
+  margin-left: 40px;
+}
+
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-1 p {
+  display: block;
+  width: 500px;
+  margin: 0;
+}
+
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-2 h2,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-3 h2 {
+  padding: 0;
+  margin: 0 0 30px 0;
+  font-size: 64px;
+  line-height: 64px;
+  text-transform: uppercase;
+}
+
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-2 p,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-3 p {
+  margin: 0 0 30px 0;
+}
