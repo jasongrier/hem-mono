@@ -42,6 +42,7 @@
     "moment": "^2.26.0",
     "mustache": "^4.1.0",
     "pad": "^3.2.0",
+    "projects": "^1.6.1",
     "qs": "^6.9.6",
     "react": "^16.12.0",
     "react-beautiful-dnd": "^13.0.0",

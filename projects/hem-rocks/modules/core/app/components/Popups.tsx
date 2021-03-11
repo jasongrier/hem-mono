@@ -79,7 +79,7 @@ function Popups(): ReactElement {
       </PopupContainer>
 
       <PopupContainer
-        // closeIcon={CloseButton}
+        closeIcon={CloseButton}
         id="exhibit-popup"
       >
         <ExhibitPopup rootContentItem={currentContentItem} />
