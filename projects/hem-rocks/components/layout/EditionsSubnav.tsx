@@ -7,7 +7,7 @@ function EditionsSubnav(): ReactElement {
     <>
       <MainContentBanner
         headline="Editions"
-        subHeadline="HEM Editions is a digital sound art gallery based on non-fungible tokens"
+        // subHeadline="HEM Editions is a digital sound art gallery based on non-fungible tokens"
       />
       <nav className="main-content-subnav">
         <ul>

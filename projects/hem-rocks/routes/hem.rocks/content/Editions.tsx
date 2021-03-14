@@ -17,8 +17,9 @@ function Editions(): ReactElement {
       <div className="page page-editions page-editions-digital">
         <EditionsSubnav />
         <MainContentList
-          currentFilter={currentFilter}
+          currentFilter={currentFilter || 'all'}
           category="editions"
+          noAll={false}
         />
       </div>
     </>

@@ -40,8 +40,6 @@ function TracksOverview(): ReactElement {
     { title: 'Playlists', tracks: getRow(allPlaylists, 'in-overview-playlists')},
   ]
 
-  console.log(getRow(allTracks, 'in-overview-playlists'))
-
   return (
     <>
       <Helmet>
@@ -50,7 +48,7 @@ function TracksOverview(): ReactElement {
       </Helmet>
       <div className="page page-tracks page-tracks-overview page-with-subnav page-with-banner">
         <MainContentBanner
-          headline="Tracks for March 2021"
+          headline="Tracks for<br>April 2021"
         />
         <TracksSubnav />
         <div className="overview-page">

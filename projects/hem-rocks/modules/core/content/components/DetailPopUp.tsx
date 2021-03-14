@@ -12,7 +12,7 @@ import ReactGA from 'react-ga'
 import { closePopup, openPopup } from '../../../../../../lib/modules/popups'
 import { TrackPlayPauseButton, ITrack, replacePlaylist, setPlayerPlaylist, IPlaylist } from '../../../../../../lib/modules/website-player'
 import { addProductToCart, submitSale } from '../../cart'
-import { getCookieName, SplitTests } from '../../app'
+import { getCookieName, SplitTests, getReleasePhase } from '../../app'
 import { IContentItem, getContentItemsFromRawList, getContentItemById, getProperties, ImageGallery, SiteText } from '../index'
 import { assetHostHostname } from '../../../../functions'
 import ContentComponents from '../../../../components/content'
@@ -99,6 +99,10 @@ function DetailPopup({
     setSaleId(uuid())
 
     setTimeout(() => {
+      if (!currentProject) return
+
+      const releasePhase = getReleasePhase(currentProject)
+
       let attachedTracks: ITrack[] = []
 
       if (hasCategory(contentItem, 'tracks')) {
@@ -114,7 +118,11 @@ function DetailPopup({
 
         if (attachedPlaylistItem) {
           attachedTracks = compact(getContentItemsFromRawList(allContentItems, attachedPlaylistItem.attachments)
-          .filter(item => item.project === currentProject)
+          .filter(item =>
+            item.project === currentProject
+            && item.published
+            && parseInt(item.releasePhase, 10) <= releasePhase
+          )
           .map(item =>
             contentItemToTrack(item)
           ))
@@ -122,7 +130,6 @@ function DetailPopup({
       }
 
       else {
-        console.log(3)
         attachedTracks = compact(getContentItemsFromRawList(allContentItems, contentItem.attachments)
           .filter(item => item.project === currentProject)
           .map(item =>
@@ -139,7 +146,7 @@ function DetailPopup({
       dispatch(setPlayerPlaylist(5))
       setAttachedPlaylist(playlist)
     })
-  }, [contentItem.slug, chunkLog])
+  }, [contentItem.slug, chunkLog, currentProject])
 
   const suggestedPriceOnChange = useCallback(
     function suggestedPriceOnChangeFn(evt: SyntheticEvent<HTMLInputElement>) {
@@ -660,7 +667,7 @@ function DetailPopup({
                       <TrackPlayPauseButton track={track} />
                       <span className="detail-popup-details-playlist-text">
                         { track.title }
-                        { hasTag(contentItem, 'has-multiple-artists') ? ' — ' + track.attribution : '' }
+                        { hasProperty(contentItem, 'has-multiple-artists') ? ' — ' + track.attribution : '' }
                       </span>
                     </li>
                   ))}

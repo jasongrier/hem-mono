@@ -14,8 +14,6 @@ function Artists(): ReactElement {
     allContentItems: state.content.contentItems,
   }))
 
-  const { filter: currentFilter }: any = useParams()
-
   return (
     <>
       <Helmet>
@@ -24,7 +22,7 @@ function Artists(): ReactElement {
       </Helmet>
       <div className="page page-tracks page-with-subnav">
         <MainContentBanner
-          headline="Tracks by Artist"
+          headline="Tracks by<br>Artist"
         />
         <TracksSubnav />
         <MainContentList

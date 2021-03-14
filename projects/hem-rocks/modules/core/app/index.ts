@@ -73,7 +73,7 @@ export {
   RoutingHub,
 } from './components'
 
-export { getCookieBaseName, getCookieName } from './functions'
+export { getCookieBaseName, getCookieName, getReleasePhase } from './functions'
 
 export { reducer as appReducer } from './reducer'
 

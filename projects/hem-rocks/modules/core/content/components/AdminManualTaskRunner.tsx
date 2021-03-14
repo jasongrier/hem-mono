@@ -169,10 +169,15 @@ async function migrate(allContentItems: IContentItem[]) {
 
   const newItems: IContentItem[] = []
 
-  const ids: string[] = []
-
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
+
+    if (
+      hasCategory(newItem, 'tracks')
+      && newItem.project === 'jag.rip'
+    ) {
+      newItem.id = newItem.id + '-2'
+    }
 
     newItems.push(newItem)
   }

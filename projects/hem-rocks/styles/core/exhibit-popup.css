@@ -54,23 +54,25 @@
   margin-left: -550px;
   width: var(--exhibit-frame-width);
   height: 100px;
+  pointer-events: none;
 }
 
 .exhibit-popup-navigation-arrow-prev,
 .exhibit-popup-navigation-arrow-next {
   position: absolute !important;
-  top: 0;
-  height: var(--exhibit-frame-height) !important;
-  background-color: red;
+  top: 60px;
+  height: calc(var(--exhibit-frame-height) - 60px) !important;
+  pointer-events: all;
 }
 
 .exhibit-popup-navigation-arrow-prev {
   left: 0;
-  transform: rotate(180deg);
+  transform: translateY(-33px) rotate(180deg);
 }
 
 .exhibit-popup-navigation-arrow-next {
   right: 0;
+  transform: translateY(-33px);
 }
 
 .exhibit-popup-frame {
@@ -86,5 +88,8 @@
   height: var(--exhibit-frame-height);
   margin: 0 auto;
   background-size: cover;
-  background-color: green;
+}
+
+.exhibit-popup-frame-content a {
+  color: inherit;
 }

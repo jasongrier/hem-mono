@@ -7,7 +7,7 @@ function SoundLibrarySubnav(): ReactElement {
     <>
       <MainContentBanner
         headline="SL2"
-        subHeadline="HEM Sound Library is a critical resource for experimental sound practices"
+        // subHeadline="HEM Sound Library is a critical resource for experimental sound practices"
       />
       <nav className="main-content-subnav">
         <ul>

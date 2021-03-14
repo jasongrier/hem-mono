@@ -9,7 +9,7 @@ import { ElectronOnly } from '../../../../../../lib/components'
 import { IContentItem, hasTag, orderSortFnFact, requestReadItems, fieldIsSerialized, requestUpdateItems, parseSerializedOrderFieldValue, updateSerializedOrderFieldValue } from '../index'
 import { RootState } from '../../../../index'
 import { PROJECT_CONFIGS as UNTYPED_PROJECT_CONFIGS } from '../../../../config'
-import { hasProperty } from '../functions'
+import { hasCategory, hasProperty } from '../functions'
 
 const PROJECT_CONFIGS = UNTYPED_PROJECT_CONFIGS as any
 
@@ -25,7 +25,7 @@ function AdminItemOrdering({ }: IProps): ReactElement {
 
   const [finalItems, setFinalItems] = useState<IContentItem[]>([])
   const [canSave, setCanSave] = useState<boolean>(false)
-  const [currentFilterType, setCurrentFilterType] = useState<string>('property')
+  const [currentFilterType, setCurrentFilterType] = useState<string>('tag')
   const [currentFilter, setCurrentFilter] = useState<string>()
 
   useEffect(function init() {
@@ -66,8 +66,15 @@ function AdminItemOrdering({ }: IProps): ReactElement {
       filterFn = hasProperty
     }
 
+    // sortSet = sortSet.filter(item => (
+    //   filterFn(item, currentFilter)
+    //   && item.project === currentProject
+    //   && item.published
+    // ))
+
     sortSet = sortSet.filter(item => (
-      filterFn(item, currentFilter)
+      hasTag(item, 'live')
+      && hasCategory(item, 'tracks')
       && item.project === currentProject
       && item.published
     ))

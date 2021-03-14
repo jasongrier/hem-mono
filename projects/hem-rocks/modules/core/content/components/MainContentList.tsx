@@ -7,13 +7,13 @@ import { slugify, titleCase } from 'voca'
 import { filter, isEmpty, find, isNaN, intersection } from 'lodash'
 import ReactGA from 'react-ga'
 import { uniq, flatten, compact, shuffle } from 'lodash'
-import { parse } from 'qs'
 import { CloseButton } from '../../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup } from '../../../../../../lib/modules/popups'
 import { replacePlaylist, setPlayerPlaylist, ITrack } from '../../../../../../lib/modules/website-player'
 import { MainContentBox } from './index'
 import { IContentItem, setCurrentItems } from '../index'
 import { RootState } from '../../../../index'
+import { getReleasePhase } from '../../app'
 import { LISTS_HAVE_BLURBS, PROJECT_CONFIGS as UNTYPED_PROJECT_CONFIGS } from '../../../../config'
 import { hasTag, hasCategory, contentItemToTrack, orderSortFnFact, getTagsInCollection, getContentItemsFromRawList, smartSlugify, tagSpellingCorrections, getContentItemById, modelize, getTags } from '../functions'
 import { requestReadChunk } from '../actions'
@@ -206,8 +206,13 @@ function MainContentList({
 
       if (!contentItems) return
       if (!contentItems.length) return
+      if (!currentProject) return
 
-      let filters: string[] = getTagsInCollection(contentItems).map(t => titleCase(t).replace(/-/g, ' '))
+      const releasePhase = getReleasePhase(currentProject)
+
+      let filters: string[] = getTagsInCollection(
+        contentItems.filter(i => parseInt(i.releasePhase, 10) <= releasePhase)
+      ).map(t => titleCase(t).replace(/-/g, ' '))
 
       if (hideFilters) {
         filters = filters.filter(f => !hideFilters.includes(f))
@@ -255,7 +260,7 @@ function MainContentList({
     else {
       setFinalFilters(['All'].concat(compact(semifinalFilters)))
     }
-  }, [storeContentItems, fixedFilters, noAll])
+  }, [storeContentItems, fixedFilters, noAll, currentProject])
 
   useEffect(function itemsAndPlaylist() {
     if (!currentProject) return
@@ -358,10 +363,7 @@ function MainContentList({
       contentItems = stickyContentItems.concat(contentItems)
     }
 
-    const params = parse(location.search)
-    const releasePhase = params['?releasePhase']
-      ? parseInt(params['?releasePhase'] as string, 10)
-      : PROJECT_CONFIGS[currentProject].RELEASE_PHASE
+    const releasePhase = getReleasePhase(currentProject)
 
     if (releasePhase > 0) {
       contentItems = contentItems.filter(item => {

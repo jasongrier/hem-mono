@@ -9,7 +9,7 @@ import { ElectronOnly, Spinner } from '../../../../../../lib/components'
 import { PlayPauseButton } from '../../../../../../lib/packages/hem-buttons'
 import { selectableCategories, adminApplyFilter, adminApplySearch, getTagsInCollection, getContentItemBySlug, setAdminSearchableField, toggleNeedsKeyArtFilter, requestReadItems, requestUpdateItems, IContentItem, categories, projects } from '../index'
 import { RootState } from '../../../../index'
-import { hasCategory, hasTag, modelize } from '../functions'
+import { addTag, hasCategory, hasTag, modelize } from '../functions'
 import { assetHostHostname } from '../../../../functions'
 import { toggleShowUnpublishedFilter, toggleStickyFilter, setCurrentPage, requestCreateItems } from '../actions'
 import { PROJECT_CONFIGS as UNTYPED_PROJECT_CONFIGS } from '../../../../config'
@@ -152,16 +152,16 @@ function AdminList(): ReactElement {
           execSync(`cp -rf ${join('.', 'projects', 'hem-rocks', 'static')} ${join('.', 'deploy', 'static')}`)
           execSync(`cp ${join('.', 'projects', 'hem-rocks', '.htaccess')} ${join('.', 'deploy', '.htaccess')}`)
 
-          const browser = await puppeteer.launch()
-          const page = await browser.newPage()
+          // const browser = await puppeteer.launch()
+          // const page = await browser.newPage()
 
-          await page.goto('http://localhost:1234', { waitUntil: 'networkidle0' })
+          // await page.goto('http://localhost:1234', { waitUntil: 'networkidle0' })
 
-          const html = await page.content()
+          // const html = await page.content()
 
-          writeFileSync(join('.', 'deploy', 'index.html'), html)
+          // writeFileSync(join('.', 'deploy', 'index.html'), html)
 
-          browser.close()
+          // browser.close()
 
           setDeploying(false)
         })
@@ -317,7 +317,7 @@ function AdminList(): ReactElement {
             >
               <option value="id">Id:</option>
               <option value="tags">Tag:</option>
-              <option value="property">Property:</option>
+              <option value="properties">Props:</option>
               <option value="title">Title:</option>
               <option value="audioFilename">Audio:</option>
               <option value="attribution">Attr:</option>
@@ -588,18 +588,23 @@ function AdminList(): ReactElement {
                     className="action-button"
                     onClick={() => {
                       const updatedItem: IContentItem = produce(item, (draftItem) => {
-                        if (draftItem.releasePhase === '2') {
-                          draftItem.releasePhase = '2'
-                        }
-
-                        else {
-                          draftItem.releasePhase = '1'
-                        }
+                        draftItem.tags = addTag(draftItem, 'new')
                       })
                       dispatch(requestUpdateItems([updatedItem]))
                     }}
                   >
-                    { item.releasePhase === '2' ? 'RP2' : 'RP1'}
+                    { hasTag(item, 'new') ? '√ New' : 'New'}
+                  </button>
+                  <button
+                    className="action-button"
+                    onClick={() => {
+                      const updatedItem: IContentItem = produce(item, (draftItem) => {
+                        draftItem.releasePhase = '1'
+                      })
+                      dispatch(requestUpdateItems([updatedItem]))
+                    }}
+                  >
+                    { item.releasePhase === '1' ? '√ RP1' : 'RP1'}
                   </button>
                   <button
                     className="action-button"

@@ -26,7 +26,7 @@ function Tracks(): ReactElement {
         />
         <TracksSubnav />
         <MainContentList
-          currentFilter={currentFilter || 'all'}
+          currentFilter={currentFilter || 'featured'}
           excludeFromAll="Sound Library"
           category="tracks"
           orderByOrder={true}
@@ -41,7 +41,6 @@ function Tracks(): ReactElement {
           boxMinMarginY={0}
           boxMarginRangeX={0}
           boxMarginRangeY={80}
-          noAll={false}
           boxRenderActionsOn="key-art"
           // randomizeTags={['featured']}
           // limitTags={['featured']}

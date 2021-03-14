@@ -177,11 +177,11 @@ function MainContentBox({
                   className="main-content-box-key-art"
                   onClick={onClick}
                 >
-                  <input
+                  {/* <input
                     type="text"
                     id={contentItem.id}
                     value={contentItem.title}
-                  />
+                  /> */}
                   { renderActionsOn === 'key-art' && (
                     <MainContentBoxActions buttonText={buttonText}>
                       { children }

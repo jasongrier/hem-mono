@@ -1,8 +1,8 @@
-import { isEmpty, find } from 'lodash'
+import { isEmpty } from 'lodash'
 import { IState, hasCategory, IContentItem } from '../index'
 
 function applyPaginationAndFiltering(state: IState) {
-  const { adminFilterApplied, page, adminSearchApplied, contentItems, adminSearchableField, adminSearchExact, needsKeyArtFilter, showUnpublishedFilter, stickyFilter } = state
+  const { adminFilterApplied, page, adminSearchApplied, adminSearchableField, adminSearchExact, needsKeyArtFilter, showUnpublishedFilter, stickyFilter } = state
 
   let pageContentItems = ([] as IContentItem[]).concat(
     (

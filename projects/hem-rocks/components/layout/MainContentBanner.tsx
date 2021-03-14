@@ -10,10 +10,10 @@ function MainContentBanner({ headline, subHeadline, children }: PropsWithChildre
   return (
     <div className="main-content-subnav-banner">
       { headline && (
-        <h1>{ headline }</h1>
+        <h1 dangerouslySetInnerHTML={{__html: headline}} />
       )}
       { subHeadline && (
-        <h2>{ subHeadline }</h2>
+        <h2 dangerouslySetInnerHTML={{__html: subHeadline}} />
       )}
       { children }
       <img src={`${assetHostHostname()}/hem.rocks/site/banners/sky-2.gif`} alt=""/>

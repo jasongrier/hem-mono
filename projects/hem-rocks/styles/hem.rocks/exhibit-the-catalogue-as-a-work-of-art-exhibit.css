@@ -13,6 +13,15 @@
   box-shadow: inset 500px 0 49px 124px rgba(0, 0, 0, 0.8);
 }
 
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-2 .exhibit-popup-frame-content,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-7 .exhibit-popup-frame-content,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-8 .exhibit-popup-frame-content,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-9 .exhibit-popup-frame-content,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-10 .exhibit-popup-frame-content,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-11 .exhibit-popup-frame-content {
+  box-shadow: inset 1000px 0 49px 124px rgba(0, 0, 0, 0.8);
+}
+
 .exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-1 .exhibit-popup-frame-content,
 .exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-2 .exhibit-popup-frame-content,
 .exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-3 .exhibit-popup-frame-content,
@@ -22,7 +31,9 @@
 .exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-7 .exhibit-popup-frame-content,
 .exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-8 .exhibit-popup-frame-content,
 .exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-9 .exhibit-popup-frame-content,
-.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-10 .exhibit-popup-frame-content {
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-10 .exhibit-popup-frame-content,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-11 .exhibit-popup-frame-content,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-12 .exhibit-popup-frame-content {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,7 +63,17 @@
 }
 
 .exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-2 h2,
-.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-3 h2 {
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-3 h2,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-4 h2,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-5 h2,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-6 h2,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-7 h2,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-8 h2,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-9 h2,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-10 h2,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-11 h2,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-12 h2,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-13 h2 {
   padding: 0;
   margin: 0 0 30px 0;
   font-size: 64px;
@@ -60,7 +81,21 @@
   text-transform: uppercase;
 }
 
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-6 h2 {
+  margin-bottom: 0;
+}
+
 .exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-2 p,
-.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-3 p {
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-3 p,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-4 p,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-5 p,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-6 p,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-7 p,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-8 p,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-9 p,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-10 p,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-11 p,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-12 p,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-13 p {
   margin: 0 0 30px 0;
 }
