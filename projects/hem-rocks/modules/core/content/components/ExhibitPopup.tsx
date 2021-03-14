@@ -21,7 +21,7 @@ function ExhibitionPopup({ rootContentItem }: IProps): ReactElement {
   const dispatch = useDispatch()
 
   const [frames, setFrames] = useState<IContentItem[]>([])
-  const [currentFrame, setCurrentFrame] = useState<number>(9)
+  const [currentFrame, setCurrentFrame] = useState<number>(0)
 
   useEffect(function loadExhibitions() {
     if (chunkLog.includes('exhibits')) return
