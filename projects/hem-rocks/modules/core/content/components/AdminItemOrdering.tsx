@@ -25,7 +25,7 @@ function AdminItemOrdering({ }: IProps): ReactElement {
 
   const [finalItems, setFinalItems] = useState<IContentItem[]>([])
   const [canSave, setCanSave] = useState<boolean>(false)
-  const [currentFilterType, setCurrentFilterType] = useState<string>('tag')
+  const [currentFilterType, setCurrentFilterType] = useState<string>('property')
   const [currentFilter, setCurrentFilter] = useState<string>()
 
   useEffect(function init() {
@@ -48,7 +48,7 @@ function AdminItemOrdering({ }: IProps): ReactElement {
     if (!bucket) return
 
     // setCurrentFilter(PROJECT_CONFIGS[currentProject][bucket][0])
-    setCurrentFilter('home-features')
+    setCurrentFilter('in-overview-tracks')
   }, [currentProject])
 
   useEffect(function initContent() {
@@ -66,15 +66,8 @@ function AdminItemOrdering({ }: IProps): ReactElement {
       filterFn = hasProperty
     }
 
-    // sortSet = sortSet.filter(item => (
-    //   filterFn(item, currentFilter)
-    //   && item.project === currentProject
-    //   && item.published
-    // ))
-
     sortSet = sortSet.filter(item => (
-      hasTag(item, 'live')
-      && hasCategory(item, 'tracks')
+      filterFn(item, currentFilter)
       && item.project === currentProject
       && item.published
     ))

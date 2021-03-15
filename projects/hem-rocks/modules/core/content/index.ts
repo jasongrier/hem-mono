@@ -141,7 +141,6 @@ export const categories = [
   'editions',
   'editions-physical',
   'exhibits',
-  'exhibit-frames',
   'faqs',
   'general-content',
   'heroines',

@@ -1,11 +1,12 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { isEmpty } from 'lodash'
+import { isEmpty, reduce } from 'lodash'
 import Mustache from 'mustache'
 import marked from 'marked'
 import { assetHostHostname } from '../../../../../hem-rocks/functions'
 import { getContentItemById, IContentItem, requestReadChunk } from '../'
 import { RootState } from '../../../../index'
+import { hasCategory } from '../functions'
 
 interface IComponents {
   contactForm?: () => ReactElement
@@ -19,15 +20,19 @@ interface IProps {
   textItemField?: keyof IContentItem
 }
 
-function buildPayload() {
+function buildPayload(siteTexts: IContentItem[]) {
   return {
-    assetHost: assetHostHostname()
+    siteTexts: reduce(siteTexts, (acc: any, item) => {
+      acc[item.slug] = Mustache.render(item.description, { assetHost: assetHostHostname() })
+      return acc
+    }, {}),
+    assetHost: assetHostHostname(),
   }
 }
 
-function buildBlockContent(block: string) {
+function buildBlockContent(block: string, siteTexts: IContentItem[]) {
   const blockContent = marked(
-    Mustache.render(block, buildPayload()),
+    Mustache.render(block, buildPayload(siteTexts)),
   )
 
   if (blockContent[0] !== '<') {
@@ -45,8 +50,9 @@ function SiteText({
   render,
   textItemField = 'description',
 }: IProps): ReactElement {
-  const { chunkLog, contentItem } = useSelector((state: RootState) => ({
+  const { chunkLog, contentItem, siteTexts } = useSelector((state: RootState) => ({
     chunkLog: state.content.chunkLog,
+    siteTexts: state.content.contentItems.filter(i => hasCategory(i, 'site-texts')),
     contentItem: getContentItemById(state.content.contentItems, textItemId),
   }))
 
@@ -94,7 +100,7 @@ function SiteText({
             <div
               className="site-text-text-block"
               dangerouslySetInnerHTML={{
-                __html: buildBlockContent(block),
+                __html: buildBlockContent(block, siteTexts),
               }}
               key={i}
             />

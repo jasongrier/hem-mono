@@ -33,7 +33,8 @@
 .exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-9 .exhibit-popup-frame-content,
 .exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-10 .exhibit-popup-frame-content,
 .exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-11 .exhibit-popup-frame-content,
-.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-12 .exhibit-popup-frame-content {
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-12 .exhibit-popup-frame-content,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-13 .exhibit-popup-frame-content {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,7 +57,7 @@
   margin-left: 40px;
 }
 
-.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-1 p {
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-1 i {
   display: block;
   width: 500px;
   margin: 0;
@@ -73,7 +74,8 @@
 .exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-10 h2,
 .exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-11 h2,
 .exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-12 h2,
-.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-13 h2 {
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-13 h2,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-14 h2 {
   padding: 0;
   margin: 0 0 30px 0;
   font-size: 64px;
@@ -96,6 +98,7 @@
 .exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-10 p,
 .exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-11 p,
 .exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-12 p,
-.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-13 p {
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-13 p,
+.exhibit-the-catalogue-as-a-work-of-art-exhibit .exhibit-popup-frame-14 p {
   margin: 0 0 30px 0;
 }

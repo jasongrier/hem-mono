@@ -119,10 +119,7 @@ function App(): ReactElement {
           : ''
       }
     `}>
-      <ScrollToTop
-        previouslyOpenPopup={!!!previouslyOpenPopup}
-        scrollPaneSelector=".scroll-lock-container"
-      />
+      <ScrollToTop />
 
       <Suspense fallback={<Spinner />}>
         <div className="scroll-lock-container">

@@ -1,6 +1,7 @@
 import React, { useEffect, ReactElement, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useHistory } from 'react-router-dom'
+import Scrollbars from 'react-scrollbars-custom'
 import { CloseButton } from '../../../../../../lib/packages/hem-buttons'
 import { PopupContainer, closePopup, openPopup } from '../../../../../../lib/modules/popups'
 import { usePrevious } from '../../../../../../lib/hooks'
@@ -107,28 +108,32 @@ function Popups(): ReactElement {
       >
         <div className="program-popup">
           <h2>Program 2021</h2>
-          <div className="program-popup-row">
-            <h3>February</h3>
-            <p><strong>Tracks:</strong>Line Gøttsche, Julia Holter &amp; Michael Pisaro, Sara Galaxia, Kevin Drumm</p>
-            <p><strong>Articles:</strong>Vito Acconci, India Cooke</p>
-            <p><strong>Editions:</strong>Unbekannte petri dish edition</p>
-            <p><strong>Sound Library:</strong>Updates: Destroyed Piano, Studio #Fails, Noise Reduction Artefacts, and more</p>
-          </div>
-          <div className="program-popup-row">
-            <h3>March</h3>
-            <p><strong>Tracks:</strong>Lucrecia Dalt, Jason Urick, Hanne Lippard, Janet Kim</p>
-            <p><strong>Articles:</strong>Jason Grier, Emily Hochmann</p>
-            <p><strong>Editions:</strong>Omonia handmade casette</p>
-            <p><strong>Mixes:</strong>Julia Holter, Line Gøttsche</p>
-            <p><strong>Sound Library:</strong>Grand Piano</p>
-          </div>
-          <div className="program-popup-row">
-            <h3>April</h3>
-            <p><strong>Tracks:</strong>UCC Harlow, Nite Jewel, Jason Grier, Scott Cazan, Charles Gaines</p>
-            <p><strong>Articles:</strong>Hito Steyrl, Kathi Hofer, Charles Gaines</p>
-            <p><strong>Apps:</strong>Seurat, Breto</p>
-            <p><strong>Sound Library:</strong> Viola</p>
-          </div>
+          <Scrollbars
+            createContext={true}
+            noScroll={true}
+            noScrollX={true}
+          >
+            <div className="program-popup-row">
+              <h3>April</h3>
+              <p>
+                <strong>Tracks: </strong>Line Gøttsche, Julia Holter &amp; Michael Pisaro, Lucrecia Dalt, Jeepneys, Sara Galaxia<br />
+                <strong>Articles: </strong>Vito Acconci, India Cooke<br />
+                <strong>Editions: </strong>Julia Holter, SL1 NFT's<br />
+                <strong>Exhibits: </strong>The Catalogue as a Work of Art<br />
+                <strong>Sound Library: </strong>Updates: Destroyed Piano, Studio #Fails, Noise Reduction Artefacts, and more<br />
+              </p>
+            </div>
+            <div className="program-popup-row">
+              <h3>May</h3>
+              <p>
+                <strong>Tracks: </strong>Jason Urick, Hanne Lippard, Kevin Drumm, UCC Harlo<br />
+                <strong>Articles: </strong>Gary Schultz, Anna Luisa Petrisko, Annie Gårlid<br />
+                <strong>Mixes: </strong>Julia Holter, Line Gøttsche<br />
+                <strong>Exhibits: </strong>Album-oriented Sound Art<br />
+                <strong>Sound Library: </strong>Viola, E-bow Piano, Grand Piano<br />
+              </p>
+            </div>
+          </Scrollbars>
         </div>
       </PopupContainer>
     </div>

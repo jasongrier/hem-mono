@@ -33,6 +33,10 @@
   width: 300px;
 }
 
+.main-content-box-actions {
+  width: auto;
+}
+
 .app-is-home .main-content-box:first-child .main-content-box-badge,
 .app-is-home .main-content-box:nth-child(2) .main-content-box-badge,
 .app-is-home .main-content-box-badge {

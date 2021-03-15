@@ -641,10 +641,10 @@ function DetailPopup({
               }}
             />
           )}
-          { hasTag(contentItem, 'component-content') && (
+          { hasProperty(contentItem, 'component-content') && (
             React.createElement(ContentComponents[contentItem.description])
           )}
-          { !hasTag(contentItem, 'component-content') && (
+          { !hasProperty(contentItem, 'component-content') && (
             <SiteText
               textItemId={contentItem.id}
               render={{ imageGallery: (galleryId: string) => (

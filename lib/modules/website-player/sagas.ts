@@ -75,9 +75,6 @@ function* playTrack({ payload: track }: any) {
   }, 10000)
 
   const player = getPlayerInstance()
-
-  console.log(track.resource)
-
   player.src = track.resource
   player.play()
 }

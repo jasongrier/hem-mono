@@ -1,8 +1,8 @@
 .main-footer {
-  width: 100vw;
-  margin: 0 auto;
+  width: var(--content-width-desk);
   font-size: 14px;
   line-height: 32px;
+  margin: 0 auto;
 }
 
 .main-footer a {

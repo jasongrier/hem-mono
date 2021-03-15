@@ -7,14 +7,16 @@ import { RootState } from '../../../../index'
 import { getContentItemsFromRawList } from '../functions'
 import { PlayPauseButton } from '../../../../../../lib/packages/hem-buttons'
 import { assetHostHostname } from '../../../../functions'
+import { isEmpty } from 'lodash'
 
 interface IProps {
   rootContentItem: IContentItem | null
 }
 
 function ExhibitionPopup({ rootContentItem }: IProps): ReactElement {
-  const { allContentItems, chunkLog } = useSelector((state: RootState) => ({
+  const { allContentItems, currentProject, chunkLog } = useSelector((state: RootState) => ({
     allContentItems: state.content.contentItems,
+    currentProject: state.content.currentProject,
     chunkLog: state.content.chunkLog,
   }))
 
@@ -33,6 +35,20 @@ function ExhibitionPopup({ rootContentItem }: IProps): ReactElement {
     dispatch(requestReadChunk('site-texts'))
   }, [chunkLog])
 
+  useEffect(function playSoundtrack() {
+    const exhibitSoundtrack = document.getElementById('exhibit-soundtrack') as HTMLAudioElement
+
+    if (!exhibitSoundtrack) return
+    if (!currentProject) return
+    if (!frames.length) return
+
+    if (!isEmpty(frames[currentFrame].audioFilename)) {
+      exhibitSoundtrack.pause()
+      exhibitSoundtrack.src = assetHostHostname() + '/' + currentProject + '/content/tracks/' + frames[currentFrame].audioFilename
+      exhibitSoundtrack.play()
+    }
+  }, [currentFrame, frames, currentProject])
+
   useEffect(function init() {
     if (!rootContentItem) return
     if (!allContentItems) return
@@ -45,7 +61,7 @@ function ExhibitionPopup({ rootContentItem }: IProps): ReactElement {
   const prevFrame = useCallback(
     function prevFrameFn() {
       setCurrentFrame(currentFrame - 1)
-    }, [currentFrame],
+    }, [currentFrame, frames],
   )
 
   const nextFrame = useCallback(
@@ -69,7 +85,7 @@ function ExhibitionPopup({ rootContentItem }: IProps): ReactElement {
             playing={false}
           />
         )}
-        {currentFrame < 12 && (
+        {currentFrame < frames.length && (
           <PlayPauseButton
             className="exhibit-popup-navigation-arrow-next"
             onClick={nextFrame}
@@ -88,7 +104,7 @@ function ExhibitionPopup({ rootContentItem }: IProps): ReactElement {
           transition: 'all 250ms',
         }}
       >
-        <div className={`
+        {/* <div className={`
           exhibit-popup-frame
           exhibit-popup-frame-${0}
         `}>
@@ -117,8 +133,8 @@ function ExhibitionPopup({ rootContentItem }: IProps): ReactElement {
               </div>
             </div>
           </Scrollbars>
-        </div>
-        <div className={`
+        </div> */}
+        {/* <div className={`
           exhibit-popup-frame
           exhibit-popup-frame-${1}
         `}>
@@ -145,8 +161,8 @@ function ExhibitionPopup({ rootContentItem }: IProps): ReactElement {
               </div>
             </div>
           </Scrollbars>
-        </div>
-        <div className={`
+        </div> */}
+        {/* <div className={`
           exhibit-popup-frame
           exhibit-popup-frame-${2}
         `}>
@@ -175,8 +191,8 @@ function ExhibitionPopup({ rootContentItem }: IProps): ReactElement {
               </div>
             </div>
           </Scrollbars>
-        </div>
-        <div className={`
+        </div> */}
+        {/* <div className={`
           exhibit-popup-frame
           exhibit-popup-frame-${3}
         `}>
@@ -201,8 +217,8 @@ function ExhibitionPopup({ rootContentItem }: IProps): ReactElement {
               </div>
             </div>
           </Scrollbars>
-        </div>
-        <div className={`
+        </div> */}
+        {/* <div className={`
           exhibit-popup-frame
           exhibit-popup-frame-${4}
         `}>
@@ -220,13 +236,13 @@ function ExhibitionPopup({ rootContentItem }: IProps): ReactElement {
                   <h2>Catalogue dreams</h2>
                 </div>
                 <div className="site-text-text-block site-text-text-component-block">
-                  <p>To dream is to both reveal and coerce the real. To catalogue for catalogue's sake —to catalogue with specific the desire to both unveil and encapsulate a _corpus_— is a particular kind of dream-work. It is a world shaped by a feverish dream with delusional constancy; one with total influence on itself and throughout itself; both introverted and imperial; engendering and defiant. For this reason it dazzles.</p>
+                  <p>To dream is to both reveal and coerce the real. To catalogue for catalogue's sake —to catalogue with specific the desire to both unveil and encapsulate a <i>corpus</i>— is a particular kind of dream-work. It is a world shaped by a feverish dream with delusional constancy; one with total influence on itself and throughout itself; both introverted and imperial; engendering and defiant. For this reason it dazzles.</p>
                 </div>
               </div>
             </div>
           </Scrollbars>
-        </div>
-        <div className={`
+        </div> */}
+        {/* <div className={`
           exhibit-popup-frame
           exhibit-popup-frame-${5}
         `}>
@@ -245,7 +261,7 @@ function ExhibitionPopup({ rootContentItem }: IProps): ReactElement {
                 </div>
                 <div className="site-text-text-block site-text-text-component-block">
                   <p>
-                    It can be said that catalogue-works break down into two distinct types: Type I, in which a catalogue is a conceptual framing which contains other objects (including other works of art), and Type II, in which a work of art performs cataloguing within or _as_ itself.
+                    It can be said that catalogue-works break down into two distinct types: Type I, in which a catalogue is a conceptual framing which contains other objects (including other works of art), and Type II, in which a work of art performs cataloguing within or <i>as</i> itself.
                   </p>
                 </div>
                 <div className="site-text-text-block site-text-text-component-block">
@@ -259,8 +275,8 @@ function ExhibitionPopup({ rootContentItem }: IProps): ReactElement {
               </div>
             </div>
           </Scrollbars>
-        </div>
-        <div className={`
+        </div> */}
+        {/* <div className={`
           exhibit-popup-frame
           exhibit-popup-frame-${6}
         `}>
@@ -280,8 +296,8 @@ function ExhibitionPopup({ rootContentItem }: IProps): ReactElement {
               </div>
             </div>
           </Scrollbars>
-        </div>
-        <div className={`
+        </div> */}
+        {/* <div className={`
           exhibit-popup-frame
           exhibit-popup-frame-${7}
         `}>
@@ -307,8 +323,8 @@ function ExhibitionPopup({ rootContentItem }: IProps): ReactElement {
               </div>
             </div>
           </Scrollbars>
-        </div>
-        <div className={`
+        </div> */}
+        {/* <div className={`
           exhibit-popup-frame
           exhibit-popup-frame-${8}
         `}>
@@ -332,8 +348,8 @@ function ExhibitionPopup({ rootContentItem }: IProps): ReactElement {
               </div>
             </div>
           </Scrollbars>
-        </div>
-        <div className={`
+        </div> */}
+        {/* <div className={`
           exhibit-popup-frame
           exhibit-popup-frame-${9}
         `}>
@@ -361,8 +377,8 @@ function ExhibitionPopup({ rootContentItem }: IProps): ReactElement {
               </div>
             </div>
           </Scrollbars>
-        </div>
-        <div className={`
+        </div> */}
+        {/* <div className={`
           exhibit-popup-frame
           exhibit-popup-frame-${10}
         `}>
@@ -389,16 +405,16 @@ function ExhibitionPopup({ rootContentItem }: IProps): ReactElement {
                     Sound objects are deployed like patches on a quilt, within sound packs that, themselves are miniature catalogues of their own. And like a quilt, SL is a compendium of materials: Curated scraps of edited-out mistakes, a grizzled old piano with rusted strings, cosy at-home sessions on the rug, musty secondhand store vinyl, and the audio waste discarded by noise-reduction algorithms.
                   </p>
                 </div>
-                {/* <div className="site-text-text-block">
+                <div className="site-text-text-block">
                   <p>
                     Like Nexus Destiny, HEM SL also flirts with utilitarianism; promoted commercially via Ableton, and with a number of musicians already using the sounds in their own compositions. It even includes a "Demonstration Disc" which, itself, doubles as a proper album release.
                   </p>
-                </div> */}
+                </div>
               </div>
             </div>
           </Scrollbars>
-        </div>
-        <div className={`
+        </div> */}
+        {/* <div className={`
           exhibit-popup-frame
           exhibit-popup-frame-${11}
         `}>
@@ -424,8 +440,8 @@ function ExhibitionPopup({ rootContentItem }: IProps): ReactElement {
               </div>
             </div>
           </Scrollbars>
-        </div>
-        <div className={`
+        </div> */}
+        {/* <div className={`
           exhibit-popup-frame
           exhibit-popup-frame-${12}
         `}>
@@ -472,32 +488,73 @@ function ExhibitionPopup({ rootContentItem }: IProps): ReactElement {
               </div>
             </div>
           </Scrollbars>
-        </div>
-        {/* {
-          frames.map((frame, i) => (
-            <div className={`
-              exhibit-popup-frame
-              exhibit-popup-frame-${i}
-            `}>
-              <Scrollbars
-                createContext={true}
-                noScroll={i === 1}
-                noScrollX={true}
-              >
-                <div
-                  className="exhibit-popup-frame-content"
-                  style={
-                    i === 0
-                      ? { backgroundImage: `url(${assetHostHostname()}/${rootContentItem.project}/content/images/key-art/${rootContentItem.keyArt})`}
-                      : { backgroundImage: `url(${assetHostHostname()}/${rootContentItem.project}/content/images/key-art/${frame.keyArt})`}
-                >
-                  <SiteText textItemId={frame.id} />
+        </div> */}
+        {/* <div className={`
+          exhibit-popup-frame
+          exhibit-popup-frame-${13}
+        `}>
+          <Scrollbars
+            createContext={true}
+            noScroll={true}
+            noScrollX={true}
+          >
+            <div
+              className="exhibit-popup-frame-content"
+              // style={{ backgroundImage: `url(${assetHostHostname()}/${rootContentItem.project}/content/images/key-art/${rootContentItem.keyArt})`}}
+            >
+              <div className="site-text-container">
+                <div className="site-text-text-block site-text-text-component-block">
+                  <h2>Soundtrack</h2>
+                  <ul>
+                    <li>
+                      Frames 1—7: "Piano Solo" by Jason Grier
+                    </li>
+                    <li>
+                      Frame 8: "Black Christ of the Andes (St. Martin de Porres)" by Mary Lou Williams
+                    </li>
+                    <li>
+                      Frame 9: "Agnes Martin" by Harold Budd
+                    </li>
+                    <li>
+                      Frame 10: "Shakahach Grime" by Utility
+                    </li>
+                    <li>
+                      Frame 11: "4" by Jason Grier
+                    </li>
+                    <li>
+                      Frame 12: "August Harp" by James Tenney
+                    </li>
+                  </ul>
                 </div>
-              </Scrollbars>
+              </div>
             </div>
-          ))
-        } */}
+          </Scrollbars>
+        </div> */}
+        { frames.map((frame, i) => (
+          <div className={`
+            exhibit-popup-frame
+            exhibit-popup-frame-${i}
+          `}>
+            <Scrollbars
+              createContext={true}
+              noScroll={i === 1}
+              noScrollX={true}
+            >
+              <div
+                className="exhibit-popup-frame-content"
+                style={
+                  i === 0
+                    ? { backgroundImage: `url(${assetHostHostname()}/${rootContentItem.project}/content/images/key-art/${rootContentItem.keyArt})`}
+                    : { backgroundImage: `url(${assetHostHostname()}/${rootContentItem.project}/content/images/key-art/${frame.keyArt})`}
+                }>
+                <SiteText textItemId={frame.id} />
+              </div>
+            </Scrollbars>
+          </div>
+        ))}
       </div>
+
+      <audio id="exhibit-soundtrack" />
     </div>
   )
 }

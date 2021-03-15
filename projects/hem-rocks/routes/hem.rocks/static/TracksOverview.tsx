@@ -9,7 +9,11 @@ import { hasCategory, requestReadChunk, IContentItem, hasProperty } from '../../
 import { RootState } from '../../../index'
 
 function getRow(items: IContentItem[], property: string) {
-  return items.filter(i => hasProperty(i, property) && i.published)
+  return items.filter(i =>
+    hasProperty(i, property)
+    && i.published
+    && i.project === 'hem.rocks'
+  )
     .slice(0, 5)
     .sort((a, b) =>
       parseInt(a.order, 10) - parseInt(b.order, 10)

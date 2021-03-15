@@ -63,7 +63,7 @@ function PopupContainer({
       setLocked(true)
 
       $('.scroll-lock-container').css({
-        overflow: 'hidden',
+        overflowY: 'hidden',
       })
 
       $('.scroll-lock-content').css({
@@ -77,7 +77,7 @@ function PopupContainer({
       setLocked(false)
 
       $('.scroll-lock-container').css({
-        overflow: 'scroll',
+        overflowY: 'scroll',
       })
 
       $('.scroll-lock-content').css({

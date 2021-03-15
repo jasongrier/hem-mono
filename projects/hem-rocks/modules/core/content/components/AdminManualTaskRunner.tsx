@@ -172,11 +172,8 @@ async function migrate(allContentItems: IContentItem[]) {
   for (const oldItem of allContentItems) {
     const newItem = Object.assign({}, oldItem)
 
-    if (
-      hasCategory(newItem, 'tracks')
-      && newItem.project === 'jag.rip'
-    ) {
-      newItem.id = newItem.id + '-2'
+    if (newItem.title.includes('The Catalogue As A Work Of Art Frame')) {
+      console.log(newItem.id)
     }
 
     newItems.push(newItem)
@@ -186,12 +183,12 @@ async function migrate(allContentItems: IContentItem[]) {
   // ***** DANGER ZONE *****
   // ***** DANGER ZONE *****
 
-  window.confirm('This can mess stuff up. Are you sure??')
+  // window.confirm('This can mess stuff up. Are you sure??')
 
-  doBackup()
-  writeFileSync(srcIndex(), JSON.stringify(compressIndex(newItems)))
-  writeFileSync(distIndex(), JSON.stringify(compressIndex(newItems)))
-  generateChunks(newItems)
+  // doBackup()
+  // writeFileSync(srcIndex(), JSON.stringify(compressIndex(newItems)))
+  // writeFileSync(distIndex(), JSON.stringify(compressIndex(newItems)))
+  // generateChunks(newItems)
 }
 
 function srcIndex() {

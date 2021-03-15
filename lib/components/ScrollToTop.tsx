@@ -1,22 +1,22 @@
 import React, { ReactElement, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import $ from 'jquery'
+import { usePrevious } from '../hooks'
 
-interface IProps {
-  previouslyOpenPopup: boolean
-  scrollPaneSelector: string
-}
-
-function ScrollToTop({ previouslyOpenPopup, scrollPaneSelector }: IProps): ReactElement {
+function ScrollToTop(): ReactElement {
   const { pathname } = useLocation()
-  const pathnameSplit = pathname.split('/')
-  const isDetailPopup = pathnameSplit[2] === 'detail'
+
+  const previousPathname = usePrevious(pathname)
 
   useEffect(() => {
-    if (!isDetailPopup) {
-      $(scrollPaneSelector).scrollTop(0)
-    }
-  }, [pathname, previouslyOpenPopup])
+    if (pathname === previousPathname) return
+    if (pathname?.includes('/detail/')) return
+    if (pathname?.includes('/exhibit/')) return
+    if (previousPathname?.includes('/detail/')) return
+    if (previousPathname?.includes('/exhibit/')) return
+
+    $('.scroll-lock-container').scrollTop(0)
+  }, [pathname, previousPathname])
 
   return <span />
 }

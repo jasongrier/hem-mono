@@ -1,3 +1,8 @@
 .main-content-filters h3 {
   display: none;
 }
+
+.detail-popup-for-item-whats-new-in-sl2 img {
+  width: 620px;
+  height: auto;
+}
