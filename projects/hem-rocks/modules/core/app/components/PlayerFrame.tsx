@@ -85,7 +85,7 @@ function PlayerFrame({}: PropsWithChildren<IProps>): ReactElement {
 
     dispatch(setPlayerPlaylistExpanded(false))
     dispatch(setPlayerExpanded(false))
-    dispatch(replacePlaylist(5, { name: 'On this page', tracks: [] }))
+    dispatch(replacePlaylist(pagePlaylistIndex, { name: 'On this page', tracks: [] }))
     dispatch(setPlayerPlaylist(0))
   }, [pathname])
 

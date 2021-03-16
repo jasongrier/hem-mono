@@ -94,8 +94,8 @@ function TracksOverview(): ReactElement {
         ))
       )
 
-    dispatch(replacePlaylist(5, { name: 'On this page', tracks: pagePlaylistTracks, linkTo: '#' }))
-    dispatch(setPlayerPlaylist(5))
+    dispatch(replacePlaylist(pagePlaylistIndex, { name: 'On this page', tracks: pagePlaylistTracks, linkTo: '#' }))
+    dispatch(setPlayerPlaylist(pagePlaylistIndex))
     setPagePlaylistSet(true)
   }, [chunkLog, allTracksItems, allPlaylistsItems, pagePlaylistSet, playerPlaylists, rows, currentProject])
 

@@ -424,8 +424,8 @@ function MainContentList({
       if (PROJECT_CONFIGS[currentProject].HAS_PLAYER) {
         if (shouldSetCurrentPlaylist && tracks.length) {
           const pagePlaylistIndex = findIndex(playlists, { name: 'On this page' })
-          dispatch(replacePlaylist(5, { name: 'On this page', tracks }))
-          dispatch(setPlayerPlaylist(5))
+          dispatch(replacePlaylist(pagePlaylistIndex, { name: 'On this page', tracks }))
+          dispatch(setPlayerPlaylist(pagePlaylistIndex))
         }
       }
     })

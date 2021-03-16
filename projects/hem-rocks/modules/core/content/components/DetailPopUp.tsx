@@ -48,6 +48,7 @@ function DetailPopup({
     currentTrackId,
     playing,
     pricingMode,
+    playlists,
   } = useSelector((state: RootState) => ({
     allContentItems: state.content.contentItems,
     cartProducts: state.cart.products,
@@ -56,6 +57,7 @@ function DetailPopup({
     currentProject: state.content.currentProject,
     currentTrackId: state.player.currentTrack?.id,
     playing: state.player.playing,
+    playlists: state.player.playlists,
     pricingMode: state.app.pricingMode,
   }))
 
@@ -142,8 +144,10 @@ function DetailPopup({
         tracks: attachedTracks,
       }
 
-      dispatch(replacePlaylist(5, playlist))
-      dispatch(setPlayerPlaylist(5))
+      const pagePlaylistIndex = findIndex(playlists, { name: 'On this page' })
+
+      dispatch(replacePlaylist(pagePlaylistIndex, playlist))
+      dispatch(setPlayerPlaylist(pagePlaylistIndex))
       setAttachedPlaylist(playlist)
     })
   }, [contentItem.slug, chunkLog, currentProject])
