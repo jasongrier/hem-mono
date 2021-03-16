@@ -26,7 +26,7 @@ function Playlist({ onCollapse }: IProps): ReactElement {
   return (
     <div className="hem-player-playlist">
       <div className="hem-player-playlist-tabs">
-        { playlists.filter(playlist => playlist.tracks.length > 0).map(tabPlaylist => (
+        { playlists.map(tabPlaylist => (
           <div
             className={`
               hem-player-playlist-tab
@@ -179,6 +179,9 @@ function Playlist({ onCollapse }: IProps): ReactElement {
             </Scrollbars>
           </ul>
         </>
+      )}
+      { currentPlaylist && currentPlaylist.tracks.length === 0 && (
+        <div className="hem-player-playlist-tab-empty">No tracks here!</div>
       )}
     </div>
   )

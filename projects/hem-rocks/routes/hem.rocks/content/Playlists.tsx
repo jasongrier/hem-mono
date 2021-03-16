@@ -2,16 +2,17 @@ import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
 import { Link, useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { map, flatten, isEmpty, uniq, compact, findIndex } from 'lodash'
+import { map, flatten, find, uniq, compact, findIndex } from 'lodash'
 import { MainContentList, contentItemToTrack, hasCategory, hasTag, getContentItemsFromRawList, getContentItemsFromList, IContentItem } from '../../../modules/core/content'
-import { TrackPlayPauseButton, replacePlaylist, setPlayerPlaylist } from '../../../../../lib/modules/website-player'
+import { TrackPlayPauseButton, replacePlaylist, addPlaylist, setPlayerPlaylist } from '../../../../../lib/modules/website-player'
 import { TracksSubnav, MainContentBanner } from '../../../components/layout'
 import { BASE_SITE_TITLE } from '../../../config'
 import { RootState } from '../../../index'
 
 function Playlists(): ReactElement {
-  const { allContentItems } = useSelector((state: RootState) => ({
+  const { allContentItems, playlists } = useSelector((state: RootState) => ({
     allContentItems: state.content.contentItems,
+    playlists: state.player.playlists,
   }))
 
   const dispatch = useDispatch()
@@ -55,8 +56,9 @@ function Playlists(): ReactElement {
 
             return (
               <div onClick={() => {
-                dispatch(replacePlaylist(6, { name: 'Selected Playlist', tracks: attachedTracks }))
-                dispatch(setPlayerPlaylist(6))
+                const selectedPlaylistIndex = findIndex(playlists, { name: 'Selected Playlist' })
+                dispatch(replacePlaylist(selectedPlaylistIndex, { name: 'Selected Playlist', tracks: attachedTracks }))
+                dispatch(setPlayerPlaylist(selectedPlaylistIndex))
               }}>
                 <TrackPlayPauseButton
                   activeFor={attachedTracks}

@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback, PropsWithChildren } from 'react'
+import React, { ReactElement, useCallback, PropsWithChildren, SyntheticEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { PlayPauseButton as BasePlayPauseButton } from '../../../packages/hem-buttons'
 import { ITrack, pausePlayer, playTrack, unpausePlayer } from '../index'
@@ -22,7 +22,9 @@ function TrackPlayPauseButton({ track, activeFor = [], onClick, className }: Pro
   const dispatch = useDispatch()
 
   const playPauseButtonOnClick = useCallback(
-    function playPauseButtonOnClickFn() {
+    function playPauseButtonOnClickFn(evt) {
+      evt.stopPropagation()
+
       onClick && onClick(playerPlaying)
 
       if (track.id !== currentTrackId) {

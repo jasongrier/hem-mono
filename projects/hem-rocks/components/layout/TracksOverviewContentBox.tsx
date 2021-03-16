@@ -3,14 +3,14 @@ import { IContentItem, MainContentBox } from '../../modules/core/content'
 import { TracksBoxChild } from './'
 
 interface IProps {
-  allContentItems: IContentItem[]
+  allTracksItems: IContentItem[]
   contentItem: IContentItem
   filter: string
   index: number
   tag: string
 }
 
-function TracksOverviewContentBox({ allContentItems, contentItem, filter, index, tag }: IProps): ReactElement {
+function TracksOverviewContentBox({ allTracksItems, contentItem, filter, index, tag }: IProps): ReactElement {
   return (
     <MainContentBox
       width={90}
@@ -27,7 +27,7 @@ function TracksOverviewContentBox({ allContentItems, contentItem, filter, index,
       linkTo={contentItem => `tracks-overview/detail/${contentItem.slug}`}
     >
       <TracksBoxChild
-        allContentItems={allContentItems}
+        allTracksItems={allTracksItems}
         item={contentItem}
       />
     </MainContentBox>

@@ -26,7 +26,7 @@ function whichPlayButton(currentTrackId: string | null, playing: boolean, playli
     )
   }
 
-  else if (trigger && playlist && playlist.tracks[0]) {
+  else if (trigger && playlist && playlist.tracks && playlist.tracks[0]) {
     return (
       <TrackPlayPauseButton track={playlist.tracks[0]} />
     )

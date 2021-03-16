@@ -68,7 +68,7 @@
 
 .detail-popup-actions {
   position: absolute;
-  bottom: 50px;
+  bottom: 20px;
   right: 60px;
   width: 390px;
   padding-bottom: 40px;
@@ -96,7 +96,7 @@
 
 .detail-popup header .suggested-price-label {
   display: inline-block;
-  margin: 20px 0 5px 0;
+  margin: 30px 0 5px 0;
   padding: 0 10px;
   font-size: 14px !important;
   transform: translateY(-15px);
@@ -191,7 +191,7 @@
 }
 
 .detail-popup-buttons {
-  margin-top: 5px;
+  margin-top: -10px;
 }
 
 .detail-popup-buttons button {
@@ -377,7 +377,7 @@
 
 .detail-popup-details-sidebar {
   position: absolute;
-  top: -10px;
+  top: 0;
   right: 20px;
   z-index: 99999;
   width: 390px;
@@ -553,4 +553,8 @@
 
 .detail-popup-sibling-selector-next {
   right: 10px;
+}
+
+.detail-popup-form.flex-pricing-type-buttons form {
+  transform: translateY(-10px);
 }

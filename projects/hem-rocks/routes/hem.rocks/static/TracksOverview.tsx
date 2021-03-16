@@ -1,14 +1,21 @@
-import React, { ReactElement, useEffect } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
-import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { flatten, find, findIndex } from 'lodash'
 import { BASE_SITE_TITLE } from '../../../config'
 import { TracksSubnav } from '../../../components/layout'
 import { TracksOverviewContentBox, MainContentBanner } from '../../../components/layout'
-import { hasCategory, requestReadChunk, IContentItem, hasProperty } from '../../../modules/core/content'
+import { hasCategory, requestReadChunk, IContentItem, hasProperty, getContentItemsFromRawList, contentItemToTrack, getContentItemsFromList } from '../../../modules/core/content'
 import { RootState } from '../../../index'
+import { replacePlaylist, setPlayerPlaylist } from '../../../../../lib/modules/website-player'
 
-function getRow(items: IContentItem[], property: string) {
+interface IRow {
+  title: string
+  items: IContentItem[]
+}
+
+function getRowItems(items: IContentItem[], property: string) {
   return items.filter(i =>
     hasProperty(i, property)
     && i.published
@@ -21,13 +28,18 @@ function getRow(items: IContentItem[], property: string) {
 }
 
 function TracksOverview(): ReactElement {
-  const { chunkLog, allTracks, allPlaylists } = useSelector((state: RootState) => ({
+  const { currentProject, chunkLog, allTracksItems, allPlaylistsItems, playerPlaylists } = useSelector((state: RootState) => ({
+    playerPlaylists: state.player.playlists,
     chunkLog: state.content.chunkLog,
-    allTracks: state.content.contentItems.filter(i => hasCategory(i, 'tracks')),
-    allPlaylists: state.content.contentItems.filter(i => hasCategory(i, 'playlists')),
+    currentProject: state.content.currentProject,
+    allTracksItems: state.content.contentItems.filter(i => hasCategory(i, 'tracks')),
+    allPlaylistsItems: state.content.contentItems.filter(i => hasCategory(i, 'playlists')),
   }))
 
   const dispatch = useDispatch()
+
+  const [rows, setRows] = useState<IRow[]>([])
+  const [pagePlaylistSet, setPagePlaylistSet] = useState<boolean>(false)
 
   useEffect(function getChunks() {
     if (!chunkLog.includes('tracks')) {
@@ -39,10 +51,53 @@ function TracksOverview(): ReactElement {
     }
   }, [chunkLog])
 
-  const rows = [
-    { title: 'Tracks', tracks: getRow(allTracks, 'in-overview-tracks')},
-    { title: 'Playlists', tracks: getRow(allPlaylists, 'in-overview-playlists')},
-  ]
+  useEffect(function loadRows() {
+    if (!chunkLog.includes('tracks')) return
+    if (!chunkLog.includes('playlists')) return
+    if (!allTracksItems.length) return
+    if (!allPlaylistsItems.length) return
+
+    if (rows.length > 0) return
+
+    setRows([
+      { title: 'Tracks', items: getRowItems(allTracksItems, 'in-overview-tracks')},
+      { title: 'Playlists', items: getRowItems(allPlaylistsItems, 'in-overview-playlists')},
+    ])
+  }, [chunkLog, allTracksItems, allPlaylistsItems, rows])
+
+  useEffect(function loadPagePlaylistRows() {
+    if (!chunkLog.includes('tracks')) return
+    if (!chunkLog.includes('playlists')) return
+    if (!allTracksItems.length) return
+    if (!allPlaylistsItems.length) return
+    if (!currentProject) return
+    if (!rows.length) return
+    if (pagePlaylistSet) return
+
+    const tracksRow = find(rows, { title: 'Tracks' })
+    const playlistsRow = find(rows, { title: 'Playlists' })
+
+    if (!tracksRow) return
+    if (!playlistsRow) return
+
+    const pagePlaylistIndex = findIndex(playerPlaylists, { name: 'On this page' })
+
+    if (pagePlaylistIndex < 0) return
+
+    const pagePlaylistTracks = tracksRow.items
+      .map(i => contentItemToTrack(i))
+      .concat(
+        flatten(playlistsRow.items.map(
+          p =>
+            getContentItemsFromRawList(allTracksItems, p.attachments)
+              .map(i => contentItemToTrack(i))
+        ))
+      )
+
+    dispatch(replacePlaylist(5, { name: 'On this page', tracks: pagePlaylistTracks, linkTo: '#' }))
+    dispatch(setPlayerPlaylist(5))
+    setPagePlaylistSet(true)
+  }, [chunkLog, allTracksItems, allPlaylistsItems, pagePlaylistSet, playerPlaylists, rows, currentProject])
 
   return (
     <>
@@ -56,18 +111,18 @@ function TracksOverview(): ReactElement {
         />
         <TracksSubnav />
         <div className="overview-page">
-          { rows.map(({ title, tracks }) => (
+          { rows.map(({ title, items }) => (
             <div
               className="overview-page-row"
               key={title}
             >
               <h2>{ title }</h2>
               <div className="overview-page-row-items">
-                { tracks.map((track, i) =>
+                { items.map((item, i) =>
                   <TracksOverviewContentBox
-                    key={track.id}
-                    allContentItems={allTracks}
-                    contentItem={track}
+                    key={item.id}
+                    allTracksItems={allTracksItems}
+                    contentItem={item}
                     filter="all"
                     index={i}
                     tag="in-overview-tracks"

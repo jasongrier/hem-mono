@@ -47,9 +47,10 @@ const reducer = (
   switch (type) {
     case ADD_PLAYLIST: {
       return produce(state, draftState => {
+        console.log('***', payload.name)
         draftState.playlists.push({
           id: uuid(),
-          ...payload.playlist
+          ...payload,
         })
       })
     }
@@ -58,7 +59,7 @@ const reducer = (
       return produce(state, draftState => {
         draftState.playlists[payload.number] = {
           id: uuid(),
-          ...payload.playlist
+          ...payload.playlist,
         }
       })
     }

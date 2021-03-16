@@ -1,8 +1,8 @@
-import React, { ReactElement, PropsWithChildren } from 'react'
+import React, { ReactElement, PropsWithChildren, SyntheticEvent } from 'react'
 
 interface IProps {
   playing: boolean
-  onClick: () => void
+  onClick: (evt: SyntheticEvent<HTMLDivElement>) => void
 
   className?: string
   useFa?: boolean

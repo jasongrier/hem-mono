@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import produce from 'immer'
 import uuid from 'uuid'
-import { isEmpty, isEqual, startCase, find } from 'lodash'
+import { isEmpty, isEqual, startCase, map } from 'lodash'
 import { slugify, titleCase } from 'voca'
 import { ElectronOnly, ZoomTextarea } from '../../../../../../lib/components'
 import { assetHostHostname } from '../../../../functions'
-import { selectableCategories, IContentItem, fieldTypes, modelize, requestCreateItems, requestDeleteItems, requestUpdateItems, hasCategory, categories } from '../index'
+import { selectableCategories, IContentItem, getContentItemsFromList, fieldTypes, modelize, requestCreateItems, requestDeleteItems, requestUpdateItems, hasCategory, categories } from '../index'
 import { RootState } from '../../../../index'
 
 interface IProps {
@@ -170,6 +170,8 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
 
   const assetHost = assetHostHostname()
 
+  if (!currentProject) return <div />
+
   return (
     <ElectronOnly showMessage={true}>
       <form onSubmit={onSubmit}>
@@ -263,21 +265,9 @@ function AdminItem({ create, itemSlug }: IProps): ReactElement {
                           <label>Track Titles</label>
                         </td>
                         <td>
-                          <pre>
-                            { workingItem.attachments.split('\n').map(
-                              id => {
-                                const item = find(allContentItems, { id })
-
-                                if (item) {
-                                  return item.title
-                                }
-
-                                else if (!isEmpty(id)) {
-                                  return 'NOT FOUND'
-                                }
-                              }
-                            ).join('\n')}
-                          </pre>
+                        <pre>
+                          { map(getContentItemsFromList(allContentItems, workingItem.slug, currentProject), 'title').join('\n') }
+                        </pre>
                         </td>
                       </tr>
                     )}

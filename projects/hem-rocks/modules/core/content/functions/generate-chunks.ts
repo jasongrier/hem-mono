@@ -55,7 +55,7 @@ function generateChunks(allContentItems: IContentItem[]) {
           ? this.contentItems.concat(flatten((curatedPlaylists as any).map(({ name, slug: givenSlug }: any) => {
               const slug = givenSlug ? givenSlug : slugify(name)
               const listItem = getContentItemBySlug(allContentItems, slug)
-              const attachments = getContentItemsFromList(allContentItems, slug)
+              const attachments = getContentItemsFromList(allContentItems, slug, currentProject)
 
               return [listItem].concat(attachments)
             })))

@@ -5,10 +5,10 @@ import { IContentItem, hasCategory, contentItemToTrack, getContentItemsFromRawLi
 
 interface IProps {
   item: IContentItem
-  allContentItems: IContentItem[]
+  allTracksItems: IContentItem[]
 }
 
-function TracksBoxChild({ item, allContentItems }: IProps): ReactElement {
+function TracksBoxChild({ item, allTracksItems }: IProps): ReactElement {
   if (hasCategory(item, 'tracks')) {
     const track = contentItemToTrack(item)
 
@@ -28,7 +28,7 @@ function TracksBoxChild({ item, allContentItems }: IProps): ReactElement {
   }
 
   else if (hasCategory(item, 'playlists')) {
-    const attachedTracks = getContentItemsFromRawList(allContentItems, item.attachments).map(track =>
+    const attachedTracks = getContentItemsFromRawList(allTracksItems, item.attachments).map(track =>
       contentItemToTrack(track)
     )
 

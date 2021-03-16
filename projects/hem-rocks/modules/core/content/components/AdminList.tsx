@@ -7,7 +7,7 @@ import { isEmpty, noop, find, filter, map } from 'lodash'
 import { slugify, titleCase } from 'voca'
 import { ElectronOnly, Spinner } from '../../../../../../lib/components'
 import { PlayPauseButton } from '../../../../../../lib/packages/hem-buttons'
-import { selectableCategories, adminApplyFilter, adminApplySearch, getTagsInCollection, getContentItemBySlug, setAdminSearchableField, toggleNeedsKeyArtFilter, requestReadItems, requestUpdateItems, IContentItem, categories, projects } from '../index'
+import { selectableCategories, getContentItemsFromList, adminApplyFilter, adminApplySearch, getTagsInCollection, getContentItemBySlug, setAdminSearchableField, toggleNeedsKeyArtFilter, requestReadItems, requestUpdateItems, IContentItem, categories, projects } from '../index'
 import { RootState } from '../../../../index'
 import { addTag, hasCategory, hasTag, modelize } from '../functions'
 import { assetHostHostname } from '../../../../functions'
@@ -544,20 +544,14 @@ function AdminList(): ReactElement {
                     })()}
                   </div>
                   { hasCategory(item, 'playlists') && (
-                    <pre>
-                      { item.attachments.split('\n').map(
-                        id => {
-                          const item = find(allContentItems, { id })
-                          if (item) {
-                            return item.title
-                          }
-
-                          else if (!isEmpty(id)) {
-                            return 'NOT FOUND'
-                          }
-                        }
-                      ).join('\n')}
-                    </pre>
+                    <>
+                      { item.attachments.indexOf('Filter: ') === 0 && (
+                        <strong>{ item.attachments }</strong>
+                      )}
+                      <pre>
+                        { map(getContentItemsFromList(allContentItems, item.slug, currentProject), 'title').join('\n') }
+                      </pre>
+                    </>
                   )}
                   {(hasTag(item, 'albums') || hasTag(item, 'discs')) && item.attachments.split("\n").map(id => (
                     <div key={uuid()}>

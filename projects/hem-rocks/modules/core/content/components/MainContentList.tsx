@@ -6,10 +6,10 @@ import Scrollbars from 'react-scrollbars-custom'
 import { slugify, titleCase } from 'voca'
 import { filter, isEmpty, find, isNaN, intersection } from 'lodash'
 import ReactGA from 'react-ga'
-import { uniq, flatten, compact, shuffle } from 'lodash'
+import { map, findIndex, compact, shuffle } from 'lodash'
 import { CloseButton } from '../../../../../../lib/packages/hem-buttons'
 import { PopupContainer, openPopup } from '../../../../../../lib/modules/popups'
-import { replacePlaylist, setPlayerPlaylist, ITrack } from '../../../../../../lib/modules/website-player'
+import { replacePlaylist, setPlayerPlaylist, addPlaylist, ITrack } from '../../../../../../lib/modules/website-player'
 import { MainContentBox } from './index'
 import { IContentItem, setCurrentItems } from '../index'
 import { RootState } from '../../../../index'
@@ -74,7 +74,6 @@ interface IProps {
   prependTagLinks?: Array<{ title: string, url: string }>
   randomizeNonSticky?: boolean
   randomizeTags?: string[]
-  setDefaultEmptyPlaylist?: boolean
   shouldSetCurrentPlaylist?: boolean
   showCategoryOnContentBoxes?: boolean
   speciallyOrderedTags?: string[]
@@ -133,7 +132,6 @@ function MainContentList({
   prependTagLinks = [],
   randomizeNonSticky,
   randomizeTags,
-  setDefaultEmptyPlaylist = true,
   shouldSetCurrentPlaylist = true,
   showCategoryOnContentBoxes = false,
   speciallyOrderedTags,
@@ -425,16 +423,9 @@ function MainContentList({
 
       if (PROJECT_CONFIGS[currentProject].HAS_PLAYER) {
         if (shouldSetCurrentPlaylist && tracks.length) {
+          const pagePlaylistIndex = findIndex(playlists, { name: 'On this page' })
           dispatch(replacePlaylist(5, { name: 'On this page', tracks }))
-
-          if (!find(playlists, { name: 'Selected Playlist' })) {
-            dispatch(setPlayerPlaylist(playlistToSet))
-          }
-        }
-
-        else if (setDefaultEmptyPlaylist) {
-          dispatch(replacePlaylist(5, { name: 'EMPTY', tracks: [] }))
-          dispatch(setPlayerPlaylist(0))
+          dispatch(setPlayerPlaylist(5))
         }
       }
     })

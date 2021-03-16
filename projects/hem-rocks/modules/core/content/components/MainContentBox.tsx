@@ -119,16 +119,6 @@ function MainContentBox({
     )
   }
 
-  const onClick = useCallback(
-    function onClickFn() {
-      const copyText = document.getElementById(contentItem.id)
-      // @ts-ignore
-      copyText.select()
-      document.execCommand('copy')
-      dispatch(setCurrentItem(contentItem))
-    }, [],
-  )
-
   const linkTo = customLinkTo
     ? customLinkTo(contentItem)
     : `/${contentItem.category.split(',')[0]}/detail/${contentItem.slug}${filter ? '/' + filter : ''}`
@@ -173,15 +163,7 @@ function MainContentBox({
             { hasKeyArt(contentItem, index)
               && !isEmpty(contentItem.keyArtFullPath || contentItem.keyArt)
               && (
-                <div
-                  className="main-content-box-key-art"
-                  onClick={onClick}
-                >
-                  {/* <input
-                    type="text"
-                    id={contentItem.id}
-                    value={contentItem.title}
-                  /> */}
+                <div className="main-content-box-key-art">
                   { renderActionsOn === 'key-art' && (
                     <MainContentBoxActions buttonText={buttonText}>
                       { children }
@@ -199,26 +181,23 @@ function MainContentBox({
                   />
                 </div>
             )}
-            <div
-              className="main-content-box-text"
-              onClick={onClick}
-            >
-              <>
-                {contentItem[secondaryTitleField] && (
-                  <h4 dangerouslySetInnerHTML={{ __html: contentItem[secondaryTitleField] }} />
-                )}
-                <h3 dangerouslySetInnerHTML={{ __html: contentItem.titleWrapping || contentItem.title }} />
-              </>
-              { showBlurb && (
-                <div dangerouslySetInnerHTML={{ __html: marked(contentItem.blurb) }} />
-              )}
-              { renderActionsOn === 'text' && (
-                <MainContentBoxActions buttonText={buttonText}>
-                  { children }
-                </MainContentBoxActions>
-              )}
-            </div>
           </Link>
+          <div className="main-content-box-text">
+            <Link to={linkTo}>
+              {contentItem[secondaryTitleField] && (
+                <h4 dangerouslySetInnerHTML={{ __html: contentItem[secondaryTitleField] }} />
+              )}
+              <h3 dangerouslySetInnerHTML={{ __html: contentItem.titleWrapping || contentItem.title }} />
+            </Link>
+            { showBlurb && (
+              <div dangerouslySetInnerHTML={{ __html: marked(contentItem.blurb) }} />
+            )}
+            { renderActionsOn === 'text' && (
+              <MainContentBoxActions buttonText={buttonText}>
+                { children }
+              </MainContentBoxActions>
+            )}
+          </div>
         </Tilt>
       </SplatterDims>
     </div>
