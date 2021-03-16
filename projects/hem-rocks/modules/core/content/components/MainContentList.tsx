@@ -158,6 +158,7 @@ function MainContentList({
 
   const [finalContentItems, setFinalContentItems] = useState<IContentItem[]>([])
   const [finalFilters, setFinalFilters] = useState<string[]>([])
+  const [pagePlaylistSet, setPagePlaylistSet] = useState<boolean>(false)
 
   useEffect(function getChunk() {
     if (
@@ -424,12 +425,17 @@ function MainContentList({
       if (PROJECT_CONFIGS[currentProject].HAS_PLAYER) {
         if (shouldSetCurrentPlaylist && tracks.length) {
           const pagePlaylistIndex = findIndex(playlists, { name: 'On this page' })
-          dispatch(replacePlaylist(pagePlaylistIndex, { name: 'On this page', tracks }))
-          dispatch(setPlayerPlaylist(pagePlaylistIndex))
+          if (pagePlaylistIndex > -1) {
+            if (!pagePlaylistSet) {
+              dispatch(replacePlaylist(pagePlaylistIndex, { name: 'On this page', tracks }))
+              dispatch(setPlayerPlaylist(pagePlaylistIndex))
+              setPagePlaylistSet(true)
+            }
+          }
         }
       }
     })
-  }, [currentFilter, storeContentItems, currentlyOpenPopUp, currentProject])
+  }, [currentFilter, storeContentItems, currentlyOpenPopUp, currentProject, playlists, pagePlaylistSet])
 
   useEffect(function onFilterChanged() {
     ReactGA.event({

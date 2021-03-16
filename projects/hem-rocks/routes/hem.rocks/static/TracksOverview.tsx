@@ -82,21 +82,21 @@ function TracksOverview(): ReactElement {
 
     const pagePlaylistIndex = findIndex(playerPlaylists, { name: 'On this page' })
 
-    if (pagePlaylistIndex < 0) return
+    if (pagePlaylistIndex > -1) {
+      const pagePlaylistTracks = tracksRow.items
+        .map(i => contentItemToTrack(i))
+        .concat(
+          flatten(playlistsRow.items.map(
+            p =>
+              getContentItemsFromRawList(allTracksItems, p.attachments)
+                .map(i => contentItemToTrack(i))
+          ))
+        )
 
-    const pagePlaylistTracks = tracksRow.items
-      .map(i => contentItemToTrack(i))
-      .concat(
-        flatten(playlistsRow.items.map(
-          p =>
-            getContentItemsFromRawList(allTracksItems, p.attachments)
-              .map(i => contentItemToTrack(i))
-        ))
-      )
-
-    dispatch(replacePlaylist(pagePlaylistIndex, { name: 'On this page', tracks: pagePlaylistTracks, linkTo: '#' }))
-    dispatch(setPlayerPlaylist(pagePlaylistIndex))
-    setPagePlaylistSet(true)
+      dispatch(replacePlaylist(pagePlaylistIndex, { name: 'On this page', tracks: pagePlaylistTracks, linkTo: '#' }))
+      dispatch(setPlayerPlaylist(pagePlaylistIndex))
+      setPagePlaylistSet(true)
+    }
   }, [chunkLog, allTracksItems, allPlaylistsItems, pagePlaylistSet, playerPlaylists, rows, currentProject])
 
   return (

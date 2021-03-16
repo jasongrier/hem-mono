@@ -56,6 +56,10 @@ const reducer = (
     }
 
     case REPLACE_PLAYLIST: {
+      if (payload.number === 5) {
+        // debugger
+      }
+      console.log('!!!', payload.playlist.name, payload.number)
       return produce(state, draftState => {
         draftState.playlists[payload.number] = {
           id: uuid(),

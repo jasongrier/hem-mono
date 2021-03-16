@@ -33,6 +33,7 @@ function PlayerFrame({}: PropsWithChildren<IProps>): ReactElement {
   const dispatch = useDispatch()
 
   const [playlistsLoaded, setPlaylistsLoaded] = useState<boolean>(false)
+  const [hardCodedPlaylistsLoaded, setHardCodedPlaylistsLoaded] = useState<boolean>(false)
 
   const { pathname } = useLocation()
 
@@ -74,19 +75,26 @@ function PlayerFrame({}: PropsWithChildren<IProps>): ReactElement {
       testTrack = tracks[0]
     })
 
-    dispatch(addPlaylist({ name: 'On this page', tracks: [], linkTo: '#' }))
-    dispatch(addPlaylist({ name: 'Current playlist', tracks: [], linkTo: '#' }))
-    dispatch(setPlayerPlaylist(0))
     setPlaylistsLoaded(true)
   }, [contentItems, chunkLog, currentProject, playlistsLoaded])
 
-  useEffect(function cleanupOnRouteChange() {
-    const pagePlaylistIndex = findIndex(playlists, { name: 'On this page' })
+  useEffect(function setHardcodedPlaylists() {
+    if (!playlistsLoaded) return
+    if (hardCodedPlaylistsLoaded) return
+    dispatch(addPlaylist({ name: 'On this page', tracks: [], linkTo: '#' }))
+    dispatch(addPlaylist({ name: 'Current playlist', tracks: [], linkTo: '#' }))
+    dispatch(setPlayerPlaylist(0))
+  }, [playlistsLoaded, hardCodedPlaylistsLoaded])
 
+  useEffect(function cleanupOnRouteChange() {
     dispatch(setPlayerPlaylistExpanded(false))
     dispatch(setPlayerExpanded(false))
-    dispatch(replacePlaylist(pagePlaylistIndex, { name: 'On this page', tracks: [] }))
-    dispatch(setPlayerPlaylist(0))
+
+    const pagePlaylistIndex = findIndex(playlists, { name: 'On this page' })
+    if (pagePlaylistIndex > -1) {
+      dispatch(replacePlaylist(pagePlaylistIndex, { name: 'On this page', tracks: [] }))
+      dispatch(setPlayerPlaylist(0))
+    }
   }, [pathname])
 
   return (

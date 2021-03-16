@@ -89,7 +89,7 @@ function DetailPopup({
   const [nextItem, setNextItem] = useState<IContentItem>()
   const [arrowKeysInited, setArrowKeysInited] = useState<boolean>(false)
 
-  useEffect(function setUpAttachedTracksPlaylist() {
+  useEffect(function initSale() {
     if (showPurchaseForm) {
       ReactGA.modalview('Detail Popup with Purchase Form: ' + contentItem.title)
     }
@@ -99,27 +99,28 @@ function DetailPopup({
     }
 
     setSaleId(uuid())
+  }, [])
 
-    setTimeout(() => {
-      if (!currentProject) return
+  useEffect(function setUpAttachedTracksPlaylist() {
+    if (!currentProject) return
 
-      const releasePhase = getReleasePhase(currentProject)
+    const releasePhase = getReleasePhase(currentProject)
 
-      let attachedTracks: ITrack[] = []
+    let attachedTracks: ITrack[] = []
 
-      if (hasCategory(contentItem, 'tracks')) {
-        attachedTracks = [contentItemToTrack(contentItem)]
-      }
+    if (hasCategory(contentItem, 'tracks')) {
+      attachedTracks = [contentItemToTrack(contentItem)]
+    }
 
-      else if (
-        hasCategory(contentItem, 'label')
-        || hasCategory(contentItem, 'press-releases')
-        || hasCategory(contentItem, 'articles')
-      ) {
-        const attachedPlaylistItem = getContentItemById(allContentItems, contentItem.attachments)
+    else if (
+      hasCategory(contentItem, 'label')
+      || hasCategory(contentItem, 'press-releases')
+      || hasCategory(contentItem, 'articles')
+    ) {
+      const attachedPlaylistItem = getContentItemById(allContentItems, contentItem.attachments)
 
-        if (attachedPlaylistItem) {
-          attachedTracks = compact(getContentItemsFromRawList(allContentItems, attachedPlaylistItem.attachments)
+      if (attachedPlaylistItem) {
+        attachedTracks = compact(getContentItemsFromRawList(allContentItems, attachedPlaylistItem.attachments)
           .filter(item =>
             item.project === currentProject
             && item.published
@@ -128,28 +129,30 @@ function DetailPopup({
           .map(item =>
             contentItemToTrack(item)
           ))
-        }
       }
+    }
 
-      else {
-        attachedTracks = compact(getContentItemsFromRawList(allContentItems, contentItem.attachments)
-          .filter(item => item.project === currentProject)
-          .map(item =>
-            contentItemToTrack(item)
-          ))
-      }
+    else {
+      attachedTracks = compact(getContentItemsFromRawList(allContentItems, contentItem.attachments)
+        .filter(item => item.project === currentProject)
+        .map(item =>
+          contentItemToTrack(item)
+        ))
+    }
 
-      const playlist = {
-        name: 'On this page',
-        tracks: attachedTracks,
-      }
+    const playlist = {
+      name: 'On this page',
+      tracks: attachedTracks,
+    }
 
-      const pagePlaylistIndex = findIndex(playlists, { name: 'On this page' })
+    setAttachedPlaylist(playlist)
 
+    const pagePlaylistIndex = findIndex(playlists, { name: 'On this page' })
+
+    if (pagePlaylistIndex > -1) {
       dispatch(replacePlaylist(pagePlaylistIndex, playlist))
       dispatch(setPlayerPlaylist(pagePlaylistIndex))
-      setAttachedPlaylist(playlist)
-    })
+    }
   }, [contentItem.slug, chunkLog, currentProject])
 
   const suggestedPriceOnChange = useCallback(
