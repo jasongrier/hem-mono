@@ -24,7 +24,9 @@ function Home(): ReactElement {
       </Helmet>
       <div className="page page-home">
         <div className="main-heroine">
-          <HemRefreshHeroine contentItem={getContentItemBySlug(contentItems, 'home-heroine-april-2021')} />
+          <HemRefreshHeroine
+            contentItem={getContentItemBySlug(contentItems, 'home-heroine-april-2021')}
+          />
         </div>
         <MainContentList
           category="home-features"

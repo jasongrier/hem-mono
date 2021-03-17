@@ -39,7 +39,7 @@ function TopBar(): ReactElement {
           <nav className="main-nav">
             <ul className="main-nav-items">
               <MainNavItem
-                name="Tracks"
+                name="Jukebox"
                 activeFor={[
                   '/tracks-overview',
                   '/tracks',

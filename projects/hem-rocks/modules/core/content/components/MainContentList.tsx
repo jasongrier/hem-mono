@@ -33,6 +33,7 @@ interface IProps {
   boxBlurbs?: boolean
   boxHeight?: number
   boxHasKeyArt?: (contentItem: IContentItem, index: number) => boolean
+  boxHasReadOnLink?: boolean
   boxHotZoneTop?: number
   boxHotZoneBottom?: number
   boxMarginRangeX?: number
@@ -103,6 +104,7 @@ function MainContentList({
   boxRangeX,
   boxRangeY,
   boxWidth,
+  boxHasReadOnLink = true,
   buttonText,
   children,
   currentFilter = 'featured',
@@ -604,6 +606,7 @@ function MainContentList({
               filter={currentFilter}
               height={boxHeight}
               hasKeyArt={boxHasKeyArt}
+              hasReadOnLink={boxHasReadOnLink}
               index={index}
               hotZoneBottom={boxHotZoneBottom}
               hotZoneTop={boxHotZoneTop}

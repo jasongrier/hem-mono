@@ -30,6 +30,7 @@ function Artists(): ReactElement {
           category="artists"
           boxWidth={120}
           boxBlurbs={false}
+          boxHasReadOnLink={false}
           shouldSetCurrentPlaylist={true}
           currentFilter="all"
           boxMinMarginX={0}

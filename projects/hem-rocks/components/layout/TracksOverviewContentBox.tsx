@@ -1,6 +1,6 @@
 import { IPlaylist } from '../../../../lib/modules/website-player'
 import React, { ReactElement } from 'react'
-import { IContentItem, MainContentBox } from '../../modules/core/content'
+import { hasCategory, IContentItem, MainContentBox } from '../../modules/core/content'
 import { TracksBoxChild } from './'
 
 interface IProps {
@@ -24,6 +24,7 @@ function TracksOverviewContentBox({ allTracksItems, contentItem, filter, index, 
       minMarginY={0}
       marginRangeX={0}
       marginRangeY={0}
+      hasReadOnLink={!hasCategory(contentItem, 'tracks')}
       linkTo={contentItem => `tracks-overview/detail/${contentItem.slug}`}
     >
       <TracksBoxChild

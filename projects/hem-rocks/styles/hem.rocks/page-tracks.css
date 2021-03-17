@@ -50,6 +50,10 @@
   height: 30px;
 }
 
+.page-tracks .main-content-box-more {
+  font-size: 12px;
+}
+
 .page-tracks .main-content-box-actions .hem-player-track-play-pause-button {
   width: 30px;
   height: 30px;

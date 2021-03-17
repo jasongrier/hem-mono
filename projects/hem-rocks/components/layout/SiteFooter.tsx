@@ -44,17 +44,19 @@ function SiteFooter(): ReactElement {
               <li><Link to="/tutorials">Tutorials</Link></li>
               <li><Link to="/support">Support</Link></li>
               <li><Link to="/newsletters">Newsletters</Link></li>
+              <li><Link to="/press-releases">Press Releases</Link></li>
+              <li><Link to="/press-clippings">Press Clippings</Link></li>
+              <li><Link to="/demo-policy">Demo Policy</Link></li>
             </ul>
           </div>
           <div className="site-footer-content-column">
             <ul>
               <li><Link to="/apps">Apps</Link></li>
               <li><Link to="/articles">Articles</Link></li>
+              <li><Link to="/news">News</Link></li>
+              <li><Link to="/blog">Blog</Link></li>
               <li><Link to="/recipes">Recipes</Link></li>
               <li><a href="">Video</a></li>
-              <li><Link to="/press-releases">Press Releases</Link></li>
-              <li><a href="">Press Clippings</a></li>
-              <li><a href="">Demo Policy</a></li>
             </ul>
           </div>
           <div className="site-footer-content-column">

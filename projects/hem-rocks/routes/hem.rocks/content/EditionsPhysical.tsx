@@ -14,7 +14,7 @@ function EditionsPhysical(): ReactElement {
         <title>{ BASE_SITE_TITLE }</title>
         <meta name="description" content="" />
       </Helmet>
-      <div className="page page-editions page-editions-physical">
+      <div className="page page-editions page-editions-physical page-with-subnav page-with-banner">
         <EditionsSubnav />
         <MainContentList
           currentFilter={currentFilter}

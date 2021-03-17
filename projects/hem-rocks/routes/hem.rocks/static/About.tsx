@@ -18,7 +18,7 @@ function About(): ReactElement {
         <AboutSubnav />
         <h1>About HEM</h1>
         <div className="main-content-section first-main-content-section" style={{ color: 'black' }}>
-          <SiteText textItemId="dc8240aa-4c8c-4d1b-ae9c-9f653815c82f" />
+          <SiteText textItemId="c2efdd3a-ac1a-4dbb-9c48-9a26e798a167" />
         </div>
 
         <div className="main-content-section">

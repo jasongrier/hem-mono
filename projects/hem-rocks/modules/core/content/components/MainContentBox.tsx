@@ -20,6 +20,8 @@ interface IProps {
   buttonText?: string
   className?: string
   hasKeyArt?: (contentItem: IContentItem, index: number) => boolean
+  hasReadOnLink?: boolean
+  readOnLinkText?: string
   height?: number
   hotZoneTop?: number
   hotZoneBottom?: number
@@ -47,6 +49,8 @@ function MainContentBox({
   buttonText,
   className,
   hasKeyArt = () => true,
+  hasReadOnLink = true,
+  readOnLinkText = 'read on…',
   height,
   hotZoneBottom,
   hotZoneTop,
@@ -185,9 +189,11 @@ function MainContentBox({
             { showBlurb && (
               <div dangerouslySetInnerHTML={{ __html: marked(contentItem.blurb) }} />
             )}
-            <div className="main-content-box-more">
-              <Link to={linkTo}>read on&hellip;</Link>
-            </div>
+            { hasReadOnLink && (
+              <div className="main-content-box-more">
+                <Link to={linkTo}>{ readOnLinkText }</Link>
+              </div>
+            )}
             <MainContentBoxActions buttonText={buttonText}>
               { children }
             </MainContentBoxActions>

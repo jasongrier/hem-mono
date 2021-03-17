@@ -1,5 +1,5 @@
-import { default as NewWebsite } from './NewWebsite'
+import { default as UpdateApril2021 } from './UpdateApril2021'
 
 export default {
-  NewWebsite,
+  UpdateApril2021,
 } as any
