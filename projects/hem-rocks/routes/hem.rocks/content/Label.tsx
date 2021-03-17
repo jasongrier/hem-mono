@@ -1,17 +1,22 @@
 import React, { ReactElement, useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import { Link, useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { MainContentList, contentItemToTrack, getContentItemsFromRawList } from '../../../modules/core/content'
+import { useSelector, useDispatch } from 'react-redux'
+import { PlayableBoxActions } from '../../../components/layout'
+import { MainContentList, contentItemToTrack, getContentItemsFromRawList, requestReadChunk } from '../../../modules/core/content'
 import { TrackPlayPauseButton } from '../../../../../lib/modules/website-player'
 import { LabelTimeline } from '../../../components/timeline'
 import { BASE_SITE_TITLE } from '../../../config'
 import { RootState } from '../../../index'
 
 function Label(): ReactElement {
-  const { allContentItems } = useSelector((state: RootState) => ({
+  const { allContentItems, chunkLog, currentProject } = useSelector((state: RootState) => ({
     allContentItems: state.content.contentItems,
+    chunkLog: state.content.chunkLog,
+    currentProject: state.content.currentProject,
   }))
+
+  const dispatch = useDispatch()
 
   const [refreshTimeline, setRefreshTimeline] = useState(0)
 
@@ -20,6 +25,12 @@ function Label(): ReactElement {
   useEffect(function updateTimeline() {
     setRefreshTimeline(refreshTimeline + 1)
   }, [currentFilter])
+
+  useEffect(function getChunks() {
+    if (!chunkLog.includes('playlists')) {
+      dispatch(requestReadChunk('playlists'))
+    }
+  }, [chunkLog])
 
   return (
     <>
@@ -36,18 +47,16 @@ function Label(): ReactElement {
           excludeTags={['Primary Format', 'New', 'Label Page', 'Format:Digital']}
           category="label"
         >
-          {(item) => {
-            const attachedTracks = getContentItemsFromRawList(allContentItems, item.attachments).map(track =>
-              contentItemToTrack(track)
-            )
-
+          { item => {
             const directFromArtist = item.externalLinkUrl && item.externalLinkText
 
             return (
               <>
-                { attachedTracks && attachedTracks.length > 0 && (
-                  <TrackPlayPauseButton track={attachedTracks[0]}/>
-                )}
+                <PlayableBoxActions
+                  item={item}
+                  contentItems={allContentItems}
+                  currentProject={currentProject}
+                />
                 { directFromArtist && (
                   <a
                     className="action-button action-button-wide"

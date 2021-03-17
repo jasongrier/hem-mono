@@ -82,8 +82,9 @@ function PlayerFrame({}: PropsWithChildren<IProps>): ReactElement {
     if (!playlistsLoaded) return
     if (hardCodedPlaylistsLoaded) return
     dispatch(addPlaylist({ name: 'On this page', tracks: [], linkTo: '#' }))
-    dispatch(addPlaylist({ name: 'Current playlist', tracks: [], linkTo: '#' }))
+    dispatch(addPlaylist({ name: 'Selected playlist', tracks: [], linkTo: '#' }))
     dispatch(setPlayerPlaylist(0))
+    setHardCodedPlaylistsLoaded(true)
   }, [playlistsLoaded, hardCodedPlaylistsLoaded])
 
   useEffect(function cleanupOnRouteChange() {
@@ -91,8 +92,21 @@ function PlayerFrame({}: PropsWithChildren<IProps>): ReactElement {
     dispatch(setPlayerExpanded(false))
 
     const pagePlaylistIndex = findIndex(playlists, { name: 'On this page' })
-    if (pagePlaylistIndex > -1) {
-      dispatch(replacePlaylist(pagePlaylistIndex, { name: 'On this page', tracks: [] }))
+    const selectedPlaylistIndex = findIndex(playlists, { name: 'Selected playlist' })
+
+    // if (pagePlaylistIndex > -1) {
+    //   dispatch(replacePlaylist(pagePlaylistIndex, { name: 'On this page', tracks: [] }))
+    // }
+
+    if (playlists[selectedPlaylistIndex]?.tracks.length) {
+      dispatch(setPlayerPlaylist(selectedPlaylistIndex))
+    }
+
+    else if (pagePlaylistIndex > -1) {
+      dispatch(setPlayerPlaylist(pagePlaylistIndex))
+    }
+
+    else {
       dispatch(setPlayerPlaylist(0))
     }
   }, [pathname])

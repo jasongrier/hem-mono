@@ -1,16 +1,19 @@
 import React, { ReactElement } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Helmet } from 'react-helmet'
-import { map } from 'lodash'
-import { ITrack, TrackPlayPauseButton } from '../../../../../lib/modules/website-player'
+import { findIndex } from 'lodash'
 import { HemRefreshHeroine } from '../../../components/heroines'
-import { MainContentList, getContentItemsFromRawList, contentItemToTrack, hasCategory, getContentItemBySlug, hasTag, hasProperty } from '../../../modules/core/content'
+import { PlayableBoxActions } from '../../../components/layout'
+import { MainContentList, getContentItemById, getContentItemsFromList, contentItemToTrack, hasCategory, getContentItemBySlug, hasTag, hasProperty } from '../../../modules/core/content'
 import { BASE_SITE_TITLE } from '../../../config'
 import { RootState } from '../../../index'
 
+declare const window: any
+
 function Home(): ReactElement {
-  const { contentItems } = useSelector((state: RootState) => ({
+  const { contentItems, currentProject } = useSelector((state: RootState) => ({
     contentItems: state.content.contentItems,
+    currentProject: state.content.currentProject,
   }))
 
   return (
@@ -40,29 +43,13 @@ function Home(): ReactElement {
           boxMarginRangeX={0}
           boxMarginRangeY={75}
         >
-          {(item) => {
-            let attachedTracks: ITrack[]
-
-            if (hasCategory(item, 'tracks')) {
-              attachedTracks = [contentItemToTrack(item)]
-            }
-
-            else {
-              attachedTracks = getContentItemsFromRawList(contentItems, item.attachments)
-                .map(track =>
-                  contentItemToTrack(track)
-                )
-            }
-
-            if (!attachedTracks || !attachedTracks.length) return <div />
-
-            return (
-              <TrackPlayPauseButton
-                activeFor={attachedTracks}
-                track={attachedTracks[0]}
-              />
-            )
-          }}
+          {item => (
+            <PlayableBoxActions
+              item={item}
+              contentItems={contentItems}
+              currentProject={currentProject}
+            />
+          )}
         </MainContentList>
       </div>
     </>

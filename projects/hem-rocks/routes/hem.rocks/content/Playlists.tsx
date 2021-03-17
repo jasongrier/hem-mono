@@ -5,17 +5,14 @@ import { useSelector, useDispatch } from 'react-redux'
 import { map, flatten, find, uniq, compact, findIndex } from 'lodash'
 import { MainContentList, contentItemToTrack, hasCategory, hasTag, getContentItemsFromRawList, getContentItemsFromList, IContentItem } from '../../../modules/core/content'
 import { TrackPlayPauseButton, replacePlaylist, addPlaylist, setPlayerPlaylist } from '../../../../../lib/modules/website-player'
-import { TracksSubnav, MainContentBanner } from '../../../components/layout'
+import { TracksSubnav, MainContentBanner, TracksBoxChild } from '../../../components/layout'
 import { BASE_SITE_TITLE } from '../../../config'
 import { RootState } from '../../../index'
 
 function Playlists(): ReactElement {
-  const { allContentItems, playlists } = useSelector((state: RootState) => ({
-    allContentItems: state.content.contentItems,
-    playlists: state.player.playlists,
+  const { allTracksItems } = useSelector((state: RootState) => ({
+    allTracksItems: state.content.contentItems.filter(i => hasCategory(i, 'tracks')),
   }))
-
-  const dispatch = useDispatch()
 
   const { filter: currentFilter }: any = useParams()
 
@@ -26,9 +23,7 @@ function Playlists(): ReactElement {
         <meta name="description" content="" />
       </Helmet>
       <div className="page page-tracks page-with-subnav">
-        <MainContentBanner
-          headline="Playlists"
-        />
+        <MainContentBanner headline="Playlists" />
         <TracksSubnav />
         <MainContentList
           currentFilter={currentFilter || 'featured'}
@@ -45,28 +40,13 @@ function Playlists(): ReactElement {
           boxMinMarginY={0}
           boxMarginRangeX={0}
           boxMarginRangeY={80}
-          boxRenderActionsOn="key-art"
         >
-          {item => {
-            const attachedTracks = getContentItemsFromRawList(allContentItems, item.attachments).map(track =>
-              contentItemToTrack(track)
-            )
-
-            if (!attachedTracks || !attachedTracks.length) return <div />
-
-            return (
-              <div onClick={() => {
-                const selectedPlaylistIndex = findIndex(playlists, { name: 'Selected Playlist' })
-                dispatch(replacePlaylist(selectedPlaylistIndex, { name: 'Selected Playlist', tracks: attachedTracks }))
-                dispatch(setPlayerPlaylist(selectedPlaylistIndex))
-              }}>
-                <TrackPlayPauseButton
-                  activeFor={attachedTracks}
-                  track={attachedTracks[0]}
-                />
-              </div>
-            )
-          }}
+          {item => (
+            <TracksBoxChild
+              allTracksItems={allTracksItems}
+              item={item}
+            />
+          )}
         </MainContentList>
       </div>
     </>

@@ -13,7 +13,7 @@ import { closePopup, openPopup } from '../../../../../../lib/modules/popups'
 import { TrackPlayPauseButton, ITrack, replacePlaylist, setPlayerPlaylist, IPlaylist } from '../../../../../../lib/modules/website-player'
 import { addProductToCart, submitSale } from '../../cart'
 import { getCookieName, SplitTests, getReleasePhase } from '../../app'
-import { IContentItem, getContentItemsFromRawList, getContentItemById, getProperties, ImageGallery, SiteText } from '../index'
+import { IContentItem, getContentItemsFromList, getContentItemsFromRawList, getContentItemById, getProperties, ImageGallery, SiteText } from '../index'
 import { assetHostHostname } from '../../../../functions'
 import ContentComponents from '../../../../components/content'
 import { RootState } from '../../../../index'
@@ -88,6 +88,8 @@ function DetailPopup({
   const [previousItem, setPreviousItem] = useState<IContentItem>()
   const [nextItem, setNextItem] = useState<IContentItem>()
   const [arrowKeysInited, setArrowKeysInited] = useState<boolean>(false)
+  const [pagePlaylistSet, setPagePlaylistSet] = useState<boolean>(false)
+  const [selectedPlaylistSet, setSelectedPlaylistSet] = useState<boolean>(false)
 
   useEffect(function initSale() {
     if (showPurchaseForm) {
@@ -116,11 +118,13 @@ function DetailPopup({
       hasCategory(contentItem, 'label')
       || hasCategory(contentItem, 'press-releases')
       || hasCategory(contentItem, 'articles')
+      || hasCategory(contentItem, 'news')
+      || hasCategory(contentItem, 'sound-library')
     ) {
       const attachedPlaylistItem = getContentItemById(allContentItems, contentItem.attachments)
 
       if (attachedPlaylistItem) {
-        attachedTracks = compact(getContentItemsFromRawList(allContentItems, attachedPlaylistItem.attachments)
+        attachedTracks = compact(getContentItemsFromList(allContentItems, attachedPlaylistItem.slug, currentProject)
           .filter(item =>
             item.project === currentProject
             && item.published
@@ -133,27 +137,29 @@ function DetailPopup({
     }
 
     else {
-      attachedTracks = compact(getContentItemsFromRawList(allContentItems, contentItem.attachments)
+      attachedTracks = compact(getContentItemsFromList(allContentItems, contentItem.slug, currentProject)
         .filter(item => item.project === currentProject)
         .map(item =>
           contentItemToTrack(item)
         ))
     }
 
-    const playlist = {
-      name: 'On this page',
+    const playlist: Partial<IPlaylist> = {
+      name: 'Selected playlist',
       tracks: attachedTracks,
     }
 
     setAttachedPlaylist(playlist)
 
-    const pagePlaylistIndex = findIndex(playlists, { name: 'On this page' })
+    const selectedPlaylistIndex = findIndex(playlists, { name: 'Selected playlist' })
 
-    if (pagePlaylistIndex > -1) {
-      dispatch(replacePlaylist(pagePlaylistIndex, playlist))
-      dispatch(setPlayerPlaylist(pagePlaylistIndex))
+    if (selectedPlaylistIndex > -1 && !selectedPlaylistSet) {
+      playlist.displayName = contentItem.title
+      dispatch(replacePlaylist(selectedPlaylistIndex, playlist))
+      dispatch(setPlayerPlaylist(selectedPlaylistIndex))
+      setSelectedPlaylistSet(true)
     }
-  }, [contentItem.slug, chunkLog, currentProject])
+  }, [contentItem.slug, chunkLog, currentProject, playlists])
 
   const suggestedPriceOnChange = useCallback(
     function suggestedPriceOnChangeFn(evt: SyntheticEvent<HTMLInputElement>) {

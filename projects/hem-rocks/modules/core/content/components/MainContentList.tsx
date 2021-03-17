@@ -15,7 +15,7 @@ import { IContentItem, setCurrentItems } from '../index'
 import { RootState } from '../../../../index'
 import { getReleasePhase } from '../../app'
 import { LISTS_HAVE_BLURBS, PROJECT_CONFIGS as UNTYPED_PROJECT_CONFIGS } from '../../../../config'
-import { hasTag, hasCategory, contentItemToTrack, orderSortFnFact, getTagsInCollection, getContentItemsFromRawList, smartSlugify, tagSpellingCorrections, getContentItemById, modelize, getTags } from '../functions'
+import { hasTag, hasCategory, contentItemToTrack, orderSortFnFact, getTagsInCollection, getContentItemsFromList, smartSlugify, tagSpellingCorrections, getContentItemById, modelize, getTags } from '../functions'
 import { requestReadChunk } from '../actions'
 
 const PROJECT_CONFIGS = UNTYPED_PROJECT_CONFIGS as any
@@ -41,7 +41,6 @@ interface IProps {
   boxMinMarginY?: number
   boxRangeX?: number
   boxRangeY?: number
-  boxRenderActionsOn?: 'key-art' | 'text'
   boxSecondaryTitleField?: 'secondaryTitle' | 'attribution'
   boxWidth?: number
   buttonText?: string
@@ -100,7 +99,6 @@ function MainContentList({
   boxMarginRangeY,
   boxMinMarginX,
   boxMinMarginY,
-  boxRenderActionsOn,
   boxSecondaryTitleField,
   boxRangeX,
   boxRangeY,
@@ -128,7 +126,7 @@ function MainContentList({
   onlyTag,
   orderByOrder,
   orderByTitle,
-  playlistToSet = 5,
+  playlistToSet,
   prependTagLinks = [],
   randomizeNonSticky,
   randomizeTags,
@@ -400,38 +398,55 @@ function MainContentList({
           tracks.push(contentItemToTrack(item))
         }
 
-        else if (
-          hasCategory(item, 'label')
-          || hasCategory(item, 'press-releases')
-        ) {
-          const attachedPlaylist = getContentItemById(storeContentItems, item.attachments)
-
-          if (attachedPlaylist) {
-            const attachedTracks = getContentItemsFromRawList(storeContentItems, attachedPlaylist.attachments).map(track =>
-              contentItemToTrack(track)
-            )
-            tracks = tracks.concat(attachedTracks)
-          }
-        }
-
         else {
-          const attachedTracks = getContentItemsFromRawList(storeContentItems, item.attachments).map(track =>
-            contentItemToTrack(track)
-          )
-          tracks = tracks.concat(attachedTracks)
+          const attachmentIds = item.attachments.split('\n')
+
+          for (const id of attachmentIds) {
+            const attachment = getContentItemById(storeContentItems, id)
+
+            if (!attachment) continue
+
+            if (hasCategory(attachment, 'playlists')) {
+              const playlistTracks = getContentItemsFromList(storeContentItems, attachment.slug, currentProject).map(track =>
+                contentItemToTrack(track)
+              )
+              tracks = tracks.concat(playlistTracks)
+            }
+
+            else if (hasCategory(attachment, 'tracks')) {
+              tracks.push(contentItemToTrack(attachment))
+            }
+          }
         }
       }
 
       if (PROJECT_CONFIGS[currentProject].HAS_PLAYER) {
         if (shouldSetCurrentPlaylist && tracks.length) {
           const pagePlaylistIndex = findIndex(playlists, { name: 'On this page' })
+          const selectedPlaylistIndex = findIndex(playlists, { name: 'Selected playlist' })
+
+          if (!playlistToSet) {
+            if (playlists[selectedPlaylistIndex]?.tracks.length) {
+              playlistToSet = selectedPlaylistIndex
+            }
+
+            else if (pagePlaylistIndex > -1) {
+              playlistToSet = pagePlaylistIndex
+            }
+
+            else {
+              playlistToSet = 0
+            }
+          }
+
           if (pagePlaylistIndex > -1) {
             if (!pagePlaylistSet) {
               dispatch(replacePlaylist(pagePlaylistIndex, { name: 'On this page', tracks }))
-              dispatch(setPlayerPlaylist(pagePlaylistIndex))
               setPagePlaylistSet(true)
             }
           }
+
+          dispatch(setPlayerPlaylist(playlistToSet))
         }
       }
     })
@@ -601,7 +616,6 @@ function MainContentList({
               noSplatter={noSplatter}
               rangeX={boxRangeX}
               rangeY={boxRangeY}
-              renderActionsOn={boxRenderActionsOn}
               secondaryTitleField={boxSecondaryTitleField}
               showBlurb={boxBlurbs}
               tag={category}
@@ -633,7 +647,6 @@ function MainContentList({
             noSplatter={noSplatter}
             rangeX={boxRangeX}
             rangeY={boxRangeY}
-            renderActionsOn={boxRenderActionsOn}
             secondaryTitleField={boxSecondaryTitleField}
             showBlurb={boxBlurbs}
             tag={category}

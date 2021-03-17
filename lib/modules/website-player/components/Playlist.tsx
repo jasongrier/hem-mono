@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import ReactGA from 'react-ga'
 import { findIndex, isEmpty } from 'lodash'
+import moment from 'moment'
 import { PlayPauseButton as BasePlayPauseButton, CloseButton } from '../../../packages/hem-buttons'
 import { ITrack, IPlaylist, setPlayerPlaylist, setPlayerError } from '../index'
 import TrackPlayPauseButton from './TrackPlayPauseButton'
@@ -43,7 +44,7 @@ function Playlist({ onCollapse }: IProps): ReactElement {
               dispatch(setPlayerPlaylist(nextPlaylistNumber))
             }}
           >
-            { tabPlaylist.name }
+            { tabPlaylist.displayName || tabPlaylist.name }
           </div>
         ))}
       </div>
@@ -71,9 +72,9 @@ function Playlist({ onCollapse }: IProps): ReactElement {
           </ul>
           <ul>
             <Scrollbars noScrollX={true}>
-              { currentPlaylist.tracks.map((track: ITrack) => (
+              { currentPlaylist.tracks.map((track: ITrack, i: number) => (
                 <li
-                  key={track.id}
+                  key={track.uid + '-' + i}
                   className={`
                     clearfix
                     ${(playing && currentTrack && track.id === currentTrack.id) ? 'hem-player-playlist-line-active' : ''}
@@ -131,7 +132,7 @@ function Playlist({ onCollapse }: IProps): ReactElement {
                       { track.duration }
                     </div>
                     <div className="hem-player-playlist-line-date">
-                      { track.date }
+                      { moment(track.date, 'MMMM YYYY').format('YYYY') }
                     </div>
                     <div className="hem-player-playlist-line-share">
                       <div

@@ -30,6 +30,14 @@
   line-height: 30px;
 }
 
+.main-content-box-text p {
+  margin-bottom: 10px;
+}
+
+.main-content-box-more {
+  color: var(--line-orange);
+}
+
 .main-content .hem-contact-form {
   margin-left: 5px;
 }
@@ -270,7 +278,7 @@
   height: 500px;
   margin: 0 0 30px 0;
   padding: 0;
-  border-bottom: 1px solid #ccc;
+  /* border-bottom: 1px solid #ccc; */
 }
 
 .main-content-box p i {

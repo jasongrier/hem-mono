@@ -81,6 +81,7 @@ function TracksOverview(): ReactElement {
     if (!playlistsRow) return
 
     const pagePlaylistIndex = findIndex(playerPlaylists, { name: 'On this page' })
+    const selectedPlaylistIndex = findIndex(playerPlaylists, { name: 'Selected playlist' })
 
     if (pagePlaylistIndex > -1) {
       const pagePlaylistTracks = tracksRow.items
@@ -94,9 +95,21 @@ function TracksOverview(): ReactElement {
         )
 
       dispatch(replacePlaylist(pagePlaylistIndex, { name: 'On this page', tracks: pagePlaylistTracks, linkTo: '#' }))
-      dispatch(setPlayerPlaylist(pagePlaylistIndex))
       setPagePlaylistSet(true)
     }
+
+    if (playerPlaylists[selectedPlaylistIndex]?.tracks.length) {
+      dispatch(setPlayerPlaylist(selectedPlaylistIndex))
+    }
+
+    else if (pagePlaylistIndex > -1) {
+      dispatch(setPlayerPlaylist(pagePlaylistIndex))
+    }
+
+    else {
+      dispatch(setPlayerPlaylist(0))
+    }
+
   }, [chunkLog, allTracksItems, allPlaylistsItems, pagePlaylistSet, playerPlaylists, rows, currentProject])
 
   return (

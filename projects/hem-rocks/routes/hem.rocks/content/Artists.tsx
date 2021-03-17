@@ -36,7 +36,6 @@ function Artists(): ReactElement {
           boxMinMarginY={0}
           boxMarginRangeX={0}
           boxMarginRangeY={80}
-          boxRenderActionsOn="key-art"
           orderByTitle={true}
         >
           {item => {

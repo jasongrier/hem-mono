@@ -18,6 +18,7 @@ export interface ITrack {
   slug: string
   title: string
   titleLink: string
+  uid: string
 }
 
 export interface IPlaylist {
@@ -26,6 +27,7 @@ export interface IPlaylist {
   tracks: ITrack[]
 
   component?: any
+  displayName?: string
   linkTo?: string
 }
 

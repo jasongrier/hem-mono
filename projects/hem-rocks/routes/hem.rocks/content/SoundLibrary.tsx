@@ -5,12 +5,13 @@ import { useSelector } from 'react-redux'
 import { MainContentList, contentItemToTrack, getContentItemsFromRawList } from '../../../modules/core/content'
 import { TrackPlayPauseButton } from '../../../../../lib/modules/website-player'
 import { BASE_SITE_TITLE } from '../../../config'
-import { SoundLibrarySubnav } from '../../../components/layout'
+import { SoundLibrarySubnav, PlayableBoxActions } from '../../../components/layout'
 import { RootState } from '../../../index'
 
 function SoundLibrary(): ReactElement {
-  const { allContentItems } = useSelector((state: RootState) => ({
+  const { allContentItems, currentProject } = useSelector((state: RootState) => ({
     allContentItems: state.content.contentItems,
+    currentProject: state.content.currentProject,
   }))
 
   const { filter: currentFilter }: any = useParams()
@@ -34,20 +35,13 @@ function SoundLibrary(): ReactElement {
           speciallyOrderedTags={['Featured']}
           excludeTags={['Home Features']}
         >
-          {(pack) => {
-            const attachedTracks = getContentItemsFromRawList(allContentItems, pack.attachments).map(track =>
-              contentItemToTrack(track)
-            )
-
-            if (!attachedTracks || !attachedTracks.length) return <div />
-
-            return (
-              <TrackPlayPauseButton
-                activeFor={attachedTracks}
-                track={attachedTracks[0]}
-              />
-            )
-          }}
+          { item => (
+            <PlayableBoxActions
+              item={item}
+              contentItems={allContentItems}
+              currentProject={currentProject}
+            />
+          )}
         </MainContentList>
       </div>
     </>

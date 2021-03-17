@@ -9,6 +9,7 @@ function contentItemToTrack(contentItem: IContentItem): ITrack {
     date: contentItem.date,
     duration: contentItem.duration,
     id: contentItem.slug,
+    uid: contentItem.id,
     keyArt: assetHostHostname() + '/hem.rocks/content/images/key-art/' + contentItem.keyArt,
     relatedContent: contentItem.relatedContent,
     relatedContentLink: contentItem.relatedContentLink,

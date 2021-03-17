@@ -43,11 +43,30 @@
   top: -40px !important;
 }
 
-.main-content-deva {
-  position: fixed;
-  bottom: 60px;
-  left: 350px;
-  z-index: 99999;
-  width: 300px;
-  height: 300px;
+/* .app-is-home .main-content-box-actions {
+  top: -60px;
+  right: 10px;
 }
+
+.app-is-home .main-content-box-actions .hem-player-track-play-pause-button {
+  margin-left: 5px;
+}
+
+.app-is-home .main-content-box-actions .hem-player-track-play-pause-button,
+.app-is-home .main-content-box-actions .hem-play-pause-button {
+  width: 30px;
+  height: 30px;
+}
+
+.app-is-home .hem-play-pause-button-icon {
+  transform: scale(0.6);
+}
+
+.app-is-home .main-content-box-actions .action-button {
+  width: 100px;
+  height: 30px;
+  line-height: 30px;
+  padding-left: 0;
+  padding-right: 0;
+  font-size: 14px;
+} */

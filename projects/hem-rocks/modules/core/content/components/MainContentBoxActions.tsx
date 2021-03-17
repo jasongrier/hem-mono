@@ -8,9 +8,7 @@ interface IProps {
 function MainContentBoxActions({ buttonText, children }: PropsWithChildren<IProps>): ReactElement {
   return (
     <div className="main-content-box-actions">
-      <div className="main-content-box-custom-actions">
-        { children }
-      </div>
+      { children }
       { buttonText && (
         <button className="action-button">
           { buttonText }

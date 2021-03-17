@@ -204,10 +204,6 @@
   padding-left: 40px;
 }
 
-/* .player-bar-playlist ul:not(.hem-player-playlist-table-header) li:last-child {
-  border: 0;
-} */
-
 .hem-player-playlist-line-active {
   background-color: #666;
 }
@@ -291,8 +287,12 @@
 .hem-player-playlist-line-secondary-attribution {
   float: left;
   width: 150px;
+  height: 32px;
   text-decoration: none;
   color: inherit;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .hem-player-playlist-line-attribution a,

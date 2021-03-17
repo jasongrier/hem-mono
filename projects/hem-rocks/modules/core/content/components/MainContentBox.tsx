@@ -32,7 +32,6 @@ interface IProps {
   noTilt?: boolean
   rangeX?: number
   rangeY?: number
-  renderActionsOn?: 'key-art' | 'text'
   secondaryTitleField?: 'secondaryTitle' | 'attribution'
   showBlurb?: boolean
   width?: number
@@ -60,7 +59,6 @@ function MainContentBox({
   noTilt,
   rangeX,
   rangeY,
-  renderActionsOn = 'text',
   secondaryTitleField = 'secondaryTitle',
   showBlurb = true,
   width = 400,
@@ -164,11 +162,6 @@ function MainContentBox({
               && !isEmpty(contentItem.keyArtFullPath || contentItem.keyArt)
               && (
                 <div className="main-content-box-key-art">
-                  { renderActionsOn === 'key-art' && (
-                    <MainContentBoxActions buttonText={buttonText}>
-                      { children }
-                    </MainContentBoxActions>
-                  )}
                   <div
                     className="main-content-box-key-art-image"
                     style={{
@@ -192,11 +185,12 @@ function MainContentBox({
             { showBlurb && (
               <div dangerouslySetInnerHTML={{ __html: marked(contentItem.blurb) }} />
             )}
-            { renderActionsOn === 'text' && (
-              <MainContentBoxActions buttonText={buttonText}>
-                { children }
-              </MainContentBoxActions>
-            )}
+            <div className="main-content-box-more">
+              <Link to={linkTo}>read on&hellip;</Link>
+            </div>
+            <MainContentBoxActions buttonText={buttonText}>
+              { children }
+            </MainContentBoxActions>
           </div>
         </Tilt>
       </SplatterDims>

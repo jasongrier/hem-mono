@@ -2,14 +2,14 @@ import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { MainContentList, hasTag } from '../../../modules/core/content'
+import { MainContentList, hasTag, hasCategory } from '../../../modules/core/content'
 import { TracksSubnav, TracksBoxChild, MainContentBanner } from '../../../components/layout'
 import { BASE_SITE_TITLE } from '../../../config'
 import { RootState } from '../../../index'
 
 function Tracks(): ReactElement {
-  const { allContentItems } = useSelector((state: RootState) => ({
-    allContentItems: state.content.contentItems,
+  const { allTracksItems } = useSelector((state: RootState) => ({
+    allTracksItems: state.content.contentItems.filter(i => hasCategory(i, 'tracks')),
   }))
 
   const { filter: currentFilter }: any = useParams()
@@ -41,13 +41,10 @@ function Tracks(): ReactElement {
           boxMinMarginY={0}
           boxMarginRangeX={0}
           boxMarginRangeY={80}
-          boxRenderActionsOn="key-art"
-          // randomizeTags={['featured']}
-          // limitTags={['featured']}
         >
           {item => (
             <TracksBoxChild
-              allContentItems={allContentItems}
+              allTracksItems={allTracksItems}
               item={item}
             />
           )}

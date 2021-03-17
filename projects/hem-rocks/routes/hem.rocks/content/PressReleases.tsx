@@ -2,17 +2,15 @@ import React, { ReactElement } from 'react'
 import { Helmet } from 'react-helmet'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { AboutSubnav } from '../../../components/layout'
-import { TrackPlayPauseButton } from '../../../../../lib/modules/website-player'
-import { MainContentList, getContentItemsFromRawList, contentItemToTrack } from '../../../modules/core/content'
+import { AboutSubnav, PlayableBoxActions } from '../../../components/layout'
+import { MainContentList } from '../../../modules/core/content'
 import { BASE_SITE_TITLE } from '../../../config'
 import { RootState } from '../../../index'
-import { getContentItemById } from '../../../modules/core/content/functions'
-import { isEmpty } from 'lodash'
 
 function PressReleases(): ReactElement {
-  const { allContentItems } = useSelector((state: RootState) => ({
+  const { allContentItems, currentProject } = useSelector((state: RootState) => ({
     allContentItems: state.content.contentItems,
+    currentProject: state.content.currentProject,
   }))
 
   const { filter: currentFilter } = useParams() as any
@@ -32,25 +30,13 @@ function PressReleases(): ReactElement {
           orderByOrder={true}
           hideFilters={['Done For Now', 'Has Multiple Artists']}
         >
-          {(item) => {
-            const attachedPlaylist = getContentItemById(allContentItems, item.attachments)
-
-            if (!attachedPlaylist) return
-            if (isEmpty(attachedPlaylist)) return
-
-            const attachedTracks = getContentItemsFromRawList(allContentItems, attachedPlaylist.attachments).map(track =>
-              contentItemToTrack(track)
-            )
-
-            if (!attachedTracks || !attachedTracks.length) return <div />
-
-            return (
-              <TrackPlayPauseButton
-                activeFor={attachedTracks}
-                track={attachedTracks[0]}
-              />
-            )
-          }}
+          {item => (
+            <PlayableBoxActions
+              item={item}
+              contentItems={allContentItems}
+              currentProject={currentProject}
+            />
+          )}
         </MainContentList>
       </div>
     </>
